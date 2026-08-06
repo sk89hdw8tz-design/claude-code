@@ -119,6 +119,79 @@ def feather_mask(w, h, feather):
     return m
 
 
+def _extend_knots(native, glob, span=30000.0):
+    """Extend a monotone knot list linearly beyond both ends using the end
+    segments' slopes, so np.interp extrapolates instead of clamping."""
+    n = list(map(float, native))
+    g = list(map(float, glob))
+    s0 = (g[1] - g[0]) / (n[1] - n[0])
+    s1 = (g[-1] - g[-2]) / (n[-1] - n[-2])
+    n = [n[0] - span] + n + [n[-1] + span]
+    g = [g[0] - span * s0] + g + [g[-1] + span * s1]
+    return np.array(n), np.array(g)
+
+
+def pw_fwd(v, native, glob):
+    """native -> global, piecewise-linear with linear extrapolation."""
+    n, g = _extend_knots(native, glob)
+    return np.interp(v, n, g)
+
+
+def pw_inv(v, native, glob):
+    """global -> native."""
+    n, g = _extend_knots(native, glob)
+    return np.interp(v, g, n)
+
+
+def warp_sheet_piecewise(canvas, weight_hint, img, xkn, xkg, ykn, ykg,
+                         clip, gains, feather):
+    """Warp one sheet with a separable monotone piecewise-linear mapping that
+    places every detected grid line exactly at its consensus global position
+    (linear between lines, linear extrapolation beyond). Single resampling
+    pass via cv2.remap; blending in row chunks on the uint8 canvas.
+
+    xkn/xkg: native/global knot arrays for x (avenues); ykn/ykg for y.
+    clip: native-space rectangle to contribute."""
+    x0, y0, x1, y1 = [float(v) for v in clip]
+    gx0, gx1 = pw_fwd([x0, x1], xkn, xkg)
+    gy0, gy1 = pw_fwd([y0, y1], ykn, ykg)
+    dx0c, dy0c = max(0, int(np.floor(gx0))), max(0, int(np.floor(gy0)))
+    dx1c = min(canvas.shape[1], int(np.ceil(gx1)))
+    dy1c = min(canvas.shape[0], int(np.ceil(gy1)))
+    if dx1c <= dx0c or dy1c <= dy0c:
+        return
+    roi_w, roi_h = dx1c - dx0c, dy1c - dy0c
+
+    mapx1 = pw_inv(np.arange(dx0c, dx1c, dtype=np.float64) + 0.5, xkn, xkg).astype(np.float32)
+    mapy1 = pw_inv(np.arange(dy0c, dy1c, dtype=np.float64) + 0.5, ykn, ykg).astype(np.float32)
+    mapx = np.ascontiguousarray(np.broadcast_to(mapx1[None, :], (roi_h, roi_w)))
+    mapy = np.ascontiguousarray(np.broadcast_to(mapy1[:, None], (roi_h, roi_w)))
+
+    warped = cv2.remap(img, mapx, mapy, interpolation=cv2.INTER_LANCZOS4,
+                       borderMode=cv2.BORDER_CONSTANT, borderValue=0)
+    del mapx, mapy
+    warped = np.clip(warped.astype(np.float32) * gains[None, None, :], 0, 255).astype(np.uint8)
+
+    mask = cv2.resize(feather_mask(roi_w, roi_h, feather), (roi_w, roi_h),
+                      interpolation=cv2.INTER_LINEAR)
+
+    chunk = 1500
+    for r0 in range(0, roi_h, chunk):
+        r1 = min(roi_h, r0 + chunk)
+        m = mask[r0:r1][:, :, None]
+        dst = canvas[dy0c + r0 : dy0c + r1, dx0c:dx1c]
+        src = warped[r0:r1]
+        prev_w = weight_hint[dy0c + r0 : dy0c + r1, dx0c:dx1c].astype(np.float32)[:, :, None] / 255.0
+        total = prev_w + m
+        safe = np.maximum(total, 1e-6)
+        blended = (dst.astype(np.float32) * prev_w + src.astype(np.float32) * m) / safe
+        out = np.where(total > 1e-6, blended, dst.astype(np.float32))
+        canvas[dy0c + r0 : dy0c + r1, dx0c:dx1c] = np.clip(out, 0, 255).astype(np.uint8)
+        weight_hint[dy0c + r0 : dy0c + r1, dx0c:dx1c] = np.clip(
+            total[:, :, 0] * 255, 0, 255
+        ).astype(np.uint8)
+
+
 def warp_sheet_into(canvas, weight_hint, img, affine, clip, gains, feather):
     """Warp one clipped, gain-corrected sheet into its destination ROI on the
     uint8 canvas in a single resampling pass, blending in row chunks.
