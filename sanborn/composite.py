@@ -26,13 +26,19 @@ import config
 cv2.setNumThreads(2)
 
 
-def frame_bounds(img01, grid_v, grid_h, search_margin=0.12):
+def frame_bounds(img01, grid_v, grid_h, search_margin=0.12, region=None):
     """Find the printed black map frame, searching ONLY outside the outermost
     grid lines. Returns (x0, y0, x1, y1) clip rectangle in this image's
-    coordinates. grid_v/grid_h are line positions at this image's scale."""
+    coordinates. grid_v/grid_h are line positions at this image's scale.
+    `region` (x0,y0,x1,y1) bounds the search for multi-panel sheets so the
+    frame is the panel divider, not the neighboring panel's frame."""
     gray = img01.mean(axis=2)
     dark = (gray < 0.45).astype(np.float32)
     h, w = gray.shape
+    if region:
+        rx0, ry0, rx1, ry1 = region
+    else:
+        rx0, ry0, rx1, ry1 = 0, 0, w, h
     lo_v, hi_v = min(grid_v), max(grid_v)
     lo_h, hi_h = min(grid_h), max(grid_h)
 
@@ -51,10 +57,10 @@ def frame_bounds(img01, grid_v, grid_h, search_margin=0.12):
 
     col_dark = dark.mean(axis=0)
     row_dark = dark.mean(axis=1)
-    x0 = edge(col_dark, lo_v, max(0, lo_v - search_margin * w), -1)
-    x1 = edge(col_dark, hi_v, min(w, hi_v + search_margin * w), +1)
-    y0 = edge(row_dark, lo_h, max(0, lo_h - search_margin * h), -1)
-    y1 = edge(row_dark, hi_h, min(h, hi_h + search_margin * h), +1)
+    x0 = edge(col_dark, lo_v, max(rx0, lo_v - search_margin * w), -1)
+    x1 = edge(col_dark, hi_v, min(rx1, hi_v + search_margin * w), +1)
+    y0 = edge(row_dark, lo_h, max(ry0, lo_h - search_margin * h), -1)
+    y1 = edge(row_dark, hi_h, min(ry1, hi_h + search_margin * h), +1)
     return x0, y0, x1, y1
 
 
