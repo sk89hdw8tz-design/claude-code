@@ -1,91 +1,116 @@
-"""Verified sheet coverage from the prior run (spec §3.3/§3.4).
+"""Verified sheet coverage (spec §3.3/§3.4 priors, revised against the actual
+scans during the build — sheet 11 is L-shaped and is split into two
+rectangular on-grid panels; sheet 13's upper panel covers D-G x 26-28 West).
 
-These are PRIORS: Phase B re-verifies each sheet's identity two independent
-ways (1885 index-sheet street index + each sheet's own printed labels; 1877
-labels only) before the affine fit trusts these ranges.
+Units are registration/compositing units: one rectangular on-grid panel each.
+Keys are strings; "file" is the physical sheet number. "region" is the panel
+rectangle in native px (None = whole sheet).
 
-Avenue indices: A=0, B=1, ... J=9. Streets are plain numbers.
+Avenue indices: A=0 ... J=9. Streets are plain numbers.
 """
 
 AV = {c: i for i, c in enumerate("ABCDEFGHIJ")}
 
-# edges: which sides of this sheet lie on the rim of the whole composite
-# (extend clip outward there instead of shifting past a boundary street).
 COVERAGE = {
     "1885": {
-        2:  {"av": ("A", "D"), "st": (16, 19)},
-        3:  {"av": ("D", "G"), "st": (18, 20), "panel": "lower",
-             "note": "upper panel off-scale (street pitch ~606) — excluded"},
-        4:  {"av": ("G", "H"), "st": (25, 28), "panel": "left",
-             "note": "right panel east of Broadway — excluded"},
-        5:  {"av": ("G", "J"), "st": (20, 23)},
-        6:  {"av": ("D", "G"), "st": (20, 23), "note": "contains 22nd & Postoffice"},
-        7:  {"av": ("A", "D"), "st": (19, 22)},
-        9:  {"av": ("A", "D"), "st": (22, 25)},
-        10: {"av": ("D", "G"), "st": (23, 26)},
-        11: {"av": ("G", "I"), "st": (23, 25), "panel": "upper-left",
-             "note": "stepped boundary; only upper-left panel on grid"},
-        14: {"av": ("A", "D"), "st": (25, 28)},
+        "2":   {"file": 2,  "av": ("A", "D"), "st": (16, 19), "region": None},
+        "3":   {"file": 3,  "av": ("D", "G"), "st": (18, 20),
+                "region": (0, 2500, 6450, 7650),
+                "note": "lower panel; upper panel off-scale (street pitch ~606) — excluded"},
+        "4":   {"file": 4,  "av": ("G", "H"), "st": (25, 28),
+                "region": (0, 0, 2260, 7650),
+                "note": "left panel; middle/right panels east of Broadway — excluded"},
+        "5":   {"file": 5,  "av": ("G", "J"), "st": (20, 23), "region": None},
+        "6":   {"file": 6,  "av": ("D", "G"), "st": (20, 23), "region": None,
+                "note": "contains 22nd & Postoffice"},
+        "7":   {"file": 7,  "av": ("A", "D"), "st": (19, 22), "region": None},
+        "9":   {"file": 9,  "av": ("A", "D"), "st": (22, 25), "region": None,
+                "note": "slight green/dark scan cast; gain clamped"},
+        "10":  {"file": 10, "av": ("D", "G"), "st": (23, 26), "region": None},
+        "11a": {"file": 11, "av": ("G", "H"), "st": (23, 25),
+                "region": (0, 0, 2200, 4950),
+                "note": "left leg of L-shaped upper-left panel"},
+        "11b": {"file": 11, "av": ("H", "I"), "st": (23, 24),
+                "region": (1850, 0, 4190, 2650),
+                "note": "upper step of L-shaped panel"},
+        "13":  {"file": 13, "av": ("D", "G"), "st": (26, 28),
+                "region": (0, 0, 6450, 5100),
+                "note": "upper panel (West addresses); wharf lower panel excluded"},
+        "14":  {"file": 14, "av": ("A", "D"), "st": (25, 28), "region": None},
     },
     "1877": {
-        3:  {"av": ("A", "D"), "st": (20, 23)},
-        4:  {"av": ("A", "D"), "st": (23, 26)},
-        9:  {"av": ("D", "G"), "st": (23, 26)},
-        10: {"av": ("D", "G"), "st": (20, 23),
-             "note": "physical tear blocks 441-442 — retained, authentic"},
+        "3":  {"file": 3,  "av": ("A", "D"), "st": (20, 23), "region": None},
+        "4":  {"file": 4,  "av": ("A", "D"), "st": (23, 26), "region": None},
+        "9":  {"file": 9,  "av": ("D", "G"), "st": (23, 26), "region": None},
+        "10": {"file": 10, "av": ("D", "G"), "st": (20, 23), "region": None,
+               "note": "physical tear blocks 441-442 — retained, authentic"},
     },
 }
 
 EXCLUDED = {
     "1885": {
-        1: "index/key sheet — reference only, never in art",
-        "3-upper": "off-scale panel (street pitch ~606 vs 1135)",
-        "4-right": "east of Broadway, outside downtown crop",
-        8: "Avenue A wharf strip, outside crop",
-        "12,13,15-19": "outside downtown crop",
+        "1": "index/key sheet — reference only, never in art",
+        "3-upper": "off-scale panel (street pitch ~606 vs 1135 at detect scale)",
+        "4-middle/right": "east of Broadway, outside downtown grid",
+        "8": "Avenue A wharf strip, outside crop",
+        "11-other-panels": "Ave J-M West / 26th-31st, off the downtown grid",
+        "12": "Ave M-N / Beach Hotel, outside crop",
+        "13-lower": "wharf panel (33rd-35th), outside crop",
+        "15,16,17,18,19": "west/south of the downtown crop (28th-34th)",
     },
     "1877": {
-        2: "A-D x 17-20, west of crop used only if crop extended",
-        5: "outlying (B-E West, 26-29)",
-        6: "outlying (C-F West, 29-32)",
-        7: "cotton presses, disconnected",
-        8: "nine geographically disconnected panels",
+        "2": "A-D x 17-20, west of crop",
+        "5": "outlying (B-E West, 26-29)",
+        "6": "outlying (C-F West, 29-32)",
+        "7": "cotton presses, disconnected",
+        "8": "nine geographically disconnected panels",
     },
 }
 
-# Known genuine gap, 1885: Avenue G-H x 18th-20th — the edition does not map
-# it (index lists Eighteenth St. only on sheets 2-3; the 19th-20th part exists
-# only on sheet 3's excluded upper panel). Flat paper tone, disclosed.
+# Genuine gaps in the composite extent with NO on-grid source in the edition:
+# - 1885 avenues G-J x streets 16-20 (sheet 3's off-scale upper panel covered
+#   part; nothing on-grid does)
+# - 1885 avenues D-G x streets 16-18 (no sheet in the 19-sheet edition covers
+#   this band; verified by reading sheets 12-19)
+# - 1885 avenue I-J columns south of 23/25 except where sheets 4/5 reach
+# Filled with flat paper tone and disclosed. Never generated content.
 
 
-def expected_lines(year, sheet):
-    """(avenue indices, street numbers) this sheet should contribute."""
-    c = COVERAGE[year][sheet]
+def expected_lines(year, key):
+    c = COVERAGE[year][key]
     a0, a1 = AV[c["av"][0]], AV[c["av"][1]]
     s0, s1 = c["st"]
     return list(range(a0, a1 + 1)), list(range(s0, s1 + 1))
 
 
 def composite_extent(year):
-    """(av_min, av_max, st_min, st_max) over the working set."""
     avs, sts = [], []
-    for sheet in COVERAGE[year]:
-        a, s = expected_lines(year, sheet)
+    for key in COVERAGE[year]:
+        a, s = expected_lines(year, key)
         avs += a
         sts += s
     return min(avs), max(avs), min(sts), max(sts)
 
 
-def composite_edges(year, sheet):
-    a0, a1, s0, s1 = composite_extent(year)
-    a, s = expected_lines(year, sheet)
-    edges = set()
-    if min(a) == a0:
-        edges.add("left")
-    if max(a) == a1:
-        edges.add("right")
-    if min(s) == s0:
-        edges.add("top")
-    if max(s) == s1:
-        edges.add("bottom")
-    return edges
+def neighbors(year):
+    """Seam registry: {(axis, boundary_index, frozenset({keyA,keyB}))} where
+    axis 'v' = shared avenue (vertical line), 'h' = shared street. A pair
+    shares a seam when one's max equals the other's min on that axis and
+    their ranges overlap on the cross axis."""
+    seams = []
+    ks = list(COVERAGE[year])
+    for i, ka in enumerate(ks):
+        aa, sa = expected_lines(year, ka)
+        for kb in ks[i + 1:]:
+            ab, sb = expected_lines(year, kb)
+            # vertical seam: A's right avenue == B's left avenue, street overlap
+            if max(aa) == min(ab) and min(max(sa), max(sb)) > max(min(sa), min(sb)):
+                seams.append(("v", max(aa), ka, kb))   # ka = left
+            if max(ab) == min(aa) and min(max(sa), max(sb)) > max(min(sa), min(sb)):
+                seams.append(("v", max(ab), kb, ka))
+            # horizontal seam: A's bottom street == B's top street, avenue overlap
+            if max(sa) == min(sb) and min(max(aa), max(ab)) > max(min(aa), min(ab)):
+                seams.append(("h", max(sa), ka, kb))   # ka = top
+            if max(sb) == min(sa) and min(max(aa), max(ab)) > max(min(aa), min(ab)):
+                seams.append(("h", max(sb), kb, ka))
+    return seams
