@@ -77,7 +77,7 @@ SCALE_FAIL = 0.02    # stop: a misidentified grid line
 
 # Compositing (values at 3400 detection scale; scale up for LoC masters)
 CLIP_SHIFT_3400 = 90     # push clip past boundary street so labels are unique
-FEATHER_3400 = 24        # narrow feather only
+FEATHER_3400 = 16        # narrow feather only (~30 px at 6450: ghost band width)
 COM_REFINE_WINDOW = 80   # center-of-mass refinement half-window, px
 
 GAIN_CLAMP = (0.93, 1.08)  # per-channel paper-tone gain limits

@@ -188,7 +188,6 @@ def composite_edition(year, registration):
     # center from strip center d, frame f and corridor width W (~460 px):
     #   frame on the low side  (top/left):  c = 2d - f - W/2  if f > d - W/2
     #   frame on the high side (bottom/right): c = 2d - f + W/2  if f < d + W/2
-    CORRIDOR_W = 460.0
     frames_native = {}
     corrected = {}
     for key, r in usable.items():
@@ -201,23 +200,7 @@ def composite_edition(year, registration):
         fr = comp.frame_bounds(img01, v, h, region=unit["region"])
         del img, img01
         frames_native[key] = fr
-
-        def fix_lo(d, f):
-            return 2 * d - f - CORRIDOR_W / 2 if f > d - CORRIDOR_W / 2 else d
-
-        def fix_hi(d, f):
-            return 2 * d - f + CORRIDOR_W / 2 if f < d + CORRIDOR_W / 2 else d
-
-        v2 = list(v)
-        h2 = list(h)
-        v2[0] = fix_lo(v[0], fr[0])
-        v2[-1] = fix_hi(v[-1], fr[2])
-        h2[0] = fix_lo(h[0], fr[1])
-        h2[-1] = fix_hi(h[-1], fr[3])
-        moved = {i: round(b - a, 1) for i, (a, b) in enumerate(zip(v + h, v2 + h2)) if abs(b - a) > 5}
-        if moved:
-            log(f"unit {key}: edge-knot corridor correction {moved}")
-        corrected[key] = (v2, h2)
+        corrected[key] = (v, h)   # raw detections; comb+CoM keeps them ±80 px
 
     def joint_solve(axis):
         """Alternating LSQ: grid-line globals X_l and per-unit (s,t) jointly.
@@ -277,24 +260,101 @@ def composite_edition(year, registration):
         fit = {"sx": sx, "tx": tx, "sy": sy, "ty": ty}
         r["fit_consensus"] = {**fit, "line_resid_x": seam_res_x, "line_resid_y": seam_res_y}
         frame = frames_native[key]
-        # Piecewise-linear knots: every corrected line maps EXACTLY to its
-        # consensus global position, so neighbors agree at every shared line.
-        xkn, xkg = v, [X[a] for a in avs]
-        ykn, ykg = h, [Y[s] for s in sts]
-        fx0, fx1 = comp.pw_fwd([frame[0], frame[2]], xkn, xkg)
-        fy0, fy1 = comp.pw_fwd([frame[1], frame[3]], ykn, ykg)
         img_s = cv2.imread(sheet_path(year, unit["file"]), cv2.IMREAD_GRAYSCALE)
         small = cv2.resize(img_s, (img_s.shape[1] // 4, img_s.shape[0] // 4),
                            interpolation=cv2.INTER_AREA)
         del img_s
         geo[key] = {"fit": fit, "gv": v, "gh": h,
-                    "xkn": xkn, "xkg": xkg, "ykn": ykn, "ykg": ykg,
-                    "frame_g": (fx0, fy0, fx1, fy1), "avs": avs, "sts": sts,
+                    "frame_g": global_frame(fit, frame), "avs": avs, "sts": sts,
                     "gray4": small}
-        log(f"unit {key}: joint sx={sx:.4f} sy={sy:.4f} (affine gate only; warp is piecewise-exact)")
+        log(f"unit {key}: joint affine sx={sx:.4f} sy={sy:.4f} resid x={seam_res_x} y={seam_res_y}")
+
+    # ---- Content-level seam refinement: both sheets print the shared street
+    # corridor, so phase-correlating the two units' corridor bands measures
+    # the ACTUAL content offset at each seam (line detections carry ±40 px
+    # noise; content matching gets to ~10 px). Solve per-unit translation
+    # corrections by network least squares over all seam measurements.
+    def band_patch(key, gx0, gx1, gy0, gy1, out_w, out_h):
+        f = geo[key]["fit"]
+        nx0 = (gx0 - f["tx"]) / f["sx"] / 4.0
+        nx1 = (gx1 - f["tx"]) / f["sx"] / 4.0
+        ny0 = (gy0 - f["ty"]) / f["sy"] / 4.0
+        ny1 = (gy1 - f["ty"]) / f["sy"] / 4.0
+        sm = geo[key]["gray4"]
+        x0, x1 = int(max(0, nx0)), int(min(sm.shape[1], nx1))
+        y0, y1 = int(max(0, ny0)), int(min(sm.shape[0], ny1))
+        if x1 - x0 < 8 or y1 - y0 < 8:
+            return None
+        return cv2.resize(sm[y0:y1, x0:x1].astype(np.float32), (out_w, out_h))
+
+    seam_meas = []   # (owner, nbr, dx_global, dy_global, weight)
+    for axis, idx, owner, nbr in cov.neighbors(year):
+        if owner not in geo or nbr not in geo:
+            continue
+        ao, so = geo[owner]["avs"], geo[owner]["sts"]
+        an, sn = geo[nbr]["avs"], geo[nbr]["sts"]
+        if axis == "v":
+            c = X[idx]
+            lo = Y[max(min(so), min(sn))] + 100
+            hi = Y[min(max(so), max(sn))] - 100
+            g = (c - 260, c + 260, lo, hi)
+            out_w, out_h = 130, max(64, int((hi - lo) / 16))
+        else:
+            c = Y[idx]
+            lo = X[max(min(ao), min(an))] + 100
+            hi = X[min(max(ao), max(an))] - 100
+            g = (lo, hi, c - 260, c + 260)
+            out_w, out_h = max(64, int((hi - lo) / 16)), 130
+        pa = band_patch(owner, *g, out_w, out_h)
+        pb = band_patch(nbr, *g, out_w, out_h)
+        if pa is None or pb is None:
+            continue
+        win = cv2.createHanningWindow((out_w, out_h), cv2.CV_32F)
+        (dx, dy), resp = cv2.phaseCorrelate(pa, pb, win)
+        # patch px -> global px
+        gxs = (g[1] - g[0]) / out_w
+        gys = (g[3] - g[2]) / out_h
+        if resp > 0.55 and abs(dx * gxs) < 200 and abs(dy * gys) < 200:  # cross-sheet corr unreliable (different drawings); diagnostics only
+            seam_meas.append((owner, nbr, dx * gxs, dy * gys, resp))
+            log(f"seam {axis}{idx} {owner}|{nbr}: content offset "
+                f"({dx*gxs:+.0f},{dy*gys:+.0f})px resp={resp:.2f}")
+
+    keys = list(geo)
+    ki = {k: i for i, k in enumerate(keys)}
+    for comp_axis in (0, 1):   # 0 = x corrections, 1 = y corrections
+        rows, rhs, wts = [], [], []
+        for owner, nbr, dxg, dyg, wgt in seam_meas:
+            d = dxg if comp_axis == 0 else dyg
+            row = np.zeros(len(keys))
+            # patch B appears shifted by +d relative to A means B's content
+            # sits d px later; shifting B by -d aligns them: t_B - t_A = -d
+            row[ki[nbr]] = 1.0
+            row[ki[owner]] = -1.0
+            rows.append(row)
+            rhs.append(-d)
+            wts.append(wgt)
+        for k in keys:   # weak prior: corrections near zero
+            row = np.zeros(len(keys))
+            row[ki[k]] = 1.0
+            rows.append(row)
+            rhs.append(0.0)
+            wts.append(0.25)
+        A = np.array(rows) * np.sqrt(np.array(wts))[:, None]
+        b = np.array(rhs) * np.sqrt(np.array(wts))
+        corr, *_ = np.linalg.lstsq(A, b, rcond=None)
+        for k in keys:
+            key_t = "tx" if comp_axis == 0 else "ty"
+            geo[k]["fit"][key_t] += float(corr[ki[k]])
+        log(("x" if comp_axis == 0 else "y") + " translation corrections: " +
+            str({k: round(float(corr[ki[k]])) for k in keys}))
+    # frames move with the corrected fits
+    for k in keys:
+        geo[k]["frame_g"] = global_frame(geo[k]["fit"], frames_native[k])
 
     with open(os.path.join(config.BUILD_DIR, year, "registration.json"), "w") as f:
-        json.dump({"units": usable, "consensus_av": X, "consensus_st": Y},
+        json.dump({"units": usable, "consensus_av": X, "consensus_st": Y,
+                   "seam_content_offsets": [(o, n, round(dx, 1), round(dy, 1), round(w, 2))
+                                            for o, n, dx, dy, w in seam_meas]},
                   f, indent=1, default=list)
 
     # Global side bounds per unit: rim default (frame ∩ line±ext), then seams
@@ -311,15 +371,16 @@ def composite_edition(year, registration):
         """Mean darkness (0..1) of unit `key` along the seam-parallel span
         [lo,hi] (global, cross axis) at each global position in gpos."""
         g = geo[key]
+        f = g["fit"]
         if axis == "v":
-            nat = comp.pw_inv(gpos, g["xkn"], g["xkg"])
-            span = comp.pw_inv(np.linspace(lo, hi, 160), g["ykn"], g["ykg"])
+            nat = (np.asarray(gpos) - f["tx"]) / f["sx"]
+            span = (np.linspace(lo, hi, 160) - f["ty"]) / f["sy"]
             sm = g["gray4"]
             cols = np.clip((nat / 4).astype(int), 0, sm.shape[1] - 1)
             rows = np.clip((span / 4).astype(int), 0, sm.shape[0] - 1)
             return 1.0 - sm[np.ix_(rows, cols)].mean(axis=0) / 255.0
-        nat = comp.pw_inv(gpos, g["ykn"], g["ykg"])
-        span = comp.pw_inv(np.linspace(lo, hi, 160), g["xkn"], g["xkg"])
+        nat = (np.asarray(gpos) - f["ty"]) / f["sy"]
+        span = (np.linspace(lo, hi, 160) - f["tx"]) / f["sx"]
         sm = g["gray4"]
         rows = np.clip((nat / 4).astype(int), 0, sm.shape[0] - 1)
         cols = np.clip((span / 4).astype(int), 0, sm.shape[1] - 1)
@@ -337,7 +398,7 @@ def composite_edition(year, registration):
         else:
             lo = X[max(min(ao), min(an))] + 200
             hi = X[min(max(ao), max(an))] - 200
-        gpos = np.arange(center + 90, center + 301, 4.0)
+        gpos = np.arange(center + 60, center + 321, 4.0)
         d = darkness(owner, axis, gpos, lo, hi) + darkness(nbr, axis, gpos, lo, hi)
         k = 9
         dsm = np.convolve(d, np.ones(k) / k, mode="same")
@@ -349,25 +410,23 @@ def composite_edition(year, registration):
         if axis == "v":
             center = X[idx]
             cut = best_cut("v", center, owner, nbr)
-            bound = min(geo[owner]["frame_g"][2], cut)
+            owner_end = max(min(geo[owner]["frame_g"][2], cut), center + 40)
+            nbr_start = owner_end - feather
             nbr_lo = geo[nbr]["frame_g"][0]
-            if nbr_lo > bound + feather:
-                log(f"seam v{idx} {owner}|{nbr}: print gap {nbr_lo-bound:.0f}px (frames do not tile)")
-            sides[owner]["right"] = min(max(sides[owner]["right"], bound + feather),
-                                        geo[owner]["frame_g"][2])
-            sides[nbr]["left"] = max(min(sides[nbr]["left"], bound - feather),
-                                     geo[nbr]["frame_g"][0])
+            if nbr_lo > nbr_start:
+                log(f"seam v{idx} {owner}|{nbr}: neighbor frame {nbr_lo-nbr_start:.0f}px late (physical gap)")
+            sides[owner]["right"] = max(sides[owner]["right"], owner_end)
+            sides[nbr]["left"] = min(sides[nbr]["left"], max(nbr_start, nbr_lo))
         else:
             center = Y[idx]
             cut = best_cut("h", center, owner, nbr)
-            bound = min(geo[owner]["frame_g"][3], cut)
+            owner_end = max(min(geo[owner]["frame_g"][3], cut), center + 40)
+            nbr_start = owner_end - feather
             nbr_lo = geo[nbr]["frame_g"][1]
-            if nbr_lo > bound + feather:
-                log(f"seam h{idx} {owner}|{nbr}: print gap {nbr_lo-bound:.0f}px (frames do not tile)")
-            sides[owner]["bottom"] = min(max(sides[owner]["bottom"], bound + feather),
-                                         geo[owner]["frame_g"][3])
-            sides[nbr]["top"] = max(min(sides[nbr]["top"], bound - feather),
-                                    geo[nbr]["frame_g"][1])
+            if nbr_lo > nbr_start:
+                log(f"seam h{idx} {owner}|{nbr}: neighbor frame {nbr_lo-nbr_start:.0f}px late (physical gap)")
+            sides[owner]["bottom"] = max(sides[owner]["bottom"], owner_end)
+            sides[nbr]["top"] = min(sides[nbr]["top"], max(nbr_start, nbr_lo))
 
     # Tonal reference (panel region only)
     tones = {}
@@ -386,22 +445,20 @@ def composite_edition(year, registration):
         unit = cov.COVERAGE[year][key]
         g = geo[key]
         sd = sides[key]
-        cx0, cx1 = comp.pw_inv([sd["left"], sd["right"]], g["xkn"], g["xkg"])
-        cy0, cy1 = comp.pw_inv([sd["top"], sd["bottom"]], g["ykn"], g["ykg"])
+        f = g["fit"]
+        cx0, cx1 = (sd["left"] - f["tx"]) / f["sx"], (sd["right"] - f["tx"]) / f["sx"]
+        cy0, cy1 = (sd["top"] - f["ty"]) / f["sy"], (sd["bottom"] - f["ty"]) / f["sy"]
         if unit["region"]:
             rx0, ry0, rx1, ry1 = unit["region"]
             cx0, cy0 = max(cx0, rx0), max(cy0, ry0)
             cx1, cy1 = min(cx1, rx1), min(cy1, ry1)
         clip = (cx0, cy0, cx1, cy1)
         gains = comp.channel_gains(tones[key], target_tone)
-        # knots shifted into canvas coordinates (global minus canvas origin)
-        xkg_c = [x - ox for x in g["xkg"]]
-        ykg_c = [y - oy for y in g["ykg"]]
+        fitk = g["fit"]
+        affine = {"sx": fitk["sx"], "tx": fitk["tx"] - ox,
+                  "sy": fitk["sy"], "ty": fitk["ty"] - oy}
         img = cv2.imread(sheet_path(year, unit["file"]), cv2.IMREAD_COLOR)
-        # limit contribution to the clip: black out outside via mask by
-        # passing the clip through to the warp (it derives ROI from clip)
-        comp.warp_sheet_piecewise(canvas, weight, img, g["xkn"], xkg_c,
-                                  g["ykn"], ykg_c, clip, gains, feather)
+        comp.warp_sheet_into(canvas, weight, img, affine, clip, gains, feather)
         log(f"unit {key}: composited clip={[round(float(v)) for v in clip]} gains={np.round(gains,3)}")
         del img
 
