@@ -6,6 +6,9 @@ on:
       years:
         description: "Which editions to fetch (1885, 1877, or all)"
         default: "all"
+  push:
+    branches: [claude/new-session-fxmhgv]
+    paths: [".github/sanborn-fetch-request"]
 
 permissions:
   contents: write
@@ -35,7 +38,7 @@ jobs:
           mkdir -p sources/1885 sources/1877
 
       - name: Fetch UT 1877 sheets (cookie-jar + retry recipe)
-        if: ${{ inputs.years == 'all' || inputs.years == '1877' }}
+        if: ${{ github.event_name == 'push' || inputs.years == 'all' || inputs.years == '1877' }}
         run: |
           set -uo pipefail
           cd work
@@ -66,7 +69,7 @@ jobs:
           exit $fail
 
       - name: Fetch LoC 1885 master TIFFs (chunked, incremental push)
-        if: ${{ inputs.years == 'all' || inputs.years == '1885' }}
+        if: ${{ github.event_name == 'push' || inputs.years == 'all' || inputs.years == '1885' }}
         run: |
           set -uo pipefail
           cd work
