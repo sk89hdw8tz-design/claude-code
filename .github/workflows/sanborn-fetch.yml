@@ -1,0 +1,106 @@
+name: fetch-sanborn-sources
+
+on:
+  workflow_dispatch:
+    inputs:
+      years:
+        description: "Which editions to fetch (1885, 1877, or all)"
+        default: "all"
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    env:
+      UA: "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/120 Safari/537.36"
+      DATA_BRANCH: sanborn-data
+    steps:
+      - name: Init data branch workspace
+        run: |
+          set -euo pipefail
+          git init work
+          cd work
+          git config user.name "sanborn-fetch-action"
+          git config user.email "actions@github.com"
+          git remote add origin \
+            "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git"
+          if git fetch origin "$DATA_BRANCH" 2>/dev/null; then
+            git checkout -B "$DATA_BRANCH" FETCH_HEAD
+          else
+            git checkout --orphan "$DATA_BRANCH"
+          fi
+          mkdir -p sources/1885 sources/1877
+
+      - name: Fetch UT 1877 sheets (cookie-jar + retry recipe)
+        if: ${{ inputs.years == 'all' || inputs.years == '1877' }}
+        run: |
+          set -uo pipefail
+          cd work
+          REF="https://maps.lib.utexas.edu/maps/sanborn/g.html"
+          JAR=/tmp/ut-cookies.txt
+          curl -sS -L -A "$UA" -c "$JAR" -b "$JAR" -o /tmp/g.html "$REF" || true
+          : > sources/source_urls.txt
+          echo "$REF" >> sources/source_urls.txt
+          fail=0
+          for n in 02 03 04 05 06 07 08 09 10; do
+            url="https://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1877-$n.jpg"
+            dest="sources/1877/txu-sanborn-galveston-1877-$n.jpg"
+            ok=""
+            for try in $(seq 1 10); do
+              code=$(curl -sS -L -A "$UA" -c "$JAR" -b "$JAR" -e "$REF" \
+                     -o "$dest" -w "%{http_code}" "$url" || echo err)
+              if [ "$code" = "200" ] && [ "$(head -c3 "$dest" | xxd -p)" = "ffd8ff" ]; then
+                ok=1; break
+              fi
+              echo "1877 sheet $n try $try -> $code; retrying in 5s"; sleep 5
+            done
+            if [ -z "$ok" ]; then echo "FAILED: 1877 sheet $n"; fail=1; continue; fi
+            echo "$url" >> sources/source_urls.txt
+            ls -la "$dest"
+          done
+          git add sources && git commit -m "sanborn-data: 1877 UT sheets"
+          git push -f origin "$DATA_BRANCH"
+          exit $fail
+
+      - name: Fetch LoC 1885 master TIFFs (chunked, incremental push)
+        if: ${{ inputs.years == 'all' || inputs.years == '1885' }}
+        run: |
+          set -uo pipefail
+          cd work
+          curl -sS -A "$UA" -o sources/1885/loc_item.json \
+            "https://www.loc.gov/item/sanborn08539_001/?fo=json"
+          python3 -c "import json; d=json.load(open('sources/1885/loc_item.json')); print('item ok,', len(d['resources'][0]['files']), 'sheets')"
+          echo "https://www.loc.gov/item/sanborn08539_001/?fo=json" >> sources/source_urls.txt
+          fail=0
+          for n in 0001 0002 0003 0004 0005 0006 0007 0009 0010 0011 0014; do
+            url="https://tile.loc.gov/storage-services/master/gmd/gmd403m/g4034m/g4034gm/g4034gm_g085391885/08539_1885-$n.tif"
+            f="sources/1885/08539_1885-$n.tif"
+            ok=""
+            for try in 1 2 3; do
+              curl -sS -A "$UA" -o "$f" "$url" || true
+              sz=$(stat -c%s "$f" 2>/dev/null || echo 0)
+              if [ "$sz" -gt 104857600 ]; then ok=1; break; fi
+              echo "1885 sheet $n try $try -> only $sz bytes; retrying"; sleep 5
+            done
+            if [ -z "$ok" ]; then echo "FAILED: 1885 sheet $n"; fail=1; continue; fi
+            sha256sum "$f" >> sources/manifest_1885.txt
+            split -b 90m "$f" "$f.part-"
+            rm "$f"
+            echo "$url" >> sources/source_urls.txt
+            git add sources && git commit -m "sanborn-data: 1885 sheet $n (chunked)"
+            git push -f origin "$DATA_BRANCH"
+            df -h / | tail -1
+          done
+          exit $fail
+
+      - name: Final manifest
+        run: |
+          set -euo pipefail
+          cd work
+          sha256sum sources/1877/*.jpg > sources/manifest_1877.txt 2>/dev/null || true
+          git add sources && git commit -m "sanborn-data: manifests" || true
+          git push -f origin "$DATA_BRANCH"
+          git log --oneline "$DATA_BRANCH" | head -20
