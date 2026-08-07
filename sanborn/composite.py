@@ -81,8 +81,16 @@ def paper_tone(img, frac=0.56, bright=170, sat_max=40):
 
 
 def channel_gains(sheet_tone, target_tone):
+    """Full chromatic white-balance to the edition paper tone. The old
+    per-channel clamp left a residual cast whenever one channel hit the
+    limit (sheet 9's cyan patch survived it); equalizing the channel
+    RATIOS exactly removes the cast, while GAIN_CLAMP now bounds only the
+    MEAN gain so overall lightness stays subtle. 0.85-1.18 per channel is
+    a hard safety range against a corrupt tone estimate."""
     g = np.asarray(target_tone, np.float64) / np.maximum(np.asarray(sheet_tone, np.float64), 1)
-    return np.clip(g, *config.GAIN_CLAMP)
+    m = float(g.mean())
+    g *= np.clip(m, *config.GAIN_CLAMP) / max(m, 1e-9)
+    return np.clip(g, 0.85, 1.18)
 
 
 def clip_window(grid_v, grid_h, frame, shift, ext, composite_edges):

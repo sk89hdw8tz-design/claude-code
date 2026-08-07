@@ -157,7 +157,9 @@ def composite_edition(year, registration):
 
     ed = config.EDITIONS[year]
     a0, a1, s0, s1 = cov.composite_extent(year)
-    pad = round(0.25 * ed["pitch_av"])
+    # pad must fit the retained exterior margins: frame overhang past the
+    # outermost street line (~150) + margin band (0.28 pitch) + slack
+    pad = round(0.40 * ed["pitch_av"])
     width = round((a1 - a0) * ed["pitch_av"]) + 2 * pad
     height = round((s1 - s0) * ed["pitch_st"]) + 2 * pad
     ox = a0 * ed["pitch_av"] - pad
@@ -401,8 +403,9 @@ def composite_edition(year, registration):
             "bottom": min(fy1, Y[max(g["sts"])] + ext),
         }
     def darkness(key, axis, gpos, lo, hi):
-        """Mean darkness (0..1) of unit `key` along the seam-parallel span
-        [lo,hi] (global, cross axis) at each global position in gpos."""
+        """Darkness grid (0..1) of unit `key`: rows sample the seam-parallel
+        span [lo,hi] (global, cross axis), columns the candidate cut
+        positions in gpos."""
         g = geo[key]
         if axis == "v":
             nat = comp.pw_inv(gpos, g["xkn"], g["xkg"])
@@ -410,18 +413,21 @@ def composite_edition(year, registration):
             sm = g["gray4"]
             cols = np.clip((nat / 4).astype(int), 0, sm.shape[1] - 1)
             rows = np.clip((span / 4).astype(int), 0, sm.shape[0] - 1)
-            return 1.0 - sm[np.ix_(rows, cols)].mean(axis=0) / 255.0
+            return 1.0 - sm[np.ix_(rows, cols)] / 255.0
         nat = comp.pw_inv(gpos, g["ykn"], g["ykg"])
         span = comp.pw_inv(np.linspace(lo, hi, 160), g["xkn"], g["xkg"])
         sm = g["gray4"]
         rows = np.clip((nat / 4).astype(int), 0, sm.shape[0] - 1)
         cols = np.clip((span / 4).astype(int), 0, sm.shape[1] - 1)
-        return 1.0 - sm[np.ix_(rows, cols)].mean(axis=1) / 255.0
+        return (1.0 - sm[np.ix_(rows, cols)] / 255.0).T
 
     def best_cut(axis, center, owner, nbr):
-        """Whitest cut position in [center+90, center+300]: avoids slicing
-        street labels (which can extend far past the centerline) by cutting
-        through the empty paper between label bottom and block faces."""
+        """Cut position in [center+40, center+680] minimizing mean ink AND
+        localized ink clusters. Mean darkness alone dilutes a giant street
+        numeral over the whole corridor span — a cut can score 'white' while
+        slicing straight through '25TH' (observed at 25th/Ave G). The p97 of
+        span-locally-averaged darkness makes any glyph cluster on the cut
+        line expensive."""
         ao, so = geo[owner]["avs"], geo[owner]["sts"]
         an, sn = geo[nbr]["avs"], geo[nbr]["sts"]
         if axis == "v":
@@ -430,10 +436,14 @@ def composite_edition(year, registration):
         else:
             lo = X[max(min(ao), min(an))] + 200
             hi = X[min(max(ao), max(an))] - 200
-        gpos = np.arange(center + 40, center + 521, 4.0)
+        gpos = np.arange(center + 40, center + 681, 4.0)
         # weight the neighbor 3x: its label copies must fall above the cut,
         # or they render as duplicates below it
-        d = darkness(owner, axis, gpos, lo, hi) + 3.0 * darkness(nbr, axis, gpos, lo, hi)
+        grid = darkness(owner, axis, gpos, lo, hi) \
+            + 3.0 * darkness(nbr, axis, gpos, lo, hi)   # span x pos
+        kk = np.ones(5) / 5
+        loc = np.apply_along_axis(np.convolve, 0, grid, kk, "same")
+        d = grid.mean(axis=0) + 1.5 * np.percentile(loc, 97, axis=0)
         k = 9
         dsm = np.convolve(d, np.ones(k) / k, mode="same")
         return float(gpos[int(np.argmin(dsm[k:-k])) + k])
@@ -470,6 +480,34 @@ def composite_edition(year, registration):
         else:
             sides[key][side] = min(vals)
 
+    # ---- Retain sheet margins on EXTERIOR sides (v3). A side is exterior
+    # when it has no seam and every block-cell just across it is uncovered
+    # (map edge or disclosed gap) — extending the clip there can overlap no
+    # other unit's content. This keeps the original margin annotations the
+    # tight frame crop was discarding: "16TH ST." headers, GALVESTON oval
+    # stamps, scale bars. The band is bounded (frame + ~0.28 pitch) and the
+    # per-sheet paper-extent trim below keeps scanner borders out.
+    covered = set()
+    for g2 in geo.values():
+        for a in range(min(g2["avs"]), max(g2["avs"])):
+            for s in range(min(g2["sts"]), max(g2["sts"])):
+                covered.add((a, s))
+    margin_g = round(0.28 * ed["pitch_av"])
+    for key, g in geo.items():
+        a0k, a1k = min(g["avs"]), max(g["avs"])
+        s0k, s1k = min(g["sts"]), max(g["sts"])
+        fx0, fy0, fx1, fy1 = g["frame_g"]
+        edges = {
+            "left":   (fx0 - margin_g, [(a0k - 1, s) for s in range(s0k, s1k)]),
+            "right":  (fx1 + margin_g, [(a1k, s) for s in range(s0k, s1k)]),
+            "top":    (fy0 - margin_g, [(a, s0k - 1) for a in range(a0k, a1k)]),
+            "bottom": (fy1 + margin_g, [(a, s1k) for a in range(a0k, a1k)]),
+        }
+        for side, (pos, cells) in edges.items():
+            if (key, side) not in prop and not any(c in covered for c in cells):
+                sides[key][side] = pos
+                log(f"unit {key}: exterior {side} margin retained")
+
     # Tonal reference (panel region only)
     tones = {}
     for key, r in usable.items():
@@ -494,10 +532,17 @@ def composite_edition(year, registration):
             rx0, ry0, rx1, ry1 = creg
             cx0, cy0 = max(cx0, rx0), max(cy0, ry0)
             cx1, cy1 = min(cx1, rx1), min(cy1, ry1)
-        # never sample beyond the scanned sheet (black border pixels)
+        # never sample beyond the scanned sheet (black border pixels), and
+        # trim to the bright-paper extent so retained exterior margins can't
+        # drag scanner background onto the canvas
         nw, nh = ed["native_size"]
-        cx0, cy0 = max(cx0, 0), max(cy0, 0)
-        cx1, cy1 = min(cx1, nw), min(cy1, nh)
+        sm = g["gray4"]
+        okr = np.where((sm > 60).mean(axis=1) > 0.55)[0]
+        okc = np.where((sm > 60).mean(axis=0) > 0.55)[0]
+        px0, px1 = (okc[0] * 4 + 8, okc[-1] * 4 - 8) if len(okc) else (0, nw)
+        py0, py1 = (okr[0] * 4 + 8, okr[-1] * 4 - 8) if len(okr) else (0, nh)
+        cx0, cy0 = max(cx0, 0, px0), max(cy0, 0, py0)
+        cx1, cy1 = min(cx1, nw, px1), min(cy1, nh, py1)
         clip = (cx0, cy0, cx1, cy1)
         xkg_c = [x - ox for x in g["xkg"]]
         ykg_c = [y - oy for y in g["ykg"]]
