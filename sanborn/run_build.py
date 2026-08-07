@@ -307,6 +307,7 @@ def composite_edition(year, registration):
         return cv2.resize(sm[y0:y1, x0:x1].astype(np.float32), (out_w, out_h))
 
     seam_meas = []   # (owner, nbr, dx_global, dy_global, weight)
+    prop = {}
     for axis, idx, owner, nbr in cov.neighbors(year):
         if owner not in geo or nbr not in geo:
             continue
@@ -416,30 +417,45 @@ def composite_edition(year, registration):
         else:
             lo = X[max(min(ao), min(an))] + 200
             hi = X[min(max(ao), max(an))] - 200
-        gpos = np.arange(center + 60, center + 321, 4.0)
-        d = darkness(owner, axis, gpos, lo, hi) + darkness(nbr, axis, gpos, lo, hi)
+        gpos = np.arange(center + 40, center + 521, 4.0)
+        # weight the neighbor 3x: its label copies must fall above the cut,
+        # or they render as duplicates below it
+        d = darkness(owner, axis, gpos, lo, hi) + 3.0 * darkness(nbr, axis, gpos, lo, hi)
         k = 9
         dsm = np.convolve(d, np.ones(k) / k, mode="same")
         return float(gpos[int(np.argmin(dsm[k:-k])) + k])
 
+    prop = {}
     for axis, idx, owner, nbr in cov.neighbors(year):
         if owner not in geo or nbr not in geo:
             continue
-        # No frame caps at seams: sheets overlap generously across boundary
-        # streets (verified up to 582 px), and mapped frame estimates are
-        # unreliable enough to have punched holes. Frames still bound rims.
+        # No frame caps at seams (mapped frame estimates punched holes), and
+        # seam sides are ASSIGNED, never min/max-merged with rim defaults —
+        # merging let default extents reach past the cut and double-render
+        # 150-250 px bands at 50% (grey ghost labels).
+        g_own = geo[owner]
+        nw, nh = ed["native_size"]
+        reg_own = cov.COVERAGE[year][owner]["region"] or (0, 0, nw, nh)
         if axis == "v":
             center = X[idx]
             cut = best_cut("v", center, owner, nbr)
-            owner_end = max(cut, center + 40)
-            sides[owner]["right"] = max(sides[owner]["right"], owner_end)
-            sides[nbr]["left"] = min(sides[nbr]["left"], owner_end - feather)
+            print_end = comp.pw_fwd([min(reg_own[2], nw)], g_own["xkn"], g_own["xkg"])[0]
+            owner_end = min(max(cut, center + 40), print_end - 4)
+            prop.setdefault((owner, "right"), []).append(owner_end)
+            prop.setdefault((nbr, "left"), []).append(owner_end - feather)
         else:
             center = Y[idx]
             cut = best_cut("h", center, owner, nbr)
-            owner_end = max(cut, center + 40)
-            sides[owner]["bottom"] = max(sides[owner]["bottom"], owner_end)
-            sides[nbr]["top"] = min(sides[nbr]["top"], owner_end - feather)
+            print_end = comp.pw_fwd([min(reg_own[3], nh)], g_own["ykn"], g_own["ykg"])[0]
+            owner_end = min(max(cut, center + 40), print_end - 4)
+            prop.setdefault((owner, "bottom"), []).append(owner_end)
+            prop.setdefault((nbr, "top"), []).append(owner_end - feather)
+
+    for (key, side), vals in prop.items():
+        if side in ("right", "bottom"):
+            sides[key][side] = max(vals)
+        else:
+            sides[key][side] = min(vals)
 
     # Tonal reference (panel region only)
     tones = {}
@@ -464,6 +480,10 @@ def composite_edition(year, registration):
             rx0, ry0, rx1, ry1 = unit["region"]
             cx0, cy0 = max(cx0, rx0), max(cy0, ry0)
             cx1, cy1 = min(cx1, rx1), min(cy1, ry1)
+        # never sample beyond the scanned sheet (black border pixels)
+        nw, nh = ed["native_size"]
+        cx0, cy0 = max(cx0, 0), max(cy0, 0)
+        cx1, cy1 = min(cx1, nw), min(cy1, nh)
         clip = (cx0, cy0, cx1, cy1)
         gains = comp.channel_gains(tones[key], target_tone)
         xkg_c = [x - ox for x in g["xkg"]]
