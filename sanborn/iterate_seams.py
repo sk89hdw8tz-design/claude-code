@@ -199,7 +199,10 @@ def main():
             s_lo = (Spos[min(span_ids)] - soff) / Q + 40
             s_hi = (Spos[max(span_ids)] - soff) / Q - 40
             third = (s_hi - s_lo) / 3.0
-            for ident in idents:
+            n_id = len(idents)
+            for j, ident in enumerate(idents):
+                if not (0 < j < n_id - 1):
+                    continue   # interior lines only: edge lines are noisy
                 line_q = (Gpos[ident] - goff) / Q
                 c1 = line_center(paper, axis, line_q, s_lo, s_lo + third)
                 c2 = line_center(paper, axis, line_q, s_hi - third, s_hi)
