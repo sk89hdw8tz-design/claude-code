@@ -473,6 +473,45 @@ def composite_edition(year, registration):
         dsm = np.convolve(d, np.ones(k) / k, mode="same")
         return float(gpos[int(np.argmin(dsm[k:-k])) + k])
 
+    # Border-connected scan-junk projections per unit (QC v3-2): a seam cut
+    # that reaches past the owner's paper edge renders the owner's scanner
+    # rule / backing strip OVER the neighbor's real content (the solid black
+    # bar in the 19th St corridor covered 18k px of sheet 7's map ink). The
+    # region/native print_end cap cannot see this — it caps at the SCAN
+    # extent, junk included. Same border-connectivity criterion as the
+    # exterior margin trim: junk touches the scan edge, print never does.
+    junk_rows, junk_cols = {}, {}
+    for key in usable:
+        unit = cov.COVERAGE[year][key]
+        im = cv2.imread(sheet_path(year, unit["file"]), cv2.IMREAD_COLOR)
+        sub = im[::4, ::4].astype(np.int16)
+        del im
+        bad = ((sub.max(axis=2) < 60) |
+               ((sub[..., 0] - sub[..., 2]) > 6)).astype(np.uint8)
+        bad = cv2.morphologyEx(bad, cv2.MORPH_OPEN, np.ones((3, 3), np.uint8))
+        _, lab = cv2.connectedComponents(bad, connectivity=8)
+        eid = np.unique(np.concatenate([lab[0], lab[-1], lab[:, 0], lab[:, -1]]))
+        bbm = np.isin(lab, eid[eid > 0])
+        junk_rows[key] = bbm.any(axis=1)
+        junk_cols[key] = bbm.any(axis=0)
+        del sub, bad, lab, bbm
+
+    def junk_cap(key, axis, center):
+        """Global coordinate of the owner's first border-connected junk
+        at/after the seam line, or None."""
+        g = geo[key]
+        if axis == "v":
+            nat = comp.pw_inv([center], g["xkn"], g["xkg"])[0]
+            proj, kn, kg = junk_cols[key], g["xkn"], g["xkg"]
+        else:
+            nat = comp.pw_inv([center], g["ykn"], g["ykg"])[0]
+            proj, kn, kg = junk_rows[key], g["ykn"], g["ykg"]
+        i0 = min(max(int(nat) // 4, 0), len(proj) - 1)
+        hits = np.where(proj[i0:])[0]
+        if not len(hits):
+            return None
+        return comp.pw_fwd([(i0 + hits[0]) * 4 - 8], kn, kg)[0]
+
     prop = {}
     for axis, idx, owner, nbr in cov.neighbors(year):
         if owner not in geo or nbr not in geo:
@@ -494,6 +533,11 @@ def composite_edition(year, registration):
                     f"{owner_end - center:+.0f} rel to line")
             else:
                 print_end = comp.pw_fwd([min(reg_own[2], nw)], g_own["xkn"], g_own["xkg"])[0]
+                jc = junk_cap(owner, "v", center)
+                if jc is not None and jc < print_end:
+                    log(f"seam v{idx} {owner}|{nbr}: junk cap {print_end - jc:.0f}px "
+                        "inside print extent")
+                    print_end = jc
                 owner_end = min(max(cut, center + 40), print_end - 4)
             prop.setdefault((owner, "right"), []).append(owner_end)
             prop.setdefault((nbr, "left"), []).append(owner_end - feather)
@@ -506,6 +550,11 @@ def composite_edition(year, registration):
                     f"{owner_end - center:+.0f} rel to line")
             else:
                 print_end = comp.pw_fwd([min(reg_own[3], nh)], g_own["ykn"], g_own["ykg"])[0]
+                jc = junk_cap(owner, "h", center)
+                if jc is not None and jc < print_end:
+                    log(f"seam h{idx} {owner}|{nbr}: junk cap {print_end - jc:.0f}px "
+                        "inside print extent")
+                    print_end = jc
                 owner_end = min(max(cut, center + 40), print_end - 4)
             prop.setdefault((owner, "bottom"), []).append(owner_end)
             prop.setdefault((nbr, "top"), []).append(owner_end - feather)

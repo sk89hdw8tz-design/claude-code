@@ -25,16 +25,21 @@ COVERAGE = {
                 "note": "contains 22nd & Postoffice"},
         "7":   {"file": 7,  "av": ("A", "D"), "st": (19, 22), "region": None},
         "9":   {"file": 9,  "av": ("A", "D"), "st": (22, 25), "region": None,
-                "note": "slight green/dark scan cast; gain clamped"},
+                "note": "wash-dominated (Strand brick); tone needs the cream "
+                        "filter — paper itself is warm, NOT green"},
         "10":  {"file": 10, "av": ("D", "G"), "st": (23, 26), "region": None},
         "11a": {"file": 11, "av": ("G", "H"), "st": (23, 25),
                 "region": (0, 0, 2200, 4950),
-                "clip_region": (0, 0, 2100, 4950),
+                "clip_region": (0, 0, 2040, 4950),
                 "note": "left leg of L-shaped upper-left panel"},
         "11b": {"file": 11, "av": ("H", "I"), "st": (23, 24),
                 "region": (1850, 0, 4190, 2650),
-                "clip_region": (2100, 0, 4190, 2650),
-                "note": "upper step; clip disjoint from 11a so the overlap renders once"},
+                "clip_region": (2040, 0, 4190, 2650),
+                "note": "upper step; clip disjoint from 11a so the overlap "
+                        "renders once. Split at 2040 keeps the vertical "
+                        "AV. H OR WILLIAMS E. label (x~2070-2230) whole on "
+                        "11b's side — at 2100 the units' mapping mismatch "
+                        "beheaded every glyph (QC v3-2)"},
         "13":  {"file": 13, "av": ("D", "G"), "st": (26, 28),
                 "region": (0, 0, 6450, 5100),
                 "clip_region": (0, 0, 6450, 5195),
