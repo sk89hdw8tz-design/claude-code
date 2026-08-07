@@ -166,14 +166,31 @@ def composite_edition(year, registration):
     oy = (s0 - config.STREET_ORIGIN) * ed["pitch_st"] - pad
     log(f"{year} canvas {width} x {height} ({width*height/1e6:.0f} MP)")
 
-    canvas, weight = comp.new_canvas(width, height, ed["paper_bgr"])
-
     native_w = ed["native_size"][0]
     shift = config.CLIP_SHIFT_3400 * native_w / config.DETECT_WIDTH
     feather = round(config.FEATHER_3400 * native_w / config.DETECT_WIDTH)
     ext = shift
 
     usable = {k: r for k, r in registration.items() if r.get("status") == "ok"}
+
+    # Tonal reference (panel region only) — computed BEFORE the canvas so
+    # the flat gap fill uses the MEASURED edition paper tone; the old
+    # paper_bgr constant sat ~40/28/19 below the real retained-margin
+    # paper and read as a hard step wherever fill met margin (QC v3-1)
+    tones = {}
+    for key, r in usable.items():
+        unit = cov.COVERAGE[year][key]
+        img = cv2.imread(sheet_path(year, unit["file"]), cv2.IMREAD_COLOR)
+        if unit["region"]:
+            x0, y0, x1, y1 = unit["region"]
+            img = img[y0:y1, x0:x1]
+        tones[key] = comp.paper_tone(img)
+        del img
+    target_tone = np.mean(list(tones.values()), axis=0)
+    log(f"edition mean paper tone (BGR): {np.round(target_tone,1)}")
+
+    canvas, weight = comp.new_canvas(width, height,
+                                     tuple(int(round(v)) for v in target_tone))
 
     # ---- Consensus grid: real street spacing is non-uniform (spec §5.2), so
     # a uniform ideal grid makes independently-fitted sheets disagree about
@@ -421,13 +438,16 @@ def composite_edition(year, registration):
         cols = np.clip((span / 4).astype(int), 0, sm.shape[1] - 1)
         return (1.0 - sm[np.ix_(rows, cols)] / 255.0).T
 
-    def best_cut(axis, center, owner, nbr):
+    def best_cut(axis, center, owner, nbr, flip=False):
         """Cut position in [center+40, center+680] minimizing mean ink AND
         localized ink clusters. Mean darkness alone dilutes a giant street
         numeral over the whole corridor span — a cut can score 'white' while
         slicing straight through '25TH' (observed at 25th/Ave G). The p97 of
         span-locally-averaged darkness makes any glyph cluster on the cut
-        line expensive."""
+        line expensive. flip=True mirrors the band to [center-680,
+        center-40] for flipped-ownership seams, with the 3x duplicate
+        weight moved onto the unit whose label copy must fall beyond the
+        cut (the default owner)."""
         ao, so = geo[owner]["avs"], geo[owner]["sts"]
         an, sn = geo[nbr]["avs"], geo[nbr]["sts"]
         if axis == "v":
@@ -436,11 +456,16 @@ def composite_edition(year, registration):
         else:
             lo = X[max(min(ao), min(an))] + 200
             hi = X[min(max(ao), max(an))] - 200
-        gpos = np.arange(center + 40, center + 681, 4.0)
-        # weight the neighbor 3x: its label copies must fall above the cut,
-        # or they render as duplicates below it
-        grid = darkness(owner, axis, gpos, lo, hi) \
-            + 3.0 * darkness(nbr, axis, gpos, lo, hi)   # span x pos
+        if flip:
+            gpos = np.arange(center - 680, center - 39, 4.0)
+            w_own, w_nbr = 3.0, 1.0
+        else:
+            gpos = np.arange(center + 40, center + 681, 4.0)
+            # weight the neighbor 3x: its label copies must fall above the
+            # cut, or they render as duplicates below it
+            w_own, w_nbr = 1.0, 3.0
+        grid = w_own * darkness(owner, axis, gpos, lo, hi) \
+            + w_nbr * darkness(nbr, axis, gpos, lo, hi)   # span x pos
         kk = np.ones(5) / 5
         loc = np.apply_along_axis(np.convolve, 0, grid, kk, "same")
         d = grid.mean(axis=0) + 1.5 * np.percentile(loc, 97, axis=0)
@@ -459,18 +484,29 @@ def composite_edition(year, registration):
         g_own = geo[owner]
         nw, nh = ed["native_size"]
         reg_own = cov.COVERAGE[year][owner]["region"] or (0, 0, nw, nh)
+        flip = (axis, idx, frozenset({owner, nbr})) in cov.SEAM_FLIPS
         if axis == "v":
             center = X[idx]
-            cut = best_cut("v", center, owner, nbr)
-            print_end = comp.pw_fwd([min(reg_own[2], nw)], g_own["xkn"], g_own["xkg"])[0]
-            owner_end = min(max(cut, center + 40), print_end - 4)
+            cut = best_cut("v", center, owner, nbr, flip=flip)
+            if flip:
+                owner_end = max(min(cut, center - 40), center - 680)
+                log(f"seam v{idx} {owner}|{nbr}: FLIPPED cut at "
+                    f"{owner_end - center:+.0f} rel to line")
+            else:
+                print_end = comp.pw_fwd([min(reg_own[2], nw)], g_own["xkn"], g_own["xkg"])[0]
+                owner_end = min(max(cut, center + 40), print_end - 4)
             prop.setdefault((owner, "right"), []).append(owner_end)
             prop.setdefault((nbr, "left"), []).append(owner_end - feather)
         else:
             center = Y[idx]
-            cut = best_cut("h", center, owner, nbr)
-            print_end = comp.pw_fwd([min(reg_own[3], nh)], g_own["ykn"], g_own["ykg"])[0]
-            owner_end = min(max(cut, center + 40), print_end - 4)
+            cut = best_cut("h", center, owner, nbr, flip=flip)
+            if flip:
+                owner_end = max(min(cut, center - 40), center - 680)
+                log(f"seam h{idx} {owner}|{nbr}: FLIPPED cut at "
+                    f"{owner_end - center:+.0f} rel to line")
+            else:
+                print_end = comp.pw_fwd([min(reg_own[3], nh)], g_own["ykn"], g_own["ykg"])[0]
+                owner_end = min(max(cut, center + 40), print_end - 4)
             prop.setdefault((owner, "bottom"), []).append(owner_end)
             prop.setdefault((nbr, "top"), []).append(owner_end - feather)
 
@@ -493,6 +529,7 @@ def composite_edition(year, registration):
             for s in range(min(g2["sts"]), max(g2["sts"])):
                 covered.add((a, s))
     margin_g = round(0.28 * ed["pitch_av"])
+    ext_sides = {}
     for key, g in geo.items():
         a0k, a1k = min(g["avs"]), max(g["avs"])
         s0k, s1k = min(g["sts"]), max(g["sts"])
@@ -506,20 +543,8 @@ def composite_edition(year, registration):
         for side, (pos, cells) in edges.items():
             if (key, side) not in prop and not any(c in covered for c in cells):
                 sides[key][side] = pos
+                ext_sides.setdefault(key, set()).add(side)
                 log(f"unit {key}: exterior {side} margin retained")
-
-    # Tonal reference (panel region only)
-    tones = {}
-    for key, r in usable.items():
-        unit = cov.COVERAGE[year][key]
-        img = cv2.imread(sheet_path(year, unit["file"]), cv2.IMREAD_COLOR)
-        if unit["region"]:
-            x0, y0, x1, y1 = unit["region"]
-            img = img[y0:y1, x0:x1]
-        tones[key] = comp.paper_tone(img)
-        del img
-    target_tone = np.mean(list(tones.values()), axis=0)
-    log(f"edition mean paper tone (BGR): {np.round(target_tone,1)}")
 
     for key, r in usable.items():
         unit = cov.COVERAGE[year][key]
@@ -532,22 +557,54 @@ def composite_edition(year, registration):
             rx0, ry0, rx1, ry1 = creg
             cx0, cy0 = max(cx0, rx0), max(cy0, ry0)
             cx1, cy1 = min(cx1, rx1), min(cy1, ry1)
-        # never sample beyond the scanned sheet (black border pixels), and
-        # trim to the bright-paper extent so retained exterior margins can't
-        # drag scanner background onto the canvas
         nw, nh = ed["native_size"]
-        sm = g["gray4"]
-        okr = np.where((sm > 60).mean(axis=1) > 0.55)[0]
-        okc = np.where((sm > 60).mean(axis=0) > 0.55)[0]
-        px0, px1 = (okc[0] * 4 + 8, okc[-1] * 4 - 8) if len(okc) else (0, nw)
-        py0, py1 = (okr[0] * 4 + 8, okr[-1] * 4 - 8) if len(okr) else (0, nh)
-        cx0, cy0 = max(cx0, 0, px0), max(cy0, 0, py0)
-        cx1, cy1 = min(cx1, nw, px1), min(cy1, nh, py1)
+        cx0, cy0 = max(cx0, 0), max(cy0, 0)
+        cx1, cy1 = min(cx1, nw), min(cy1, nh)
+        img = cv2.imread(sheet_path(year, unit["file"]), cv2.IMREAD_COLOR)
+        # Scan-bed trim on exterior-extended sides only (QC v3-1). Dark-row
+        # statistics cannot tell margin TEXT from scanner bed — both are
+        # dark — and missed partial bands outright. The reliable separator
+        # is border-connectivity: bed black and blue-white backing strips
+        # always touch the scan's outer edge; genuine margin annotations
+        # never do. Clip each extended side just inside the innermost
+        # border-connected bad pixel (near-black, or cool: B > R + 6 where
+        # paper is warm at R - B ~ +17).
+        es = ext_sides.get(key, set())
+        if es:
+            sub = img[::4, ::4].astype(np.int16)
+            bad = ((sub.max(axis=2) < 60) |
+                   ((sub[..., 0] - sub[..., 2]) > 6)).astype(np.uint8)
+            bad = cv2.morphologyEx(bad, cv2.MORPH_OPEN,
+                                   np.ones((3, 3), np.uint8))
+            _, lab = cv2.connectedComponents(bad, connectivity=8)
+            edge_ids = np.unique(np.concatenate(
+                [lab[0], lab[-1], lab[:, 0], lab[:, -1]]))
+            bb = np.isin(lab, edge_ids[edge_ids > 0])
+            fx0n, fy0n, fx1n, fy1n = [int(v) // 4 for v in frames_native[key]]
+            j0, j1 = int(cx0) // 4, max(int(cx0) // 4 + 1, int(cx1) // 4)
+            i0, i1 = int(cy0) // 4, max(int(cy0) // 4 + 1, int(cy1) // 4)
+            rows_bb = bb[:, j0:j1].any(axis=1)
+            cols_bb = bb[i0:i1, :].any(axis=0)
+            if "top" in es:
+                hits = np.where(rows_bb[:max(fy0n, 0)])[0]
+                if len(hits):
+                    cy0 = max(cy0, (hits[-1] + 2) * 4)
+            if "bottom" in es:
+                hits = np.where(rows_bb[min(fy1n, len(rows_bb)):])[0]
+                if len(hits):
+                    cy1 = min(cy1, (min(fy1n, len(rows_bb)) + hits[0] - 2) * 4)
+            if "left" in es:
+                hits = np.where(cols_bb[:max(fx0n, 0)])[0]
+                if len(hits):
+                    cx0 = max(cx0, (hits[-1] + 2) * 4)
+            if "right" in es:
+                hits = np.where(cols_bb[min(fx1n, len(cols_bb)):])[0]
+                if len(hits):
+                    cx1 = min(cx1, (min(fx1n, len(cols_bb)) + hits[0] - 2) * 4)
         clip = (cx0, cy0, cx1, cy1)
         xkg_c = [x - ox for x in g["xkg"]]
         ykg_c = [y - oy for y in g["ykg"]]
         sh = measured.get(key, {}).get("shear", (0.0, 0.0))
-        img = cv2.imread(sheet_path(year, unit["file"]), cv2.IMREAD_COLOR)
         gains = comp.channel_gains(tones[key], target_tone)
         # highlight-safe ceiling: never drive any channel into hard clip
         # (QC pass 2: sheet 9's gain clipped green over 1.62% of its area
@@ -559,7 +616,9 @@ def composite_edition(year, registration):
         gains = gains * s
         comp.warp_sheet_piecewise(canvas, weight, img, g["xkn"], xkg_c,
                                   g["ykn"], ykg_c, clip, gains, feather,
-                                  shear=tuple(sh))
+                                  shear=tuple(sh),
+                                  shear_pivot=(float(np.mean(g["xkn"])),
+                                               float(np.mean(g["ykn"]))))
         log(f"unit {key}: composited clip={[round(float(v)) for v in clip]} gains={np.round(gains,3)}")
         del img
 

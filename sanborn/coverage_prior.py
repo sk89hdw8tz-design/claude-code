@@ -37,7 +37,11 @@ COVERAGE = {
                 "note": "upper step; clip disjoint from 11a so the overlap renders once"},
         "13":  {"file": 13, "av": ("D", "G"), "st": (26, 28),
                 "region": (0, 0, 6450, 5100),
-                "note": "upper panel (West addresses); wharf lower panel excluded"},
+                "clip_region": (0, 0, 6450, 5195),
+                "note": "upper panel (West addresses); wharf lower panel excluded. "
+                        "clip_region reaches past the detection region to keep the "
+                        "SEE SHEET No.17/16 row whole (text ends ~5161, lower "
+                        "panel frame starts ~5215)"},
         "14":  {"file": 14, "av": ("A", "D"), "st": (25, 28), "region": None},
     },
     "1877": {
@@ -92,6 +96,19 @@ def composite_extent(year):
         avs += a
         sts += s
     return min(avs), max(avs), min(sts), max(sts)
+
+
+# Seams where the default owner (top/left unit) CANNOT own the boundary
+# corridor because its printed panel physically ends at the boundary: the
+# ownership cap then pins the cut at the owner's print extent, exposing the
+# neighbor's duplicate street label below it (QC v3-3: "25TH ST." printed
+# twice at Ave G, overprinting SEE SHEET No.4). Flipped seams are owned by
+# the OTHER unit, whose sheet prints the whole corridor: the cut is searched
+# ABOVE/LEFT of the boundary line and the default owner keeps only content
+# beyond its own label copy.
+SEAM_FLIPS = {
+    ("h", 25, frozenset({"11a", "4"})),   # 11a's panel stops at 25th
+}
 
 
 def neighbors(year):

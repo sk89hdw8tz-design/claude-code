@@ -47,8 +47,9 @@ def render_unit_alone(year, key, knots, region, canvas_wh, ox, oy, shear=(0.0, 0
                         knots["ykn"], [y - oy for y in knots["ykg"]]).astype(np.float32)
     kx, ky = shear
     if abs(kx) > 1e-6 or abs(ky) > 1e-6:
-        yc = float(np.mean(mapy1))
-        xc = float(np.mean(mapx1))
+        # same clip-independent pivot as the compositor: the knot centroid
+        xc = float(np.mean(knots["xkn"]))
+        yc = float(np.mean(knots["ykn"]))
         mapx = np.ascontiguousarray((mapx1[None, :] + kx * (mapy1[:, None] - yc)).astype(np.float32))
         mapy = np.ascontiguousarray((mapy1[:, None] + ky * (mapx1[None, :] - xc)).astype(np.float32))
     else:

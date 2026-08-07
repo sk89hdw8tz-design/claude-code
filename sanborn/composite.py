@@ -158,7 +158,8 @@ def pw_inv(v, native, glob):
 
 
 def warp_sheet_piecewise(canvas, weight_hint, img, xkn, xkg, ykn, ykg,
-                         clip, gains, feather, shear=(0.0, 0.0)):
+                         clip, gains, feather, shear=(0.0, 0.0),
+                         shear_pivot=None):
     """Warp one sheet with a separable monotone piecewise-linear mapping that
     places every detected grid line exactly at its consensus global position
     (linear between lines, linear extrapolation beyond). Single resampling
@@ -181,9 +182,16 @@ def warp_sheet_piecewise(canvas, weight_hint, img, xkn, xkg, ykn, ykg,
     kx, ky = shear
     if abs(kx) > 1e-6 or abs(ky) > 1e-6:
         # panel skew: sample the source along its tilted lines so avenues/
-        # streets render straight. Native-space shear about the clip center.
-        yc = float(np.mean(mapy1))
-        xc = float(np.mean(mapx1))
+        # streets render straight. Pivot must be clip-INDEPENDENT (callers
+        # pass the knot centroid): pivoting on the clip center made the
+        # whole unit translate by shear x center-shift whenever the clip
+        # changed (QC v3-3 measured 1-5 px rigid drifts from the v3 margin
+        # extension alone).
+        if shear_pivot is not None:
+            xc, yc = float(shear_pivot[0]), float(shear_pivot[1])
+        else:
+            yc = float(np.mean(mapy1))
+            xc = float(np.mean(mapx1))
         mapx = mapx1[None, :] + (kx * (mapy1[:, None] - yc)).astype(np.float32)
         mapy = mapy1[:, None] + (ky * (mapx1[None, :] - xc)).astype(np.float32)
         mapx = np.ascontiguousarray(np.broadcast_to(mapx, (roi_h, roi_w)).astype(np.float32))
