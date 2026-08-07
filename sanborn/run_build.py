@@ -499,11 +499,19 @@ def composite_edition(year, registration):
         cx0, cy0 = max(cx0, 0), max(cy0, 0)
         cx1, cy1 = min(cx1, nw), min(cy1, nh)
         clip = (cx0, cy0, cx1, cy1)
-        gains = comp.channel_gains(tones[key], target_tone)
         xkg_c = [x - ox for x in g["xkg"]]
         ykg_c = [y - oy for y in g["ykg"]]
         sh = measured.get(key, {}).get("shear", (0.0, 0.0))
         img = cv2.imread(sheet_path(year, unit["file"]), cv2.IMREAD_COLOR)
+        gains = comp.channel_gains(tones[key], target_tone)
+        # highlight-safe ceiling: never drive any channel into hard clip
+        # (QC pass 2: sheet 9's gain clipped green over 1.62% of its area
+        # while the source had zero clipped pixels — irreversible loss)
+        p999 = np.percentile(img[::8, ::8].reshape(-1, 3), 99.9, axis=0)
+        s = min(1.0, float(254.0 / np.max(p999 * gains)))
+        if s < 0.999:
+            log(f"unit {key}: gain scaled x{s:.3f} to protect highlights")
+        gains = gains * s
         comp.warp_sheet_piecewise(canvas, weight, img, g["xkn"], xkg_c,
                                   g["ykn"], ykg_c, clip, gains, feather,
                                   shear=tuple(sh))
