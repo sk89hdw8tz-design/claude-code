@@ -65,19 +65,25 @@ def frame_bounds(img01, grid_v, grid_h, search_margin=0.12, region=None):
 
 
 def paper_tone(img, frac=0.56, bright=170, sat_max=40):
-    """Median BGR of bright, low-saturation pixels on the central `frac` of
-    the map interior ONLY. Including scanner margin skews tone wildly."""
+    """Median BGR of bright, low-saturation, CREAM pixels on the central
+    `frac` of the map interior ONLY. Including scanner margin skews tone
+    wildly. The cream test (G-B > 0.55*(R-B)) rejects pale brick-wash
+    pixels, which pass the brightness/saturation gates but sit ~12 levels
+    low in green — on wash-dominated sheets (sheet 9, the Strand
+    warehouses) they dragged the tone median and the resulting gain
+    over-boosted green, painting a cyan cast onto genuinely warm paper."""
     h, w = img.shape[:2]
     cy, cx = round(h * (1 - frac) / 2), round(w * (1 - frac) / 2)
     c = img[cy : h - cy, cx : w - cx]
     c = c[::8, ::8].reshape(-1, 3).astype(np.int16)
     mx = c.max(axis=1)
     mn = c.min(axis=1)
-    mask = (mx > bright) & ((mx - mn) < sat_max)
-    if mask.sum() < 100:
-        mask = mx > bright
-    sel = c[mask] if mask.sum() >= 100 else c
-    return np.median(sel, axis=0)
+    base = (mx > bright) & ((mx - mn) < sat_max)
+    cream = (c[:, 1] - c[:, 0]) > 0.55 * (c[:, 2] - c[:, 0])
+    for mask in (base & cream, base, mx > bright):
+        if mask.sum() >= 100:
+            return np.median(c[mask], axis=0)
+    return np.median(c, axis=0)
 
 
 def channel_gains(sheet_tone, target_tone):
