@@ -205,13 +205,12 @@ def composite_edition(year, registration):
         del img, img01
         frames_native[key] = fr
         m = measured.get(key, {})
+        # knot delta semantics: rendered line center was delta px past the
+        # consensus position, so shift the source knot by +delta (content
+        # near that line then renders exactly on the consensus line)
         for axis, lines in (("v", v), ("h", h)):
-            for si, err in m.get(axis, {}).items():
-                i = int(si)
-                if i == 0:
-                    lines[i] -= err     # push rendered edge content inward-away
-                else:
-                    lines[i] += err
+            for si, delta in m.get(axis, {}).items():
+                lines[int(si)] += delta
         corrected[key] = (v, h)
 
     def joint_solve(axis):

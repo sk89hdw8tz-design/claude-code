@@ -168,28 +168,23 @@ def main():
         paper = printed & ((g.mean(axis=2) - 2.2 * (g.max(axis=2) - g.min(axis=2))) > 0.5)
         del g
         avs, sts = cov.expected_lines(year, key)
+        # Knot deltas for EVERY line: rendered corridor center vs consensus.
+        # This is the whole registration story in one measurement — it fixes
+        # edge bias, interior detection disagreement between units (rev-6:
+        # Ave F off 138 px between units 3 and 6), same-sheet panel splits,
+        # and local scale (unit 5 H-I).
         meas = {"v": {}, "h": {}}
-        refs = {"v": [], "h": []}
         for axis, idents, Gpos, goff, span_ids, Spos, soff in (
             ("v", avs, X, ox, sts, Y, oy),
             ("h", sts, Y, oy, avs, X, ox),
         ):
-            lo = (Spos[min(span_ids)] - soff) / Q + 60
-            hi = (Spos[max(span_ids)] - soff) / Q - 60
-            span = np.linspace(lo, hi, 25)
-            n = len(idents)
+            lo = (Spos[min(span_ids)] - soff) / Q + 50
+            hi = (Spos[max(span_ids)] - soff) / Q - 50
             for i, ident in enumerate(idents):
                 line_q = (Gpos[ident] - goff) / Q
-                if 0 < i < n - 1:
-                    for toward in (+1, -1):
-                        d = measure_face(ink, printed, axis, line_q, span, toward)
-                        if d is not None:
-                            refs[axis].append(d)
-                else:
-                    toward = +1 if i == 0 else -1
-                    d = measure_face(ink, printed, axis, line_q, span, toward)
-                    if d is not None:
-                        meas[axis][i] = d
+                c = line_center(paper, axis, line_q, lo, hi)
+                if c is not None and abs(c - line_q) * Q < 320:
+                    meas[axis][i] = (c - line_q) * Q   # native px delta
         # Panel skew: corridor-center drift of each line across the unit span
         slopes = {"v": [], "h": []}
         for axis, idents, Gpos, goff, span_ids, Spos, soff in (
@@ -210,22 +205,15 @@ def main():
                     slopes[axis].append((c2 - c1) / ((s_hi - s_lo) * 2 / 3))
         kx = float(np.median(slopes["v"])) if len(slopes["v"]) >= 2 else 0.0
         ky = float(np.median(slopes["h"])) if len(slopes["h"]) >= 2 else 0.0
-        per_unit[key] = {"meas": meas, "refs": refs, "shear_new": (kx, ky)}
-        for ax in ("v", "h"):
-            all_refs[ax] += refs[ax]
+        per_unit[key] = {"meas": meas, "shear_new": (kx, ky)}
         del rend, ink, printed, paper
 
-    glob_ref = {a: (float(np.median(v)) if v else None) for a, v in all_refs.items()}
     corrections = {}
     for key, pu in per_unit.items():
         cor = {"v": {}, "h": {}}
         for axis in ("v", "h"):
-            d_ref = (float(np.median(pu["refs"][axis])) if pu["refs"][axis]
-                     else glob_ref[axis])
-            if d_ref is None:
-                continue
-            for i, d in pu["meas"][axis].items():
-                cor[axis][str(i)] = round((d_ref - d) * Q, 1)
+            for i, delta in pu["meas"][axis].items():
+                cor[axis][str(i)] = round(delta, 1)
         pv = prev.get(key, {"v": {}, "h": {}})
         for ax in ("v", "h"):
             for i, e in cor[ax].items():
