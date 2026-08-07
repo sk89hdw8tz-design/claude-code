@@ -190,6 +190,10 @@ def composite_edition(year, registration):
     #   frame on the high side (bottom/right): c = 2d - f + W/2  if f < d + W/2
     frames_native = {}
     corrected = {}
+    corr_path = os.path.join(config.BUILD_DIR, year, "edge_corrections.json")
+    measured = json.load(open(corr_path)) if os.path.exists(corr_path) else {}
+    if measured:
+        log(f"applying measured edge corrections from {corr_path}")
     for key, r in usable.items():
         unit = cov.COVERAGE[year][key]
         det = r["detected"]
@@ -200,7 +204,15 @@ def composite_edition(year, registration):
         fr = comp.frame_bounds(img01, v, h, region=unit["region"])
         del img, img01
         frames_native[key] = fr
-        corrected[key] = (v, h)   # raw detections; comb+CoM keeps them ±80 px
+        m = measured.get(key, {})
+        for axis, lines in (("v", v), ("h", h)):
+            for si, err in m.get(axis, {}).items():
+                i = int(si)
+                if i == 0:
+                    lines[i] -= err     # push rendered edge content inward-away
+                else:
+                    lines[i] += err
+        corrected[key] = (v, h)
 
     def joint_solve(axis):
         """Alternating LSQ: grid-line globals X_l and per-unit (s,t) jointly.
