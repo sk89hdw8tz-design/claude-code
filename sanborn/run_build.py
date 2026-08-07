@@ -192,6 +192,10 @@ def composite_edition(year, registration):
     corrected = {}
     corr_path = os.path.join(config.BUILD_DIR, year, "edge_corrections.json")
     measured = json.load(open(corr_path)) if os.path.exists(corr_path) else {}
+    md_path = os.path.join(config.BUILD_DIR, year, "manual_knot_deltas.json")
+    manual_deltas = json.load(open(md_path)) if os.path.exists(md_path) else {}
+    if manual_deltas:
+        log(f"applying manual knot deltas for units {list(manual_deltas)}")
     if measured:
         log(f"applying measured edge corrections from {corr_path}")
     for key, r in usable.items():
@@ -212,7 +216,16 @@ def composite_edition(year, registration):
                     lines[i] -= err     # push rendered edge content inward-away
                 else:
                     lines[i] += err
+        mk = manual_deltas.get(key, {})
+        for axis, lines in (("v", v), ("h", h)):
+            for si, delta in mk.get(axis, {}).items():
+                lines[int(si)] += delta
         corrected[key] = (v, h)
+    # Same-sheet panels must agree where their shared avenue sits on the
+    # shared scan: unify 11b's Avenue H knot with 11a's (one physical line,
+    # one native coordinate) so their mappings are continuous at H.
+    if year == "1885" and "11a" in corrected and "11b" in corrected:
+        corrected["11b"][0][0] = corrected["11a"][0][-1]
 
     def joint_solve(axis):
         """Alternating LSQ: grid-line globals X_l and per-unit (s,t) jointly.
@@ -476,8 +489,9 @@ def composite_edition(year, registration):
         sd = sides[key]
         cx0, cx1 = comp.pw_inv([sd["left"], sd["right"]], g["xkn"], g["xkg"])
         cy0, cy1 = comp.pw_inv([sd["top"], sd["bottom"]], g["ykn"], g["ykg"])
-        if unit["region"]:
-            rx0, ry0, rx1, ry1 = unit["region"]
+        creg = unit.get("clip_region") or unit["region"]
+        if creg:
+            rx0, ry0, rx1, ry1 = creg
             cx0, cy0 = max(cx0, rx0), max(cy0, ry0)
             cx1, cy1 = min(cx1, rx1), min(cy1, ry1)
         # never sample beyond the scanned sheet (black border pixels)
