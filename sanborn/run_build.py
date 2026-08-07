@@ -425,26 +425,21 @@ def composite_edition(year, registration):
     for axis, idx, owner, nbr in cov.neighbors(year):
         if owner not in geo or nbr not in geo:
             continue
+        # No frame caps at seams: sheets overlap generously across boundary
+        # streets (verified up to 582 px), and mapped frame estimates are
+        # unreliable enough to have punched holes. Frames still bound rims.
         if axis == "v":
             center = X[idx]
             cut = best_cut("v", center, owner, nbr)
-            owner_end = max(min(geo[owner]["frame_g"][2], cut), center + 40)
-            nbr_start = owner_end - feather
-            nbr_lo = geo[nbr]["frame_g"][0]
-            if nbr_lo > nbr_start:
-                log(f"seam v{idx} {owner}|{nbr}: neighbor frame {nbr_lo-nbr_start:.0f}px late (physical gap)")
+            owner_end = max(cut, center + 40)
             sides[owner]["right"] = max(sides[owner]["right"], owner_end)
-            sides[nbr]["left"] = min(sides[nbr]["left"], max(nbr_start, nbr_lo))
+            sides[nbr]["left"] = min(sides[nbr]["left"], owner_end - feather)
         else:
             center = Y[idx]
             cut = best_cut("h", center, owner, nbr)
-            owner_end = max(min(geo[owner]["frame_g"][3], cut), center + 40)
-            nbr_start = owner_end - feather
-            nbr_lo = geo[nbr]["frame_g"][1]
-            if nbr_lo > nbr_start:
-                log(f"seam h{idx} {owner}|{nbr}: neighbor frame {nbr_lo-nbr_start:.0f}px late (physical gap)")
+            owner_end = max(cut, center + 40)
             sides[owner]["bottom"] = max(sides[owner]["bottom"], owner_end)
-            sides[nbr]["top"] = min(sides[nbr]["top"], max(nbr_start, nbr_lo))
+            sides[nbr]["top"] = min(sides[nbr]["top"], owner_end - feather)
 
     # Tonal reference (panel region only)
     tones = {}
@@ -473,9 +468,11 @@ def composite_edition(year, registration):
         gains = comp.channel_gains(tones[key], target_tone)
         xkg_c = [x - ox for x in g["xkg"]]
         ykg_c = [y - oy for y in g["ykg"]]
+        sh = measured.get(key, {}).get("shear", (0.0, 0.0))
         img = cv2.imread(sheet_path(year, unit["file"]), cv2.IMREAD_COLOR)
         comp.warp_sheet_piecewise(canvas, weight, img, g["xkn"], xkg_c,
-                                  g["ykn"], ykg_c, clip, gains, feather)
+                                  g["ykn"], ykg_c, clip, gains, feather,
+                                  shear=tuple(sh))
         log(f"unit {key}: composited clip={[round(float(v)) for v in clip]} gains={np.round(gains,3)}")
         del img
 
