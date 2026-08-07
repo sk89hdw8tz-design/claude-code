@@ -27,8 +27,12 @@ import run_build
 Q = 4  # measurement scale divisor
 
 
-def render_unit_alone(year, key, fit, region, canvas_wh):
-    """Quarter-res render of one unit on black background."""
+import composite as comp
+
+
+def render_unit_alone(year, key, knots, region, canvas_wh, ox, oy):
+    """Quarter-res PIECEWISE render of one unit on black background —
+    must match the compositor's mapping exactly."""
     img = cv2.imread(run_build.sheet_path(year, cov.COVERAGE[year][key]["file"]),
                      cv2.IMREAD_COLOR)
     if region:
@@ -36,12 +40,16 @@ def render_unit_alone(year, key, fit, region, canvas_wh):
         m = np.zeros(img.shape[:2], np.uint8)
         m[y0:y1, x0:x1] = 1
         img = img * m[:, :, None]
-    M = np.array([[fit["sx"] / Q, 0, fit["tx"] / Q],
-                  [0, fit["sy"] / Q, fit["ty"] / Q]], np.float64)
-    out = cv2.warpAffine(img, M, (canvas_wh[0] // Q, canvas_wh[1] // Q),
-                         flags=cv2.INTER_AREA, borderMode=cv2.BORDER_CONSTANT,
-                         borderValue=0)
-    del img
+    Wq, Hq = canvas_wh[0] // Q, canvas_wh[1] // Q
+    mapx1 = comp.pw_inv((np.arange(Wq, dtype=np.float64) + 0.5) * Q,
+                        knots["xkn"], [x - ox for x in knots["xkg"]]).astype(np.float32)
+    mapy1 = comp.pw_inv((np.arange(Hq, dtype=np.float64) + 0.5) * Q,
+                        knots["ykn"], [y - oy for y in knots["ykg"]]).astype(np.float32)
+    mapx = np.ascontiguousarray(np.broadcast_to(mapx1[None, :], (Hq, Wq)))
+    mapy = np.ascontiguousarray(np.broadcast_to(mapy1[:, None], (Hq, Wq)))
+    out = cv2.remap(img, mapx, mapy, interpolation=cv2.INTER_AREA,
+                    borderMode=cv2.BORDER_CONSTANT, borderValue=0)
+    del img, mapx, mapy
     return out
 
 
@@ -114,10 +122,8 @@ def main():
         if key not in fits:
             continue
         unit = cov.COVERAGE[year][key]
-        fit = dict(fits[key])
-        fit = {"sx": fit["sx"], "sy": fit["sy"],
-               "tx": fit["tx"] - ox, "ty": fit["ty"] - oy}
-        rend = render_unit_alone(year, key, fit, unit["region"], (W, H))
+        knots = regj["units"][key]["knots"]
+        rend = render_unit_alone(year, key, knots, unit["region"], (W, H), ox, oy)
         ink, printed = ink_and_printed(rend)
         avs, sts = cov.expected_lines(year, key)
         cor = {"v": {}, "h": {}}

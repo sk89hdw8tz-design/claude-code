@@ -271,15 +271,22 @@ def composite_edition(year, registration):
                 log(f"unit {key}: joint fit {name}={s:.4f} exceeds ±2% — check line identity")
         fit = {"sx": sx, "tx": tx, "sy": sy, "ty": ty}
         r["fit_consensus"] = {**fit, "line_resid_x": seam_res_x, "line_resid_y": seam_res_y}
+        r["knots"] = {"xkn": list(map(float, v)), "xkg": [float(X[a]) for a in avs],
+                      "ykn": list(map(float, h)), "ykg": [float(Y[s]) for s in sts]}
         frame = frames_native[key]
         img_s = cv2.imread(sheet_path(year, unit["file"]), cv2.IMREAD_GRAYSCALE)
         small = cv2.resize(img_s, (img_s.shape[1] // 4, img_s.shape[0] // 4),
                            interpolation=cv2.INTER_AREA)
         del img_s
+        xkn, xkg = v, [X[a] for a in avs]
+        ykn, ykg = h, [Y[s] for s in sts]
+        fx0, fx1 = comp.pw_fwd([frame[0], frame[2]], xkn, xkg)
+        fy0, fy1 = comp.pw_fwd([frame[1], frame[3]], ykn, ykg)
         geo[key] = {"fit": fit, "gv": v, "gh": h,
-                    "frame_g": global_frame(fit, frame), "avs": avs, "sts": sts,
-                    "gray4": small}
-        log(f"unit {key}: joint affine sx={sx:.4f} sy={sy:.4f} resid x={seam_res_x} y={seam_res_y}")
+                    "xkn": xkn, "xkg": xkg, "ykn": ykn, "ykg": ykg,
+                    "frame_g": (float(fx0), float(fy0), float(fx1), float(fy1)),
+                    "avs": avs, "sts": sts, "gray4": small}
+        log(f"unit {key}: piecewise knots (affine sanity sx={sx:.4f} sy={sy:.4f})")
 
     # ---- Content-level seam refinement: both sheets print the shared street
     # corridor, so phase-correlating the two units' corridor bands measures
@@ -383,16 +390,15 @@ def composite_edition(year, registration):
         """Mean darkness (0..1) of unit `key` along the seam-parallel span
         [lo,hi] (global, cross axis) at each global position in gpos."""
         g = geo[key]
-        f = g["fit"]
         if axis == "v":
-            nat = (np.asarray(gpos) - f["tx"]) / f["sx"]
-            span = (np.linspace(lo, hi, 160) - f["ty"]) / f["sy"]
+            nat = comp.pw_inv(gpos, g["xkn"], g["xkg"])
+            span = comp.pw_inv(np.linspace(lo, hi, 160), g["ykn"], g["ykg"])
             sm = g["gray4"]
             cols = np.clip((nat / 4).astype(int), 0, sm.shape[1] - 1)
             rows = np.clip((span / 4).astype(int), 0, sm.shape[0] - 1)
             return 1.0 - sm[np.ix_(rows, cols)].mean(axis=0) / 255.0
-        nat = (np.asarray(gpos) - f["ty"]) / f["sy"]
-        span = (np.linspace(lo, hi, 160) - f["tx"]) / f["sx"]
+        nat = comp.pw_inv(gpos, g["ykn"], g["ykg"])
+        span = comp.pw_inv(np.linspace(lo, hi, 160), g["xkn"], g["xkg"])
         sm = g["gray4"]
         rows = np.clip((nat / 4).astype(int), 0, sm.shape[0] - 1)
         cols = np.clip((span / 4).astype(int), 0, sm.shape[1] - 1)
@@ -457,20 +463,19 @@ def composite_edition(year, registration):
         unit = cov.COVERAGE[year][key]
         g = geo[key]
         sd = sides[key]
-        f = g["fit"]
-        cx0, cx1 = (sd["left"] - f["tx"]) / f["sx"], (sd["right"] - f["tx"]) / f["sx"]
-        cy0, cy1 = (sd["top"] - f["ty"]) / f["sy"], (sd["bottom"] - f["ty"]) / f["sy"]
+        cx0, cx1 = comp.pw_inv([sd["left"], sd["right"]], g["xkn"], g["xkg"])
+        cy0, cy1 = comp.pw_inv([sd["top"], sd["bottom"]], g["ykn"], g["ykg"])
         if unit["region"]:
             rx0, ry0, rx1, ry1 = unit["region"]
             cx0, cy0 = max(cx0, rx0), max(cy0, ry0)
             cx1, cy1 = min(cx1, rx1), min(cy1, ry1)
         clip = (cx0, cy0, cx1, cy1)
         gains = comp.channel_gains(tones[key], target_tone)
-        fitk = g["fit"]
-        affine = {"sx": fitk["sx"], "tx": fitk["tx"] - ox,
-                  "sy": fitk["sy"], "ty": fitk["ty"] - oy}
+        xkg_c = [x - ox for x in g["xkg"]]
+        ykg_c = [y - oy for y in g["ykg"]]
         img = cv2.imread(sheet_path(year, unit["file"]), cv2.IMREAD_COLOR)
-        comp.warp_sheet_into(canvas, weight, img, affine, clip, gains, feather)
+        comp.warp_sheet_piecewise(canvas, weight, img, g["xkn"], xkg_c,
+                                  g["ykn"], ykg_c, clip, gains, feather)
         log(f"unit {key}: composited clip={[round(float(v)) for v in clip]} gains={np.round(gains,3)}")
         del img
 
