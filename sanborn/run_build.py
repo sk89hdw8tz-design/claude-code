@@ -500,62 +500,50 @@ def composite_edition(year, registration):
     # region/native print_end cap cannot see this — it caps at the SCAN
     # extent, junk included. Same border-connectivity criterion as the
     # exterior margin trim: junk touches the scan edge, print never does.
-    junk_rows, junk_cols, junk_org = {}, {}, {}
+    def border_junk(im4):
+        """Border-connected junk mask at /4: near-black or cool pixels in
+        components that touch a scan edge. Speck rejection is by AREA, not
+        morphological opening — opening erased sub-12px-native bands (the
+        7-30px scanner rules that survived onto v3.2's margins) while a
+        7x900 band has area to spare."""
+        bad = ((im4.max(axis=2) < 60) |
+               ((im4[..., 0] - im4[..., 2]) > 6)).astype(np.uint8)
+        n, lab, stats, _ = cv2.connectedComponentsWithStats(bad, connectivity=8)
+        keep = np.zeros(n, bool)
+        keep[1:] = stats[1:, cv2.CC_STAT_AREA] >= 12
+        eid = np.unique(np.concatenate([lab[0], lab[-1], lab[:, 0], lab[:, -1]]))
+        seed = np.zeros(n, bool)
+        seed[eid[eid > 0]] = True
+        return (keep & seed)[lab]
+
+    junk_rows, junk_cols = {}, {}
     for key in usable:
         unit = cov.COVERAGE[year][key]
         im = cv2.imread(sheet_path(year, unit["file"]), cv2.IMREAD_COLOR)
-        # region-scoped: on multi-panel sheets a full-sheet projection sees
-        # the OTHER panel's dark edges and falsely caps seams (the 11a|11b
-        # cap re-clipped the Avenue H label the 2040 split had just saved)
-        if unit["region"]:
-            x0r, y0r, x1r, y1r = unit["region"]
-            im = im[y0r:y1r, x0r:x1r]
-            junk_org[key] = (x0r, y0r)
-        else:
-            junk_org[key] = (0, 0)
-        sub = im[::4, ::4].astype(np.int16)
+        bbm = border_junk(im[::4, ::4].astype(np.int16))
         del im
-        bad = ((sub.max(axis=2) < 60) |
-               ((sub[..., 0] - sub[..., 2]) > 6)).astype(np.uint8)
-        bad = cv2.morphologyEx(bad, cv2.MORPH_OPEN, np.ones((3, 3), np.uint8))
-        _, lab = cv2.connectedComponents(bad, connectivity=8)
-        # seed only from TRUE scan edges: a region border that is interior
-        # (a panel divider) must not make ordinary ink 'border-connected'
-        nw_, nh_ = ed["native_size"]
-        x0r, y0r, x1r, y1r = unit["region"] or (0, 0, nw_, nh_)
-        seeds = []
-        if y0r <= 0:
-            seeds.append(lab[0])
-        if y1r >= nh_:
-            seeds.append(lab[-1])
-        if x0r <= 0:
-            seeds.append(lab[:, 0])
-        if x1r >= nw_:
-            seeds.append(lab[:, -1])
-        eid = (np.unique(np.concatenate(seeds)) if seeds
-               else np.zeros(0, dtype=lab.dtype))
-        bbm = np.isin(lab, eid[eid > 0])
         junk_rows[key] = bbm.any(axis=1)
         junk_cols[key] = bbm.any(axis=0)
-        del sub, bad, lab, bbm
+        del bbm
 
     def junk_cap(key, axis, center):
         """Global coordinate of the owner's first border-connected junk
-        at/after the seam line, or None."""
+        at/after the seam line, or None. Full-sheet analysis: disjoint
+        panel pairs no longer take prop cuts, so cross-panel junk cannot
+        falsely cap them, and full-sheet connectivity is what catches
+        divider bands that a region crop would orphan."""
         g = geo[key]
         if axis == "v":
             nat = comp.pw_inv([center], g["xkn"], g["xkg"])[0]
             proj, kn, kg = junk_cols[key], g["xkn"], g["xkg"]
-            org = junk_org[key][0]
         else:
             nat = comp.pw_inv([center], g["ykn"], g["ykg"])[0]
             proj, kn, kg = junk_rows[key], g["ykn"], g["ykg"]
-            org = junk_org[key][1]
-        i0 = min(max((int(nat) - org) // 4, 0), len(proj) - 1)
+        i0 = min(max(int(nat) // 4, 0), len(proj) - 1)
         hits = np.where(proj[i0:])[0]
         if not len(hits):
             return None
-        return comp.pw_fwd([(i0 + hits[0]) * 4 - 8 + org], kn, kg)[0]
+        return comp.pw_fwd([(i0 + hits[0]) * 4 - 8], kn, kg)[0]
 
     prop = {}
     for axis, idx, owner, nbr in cov.neighbors(year):
@@ -692,15 +680,7 @@ def composite_edition(year, registration):
         # paper is warm at R - B ~ +17).
         es = ext_sides.get(key, set())
         if es:
-            sub = img[::4, ::4].astype(np.int16)
-            bad = ((sub.max(axis=2) < 60) |
-                   ((sub[..., 0] - sub[..., 2]) > 6)).astype(np.uint8)
-            bad = cv2.morphologyEx(bad, cv2.MORPH_OPEN,
-                                   np.ones((3, 3), np.uint8))
-            _, lab = cv2.connectedComponents(bad, connectivity=8)
-            edge_ids = np.unique(np.concatenate(
-                [lab[0], lab[-1], lab[:, 0], lab[:, -1]]))
-            bb = np.isin(lab, edge_ids[edge_ids > 0])
+            bb = border_junk(img[::4, ::4].astype(np.int16))
             fx0n, fy0n, fx1n, fy1n = [int(v) // 4 for v in frames_native[key]]
             j0, j1 = int(cx0) // 4, max(int(cx0) // 4 + 1, int(cx1) // 4)
             i0, i1 = int(cy0) // 4, max(int(cy0) // 4 + 1, int(cy1) // 4)
