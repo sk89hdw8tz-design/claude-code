@@ -145,7 +145,8 @@ SCAN_INSETS = {
     (4, "bottom"): 90,
     (7, "left"): 80,
     (14, "left"): 60,
-    (14, "bottom"): 80,
+    (14, "bottom"): 170,   # 80 re-exposed the ~50-70px backing board at
+                           # source y~7499 (QC v4-B); 170 trims to y7480
 }
 
 

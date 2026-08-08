@@ -159,7 +159,7 @@ def pw_inv(v, native, glob):
 
 def warp_sheet_piecewise(canvas, weight_hint, img, xkn, xkg, ykn, ykg,
                          clip, gains, feather, shear=(0.0, 0.0),
-                         shear_pivot=None):
+                         shear_pivot=None, border_bgr=None):
     """Warp one sheet with a separable monotone piecewise-linear mapping that
     places every detected grid line exactly at its consensus global position
     (linear between lines, linear extrapolation beyond). Single resampling
@@ -200,8 +200,18 @@ def warp_sheet_piecewise(canvas, weight_hint, img, xkn, xkg, ykn, ykg,
         mapx = np.ascontiguousarray(np.broadcast_to(mapx1[None, :], (roi_h, roi_w)))
         mapy = np.ascontiguousarray(np.broadcast_to(mapy1[:, None], (roi_h, roi_w)))
 
+    # border = paper tone, NOT black: shear displaces edge samples past the
+    # sheet boundary (sheet 14's ky=-0.049 shifts corners ~150px), and a
+    # black border FABRICATED 83,809 pure-black px on v4's margins plus a
+    # Lanczos overshoot ring of channel-255 px around them (QC v4-B). The
+    # border is pre-divided by the gains so it lands exactly on the fill.
+    if border_bgr is None:
+        bv = 0.0, 0.0, 0.0
+    else:
+        bv = tuple(float(b) / max(float(g), 1e-6)
+                   for b, g in zip(border_bgr, gains))
     warped = cv2.remap(img, mapx, mapy, interpolation=cv2.INTER_LANCZOS4,
-                       borderMode=cv2.BORDER_CONSTANT, borderValue=0)
+                       borderMode=cv2.BORDER_CONSTANT, borderValue=bv)
     del mapx, mapy
     warped = np.clip(warped.astype(np.float32) * gains[None, None, :], 0, 255).astype(np.uint8)
 

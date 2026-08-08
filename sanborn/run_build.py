@@ -775,7 +775,8 @@ def composite_edition(year, registration):
                                   g["ykn"], ykg_c, clip, gains, feather,
                                   shear=tuple(sh),
                                   shear_pivot=(float(np.mean(g["xkn"])),
-                                               float(np.mean(g["ykn"]))))
+                                               float(np.mean(g["ykn"]))),
+                                  border_bgr=tuple(target_tone))
         log(f"unit {key}: composited clip={[round(float(v)) for v in clip]} gains={np.round(gains,3)}")
         del img
 
