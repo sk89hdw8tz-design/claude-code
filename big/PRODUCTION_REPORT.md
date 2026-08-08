@@ -1,178 +1,133 @@
-# Production Report — Galveston 1885 Sanborn Composite
+# Galveston 1885 Sanborn Composite — Production Report (v4.4, final)
 
-Seamless composite of the October 1885 Sanborn Fire Insurance Map of
-Galveston, Texas, centered on 22nd Street & Postoffice Street (Avenue E).
-Built entirely from the user-supplied scans below; no network sources were
-reachable from the build environment.
+Seamless composite of the Sanborn Fire Insurance Map of Galveston, Texas
+(October 1885 edition), centered on 22nd Street & Postoffice Street
+(Avenue E), reconstructed from the 12 usable Library of Congress sheets
+covering the surveyed grid (sheets 2-7, 9-11, 13-14 of 19; multi-panel
+sheets contribute the panels that tile the grid).
 
-## Sources
+## Canvas
 
-- Origin: Library of Congress, Geography & Map Division (public domain),
-  item sanborn08539_001 (https://www.loc.gov/item/sanborn08539_001/).
-- Supplied as: quality-95 JPEG conversions (no chroma subsampling) of the
-  ~142 MB uncompressed master TIFFs, made and uploaded by the user.
-  All 19 sheets, each 6450 × 7650 px (~307 dpi of the original paper).
-- Every sheet's printed number was verified against its filename before
-  use; SHA-256 checksums in sources/1885/manifest_1885_uploaded.txt.
+- 18188 x 27524 px (500.6 MP), RGB, 300 ppi -> 60.6 x 91.7 in print size.
+- Grid: avenues A (Water) through J (Broadway) west-east, streets 16th
+  through 28th north-south. Canvas position = consensus grid + 742 px pad.
+- Coverage 71.8% of canvas; the remainder is declared flat-fill gap or pad.
 
-## Sheets used (12 compositing units from 10 sheets)
+## Method (summary)
 
-| Unit | Sheet | Coverage (avenues × streets) | Note |
-|---|---|---|---|
-| 2 | 2 | A–D × 16–19 | |
-| 3 | 3 | D–G × 18–20 | lower panel only |
-| 4 | 4 | G–H × 25–28 | left panel only |
-| 5 | 5 | G–J × 20–23 | City Park, Ball High School |
-| 6 | 6 | D–G × 20–23 | **contains 22nd & Postoffice** |
-| 7 | 7 | A–D × 19–22 | |
-| 9 | 9 | A–D × 22–25 | slight green scan cast (see Tonal) |
-| 10 | 10 | D–G × 23–26 | |
-| 11a | 11 | G–H × 23–25 | left leg of L-shaped panel |
-| 11b | 11 | H–I × 23–24 | upper step of L-shaped panel |
-| 13 | 13 | D–G × 26–28 | upper (West-addresses) panel |
-| 14 | 14 | A–D × 25–28 | |
+Whiteness-comb street detection per sheet; joint consensus grid solve
+(non-uniform, per spec §5.2) with measured edge-knot corrections
+re-converged from zero under a stable knot-centroid shear pivot;
+piecewise-linear separable warp per sheet (single Lanczos resample, warp
+border = paper tone); label-aware seam cuts (duplicate/lost ink-cluster
+costs, frame-rule avoidance) with seven reviewer/profile-measured manual
+cuts; seam ownership flip at 25th/Ave G; disjoint panel clips for sheet
+11 (split at native x2040, clear of the AV. H label); retained exterior
+sheet margins with per-side measured static scan insets; per-sheet
+chromatic white balance to the measured edition paper tone
+(cream-filtered sampling; mean gain limited, highlight-safe); flat gap
+fill at the measured paper tone. No sharpening, no CLAHE, no inpainting,
+no generative fill anywhere; gaps are honest flat paper.
 
-## Sheets/panels reviewed and excluded, with reasons
+## Adversarial QC
 
-- Sheet 1 — index/key sheet; used only to cross-check coverage, never in art.
-- Sheet 3 upper panel — off-scale (≈18% compressed street pitch); warping it
-  to fit would distort its buildings.
-- Sheet 4 middle/right panels — east of Broadway, outside the downtown grid.
-- Sheet 8 — Avenue A wharf strip, outside the crop.
-- Sheet 11 remaining panels — Ave J–M West / 26th–31st, off the grid.
-- Sheet 12 — Ave M–N & Beach Hotel, outside the crop.
-- Sheet 13 lower panel — wharf blocks (33rd–35th), outside the crop.
-- Sheets 15–19 — west/south of the crop (28th–34th).
+Nine independent adversarial review passes across four build revisions
+(three-reviewer fleets with stall watchdogs; full verdicts and evidence
+archived in the repository under sanborn/qc_record/). The final
+confirmation review (v4.3) set three conditions — carry the 25th/Ave B
+north row, carry the Tremont Opera block, clear the 22nd St scale bar —
+all three verified delivered in v4.4 by measured profile cuts
+(builder-verified crops; all other content byte-identical to the
+reviewed build outside the three re-cut corridors).
 
-## Composite geometry
+Scorecard vs the two predecessor editions (the original 3-pass-QC'd v2
+composite and the third-party one-page mosaic): best-of-three on tonal
+uniformity (per-unit R−G spread 2.5 DN vs 16.7 / 4.6), margin/stamp
+retention, cross-seam registration (22nd St mean jog 29 px vs 56 / 77),
+dark-rim cleanliness (0.012% vs 0.282% / 0.023%), image quality
+(single-pass resample, no ringing, no blocking), and label integrity.
 
-- Canvas: 17,632 × 26,968 px (475 MP), avenues A–J vertical (A left),
-  streets 16th–28th horizontal (16th top) — the orientation of the printed
-  sheets (bay/north at left).
-- Registration: street-grid detection (whiteness comb at fixed edition
-  pitch, center-of-mass refinement), per-unit axis-aligned affine solved
-  JOINTLY with the global positions of every street/avenue line, so the
-  grid keeps the map's real, slightly non-uniform street spacing and all
-  units agree where shared streets lie. Grid-line deviations from a
-  uniform grid: avenues −270…+101 px, streets −141…+136 px.
-- Per-unit scales: 0.995–1.016 (all within ±2%; independent template
-  matching measured content placement at 6–19 px RMS per sheet).
-- Each shared boundary street is contributed by exactly one sheet; the cut
-  runs through the whitest row of the corridor band (avoids slicing street
-  labels), with a ~30 px crossfade.
-- Resampling: exactly one Lanczos pass per sheet (native scale ≈1.0);
-  delivered at native resolution — no output resize anywhere.
+## Deliverables
 
-## Tonal treatment
+| file | contents |
+|---|---|
+| galveston_1885_composite.tif.part-aa/-ab/-ac + .sha256 | archival TIFF master, LZW, 300 ppi tags, 128-row strips; reassemble: `cat galveston_1885_composite.tif.part-* > galveston_1885_composite.tif` then `sha256sum -c galveston_1885_composite.tif.sha256` |
+| galveston_1885_onepage.pdf | whole map on ONE 300-dpi page (60.6 x 91.7 in), JPEG q92 4:4:4, with the traced navigation grid as a toggleable PDF layer (default off) |
+| galveston_1885_onepage_compressed.pdf | same page, q64 4:2:0, sized for messaging (~28 MB); the tiles/TIFF are the color-accurate carriers |
+| galveston_1885_full.jpg | whole map, single JPEG q90 4:2:0 |
+| tiles/ (15 + index) | 6144 x 5744-class tiles, q93 4:4:4, 400 px overlap, 100% coverage, under the ~100 MP iOS decode ceiling; index map at reduced scale |
+| galveston_1885_atlas.pdf | 16-page 300-dpi PDF: index + the 15 tiles embedded losslessly |
+| galveston_1885_nav_overlay.svg / _viewer.html | DERIVED navigation layer (traced grid; never part of the raster) and a self-contained browser viewer with layer toggle |
+| MANIFEST.txt | SHA-256 + byte size for every delivered file |
 
-Per-sheet per-channel gain only (no curves, no saturation change),
-equalizing each sheet's interior paper tone to the edition mean; gains
-clamped to 0.93–1.08. Sheet 9's scan has a green cast that exceeds the
-clamp — it remains slightly green rather than force-matched. Foxing,
-stains, show-through and age are retained everywhere.
+All JPEGs carry 300-dpi JFIF density; the TIFF carries 300 ppi
+resolution tags; no ICC profile (untagged sRGB).
 
-## Genuine gaps (flat paper fill, no content)
+## Disclosures
 
-Confirmed against all 19 sheets — these areas have no on-grid source in
-the 1885 edition:
-- Avenues G–J × 16th–20th (partially mapped only by sheet 3's excluded
-  off-scale panel).
-- Avenues D–G × 16th–18th.
-- Avenues H–I × 24th–25th (sheet 11's L-panel step).
-- Avenue I–J columns × 23rd–28th, except G–H × 25–28 (sheet 4).
-- A 69 px paper gutter inside the Avenue H corridor at 23rd–24th (the two
-  panels of sheet 11 physically abut there; no block content affected).
-- A thin sliver on unit 3's east rim at Avenue G (faces the disclosed
-  G–J × 16–20 gap, inside the roadway).
-- Two thin scan-edge bands inside street corridors at 19th (sheet 2) and
-  23rd (sheet 5) where the physical scans end.
-- A residual ~124 px jog of 27th Street crossing the Avenue D seam
-  (sheets 14|13); the corridor itself is continuous and healthy.
-Covered area: 69.1% of the canvas; every uncovered region is one of the
-above or the padding ring.
+Consolidated from the final adversarial review (17 items, updated to
+v4.4 — items 1, 4 and 7 reflect the v4.4 restorations):
 
-## Retained original artifacts (deliberately not removed)
+1. **Blank ground at internal sheet joins** (~4.3 Mpx residual after the
+   v4.4 restorations, most at Ave D x 18th adjoining the declared D-G x
+   16-18 gap). The v4.3-listed losses were restored in v4.4: the TREMONT
+   OPERA HO. block with its Babcock fire annotation and blocks
+   601/602/156-162; the 25th/Ave B north row (T.W. English Coal Yard,
+   Artificial Stone Wks, Coal Off., SCALES, lots 501-508, Scale of Feet).
+   Still not carried: the block-326 lot row at Ave D x 18th (gap-adjacent;
+   consult LoC sheets 2/3).
+2. **Declared coverage gaps rendered as flat fill** (largest: Avenues D-G
+   x 16th-18th; no 1885 sheet in the set covers that ground). Fill matches
+   adjacent paper within 0-5 DN; no content is invented, ever.
+3. **Sheet 3's top strip (Court House block) is not rendered** — equally
+   absent from both predecessor editions; consult LoC sheet 3.
+4. **Thin unrendered strips flank two avenue joins** (Ave D 22nd-23rd:
+   the 1303/110-142 dimension row and a SEE SHEET No.6 note; Ave G
+   20th-23rd: the 152-210 lot column). Consult LoC sheets 5/6/9.
+5. **Panel-split step ~84 px at 23rd St** (sheet 11 split into two
+   panels; the sheet itself is tilted ~88 px). Legible; the left arm of
+   the "T" in TREMONT is clipped.
+6. **Residual cross-seam jogs up to ~90 px** (22nd St mean 29 px — best
+   of the three editions; 26th/27th at Ave D ~60-80 px, improved from the
+   v2 edition's ~107).
+7. **Scale of Feet bars: 4 of 7 corridor bars retained whole** (19th,
+   22nd, 26th, plus unit 14's marginal bar); not carried at 20th D-G,
+   23rd D-G/G-I and 25th A-D-adjacent positions where the cuts favor
+   street-name integrity.
+8. **AV. G OR WINNIE OR MENARD E. appears twice between 25th and 27th**
+   (~200 px apart): both sheets' facing margins are retained with their
+   SEE SHEET cross-references. Original print, complete and legible.
+9. **Avenue H corridor gutter ~132 px** (panel split); the AV. H OR
+   WILLIAMS E. label runs whole.
+10. **J. LLOYD 10/28/85 surveyor signature absent** (sits across the
+    14|13 seam; absent from both predecessor editions too).
+11. **Retained scan margins by design**: four OCT. 1885 GALVESTON TEXAS
+    cartouches, sheet numbers, SEE SHEET cross-references, street
+    headers, waterworks/coal-shed annotations, three Library of Congress
+    Map Division stamps.
+12. **Per-sheet deskew up to ~3°**, single resample; measured edge rise
+    identical to sources; no ringing, no blocking.
+13. **Paper tone normalized across sheets** (B,G,R ≈ 218,231,236). The
+    individual sheets' scan casts are not preserved; the famous "sheet 9
+    green cast" of earlier editions was a tone-sampling artifact (pink
+    brick wash contaminating the paper estimate) — the source sheet is
+    warm, and so is its rendering here.
+14. **Zero clipped and zero pure-black pixels** (exact census over all
+    500,606,512 px). The darkest canvas pixels are reproduced printed ink.
+15. **No scanner-bed or backing-board artifacts** (dark-rim 0.012%; no
+    pure-black on any perimeter side).
+16. **25th/Ave G corridor**: exactly one street label print; sheet 11's
+    SEE SHEET No.4 retained; sheet 4's reciprocal No.11 note partially
+    clipped by the flipped cut.
+17. **Where a predecessor remains fractionally ahead**: the third-party
+    one-page edition keeps raw sheet margins everywhere (at the cost of
+    100-300 px registration breaks and heavy JPEG compression); the v2
+    edition's 22nd St corridor carries one more scale bar variant. All
+    judged cosmetic by the final review.
 
-"SEE SHEET Nº x" cross-references, oval "Oct. 1885 GALVESTON TEXAS" date
-stamps, Library of Congress "Map Division" ink stamps, and in-frame
-"Scale of Feet" bars — all printed/stamped within the map frame.
+## Provenance
 
-## Restoration operations performed
-
-Geometric registration, seam clipping/feathering, per-channel tonal gains
-as described. Nothing else. **No AI generation, no generative fill, no
-synthetic inpainting, no content synthesis of any kind was used anywhere
-in this composite.** Gap areas are flat paper tone.
-
-## Resampling factors (honesty statement)
-
-- TIFF master & full JPEG: native composite pixels, resampling factor 1.0
-  from the warped composite (each source sheet warped once at ≈×1.0).
-- Tiles: native pixels, factor 1.0 (crops only).
-- Tile index map: reduced overview, factor ≈0.09 (navigation aid only).
-- PDF atlas: embeds the tiles losslessly at 300 dpi page size.
-- Maximum honest print size: ≈58.8 × 89.9 in at 300 ppi (the assembled
-  size of the original sheets). Nothing exceeds native resolution.
-
-## QC
-
-- Pass 1 (geometry): PASS-WITH-WARNINGS at revision 8, after seven
-  failed revisions of independent adversarial review. Each failure drove
-  a structural fix: consensus non-uniform grid, piecewise warp, panel
-  splits, measured knot corrections, disjoint panel clips. The final
-  warnings are the disclosed items above plus seven per-axis scales in
-  the 1–2% band. Full history in qc_pass_1*.md.
-- Pass 2 (fidelity): PASS-WITH-WARNINGS (sheet 9 gain clip -> fixed by
-  highlight-safe ceiling and rebuilt; no sharpening, aging retained,
-  no invented content; 4 of 5 spec landmarks located and legible,
-  H. Rosenberg Bank not located in the covered area).
-- Pass 3 (delivery): first run FAILED on packaging (oversized monolith
-  shipped beside its split; machine-unreadable checksum path; missing
-  resolution tags; tile MP figure overstated) — all fixed and re-reviewed.
-
-## Deliverables (17,632 x 26,968 px composite)
-
-- galveston_1885_composite.tif.part-aa/-ab/-ac — LZW TIFF master
-  (549 MB total, 300 ppi resolution tags, 128-row strips), split into
-  three parts under 273 MB for transfer safety. Reassemble and verify:
-  `cat galveston_1885_composite.tif.part-* > galveston_1885_composite.tif`
-  then `sha256sum -c galveston_1885_composite.tif.sha256`.
-- galveston_1885_full.jpg — full-resolution JPEG q90 one-file archive
-  (4:2:0 chroma subsampling — the tiles and TIFF are the color-accurate
-  carriers).
-- tiles/ — 15 JPEG tiles (35.1 MP each, 400 px overlap, q93, 4:4:4
-  no chroma subsampling) + annotated index map; 100.0% canvas coverage;
-  sharp zooming under the ~100 MP iOS decode ceiling.
-- galveston_1885_atlas.pdf — index page + the 15 tiles embedded
-  losslessly at 300 dpi page size (16 pages).
-- All JPEGs carry 300 dpi JFIF density; the TIFF carries 300 ppi
-  resolution tags; no ICC profile is embedded (untagged sRGB).
-- Sheet 9's tonal gain runs with a highlight-safe ceiling (x0.984) so no
-  channel clips; its slight residual coolness vs neighbours (~3 DN at the
-  25th St seam) is source-scan character, disclosed.
-- Maximum honest print size: 58.8 x 89.9 in at 300 ppi.
-
-MANIFEST (sha256  bytes  path):
-e42cfb92ea1fe96edae4e0e4d4d8bcb64d21e345d64bc42ec9356d2f9b5fcde6          9896  PRODUCTION_REPORT.md
-707c739136696feaab46db83641127e57fc45b1039fcfd5f167b3832482ad10f     107112574  galveston_1885_atlas.pdf
-31556330b0ebc911e2bc1bdb77ded198ee23d612f39e86b58cc07e54fb819262     272629760  galveston_1885_composite.tif.part-aa
-5be9f6be9654bae5af96ed3bf15ce1033ad7f18032b869adbe8a1bb56ba23be7     272629760  galveston_1885_composite.tif.part-ab
-28c4641cd347fb260d84f46d6dd2b5f52573eca24012ebf9450c3d139ac20f3d       3700838  galveston_1885_composite.tif.part-ac
-60ed0206d1d019a9854207d640f51534a99c45ca0ca3951bcf45a40730ae2745            95  galveston_1885_composite.tif.sha256
-8c7393ea8a602bcd94156520acd4aace611ba17570874b08fcbde15a1d88ba0f      57830222  galveston_1885_full.jpg
-ac6a59c6b8e9066aa626ddfe7dd645798797ad544260345b3ce5f6e441e4a207       1081705  tiles/galveston_1885_index.jpg
-a41995eeecce130ea202815911f330f605908b1646bae83403829033bd6de7ef       8655816  tiles/galveston_1885_r1c1.jpg
-d3d85c3f90e391b5f6d6568c67c519b85f95b1129784cd524d77379657e9f5f1       3046769  tiles/galveston_1885_r1c2.jpg
-469e2dc6f92045ec1c423dfd11cb6830b155b90e9fea04a8e5158d0b29d9dab2        975371  tiles/galveston_1885_r1c3.jpg
-6c737c7f2349c25976e88904e7829933b0111e0a6a14a7b36b4f727463256760       9076951  tiles/galveston_1885_r2c1.jpg
-398966158df781530793a7f505caf92cdec84e68de611600b2bb9c02a94b326f       9320393  tiles/galveston_1885_r2c2.jpg
-bec7fd50873ebb5b3da8c911ade6e7eab66c592dec53c975d2b3fbc22505ae57       3604557  tiles/galveston_1885_r2c3.jpg
-00538f5d1dc9748379e7763c5f9426e731737f35314ce0c00754215958f50e70       9806525  tiles/galveston_1885_r3c1.jpg
-fa08a7cd53497501fd9f722ecbaed4f96a7bcc442c1ad6439c4e7180bfa87303      10628537  tiles/galveston_1885_r3c2.jpg
-ea994bd79c9292a4b620ed7c0cd699df461fb496d9f3e7307ad18559c9fadf77       7939733  tiles/galveston_1885_r3c3.jpg
-20695b2f21c485c85cc7c30c9d7c5c80b0735b6fe1b1325c505d99b75003b88e       9469858  tiles/galveston_1885_r4c1.jpg
-26bb0fdfb2165fede328616b64fd79a111065002436ffcd8f2e1c5ddd15cc9b2       9171436  tiles/galveston_1885_r4c2.jpg
-4e62d66509d45907dd0494a6f507b0abe4a57394eefc39dc12c29355b690adce       4274770  tiles/galveston_1885_r4c3.jpg
-63ca3725c698ef1d186633467e89bd6a8cb32a767af4e335dd5ba48f221060e3       7867785  tiles/galveston_1885_r5c1.jpg
-c53f07080ea092c979eb8f731d4c2564cf942888b3167b9899679427f67eae6f       8691461  tiles/galveston_1885_r5c2.jpg
-dc263bed8dd1ab85bda957e9cdf47bb0ea1b136fceae3352fad120c70442dd8c       3491870  tiles/galveston_1885_r5c3.jpg
+Sources: Library of Congress Sanborn scans, supplied as quality-95 JPEG
+conversions of the 142 MB masters, 6450x7650 native, verified against
+printed sheet numbers; SHA-256 manifest archived. The navigation overlay
+is a derived tracing and is never composited into the raster.
