@@ -142,8 +142,12 @@ SCAN_INSETS = {
     (5, "top"): 65,      # tapering black wedge, up to ~28 px thick
     (5, "right"): 70,    # full-height black band + backing strip
     (3, "right"): 70,    # black band + grey-blue backing
+    (3, "top"): 120,     # region-relative: panel divider carries the
+                         # upper panel's ~44px frame rule (QC v4-C)
     (4, "bottom"): 90,
     (7, "left"): 80,
+    (13, "bottom"): 0,   # clip_region 5195 is precision-set to the SEE
+                         # SHEET row; no further inset
     (14, "left"): 60,
     (14, "bottom"): 170,   # 80 re-exposed the ~50-70px backing board at
                            # source y~7499 (QC v4-B); 170 trims to y7480

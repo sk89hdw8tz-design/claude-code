@@ -750,14 +750,21 @@ def composite_edition(year, registration):
             def inset(side):
                 return cov.SCAN_INSETS.get((unit["file"], side),
                                            cov.SCAN_INSET_DEFAULT)
+            # insets measure from whichever boundary caps the side: the
+            # scan edge for full sheets, the region border for panel
+            # units — a panel divider carries the other panel's frame
+            # rule (unit 3's retained top ran a 4660x44px black rule
+            # straight from the divider zone, QC v4-C)
+            bx0, by0 = (creg[0], creg[1]) if creg else (0, 0)
+            bx1, by1 = (creg[2], creg[3]) if creg else (nw, nh)
             if "top" in es:
-                cy0 = max(cy0, inset("top"))
+                cy0 = max(cy0, by0 + inset("top"))
             if "bottom" in es:
-                cy1 = min(cy1, nh - inset("bottom"))
+                cy1 = min(cy1, by1 - inset("bottom"))
             if "left" in es:
-                cx0 = max(cx0, inset("left"))
+                cx0 = max(cx0, bx0 + inset("left"))
             if "right" in es:
-                cx1 = min(cx1, nw - inset("right"))
+                cx1 = min(cx1, bx1 - inset("right"))
         clip = (cx0, cy0, cx1, cy1)
         xkg_c = [x - ox for x in g["xkg"]]
         ykg_c = [y - oy for y in g["ykg"]]
