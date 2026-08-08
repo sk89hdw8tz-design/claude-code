@@ -123,13 +123,21 @@ SEAM_FLIPS = {
 #   h23 5|x: sheet 5's small 23RD OR copy sits ~-160..-30 while 11a/11b
 #     carry the display TREMONT below the line -> cut above 5's copy so
 #     exactly one (the neighbors') renders.
+# All values profile-measured (owner ink mean/p97 over the corridor) and
+# placed in verified-clean rows; QC rounds v4.2-1 and v4.3.
 SEAM_CUTS = {
     ("h", 19, frozenset({"2", "7"})): +190,
-    ("h", 22, frozenset({"7", "9"})): +190,   # same layout as 19th: the
-    #   +76 auto cut beheaded 22ND ST. (QC v4.2-1); label ends ~+50,
-    #   pipe ~+150, owner frame ~+260
+    ("h", 22, frozenset({"7", "9"})): +252,   # +190 sliced the scale-bar
+    #   numerals at +200..+230; clean window +240..+265, frame rule +340
     ("h", 23, frozenset({"5", "11a"})): -210,
     ("h", 23, frozenset({"5", "11b"})): -210,
+    ("h", 23, frozenset({"6", "10"})): +150,  # auto cut -176 replaced the
+    #   TREMONT OPERA HO. block + Babcock note with sheet 10's margin;
+    #   +150 sits after the label zone, before the rule at +200
+    ("h", 25, frozenset({"9", "14"})): +318,  # auto cut -200 replaced the
+    #   25th x Ave B north-side row (T.W. English Coal Yard, Artificial
+    #   Stone Wks, lots 501-508, Scale of Feet) with sheet 14's margin;
+    #   +318 is the clean row past that content
     ("v", 6, frozenset({"10", "11a"})): -200,  # AV. G OR WINNIE printed
     #   twice at 23-25 with the +36 auto cut between the copies; -200 is
     #   west of both so only 11a's prints (QC v4.2-1)
