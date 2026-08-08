@@ -506,12 +506,17 @@ def composite_edition(year, registration):
         # line); farther out every row crosses buildings and a fixed
         # threshold merges the whole band into one blob (v3.3's costs
         # cancelled out that way). Threshold adapts to the corridor's own
-        # baseline so display type stands proud of linework noise.
-        win = (gpos >= center - 230) & (gpos <= center + 230)
-        def clusters(g2):
+        # baseline so display type stands proud of linework noise. The
+        # OWNER's window reaches +560: its corridor furniture (Scale of
+        # Feet rulers live at ~+300..+450) is owner-only content the cut
+        # should keep — v4.2 dropped five of v2's seven rulers by cutting
+        # above them (QC v4.2-1).
+        win_n = (gpos >= center - 230) & (gpos <= center + 230)
+        win_o = (gpos >= center - 230) & (gpos <= center + 560)
+        def clusters(g2, win):
             p = np.percentile(np.apply_along_axis(np.convolve, 0, g2, kk,
                                                   "same"), 97, axis=0)
-            base = float(np.median(p[win])) if win.any() else 0.0
+            base = float(np.median(p[win_n])) if win_n.any() else 0.0
             on = (p > max(0.30, base + 0.12)) & win
             runs, s = [], None
             for i, v in enumerate(on):
@@ -525,7 +530,7 @@ def composite_edition(year, registration):
                 runs.append((s, len(on) - 1, float(p[s:].max())))
             return runs
 
-        co, cn = clusters(go), clusters(gn)
+        co, cn = clusters(go, win_o), clusters(gn, win_n)
         # frame RULES are full-span dark rows (mean darkness >> any label's
         # span-mean): they are not content to keep — a cut at or beyond one
         # renders a black rule across the corridor. Detected on the owner's
@@ -679,21 +684,14 @@ def composite_edition(year, registration):
             sides[key][side] = max(vals)
         else:
             sides[key][side] = min(vals)
-    # a seam neighbor's near side never rises past its own printed frame —
-    # but frame ESTIMATES are unreliable (QC v4-A: estimates deep inside
-    # the map turned this clamp into 300-450px synthetic blank bands across
-    # whole corridors). Trust the frame only within 350px of the cut-derived
-    # side; an estimate further in is a detection failure, not a frame.
-    for key, side in nbr_frame_caps:
-        fg = geo[key]["frame_g"]
-        if side == "top":
-            cap = fg[1] + 6
-            if cap <= sides[key]["top"] + 350:
-                sides[key]["top"] = max(sides[key]["top"], cap)
-        elif side == "left":
-            cap = fg[0] + 6
-            if cap <= sides[key]["left"] + 350:
-                sides[key]["left"] = max(sides[key]["left"], cap)
+    # Neighbor frame clamps are DEAD for normal seams (QC v4.2-1): frame
+    # estimates proved unreliable in every round — even bounded to 350px
+    # they blanked corridor halves (25th x B east, Ave D 22-23, Ave G
+    # 20-23). With cuts never higher than center-240 and true frames
+    # ~250-400 beyond the line, the neighbor's clip at cut-feather stays
+    # inside its print anyway, so margin junk cannot enter. Flip seams
+    # keep their bounded clamp (applied inline; the cut sits beyond the
+    # line there).
 
     # ---- Retain sheet margins on EXTERIOR sides (v3). A side is exterior
     # when it has no seam and every block-cell just across it is uncovered

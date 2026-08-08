@@ -125,8 +125,14 @@ SEAM_FLIPS = {
 #     exactly one (the neighbors') renders.
 SEAM_CUTS = {
     ("h", 19, frozenset({"2", "7"})): +190,
+    ("h", 22, frozenset({"7", "9"})): +190,   # same layout as 19th: the
+    #   +76 auto cut beheaded 22ND ST. (QC v4.2-1); label ends ~+50,
+    #   pipe ~+150, owner frame ~+260
     ("h", 23, frozenset({"5", "11a"})): -210,
     ("h", 23, frozenset({"5", "11b"})): -210,
+    ("v", 6, frozenset({"10", "11a"})): -200,  # AV. G OR WINNIE printed
+    #   twice at 23-25 with the +36 auto cut between the copies; -200 is
+    #   west of both so only 11a's prints (QC v4.2-1)
 }
 
 # Static per-scan-edge insets (native px) for retained exterior margins,
