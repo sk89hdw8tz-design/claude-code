@@ -631,8 +631,10 @@ def composite_edition(year, registration):
                    else best_cut("v", center, owner, nbr, flip=flip))
             if flip:
                 owner_end = max(min(cut, center - 40), center - 680)
-                nbr_start = max(owner_end - feather,
-                                geo[nbr]["frame_g"][0] + 6)
+                cap = geo[nbr]["frame_g"][0] + 6
+                nbr_start = owner_end - feather
+                if cap <= nbr_start + 350:
+                    nbr_start = max(nbr_start, cap)
                 log(f"seam v{idx} {owner}|{nbr}: FLIPPED cut at "
                     f"{owner_end - center:+.0f} rel to line")
                 prop.setdefault((owner, "right"), []).append(owner_end)
@@ -653,8 +655,10 @@ def composite_edition(year, registration):
                    else best_cut("h", center, owner, nbr, flip=flip))
             if flip:
                 owner_end = max(min(cut, center - 40), center - 680)
-                nbr_start = max(owner_end - feather,
-                                geo[nbr]["frame_g"][1] + 6)
+                cap = geo[nbr]["frame_g"][1] + 6
+                nbr_start = owner_end - feather
+                if cap <= nbr_start + 350:
+                    nbr_start = max(nbr_start, cap)
                 log(f"seam h{idx} {owner}|{nbr}: FLIPPED cut at "
                     f"{owner_end - center:+.0f} rel to line")
                 prop.setdefault((owner, "bottom"), []).append(owner_end)
@@ -675,13 +679,21 @@ def composite_edition(year, registration):
             sides[key][side] = max(vals)
         else:
             sides[key][side] = min(vals)
-    # a seam neighbor's near side never rises past its own printed frame
+    # a seam neighbor's near side never rises past its own printed frame —
+    # but frame ESTIMATES are unreliable (QC v4-A: estimates deep inside
+    # the map turned this clamp into 300-450px synthetic blank bands across
+    # whole corridors). Trust the frame only within 350px of the cut-derived
+    # side; an estimate further in is a detection failure, not a frame.
     for key, side in nbr_frame_caps:
         fg = geo[key]["frame_g"]
         if side == "top":
-            sides[key]["top"] = max(sides[key]["top"], fg[1] + 6)
+            cap = fg[1] + 6
+            if cap <= sides[key]["top"] + 350:
+                sides[key]["top"] = max(sides[key]["top"], cap)
         elif side == "left":
-            sides[key]["left"] = max(sides[key]["left"], fg[0] + 6)
+            cap = fg[0] + 6
+            if cap <= sides[key]["left"] + 350:
+                sides[key]["left"] = max(sides[key]["left"], cap)
 
     # ---- Retain sheet margins on EXTERIOR sides (v3). A side is exterior
     # when it has no seam and every block-cell just across it is uncovered
