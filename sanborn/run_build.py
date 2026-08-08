@@ -480,17 +480,40 @@ def composite_edition(year, registration):
     # region/native print_end cap cannot see this — it caps at the SCAN
     # extent, junk included. Same border-connectivity criterion as the
     # exterior margin trim: junk touches the scan edge, print never does.
-    junk_rows, junk_cols = {}, {}
+    junk_rows, junk_cols, junk_org = {}, {}, {}
     for key in usable:
         unit = cov.COVERAGE[year][key]
         im = cv2.imread(sheet_path(year, unit["file"]), cv2.IMREAD_COLOR)
+        # region-scoped: on multi-panel sheets a full-sheet projection sees
+        # the OTHER panel's dark edges and falsely caps seams (the 11a|11b
+        # cap re-clipped the Avenue H label the 2040 split had just saved)
+        if unit["region"]:
+            x0r, y0r, x1r, y1r = unit["region"]
+            im = im[y0r:y1r, x0r:x1r]
+            junk_org[key] = (x0r, y0r)
+        else:
+            junk_org[key] = (0, 0)
         sub = im[::4, ::4].astype(np.int16)
         del im
         bad = ((sub.max(axis=2) < 60) |
                ((sub[..., 0] - sub[..., 2]) > 6)).astype(np.uint8)
         bad = cv2.morphologyEx(bad, cv2.MORPH_OPEN, np.ones((3, 3), np.uint8))
         _, lab = cv2.connectedComponents(bad, connectivity=8)
-        eid = np.unique(np.concatenate([lab[0], lab[-1], lab[:, 0], lab[:, -1]]))
+        # seed only from TRUE scan edges: a region border that is interior
+        # (a panel divider) must not make ordinary ink 'border-connected'
+        nw_, nh_ = ed["native_size"]
+        x0r, y0r, x1r, y1r = unit["region"] or (0, 0, nw_, nh_)
+        seeds = []
+        if y0r <= 0:
+            seeds.append(lab[0])
+        if y1r >= nh_:
+            seeds.append(lab[-1])
+        if x0r <= 0:
+            seeds.append(lab[:, 0])
+        if x1r >= nw_:
+            seeds.append(lab[:, -1])
+        eid = (np.unique(np.concatenate(seeds)) if seeds
+               else np.zeros(0, dtype=lab.dtype))
         bbm = np.isin(lab, eid[eid > 0])
         junk_rows[key] = bbm.any(axis=1)
         junk_cols[key] = bbm.any(axis=0)
@@ -503,14 +526,16 @@ def composite_edition(year, registration):
         if axis == "v":
             nat = comp.pw_inv([center], g["xkn"], g["xkg"])[0]
             proj, kn, kg = junk_cols[key], g["xkn"], g["xkg"]
+            org = junk_org[key][0]
         else:
             nat = comp.pw_inv([center], g["ykn"], g["ykg"])[0]
             proj, kn, kg = junk_rows[key], g["ykn"], g["ykg"]
-        i0 = min(max(int(nat) // 4, 0), len(proj) - 1)
+            org = junk_org[key][1]
+        i0 = min(max((int(nat) - org) // 4, 0), len(proj) - 1)
         hits = np.where(proj[i0:])[0]
         if not len(hits):
             return None
-        return comp.pw_fwd([(i0 + hits[0]) * 4 - 8], kn, kg)[0]
+        return comp.pw_fwd([(i0 + hits[0]) * 4 - 8 + org], kn, kg)[0]
 
     prop = {}
     for axis, idx, owner, nbr in cov.neighbors(year):
@@ -523,6 +548,21 @@ def composite_edition(year, registration):
         g_own = geo[owner]
         nw, nh = ed["native_size"]
         reg_own = cov.COVERAGE[year][owner]["region"] or (0, 0, nw, nh)
+        # Panel pairs with DISJOINT clip_regions (same physical sheet split
+        # into units): the clip_regions ARE the boundary. A prop-driven cut
+        # maps through two different unit registrations and re-opens the
+        # very gap/slice the split placement was tuned to avoid (the v3.2a
+        # junk-capped cut pushed 11b's start to 2097, re-beheading the
+        # AV. H label).
+        c_own = cov.COVERAGE[year][owner].get("clip_region")
+        c_nbr = cov.COVERAGE[year][nbr].get("clip_region")
+        if c_own and c_nbr:
+            dj = ((axis == "v" and (c_own[2] <= c_nbr[0] or c_nbr[2] <= c_own[0]))
+                  or (axis == "h" and (c_own[3] <= c_nbr[1] or c_nbr[3] <= c_own[1])))
+            if dj:
+                log(f"seam {axis}{idx} {owner}|{nbr}: boundary owned by "
+                    "disjoint clip_regions; no prop cut")
+                continue
         flip = (axis, idx, frozenset({owner, nbr})) in cov.SEAM_FLIPS
         if axis == "v":
             center = X[idx]
