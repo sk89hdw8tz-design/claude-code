@@ -460,12 +460,13 @@ def composite_edition(year, registration):
             gpos = np.arange(center - 680, center - 39, 4.0)
             w_own, w_nbr = 3.0, 1.0
         else:
-            gpos = np.arange(center + 40, center + 681, 4.0)
-            # weight the neighbor 3x: its label copies must fall above the
-            # cut, or they render as duplicates below it
+            # band reaches above the line so 'cut before both copies' is
+            # available to the cluster costs when the copies straddle it
+            gpos = np.arange(center - 240, center + 681, 4.0)
             w_own, w_nbr = 1.0, 3.0
         go = darkness(owner, axis, gpos, lo, hi)
-        grid = w_own * go + w_nbr * darkness(nbr, axis, gpos, lo, hi)
+        gn = darkness(nbr, axis, gpos, lo, hi)
+        grid = w_own * go + w_nbr * gn
         kk = np.ones(5) / 5
         loc = np.apply_along_axis(np.convolve, 0, grid, kk, "same")
         d = grid.mean(axis=0) + 1.5 * np.percentile(loc, 97, axis=0)
@@ -491,7 +492,65 @@ def composite_edition(year, registration):
                     else:
                         break
                 hi_i = min(hi_i, max(run_lo - 8, lo_i + 1))
-        return float(gpos[int(np.argmin(dsm[lo_i:hi_i])) + lo_i])
+            return float(gpos[int(np.argmin(dsm[lo_i:hi_i])) + lo_i])
+
+        # ---- Label-aware placement (QC v3.2-2 §5). The rendered corridor
+        # = owner up to the cut + neighbor beyond it. Each unit's display
+        # type (street names, notes, mains) forms ink CLUSTERS; a cluster
+        # renders iff it falls on its own unit's side. A whitest-row cut is
+        # blind to this: between the two copies of a street name it shows
+        # BOTH (doubled 20TH/23RD/26TH); past an owner-only label it shows
+        # NEITHER (destroyed 19TH ST.). Score candidates by duplicated +
+        # lost clusters, then ink at the cut line.
+        def clusters(g2):
+            p = np.percentile(np.apply_along_axis(np.convolve, 0, g2, kk,
+                                                  "same"), 97, axis=0)
+            on = p > 0.12
+            runs, s = [], None
+            for i, v in enumerate(on):
+                if v and s is None:
+                    s = i
+                elif not v and s is not None:
+                    if i - s >= 4:
+                        runs.append((s, i - 1, float(p[s:i].max())))
+                    s = None
+            if s is not None and len(on) - s >= 4:
+                runs.append((s, len(on) - 1, float(p[s:].max())))
+            return runs
+
+        co, cn = clusters(go), clusters(gn)
+        used = set()
+        pairs, o_only, n_only = [], [], []
+        for a in co:
+            best, bj = None, None
+            for j, b in enumerate(cn):
+                if j in used:
+                    continue
+                da = abs((a[0] + a[1]) - (b[0] + b[1])) / 2
+                if da < 90 and (best is None or da < best):
+                    best, bj = da, j
+            if bj is not None:
+                used.add(bj)
+                pairs.append((a, cn[bj]))
+            else:
+                o_only.append(a)
+        n_only = [b for j, b in enumerate(cn) if j not in used]
+
+        cand = np.arange(lo_i, hi_i)
+        cost = dsm[cand].copy()
+        W = 0.55   # each duplicated or lost cluster outweighs ink shading
+        for a, b in pairs:
+            # duplicated when the cut lies between the copies with the
+            # owner's copy on the owner side; neither shown when inverted
+            lo_c, hi_c = min(a[1], b[1]), max(a[0], b[0])
+            both = (cand > a[1] + 2) & (cand < b[0] - 2)
+            none = (cand > b[1] + 2) & (cand < a[0] - 2)
+            cost[both | none] += W
+        for a in o_only:      # owner-only content: lost if cut before it
+            cost[cand < a[1] + 3] += W
+        for b in n_only:      # neighbor-only content: lost if cut after it
+            cost[cand > b[0] - 3] += W
+        return float(gpos[int(cand[np.argmin(cost)])])
 
     # Border-connected scan-junk projections per unit (QC v3-2): a seam cut
     # that reaches past the owner's paper edge renders the owner's scanner
@@ -500,57 +559,8 @@ def composite_edition(year, registration):
     # region/native print_end cap cannot see this — it caps at the SCAN
     # extent, junk included. Same border-connectivity criterion as the
     # exterior margin trim: junk touches the scan edge, print never does.
-    def border_junk(im4):
-        """Border-connected junk mask at /4: near-black or cool pixels in
-        components that touch a scan edge. Speck rejection is by AREA, not
-        morphological opening — opening erased sub-12px-native bands (the
-        7-30px scanner rules that survived onto v3.2's margins) while a
-        7x900 band has area to spare."""
-        bad = ((im4.max(axis=2) < 60) |
-               ((im4[..., 0] - im4[..., 2]) > 6)).astype(np.uint8)
-        n, lab, stats, _ = cv2.connectedComponentsWithStats(bad, connectivity=8)
-        keep = np.zeros(n, bool)
-        keep[1:] = stats[1:, cv2.CC_STAT_AREA] >= 12
-        eid = np.unique(np.concatenate([lab[0], lab[-1], lab[:, 0], lab[:, -1]]))
-        seed = np.zeros(n, bool)
-        seed[eid[eid > 0]] = True
-        return (keep & seed)[lab]
-
-    junk_rows, junk_cols = {}, {}
-    for key in usable:
-        unit = cov.COVERAGE[year][key]
-        im = cv2.imread(sheet_path(year, unit["file"]), cv2.IMREAD_COLOR)
-        bbm = border_junk(im[::4, ::4].astype(np.int16))
-        del im
-        junk_rows[key] = bbm.any(axis=1)
-        junk_cols[key] = bbm.any(axis=0)
-        del bbm
-
-    def junk_cap(key, axis, center):
-        """Global coordinate of the owner's first border-connected junk
-        at/after the seam line, or None. Full-sheet analysis: disjoint
-        panel pairs no longer take prop cuts, so cross-panel junk cannot
-        falsely cap them, and full-sheet connectivity is what catches
-        divider bands that a region crop would orphan."""
-        g = geo[key]
-        if axis == "v":
-            nat = comp.pw_inv([center], g["xkn"], g["xkg"])[0]
-            proj, kn, kg = junk_cols[key], g["xkn"], g["xkg"]
-        else:
-            nat = comp.pw_inv([center], g["ykn"], g["ykg"])[0]
-            proj, kn, kg = junk_rows[key], g["ykn"], g["ykg"]
-        # search ONLY the sheet's outer 10%: scanner junk lives at the
-        # sheet edge, while blue WATER washes are border-connected cool
-        # pixels deep inside the print — treating them as junk yanked cuts
-        # 400-670 px off position and doubled three street labels (QC
-        # v3.2-2 §5)
-        i0 = min(max(int(nat) // 4, 0, int(0.90 * len(proj))), len(proj) - 1)
-        hits = np.where(proj[i0:])[0]
-        if not len(hits):
-            return None
-        return comp.pw_fwd([(i0 + hits[0]) * 4 - 8], kn, kg)[0]
-
     prop = {}
+    nbr_frame_caps = set()
     for axis, idx, owner, nbr in cov.neighbors(year):
         if owner not in geo or nbr not in geo:
             continue
@@ -577,13 +587,18 @@ def composite_edition(year, registration):
                     "disjoint clip_regions; no prop cut")
                 continue
         flip = (axis, idx, frozenset({owner, nbr})) in cov.SEAM_FLIPS
+        # At a seam NEITHER unit may contribute from outside its printed
+        # frame: the owner's far cap is its own frame edge (the junk caps
+        # this replaces chased scanner bands but flagged rails and bay
+        # water, displacing cuts by hundreds of px), and the neighbor's
+        # near side is clamped to its frame in the clip loop so its margin
+        # marginalia (sheet 7's Scale of Feet/No.7 at 19th in v2) and
+        # frame rule stay out of the corridor.
         if axis == "v":
             center = X[idx]
             cut = best_cut("v", center, owner, nbr, flip=flip)
             if flip:
                 owner_end = max(min(cut, center - 40), center - 680)
-                # the neighbor's clip must not rise above its own printed
-                # frame: its frame rule + margin would render mid-corridor
                 nbr_start = max(owner_end - feather,
                                 geo[nbr]["frame_g"][0] + 6)
                 log(f"seam v{idx} {owner}|{nbr}: FLIPPED cut at "
@@ -591,16 +606,13 @@ def composite_edition(year, registration):
                 prop.setdefault((owner, "right"), []).append(owner_end)
                 prop.setdefault((nbr, "left"), []).append(nbr_start)
                 continue
-            else:
-                print_end = comp.pw_fwd([min(reg_own[2], nw)], g_own["xkn"], g_own["xkg"])[0]
-                jc = junk_cap(owner, "v", center)
-                if jc is not None and jc < print_end:
-                    log(f"seam v{idx} {owner}|{nbr}: junk cap {print_end - jc:.0f}px "
-                        "inside print extent")
-                    print_end = jc
-                owner_end = min(max(cut, center + 40), print_end - 4)
+            reg_end = comp.pw_fwd([min(reg_own[2], nw)], g_own["xkn"], g_own["xkg"])[0]
+            print_end = min(reg_end, g_own["frame_g"][2] - 10)
+            owner_end = min(max(cut, center - 240), print_end - 4)
+            log(f"seam v{idx} {owner}|{nbr}: cut at {owner_end - center:+.0f}")
             prop.setdefault((owner, "right"), []).append(owner_end)
             prop.setdefault((nbr, "left"), []).append(owner_end - feather)
+            nbr_frame_caps.add((nbr, "left"))
         else:
             center = Y[idx]
             cut = best_cut("h", center, owner, nbr, flip=flip)
@@ -613,22 +625,26 @@ def composite_edition(year, registration):
                 prop.setdefault((owner, "bottom"), []).append(owner_end)
                 prop.setdefault((nbr, "top"), []).append(nbr_start)
                 continue
-            else:
-                print_end = comp.pw_fwd([min(reg_own[3], nh)], g_own["ykn"], g_own["ykg"])[0]
-                jc = junk_cap(owner, "h", center)
-                if jc is not None and jc < print_end:
-                    log(f"seam h{idx} {owner}|{nbr}: junk cap {print_end - jc:.0f}px "
-                        "inside print extent")
-                    print_end = jc
-                owner_end = min(max(cut, center + 40), print_end - 4)
+            reg_end = comp.pw_fwd([min(reg_own[3], nh)], g_own["ykn"], g_own["ykg"])[0]
+            print_end = min(reg_end, g_own["frame_g"][3] - 10)
+            owner_end = min(max(cut, center - 240), print_end - 4)
+            log(f"seam h{idx} {owner}|{nbr}: cut at {owner_end - center:+.0f}")
             prop.setdefault((owner, "bottom"), []).append(owner_end)
             prop.setdefault((nbr, "top"), []).append(owner_end - feather)
+            nbr_frame_caps.add((nbr, "top"))
 
     for (key, side), vals in prop.items():
         if side in ("right", "bottom"):
             sides[key][side] = max(vals)
         else:
             sides[key][side] = min(vals)
+    # a seam neighbor's near side never rises past its own printed frame
+    for key, side in nbr_frame_caps:
+        fg = geo[key]["frame_g"]
+        if side == "top":
+            sides[key]["top"] = max(sides[key]["top"], fg[1] + 6)
+        elif side == "left":
+            sides[key]["left"] = max(sides[key]["left"], fg[0] + 6)
 
     # ---- Retain sheet margins on EXTERIOR sides (v3). A side is exterior
     # when it has no seam and every block-cell just across it is uncovered
