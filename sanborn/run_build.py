@@ -519,6 +519,14 @@ def composite_edition(year, registration):
             return runs
 
         co, cn = clusters(go), clusters(gn)
+        # frame RULES are full-span dark rows (mean darkness >> any label's
+        # span-mean): they are not content to keep — a cut at or beyond one
+        # renders a black rule across the corridor. Detect on the owner's
+        # MEAN profile and keep the cut before them; the neighbor's rule is
+        # excluded by its frame clamp on the clip side.
+        mo = go.mean(axis=0)
+        o_rules = [a for a in co if float(mo[a[0]:a[1] + 1].mean()) > 0.15]
+        co = [a for a in co if a not in o_rules]
         used = set()
         pairs, o_only, n_only = [], [], []
         for a in co:
@@ -550,6 +558,8 @@ def composite_edition(year, registration):
             cost[cand < a[1] + 3] += W
         for b in n_only:      # neighbor-only content: lost if cut after it
             cost[cand > b[0] - 3] += W
+        for r in o_rules:     # never render the owner's frame rule
+            cost[cand > r[0] - 3] += 0.9
         return float(gpos[int(cand[np.argmin(cost)])])
 
     # Border-connected scan-junk projections per unit (QC v3-2): a seam cut
@@ -606,8 +616,10 @@ def composite_edition(year, registration):
                 prop.setdefault((owner, "right"), []).append(owner_end)
                 prop.setdefault((nbr, "left"), []).append(nbr_start)
                 continue
-            reg_end = comp.pw_fwd([min(reg_own[2], nw)], g_own["xkn"], g_own["xkg"])[0]
-            print_end = min(reg_end, g_own["frame_g"][2] - 10)
+            ins = cov.SCAN_INSETS.get((cov.COVERAGE[year][owner]["file"],
+                                       "right"), cov.SCAN_INSET_DEFAULT)
+            print_end = comp.pw_fwd([min(reg_own[2], nw - ins)],
+                                    g_own["xkn"], g_own["xkg"])[0]
             owner_end = min(max(cut, center - 240), print_end - 4)
             log(f"seam v{idx} {owner}|{nbr}: cut at {owner_end - center:+.0f}")
             prop.setdefault((owner, "right"), []).append(owner_end)
@@ -625,8 +637,10 @@ def composite_edition(year, registration):
                 prop.setdefault((owner, "bottom"), []).append(owner_end)
                 prop.setdefault((nbr, "top"), []).append(nbr_start)
                 continue
-            reg_end = comp.pw_fwd([min(reg_own[3], nh)], g_own["ykn"], g_own["ykg"])[0]
-            print_end = min(reg_end, g_own["frame_g"][3] - 10)
+            ins = cov.SCAN_INSETS.get((cov.COVERAGE[year][owner]["file"],
+                                       "bottom"), cov.SCAN_INSET_DEFAULT)
+            print_end = comp.pw_fwd([min(reg_own[3], nh - ins)],
+                                    g_own["ykn"], g_own["ykg"])[0]
             owner_end = min(max(cut, center - 240), print_end - 4)
             log(f"seam h{idx} {owner}|{nbr}: cut at {owner_end - center:+.0f}")
             prop.setdefault((owner, "bottom"), []).append(owner_end)
