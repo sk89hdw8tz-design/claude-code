@@ -502,31 +502,49 @@ def composite_edition(year, registration):
         # BOTH (doubled 20TH/23RD/26TH); past an owner-only label it shows
         # NEITHER (destroyed 19TH ST.). Score candidates by duplicated +
         # lost clusters, then ink at the cut line.
+        # clusters only make sense INSIDE the corridor (± ~230 of the
+        # line); farther out every row crosses buildings and a fixed
+        # threshold merges the whole band into one blob (v3.3's costs
+        # cancelled out that way). Threshold adapts to the corridor's own
+        # baseline so display type stands proud of linework noise.
+        win = (gpos >= center - 230) & (gpos <= center + 230)
         def clusters(g2):
             p = np.percentile(np.apply_along_axis(np.convolve, 0, g2, kk,
                                                   "same"), 97, axis=0)
-            on = p > 0.12
+            base = float(np.median(p[win])) if win.any() else 0.0
+            on = (p > max(0.30, base + 0.12)) & win
             runs, s = [], None
             for i, v in enumerate(on):
                 if v and s is None:
                     s = i
                 elif not v and s is not None:
-                    if i - s >= 4:
+                    if i - s >= 3:
                         runs.append((s, i - 1, float(p[s:i].max())))
                     s = None
-            if s is not None and len(on) - s >= 4:
+            if s is not None and len(on) - s >= 3:
                 runs.append((s, len(on) - 1, float(p[s:].max())))
             return runs
 
         co, cn = clusters(go), clusters(gn)
         # frame RULES are full-span dark rows (mean darkness >> any label's
         # span-mean): they are not content to keep — a cut at or beyond one
-        # renders a black rule across the corridor. Detect on the owner's
-        # MEAN profile and keep the cut before them; the neighbor's rule is
-        # excluded by its frame clamp on the clip side.
-        mo = go.mean(axis=0)
-        o_rules = [a for a in co if float(mo[a[0]:a[1] + 1].mean()) > 0.15]
-        co = [a for a in co if a not in o_rules]
+        # renders a black rule across the corridor. Detected on the owner's
+        # MEAN profile over the WHOLE band (rules sit outside the cluster
+        # window); the neighbor's rule is excluded by its frame clamp on
+        # the clip side.
+        mo = np.convolve(go.mean(axis=0), kk, mode="same")
+        rule_on = (mo > 0.15) & (gpos > center + 120)
+        o_rules, s = [], None
+        for i, vv in enumerate(rule_on):
+            if vv and s is None:
+                s = i
+            elif not vv and s is not None:
+                if i - s >= 2:
+                    o_rules.append((s, i - 1))
+                s = None
+        if s is not None:
+            o_rules.append((s, len(rule_on) - 1))
+        co = [a for a in co if not any(r[0] <= a[0] <= r[1] for r in o_rules)]
         used = set()
         pairs, o_only, n_only = [], [], []
         for a in co:
@@ -604,9 +622,13 @@ def composite_edition(year, registration):
         # near side is clamped to its frame in the clip loop so its margin
         # marginalia (sheet 7's Scale of Feet/No.7 at 19th in v2) and
         # frame rule stay out of the corridor.
+        manual = cov.SEAM_CUTS.get((axis, idx, frozenset({owner, nbr})))
+        if manual is not None:
+            log(f"seam {axis}{idx} {owner}|{nbr}: manual cut {manual:+d}")
         if axis == "v":
             center = X[idx]
-            cut = best_cut("v", center, owner, nbr, flip=flip)
+            cut = (center + manual if manual is not None
+                   else best_cut("v", center, owner, nbr, flip=flip))
             if flip:
                 owner_end = max(min(cut, center - 40), center - 680)
                 nbr_start = max(owner_end - feather,
@@ -627,7 +649,8 @@ def composite_edition(year, registration):
             nbr_frame_caps.add((nbr, "left"))
         else:
             center = Y[idx]
-            cut = best_cut("h", center, owner, nbr, flip=flip)
+            cut = (center + manual if manual is not None
+                   else best_cut("h", center, owner, nbr, flip=flip))
             if flip:
                 owner_end = max(min(cut, center - 40), center - 680)
                 nbr_start = max(owner_end - feather,

@@ -115,6 +115,20 @@ SEAM_FLIPS = {
     ("h", 25, frozenset({"11a", "4"})),   # 11a's panel stops at 25th
 }
 
+# Manual cut positions (global px relative to the boundary line) for
+# corridors where automated placement cannot resolve the label layout —
+# measured from the corridor ink profiles and verified by crop:
+#   h19 2|7: sheet 2's 19TH ST. label ends +50, its 8" W.PIPE main ends
+#     ~+150, its frame rule starts ~+250 -> cut in the clean band between.
+#   h23 5|x: sheet 5's small 23RD OR copy sits ~-160..-30 while 11a/11b
+#     carry the display TREMONT below the line -> cut above 5's copy so
+#     exactly one (the neighbors') renders.
+SEAM_CUTS = {
+    ("h", 19, frozenset({"2", "7"})): +190,
+    ("h", 23, frozenset({"5", "11a"})): -210,
+    ("h", 23, frozenset({"5", "11b"})): -210,
+}
+
 # Static per-scan-edge insets (native px) for retained exterior margins,
 # fixed by measurement + visual verification of every retained side
 # (compare/margins/*.jpg). Dynamic junk detection failed in BOTH
