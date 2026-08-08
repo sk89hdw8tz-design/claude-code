@@ -539,7 +539,12 @@ def composite_edition(year, registration):
         else:
             nat = comp.pw_inv([center], g["ykn"], g["ykg"])[0]
             proj, kn, kg = junk_rows[key], g["ykn"], g["ykg"]
-        i0 = min(max(int(nat) // 4, 0), len(proj) - 1)
+        # search ONLY the sheet's outer 10%: scanner junk lives at the
+        # sheet edge, while blue WATER washes are border-connected cool
+        # pixels deep inside the print — treating them as junk yanked cuts
+        # 400-670 px off position and doubled three street labels (QC
+        # v3.2-2 §5)
+        i0 = min(max(int(nat) // 4, 0, int(0.90 * len(proj))), len(proj) - 1)
         hits = np.where(proj[i0:])[0]
         if not len(hits):
             return None
@@ -670,38 +675,24 @@ def composite_edition(year, registration):
         cx0, cy0 = max(cx0, 0), max(cy0, 0)
         cx1, cy1 = min(cx1, nw), min(cy1, nh)
         img = cv2.imread(sheet_path(year, unit["file"]), cv2.IMREAD_COLOR)
-        # Scan-bed trim on exterior-extended sides only (QC v3-1). Dark-row
-        # statistics cannot tell margin TEXT from scanner bed — both are
-        # dark — and missed partial bands outright. The reliable separator
-        # is border-connectivity: bed black and blue-white backing strips
-        # always touch the scan's outer edge; genuine margin annotations
-        # never do. Clip each extended side just inside the innermost
-        # border-connected bad pixel (near-black, or cool: B > R + 6 where
-        # paper is warm at R - B ~ +17).
+        # Static scan-edge insets on exterior-extended sides (QC v3.2-1):
+        # dynamic junk detection failed in both directions — thin rules
+        # slipped through while rail sidings / bay water got flagged and
+        # the trim beheaded certified annotations. The measured, visually
+        # verified per-side constants live in cov.SCAN_INSETS.
         es = ext_sides.get(key, set())
         if es:
-            bb = border_junk(img[::4, ::4].astype(np.int16))
-            fx0n, fy0n, fx1n, fy1n = [int(v) // 4 for v in frames_native[key]]
-            j0, j1 = int(cx0) // 4, max(int(cx0) // 4 + 1, int(cx1) // 4)
-            i0, i1 = int(cy0) // 4, max(int(cy0) // 4 + 1, int(cy1) // 4)
-            rows_bb = bb[:, j0:j1].any(axis=1)
-            cols_bb = bb[i0:i1, :].any(axis=0)
+            def inset(side):
+                return cov.SCAN_INSETS.get((unit["file"], side),
+                                           cov.SCAN_INSET_DEFAULT)
             if "top" in es:
-                hits = np.where(rows_bb[:max(fy0n, 0)])[0]
-                if len(hits):
-                    cy0 = max(cy0, (hits[-1] + 2) * 4)
+                cy0 = max(cy0, inset("top"))
             if "bottom" in es:
-                hits = np.where(rows_bb[min(fy1n, len(rows_bb)):])[0]
-                if len(hits):
-                    cy1 = min(cy1, (min(fy1n, len(rows_bb)) + hits[0] - 2) * 4)
+                cy1 = min(cy1, nh - inset("bottom"))
             if "left" in es:
-                hits = np.where(cols_bb[:max(fx0n, 0)])[0]
-                if len(hits):
-                    cx0 = max(cx0, (hits[-1] + 2) * 4)
+                cx0 = max(cx0, inset("left"))
             if "right" in es:
-                hits = np.where(cols_bb[min(fx1n, len(cols_bb)):])[0]
-                if len(hits):
-                    cx1 = min(cx1, (min(fx1n, len(cols_bb)) + hits[0] - 2) * 4)
+                cx1 = min(cx1, nw - inset("right"))
         clip = (cx0, cy0, cx1, cy1)
         xkg_c = [x - ox for x in g["xkg"]]
         ykg_c = [y - oy for y in g["ykg"]]

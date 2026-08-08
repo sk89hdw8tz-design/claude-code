@@ -115,6 +115,25 @@ SEAM_FLIPS = {
     ("h", 25, frozenset({"11a", "4"})),   # 11a's panel stops at 25th
 }
 
+# Static per-scan-edge insets (native px) for retained exterior margins,
+# fixed by measurement + visual verification of every retained side
+# (compare/margins/*.jpg). Dynamic junk detection failed in BOTH
+# directions here: thin scanner rules slipped through erosion, while
+# rail sidings and bay water along Water St (sheets 2, 9, 14) were
+# flagged as junk and the trim beheaded certified annotations (QC
+# v3.2-1). The scanner rules hug the scan edge; nothing legitimate
+# sits within ~20 px of it. Keyed by (sheet_file, side); default 24.
+SCAN_INSET_DEFAULT = 24
+SCAN_INSETS = {
+    (5, "top"): 65,      # tapering black wedge, up to ~28 px thick
+    (5, "right"): 70,    # full-height black band + backing strip
+    (3, "right"): 70,    # black band + grey-blue backing
+    (4, "bottom"): 90,
+    (7, "left"): 80,
+    (14, "left"): 60,
+    (14, "bottom"): 80,
+}
+
 
 def neighbors(year):
     """Seam registry: {(axis, boundary_index, frozenset({keyA,keyB}))} where
