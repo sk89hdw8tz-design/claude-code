@@ -464,14 +464,34 @@ def composite_edition(year, registration):
             # weight the neighbor 3x: its label copies must fall above the
             # cut, or they render as duplicates below it
             w_own, w_nbr = 1.0, 3.0
-        grid = w_own * darkness(owner, axis, gpos, lo, hi) \
-            + w_nbr * darkness(nbr, axis, gpos, lo, hi)   # span x pos
+        go = darkness(owner, axis, gpos, lo, hi)
+        grid = w_own * go + w_nbr * darkness(nbr, axis, gpos, lo, hi)
         kk = np.ones(5) / 5
         loc = np.apply_along_axis(np.convolve, 0, grid, kk, "same")
         d = grid.mean(axis=0) + 1.5 * np.percentile(loc, 97, axis=0)
         k = 9
         dsm = np.convolve(d, np.ones(k) / k, mode="same")
-        return float(gpos[int(np.argmin(dsm[k:-k])) + k])
+        lo_i, hi_i = k, len(dsm) - k
+        if flip:
+            # the owner renders on the far side of the cut — any owner ink
+            # closer to the line than the cut renders as a duplicate label.
+            # Whitest-row alone put the cut in the clean paper BELOW 11a's
+            # label (v3.2: cut -164, label at ~-300..-190, still doubled).
+            # Restrict to strictly beyond the owner's ink cluster nearest
+            # the line.
+            oloc = np.apply_along_axis(np.convolve, 0, go, kk, "same")
+            oprof = np.percentile(oloc, 97, axis=0)
+            inked = np.where(oprof > 0.12)[0]
+            if len(inked):
+                # walk back through the cluster, bridging gaps <= 6 samples
+                run_lo = inked[-1]
+                for j in reversed(inked[:-1]):
+                    if run_lo - j <= 6:
+                        run_lo = j
+                    else:
+                        break
+                hi_i = min(hi_i, max(run_lo - 8, lo_i + 1))
+        return float(gpos[int(np.argmin(dsm[lo_i:hi_i])) + lo_i])
 
     # Border-connected scan-junk projections per unit (QC v3-2): a seam cut
     # that reaches past the owner's paper edge renders the owner's scanner
@@ -569,8 +589,15 @@ def composite_edition(year, registration):
             cut = best_cut("v", center, owner, nbr, flip=flip)
             if flip:
                 owner_end = max(min(cut, center - 40), center - 680)
+                # the neighbor's clip must not rise above its own printed
+                # frame: its frame rule + margin would render mid-corridor
+                nbr_start = max(owner_end - feather,
+                                geo[nbr]["frame_g"][0] + 6)
                 log(f"seam v{idx} {owner}|{nbr}: FLIPPED cut at "
                     f"{owner_end - center:+.0f} rel to line")
+                prop.setdefault((owner, "right"), []).append(owner_end)
+                prop.setdefault((nbr, "left"), []).append(nbr_start)
+                continue
             else:
                 print_end = comp.pw_fwd([min(reg_own[2], nw)], g_own["xkn"], g_own["xkg"])[0]
                 jc = junk_cap(owner, "v", center)
@@ -586,8 +613,13 @@ def composite_edition(year, registration):
             cut = best_cut("h", center, owner, nbr, flip=flip)
             if flip:
                 owner_end = max(min(cut, center - 40), center - 680)
+                nbr_start = max(owner_end - feather,
+                                geo[nbr]["frame_g"][1] + 6)
                 log(f"seam h{idx} {owner}|{nbr}: FLIPPED cut at "
                     f"{owner_end - center:+.0f} rel to line")
+                prop.setdefault((owner, "bottom"), []).append(owner_end)
+                prop.setdefault((nbr, "top"), []).append(nbr_start)
+                continue
             else:
                 print_end = comp.pw_fwd([min(reg_own[3], nh)], g_own["ykn"], g_own["ykg"])[0]
                 jc = junk_cap(owner, "h", center)
