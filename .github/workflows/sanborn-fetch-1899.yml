@@ -86,7 +86,9 @@ jobs:
           echo "fetched $got sheets"
           # If the site answered with an HTML bot-challenge instead of images,
           # we stop here honestly: this workflow does not defeat bot defenses.
-          if [ "$got" -eq 0 ]; then
+          # fail only if the workspace holds NO sheets at all (0 new is
+          # fine once the data branch already carries the full set)
+          if [ "$got" -eq 0 ] && [ -z "$(ls sources/1899/*.jpg 2>/dev/null)" ]; then
             echo "::error::No sheets retrieved — the site may require a browser session. Do NOT add challenge-solving; download manually instead."
             exit 1
           fi
