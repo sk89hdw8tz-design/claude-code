@@ -1,0 +1,27 @@
+Network egress to maps.lib.utexas.edu is blocked in this remote execution
+environment. The Galveston 1899 Sanborn sheets could not be downloaded.
+
+Egress test (2026-08-09 UTC):
+
+  $ curl -sS -o /dev/null -w "%{http_code}\n" --max-time 30 \
+      https://maps.lib.utexas.edu/maps/sanborn/g.html
+  curl: (56) CONNECT tunnel failed, response 403
+  000
+
+Agent proxy status confirms a policy denial (not a transient failure):
+
+  "recentRelayFailures": [
+    {
+      "ts": "2026-08-09T04:34:23.398Z",
+      "kind": "connect_rejected",
+      "detail": "gateway answered 403 to CONNECT (policy denial or upstream failure)",
+      "host": "maps.lib.utexas.edu:443"
+    }
+  ]
+
+The environment's network policy does not allow this host. No download was
+attempted beyond the single page-fetch egress test above, and no attempt was
+made to bypass the policy. To obtain the sheets, run the fetch from a machine
+with ordinary internet access (the maps are public-domain scans hosted by the
+UT Perry-Castañeda Library) and commit them to this branch as
+sources/1899/Galveston_1899_sheet_NN.jpg plus a SHA256SUMS manifest.
