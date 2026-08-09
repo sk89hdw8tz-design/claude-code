@@ -60,27 +60,29 @@ jobs:
           # warm the cookie jar with one page fetch, as a browser would
           curl -sS -L -A "$UA" -c "$jar" -o /dev/null \
             "https://maps.lib.utexas.edu/maps/sanborn/g.html" || true
+          # drive fetches from the enumerated index links, not blind probes
+          # (seq -w padded 3 digits above 99, breaking the 81-94 probes)
           got=0
-          for n in $(seq -w 1 "${{ github.event.inputs.max_sheet || 140 }}"); do
-            for pat in \
-              "txu-sanborn-galveston-1899-${n}.jpg" \
-              "txu-sanborn-galveston-1899_${n}.jpg"; do
-              dest="sources/1899/Galveston_1899_sheet_${n}.jpg"
-              [ -s "$dest" ] && continue
-              for base in \
-                "https://maps.lib.utexas.edu/maps/sanborn/g-i" \
-                "https://maps.lib.utexas.edu/maps/sanborn/galveston"; do
-                code=$(curl -sS -L -A "$UA" -b "$jar" -c "$jar" \
-                       -e "$REFERER" -o "$dest" -w "%{http_code}" \
-                       "$base/$pat" || echo 000)
-                if [ "$code" = "200" ] && [ "$(stat -c%s "$dest")" -gt 200000 ] \
-                   && head -c3 "$dest" | grep -q $'\xff\xd8'; then
-                  echo "OK sheet $n <- $base/$pat ($(stat -c%s "$dest") bytes)"
-                  got=$((got+1)); break 2
-                fi
-                rm -f "$dest"
-              done
-            done
+          for pat in $(grep -oE 'txu-sanborn-galveston-1899[^"]*' \
+                         sources/1899/INDEX_LINKS.txt | sort -u); do
+            suffix=$(echo "$pat" | sed -E 's/.*-1899-([0-9a-z]+)\.jpg/\1/')
+            case "$suffix" in
+              [0-9]) dest="sources/1899/Galveston_1899_sheet_0${suffix}.jpg" ;;
+              [0-9][0-9]) dest="sources/1899/Galveston_1899_sheet_${suffix}.jpg" ;;
+              *) dest="sources/1899/Galveston_1899_extra_${suffix}.jpg" ;;
+            esac
+            [ -s "$dest" ] && continue
+            code=$(curl -sS -L -A "$UA" -b "$jar" -c "$jar" \
+                   -e "$REFERER" -o "$dest" -w "%{http_code}" \
+                   "https://maps.lib.utexas.edu/maps/sanborn/g-i/$pat" || echo 000)
+            if [ "$code" = "200" ] && [ "$(stat -c%s "$dest")" -gt 150000 ] \
+               && head -c3 "$dest" | grep -q $'\xff\xd8'; then
+              echo "OK $pat -> $dest ($(stat -c%s "$dest") bytes)"
+              got=$((got+1))
+            else
+              echo "MISS $pat (code $code)"
+              rm -f "$dest"
+            fi
             sleep 2
           done
           echo "fetched $got sheets"
