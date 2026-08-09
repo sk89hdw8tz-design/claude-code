@@ -89,8 +89,13 @@ EXCLUDED = {
 
 def expected_lines(year, key):
     c = COVERAGE[year][key]
-    a0, a1 = AV[c["av"][0]], AV[c["av"][1]]
     s0, s1 = c["st"]
+    if "av_idx" in c:
+        # 1899-style: explicit avenue corridor indices (half-step axis;
+        # half-avenues exist only on southern sheets, so the per-sheet
+        # line list is not a contiguous index range)
+        return list(c["av_idx"]), list(range(s0, s1 + 1))
+    a0, a1 = AV[c["av"][0]], AV[c["av"][1]]
     return list(range(a0, a1 + 1)), list(range(s0, s1 + 1))
 
 
@@ -166,6 +171,20 @@ SCAN_INSETS = {
     (14, "bottom"): 170,   # 80 re-exposed the ~50-70px backing board at
                            # source y~7499 (QC v4-B); 170 trims to y7480
 }
+
+
+def _load_1899():
+    import json as _json
+    import os as _os
+    p = _os.path.join(_os.path.dirname(_os.path.abspath(__file__)),
+                      "coverage_1899.json")
+    if _os.path.exists(p):
+        d = _json.load(open(p))
+        COVERAGE["1899"] = d["units"]
+        EXCLUDED["1899"] = d["excluded"]
+
+
+_load_1899()
 
 
 def neighbors(year):

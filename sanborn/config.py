@@ -42,6 +42,22 @@ EDITIONS = {
         # sheet 11 everything except upper-left panel
         # sheet 4 right panel (east of Broadway, outside crop)
     },
+    "1899": {
+        "source": "ut",
+        "ut_url": (
+            "https://maps.lib.utexas.edu/maps/sanborn/g-i/"
+            "txu-sanborn-galveston-1899-{num:02d}.jpg"
+        ),
+        "ut_referer": "https://maps.lib.utexas.edu/maps/sanborn/g.html",
+        "native_size": (3400, 4116),           # heights vary 4095-4116
+        "index_sheet": None,
+        # avenue axis is HALF-STEP indexed (A=0, A1/2=1, B=2 ... S=36) so
+        # pitch_av is the half-avenue spacing; streets by ordinal 6..46
+        "street_origin": 6,
+        "pitch_av": 605.0,                     # at 3400 px native scale
+        "pitch_st": 1150.0,
+        "paper_bgr": (200, 222, 232),          # provisional; measured at build
+    },
     "1877": {
         "source": "ut",
         "ut_url": (

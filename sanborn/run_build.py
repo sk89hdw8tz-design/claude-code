@@ -796,6 +796,16 @@ def composite_edition(year, registration):
 
 def main():
     year = sys.argv[1]
+    # per-edition street origin (1899 starts at 6th St)
+    ed = config.EDITIONS[year]
+    config.STREET_ORIGIN = ed.get("street_origin", config.STREET_ORIGIN)
+    # per-edition detect-scale comb pitches (native pitch scaled to the
+    # DETECT_WIDTH working width). For 1899 the avenue pitch is the
+    # HALF-step: every comb slot is a half-avenue index; the north-side
+    # 'alleys' are the same physical corridors the south names M 1/2 etc.
+    k = config.DETECT_WIDTH / ed["native_size"][0]
+    config.PITCH_AV_DETECT = ed["pitch_av"] * k
+    config.PITCH_ST_DETECT = ed["pitch_st"] * k
     registration = register_edition(year)
     blockers = {k: r["status"] for k, r in registration.items() if r["status"] != "ok"}
     if blockers:
