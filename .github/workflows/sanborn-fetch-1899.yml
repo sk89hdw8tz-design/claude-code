@@ -1,0 +1,84 @@
+name: fetch-sanborn-1899
+
+on:
+  workflow_dispatch:
+    inputs:
+      max_sheet:
+        description: "Highest sheet number to probe"
+        default: "60"
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    env:
+      UA: "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/120 Safari/537.36"
+      REFERER: "https://maps.lib.utexas.edu/maps/sanborn/g.html"
+      DATA_BRANCH: sanborn-data-1899
+    steps:
+      - name: Init data branch workspace
+        run: |
+          set -euo pipefail
+          git init work
+          cd work
+          git config user.name "sanborn-fetch-action"
+          git config user.email "actions@github.com"
+          git remote add origin \
+            "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git"
+          if git fetch origin "$DATA_BRANCH" 2>/dev/null; then
+            git checkout -B "$DATA_BRANCH" FETCH_HEAD
+          else
+            git checkout --orphan "$DATA_BRANCH"
+          fi
+          mkdir -p sources/1899
+
+      - name: Fetch UT 1899 sheets (plain HTTP with referer; no bot-defense circumvention)
+        run: |
+          set -uo pipefail
+          cd work
+          jar=$(mktemp)
+          # warm the cookie jar with one page fetch, as a browser would
+          curl -sS -L -A "$UA" -c "$jar" -o /dev/null \
+            "https://maps.lib.utexas.edu/maps/sanborn/g.html" || true
+          got=0
+          for n in $(seq -w 1 "${{ github.event.inputs.max_sheet }}"); do
+            for pat in \
+              "txu-sanborn-galveston-1899-${n}.jpg" \
+              "txu-sanborn-galveston-1899_${n}.jpg"; do
+              dest="sources/1899/Galveston_1899_sheet_${n}.jpg"
+              [ -s "$dest" ] && continue
+              for base in \
+                "https://maps.lib.utexas.edu/maps/sanborn/g-i" \
+                "https://maps.lib.utexas.edu/maps/sanborn/galveston"; do
+                code=$(curl -sS -L -A "$UA" -b "$jar" -c "$jar" \
+                       -e "$REFERER" -o "$dest" -w "%{http_code}" \
+                       "$base/$pat" || echo 000)
+                if [ "$code" = "200" ] && [ "$(stat -c%s "$dest")" -gt 200000 ] \
+                   && head -c3 "$dest" | grep -q $'\xff\xd8'; then
+                  echo "OK sheet $n <- $base/$pat ($(stat -c%s "$dest") bytes)"
+                  got=$((got+1)); break 2
+                fi
+                rm -f "$dest"
+              done
+            done
+            sleep 2
+          done
+          echo "fetched $got sheets"
+          # If the site answered with an HTML bot-challenge instead of images,
+          # we stop here honestly: this workflow does not defeat bot defenses.
+          if [ "$got" -eq 0 ]; then
+            echo "::error::No sheets retrieved — the site may require a browser session. Do NOT add challenge-solving; download manually instead."
+            exit 1
+          fi
+
+      - name: Manifest + push
+        run: |
+          set -euo pipefail
+          cd work
+          ( cd sources/1899 && sha256sum *.jpg > SHA256SUMS ) || true
+          git add -A
+          git commit -m "1899 Galveston Sanborn sheets (UT PCL, plain HTTP fetch)"
+          git push -u origin "$DATA_BRANCH"
