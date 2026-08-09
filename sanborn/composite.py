@@ -93,6 +93,12 @@ def channel_gains(sheet_tone, target_tone):
     RATIOS exactly removes the cast, while GAIN_CLAMP now bounds only the
     MEAN gain so overall lightness stays subtle. 0.85-1.18 per channel is
     a hard safety range against a corrupt tone estimate."""
+    if getattr(config, "PRESERVE_COLORS", False):
+        # Original-colour mode: the printed washes are the artefact, so no
+        # chromatic correction is applied at all. Sheets keep the exact hue
+        # and lightness of their scans; any scan-to-scan tone difference
+        # stays visible at the joins rather than being averaged away.
+        return np.ones(3, np.float64)
     g = np.asarray(target_tone, np.float64) / np.maximum(np.asarray(sheet_tone, np.float64), 1)
     m = float(g.mean())
     g *= np.clip(m, *config.GAIN_CLAMP) / max(m, 1e-9)

@@ -103,6 +103,10 @@ COM_REFINE_WINDOW = 80   # center-of-mass refinement half-window, px
 
 GAIN_CLAMP = (0.93, 1.08)  # per-channel paper-tone gain limits
 
+# Original-colour mode: skip per-sheet white balance entirely so the printed
+# washes render exactly as scanned. Set per run (see run_build.main).
+PRESERVE_COLORS = False
+
 # Known genuine gap (1885): Ave G-H x 18th-20th is unmapped by the edition.
 # Fill with flat paper tone and disclose. Never generate content.
 

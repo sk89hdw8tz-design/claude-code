@@ -1032,6 +1032,9 @@ def main():
     # per-edition street origin (1899 starts at 6th St)
     ed = config.EDITIONS[year]
     config.STREET_ORIGIN = ed.get("street_origin", config.STREET_ORIGIN)
+    if "--original-colors" in sys.argv:
+        config.PRESERVE_COLORS = True
+        log("original-colour mode: no per-sheet white balance applied")
     # per-edition detect-scale comb pitches (native pitch scaled to the
     # DETECT_WIDTH working width). 1899: uniform slot pitch — see config.
     k = config.DETECT_WIDTH / ed["native_size"][0]
