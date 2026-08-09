@@ -854,8 +854,19 @@ def composite_edition(year, registration):
         the one junction.
         """
         i0, i1 = (0, 2) if axis == "v" else (1, 3)
-        lo = geo[nbr]["frame_gp"][i0] + feather
-        hi = geo[owner]["frame_gp"][i1] - 4
+        # Bound by PAPER as well as frame: the frame estimate can sit past
+        # the sheet's paper edge, and a cut there renders the scan's white
+        # background — an 18 px pure-white bar right across the wharf at the
+        # 19th St seam, which no paper-tone check catches because it is not
+        # unfilled canvas, it is sheet 08's scanner ground.
+        ins_o = cov.scan_inset(year, cov.COVERAGE[year][owner]["file"],
+                               "right" if axis == "v" else "bottom")
+        ins_n = cov.scan_inset(year, cov.COVERAGE[year][nbr]["file"],
+                               "left" if axis == "v" else "top")
+        lo = max(geo[nbr]["frame_gp"][i0],
+                 geo[nbr]["paper_g"][i0] + ins_n) + feather
+        hi = min(geo[owner]["frame_gp"][i1],
+                 geo[owner]["paper_g"][i1] - ins_o) - 4
         if lo > hi:
             mid = 0.5 * (lo + hi)
             log(f"seam {axis} {owner}|{nbr}: printed frames do not overlap "
