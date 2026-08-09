@@ -1,0 +1,92 @@
+name: fetch-sanborn-1889
+
+on:
+  push:
+    branches: [claude/new-session-fxmhgv]
+    paths: [".github/sanborn-fetch-1889-request"]
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    env:
+      UA: "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/120 Safari/537.36"
+      REFERER: "https://maps.lib.utexas.edu/maps/sanborn/g.html"
+      DATA_BRANCH: sanborn-data-1889
+    steps:
+      - name: Init data branch workspace
+        run: |
+          set -euo pipefail
+          git init work
+          cd work
+          git config user.name "sanborn-fetch-action"
+          git config user.email "actions@github.com"
+          git remote add origin \
+            "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git"
+          if git fetch origin "$DATA_BRANCH" 2>/dev/null; then
+            git checkout -B "$DATA_BRANCH" FETCH_HEAD
+          else
+            git checkout --orphan "$DATA_BRANCH"
+          fi
+          mkdir -p sources/1889
+
+      - name: Enumerate every Galveston link (all editions)
+        run: |
+          set -uo pipefail
+          cd work
+          jar=$(mktemp)
+          curl -sS -L -A "$UA" -c "$jar" -o g.html \
+            "https://maps.lib.utexas.edu/maps/sanborn/g.html" || true
+          echo "index page bytes: $(stat -c%s g.html 2>/dev/null || echo 0)"
+          grep -oiE 'href="[^"]*galveston[^"]*"' g.html | sort -u \
+            > sources/1889/ALL_GALVESTON_LINKS.txt || true
+          echo "galveston hrefs: $(wc -l < sources/1889/ALL_GALVESTON_LINKS.txt)"
+          echo "editions present:"
+          grep -oiE 'galveston-[0-9]{4}' sources/1889/ALL_GALVESTON_LINKS.txt \
+            | sort | uniq -c | tee sources/1889/EDITIONS.txt
+          rm -f g.html
+
+      - name: Fetch the 1889 sheets (plain HTTP with referer; no bot-defense circumvention)
+        run: |
+          set -uo pipefail
+          cd work
+          jar=$(mktemp)
+          curl -sS -L -A "$UA" -c "$jar" -o /dev/null \
+            "https://maps.lib.utexas.edu/maps/sanborn/g.html" || true
+          got=0
+          for pat in $(grep -oE 'txu-sanborn-galveston-1889[^"]*' \
+                         sources/1889/ALL_GALVESTON_LINKS.txt | sort -u); do
+            suffix=$(echo "$pat" | sed -E 's/.*-1889-([0-9a-z]+)\.jpg/\1/')
+            dest="sources/1889/Galveston_1889_${suffix}.jpg"
+            [ -s "$dest" ] && continue
+            code=$(curl -sS -L -A "$UA" -b "$jar" -c "$jar" \
+                   -e "$REFERER" -o "$dest" -w "%{http_code}" \
+                   "https://maps.lib.utexas.edu/maps/sanborn/g-i/$pat" || echo 000)
+            if [ "$code" = "200" ] && [ "$(stat -c%s "$dest")" -gt 150000 ] \
+               && head -c3 "$dest" | grep -q $'\xff\xd8'; then
+              echo "OK $pat -> $dest ($(stat -c%s "$dest") bytes)"
+              got=$((got+1))
+            else
+              echo "MISS $pat (code $code)"
+              rm -f "$dest"
+            fi
+            sleep 2
+          done
+          echo "fetched $got sheets"
+          # Honest failure: if the site answers with a bot challenge instead of
+          # images we stop here. This workflow does not defeat bot defenses.
+          if [ "$got" -eq 0 ] && [ -z "$(ls sources/1889/*.jpg 2>/dev/null)" ]; then
+            echo "::error::No 1889 sheets retrieved. Either the edition is not held here or the site required a browser session — check ALL_GALVESTON_LINKS.txt / EDITIONS.txt on the data branch."
+          fi
+
+      - name: Manifest + push
+        run: |
+          set -euo pipefail
+          cd work
+          ( cd sources/1889 && sha256sum *.jpg > SHA256SUMS 2>/dev/null ) || true
+          git add -A
+          git commit -m "Galveston 1889 Sanborn sheets + full edition index (UT PCL)"
+          git push -u origin "$DATA_BRANCH" --force
