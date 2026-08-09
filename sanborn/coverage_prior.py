@@ -163,6 +163,17 @@ SEAM_CUTS = {
 # v3.2-1). The scanner rules hug the scan edge; nothing legitimate
 # sits within ~20 px of it. Keyed by (sheet_file, side); default 24.
 SCAN_INSET_DEFAULT = 24
+
+
+def scan_inset(year, filenum, side):
+    """Per-year lookup: SCAN_INSETS keys are bare (file, side) measured on
+    the 1885 LoC masters; they must never leak onto 1899's UT scans, whose
+    sheet numbers overlap."""
+    if year != "1885":
+        return SCAN_INSET_DEFAULT
+    return SCAN_INSETS.get((filenum, side), SCAN_INSET_DEFAULT)
+
+
 SCAN_INSETS = {
     (5, "top"): 65,      # tapering black wedge, up to ~28 px thick
     (5, "right"): 70,    # full-height black band + backing strip

@@ -9,14 +9,17 @@
     28,
     31
    ],
-   "region": [
+   "region": null,
+   "detect_region": [
     2350,
     0,
     3400,
     4095
    ],
-   "clip_region": null,
-   "note": "wharf hybrid; detect region = right strip"
+   "v_anchors": {
+    "0": 3136
+   },
+   "note": "wharf hybrid; Av.A anchor label-verified; piers render as retained exterior margin"
   },
   "05": {
    "file": 5,
@@ -27,14 +30,17 @@
     25,
     28
    ],
-   "region": [
+   "region": null,
+   "detect_region": [
     2350,
     0,
     3400,
     4095
    ],
-   "clip_region": null,
-   "note": "wharf hybrid; detect region = right strip"
+   "v_anchors": {
+    "0": 3094
+   },
+   "note": "wharf hybrid; Av.A anchor label-verified; piers render as retained exterior margin"
   },
   "06": {
    "file": 6,
@@ -45,14 +51,17 @@
     22,
     25
    ],
-   "region": [
+   "region": null,
+   "detect_region": [
     2350,
     0,
     3400,
     4095
    ],
-   "clip_region": null,
-   "note": "wharf hybrid; detect region = right strip"
+   "v_anchors": {
+    "0": 3099
+   },
+   "note": "wharf hybrid; Av.A anchor label-verified; piers render as retained exterior margin"
   },
   "07": {
    "file": 7,
@@ -63,14 +72,17 @@
     19,
     22
    ],
-   "region": [
+   "region": null,
+   "detect_region": [
     2350,
     0,
     3400,
     4095
    ],
-   "clip_region": null,
-   "note": "wharf hybrid; detect region = right strip"
+   "v_anchors": {
+    "0": 3127
+   },
+   "note": "wharf hybrid; Av.A anchor label-verified; piers render as retained exterior margin"
   },
   "08": {
    "file": 8,
@@ -81,14 +93,17 @@
     16,
     19
    ],
-   "region": [
+   "region": null,
+   "detect_region": [
     2350,
     0,
     3400,
     4095
    ],
-   "clip_region": null,
-   "note": "wharf hybrid; detect region = right strip"
+   "v_anchors": {
+    "0": 3175
+   },
+   "note": "wharf hybrid; Av.A anchor label-verified; piers render as retained exterior margin"
   },
   "11": {
    "file": 11,
@@ -333,6 +348,12 @@
     2260,
     4094
    ],
+   "clip_region": [
+    40,
+    60,
+    2210,
+    4094
+   ],
    "note": "main panel west of the K break"
   },
   "26b": {
@@ -347,6 +368,12 @@
    ],
    "region": [
     2160,
+    1500,
+    3400,
+    4094
+   ],
+   "clip_region": [
+    2210,
     1500,
     3400,
     4094
@@ -1006,14 +1033,20 @@
     23,
     24
    ],
-   "region": [
+   "region": null,
+   "detect_region": [
     0,
     2100,
     1600,
     4110
    ],
-   "clip_region": null,
-   "note": "beach sheet; grid in SW quadrant only; detached orphans-home inset top-right excluded from art"
+   "clip_region": [
+    0,
+    1015,
+    3400,
+    4110
+   ],
+   "note": "beach sheet; grid in SW quadrant; detached orphans-home inset excluded"
   },
   "71a": {
    "file": 71,

@@ -90,9 +90,11 @@ def main(survey_dir, out_path):
             units["26"] = {"file": 26, "av_slots": [7, 8, 9, 10],
                            "st": [39, 42],
                            "region": [40, 60, 2260, 4094],
+                           "clip_region": [40, 60, 2210, 4094],
                            "note": "main panel west of the K break"}
             units["26b"] = {"file": 26, "av_slots": [10, 11], "st": [39, 40],
                             "region": [2160, 1500, 3400, 4094],
+                            "clip_region": [2210, 1500, 3400, 4094],
                             "note": "cemetery sub-panel K-L x 39-40"}
             continue
         if sid == "71":
@@ -117,21 +119,30 @@ def main(survey_dir, out_path):
             # right strip so the comb can't lock onto pier/track corridors;
             # composite clipping stays full-sheet (piers are exterior-margin
             # content north of Avenue A, like 1885's bay water).
+            # Av. A corridor positions verified by the label-reading fleet
+            # (comb + nearest-center picked the terminal-track corridor
+            # ~700 px west) and CoM-refined on the whiteness profile
+            av_a = {"04": 3136, "05": 3094, "06": 3099,
+                    "07": 3127, "08": 3175}[sid]
             units[sid] = {"file": int(sid), "av_slots": [0],
-                          "st": [sts[0], sts[-1]],
-                          "region": [2350, 0, 3400, 4095],
-                          "clip_region": None,
-                          "note": "wharf hybrid; detect region = right strip"}
+                          "st": [sts[0], sts[-1]], "region": None,
+                          "detect_region": [2350, 0, 3400, 4095],
+                          "v_anchors": {"0": av_a},
+                          "note": "wharf hybrid; Av.A anchor label-verified; "
+                                  "piers render as retained exterior margin"}
             continue
         if sid == "70":
             # beach sheet: grid only in the SW quadrant (Q 1/2-R x 23-24);
             # bath-house piers over the Gulf + detached orphanage inset.
             units["70"] = {"file": 70, "av_slots": [21, 22], "st": [23, 24],
-                           "region": [0, 2100, 1600, 4110],
-                           "clip_region": None,
-                           "note": "beach sheet; grid in SW quadrant only; "
-                                   "detached orphans-home inset top-right "
-                                   "excluded from art"}
+                           "region": None,
+                           "detect_region": [0, 2100, 1600, 4110],
+                           # clip excludes the DETACHED St. Mary's orphans-
+                           # home inset (top band, frame ends ~y1010); the
+                           # sacrificed sliver left of it is open Gulf water
+                           "clip_region": [0, 1015, 3400, 4110],
+                           "note": "beach sheet; grid in SW quadrant; "
+                                   "detached orphans-home inset excluded"}
             continue
         if not sts or len(sts) < 2 or len(slots) < 2:
             EXCLUDED[sid] = (f"insufficient grid ({len(sts)} streets, "

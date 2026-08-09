@@ -176,8 +176,9 @@ def register_edition(year):
             results[key] = {"status": "missing-source"}
             log(f"unit {key}: source missing")
             continue
-        det = reg.detect_sheet_grid(path, region=unit["region"])
-        det["panel_region"] = unit["region"]
+        dreg = unit.get("detect_region") or unit["region"]
+        det = reg.detect_sheet_grid(path, region=dreg)
+        det["panel_region"] = dreg
         if unit.get("v_anchors"):
             # manual corridor anchors (CoM-measured): comb output replaced
             det["v_lines_native"] = [
@@ -278,11 +279,20 @@ def composite_edition(year, registration):
         log(f"applying manual knot deltas for units {list(manual_deltas)}")
     if measured:
         log(f"applying measured edge corrections from {corr_path}")
+    line_ids = {}
     for key, r in usable.items():
         unit = cov.COVERAGE[year][key]
-        det = r["detected"]
-        v = sorted(det["v_lines_native"])
-        h = sorted(det["h_lines_native"])
+        # identity-matched control pairs, NOT raw detections: units whose
+        # alignment used a window/subset (wharf hybrids, extra bay-side
+        # corridors) carry detections with no identity, and zipping them
+        # against expected_lines shifts every knot by a corridor
+        ctr = sorted((c["native"], c["identity"]) for c in r["controls"]
+                     if c["axis"] == "x")
+        cth = sorted((c["native"], c["identity"]) for c in r["controls"]
+                     if c["axis"] == "y")
+        v = [p for p, _ in ctr]
+        h = [p for p, _ in cth]
+        line_ids[key] = ([i for _, i in ctr], [i for _, i in cth])
         img = cv2.imread(sheet_path(year, unit["file"]), cv2.IMREAD_COLOR)
         img01 = img.astype(np.float32) / 255.0
         fr = comp.frame_bounds(img01, v, h, region=unit["region"])
@@ -316,8 +326,7 @@ def composite_edition(year, registration):
         origin = 0 if axis == "v" else config.STREET_ORIGIN
         obs = {}   # key -> (identities, native positions)
         for key, r in usable.items():
-            avs, sts = cov.expected_lines(year, key)
-            idents = avs if axis == "v" else sts
+            idents = line_ids[key][0] if axis == "v" else line_ids[key][1]
             lines = corrected[key][0] if axis == "v" else corrected[key][1]
             obs[key] = (idents, np.array(lines, float))
         fits = {k: (r["fit"]["sx"], r["fit"]["tx"]) if axis == "v" else (r["fit"]["sy"], r["fit"]["ty"])
@@ -345,6 +354,23 @@ def composite_edition(year, registration):
 
     X, fx = joint_solve("v")
     Y, fy = joint_solve("h")
+    # fill consensus positions for identities inside some unit's extent but
+    # observed by no unit (subset-aligned corridors): interpolate on the
+    # known consensus, which already carries the shared non-uniformity
+    def fill_grid(G, pitch, origin, all_ids):
+        known = sorted(G)
+        for i in sorted(all_ids):
+            if i not in G:
+                G[i] = float(np.interp(i, known, [G[k] for k in known]))
+                if i < known[0] or i > known[-1]:
+                    G[i] = (i - origin) * pitch  # outside: uniform
+    ids_v, ids_h = set(), set()
+    for key in usable:
+        a, s = cov.expected_lines(year, key)
+        ids_v |= set(a)
+        ids_h |= set(s)
+    fill_grid(X, ed["pitch_av"], 0, ids_v)
+    fill_grid(Y, ed["pitch_st"], config.STREET_ORIGIN, ids_h)
     log("grid avenue offsets from uniform: " +
         str({a: round(X[a] - a * ed["pitch_av"]) for a in sorted(X)}))
     log("grid street offsets from uniform: " +
@@ -354,25 +380,34 @@ def composite_edition(year, registration):
     for key, r in usable.items():
         unit = cov.COVERAGE[year][key]
         avs, sts = cov.expected_lines(year, key)
+        vids, hids = line_ids[key]
         v, h = corrected[key]
         sx, tx = fx[key]
         sy, ty = fy[key]
-        seam_res_x = [round(X[a] - (sx * p + tx), 1) for a, p in zip(avs, v)]
-        seam_res_y = [round(Y[s] - (sy * p + ty), 1) for s, p in zip(sts, h)]
+        seam_res_x = [round(X[a] - (sx * p + tx), 1) for a, p in zip(vids, v)]
+        seam_res_y = [round(Y[s] - (sy * p + ty), 1) for s, p in zip(hids, h)]
         for name, s in (("sx", sx), ("sy", sy)):
             if abs(s - 1.0) > config.SCALE_FAIL:
                 log(f"unit {key}: joint fit {name}={s:.4f} exceeds ±2% — check line identity")
         fit = {"sx": sx, "tx": tx, "sy": sy, "ty": ty}
         r["fit_consensus"] = {**fit, "line_resid_x": seam_res_x, "line_resid_y": seam_res_y}
-        r["knots"] = {"xkn": list(map(float, v)), "xkg": [float(X[a]) for a in avs],
-                      "ykn": list(map(float, h)), "ykg": [float(Y[s]) for s in sts]}
+        r["knots"] = {"xkn": list(map(float, v)), "xkg": [float(X[a]) for a in vids],
+                      "ykn": list(map(float, h)), "ykg": [float(Y[s]) for s in hids]}
         frame = frames_native[key]
         img_s = cv2.imread(sheet_path(year, unit["file"]), cv2.IMREAD_GRAYSCALE)
         small = cv2.resize(img_s, (img_s.shape[1] // 4, img_s.shape[0] // 4),
                            interpolation=cv2.INTER_AREA)
         del img_s
-        xkn, xkg = v, [X[a] for a in avs]
-        ykn, ykg = h, [Y[s] for s in sts]
+        xkn, xkg = list(v), [X[a] for a in vids]
+        ykn, ykg = list(h), [Y[s] for s in hids]
+        # piecewise mapping needs >=2 knots per axis; a single-corridor axis
+        # (wharf hybrids) extends affinely at the joint-fit scale
+        if len(xkn) < 2:
+            xkn = xkn + [xkn[0] + ed["pitch_av"]]
+            xkg = xkg + [xkg[0] + ed["pitch_av"] * sx]
+        if len(ykn) < 2:
+            ykn = ykn + [ykn[0] + ed["pitch_st"]]
+            ykg = ykg + [ykg[0] + ed["pitch_st"] * sy]
         fx0, fx1 = comp.pw_fwd([frame[0], frame[2]], xkn, xkg)
         fy0, fy1 = comp.pw_fwd([frame[1], frame[3]], ykn, ykg)
         geo[key] = {"fit": fit, "gv": v, "gh": h,
@@ -706,8 +741,7 @@ def composite_edition(year, registration):
                 prop.setdefault((owner, "right"), []).append(owner_end)
                 prop.setdefault((nbr, "left"), []).append(nbr_start)
                 continue
-            ins = cov.SCAN_INSETS.get((cov.COVERAGE[year][owner]["file"],
-                                       "right"), cov.SCAN_INSET_DEFAULT)
+            ins = cov.scan_inset(year, cov.COVERAGE[year][owner]["file"], "right")
             print_end = comp.pw_fwd([min(reg_own[2], nw - ins)],
                                     g_own["xkn"], g_own["xkg"])[0]
             owner_end = min(max(cut, center - 240), print_end - 4)
@@ -730,8 +764,7 @@ def composite_edition(year, registration):
                 prop.setdefault((owner, "bottom"), []).append(owner_end)
                 prop.setdefault((nbr, "top"), []).append(nbr_start)
                 continue
-            ins = cov.SCAN_INSETS.get((cov.COVERAGE[year][owner]["file"],
-                                       "bottom"), cov.SCAN_INSET_DEFAULT)
+            ins = cov.scan_inset(year, cov.COVERAGE[year][owner]["file"], "bottom")
             print_end = comp.pw_fwd([min(reg_own[3], nh - ins)],
                                     g_own["ykn"], g_own["ykg"])[0]
             owner_end = min(max(cut, center - 240), print_end - 4)
@@ -807,8 +840,7 @@ def composite_edition(year, registration):
         es = ext_sides.get(key, set())
         if es:
             def inset(side):
-                return cov.SCAN_INSETS.get((unit["file"], side),
-                                           cov.SCAN_INSET_DEFAULT)
+                return cov.scan_inset(year, unit["file"], side)
             # insets measure from whichever boundary caps the side: the
             # scan edge for full sheets, the region border for panel
             # units — a panel divider carries the other panel's frame
