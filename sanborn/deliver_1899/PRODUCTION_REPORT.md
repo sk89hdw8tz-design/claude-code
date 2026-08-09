@@ -115,3 +115,63 @@ directions, all since corrected.
 ## Output
 
 38.16 × 25.44 in at 300 dpi (page 39.16 × 26.94 in with caption).
+
+## Seam QC — three independent adversarial passes
+
+Three agents audited the composite: linework continuity, content loss, and
+the wharf junction. They walked all seven seams at full resolution (~220
+crops) and measured rather than eyeballed. Their findings drove the fixes
+below, and the defects they found that REMAIN are listed after them.
+
+### Fixed as a result
+
+- **Seam policy.** Cutting on a single hard line inside the overlap
+  destroyed content two ways: the cut landed inside one sheet's frontage
+  strip (the 101–123 address row at 24th, the 1902–1928 kerb column at
+  Avenue D), or it landed in the dead zone between the two sheets' copies
+  of a street name and discarded BOTH (21ST OR CENTRE, 24TH). 1899 sheets
+  overlap by hundreds of px, so the owner is now laid over the whole
+  overlap, capped at its printed frame. All horizontal seams now cut at
+  +167…+174 px — the owner's frame edge — instead of inside the corridor.
+- **Frame cap on seam sides.** Sheet extents ran into the margin and pasted
+  furniture into the map: sheet 37's blank top margin and its printed "37"
+  across the Avenue G × 24th junction, a sliced "39" pointer filling the
+  lost south frontage row at 24th.
+- **Scanner white.** An 18 px pure-white bar across the wharf at 19th was
+  sheet 08's scan background, exposed because the cut was clamped to the
+  frame estimate, which sits past the paper. Now clamped by paper too:
+  pure-white pixels 26,989 → 20.
+
+### Known defects that REMAIN — measured, not fixed
+
+These are real and were left in rather than papered over.
+
+1. **Lateral step across 24th Street, ~48–85 px** east of Avenue A: the
+   24th–27th sheet row sits east of the 21st–24th row. Independently
+   confirmed by alley-centreline tracking and by column-profile correlation
+   (−45…−58 px at every confident window), against controls elsewhere on
+   the same sheet that return 0–1 px.
+2. **Vertical steps at Avenue G**: +64 px at 25th, −42 px at 20th, −34 px
+   at 22nd.
+3. **Rail steps across Avenue A**, 0 → +30 px, growing north to south; 20
+   of 28 sampled rows exceed 10 px. Worst at the 24th junction (+29 px).
+4. **Avenue A corridor width breathes** +3 to +30 px along its length: its
+   west kerb is wharf-surveyed and its east kerb downtown-surveyed.
+5. **Stray sheet-reference numerals** inside the map body, and duplicated
+   scale bars and compass roses where two sheets contribute.
+6. **Ghost rails in the 16 px feather** where two mutually-offset drawings
+   of the same track are averaged instead of one being chosen.
+
+**Root cause of 1–4.** The content-level seam refinement, which exists to
+correct ±40 px of line-detection noise by phase-correlating neighbouring
+sheets' shared bands, produced ZERO usable measurements on this data:
+correlation responses came out 0.01–0.26 against a 0.55 gate, with mutually
+inconsistent offsets (−563, +242, −252 px). The gate correctly rejects
+them — lowering it would inject that noise into the geometry and make
+alignment worse. So every per-unit translation correction is zero and the
+registration rests on line detection alone.
+
+Fixing this properly means replacing the refinement's patch sampling, which
+squashes a quarter-resolution band to a fixed 130 px width before
+correlating. That is a real piece of work, not a parameter tweak, and it is
+the single highest-value improvement left.

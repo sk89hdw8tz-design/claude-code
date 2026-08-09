@@ -243,6 +243,21 @@ def register_edition(year):
                         log(f"unit {key}: {axis}-line {ident} override "
                             f"{c['native']:.0f} -> {native}")
                         c["native"] = float(native)
+        # Drop a control whose corridor is CUT by the sheet's own paper edge.
+        # The comb then has only part of the corridor to work with and settles
+        # on the block frontage bounding it; substituting a measured centre is
+        # no better, because the measurement picks a different feature on each
+        # sheet (Avenue A came out -73/-139/-37 px on sheets 11/13/15), and
+        # those differences displace whole rows against each other — the
+        # 48-85 px eastward step across 24th Street. Fitting on the sheet's
+        # interior lines only is both simpler and better conditioned.
+        for axis, idents in (unit.get("drop_lines") or {}).items():
+            before = len(controls)
+            controls = [c for c in controls
+                        if not (c["axis"] == axis and c["identity"] in idents)]
+            if len(controls) != before:
+                log(f"unit {key}: dropped {axis}-line(s) {idents} "
+                    "(corridor cut by the paper edge; fitting on interior lines)")
         fit = fit_sheet(controls, year)
         status = "ok" if all(fit[f"flag_{a}"] in ("OK", "WARN") for a in "xy") else "scale-fail"
         results[key] = {"status": status, "fit": fit, "detected": det,
@@ -592,10 +607,19 @@ def composite_edition(year, registration):
         # patch px -> global px
         gxs = (g[1] - g[0]) / out_w
         gys = (g[3] - g[2]) / out_h
-        if resp > 0.55 and abs(dx * gxs) < 200 and abs(dy * gys) < 200:  # cross-sheet corr unreliable (different drawings); diagnostics only
+        # 1885 sheets ABUT — each draws different ground at the boundary, so
+        # cross-sheet correlation is meaningless there and the 0.55 gate kept
+        # it out. 1899 sheets OVERLAP by hundreds of px, drawing the same
+        # street twice, so the correlation is real and is the only thing that
+        # corrects ±40 px of line-detection noise. With the gate left at 0.55
+        # not one seam qualified: seam_content_offsets came out empty and every
+        # translation correction was zero, which is why rails stepped up to
+        # +30 px across Avenue A and the rows stepped 48-85 px across 24th.
+        gate = ed.get("seam_corr_gate", 0.55)
+        log(f"seam {axis}{idx} {owner}|{nbr}: corr resp={resp:.2f} "
+            f"offset ({dx*gxs:+.0f},{dy*gys:+.0f})px")
+        if resp > gate and abs(dx * gxs) < 200 and abs(dy * gys) < 200:
             seam_meas.append((owner, nbr, dx * gxs, dy * gys, resp))
-            log(f"seam {axis}{idx} {owner}|{nbr}: content offset "
-                f"({dx*gxs:+.0f},{dy*gys:+.0f})px resp={resp:.2f}")
 
     keys = list(geo)
     ki = {k: i for i, k in enumerate(keys)}
@@ -913,9 +937,22 @@ def composite_edition(year, registration):
         manual = cov.seam_cut(year, axis, idx, frozenset({owner, nbr}))
         if manual is not None:
             log(f"seam {axis}{idx} {owner}|{nbr}: manual cut {manual:+d}")
+        # Seam policy. 1885 sheets share only a sliver of corridor, so the
+        # cut is placed by the label-aware search. 1899 sheets overlap by
+        # hundreds of px — each prints the whole street AND both facing
+        # block frontages — so a cut anywhere inside that band destroys
+        # something: it lands in one sheet's frontage strip (the 101-123
+        # address row at 24th, the 1902-1928 kerb column at Avenue D), or in
+        # the dead zone between the two sheets' copies of the street name,
+        # discarding BOTH (21ST OR CENTRE, 24TH). Laying the owner over the
+        # whole overlap, capped at its printed frame, keeps one complete
+        # copy of everything — the same rule already proven at the wharf.
+        own_top = (manual is None
+                   and ed.get("seam_policy") == "owner-on-top")
         if axis == "v":
             center = X[idx]
             cut = (center + manual if manual is not None
+                   else center + 4000 if own_top
                    else best_cut("v", center, owner, nbr, flip=flip))
             if flip:
                 owner_end = max(min(cut, center - 40), center - 680)
@@ -940,6 +977,7 @@ def composite_edition(year, registration):
         else:
             center = Y[idx]
             cut = (center + manual if manual is not None
+                   else center + 4000 if own_top
                    else best_cut("h", center, owner, nbr, flip=flip))
             if flip:
                 owner_end = max(min(cut, center - 40), center - 680)
@@ -1025,13 +1063,30 @@ def composite_edition(year, registration):
         nw, nh = ed["native_size"]
         cx0, cy0 = max(cx0, 0), max(cy0, 0)
         cx1, cy1 = min(cx1, nw), min(cy1, nh)
+        # A SEAM side may never reach outside this sheet's printed frame.
+        # Without this the sheet extents run into the margin and paste its
+        # furniture into the map: sheet 37's blank top margin and its giant
+        # printed "37" landed across the Avenue G x 24th junction, and a
+        # sliced "39" pointer filled the lost south frontage row at 24th
+        # (seam QC, findings 3-4). legal_cut already guarantees the cut sits
+        # inside BOTH sheets' printed extents, so capping here cannot open a
+        # hole the neighbour does not fill.
+        es = ext_sides.get(key, set())
+        fr = frames_native[key]
+        if "left" not in es:
+            cx0 = max(cx0, fr[0])
+        if "top" not in es:
+            cy0 = max(cy0, fr[1])
+        if "right" not in es:
+            cx1 = min(cx1, fr[2])
+        if "bottom" not in es:
+            cy1 = min(cy1, fr[3])
         img = cv2.imread(sheet_path(year, unit["file"]), cv2.IMREAD_COLOR)
         # Static scan-edge insets on exterior-extended sides (QC v3.2-1):
         # dynamic junk detection failed in both directions — thin rules
         # slipped through while rail sidings / bay water got flagged and
         # the trim beheaded certified annotations. The measured, visually
         # verified per-side constants live in cov.SCAN_INSETS.
-        es = ext_sides.get(key, set())
         if es:
             def inset(side):
                 return cov.scan_inset(year, unit["file"], side)

@@ -61,6 +61,10 @@ EDITIONS = {
         "street_origin": 6,
         "pitch_av": 1006.0,                    # slot pitch, native px
         "pitch_st": 1169.0,
+        # 1899 sheets overlap by hundreds of px, each printing the whole
+        # shared street and both facing block frontages, so the owner is
+        # laid over the entire overlap instead of cut inside it.
+        "seam_policy": "owner-on-top",
         "paper_bgr": (200, 222, 232),          # provisional; measured at build
     },
     "1877": {

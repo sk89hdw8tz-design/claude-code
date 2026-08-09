@@ -191,6 +191,12 @@ def main(survey_dir, out_path):
         # Avenue A is cut by the west paper edge on the sheets that front it,
         # so the comb locks onto the block frontage rather than the corridor
         # centre. Measured frontage minus 122 (half of the 245 px corridor).
+        # Avenue A is cut by these sheets' west paper edge, so the comb settles
+        # on the block frontage. Substituted with the measured corridor centre
+        # (frontage minus 122, half the 245 px corridor). Dropping the control
+        # instead was tried and is worse: the sheets then drift east off their
+        # interior lines and open a gap at the wharf junction (coverage
+        # 98.98% -> 90.85%).
         av_a_fix = {"11": 107, "13": 142, "15": 143}.get(sid)
         if av_a_fix is not None and 0 in slots:
             units[sid]["line_overrides"] = {"x": {"0": av_a_fix}}
