@@ -1,7 +1,34 @@
 # Rebuild: Galveston 1899 — wharf front & downtown, twelve sheets
 
-Paste this as the opening message of a new session with this `SEED_1899/`
-directory available.
+Paste this as the opening message of a new session.
+
+---
+
+## Where things live — and what you may NOT touch
+
+Repository: `sk89hdw8tz-design/claude-code`.
+
+**Use only these two locations:**
+- `sanborn/SEED_1899/` on branch `claude/new-session-fxmhgv` — the seed
+  package this prompt refers to. Copy it out once, then work from your copy.
+- branch `sanborn-data-1899` — the fetched source scans
+  (`sources/1899/Galveston_1899_sheet_NN.jpg`), so you may not need to fetch
+  from UT at all. Verify each file's JPEG magic and size against
+  `sources/1899/SHA256SUMS` before trusting it.
+
+**FIREWALL — the legacy pipeline is off limits.** The same repo contains the
+prior build's code (`sanborn/*.py` outside `SEED_1899/`, plus its build
+scripts, QC records and reports). That code embodies the exact approach this
+rebuild exists to replace — grid-line registration, straight-line seam cuts,
+alpha feathering — and it is riddled with compensations for those choices
+(manual anchors, per-line overrides, seam-cut tables). **Do not read it for
+approach, do not import from it, do not port routines out of it.** If you
+find yourself consulting it to decide how to do something, stop: the answer
+it gives is the one that produced the defects in `KNOWN_DEFECTS.md`. The
+ONLY legacy artifacts you may rely on are the ones curated into `SEED_1899/`,
+and `KNOWN_DEFECTS.md` is the only sanctioned account of what the old code
+did. Write the new pipeline fresh, in a new directory (`rebuild_1899/`), on
+a new branch.
 
 ---
 
@@ -62,7 +89,7 @@ coordinate for the shared line. Summary:
 | `constants.json` | pitches, corridor width, slot model, the twelve sheets with ground extents and per-sheet anchors, all nineteen seams |
 | `coverage_1899.json` | registration units, ground extents, panel regions |
 | `survey/` | verbatim street/avenue labels and edge refs |
-| `landmarks.json` | **ground truth** — the same physical object located in two sheets' native frames, each re-measured by a second independent analyst |
+| `landmarks.json` | **ground truth** — the same physical object located in two sheets' native frames, each re-measured by a second independent analyst. **If this file is absent or covers fewer than all nineteen seams, producing it is rendition 1's FIRST task** — locate 3 shared physical objects per pair (hydrant dots, building corners, rail crossings, pier corners; never text or featureless lines), then have an independent agent re-locate each from its description alone |
 | `baseline_metrics.json` | the prior build's guard metrics |
 | `KNOWN_DEFECTS.md` | every remaining defect, measured, with method |
 | `pair_context.json` | each pair's shared line, per sheet, in native px |
@@ -75,12 +102,13 @@ Trust them. If you contradict one, prove it with a measurement.
 
 ## Acquisition
 
-Fetch only what this build needs: sheets 06, 07, 08, 11, 12, 13, 14, 15, 16,
-37, 39, 41, plus key sheets 1i, 1k, 1kb.
+Preferred: the scans are already on branch `sanborn-data-1899` of this repo —
+extract sheets 06, 07, 08, 11, 12, 13, 14, 15, 16, 37, 39, 41 plus key
+sheets 1i, 1k, 1kb, and verify against `SHA256SUMS`.
 
+Fallback (only if that branch is unavailable):
 `https://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-{NN}.jpg`
-
-If the environment blocks egress, use `tools/sanborn-fetch-1899.yml` — a
+— and if the environment blocks egress, use `tools/sanborn-fetch-1899.yml`, a
 push-triggered CI workflow that curls with a browser UA and referer,
 validates JPEG magic and size, and pushes to a data branch. Plain HTTP only.
 **Never defeat a bot defense or proof-of-work challenge**; fail honestly.
