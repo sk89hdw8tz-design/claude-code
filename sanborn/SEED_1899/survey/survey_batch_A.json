@@ -1,0 +1,115 @@
+[
+  {
+    "sheet": "01",
+    "printed_number": 1,
+    "number_matches_filename": true,
+    "streets": [],
+    "avenues": [],
+    "edge_refs": {"top": [0], "bottom": [0], "left": [0], "right": [2]},
+    "panels": 1,
+    "irregular": true,
+    "note": "Wharf sheet, mostly empty: banner 'THIS SHEET TO BE USED FOR WHARF IMPROVEMENTS.' Two diagonal wharf slips and outline of 'GALVESTON WHARF CO'S WARE HOUSE (PROPOSED)' only; no street grid, no building fills except outlines. Compass rose right-center; scale bar bottom right. Edge ref 0 appears on water sides (top, left, bottom)."
+  },
+  {
+    "sheet": "02",
+    "printed_number": 2,
+    "number_matches_filename": true,
+    "streets": [],
+    "avenues": [],
+    "edge_refs": {"top": [0], "bottom": [0], "left": [1], "right": [3]},
+    "panels": 2,
+    "panel_regions": [[0, 0, 3400, 4095], [1775, 3225, 2720, 3950]],
+    "irregular": true,
+    "note": "Wharf sheet: Piers 34, 35, 36 with slips; two long 'Galveston Wharf Co's Ware House' buildings (west one 'being built'); Galveston Wharf Company's Terminal Tracks & Yard. Detached framed inset bottom-center: 'Galveston Wharf Co's Creosoting Plant' (creosoting oven, timber rack, 34th St) with its own edge ref 3 in its top-right corner. Compass right-center; scale bar bottom center-left. Grid rotated (wharf axis runs diagonally)."
+  },
+  {
+    "sheet": "03",
+    "printed_number": 3,
+    "number_matches_filename": true,
+    "streets": ["31ST", "32ND", "33RD", "34TH"],
+    "avenues": [],
+    "edge_refs": {"top": [4], "bottom": [2], "left": [0], "right": [0]},
+    "panels": 1,
+    "irregular": true,
+    "note": "Waterfront sheet: Galveston Bay and Piers 31-34 along left, slip bottom-left. Galveston Wharf Co's Ware Ho (planked floor), Galveston Cotton Compress & Ware Ho. Co. West Ware Ho Nos. 5-8, Moody Compress and cotton shed at top; Wharf Co terminal tracks & yard center-right. 31st and 32nd Sts marked 'not opened', 33rd 'planked'; 34th St at bottom right near 'Galveston Wharf Co's Creosote Wks see sheet No 2 detached'. Unframed inset section drawing of West Ware House roof at top-left (scale 25 ft to an inch). Compass top-right; scale bar bottom-left."
+  },
+  {
+    "sheet": "04",
+    "printed_number": 4,
+    "number_matches_filename": true,
+    "streets": ["28TH", "29TH", "30TH", "31ST"],
+    "avenues": ["AV. A OR WATER"],
+    "edge_refs": {"top": [5], "bottom": [3], "left": [0], "right": [17, 0]},
+    "panels": 1,
+    "irregular": true,
+    "note": "Hybrid sheet: left half is Galveston Bay with Piers 28-31, a slip, Galveston Wharf Company's Ware House and Galveston Cotton Compress & Ware Ho. Co. East Ware Ho Nos. 1-4; Galveston Wharf Co's Elevator B (cap. 600,000 bus.) top-right. Right strip has street grid with blocks 748, 749, 750 amid Wharf Co terminal tracks & yards. 28th 'not open', 29th 'shelled', 30th and 31st 'not opened'. Compass top-left; scale bar bottom-left."
+  },
+  {
+    "sheet": "05",
+    "printed_number": 5,
+    "number_matches_filename": true,
+    "streets": ["25TH ST. OR ROSENBERG AV.", "26TH", "27TH", "28TH"],
+    "avenues": ["AV. A OR WATER"],
+    "edge_refs": {"top": [0, 6], "bottom": [4], "left": [0], "right": [15, 17]},
+    "panels": 1,
+    "irregular": true,
+    "note": "Waterfront sheet: Galveston Bay and Piers 25-28 on left with slip; Galveston Wharf Co's Ware Ho buildings and railroad shed (Mallory Steam-Ship Co. lessee); grain conveyor raised 30' above ground; Wharf Company's material yard and repair shop; terminal tracks & yard with blocks 745, 746, 747. Fire limits dash line along 25th St. 26th and 28th 'not opened', 27th 'shelled'. Compass upper-left; scale bar bottom-left."
+  },
+  {
+    "sheet": "06",
+    "printed_number": 6,
+    "number_matches_filename": true,
+    "streets": ["22ND", "23RD OR TREMONT", "24TH", "25TH ST. OR ROSENBERG AV."],
+    "avenues": ["AV. A OR WATER"],
+    "edge_refs": {"top": [0, 7], "bottom": [5], "left": [0], "right": [13, 15]},
+    "panels": 1,
+    "irregular": true,
+    "note": "Waterfront sheet: Galveston Bay dominates left half; Piers 22-25 with slip; Galveston Wharf Company's Ware Houses (Mallory Steam-Ship Co. lessee, steamer shed; note 'these sheds to be changed into one large shed during summer of 1899'), City Shed, west platform, water tanks; terminal tracks & yards with blocks 742, 743, 744; G.H.&S.A. passenger waiting room at 23rd. Fire limits at 25th St. Compass upper-left; scale bar bottom-left."
+  },
+  {
+    "sheet": "07",
+    "printed_number": 7,
+    "number_matches_filename": true,
+    "streets": ["19TH", "20TH", "21ST OR CENTRE", "22ND"],
+    "avenues": ["AV. A OR WATER"],
+    "edge_refs": {"top": [0, 8], "bottom": [0, 6], "left": [0], "right": [11, 18]},
+    "panels": 1,
+    "irregular": true,
+    "note": "Waterfront sheet: Galveston Bay, Piers 19-22, lugger slip top-center and slip bottom-center; large 'Galveston Wharf Co. Lone Star Steam-Ship Warehouse' (lessee) and Galveston Wharf Co Ware Ho (Morgan Steam-Ship Co. lessee, fish packing); Texas Star Flour Mills complex on Av. A (elevator cap. 650,000 bus., flour mill, warehouse A-D) with long descriptive text block at left; grain conveyor 25' above ground; terminal tracks & yards; blocks 739, 740, 741. Fire limits at 19th St. Compass upper-left; scale bar bottom-left."
+  },
+  {
+    "sheet": "08",
+    "printed_number": 8,
+    "number_matches_filename": true,
+    "streets": ["16TH", "17TH", "18TH", "19TH"],
+    "avenues": ["AV. A OR WATER"],
+    "edge_refs": {"top": [9], "bottom": [7], "left": [0], "right": [43, 11]},
+    "panels": 1,
+    "irregular": true,
+    "note": "Hybrid sheet: left half Galveston Bay with Piers 16-19, marine ways top-left, lugger slip bottom; Galveston Wharf Company's Ware Ho and William Parr U.S. Bonded Ware Ho; terminal tracks & yards center. Right strip street grid, blocks 736 (County Jail with fire-proof insane ward), 737 (Galveston Cotton Oil Co's cotton gin square press — 'for supply see sheet No 43 opp.'; Pabst & Busch bottled beer warehouse), 738 (cement ware ho, Wm. Parr & Co lime & cement w.ho, roofing paper saturating, wood & coal yard). Right edge ref 43 is the detached-sheet reference. 16th and 18th brick paved, 17th and 19th not paved; fire limits at 19th."
+  },
+  {
+    "sheet": "09",
+    "printed_number": 9,
+    "number_matches_filename": true,
+    "streets": ["16TH", "15TH"],
+    "avenues": ["AV. A OR WATER"],
+    "edge_refs": {"top": [0], "bottom": [43, 45], "left": [8], "right": [10]},
+    "panels": 2,
+    "panel_regions": [[0, 0, 3400, 4097], [1831, 2992, 3400, 4097]],
+    "irregular": true,
+    "note": "Wharf sheet with ROTATED grid: Galveston Bay across top, Piers 14-16, two slips, marine ways at left; Galveston Wharf Co's Ware Ho and Elevator A ('to be built during summer of 1899'); terminal tracks & yards across middle. Small street-grid portion bottom-left where 15th and 16th Sts run VERTICALLY (listed left-to-right: 16TH then 15TH) and 'AV. A OR WATER' runs HORIZONTALLY along the bottom edge; block 735. Bottom refs: 43 at bottom-left on Av. A, 45 printed just above the detached inset frame. Detached framed inset bottom-right (Pier 13, slip, carpenter shop) carries an interior ref 9. Compass upper-center; scale bar bottom-center."
+  },
+  {
+    "sheet": "10",
+    "printed_number": 10,
+    "number_matches_filename": true,
+    "streets": [],
+    "avenues": [],
+    "edge_refs": {"top": [0], "bottom": [0], "left": [9], "right": [0]},
+    "panels": 2,
+    "panel_regions": [[0, 0, 3400, 4101], [0, 0, 1205, 1100]],
+    "irregular": true,
+    "note": "Wharf-only sheet: Galveston Bay, Piers 10-12 with slips; two long diagonal 'Galveston Wharf Co's Ware Ho' buildings (one with raised ventilator, one with 200' EL. pipe hose stations); Galveston Wharf Company's Terminal Tracks & Yards lower-right. Framed detached inset top-left (Galveston Bay, Pier 11/Pier 10, another Wharf Co warehouse) labeled 10 inside. No street grid, no numbered streets or avenues. Compass upper-center/at inset edge; scale bar bottom-right. Edge ref 0 on water sides."
+  }
+]

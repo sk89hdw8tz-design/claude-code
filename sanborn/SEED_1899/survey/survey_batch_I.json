@@ -1,0 +1,79 @@
+[
+  {
+    "sheet": "81",
+    "printed_number": 81,
+    "number_matches_filename": true,
+    "streets": ["30TH ST.", "31ST ST.", "32ND ST.", "33RD ST."],
+    "avenues": ["AVENUE P 1/2", "AVENUE Q.", "AV. Q 1/2", "AVENUE Q 1/2"],
+    "edge_refs": {"top": [77, 78], "bottom": [84, 85], "left": [80], "right": [82]},
+    "panels": 1,
+    "irregular": false,
+    "note": "Q 1/2 printed twice at different alignments: interior 'AV. Q 1/2' only in top tier between outlot blocks 114 N.W. and 114 S.W. (lots 30xx), and 'AVENUE Q 1/2' (NOT PAVED) along right sheet edge for the tiers below 31st (lots 31xx) - grid jogs in outlot district. AVENUE P 1/2 and AVENUE Q. marked NOT PAVED; 31ST and 33RD ST. NOT PAVED. Numbered blocks 89 S.W., 88 S.E., 88 S.W. plus outlots 113/114. Compass rose top-right."
+  },
+  {
+    "sheet": "82",
+    "printed_number": 82,
+    "number_matches_filename": true,
+    "streets": ["30TH ST.", "31ST ST.", "32ND ST.", "33RD ST."],
+    "avenues": ["AVENUE R.", "AVENUE R 1/2", "AVENUE S.", "AVENUE S 1/2"],
+    "edge_refs": {"top": [78, 0], "bottom": [85, 86], "left": [81], "right": [0]},
+    "panels": 1,
+    "irregular": false,
+    "note": "AVENUE R 1/2 printed only as tiny italic label in the bottom margin below 33RD ST. (corridor between blocks 139 and 138). 30TH ST. and 32ND ST. marked NOT OPENED; 31ST and 33RD NOT PAVED; all three avenues NOT PAVED. Sparse outlot blocks 139, 138, 164, 163. Top-right and right edge refs are 0 (no neighbor). Compass rose top-left."
+  },
+  {
+    "sheet": "83",
+    "printed_number": 83,
+    "number_matches_filename": true,
+    "streets": ["33RD ST.", "34TH ST.", "35TH ST.", "36TH ST."],
+    "avenues": ["AVENUE N.", "AVENUE N 1/2", "AVENUE O.", "AVENUE O 1/2"],
+    "edge_refs": {"top": [79, 80], "bottom": [30, 87], "left": [32], "right": [84]},
+    "panels": 1,
+    "irregular": false,
+    "note": "GALVESTON & WESTERN R.R. runs alongside AVENUE N. at the left edge. AVENUE O. marked WOOD BLOCK PAVED (6 in W. PIPE); 35TH ST. WOOD BLOCK PAVED east of Avenue O; 33RD/34TH NOT PAVED, 36TH ST. NOT OPENED. 34TH ST. labeled twice (west segment NOT PAVED). Bottom margin has a faint erased/ghost numeral between the 30 and 87 edge refs. Blocks 37, 36, 62, 61."
+  },
+  {
+    "sheet": "84",
+    "printed_number": 84,
+    "number_matches_filename": true,
+    "streets": ["33RD ST.", "34TH ST.", "35TH ST.", "36TH ST."],
+    "avenues": ["AVENUE O 1/2", "AVENUE P.", "AVENUE P 1/2", "AVENUE Q."],
+    "edge_refs": {"top": [80, 81], "bottom": [87, 88], "left": [83], "right": [85]},
+    "panels": 1,
+    "irregular": false,
+    "note": "Full 3x3 block grid (blocks 62, 87, 61, 86). 35TH ST. WOOD BLOCK PAVED in west portion, NOT PAVED to the east; 33RD/34TH/36TH NOT PAVED; 36TH ST. label appears only in bottom-right quadrant. AVENUE Q. carries a 6 in W. PIPE note. Compass rose top area; green-shaded building in block 87 S.E."
+  },
+  {
+    "sheet": "85",
+    "printed_number": 85,
+    "number_matches_filename": true,
+    "streets": ["33RD ST.", "34TH ST.", "35TH ST.", "36TH ST."],
+    "avenues": ["AVENUE Q.", "AV. Q 1/2", "AVENUE R.", "AVENUE R 1/2"],
+    "edge_refs": {"top": [81, 82], "bottom": [88, 89], "left": [84], "right": [86]},
+    "panels": 1,
+    "irregular": false,
+    "note": "34TH ST. open (NOT PAVED) only in the eastern portion near Avenue R; through blocks 112 its line is dashed and marked NOT OPENED. Interior 'AV. Q 1/2' corridor exists only in the bottom tier between blocks 111 N.E. and 111 S.E. 35TH ST. marked SHELLED; 33RD/36TH NOT PAVED; avenues NOT PAVED. Blocks 112, 111, 137, 136. Compass rose top-left."
+  },
+  {
+    "sheet": "86",
+    "printed_number": 86,
+    "number_matches_filename": true,
+    "streets": ["33RD ST.", "34TH ST.", "35TH ST.", "36TH ST."],
+    "avenues": ["AVENUE R 1/2", "AVENUE S.", "AVENUE S 1/2", "AVENUE T."],
+    "edge_refs": {"top": [82, 0], "bottom": [89, 90], "left": [85], "right": [0]},
+    "panels": 1,
+    "irregular": false,
+    "note": "GULF OF MEXICO shoreline (blue water band) cuts across the top-right corner; block 162 S.E. boundary and Avenue T alignment shown dashed toward the water. S 1/2 corridor labeled 'AVENUE S 1/2' (tiny italics, top margin) and 'AV. S 1/2' (NOT PAVED) in the lower tier between blocks 161 N.E. and 161 S.E. 34TH ST. NOT OPENED; 35TH ST. SHELLED; 33RD/36TH NOT PAVED. Top-right and right edge refs are 0 (open water/no neighbor). Blocks 137, 162, 136, 161."
+  },
+  {
+    "sheet": "87",
+    "printed_number": 87,
+    "number_matches_filename": true,
+    "streets": ["37TH ST.", "38TH ST.", "39TH ST."],
+    "avenues": ["AVENUE N 1/2", "AVENUE O.", "AVENUE O 1/2", "AVENUE P."],
+    "edge_refs": {"top": [83, 84], "bottom": [92, 93], "left": [30], "right": [88]},
+    "panels": 1,
+    "irregular": false,
+    "note": "Only 3 numbered streets on-sheet: top tier shows the lower halves of blocks 36 S.W., 61 N.W., 61 S.W. with 36th St. off-sheet above. Avenue names are printed only south of 37TH ST.; their continuations above 37th are annotated 6 in W. PIPE (Avenue O) and WOOD BLOCK PAVED (Avenue P at right edge). 38TH ST. labeled twice; all streets and avenues NOT PAVED. Blocks 35 and 60 in lower tiers. Compass rose top-left."
+  }
+]

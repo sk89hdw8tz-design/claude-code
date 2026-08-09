@@ -1,0 +1,114 @@
+[
+  {
+    "sheet": "61",
+    "printed_number": 61,
+    "number_matches_filename": true,
+    "streets": ["15TH", "16TH", "17TH", "18TH"],
+    "avenues": ["AVENUE M", "AVENUE M½", "AVENUE N", "AVENUE N½"],
+    "edge_refs": {"top": ["59", "60"], "bottom": ["63"], "left": ["58"], "right": ["62"]},
+    "panels": 1,
+    "irregular": false,
+    "note": "Printed sheet number is in the TOP-LEFT corner (not top-right). Compass rose top-center with N pointing left (grid rotated ~90 deg from true). Galveston & Western R.R. (marked 'not used') runs vertically alongside the Avenue N corridor. Scale of Feet bar at bottom-left. Small red circled paste-revision dot near bottom-center by the '63' edge ref. Interior blocks carry old-atlas cross-refs like 21 N.E./21 S.E./46 N.E./20 N.E./45 N.E."
+  },
+  {
+    "sheet": "62",
+    "printed_number": 62,
+    "number_matches_filename": true,
+    "streets": ["15TH", "16TH", "17TH", "18TH"],
+    "avenues": ["AVENUE N½", "AVENUE O", "AVENUE O½", "AVENUE P"],
+    "edge_refs": {"top": ["60", "0"], "bottom": ["64"], "left": ["61"], "right": ["0", "65"]},
+    "panels": 1,
+    "irregular": false,
+    "note": "Gulf of Mexico shoreline (blue band labeled 'Gulf of Mexico') cuts diagonally across the NE corner; blocks east of ~Avenue O½ largely vacant. The top-right and right-edge adjacent-sheet numerals are printed as a bare '0' (verified at 100% with contrast enhancement — no faded digit before it); '0' appears to be the convention for open-water/no-adjacent-sheet edges in this series. Compass N points left. Scale bar bottom-left. Interior block cross-refs 71 N.E./S.E./S.W./N.W., 70 N.E./S.E., 46, 45."
+  },
+  {
+    "sheet": "63",
+    "printed_number": 63,
+    "number_matches_filename": true,
+    "streets": ["18TH", "19TH", "20TH", "21ST OR CENTRE"],
+    "avenues": ["AVENUE M", "AVENUE M½", "AVENUE N", "AVENUE N½"],
+    "edge_refs": {"top": ["61"], "bottom": ["67"], "left": ["42"], "right": ["64"]},
+    "panels": 1,
+    "irregular": false,
+    "note": "Printed sheet number top-left. Galveston & Western R.R. ('not paved / not used') runs vertically along the Avenue N corridor. Red circled paste-revision marker on 18th St near house 1429. Scale bar bottom-left. Interior block cross-refs 20 N.W./S.W., 19 N.E./S.E./N.W./S.W., 45 N.W., 44 N.E./N.W."
+  },
+  {
+    "sheet": "64",
+    "printed_number": 64,
+    "number_matches_filename": true,
+    "streets": ["18TH", "19TH", "20TH", "21ST OR CENTRE"],
+    "avenues": ["AVENUE N½", "AVENUE O", "AVENUE O½", "AVENUE P"],
+    "edge_refs": {"top": ["62"], "bottom": ["68"], "left": ["63"], "right": ["65"]},
+    "panels": 1,
+    "irregular": false,
+    "note": "Compass rose top-left, N pointing left. 'Alhambra Boarding Ho.' labeled in block 44 S.W. Eastern (Avenue P) blocks sparsely built. Scale bar bottom-left with a red circled paste marker beside it. Interior block cross-refs 45 S.W., 70 N.W./S.W., 44 S.E./S.W., 69 N.E./S.E./N.W./S.W."
+  },
+  {
+    "sheet": "65",
+    "printed_number": 65,
+    "number_matches_filename": true,
+    "streets": ["18TH", "19TH", "20TH", "21ST OR CENTRE"],
+    "avenues": ["AVENUE P", "AVENUE P½", "AVENUE Q", "AV. Q½"],
+    "edge_refs": {"top": ["65", "0"], "bottom": ["69"], "left": ["64"], "right": ["0", "0"]},
+    "panels": 2,
+    "panel_regions": [[40, 60, 3400, 4106], [2113, 68, 3340, 1457]],
+    "irregular": false,
+    "note": "Heavy-framed inset panel in the top-right covers the area one block NORTH of the main map (17TH ST at its top, 18TH ST at its bottom; avenues AV. P and AV. P½), with its own edge refs: '62' left, '65' below, '0' top/right — hence the self-referential '65' in the main map's top margin. Gulf of Mexico shoreline runs diagonally through both panels; blocks east of the water (95 S.W., 119 N.E., 119 N.W.) are vacant. 'Yacht' club building and hatched 'Platform' built on posts at 21st/Centre near the water. Bare '0' edge numerals on gulf-facing edges. Scale bar bottom-right."
+  },
+  {
+    "sheet": "66",
+    "printed_number": 66,
+    "number_matches_filename": true,
+    "streets": ["9TH", "10TH", "11TH", "12TH"],
+    "avenues": ["AVENUE L", "AVENUE M", "AVENUE M½", "AVENUE N"],
+    "edge_refs": {"top": ["52", "0"], "bottom": ["59"], "left": ["54"], "right": ["0", "60"]},
+    "panels": 1,
+    "irregular": false,
+    "note": "Gulf of Mexico shoreline enters the NE corner diagonally; the Galveston & Western R.R. (marked 'not used') curves across the sheet from 9th St down the right side with a 'Trestle' label where it crosses the water. Bare '0' edge numerals on the gulf-facing top-right and right edges. Red circled paste marker at left edge near Avenue L. Scale bar bottom-center. Interior block cross-refs 24 N.E./S.E./N.W./S.W., 23 N.E./S.E."
+  },
+  {
+    "sheet": "67",
+    "printed_number": 67,
+    "number_matches_filename": true,
+    "streets": ["21ST OR CENTRE", "22ND", "23RD OR TREMONT", "24TH"],
+    "avenues": ["AVENUE M", "AV. M½", "AVENUE N", "AV. N½"],
+    "edge_refs": {"top": ["63"], "bottom": ["71", "72"], "left": ["40"], "right": ["68"]},
+    "panels": 1,
+    "irregular": false,
+    "note": "Printed sheet number top-left. Large pink (brick) 'Galveston Orphans Home' fills much of block 18 N.E. at 21st/Avenue M½. G. & W. R.R. ('not used') runs along the Avenue N corridor. 23rd/Tremont marked 'wood block paved'; 'Shell Road' noted along the right (Av. N½) edge. Ice Cream Parlor with hatched platform in block 18 S.W.; J.D. Pruessner greenhouses in block 42 N.E. Scale bar bottom-right. The mark at the extreme top-right is a dashed-box corner bracket, not a numeral (verified at 100%)."
+  },
+  {
+    "sheet": "68",
+    "printed_number": 68,
+    "number_matches_filename": true,
+    "streets": ["21ST OR CENTRE", "22ND", "23RD OR TREMONT", "24TH"],
+    "avenues": ["AV. N½", "AVENUE O", "AVENUE O½", "AVENUE P"],
+    "edge_refs": {"top": ["64"], "bottom": ["72", "73"], "left": ["67"], "right": ["69"]},
+    "panels": 1,
+    "irregular": false,
+    "note": "Avenue O marked 'wood block paved'; 23rd/Tremont 'wood block paved'; left edge (Av. N½) marked 'shelled'. 'Wood Yard' in block 43 S.W.; 'Private School' on 22nd near Avenue O½; one pink (brick) building in block 68 S.W. Red circled paste markers near top-left and right-middle edges. Scale bar bottom-right. Interior block cross-refs 43 S.E./S.W., 68 N.E./S.E./N.W./S.W., 67 N.E./S.E., 42 S.E."
+  },
+  {
+    "sheet": "69",
+    "printed_number": 69,
+    "number_matches_filename": true,
+    "streets": ["21ST OR CENTRE", "22ND", "23RD OR TREMONT", "24TH"],
+    "avenues": ["AVENUE P", "AVENUE P½", "AVENUE Q", "AV. Q½"],
+    "edge_refs": {"top": ["65"], "bottom": ["73", "74"], "left": ["68"], "right": ["70"]},
+    "panels": 1,
+    "irregular": false,
+    "note": "Gulf of Mexico shoreline crosses the NE corner. 'BASE BALL PARK' with two 'Grand Stand' structures occupies the large block east of Avenue Q between 22nd and 23rd (block 118 N.W.); blocks 118 N.E. and 117 N.E. vacant. Streets east of Avenue Q marked 'not open'; 23rd/Tremont 'wood block paved'. Two small pink dwellings labeled 'veneered' in block 92 N.E. Red circled paste marker at left edge. Scale bar bottom-left."
+  },
+  {
+    "sheet": "70",
+    "printed_number": 70,
+    "number_matches_filename": true,
+    "streets": ["23RD OR TREMONT", "24TH"],
+    "avenues": ["AV. Q½", "AV. R"],
+    "edge_refs": {"top": ["0"], "bottom": ["74", "0"], "left": ["69"], "right": ["0"]},
+    "panels": 3,
+    "panel_regions": [[0, 0, 3400, 4116], [1530, 61, 3340, 1008], [2016, 1020, 3340, 2344]],
+    "irregular": true,
+    "note": "Beach/Gulf sheet, mostly non-grid. Main map: shoreline runs diagonally NW-SE; only two partial blocks (118 S.W., 117 S.E.) plus vacant 142 N.E.; long pile-built piers into the Gulf carry 'Gulf Bath House - J.M. O'Keefe' (built on posts 12' high), 'The Pagoda Co's Bath Ho.' (twin octagon pavilions, approach on posts), and 'G. Murdoch's Bath House' (built on posts 16' high, bottom-right). Two heavy-framed sub-panels: (1) top: 'St. Mary's R.C. Orphans' Home' (chapel & school, laundry, workshop; noted 'Located 2 miles W. of Murdoch's Bath Ho. on Gulf of Mexico'); (2) right: seaward continuation of the Pagoda Co's Bath House with its own north arrow. Internal '70'/'74' continuation numerals where panel frames cut the piers; bare '0' refs on all open-water edges. Two extra straight-line north arrows besides the main compass rose. Scale bar bottom-center."
+  }
+]

@@ -1,0 +1,47 @@
+{
+  "edition": "1899",
+  "source": {
+    "index": "https://maps.lib.utexas.edu/maps/sanborn/g.html",
+    "image_pattern": "https://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-{NN}.jpg",
+    "editions_held": ["1877", "1885", "1889", "1899", "1912", "1918", "1923"],
+    "key_sheets": ["1i", "1k", "1kb", "1c"],
+    "supplements": ["11s", "12s", "13s", "14s"],
+    "supplement_note": "s-variants are contemporaneous July-1899 SKELETON house-numbering sheets, not revisions. Use the coloured base sheets.",
+    "sheet_count": 94,
+    "credit": "Sanborn Fire Insurance Maps, Dolph Briscoe Center for American History, University of Texas at Austin"
+  },
+  "scan": {
+    "native_width": 3400,
+    "native_height_range": [4092, 4116],
+    "caption_band_px": 150,
+    "caption_note": "black-on-white credit line BELOW the paper; bound every extent by detected paper, not by image size"
+  },
+  "grid": {
+    "avenue_pitch_px": 1006,
+    "avenue_pitch_iqr": [1003, 1012],
+    "street_pitch_px": 1169,
+    "street_pitch_iqr": [1166, 1171],
+    "measured_by": "autocorrelation of whiteness profiles over 62 sheets",
+    "street_corridor_width_px": 245,
+    "corridor_width_measured_on": "sheet 13, frontage lines 1312 and 1557, centre 1434.5 vs detected 1438",
+    "street_origin": 6,
+    "avenue_slots": "A=0 .. M=12, then the outlot district names every corridor: M1/2=13, N=14 .. T1/2=27",
+    "slot_rule": "index by PHYSICAL corridor slot, never by letter — naming changes district"
+  },
+  "overlap": {
+    "wharf_pairs_px": 230,
+    "inland_pairs_px": [50, 70],
+    "note": "MEASURE per pair; it differs between wharf and inland sheets of the same edition"
+  },
+  "target_extent": {
+    "avenues": ["A (Water)", "I (Sealy)"],
+    "streets": [19, 25],
+    "piers": [19, 25],
+    "sheets": ["06", "07", "08", "11", "12", "41", "13", "14", "39", "15", "16", "37"],
+    "provenance": "the ground indexed as sheets 1,2,7,8,9,10,27,29 on the 1889 key"
+  },
+  "colour": {
+    "policy": "no per-sheet white balance; washes exactly as scanned",
+    "highlight_gain": "disabled — unity gain cannot push a highlight anywhere it was not already"
+  }
+}
