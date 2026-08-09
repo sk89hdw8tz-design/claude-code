@@ -42,6 +42,29 @@ def sheet_path(year, filenum):
     return candidates[0]
 
 
+def _align_windows(lines, idents, pitch, tol=0.02):
+    """All contiguous detected-line/identity alignments within scale tol,
+    as (pairs, scale_dev, mean_resid). Used by the global-consistency pass
+    when a sheet shows more bright corridors than it has identities."""
+    lines = sorted(lines)
+    m = min(len(lines), len(idents))
+    out = []
+    if m < 2:
+        return out
+    for dl in range(len(lines) - m + 1):
+        for de in range(len(idents) - m + 1):
+            src = np.array(lines[dl:dl + m])
+            dst = np.array(idents[de:de + m], dtype=float) * pitch
+            A = np.vstack([src, np.ones_like(src)]).T
+            (s, t), *_ = np.linalg.lstsq(A, dst, rcond=None)
+            dev = abs(s - 1.0)
+            if dev > tol:
+                continue
+            resid = float(np.abs(dst - (s * src + t)).mean())
+            out.append((list(zip(src.tolist(), idents[de:de + m])), dev, resid))
+    return out
+
+
 def _align_axis(lines, idents, pitch, center, tol=0.02):
     """Match sorted detected lines to identity slots. Equal counts zip
     directly. Otherwise slide the shorter list along the longer (comb slots
@@ -111,7 +134,13 @@ def assign_identities(detected, year, key):
     ] + [
         {"axis": "y", "native": y, "identity": s} for y, s in hp
     ]
-    return controls, None
+    # axes where a window had to be chosen — reconcile_windows arbitrates
+    ambiguous = set()
+    if len(v) > len(avs) > 1:
+        ambiguous.add("x")
+    if len(h) > len(sts) > 1:
+        ambiguous.add("y")
+    return controls, None, ambiguous
 
 
 def fit_sheet(controls, year):
@@ -177,35 +206,110 @@ def register_edition(year):
             log(f"unit {key}: source missing")
             continue
         dreg = unit.get("detect_region") or unit["region"]
-        det = reg.detect_sheet_grid(path, region=dreg)
+        want_v, want_h = cov.expected_detect_lines(year, key)
+        det = reg.detect_sheet_grid(path, region=dreg,
+                                    want_v=len(want_v), want_h=len(want_h))
         det["panel_region"] = dreg
-        if unit.get("v_anchors"):
-            # manual corridor anchors (CoM-measured): comb output replaced
-            det["v_lines_native"] = [
-                x for _, x in sorted((int(s), x) for s, x in unit["v_anchors"].items())
-            ]
+        # manual corridor anchors (CoM-measured, label-verified): where the
+        # comb locks onto non-corridor brightness, its output is replaced
+        for akey, dkey in (("v_anchors", "v_lines_native"),
+                           ("h_anchors", "h_lines_native")):
+            if unit.get(akey):
+                det[dkey] = [x for _, x in
+                             sorted((int(s), x) for s, x in unit[akey].items())]
         bad, devs = spacing_gate(det, year)
         if bad:
             results[key] = {"status": "off-scale", "spacing_dev": devs,
                             "note": "median interior spacing deviates >6% — excluded, disclosed"}
             log(f"unit {key}: OFF-SCALE {devs} — excluded")
             continue
-        controls, err = assign_identities(det, year, key)
+        controls, err, ambiguous = assign_identities(det, year, key)
         if err:
             results[key] = {"status": "needs-review", "detail": err, "detected": det}
             log(f"unit {key}: NEEDS REVIEW — {err}")
             continue
         fit = fit_sheet(controls, year)
         status = "ok" if all(fit[f"flag_{a}"] in ("OK", "WARN") for a in "xy") else "scale-fail"
-        results[key] = {"status": status, "fit": fit, "detected": det, "controls": controls}
+        results[key] = {"status": status, "fit": fit, "detected": det,
+                        "controls": controls,
+                        "window_ambiguous": sorted(ambiguous)}
         log(f"unit {key}: sx={fit['sx']:.4f} {fit['mode_x']} ({fit['flag_x']}) "
             f"resid={fit['resid_x']} | sy={fit['sy']:.4f} {fit['mode_y']} "
             f"({fit['flag_y']}) resid={fit['resid_y']}")
+    reconcile_windows(results, year)
     outdir = os.path.join(config.BUILD_DIR, year)
     os.makedirs(outdir, exist_ok=True)
     with open(os.path.join(outdir, "registration.json"), "w") as f:
         json.dump(results, f, indent=1, default=list)
     return results
+
+
+def reconcile_windows(results, year):
+    """Global-consistency pass over units where the detected-line count
+    exceeded the identity count, so alignment had to choose a WINDOW.
+
+    Local cues cannot make that choice: every window fits at scale 1.000
+    (the spacings are identical), so the pick rests on a weak centroid tie-
+    break — which put sheet 75 one corridor too far east and sheet 76 one
+    too far west (label fleet, group 5). Globally it is easy: units whose
+    counts matched had no choice to make, and their fits agree on where
+    each slot sits in global coordinates. Re-pick each ambiguous window as
+    the one landing closest to that consensus.
+    """
+    ed = config.EDITIONS[year]
+    ok = {k: r for k, r in results.items() if r.get("status") == "ok"}
+    cons = {"x": {}, "y": {}}
+    for key, r in ok.items():
+        if r.get("window_ambiguous"):
+            continue
+        for axis in "xy":
+            s, t = r["fit"][f"s{axis}"], r["fit"][f"t{axis}"]
+            for c in r["controls"]:
+                if c["axis"] == axis:
+                    cons[axis].setdefault(c["identity"], []).append(
+                        s * c["native"] + t)
+    med = {a: {i: float(np.median(v)) for i, v in cons[a].items()} for a in "xy"}
+
+    for key, r in ok.items():
+        if not r.get("window_ambiguous"):
+            continue
+        avs, sts = cov.expected_detect_lines(year, key)
+        det, changed = r["detected"], False
+        for axis, idents, dkey, pitch, origin in (
+                ("x", avs, "v_lines_native", ed["pitch_av"], 0),
+                ("y", sts, "h_lines_native", ed["pitch_st"],
+                 config.STREET_ORIGIN)):
+            if axis not in r["window_ambiguous"]:
+                continue
+            best = None
+            for pairs, dev, resid in _align_windows(det[dkey], idents, pitch):
+                src = np.array([p for p, _ in pairs])
+                dst = np.array([(i - origin) * pitch for _, i in pairs])
+                A = np.vstack([src, np.ones_like(src)]).T
+                (s, t), *_ = np.linalg.lstsq(A, dst, rcond=None)
+                errs = [abs(s * p + t - med[axis][i])
+                        for p, i in pairs if i in med[axis]]
+                if not errs:
+                    continue
+                score = float(np.mean(errs))
+                if best is None or score < best[0]:
+                    best = (score, pairs)
+            if best is None:
+                log(f"unit {key}: axis {axis} window ambiguous and no "
+                    "consensus slot to arbitrate — keeping local pick")
+                continue
+            score, pairs = best
+            cur = sorted(c["native"] for c in r["controls"] if c["axis"] == axis)
+            new = sorted(p for p, _ in pairs)
+            if cur != new:
+                changed = True
+                log(f"unit {key}: axis {axis} window re-picked against the "
+                    f"global grid (mean |err| {score:.0f} px): "
+                    f"{[round(v) for v in cur]} -> {[round(v) for v in new]}")
+            r["controls"] = [c for c in r["controls"] if c["axis"] != axis] + [
+                {"axis": axis, "native": p, "identity": i} for p, i in pairs]
+        if changed:
+            r["fit"] = fit_sheet(r["controls"], year)
 
 
 def global_frame(fit, frame_native):
@@ -469,6 +573,7 @@ def composite_edition(year, registration):
 
     keys = list(geo)
     ki = {k: i for i, k in enumerate(keys)}
+    tcorr = {}
     for comp_axis in (0, 1):   # 0 = x corrections, 1 = y corrections
         rows, rhs, wts = [], [], []
         for owner, nbr, dxg, dyg, wgt in seam_meas:
@@ -493,10 +598,19 @@ def composite_edition(year, registration):
         for k in keys:
             key_t = "tx" if comp_axis == 0 else "ty"
             geo[k]["fit"][key_t] += float(corr[ki[k]])
+            tcorr.setdefault(k, [0.0, 0.0])[comp_axis] += float(corr[ki[k]])
         log(("x" if comp_axis == 0 else "y") + " translation corrections: " +
             str({k: round(float(corr[ki[k]])) for k in keys}))
-    # frames move with the corrected fits
+    # frames move with the corrected fits. frame_gp keeps the PIECEWISE
+    # mapping of the same frame (shifted by the same correction): the clip
+    # loop maps sides through pw_inv, so a seam clamp built on the affine
+    # estimate can miss the printed edge by ~30 px — enough to re-open the
+    # margin the clamp exists to exclude.
     for k in keys:
+        fgp = geo[k]["frame_g"]
+        dx, dy = tcorr.get(k, (0.0, 0.0))
+        geo[k]["frame_gp"] = (fgp[0] + dx, fgp[1] + dy,
+                              fgp[2] + dx, fgp[3] + dy)
         geo[k]["frame_g"] = global_frame(geo[k]["fit"], frames_native[k])
 
     with open(os.path.join(config.BUILD_DIR, year, "registration.json"), "w") as f:
@@ -688,6 +802,30 @@ def composite_edition(year, registration):
     # region/native print_end cap cannot see this — it caps at the SCAN
     # extent, junk included. Same border-connectivity criterion as the
     # exterior margin trim: junk touches the scan edge, print never does.
+    def legal_cut(axis, owner, nbr, cut, center):
+        """Clamp a seam cut into the window where BOTH sheets have printed
+        map: after the neighbour's frame starts, before the owner's frame
+        ends. Outside it the composite renders sheet margin — unfilled
+        canvas if the cut precedes the neighbour's paper, blank cream and
+        torn scan edge if it runs past the owner's print.
+
+        1899 sheets abut with only ~50-70 px of shared corridor (measured:
+        sheet 13 prints to Ave D +43, sheet 14 starts at -16), far less
+        overlap than 1885's, so an unclamped label-aware cut lands outside
+        the window routinely — the beta tile showed both failure modes at
+        the one junction.
+        """
+        i0, i1 = (0, 2) if axis == "v" else (1, 3)
+        lo = geo[nbr]["frame_gp"][i0] + feather
+        hi = geo[owner]["frame_gp"][i1] - 4
+        if lo > hi:
+            mid = 0.5 * (lo + hi)
+            log(f"seam {axis} {owner}|{nbr}: printed frames do not overlap "
+                f"({lo - center:+.0f}..{hi - center:+.0f} rel line) — "
+                f"cutting at the midpoint {mid - center:+.0f}, disclosed")
+            return mid
+        return float(min(max(cut, lo), hi))
+
     prop = {}
     nbr_frame_caps = set()
     for axis, idx, owner, nbr in cov.neighbors(year):
@@ -745,6 +883,7 @@ def composite_edition(year, registration):
             print_end = comp.pw_fwd([min(reg_own[2], nw - ins)],
                                     g_own["xkn"], g_own["xkg"])[0]
             owner_end = min(max(cut, center - 240), print_end - 4)
+            owner_end = legal_cut("v", owner, nbr, owner_end, center)
             log(f"seam v{idx} {owner}|{nbr}: cut at {owner_end - center:+.0f}")
             prop.setdefault((owner, "right"), []).append(owner_end)
             prop.setdefault((nbr, "left"), []).append(owner_end - feather)
@@ -768,6 +907,7 @@ def composite_edition(year, registration):
             print_end = comp.pw_fwd([min(reg_own[3], nh - ins)],
                                     g_own["ykn"], g_own["ykg"])[0]
             owner_end = min(max(cut, center - 240), print_end - 4)
+            owner_end = legal_cut("h", owner, nbr, owner_end, center)
             log(f"seam h{idx} {owner}|{nbr}: cut at {owner_end - center:+.0f}")
             prop.setdefault((owner, "bottom"), []).append(owner_end)
             prop.setdefault((nbr, "top"), []).append(owner_end - feather)

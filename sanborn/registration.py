@@ -59,14 +59,34 @@ def profile_signals(img01, inset_frac=0.075):
     return row_sig, col_sig, iy, ix
 
 
-def comb_phase_fit(signal, period, offset):
+def comb_phase_fit(signal, period, offset, want_count=None):
     """Fixed-period comb: grid-search phase only. Returns line positions in
     full-image coordinates (signal starts at `offset`).
 
     Fitting period and phase together is unstable (bright margins produce
     nonsense pitches like 1056 vs 920 across sheets) — never do it.
+
+    want_count breaks near-ties, but ONLY when the best-scoring phase fits
+    FEWER teeth on the sheet than there are identities to place: in the
+    outlot district the quarter-lot lines splitting each outlot mid-block
+    are as bright as the avenue corridors, so a half-pitch phase can win by
+    a hair while dropping a corridor off the sheet edge (sheets 52 and 93:
+    3 teeth at phase 675 vs the correct 4 at phase 170, confirmed against
+    neighbours 51/92 and by label reading). Over-count is NOT a defect —
+    bay-side rail corridors and unlabelled alleys are real bright lines
+    with no identity (units 45/47/87) — and forcing the count down there
+    moved verified-correct lines by ~550 px.
     """
     n = len(signal)
+    width = n + 2 * offset
+
+    def teeth(phase):
+        k0 = int(np.floor((0 - phase - offset) / period))
+        k1 = int(np.ceil((width - phase - offset) / period))
+        return sum(1 for k in range(k0, k1 + 1)
+                   if 0 <= phase + k * period + offset < width)
+
+    cands = []
     best_phase, best_score = 0.0, -np.inf
     for phase in np.arange(0, period, period / 400):
         centers = np.arange(phase, n, period)
@@ -77,6 +97,12 @@ def comb_phase_fit(signal, period, offset):
         score = signal[idx].sum() / len(idx)
         if score > best_score:
             best_score, best_phase = score, phase
+        cands.append((score, phase))
+    if want_count is not None and cands and teeth(best_phase) < want_count:
+        ok = [c for c in cands
+              if teeth(c[1]) == want_count and c[0] >= 0.97 * best_score]
+        if ok:
+            best_score, best_phase = max(ok)
     # Extend ±3 periods so edge lines aren't clipped, keep those inside image.
     k0 = -3
     k1 = int((n - best_phase) / period) + 3
@@ -113,7 +139,7 @@ def measure_free_pitch(signal, expected_period):
     return best[0]
 
 
-def detect_sheet_grid(path, region=None):
+def detect_sheet_grid(path, region=None, want_v=None, want_h=None):
     """Detect street-grid lines on one sheet (optionally within a panel
     region=(x0,y0,x1,y1) in native coords). Returns dict with native-scale
     line positions and the measured free pitch for the off-scale gate."""
@@ -130,8 +156,8 @@ def detect_sheet_grid(path, region=None):
     # Orientation follows the global grid model (X = avenues, Y = streets).
     # [VERIFY] against the first real sheet — if a sheet is scanned rotated,
     # swap the pitches here per coverage.json before fitting.
-    v_lines, _ = comb_phase_fit(col_sig, config.PITCH_AV_DETECT, ix)
-    h_lines, _ = comb_phase_fit(row_sig, config.PITCH_ST_DETECT, iy)
+    v_lines, _ = comb_phase_fit(col_sig, config.PITCH_AV_DETECT, ix, want_v)
+    h_lines, _ = comb_phase_fit(row_sig, config.PITCH_ST_DETECT, iy, want_h)
     v_lines = [refine_com(col_sig, x, ix) for x in v_lines]
     h_lines = [refine_com(row_sig, y, iy) for y in h_lines]
 

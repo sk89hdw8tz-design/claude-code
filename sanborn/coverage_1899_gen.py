@@ -137,6 +137,12 @@ def main(survey_dir, out_path):
             units["70"] = {"file": 70, "av_slots": [21, 22], "st": [23, 24],
                            "region": None,
                            "detect_region": [0, 2100, 1600, 4110],
+                           # bright Gulf water inside the detect region pulls
+                           # the comb ~300 px east / ~190 px south of the
+                           # printed corridors; CoM-measured, label-verified
+                           # (spacings 1005 / 1162 match the edition pitches)
+                           "v_anchors": {"21": 155, "22": 1160},
+                           "h_anchors": {"23": 2599, "24": 3761},
                            # clip excludes the DETACHED St. Mary's orphans-
                            # home inset (top band, frame ends ~y1010); the
                            # sacrificed sliver left of it is open Gulf water
