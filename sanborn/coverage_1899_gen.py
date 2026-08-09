@@ -188,6 +188,12 @@ def main(survey_dir, out_path):
         units[sid] = {"file": int(sid), "av_slots": slots,
                       "st": [sts[0], sts[-1]], "region": None,
                       "note": (r.get("note") or "")[:60]}
+        # Avenue A is cut by the west paper edge on the sheets that front it,
+        # so the comb locks onto the block frontage rather than the corridor
+        # centre. Measured frontage minus 122 (half of the 245 px corridor).
+        av_a_fix = {"11": 107, "13": 142, "15": 143}.get(sid)
+        if av_a_fix is not None and 0 in slots:
+            units[sid]["line_overrides"] = {"x": {"0": av_a_fix}}
         if r.get("irregular"):
             units[sid]["note"] = "IRREGULAR: " + units[sid]["note"]
 

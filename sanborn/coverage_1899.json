@@ -136,7 +136,12 @@
     21
    ],
    "region": null,
-   "note": "Sheet number printed top-LEFT (not top-right). Railroad trac"
+   "note": "Sheet number printed top-LEFT (not top-right). Railroad trac",
+   "line_overrides": {
+    "x": {
+     "0": 107
+    }
+   }
   },
   "12": {
    "file": 12,
@@ -166,7 +171,12 @@
     24
    ],
    "region": null,
-   "note": "Sheet number top-left. Dense downtown wholesale district, ne"
+   "note": "Sheet number top-left. Dense downtown wholesale district, ne",
+   "line_overrides": {
+    "x": {
+     "0": 142
+    }
+   }
   },
   "14": {
    "file": 14,
@@ -196,7 +206,12 @@
     27
    ],
    "region": null,
-   "note": "Sheet number top-left. Union Passenger Depot with the gray G"
+   "note": "Sheet number top-left. Union Passenger Depot with the gray G",
+   "line_overrides": {
+    "x": {
+     "0": 143
+    }
+   }
   },
   "16": {
    "file": 16,

@@ -228,6 +228,21 @@ def register_edition(year):
             results[key] = {"status": "needs-review", "detail": err, "detected": det}
             log(f"unit {key}: NEEDS REVIEW — {err}")
             continue
+        # Per-line overrides: a sheet whose OUTERMOST corridor is cut by its
+        # own paper edge shows only part of that corridor, and the comb
+        # settles on the block frontage line bounding it instead of the
+        # corridor centre. On the downtown sheets along Avenue A that put
+        # the avenue centreline on the block frontage, so the buildings
+        # started at the centreline and the east half of Water Street
+        # vanished under them. Values are frontage minus the half-corridor
+        # (122 px of the 245 px corridor measured on sheet 13).
+        for axis, fixes in (unit.get("line_overrides") or {}).items():
+            for ident, native in fixes.items():
+                for c in controls:
+                    if c["axis"] == axis and c["identity"] == int(ident):
+                        log(f"unit {key}: {axis}-line {ident} override "
+                            f"{c['native']:.0f} -> {native}")
+                        c["native"] = float(native)
         fit = fit_sheet(controls, year)
         status = "ok" if all(fit[f"flag_{a}"] in ("OK", "WARN") for a in "xy") else "scale-fail"
         results[key] = {"status": status, "fit": fit, "detected": det,
