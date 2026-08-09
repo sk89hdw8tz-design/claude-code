@@ -3,9 +3,15 @@
 Reads build/1899/survey_batch_*.json (agent-surveyed street/avenue labels
 per sheet) and emits sanborn/coverage_1899.json for coverage_prior to load.
 
-Axis model: streets by ordinal (6..46); avenues by half-step index
-(A=0, A half=1, B=2, ..., S=36) so half-avenues land between full ones and
-the physical spacing per index step is uniform (~half a block).
+Axis model (verified by autocorrelation over 62 sheets + the 1kb index map):
+the physical avenue grid is UNIFORM at ~1006 px full pitch citywide. Naming
+changes district: north of Avenue M corridors are lettered A..M (half-letter
+alleys are narrow mid-block splits, never comb-detected); south of M — the
+outlot district, whose quarter-opening streets the index map documents —
+EVERY consecutive corridor gets a name (M 1/2, N, N 1/2 ...). So the global
+axis is SLOTS: slot = av_index/2 for av_index <= 24 (A=0 .. M=12),
+slot = av_index - 12 for av_index >= 24 (M 1/2=13, N=14 ... S=24).
+Streets by ordinal (6..49) at 1169 px pitch.
 """
 import glob
 import json
@@ -19,6 +25,18 @@ EXCLUDED = {
     "03": "waterfront warehouses; streets marked not opened, no avenue line",
     "09": "rotated wharf grid with detached pier inset",
     "10": "wharf piers only, no street grid",
+    "94": "detached Texas City inset (7 miles NW of Galveston) — "
+          "not part of the Galveston grid",
+}
+
+# Survey-label corrections, each verified by targeted crop inspection.
+# {sheet: {wrong_av_index: right_av_index}}
+LABEL_FIXES = {
+    # Sheet 32's east-edge corridor is printed AVENUE N 1/2, but it sits one
+    # uniform pitch past M 1/2 and its edge numeral adjoins sheet 83, whose
+    # west corridor is AVENUE N — same physical corridor, inconsistent
+    # Sanborn naming. Registered as N (slot 14); disclosed in the report.
+    "32": {27: 26},
 }
 
 
@@ -30,7 +48,7 @@ def street_ord(label):
 def avenue_key(label):
     s = label.upper().replace("AVENUE", " ").replace("AV.", " ")
     s = s.replace("½", " 1/2").replace(".", " ")
-    m = re.search(r"\b([A-S])\b(\s*1/2)?", s)
+    m = re.search(r"\b([A-T])\b(\s*1/2)?", s)
     if not m:
         return None
     return m.group(1) + ("+" if m.group(2) else "")
@@ -40,9 +58,20 @@ def av_index(key):
     return (ord(key[0]) - 65) * 2 + (1 if key.endswith("+") else 0)
 
 
+def av_slot(idx):
+    """Uniform-pitch corridor slot for a half-step avenue index."""
+    if idx <= 24:
+        if idx % 2:
+            return None  # townsite half-letter: narrow alley, not a corridor
+        return idx // 2
+    return idx - 12
+
+
 def main(survey_dir, out_path):
     records = {}
     for f in sorted(glob.glob(os.path.join(survey_dir, "survey_batch_*.json"))):
+        if "supplement" in f:
+            continue
         for r in json.load(open(f)):
             records[r["sheet"]] = r
 
@@ -52,29 +81,69 @@ def main(survey_dir, out_path):
             continue
         sts = sorted({street_ord(s) for s in r["streets"]} - {None})
         av_keys = [avenue_key(a) for a in r["avenues"]]
-        av_idx = [av_index(a) for a in av_keys if a]
+        idxs = [av_index(a) for a in av_keys if a]
+        idxs = [LABEL_FIXES.get(sid, {}).get(i, i) for i in idxs]
+        slots = sorted({s for s in (av_slot(i) for i in idxs) if s is not None})
+        if sid == "26":
+            # Broadway's diagonal offsets the east grid: main panel H..K,
+            # heavy-bordered sub-panel redraws 39th-40th x K..L (cemetery)
+            units["26"] = {"file": 26, "av_slots": [7, 8, 9, 10],
+                           "st": [39, 42],
+                           "region": [40, 60, 2260, 4094],
+                           "note": "main panel west of the K break"}
+            units["26b"] = {"file": 26, "av_slots": [10, 11], "st": [39, 40],
+                            "region": [2160, 1500, 3400, 4094],
+                            "note": "cemetery sub-panel K-L x 39-40"}
+            continue
         if sid == "71":
-            # two side-by-side panels: left 43rd-46th x J-K, right 24th-27th x M-N
+            # two side-by-side panels: left 43rd-46th x J-K, right 24th-27th
+            # x M-N (M, M 1/2, N = slots 12-14)
             units["71a"] = {"file": 71,
-                            "av_idx": list(range(18, 21)), "st": [43, 46],
+                            "av_slots": [9, 10], "st": [43, 46],
                             "region": [60, 30, 1150, 4040],
                             "note": "left panel"}
             units["71b"] = {"file": 71,
-                            "av_idx": list(range(24, 27)), "st": [24, 27],
+                            "av_slots": [12, 13, 14], "st": [24, 27],
                             "region": [1190, 30, 3400, 4040],
+                            # comb locks onto bright vacant-lot gaps here and
+                            # the region insets clip M and N; corridor centers
+                            # measured by CoM on the whiteness profile
+                            "v_anchors": {"12": 1214, "13": 2238, "14": 3264},
                             "note": "right panel"}
             continue
-        if not sts or not av_idx or len(sts) < 2 or len(av_idx) < 1:
-            EXCLUDED[sid] = f"insufficient grid ({len(sts)} streets, {len(av_idx)} avenues)"
+        if sid in ("04", "05", "06", "07", "08"):
+            # wharf hybrids: bay piers fill the sheet's left; the only named
+            # avenue corridor is Av. A at the right edge. Detect within the
+            # right strip so the comb can't lock onto pier/track corridors;
+            # composite clipping stays full-sheet (piers are exterior-margin
+            # content north of Avenue A, like 1885's bay water).
+            units[sid] = {"file": int(sid), "av_slots": [0],
+                          "st": [sts[0], sts[-1]],
+                          "region": [2350, 0, 3400, 4095],
+                          "clip_region": None,
+                          "note": "wharf hybrid; detect region = right strip"}
+            continue
+        if sid == "70":
+            # beach sheet: grid only in the SW quadrant (Q 1/2-R x 23-24);
+            # bath-house piers over the Gulf + detached orphanage inset.
+            units["70"] = {"file": 70, "av_slots": [21, 22], "st": [23, 24],
+                           "region": [0, 2100, 1600, 4110],
+                           "clip_region": None,
+                           "note": "beach sheet; grid in SW quadrant only; "
+                                   "detached orphans-home inset top-right "
+                                   "excluded from art"}
+            continue
+        if not sts or len(sts) < 2 or len(slots) < 2:
+            EXCLUDED[sid] = (f"insufficient grid ({len(sts)} streets, "
+                             f"{len(slots)} avenue corridors)")
             continue
         if sts != list(range(sts[0], sts[-1] + 1)):
             print(f"WARN sheet {sid}: streets not contiguous {sts}; using span")
             sts = list(range(sts[0], sts[-1] + 1))
-        # CONTIGUOUS half-index range: every 605px comb slot is an identity;
-        # unnamed slots are the mid-block alleys the south names as
-        # half-avenues, and they are genuine detectable corridors
-        lo, hi = min(av_idx), max(av_idx)
-        units[sid] = {"file": int(sid), "av_idx": list(range(lo, hi + 1)),
+        if slots != list(range(slots[0], slots[-1] + 1)):
+            print(f"WARN sheet {sid}: avenue slots not contiguous {slots} "
+                  f"(labels {sorted(idxs)}) — survey label suspect")
+        units[sid] = {"file": int(sid), "av_slots": slots,
                       "st": [sts[0], sts[-1]], "region": None,
                       "note": (r.get("note") or "")[:60]}
         if r.get("irregular"):

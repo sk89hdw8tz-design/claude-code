@@ -51,11 +51,16 @@ EDITIONS = {
         "ut_referer": "https://maps.lib.utexas.edu/maps/sanborn/g.html",
         "native_size": (3400, 4116),           # heights vary 4095-4116
         "index_sheet": None,
-        # avenue axis is HALF-STEP indexed (A=0, A1/2=1, B=2 ... S=36) so
-        # pitch_av is the half-avenue spacing; streets by ordinal 6..46
+        # avenue axis is SLOT indexed: the physical corridor grid is UNIFORM
+        # at the full pitch citywide (autocorr over 62 sheets: median 1006,
+        # IQR 1003-1012); naming changes district. A=slot0 .. M=slot12, then
+        # the outlot district names every corridor: M1/2=13, N=14 .. S=24.
+        # Townsite half-letter alleys are narrow asymmetric block splits
+        # (~540/465), never comb identities. Streets by ordinal 6..49,
+        # pitch 1169 (IQR 1166-1171).
         "street_origin": 6,
-        "pitch_av": 605.0,                     # at 3400 px native scale
-        "pitch_st": 1150.0,
+        "pitch_av": 1006.0,                    # slot pitch, native px
+        "pitch_st": 1169.0,
         "paper_bgr": (200, 222, 232),          # provisional; measured at build
     },
     "1877": {

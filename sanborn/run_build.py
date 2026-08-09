@@ -42,18 +42,74 @@ def sheet_path(year, filenum):
     return candidates[0]
 
 
-def assign_identities(detected, year, key):
-    avs, sts = cov.expected_lines(year, key)
-    v, h = detected["v_lines_native"], detected["h_lines_native"]
-    if len(v) != len(avs) or len(h) != len(sts):
+def _align_axis(lines, idents, pitch, center, tol=0.02):
+    """Match sorted detected lines to identity slots. Equal counts zip
+    directly. Otherwise slide the shorter list along the longer (comb slots
+    can add a margin line or drop an edge line) and keep the contiguous
+    alignment whose LSQ scale is nearest 1.0, tie-broken by how close the
+    window centroid sits to the panel center (a one-slot shift moves the
+    centroid ~pitch/2, the true window is near-centered); reject if the
+    best still deviates more than tol. Returns (pairs, err)."""
+    lines = sorted(lines)
+    n_d, n_e = len(lines), len(idents)
+    if n_e < 2:
+        return None, f"axis needs >=2 identities to align (have {n_e})"
+    if n_d == n_e:
+        return list(zip(lines, idents)), None
+    if n_d < 2:
+        return None, f"only {n_d} detected lines for {n_e} identities"
+    m = min(n_d, n_e)
+    best = None
+    for dl in range(n_d - m + 1):
+        for de in range(n_e - m + 1):
+            src = np.array(lines[dl : dl + m])
+            dst = np.array(idents[de : de + m], dtype=float) * pitch
+            A = np.vstack([src, np.ones_like(src)]).T
+            (s, t), *_ = np.linalg.lstsq(A, dst, rcond=None)
+            resid = float(np.abs(dst - (s * src + t)).mean())
+            score = (round(abs(s - 1.0), 3), abs(float(src.mean()) - center), resid)
+            if best is None or score < best[0]:
+                best = (score, list(zip(src.tolist(), idents[de : de + m])))
+    (sdev, cdist, resid), pairs = best
+    if sdev > tol:
         return None, (
-            f"line count mismatch: detected {len(v)}v/{len(h)}h, "
-            f"expected {len(avs)} avenues/{len(sts)} streets"
+            f"no alignment of {n_d} detected to {n_e} expected within "
+            f"scale tol (best dev {sdev:.3f}, resid {resid:.0f})"
+        )
+    return pairs, None
+
+
+def assign_identities(detected, year, key):
+    avs, sts = cov.expected_detect_lines(year, key)
+    ed = config.EDITIONS[year]
+    v, h = detected["v_lines_native"], detected["h_lines_native"]
+    region = detected.get("panel_region")
+    if region:
+        cx, cy = (region[0] + region[2]) / 2, (region[1] + region[3]) / 2
+    else:
+        w, hh = ed["native_size"]
+        cx, cy = w / 2, hh / 2
+    if len(avs) == 1:
+        # single-corridor axis (wharf hybrids: Avenue A only). Detection ran
+        # inside the unit's region, so the corridor nearest the region
+        # center is the labeled one; scale stays locked downstream.
+        near = min(v, key=lambda x: abs(x - cx)) if v else None
+        if near is None or abs(near - cx) > ed["pitch_av"] * 0.7:
+            vp, verr = None, "no detected line near the single-avenue anchor"
+        else:
+            vp, verr = [(near, avs[0])], None
+    else:
+        vp, verr = _align_axis(v, avs, ed["pitch_av"], cx)
+    hp, herr = _align_axis(h, sts, ed["pitch_st"], cy)
+    if verr or herr:
+        return None, (
+            f"detected {len(v)}v/{len(h)}h vs expected {len(avs)} named "
+            f"avenues/{len(sts)} streets — " + "; ".join(filter(None, [verr, herr]))
         )
     controls = [
-        {"axis": "x", "native": x, "identity": a} for x, a in zip(sorted(v), avs)
+        {"axis": "x", "native": x, "identity": a} for x, a in vp
     ] + [
-        {"axis": "y", "native": y, "identity": s} for y, s in zip(sorted(h), sts)
+        {"axis": "y", "native": y, "identity": s} for y, s in hp
     ]
     return controls, None
 
@@ -122,6 +178,11 @@ def register_edition(year):
             continue
         det = reg.detect_sheet_grid(path, region=unit["region"])
         det["panel_region"] = unit["region"]
+        if unit.get("v_anchors"):
+            # manual corridor anchors (CoM-measured): comb output replaced
+            det["v_lines_native"] = [
+                x for _, x in sorted((int(s), x) for s, x in unit["v_anchors"].items())
+            ]
         bad, devs = spacing_gate(det, year)
         if bad:
             results[key] = {"status": "off-scale", "spacing_dev": devs,
@@ -800,9 +861,7 @@ def main():
     ed = config.EDITIONS[year]
     config.STREET_ORIGIN = ed.get("street_origin", config.STREET_ORIGIN)
     # per-edition detect-scale comb pitches (native pitch scaled to the
-    # DETECT_WIDTH working width). For 1899 the avenue pitch is the
-    # HALF-step: every comb slot is a half-avenue index; the north-side
-    # 'alleys' are the same physical corridors the south names M 1/2 etc.
+    # DETECT_WIDTH working width). 1899: uniform slot pitch — see config.
     k = config.DETECT_WIDTH / ed["native_size"][0]
     config.PITCH_AV_DETECT = ed["pitch_av"] * k
     config.PITCH_ST_DETECT = ed["pitch_st"] * k

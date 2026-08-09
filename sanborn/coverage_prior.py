@@ -90,13 +90,19 @@ EXCLUDED = {
 def expected_lines(year, key):
     c = COVERAGE[year][key]
     s0, s1 = c["st"]
-    if "av_idx" in c:
-        # 1899-style: explicit avenue corridor indices (half-step axis;
-        # half-avenues exist only on southern sheets, so the per-sheet
-        # line list is not a contiguous index range)
-        return list(c["av_idx"]), list(range(s0, s1 + 1))
+    if "av_slots" in c:
+        # 1899-style: uniform-pitch corridor slots (A=0..M=12, then the
+        # outlot district names every corridor: M1/2=13 .. S=24)
+        return list(c["av_slots"]), list(range(s0, s1 + 1))
     a0, a1 = AV[c["av"][0]], AV[c["av"][1]]
     return list(range(a0, a1 + 1)), list(range(s0, s1 + 1))
+
+
+def expected_detect_lines(year, key):
+    """Line identities the detector should find — same as expected_lines
+    now that the 1899 axis is uniform slots (every slot is a real,
+    comb-detectable corridor)."""
+    return expected_lines(year, key)
 
 
 def composite_extent(year):
