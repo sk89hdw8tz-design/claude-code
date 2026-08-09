@@ -64,7 +64,7 @@ def frame_bounds(img01, grid_v, grid_h, search_margin=0.12, region=None):
     return x0, y0, x1, y1
 
 
-def paper_bounds(img, min_frac=0.35):
+def paper_bounds(img, min_frac=0.35, max_gap=60):
     """Bounding box of the sheet's CREAM PAPER inside the scan.
 
     A UT scan is the sheet on a white scanner ground, with a black-on-white
@@ -85,6 +85,23 @@ def paper_bounds(img, min_frac=0.35):
 
     def run(sig):
         on = sig > min_frac
+        # Bridge narrow gaps first. A heavily ruled line — Avenue A's frontage
+        # rules on sheet 07 at columns 3118 and 3131 — drops the cream
+        # fraction below threshold for a few px and splits the sheet in two;
+        # taking the longest run then truncated that sheet's paper 240 px
+        # early, which made its printed frame appear not to overlap its
+        # neighbour's and collapsed the seam cut to a midpoint fallback.
+        i = 0
+        while i < len(on):
+            if not on[i]:
+                j = i
+                while j < len(on) and not on[j]:
+                    j += 1
+                if 0 < i and j < len(on) and (j - i) <= max_gap:
+                    on[i:j] = True
+                i = j
+            else:
+                i += 1
         best, i = (0, 0, len(on) - 1), 0
         while i < len(on):
             if on[i]:
