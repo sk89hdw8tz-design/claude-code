@@ -1,8 +1,13 @@
-# SEED_1899 — start the rebuild at the frontier
+# SEED_1899 — rebuild this one map, and beat it on numbers
 
-Everything a fresh session needs to rebuild the Galveston 1899 wharf-front
-and downtown composite **and beat the existing one on measured numbers**,
+Everything a fresh session needs to rebuild **one specific composite** — the
+Galveston 1899 wharf front and downtown, from sheets 06, 07, 08, 11, 12, 13,
+14, 15, 16, 37, 39 and 41 — and beat the existing build on measured numbers,
 without re-deriving work that is already verified.
+
+Scope is deliberately narrow: this edition, these twelve sheets, Avenue A
+(Water) to Avenue I (Sealy), 19th Street to 25th (Rosenberg), Piers 19–25.
+Nineteen seams, all enumerated in `constants.json`.
 
 ## Use it
 
@@ -78,9 +83,10 @@ along it), text, and anything drawn only once.
 - Avenue pitch **1006 px**, street pitch **1169 px** (autocorrelation, 62
   sheets). Street corridor width **245 px**.
 - Corridor identities verified by label reading across 90 units, ~340 checks.
-- The `s`-suffix sheets are July-1899 skeleton house-numbering sheets, not
-  revisions — use the coloured base sheets.
+- The `s`-suffix sheets (11s–14s) are July-1899 skeleton house-numbering
+  sheets, not revisions — use the coloured base sheets.
 - Adjacent sheets **overlap**: ~230 px on the wharf, 50–70 px inland. Both
   sheets draw the shared street and both facing frontages.
-- Sheet numbers differ between editions. The target extent corresponds to
-  sheets 1, 2, 7, 8, 9, 10, 27, 29 on the **1889** key.
+- The twelve sheets were chosen because they cover the ground indexed as
+  sheets 1, 2, 7, 8, 9, 10, 27 and 29 on the 1889 key. That provenance is
+  history, not a task: the sheet list is fixed and given.
