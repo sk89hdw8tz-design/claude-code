@@ -6,6 +6,9 @@ on:
       max_sheet:
         description: "Highest sheet number to probe"
         default: "60"
+  push:
+    branches: [claude/new-session-fxmhgv]
+    paths: [".github/sanborn-fetch-1899-request"]
 
 permissions:
   contents: write
@@ -44,7 +47,7 @@ jobs:
           curl -sS -L -A "$UA" -c "$jar" -o /dev/null \
             "https://maps.lib.utexas.edu/maps/sanborn/g.html" || true
           got=0
-          for n in $(seq -w 1 "${{ github.event.inputs.max_sheet }}"); do
+          for n in $(seq -w 1 "${{ github.event.inputs.max_sheet || 60 }}"); do
             for pat in \
               "txu-sanborn-galveston-1899-${n}.jpg" \
               "txu-sanborn-galveston-1899_${n}.jpg"; do
