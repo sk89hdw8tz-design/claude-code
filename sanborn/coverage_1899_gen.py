@@ -122,14 +122,39 @@ def main(survey_dir, out_path):
             # Av. A corridor positions verified by the label-reading fleet
             # (comb + nearest-center picked the terminal-track corridor
             # ~700 px west) and CoM-refined on the whiteness profile
-            av_a = {"04": 3136, "05": 3094, "06": 3099,
-                    "07": 3127, "08": 3175}[sid]
+            # Avenue A anchors, label-verified, then refined by matching the
+            # wharf terminal TRACKS across each shared street: sheet 06 by
+            # (-6,-5) and sheet 08 by (-28,-4) onto sheet 07, which stays
+            # fixed as the pair's reference. The tracks are the dominant
+            # feature crossing these seams, so they are what alignment is
+            # judged on.
+            av_a = {"04": 3136, "05": 3094, "06": 3093,
+                    "07": 3127, "08": 3147}[sid]
+            # Street anchors: on these sheets the streets survive only in the
+            # narrow strip beside Avenue A, half-buried in the wharf terminal
+            # yards, and the comb latches onto a block FRONTAGE line instead
+            # of the corridor centre — on sheet 06 by a uniform +114 px on
+            # every line, which a per-sheet translation absorbs, so the
+            # consensus residuals stayed under 15 px while the sheet's
+            # CONTENT sat 114 px out. It printed 22nd St, its 10" water main
+            # and its T.H. hydrant a second time, 132 px below sheet 07's.
+            # Centres here are measured as the midpoint of the two block
+            # frontage lines bounding each corridor, the same 245 px
+            # corridor verified on downtown sheet 13 (1312/1557, centre
+            # 1434.5 vs its detected 1438).
+            st_anchor = {
+                "06": {"22": 176, "23": 1343, "24": 2511, "25": 3678},
+                "07": {"19": 201, "20": 1368, "21": 2534, "22": 3700},
+                "08": {"16": 289, "17": 1457, "18": 2626, "19": 3795},
+            }.get(sid)
             units[sid] = {"file": int(sid), "av_slots": [0],
                           "st": [sts[0], sts[-1]], "region": None,
                           "detect_region": [2350, 0, 3400, 4095],
                           "v_anchors": {"0": av_a},
-                          "note": "wharf hybrid; Av.A anchor label-verified; "
-                                  "piers render as retained exterior margin"}
+                          "note": "wharf hybrid; Av.A + street anchors "
+                                  "measured; piers render as exterior margin"}
+            if st_anchor:
+                units[sid]["h_anchors"] = st_anchor
             continue
         if sid == "70":
             # beach sheet: grid only in the SW quadrant (Q 1/2-R x 23-24);

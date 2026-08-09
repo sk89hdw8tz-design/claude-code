@@ -150,6 +150,7 @@ SEAM_CUTS = {
     #   Stone Wks, lots 501-508, Scale of Feet) with sheet 14's margin;
     #   +318 is the clean row past that content
     ("v", 6, frozenset({"10", "11a"})): -200,  # AV. G OR WINNIE printed
+    # (1885 entries only — 1899 lives in SEAM_CUTS_1899 below)
     #   twice at 23-25 with the +36 auto cut between the copies; -200 is
     #   west of both so only 11a's prints (QC v4.2-1)
 }
@@ -209,6 +210,18 @@ def neighbors(year):
     axis 'v' = shared avenue (vertical line), 'h' = shared street. A pair
     shares a seam when one's max equals the other's min on that axis and
     their ranges overlap on the cross axis."""
+    def overlaps(ra, rb):
+        """Do two identity ranges share more than a corner? Strict for two
+        real ranges (corner-touching units are not neighbours), but a
+        DEGENERATE range — a wharf unit carrying the single Avenue A line —
+        genuinely shares that corridor with the unit above it. Requiring a
+        strict overlap left 06|07 with no seam at all, so both rendered the
+        22nd St corridor and feathered together: doubled PIER No 22, doubled
+        22ND ST., and a ghosted warehouse through the blend band."""
+        ov = min(max(ra), max(rb)) - max(min(ra), min(rb))
+        degenerate = len(ra) == 1 or len(rb) == 1
+        return ov > 0 or (degenerate and ov == 0)
+
     seams = []
     ks = list(COVERAGE[year])
     for i, ka in enumerate(ks):
@@ -216,13 +229,54 @@ def neighbors(year):
         for kb in ks[i + 1:]:
             ab, sb = expected_lines(year, kb)
             # vertical seam: A's right avenue == B's left avenue, street overlap
-            if max(aa) == min(ab) and min(max(sa), max(sb)) > max(min(sa), min(sb)):
+            if max(aa) == min(ab) and overlaps(sa, sb):
                 seams.append(("v", max(aa), ka, kb))   # ka = left
-            if max(ab) == min(aa) and min(max(sa), max(sb)) > max(min(sa), min(sb)):
+            if max(ab) == min(aa) and overlaps(sa, sb):
                 seams.append(("v", max(ab), kb, ka))
             # horizontal seam: A's bottom street == B's top street, avenue overlap
-            if max(sa) == min(sb) and min(max(aa), max(ab)) > max(min(aa), min(ab)):
+            if max(sa) == min(sb) and overlaps(aa, ab):
                 seams.append(("h", max(sa), ka, kb))   # ka = top
-            if max(sb) == min(sa) and min(max(aa), max(ab)) > max(min(aa), min(ab)):
+            if max(sb) == min(sa) and overlaps(aa, ab):
                 seams.append(("h", max(sb), kb, ka))
     return seams
+
+
+# 1899 manual cuts. The wharf sheets ABUT at their shared street rather than
+# overlapping (verified: their drawings of the shared band correlate at only
+# 0.145, while the railroad tracks cross the join with a 4.5 px jog — the
+# geometry is right, the sheets simply do not draw the same ground twice).
+# Each sheet nevertheless letters the same pier on its own side of the line,
+# so an automatic cut placed between the two copies renders both. Measured
+# positions, global px relative to the shared line:
+#   h22 07|06: sheet 07 letters PIER No 22 at -33 and 22ND ST. at -53;
+#     sheet 06 letters them at +97 and +127. A cut at +150 puts BOTH of
+#     sheet 06's copies inside sheet 07's territory, so exactly one of each
+#     renders, and it stays inside sheet 07's printed extent (+186).
+#   v0 wharf|downtown: TEXAS STAR FLOUR MILL(S) is lettered on both sides of
+#     Avenue A (-45 on the wharf sheet, +45 on the downtown sheet). The wharf
+#     sheet's paper ends at Avenue A -9, so the cut can only go WEST of both
+#     copies; -200 is clamped by legal_cut to the downtown sheet's frame edge.
+SEAM_CUTS_1899 = {
+    # Wharf sheets genuinely OVERLAP (~230 px past the shared street), so the
+    # northern sheet is laid over the southern one through the whole overlap
+    # instead of being cut at the line — a cut at the line sliced the
+    # northern sheet's warehouse and pier lettering mid-word. Clamped by
+    # legal_cut to the owner's printed extent.
+    ("h", 22, frozenset({"07", "06"})): +160,   # +200 also pulled in sheet
+    #   07's bottom-margin sheet-reference numerals ("6", "0") at +173
+
+    ("h", 19, frozenset({"08", "07"})): +200,
+    ("v", 0, frozenset({"07", "11"})): -200,
+    ("v", 0, frozenset({"07", "13"})): -200,
+    ("v", 0, frozenset({"06", "13"})): -200,
+    ("v", 0, frozenset({"06", "15"})): -200,
+    ("v", 0, frozenset({"08", "11"})): -200,
+}
+
+SEAM_CUTS_BY_YEAR = {"1885": SEAM_CUTS, "1899": SEAM_CUTS_1899}
+
+
+def seam_cut(year, axis, idx, pair):
+    """Manual cut offset for one seam, or None. Year-scoped: 1885's keys are
+    unpadded sheet numbers that would otherwise collide with 1899's."""
+    return SEAM_CUTS_BY_YEAR.get(year, {}).get((axis, idx, pair))

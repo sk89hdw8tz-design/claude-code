@@ -325,7 +325,10 @@ def composite_edition(year, registration):
     a0, a1, s0, s1 = cov.composite_extent(year)
     # pad must fit the retained exterior margins: frame overhang past the
     # outermost street line (~150) + margin band (0.28 pitch) + slack
-    pad = round(0.40 * ed["pitch_av"])
+    # pad must fit whatever the units render outside their grid lines. The
+    # 0.40-pitch default suits inland sheets; wharf sheets carry ~3000 px of
+    # piers and bay west of Avenue A, so those builds set CANVAS_PAD.
+    pad = getattr(config, "CANVAS_PAD", None) or round(0.40 * ed["pitch_av"])
     width = round((a1 - a0) * ed["pitch_av"]) + 2 * pad
     height = round((s1 - s0) * ed["pitch_st"]) + 2 * pad
     ox = a0 * ed["pitch_av"] - pad
@@ -374,6 +377,7 @@ def composite_edition(year, registration):
     #   frame on the low side  (top/left):  c = 2d - f - W/2  if f > d - W/2
     #   frame on the high side (bottom/right): c = 2d - f + W/2  if f < d + W/2
     frames_native = {}
+    paper_native = {}
     corrected = {}
     corr_path = os.path.join(config.BUILD_DIR, year, "edge_corrections.json")
     measured = json.load(open(corr_path)) if os.path.exists(corr_path) else {}
@@ -400,8 +404,10 @@ def composite_edition(year, registration):
         img = cv2.imread(sheet_path(year, unit["file"]), cv2.IMREAD_COLOR)
         img01 = img.astype(np.float32) / 255.0
         fr = comp.frame_bounds(img01, v, h, region=unit["region"])
+        pb = comp.paper_bounds(img)
         del img, img01
         frames_native[key] = fr
+        paper_native[key] = pb
         m = measured.get(key, {})
         for axis, lines in (("v", v), ("h", h)):
             for si, err in m.get(axis, {}).items():
@@ -514,7 +520,12 @@ def composite_edition(year, registration):
             ykg = ykg + [ykg[0] + ed["pitch_st"] * sy]
         fx0, fx1 = comp.pw_fwd([frame[0], frame[2]], xkn, xkg)
         fy0, fy1 = comp.pw_fwd([frame[1], frame[3]], ykn, ykg)
+        pnat = paper_native[key]
+        px0, px1 = comp.pw_fwd([pnat[0], pnat[2]], xkn, xkg)
+        py0, py1 = comp.pw_fwd([pnat[1], pnat[3]], ykn, ykg)
         geo[key] = {"fit": fit, "gv": v, "gh": h,
+                    "paper_n": pnat,
+                    "paper_g": (float(px0), float(py0), float(px1), float(py1)),
                     "xkn": xkn, "xkg": xkg, "ykn": ykn, "ykg": ykg,
                     "frame_g": (float(fx0), float(fy0), float(fx1), float(fy1)),
                     "avs": avs, "sts": sts, "gray4": small}
@@ -611,6 +622,8 @@ def composite_edition(year, registration):
         dx, dy = tcorr.get(k, (0.0, 0.0))
         geo[k]["frame_gp"] = (fgp[0] + dx, fgp[1] + dy,
                               fgp[2] + dx, fgp[3] + dy)
+        pg = geo[k]["paper_g"]
+        geo[k]["paper_g"] = (pg[0] + dx, pg[1] + dy, pg[2] + dx, pg[3] + dy)
         geo[k]["frame_g"] = global_frame(geo[k]["fit"], frames_native[k])
 
     with open(os.path.join(config.BUILD_DIR, year, "registration.json"), "w") as f:
@@ -663,9 +676,19 @@ def composite_edition(year, registration):
         if axis == "v":
             lo = Y[max(min(so), min(sn))] + 200
             hi = Y[min(max(so), max(sn))] - 200
+            pi, pj = 1, 3
         else:
             lo = X[max(min(ao), min(an))] + 200
             hi = X[min(max(ao), max(an))] - 200
+            pi, pj = 0, 2
+        if hi - lo < 400:
+            # Grid lines cannot span this seam: a wharf unit holds a single
+            # avenue, so the cross-axis extent collapses (lo ends up past
+            # hi) and the cut would be scored on a 400 px strip beside
+            # Avenue A rather than across the piers. Fall back to where both
+            # sheets actually have paper.
+            lo = max(geo[owner]["paper_g"][pi], geo[nbr]["paper_g"][pi]) + 100
+            hi = min(geo[owner]["paper_g"][pj], geo[nbr]["paper_g"][pj]) - 100
         if flip:
             gpos = np.arange(center - 680, center - 39, 4.0)
             w_own, w_nbr = 3.0, 1.0
@@ -861,7 +884,7 @@ def composite_edition(year, registration):
         # near side is clamped to its frame in the clip loop so its margin
         # marginalia (sheet 7's Scale of Feet/No.7 at 19th in v2) and
         # frame rule stay out of the corridor.
-        manual = cov.SEAM_CUTS.get((axis, idx, frozenset({owner, nbr})))
+        manual = cov.seam_cut(year, axis, idx, frozenset({owner, nbr}))
         if manual is not None:
             log(f"seam {axis}{idx} {owner}|{nbr}: manual cut {manual:+d}")
         if axis == "v":
@@ -945,11 +968,16 @@ def composite_edition(year, registration):
         a0k, a1k = min(g["avs"]), max(g["avs"])
         s0k, s1k = min(g["sts"]), max(g["sts"])
         fx0, fy0, fx1, fy1 = g["frame_g"]
+        px0, py0, px1, py1 = g["paper_g"]
+        # An exterior side has no neighbour, so it may run all the way to the
+        # sheet's own PAPER edge — which is also the only bound that holds on
+        # wharf sheets, whose single grid line defeats frame detection, and
+        # the only one that keeps the scan's credit caption out of the map.
         edges = {
-            "left":   (fx0 - margin_g, [(a0k - 1, s) for s in range(s0k, s1k)]),
-            "right":  (fx1 + margin_g, [(a1k, s) for s in range(s0k, s1k)]),
-            "top":    (fy0 - margin_g, [(a, s0k - 1) for a in range(a0k, a1k)]),
-            "bottom": (fy1 + margin_g, [(a, s1k) for a in range(a0k, a1k)]),
+            "left":   (px0, [(a0k - 1, s) for s in range(s0k, s1k)]),
+            "right":  (px1, [(a1k, s) for s in range(s0k, s1k)]),
+            "top":    (py0, [(a, s0k - 1) for a in range(a0k, a1k)]),
+            "bottom": (py1, [(a, s1k) for a in range(a0k, a1k)]),
         }
         for side, (pos, cells) in edges.items():
             if (key, side) not in prop and not any(c in covered for c in cells):
@@ -986,8 +1014,9 @@ def composite_edition(year, registration):
             # units — a panel divider carries the other panel's frame
             # rule (unit 3's retained top ran a 4660x44px black rule
             # straight from the divider zone, QC v4-C)
-            bx0, by0 = (creg[0], creg[1]) if creg else (0, 0)
-            bx1, by1 = (creg[2], creg[3]) if creg else (nw, nh)
+            pn = g["paper_n"]
+            bx0, by0 = (creg[0], creg[1]) if creg else (pn[0], pn[1])
+            bx1, by1 = (creg[2], creg[3]) if creg else (pn[2], pn[3])
             if "top" in es:
                 cy0 = max(cy0, by0 + inset("top"))
             if "bottom" in es:
@@ -1006,6 +1035,8 @@ def composite_edition(year, registration):
         # while the source had zero clipped pixels — irreversible loss)
         p999 = np.percentile(img[::8, ::8].reshape(-1, 3), 99.9, axis=0)
         s = min(1.0, float(254.0 / np.max(p999 * gains)))
+        if config.PRESERVE_COLORS:
+            s = 1.0   # unity gain cannot push a highlight anywhere it wasn't
         if s < 0.999:
             log(f"unit {key}: gain scaled x{s:.3f} to protect highlights")
         gains = gains * s

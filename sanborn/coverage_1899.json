@@ -19,7 +19,7 @@
    "v_anchors": {
     "0": 3136
    },
-   "note": "wharf hybrid; Av.A anchor label-verified; piers render as retained exterior margin"
+   "note": "wharf hybrid; Av.A + street anchors measured; piers render as exterior margin"
   },
   "05": {
    "file": 5,
@@ -40,7 +40,7 @@
    "v_anchors": {
     "0": 3094
    },
-   "note": "wharf hybrid; Av.A anchor label-verified; piers render as retained exterior margin"
+   "note": "wharf hybrid; Av.A + street anchors measured; piers render as exterior margin"
   },
   "06": {
    "file": 6,
@@ -59,9 +59,15 @@
     4095
    ],
    "v_anchors": {
-    "0": 3099
+    "0": 3093
    },
-   "note": "wharf hybrid; Av.A anchor label-verified; piers render as retained exterior margin"
+   "note": "wharf hybrid; Av.A + street anchors measured; piers render as exterior margin",
+   "h_anchors": {
+    "22": 176,
+    "23": 1343,
+    "24": 2511,
+    "25": 3678
+   }
   },
   "07": {
    "file": 7,
@@ -82,7 +88,13 @@
    "v_anchors": {
     "0": 3127
    },
-   "note": "wharf hybrid; Av.A anchor label-verified; piers render as retained exterior margin"
+   "note": "wharf hybrid; Av.A + street anchors measured; piers render as exterior margin",
+   "h_anchors": {
+    "19": 201,
+    "20": 1368,
+    "21": 2534,
+    "22": 3700
+   }
   },
   "08": {
    "file": 8,
@@ -101,9 +113,15 @@
     4095
    ],
    "v_anchors": {
-    "0": 3175
+    "0": 3147
    },
-   "note": "wharf hybrid; Av.A anchor label-verified; piers render as retained exterior margin"
+   "note": "wharf hybrid; Av.A + street anchors measured; piers render as exterior margin",
+   "h_anchors": {
+    "16": 289,
+    "17": 1457,
+    "18": 2626,
+    "19": 3795
+   }
   },
   "11": {
    "file": 11,

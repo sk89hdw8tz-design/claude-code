@@ -64,6 +64,45 @@ def frame_bounds(img01, grid_v, grid_h, search_margin=0.12, region=None):
     return x0, y0, x1, y1
 
 
+def paper_bounds(img, min_frac=0.35):
+    """Bounding box of the sheet's CREAM PAPER inside the scan.
+
+    A UT scan is the sheet on a white scanner ground, with a black-on-white
+    credit caption below it. Both read as background: paper is cream
+    (R noticeably above B) and never blows out to white. Needed for two
+    jobs the frame detector cannot do:
+      - wharf sheets carry a single grid line, so frame_bounds — which only
+        searches 0.12*width outside the outermost line — puts the frame a
+        few hundred px away instead of at the sheet edge, clipping ~3000 px
+        of piers and bay;
+      - the retained exterior margin otherwise runs past the paper into the
+        caption, compositing "Original located at the Dolph Briscoe
+        Center..." into the map.
+    """
+    r = img[:, :, 2].astype(np.int16)
+    b = img[:, :, 0].astype(np.int16)
+    cream = (r > 140) & (img.max(axis=2) < 252) & ((r - b) > 6)
+
+    def run(sig):
+        on = sig > min_frac
+        best, i = (0, 0, len(on) - 1), 0
+        while i < len(on):
+            if on[i]:
+                j = i
+                while j + 1 < len(on) and on[j + 1]:
+                    j += 1
+                if j - i > best[0]:
+                    best = (j - i, i, j)
+                i = j + 1
+            else:
+                i += 1
+        return best[1], best[2] + 1
+
+    y0, y1 = run(cream.mean(axis=1))
+    x0, x1 = run(cream.mean(axis=0))
+    return x0, y0, x1, y1
+
+
 def paper_tone(img, frac=0.56, bright=170, sat_max=40):
     """Median BGR of bright, low-saturation, CREAM pixels on the central
     `frac` of the map interior ONLY. Including scanner margin skews tone
