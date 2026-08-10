@@ -30,7 +30,12 @@ def tint(png_path):
         if ff[y, 80]:
             cv2.floodFill(ff, mask, (80, y), 2)
     region = (ff == 2).astype(np.uint8)
-    region[3760:, 450:] = 0            # bottom sheet-margin strip is not water
+    # shoreline staircase (tile px): the flood leaks through linework gaps
+    # into vacant yard blocks (742/744) and the Fire Limits corridor; water
+    # may only exist west of these measured bounds (slips included):
+    for ya, yb, xmax in ((0, 3550, 2100), (3550, 6550, 2450),
+                         (6550, 7280, 1750), (7280, 10 ** 9, 900)):
+        region[ya // 2:min(yb // 2, region.shape[0]), xmax // 2:] = 0
     k = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (9, 9))
     region = cv2.morphologyEx(region, cv2.MORPH_OPEN, k)
     k2 = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (31, 31))
@@ -40,6 +45,10 @@ def tint(png_path):
     border = set(np.unique(np.concatenate(
         [lab[0], lab[-1], lab[:, 0], lab[:, -1]])))
     region[np.isin(lab, list(set(range(1, n)) - border))] = 1
+    # keep only water connected to the open bay (west edge)
+    n2, lab2, stats2, _ = cv2.connectedComponentsWithStats(region)
+    keep = [i for i in range(1, n2) if stats2[i][0] < 60]
+    region = np.isin(lab2, keep).astype(np.uint8)
     rf = cv2.resize(region, (img.shape[1], img.shape[0]),
                     interpolation=cv2.INTER_NEAREST).astype(bool)
     factor = (WASH / CREAM).astype(np.float32)
