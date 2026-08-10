@@ -215,3 +215,31 @@ the cycle contradiction did it; keep both changes).
 
 Current gate table: `landmark_after_polish.txt`; guard metrics:
 `repaired_metrics.json` (coverage 98.52%, white 7, black 0.0080%).
+
+## Five-agent review round (final) — three structural discoveries
+
+1. **No frames on street-cut edges.** Every interior side of all twelve
+   sheets prints NO frame line; content runs to 2-9 px of the paper
+   edge. Frame estimates were interior block walls; frame caps amputated
+   the south/east frontage bands (24th full width incl. CENTRAL HOTEL,
+   21st east of D, D/G kerb columns, LEVY BLDG walls) and manufactured
+   the "Avenue D void" — RETRACTED, the corridor is continuous with
+   frame-open (paper-bounded) clipping. Coverage 98.52 -> 98.79%.
+2. **Edge knots comb-latched on BOTH axes.** Interior-pitch
+   extrapolation measured x biases -120..+72 on fourteen edge lines and
+   y biases to -41 on nine. With line_overrides: avenues cross 24th at
+   +4/+5/+3 px (Market had jogged ~60) and 21st at +3/-5/-2; streets
+   cross Ave G at +2/+9/+9. THE INSTRUMENT: a sheet's own interior
+   pitch extrapolated to its edge slot — immune to the truncated-
+   corridor measurement trap that made direct centre measurement fail.
+3. **Junction structure.** Wharf|downtown offsets group by wharf sheet
+   (07 ≈ -55, 06 ≈ +11, south ≈ +97; each ±8) while pier-side content
+   aligns to ±7 — the disagreement is INSIDE the wharf sheets' schematic
+   east strips. Rigid fixes tear the pier seams; rotation/shear is the
+   rebuild path.
+
+Also: 1-D residual pass added to flatten_illumination (wharf vignette
+bands 15-21 levels -> ≤3); sheet 11 west clip at the Ave A centerline
+(AV. A OR WATER restored; the junction now cuts at midpoint ±2);
+13-vs-14 drawn frontage rows differ ~35 px at D crossings (source).
+Gate: landmark_after_review.txt; guards: repaired_metrics.json.

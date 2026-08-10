@@ -114,7 +114,7 @@ directions, all since corrected.
 
 ## Disclosures
 
-- Source coverage of the delivered extent is 98.94%. The remainder is bay
+- Source coverage of the delivered extent is 98.79%. The remainder is bay
   water beyond the sheets' paper edges at the far west, left as blank paper.
   **No gap is ever filled with generated content.**
 - Sheet furniture printed inside the sheets — compass roses, scale bars,
@@ -133,12 +133,18 @@ directions, all since corrected.
 - TEXAS STAR FLOUR MILLS is lettered by both sheet 7 (in the yards) and
   sheet 11 (on Water St); both render — same class as the duplicated
   compass roses.
-- The 12″ W.PIPE rows step ~13 px across the authentic Avenue D void at
-  23rd (pair 13|14's drawing scatter — see the repair section).
+- RETRACTED: earlier revisions disclosed an "authentic Avenue D void"
+  (46/55 px of never-engraved corridor). The five-agent review proved it
+  an artifact of synthetic frame estimates — the engravers drew to
+  within 9 px of their paper edges, and with frame-open clipping the
+  corridor is continuous. See the review section.
+- Sheet 14's block faces sit ~35 px south of sheet 13's where 22nd/23rd
+  cross Avenue D (drawn into the sources; their street lines agree —
+  the non-rigid class that needs per-sheet rotation, a rebuild item).
 
 ## Output
 
-38.32 × 25.44 in at 300 dpi (page 39.32 × 26.94 in with caption).
+38.39 × 25.52 in at 300 dpi (page 39.39 × 27.02 in with caption).
 
 ## Seam QC — three independent adversarial passes
 
@@ -309,3 +315,50 @@ toward the corridors the eye follows: Strand +20 → +12, Mechanic
 seam hides it (streets cross Avenue G at +8/+11 px, scatter level).
 Scale bounds tightened ±1% → ±0.4% after the ±1% solve pinned sheets
 13/15 at opposite bounds.
+
+## Five-agent adversarial review (final revision)
+
+Five independent auditors (Avenue G corridor, all-street/junction
+continuity, lettering, tone, content integrity) measured the composite
+at full resolution. Their findings drove three structural discoveries:
+
+1. **The 1899 sheets print NO frame lines on street-cut edges** —
+   verified on every interior side of all twelve sheets; content runs to
+   2–9 px of the paper edge. The frame detector had been latching
+   interior block walls, and the seam frame caps then amputated the
+   frontage band only one sheet draws: every south-side address row
+   along 24th (including CENTRAL HOTEL), most of 21st east of Avenue D,
+   a full row of frontage buildings, the Avenue D/G east-kerb columns,
+   and the LEVY BLDG west walls all rendered as flat paper. Frame-open
+   clipping (paper-bounded, measured insets) restored all of it and
+   closed the "Avenue D void" — coverage 98.52 → 98.79%.
+2. **Fourteen x-axis and nine y-axis grid knots on sheet-cut edges were
+   comb-latched onto frontages/kerbs** (biases −120…+72 px), measured by
+   extrapolating each sheet's own interior pitch to its edge. With
+   overrides, the avenues cross 24th at +4/+5/+3 px (Strand/Mechanic/
+   Market — the Market corridor had jogged ~60 px) and 21st at +3/−5/−2;
+   streets cross Avenue G at +2/+9/+9 px.
+3. **Tone**: a 1-D residual pass on top of the illumination field closed
+   the wharf-seam vignette bands from 15–21 levels to ≤3.
+
+Lettering fixes: sheet 7's AV. A. OR WATER display label (previously
+halved by sheet 11's torn edge for 1,500 px) restored via a west clip at
+the Avenue A centerline — the junction now cuts at the corridor midpoint
+±2 px; the doubled AV. G. OR WINNIE ghost eliminated; the 24th × G
+numerals (70′, 2401, the survey date) and EXPOSURE render whole.
+
+Measured and DISCLOSED, not fixed: the wharf|downtown junction offsets
+group by wharf sheet (07's streets ≈ −55, 06's ≈ +11, southernmost
+≈ +97, each coherent within ±8 px) — but the wharf sheets' pier-side
+content is aligned to ±7 px, so the disagreement lives inside their
+schematic east strips; correcting the junction would tear the pier
+seams. Per-sheet rotation/shear (a rebuild item) is the honest path.
+Avenue G retains ~±25 px weak-confidence corridor residuals at its
+crossings, and 20th St's 6″ water main prints 112 px apart on the two
+sides of the junction (both copies render; the corridor itself steps
+−58 px there).
+
+Final gate: wharf pairs 07|06 and 08|07 at exactly (0.0, 0.0) mean;
+all surveyed downtown pair means ≤17 px; corridor-continuity landmarks
+at 3.3/11.6 px. Guards: coverage 98.79%, pure-white 10 px, pure-black
+0.0103% (authentic edge ink from the deeper paper-edge cuts).
