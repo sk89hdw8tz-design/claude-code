@@ -49,10 +49,20 @@ def pw_fwd(v, native, glob):
     return out
 
 
+def axis_map(v, native, glob, scale):
+    """Map one coordinate. A single-knot axis (the wharf sheets carry one
+    avenue line) extends affinely at the unit's fitted scale — the same rule
+    the prior build's compositor used."""
+    if len(native) >= 2:
+        return pw_fwd([v], native, glob)[0]
+    return glob[0] + (v - native[0]) * scale
+
+
 def to_global(unit, xy):
     k = unit["knots"]
-    gx = pw_fwd([xy[0]], k["xkn"], k["xkg"])[0]
-    gy = pw_fwd([xy[1]], k["ykn"], k["ykg"])[0]
+    fit = unit.get("fit_consensus") or unit.get("fit") or {}
+    gx = axis_map(xy[0], k["xkn"], k["xkg"], fit.get("sx", 1.0))
+    gy = axis_map(xy[1], k["ykn"], k["ykg"], fit.get("sy", 1.0))
     return gx, gy
 
 

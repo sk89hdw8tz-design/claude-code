@@ -95,3 +95,45 @@ Consequences for any rebuild:
 - The wharf|wharf pairs (07|06 at 22nd, 08|07 at 19th) are NOT affected —
   both sides are drawn in the same detailed style, and the prior build
   already measures ±6 px there.
+
+## Landmark baseline — the prior build measured by the anti-circular gate
+
+`tools/landmark_check.py` run against the prior build's transforms with the
+complete 61-feature, 19-pair landmark set (full table in
+`landmark_baseline.txt`):
+
+- **median step 98.4 px, max 233.9 px, 58 of 61 landmarks over 8 px.**
+- The seam-walking QC had measured steps of "only" tens of px because it
+  could only see content the seam cuts left visible; the landmark gate sees
+  the transforms directly. This is the circularity lesson made concrete.
+
+The per-pair structure matters more than the totals. Wharf pairs are fine
+(07|06 mean (+9,+8) spread 11 px; 08|07 mean (+2,+3) spread 9 px). The
+downtown pairs carry LARGE mean offsets with SMALL spreads:
+
+| pair | mean dx | mean dy | spread |
+|---|---|---|---|
+| 13\|14 | −104 | −26 | 15 |
+| 14\|39 | −114 | −17 | 54 |
+| 14\|16 | +80 | −208 | 18 |
+| 13\|15 | +79 | −163 | 71 |
+| 39\|37 | +71 | −131 | 25 |
+| 41\|39 | −52 | −117 | 20 |
+| 12\|14 | −15 | −119 | 19 |
+| 11\|13 | +13 | −113 | 44 |
+| 11\|12 | −49 | −108 | 39 |
+
+Small spread + large mean = **rigid pairwise misregistration** — removable
+by per-sheet translations. With 19 pairwise constraints over 12 sheets this
+is a tiny least-squares problem; these landmarks are the measurements it
+needs. That materially strengthens the cheap-repair option (solve
+translations from landmarks, re-render, re-check), and it is also exactly
+the bundle-adjustment input the full rebuild would start from.
+
+Independent cross-validation: the dx means at the 24th St pairs (+71..+80)
+match the seam QC's 48–85 px lateral-step measurement made by a completely
+different method.
+
+Redraw scatter caveat: the drawings themselves disagree by ~24 px (best
+pair) to ~100 px (schematic Avenue A pairs), so post-repair expectations
+are bounded by the spread column, not by zero.

@@ -1,5 +1,5 @@
 {
- "status": "PARTIAL \u2014 locate only, independent verification pending",
+ "status": "PARTIAL \u2014 all 19 pairs LOCATED; independent verification pending (rendition 1's first task)",
  "produced_by": "workflow wf_3cacd135-3fe; 4 of 7 locate agents completed before a session limit; verify fleet did not run",
  "note": "Treat confidence as the locator's own; no feature here has been independently re-measured yet. The rebuild prompt already instructs rendition 1 to verify or extend this set.",
  "features": [
@@ -645,7 +645,440 @@
    "confidence": "medium",
    "overlap_px": 145,
    "verified": false
+  },
+  {
+   "id": "th-hydrant-e-of-alley-114",
+   "sheet_a": "11",
+   "sheet_b": "13",
+   "boundary": "21st Street",
+   "description": "Fire hydrant dot labelled T.H., in 21st St just east of the 20-ft dashed alley line and SW of the yellow building at no. 114 (sheet 11) / south of the north-block outline corner (sheet 13); dot centre.",
+   "a_xy": [
+    660,
+    3706
+   ],
+   "b_xy": [
+    734,
+    179
+   ],
+   "confidence": "high",
+   "overlap_px": 290,
+   "verified": false
+  },
+  {
+   "id": "th-hydrant-214",
+   "sheet_a": "11",
+   "sheet_b": "13",
+   "boundary": "21st Street",
+   "description": "Fire hydrant dot with label 'T.H. 1', at west end of yellow frontage of no. 214 (sheet 11), east of the 20-ft dashed alley; on sheet 13 the same dot sits in the street NE of alley, north of no. 213; dot centre.",
+   "a_xy": [
+    1707,
+    3685
+   ],
+   "b_xy": [
+    1771,
+    182
+   ],
+   "confidence": "high",
+   "overlap_px": 290,
+   "verified": false
+  },
+  {
+   "id": "ne-corner-211",
+   "sheet_a": "11",
+   "sheet_b": "13",
+   "boundary": "21st Street",
+   "description": "NE front corner of building at no. 211 (yellow, dashed front line on sheet 13, small circle just inside corner), ~28 px west of the dashed alley line; drawn on sheet 11 as the top-right corner of the schematic south-side outline rectangle west of the alley.",
+   "a_xy": [
+    1627,
+    3892
+   ],
+   "b_xy": [
+    1689,
+    337
+   ],
+   "confidence": "medium",
+   "overlap_px": 290,
+   "verified": false
+  },
+  {
+   "id": "th-hydrant-414",
+   "sheet_a": "12",
+   "sheet_b": "14",
+   "boundary": "21st Street",
+   "description": "Fire hydrant dot labelled T.H., in 21st St just SW of the yellow frontage of no. 414 (with '8'' and '1' marks at its west edge), east of the dashed 20-ft alley; dot centre. On sheet 14 it sits below the north-block outline corner, above 'WOOD BLOCK PAVED'.",
+   "a_xy": [
+    723,
+    3713
+   ],
+   "b_xy": [
+    716,
+    170
+   ],
+   "confidence": "high",
+   "overlap_px": 265,
+   "verified": false
+  },
+  {
+   "id": "th-hydrant-514",
+   "sheet_a": "12",
+   "sheet_b": "14",
+   "boundary": "21st Street",
+   "description": "Fire hydrant dot labelled T.H., just south of the SW corner of the yellow frontage of no. 514 (small circle inside its SE corner on sheet 12), east of the double dashed alley lines; dot centre. On sheet 14 it is above the 'C' of CENTRE.",
+   "a_xy": [
+    1722,
+    3719
+   ],
+   "b_xy": [
+    1730,
+    184
+   ],
+   "confidence": "high",
+   "overlap_px": 265,
+   "verified": false
+  },
+  {
+   "id": "th-hydrant-614",
+   "sheet_a": "12",
+   "sheet_b": "14",
+   "boundary": "21st Street",
+   "description": "Fire hydrant dot labelled T.H., just south of the SW corner of yellow frontage of no. 614, east of the dashed alley; dot centre. On sheet 14 it lies just SE of the compass-rose rays and the north-block outline corner.",
+   "a_xy": [
+    2724,
+    3719
+   ],
+   "b_xy": [
+    2741,
+    184
+   ],
+   "confidence": "high",
+   "overlap_px": 265,
+   "verified": false
+  },
+  {
+   "id": "th-hydrant-714-block",
+   "sheet_a": "41",
+   "sheet_b": "39",
+   "boundary": "21st Street",
+   "description": "Fire hydrant dot labelled T.H. (label below the dot on sheet 41, right of it on sheet 39), in 21st St south of the gap between the 702-724 block corner outlines; on sheet 39 it sits just NE of the compass rose, below the north-block outline line; dot centre.",
+   "a_xy": [
+    729,
+    3703
+   ],
+   "b_xy": [
+    733,
+    187
+   ],
+   "confidence": "high",
+   "overlap_px": 295,
+   "verified": false
+  },
+  {
+   "id": "fire-alarm-box-71",
+   "sheet_a": "41",
+   "sheet_b": "39",
+   "boundary": "21st Street",
+   "description": "Red circled fire-alarm box numbered 71, in 21st St SE of frontage no. 720 / Galveston power-house Car Barn corner (sheet 41), east of the south-block outline corner on sheet 39; disc centre.",
+   "a_xy": [
+    2125,
+    3732
+   ],
+   "b_xy": [
+    2153,
+    170
+   ],
+   "confidence": "high",
+   "overlap_px": 295,
+   "verified": false
+  },
+  {
+   "id": "th-hydrant-914",
+   "sheet_a": "41",
+   "sheet_b": "39",
+   "boundary": "21st Street",
+   "description": "Fire hydrant dot labelled T.H., just south of SW corner of yellow frontage no. 914, east of the 20-ft double-dashed alley line on both sheets; dot centre.",
+   "a_xy": [
+    2740,
+    3712
+   ],
+   "b_xy": [
+    2755,
+    169
+   ],
+   "confidence": "high",
+   "overlap_px": 295,
+   "verified": false
+  },
+  {
+   "id": "th_hydrant_dot",
+   "sheet_a": "07",
+   "sheet_b": "06",
+   "boundary": "22nd Street",
+   "description": "Centre of the solid black T.H. hydrant dot west of the terminal track fan, at the west end of the dashed 22nd St line, labelled 'T.H.' just above it. On sheet 06 the dashes abut the dot's east side.",
+   "a_xy": [
+    2357,
+    3696
+   ],
+   "b_xy": [
+    2337,
+    154
+   ],
+   "confidence": "high",
+   "overlap_px": 230,
+   "verified": false
+  },
+  {
+   "id": "pier22_whse_se_corner",
+   "sheet_a": "07",
+   "sheet_b": "06",
+   "boundary": "22nd Street",
+   "description": "South-east corner of the yellow Pier No 22 warehouse footprint (Galveston Wharf Co, Morgan Steam-Ship Co lessee) - the vertex where the building's south (slip-end) wall meets its east wall. Sheet 07 draws a small black circle just inside this corner; sheet 06 draws the south wall dotted.",
+   "a_xy": [
+    1974,
+    3868
+   ],
+   "b_xy": [
+    1952,
+    354
+   ],
+   "confidence": "high",
+   "overlap_px": 230,
+   "verified": false
+  },
+  {
+   "id": "pier22_apron_se_corner",
+   "sheet_a": "07",
+   "sheet_b": "06",
+   "boundary": "22nd Street",
+   "description": "South-east outer corner of the white pier apron/platform (black outline) that surrounds the Pier 22 warehouse, at the slip edge - the outline vertex diagonally outside the warehouse SE corner.",
+   "a_xy": [
+    2017,
+    3914
+   ],
+   "b_xy": [
+    1996,
+    403
+   ],
+   "confidence": "high",
+   "overlap_px": 230,
+   "verified": false
+  },
+  {
+   "id": "pier22_apron_sw_corner",
+   "sheet_a": "07",
+   "sheet_b": "06",
+   "boundary": "22nd Street",
+   "description": "South-west outer corner of the same white pier apron outline around the Pier 22 warehouse, where the south edge meets the west edge against the blue wharf/water tint.",
+   "a_xy": [
+    1706,
+    3917
+   ],
+   "b_xy": [
+    1675,
+    408
+   ],
+   "confidence": "high",
+   "overlap_px": 230,
+   "verified": false
+  },
+  {
+   "id": "block_lot13_nw_corner",
+   "sheet_a": "07",
+   "sheet_b": "06",
+   "boundary": "22nd Street",
+   "description": "North-west corner of the building-block outline on the south side of 22nd St, immediately west of lot number '13' (block containing lots 13-23), east of the track fan.",
+   "a_xy": [
+    2664,
+    3823
+   ],
+   "b_xy": [
+    2633,
+    308
+   ],
+   "confidence": "high",
+   "overlap_px": 230,
+   "verified": false
+  },
+  {
+   "id": "th-hydrant-114",
+   "sheet_a": "13",
+   "sheet_b": "15",
+   "boundary": "24th Street",
+   "description": "Filled black T.H. hydrant dot on N side of 24th St just S of street no. 114 (First Nat. Bank block), ~40 px SE of the dashed alley centerline; label 'T.H.' below dot on sheet 13, right of dot on sheet 15",
+   "a_xy": [
+    696,
+    3688
+   ],
+   "b_xy": [
+    745,
+    123
+   ],
+   "confidence": "high",
+   "overlap_px": 300,
+   "verified": false
+  },
+  {
+   "id": "th-hydrant-214",
+   "sheet_a": "13",
+   "sheet_b": "15",
+   "boundary": "24th Street",
+   "description": "Filled black T.H. hydrant dot on N side of 24th St below street no. 214, E of dashed alley centerline; on sheet 15 it sits immediately right of the large '13' sheet-reference numeral",
+   "a_xy": [
+    1734,
+    3674
+   ],
+   "b_xy": [
+    1775,
+    134
+   ],
+   "confidence": "high",
+   "overlap_px": 300,
+   "verified": false
+  },
+  {
+   "id": "th-hydrant-314",
+   "sheet_a": "13",
+   "sheet_b": "15",
+   "boundary": "24th Street",
+   "description": "Filled black T.H. hydrant dot on N side of 24th St below street no. 314 (iron-clad warehouse block), E of dashed centerline",
+   "a_xy": [
+    2731,
+    3673
+   ],
+   "b_xy": [
+    2787,
+    138
+   ],
+   "confidence": "high",
+   "overlap_px": 300,
+   "verified": false
+  },
+  {
+   "id": "alarm-box-212",
+   "sheet_a": "13",
+   "sheet_b": "15",
+   "boundary": "24th Street",
+   "description": "Red fire-alarm-box circle numbered 212 in the street SW of block corner near street no. 212/213; red-pixel centroid. Placement relative to adjacent block corner differs ~30 px between sheets (schematic symbol), so not suitable for tight registration",
+   "a_xy": [
+    1224,
+    3697
+   ],
+   "b_xy": [
+    1300,
+    96
+   ],
+   "confidence": "low",
+   "overlap_px": 300,
+   "verified": false
+  },
+  {
+   "id": "th-hydrant-414",
+   "sheet_a": "14",
+   "sheet_b": "16",
+   "boundary": "24th Street",
+   "description": "Filled black T.H. hydrant dot on N side of 24th St below street no. 414 (steam laundry 'Washing & Ironing' block), just E of dashed alley centerline; label T.H. right of dot on both sheets",
+   "a_xy": [
+    685,
+    3699
+   ],
+   "b_xy": [
+    734,
+    98
+   ],
+   "confidence": "high",
+   "overlap_px": 297,
+   "verified": false
+  },
+  {
+   "id": "th-hydrant-514",
+   "sheet_a": "14",
+   "sheet_b": "16",
+   "boundary": "24th Street",
+   "description": "Filled black T.H. hydrant dot on N side of 24th St below street no. 514 (block with Eng. & Dynamo / Servants Ho.), E of dashed centerline; on sheet 16 it sits right of the large '14' sheet-reference numeral",
+   "a_xy": [
+    1692,
+    3702
+   ],
+   "b_xy": [
+    1752,
+    103
+   ],
+   "confidence": "high",
+   "overlap_px": 297,
+   "verified": false
+  },
+  {
+   "id": "th-hydrant-614",
+   "sheet_a": "14",
+   "sheet_b": "16",
+   "boundary": "24th Street",
+   "description": "Filled black T.H. hydrant dot on N side of 24th St below street no. 614, E of dashed centerline, in 'NOT PAVED' stretch",
+   "a_xy": [
+    2712,
+    3704
+   ],
+   "b_xy": [
+    2746,
+    93
+   ],
+   "confidence": "high",
+   "overlap_px": 297,
+   "verified": false
+  },
+  {
+   "id": "th-hydrant-714",
+   "sheet_a": "39",
+   "sheet_b": "37",
+   "boundary": "24th Street",
+   "description": "Filled black T.H. hydrant dot on N side of 24th St below street no. 714 (block with dwellings 'D.'), just E of dashed alley centerline",
+   "a_xy": [
+    720,
+    3686
+   ],
+   "b_xy": [
+    701,
+    124
+   ],
+   "confidence": "high",
+   "overlap_px": 325,
+   "verified": false
+  },
+  {
+   "id": "th-hydrant-814",
+   "sheet_a": "39",
+   "sheet_b": "37",
+   "boundary": "24th Street",
+   "description": "Filled black T.H. hydrant dot on N side of 24th St below street no. 814, E of dashed centerline; on sheet 37 it sits right of the large '39' sheet-reference numeral",
+   "a_xy": [
+    1717,
+    3684
+   ],
+   "b_xy": [
+    1705,
+    128
+   ],
+   "confidence": "high",
+   "overlap_px": 325,
+   "verified": false
+  },
+  {
+   "id": "th-hydrant-914",
+   "sheet_a": "39",
+   "sheet_b": "37",
+   "boundary": "24th Street",
+   "description": "Filled black T.H. hydrant dot on N side of 24th St below street no. 914 (E of lot 912 with cross-hatched stable), E of dashed centerline",
+   "a_xy": [
+    2722,
+    3683
+   ],
+   "b_xy": [
+    2721,
+    120
+   ],
+   "confidence": "high",
+   "overlap_px": 325,
+   "verified": false
   }
  ],
- "schematic_note": "Features flagged schematic:true pair a wharf sheet's SCHEMATIC east-side block outline with a downtown sheet's surveyed drawing. The locate agents measured corner disagreements up to ~100 px BETWEEN THE DRAWINGS themselves on these pairs. Such features measure source disagreement, not registration error \u2014 exclude them from any pass/fail alignment gate; the surveyed downtown drawing is authoritative there."
+ "schematic_note": "Features flagged schematic:true pair a wharf sheet's SCHEMATIC east-side block outline with a downtown sheet's surveyed drawing. The locate agents measured corner disagreements up to ~100 px BETWEEN THE DRAWINGS themselves on these pairs. Such features measure source disagreement, not registration error \u2014 exclude them from any pass/fail alignment gate; the surveyed downtown drawing is authoritative there.",
+ "redraw_scatter_note": "Every boundary measured shows hand-drawn disagreement between the two sheets' redraws of the shared strip: ~24 px total scatter on the best pair (12|14) up to ~50-70 px on 11|13 and 41|39, ~30 px internal drift on wharf pair 07|06, and up to ~100 px on the schematic Avenue A pairs. Judge per-landmark steps against this source scatter \u2014 a registration cannot beat the drawings' own agreement."
 }
