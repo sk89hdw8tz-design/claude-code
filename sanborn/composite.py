@@ -180,6 +180,21 @@ def flatten_illumination(img, target_tone, clip_lo=0.70, clip_hi=1.40):
     # at full cross-axis fidelity; rows with thin paper support keep
     # gain 1 so wash-dominated bands are never stretched.
     tgt = np.asarray(target_tone, np.float32)
+    # Second field iteration: one pass under-corrects large open paper
+    # (the bay sat 3-5 levels green-dark of target — small, but visible
+    # across a flat expanse). Re-estimating the field on the corrected
+    # result converges it within ~1-2 levels.
+    corr = small * gain
+    field2 = corr * mask[..., None]
+    den2 = mask.copy()
+    for _ in range(4):
+        field2 = cv2.blur(field2, (61, 61))
+        den2 = cv2.blur(den2, (61, 61))
+    out2 = np.empty_like(field2)
+    for c in range(3):
+        f = np.where(den2 > 1e-3, field2[..., c] / np.maximum(den2, 1e-3), tgt[c])
+        out2[..., c] = cv2.GaussianBlur(f, (0, 0), 10)
+    gain = gain * np.clip(tgt / np.maximum(out2, 1.0), 0.9, 1.12)
     corr = small * gain
     for axis in (0, 1):            # 0: per-row gains, 1: per-column gains
         n = corr.shape[axis]
