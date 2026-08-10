@@ -188,7 +188,8 @@
    ],
    "confidence": "high",
    "overlap_px": 240,
-   "verified": false
+   "verified": false,
+   "schematic": true
   },
   {
    "id": "blk682-sw-corner",
@@ -205,7 +206,8 @@
    ],
    "confidence": "high",
    "overlap_px": 240,
-   "verified": false
+   "verified": false,
+   "schematic": true
   },
   {
    "id": "blk683-nw-corner",
@@ -222,7 +224,8 @@
    ],
    "confidence": "high",
    "overlap_px": 240,
-   "verified": false
+   "verified": false,
+   "schematic": true
   },
   {
    "id": "blk684-nw-corner",
@@ -239,7 +242,8 @@
    ],
    "confidence": "high",
    "overlap_px": 255,
-   "verified": false
+   "verified": false,
+   "schematic": true
   },
   {
    "id": "blk684-sw-corner",
@@ -256,7 +260,8 @@
    ],
    "confidence": "high",
    "overlap_px": 255,
-   "verified": false
+   "verified": false,
+   "schematic": true
   },
   {
    "id": "blk679-nw-corner",
@@ -273,7 +278,8 @@
    ],
    "confidence": "high",
    "overlap_px": 230,
-   "verified": false
+   "verified": false,
+   "schematic": true
   },
   {
    "id": "blk680-nw-corner",
@@ -290,7 +296,8 @@
    ],
    "confidence": "high",
    "overlap_px": 230,
-   "verified": false
+   "verified": false,
+   "schematic": true
   },
   {
    "id": "blk680-sw-corner",
@@ -307,7 +314,8 @@
    ],
    "confidence": "high",
    "overlap_px": 230,
-   "verified": false
+   "verified": false,
+   "schematic": true
   },
   {
    "id": "blk681-nw-corner",
@@ -324,7 +332,8 @@
    ],
    "confidence": "high",
    "overlap_px": 220,
-   "verified": false
+   "verified": false,
+   "schematic": true
   },
   {
    "id": "blk681-sw-corner",
@@ -341,7 +350,8 @@
    ],
    "confidence": "high",
    "overlap_px": 220,
-   "verified": false
+   "verified": false,
+   "schematic": true
   },
   {
    "id": "blk682-nw-corner-07",
@@ -358,7 +368,8 @@
    ],
    "confidence": "high",
    "overlap_px": 220,
-   "verified": false
+   "verified": false,
+   "schematic": true
   },
   {
    "id": "blk678-nw-corner",
@@ -375,7 +386,8 @@
    ],
    "confidence": "high",
    "overlap_px": 200,
-   "verified": false
+   "verified": false,
+   "schematic": true
   },
   {
    "id": "blk678-sw-corner",
@@ -392,7 +404,8 @@
    ],
    "confidence": "high",
    "overlap_px": 200,
-   "verified": false
+   "verified": false,
+   "schematic": true
   },
   {
    "id": "rail19th-dashdot-x",
@@ -409,7 +422,8 @@
    ],
    "confidence": "medium",
    "overlap_px": 200,
-   "verified": false
+   "verified": false,
+   "schematic": true
   },
   {
    "id": "w-corner-1802",
@@ -632,5 +646,6 @@
    "overlap_px": 145,
    "verified": false
   }
- ]
+ ],
+ "schematic_note": "Features flagged schematic:true pair a wharf sheet's SCHEMATIC east-side block outline with a downtown sheet's surveyed drawing. The locate agents measured corner disagreements up to ~100 px BETWEEN THE DRAWINGS themselves on these pairs. Such features measure source disagreement, not registration error \u2014 exclude them from any pass/fail alignment gate; the surveyed downtown drawing is authoritative there."
 }

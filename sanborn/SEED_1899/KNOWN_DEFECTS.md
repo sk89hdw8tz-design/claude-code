@@ -65,3 +65,33 @@ overlap) and this becomes the strongest signal available.
    runs; taking the longest ended that sheet's paper 240 px early, which made
    its frame appear not to overlap its neighbour and collapsed the seam to a
    midpoint fallback.
+
+## Source-level finding: the wharf sheets' east side is SCHEMATIC
+
+Discovered by the landmark-locating fleet, after everything above was
+written, and important enough to change how THE BAR reads at Avenue A.
+
+On sheets 06, 07 and 08, the blocks drawn EAST of Avenue A (the harbor-side
+block row the downtown sheets survey in detail) are schematic outline
+rectangles, not survey drawings. Matching their corners against the same
+physical corners on the downtown sheets (11, 13, 15) shows the two drawings
+disagree **by up to ~100 px between features on the same pair** — the
+disagreement varies corner to corner, so it is not a rigid offset and not a
+measurement artifact. The locators' own note: "the schematic east-side
+rectangles on 06 are not survey-accurate: corner-pair offsets vary by up to
+~100 px between features, which is disagreement between the two drawings,
+not misidentification."
+
+Consequences for any rebuild:
+
+- **No registration method can align drawings that disagree.** At the
+  Avenue A wharf|downtown seams, some residual mismatch is AUTHENTIC.
+- Policy: the downtown sheets' surveyed drawing is authoritative east of
+  Avenue A; the wharf sheets' schematic rectangles should lose every
+  conflict there, and the report should disclose why.
+- The ≤8 px landmark gate applies to surveyed-vs-surveyed pairs.
+  Landmarks flagged `schematic: true` in landmarks.json are reported but
+  excluded from pass/fail.
+- The wharf|wharf pairs (07|06 at 22nd, 08|07 at 19th) are NOT affected —
+  both sides are drawn in the same detailed style, and the prior build
+  already measures ±6 px there.

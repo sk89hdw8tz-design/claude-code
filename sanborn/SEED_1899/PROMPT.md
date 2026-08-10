@@ -55,7 +55,7 @@ and risk.
 
 | Metric | Prior build | Required |
 |---|---|---|
-| Step at every ground-truth landmark | up to 85 px | **≤ 8 px, none > 12 px** |
+| Step at every ground-truth landmark* | up to 85 px | **≤ 8 px, none > 12 px** |
 | Lateral row step across 24th St | 48–85 px | ≤ 8 px |
 | Vertical steps at Avenue G | −42 … +64 px | ≤ 8 px |
 | Rail steps across Avenue A | 0 → +30 px; 20 of 28 rows > 10 px | ≤ 8 px; zero rows > 12 px |
@@ -67,6 +67,16 @@ and risk.
 
 **The bar is demonstrated on these exact sheets**: the prior build's 22nd St
 seam (07|06) measures ±6 px and its 19th St seam (08|07) −3…+4 px.
+
+*THE ASTERISK — read before judging Avenue A.* The wharf sheets (06/07/08)
+draw the blocks EAST of Avenue A as schematic outline rectangles that
+disagree with the downtown sheets' surveyed drawings by up to ~100 px,
+corner to corner (see KNOWN_DEFECTS.md, "Source-level finding"). No
+registration can align drawings that disagree. The ≤8 px gate therefore
+applies to surveyed-vs-surveyed landmarks only; features flagged
+`schematic: true` in landmarks.json are reported but excluded from
+pass/fail, and east of Avenue A the surveyed downtown drawing is
+authoritative — disclose this in the report.
 
 ## The nineteen seams you must get right
 
