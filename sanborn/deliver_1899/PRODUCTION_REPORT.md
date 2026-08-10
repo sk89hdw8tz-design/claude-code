@@ -19,7 +19,20 @@ ground.
 
 ## Colour
 
-No per-sheet white balance is applied (`config.PRESERVE_COLORS`). Every
+**Uniform-paper revision:** each scan's illumination field (edge
+vignettes, scanner shading) is flattened to the edition's aged-cream
+tone before compositing (`flatten_illumination`): the smooth paper
+field is estimated from bright low-saturation non-backing pixels and
+the sheet is multiplied by target/field, clipped to ±30%. Inks and
+washes keep their ratio to the local paper, so the printed colours
+survive; the paper reads as one continuous aged sheet. This removed
+the pale band south of 19th (sheet 8's edge vignette, which no
+per-sheet gain could touch — the sheet paper MEDIANS already agreed
+within a few levels) and the tone cliffs at the wharf joins.
+Pure-white pixels 48 → 7.
+
+Beneath that, no per-sheet white balance is applied
+(`config.PRESERVE_COLORS`). Every
 printed wash — pink brick, yellow frame, blue water, green special —
 renders exactly as scanned, and the highlight-protection gain is disabled
 because unity gain cannot push a highlight anywhere it was not already.
@@ -127,7 +140,7 @@ directions, all since corrected.
 
 ## Output
 
-38.35 × 25.44 in at 300 dpi (page 39.35 × 26.94 in with caption).
+38.32 × 25.44 in at 300 dpi (page 39.32 × 26.94 in with caption).
 
 ## Seam QC — three independent adversarial passes
 
@@ -285,3 +298,16 @@ mean, which sits at that pair's own drawing-scatter floor (spread
 13 px). Forcing it to zero pushes ~24 px onto the 24th St crossings
 via pair 12|14. Left as-is and disclosed; per-sheet rotation (a
 rebuild item, inexpressible in the separable warp) is the honest fix.
+
+## Corridor continuity at 24th (uniform-tone revision)
+
+Column-profile NCC measured Strand/Mechanic kerb steps of +20/+25 px
+crossing 24th (pair 13|15). The 4-cycle 13-15-16-14 closes with ~25 px
+of engraver disagreement, so these steps cannot be zeroed — only moved.
+Two corridor-continuity landmarks (weights 2.0/1.2) now bias the solve
+toward the corridors the eye follows: Strand +20 → +12, Mechanic
++25 → +17, with the residual pushed into block interiors and a rigid
+−18 px absorbed at the 14|39 boundary, where the owner-on-top Avenue G
+seam hides it (streets cross Avenue G at +8/+11 px, scatter level).
+Scale bounds tightened ±1% → ±0.4% after the ±1% solve pinned sheets
+13/15 at opposite bounds.
