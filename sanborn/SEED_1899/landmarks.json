@@ -1204,6 +1204,152 @@
    "weight": 1.2,
    "desc": "Mechanic corridor kerb alignment crossing 24th, column-profile NCC step +25px measured in composite",
    "confidence": "medium"
+  },
+  {
+   "id": "dash-19th-aveD",
+   "sheet_a": "11",
+   "a_xy": [
+    3205.3,
+    1544.5
+   ],
+   "sheet_b": "12",
+   "b_xy": [
+    195.3,
+    1506.3
+   ],
+   "weight": 1.0,
+   "confidence": "high",
+   "desc": "street dash centerline continuity at slot 3, measured dash-row step -15px"
+  },
+  {
+   "id": "dash-20th-aveD",
+   "sheet_a": "11",
+   "a_xy": [
+    3205.3,
+    2675.0
+   ],
+   "sheet_b": "12",
+   "b_xy": [
+    195.3,
+    2692.1
+   ],
+   "weight": 1.0,
+   "confidence": "high",
+   "desc": "street dash centerline continuity at slot 3, measured dash-row step +34px"
+  },
+  {
+   "id": "dash-22nd-aveD",
+   "sheet_a": "13",
+   "a_xy": [
+    3264.9,
+    1455.5
+   ],
+   "sheet_b": "14",
+   "b_xy": [
+    190.2,
+    1444.0
+   ],
+   "weight": 1.5,
+   "confidence": "high",
+   "desc": "street dash centerline continuity at slot 3, measured dash-row step +26px"
+  },
+  {
+   "id": "dash-23rd-aveD",
+   "sheet_a": "13",
+   "a_xy": [
+    3264.9,
+    2657.4
+   ],
+   "sheet_b": "14",
+   "b_xy": [
+    190.2,
+    2669.5
+   ],
+   "weight": 1.2,
+   "confidence": "high",
+   "desc": "street dash centerline continuity at slot 3, measured dash-row step +37px"
+  },
+  {
+   "id": "dash-25th-aveD",
+   "sheet_a": "15",
+   "a_xy": [
+    3310.9,
+    1312.1
+   ],
+   "sheet_b": "16",
+   "b_xy": [
+    246.2,
+    1281.3
+   ],
+   "weight": 1.5,
+   "confidence": "high",
+   "desc": "street dash centerline continuity at slot 3, measured dash-row step +15px"
+  },
+  {
+   "id": "dash-20th-aveG",
+   "sheet_a": "12",
+   "a_xy": [
+    3159.9,
+    2705.7
+   ],
+   "sheet_b": "41",
+   "b_xy": [
+    173.5,
+    2730.0
+   ],
+   "weight": 0.8,
+   "confidence": "high",
+   "desc": "street dash centerline continuity at slot 6, measured dash-row step +17px"
+  },
+  {
+   "id": "dash-22nd-aveG",
+   "sheet_a": "14",
+   "a_xy": [
+    3138.7,
+    1426.1
+   ],
+   "sheet_b": "39",
+   "b_xy": [
+    152.0,
+    1448.0
+   ],
+   "weight": 0.8,
+   "confidence": "high",
+   "desc": "street dash centerline continuity at slot 6, measured dash-row step +26px"
+  },
+  {
+   "id": "junction-dash-19th",
+   "sheet_a": "07",
+   "a_xy": [
+    3134.0,
+    241.8
+   ],
+   "sheet_b": "11",
+   "b_xy": [
+    104.6,
+    1540.6
+   ],
+   "weight": 1.0,
+   "junction": true,
+   "confidence": "high",
+   "desc": "junction dash row at Ave A, step +21px"
+  },
+  {
+   "id": "junction-dash-20th",
+   "sheet_a": "07",
+   "a_xy": [
+    3134.0,
+    1397.9
+   ],
+   "sheet_b": "11",
+   "b_xy": [
+    104.6,
+    2696.2
+   ],
+   "weight": 1.5,
+   "junction": true,
+   "confidence": "high",
+   "desc": "junction dash row at Ave A, step +23px"
   }
  ],
  "schematic_note": "Features flagged schematic:true pair a wharf sheet's SCHEMATIC east-side block outline with a downtown sheet's surveyed drawing. The locate agents measured corner disagreements up to ~100 px BETWEEN THE DRAWINGS themselves on these pairs. Such features measure source disagreement, not registration error \u2014 exclude them from any pass/fail alignment gate; the surveyed downtown drawing is authoritative there.",
