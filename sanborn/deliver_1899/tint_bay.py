@@ -51,8 +51,31 @@ def tint(png_path):
     region = np.isin(lab2, keep).astype(np.uint8)
     rf = cv2.resize(region, (img.shape[1], img.shape[0]),
                     interpolation=cv2.INTER_NEAREST).astype(bool)
-    factor = (WASH / CREAM).astype(np.float32)
-    img[rf] = np.clip(img[rf].astype(np.float32) * factor, 0, 255).astype(np.uint8)
+    # Region-scoped paper flattening before the wash: a plain multiply
+    # reproduces every residual paper gradient IN the blue (sheet seam
+    # lines banded the bay). Estimate the bright-paper field inside the
+    # water only, divide it out fully, multiply by the wash; ink stays
+    # dark, fine grain survives, bands vanish.
+    s = img[::4, ::4].astype(np.float32)
+    r4 = rf[::4, ::4]
+    mx = s.max(axis=2)
+    mn = s.min(axis=2)
+    paper = (r4 & (mx > 185) & ((mx - mn) < 45)).astype(np.float32)
+    field = s * paper[..., None]
+    den = paper.copy()
+    for _ in range(5):
+        field = cv2.blur(field, (41, 41))
+        den = cv2.blur(den, (41, 41))
+    med = np.median(s.reshape(-1, 3)[paper.reshape(-1) > 0], axis=0)
+    gain4 = np.empty_like(field)
+    for c in range(3):
+        f = np.where(den > 1e-3, field[..., c] / np.maximum(den, 1e-3), med[c])
+        f = cv2.GaussianBlur(f, (0, 0), 4)
+        gain4[..., c] = WASH[c] / np.maximum(f, 1.0)
+    gain4 = np.clip(gain4, 0.6, 1.6)
+    gain = cv2.resize(gain4, (img.shape[1], img.shape[0]),
+                      interpolation=cv2.INTER_LINEAR)
+    img[rf] = np.clip(img[rf].astype(np.float32) * gain[rf], 0, 255).astype(np.uint8)
     cv2.imwrite(png_path, img)
     return float(rf.mean())
 
