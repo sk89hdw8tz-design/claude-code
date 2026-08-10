@@ -1,0 +1,636 @@
+{
+ "status": "PARTIAL \u2014 locate only, independent verification pending",
+ "produced_by": "workflow wf_3cacd135-3fe; 4 of 7 locate agents completed before a session limit; verify fleet did not run",
+ "note": "Treat confidence as the locator's own; no feature here has been independently re-measured yet. The rebuild prompt already instructs rendition 1 to verify or extend this set.",
+ "features": [
+  {
+   "id": "blk-corner-n80",
+   "sheet_a": "11",
+   "sheet_b": "12",
+   "description": "SE corner of the west-side block outline immediately north of the northernmost 80-ft cross street (the block containing 'Lumber Yard', opposite sheet 12's Chas Neumiller block). On sheet 11 it is the full solid block-outline corner (vertical Av D frontage line meets the cross-street line); on sheet 12 the same corner is drawn as an L-shaped facing-block stub (vertical line ending in a short leftward tick), just below the 'Galveston Texas' script and NW of the large '12' sheet numeral.",
+   "a_xy": [
+    3104,
+    152
+   ],
+   "b_xy": [
+    105,
+    140
+   ],
+   "confidence": "high",
+   "overlap_px": 267,
+   "verified": false
+  },
+  {
+   "id": "blk323-ne-corner",
+   "sheet_a": "11",
+   "sheet_b": "12",
+   "description": "NE corner of block 323's frontage outline, first block south of the northernmost 80-ft cross street (corner where the yellow dwelling addressed 1802 sits; '323' lot label just left of it). Solid outline corner on sheet 11; L-shaped stub (vertical line with leftward tick at its top) on sheet 12, left of the '70'' width label.",
+   "a_xy": [
+    3099,
+    400
+   ],
+   "b_xy": [
+    102,
+    386
+   ],
+   "confidence": "high",
+   "overlap_px": 267,
+   "verified": false
+  },
+  {
+   "id": "red-disc-7",
+   "sheet_a": "11",
+   "sheet_b": "12",
+   "description": "Centre of the small red circled block-number disc reading '7', drawn in the Av D roadway just SE of the corner of the block containing bldg 1928 (sheet 11) / just west of sheet 12's 1925-1927 frontage, north of the 40-ft cross street. Same numeral on both sheets; centres measured as red-pixel centroids. It is an annotation symbol placed by the draftsman, but it fits the transform implied by the two outline corners above to about 15 px.",
+   "a_xy": [
+    3139,
+    2529
+   ],
+   "b_xy": [
+    123,
+    2477
+   ],
+   "confidence": "medium",
+   "overlap_px": 267,
+   "verified": false
+  },
+  {
+   "id": "blk324-se-corner",
+   "sheet_a": "11",
+   "sheet_b": "12",
+   "description": "SE corner of block 324's dashed frontage outline at the southernmost 80-ft cross street (yellow porch outline of bldg 2028; a solid black dot sits ~15 px inside the corner). Dashed corner on sheet 11; L-shaped stub (long vertical line ending in a leftward foot tick) on sheet 12, above the Gill & League Bldg block. Stub placement looks sketchier than the two northern stubs (about 30 px west of where they imply), hence medium.",
+   "a_xy": [
+    3109,
+    3694
+   ],
+   "b_xy": [
+    71,
+    3638
+   ],
+   "confidence": "medium",
+   "overlap_px": 267,
+   "verified": false
+  },
+  {
+   "id": "red-disc-214",
+   "sheet_a": "13",
+   "sheet_b": "14",
+   "description": "Centre of the red circled block-number disc reading '214', drawn in the Av D roadway at the NW corner of block 214, immediately below the third 80-ft cross street (sheet 13: SE of its blocks 2306/2302 corner; sheet 14: just NW of its yellow block corner addressed 2301, above the E.S. Levy Bldg latitude is the same street). Numeral verified identical at 6x zoom on both sheets; centres are red-pixel centroids.",
+   "a_xy": [
+    3273,
+    2671
+   ],
+   "b_xy": [
+    210,
+    2632
+   ],
+   "confidence": "medium",
+   "overlap_px": 226,
+   "verified": false
+  },
+  {
+   "id": "width70-top",
+   "sheet_a": "13",
+   "sheet_b": "14",
+   "description": "Ink centroid of the italic '70'' Av D street-width label at the northernmost intersection on these sheets (opposite the Galveston Tribune block; north of sheet 13's block 2102 corner and NW of sheet 14's '401' Central corner). Text annotation drawn once per sheet from the same master; centroid of dark pixels in a tight box around the two glyphs plus prime.",
+   "a_xy": [
+    3230,
+    392
+   ],
+   "b_xy": [
+    158,
+    381
+   ],
+   "confidence": "low",
+   "overlap_px": 226,
+   "verified": false
+  },
+  {
+   "id": "width70-bottom",
+   "sheet_a": "13",
+   "sheet_b": "14",
+   "description": "Ink centroid of the italic '70'' Av D street-width label at the southernmost intersection (south of sheet 13's block 2328 corner / sheet 14's block 2327 corner, above the sheet-bottom 80-ft street).",
+   "a_xy": [
+    3216,
+    3617
+   ],
+   "b_xy": [
+    132,
+    3621
+   ],
+   "confidence": "low",
+   "overlap_px": 226,
+   "verified": false
+  },
+  {
+   "id": "red-disc-124",
+   "sheet_a": "15",
+   "sheet_b": "16",
+   "description": "Centre of the red circled block-number disc reading '124', drawn in the Av D roadway just NW of block 124's corner (the 'Iron Front' block addressed 2601, Kindergarten block), immediately south of the 80-ft cross street between the 25xx and 26xx blocks. Numeral verified identical at 6x zoom on both sheets; centres are red-pixel centroids.",
+   "a_xy": [
+    3279,
+    2811
+   ],
+   "b_xy": [
+    198,
+    2730
+   ],
+   "confidence": "medium",
+   "overlap_px": 249,
+   "verified": false
+  },
+  {
+   "id": "width70-top",
+   "sheet_a": "15",
+   "sheet_b": "16",
+   "description": "Ink centroid of the italic '70'' Av D street-width label at the northernmost intersection on these sheets (NW of sheet 16's Central Hotel block corner '401'; NE of sheet 15's block 2402/China Rest't corner).",
+   "a_xy": [
+    3234,
+    346
+   ],
+   "b_xy": [
+    192,
+    312
+   ],
+   "confidence": "low",
+   "overlap_px": 249,
+   "verified": false
+  },
+  {
+   "id": "width70-bottom",
+   "sheet_a": "15",
+   "sheet_b": "16",
+   "description": "Ink centroid of the italic '70'' Av D street-width label at the southernmost intersection (south of sheet 15's block 2626 corner and next to sheet 16's 2623-2627 frontage, above the sheet-bottom 80-ft street).",
+   "a_xy": [
+    3231,
+    3701
+   ],
+   "b_xy": [
+    168,
+    3683
+   ],
+   "confidence": "low",
+   "overlap_px": 249,
+   "verified": false
+  },
+  {
+   "id": "blk682-nw-corner",
+   "sheet_a": "06",
+   "sheet_b": "13",
+   "description": "NW corner of harbor-side block 682, i.e. the SE corner of the Avenue A (Water St) x 22nd St intersection. On sheet 06 it is the top-left corner of the first empty schematic rectangle east of Av A (just south of the 10-in water-pipe dashes along 22nd). On sheet 13 it is the solid corner where the Av A frontage line (house nos. 2201/2203) meets the block's north line (cross-street nos. 101/103), just south of the double-dash pipe in 22nd St.",
+   "a_xy": [
+    3216,
+    311
+   ],
+   "b_xy": [
+    279,
+    1556
+   ],
+   "confidence": "high",
+   "overlap_px": 240,
+   "verified": false
+  },
+  {
+   "id": "blk682-sw-corner",
+   "sheet_a": "06",
+   "sheet_b": "13",
+   "description": "SW corner of block 682, i.e. the NE corner of Avenue A x Tremont (23rd) St. On sheet 06: bottom-left corner of the first schematic rectangle. On sheet 13: dashed lot-line corner at the bottom-left of the yellow frontage strip (house no. 2227 above, '102' to the SE, an 8-in pipe tick and small hydrant dot just inside the corner).",
+   "a_xy": [
+    3212,
+    1233
+   ],
+   "b_xy": [
+    228,
+    2519
+   ],
+   "confidence": "high",
+   "overlap_px": 240,
+   "verified": false
+  },
+  {
+   "id": "blk683-nw-corner",
+   "sheet_a": "06",
+   "sheet_b": "13",
+   "description": "NW corner of harbor-side block 683, i.e. the SE corner of Avenue A x Tremont (23rd) St. On sheet 06: top-left corner of the second schematic rectangle (label '13 80'' sits in the street gap just north of it). On sheet 13: dashed corner of the yellow frontage of the Sail-Loft block, house no. 2301 immediately SE of the point, '80'' street label to the NW.",
+   "a_xy": [
+    3211,
+    1483
+   ],
+   "b_xy": [
+    233,
+    2670
+   ],
+   "confidence": "high",
+   "overlap_px": 240,
+   "verified": false
+  },
+  {
+   "id": "blk684-nw-corner",
+   "sheet_a": "06",
+   "sheet_b": "15",
+   "description": "NW corner of harbor-side block 684 (P.J. Willis & Bro Whol. Grocery block), i.e. the SE corner of Avenue A x 24th St. On sheet 06: top-left corner of the third schematic rectangle, ~100 px SE of the 6-in water-pipe dashes along 24th. On sheet 15: dashed lot-line corner NW of the yellow frontage (house no. 2401 and a 12-in pipe tick just inside it), near the sheet's top edge.",
+   "a_xy": [
+    3211,
+    2642
+   ],
+   "b_xy": [
+    252,
+    284
+   ],
+   "confidence": "high",
+   "overlap_px": 255,
+   "verified": false
+  },
+  {
+   "id": "blk684-sw-corner",
+   "sheet_a": "06",
+   "sheet_b": "15",
+   "description": "SW corner of block 684, i.e. the NE corner of Avenue A x 25th St (Rosenberg Ave, the 120-ft street). On sheet 06: bottom-left corner of the third schematic rectangle. On sheet 15: solid corner where the frontage line (house no. 2427 above) meets the block's south line (no. 102 to the SE).",
+   "a_xy": [
+    3210,
+    3568
+   ],
+   "b_xy": [
+    287,
+    1256
+   ],
+   "confidence": "high",
+   "overlap_px": 255,
+   "verified": false
+  },
+  {
+   "id": "blk679-nw-corner",
+   "sheet_a": "07",
+   "sheet_b": "11",
+   "description": "NW corner of harbor-side block 679, i.e. the SE corner of Avenue A x 19th St. On sheet 07: top-left corner of the first empty schematic rectangle east of Av A. On sheet 11: junction of the Av A frontage line (nos. 1901/1903) with the block's north line (nos. 101/103) at the NW corner of the iron-clad Cement W.Ho. -- NOT the dashed 1-story shed corner that protrudes ~50 px north into 19th St.",
+   "a_xy": [
+    3247,
+    322
+   ],
+   "b_xy": [
+    247,
+    1560
+   ],
+   "confidence": "high",
+   "overlap_px": 230,
+   "verified": false
+  },
+  {
+   "id": "blk680-nw-corner",
+   "sheet_a": "07",
+   "sheet_b": "11",
+   "description": "NW corner of harbor-side block 680 (Texas Ice & Cold Storage Co block), i.e. the SE corner of Avenue A x 20th St. On sheet 07: top-left corner of the second schematic rectangle, below the '11' marginal label and the 20th St double-dash pipe. On sheet 11: dashed corner of the yellow frontage strip, house no. 2001 below, an 8-in pipe tick at the corner, below the 'TEXAS ICE &' title.",
+   "a_xy": [
+    3246,
+    1493
+   ],
+   "b_xy": [
+    239,
+    2669
+   ],
+   "confidence": "high",
+   "overlap_px": 230,
+   "verified": false
+  },
+  {
+   "id": "blk680-sw-corner",
+   "sheet_a": "07",
+   "sheet_b": "11",
+   "description": "SW corner of block 680, i.e. the NE corner of Avenue A x 21st St. On sheet 07: bottom-left corner of the second schematic rectangle (a narrow doubled strip is attached just west of it; use the main rectangle's corner). On sheet 11: corner where the frontage line (no. 2027 above) meets the south line of the Texas Star Flour Mill / Mill Building block (nos. 102/104 below); a large T.H. hydrant dot lies farther west across the tracks at (82,3694).",
+   "a_xy": [
+    3244,
+    2404
+   ],
+   "b_xy": [
+    226,
+    3644
+   ],
+   "confidence": "high",
+   "overlap_px": 230,
+   "verified": false
+  },
+  {
+   "id": "blk681-nw-corner",
+   "sheet_a": "07",
+   "sheet_b": "13",
+   "description": "NW corner of harbor-side block 681, i.e. the SE corner of Avenue A x 21st St. On sheet 07: top-left corner of the schematic rectangle just south of the 21st St double-dash pipe (south of the '70'' label). On sheet 13: solid corner where the Av A frontage line (no. 2101 below) meets the block's north line (no. 101 to the NE), below the '13' sheet number and '80'' label.",
+   "a_xy": [
+    3245,
+    2651
+   ],
+   "b_xy": [
+    287,
+    386
+   ],
+   "confidence": "high",
+   "overlap_px": 220,
+   "verified": false
+  },
+  {
+   "id": "blk681-sw-corner",
+   "sheet_a": "07",
+   "sheet_b": "13",
+   "description": "SW corner of block 681, i.e. the NE corner of Avenue A x 22nd St. On sheet 07: bottom-left corner of the schematic rectangle, ~140 px north of the 10-in pipe dashes along 22nd, near the sheet's bottom-right. On sheet 13: dashed corner at the bottom-left of the yellow frontage (no. 2127 above); the big black T.H. hydrant dot sits ~15 px NE of the point.",
+   "a_xy": [
+    3253,
+    3573
+   ],
+   "b_xy": [
+    249,
+    1356
+   ],
+   "confidence": "high",
+   "overlap_px": 220,
+   "verified": false
+  },
+  {
+   "id": "blk682-nw-corner-07",
+   "sheet_a": "07",
+   "sheet_b": "13",
+   "description": "NW corner of harbor-side block 682, i.e. the SE corner of Avenue A x 22nd St (same physical corner as pair 06/13 feature blk682-nw-corner). On sheet 07: top-left corner of the partial rectangle at the sheet's bottom edge, just south of the 22nd St pipe dashes and east of the VII/10/99 date stamp. On sheet 13: solid corner where the frontage line (nos. 2201/2203) meets the block's north line (nos. 101/103).",
+   "a_xy": [
+    3252,
+    3820
+   ],
+   "b_xy": [
+    279,
+    1556
+   ],
+   "confidence": "high",
+   "overlap_px": 220,
+   "verified": false
+  },
+  {
+   "id": "blk678-nw-corner",
+   "sheet_a": "08",
+   "sheet_b": "11",
+   "description": "NW corner of harbor-side block 678 (Neptune Ice Factory block), i.e. the SE corner of Avenue A x 18th St. On sheet 08: top-left corner of the schematic rectangle south of the 18th St gap (second rectangle corner from the sheet's top in the lower half). On sheet 11: corner where the Av A frontage line meets the block's north line, at the NW corner of the yellow '1 A. Beer Keg Storage' frontage (nos. 101/103 above), below the '80'' label.",
+   "a_xy": [
+    3276,
+    2750
+   ],
+   "b_xy": [
+    259,
+    393
+   ],
+   "confidence": "high",
+   "overlap_px": 200,
+   "verified": false
+  },
+  {
+   "id": "blk678-sw-corner",
+   "sheet_a": "08",
+   "sheet_b": "11",
+   "description": "SW corner of block 678, i.e. the NE corner of Avenue A x 19th St. On sheet 08: bottom-left corner of the schematic rectangle (small jog in the line), ~130 px above the dash-dot line along 19th St. On sheet 11: solid corner where the frontage line (no. 1827 above) meets the block's south line (nos. 102/104 below).",
+   "a_xy": [
+    3268,
+    3670
+   ],
+   "b_xy": [
+    249,
+    1314
+   ],
+   "confidence": "high",
+   "overlap_px": 200,
+   "verified": false
+  },
+  {
+   "id": "rail19th-dashdot-x",
+   "sheet_a": "08",
+   "sheet_b": "11",
+   "description": "Intersection of the single dash-dot line running east-west along the middle of 19th St with the WEST rail of the EASTERN of the two parallel double-line G.C.&S.F. terminal tracks that continue straight north-south across 19th St (rail at x=3179 of pair 3179/3192 on 08; rail at x=162 of pair 162/177 on 11).",
+   "a_xy": [
+    3179,
+    3803
+   ],
+   "b_xy": [
+    162,
+    1436
+   ],
+   "confidence": "medium",
+   "overlap_px": 200,
+   "verified": false
+  },
+  {
+   "id": "w-corner-1802",
+   "sheet_a": "12",
+   "sheet_b": "41",
+   "description": "NE corner of the block on the west side of Winnie carrying frontage ticks 1802-1814 (cross-street ticks 621/623 above), at Winnie & 18th St. Full block-outline corner on sheet 12; drawn on sheet 41 as the vertex of an open bracket tick (horizontal stroke with vertical drop at its right end) just west of the shared line, level with the 1801 tick.",
+   "a_xy": [
+    3106,
+    400
+   ],
+   "b_xy": [
+    120,
+    392
+   ],
+   "confidence": "high",
+   "overlap_px": 198,
+   "verified": false
+  },
+  {
+   "id": "w-corner-1902",
+   "sheet_a": "12",
+   "sheet_b": "41",
+   "description": "NE corner of the next block south (frontage ticks 1902-1922, cross-street ticks 621/623, label '623' immediately above the corner), at Winnie & 19th St. Full corner on sheet 12; matching open bracket vertex on sheet 41 level with the 1901 tick.",
+   "a_xy": [
+    3093,
+    1564
+   ],
+   "b_xy": [
+    109,
+    1568
+   ],
+   "confidence": "high",
+   "overlap_px": 198,
+   "verified": false
+  },
+  {
+   "id": "w-corner-2002",
+   "sheet_a": "12",
+   "sheet_b": "41",
+   "description": "NE corner of the SCHOOL block (pink, 'STAGE & SCENERY' annotation; frontage ticks 2002-2010; '623' above corner), first block south of the horizontal double-dashed 80' line, at Winnie & 20th St. Full corner on sheet 12; open bracket vertex on sheet 41 opposite the park with radiating dashed walks.",
+   "a_xy": [
+    3084,
+    2722
+   ],
+   "b_xy": [
+    100,
+    2731
+   ],
+   "confidence": "medium",
+   "overlap_px": 198,
+   "verified": false
+  },
+  {
+   "id": "alarmbox-64",
+   "sheet_a": "14",
+   "sheet_b": "39",
+   "description": "Fire alarm box symbol: red-filled circle with black '64', standing alone in the Winnie / 23rd St intersection (just north of the YMCA/Natatorium block ticks 2301/2302, near the '80'' width numeral). Centre of the circle. Drawn complete on both sheets.",
+   "a_xy": [
+    3073,
+    2673
+   ],
+   "b_xy": [
+    129,
+    2706
+   ],
+   "confidence": "high",
+   "overlap_px": 349,
+   "verified": false
+  },
+  {
+   "id": "e-corner-2101",
+   "sheet_a": "14",
+   "sheet_b": "39",
+   "description": "NW corner of the block on the east side of Winnie with frontage ticks 2101-2123 and cross-street ticks 701/703/705, at Winnie & 21st St ('70'' cross-street numeral nearby). Full corner on sheet 39 (vertex where the top block line meets the west frontage line, left of the '701' label); on sheet 14 the vertex of the open bracket (vertical drop at the LEFT end of the horizontal stroke) east of the shared line.",
+   "a_xy": [
+    3309,
+    387
+   ],
+   "b_xy": [
+    305,
+    378
+   ],
+   "confidence": "high",
+   "overlap_px": 349,
+   "verified": false
+  },
+  {
+   "id": "e-corner-2201",
+   "sheet_a": "14",
+   "sheet_b": "39",
+   "description": "NW corner of the Trinity Episc. Church block (frontage ticks 2201-2217, '701' label above, 48' TOWER at the corner building), at Winnie & 22nd St, first block south of the double-dashed 80' line. Full corner on sheet 39; open bracket vertex on sheet 14.",
+   "a_xy": [
+    3296,
+    1561
+   ],
+   "b_xy": [
+    295,
+    1548
+   ],
+   "confidence": "high",
+   "overlap_px": 349,
+   "verified": false
+  },
+  {
+   "id": "e-corner-2401",
+   "sheet_a": "16",
+   "sheet_b": "37",
+   "description": "NW corner of the German school block (yellow 'GERMAN...' building with '16' TO EAVES', frontage ticks 2401-2407, '701' above), east side of Winnie at 24th St. Full corner on sheet 37; on sheet 16 the vertex of the open bracket (top of the long vertical block-edge line, horizontal stroke to the right) east of the shared line, level with tick 2402.",
+   "a_xy": [
+    3321,
+    299
+   ],
+   "b_xy": [
+    269,
+    351
+   ],
+   "confidence": "medium",
+   "overlap_px": 310,
+   "verified": false
+  },
+  {
+   "id": "e-corner-2501",
+   "sheet_a": "16",
+   "sheet_b": "37",
+   "description": "NW corner of the block with frontage ticks 2501-2515 ('701 703' above), east side of Winnie at 25th St, south of the 120' double-dashed line. Full corner on sheet 37 (left of the '701' label); open bracket vertex on sheet 16 opposite frontage ticks 2502/2504.",
+   "a_xy": [
+    3308,
+    1594
+   ],
+   "b_xy": [
+    258,
+    1645
+   ],
+   "confidence": "high",
+   "overlap_px": 310,
+   "verified": false
+  },
+  {
+   "id": "e-corner-2601",
+   "sheet_a": "16",
+   "sheet_b": "37",
+   "description": "NW corner of the block with frontage ticks 2601-2609 ('701 703' above), east side of Winnie at 26th St ('80'' width numeral in the intersection to the north). Full corner on sheet 37; open bracket vertex on sheet 16 opposite frontage ticks 2602/2604.",
+   "a_xy": [
+    3300,
+    2758
+   ],
+   "b_xy": [
+    254,
+    2814
+   ],
+   "confidence": "high",
+   "overlap_px": 310,
+   "verified": false
+  },
+  {
+   "id": "th-hydrant-19th",
+   "sheet_a": "08",
+   "sheet_b": "07",
+   "description": "Fire hydrant dot labelled T.H., centre of the solid black circle. It sits on the wharf-side (north) of 19th St between the dashed bulkhead line and the fan of rail tracks, ~110-120 px north of the fire-limits line; on sheet 08 the 'T.H.' label is above the dot, on sheet 07 it is below the dot. Coordinates are the dark-blob centroid.",
+   "a_xy": [
+    1947.8,
+    3675.4
+   ],
+   "b_xy": [
+    1932.4,
+    92.4
+   ],
+   "confidence": "high",
+   "overlap_px": 145,
+   "verified": false
+  },
+  {
+   "id": "blk-se-corner-1828",
+   "sheet_a": "08",
+   "sheet_b": "07",
+   "description": "Southeast corner of the block frontage on the north side of 19th St: the corner where the block's south frontage line (lot numbers 14-24 below it on sheet 08, addresses 1826/1828 on the dashed east property line) turns north. Sheet 07 draws the same block as a simplified open rectangle; this is the down-turn at the right (east) end of its south edge. Corner = intersection of the fitted vertical east line and horizontal frontage line.",
+   "a_xy": [
+    3058,
+    3674.5
+   ],
+   "b_xy": [
+    3038.5,
+    81.5
+   ],
+   "confidence": "high",
+   "overlap_px": 145,
+   "verified": false
+  },
+  {
+   "id": "blk-sw-corner-east-of-tracks",
+   "sheet_a": "08",
+   "sheet_b": "07",
+   "description": "L-shaped corner (southwest corner of the next block east) on the north side of 19th St, just east of the multi-track railroad crossing near the '70 ft' street-width note: a vertical property line coming down from the north turns east into a short horizontal frontage line. Same L appears on both sheets; corner = intersection of fitted vertical and horizontal strokes.",
+   "a_xy": [
+    3268.6,
+    3673.8
+   ],
+   "b_xy": [
+    3254.4,
+    84.5
+   ],
+   "confidence": "high",
+   "overlap_px": 145,
+   "verified": false
+  },
+  {
+   "id": "hides-ne-corner",
+   "sheet_a": "08",
+   "sheet_b": "07",
+   "description": "Northeast corner of the 'Hides' warehouse (lot 1, block 739, address 1902) on the south side of 19th St: on sheet 07 it is the top-right corner of the yellow Hides building where its north wall meets the east wall; on sheet 08 (simplified, uncolored) it is the top-right corner of the building outline drawn just below the 19th St line, right vertical directly across the street from feature blk-se-corner-1828. Sheet 08 draws the outline wider to the west than sheet 07's Hides footprint, so only this east corner corresponds; the west end does not.",
+   "a_xy": [
+    3057.2,
+    3916.5
+   ],
+   "b_xy": [
+    3034.6,
+    321.2
+   ],
+   "confidence": "medium",
+   "overlap_px": 145,
+   "verified": false
+  }
+ ]
+}
