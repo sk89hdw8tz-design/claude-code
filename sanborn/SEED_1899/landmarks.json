@@ -1094,7 +1094,8 @@
    ],
    "confidence": "high",
    "weight": 2.5,
-   "verified": false
+   "verified": false,
+   "junction": true
   },
   {
    "id": "junction-21st-0711",
@@ -1112,7 +1113,8 @@
    ],
    "confidence": "medium",
    "weight": 1.5,
-   "verified": false
+   "verified": false,
+   "junction": true
   },
   {
    "id": "junction-20th-0711",
@@ -1130,7 +1132,8 @@
    ],
    "confidence": "medium",
    "weight": 1.0,
-   "verified": false
+   "verified": false,
+   "junction": true
   },
   {
    "id": "junction-19th-0811",
@@ -1148,7 +1151,8 @@
    ],
    "confidence": "low",
    "weight": 0.75,
-   "verified": false
+   "verified": false,
+   "junction": true
   },
   {
    "id": "junction-25th-0615",
@@ -1166,7 +1170,8 @@
    ],
    "confidence": "medium",
    "weight": 1.0,
-   "verified": false
+   "verified": false,
+   "junction": true
   }
  ],
  "schematic_note": "Features flagged schematic:true pair a wharf sheet's SCHEMATIC east-side block outline with a downtown sheet's surveyed drawing. The locate agents measured corner disagreements up to ~100 px BETWEEN THE DRAWINGS themselves on these pairs. Such features measure source disagreement, not registration error \u2014 exclude them from any pass/fail alignment gate; the surveyed downtown drawing is authoritative there.",

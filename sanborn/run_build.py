@@ -655,6 +655,7 @@ def composite_edition(year, registration):
         lki = {k: i for i, k in enumerate(lkeys)}
         pts = {k: [] for k in lkeys}
         lfeats = []
+        jfeats = []
         for f in lm["features"]:
             a, b = f["sheet_a"], f["sheet_b"]
             if a not in geo or b not in geo:
@@ -664,11 +665,16 @@ def composite_edition(year, registration):
                   comp.pw_fwd([f["a_xy"][1]], ga_["ykn"], ga_["ykg"])[0])
             pb = (comp.pw_fwd([f["b_xy"][0]], gb_["xkn"], gb_["xkg"])[0],
                   comp.pw_fwd([f["b_xy"][1]], gb_["ykn"], gb_["ykg"])[0])
-            # Per-feature "weight" overrides win: the junction street-
-            # furniture features (pipes/hydrants in the Avenue A corridor
-            # itself) are visually binding even though the block outlines
-            # around them are schematic, so they carry raised weights.
-            w = f.get("weight", 0.25 if f.get("schematic") else 1.0)
+            if f.get("junction"):
+                # Junction street furniture (pipes/hydrants drawn in the
+                # Avenue A corridor itself) is visually binding, but letting
+                # it pull inside the network solve drags the downtown sheets
+                # toward the wharf's schematic geometry (measured: median
+                # 23.5 -> 27.4 px, 11|12 dy -8 -> -30). Held out here; used
+                # after the solve to place the wharf GROUP rigidly.
+                jfeats.append((a, b, pa, pb, f.get("weight", 1.0)))
+                continue
+            w = 0.25 if f.get("schematic") else 1.0
             lfeats.append((a, b, pa, pb, w))
             pts[a].append(pa)
             pts[b].append(pb)
@@ -738,6 +744,43 @@ def composite_edition(year, registration):
             log(f"landmark solve round {_round+1}: max step {step:.1f}px")
             if step < 0.5:
                 break
+        if jfeats:
+            # Rigid wharf-group placement from the junction street furniture.
+            # The downtown survey is authoritative east of Avenue A, so the
+            # whole wharf trio moves by ONE common translation — the weighted
+            # mean of (downtown - wharf) across the junction features. A
+            # common shift cancels in every wharf|wharf pair, so 07|06 and
+            # 08|07 keep their ±6 px; only the wharf's placement against
+            # downtown changes, which is exactly the visible corridor jog.
+            WHARF = ("06", "07", "08")
+
+            def _jmap(k, p):
+                t = tot[k]
+                return (cent[k][0] + (1 + t["sx"]) * (p[0] - cent[k][0]) + t["tx"],
+                        cent[k][1] + (1 + t["sy"]) * (p[1] - cent[k][1]) + t["ty"])
+
+            num = np.zeros(2)
+            den = 0.0
+            jlog = []
+            for a, b, pa, pb, w in jfeats:
+                qa, qb = _jmap(a, pa), _jmap(b, pb)
+                if a in WHARF:
+                    d = (qb[0] - qa[0], qb[1] - qa[1])
+                else:
+                    d = (qa[0] - qb[0], qa[1] - qb[1])
+                jlog.append((a, b, d, w))
+                num += w * np.asarray(d)
+                den += w
+            shift = num / den
+            for k in WHARF:
+                if k in tot:
+                    tot[k]["tx"] += float(shift[0])
+                    tot[k]["ty"] += float(shift[1])
+            log(f"junction wharf-group shift ({shift[0]:+.1f},{shift[1]:+.1f})px "
+                f"from {len(jfeats)} street-furniture features")
+            for a, b, d, w in jlog:
+                log(f"  junction {a}|{b}: measured ({d[0]:+.1f},{d[1]:+.1f}) w={w} "
+                    f"-> residual ({d[0]-shift[0]:+.1f},{d[1]-shift[1]:+.1f})")
         lm_fix = {k: {"tx": tot[k]["tx"], "ty": tot[k]["ty"],
                       "sx": tot[k]["sx"], "sy": tot[k]["sy"],
                       "cx": cent[k][0], "cy": cent[k][1]}
