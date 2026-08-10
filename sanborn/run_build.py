@@ -1223,13 +1223,16 @@ def composite_edition(year, registration):
                 owner_end = max(min(cut, center - 40), center - 680)
                 cap = geo[nbr]["frame_g"][1] + 6
                 if own_top and center - 680 <= cap <= center - 40:
-                    # owner-on-top flip: end the owner at the neighbour's
-                    # frame top, ABOVE the corridor band. A cut at line-40
-                    # runs through the band where both sheets print the
-                    # street label, ghosting it in the feather (22ND ST
-                    # doubled at the wharf); at the frame top the label
-                    # band belongs to the neighbour alone.
-                    owner_end = cap + feather
+                    # owner-on-top flip: end the owner AT the neighbour's
+                    # frame top, so everything the neighbour legally draws
+                    # renders from the neighbour alone. A cut lower down
+                    # runs through the band where both sheets print street
+                    # and pier labels (only ~30 px apart at the wharf),
+                    # ghosting or slicing one copy: cut at -40 doubled
+                    # 22ND ST, cut at frame+feather struck PIER No 22.
+                    # The 16 px feather above lands on the owner's copy
+                    # fading over blank paper, which survives visually.
+                    owner_end = cap - 4
                 nbr_start = owner_end - feather
                 if cap <= nbr_start + 350:
                     nbr_start = max(nbr_start, cap)
