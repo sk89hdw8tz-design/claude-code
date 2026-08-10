@@ -142,6 +142,42 @@ def paper_tone(img, frac=0.56, bright=170, sat_max=40):
     return np.median(c, axis=0)
 
 
+def flatten_illumination(img, target_tone, clip_lo=0.75, clip_hi=1.35):
+    """Flatten one scan's illumination field to the edition paper tone.
+
+    Estimate the smooth per-channel paper field from bright low-saturation
+    (paper) pixels at 1/8 scale, fill wash/ink holes by iterative masked
+    blurring, low-pass hard (~200 px native), and multiply the sheet by
+    target/field, clipped so a bad field estimate cannot swing any pixel
+    by more than ~±30%. Ink and washes ride along with their local paper,
+    so printed colour ratios are preserved; only the lighting is removed."""
+    small = img[::8, ::8].astype(np.float32)
+    mx = small.max(axis=2)
+    mn = small.min(axis=2)
+    # paper: bright, low-saturation, but NOT scanner backing — backing is
+    # near-neutral white (min channel > ~225) while aged cream keeps its
+    # blue channel around 195-210; letting backing into the field pulls
+    # the last ~200 px of real paper toward white and INVERTS the
+    # correction at the very edges the flattening exists to fix.
+    mask = ((mx > 170) & ((mx - mn) < 40) & (mn < 225)).astype(np.float32)
+    field = small * mask[..., None]
+    den = mask.copy()
+    for _ in range(6):        # masked diffusion fills wash blocks and bay
+        field = cv2.blur(field, (61, 61))
+        den = cv2.blur(den, (61, 61))
+    med = np.median(small.reshape(-1, 3)[mask.reshape(-1) > 0], axis=0) \
+        if mask.sum() > 100 else np.median(small.reshape(-1, 3), axis=0)
+    out = np.empty_like(field)
+    for c in range(3):
+        f = np.where(den > 1e-3, field[..., c] / np.maximum(den, 1e-3), med[c])
+        out[..., c] = cv2.GaussianBlur(f, (0, 0), 25)
+    gain = np.asarray(target_tone, np.float32) / np.maximum(out, 1.0)
+    gain = np.clip(gain, clip_lo, clip_hi)
+    gain_full = cv2.resize(gain, (img.shape[1], img.shape[0]),
+                           interpolation=cv2.INTER_LINEAR)
+    return np.clip(img.astype(np.float32) * gain_full, 0, 255).astype(np.uint8)
+
+
 def channel_gains(sheet_tone, target_tone):
     """Full chromatic white-balance to the edition paper tone. The old
     per-channel clamp left a residual cast whenever one channel hit the

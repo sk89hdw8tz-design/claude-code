@@ -111,6 +111,13 @@ GAIN_CLAMP = (0.93, 1.08)  # per-channel paper-tone gain limits
 # washes render exactly as scanned. Set per run (see run_build.main).
 PRESERVE_COLORS = False
 
+# Uniform-paper mode: flatten each scan's illumination field (edge
+# vignettes, shading) to the edition cream before compositing. The sheet
+# paper MEDIANS already agree within a few levels; the visible tone bands
+# at joins are within-scan lighting, which per-sheet gains cannot touch.
+# Composes with PRESERVE_COLORS: washes keep their ratio to local paper.
+FLATTEN_ILLUM = False
+
 # Ground-truth landmark file (SEED_1899/landmarks.json schema). When set,
 # per-pair content offsets measured from the landmarks feed the translation
 # solver — the repair path for the rigid pairwise misregistration.

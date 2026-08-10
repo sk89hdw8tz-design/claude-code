@@ -719,7 +719,13 @@ def composite_edition(year, registration):
                 # already satisfy to ±6 px; letting the schematic Avenue A
                 # couplings push scale onto them distorted 07|06 by 19 px
                 # as a side effect (Δsx of 1.7% over a ~1000 px lever).
-                smax = 1e-9 if k in ("06", "07", "08") else 0.01
+                smax = 1e-9 if k in ("06", "07", "08") else 0.004
+                # 0.004, was 0.01: at ±1% the solver pinned sheets 13/+1%
+                # and 15/-1% at the bound, and their 2% differential drift
+                # showed as 13-30 px corridor steps where Strand, Mechanic
+                # and Market cross 24th — measured by column-profile NCC.
+                # ±0.4% keeps most of the scatter absorption with under
+                # half the drift.
                 lob[4 * i + 2] = min(-smax - tot[k]["sx"], -1e-9)
                 hib[4 * i + 2] = max(smax - tot[k]["sx"], 1e-9)
                 lob[4 * i + 3] = min(-smax - tot[k]["sy"], -1e-9)
@@ -1376,6 +1382,16 @@ def composite_edition(year, registration):
         xkg_c = [x - ox for x in g["xkg"]]
         ykg_c = [y - oy for y in g["ykg"]]
         sh = measured.get(key, {}).get("shear", (0.0, 0.0))
+        if getattr(config, "FLATTEN_ILLUM", False):
+            # Uniform-paper mode: the sheet paper MEDIANS agree within a few
+            # levels (200-209 cream) but each scan carries its own
+            # illumination field — edge vignettes and shading that show as
+            # tone cliffs at the joins (sheet 8's pale band at 19th, sheet
+            # 7's dark bay). Dividing by a low-pass paper field and
+            # re-multiplying by the edition cream flattens the lighting
+            # everywhere; inks and washes keep their ratio to the paper, so
+            # the printed colours survive and the paper still reads aged.
+            img = comp.flatten_illumination(img, target_tone)
         gains = comp.channel_gains(tones[key], target_tone)
         # highlight-safe ceiling: never drive any channel into hard clip
         # (QC pass 2: sheet 9's gain clipped green over 1.62% of its area
