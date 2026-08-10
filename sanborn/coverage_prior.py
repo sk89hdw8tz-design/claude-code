@@ -269,7 +269,7 @@ SEAM_CUTS_1899 = {
     # (Flipping 06 on top was tried and rejected: 06's scan is cut at
     # ~90 px above 22nd, so every candidate cut sliced or ghosted a
     # label copy — 22ND ST, PIER No 22 — that 07 prints intact.)
-    ("h", 22, frozenset({"06", "07"})): +175,
+    ("h", 22, frozenset({"06", "07"})): +177,
 }
 
 # 1899 per-scan-edge insets (native px), measured like the 1885 table.
@@ -278,6 +278,40 @@ SEAM_CUTS_1899 = {
 # the pointer numeral.
 SCAN_INSETS_1899 = {
     (7, "bottom"): 0,
+    # h-seam owner bottoms: content ends 2-9 px above the paper edge (the
+    # atlas cut these sheets at the shared street); the default 24 would
+    # pull the paper-edge cut into the frontage numerals. The UT citation
+    # sits on backing BELOW the cream paper, outside paper_bounds.
+    (11, "bottom"): 0,
+    (12, "bottom"): 0,
+    (41, "bottom"): 0,
+    (13, "bottom"): 0,
+    (14, "bottom"): 0,
+    (39, "bottom"): 0,
+}
+
+# Sides where the atlas cut the sheet AT the shared street and printed NO
+# frame line (verified for EVERY interior side of the twelve 1899 sheets:
+# no dark run > 1500 px anywhere in the 450 px edge band; content runs to
+# within 2-9 px of the paper edge on the h-seam bottoms). frame_bounds
+# latches onto interior block walls on these sides; capping clips there
+# amputated the frontage band only that sheet draws (south-side 21st/24th
+# address rows, Ave D/G east-kerb columns, the "Avenue D void" — content
+# QC findings 1-5). The paper bound replaces the frame estimate on these
+# sides for clips AND the legal_cut window, so owner-on-top cuts land at
+# the true paper edge like the wharf +175 cut.
+FRAME_OPEN_SIDES = {
+    "1899": {
+        ("11", "bottom"), ("11", "right"),
+        ("12", "left"), ("12", "bottom"), ("12", "right"),
+        ("41", "left"), ("41", "bottom"),
+        ("13", "top"), ("13", "bottom"), ("13", "right"),
+        ("14", "top"), ("14", "left"), ("14", "bottom"), ("14", "right"),
+        ("39", "top"), ("39", "left"), ("39", "bottom"),
+        ("15", "top"), ("15", "right"),
+        ("16", "top"), ("16", "left"), ("16", "right"),
+        ("37", "top"), ("37", "left"),
+    },
 }
 
 SEAM_CUTS_BY_YEAR = {"1885": SEAM_CUTS, "1899": SEAM_CUTS_1899}

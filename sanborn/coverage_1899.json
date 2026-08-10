@@ -136,12 +136,18 @@
     21
    ],
    "region": null,
-   "note": "Sheet number printed top-LEFT (not top-right). Railroad trac",
+   "note": "Sheet number printed top-LEFT (not top-right). Railroad trac; west clip at Ave A centerline: torn scan edge was halving sheet 7's AV. A OR WATER display label",
    "line_overrides": {
     "x": {
      "0": 107
     }
-   }
+   },
+   "clip_region": [
+    110,
+    0,
+    3400,
+    4116
+   ]
   },
   "12": {
    "file": 12,

@@ -436,7 +436,22 @@ def composite_edition(year, registration):
         fr = comp.frame_bounds(img01, v, h, region=unit["region"])
         pb = comp.paper_bounds(img)
         del img, img01
-        frames_native[key] = fr
+        # Frame-OPEN sides: edges where the atlas cut the sheet AT the
+        # shared street and printed NO frame line (measured: no long dark
+        # run in the edge band). frame_bounds latches onto interior block
+        # walls there, and the seam frame caps then amputate the frontage
+        # band only this sheet draws — the content QC measured every
+        # south-side address row along 24th and the D/G east-kerb columns
+        # rendered as flat paper. Substitute the paper bound for that side
+        # so every downstream consumer (frame_g, frame_gp, legal_cut, the
+        # clip caps) inherits the true content window.
+        fr = list(fr)
+        for side, i in (("left", 0), ("top", 1), ("right", 2), ("bottom", 3)):
+            if (key, side) in cov.FRAME_OPEN_SIDES.get(year, set()):
+                fr[i] = pb[i]
+                log(f"unit {key}: {side} frame OPEN (no printed frame) — "
+                    f"paper bound {pb[i]} replaces estimate")
+        frames_native[key] = tuple(fr)
         paper_native[key] = pb
         m = measured.get(key, {})
         for axis, lines in (("v", v), ("h", h)):
