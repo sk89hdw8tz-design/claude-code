@@ -621,6 +621,128 @@ def composite_edition(year, registration):
         if resp > gate and abs(dx * gxs) < 200 and abs(dy * gys) < 200:
             seam_meas.append((owner, nbr, dx * gxs, dy * gys, resp))
 
+    # ---- Ground-truth landmark measurements (the repair path). The
+    # phase-correlation above yields nothing usable on 1899 data (responses
+    # 0.01-0.26, offsets mutually inconsistent by hundreds of px), so the
+    # translation solver otherwise runs empty and the map rests on line
+    # detection alone — which the landmark gate showed carries RIGID
+    # per-pair offsets up to ~208 px. Landmarks are the same physical
+    # object located on both sheets of a pair by reading the scans;
+    # mapping each through its sheet's knots measures the pair's true
+    # content offset directly. Features flagged schematic (wharf sheets'
+    # outline-only east side, drawings disagreeing up to ~100 px) get 0.25
+    # weight: too noisy to gate on, but they are the only link tying the
+    # wharf trio to the downtown component — dropping them entirely would
+    # let the two float apart.
+    lm_fix = None
+    if getattr(config, "LANDMARKS_PATH", None):
+        # Solve per-sheet (tx, ty, sx, sy) from per-feature equations, with
+        # scales HARD-BOUNDED to ±1% — the plausibility the spacing gates
+        # established. Unbounded, the solver wants ±7% x-scale: it uses the
+        # scale freedom to soak up drawing scatter and the wharf sheets'
+        # schematic disagreement, visibly distorting building proportions
+        # for a fake improvement in the numbers. Bounded, the worst
+        # surveyed-pair mean comes out ~14 px vs ~36 for pure translations
+        # — near the floor the drawings' own inconsistency permits
+        # (loop-closure sums around 4-cycles run 16-35 px).
+        # Rotation would help some pairs but cannot be expressed in the
+        # separable piecewise warp; per-axis affine can.
+        from scipy.optimize import lsq_linear
+        lm = json.load(open(config.LANDMARKS_PATH))
+        lkeys = sorted({f["sheet_a"] for f in lm["features"]}
+                       | {f["sheet_b"] for f in lm["features"]})
+        lkeys = [k for k in lkeys if k in geo]
+        lki = {k: i for i, k in enumerate(lkeys)}
+        pts = {k: [] for k in lkeys}
+        lfeats = []
+        for f in lm["features"]:
+            a, b = f["sheet_a"], f["sheet_b"]
+            if a not in geo or b not in geo:
+                continue
+            ga_, gb_ = geo[a], geo[b]
+            pa = (comp.pw_fwd([f["a_xy"][0]], ga_["xkn"], ga_["xkg"])[0],
+                  comp.pw_fwd([f["a_xy"][1]], ga_["ykn"], ga_["ykg"])[0])
+            pb = (comp.pw_fwd([f["b_xy"][0]], gb_["xkn"], gb_["xkg"])[0],
+                  comp.pw_fwd([f["b_xy"][1]], gb_["ykn"], gb_["ykg"])[0])
+            w = 0.25 if f.get("schematic") else 1.0
+            lfeats.append((a, b, pa, pb, w))
+            pts[a].append(pa)
+            pts[b].append(pb)
+        cent = {k: (float(np.mean([p[0] for p in pts[k]])),
+                    float(np.mean([p[1] for p in pts[k]]))) for k in lkeys}
+        nlk = len(lkeys)
+        # Iterate to convergence: the gauge-fixing zero prior on
+        # translations shrinks a 150 px correction by ~10-20 px on the
+        # first pass (its cost is proportional to the total translation);
+        # re-solving on the residuals makes the prior's bite vanish —
+        # by round 3 corrections are sub-px. Scales are bounded to the
+        # TOTAL ±1% across rounds, and everything composes about the
+        # fixed first-round centroids.
+        tot = {k: {"tx": 0.0, "ty": 0.0, "sx": 0.0, "sy": 0.0} for k in lkeys}
+        cur = [(a, b, list(pa), list(pb), w) for a, b, pa, pb, w in lfeats]
+        for _round in range(3):
+            rows, rhs, wts = [], [], []
+            for a, b, pa, pb, w in cur:
+                for axi in (0, 1):
+                    v = np.zeros(4 * nlk)
+                    v[4 * lki[b] + axi] = 1.0
+                    v[4 * lki[b] + 2 + axi] = pb[axi] - cent[b][axi]
+                    v[4 * lki[a] + axi] = -1.0
+                    v[4 * lki[a] + 2 + axi] = -(pa[axi] - cent[a][axi])
+                    rows.append(v)
+                    rhs.append(-(pb[axi] - pa[axi]))
+                    wts.append(w)
+            for k in lkeys:   # weak zero prior fixes the gauge
+                for axi in (0, 1):
+                    v = np.zeros(4 * nlk)
+                    v[4 * lki[k] + axi] = 1.0
+                    rows.append(v)
+                    rhs.append(0.0)
+                    wts.append(0.05)
+            Aw = np.array(rows) * np.sqrt(np.array(wts))[:, None]
+            bw = np.array(rhs) * np.sqrt(np.array(wts))
+            lob = np.full(4 * nlk, -np.inf)
+            hib = np.full(4 * nlk, np.inf)
+            for k, i in lki.items():
+                # Wharf sheets: rigid (translation only). Their only
+                # surveyed couplings are wharf|wharf pairs that translations
+                # already satisfy to ±6 px; letting the schematic Avenue A
+                # couplings push scale onto them distorted 07|06 by 19 px
+                # as a side effect (Δsx of 1.7% over a ~1000 px lever).
+                smax = 1e-9 if k in ("06", "07", "08") else 0.01
+                lob[4 * i + 2] = min(-smax - tot[k]["sx"], -1e-9)
+                hib[4 * i + 2] = max(smax - tot[k]["sx"], 1e-9)
+                lob[4 * i + 3] = min(-smax - tot[k]["sy"], -1e-9)
+                hib[4 * i + 3] = max(smax - tot[k]["sy"], 1e-9)
+            sol = lsq_linear(Aw, bw, bounds=(lob, hib)).x
+            step = 0.0
+            for k, i in lki.items():
+                t = tot[k]
+                dtx, dty = float(sol[4 * i]), float(sol[4 * i + 1])
+                dsx, dsy = float(sol[4 * i + 2]), float(sol[4 * i + 3])
+                # compose about the fixed centroid
+                t["tx"] = (1 + dsx) * t["tx"] + dtx
+                t["ty"] = (1 + dsy) * t["ty"] + dty
+                t["sx"] = (1 + dsx) * (1 + t["sx"]) - 1
+                t["sy"] = (1 + dsy) * (1 + t["sy"]) - 1
+                step = max(step, abs(dtx), abs(dty))
+            for j, (a, b, pa, pb, w) in enumerate(cur):
+                for p, k in ((pa, a), (pb, b)):
+                    i = lki[k]
+                    p[0] = cent[k][0] + (1 + sol[4*i+2]) * (p[0] - cent[k][0]) + sol[4*i]
+                    p[1] = cent[k][1] + (1 + sol[4*i+3]) * (p[1] - cent[k][1]) + sol[4*i+1]
+            log(f"landmark solve round {_round+1}: max step {step:.1f}px")
+            if step < 0.5:
+                break
+        lm_fix = {k: {"tx": tot[k]["tx"], "ty": tot[k]["ty"],
+                      "sx": tot[k]["sx"], "sy": tot[k]["sy"],
+                      "cx": cent[k][0], "cy": cent[k][1]}
+                  for k in lkeys}
+        for k in lkeys:
+            f_ = lm_fix[k]
+            log(f"landmark fix {k}: t=({f_['tx']:+.0f},{f_['ty']:+.0f})px "
+                f"s=({f_['sx']*100:+.2f}%,{f_['sy']*100:+.2f}%)")
+
     keys = list(geo)
     ki = {k: i for i, k in enumerate(keys)}
     tcorr = {}
@@ -664,6 +786,45 @@ def composite_edition(year, registration):
         pg = geo[k]["paper_g"]
         geo[k]["paper_g"] = (pg[0] + dx, pg[1] + dy, pg[2] + dx, pg[3] + dy)
         geo[k]["frame_g"] = global_frame(geo[k]["fit"], frames_native[k])
+        # The warp renders through the KNOTS, not the fit — a correction
+        # applied only to tx/ty is a silent no-op for the map itself.
+        # Shift the knots, and the copy dumped to registration.json, so the
+        # render and the landmark gate both see the corrected placement.
+        geo[k]["xkg"] = [x + dx for x in geo[k]["xkg"]]
+        geo[k]["ykg"] = [y + dy for y in geo[k]["ykg"]]
+        kn = usable[k]["knots"]
+        kn["xkg"] = [x + dx for x in kn["xkg"]]
+        kn["ykg"] = [y + dy for y in kn["ykg"]]
+
+    # Landmark-solved per-axis affine (bounded scale about the unit's own
+    # landmark centroid). Applied to every geometry the pipeline consumes:
+    # knots (the warp), the registration.json copy (the gate), fits (sides,
+    # band sampling) and the frame/paper rectangles (seam clamps, margins).
+    if lm_fix:
+        for k in keys:
+            f_ = lm_fix.get(k)
+            if not f_:
+                continue
+
+            def axx(x, f=f_):
+                return f["cx"] + (1 + f["sx"]) * (x - f["cx"]) + f["tx"]
+
+            def ayy(y, f=f_):
+                return f["cy"] + (1 + f["sy"]) * (y - f["cy"]) + f["ty"]
+
+            geo[k]["xkg"] = [axx(x) for x in geo[k]["xkg"]]
+            geo[k]["ykg"] = [ayy(y) for y in geo[k]["ykg"]]
+            kn = usable[k]["knots"]
+            kn["xkg"] = [axx(x) for x in kn["xkg"]]
+            kn["ykg"] = [ayy(y) for y in kn["ykg"]]
+            for rect in ("frame_g", "frame_gp", "paper_g"):
+                x0, y0, x1, y1 = geo[k][rect]
+                geo[k][rect] = (axx(x0), ayy(y0), axx(x1), ayy(y1))
+            fit = geo[k]["fit"]
+            fit["tx"] = (1 + f_["sx"]) * fit["tx"] - f_["sx"] * f_["cx"] + f_["tx"]
+            fit["sx"] = (1 + f_["sx"]) * fit["sx"]
+            fit["ty"] = (1 + f_["sy"]) * fit["ty"] - f_["sy"] * f_["cy"] + f_["ty"]
+            fit["sy"] = (1 + f_["sy"]) * fit["sy"]
 
     with open(os.path.join(config.BUILD_DIR, year, "registration.json"), "w") as f:
         json.dump({"units": usable, "consensus_av": X, "consensus_st": Y,

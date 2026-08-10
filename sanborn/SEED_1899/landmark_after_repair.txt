@@ -1,0 +1,86 @@
+landmark                     pair           dx       dy     step
+blk680-nw-corner             07|11        13.9    -89.9     90.9  <== OVER
+blk681-sw-corner             07|13       -26.9     82.2     86.5  <== OVER
+blk684-sw-corner             06|15       -10.6     82.7     83.4  <== OVER
+blk682-sw-corner             06|13       -27.5     62.3     68.1  <== OVER
+fire-alarm-box-71            41|39        38.9    -33.3     51.3  <== OVER
+blk684-nw-corner             06|15       -46.3      9.4     47.3  <== OVER
+alarm-box-212                13|15        23.0    -40.3     46.4  <== OVER
+rail19th-dashdot-x           08|11        16.7    -42.8     45.9  <== OVER
+alarmbox-64                  14|39        25.4     35.0     43.2  <== OVER
+blk678-nw-corner             08|11        19.0    -36.4     41.1  <== OVER
+blk682-nw-corner-07          07|13         4.1     40.8     41.0  <== OVER
+blk679-nw-corner             07|11        21.1    -35.1     40.9  <== OVER
+blk683-nw-corner             06|13       -21.5    -34.2     40.4  <== OVER
+th-hydrant-314               13|15        28.7     26.4     39.0  <== OVER
+width70-top                  15|16        25.4     27.1     37.2  <== OVER
+blk678-sw-corner             08|11        16.8    -33.2     37.2  <== OVER
+width70-top                  13|14        -5.3     33.4     33.8  <== OVER
+red-disc-7                   11|12        -4.2    -32.7     33.0  <== OVER
+th-hydrant-214               13|15       -24.1     21.3     32.2  <== OVER
+width70-bottom               13|14       -19.8     25.2     32.1  <== OVER
+blk682-nw-corner             06|13        19.4     24.7     31.5  <== OVER
+th-hydrant-914               41|39       -27.8    -13.7     31.0  <== OVER
+blk680-sw-corner             07|11         2.6    -29.4     29.5  <== OVER
+red-disc-124                 15|16       -16.0    -24.3     29.1  <== OVER
+th-hydrant-814               39|37       -27.6     -1.3     27.7  <== OVER
+blk324-se-corner             11|12       -24.6     -9.8     26.5  <== OVER
+th-hydrant-414               12|14       -20.3    -16.4     26.1  <== OVER
+e-corner-2101                14|39       -24.7     -7.2     25.7  <== OVER
+e-corner-2201                14|39       -22.2    -11.4     25.0  <== OVER
+width70-bottom               15|16         5.1     23.7     24.2  <== OVER
+th-hydrant-214               11|13         1.9     23.4     23.5  <== OVER
+ne-corner-211                11|13        -0.6    -23.1     23.1  <== OVER
+red-disc-214                 13|14         9.4    -18.6     20.9  <== OVER
+blk-corner-n80               11|12        13.9    -15.1     20.5  <== OVER
+pier22_apron_sw_corner       07|06       -10.3     17.7     20.5  <== OVER
+th-hydrant-e-of-alley-114    11|13        20.1     -0.4     20.1  <== OVER
+blk681-nw-corner             07|13        19.1     -1.3     19.2  <== OVER
+th_hydrant_dot               07|06         0.7    -19.1     19.1  <== OVER
+th-hydrant-514               12|14        16.8     -8.4     18.8  <== OVER
+th-hydrant-914               39|37        16.6     -8.3     18.6  <== OVER
+blk323-ne-corner             11|12        16.1     -8.9     18.4  <== OVER
+e-corner-2401                16|37         1.6     17.2     17.3  <== OVER
+pier22_apron_se_corner       07|06        -0.3     15.7     15.7  <== OVER
+w-corner-1902                12|41         3.2    -15.0     15.3  <== OVER
+block_lot13_nw_corner        07|06       -10.3     10.1     14.4  <== OVER
+th-hydrant-714-block         41|39        -3.5     13.7     14.1  <== OVER
+th-hydrant-19th              08|07        -0.8     13.2     13.2  <== OVER
+th-hydrant-614               14|16        -5.7    -10.7     12.1  <== OVER
+pier22_whse_se_corner        07|06        -1.3     11.9     11.9
+th-hydrant-414               14|16        11.9     -0.5     11.9
+w-corner-2002                12|41         3.5    -10.1     10.7
+hides-ne-corner              08|07        -8.0      4.8      9.3
+th-hydrant-614               12|14        -2.9     -8.4      8.9
+e-corner-2601                16|37         8.3     -3.0      8.8
+w-corner-1802                12|41         0.9     -8.3      8.3
+th-hydrant-714               39|37        -3.0     -7.3      7.9
+th-hydrant-514               14|16        -6.8      1.5      7.0
+blk-sw-corner-east-of-tracks 08|07         0.4      6.9      6.9
+blk-se-corner-1828           08|07        -4.9      3.2      5.8
+e-corner-2501                16|37         4.1      2.6      4.8
+th-hydrant-114               13|15         1.1     -3.9      4.0
+
+landmarks: 61   median step 23.5 px   max 90.9 px   over 12 px: 48
+
+per pair (a consistent dx/dy across a pair's landmarks means
+that pair carries a rigid offset — the fixable kind):
+  06|13    n=3  mean dx=   -9.9 dy=  +17.6  spread= 36.6
+  06|15    n=2  mean dx=  -28.4 dy=  +46.1  spread= 36.1
+  07|06    n=5  mean dx=   -4.3 dy=   +7.3  spread=  8.6
+  07|11    n=3  mean dx=  +12.5 dy=  -51.5  spread= 61.4
+  07|13    n=3  mean dx=   -1.2 dy=  +40.6  spread= 67.3
+  08|07    n=4  mean dx=   -3.3 dy=   +7.0  spread=  7.4
+  08|11    n=3  mean dx=  +17.5 dy=  -37.5  spread=  8.7
+  11|12    n=4  mean dx=   +0.3 dy=  -16.6  spread= 14.6
+  11|13    n=3  mean dx=   +7.1 dy=   -0.0  spread=  3.4
+  12|14    n=3  mean dx=   -2.1 dy=  -11.1  spread= 17.2
+  12|41    n=3  mean dx=   +2.5 dy=  -11.1  spread=  7.0
+  13|14    n=3  mean dx=   -5.2 dy=  +13.3  spread= 12.9
+  13|15    n=4  mean dx=   +7.2 dy=   +0.9  spread= 42.4
+  14|16    n=3  mean dx=   -0.2 dy=   -3.2  spread=  5.1
+  14|39    n=3  mean dx=   -7.2 dy=   +5.5  spread= 18.2
+  15|16    n=3  mean dx=   +4.8 dy=   +8.8  spread= 13.0
+  16|37    n=3  mean dx=   +4.7 dy=   +5.6  spread= 12.5
+  39|37    n=3  mean dx=   -4.7 dy=   -5.6  spread= 19.8
+  41|39    n=3  mean dx=   +2.5 dy=  -11.1  spread= 37.2

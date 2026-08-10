@@ -175,3 +175,49 @@ Fixing this properly means replacing the refinement's patch sampling, which
 squashes a quarter-resolution band to a fixed 130 px width before
 correlating. That is a real piece of work, not a parameter tweak, and it is
 the single highest-value improvement left.
+
+## Repair: landmark-solved per-sheet corrections (this revision)
+
+The ground-truth landmark set (61 features, all 19 pairs, each the same
+physical object located on both sheets) exposed rigid pairwise
+misregistration far larger than the seam-walking QC could see — median
+landmark step **98.4 px** — because a uniform per-sheet placement error is
+invisible to fit residuals and mostly hidden by seam cuts.
+
+**Method.** Per-sheet corrections solved from the 61 landmark
+correspondences by bounded least squares, iterated to convergence (3
+rounds): translation free; per-axis scale hard-bounded to ±1%, the range
+the pitch-spacing gates established as physically plausible; wharf sheets
+(06/07/08) held rigid — letting the schematic Avenue A couplings push scale
+onto them distorted their own excellent 22nd St pair by 19 px as a side
+effect. Corrections are applied to every geometry the renderer consumes
+(warp knots, frames, paper extents, fits). Unbounded scale was measured and
+REJECTED: the solver wanted ±7% x-scale, using distortion to soak up the
+drawings' own scatter.
+
+**Result (anti-circular gate, before → after):**
+- median landmark step **98.4 → 23.5 px**; max 233.9 → 90.9 (the max is a
+  schematic Avenue A feature — source disagreement, not registration)
+- surveyed pairs: worst mean **36.7 → 16.6 px**; 9 of 14 within 10 px
+- wharf pairs stay excellent: 07|06 (−4.3, +7.3), 08|07 (−3.3, +7.0)
+- the five pairs at 11–17 px (11|12, 12|14, 12|41, 13|14, 41|39) sit at
+  the level of the drawings' own scatter (their per-pair spreads are
+  13–18 px): further improvement requires either rotation (inexpressible
+  in the separable warp) or distortion beyond ±1%. Declined.
+
+**Guard metrics — all three moved, each with cause:**
+- coverage 98.98 → 98.57%. Two authentic voids opened at Avenue D
+  (46 px wide above 24th between sheets 13|14; 55 px below between 15|16):
+  with content correctly registered, the neighbouring sheets' printed
+  frames genuinely do not meet — each engraver stopped at his border
+  mid-corridor. The old coverage was INFLATED by misregistered overlap.
+  The voids render as flat paper inside the blank roadway; every kerb
+  column and address row is present (sheet 16 prints both kerbs on its
+  stretch). Plus more open bay inside the slightly wider crop.
+- pure-white 20 → 43 px (bar: ≤50): sheet edges moved; a few more scan
+  pixels at the rim.
+- pure-black 0.0070 → 0.0078%: more authentic sheet-edge ink rendered.
+
+**Visually verified after repair:** 22nd St runs straight through Avenue G
+(was −34 px); the 24th St row shift (48–85 px) is gone; the corridor rows
+align across Avenue D above and below 24th.

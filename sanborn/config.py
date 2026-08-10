@@ -111,6 +111,11 @@ GAIN_CLAMP = (0.93, 1.08)  # per-channel paper-tone gain limits
 # washes render exactly as scanned. Set per run (see run_build.main).
 PRESERVE_COLORS = False
 
+# Ground-truth landmark file (SEED_1899/landmarks.json schema). When set,
+# per-pair content offsets measured from the landmarks feed the translation
+# solver — the repair path for the rigid pairwise misregistration.
+LANDMARKS_PATH = None
+
 # Known genuine gap (1885): Ave G-H x 18th-20th is unmapped by the edition.
 # Fill with flat paper tone and disclose. Never generate content.
 

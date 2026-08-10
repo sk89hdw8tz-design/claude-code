@@ -137,3 +137,25 @@ different method.
 Redraw scatter caveat: the drawings themselves disagree by ~24 px (best
 pair) to ~100 px (schematic Avenue A pairs), so post-repair expectations
 are bounded by the spread column, not by zero.
+
+## Post-repair state (landmark-solved bounded corrections applied)
+
+The repair (iterated bounded least squares from the 61 landmarks:
+translations free, scales ±1%, wharf sheets rigid, applied to warp knots +
+frames + fits) moved the gate from median 98.4 px to **23.5 px**; surveyed
+per-pair means from worst 36.7 to **16.6 px**, 9 of 14 within 10 px. Full
+table in `landmark_after_repair.txt`; guard metrics in
+`repaired_metrics.json` (coverage 98.57% — see the Avenue D note below).
+
+Remaining, for any future rebuild:
+- Five surveyed pairs at 11–17 px mean (11|12, 12|14, 12|41, 13|14, 41|39),
+  at the level of the drawings' own per-pair scatter (13–18 px). The next
+  useful degree of freedom is per-sheet ROTATION, which the separable
+  piecewise warp cannot express — a genuine rebuild item.
+- **Avenue D authentic voids**: with content correctly registered, sheets
+  13|14 (above 24th) and 15|16 (below) have printed frames that do not
+  meet — 46/55 px of never-engraved corridor centre, rendered as flat
+  paper, all kerb and address content present. The prior build hid this
+  under misregistered overlap; any content-true rebuild will show it too.
+- Schematic Avenue A disagreement and sheet furniture: unchanged, as
+  documented above.
