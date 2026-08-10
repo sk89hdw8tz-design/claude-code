@@ -124,6 +124,11 @@ def composite_extent(year):
 # beyond its own label copy.
 SEAM_FLIPS = {
     ("h", 25, frozenset({"11a", "4"})),   # 11a's panel stops at 25th
+    # 1899 wharf 22nd: sheet 06 draws the Pier 22 warehouse solid
+    # yellow/orange to its paper top plus its own rails and the corner "6";
+    # 07-on-top replaced all of it with 07's white-interior version and
+    # sliced the numeral. South sheet on top per the user's call.
+    ("h", 22, frozenset({"06", "07"})),
 }
 
 # Manual cut positions (global px relative to the boundary line) for

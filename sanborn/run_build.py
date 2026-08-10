@@ -781,6 +781,38 @@ def composite_edition(year, registration):
             for a, b, d, w in jlog:
                 log(f"  junction {a}|{b}: measured ({d[0]:+.1f},{d[1]:+.1f}) w={w} "
                     f"-> residual ({d[0]-shift[0]:+.1f},{d[1]-shift[1]:+.1f})")
+            # Zero the wharf-internal pair MEANS. The network solve leaves
+            # ~7 px of mean on 07|06 / 08|07 because the 0.25-weight
+            # schematic couplings tug 06 and 08 toward downtown against
+            # their own surveyed pairs — visible as a uniform step in pier
+            # edges, slip water and rails at the wharf seams. 07 stays the
+            # anchor; 06 and 08 take the residual. Only surveyed (w=1.0)
+            # wharf|wharf features are used; scatter (±4 px) remains.
+            for pa_, pb_ in (("07", "06"), ("08", "07")):
+                ds = []
+                for a, b, pa, pb, w in lfeats:
+                    if {a, b} == {pa_, pb_} and w >= 1.0:
+                        qa, qb = _jmap(a, pa), _jmap(b, pb)
+                        d = (qb[0] - qa[0], qb[1] - qa[1])
+                        ds.append((a, b, d))
+                if not ds:
+                    continue
+                mx = float(np.mean([d[0] for _, _, d in ds]))
+                my = float(np.mean([d[1] for _, _, d in ds]))
+                # d is (b - a); move the non-07 sheet so the mean vanishes
+                mover = pa_ if pa_ != "07" else pb_
+                sgn = 0.0
+                if all(b == mover for _, b, _ in ds):
+                    sgn = -1.0     # mover is b: shift b by -d
+                elif all(a == mover for a, _, _ in ds):
+                    sgn = +1.0     # mover is a: shift a by +d
+                else:
+                    log(f"wharf pair {pa_}|{pb_}: mixed orientation, skipped")
+                    continue
+                tot[mover]["tx"] += sgn * mx
+                tot[mover]["ty"] += sgn * my
+                log(f"wharf pair mean zeroed: {mover} shifted "
+                    f"({sgn*mx:+.1f},{sgn*my:+.1f}) from {len(ds)} features")
         lm_fix = {k: {"tx": tot[k]["tx"], "ty": tot[k]["ty"],
                       "sx": tot[k]["sx"], "sy": tot[k]["sy"],
                       "cx": cent[k][0], "cy": cent[k][1]}
