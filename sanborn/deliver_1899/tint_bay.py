@@ -14,7 +14,10 @@ departure from as-printed colour.
 import cv2
 import numpy as np
 
-WASH = np.array([210.8, 221.6, 217.3])    # sampled printed water wash (BGR)
+# The exact printed waterline colour (median of the shoreline edging
+# strips) — the whole water surface is levelled TO this colour, flat,
+# so the edging no longer reads as a highlighter around paler water.
+WASH = np.array([208.0, 214.0, 199.0])
 CREAM = np.array([203.6, 228.6, 238.9])   # edition paper target
 
 def tint(png_path):
@@ -80,7 +83,21 @@ def tint(png_path):
     gain4 = np.clip(gain4, 0.6, 1.6)
     gain = cv2.resize(gain4, (img.shape[1], img.shape[0]),
                       interpolation=cv2.INTER_LINEAR)
-    img[rf] = np.clip(img[rf].astype(np.float32) * gain[rf], 0, 255).astype(np.uint8)
+    # FLAT water: paper pixels become exactly WASH; ink stays ink (scaled
+    # by the same field so antialiased strokes keep smooth edges); the
+    # smoothstep on the paper-likeness ratio avoids fringes. The original
+    # edging strips land on their own colour and merge invisibly.
+    fld = cv2.resize(np.where(den[..., None] > 1e-3,
+                              field / np.maximum(den[..., None], 1e-3),
+                              med[None, None, :]).astype(np.float32),
+                     (img.shape[1], img.shape[0]), interpolation=cv2.INTER_LINEAR)
+    px = img[rf].astype(np.float32)
+    f = fld[rf]
+    ratio = np.clip(px / np.maximum(f, 1.0), 0, 1.4).min(axis=1)
+    a = np.clip((ratio - 0.72) / (0.90 - 0.72), 0, 1)
+    a = (a * a * (3 - 2 * a))[:, None]
+    inked = np.clip(px * (WASH / np.maximum(f, 1.0)), 0, 255)
+    img[rf] = np.clip(a * WASH + (1 - a) * inked, 0, 255).astype(np.uint8)
     cv2.imwrite(png_path, img)
     return float(rf.mean())
 
