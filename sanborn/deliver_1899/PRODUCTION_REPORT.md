@@ -123,7 +123,14 @@ directions, all since corrected.
   two sheets contribute there.
 - Where a feature spans a sheet boundary, the atlas letters it on both
   sheets. The seam cut is placed so exactly one copy renders.
-- No content anywhere in this composite is generated, inferred, or cloned.
+- No map content anywhere in this composite is generated, inferred, or
+  cloned. ONE deliberate stylization, made at the user's direction:
+  **Galveston Bay and the pier slips are filled with the atlas's own
+  printed water-wash tone** (sampled from the shoreline edging strips
+  and applied multiplicatively, so paper texture and all overprinted
+  ink — bay lettering, compass roses, scale bars — survive). The
+  original prints open water as uncolored paper; this fill adds no
+  linework, lettering, or features of any kind.
 - **Scan tone differences are flattened** by the illumination-field
   correction (see Colour); faint residuals can survive where a vignette
   exceeded the ±30% correction clip.
