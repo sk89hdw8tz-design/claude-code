@@ -111,10 +111,23 @@ directions, all since corrected.
 - Where a feature spans a sheet boundary, the atlas letters it on both
   sheets. The seam cut is placed so exactly one copy renders.
 - No content anywhere in this composite is generated, inferred, or cloned.
+- **Scan tone differences remain at sheet boundaries** (PRESERVE_COLORS
+  renders each scan as-is): sheet 7's paper scans darker than sheet 6's —
+  visible as a tone line at the wharf 22nd seam and above the compass
+  rose in the bay — and sheet 8's paper scans paler than 7's north of
+  19th. These are the scans' own tones, not processing.
+- Sheet 6's corner numeral "6" at 22nd × Water St sits where downtown
+  sheet 13's surveyed drawing takes over and renders only partially;
+  sheet 7's "6" pointer at the wharf 22nd seam renders whole.
+- TEXAS STAR FLOUR MILLS is lettered by both sheet 7 (in the yards) and
+  sheet 11 (on Water St); both render — same class as the duplicated
+  compass roses.
+- The 12″ W.PIPE rows step ~13 px across the authentic Avenue D void at
+  23rd (pair 13|14's drawing scatter — see the repair section).
 
 ## Output
 
-38.16 × 25.44 in at 300 dpi (page 39.16 × 26.94 in with caption).
+38.35 × 25.44 in at 300 dpi (page 39.35 × 26.94 in with caption).
 
 ## Seam QC — three independent adversarial passes
 
@@ -221,3 +234,54 @@ drawings' own scatter.
 **Visually verified after repair:** 22nd St runs straight through Avenue G
 (was −34 px); the 24th St row shift (48–85 px) is gone; the corridor rows
 align across Avenue D above and below 24th.
+
+## Wharf and junction polish (this revision)
+
+Driven by marked-up review crops: the wharf 22nd seam, the Avenue A
+(Water St) junction, and Avenue D at 23rd.
+
+1. **Junction placement.** Five street-furniture landmarks (water pipes,
+   hydrants, corridor rows at 19th–25th where wharf meets downtown) were
+   measured by dashed-row selection. Fed into the network solve they
+   dragged downtown toward the wharf's schematic geometry (gate median
+   23.5 → 27.4 px — rejected); instead the wharf trio takes ONE common
+   translation, the weighted mean of (downtown − wharf) across them:
+   (−9.9, +14.9) px. Their residuals disagree street-to-street by up to
+   ~95 px against downtown sheets that agree with each other to 3 px —
+   the wharf–downtown junction scatter is source-level, and the
+   remaining jog at any one street reflects it.
+2. **Wharf pair means zeroed.** The schematic couplings left ~7 px of
+   uniform step on 07|06 and 08|07. After the junction shift, 06 and 08
+   are shifted so their surveyed pair means vanish exactly (07 anchors):
+   06 by (+4.3, −7.3), 08 by (−3.3, +7.0). Pier edges, slip water and
+   rails now cross the wharf seams with only the drawings' own ±4 px
+   scatter.
+3. **The 22nd wharf seam cut moved from +142 to +175 (sheet 7's measured
+   paper edge).** Sheet 7 draws the entire shared band completely — the
+   full Pier 22 warehouse, PIER No 22 and 22ND ST labels, its "6"
+   pointer numeral, the NO EXPOSURE note — and its paper ends at native
+   3937 with the UT citation printed on backing below. The old cut,
+   clamped by a synthetic frame estimate (the wharf sheets print no
+   frame line), sliced the pointer numeral in half. The new cut renders
+   all of it from one engraver's drawing and excludes the backing.
+   Flipping sheet 6 on top was tried and measured out: 6's scan is
+   itself cut ~90 px above 22nd, so every candidate cut sliced or
+   ghosted a label copy that sheet 7 prints intact.
+4. **Post-spacing disagreement (measured).** Where both sheets draw the
+   Pier 22 warehouse, their post marks agree at the west end (1–4 px)
+   and drift to ~15 px apart at the east end, while the surveyed corner
+   landmarks show <0.1% relative scale across the pair: the drift is
+   the two engravers' drawings disagreeing, not a scan-scale error.
+   With the new cut the warehouse renders from sheet 7 alone, so no
+   mixed drawing remains there.
+
+**Guard metrics:** coverage 98.54%, pure-white 48 px (bar ≤50),
+pure-black 0.0086% (more authentic sheet-edge ink at the deeper cut).
+Wharf pair means after: 07|06 (0.0, 0.0), 08|07 (0.0, 0.0).
+
+**Declined, with cause — Avenue D at 23rd.** The doubled 12″ W.PIPE
+appearance across the authentic corridor void is pair 13|14's +13 px
+mean, which sits at that pair's own drawing-scatter floor (spread
+13 px). Forcing it to zero pushes ~24 px onto the 24th St crossings
+via pair 12|14. Left as-is and disclosed; per-sheet rotation (a
+rebuild item, inexpressible in the separable warp) is the honest fix.

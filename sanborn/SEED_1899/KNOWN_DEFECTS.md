@@ -159,3 +159,30 @@ Remaining, for any future rebuild:
   under misregistered overlap; any content-true rebuild will show it too.
 - Schematic Avenue A disagreement and sheet furniture: unchanged, as
   documented above.
+
+## Post-polish state (junction + wharf revision)
+
+Five junction street-furniture landmarks (dashed-row selection, ink
+fraction 0.12–0.55) measure the wharf-vs-downtown offset at 19th–25th.
+They disagree street-to-street by up to ~95 px while downtown pairs
+11|13 agree to 3 px — junction scatter is SOURCE-level. Applied as one
+rigid wharf-group shift (weighted mean −9.9, +14.9 px), never as
+network couplings (measured regression when coupled: median 23.5→27.4).
+Wharf-internal pair means then zeroed exactly against anchor 07
+(06 +4.3,−7.3; 08 −3.3,+7.0).
+
+The wharf 22nd seam cuts at +175, sheet 7's measured paper edge
+(content to native 3934, paper ~3937, UT citation on backing 3986+),
+via a trusted manual cut that bypasses the synthetic frame estimate
+(wharf sheets print no frame line; the estimate had clamped the cut to
++142, halving sheet 7's pointer numeral). Sheet 7 draws the whole
+shared band; flip variants all sliced or ghosted a label copy because
+sheet 6's scan is cut ~90 px above 22nd.
+
+Warehouse post-spacing on 06 vs 07 drifts 1→15 px west→east while
+corner landmarks show <0.1% pair scale: engraver disagreement, not
+scan scale. Single-drawing rendering removes it from view.
+
+Guard: coverage 98.54%, pure-white 48, black 0.0086%. 13|14 stays at
++13 px dy (its scatter floor; zeroing it costs 24th St ~24 px via
+12|14) — the Avenue D pipe step at the void is disclosed, not hidden.

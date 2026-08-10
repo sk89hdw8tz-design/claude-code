@@ -1,0 +1,24 @@
+
+landmarks: 66   median step 26.1 px   max 169.5 px   over 12 px: 50
+
+per pair (a consistent dx/dy across a pair's landmarks means
+that pair carries a rigid offset — the fixable kind):
+  06|13    n=3  mean dx=   -4.3 dy=   +9.9  spread= 28.6
+  06|15    n=3  mean dx=  -25.5 dy=  +81.1  spread=128.8
+  07|06    n=5  mean dx=   +0.0 dy=   -0.0  spread= 21.3
+  07|11    n=5  mean dx=  +16.5 dy=  -67.5  spread= 61.4
+  07|13    n=4  mean dx=   +7.1 dy=  +25.1  spread= 45.6
+  08|07    n=4  mean dx=   -0.0 dy=   +0.0  spread=  3.0
+  08|11    n=4  mean dx=  +24.4 dy=  -61.0  spread=  8.5
+  11|12    n=4  mean dx=   +0.3 dy=  -16.6  spread= 14.6
+  11|13    n=3  mean dx=   +7.1 dy=   -0.0  spread=  3.4
+  12|14    n=3  mean dx=   -2.1 dy=  -11.1  spread= 17.2
+  12|41    n=3  mean dx=   +2.5 dy=  -11.1  spread=  7.0
+  13|14    n=3  mean dx=   -5.2 dy=  +13.3  spread= 12.9
+  13|15    n=4  mean dx=   +7.2 dy=   +0.9  spread= 42.4
+  14|16    n=3  mean dx=   -0.2 dy=   -3.2  spread=  5.1
+  14|39    n=3  mean dx=   -7.2 dy=   +5.5  spread= 18.2
+  15|16    n=3  mean dx=   +4.8 dy=   +8.8  spread= 13.0
+  16|37    n=3  mean dx=   +4.7 dy=   +5.6  spread= 12.5
+  39|37    n=3  mean dx=   -4.7 dy=   -5.6  spread= 19.8
+  41|39    n=3  mean dx=   +2.5 dy=  -11.1  spread= 37.2
