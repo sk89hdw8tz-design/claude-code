@@ -37,8 +37,8 @@ printed wash — pink brick, yellow frame, blue water, green special —
 renders exactly as scanned, and the highlight-protection gain is disabled
 because unity gain cannot push a highlight anywhere it was not already.
 
-The honest cost: scan-to-scan tone differences remain visible at the joins
-rather than being averaged away. This was the explicit requirement.
+Residual cost: within ±30% of correction, extreme local shading can
+leave a faint trace at a join; nothing beyond the clip is invented.
 
 ## Registration
 
@@ -124,11 +124,9 @@ directions, all since corrected.
 - Where a feature spans a sheet boundary, the atlas letters it on both
   sheets. The seam cut is placed so exactly one copy renders.
 - No content anywhere in this composite is generated, inferred, or cloned.
-- **Scan tone differences remain at sheet boundaries** (PRESERVE_COLORS
-  renders each scan as-is): sheet 7's paper scans darker than sheet 6's —
-  visible as a tone line at the wharf 22nd seam and above the compass
-  rose in the bay — and sheet 8's paper scans paler than 7's north of
-  19th. These are the scans' own tones, not processing.
+- **Scan tone differences are flattened** by the illumination-field
+  correction (see Colour); faint residuals can survive where a vignette
+  exceeded the ±30% correction clip.
 - Sheet 6's corner numeral "6" at 22nd × Water St sits where downtown
   sheet 13's surveyed drawing takes over and renders only partially;
   sheet 7's "6" pointer at the wharf 22nd seam renders whole.
