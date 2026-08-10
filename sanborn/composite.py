@@ -173,6 +173,30 @@ def flatten_illumination(img, target_tone, clip_lo=0.70, clip_hi=1.40):
         out[..., c] = cv2.GaussianBlur(f, (0, 0), 10)
     gain = np.asarray(target_tone, np.float32) / np.maximum(out, 1.0)
     gain = np.clip(gain, clip_lo, clip_hi)
+    # 1-D residual pass: steep edge vignettes in the last ~150 px defeat
+    # the 2-D field (border reflection biases it toward the brighter
+    # interior; the wharf sheets' bottom bands survived at 15-21 levels).
+    # Row/column masked paper medians of the CORRECTED result catch them
+    # at full cross-axis fidelity; rows with thin paper support keep
+    # gain 1 so wash-dominated bands are never stretched.
+    tgt = np.asarray(target_tone, np.float32)
+    corr = small * gain
+    for axis in (0, 1):            # 0: per-row gains, 1: per-column gains
+        n = corr.shape[axis]
+        sup = mask.sum(axis=1 - axis)
+        med = np.tile(tgt, (n, 1)).astype(np.float32)
+        for i in range(n):
+            if sup[i] < 12:
+                continue
+            line = corr[i] if axis == 0 else corr[:, i]
+            lm = (mask[i] if axis == 0 else mask[:, i]) > 0
+            med[i] = np.median(line[lm], axis=0)
+        g1 = np.clip(tgt / np.maximum(med, 1.0), 0.85, 1.2)
+        g1[sup < 12] = 1.0
+        g1 = cv2.GaussianBlur(g1.reshape(-1, 1, 3), (1, 9), 0).reshape(-1, 3)
+        gain = gain * (g1[:, None, :] if axis == 0 else g1[None, :, :])
+        corr = small * gain
+    gain = np.clip(gain, clip_lo * 0.9, clip_hi * 1.15)
     gain_full = cv2.resize(gain, (img.shape[1], img.shape[0]),
                            interpolation=cv2.INTER_LINEAR)
     return np.clip(img.astype(np.float32) * gain_full, 0, 255).astype(np.uint8)
