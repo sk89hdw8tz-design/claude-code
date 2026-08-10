@@ -220,6 +220,22 @@ def main(survey_dir, out_path):
         if edge_fix:
             units[sid].setdefault("line_overrides", {}).setdefault(
                 "x", {}).update(edge_fix)
+        # Same failure on the STREET axis: sheet-cut top/bottom edges carry
+        # comb latches up to -41 px (sheet 41's 21st). Interior-pitch
+        # extrapolation values, |bias| > 12 px only.
+        edge_fix_y = {
+            "12": {"18": 306.4},
+            "41": {"21": 3808.0},
+            "13": {"21": 292.1},
+            "14": {"21": 308.6},
+            "39": {"24": 3782.3},
+            "15": {"27": 3801.8},
+            "16": {"24": 326.2},
+            "37": {"24": 315.3, "27": 3790.2},
+        }.get(sid)
+        if edge_fix_y:
+            units[sid].setdefault("line_overrides", {}).setdefault(
+                "y", {}).update(edge_fix_y)
         if r.get("irregular"):
             units[sid]["note"] = "IRREGULAR: " + units[sid]["note"]
 
