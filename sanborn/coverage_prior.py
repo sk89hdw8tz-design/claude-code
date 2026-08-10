@@ -124,11 +124,6 @@ def composite_extent(year):
 # beyond its own label copy.
 SEAM_FLIPS = {
     ("h", 25, frozenset({"11a", "4"})),   # 11a's panel stops at 25th
-    # 1899 wharf 22nd: sheet 06 draws the Pier 22 warehouse solid
-    # yellow/orange to its paper top plus its own rails and the corner "6";
-    # 07-on-top replaced all of it with 07's white-interior version and
-    # sliced the numeral. South sheet on top per the user's call.
-    ("h", 22, frozenset({"06", "07"})),
 }
 
 # Manual cut positions (global px relative to the boundary line) for
@@ -174,10 +169,12 @@ SCAN_INSET_DEFAULT = 24
 def scan_inset(year, filenum, side):
     """Per-year lookup: SCAN_INSETS keys are bare (file, side) measured on
     the 1885 LoC masters; they must never leak onto 1899's UT scans, whose
-    sheet numbers overlap."""
-    if year != "1885":
-        return SCAN_INSET_DEFAULT
-    return SCAN_INSETS.get((filenum, side), SCAN_INSET_DEFAULT)
+    sheet numbers overlap. 1899 has its own measured table."""
+    if year == "1885":
+        return SCAN_INSETS.get((filenum, side), SCAN_INSET_DEFAULT)
+    if year == "1899":
+        return SCAN_INSETS_1899.get((filenum, side), SCAN_INSET_DEFAULT)
+    return SCAN_INSET_DEFAULT
 
 
 SCAN_INSETS = {
@@ -256,12 +253,31 @@ def neighbors(year):
 # That is now handled uniformly by the owner-on-top seam policy rather than
 # by per-seam offsets.
 SEAM_CUTS_1899 = {
-    # Empty by design. Every 1899 seam is now resolved by the owner-on-top
-    # policy (config.EDITIONS['1899']['seam_policy']) plus the frame/paper
-    # clamp in legal_cut, which together keep one complete copy of the
-    # shared corridor. Manual offsets here would re-introduce a cut inside
-    # the overlap — exactly what the seam QC pass found destroys frontage
-    # strips and street names.
+    # Default: every 1899 seam is resolved by the owner-on-top policy
+    # (config.EDITIONS['1899']['seam_policy']) plus the frame/paper clamp
+    # in legal_cut, which together keep one complete copy of the shared
+    # corridor. Manual offsets would re-introduce a cut inside the
+    # overlap — exactly what the seam QC pass found destroys frontage
+    # strips and street names. Exceptions below are measured to the pixel.
+    #
+    # h22 06|07 (wharf): sheet 07 draws the ENTIRE shared band to its
+    # paper edge — full Pier 22 warehouse, its "6" pointer numeral
+    # (native rows 3846-3917), NO EXPOSURE (to 3934), paper ends ~3937,
+    # UT citation on backing at 3986+. The frame-estimate clamp cut at
+    # +142, slicing the pointer numeral in half. +175 = the paper edge:
+    # numeral and NO EXPOSURE whole, backing and citation excluded.
+    # (Flipping 06 on top was tried and rejected: 06's scan is cut at
+    # ~90 px above 22nd, so every candidate cut sliced or ghosted a
+    # label copy — 22ND ST, PIER No 22 — that 07 prints intact.)
+    ("h", 22, frozenset({"06", "07"})): +175,
+}
+
+# 1899 per-scan-edge insets (native px), measured like the 1885 table.
+# Sheet 7's bottom: content runs to native 3934, paper to ~3937, white
+# backing from 3940 — the default 24 would pull a paper-edge cut into
+# the pointer numeral.
+SCAN_INSETS_1899 = {
+    (7, "bottom"): 0,
 }
 
 SEAM_CUTS_BY_YEAR = {"1885": SEAM_CUTS, "1899": SEAM_CUTS_1899}

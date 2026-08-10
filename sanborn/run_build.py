@@ -1104,7 +1104,7 @@ def composite_edition(year, registration):
     # region/native print_end cap cannot see this — it caps at the SCAN
     # extent, junk included. Same border-connectivity criterion as the
     # exterior margin trim: junk touches the scan edge, print never does.
-    def legal_cut(axis, owner, nbr, cut, center):
+    def legal_cut(axis, owner, nbr, cut, center, trust_frame=True):
         """Clamp a seam cut into the window where BOTH sheets have printed
         map: after the neighbour's frame starts, before the owner's frame
         ends. Outside it the composite renders sheet margin — unfilled
@@ -1127,10 +1127,18 @@ def composite_edition(year, registration):
                                "right" if axis == "v" else "bottom")
         ins_n = cov.scan_inset(year, cov.COVERAGE[year][nbr]["file"],
                                "left" if axis == "v" else "top")
-        lo = max(geo[nbr]["frame_gp"][i0],
-                 geo[nbr]["paper_g"][i0] + ins_n) + feather
-        hi = min(geo[owner]["frame_gp"][i1],
-                 geo[owner]["paper_g"][i1] - ins_o) - 4
+        if trust_frame:
+            lo = max(geo[nbr]["frame_gp"][i0],
+                     geo[nbr]["paper_g"][i0] + ins_n) + feather
+            hi = min(geo[owner]["frame_gp"][i1],
+                     geo[owner]["paper_g"][i1] - ins_o) - 4
+        else:
+            # Manual cuts are measured to the pixel against the scans; the
+            # frame ESTIMATE (synthetic on wharf sheets, which print no
+            # frame line) must not clamp them — it cut +142 at the wharf
+            # 22nd, slicing sheet 7's pointer numeral. Paper still binds.
+            lo = geo[nbr]["paper_g"][i0] + ins_n + feather
+            hi = geo[owner]["paper_g"][i1] - ins_o - 4
         if lo > hi:
             mid = 0.5 * (lo + hi)
             log(f"seam {axis} {owner}|{nbr}: printed frames do not overlap "
@@ -1140,6 +1148,7 @@ def composite_edition(year, registration):
         return float(min(max(cut, lo), hi))
 
     prop = {}
+    manual_sides = set()
     nbr_frame_caps = set()
     for axis, idx, owner, nbr in cov.neighbors(year):
         if owner not in geo or nbr not in geo:
@@ -1177,6 +1186,8 @@ def composite_edition(year, registration):
         manual = cov.seam_cut(year, axis, idx, frozenset({owner, nbr}))
         if manual is not None:
             log(f"seam {axis}{idx} {owner}|{nbr}: manual cut {manual:+d}")
+            # measured cuts may run past the synthetic frame estimate
+            manual_sides.add((owner, "right" if axis == "v" else "bottom"))
         # Seam policy. 1885 sheets share only a sliver of corridor, so the
         # cut is placed by the label-aware search. 1899 sheets overlap by
         # hundreds of px — each prints the whole street AND both facing
@@ -1209,7 +1220,8 @@ def composite_edition(year, registration):
             print_end = comp.pw_fwd([min(reg_own[2], nw - ins)],
                                     g_own["xkn"], g_own["xkg"])[0]
             owner_end = min(max(cut, center - 240), print_end - 4)
-            owner_end = legal_cut("v", owner, nbr, owner_end, center)
+            owner_end = legal_cut("v", owner, nbr, owner_end, center,
+                                  trust_frame=manual is None)
             log(f"seam v{idx} {owner}|{nbr}: cut at {owner_end - center:+.0f}")
             prop.setdefault((owner, "right"), []).append(owner_end)
             prop.setdefault((nbr, "left"), []).append(owner_end - feather)
@@ -1245,7 +1257,8 @@ def composite_edition(year, registration):
             print_end = comp.pw_fwd([min(reg_own[3], nh - ins)],
                                     g_own["ykn"], g_own["ykg"])[0]
             owner_end = min(max(cut, center - 240), print_end - 4)
-            owner_end = legal_cut("h", owner, nbr, owner_end, center)
+            owner_end = legal_cut("h", owner, nbr, owner_end, center,
+                                  trust_frame=manual is None)
             log(f"seam h{idx} {owner}|{nbr}: cut at {owner_end - center:+.0f}")
             prop.setdefault((owner, "bottom"), []).append(owner_end)
             prop.setdefault((nbr, "top"), []).append(owner_end - feather)
@@ -1322,7 +1335,9 @@ def composite_edition(year, registration):
         # (seam QC, findings 3-4). legal_cut already guarantees the cut sits
         # inside BOTH sheets' printed extents, so capping here cannot open a
         # hole the neighbour does not fill.
-        es = ext_sides.get(key, set())
+        # Manual-cut sides are measured against the scan itself, past the
+        # synthetic frame estimate; the cut (paper-bounded) is the cap.
+        es = ext_sides.get(key, set()) | {s for k, s in manual_sides if k == key}
         fr = frames_native[key]
         if "left" not in es:
             cx0 = max(cx0, fr[0])
