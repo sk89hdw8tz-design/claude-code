@@ -1077,8 +1077,99 @@
    "confidence": "high",
    "overlap_px": 325,
    "verified": false
+  },
+  {
+   "id": "junction-22nd-0713",
+   "sheet_a": "07",
+   "sheet_b": "13",
+   "boundary": "Avenue A junction street furniture",
+   "description": "10-inch water main in 22nd St at the Avenue A crossing; both sheets place it 121-123 px north of their own corridor centre. Selected as the DASHED row (ink fraction 0.12-0.55) nearest-consistent with each sheet's own corridor centre; solid frontage rows excluded.",
+   "a_xy": [
+    3127,
+    3577
+   ],
+   "b_xy": [
+    142,
+    1317
+   ],
+   "confidence": "high",
+   "weight": 2.5,
+   "verified": false
+  },
+  {
+   "id": "junction-21st-0711",
+   "sheet_a": "07",
+   "sheet_b": "11",
+   "boundary": "Avenue A junction street furniture",
+   "description": "21st St pipe at Avenue A; offsets -14/-5 px from own centres. Selected as the DASHED row (ink fraction 0.12-0.55) nearest-consistent with each sheet's own corridor centre; solid frontage rows excluded.",
+   "a_xy": [
+    3127,
+    2520
+   ],
+   "b_xy": [
+    107,
+    3732
+   ],
+   "confidence": "medium",
+   "weight": 1.5,
+   "verified": false
+  },
+  {
+   "id": "junction-20th-0711",
+   "sheet_a": "07",
+   "sheet_b": "11",
+   "boundary": "Avenue A junction street furniture",
+   "description": "20th St pipe at Avenue A; offsets -11/+13 px from own centres. Selected as the DASHED row (ink fraction 0.12-0.55) nearest-consistent with each sheet's own corridor centre; solid frontage rows excluded.",
+   "a_xy": [
+    3127,
+    1357
+   ],
+   "b_xy": [
+    107,
+    2572
+   ],
+   "confidence": "medium",
+   "weight": 1.0,
+   "verified": false
+  },
+  {
+   "id": "junction-19th-0811",
+   "sheet_a": "08",
+   "sheet_b": "11",
+   "boundary": "Avenue A junction street furniture",
+   "description": "19th St pipe at Avenue A; offsets +10/+46 px from own centres - weaker agreement. Selected as the DASHED row (ink fraction 0.12-0.55) nearest-consistent with each sheet's own corridor centre; solid frontage rows excluded.",
+   "a_xy": [
+    3147,
+    3805
+   ],
+   "b_xy": [
+    107,
+    1437
+   ],
+   "confidence": "low",
+   "weight": 0.75,
+   "verified": false
+  },
+  {
+   "id": "junction-25th-0615",
+   "sheet_a": "06",
+   "sheet_b": "15",
+   "boundary": "Avenue A junction street furniture",
+   "description": "25th St (Rosenberg) pipe at Avenue A; offsets +13/-11 px from own centres. Selected as the DASHED row (ink fraction 0.12-0.55) nearest-consistent with each sheet's own corridor centre; solid frontage rows excluded.",
+   "a_xy": [
+    3093,
+    3691
+   ],
+   "b_xy": [
+    143,
+    1466
+   ],
+   "confidence": "medium",
+   "weight": 1.0,
+   "verified": false
   }
  ],
  "schematic_note": "Features flagged schematic:true pair a wharf sheet's SCHEMATIC east-side block outline with a downtown sheet's surveyed drawing. The locate agents measured corner disagreements up to ~100 px BETWEEN THE DRAWINGS themselves on these pairs. Such features measure source disagreement, not registration error \u2014 exclude them from any pass/fail alignment gate; the surveyed downtown drawing is authoritative there.",
- "redraw_scatter_note": "Every boundary measured shows hand-drawn disagreement between the two sheets' redraws of the shared strip: ~24 px total scatter on the best pair (12|14) up to ~50-70 px on 11|13 and 41|39, ~30 px internal drift on wharf pair 07|06, and up to ~100 px on the schematic Avenue A pairs. Judge per-landmark steps against this source scatter \u2014 a registration cannot beat the drawings' own agreement."
+ "redraw_scatter_note": "Every boundary measured shows hand-drawn disagreement between the two sheets' redraws of the shared strip: ~24 px total scatter on the best pair (12|14) up to ~50-70 px on 11|13 and 41|39, ~30 px internal drift on wharf pair 07|06, and up to ~100 px on the schematic Avenue A pairs. Judge per-landmark steps against this source scatter \u2014 a registration cannot beat the drawings' own agreement.",
+ "junction_note": "junction-* features are street-FURNITURE correspondences at the Avenue A crossing (pipes, dashed rows). Unlike the schematic block corners they represent what the eye follows across the wharf/downtown seam, so they carry real weight in the repair solve. The 23rd and 24th crossings were measured but the two sheets' dashed rows could not be matched consistently; no feature was invented."
 }

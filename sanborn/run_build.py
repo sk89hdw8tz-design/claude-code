@@ -664,7 +664,11 @@ def composite_edition(year, registration):
                   comp.pw_fwd([f["a_xy"][1]], ga_["ykn"], ga_["ykg"])[0])
             pb = (comp.pw_fwd([f["b_xy"][0]], gb_["xkn"], gb_["xkg"])[0],
                   comp.pw_fwd([f["b_xy"][1]], gb_["ykn"], gb_["ykg"])[0])
-            w = 0.25 if f.get("schematic") else 1.0
+            # Per-feature "weight" overrides win: the junction street-
+            # furniture features (pipes/hydrants in the Avenue A corridor
+            # itself) are visually binding even though the block outlines
+            # around them are schematic, so they carry raised weights.
+            w = f.get("weight", 0.25 if f.get("schematic") else 1.0)
             lfeats.append((a, b, pa, pb, w))
             pts[a].append(pa)
             pts[b].append(pb)
