@@ -139,7 +139,8 @@
    "note": "Sheet number printed top-LEFT (not top-right). Railroad trac; west clip at Ave A centerline: torn scan edge was halving sheet 7's AV. A OR WATER display label",
    "line_overrides": {
     "x": {
-     "0": 107
+     "0": 107,
+     "3": 3195.3
     }
    },
    "clip_region": [
@@ -162,7 +163,13 @@
     21
    ],
    "region": null,
-   "note": "Sheet number top-left. Fire-limits line jogs through the Av "
+   "note": "Sheet number top-left. Fire-limits line jogs through the Av ",
+   "line_overrides": {
+    "x": {
+     "3": 215.4,
+     "6": 3189.9
+    }
+   }
   },
   "13": {
    "file": 13,
@@ -180,7 +187,8 @@
    "note": "Sheet number top-left. Dense downtown wholesale district, ne",
    "line_overrides": {
     "x": {
-     "0": 142
+     "0": 142,
+     "3": 3263.6
     }
    }
   },
@@ -197,7 +205,12 @@
     24
    ],
    "region": null,
-   "note": "Sheet number top-left. Tremont Hotel (with 10,000-gal cister"
+   "note": "Sheet number top-left. Tremont Hotel (with 10,000-gal cister",
+   "line_overrides": {
+    "x": {
+     "3": 202.4
+    }
+   }
   },
   "15": {
    "file": 15,
@@ -215,7 +228,8 @@
    "note": "Sheet number top-left. Union Passenger Depot with the gray G",
    "line_overrides": {
     "x": {
-     "0": 143
+     "0": 143,
+     "3": 3250.2
     }
    }
   },
@@ -232,7 +246,13 @@
     27
    ],
    "region": null,
-   "note": "Sheet number printed top-RIGHT. U.S. Post Office & Custom Ho"
+   "note": "Sheet number printed top-RIGHT. U.S. Post Office & Custom Ho",
+   "line_overrides": {
+    "x": {
+     "3": 200.9,
+     "6": 3188.4
+    }
+   }
   },
   "17": {
    "file": 17,
@@ -582,7 +602,13 @@
     27
    ],
    "region": null,
-   "note": "Printed sheet number in TOP-LEFT corner; second street corri"
+   "note": "Printed sheet number in TOP-LEFT corner; second street corri",
+   "line_overrides": {
+    "x": {
+     "6": 174.5,
+     "9": 3162.2
+    }
+   }
   },
   "38": {
    "file": 38,
@@ -612,7 +638,13 @@
     24
    ],
    "region": null,
-   "note": "Printed sheet number in TOP-LEFT corner. First and third str"
+   "note": "Printed sheet number in TOP-LEFT corner. First and third str",
+   "line_overrides": {
+    "x": {
+     "6": 195.8,
+     "9": 3173.2
+    }
+   }
   },
   "40": {
    "file": 40,
@@ -642,7 +674,13 @@
     21
    ],
    "region": null,
-   "note": "Printed number is in the TOP-LEFT corner (odd sheets in this"
+   "note": "Printed number is in the TOP-LEFT corner (odd sheets in this",
+   "line_overrides": {
+    "x": {
+     "6": 200.4,
+     "9": 3187.1
+    }
+   }
   },
   "42": {
    "file": 42,

@@ -200,6 +200,26 @@ def main(survey_dir, out_path):
         av_a_fix = {"11": 107, "13": 142, "15": 143}.get(sid)
         if av_a_fix is not None and 0 in slots:
             units[sid]["line_overrides"] = {"x": {"0": av_a_fix}}
+        # Edge-line detections latch onto block frontages/kerbs instead of
+        # corridor centres on the sheets' cut edges (the Ave A failure mode,
+        # measured on every interior v-seam edge: 15's slot-3 sat a full
+        # west-frontage latch of -120 px while 14's sat +63 east — the
+        # visible Avenue D corridor jogged ~60 px crossing 24th). Values are
+        # the sheet's own interior pitch extrapolated to the edge slot.
+        edge_fix = {
+            "11": {"3": 3195.3},
+            "12": {"3": 215.4, "6": 3189.9},
+            "41": {"6": 200.4, "9": 3187.1},
+            "13": {"3": 3263.6},
+            "14": {"3": 202.4},
+            "39": {"6": 195.8, "9": 3173.2},
+            "15": {"3": 3250.2},
+            "16": {"3": 200.9, "6": 3188.4},
+            "37": {"6": 174.5, "9": 3162.2},
+        }.get(sid)
+        if edge_fix:
+            units[sid].setdefault("line_overrides", {}).setdefault(
+                "x", {}).update(edge_fix)
         if r.get("irregular"):
             units[sid]["note"] = "IRREGULAR: " + units[sid]["note"]
 
