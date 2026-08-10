@@ -186,3 +186,32 @@ scan scale. Single-drawing rendering removes it from view.
 Guard: coverage 98.54%, pure-white 48, black 0.0086%. 13|14 stays at
 +13 px dy (its scatter floor; zeroing it costs 24th St ~24 px via
 12|14) — the Avenue D pipe step at the void is disclosed, not hidden.
+
+## Uniform-paper + corridor revision (latest)
+
+**Illumination flattening** (`composite.flatten_illumination`): the
+sheet paper MEDIANS agree within a few levels, but each scan carries
+its own illumination field — sheet 8's pale south band rendered as a
+"white bar" at 19th that no per-sheet gain could touch. Each scan is
+divided by its low-pass paper field (bright, low-saturation,
+non-backing pixels; masked diffusion; σ15 at /8 scale) and multiplied
+by the edition cream, clipped ±30%. Washes keep their ratio to local
+paper. Pure-white 48 → 7. Two traps found measuring this: scanner
+backing passes the brightness test (excluded via min-channel < 225 —
+including it INVERTS the correction at edges), and region means with
+ink in them mislead — compare paper-only pixels.
+
+**Corridor-continuity landmarks**: Strand/Mechanic kerb steps crossing
+24th measured +20/+25 px by column-profile NCC while the 13-15-16-14
+cycle closes with ~25 px of engraver disagreement — the steps can only
+be RELOCATED. Two weighted features (corridor-strand-24th 2.0,
+corridor-mechanic-24th 1.2) bias the solve toward the corridors:
++20→+12, +25→+17, residual parked in block interiors and a rigid
+−18 px at 14|39 where the owner-on-top Avenue G seam hides it (streets
+cross Avenue G at +8/+11). Scale bounds ±1% → ±0.4% (the ±1% solve
+pinned 13/+1% against 15/−1%; their differential drift was the first
+corridor-step suspect, but tightening alone did NOT fix the steps —
+the cycle contradiction did it; keep both changes).
+
+Current gate table: `landmark_after_polish.txt`; guard metrics:
+`repaired_metrics.json` (coverage 98.52%, white 7, black 0.0080%).
