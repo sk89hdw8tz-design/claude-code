@@ -170,7 +170,7 @@ def flatten_illumination(img, target_tone, clip_lo=0.75, clip_hi=1.35):
     out = np.empty_like(field)
     for c in range(3):
         f = np.where(den > 1e-3, field[..., c] / np.maximum(den, 1e-3), med[c])
-        out[..., c] = cv2.GaussianBlur(f, (0, 0), 25)
+        out[..., c] = cv2.GaussianBlur(f, (0, 0), 15)
     gain = np.asarray(target_tone, np.float32) / np.maximum(out, 1.0)
     gain = np.clip(gain, clip_lo, clip_hi)
     gain_full = cv2.resize(gain, (img.shape[1], img.shape[0]),

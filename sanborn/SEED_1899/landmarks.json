@@ -1172,6 +1172,38 @@
    "weight": 1.0,
    "verified": false,
    "junction": true
+  },
+  {
+   "id": "corridor-strand-24th",
+   "sheet_a": "13",
+   "a_xy": [
+    1251.0,
+    3762.3
+   ],
+   "sheet_b": "15",
+   "b_xy": [
+    1289.3,
+    200.4
+   ],
+   "weight": 2.0,
+   "desc": "Strand corridor kerb alignment crossing 24th, column-profile NCC step +20px measured in composite",
+   "confidence": "high"
+  },
+  {
+   "id": "corridor-mechanic-24th",
+   "sheet_a": "13",
+   "a_xy": [
+    2259.0,
+    3762.3
+   ],
+   "sheet_b": "15",
+   "b_xy": [
+    2296.3,
+    200.4
+   ],
+   "weight": 1.2,
+   "desc": "Mechanic corridor kerb alignment crossing 24th, column-profile NCC step +25px measured in composite",
+   "confidence": "medium"
   }
  ],
  "schematic_note": "Features flagged schematic:true pair a wharf sheet's SCHEMATIC east-side block outline with a downtown sheet's surveyed drawing. The locate agents measured corner disagreements up to ~100 px BETWEEN THE DRAWINGS themselves on these pairs. Such features measure source disagreement, not registration error \u2014 exclude them from any pass/fail alignment gate; the surveyed downtown drawing is authoritative there.",

@@ -674,7 +674,10 @@ def composite_edition(year, registration):
                 # after the solve to place the wharf GROUP rigidly.
                 jfeats.append((a, b, pa, pb, f.get("weight", 1.0)))
                 continue
-            w = 0.25 if f.get("schematic") else 1.0
+            # Per-feature weight override: corridor-continuity features
+            # (kerbs crossing a seam street, what the eye follows) carry
+            # raised weight so the solve parks residual inside blocks.
+            w = f.get("weight", 0.25 if f.get("schematic") else 1.0)
             lfeats.append((a, b, pa, pb, w))
             pts[a].append(pa)
             pts[b].append(pb)
