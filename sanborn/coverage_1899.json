@@ -1,0 +1,1539 @@
+{
+ "units": {
+  "04": {
+   "file": 4,
+   "av_slots": [
+    0
+   ],
+   "st": [
+    28,
+    31
+   ],
+   "region": null,
+   "detect_region": [
+    2350,
+    0,
+    3400,
+    4095
+   ],
+   "v_anchors": {
+    "0": 3136
+   },
+   "note": "wharf hybrid; Av.A + street anchors measured; piers render as exterior margin"
+  },
+  "05": {
+   "file": 5,
+   "av_slots": [
+    0
+   ],
+   "st": [
+    25,
+    28
+   ],
+   "region": null,
+   "detect_region": [
+    2350,
+    0,
+    3400,
+    4095
+   ],
+   "v_anchors": {
+    "0": 3094
+   },
+   "note": "wharf hybrid; Av.A + street anchors measured; piers render as exterior margin"
+  },
+  "06": {
+   "file": 6,
+   "av_slots": [
+    0
+   ],
+   "st": [
+    22,
+    25
+   ],
+   "region": null,
+   "detect_region": [
+    2350,
+    0,
+    3400,
+    4095
+   ],
+   "v_anchors": {
+    "0": 3093
+   },
+   "note": "wharf hybrid; Av.A + street anchors measured; piers render as exterior margin",
+   "h_anchors": {
+    "22": 176,
+    "23": 1343,
+    "24": 2511,
+    "25": 3678
+   }
+  },
+  "07": {
+   "file": 7,
+   "av_slots": [
+    0
+   ],
+   "st": [
+    19,
+    22
+   ],
+   "region": null,
+   "detect_region": [
+    2350,
+    0,
+    3400,
+    4095
+   ],
+   "v_anchors": {
+    "0": 3127
+   },
+   "note": "wharf hybrid; Av.A + street anchors measured; piers render as exterior margin",
+   "h_anchors": {
+    "19": 201,
+    "20": 1368,
+    "21": 2534,
+    "22": 3700
+   }
+  },
+  "08": {
+   "file": 8,
+   "av_slots": [
+    0
+   ],
+   "st": [
+    16,
+    19
+   ],
+   "region": null,
+   "detect_region": [
+    2350,
+    0,
+    3400,
+    4095
+   ],
+   "v_anchors": {
+    "0": 3147
+   },
+   "note": "wharf hybrid; Av.A + street anchors measured; piers render as exterior margin",
+   "h_anchors": {
+    "16": 289,
+    "17": 1457,
+    "18": 2626,
+    "19": 3795
+   }
+  },
+  "11": {
+   "file": 11,
+   "av_slots": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "st": [
+    18,
+    21
+   ],
+   "region": null,
+   "note": "Sheet number printed top-LEFT (not top-right). Railroad trac; west clip at Ave A centerline: torn scan edge was halving sheet 7's AV. A OR WATER display label",
+   "line_overrides": {
+    "x": {
+     "0": 107,
+     "3": 3195.3
+    }
+   },
+   "clip_region": [
+    110,
+    0,
+    3400,
+    4116
+   ]
+  },
+  "12": {
+   "file": 12,
+   "av_slots": [
+    3,
+    4,
+    5,
+    6
+   ],
+   "st": [
+    18,
+    21
+   ],
+   "region": null,
+   "note": "Sheet number top-left. Fire-limits line jogs through the Av ",
+   "line_overrides": {
+    "x": {
+     "3": 215.4,
+     "6": 3189.9
+    },
+    "y": {
+     "18": 306.4
+    }
+   }
+  },
+  "13": {
+   "file": 13,
+   "av_slots": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "st": [
+    21,
+    24
+   ],
+   "region": null,
+   "note": "Sheet number top-left. Dense downtown wholesale district, ne",
+   "line_overrides": {
+    "x": {
+     "0": 142,
+     "3": 3263.6
+    },
+    "y": {
+     "21": 292.1
+    }
+   }
+  },
+  "14": {
+   "file": 14,
+   "av_slots": [
+    3,
+    4,
+    5,
+    6
+   ],
+   "st": [
+    21,
+    24
+   ],
+   "region": null,
+   "note": "Sheet number top-left. Tremont Hotel (with 10,000-gal cister",
+   "line_overrides": {
+    "x": {
+     "3": 202.4
+    },
+    "y": {
+     "21": 308.6
+    }
+   }
+  },
+  "15": {
+   "file": 15,
+   "av_slots": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "st": [
+    24,
+    27
+   ],
+   "region": null,
+   "note": "Sheet number top-left. Union Passenger Depot with the gray G",
+   "line_overrides": {
+    "x": {
+     "0": 143,
+     "3": 3250.2
+    },
+    "y": {
+     "27": 3801.8
+    }
+   }
+  },
+  "16": {
+   "file": 16,
+   "av_slots": [
+    3,
+    4,
+    5,
+    6
+   ],
+   "st": [
+    24,
+    27
+   ],
+   "region": null,
+   "note": "Sheet number printed top-RIGHT. U.S. Post Office & Custom Ho",
+   "line_overrides": {
+    "x": {
+     "3": 200.9,
+     "6": 3188.4
+    },
+    "y": {
+     "24": 326.2
+    }
+   }
+  },
+  "17": {
+   "file": 17,
+   "av_slots": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "st": [
+    27,
+    30
+   ],
+   "region": null,
+   "note": "Sheet number top-left. Bottom-left edge numeral prints as a "
+  },
+  "18": {
+   "file": 18,
+   "av_slots": [
+    3,
+    4,
+    5,
+    6
+   ],
+   "st": [
+    27,
+    30
+   ],
+   "region": null,
+   "note": "Sheet number printed top-RIGHT. Bottom row dominated by two "
+  },
+  "19": {
+   "file": 19,
+   "av_slots": [
+    1,
+    2,
+    3,
+    4
+   ],
+   "st": [
+    30,
+    33
+   ],
+   "region": null,
+   "note": "Sheet number top-left. Left third is the Gulf, Colorado & Sa"
+  },
+  "20": {
+   "file": 20,
+   "av_slots": [
+    4,
+    5,
+    6,
+    7
+   ],
+   "st": [
+    30,
+    33
+   ],
+   "region": null,
+   "note": "Sheet number printed top-RIGHT. City Pump House & Reservoir "
+  },
+  "21": {
+   "file": 21,
+   "av_slots": [
+    2,
+    3,
+    4,
+    5
+   ],
+   "st": [
+    33,
+    36
+   ],
+   "region": null,
+   "note": "Sheet number printed top-LEFT. Left and bottom-left edge ref"
+  },
+  "22": {
+   "file": 22,
+   "av_slots": [
+    5,
+    6,
+    7,
+    8
+   ],
+   "st": [
+    33,
+    36
+   ],
+   "region": null,
+   "note": "Sheet number printed top-RIGHT. Ordinary frame-dwelling resi"
+  },
+  "23": {
+   "file": 23,
+   "av_slots": [
+    3,
+    4,
+    5,
+    6
+   ],
+   "st": [
+    36,
+    39
+   ],
+   "region": null,
+   "note": "Sheet number printed top-LEFT. Left and bottom-left edge ref"
+  },
+  "24": {
+   "file": 24,
+   "av_slots": [
+    6,
+    7,
+    8,
+    9
+   ],
+   "st": [
+    36,
+    39
+   ],
+   "region": null,
+   "note": "Sheet number printed top-RIGHT. Dense frame-dwelling residen"
+  },
+  "25": {
+   "file": 25,
+   "av_slots": [
+    4,
+    5,
+    6,
+    7
+   ],
+   "st": [
+    39,
+    42
+   ],
+   "region": null,
+   "note": "Sheet number printed top-LEFT. Left edge ref prints as bare "
+  },
+  "26": {
+   "file": 26,
+   "av_slots": [
+    7,
+    8,
+    9,
+    10
+   ],
+   "st": [
+    39,
+    42
+   ],
+   "region": [
+    40,
+    60,
+    2260,
+    4094
+   ],
+   "clip_region": [
+    40,
+    60,
+    2210,
+    4094
+   ],
+   "note": "main panel west of the K break"
+  },
+  "26b": {
+   "file": 26,
+   "av_slots": [
+    10,
+    11
+   ],
+   "st": [
+    39,
+    40
+   ],
+   "region": [
+    2160,
+    1500,
+    3400,
+    4094
+   ],
+   "clip_region": [
+    2210,
+    1500,
+    3400,
+    4094
+   ],
+   "note": "cemetery sub-panel K-L x 39-40"
+  },
+  "27": {
+   "file": 27,
+   "av_slots": [
+    3,
+    4,
+    5,
+    6
+   ],
+   "st": [
+    42,
+    45
+   ],
+   "region": null,
+   "note": "Sheet number printed top-LEFT. Top-left, left and bottom edg"
+  },
+  "28": {
+   "file": 28,
+   "av_slots": [
+    6,
+    7,
+    8,
+    9
+   ],
+   "st": [
+    42,
+    45
+   ],
+   "region": null,
+   "note": "Sheet number printed top-RIGHT. Right edge carries a bare '0"
+  },
+  "29": {
+   "file": 29,
+   "av_slots": [
+    9,
+    10,
+    11,
+    12
+   ],
+   "st": [
+    36,
+    39
+   ],
+   "region": null,
+   "note": "Sheet number printed top-LEFT. Grace Episcopal Church (stone"
+  },
+  "30": {
+   "file": 30,
+   "av_slots": [
+    12,
+    13,
+    14,
+    15
+   ],
+   "st": [
+    36,
+    39
+   ],
+   "region": null,
+   "note": "Sheet number printed top-RIGHT. Outlying blocks carry quarte"
+  },
+  "31": {
+   "file": 31,
+   "av_slots": [
+    8,
+    9,
+    10,
+    11
+   ],
+   "st": [
+    33,
+    36
+   ],
+   "region": null,
+   "note": "Printed sheet number is in the TOP-LEFT corner (not top-righ"
+  },
+  "32": {
+   "file": 32,
+   "av_slots": [
+    11,
+    12,
+    13,
+    14
+   ],
+   "st": [
+    33,
+    36
+   ],
+   "region": null,
+   "note": "Galveston & Western R.R. runs vertically just inside the rig"
+  },
+  "33": {
+   "file": 33,
+   "av_slots": [
+    7,
+    8,
+    9,
+    10
+   ],
+   "st": [
+    30,
+    33
+   ],
+   "region": null,
+   "note": "Printed sheet number in TOP-LEFT corner with compass rose. U"
+  },
+  "34": {
+   "file": 34,
+   "av_slots": [
+    10,
+    11,
+    12,
+    13
+   ],
+   "st": [
+    30,
+    33
+   ],
+   "region": null,
+   "note": "3rd District Public School on block 90. Right-hand column bl"
+  },
+  "35": {
+   "file": 35,
+   "av_slots": [
+    6,
+    7,
+    8,
+    9
+   ],
+   "st": [
+    27,
+    30
+   ],
+   "region": null,
+   "note": "Printed sheet number in TOP-LEFT corner; compass rose top-ce"
+  },
+  "36": {
+   "file": 36,
+   "av_slots": [
+    9,
+    10,
+    11,
+    12
+   ],
+   "st": [
+    27,
+    30
+   ],
+   "region": null,
+   "note": "Cotton drying platform (hatched) with broom factory and cott"
+  },
+  "37": {
+   "file": 37,
+   "av_slots": [
+    6,
+    7,
+    8,
+    9
+   ],
+   "st": [
+    24,
+    27
+   ],
+   "region": null,
+   "note": "Printed sheet number in TOP-LEFT corner; second street corri",
+   "line_overrides": {
+    "x": {
+     "6": 174.5,
+     "9": 3162.2
+    },
+    "y": {
+     "24": 315.3,
+     "27": 3790.2
+    }
+   }
+  },
+  "38": {
+   "file": 38,
+   "av_slots": [
+    9,
+    10,
+    11,
+    12
+   ],
+   "st": [
+    24,
+    27
+   ],
+   "region": null,
+   "note": "St. Johns M.E. Church (pink) block 145; 1st Missionary Bapti"
+  },
+  "39": {
+   "file": 39,
+   "av_slots": [
+    6,
+    7,
+    8,
+    9
+   ],
+   "st": [
+    21,
+    24
+   ],
+   "region": null,
+   "note": "Printed sheet number in TOP-LEFT corner. First and third str",
+   "line_overrides": {
+    "x": {
+     "6": 195.8,
+     "9": 3173.2
+    },
+    "y": {
+     "24": 3782.3
+    }
+   }
+  },
+  "40": {
+   "file": 40,
+   "av_slots": [
+    9,
+    10,
+    11,
+    12
+   ],
+   "st": [
+    21,
+    24
+   ],
+   "region": null,
+   "note": "St. Joseph R.C. Church, St. Joseph's Convent and R.C. School"
+  },
+  "41": {
+   "file": 41,
+   "av_slots": [
+    6,
+    7,
+    8,
+    9
+   ],
+   "st": [
+    18,
+    21
+   ],
+   "region": null,
+   "note": "Printed number is in the TOP-LEFT corner (odd sheets in this",
+   "line_overrides": {
+    "x": {
+     "6": 200.4,
+     "9": 3187.1
+    },
+    "y": {
+     "21": 3808.0
+    }
+   }
+  },
+  "42": {
+   "file": 42,
+   "av_slots": [
+    9,
+    10,
+    11,
+    12
+   ],
+   "st": [
+    18,
+    21
+   ],
+   "region": null,
+   "note": "2D District Public School (block 79); A.M.E. Church (block 1"
+  },
+  "43": {
+   "file": 43,
+   "av_slots": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "st": [
+    15,
+    18
+   ],
+   "region": null,
+   "note": "G.W. Co's Terminal Track and G.C.& S.F. R.R. run in Av. A / "
+  },
+  "44": {
+   "file": 44,
+   "av_slots": [
+    3,
+    4,
+    5,
+    6
+   ],
+   "st": [
+    15,
+    18
+   ],
+   "region": null,
+   "note": "Sacred Heart Academy (Dominican Sisters) occupies much of th"
+  },
+  "45": {
+   "file": 45,
+   "av_slots": [
+    0,
+    1,
+    2
+   ],
+   "st": [
+    12,
+    15
+   ],
+   "region": null,
+   "note": "Far-left corridor labeled 'NO STREET.' carrying G.C.& S.F. R"
+  },
+  "46": {
+   "file": 46,
+   "av_slots": [
+    2,
+    3,
+    4,
+    5
+   ],
+   "st": [
+    12,
+    15
+   ],
+   "region": null,
+   "note": "St. James M.E. Church (block 436, Church/17th area); Kinderg"
+  },
+  "47": {
+   "file": 47,
+   "av_slots": [
+    0,
+    1,
+    2
+   ],
+   "st": [
+    9,
+    12
+   ],
+   "region": null,
+   "note": "Medical Dep't of the University of Texas (large pink buildin"
+  },
+  "48": {
+   "file": 48,
+   "av_slots": [
+    2,
+    3,
+    4,
+    5
+   ],
+   "st": [
+    9,
+    12
+   ],
+   "region": null,
+   "note": "Galveston, La Port & Houston R.R. (Bay Shore Line) runs alon"
+  },
+  "49": {
+   "file": 49,
+   "av_slots": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "st": [
+    6,
+    9
+   ],
+   "region": null,
+   "note": "John Sealy Hospital complex (pink: Wards 1 & 2, Colored Ward"
+  },
+  "50": {
+   "file": 50,
+   "av_slots": [
+    3,
+    4,
+    5,
+    6
+   ],
+   "st": [
+    6,
+    9
+   ],
+   "region": null,
+   "note": "St. Mary's Infirmary complex (pink: chapel, sisters' dormito"
+  },
+  "51": {
+   "file": 51,
+   "av_slots": [
+    6,
+    7,
+    8,
+    9
+   ],
+   "st": [
+    6,
+    9
+   ],
+   "region": null,
+   "note": "Printed sheet number is in the TOP-LEFT corner, not top-righ"
+  },
+  "52": {
+   "file": 52,
+   "av_slots": [
+    9,
+    10,
+    11,
+    12
+   ],
+   "st": [
+    6,
+    9
+   ],
+   "region": null,
+   "note": "Second panel is a heavy-black-bordered inset overlaying the "
+  },
+  "53": {
+   "file": 53,
+   "av_slots": [
+    5,
+    6,
+    7,
+    8
+   ],
+   "st": [
+    9,
+    12
+   ],
+   "region": null,
+   "note": "Printed sheet number top-left. Galveston & Western R.R. (not"
+  },
+  "54": {
+   "file": 54,
+   "av_slots": [
+    8,
+    9,
+    10,
+    11
+   ],
+   "st": [
+    9,
+    12
+   ],
+   "region": null,
+   "note": "G.&W.R.R. along 9th St at top. Av. J. or Broadway noted '150"
+  },
+  "55": {
+   "file": 55,
+   "av_slots": [
+    5,
+    6,
+    7,
+    8
+   ],
+   "st": [
+    12,
+    15
+   ],
+   "region": null,
+   "note": "Printed sheet number top-left. Ordinary dwelling grid, all s"
+  },
+  "56": {
+   "file": 56,
+   "av_slots": [
+    8,
+    9,
+    10,
+    11
+   ],
+   "st": [
+    12,
+    15
+   ],
+   "region": null,
+   "note": "Sacred Heart R.C. Church (windows all sides) and St. Mary's "
+  },
+  "57": {
+   "file": 57,
+   "av_slots": [
+    6,
+    7,
+    8,
+    9
+   ],
+   "st": [
+    15,
+    18
+   ],
+   "region": null,
+   "note": "Printed sheet number top-left. St. Paul's Presb'n Church (Ge"
+  },
+  "58": {
+   "file": 58,
+   "av_slots": [
+    9,
+    10,
+    11,
+    12
+   ],
+   "st": [
+    15,
+    18
+   ],
+   "region": null,
+   "note": "Engine Co. No. 5 (engine and hose wagon, brick/pink) mid-she"
+  },
+  "59": {
+   "file": 59,
+   "av_slots": [
+    11,
+    12,
+    13,
+    14
+   ],
+   "st": [
+    12,
+    15
+   ],
+   "region": null,
+   "note": "Printed sheet number top-left. Outlot-style block numbering "
+  },
+  "60": {
+   "file": 60,
+   "av_slots": [
+    14,
+    15,
+    16,
+    17
+   ],
+   "st": [
+    12,
+    15
+   ],
+   "region": null,
+   "note": "IRREGULAR: Irregular: Gulf of Mexico shoreline (blue band) runs diagona"
+  },
+  "61": {
+   "file": 61,
+   "av_slots": [
+    12,
+    13,
+    14,
+    15
+   ],
+   "st": [
+    15,
+    18
+   ],
+   "region": null,
+   "note": "Printed sheet number is in the TOP-LEFT corner (not top-righ"
+  },
+  "62": {
+   "file": 62,
+   "av_slots": [
+    15,
+    16,
+    17,
+    18
+   ],
+   "st": [
+    15,
+    18
+   ],
+   "region": null,
+   "note": "Gulf of Mexico shoreline (blue band labeled 'Gulf of Mexico'"
+  },
+  "63": {
+   "file": 63,
+   "av_slots": [
+    12,
+    13,
+    14,
+    15
+   ],
+   "st": [
+    18,
+    21
+   ],
+   "region": null,
+   "note": "Printed sheet number top-left. Galveston & Western R.R. ('no"
+  },
+  "64": {
+   "file": 64,
+   "av_slots": [
+    15,
+    16,
+    17,
+    18
+   ],
+   "st": [
+    18,
+    21
+   ],
+   "region": null,
+   "note": "Compass rose top-left, N pointing left. 'Alhambra Boarding H"
+  },
+  "65": {
+   "file": 65,
+   "av_slots": [
+    18,
+    19,
+    20,
+    21
+   ],
+   "st": [
+    18,
+    21
+   ],
+   "region": null,
+   "note": "Heavy-framed inset panel in the top-right covers the area on"
+  },
+  "66": {
+   "file": 66,
+   "av_slots": [
+    11,
+    12,
+    13,
+    14
+   ],
+   "st": [
+    9,
+    12
+   ],
+   "region": null,
+   "note": "Gulf of Mexico shoreline enters the NE corner diagonally; th"
+  },
+  "67": {
+   "file": 67,
+   "av_slots": [
+    12,
+    13,
+    14,
+    15
+   ],
+   "st": [
+    21,
+    24
+   ],
+   "region": null,
+   "note": "Printed sheet number top-left. Large pink (brick) 'Galveston"
+  },
+  "68": {
+   "file": 68,
+   "av_slots": [
+    15,
+    16,
+    17,
+    18
+   ],
+   "st": [
+    21,
+    24
+   ],
+   "region": null,
+   "note": "Avenue O marked 'wood block paved'; 23rd/Tremont 'wood block"
+  },
+  "69": {
+   "file": 69,
+   "av_slots": [
+    18,
+    19,
+    20,
+    21
+   ],
+   "st": [
+    21,
+    24
+   ],
+   "region": null,
+   "note": "Gulf of Mexico shoreline crosses the NE corner. 'BASE BALL P"
+  },
+  "70": {
+   "file": 70,
+   "av_slots": [
+    21,
+    22
+   ],
+   "st": [
+    23,
+    24
+   ],
+   "region": null,
+   "detect_region": [
+    0,
+    2100,
+    1600,
+    4110
+   ],
+   "v_anchors": {
+    "21": 155,
+    "22": 1160
+   },
+   "h_anchors": {
+    "23": 2599,
+    "24": 3761
+   },
+   "clip_region": [
+    0,
+    1015,
+    3400,
+    4110
+   ],
+   "note": "beach sheet; grid in SW quadrant; detached orphans-home inset excluded"
+  },
+  "71a": {
+   "file": 71,
+   "av_slots": [
+    9,
+    10
+   ],
+   "st": [
+    43,
+    46
+   ],
+   "region": [
+    60,
+    30,
+    1150,
+    4040
+   ],
+   "note": "left panel"
+  },
+  "71b": {
+   "file": 71,
+   "av_slots": [
+    12,
+    13,
+    14
+   ],
+   "st": [
+    24,
+    27
+   ],
+   "region": [
+    1190,
+    30,
+    3400,
+    4040
+   ],
+   "v_anchors": {
+    "12": 1214,
+    "13": 2238,
+    "14": 3264
+   },
+   "note": "right panel"
+  },
+  "72": {
+   "file": 72,
+   "av_slots": [
+    14,
+    15,
+    16,
+    17
+   ],
+   "st": [
+    24,
+    27
+   ],
+   "region": null,
+   "note": "Ursuline Academy and Convent occupies the whole giant block "
+  },
+  "73": {
+   "file": 73,
+   "av_slots": [
+    17,
+    18,
+    19,
+    20
+   ],
+   "st": [
+    24,
+    27
+   ],
+   "region": null,
+   "note": "The Letitia Rosenberg Women's Home (pink brick, block 67 S.W"
+  },
+  "74": {
+   "file": 74,
+   "av_slots": [
+    20,
+    21,
+    22,
+    23
+   ],
+   "st": [
+    24,
+    27
+   ],
+   "region": null,
+   "note": "Gulf of Mexico shoreline cuts diagonally across the NE corne"
+  },
+  "75": {
+   "file": 75,
+   "av_slots": [
+    12,
+    13,
+    14
+   ],
+   "st": [
+    27,
+    30
+   ],
+   "region": null,
+   "note": "Everything east of Avenue N is the Garten Verein pleasure gr"
+  },
+  "76": {
+   "file": 76,
+   "av_slots": [
+    16,
+    17,
+    18
+   ],
+   "st": [
+    27,
+    30
+   ],
+   "region": null,
+   "note": "Western third is the Garten Verein continuation: block 40 S."
+  },
+  "77": {
+   "file": 77,
+   "av_slots": [
+    18,
+    19,
+    20,
+    21
+   ],
+   "st": [
+    27,
+    30
+   ],
+   "region": null,
+   "note": "Fire Engine Co. No. 9 (engine & hose wagon) fronting Avenue "
+  },
+  "78": {
+   "file": 78,
+   "av_slots": [
+    21,
+    22,
+    23,
+    24
+   ],
+   "st": [
+    27,
+    30
+   ],
+   "region": null,
+   "note": "Gulf of Mexico shoreline crosses the NE corner diagonally; '"
+  },
+  "79": {
+   "file": 79,
+   "av_slots": [
+    13,
+    14,
+    15,
+    16
+   ],
+   "st": [
+    30,
+    33
+   ],
+   "region": null,
+   "note": "Galveston & Western R.R. (dashed track) runs beside Avenue N"
+  },
+  "80": {
+   "file": 80,
+   "av_slots": [
+    16,
+    17,
+    18,
+    19
+   ],
+   "st": [
+    30,
+    33
+   ],
+   "region": null,
+   "note": "Residential grid with substantial vacant ground (quarter-blo"
+  },
+  "81": {
+   "file": 81,
+   "av_slots": [
+    19,
+    20,
+    21
+   ],
+   "st": [
+    30,
+    33
+   ],
+   "region": null,
+   "note": "Q 1/2 printed twice at different alignments: interior 'AV. Q"
+  },
+  "82": {
+   "file": 82,
+   "av_slots": [
+    22,
+    23,
+    24,
+    25
+   ],
+   "st": [
+    30,
+    33
+   ],
+   "region": null,
+   "note": "AVENUE R 1/2 printed only as tiny italic label in the bottom"
+  },
+  "83": {
+   "file": 83,
+   "av_slots": [
+    14,
+    15,
+    16,
+    17
+   ],
+   "st": [
+    33,
+    36
+   ],
+   "region": null,
+   "note": "GALVESTON & WESTERN R.R. runs alongside AVENUE N. at the lef"
+  },
+  "84": {
+   "file": 84,
+   "av_slots": [
+    17,
+    18,
+    19,
+    20
+   ],
+   "st": [
+    33,
+    36
+   ],
+   "region": null,
+   "note": "Full 3x3 block grid (blocks 62, 87, 61, 86). 35TH ST. WOOD B"
+  },
+  "85": {
+   "file": 85,
+   "av_slots": [
+    20,
+    21,
+    22,
+    23
+   ],
+   "st": [
+    33,
+    36
+   ],
+   "region": null,
+   "note": "34TH ST. open (NOT PAVED) only in the eastern portion near A"
+  },
+  "86": {
+   "file": 86,
+   "av_slots": [
+    23,
+    24,
+    25,
+    26
+   ],
+   "st": [
+    33,
+    36
+   ],
+   "region": null,
+   "note": "GULF OF MEXICO shoreline (blue water band) cuts across the t"
+  },
+  "87": {
+   "file": 87,
+   "av_slots": [
+    15,
+    16,
+    17,
+    18
+   ],
+   "st": [
+    37,
+    39
+   ],
+   "region": null,
+   "note": "Only 3 numbered streets on-sheet: top tier shows the lower h"
+  },
+  "88": {
+   "file": 88,
+   "av_slots": [
+    18,
+    19,
+    20,
+    21
+   ],
+   "st": [
+    36,
+    39
+   ],
+   "region": null,
+   "note": "Regular outlot-district grid sheet. AV. Q 1/2 is printed twi"
+  },
+  "89": {
+   "file": 89,
+   "av_slots": [
+    21,
+    22,
+    23,
+    24
+   ],
+   "st": [
+    36,
+    39
+   ],
+   "region": null,
+   "note": "Regular grid sheet. AV. Q 1/2 printed twice on left edge (to"
+  },
+  "90": {
+   "file": 90,
+   "av_slots": [
+    24,
+    25,
+    26,
+    27
+   ],
+   "st": [
+    36,
+    39
+   ],
+   "region": null,
+   "note": "IRREGULAR: Easternmost sheet of this row: Gulf of Mexico shoreline cuts"
+  },
+  "91": {
+   "file": 91,
+   "av_slots": [
+    11,
+    12,
+    13,
+    14
+   ],
+   "st": [
+    39,
+    42
+   ],
+   "region": null,
+   "note": "Regular grid sheet. Left edge refs: 26 above 40TH ST., 0 bel"
+  },
+  "92": {
+   "file": 92,
+   "av_slots": [
+    14,
+    15,
+    16,
+    17
+   ],
+   "st": [
+    39,
+    42
+   ],
+   "region": null,
+   "note": "Regular grid sheet, mostly vacant platted blocks (33/34/58/5"
+  },
+  "93": {
+   "file": 93,
+   "av_slots": [
+    17,
+    18,
+    19,
+    20
+   ],
+   "st": [
+    39,
+    42
+   ],
+   "region": null,
+   "note": "Regular grid sheet. AV. P 1/2 printed twice (top row and bot"
+  }
+ },
+ "excluded": {
+  "01": "wharf sheet, no street grid (proposed warehouse outlines only)",
+  "02": "wharf piers/warehouses, rotated axis, detached creosote inset",
+  "03": "waterfront warehouses; streets marked not opened, no avenue line",
+  "09": "rotated wharf grid with detached pier inset",
+  "10": "wharf piers only, no street grid",
+  "94": "detached Texas City inset (7 miles NW of Galveston) \u2014 not part of the Galveston grid"
+ }
+}

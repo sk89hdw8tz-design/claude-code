@@ -1,0 +1,325 @@
+[
+ {
+  "axis": "h",
+  "idx": 22,
+  "owner": "07",
+  "nbr": "06",
+  "owner_native": 3700,
+  "owner_span": [
+   "A",
+   "A"
+  ],
+  "nbr_native": 176,
+  "nbr_span": [
+   "A",
+   "A"
+  ],
+  "boundary": "22th Street"
+ },
+ {
+  "axis": "v",
+  "idx": 0,
+  "owner": "06",
+  "nbr": "13",
+  "owner_native": 3093,
+  "owner_span": [
+   22,
+   25
+  ],
+  "nbr_native": 142,
+  "nbr_span": [
+   21,
+   24
+  ],
+  "boundary": "Avenue A"
+ },
+ {
+  "axis": "v",
+  "idx": 0,
+  "owner": "06",
+  "nbr": "15",
+  "owner_native": 3093,
+  "owner_span": [
+   22,
+   25
+  ],
+  "nbr_native": 143,
+  "nbr_span": [
+   24,
+   27
+  ],
+  "boundary": "Avenue A"
+ },
+ {
+  "axis": "h",
+  "idx": 19,
+  "owner": "08",
+  "nbr": "07",
+  "owner_native": 3795,
+  "owner_span": [
+   "A",
+   "A"
+  ],
+  "nbr_native": 201,
+  "nbr_span": [
+   "A",
+   "A"
+  ],
+  "boundary": "19th Street"
+ },
+ {
+  "axis": "v",
+  "idx": 0,
+  "owner": "07",
+  "nbr": "11",
+  "owner_native": 3127,
+  "owner_span": [
+   19,
+   22
+  ],
+  "nbr_native": 107,
+  "nbr_span": [
+   18,
+   21
+  ],
+  "boundary": "Avenue A"
+ },
+ {
+  "axis": "v",
+  "idx": 0,
+  "owner": "07",
+  "nbr": "13",
+  "owner_native": 3127,
+  "owner_span": [
+   19,
+   22
+  ],
+  "nbr_native": 142,
+  "nbr_span": [
+   21,
+   24
+  ],
+  "boundary": "Avenue A"
+ },
+ {
+  "axis": "v",
+  "idx": 0,
+  "owner": "08",
+  "nbr": "11",
+  "owner_native": 3147,
+  "owner_span": [
+   16,
+   19
+  ],
+  "nbr_native": 107,
+  "nbr_span": [
+   18,
+   21
+  ],
+  "boundary": "Avenue A"
+ },
+ {
+  "axis": "v",
+  "idx": 3,
+  "owner": "11",
+  "nbr": "12",
+  "owner_native": 3126,
+  "owner_span": [
+   18,
+   21
+  ],
+  "nbr_native": 164,
+  "nbr_span": [
+   18,
+   21
+  ],
+  "boundary": "Avenue D"
+ },
+ {
+  "axis": "h",
+  "idx": 21,
+  "owner": "11",
+  "nbr": "13",
+  "owner_native": 3737,
+  "owner_span": [
+   "A",
+   "D"
+  ],
+  "nbr_native": 320,
+  "nbr_span": [
+   "A",
+   "D"
+  ],
+  "boundary": "21th Street"
+ },
+ {
+  "axis": "v",
+  "idx": 6,
+  "owner": "12",
+  "nbr": "41",
+  "owner_native": 3127,
+  "owner_span": [
+   18,
+   21
+  ],
+  "nbr_native": 147,
+  "nbr_span": [
+   18,
+   21
+  ],
+  "boundary": "Avenue G"
+ },
+ {
+  "axis": "h",
+  "idx": 21,
+  "owner": "12",
+  "nbr": "14",
+  "owner_native": 3743,
+  "owner_span": [
+   "D",
+   "G"
+  ],
+  "nbr_native": 323,
+  "nbr_span": [
+   "D",
+   "G"
+  ],
+  "boundary": "21th Street"
+ },
+ {
+  "axis": "h",
+  "idx": 21,
+  "owner": "41",
+  "nbr": "39",
+  "owner_native": 3767,
+  "owner_span": [
+   "G",
+   "J"
+  ],
+  "nbr_native": 344,
+  "nbr_span": [
+   "G",
+   "J"
+  ],
+  "boundary": "21th Street"
+ },
+ {
+  "axis": "v",
+  "idx": 3,
+  "owner": "13",
+  "nbr": "14",
+  "owner_native": 3243,
+  "owner_span": [
+   21,
+   24
+  ],
+  "nbr_native": 265,
+  "nbr_span": [
+   21,
+   24
+  ],
+  "boundary": "Avenue D"
+ },
+ {
+  "axis": "h",
+  "idx": 24,
+  "owner": "13",
+  "nbr": "15",
+  "owner_native": 3738,
+  "owner_span": [
+   "A",
+   "D"
+  ],
+  "nbr_native": 340,
+  "nbr_span": [
+   "A",
+   "D"
+  ],
+  "boundary": "24th Street"
+ },
+ {
+  "axis": "v",
+  "idx": 6,
+  "owner": "14",
+  "nbr": "39",
+  "owner_native": 3139,
+  "owner_span": [
+   21,
+   24
+  ],
+  "nbr_native": 267,
+  "nbr_span": [
+   21,
+   24
+  ],
+  "boundary": "Avenue G"
+ },
+ {
+  "axis": "h",
+  "idx": 24,
+  "owner": "14",
+  "nbr": "16",
+  "owner_native": 3749,
+  "owner_span": [
+   "D",
+   "G"
+  ],
+  "nbr_native": 347,
+  "nbr_span": [
+   "D",
+   "G"
+  ],
+  "boundary": "24th Street"
+ },
+ {
+  "axis": "h",
+  "idx": 24,
+  "owner": "39",
+  "nbr": "37",
+  "owner_native": 3758,
+  "owner_span": [
+   "G",
+   "J"
+  ],
+  "nbr_native": 327,
+  "nbr_span": [
+   "G",
+   "J"
+  ],
+  "boundary": "24th Street"
+ },
+ {
+  "axis": "v",
+  "idx": 3,
+  "owner": "15",
+  "nbr": "16",
+  "owner_native": 3130,
+  "owner_span": [
+   24,
+   27
+  ],
+  "nbr_native": 147,
+  "nbr_span": [
+   24,
+   27
+  ],
+  "boundary": "Avenue D"
+ },
+ {
+  "axis": "v",
+  "idx": 6,
+  "owner": "16",
+  "nbr": "37",
+  "owner_native": 3119,
+  "owner_span": [
+   24,
+   27
+  ],
+  "nbr_native": 134,
+  "nbr_span": [
+   24,
+   27
+  ],
+  "boundary": "Avenue G"
+ }
+]

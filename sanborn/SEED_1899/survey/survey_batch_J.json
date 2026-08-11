@@ -1,0 +1,79 @@
+[
+  {
+    "sheet": "88",
+    "printed_number": 88,
+    "number_matches_filename": true,
+    "streets": ["36TH ST.", "37TH ST.", "38TH ST.", "39TH ST."],
+    "avenues": ["AVENUE P.", "AVENUE P 1/2", "AVENUE Q.", "AV. Q 1/2"],
+    "edge_refs": {"top": [84, 85], "bottom": [93, 0], "left": [87], "right": [89]},
+    "panels": 1,
+    "irregular": false,
+    "note": "Regular outlot-district grid sheet. AV. Q 1/2 is printed twice along the right edge (once in the top row, once in the bottom row). 38TH ST. only spans the western/central portion; block faces jog east of Avenue Q. Outlot block labels (85 N.E., 86 N.W., 110 N.E., 111 N.W., etc.) throughout. Most streets marked Not Paved."
+  },
+  {
+    "sheet": "89",
+    "printed_number": 89,
+    "number_matches_filename": true,
+    "streets": ["36TH ST.", "37TH ST.", "38TH ST.", "39TH ST."],
+    "avenues": ["AV. Q 1/2", "AVENUE R.", "AV. R 1/2", "AVENUE S."],
+    "edge_refs": {"top": [85, 86], "bottom": [0], "left": [88], "right": [90]},
+    "panels": 1,
+    "irregular": false,
+    "note": "Regular grid sheet. AV. Q 1/2 printed twice on left edge (top and bottom rows); AVENUE R. labeled only in the lower half, AV. R 1/2 labeled only in the top row. 38TH ST. spans only the western portion (large unbroken blocks east of Avenue R between 37th and 39th). Galveston County Home for Homeless Children in block 135 N.E.; Vacant Dairies noted in 135 S.W. Bottom edge ref 0 (open/unmapped to south)."
+  },
+  {
+    "sheet": "90",
+    "printed_number": 90,
+    "number_matches_filename": true,
+    "streets": ["36TH ST.", "37TH ST.", "38TH ST.", "39TH ST."],
+    "avenues": ["AVENUE S.", "AV. S 1/2", "AVENUE T.", "AVENUE T 1/2"],
+    "edge_refs": {"top": [86, 0], "bottom": [0], "left": [89], "right": [0]},
+    "panels": 1,
+    "irregular": true,
+    "note": "Easternmost sheet of this row: Gulf of Mexico shoreline cuts diagonally across the top-right corner (water labeled 'Gulf of Mexico'); block 186 N.W. truncated by the beach. Right, bottom, and top-right edge refs are 0 (open water / unmapped). AV. S 1/2 printed twice (top row and bottom row); 38TH ST. labeled twice (west and east segments, blocks offset between them). Streets Not Paved."
+  },
+  {
+    "sheet": "91",
+    "printed_number": 91,
+    "number_matches_filename": true,
+    "streets": ["39TH ST.", "40TH ST.", "41ST ST.", "42ND ST."],
+    "avenues": ["AVENUE L.", "AVENUE M.", "AVENUE M 1/2", "AVENUE N."],
+    "edge_refs": {"top": [29, 30], "bottom": [0], "left": [26, 0], "right": [92]},
+    "panels": 1,
+    "irregular": false,
+    "note": "Regular grid sheet. Left edge refs: 26 above 40TH ST., 0 below (adjoining coverage ends). Galveston & Western R.R. runs along the right (east) edge beside Avenue N. Galveston City R.R. Co. and Paint Shop in block 40; church (German Lutheran?) in block 41 - small-print occupancy labels, not corridor labels. Outlot block labels 8/9 N.E., S.E., N.W., S.W."
+  },
+  {
+    "sheet": "92",
+    "printed_number": 92,
+    "number_matches_filename": true,
+    "streets": ["39TH ST.", "40TH ST.", "41ST ST.", "42ND ST."],
+    "avenues": ["AVENUE N.", "AVENUE N 1/2", "AVENUE O.", "AVENUE O 1/2"],
+    "edge_refs": {"top": [30, 87], "bottom": [0], "left": [91], "right": [93]},
+    "panels": 1,
+    "irregular": false,
+    "note": "Regular grid sheet, mostly vacant platted blocks (33/34/58/59 quarter-block labels). Galveston & Western R.R. runs along the left (west) edge beside Avenue N. All streets marked Not Paved. Bottom edge ref 0."
+  },
+  {
+    "sheet": "93",
+    "printed_number": 93,
+    "number_matches_filename": true,
+    "streets": ["39TH ST.", "40TH ST.", "41ST ST.", "42ND ST."],
+    "avenues": ["AVENUE O 1/2", "AVENUE P.", "AV. P 1/2", "AVENUE Q."],
+    "edge_refs": {"top": [87, 88], "bottom": [0], "left": [92], "right": [0]},
+    "panels": 1,
+    "irregular": false,
+    "note": "Regular grid sheet. AV. P 1/2 printed twice (top row and bottom row). Douglas Park occupies the large open block (84 S.W. area) between 40TH and 41ST east of Avenue P, with a dashed oval track/pavilion (small print, partly illegible) and Refreshment Stand. Block 84 N.E. between 39th and 40th is entirely vacant. Right and bottom edge refs 0."
+  },
+  {
+    "sheet": "94",
+    "printed_number": 94,
+    "number_matches_filename": true,
+    "streets": ["5TH ST."],
+    "avenues": ["TEXAS AV."],
+    "edge_refs": {"top": [], "bottom": [], "left": [], "right": []},
+    "panels": 1,
+    "irregular": true,
+    "note": "Detached inset sheet, NOT part of the Galveston grid: header reads 'SITUATED AT TEXAS CITY, 7 MILES N.W. OF GALVESTON TEXAS. 15 MILES BY RAILROAD. NO FIRE APPARATUS, - BOOM TOWN. BUILDINGS SCATTERED, FEW OCCUPIED.' Galveston Bay runs along the right edge. Only two corridors: 5TH ST. (runs vertically) and TEXAS AV. (runs horizontally) - orientation opposite the Galveston sheets. Contents: Texas City Hotel (not completed, work suspended), Texas City Mill & Elevator Co. (not running, going to ruins), Inman Terminal & Tank Company cotton storage sheds, Texas City Compress Co. (not in operation, going to ruins), wharf/switch tracks and fences. No printed edge-reference numerals."
+  }
+]

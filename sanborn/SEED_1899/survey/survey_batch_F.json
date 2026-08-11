@@ -1,0 +1,114 @@
+[
+  {
+    "sheet": "51",
+    "printed_number": 51,
+    "number_matches_filename": true,
+    "streets": ["6TH", "7TH", "8TH", "9TH"],
+    "avenues": ["AV. G. OR WINNIE", "AV. H. OR BALL", "AV. I. OR SEALY", "AV. J. OR BROADWAY"],
+    "edge_refs": {"top": ["0"], "bottom": ["53", "54"], "left": ["50"], "right": ["52"]},
+    "panels": 1,
+    "irregular": false,
+    "note": "Printed sheet number is in the TOP-LEFT corner, not top-right. A lone '0' is printed at the top edge (adjacent territory unmapped east of 6th St); same convention as other east-end sheets. Block numbers 306/246/186, 307/247/187, 308/248/188. Pink (brick) row-building group at top right of block 186. Large vacant tracts in several blocks. St. Paul M.E. Church (Colored) and Society Hall in block 248. Compass rose top-center; scale bar bottom-left. All streets not paved."
+  },
+  {
+    "sheet": "52",
+    "printed_number": 52,
+    "number_matches_filename": true,
+    "streets": ["6TH", "7TH", "8TH", "9TH"],
+    "avenues": ["AV. J. OR BROADWAY", "AVENUE K.", "AVENUE L.", "AVENUE M."],
+    "edge_refs": {"top": ["0"], "bottom": ["54", "66"], "left": ["51"], "right": ["0"]},
+    "panels": 2,
+    "panel_regions": [[40, 40, 3400, 4060], [2200, 0, 3400, 1415]],
+    "irregular": false,
+    "note": "Second panel is a heavy-black-bordered inset overlaying the top-right corner: 8TH ST (top) to 9TH ST (bottom), AV. M. (left) to AV. M 1/2 (right), Gulf of Mexico shoreline crossing it, labeled '25 N.W' in an outlot block, its own edge refs '0' (top/right) and '66' below 9TH ST; 'G.W.R.R. Not Used' along 9th St. Sheet number 52 printed three times (top-right corner, inside inset left side, mid-right). Main map: blue-tinted stream/gulf inlet winds diagonally from top-center to bottom-right ('Gulf of Mexico', 'High Tide' noted); Avenue M label split along right edge by the water. Car Barn of the Galveston City R.R. and 'Pavilion built on posts 10 ft' in 7th-8th St row. Lone '0' edge refs face unmapped/Gulf territory. Blocks 126/66, 127/67/7, 128/68. Scale bar bottom-left."
+  },
+  {
+    "sheet": "53",
+    "printed_number": 53,
+    "number_matches_filename": true,
+    "streets": ["9TH", "10TH", "11TH", "12TH"],
+    "avenues": ["AV. F. OR CHURCH", "AV. G. OR WINNIE", "AV. H. OR BALL", "AV. I. OR SEALY"],
+    "edge_refs": {"top": ["50", "51"], "bottom": ["55"], "left": ["48"], "right": ["54"]},
+    "panels": 1,
+    "irregular": false,
+    "note": "Printed sheet number top-left. Galveston & Western R.R. (not used) runs along 9th St at top. Sidney Sherman Square with central fountain occupies entire block 310 (dashed paths, no buildings). Henry Rosenberg Free School (1st District, brick/pink) fills most of block 311. Blocks 369/309/249, 370/310/250, 371/311/251. Scale bar bottom-left. All streets not paved."
+  },
+  {
+    "sheet": "54",
+    "printed_number": 54,
+    "number_matches_filename": true,
+    "streets": ["9TH", "10TH", "11TH", "12TH"],
+    "avenues": ["AV. I. OR SEALY", "AV. J. OR BROADWAY", "AVENUE K.", "AVENUE L."],
+    "edge_refs": {"top": ["51", "52", "0"], "bottom": ["56"], "left": ["53"], "right": ["66"]},
+    "panels": 1,
+    "irregular": false,
+    "note": "G.&W.R.R. along 9th St at top. Av. J. or Broadway noted '150 feet wide'. E. Broadway Public School (Colored) East District in block 189; Sacred Heart Academy (Catholic School) in block 191; Free Mission Baptist Church (Colored) and 'Negro Tenements' in block 71; cigar factory in block 131. Lone '0' top-edge ref faces unmapped territory beyond 9th/Avenue L corner. Blocks 189/129/69, 190/130/70, 191/131/71. Red circled correction/cistern stamps 26 and 27 near margins. Scale bar bottom-left."
+  },
+  {
+    "sheet": "55",
+    "printed_number": 55,
+    "number_matches_filename": true,
+    "streets": ["12TH", "13TH", "14TH", "15TH"],
+    "avenues": ["AV. F. OR CHURCH", "AV. G. OR WINNIE", "AV. H. OR BALL", "AV. I. OR SEALY"],
+    "edge_refs": {"top": ["53"], "bottom": ["44", "57"], "left": ["46"], "right": ["56"]},
+    "panels": 1,
+    "irregular": false,
+    "note": "Printed sheet number top-left. Ordinary dwelling grid, all streets not paved. Brick (pink) bake house in block 314; small brick dwelling in block 372; greenhouse ('Green Ho. Glass') in block 372 row. Blocks 372/312/252, 373/313/253, 374/314/254. Bottom edge refs split: 44 lower-left, 57 lower-center-right. Scale bar bottom-center."
+  },
+  {
+    "sheet": "56",
+    "printed_number": 56,
+    "number_matches_filename": true,
+    "streets": ["12TH", "13TH", "14TH", "15TH"],
+    "avenues": ["AV. I. OR SEALY", "AV. J. OR BROADWAY", "AVENUE K.", "AVENUE L."],
+    "edge_refs": {"top": ["54"], "bottom": ["57", "58"], "left": ["55"], "right": ["59"]},
+    "panels": 1,
+    "irregular": false,
+    "note": "Sacred Heart R.C. Church (windows all sides) and St. Mary's University (class rooms, priests' dwelling, chapel, gymnasium, club room; 'brick building to be built here') occupy blocks 193 area in pink. Blue-tinted (stone/iron) building with glass roof in block 194, plus another pink dwelling below it and blue buildings in block 197. St. Augustine Mission Church (Episc., Colored) bottom-right block 74. 'Ruins of fire' noted in block 133. Av. J. or Broadway '150 feet wide'. Blocks 192/132/72, 193/133/73, 194/134/74. Red circled stamps 27, 24. Scale bar bottom-center-left."
+  },
+  {
+    "sheet": "57",
+    "printed_number": 57,
+    "number_matches_filename": true,
+    "streets": ["15TH", "16TH", "17TH", "18TH"],
+    "avenues": ["AV. G. OR WINNIE", "AV. H. OR BALL", "AV. I. OR SEALY", "AV. J. OR BROADWAY"],
+    "edge_refs": {"top": ["55", "56"], "bottom": ["41"], "left": ["44"], "right": ["58"]},
+    "panels": 1,
+    "irregular": false,
+    "note": "Printed sheet number top-left. St. Paul's Presb'n Church (German) in block 256. Several blue-tinted buildings (block 256 north side, block 196 south side, block 197 large buildings). 17th St partly shell paved (10-in and 12-in water pipe noted); one stretch of Sealy 'wood block paved'. Blocks 315/255/195, 316/256/196, 317/257/197. Red circled stamp 85 near 16th/Av H. Scale bar bottom-center."
+  },
+  {
+    "sheet": "58",
+    "printed_number": 58,
+    "number_matches_filename": true,
+    "streets": ["15TH", "16TH", "17TH", "18TH"],
+    "avenues": ["AV. J. OR BROADWAY", "AVENUE K.", "AVENUE L.", "AVENUE M."],
+    "edge_refs": {"top": ["56", "59"], "bottom": ["42"], "left": ["57"], "right": ["61"]},
+    "panels": 1,
+    "irregular": false,
+    "note": "Engine Co. No. 5 (engine and hose wagon, brick/pink) mid-sheet in block 136 facing Avenue K. 17th St shell paved in part. Blocks 135/75/15, 136/76/16, 137/77/17. Red circled stamp 23 near 16th/Av J block corner. Compass rose top-center-right; scale bar bottom-center."
+  },
+  {
+    "sheet": "59",
+    "printed_number": 59,
+    "number_matches_filename": true,
+    "streets": ["12TH", "13TH", "14TH", "15TH"],
+    "avenues": ["AVENUE L.", "AVENUE M.", "AVENUE M 1/2", "AVENUE N."],
+    "edge_refs": {"top": ["66"], "bottom": ["58", "61"], "left": ["56"], "right": ["60"]},
+    "panels": 1,
+    "irregular": false,
+    "note": "Printed sheet number top-left. Outlot-style block numbering with quarter designations: 12, 23 N.W, 23 S.W.; 13, 22 N.E, 22 S.E; 14, 22 N.W, 22 S.W. G.&W.R.R. (not used) runs along the right (Avenue N) edge. Bake house/oven (pink) in two blocks; drug store bottom of Avenue L row; green-tinted candy/carp. shop in 23 N.W block. Red circled stamp 24 left margin. Scale bar bottom-center."
+  },
+  {
+    "sheet": "60",
+    "printed_number": 60,
+    "number_matches_filename": true,
+    "streets": ["12TH", "13TH", "14TH", "15TH"],
+    "avenues": ["AVENUE N.", "AVENUE N 1/2", "AVENUE O.", "AVENUE O 1/2"],
+    "edge_refs": {"top": ["60", "0"], "bottom": ["61", "62"], "left": ["59"], "right": ["0"]},
+    "panels": 2,
+    "panel_regions": [[60, 60, 3400, 4050], [2215, 0, 3400, 1420]],
+    "irregular": true,
+    "note": "Irregular: Gulf of Mexico shoreline (blue band) runs diagonally from top-left to bottom-right across the main map; blocks east/south of it are laid out but almost entirely vacant. Heavy-bordered inset panel in the top-right corner covers 11TH ST (top) to 12TH ST (bottom), AV. N. (left) to AV. N 1/2 (right), with block 48 N.E and the Gulf shoreline; inset edge refs: '0' (top and right), '0' and '66' on its left, with 'Galveston & Western R.R. Not Used' along its left border and '60' below its 12TH ST (pointing back to this sheet's main map). Main-map top-edge ref '60' likewise points to the inset's territory on this same sheet; '0' refs face unmapped/Gulf territory. Quarter-block numbers 48 N.W./48 S.W., 47 N.E/47 S.E/72 N.E., 47 N.W./47 S.W./72 N.W. Baptist Church (Colored) bottom-left block. G.&W.R.R. (not used) along left edge. Compass rose mid-upper-left; scale bar bottom-center-left."
+  }
+]

@@ -1,0 +1,113 @@
+[
+  {
+    "sheet": "21",
+    "printed_number": 21,
+    "number_matches_filename": true,
+    "streets": ["33RD", "34TH", "35TH", "36TH"],
+    "avenues": ["AV. C. OR MECHANIC", "AV. D. OR MARKET", "AV. E. OR POST OFFICE", "AV. F. OR CHURCH"],
+    "edge_refs": {"top": ["19", "20"], "bottom": ["0", "23"], "left": ["0"], "right": ["22"]},
+    "panels": 1,
+    "irregular": false,
+    "note": "Sheet number printed top-LEFT. Left and bottom-left edge refs print as bare '0' (under-inked, same pattern as sheets 17/19). G.H.&H. R.R. Flat Cotton Yard with Inbound and Outbound Freight Houses (block 573) top-left; G.H.&H. R.R. Freight Yard tracks (513) fan diagonally through the whole sheet; Galveston Brewing Co. brewery/ice factory complex in pink (block 453) top-right with long fire-protection note; blocks 514/454/574/575 largely vacant, 'Negro Shanties' noted on 454 and 455; 33rd St wood block paved, other streets not paved. Compass rose top-left; scale bar bottom right."
+  },
+  {
+    "sheet": "22",
+    "printed_number": 22,
+    "number_matches_filename": true,
+    "streets": ["33RD", "34TH", "35TH", "36TH"],
+    "avenues": ["AV. F. OR CHURCH", "AV. G. OR WINNIE", "AV. H. OR BALL", "AV. I. OR SEALY"],
+    "edge_refs": {"top": ["20", "33"], "bottom": ["23", "24"], "left": ["21"], "right": ["31"]},
+    "panels": 1,
+    "irregular": false,
+    "note": "Sheet number printed top-RIGHT. Ordinary frame-dwelling residential blocks (393-395, 333-335, 273-275). Brewery Stables on block 393; a 2-story building 'being built' block 393; wood yard block 394; two small green-tinted 'Blk Sm' (blacksmith) shops mid-sheet. '30 inch conduit from Alta Loma' note along Av G/Winnie; 33rd St wood block paved, 35th St partly shelled at east end. Compass rose top-left; scale bar bottom-left."
+  },
+  {
+    "sheet": "23",
+    "printed_number": 23,
+    "number_matches_filename": true,
+    "streets": ["36TH", "37TH", "38TH", "39TH"],
+    "avenues": ["AV. D. OR MARKET", "AV. E. OR POST OFFICE", "AV. F. OR CHURCH", "AV. G. OR WINNIE"],
+    "edge_refs": {"top": ["21", "22"], "bottom": ["0", "25"], "left": ["0"], "right": ["24"]},
+    "panels": 1,
+    "irregular": false,
+    "note": "Sheet number printed top-LEFT. Left and bottom-left edge refs print as bare '0' (under-inked). Two big industrial plants in pink: Galveston Rope Co. (block 396, top-right) with long watchman/sprinkler note, and Galveston Bagging & Cordage Co. mill (block 398, bottom-right — ware house, carding, spinning, weaving, picker house) with its own long fire-protection note between blocks 397 and 398. Left half of sheet is the Galveston, Houston and Henderson R.R. Yards with fanned joint tracks of G.C.&S.F. & G.H.&H.; blocks 457/458/517/518 empty; rock crusher on block 517; 39th St 'not opened' at west end. Compass rose top-left; scale bar bottom-left."
+  },
+  {
+    "sheet": "24",
+    "printed_number": 24,
+    "number_matches_filename": true,
+    "streets": ["36TH", "37TH", "38TH", "39TH"],
+    "avenues": ["AV. G. OR WINNIE", "AV. H. OR BALL", "AV. I. OR SEALY", "AV. J. OR BROADWAY"],
+    "edge_refs": {"top": ["22", "31"], "bottom": ["25", "26"], "left": ["23"], "right": ["29"]},
+    "panels": 1,
+    "irregular": false,
+    "note": "Sheet number printed top-RIGHT. Dense frame-dwelling residential blocks (336-338, 276-278, 216-218). Mount Olive Baptist Church (Colored, 16 ft to eaves) and I.X.L. Planing Mill (green, no power) on block 276; Engine Co. No. 6 (engine & hose wagon) on block 217; a pink 2-story S. 'being built, wood posts' on block 338; Chinese laundry block 216; 36th St wood block paved at west, most streets not paved; '30 inch conduit from Alta Loma' note along left edge. Compass rose top-left; scale bar bottom-left."
+  },
+  {
+    "sheet": "25",
+    "printed_number": 25,
+    "number_matches_filename": true,
+    "streets": ["39TH", "40TH", "41ST", "42ND"],
+    "avenues": ["AV. E. OR POST OFFICE", "AV. F. OR CHURCH", "AV. G. OR WINNIE", "AV. H. OR BALL"],
+    "edge_refs": {"top": ["23", "24"], "bottom": ["27", "28"], "left": ["0"], "right": ["26"]},
+    "panels": 1,
+    "irregular": false,
+    "note": "Sheet number printed top-LEFT. Left edge ref prints as bare '0' (under-inked). Dominated by Galveston City Cotton Mills (block 400, pink, weaving/carding/spinning/packing, electric light plant, sprinklered, long underwriters' note above it) and Galveston Bagging & Cordage Co's Ware Houses A, B, C (block 399, sprinkled, 'heads every 16 ft'). Left third is curved joint trackage of G.C.&S.F. and G.H.&H. R.R. crossing vacant blocks 459-461; block 340 vacant; West End Baptist Church on block 341. Compass rose top-left; scale bar bottom-left."
+  },
+  {
+    "sheet": "26",
+    "printed_number": 26,
+    "number_matches_filename": true,
+    "streets": ["39TH", "40TH", "41ST", "42ND"],
+    "avenues": ["AV. H. OR BALL", "AV. I. OR SEALY", "AV. J. OR BROADWAY", "AVENUE K.", "AVENUE L."],
+    "edge_refs": {"top": ["24", "29"], "bottom": ["28", "0"], "left": ["25"], "right": ["26", "91"]},
+    "panels": 2,
+    "panel_regions": [[40, 60, 2260, 4094], [2160, 1500, 3400, 4094]],
+    "irregular": false,
+    "note": "Sheet number printed top-RIGHT. Broadway ('150 feet wide', 30 ft macadamized roadway) runs vertically and the grid east of it is offset: the main panel includes block 159 east of Broadway up to AVENUE K. in the top-right corner (its right-edge ref reads '26' — continuation on this same sheet), and a separate heavy-bordered sub-panel lower-right re-draws 39TH and 40TH ST between AVENUE K. and AVENUE L. (block 99) with a large 'CEMETERY. No Exposure' block south of 40th; sub-panel frame refs: '29' at its top (with a sliver of the sheet-29 cemetery strip), '91' right, '26'/'0' along the Avenue K break, '0' at bottom. Wesleyan Mission M.E. Church block 219; bakery with oven block 280; blocks 220/221 nearly vacant. Compass roses top-left of each panel; scale bar bottom-right inside sub-panel."
+  },
+  {
+    "sheet": "27",
+    "printed_number": 27,
+    "number_matches_filename": true,
+    "streets": ["42ND", "43RD", "44TH", "45TH"],
+    "avenues": ["AV. D. OR MARKET", "AV. E. OR POST OFFICE", "AV. F. OR CHURCH", "AV. G. OR WINNIE"],
+    "edge_refs": {"top": ["0", "25"], "bottom": ["0"], "left": ["0"], "right": ["28"]},
+    "panels": 1,
+    "irregular": false,
+    "note": "Sheet number printed top-LEFT. Top-left, left and bottom edge refs all print as bare '0' (under-inked). Sparse western-edge sheet: left third is the multi-track G.H.&H. and G.C.&S.F. R.R. approach curving through vacant blocks 522-524 (small R.R. house and R.R. office on Av D); Galveston, Houston & Northern R.R. single track runs diagonally through blocks 463/464; G.H.&N.R.R. label mid-sheet. Blocks 402-404, 462-464 only thinly built with frame dwellings; '30 inch conduit from Alta Loma' note along Av G/Winnie at right. Compass rose upper-left; scale bar bottom-left."
+  },
+  {
+    "sheet": "28",
+    "printed_number": 28,
+    "number_matches_filename": true,
+    "streets": ["42ND", "43RD", "44TH", "45TH"],
+    "avenues": ["AV. G. OR WINNIE", "AV. H. OR BALL", "AV. I. OR SEALY", "AV. J. OR BROADWAY"],
+    "edge_refs": {"top": ["25", "26"], "bottom": ["0"], "left": ["27"], "right": ["0", "71"]},
+    "panels": 1,
+    "irregular": false,
+    "note": "Sheet number printed top-RIGHT. Right edge carries a bare '0' (under-inked) near the top and '71' below 44th St; bottom-center ref also a bare '0'. Galveston, LaPorte & Houston R.R. track runs along/into 43rd St. Fordtran Bros. Planing Mill, Sash Door & Blind Factory with lumber shed, wood yard and 50-hp engine (block 283); Fordtran Bros. Lumber Yard (block 284); wood yard block 222; block 342 is three tidy rows of identical narrow dwellings; bakeries on blocks 343 and 224; Broadway '30 ft roadway macadamized - balance not paved'. Compass rose top-center-left; scale bar bottom-left."
+  },
+  {
+    "sheet": "29",
+    "printed_number": 29,
+    "number_matches_filename": true,
+    "streets": ["36TH", "37TH", "38TH", "39TH"],
+    "avenues": ["AV. J. OR BROADWAY", "AVENUE K.", "AVENUE L.", "AVENUE M."],
+    "edge_refs": {"top": ["31", "32"], "bottom": ["26", "91"], "left": ["24"], "right": ["30"]},
+    "panels": 1,
+    "irregular": false,
+    "note": "Sheet number printed top-LEFT. Grace Episcopal Church (stone, blue tint, tower, 12 ft to eaves) with rectory and Sunday School building on block 96; West Broadway Public School 4th District (pink, 2-story) on block 157; West End German Lutheran Church bottom-right block 38; drug store corner block 156. Residential frame blocks 156-158, 96-98, 36-38; no street paved. Compass rose top-right; scale bar bottom-left."
+  },
+  {
+    "sheet": "30",
+    "printed_number": 30,
+    "number_matches_filename": true,
+    "streets": ["36TH", "37TH", "38TH", "39TH"],
+    "avenues": ["AVENUE M.", "AVENUE M 1/2", "AVENUE N.", "AVENUE N 1/2"],
+    "edge_refs": {"top": ["32", "83"], "bottom": ["91", "92"], "left": ["29"], "right": ["87"]},
+    "panels": 1,
+    "irregular": false,
+    "note": "Sheet number printed top-RIGHT. Outlying blocks carry quarter designations instead of plain numbers: 11 N.W., 11 S.W., 36 N.W., 10 N.E., 10 S.E., 35 N.E., 10 N.W., 10 S.W., 35 N.W. Galveston & Western R.R. runs vertically beside Avenue N. Second Baptist Church (12 ft to eaves) block 10 S.E.; Alabama Brewing Co. Beer Vault lone building on otherwise empty block 36 N.W.; Galveston Towel Supply Co's laundry block 10 S.W.; a 2-story dwelling 'being built' block 35 N.E.; eastern blocks largely vacant; no street paved. Compass rose top-right; scale bar bottom-right."
+  }
+]

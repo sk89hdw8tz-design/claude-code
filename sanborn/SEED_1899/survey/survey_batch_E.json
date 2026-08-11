@@ -1,0 +1,112 @@
+[
+  {
+    "sheet": "41",
+    "printed_number": 41,
+    "number_matches_filename": true,
+    "streets": ["18TH", "19TH", "20TH", "21ST OR CENTRE"],
+    "avenues": ["AV. G. OR WINNIE", "AV. H. OR BALL", "AV. I. OR SEALY", "AV. J. OR BROADWAY"],
+    "edge_refs": {"top": ["57"], "bottom": ["39"], "left": ["12"], "right": ["42"]},
+    "panels": 1,
+    "irregular": false,
+    "note": "Printed number is in the TOP-LEFT corner (odd sheets in this run alternate corners). Galveston County Court House (new) plus Old Court House on block 319; block 320 is an open PARK with radial walks; Galveston City R.R. Co. power house & car barn (block 260). Compass rose upper-left; scale bar bottom-right. German Evangelical Church on 18th/19th block."
+  },
+  {
+    "sheet": "42",
+    "printed_number": 42,
+    "number_matches_filename": true,
+    "streets": ["18TH", "19TH", "20TH", "21ST OR CENTRE"],
+    "avenues": ["AV. J. OR BROADWAY", "AVENUE K.", "AVENUE L.", "AVENUE M."],
+    "edge_refs": {"top": ["58"], "bottom": ["40"], "left": ["41"], "right": ["63"]},
+    "panels": 1,
+    "irregular": false,
+    "note": "2D District Public School (block 79); A.M.E. Church (block 149); Central Christian Church. Avenues K, L, M carry no alternate names. Compass rose upper-left; scale bar bottom-left."
+  },
+  {
+    "sheet": "43",
+    "printed_number": 43,
+    "number_matches_filename": true,
+    "streets": ["15TH", "16TH", "17TH", "18TH"],
+    "avenues": ["AV. A. OR WATER", "AV. B. OR STRAND", "AV. C. OR MECHANIC", "AV. D. OR MARKET"],
+    "edge_refs": {"top": ["45", "46"], "bottom": ["11"], "left": ["9", "8"], "right": ["44"]},
+    "panels": 1,
+    "irregular": false,
+    "note": "G.W. Co's Terminal Track and G.C.& S.F. R.R. run in Av. A / far-left margin. Large pink industrial complex lower-left: The National Cotton Oil Company mill, cement warehouses, Hull Ware Ho., grocery warehouse. Fire Engine No. 2 house mid-right. Scale bar bottom-right."
+  },
+  {
+    "sheet": "44",
+    "printed_number": 44,
+    "number_matches_filename": true,
+    "streets": ["15TH", "16TH", "17TH", "18TH"],
+    "avenues": ["AV. D. OR MARKET", "AV. E. OR POST OFFICE", "AV. F. OR CHURCH", "AV. G. OR WINNIE"],
+    "edge_refs": {"top": ["46", "55"], "bottom": ["12"], "left": ["43"], "right": ["57"]},
+    "panels": 1,
+    "irregular": false,
+    "note": "Sacred Heart Academy (Dominican Sisters) occupies much of the NW block. Compass rose top-left; scale bar bottom-center-left."
+  },
+  {
+    "sheet": "45",
+    "printed_number": 45,
+    "number_matches_filename": true,
+    "streets": ["12TH", "13TH", "14TH", "15TH"],
+    "avenues": ["AV. A. OR WATER", "AV. B. OR STRAND", "AV. C. OR MECHANIC"],
+    "edge_refs": {"top": ["47"], "bottom": ["9", "43"], "left": ["0"], "right": ["46"]},
+    "panels": 1,
+    "irregular": false,
+    "note": "Far-left corridor labeled 'NO STREET.' carrying G.C.& S.F. R.R. / G.W. Co's terminal tracks (harbor side); not counted as an avenue. Left edge ref is a lone printed '0' glyph (verified at 100%; possibly a no-adjacent-sheet mark or a trimmed '10'). Western blocks 732/733/734 largely vacant. Scale bar bottom-left."
+  },
+  {
+    "sheet": "46",
+    "printed_number": 46,
+    "number_matches_filename": true,
+    "streets": ["12TH", "13TH", "14TH", "15TH"],
+    "avenues": ["AV. C. OR MECHANIC", "AV. D. OR MARKET", "AV. E. OR POST OFFICE", "AV. F. OR CHURCH"],
+    "edge_refs": {"top": ["48"], "bottom": ["43", "44"], "left": ["45"], "right": ["55"]},
+    "panels": 1,
+    "irregular": false,
+    "note": "St. James M.E. Church (block 436, Church/17th area); Kindergarten noted block 552. Compass rose top-center; scale bar bottom-left."
+  },
+  {
+    "sheet": "47",
+    "printed_number": 47,
+    "number_matches_filename": true,
+    "streets": ["9TH", "10TH", "11TH", "12TH"],
+    "avenues": ["AV. A. OR WATER", "AV. B. OR STRAND", "AV. C. OR MECHANIC"],
+    "edge_refs": {"top": ["0", "49"], "bottom": ["45"], "left": ["0"], "right": ["48"]},
+    "panels": 1,
+    "irregular": false,
+    "note": "Medical Dep't of the University of Texas (large pink building, block 669). Galveston Hominy Mills lower-left. G.C.& S.F. R.R. terminal tracks curve through Av. A; Galveston, La Port & Houston R.R. (Bay Shore Line) along 9th St. Far-left corridor labeled 'NO STREET - NOT PAVED'. St. Andrews Episc. Mission Church and Old Market/Hose Co. No. 4 on right blocks. Top and left edges each carry a lone '0' glyph (verified at 100%; likely no-adjacent-sheet marks toward the harbor). Scale bar bottom-left."
+  },
+  {
+    "sheet": "48",
+    "printed_number": 48,
+    "number_matches_filename": true,
+    "streets": ["9TH", "10TH", "11TH", "12TH"],
+    "avenues": ["AV. C. OR MECHANIC", "AV. D. OR MARKET", "AV. E. OR POST OFFICE", "AV. F. OR CHURCH"],
+    "edge_refs": {"top": ["49", "50"], "bottom": ["46"], "left": ["47"], "right": ["53"]},
+    "panels": 1,
+    "irregular": false,
+    "note": "Galveston, La Port & Houston R.R. (Bay Shore Line) runs along 9th St at top. Residential grid throughout; scale bar bottom-left."
+  },
+  {
+    "sheet": "49",
+    "printed_number": 49,
+    "number_matches_filename": true,
+    "streets": ["6TH", "7TH", "8TH", "9TH"],
+    "avenues": ["AV. A. OR WATER", "AV. B. OR STRAND", "AV. C. OR MECHANIC", "AV. D. OR MARKET"],
+    "edge_refs": {"top": ["0"], "bottom": ["47", "48"], "left": ["0"], "right": ["50"]},
+    "panels": 1,
+    "irregular": false,
+    "note": "John Sealy Hospital complex (pink: Wards 1 & 2, Colored Ward, laundry, ambulance ho.) and University Hall (pink). Words 'NO EXPOSURE' printed letter-by-letter along the top edge blocks; lone '0' glyphs at top and left edges (verified at 100%; likely no-adjacent-sheet marks). Blocks 666/667/606 along Water and Strand almost entirely vacant. Galveston & Western R.R. along 9th St. Scale bar bottom-left."
+  },
+  {
+    "sheet": "50",
+    "printed_number": 50,
+    "number_matches_filename": true,
+    "streets": ["6TH", "7TH", "8TH", "9TH"],
+    "avenues": ["AV. D. OR MARKET", "AV. E. OR POST OFFICE", "AV. F. OR CHURCH", "AV. G. OR WINNIE"],
+    "edge_refs": {"top": ["0"], "bottom": ["48", "53"], "left": ["49"], "right": ["51"]},
+    "panels": 1,
+    "irregular": false,
+    "note": "St. Mary's Infirmary complex (pink: chapel, sisters' dormitory, kitchen, colored ward, administration bldg., private ward) fills block 487. G.& W. R.R. along 9th St marked 'NOT USED'. Lone '0' glyph at top edge (same no-adjacent-sheet style as sheets 45/47/49). Scale bar bottom-left."
+  }
+]

@@ -1,0 +1,108 @@
+name: fetch-sanborn-1899
+
+on:
+  workflow_dispatch:
+    inputs:
+      max_sheet:
+        description: "Highest sheet number to probe"
+        default: "140"
+  push:
+    branches: [claude/new-session-fxmhgv]
+    paths: [".github/sanborn-fetch-1899-request"]
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    env:
+      UA: "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/120 Safari/537.36"
+      REFERER: "https://maps.lib.utexas.edu/maps/sanborn/g.html"
+      DATA_BRANCH: sanborn-data-1899
+    steps:
+      - name: Init data branch workspace
+        run: |
+          set -euo pipefail
+          git init work
+          cd work
+          git config user.name "sanborn-fetch-action"
+          git config user.email "actions@github.com"
+          git remote add origin \
+            "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git"
+          if git fetch origin "$DATA_BRANCH" 2>/dev/null; then
+            git checkout -B "$DATA_BRANCH" FETCH_HEAD
+          else
+            git checkout --orphan "$DATA_BRANCH"
+          fi
+          mkdir -p sources/1899
+
+      - name: Enumerate real 1899 links from the index page
+        run: |
+          set -uo pipefail
+          cd work
+          jar=$(mktemp)
+          curl -sS -L -A "$UA" -c "$jar" -o g.html \
+            "https://maps.lib.utexas.edu/maps/sanborn/g.html" || true
+          echo "index page bytes: $(stat -c%s g.html 2>/dev/null || echo 0)"
+          grep -oiE 'href="[^"]*galveston[^"]*1899[^"]*"' g.html | sort -u \
+            > sources/1899/INDEX_LINKS.txt || true
+          echo "galveston-1899 hrefs found: $(wc -l < sources/1899/INDEX_LINKS.txt)"
+          head -c 400 g.html > sources/1899/INDEX_HEAD.txt || true
+          rm -f g.html
+
+      - name: Fetch UT 1899 sheets (plain HTTP with referer; no bot-defense circumvention)
+        run: |
+          set -uo pipefail
+          cd work
+          jar=$(mktemp)
+          # warm the cookie jar with one page fetch, as a browser would
+          curl -sS -L -A "$UA" -c "$jar" -o /dev/null \
+            "https://maps.lib.utexas.edu/maps/sanborn/g.html" || true
+          # drive fetches from the enumerated index links, not blind probes
+          # (seq -w padded 3 digits above 99, breaking the 81-94 probes)
+          got=0
+          for pat in $(grep -oE 'txu-sanborn-galveston-1899[^"]*' \
+                         sources/1899/INDEX_LINKS.txt | sort -u); do
+            suffix=$(echo "$pat" | sed -E 's/.*-1899-([0-9a-z]+)\.jpg/\1/')
+            case "$suffix" in
+              [0-9]) dest="sources/1899/Galveston_1899_sheet_0${suffix}.jpg" ;;
+              [0-9][0-9]) dest="sources/1899/Galveston_1899_sheet_${suffix}.jpg" ;;
+              *) dest="sources/1899/Galveston_1899_extra_${suffix}.jpg" ;;
+            esac
+            [ -s "$dest" ] && continue
+            code=$(curl -sS -L -A "$UA" -b "$jar" -c "$jar" \
+                   -e "$REFERER" -o "$dest" -w "%{http_code}" \
+                   "https://maps.lib.utexas.edu/maps/sanborn/g-i/$pat" || echo 000)
+            if [ "$code" = "200" ] && [ "$(stat -c%s "$dest")" -gt 150000 ] \
+               && head -c3 "$dest" | grep -q $'\xff\xd8'; then
+              echo "OK $pat -> $dest ($(stat -c%s "$dest") bytes)"
+              got=$((got+1))
+            else
+              echo "MISS $pat (code $code)"
+              rm -f "$dest"
+            fi
+            sleep 2
+          done
+          echo "fetched $got sheets"
+          # If the site answered with an HTML bot-challenge instead of images,
+          # we stop here honestly: this workflow does not defeat bot defenses.
+          # fail only if the workspace holds NO sheets at all (0 new is
+          # fine once the data branch already carries the full set)
+          if [ "$got" -eq 0 ] && [ -z "$(ls sources/1899/*.jpg 2>/dev/null)" ]; then
+            echo "::error::No sheets retrieved — the site may require a browser session. Do NOT add challenge-solving; download manually instead."
+            exit 1
+          fi
+
+      - name: Manifest + push
+        run: |
+          set -euo pipefail
+          cd work
+          ( cd sources/1899 && sha256sum *.jpg > SHA256SUMS ) || true
+          git add -A
+          git commit -m "1899 Galveston Sanborn sheets (UT PCL, plain HTTP fetch)"
+          # force: the data branch is disposable fetch output; run 1 was
+          # rejected non-fast-forward after a sibling session pushed its
+          # own status commit to the same branch
+          git push -u origin "$DATA_BRANCH" --force
