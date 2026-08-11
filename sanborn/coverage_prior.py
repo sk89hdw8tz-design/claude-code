@@ -246,33 +246,42 @@ for _u, _ov in LINE_OVERRIDES_1885.items():
             _lo.setdefault(_ax, {}).update(_f)
 
 
-# 1889 per-scan-edge insets (native px), measured as the gap between each
-# sheet's clip boundary (region if set, else cream-paper bound) and its last
-# map ink on that side. Needed because FRAME_OPEN_SIDES replaces the frame
-# estimate with the paper bound, and the paper runs well past the printed
-# map on several sheets: sheet 7's right edge carries 177 px of margin
-# ("SEE SHEET No.8" + torn scan edge), which the +141 seam cut rendered as a
-# blank strip down the Avenue D corridor. Clipping at boundary - inset lands
-# on the last ink instead.
+# 1889 per-scan-edge insets (native px). Vertical (avenue) seams are set
+# to the corridor's FAR KERB: avenue centreline +- 110 px, half the drawn
+# corridor measured on the interior avenues (204-213 px kerb to kerb).
+#
+# Two earlier criteria were tried and rejected against the picture:
+#   "last ink"  counted the printed SEE SHEET marginalia as content, so
+#               sheet 8 rendered its margin note into the Avenue G corridor;
+#   "last long line" clipped at the kerb itself, which would leave the
+#               roadway drawn by neither sheet.
+# The wharf sheets get large right-side insets (740 / 601) on purpose: they
+# trace the downtown blocks east of Avenue A in outline, and the downtown
+# sheets survey that ground properly, so downtown owns everything east of
+# the Avenue A corridor. Everything WEST of it - blocks 739-744, the
+# wharves and slips - is drawn only by the wharf sheets and is kept.
+# Horizontal (street) seam insets are the measured content-to-paper gaps.
 SCAN_INSETS_1889 = {
-    (1, "right"): 134,
+    (1, "right"): 601,
     (1, "top"): 42,
     (2, "bottom"): 24,
-    (2, "right"): 123,
+    (2, "right"): 740,
     (7, "bottom"): 20,
-    (7, "right"): 177,
+    (7, "left"): 71,
+    (7, "right"): 58,
     (8, "bottom"): 29,
-    (8, "left"): 81,
-    (8, "right"): 45,
-    (9, "right"): 115,
+    (8, "left"): 0,
+    (8, "right"): 112,
+    (9, "left"): 69,
+    (9, "right"): 34,
     (9, "top"): 18,
-    (10, "left"): 99,
-    (10, "right"): 119,
+    (10, "left"): 60,
+    (10, "right"): 70,
     (10, "top"): 4,
-    (27, "left"): 25,
+    (27, "left"): 29,
     (27, "top"): 5,
     (29, "bottom"): 9,
-    (29, "left"): 4,
+    (29, "left"): 71,
 }
 
 def _load_1889():
