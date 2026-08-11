@@ -174,6 +174,8 @@ def scan_inset(year, filenum, side):
         return SCAN_INSETS.get((filenum, side), SCAN_INSET_DEFAULT)
     if year == "1899":
         return SCAN_INSETS_1899.get((filenum, side), SCAN_INSET_DEFAULT)
+    if year == "1889":
+        return SCAN_INSETS_1889.get((filenum, side), SCAN_INSET_DEFAULT)
     return SCAN_INSET_DEFAULT
 
 
@@ -242,6 +244,36 @@ for _u, _ov in LINE_OVERRIDES_1885.items():
         _lo = COVERAGE["1885"][_u].setdefault("line_overrides", {})
         for _ax, _f in _ov.items():
             _lo.setdefault(_ax, {}).update(_f)
+
+
+# 1889 per-scan-edge insets (native px), measured as the gap between each
+# sheet's clip boundary (region if set, else cream-paper bound) and its last
+# map ink on that side. Needed because FRAME_OPEN_SIDES replaces the frame
+# estimate with the paper bound, and the paper runs well past the printed
+# map on several sheets: sheet 7's right edge carries 177 px of margin
+# ("SEE SHEET No.8" + torn scan edge), which the +141 seam cut rendered as a
+# blank strip down the Avenue D corridor. Clipping at boundary - inset lands
+# on the last ink instead.
+SCAN_INSETS_1889 = {
+    (1, "right"): 134,
+    (1, "top"): 42,
+    (2, "bottom"): 24,
+    (2, "right"): 123,
+    (7, "bottom"): 20,
+    (7, "right"): 177,
+    (8, "bottom"): 29,
+    (8, "left"): 81,
+    (8, "right"): 45,
+    (9, "right"): 115,
+    (9, "top"): 18,
+    (10, "left"): 99,
+    (10, "right"): 119,
+    (10, "top"): 4,
+    (27, "left"): 25,
+    (27, "top"): 5,
+    (29, "bottom"): 9,
+    (29, "left"): 4,
+}
 
 def _load_1889():
     import json as _json
