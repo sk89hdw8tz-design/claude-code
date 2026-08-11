@@ -739,7 +739,8 @@ def composite_edition(year, registration):
                 # already satisfy to ±6 px; letting the schematic Avenue A
                 # couplings push scale onto them distorted 07|06 by 19 px
                 # as a side effect (Δsx of 1.7% over a ~1000 px lever).
-                smax = 1e-9 if k in ("06", "07", "08") else 0.004
+                rigid = getattr(config, "RIGID_UNITS", ("06", "07", "08"))
+                smax = 1e-9 if k in rigid else 0.004
                 # 0.004, was 0.01: at ±1% the solver pinned sheets 13/+1%
                 # and 15/-1% at the bound, and their 2% differential drift
                 # showed as 13-30 px corridor steps where Strand, Mechanic
