@@ -363,6 +363,26 @@ SCAN_INSETS_1899 = {
 # sides for clips AND the legal_cut window, so owner-on-top cuts land at
 # the true paper edge like the wharf +175 cut.
 FRAME_OPEN_SIDES = {
+    # 1889: measured the same way as 1899 and with the same result — no
+    # printed frame line on any seam-facing edge. Longest dark run in the
+    # 260 px edge band (scaled from 1899's 450 px band for these 3400 px
+    # scans) came out 77-402 px on every interior side; the few larger hits
+    # (09 left 1437, 07 left 1046, 27 left 927, 10 top 989) are still under
+    # 35% of the sheet dimension, i.e. rail lines and frontage rules, not
+    # neat lines. Untreated, the bogus frame estimate clamped the v-seam
+    # cuts to only +6..+61 px past the corridor line, so BOTH sheets'
+    # copies of the avenue label rendered (AV. D OR MARKET E. twice at the
+    # 07|08 seam). 1899's equivalent cuts sit at +167..+174.
+    "1889": {
+        ("07", "right"), ("07", "bottom"),
+        ("08", "left"), ("08", "right"), ("08", "bottom"),
+        ("29", "left"), ("29", "bottom"),
+        ("09", "right"), ("09", "top"),
+        ("10", "left"), ("10", "right"), ("10", "top"),
+        ("27", "left"), ("27", "top"),
+        ("02", "right"), ("02", "bottom"),
+        ("01", "right"), ("01", "top"),
+    },
     "1899": {
         ("11", "bottom"), ("11", "right"),
         ("12", "left"), ("12", "bottom"), ("12", "right"),
