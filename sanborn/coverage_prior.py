@@ -193,6 +193,56 @@ SCAN_INSETS = {
 }
 
 
+
+# 1885 edge-line overrides (playbook s3). The whiteness comb latches the
+# block FRONTAGE wherever a corridor is cut by the sheet's own paper edge.
+# Measured on every unit by fixing the pitch at the edition nominal
+# (1856 x 2170, confirmed by unit 14 whose lines are clean to +-0.4%) and
+# anchoring the phase on the unit's INTERIOR lines: both edge spacings ran
+# 3-5% short on nearly every sheet while the middle spacing sat at nominal,
+# i.e. both edges pulled inward onto frontages. Verified visually on unit
+# 10's Avenue D line: the detected position lay on the building frontage,
+# the predicted position in the open corridor. Untreated this distorted the
+# fitted SCALE enough to fail the +-2% gate on units 6 and 9.
+# Values are native px on the LoC masters (6450 x 7650).
+LINE_OVERRIDES_1885 = {
+    "7": {
+        "y": {"19": 564.8, "22": 7074.8},
+    },
+    "9": {
+        "x": {"0": 492.1, "3": 6060.1},
+        "y": {"22": 582.6, "25": 7092.6},
+    },
+    "3": {
+        "x": {"6": 5875.8},
+    },
+    "6": {
+        "x": {"6": 5910.0},
+        "y": {"20": 561.0, "23": 7071.0},
+    },
+    "10": {
+        "x": {"3": 391.1, "6": 5959.2},
+        "y": {"23": 544.8, "26": 7054.8},
+    },
+    "5": {
+        "x": {"6": 527.6},
+        "y": {"20": 580.2, "23": 7090.2},
+    },
+    "2": {
+        "x": {"3": 6147.2},
+        "y": {"16": 569.6, "19": 7079.6},
+    },
+    "4": {
+        "y": {"25": 556.2, "28": 7066.2},
+    },
+}
+
+for _u, _ov in LINE_OVERRIDES_1885.items():
+    if _u in COVERAGE["1885"]:
+        _lo = COVERAGE["1885"][_u].setdefault("line_overrides", {})
+        for _ax, _f in _ov.items():
+            _lo.setdefault(_ax, {}).update(_f)
+
 def _load_1899():
     import json as _json
     import os as _os
