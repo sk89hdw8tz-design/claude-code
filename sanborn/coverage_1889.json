@@ -13,7 +13,16 @@
     22
    ],
    "region": null,
-   "note": "Av A(Water E)-D(Market E) x 19th-22nd; blocks 679-681, 619-621, 559-561"
+   "note": "Av A(Water E)-D(Market E) x 19th-22nd; blocks 679-681, 619-621, 559-561",
+   "line_overrides": {
+    "x": {
+     "0": 213.8,
+     "3": 3231.8
+    },
+    "y": {
+     "19": 227.6
+    }
+   }
   },
   "08": {
    "file": 8,
@@ -28,7 +37,16 @@
     22
    ],
    "region": null,
-   "note": "Av D(Market E)-G(Winnie E) x 19th-22nd; St Mary's Cathedral, Masonic Temple"
+   "note": "Av D(Market E)-G(Winnie E) x 19th-22nd; St Mary's Cathedral, Masonic Temple",
+   "line_overrides": {
+    "x": {
+     "6": 3177.9
+    },
+    "y": {
+     "19": 284.4,
+     "22": 3773.4
+    }
+   }
   },
   "29": {
    "file": 29,
@@ -43,7 +61,12 @@
     22
    ],
    "region": null,
-   "note": "Av G-J East x 19th-22nd (pending label confirmation)"
+   "note": "Av G-J East x 19th-22nd (pending label confirmation)",
+   "line_overrides": {
+    "x": {
+     "6": 230.0
+    }
+   }
   },
   "09": {
    "file": 9,
@@ -58,7 +81,16 @@
     25
    ],
    "region": null,
-   "note": "Av A-D East x 22nd-25th(Bath Av); blocks 682-684, 622-624, 562-564; harbor basin SW"
+   "note": "Av A-D East x 22nd-25th(Bath Av); blocks 682-684, 622-624, 562-564; harbor basin SW",
+   "line_overrides": {
+    "x": {
+     "0": 219.0
+    },
+    "y": {
+     "22": 269.4,
+     "25": 3758.4
+    }
+   }
   },
   "10": {
    "file": 10,
@@ -73,7 +105,16 @@
     25
    ],
    "region": null,
-   "note": "Av D-G East x 22nd-25th (pending label confirmation)"
+   "note": "Av D-G East x 22nd-25th (pending label confirmation)",
+   "line_overrides": {
+    "x": {
+     "3": 201.5,
+     "6": 3219.5
+    },
+    "y": {
+     "22": 197.4
+    }
+   }
   },
   "27": {
    "file": 27,
@@ -88,7 +129,12 @@
     25
    ],
    "region": null,
-   "note": "Av G East-J East x 22nd-25th (label-confirmed)"
+   "note": "Av G East-J East x 22nd-25th (label-confirmed)",
+   "line_overrides": {
+    "x": {
+     "9": 3193.3
+    }
+   }
   },
   "02": {
    "file": 2,
@@ -137,5 +183,6 @@
   "1i": "street/business index sheet \u2014 reference only, never in art",
   "1k": "key map \u2014 reference only, never in art",
   "03..06,11..26,28,30..60": "outside the Av A-I x 19th-25th frame"
- }
+ },
+ "_line_overrides_note": "Edge-line overrides (playbook s3). The whiteness comb latches the block FRONTAGE wherever a corridor is cut by the sheet's own paper edge: edge spacings measured 5-9% short while interior spacings sat within +-1% of the edition nominal (1006 x 1163). Values are the nominal-pitch prediction phased on each unit's interior lines. Verified visually on unit 07's Avenue D line - the detected position lay on the frontage with the address numerals printed on it, the predicted position in the open corridor. Wharf units 01/02 carry a single avenue line and clean street spacings (+-1.4%), so they are not overridden."
 }
