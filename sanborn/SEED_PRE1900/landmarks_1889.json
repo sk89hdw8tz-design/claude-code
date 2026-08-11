@@ -1,0 +1,617 @@
+{
+ "edition": "1889",
+ "features": [
+  {
+   "id": "avD-19thS-blockline",
+   "sheet_a": "07",
+   "a_xy": [
+    3169,
+    332
+   ],
+   "sheet_b": "08",
+   "b_xy": [
+    244,
+    296
+   ],
+   "avenue": "Av D (Market)",
+   "avenue_width_ft": 70,
+   "avenue_width_px": 214,
+   "b_x_reduced": 30,
+   "what": "S block/kerb line of 19th St where it meets Av D. a = NE corner of block 559 (Av D west kerb); b = NW corner of block 499 (Av D east kerb). Same street line on both sheets.",
+   "constrains": "y direct; x via 70 ft avenue width",
+   "confidence": "high-y / medium-x",
+   "weight": 0.5
+  },
+  {
+   "id": "avD-20thN-blockline",
+   "sheet_a": "07",
+   "a_xy": [
+    3164,
+    1340
+   ],
+   "sheet_b": "08",
+   "b_xy": [
+    246,
+    1328
+   ],
+   "avenue": "Av D (Market)",
+   "avenue_width_ft": 70,
+   "avenue_width_px": 214,
+   "b_x_reduced": 32,
+   "what": "N block/kerb line of 20th St at Av D. a = SE corner of block 559; b = SW corner of block 499. Same street line on both sheets. Fire-alarm box symbol labelled on both sheets nearby but drawn at each sheet's own kerb, so NOT usable as a point landmark.",
+   "constrains": "y direct; x via 70 ft avenue width",
+   "confidence": "high-y / medium-x",
+   "weight": 0.5
+  },
+  {
+   "id": "avD-21stN-blockline",
+   "sheet_a": "07",
+   "a_xy": [
+    3149,
+    2502
+   ],
+   "sheet_b": "08",
+   "b_xy": [
+    252,
+    2484
+   ],
+   "avenue": "Av D (Market)",
+   "avenue_width_ft": 70,
+   "avenue_width_px": 214,
+   "b_x_reduced": 38,
+   "what": "N block/kerb line of 21st (Center) St at Av D. a = SE corner of block 560; b = SW corner of block 500 (solid corner dot drawn on 08). Same street line on both sheets.",
+   "constrains": "y direct; x via 70 ft avenue width",
+   "confidence": "high-y / medium-x",
+   "weight": 0.5
+  },
+  {
+   "id": "avD-22ndN-blockline",
+   "sheet_a": "07",
+   "a_xy": [
+    3143,
+    3663
+   ],
+   "sheet_b": "08",
+   "b_xy": [
+    248,
+    3649
+   ],
+   "avenue": "Av D (Market)",
+   "avenue_width_ft": 70,
+   "avenue_width_px": 214,
+   "b_x_reduced": 34,
+   "what": "N block/kerb line of 22nd St at Av D. a = SE corner of block 561 (corner dot); b = SW corner of block 501 (corner dot). Same street line on both sheets.",
+   "constrains": "y direct; x via 70 ft avenue width",
+   "confidence": "high-y / medium-x",
+   "weight": 0.5
+  },
+  {
+   "id": "hyd-22nd-avA",
+   "sheet_a": "07",
+   "a_xy": [
+    312.1,
+    3693.2
+   ],
+   "sheet_b": "09",
+   "b_xy": [
+    311.4,
+    251.3
+   ],
+   "what": "Blue hydrant/valve disc on the 22nd St water main, first east of the Av A (Water St) tracks. Same object, but disc symbol is hand-placed and its offset from the main differs between sheets (~20-40 px = 7-13 ft)",
+   "confidence": "medium",
+   "schematic": false,
+   "weight": 0.5
+  },
+  {
+   "id": "hyd-22nd-blk681-alley",
+   "sheet_a": "07",
+   "a_xy": [
+    755.8,
+    3698.5
+   ],
+   "sheet_b": "09",
+   "b_xy": [
+    737.5,
+    228.0
+   ],
+   "what": "Blue hydrant disc E of the 20 ft mid-block alley of blk 681 (Av A-Av B) at 22nd St. Disc-to-alley offset in x agrees (40 vs 42 px) but offset above the water main differs (43 vs 67 px)",
+   "confidence": "medium",
+   "schematic": false,
+   "weight": 0.5
+  },
+  {
+   "id": "hyd-22nd-blk621-alley",
+   "sheet_a": "07",
+   "a_xy": [
+    1769.1,
+    3693.9
+   ],
+   "sheet_b": "09",
+   "b_xy": [
+    1757.5,
+    222.1
+   ],
+   "what": "Blue hydrant disc E of the 20 ft alley of blk 621 (Av B-Av C) at 22nd St, by the 10in/12in W.P. junction",
+   "confidence": "medium",
+   "schematic": false,
+   "weight": 0.5
+  },
+  {
+   "id": "hyd-22nd-blk561-alley",
+   "sheet_a": "07",
+   "a_xy": [
+    2740.1,
+    3696.8
+   ],
+   "sheet_b": "09",
+   "b_xy": [
+    2751.7,
+    198.7
+   ],
+   "what": "Blue hydrant disc E of the 20 ft alley of blk 561 (Av C-Av D) at 22nd St on the 6in W.P.; offset above main 39 px on 07 vs 79 px on 09",
+   "confidence": "medium",
+   "schematic": false,
+   "weight": 0.5
+  },
+  {
+   "id": "xing-22ndWP-blk681-alley",
+   "sheet_a": "07",
+   "a_xy": [
+    715.4,
+    3741.4
+   ],
+   "sheet_b": "09",
+   "b_xy": [
+    695.3,
+    295.3
+   ],
+   "what": "Intersection of the blk 681 (Av A-Av B) 20 ft alley centreline with the 22nd St 10in water-main dashed line; least-squares line fit on both sheets",
+   "confidence": "high",
+   "schematic": false,
+   "weight": 1.5
+  },
+  {
+   "id": "xing-22ndWP-blk621-alley",
+   "sheet_a": "07",
+   "a_xy": [
+    1734.3,
+    3739.9
+   ],
+   "sheet_b": "09",
+   "b_xy": [
+    1731.9,
+    287.6
+   ],
+   "what": "Intersection of the blk 621 (Av B-Av C) 20 ft alley centreline with the 22nd St water-main dashed line",
+   "confidence": "high",
+   "schematic": false,
+   "weight": 1.5
+  },
+  {
+   "id": "xing-22ndWP-blk561-alley",
+   "sheet_a": "07",
+   "a_xy": [
+    2714.9,
+    3735.8
+   ],
+   "sheet_b": "09",
+   "b_xy": [
+    2726.9,
+    277.9
+   ],
+   "what": "Intersection of the blk 561 (Av C-Av D) 20 ft alley centreline with the 22nd St 6in water-main dashed line",
+   "confidence": "high",
+   "schematic": false,
+   "weight": 1.5
+  },
+  {
+   "id": "hyd-22nd-blk501-alley",
+   "sheet_a": "08",
+   "a_xy": [
+    727.5,
+    3684.0
+   ],
+   "sheet_b": "10",
+   "b_xy": [
+    743.0,
+    136.7
+   ],
+   "what": "Blue hydrant disc E of the 20 ft alley of blk 501 (Av D-Av E) at 22nd St, at the 12in W.P. tee (12in->16in transition on the 22nd St main)",
+   "confidence": "high",
+   "schematic": false,
+   "weight": 0.5
+  },
+  {
+   "id": "hyd-22nd-blk441-alley",
+   "sheet_a": "08",
+   "a_xy": [
+    1728.8,
+    3661.8
+   ],
+   "sheet_b": "10",
+   "b_xy": [
+    1749.8,
+    140.0
+   ],
+   "what": "Blue hydrant disc E of the 20 ft alley of blk 441 (Av E-Av F) at 22nd St, on the 6in W.P.; on 08 it sits just N of 'HARMONY HALL' lots 601/602",
+   "confidence": "high",
+   "schematic": false,
+   "weight": 0.5
+  },
+  {
+   "id": "hyd-22nd-blk381-alley",
+   "sheet_a": "08",
+   "a_xy": [
+    2737.3,
+    3662.0
+   ],
+   "sheet_b": "10",
+   "b_xy": [
+    2746.0,
+    136.0
+   ],
+   "what": "Blue hydrant disc E of the 20 ft alley of blk 381 (Av F-Av G) at 22nd St, on the vertical W.P.; on 08 it is just S of lots 610/611",
+   "confidence": "high",
+   "schematic": false,
+   "weight": 0.5
+  },
+  {
+   "id": "xing-22ndWP-blk501-alley",
+   "sheet_a": "08",
+   "a_xy": [
+    686.3,
+    3753.7
+   ],
+   "sheet_b": "10",
+   "b_xy": [
+    692.9,
+    197.1
+   ],
+   "what": "Intersection of the 12in W.P. running down the blk 501 (Av D-Av E) alley with the 22nd St water main (12in W to 16in E of the tee); least-squares line fit both sheets",
+   "confidence": "high",
+   "schematic": false,
+   "weight": 1.5
+  },
+  {
+   "id": "xing-22ndWP-blk441-alley",
+   "sheet_a": "08",
+   "a_xy": [
+    1695.1,
+    3760.1
+   ],
+   "sheet_b": "10",
+   "b_xy": [
+    1696.6,
+    197.4
+   ],
+   "what": "Intersection of the 6in W.P. in the blk 441 (Av E-Av F) alley with the 22nd St water main; least-squares line fit both sheets",
+   "confidence": "high",
+   "schematic": false,
+   "weight": 1.5
+  },
+  {
+   "id": "hyd-22nd-blk321-alley",
+   "sheet_a": "29",
+   "a_xy": [
+    724.3,
+    3695.2
+   ],
+   "sheet_b": "27",
+   "b_xy": [
+    661.6,
+    163.4
+   ],
+   "what": "Blue hydrant disc (labelled HYD. on 27) E of the blk 321/322 (Av G-Av H) alley at 22nd St, on the 6in W. Pipe",
+   "confidence": "high",
+   "schematic": false,
+   "weight": 0.5
+  },
+  {
+   "id": "hyd-22nd-blk261-alley",
+   "sheet_a": "29",
+   "a_xy": [
+    1749.1,
+    3675.6
+   ],
+   "sheet_b": "27",
+   "b_xy": [
+    1664.5,
+    155.8
+   ],
+   "what": "Blue hydrant disc (HYD. on 27) E of the blk 261/262 (Av H-Av I) 20 ft alley at 22nd St, at the 16in->12in W. Pipe transition / 20in W.P. tee",
+   "confidence": "high",
+   "schematic": false,
+   "weight": 0.5
+  },
+  {
+   "id": "hyd-22nd-blk201-alley",
+   "sheet_a": "29",
+   "a_xy": [
+    2757.3,
+    3662.7
+   ],
+   "sheet_b": "27",
+   "b_xy": [
+    2671.3,
+    163.0
+   ],
+   "what": "Blue hydrant disc (HYD. on 27) E of the blk 201/202 (Av I-Av J) 20 ft alley at 22nd St, on the 6in W. Pipe",
+   "confidence": "high",
+   "schematic": false,
+   "weight": 0.5
+  },
+  {
+   "id": "xing-22ndWP-blk321-alley",
+   "sheet_a": "29",
+   "a_xy": [
+    703.5,
+    3752.2
+   ],
+   "sheet_b": "27",
+   "b_xy": [
+    623.5,
+    185.0
+   ],
+   "what": "Intersection of the 6in W. Pipe in the blk 321/322 (Av G-Av H) alley with the 22nd St water main; least-squares line fit both sheets",
+   "confidence": "high",
+   "schematic": false,
+   "weight": 1.5
+  },
+  {
+   "id": "xing-22ndWP-blk261-alley",
+   "sheet_a": "29",
+   "a_xy": [
+    1709.5,
+    3740.8
+   ],
+   "sheet_b": "27",
+   "b_xy": [
+    1632.4,
+    189.0
+   ],
+   "what": "Intersection of the 20in W. Pipe in the blk 261/262 (Av H-Av I) alley with the 22nd St main at the 16in/12in change of size",
+   "confidence": "high",
+   "schematic": false,
+   "weight": 1.5
+  },
+  {
+   "id": "xing-22ndWP-blk201-alley",
+   "sheet_a": "29",
+   "a_xy": [
+    2708.1,
+    3732.8
+   ],
+   "sheet_b": "27",
+   "b_xy": [
+    2637.7,
+    195.2
+   ],
+   "what": "Intersection of the 6in W. Pipe in the blk 201/202 (Av I-Av J) alley with the 22nd St water main",
+   "confidence": "high",
+   "schematic": false,
+   "weight": 1.5
+  },
+  {
+   "id": "cnr-avA-19th-blk679NW",
+   "sheet_a": "02",
+   "a_xy": [
+    3181.8,
+    173.0
+   ],
+   "sheet_b": "07",
+   "b_xy": [
+    365.1,
+    393.5
+   ],
+   "what": "NW corner of blk 679 (Av A x 19th St): block frontage line on Av A meets the 19th St block face. On 07 it is the corner of the lot band at lots 520/521; on 02 it is the corner of the schematic block outline next to the sheet number '2'. Both fitted by least squares on the two lines.",
+   "confidence": "high",
+   "schematic": false,
+   "weight": 1.0
+  },
+  {
+   "id": "cnr-avA-20th-blk679SW",
+   "sheet_a": "02",
+   "a_xy": [
+    3169.2,
+    1098.0
+   ],
+   "sheet_b": "07",
+   "b_xy": [
+    362.6,
+    1310.0
+   ],
+   "what": "SW corner of blk 679 (Av A x 20th St): 07 shows it as the corner of the yellow lot band at lot 501 / lot 1433 'Cotton Platf.'; 02 shows the same corner on its schematic block outline",
+   "confidence": "high",
+   "schematic": false,
+   "weight": 1.0
+  },
+  {
+   "id": "cnr-avA-20th-blk680NW",
+   "sheet_a": "02",
+   "a_xy": [
+    3165.8,
+    1344.0
+   ],
+   "sheet_b": "07",
+   "b_xy": [
+    355.3,
+    1550.0
+   ],
+   "what": "NW corner of blk 680 (Av A x 20th St, south side): 07 = corner of lot band at lots 511/512 above 'Beer Vault & Cold Storage'; 02 = same corner of block outline",
+   "confidence": "high",
+   "schematic": false,
+   "weight": 1.0
+  },
+  {
+   "id": "cnr-avA-21st-blk680SW",
+   "sheet_a": "02",
+   "a_xy": [
+    3156.1,
+    2267.0
+   ],
+   "sheet_b": "07",
+   "b_xy": [
+    343.3,
+    2462.0
+   ],
+   "what": "SW corner of blk 680 (Av A x 21st/Center St): 07 = SW corner of Texas Star 'Mill Build'g' lot band at lot 501/1428; 02 = same corner of block outline",
+   "confidence": "high",
+   "schematic": false,
+   "weight": 1.0
+  },
+  {
+   "id": "cnr-avA-21st-blk681NW",
+   "sheet_a": "02",
+   "a_xy": [
+    3151.7,
+    2513.5
+   ],
+   "sheet_b": "07",
+   "b_xy": [
+    347.4,
+    2708.0
+   ],
+   "what": "NW corner of blk 681 (Av A x 21st/Center St, south side): 07 = NW corner of the 'Slate Yard' block at lot 518/1427; 02 = same corner of block outline",
+   "confidence": "high",
+   "schematic": false,
+   "weight": 1.0
+  },
+  {
+   "id": "cnr-avA-22nd-blk681SW",
+   "sheet_a": "02",
+   "a_xy": [
+    3138.2,
+    3440.5
+   ],
+   "sheet_b": "07",
+   "b_xy": [
+    342.3,
+    3619.5
+   ],
+   "what": "SW corner of blk 681 (Av A x 22nd St): 07 = SW corner of the 'W.Ho. Produce & Gro.' lot band at lot 501/1420; 02 = same corner of block outline",
+   "confidence": "high",
+   "schematic": false,
+   "weight": 1.0
+  },
+  {
+   "id": "hyd-22nd-avA-on02",
+   "sheet_a": "02",
+   "a_xy": [
+    3144.1,
+    3471.1
+   ],
+   "sheet_b": "07",
+   "b_xy": [
+    312.1,
+    3693.2
+   ],
+   "what": "The same blue hydrant/valve disc at 22nd St x Av A that also appears on sheet 09 (see hyd-22nd-avA). Disc symbol placement relative to the block corner differs between sheets by ~30 px, so treat as lower weight than the corner landmarks",
+   "confidence": "medium",
+   "schematic": false,
+   "weight": 0.5
+  },
+  {
+   "id": "cnr-avA-23rd-blk682SW",
+   "sheet_a": "01",
+   "a_xy": [
+    3189.5,
+    1066.9
+   ],
+   "sheet_b": "09",
+   "b_xy": [
+    328.6,
+    1350.2
+   ],
+   "what": "SW corner of the blk 682 built block at Av A x 23rd/Tremont (N side). 09 = SW corner of the pink 'Wh'o Drugs / Paints & Oils' building; 01 right panel = same corner of its block outline. '80 ft' street label below on both",
+   "confidence": "high",
+   "schematic": false,
+   "weight": 1.0
+  },
+  {
+   "id": "cnr-avA-23rd-blk683NW",
+   "sheet_a": "01",
+   "a_xy": [
+    3187.5,
+    1315.3
+   ],
+   "sheet_b": "09",
+   "b_xy": [
+    325.3,
+    1593.5
+   ],
+   "what": "NW corner of blk 683 at Av A x 23rd/Tremont (S side). 09 = NW corner of the 'Texas Exp. Co / Sail Loft' building at lots 512 / 1358; 01 = same corner of block outline",
+   "confidence": "high",
+   "schematic": false,
+   "weight": 1.0
+  },
+  {
+   "id": "cnr-avA-24th-blk683SW",
+   "sheet_a": "01",
+   "a_xy": [
+    3174.3,
+    2240.2
+   ],
+   "sheet_b": "09",
+   "b_xy": [
+    326.1,
+    2514.2
+   ],
+   "what": "SW corner of blk 683 at Av A x 24th St (N side). 09 = SW corner of the pink 'Wh'o Grain' building at lot 501 / 1351; 01 = same corner of block outline",
+   "confidence": "high",
+   "schematic": false,
+   "weight": 1.0
+  },
+  {
+   "id": "cnr-avA-24th-blk684NW-PJWillis",
+   "sheet_a": "01",
+   "a_xy": [
+    3170.1,
+    2487.7
+   ],
+   "sheet_b": "09",
+   "b_xy": [
+    327.9,
+    2758.3
+   ],
+   "what": "NW corner of the P.J. WILLIS & BRO. wholesale building, blk 684, at Av A x 24th St. Drawn as a labelled pink structure on BOTH sheets - the strongest landmark of this pair",
+   "confidence": "high",
+   "schematic": false,
+   "weight": 1.0
+  },
+  {
+   "id": "cnr-avA-25th-blk684SW",
+   "sheet_a": "01",
+   "a_xy": [
+    3159.4,
+    3417.1
+   ],
+   "sheet_b": "09",
+   "b_xy": [
+    330.2,
+    3685.0
+   ],
+   "what": "SW corner of blk 684 at Av A x 25th St / Bath Av. Block-outline corner on both sheets (09 side is the block boundary west of the Basin)",
+   "confidence": "high",
+   "schematic": false,
+   "weight": 1.0
+  },
+  {
+   "id": "hyd-22nd-avA-on01",
+   "sheet_a": "01",
+   "a_xy": [
+    3181.0,
+    76.3
+   ],
+   "sheet_b": "09",
+   "b_xy": [
+    311.4,
+    251.3
+   ],
+   "what": "The 22nd St x Av A hydrant disc on the 10in W. Pipe. SCHEMATIC: sheet 01's right panel places this disc and the whole 22nd St main ~60-90 px (20-30 ft) out of agreement with the block-corner landmarks of the same pair (implied offset -175 in y vs -265..-283 for the corners). Do NOT use for registration; recorded to document the disagreement",
+   "confidence": "low",
+   "schematic": true,
+   "weight": 0.0
+  }
+ ],
+ "note": "Ground truth for the anti-circular gate. Weights follow measurement quality: xing-* are least-squares line crossings (1.5); cnr-* are block corners (1.0); hyd-* are hydrant DISCS, hand-placed symbols carrying ~+-25 px of drafting slop (0.5). hyd-22nd-avA-on01 is weight 0 and schematic: sheet 01's top-edge 22nd St pipework is drawn 60-90 px out of place against block corners on its own sheet - decoration, not survey. NOTE: unlike 1899, the 1889 wharf sheets' block outlines are NOT schematic; they agree with the downtown sheets to a smooth affine."
+}
