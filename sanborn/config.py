@@ -67,6 +67,34 @@ EDITIONS = {
         "seam_policy": "owner-on-top",
         "paper_bgr": (200, 222, 232),          # provisional; measured at build
     },
+    "1889": {
+        "source": "ut",
+        "ut_url": (
+            "https://maps.lib.utexas.edu/maps/sanborn/g-i/"
+            "txu-sanborn-galveston-1889-{num:02d}.jpg"
+        ),
+        "ut_referer": "https://maps.lib.utexas.edu/maps/sanborn/g.html",
+        # local set is on branch sanborn-data-1889 (60 sheets + 1i index +
+        # 1k key); widths are all 3400, heights vary 4052-4146
+        "native_size": (3400, 4116),
+        "index_sheet": None,
+        # Measured by autocorrelation of the whiteness profile over the six
+        # downtown sheets in the poster frame (7, 8, 9, 10, 27, 29): avenue
+        # 982/1005/996/1011/1009/1012 -> median 1007; street
+        # 1160/1161/1135/1162/1176/1174 -> median 1161. That is the SAME
+        # physical grid as 1899 (1006 x 1169) — same city, same map scale,
+        # same UT scan width — so the 1899 corridor-SLOT model applies
+        # unchanged. The wharf sheets (1, 2) return noise at low correlation
+        # confidence, exactly as 1899's wharf sheets do: few grid lines,
+        # mostly piers and water. Anchor those from their neighbours.
+        "street_origin": 5,                    # atlas runs 5th - 46th
+        "pitch_av": 1006.0,
+        "pitch_st": 1163.0,
+        # 1889 sheets overlap like 1899's rather than abutting like 1885's;
+        # confirm by measurement before trusting this.
+        "seam_policy": "owner-on-top",
+        "paper_bgr": (200, 222, 232),          # provisional; measured at build
+    },
     "1877": {
         "source": "ut",
         "ut_url": (

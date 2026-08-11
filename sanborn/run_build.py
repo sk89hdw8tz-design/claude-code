@@ -33,6 +33,8 @@ def sheet_path(year, filenum):
     d = os.path.join(config.SOURCES_DIR, year)
     candidates = [
         os.path.join(d, f"Galveston_{year}_sheet_{filenum:02d}.jpg"),
+        # 1889's fetched set is named without the "sheet_" infix
+        os.path.join(d, f"Galveston_{year}_{filenum:02d}.jpg"),
         os.path.join(d, f"08539_{year}-{filenum:04d}.tif"),
         os.path.join(d, f"txu-sanborn-galveston-{year}-{filenum:02d}.jpg"),
     ]
