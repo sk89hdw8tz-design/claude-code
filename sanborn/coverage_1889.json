@@ -1,0 +1,141 @@
+{
+ "units": {
+  "07": {
+   "file": 7,
+   "av_slots": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "st": [
+    19,
+    22
+   ],
+   "region": null,
+   "note": "Av A(Water E)-D(Market E) x 19th-22nd; blocks 679-681, 619-621, 559-561"
+  },
+  "08": {
+   "file": 8,
+   "av_slots": [
+    3,
+    4,
+    5,
+    6
+   ],
+   "st": [
+    19,
+    22
+   ],
+   "region": null,
+   "note": "Av D(Market E)-G(Winnie E) x 19th-22nd; St Mary's Cathedral, Masonic Temple"
+  },
+  "29": {
+   "file": 29,
+   "av_slots": [
+    6,
+    7,
+    8,
+    9
+   ],
+   "st": [
+    19,
+    22
+   ],
+   "region": null,
+   "note": "Av G-J East x 19th-22nd (pending label confirmation)"
+  },
+  "09": {
+   "file": 9,
+   "av_slots": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "st": [
+    22,
+    25
+   ],
+   "region": null,
+   "note": "Av A-D East x 22nd-25th(Bath Av); blocks 682-684, 622-624, 562-564; harbor basin SW"
+  },
+  "10": {
+   "file": 10,
+   "av_slots": [
+    3,
+    4,
+    5,
+    6
+   ],
+   "st": [
+    22,
+    25
+   ],
+   "region": null,
+   "note": "Av D-G East x 22nd-25th (pending label confirmation)"
+  },
+  "27": {
+   "file": 27,
+   "av_slots": [
+    6,
+    7,
+    8,
+    9
+   ],
+   "st": [
+    22,
+    25
+   ],
+   "region": null,
+   "note": "Av G East-J East x 22nd-25th (label-confirmed)"
+  },
+  "02": {
+   "file": 2,
+   "av_slots": [
+    0
+   ],
+   "st": [
+    19,
+    22
+   ],
+   "region": null,
+   "detect_region": [
+    2400,
+    0,
+    3400,
+    4118
+   ],
+   "note": "wharf front 19th-22nd: Galveston Bay + Brick/Morgan wharves, Central Line W.Ho., Navigation Slip on the west two-thirds; land strip along Av. A (blocks 739-741, Texas Star Flour Mills) at the right margin. Single unrotated panel \u2014 the strong mid-sheet verticals are railroad switch tracks, not a panel rule. Only one avenue line (Av. A), so the piecewise map extends affinely."
+  },
+  "01": {
+   "file": 1,
+   "av_slots": [
+    0
+   ],
+   "st": [
+    22,
+    25
+   ],
+   "region": [
+    1598,
+    0,
+    3400,
+    4118
+   ],
+   "detect_region": [
+    2600,
+    0,
+    3400,
+    4118
+   ],
+   "note": "RIGHT panel only: wharf front 22nd-25th (N.Y.S.S. Co's Mallory Line wharves, blocks 742/743/744, Union Passenger Depot, basins) along Av. A. The LEFT panel (x<1598, thick black divider rule) is the far-west Texas Standard Oil Mill district at 43rd-45th x Av. C-D West \u2014 excluded, outside this frame."
+  }
+ },
+ "excluded": {
+  "01-left-panel": "Texas Standard Oil Mill / 43rd-45th x Av C-D West \u2014 outside the downtown+wharf frame",
+  "1i": "street/business index sheet \u2014 reference only, never in art",
+  "1k": "key map \u2014 reference only, never in art",
+  "03..06,11..26,28,30..60": "outside the Av A-I x 19th-25th frame"
+ }
+}

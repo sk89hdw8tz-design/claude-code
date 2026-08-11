@@ -243,6 +243,17 @@ for _u, _ov in LINE_OVERRIDES_1885.items():
         for _ax, _f in _ov.items():
             _lo.setdefault(_ax, {}).update(_f)
 
+def _load_1889():
+    import json as _json
+    import os as _os
+    p = _os.path.join(_os.path.dirname(_os.path.abspath(__file__)),
+                      "coverage_1889.json")
+    if _os.path.exists(p):
+        d = _json.load(open(p))
+        COVERAGE["1889"] = d["units"]
+        EXCLUDED["1889"] = d.get("excluded", {})
+
+
 def _load_1899():
     import json as _json
     import os as _os
@@ -254,6 +265,7 @@ def _load_1899():
         EXCLUDED["1899"] = d["excluded"]
 
 
+_load_1889()
 _load_1899()
 
 
