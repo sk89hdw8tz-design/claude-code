@@ -41,23 +41,12 @@
     return "";
   }
 
-  /* A provenance-carrying record rendered as one row: the value, its class
-     badge, and its citation. */
-  function rec(label, r, valueKey, unit) {
-    if (!r) return null;
-    var v = (typeof r === "object") ? r[valueKey] : r;
-    if (v === undefined || v === null) {
-      v = "not established";
-      unit = "";
-    }
-    return {
-      k: label,
-      v: esc(String(v)) + (unit ? " " + unit : "") +
-         (r.cls ? " <span class='badge " + clsBadge(r.cls) + "' style='margin-left:6px'>" +
-                  esc(String(r.cls)) + "</span>" : "") +
-         (r.cite ? "<span class='clause'>" + esc(r.cite) + "</span>" : "")
-    };
-  }
+  /* A provenance-carrying record used to render as one dl() row here. It was
+     replaced by factRow(), below: dl() puts the value AND its citation inside
+     `.dl-v`, which is a right-aligned nowrap mono column, and a citation
+     paragraph in it is clipped off the right edge of the card with no
+     scrollbar. Kept out rather than kept around — a second row renderer is
+     how the two would drift. */
 
   function n2(v, d) {
     return (v === null || v === undefined || !isFinite(v)) ? "—" : Number(v).toFixed(d === undefined ? 2 : d);
@@ -454,6 +443,37 @@
     ]);
   }
 
+  /* A PROVENANCE ROW WHOSE CITATION IS ACTUALLY LEGIBLE.
+
+     Every value on this screen was built with dl(), and `.dl-v` is a
+     right-aligned MONO COLUMN with `white-space: nowrap` — it exists for
+     numbers. The citations here are paragraphs, so the design wind speed row
+     rendered 3,072 PIXELS PAST THE RIGHT EDGE of its card, clipped, with no
+     scrollbar and no affordance. What fell off included the sentence "MUST BE
+     CONFIRMED FOR THE ACTUAL SITE. This is a planning value, not a lookup"
+     and, after the Austin correction, "READ THIS OFF THE ASCE 7-22 MAP, NOT
+     7-16" — the two sentences on the screen that most needed reading.
+
+     This is register §O.1's B1 again (1,807px of table in a 996px container)
+     in a place nobody re-checked: the provenance was published and invisible,
+     which reads exactly like provenance that was never written. So the value
+     and its badges go on one line and the citation goes UNDER them as
+     wrapping prose. */
+  function factRow(label, value, badges, cite, note) {
+    var head = el("div", { style: "display:flex;gap:8px;align-items:baseline;flex-wrap:wrap" }, [
+      el("span", { style: "font-size:.84rem;color:var(--muted);min-width:11rem", text: label }),
+      el("span", { class: "mono", style: "font-weight:650;font-size:.86rem", text: String(value) })
+    ]);
+    (badges || []).forEach(function (b) {
+      if (!b) return;
+      head.appendChild(el("span", { class: "badge " + b.c, text: b.t, title: b.title || null }));
+    });
+    var kids = [head];
+    if (cite) kids.push(el("p", { class: "clause", style: "margin:3px 0 0", text: String(cite) }));
+    if (note) kids.push(el("p", { class: "clause", style: "margin:3px 0 0", text: String(note) }));
+    return el("div", { style: "padding:7px 0;border-bottom:1px dashed var(--line)" }, kids);
+  }
+
   function recheckedCard() {
     var rc = FM.juris.RECHECKED;
     if (!rc || !rc.length) return null;
@@ -564,64 +584,129 @@
     }
 
     /* the code basis */
-    var codeRows = (site.codes || []).map(function (c) {
+    var codeBody = el("div", {});
+    if (!(site.codes || []).length) {
+      codeBody.appendChild(el("p", { class: "clause", text: "None recorded." }));
+    }
+    (site.codes || []).forEach(function (c) {
       /* HOW the value was retrieved rides next to the value, because "four
          independent routes agreed on this ordinance number" and "one search
          summary said so" are different claims and the Austin error was
          published under the second one wearing the confidence of the first. */
-      var rb = retrievalBadge(retrievalOf(c.src));
-      return {
-        k: esc(c.name),
-        v: esc(c.edition || "—") +
-           " <span class='badge " + clsBadge(c.cls) + "' style='margin-left:6px'>" + esc(String(c.cls || "?")) + "</span>" +
-           (rb ? " <span class='badge " + rb.c + "' style='margin-left:4px' title='" + esc(rb.title) + "'>" +
-                 esc(rb.t) + "</span>" : "") +
-           (c.status && c.status !== "in force"
-             ? " <span class='badge b-mute' style='margin-left:4px'>" + esc(String(c.status)) + "</span>" : "") +
-           "<span class='clause'>" + esc(c.cite || "") + (c.adopted ? " · adopted " + esc(c.adopted) : "") +
-           (c.asce ? " · references " + esc(c.asce) : "") + "</span>"
-      };
+      codeBody.appendChild(factRow(c.name, c.edition || "—", [
+        { c: clsBadge(c.cls), t: String(c.cls || "?") },
+        retrievalBadge(retrievalOf(c.src)),
+        (c.status && c.status !== "in force") ? { c: "b-mute", t: String(c.status) } : null,
+        c.asce ? { c: "b-blue", t: "references " + c.asce } : null
+      ], (c.cite || "") + (c.adopted ? "  · adopted " + c.adopted : ""), c.note || null));
     });
     host.appendChild(el("div", { style: "margin-bottom:16px" }, [
-      card("Governing code", null, dl(codeRows.length ? codeRows : [{ k: "—", v: "none recorded" }]),
+      card("Governing code", null, codeBody,
         (site.authority ? "Authority having jurisdiction: " + site.authority + ". " : "") +
         "The badge on each row says how the value was retrieved, not how sure this " +
         "product is of it: nothing here was read from a primary code document.")
     ]));
 
     /* the design criteria */
+    var critBody = el("div", {});
     function crit(label, v, unit) {
-      if (!v) return null;
-      return {
-        k: label,
-        v: esc(String(v.v !== undefined ? v.v : v.vMph !== undefined ? v.vMph : v.pgPsf !== undefined ? v.pgPsf : v.sdc)) +
-           (unit ? " " + unit : "") +
-           " <span class='badge " + clsBadge(v.cls) + "' style='margin-left:6px'>" + esc(String(v.cls || "?")) + "</span>" +
-           "<span class='clause'>" + esc(v.cite || "") + (v.note ? " · " + esc(v.note) : "") + "</span>"
-      };
+      if (!v) return;
+      var value = v.v !== undefined ? v.v
+                : v.vMph !== undefined ? v.vMph
+                : v.pgPsf !== undefined ? v.pgPsf : v.sdc;
+      critBody.appendChild(factRow(label,
+        (value === null || value === undefined ? "NOT DECLARED" : String(value) + (unit ? " " + unit : "")),
+        [ (value === null || value === undefined) ? { c: "b-mute", t: "not stated" }
+                                                  : { c: clsBadge(v.cls), t: String(v.cls || "?") },
+          retrievalBadge(retrievalOf(v.src)),
+          v.band && v.band.length === 2 ? { c: "b-gold", t: "band " + v.band[0] + "–" + v.band[1] } : null ],
+        v.cite || "", v.note || null));
     }
-    var critRows = [
-      crit("Design wind speed", site.wind, "mph"),
-      site.wind && site.wind.exposure ? { k: "Exposure", v: esc(site.wind.exposure) } : null,
-      crit("Ground snow", site.snow, "psf"),
-      crit("Seismic", site.seismic, ""),
-      /* These arrive as RECORDS — {inches, cls, cite, confirmed} and {level, …} —
-         because "every value carries cls and cite" outranks the convenience of
-         a bare number. String() on one prints "[object Object]". */
-      rec("Frost depth", site.frostDepthIn, "inches", "in"),
-      rec("Termite", site.termite, "level", ""),
-      rec("Decay", site.decay, "level", ""),
-      site.windborneDebris !== undefined
-        ? { k: "Wind-borne debris region", v: site.windborneDebris ? "Yes — opening protection required" : "No" }
-        : null,
-      site.hvhz !== undefined
-        ? { k: "HVHZ", v: site.hvhz ? "Yes — High-Velocity Hurricane Zone" : "No" }
-        : null
-    ].filter(Boolean);
+    function critRec(label, r, valueKey, unit) {
+      if (!r) return;
+      var v = (typeof r === "object") ? r[valueKey] : r;
+      critBody.appendChild(factRow(label,
+        (v === undefined || v === null) ? "not established" : String(v) + (unit ? " " + unit : ""),
+        [ (v === undefined || v === null) ? { c: "b-mute", t: "not stated" }
+                                          : { c: clsBadge(r.cls), t: String(r.cls || "?") } ],
+        (r && r.cite) || "", (r && r.note) || null));
+    }
+
+    crit("Design wind speed", site.wind, "mph");
+    /* Exposure is deliberately NOT a jurisdiction fact — ASCE 7 §26.7 makes it
+       a fetch determination at the site — so the record carries `exposure:
+       null` and an advisory `exposureCommon`. Printing the advisory as the
+       value would manufacture a design input. */
+    if (site.wind) {
+      critBody.appendChild(factRow("Exposure category",
+        site.wind.exposure ? String(site.wind.exposure) : "NOT DECLARED — a site determination",
+        [ site.wind.exposure ? { c: clsBadge(site.wind.cls), t: String(site.wind.cls || "?") }
+                             : { c: "b-mute", t: "not stated" },
+          (!site.wind.exposure && site.wind.exposureCommon)
+            ? { c: "b-gold", t: "commonly " + site.wind.exposureCommon + " — advisory" } : null ],
+        site.wind.exposureNote || "", null));
+    }
+    crit("Ground snow", site.snow, "psf");
+    crit("Seismic design category", site.seismic, "");
+    /* These arrive as RECORDS — {inches, cls, cite, confirmed} and {level, …} —
+       because "every value carries cls and cite" outranks the convenience of
+       a bare number. String() on one prints "[object Object]". */
+    critRec("Frost depth", site.frostDepthIn, "inches", "in");
+    critRec("Termite", site.termite, "level", "");
+    critRec("Decay", site.decay, "level", "");
+
+    /* WIND-BORNE DEBRIS — the row that was asserting a code requirement.
+
+       `site.windborneDebris` is a RECORD — {inRegion, likely, criterion, …} —
+       and this row read it as a boolean. An object is always truthy, so the
+       screen printed "Yes — opening protection required" on EVERY
+       jurisdiction in the product: on Austin, where the module says
+       inRegion:false, and on Orange County, where the module deliberately
+       says inRegion:NULL because the ASCE 7-22 test cannot be settled at
+       county level. The consultant set that value to null precisely so the
+       product would stop asserting it, and the view asserted it anyway — in
+       the affirmative, on the one criterion that decides whether impact-rated
+       glazing is required.
+
+       Three states, three sentences, and null is not one of the other two. */
+    if (site.windborneDebris !== undefined && site.windborneDebris !== null) {
+      var wb = site.windborneDebris;
+      var inR = (typeof wb === "object") ? wb.inRegion : wb;
+      var wbText = inR === true ? "YES — opening protection is required"
+                 : inR === false ? "No — outside the region on the test below"
+                 : "NOT DETERMINED — this is a site test, not a county fact";
+      var wbBadge = inR === true ? { c: "b-fail", t: "required" }
+                  : inR === false ? { c: "b-pass", t: "not required here" }
+                                  : { c: "b-gold", t: "undetermined" };
+      var likelyBadge = null;
+      if (typeof wb === "object" && wb.likely !== null && wb.likely !== undefined && wb.inRegion === null) {
+        likelyBadge = { c: "b-mute", t: "likely " + (wb.likely ? "yes" : "no") + " — advisory only" };
+      }
+      critBody.appendChild(factRow("Wind-borne debris region", wbText,
+        [wbBadge, likelyBadge,
+         (typeof wb === "object" && wb.cls) ? { c: clsBadge(wb.cls), t: String(wb.cls) } : null,
+         retrievalBadge(retrievalOf(typeof wb === "object" ? wb.src : null))],
+        (typeof wb === "object" ? (wb.cite || "") : ""),
+        (typeof wb === "object" ? (wb.criterion || "") : "")));
+      if (typeof wb === "object" && wb.note) {
+        critBody.appendChild(el("p", { class: "clause", style: "margin:2px 0 8px",
+                                       text: String(wb.note) }));
+      }
+    }
+    if (site.hvhz !== undefined && site.hvhz !== null) {
+      critBody.appendChild(factRow("HVHZ",
+        site.hvhz ? "Yes — High-Velocity Hurricane Zone" : "No",
+        [{ c: site.hvhz ? "b-fail" : "b-mute", t: site.hvhz ? "HVHZ" : "outside" }],
+        "The HVHZ is Miami-Dade and Broward only. It is its own code regime, not a wind speed.",
+        null));
+    }
 
     host.appendChild(el("div", { style: "margin-bottom:16px" }, [
-      card("Design criteria", null, dl(critRows),
-        "Every value carries its provenance class. A [site] value is a planning default until it is confirmed.")
+      card("Design criteria", null, critBody,
+        "Every value carries its provenance class and its citation, and the citation is " +
+        "printed rather than truncated. A [site] value is a planning default until it is " +
+        "confirmed; a row reading NOT DECLARED or NOT DETERMINED is one this product " +
+        "refuses to supply, not one it forgot.")
     ]));
 
     /* the pack this maps to, and how well */

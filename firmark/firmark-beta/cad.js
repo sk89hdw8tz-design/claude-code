@@ -246,6 +246,7 @@
       /* "user" — a human set it; "assumed" — fromPlan chose it because the
          source plan declares no stud size, and validate() says so out loud */
       thicknessBasis: "user",
+      face: null,
       note: ""
     };
     if (over) Object.keys(over).forEach(function (k) { w[k] = over[k]; });
@@ -267,6 +268,10 @@
      this engine selects members for. Anything else is somebody else's design
      and the takeoff carries it as a component rather than sizing it. */
   var SYSTEMS = ["truss", "manufactured"];
+
+  /* Which face of the exterior envelope a wall is, when fromPlan can say. Used
+     to place openings a mark names by face rather than by wall id. */
+  var FACES = ["front", "rear", "left", "right"];
 
   function newFraming(level, poly, over) {
     var f = {
@@ -322,6 +327,14 @@
           exterior: !!w.exterior, bearing: !!w.bearing,
           heightFt: num(w.heightFt), thicknessIn: num(w.thicknessIn),
           thicknessBasis: w.thicknessBasis === "assumed" ? "assumed" : "user",
+          /* Which face of the envelope this wall is. Whitelisted here because
+             THIS NORMALISER IS A WHITELIST: a field on a wall that is not
+             listed is dropped silently on every save and every reload. That
+             already bit once — `system` on a framing region vanished between
+             fromPlan() and the takeoff, taking the truss classification with
+             it — and it has now bitten a second time on `face`. Anything added
+             to newWall() must be added here in the same edit. */
+          face: FACES.indexOf(w.face) === -1 ? null : w.face,
           note: w.note || "", basis: w.basis || ""
         });
       });
@@ -1044,12 +1057,18 @@
   /* Every wall in the model that lies along this edge and runs with it.
      Model-wide on purpose: a second-floor region bears on first-floor
      walls, which is the only way a two-storey model can work. */
-  function wallsAlongEdge(model, ax, ay, bx, by) {
+  function wallsAlongEdge(model, ax, ay, bx, by, onlyLevelId) {
     var out = [];
     var ex = bx - ax, ey = by - ay, eL = Math.sqrt(ex * ex + ey * ey);
     if (eL < 1e-9) return out;
     var ux = ex / eL, uy = ey / eL, nx = -uy, ny = ux;
     (model.levels || []).forEach(function (L) {
+      /* A second-floor FLOOR bears on first-floor walls and a second-floor
+         ROOF bears on second-floor walls, and on a two-storey plan those
+         walls stand one above the other at the same x,y. Without the level
+         filter both are found and the region claims to bear on a wall above
+         itself. The plan states which, because a framing plan does. */
+      if (onlyLevelId && L.id !== onlyLevelId) return;
       (L.walls || []).forEach(function (w) {
         var wl = wallLength(w);
         if (wl < 1e-9) return;
@@ -1269,7 +1288,11 @@
         }
         var x0 = Math.min(num(r[0]), num(r[2])), x1 = Math.max(num(r[0]), num(r[2]));
         var y0 = Math.min(num(r[1]), num(r[3])), y1 = Math.max(num(r[1]), num(r[3]));
-        var dirDeg = own(SPAN_DIRS, d.spanDir) ? SPAN_DIRS[d.spanDir] : null;
+        /* NOT `own(...) ? ... : null` — "left-to-right" maps to 0 degrees,
+           which is falsy, and every left-to-right region silently lost its
+           direction */
+        var dirDeg = Object.prototype.hasOwnProperty.call(SPAN_DIRS, String(d.spanDir))
+          ? SPAN_DIRS[d.spanDir] : null;
         if (dirDeg === null) {
           hole("Framing region " + d.id + " span direction",
                "spanDir is \"" + String(d.spanDir) + "\", and only \"front-to-back\" and " +
@@ -1282,14 +1305,15 @@
         var edges = dirDeg === 90
           ? [[x0, y0, x1, y0], [x0, y1, x1, y1]]
           : [[x0, y0, x0, y1], [x1, y0, x1, y1]];
+        var onLv = d.bearsOnLevel || lv.id;
         var sup = [], edgeNames = [];
         edges.forEach(function (e, i) {
-          var hits = wallsAlongEdge(m, e[0], e[1], e[2], e[3]);
+          var hits = wallsAlongEdge(m, e[0], e[1], e[2], e[3], onLv);
           if (!hits.length) {
             hole("What framing region " + d.id + " bears on at its " + (i === 0 ? "first" : "second") +
                  " end",
-                 "No wall in this model lies along the edge from (" + f1(e[0]) + ", " + f1(e[1]) +
-                 ") to (" + f1(e[2]) + ", " + f1(e[3]) + " ) ft. A simple span needs two supports and " +
+                 "No wall on level " + onLv + " lies along the edge from (" + f1(e[0]) + ", " + f1(e[1]) +
+                 ") to (" + f1(e[2]) + ", " + f1(e[3]) + ") ft. A simple span needs two supports and " +
                  "this model has no beam or post entity (register §Q.2), so a region landing on a beam " +
                  "line cannot be expressed at all.",
                  "Draw the wall at that edge, or move the region edge onto the wall that carries it.");
@@ -1664,32 +1688,59 @@
        outside them is refused for having no tributary — which is a defect of
        the placeholder, not of the plan. A wall nothing bears on keeps its
        whole length: there is nothing to be outside of. */
+    /* Reproduces takeoff.js's own admissibility test rather than
+       approximating it, because a placeholder that lands outside it is
+       refused by the takeoff and the refusal reads as a defect in the PLAN
+       when it is really a defect in the placeholder:
+
+         · a region that covers only PART of an opening is a partial-span
+           load, which calc-spec §8.3 excludes — so the wall is cut at every
+           region boundary and an opening must sit inside one piece;
+         · an INTERIOR bearing wall must carry framing on BOTH sides over the
+           opening, or half its load is missing;
+         · a wall nothing bears on keeps its whole length. There is nothing
+           to be outside of, and the takeoff will refuse the header for a
+           reason of its own (it carries a wall, and there is no wall dead
+           load) which is the right reason. */
     function framedSegments(wid) {
-      var segs = [], w = null;
+      var w = null;
       m.levels.forEach(function (lv) {
         (lv.walls || []).forEach(function (x) { if (x.id === wid) w = x; });
       });
-      if (!w) return segs;
+      if (!w) return [];
       var len = wallLength(w), ux = (w.x2 - w.x1) / len, uy = (w.y2 - w.y1) / len;
+      var nx = -uy, ny = ux;
+      var covers = [], cuts = [0, len];
       m.levels.forEach(function (lv) {
         (lv.framing || []).forEach(function (f) {
           if ((f.bearsOn || []).indexOf(wid) === -1) return;
-          var lo = Infinity, hi = -Infinity;
+          var lo = Infinity, hi = -Infinity, cx = 0, cy = 0;
           f.polygon.forEach(function (p) {
             var t = (p[0] - w.x1) * ux + (p[1] - w.y1) * uy;
             if (t < lo) lo = t; if (t > hi) hi = t;
+            cx += p[0]; cy += p[1];
           });
-          segs.push([Math.max(0, lo), Math.min(len, hi)]);
+          cx /= f.polygon.length; cy /= f.polygon.length;
+          var side = ((cx - w.x1) * nx + (cy - w.y1) * ny) >= 0 ? "L" : "R";
+          lo = Math.max(0, lo); hi = Math.min(len, hi);
+          if (hi - lo <= 1e-6) return;
+          covers.push({ lo: lo, hi: hi, side: side });
+          cuts.push(lo); cuts.push(hi);
         });
       });
-      if (!segs.length) return [[0, len]];
-      /* merge */
-      segs.sort(function (a, b) { return a[0] - b[0]; });
-      var out = [segs[0].slice()], j;
-      for (j = 1; j < segs.length; j++) {
-        if (segs[j][0] <= out[out.length - 1][1] + 1e-6) {
-          out[out.length - 1][1] = Math.max(out[out.length - 1][1], segs[j][1]);
-        } else out.push(segs[j].slice());
+      if (!covers.length) return [[0, len]];
+      cuts.sort(function (a, b) { return a - b; });
+      var need = w.exterior === true ? 1 : 2;
+      var out = [], i;
+      for (i = 0; i + 1 < cuts.length; i++) {
+        var a = cuts[i], b = cuts[i + 1];
+        if (b - a <= 1e-6) continue;
+        var mid = (a + b) / 2, sides = {};
+        covers.forEach(function (c) { if (c.lo <= mid && mid <= c.hi) sides[c.side] = 1; });
+        /* deliberately NOT merged with the piece before it, even when both
+           qualify: the cut IS the region boundary, and an opening spanning
+           two regions is the partial-span load §8.3 excludes */
+        if (Object.keys(sides).length >= need) out.push([a, b]);
       }
       return out;
     }
@@ -1842,6 +1893,7 @@
     currentModel: currentModel,
     currentSource: currentSource,
     SYSTEMS: SYSTEMS,
+    FACES: FACES,
     MODEL_VERSION: MODEL_VERSION,
     RULES: RULES,
     ASSUMED_STUD_IN: ASSUMED_STUD_IN,

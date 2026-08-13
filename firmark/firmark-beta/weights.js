@@ -714,20 +714,52 @@
           carries: "roof", bearing: 3.0, skuGroup: "header", headHeightIn: 80, wallPosition: "exterior-first-floor",
           note: "Tributary is half the truss span where the trusses bear on this wall. A 4 ft " +
                 "tributary here would follow from neither the 46 ft clear span nor the gable end." },
-        { id: "HDR-GAR-G", label: "Garage header · gable end over the door", role: "header", span: 16.67, trib: 2.0, count: 1,
-          component: true,
-          componentNote: "OUT OF SCOPE — NOT CHECKED. A gable-end header carries the gable wall " +
-            "standing on it, and ASSEMBLY{} has no wall dead load of any kind, so the model cannot " +
-            "express the dominant term. It is also a TRIANGULAR load, which calc-spec §8.3 excludes " +
-            "outright. Checked as a 2 ft roof strip this mark printed 4x8 at DCR 0.896; across the " +
-            "plausible envelope of pitch, gable width and wall weight the same member runs 1.10 to " +
-            "1.78 — it fails in every case. Re-admit only once the plan declares roof pitch, gable " +
-            "width and opening offset, with a stated moment-equivalent uniform.",
-          carries: "roof", bearing: 3.0, skuGroup: "header", headHeightIn: 84, wallPosition: "exterior-first-floor",
-          note: "Same opening as HDR-GAR-B. The truss direction is the entire design: 2 ft of tributary here, 11 ft there." },
-        { id: "HDR-GAR-B", label: "Garage header · trusses bearing", role: "header", span: 16.67, trib: 11.0, count: 1,
+        /* HDR-GAR-G IS GONE, AND THAT IS THE RESOLUTION OF A DATA DEFECT.
+           This plan carried TWO marks for ONE 16'-8" hole — HDR-GAR-G read as
+           a gable end at 2.0 ft of tributary, HDR-GAR-B read as a truss
+           bearing line at 11.0 ft — and each said in its own note that it was
+           the same opening as the other. Two marks for one opening is not a
+           disagreement a schedule can carry: the estimator counts two
+           headers, the BOM orders two, and the framer stands in front of one
+           hole. It had to be settled, not disclosed.
+
+           It is settled by the plan's own geometry. The garage door is in the
+           street face. The street face is one of the two 50 ft walls, and
+           geometry.bearingLines says in as many words that those two walls
+           are the bearing lines — the whole product feature of this plan is
+           that the trusses clear-span the 46 ft depth onto them. A gable end
+           on this plan is one of the 46 ft walls, and no garage door is in
+           one: this is a front-load garage, and a side-load elevation is not
+           in plan.elevations. So the gable-end reading describes a condition
+           this plan does not have, and it is deleted rather than carried.
+
+           Nothing is lost by deleting it. Everything HDR-GAR-G's
+           componentNote said about gable-end headers — the wall dead load
+           §L6 has no entry for, the triangular load §8.3 excludes — is said
+           by HDR-GBL on Starter 1210, which is a REAL gable-end header in a
+           wall this engine agrees is a gable end.
+
+           And HDR-GAR-B's tributary moved 11.0 -> 23.0 in the same breath,
+           because 11.0 was the OTHER plan's condition borrowed onto this one.
+           11.0 ft is half a 22 ft garage depth: it is what you get when the
+           roof over the garage runs its own short truss span onto a bearing
+           wall behind the garage. That is exactly Two-Story 2450's
+           HDR-GAR-2S, and that plan declares the wall behind its garage.
+           This plan declares no third bearing line at all, so on this roof
+           the trusses over the garage are the same 46 ft clear span as
+           everywhere else and this header takes half of them — the same 23.0
+           ft HDR-W and HDR-SLD take in the same walls. A tributary is a
+           property of the wall, not of the opening, which is the principle
+           Starter 1210 states outright. */
+        { id: "HDR-GAR-B", label: "Garage header · trusses bearing", role: "header", span: 16.67, trib: 23.0, count: 1,
           carries: "roof", bearing: 3.0, skuGroup: "header", headHeightIn: 84, wallPosition: "exterior-first-floor", escalateExpected: true,
-          note: "Under a bearing truss line this is a 3-ply LVL or a girder truss in every one of these markets." },
+          opening: { level: 1, face: "front", offsetFt: 31.915,
+            note: "16'-0\" door centred in the 20 ft garage bay, which runs 30-50 ft along the front face" },
+          note: "The 16'-8\" opening is in the front 50 ft wall, which is a truss bearing line, so it " +
+                "takes half the 46 ft clear span like every other opening in that wall. Under a " +
+                "bearing truss line at this tributary it is a 3-ply LVL or a girder truss in every " +
+                "one of these markets, and it escalates here rather than printing a sawn member " +
+                "nobody would build." },
         { id: "HDR-SLD", label: "Rear slider header · under clear-span truss", role: "header", span: 12.0, trib: 23.0, count: 1,
           carries: "roof", bearing: 3.0, skuGroup: "header", headHeightIn: 80, wallPosition: "exterior-first-floor", escalateExpected: true,
           note: "Tributary is half the 46 ft truss span. This is why exterior openings in production single-stories " +
@@ -744,15 +776,55 @@
       ],
       geometry: {
         footprintFt: [50, 46],
-        underRoofSf: 1860,
+        /* underRoofSf used to read 1860, which is not 50 x 46 and not the
+           area under any roof: 1,860 sf is the CONDITIONED area — the number
+           on the sales sheet, and the number in this plan's own summary. The
+           two-car garage is inside the rectangle, so 2,300 - 440 = 1,860 and
+           the field was carrying the wrong one of the two. Starter 1210
+           declares both under the same names and closes the same way. */
+        underRoofSf: 2300,
+        conditionedSf: 1860,
         trussSpanFt: 46,
         trussSpacingIn: 24,
         bearingLines: "the two 50 ft walls. The 46 ft clear span is the product feature — it is what " +
-                      "makes the partitions movable between elevations.",
+                      "makes the partitions movable between elevations. There is no third bearing " +
+                      "line: the trusses over the garage are the same clear span as the trusses over " +
+                      "the house, which is what decides the garage-door header (see HDR-GAR-B).",
+        garage: { widthFt: 20, depthFt: 22, sf: 440, cars: 2 },
         lanaiDepthFt: 14,
         note: "Stated design geometry, not a weight. The 14 ft lanai depth is what HDR-W's 23.0 ft " +
               "and BM-LAN's 7.0 ft tributaries already imply — half the truss span and half the " +
-              "lanai depth respectively. It is written down here so an elevation can move it."
+              "lanai depth respectively. It is written down here so an elevation can move it.",
+        drawn: {
+          note: "WHERE the numbers above sit. Origin is the front-left corner of the 50 ft street " +
+                "face; the front of the house is the wall at y = 0. Areas close: 50 x 46 = 2,300 sf " +
+                "under roof, less the 20 x 22 = 440 sf two-car garage, leaves the 1,860 sf " +
+                "conditioned this plan is sold as.",
+          garageAt: { face: "front", offsetFt: 30,
+            note: "The two-car garage is at the RIGHT end of the street face — 50 - 20 = 30 ft from " +
+                  "the left corner — and 22 ft deep of the 46 ft depth. 20 ft of width is what a " +
+                  "16 ft door needs once you allow the jambs and the return walls, and 440 sf is the " +
+                  "two-car garage the summary declares." },
+          interiorWalls: [
+            { id: "GW1", fromFt: [30, 0], toFt: [30, 22], bearing: false,
+              note: "Garage inboard side wall. Non-bearing: the trusses run front to back and this " +
+                    "wall runs with them." },
+            { id: "GW2", fromFt: [30, 22], toFt: [50, 22], bearing: false,
+              note: "Garage rear wall. NON-BEARING, and this is the wall the deleted HDR-GAR-G " +
+                    "reading needed to exist. It does not carry roof: bearingLines declares two " +
+                    "bearing lines on this plan and this is not one of them." }
+          ],
+          appendages: [
+            { id: "lanai", label: "lanai", widthFt: 40, depthFt: 14,
+              face: "rear", offsetFt: 0, carriedBy: "BM-LAN x2 and BM-LAN-W on posts (PST-LAN)",
+              note: "40 ft wide is the beam line the marks already declare — BM-LAN's two 12.0 ft " +
+                    "bays plus BM-LAN-W's 16.0 ft wide bay — and it runs from the left corner of the " +
+                    "46 ft depth, leaving the last 10 ft of the rear face against the garage side of " +
+                    "the house. 14 ft deep is half of BM-LAN's declared 7.0 ft tributary, doubled. " +
+                    "It projects BEHIND the 50 x 46 rectangle on its own roof, which is why the lanai " +
+                    "beams take half the lanai depth and not half the 46 ft truss span." }
+          ]
+        }
       },
       elevations: [
         { id: "a", kind: "elevation", label: "Elevation A · gable, 14 ft lanai", base: true,
@@ -1106,7 +1178,37 @@
         coveredEntryFt: [8, 6],
         eaveOverhangFt: 1.0,
         note: "Stated design geometry, not a weight. Every span, tributary and count on this plan " +
-              "is derived from these seven numbers and the derivation is written on the mark."
+              "is derived from these seven numbers and the derivation is written on the mark.",
+        drawn: {
+          note: "WHERE the numbers above sit. Origin is the front-left corner of the 46 ft street " +
+                "face: +x runs right along the front, +y runs back into the lot, and the front of " +
+                "the house is the wall at y = 0. Areas close on this layout: 46 x 32 = 1,472 sf " +
+                "under roof, less the 12 x 22 = 264 sf garage, leaves the 1,208 sf conditioned the " +
+                "plan declares.",
+          garageAt: { face: "front", offsetFt: 34,
+            note: "The 12 ft x 22 ft garage is at the RIGHT end of the street face — 46 - 12 = 34 ft " +
+                  "from the left corner — and runs 22 ft of the 32 ft depth, leaving a 10 ft deep " +
+                  "strip of house behind it. It is INSIDE the 46 x 32 rectangle; the plan's own " +
+                  "underRoofSf and conditionedSf only reconcile if it is. A left-hand garage is the " +
+                  "mirror plan (1210R) and is a separate sheet, not a variant of this one." },
+          interiorWalls: [
+            { id: "GW1", fromFt: [34, 0], toFt: [34, 22], bearing: false,
+              note: "Garage inboard side wall. NON-BEARING, and that is the plan's own claim being " +
+                    "drawn rather than asserted: the trusses clear-span the 32 ft depth onto the two " +
+                    "46 ft walls, so this wall runs parallel to them and carries none. It is the wall " +
+                    "that would have been the third bearing line if there were one." },
+            { id: "GW2", fromFt: [34, 22], toFt: [46, 22], bearing: false,
+              note: "Garage rear wall, 22 ft back. Non-bearing under a 32 ft clear span." }
+          ],
+          appendages: [
+            { id: "entry", label: "covered entry", widthFt: 8, depthFt: 6,
+              face: "front", offsetFt: 24, carriedBy: "BM-ENT on two posts (PST-ENT)",
+              note: "The 8 ft x 6 ft stoop runs from 24 ft to 32 ft along the front face, so its " +
+                    "right edge stands 2 ft clear of the garage wall at 34 ft and the front door " +
+                    "centres on it at 28 ft. It projects FORWARD of the 46 x 32 rectangle, which is " +
+                    "why it is not in underRoofSf." }
+          ]
+        }
       },
       note: "The genuinely small end of this market — the 3/2 entry product built two hundred times " +
             "in one subdivision. One decision sets the whole frame: the common trusses clear-span the " +
@@ -1134,6 +1236,8 @@
         { id: "HDR-ENT", label: "Front entry door header", role: "header",
           span: 3.67, trib: 16.0, count: 1, carries: "roof", bearing: 3.0,
           skuGroup: "header", headHeightIn: 80, wallPosition: "exterior-first-floor",
+          opening: { level: 1, face: "front", offsetFt: 26.415,
+            note: "centred on the 8 ft covered entry, which runs 24-32 ft along the front face" },
           note: "3'-0\" door: rough opening 3'-2\" plus 3 in of bearing at each end = 3'-8\" = 3.67 ft. " +
                 "Same 16.0 ft as HDR-W — it is in the same bearing wall, and that is the point of a " +
                 "clear-span truss plan: the tributary is a property of the wall, not of the opening." },
@@ -1147,6 +1251,8 @@
         { id: "HDR-GAR", label: "One-car garage door header · trusses bearing", role: "header",
           span: 9.67, trib: 16.0, count: 1, carries: "roof", bearing: 4.5,
           skuGroup: "header", headHeightIn: 84, wallPosition: "exterior-first-floor",
+          opening: { level: 1, face: "front", offsetFt: 35.54,
+            note: "centred in the 12 ft garage bay, which runs 34-46 ft along the front face" },
           note: "9'-0\" single garage door: rough opening 9'-2\" plus 3 in of bearing at each end = " +
                 "9'-8\" = 9.67 ft. The garage door is in the FRONT 46 ft wall, which is a truss " +
                 "bearing line, so it takes the same 16.0 ft every other opening in that wall takes. " +
@@ -1282,8 +1388,98 @@
                       "splits the 20 ft width into an 11.0 ft bay and a 9.0 ft bay.",
         coveredPatioFt: [20, 8],
         eaveOverhangFt: 1.0,
+        /* DECLARED, not derived, and the marks were corrected to match it.
+           FJ-1 used to end "Piece count follows the spacing the solver
+           picks." That sentence is backwards about this tool and about the
+           trade. The solver picks a SECTION for a demand; it never picks a
+           spacing, and it cannot, because the spacing is an input to the
+           tributary the demand is computed from. On a real framing plan the
+           spacing is a note on the drawing — "2x_ FLR JSTS @ 16" O.C." — set
+           by the sheathing and the deflection target, and the joist depth
+           follows from it. Getting that backwards is what left three floor
+           regions with no spacing, which is a geometry ERROR and blocked
+           approval gate 1 on a plan that had, in fact, declared enough.
+
+           16 in o.c. is not a guess either: all three joist counts on this
+           plan read back to it and none of them reads back to anything else.
+           28 pieces over a 36 ft run is 36/(16/12) + 1 = 28 exactly; 21 over
+           26 ft and 9 over 10 ft are the same layout rounded up to a whole
+           joist. That is the same inversion cad.js already trusts for the
+           truss counts, and it is available here only because the counts are
+           now declared as a consequence of a spacing rather than of a search. */
+        floorSpacingIn: 16,
         note: "Stated design geometry, not a weight. This is an INTERIOR unit of an attached row: " +
-              "both party walls are bearing and both are shared. An end unit is a different plan."
+              "both party walls are bearing and both are shared. An end unit is a different plan.",
+        drawn: {
+          note: "WHERE the numbers above sit. Origin is the front-left corner of the 20 ft street " +
+                "face; the front of the unit is the wall at y = 0 and both side walls are party " +
+                "walls. Areas close: 20 x 36 = 720 sf per floor, two floors = 1,440 sf, less the " +
+                "11 x 20 = 220 sf garage, leaves the 1,220 sf conditioned the plan declares.",
+          partyWallSide: "both",
+          garageAt: { face: "front", offsetFt: 0,
+            note: "The one-car garage is against the LEFT party wall, 11 ft wide by 20 ft deep. Its " +
+                  "inboard side wall IS the interior bearing line — that is what bearingLines says " +
+                  "in as many words — so the garage width and the 11.0 ft joist bay are one " +
+                  "dimension, not two that happen to agree." },
+          interiorWalls: [
+            { id: "BL1", fromFt: [11, 0], toFt: [11, 36], bearing: true,
+              note: "The interior bearing line: front to back, 11.0 ft off the LEFT party wall, " +
+                    "running the full 36 ft depth. It is the garage's inboard side wall, stacked and " +
+                    "continuous to the rear of the unit, and it splits the 20 ft width into FJ-1's " +
+                    "11.0 ft bay and FJ-2/FJ-3's 9.0 ft bay. The plan already named the side; it is " +
+                    "declared here as a dimension instead of as prose." },
+            { id: "GW1", fromFt: [0, 20], toFt: [11, 20], bearing: false,
+              note: "Garage rear wall, 20 ft back. Non-bearing: the floor above spans across the " +
+                    "unit, party wall to line to party wall, so a wall running the other way carries " +
+                    "no joists." }
+          ],
+          upperStorey: {
+            id: "L2", label: "Second floor",
+            note: "The second floor is the full 20 x 36 = 720 sf footprint — an interior townhome " +
+                  "unit does not step in, because both its side walls are shared and there is " +
+                  "nothing to step back from.",
+            outline: [
+              { id: "W1", fromFt: [0, 0],  toFt: [20, 0],  face: "front", note: "Front wall" },
+              { id: "W2", fromFt: [20, 0], toFt: [20, 36], face: "right", note: "Right party wall" },
+              { id: "W3", fromFt: [0, 36], toFt: [20, 36], face: "rear",  note: "Rear wall" },
+              { id: "W4", fromFt: [0, 0],  toFt: [0, 36],  face: "left",  note: "Left party wall" }
+            ],
+            interiorWalls: [
+              { id: "BL1", fromFt: [11, 0], toFt: [11, 36], bearing: false,
+                note: "The bearing line stacks to the second floor, but carries no framing there: " +
+                      "the roof trusses clear-span the 20 ft width party wall to party wall, which " +
+                      "is why every second-floor partition on this plan is non-bearing and the loft " +
+                      "option moves nothing." }
+            ]
+          },
+          framing: [
+            { id: "F-ROOF", level: "L2", bearsOnLevel: "L2", kind: "roof",
+              rectFt: [0, 0, 20, 36], spanDir: "left-to-right", spanFt: 20,
+              spacingIn: 24, system: "truss",
+              note: "Common trusses at 24 in o.c. clear-spanning the 20 ft width party wall to party " +
+                    "wall. T-1's count of 19 is the 36 ft depth at 24 in o.c. plus one." },
+            { id: "F-FLR-1", level: "L2", bearsOnLevel: "L1", kind: "floor",
+              rectFt: [0, 0, 11, 36], spanDir: "left-to-right", spanFt: 11, spacingIn: 16,
+              note: "FJ-1's bay: 11.0 ft from the left party wall to the bearing line, the full 36 ft " +
+                    "depth. Bears on first-floor walls, which is what a second floor does." },
+            { id: "F-FLR-3", level: "L2", bearsOnLevel: "L1", kind: "floor",
+              rectFt: [11, 0, 20, 10], spanDir: "left-to-right", spanFt: 9, spacingIn: 16,
+              note: "FJ-3's bay: the 10 ft bath-and-laundry stretch of the 9.0 ft bay, at the FRONT " +
+                    "of the unit over the garage. Same span as FJ-2 and a heavier assembly — tile on " +
+                    "backer — so it is drawn as its own region rather than folded into FJ-2's." },
+            { id: "F-FLR-2", level: "L2", bearsOnLevel: "L1", kind: "floor",
+              rectFt: [11, 10, 20, 36], spanDir: "left-to-right", spanFt: 9, spacingIn: 16,
+              note: "FJ-2's bay: the remaining 26 ft of the 9.0 ft bay, from the bath stretch back to " +
+                    "the rear wall. 36 - 10 = 26 ft is FJ-2's own declared run." }
+          ],
+          appendages: [
+            { id: "patio", label: "rear covered patio", widthFt: 20, depthFt: 8,
+              face: "rear", offsetFt: 0, carriedBy: "BM-PAT on three posts (PST-PAT)",
+              note: "The full 20 ft unit width by 8 ft deep, off the rear wall, on three posts — " +
+                    "which is what makes BM-PAT two 10.0 ft bays. It projects behind the 20 x 36 " +
+                    "rectangle." }
+          ]
+        }
       },
       note: "Attached for-sale townhomes are a genuinely cookie-cutter product in DFW, Austin, " +
             "Charlotte, Raleigh, Orlando and Tampa, and this is the small front-load unit. The frame " +
@@ -1307,7 +1503,11 @@
           span: 11.0, runFt: 36, count: 28, skuGroup: "floor",
           note: "The interior bearing line sits 11.0 ft off the left party wall because that is the " +
                 "garage's inboard side wall, stacked and continuous to the rear of the unit. The bay " +
-                "runs the full 36 ft depth. Piece count follows the spacing the solver picks." },
+                "runs the full 36 ft depth. Count is that 36 ft run at the plan's declared 16 in " +
+                "o.c. floor spacing plus one: 36/(16/12) + 1 = 28. The spacing is a plan " +
+                "declaration (geometry.floorSpacingIn), not an output — the solver picks a section " +
+                "for a demand and the spacing is an INPUT to the tributary that demand is computed " +
+                "from, so a count that followed the solver could not be stated here at all." },
 
         { id: "FJ-2", label: "2nd floor joist · 9 ft bay", role: "joist",
           span: 9.0, runFt: 26, count: 21, skuGroup: "floor",
@@ -1328,6 +1528,9 @@
         { id: "GB-1", label: "Flush girder · great-room opening in the bearing line", role: "beam",
           span: 12.0, trib: 10.0, count: 1, carries: "floor", braced: true,
           skuGroup: "girder", escalateExpected: true,
+          opening: { level: 1, wall: "BL1", offsetFt: 20,
+            note: "the 12 ft break in the bearing line, from 20 ft to 32 ft back — behind the " +
+                  "garage, which ends at 20 ft" },
           note: "The interior bearing line is interrupted behind the garage for the great room. The " +
                 "line takes half of each adjacent bay: 11.0/2 + 9.0/2 = 10.0 ft. 12.0 ft is the " +
                 "opening. In the market this is a multi-ply LVL or a steel W-shape; the catalog " +

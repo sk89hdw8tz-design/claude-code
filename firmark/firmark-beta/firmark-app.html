@@ -4027,20 +4027,52 @@ var FM = (function () {
           carries: "roof", bearing: 3.0, skuGroup: "header", headHeightIn: 80, wallPosition: "exterior-first-floor",
           note: "Tributary is half the truss span where the trusses bear on this wall. A 4 ft " +
                 "tributary here would follow from neither the 46 ft clear span nor the gable end." },
-        { id: "HDR-GAR-G", label: "Garage header · gable end over the door", role: "header", span: 16.67, trib: 2.0, count: 1,
-          component: true,
-          componentNote: "OUT OF SCOPE — NOT CHECKED. A gable-end header carries the gable wall " +
-            "standing on it, and ASSEMBLY{} has no wall dead load of any kind, so the model cannot " +
-            "express the dominant term. It is also a TRIANGULAR load, which calc-spec §8.3 excludes " +
-            "outright. Checked as a 2 ft roof strip this mark printed 4x8 at DCR 0.896; across the " +
-            "plausible envelope of pitch, gable width and wall weight the same member runs 1.10 to " +
-            "1.78 — it fails in every case. Re-admit only once the plan declares roof pitch, gable " +
-            "width and opening offset, with a stated moment-equivalent uniform.",
-          carries: "roof", bearing: 3.0, skuGroup: "header", headHeightIn: 84, wallPosition: "exterior-first-floor",
-          note: "Same opening as HDR-GAR-B. The truss direction is the entire design: 2 ft of tributary here, 11 ft there." },
-        { id: "HDR-GAR-B", label: "Garage header · trusses bearing", role: "header", span: 16.67, trib: 11.0, count: 1,
+        /* HDR-GAR-G IS GONE, AND THAT IS THE RESOLUTION OF A DATA DEFECT.
+           This plan carried TWO marks for ONE 16'-8" hole — HDR-GAR-G read as
+           a gable end at 2.0 ft of tributary, HDR-GAR-B read as a truss
+           bearing line at 11.0 ft — and each said in its own note that it was
+           the same opening as the other. Two marks for one opening is not a
+           disagreement a schedule can carry: the estimator counts two
+           headers, the BOM orders two, and the framer stands in front of one
+           hole. It had to be settled, not disclosed.
+
+           It is settled by the plan's own geometry. The garage door is in the
+           street face. The street face is one of the two 50 ft walls, and
+           geometry.bearingLines says in as many words that those two walls
+           are the bearing lines — the whole product feature of this plan is
+           that the trusses clear-span the 46 ft depth onto them. A gable end
+           on this plan is one of the 46 ft walls, and no garage door is in
+           one: this is a front-load garage, and a side-load elevation is not
+           in plan.elevations. So the gable-end reading describes a condition
+           this plan does not have, and it is deleted rather than carried.
+
+           Nothing is lost by deleting it. Everything HDR-GAR-G's
+           componentNote said about gable-end headers — the wall dead load
+           §L6 has no entry for, the triangular load §8.3 excludes — is said
+           by HDR-GBL on Starter 1210, which is a REAL gable-end header in a
+           wall this engine agrees is a gable end.
+
+           And HDR-GAR-B's tributary moved 11.0 -> 23.0 in the same breath,
+           because 11.0 was the OTHER plan's condition borrowed onto this one.
+           11.0 ft is half a 22 ft garage depth: it is what you get when the
+           roof over the garage runs its own short truss span onto a bearing
+           wall behind the garage. That is exactly Two-Story 2450's
+           HDR-GAR-2S, and that plan declares the wall behind its garage.
+           This plan declares no third bearing line at all, so on this roof
+           the trusses over the garage are the same 46 ft clear span as
+           everywhere else and this header takes half of them — the same 23.0
+           ft HDR-W and HDR-SLD take in the same walls. A tributary is a
+           property of the wall, not of the opening, which is the principle
+           Starter 1210 states outright. */
+        { id: "HDR-GAR-B", label: "Garage header · trusses bearing", role: "header", span: 16.67, trib: 23.0, count: 1,
           carries: "roof", bearing: 3.0, skuGroup: "header", headHeightIn: 84, wallPosition: "exterior-first-floor", escalateExpected: true,
-          note: "Under a bearing truss line this is a 3-ply LVL or a girder truss in every one of these markets." },
+          opening: { level: 1, face: "front", offsetFt: 31.915,
+            note: "16'-0\" door centred in the 20 ft garage bay, which runs 30-50 ft along the front face" },
+          note: "The 16'-8\" opening is in the front 50 ft wall, which is a truss bearing line, so it " +
+                "takes half the 46 ft clear span like every other opening in that wall. Under a " +
+                "bearing truss line at this tributary it is a 3-ply LVL or a girder truss in every " +
+                "one of these markets, and it escalates here rather than printing a sawn member " +
+                "nobody would build." },
         { id: "HDR-SLD", label: "Rear slider header · under clear-span truss", role: "header", span: 12.0, trib: 23.0, count: 1,
           carries: "roof", bearing: 3.0, skuGroup: "header", headHeightIn: 80, wallPosition: "exterior-first-floor", escalateExpected: true,
           note: "Tributary is half the 46 ft truss span. This is why exterior openings in production single-stories " +
@@ -4057,15 +4089,55 @@ var FM = (function () {
       ],
       geometry: {
         footprintFt: [50, 46],
-        underRoofSf: 1860,
+        /* underRoofSf used to read 1860, which is not 50 x 46 and not the
+           area under any roof: 1,860 sf is the CONDITIONED area — the number
+           on the sales sheet, and the number in this plan's own summary. The
+           two-car garage is inside the rectangle, so 2,300 - 440 = 1,860 and
+           the field was carrying the wrong one of the two. Starter 1210
+           declares both under the same names and closes the same way. */
+        underRoofSf: 2300,
+        conditionedSf: 1860,
         trussSpanFt: 46,
         trussSpacingIn: 24,
         bearingLines: "the two 50 ft walls. The 46 ft clear span is the product feature — it is what " +
-                      "makes the partitions movable between elevations.",
+                      "makes the partitions movable between elevations. There is no third bearing " +
+                      "line: the trusses over the garage are the same clear span as the trusses over " +
+                      "the house, which is what decides the garage-door header (see HDR-GAR-B).",
+        garage: { widthFt: 20, depthFt: 22, sf: 440, cars: 2 },
         lanaiDepthFt: 14,
         note: "Stated design geometry, not a weight. The 14 ft lanai depth is what HDR-W's 23.0 ft " +
               "and BM-LAN's 7.0 ft tributaries already imply — half the truss span and half the " +
-              "lanai depth respectively. It is written down here so an elevation can move it."
+              "lanai depth respectively. It is written down here so an elevation can move it.",
+        drawn: {
+          note: "WHERE the numbers above sit. Origin is the front-left corner of the 50 ft street " +
+                "face; the front of the house is the wall at y = 0. Areas close: 50 x 46 = 2,300 sf " +
+                "under roof, less the 20 x 22 = 440 sf two-car garage, leaves the 1,860 sf " +
+                "conditioned this plan is sold as.",
+          garageAt: { face: "front", offsetFt: 30,
+            note: "The two-car garage is at the RIGHT end of the street face — 50 - 20 = 30 ft from " +
+                  "the left corner — and 22 ft deep of the 46 ft depth. 20 ft of width is what a " +
+                  "16 ft door needs once you allow the jambs and the return walls, and 440 sf is the " +
+                  "two-car garage the summary declares." },
+          interiorWalls: [
+            { id: "GW1", fromFt: [30, 0], toFt: [30, 22], bearing: false,
+              note: "Garage inboard side wall. Non-bearing: the trusses run front to back and this " +
+                    "wall runs with them." },
+            { id: "GW2", fromFt: [30, 22], toFt: [50, 22], bearing: false,
+              note: "Garage rear wall. NON-BEARING, and this is the wall the deleted HDR-GAR-G " +
+                    "reading needed to exist. It does not carry roof: bearingLines declares two " +
+                    "bearing lines on this plan and this is not one of them." }
+          ],
+          appendages: [
+            { id: "lanai", label: "lanai", widthFt: 40, depthFt: 14,
+              face: "rear", offsetFt: 0, carriedBy: "BM-LAN x2 and BM-LAN-W on posts (PST-LAN)",
+              note: "40 ft wide is the beam line the marks already declare — BM-LAN's two 12.0 ft " +
+                    "bays plus BM-LAN-W's 16.0 ft wide bay — and it runs from the left corner of the " +
+                    "46 ft depth, leaving the last 10 ft of the rear face against the garage side of " +
+                    "the house. 14 ft deep is half of BM-LAN's declared 7.0 ft tributary, doubled. " +
+                    "It projects BEHIND the 50 x 46 rectangle on its own roof, which is why the lanai " +
+                    "beams take half the lanai depth and not half the 46 ft truss span." }
+          ]
+        }
       },
       elevations: [
         { id: "a", kind: "elevation", label: "Elevation A · gable, 14 ft lanai", base: true,
@@ -4419,7 +4491,37 @@ var FM = (function () {
         coveredEntryFt: [8, 6],
         eaveOverhangFt: 1.0,
         note: "Stated design geometry, not a weight. Every span, tributary and count on this plan " +
-              "is derived from these seven numbers and the derivation is written on the mark."
+              "is derived from these seven numbers and the derivation is written on the mark.",
+        drawn: {
+          note: "WHERE the numbers above sit. Origin is the front-left corner of the 46 ft street " +
+                "face: +x runs right along the front, +y runs back into the lot, and the front of " +
+                "the house is the wall at y = 0. Areas close on this layout: 46 x 32 = 1,472 sf " +
+                "under roof, less the 12 x 22 = 264 sf garage, leaves the 1,208 sf conditioned the " +
+                "plan declares.",
+          garageAt: { face: "front", offsetFt: 34,
+            note: "The 12 ft x 22 ft garage is at the RIGHT end of the street face — 46 - 12 = 34 ft " +
+                  "from the left corner — and runs 22 ft of the 32 ft depth, leaving a 10 ft deep " +
+                  "strip of house behind it. It is INSIDE the 46 x 32 rectangle; the plan's own " +
+                  "underRoofSf and conditionedSf only reconcile if it is. A left-hand garage is the " +
+                  "mirror plan (1210R) and is a separate sheet, not a variant of this one." },
+          interiorWalls: [
+            { id: "GW1", fromFt: [34, 0], toFt: [34, 22], bearing: false,
+              note: "Garage inboard side wall. NON-BEARING, and that is the plan's own claim being " +
+                    "drawn rather than asserted: the trusses clear-span the 32 ft depth onto the two " +
+                    "46 ft walls, so this wall runs parallel to them and carries none. It is the wall " +
+                    "that would have been the third bearing line if there were one." },
+            { id: "GW2", fromFt: [34, 22], toFt: [46, 22], bearing: false,
+              note: "Garage rear wall, 22 ft back. Non-bearing under a 32 ft clear span." }
+          ],
+          appendages: [
+            { id: "entry", label: "covered entry", widthFt: 8, depthFt: 6,
+              face: "front", offsetFt: 24, carriedBy: "BM-ENT on two posts (PST-ENT)",
+              note: "The 8 ft x 6 ft stoop runs from 24 ft to 32 ft along the front face, so its " +
+                    "right edge stands 2 ft clear of the garage wall at 34 ft and the front door " +
+                    "centres on it at 28 ft. It projects FORWARD of the 46 x 32 rectangle, which is " +
+                    "why it is not in underRoofSf." }
+          ]
+        }
       },
       note: "The genuinely small end of this market — the 3/2 entry product built two hundred times " +
             "in one subdivision. One decision sets the whole frame: the common trusses clear-span the " +
@@ -4447,6 +4549,8 @@ var FM = (function () {
         { id: "HDR-ENT", label: "Front entry door header", role: "header",
           span: 3.67, trib: 16.0, count: 1, carries: "roof", bearing: 3.0,
           skuGroup: "header", headHeightIn: 80, wallPosition: "exterior-first-floor",
+          opening: { level: 1, face: "front", offsetFt: 26.415,
+            note: "centred on the 8 ft covered entry, which runs 24-32 ft along the front face" },
           note: "3'-0\" door: rough opening 3'-2\" plus 3 in of bearing at each end = 3'-8\" = 3.67 ft. " +
                 "Same 16.0 ft as HDR-W — it is in the same bearing wall, and that is the point of a " +
                 "clear-span truss plan: the tributary is a property of the wall, not of the opening." },
@@ -4460,6 +4564,8 @@ var FM = (function () {
         { id: "HDR-GAR", label: "One-car garage door header · trusses bearing", role: "header",
           span: 9.67, trib: 16.0, count: 1, carries: "roof", bearing: 4.5,
           skuGroup: "header", headHeightIn: 84, wallPosition: "exterior-first-floor",
+          opening: { level: 1, face: "front", offsetFt: 35.54,
+            note: "centred in the 12 ft garage bay, which runs 34-46 ft along the front face" },
           note: "9'-0\" single garage door: rough opening 9'-2\" plus 3 in of bearing at each end = " +
                 "9'-8\" = 9.67 ft. The garage door is in the FRONT 46 ft wall, which is a truss " +
                 "bearing line, so it takes the same 16.0 ft every other opening in that wall takes. " +
@@ -4595,8 +4701,98 @@ var FM = (function () {
                       "splits the 20 ft width into an 11.0 ft bay and a 9.0 ft bay.",
         coveredPatioFt: [20, 8],
         eaveOverhangFt: 1.0,
+        /* DECLARED, not derived, and the marks were corrected to match it.
+           FJ-1 used to end "Piece count follows the spacing the solver
+           picks." That sentence is backwards about this tool and about the
+           trade. The solver picks a SECTION for a demand; it never picks a
+           spacing, and it cannot, because the spacing is an input to the
+           tributary the demand is computed from. On a real framing plan the
+           spacing is a note on the drawing — "2x_ FLR JSTS @ 16" O.C." — set
+           by the sheathing and the deflection target, and the joist depth
+           follows from it. Getting that backwards is what left three floor
+           regions with no spacing, which is a geometry ERROR and blocked
+           approval gate 1 on a plan that had, in fact, declared enough.
+
+           16 in o.c. is not a guess either: all three joist counts on this
+           plan read back to it and none of them reads back to anything else.
+           28 pieces over a 36 ft run is 36/(16/12) + 1 = 28 exactly; 21 over
+           26 ft and 9 over 10 ft are the same layout rounded up to a whole
+           joist. That is the same inversion cad.js already trusts for the
+           truss counts, and it is available here only because the counts are
+           now declared as a consequence of a spacing rather than of a search. */
+        floorSpacingIn: 16,
         note: "Stated design geometry, not a weight. This is an INTERIOR unit of an attached row: " +
-              "both party walls are bearing and both are shared. An end unit is a different plan."
+              "both party walls are bearing and both are shared. An end unit is a different plan.",
+        drawn: {
+          note: "WHERE the numbers above sit. Origin is the front-left corner of the 20 ft street " +
+                "face; the front of the unit is the wall at y = 0 and both side walls are party " +
+                "walls. Areas close: 20 x 36 = 720 sf per floor, two floors = 1,440 sf, less the " +
+                "11 x 20 = 220 sf garage, leaves the 1,220 sf conditioned the plan declares.",
+          partyWallSide: "both",
+          garageAt: { face: "front", offsetFt: 0,
+            note: "The one-car garage is against the LEFT party wall, 11 ft wide by 20 ft deep. Its " +
+                  "inboard side wall IS the interior bearing line — that is what bearingLines says " +
+                  "in as many words — so the garage width and the 11.0 ft joist bay are one " +
+                  "dimension, not two that happen to agree." },
+          interiorWalls: [
+            { id: "BL1", fromFt: [11, 0], toFt: [11, 36], bearing: true,
+              note: "The interior bearing line: front to back, 11.0 ft off the LEFT party wall, " +
+                    "running the full 36 ft depth. It is the garage's inboard side wall, stacked and " +
+                    "continuous to the rear of the unit, and it splits the 20 ft width into FJ-1's " +
+                    "11.0 ft bay and FJ-2/FJ-3's 9.0 ft bay. The plan already named the side; it is " +
+                    "declared here as a dimension instead of as prose." },
+            { id: "GW1", fromFt: [0, 20], toFt: [11, 20], bearing: false,
+              note: "Garage rear wall, 20 ft back. Non-bearing: the floor above spans across the " +
+                    "unit, party wall to line to party wall, so a wall running the other way carries " +
+                    "no joists." }
+          ],
+          upperStorey: {
+            id: "L2", label: "Second floor",
+            note: "The second floor is the full 20 x 36 = 720 sf footprint — an interior townhome " +
+                  "unit does not step in, because both its side walls are shared and there is " +
+                  "nothing to step back from.",
+            outline: [
+              { id: "W1", fromFt: [0, 0],  toFt: [20, 0],  face: "front", note: "Front wall" },
+              { id: "W2", fromFt: [20, 0], toFt: [20, 36], face: "right", note: "Right party wall" },
+              { id: "W3", fromFt: [0, 36], toFt: [20, 36], face: "rear",  note: "Rear wall" },
+              { id: "W4", fromFt: [0, 0],  toFt: [0, 36],  face: "left",  note: "Left party wall" }
+            ],
+            interiorWalls: [
+              { id: "BL1", fromFt: [11, 0], toFt: [11, 36], bearing: false,
+                note: "The bearing line stacks to the second floor, but carries no framing there: " +
+                      "the roof trusses clear-span the 20 ft width party wall to party wall, which " +
+                      "is why every second-floor partition on this plan is non-bearing and the loft " +
+                      "option moves nothing." }
+            ]
+          },
+          framing: [
+            { id: "F-ROOF", level: "L2", bearsOnLevel: "L2", kind: "roof",
+              rectFt: [0, 0, 20, 36], spanDir: "left-to-right", spanFt: 20,
+              spacingIn: 24, system: "truss",
+              note: "Common trusses at 24 in o.c. clear-spanning the 20 ft width party wall to party " +
+                    "wall. T-1's count of 19 is the 36 ft depth at 24 in o.c. plus one." },
+            { id: "F-FLR-1", level: "L2", bearsOnLevel: "L1", kind: "floor",
+              rectFt: [0, 0, 11, 36], spanDir: "left-to-right", spanFt: 11, spacingIn: 16,
+              note: "FJ-1's bay: 11.0 ft from the left party wall to the bearing line, the full 36 ft " +
+                    "depth. Bears on first-floor walls, which is what a second floor does." },
+            { id: "F-FLR-3", level: "L2", bearsOnLevel: "L1", kind: "floor",
+              rectFt: [11, 0, 20, 10], spanDir: "left-to-right", spanFt: 9, spacingIn: 16,
+              note: "FJ-3's bay: the 10 ft bath-and-laundry stretch of the 9.0 ft bay, at the FRONT " +
+                    "of the unit over the garage. Same span as FJ-2 and a heavier assembly — tile on " +
+                    "backer — so it is drawn as its own region rather than folded into FJ-2's." },
+            { id: "F-FLR-2", level: "L2", bearsOnLevel: "L1", kind: "floor",
+              rectFt: [11, 10, 20, 36], spanDir: "left-to-right", spanFt: 9, spacingIn: 16,
+              note: "FJ-2's bay: the remaining 26 ft of the 9.0 ft bay, from the bath stretch back to " +
+                    "the rear wall. 36 - 10 = 26 ft is FJ-2's own declared run." }
+          ],
+          appendages: [
+            { id: "patio", label: "rear covered patio", widthFt: 20, depthFt: 8,
+              face: "rear", offsetFt: 0, carriedBy: "BM-PAT on three posts (PST-PAT)",
+              note: "The full 20 ft unit width by 8 ft deep, off the rear wall, on three posts — " +
+                    "which is what makes BM-PAT two 10.0 ft bays. It projects behind the 20 x 36 " +
+                    "rectangle." }
+          ]
+        }
       },
       note: "Attached for-sale townhomes are a genuinely cookie-cutter product in DFW, Austin, " +
             "Charlotte, Raleigh, Orlando and Tampa, and this is the small front-load unit. The frame " +
@@ -4620,7 +4816,11 @@ var FM = (function () {
           span: 11.0, runFt: 36, count: 28, skuGroup: "floor",
           note: "The interior bearing line sits 11.0 ft off the left party wall because that is the " +
                 "garage's inboard side wall, stacked and continuous to the rear of the unit. The bay " +
-                "runs the full 36 ft depth. Piece count follows the spacing the solver picks." },
+                "runs the full 36 ft depth. Count is that 36 ft run at the plan's declared 16 in " +
+                "o.c. floor spacing plus one: 36/(16/12) + 1 = 28. The spacing is a plan " +
+                "declaration (geometry.floorSpacingIn), not an output — the solver picks a section " +
+                "for a demand and the spacing is an INPUT to the tributary that demand is computed " +
+                "from, so a count that followed the solver could not be stated here at all." },
 
         { id: "FJ-2", label: "2nd floor joist · 9 ft bay", role: "joist",
           span: 9.0, runFt: 26, count: 21, skuGroup: "floor",
@@ -4641,6 +4841,9 @@ var FM = (function () {
         { id: "GB-1", label: "Flush girder · great-room opening in the bearing line", role: "beam",
           span: 12.0, trib: 10.0, count: 1, carries: "floor", braced: true,
           skuGroup: "girder", escalateExpected: true,
+          opening: { level: 1, wall: "BL1", offsetFt: 20,
+            note: "the 12 ft break in the bearing line, from 20 ft to 32 ft back — behind the " +
+                  "garage, which ends at 20 ft" },
           note: "The interior bearing line is interrupted behind the garage for the great room. The " +
                 "line takes half of each adjacent bay: 11.0/2 + 9.0/2 = 10.0 ft. 12.0 ft is the " +
                 "opening. In the market this is a multi-ply LVL or a steel W-shape; the catalog " +
@@ -10100,6 +10303,7 @@ var FM = (function () {
       /* "user" — a human set it; "assumed" — fromPlan chose it because the
          source plan declares no stud size, and validate() says so out loud */
       thicknessBasis: "user",
+      face: null,
       note: ""
     };
     if (over) Object.keys(over).forEach(function (k) { w[k] = over[k]; });
@@ -10121,6 +10325,10 @@ var FM = (function () {
      this engine selects members for. Anything else is somebody else's design
      and the takeoff carries it as a component rather than sizing it. */
   var SYSTEMS = ["truss", "manufactured"];
+
+  /* Which face of the exterior envelope a wall is, when fromPlan can say. Used
+     to place openings a mark names by face rather than by wall id. */
+  var FACES = ["front", "rear", "left", "right"];
 
   function newFraming(level, poly, over) {
     var f = {
@@ -10176,6 +10384,14 @@ var FM = (function () {
           exterior: !!w.exterior, bearing: !!w.bearing,
           heightFt: num(w.heightFt), thicknessIn: num(w.thicknessIn),
           thicknessBasis: w.thicknessBasis === "assumed" ? "assumed" : "user",
+          /* Which face of the envelope this wall is. Whitelisted here because
+             THIS NORMALISER IS A WHITELIST: a field on a wall that is not
+             listed is dropped silently on every save and every reload. That
+             already bit once — `system` on a framing region vanished between
+             fromPlan() and the takeoff, taking the truss classification with
+             it — and it has now bitten a second time on `face`. Anything added
+             to newWall() must be added here in the same edit. */
+          face: FACES.indexOf(w.face) === -1 ? null : w.face,
           note: w.note || "", basis: w.basis || ""
         });
       });
@@ -10898,12 +11114,18 @@ var FM = (function () {
   /* Every wall in the model that lies along this edge and runs with it.
      Model-wide on purpose: a second-floor region bears on first-floor
      walls, which is the only way a two-storey model can work. */
-  function wallsAlongEdge(model, ax, ay, bx, by) {
+  function wallsAlongEdge(model, ax, ay, bx, by, onlyLevelId) {
     var out = [];
     var ex = bx - ax, ey = by - ay, eL = Math.sqrt(ex * ex + ey * ey);
     if (eL < 1e-9) return out;
     var ux = ex / eL, uy = ey / eL, nx = -uy, ny = ux;
     (model.levels || []).forEach(function (L) {
+      /* A second-floor FLOOR bears on first-floor walls and a second-floor
+         ROOF bears on second-floor walls, and on a two-storey plan those
+         walls stand one above the other at the same x,y. Without the level
+         filter both are found and the region claims to bear on a wall above
+         itself. The plan states which, because a framing plan does. */
+      if (onlyLevelId && L.id !== onlyLevelId) return;
       (L.walls || []).forEach(function (w) {
         var wl = wallLength(w);
         if (wl < 1e-9) return;
@@ -11123,7 +11345,11 @@ var FM = (function () {
         }
         var x0 = Math.min(num(r[0]), num(r[2])), x1 = Math.max(num(r[0]), num(r[2]));
         var y0 = Math.min(num(r[1]), num(r[3])), y1 = Math.max(num(r[1]), num(r[3]));
-        var dirDeg = own(SPAN_DIRS, d.spanDir) ? SPAN_DIRS[d.spanDir] : null;
+        /* NOT `own(...) ? ... : null` — "left-to-right" maps to 0 degrees,
+           which is falsy, and every left-to-right region silently lost its
+           direction */
+        var dirDeg = Object.prototype.hasOwnProperty.call(SPAN_DIRS, String(d.spanDir))
+          ? SPAN_DIRS[d.spanDir] : null;
         if (dirDeg === null) {
           hole("Framing region " + d.id + " span direction",
                "spanDir is \"" + String(d.spanDir) + "\", and only \"front-to-back\" and " +
@@ -11136,14 +11362,15 @@ var FM = (function () {
         var edges = dirDeg === 90
           ? [[x0, y0, x1, y0], [x0, y1, x1, y1]]
           : [[x0, y0, x0, y1], [x1, y0, x1, y1]];
+        var onLv = d.bearsOnLevel || lv.id;
         var sup = [], edgeNames = [];
         edges.forEach(function (e, i) {
-          var hits = wallsAlongEdge(m, e[0], e[1], e[2], e[3]);
+          var hits = wallsAlongEdge(m, e[0], e[1], e[2], e[3], onLv);
           if (!hits.length) {
             hole("What framing region " + d.id + " bears on at its " + (i === 0 ? "first" : "second") +
                  " end",
-                 "No wall in this model lies along the edge from (" + f1(e[0]) + ", " + f1(e[1]) +
-                 ") to (" + f1(e[2]) + ", " + f1(e[3]) + " ) ft. A simple span needs two supports and " +
+                 "No wall on level " + onLv + " lies along the edge from (" + f1(e[0]) + ", " + f1(e[1]) +
+                 ") to (" + f1(e[2]) + ", " + f1(e[3]) + ") ft. A simple span needs two supports and " +
                  "this model has no beam or post entity (register §Q.2), so a region landing on a beam " +
                  "line cannot be expressed at all.",
                  "Draw the wall at that edge, or move the region edge onto the wall that carries it.");
@@ -11518,32 +11745,59 @@ var FM = (function () {
        outside them is refused for having no tributary — which is a defect of
        the placeholder, not of the plan. A wall nothing bears on keeps its
        whole length: there is nothing to be outside of. */
+    /* Reproduces takeoff.js's own admissibility test rather than
+       approximating it, because a placeholder that lands outside it is
+       refused by the takeoff and the refusal reads as a defect in the PLAN
+       when it is really a defect in the placeholder:
+
+         · a region that covers only PART of an opening is a partial-span
+           load, which calc-spec §8.3 excludes — so the wall is cut at every
+           region boundary and an opening must sit inside one piece;
+         · an INTERIOR bearing wall must carry framing on BOTH sides over the
+           opening, or half its load is missing;
+         · a wall nothing bears on keeps its whole length. There is nothing
+           to be outside of, and the takeoff will refuse the header for a
+           reason of its own (it carries a wall, and there is no wall dead
+           load) which is the right reason. */
     function framedSegments(wid) {
-      var segs = [], w = null;
+      var w = null;
       m.levels.forEach(function (lv) {
         (lv.walls || []).forEach(function (x) { if (x.id === wid) w = x; });
       });
-      if (!w) return segs;
+      if (!w) return [];
       var len = wallLength(w), ux = (w.x2 - w.x1) / len, uy = (w.y2 - w.y1) / len;
+      var nx = -uy, ny = ux;
+      var covers = [], cuts = [0, len];
       m.levels.forEach(function (lv) {
         (lv.framing || []).forEach(function (f) {
           if ((f.bearsOn || []).indexOf(wid) === -1) return;
-          var lo = Infinity, hi = -Infinity;
+          var lo = Infinity, hi = -Infinity, cx = 0, cy = 0;
           f.polygon.forEach(function (p) {
             var t = (p[0] - w.x1) * ux + (p[1] - w.y1) * uy;
             if (t < lo) lo = t; if (t > hi) hi = t;
+            cx += p[0]; cy += p[1];
           });
-          segs.push([Math.max(0, lo), Math.min(len, hi)]);
+          cx /= f.polygon.length; cy /= f.polygon.length;
+          var side = ((cx - w.x1) * nx + (cy - w.y1) * ny) >= 0 ? "L" : "R";
+          lo = Math.max(0, lo); hi = Math.min(len, hi);
+          if (hi - lo <= 1e-6) return;
+          covers.push({ lo: lo, hi: hi, side: side });
+          cuts.push(lo); cuts.push(hi);
         });
       });
-      if (!segs.length) return [[0, len]];
-      /* merge */
-      segs.sort(function (a, b) { return a[0] - b[0]; });
-      var out = [segs[0].slice()], j;
-      for (j = 1; j < segs.length; j++) {
-        if (segs[j][0] <= out[out.length - 1][1] + 1e-6) {
-          out[out.length - 1][1] = Math.max(out[out.length - 1][1], segs[j][1]);
-        } else out.push(segs[j].slice());
+      if (!covers.length) return [[0, len]];
+      cuts.sort(function (a, b) { return a - b; });
+      var need = w.exterior === true ? 1 : 2;
+      var out = [], i;
+      for (i = 0; i + 1 < cuts.length; i++) {
+        var a = cuts[i], b = cuts[i + 1];
+        if (b - a <= 1e-6) continue;
+        var mid = (a + b) / 2, sides = {};
+        covers.forEach(function (c) { if (c.lo <= mid && mid <= c.hi) sides[c.side] = 1; });
+        /* deliberately NOT merged with the piece before it, even when both
+           qualify: the cut IS the region boundary, and an opening spanning
+           two regions is the partial-span load §8.3 excludes */
+        if (Object.keys(sides).length >= need) out.push([a, b]);
       }
       return out;
     }
@@ -11696,6 +11950,7 @@ var FM = (function () {
     currentModel: currentModel,
     currentSource: currentSource,
     SYSTEMS: SYSTEMS,
+    FACES: FACES,
     MODEL_VERSION: MODEL_VERSION,
     RULES: RULES,
     ASSUMED_STUD_IN: ASSUMED_STUD_IN,
@@ -21353,10 +21608,10 @@ var FM = (function () {
   function begin() { if (scopeDepth++ === 0) scope = { read: {}, blocked: {} }; }
   function end() { if (--scopeDepth <= 0) { scopeDepth = 0; scope = null; } }
 
-  /* -> { has, content, fp, complete, why:[], threw } */
+  /* -> { has, content, threw, digest } — the content only. */
   function readStage(stageId) {
     if (scope && Object.prototype.hasOwnProperty.call(scope.read, stageId)) return scope.read[stageId];
-    var r = { has: false, content: null, fp: null, complete: true, why: [], threw: null };
+    var r = { has: false, content: null, threw: null, digest: null };
     if (providers[stageId]) {
       var c = null;
       try { c = providers[stageId](); }
@@ -21367,14 +21622,49 @@ var FM = (function () {
         r.threw = (e && e.message) ? e.message : String(e);
         c = null;
       }
-      if (c !== null && c !== undefined) {
-        var d = fingerprintOf(c);
-        r.has = true; r.content = c;
-        r.fp = d.fp; r.complete = d.complete; r.why = d.why;
-      }
+      if (c !== null && c !== undefined) { r.has = true; r.content = c; }
     }
     if (scope) scope.read[stageId] = r;
     return r;
+  }
+
+  /* Taken LAZILY and at most once per read, because on a large model it is
+     the most expensive thing this file does and most of the six stages on a
+     run screen have no question outstanding that the answer could settle.
+     Nothing that could open a gate skips it — see `canInner`.
+
+     The shape is normalised on the way out, and `why` is guaranteed to be an
+     array even when it is empty. Every caller of this is on the path whose
+     whole job is to EXPLAIN why a fingerprint is not whole, so a caller that
+     throws while describing the problem takes down the mechanism that
+     protects the approval guarantee, and does it precisely when that
+     mechanism has something to say. An empty list is an answer; undefined is
+     a second failure on top of the first. */
+  function digestOf(read) {
+    if (read.digest) return read.digest;
+    var d = null;
+    if (read.has) {
+      try { d = fingerprintOf(read.content); }
+      catch (e) {
+        /* fingerprintOf catches everything the walk can throw. Reaching here
+           means the failure was in the machinery itself — a stack the engine
+           gave up on inside the handler, most likely. Fail closed. */
+        d = { fp: PARTIAL + "00000000000000000000000000000000", complete: false,
+              why: ["the fingerprint of this content could not be taken at all — " +
+                    ((e && e.message) ? e.message : String(e))], steps: 0 };
+      }
+    }
+    if (!d || typeof d !== "object") d = { fp: null, complete: true, why: [], steps: 0 };
+    if (!isArr(d.why)) d.why = [];
+    if (typeof d.complete !== "boolean") d.complete = false;
+    read.digest = d;
+    return d;
+  }
+
+  /* Reasons, joined, never empty — see the note on digestOf. */
+  function whyText(list) {
+    return (isArr(list) && list.length) ? list.join("; ")
+         : "no reason was recorded, which is itself a defect in this check";
   }
 
   function contentOf(stageId) {
@@ -21407,9 +21697,10 @@ var FM = (function () {
               "not a stage with nothing in it, and neither one can be approved."];
     }
     if (!read.has) return [];        /* "nothing yet" is said elsewhere, once */
-    if (!read.complete) {
+    var d = digestOf(read);
+    if (!d.complete) {
       return [label + " cannot be fingerprinted in full, so an approval could not be tied to " +
-              "it — " + read.why.join("; ") + ". An approval recorded against a partial " +
+              "it — " + whyText(d.why) + ". An approval recorded against a partial " +
               "fingerprint could not be falsified by a change to the part that was not read, " +
               "which is not an approval."];
     }
@@ -21476,18 +21767,18 @@ var FM = (function () {
        CONTENT THAT CAN NO LONGER BE READ IN FULL is the same shape again, one
        step subtler: the fingerprint still comes back, it just no longer covers
        everything. It must not be compared as though it did. */
-    var me = readStage(stageId);
+    var me = readStage(stageId), meD;
     if (me.threw) {
       moved.push({ stage: stageId, label: labelOf(stageId), self: true,
                    why: "reading this stage's content threw — " + me.threw });
     } else if (!me.has) {
       moved.push({ stage: stageId, label: labelOf(stageId), self: true,
                    why: "the content this stage was approved on is no longer there" });
-    } else if (!me.complete) {
+    } else if (!(meD = digestOf(me)).complete) {
       moved.push({ stage: stageId, label: labelOf(stageId), self: true,
                    why: "this stage's content can no longer be fingerprinted in full, so the " +
-                        "approval cannot be checked against it — " + me.why.join("; ") });
-    } else if (me.fp !== rec.fp) {
+                        "approval cannot be checked against it — " + whyText(meD.why) });
+    } else if (meD.fp !== rec.fp) {
       moved.push({ stage: stageId, label: labelOf(stageId), self: true });
     }
 
@@ -21495,7 +21786,7 @@ var FM = (function () {
 
     for (var i = 0; i < st.inputs.length; i++) {
       var upId = st.inputs[i], upLabel = labelOf(upId);
-      var up = readStage(upId);
+      var up = readStage(upId), upD;
       var upThen = (rec.sawFp && typeof rec.sawFp === "object" && !isArr(rec.sawFp))
                  ? rec.sawFp[upId] : null;
       if (typeof upThen !== "string" || !upThen || upThen.charAt(0) === PARTIAL) {
@@ -21510,11 +21801,11 @@ var FM = (function () {
       } else if (!up.has) {
         moved.push({ stage: upId, label: upLabel, self: false,
                      why: upLabel + "'s content is no longer there" });
-      } else if (!up.complete) {
+      } else if (!(upD = digestOf(up)).complete) {
         moved.push({ stage: upId, label: upLabel, self: false,
                      why: upLabel + "'s content can no longer be fingerprinted in full — " +
-                          up.why.join("; ") });
-      } else if (up.fp !== upThen) {
+                          whyText(upD.why) });
+      } else if (upD.fp !== upThen) {
         moved.push({ stage: upId, label: upLabel, self: false });
       }
     }
@@ -21550,18 +21841,31 @@ var FM = (function () {
       blocked.push("there is nothing to approve yet — " + st.label.toLowerCase() +
                    " has produced no content");
     }
-    blocked = blocked.concat(unusable(stageId, me));
-
-    /* An approval also records what it saw upstream, so an upstream stage
-       whose fingerprint is not whole blocks this gate too — otherwise the
-       tie to it would be to a partial reading. */
-    for (i = 0; i < st.inputs.length; i++) {
-      blocked = blocked.concat(unusable(st.inputs[i], readStage(st.inputs[i])));
-    }
+    if (me.threw) blocked = blocked.concat(unusable(stageId, me));
 
     /* a stage that declares blocking problems cannot be approved past them */
     var b = blockers(stageId);
     for (var j = 0; j < b.length; j++) blocked.push(b[j]);
+
+    /* THE FINGERPRINT CHECK IS LAST AND CONDITIONAL, and that ordering is
+       load-bearing rather than an optimisation with a nice story.
+
+       Taking a fingerprint is the expensive thing this file does, and the run
+       screen calls this for six stages on every render. So it is skipped
+       exactly when the gate is already shut for a reason that is already
+       being reported — and run, always, whenever the gate would otherwise be
+       OPEN. No stage can become approvable without its own content and every
+       input's content having been proved fingerprintable in full first.
+
+       An approval also records what it saw upstream, so an upstream stage
+       whose fingerprint is not whole blocks this gate too: otherwise the tie
+       to it would be a tie to a partial reading. */
+    if (!blocked.length) {
+      blocked = blocked.concat(unusable(stageId, me));
+      for (i = 0; i < st.inputs.length; i++) {
+        blocked = blocked.concat(unusable(st.inputs[i], readStage(st.inputs[i])));
+      }
+    }
 
     return { ok: blocked.length === 0, blockedBy: blocked };
   }
@@ -21584,16 +21888,16 @@ var FM = (function () {
          Belt and braces on top of it: an approval whose fingerprint is
          missing or partial is unfalsifiable, so writing one is worse than
          not approving at all. */
-      var me = readStage(stageId);
-      if (!me.has || !me.complete || typeof me.fp !== "string") {
+      var me = readStage(stageId), meD = digestOf(me);
+      if (!me.has || !meD.complete || typeof meD.fp !== "string") {
         return { ok: false, why: ["this stage's content could not be read in full at the moment " +
                                   "of approval, so there is nothing to record the approval against"] };
       }
       var saw = {}, blind = [];
       for (var i = 0; i < st.inputs.length; i++) {
-        var up = readStage(st.inputs[i]);
-        if (!up.has || !up.complete || typeof up.fp !== "string") blind.push(labelOf(st.inputs[i]));
-        else saw[st.inputs[i]] = up.fp;
+        var up = readStage(st.inputs[i]), upD = digestOf(up);
+        if (!up.has || !upD.complete || typeof upD.fp !== "string") blind.push(labelOf(st.inputs[i]));
+        else saw[st.inputs[i]] = upD.fp;
       }
       if (blind.length) {
         return { ok: false, why: ["could not read " + blind.join(" and ") + " in full at the " +
@@ -21605,10 +21909,10 @@ var FM = (function () {
         status: "approved",
         by: u.name, byId: u.id, role: st.needs,
         at: now(), note: note || "",
-        fp: me.fp, sawFp: saw
+        fp: meD.fp, sawFp: saw
       };
       save();
-      log({ kind: "approve", stage: stageId, note: note || "", fp: me.fp });
+      log({ kind: "approve", stage: stageId, note: note || "", fp: meD.fp });
       return { ok: true };
     } finally { end(); }
   }
@@ -21648,18 +21952,22 @@ var FM = (function () {
         var s = statusOfInner(st.id);
         var gate = canInner(st.id);
         var read = readStage(st.id);
+        /* Whatever THIS call had reason to compute — see digestOf(). null
+           means no decision in this snapshot turned on it, not that it is
+           unknowable. */
+        var d = read.digest;
         var row = {
           stage: st, status: s.status, rec: s.rec, moved: s.moved,
           can: gate.ok, blockedBy: gate.blockedBy,
           blockers: blockers(st.id),
           hasContent: read.has,
           threw: read.threw,
-          fp: read.fp,
-          fpComplete: read.has ? read.complete : null,
-          fpWhy: read.why
+          fpNow: d ? d.fp : null,
+          fpComplete: d ? d.complete : null,
+          fpWhy: d ? d.why : []
         };
         if (s.status === "stale") out.staleCount++;
-        if (read.has && !read.complete) out.notFingerprintable++;
+        if (d && read.has && !d.complete) out.notFingerprintable++;
         if (s.status !== "approved") {
           out.complete = false;
           if (!out.current) out.current = st.id;
@@ -24680,23 +24988,12 @@ var FM = (function () {
     return "";
   }
 
-  /* A provenance-carrying record rendered as one row: the value, its class
-     badge, and its citation. */
-  function rec(label, r, valueKey, unit) {
-    if (!r) return null;
-    var v = (typeof r === "object") ? r[valueKey] : r;
-    if (v === undefined || v === null) {
-      v = "not established";
-      unit = "";
-    }
-    return {
-      k: label,
-      v: esc(String(v)) + (unit ? " " + unit : "") +
-         (r.cls ? " <span class='badge " + clsBadge(r.cls) + "' style='margin-left:6px'>" +
-                  esc(String(r.cls)) + "</span>" : "") +
-         (r.cite ? "<span class='clause'>" + esc(r.cite) + "</span>" : "")
-    };
-  }
+  /* A provenance-carrying record used to render as one dl() row here. It was
+     replaced by factRow(), below: dl() puts the value AND its citation inside
+     `.dl-v`, which is a right-aligned nowrap mono column, and a citation
+     paragraph in it is clipped off the right edge of the card with no
+     scrollbar. Kept out rather than kept around — a second row renderer is
+     how the two would drift. */
 
   function n2(v, d) {
     return (v === null || v === undefined || !isFinite(v)) ? "—" : Number(v).toFixed(d === undefined ? 2 : d);
@@ -25093,6 +25390,37 @@ var FM = (function () {
     ]);
   }
 
+  /* A PROVENANCE ROW WHOSE CITATION IS ACTUALLY LEGIBLE.
+
+     Every value on this screen was built with dl(), and `.dl-v` is a
+     right-aligned MONO COLUMN with `white-space: nowrap` — it exists for
+     numbers. The citations here are paragraphs, so the design wind speed row
+     rendered 3,072 PIXELS PAST THE RIGHT EDGE of its card, clipped, with no
+     scrollbar and no affordance. What fell off included the sentence "MUST BE
+     CONFIRMED FOR THE ACTUAL SITE. This is a planning value, not a lookup"
+     and, after the Austin correction, "READ THIS OFF THE ASCE 7-22 MAP, NOT
+     7-16" — the two sentences on the screen that most needed reading.
+
+     This is register §O.1's B1 again (1,807px of table in a 996px container)
+     in a place nobody re-checked: the provenance was published and invisible,
+     which reads exactly like provenance that was never written. So the value
+     and its badges go on one line and the citation goes UNDER them as
+     wrapping prose. */
+  function factRow(label, value, badges, cite, note) {
+    var head = el("div", { style: "display:flex;gap:8px;align-items:baseline;flex-wrap:wrap" }, [
+      el("span", { style: "font-size:.84rem;color:var(--muted);min-width:11rem", text: label }),
+      el("span", { class: "mono", style: "font-weight:650;font-size:.86rem", text: String(value) })
+    ]);
+    (badges || []).forEach(function (b) {
+      if (!b) return;
+      head.appendChild(el("span", { class: "badge " + b.c, text: b.t, title: b.title || null }));
+    });
+    var kids = [head];
+    if (cite) kids.push(el("p", { class: "clause", style: "margin:3px 0 0", text: String(cite) }));
+    if (note) kids.push(el("p", { class: "clause", style: "margin:3px 0 0", text: String(note) }));
+    return el("div", { style: "padding:7px 0;border-bottom:1px dashed var(--line)" }, kids);
+  }
+
   function recheckedCard() {
     var rc = FM.juris.RECHECKED;
     if (!rc || !rc.length) return null;
@@ -25203,64 +25531,129 @@ var FM = (function () {
     }
 
     /* the code basis */
-    var codeRows = (site.codes || []).map(function (c) {
+    var codeBody = el("div", {});
+    if (!(site.codes || []).length) {
+      codeBody.appendChild(el("p", { class: "clause", text: "None recorded." }));
+    }
+    (site.codes || []).forEach(function (c) {
       /* HOW the value was retrieved rides next to the value, because "four
          independent routes agreed on this ordinance number" and "one search
          summary said so" are different claims and the Austin error was
          published under the second one wearing the confidence of the first. */
-      var rb = retrievalBadge(retrievalOf(c.src));
-      return {
-        k: esc(c.name),
-        v: esc(c.edition || "—") +
-           " <span class='badge " + clsBadge(c.cls) + "' style='margin-left:6px'>" + esc(String(c.cls || "?")) + "</span>" +
-           (rb ? " <span class='badge " + rb.c + "' style='margin-left:4px' title='" + esc(rb.title) + "'>" +
-                 esc(rb.t) + "</span>" : "") +
-           (c.status && c.status !== "in force"
-             ? " <span class='badge b-mute' style='margin-left:4px'>" + esc(String(c.status)) + "</span>" : "") +
-           "<span class='clause'>" + esc(c.cite || "") + (c.adopted ? " · adopted " + esc(c.adopted) : "") +
-           (c.asce ? " · references " + esc(c.asce) : "") + "</span>"
-      };
+      codeBody.appendChild(factRow(c.name, c.edition || "—", [
+        { c: clsBadge(c.cls), t: String(c.cls || "?") },
+        retrievalBadge(retrievalOf(c.src)),
+        (c.status && c.status !== "in force") ? { c: "b-mute", t: String(c.status) } : null,
+        c.asce ? { c: "b-blue", t: "references " + c.asce } : null
+      ], (c.cite || "") + (c.adopted ? "  · adopted " + c.adopted : ""), c.note || null));
     });
     host.appendChild(el("div", { style: "margin-bottom:16px" }, [
-      card("Governing code", null, dl(codeRows.length ? codeRows : [{ k: "—", v: "none recorded" }]),
+      card("Governing code", null, codeBody,
         (site.authority ? "Authority having jurisdiction: " + site.authority + ". " : "") +
         "The badge on each row says how the value was retrieved, not how sure this " +
         "product is of it: nothing here was read from a primary code document.")
     ]));
 
     /* the design criteria */
+    var critBody = el("div", {});
     function crit(label, v, unit) {
-      if (!v) return null;
-      return {
-        k: label,
-        v: esc(String(v.v !== undefined ? v.v : v.vMph !== undefined ? v.vMph : v.pgPsf !== undefined ? v.pgPsf : v.sdc)) +
-           (unit ? " " + unit : "") +
-           " <span class='badge " + clsBadge(v.cls) + "' style='margin-left:6px'>" + esc(String(v.cls || "?")) + "</span>" +
-           "<span class='clause'>" + esc(v.cite || "") + (v.note ? " · " + esc(v.note) : "") + "</span>"
-      };
+      if (!v) return;
+      var value = v.v !== undefined ? v.v
+                : v.vMph !== undefined ? v.vMph
+                : v.pgPsf !== undefined ? v.pgPsf : v.sdc;
+      critBody.appendChild(factRow(label,
+        (value === null || value === undefined ? "NOT DECLARED" : String(value) + (unit ? " " + unit : "")),
+        [ (value === null || value === undefined) ? { c: "b-mute", t: "not stated" }
+                                                  : { c: clsBadge(v.cls), t: String(v.cls || "?") },
+          retrievalBadge(retrievalOf(v.src)),
+          v.band && v.band.length === 2 ? { c: "b-gold", t: "band " + v.band[0] + "–" + v.band[1] } : null ],
+        v.cite || "", v.note || null));
     }
-    var critRows = [
-      crit("Design wind speed", site.wind, "mph"),
-      site.wind && site.wind.exposure ? { k: "Exposure", v: esc(site.wind.exposure) } : null,
-      crit("Ground snow", site.snow, "psf"),
-      crit("Seismic", site.seismic, ""),
-      /* These arrive as RECORDS — {inches, cls, cite, confirmed} and {level, …} —
-         because "every value carries cls and cite" outranks the convenience of
-         a bare number. String() on one prints "[object Object]". */
-      rec("Frost depth", site.frostDepthIn, "inches", "in"),
-      rec("Termite", site.termite, "level", ""),
-      rec("Decay", site.decay, "level", ""),
-      site.windborneDebris !== undefined
-        ? { k: "Wind-borne debris region", v: site.windborneDebris ? "Yes — opening protection required" : "No" }
-        : null,
-      site.hvhz !== undefined
-        ? { k: "HVHZ", v: site.hvhz ? "Yes — High-Velocity Hurricane Zone" : "No" }
-        : null
-    ].filter(Boolean);
+    function critRec(label, r, valueKey, unit) {
+      if (!r) return;
+      var v = (typeof r === "object") ? r[valueKey] : r;
+      critBody.appendChild(factRow(label,
+        (v === undefined || v === null) ? "not established" : String(v) + (unit ? " " + unit : ""),
+        [ (v === undefined || v === null) ? { c: "b-mute", t: "not stated" }
+                                          : { c: clsBadge(r.cls), t: String(r.cls || "?") } ],
+        (r && r.cite) || "", (r && r.note) || null));
+    }
+
+    crit("Design wind speed", site.wind, "mph");
+    /* Exposure is deliberately NOT a jurisdiction fact — ASCE 7 §26.7 makes it
+       a fetch determination at the site — so the record carries `exposure:
+       null` and an advisory `exposureCommon`. Printing the advisory as the
+       value would manufacture a design input. */
+    if (site.wind) {
+      critBody.appendChild(factRow("Exposure category",
+        site.wind.exposure ? String(site.wind.exposure) : "NOT DECLARED — a site determination",
+        [ site.wind.exposure ? { c: clsBadge(site.wind.cls), t: String(site.wind.cls || "?") }
+                             : { c: "b-mute", t: "not stated" },
+          (!site.wind.exposure && site.wind.exposureCommon)
+            ? { c: "b-gold", t: "commonly " + site.wind.exposureCommon + " — advisory" } : null ],
+        site.wind.exposureNote || "", null));
+    }
+    crit("Ground snow", site.snow, "psf");
+    crit("Seismic design category", site.seismic, "");
+    /* These arrive as RECORDS — {inches, cls, cite, confirmed} and {level, …} —
+       because "every value carries cls and cite" outranks the convenience of
+       a bare number. String() on one prints "[object Object]". */
+    critRec("Frost depth", site.frostDepthIn, "inches", "in");
+    critRec("Termite", site.termite, "level", "");
+    critRec("Decay", site.decay, "level", "");
+
+    /* WIND-BORNE DEBRIS — the row that was asserting a code requirement.
+
+       `site.windborneDebris` is a RECORD — {inRegion, likely, criterion, …} —
+       and this row read it as a boolean. An object is always truthy, so the
+       screen printed "Yes — opening protection required" on EVERY
+       jurisdiction in the product: on Austin, where the module says
+       inRegion:false, and on Orange County, where the module deliberately
+       says inRegion:NULL because the ASCE 7-22 test cannot be settled at
+       county level. The consultant set that value to null precisely so the
+       product would stop asserting it, and the view asserted it anyway — in
+       the affirmative, on the one criterion that decides whether impact-rated
+       glazing is required.
+
+       Three states, three sentences, and null is not one of the other two. */
+    if (site.windborneDebris !== undefined && site.windborneDebris !== null) {
+      var wb = site.windborneDebris;
+      var inR = (typeof wb === "object") ? wb.inRegion : wb;
+      var wbText = inR === true ? "YES — opening protection is required"
+                 : inR === false ? "No — outside the region on the test below"
+                 : "NOT DETERMINED — this is a site test, not a county fact";
+      var wbBadge = inR === true ? { c: "b-fail", t: "required" }
+                  : inR === false ? { c: "b-pass", t: "not required here" }
+                                  : { c: "b-gold", t: "undetermined" };
+      var likelyBadge = null;
+      if (typeof wb === "object" && wb.likely !== null && wb.likely !== undefined && wb.inRegion === null) {
+        likelyBadge = { c: "b-mute", t: "likely " + (wb.likely ? "yes" : "no") + " — advisory only" };
+      }
+      critBody.appendChild(factRow("Wind-borne debris region", wbText,
+        [wbBadge, likelyBadge,
+         (typeof wb === "object" && wb.cls) ? { c: clsBadge(wb.cls), t: String(wb.cls) } : null,
+         retrievalBadge(retrievalOf(typeof wb === "object" ? wb.src : null))],
+        (typeof wb === "object" ? (wb.cite || "") : ""),
+        (typeof wb === "object" ? (wb.criterion || "") : "")));
+      if (typeof wb === "object" && wb.note) {
+        critBody.appendChild(el("p", { class: "clause", style: "margin:2px 0 8px",
+                                       text: String(wb.note) }));
+      }
+    }
+    if (site.hvhz !== undefined && site.hvhz !== null) {
+      critBody.appendChild(factRow("HVHZ",
+        site.hvhz ? "Yes — High-Velocity Hurricane Zone" : "No",
+        [{ c: site.hvhz ? "b-fail" : "b-mute", t: site.hvhz ? "HVHZ" : "outside" }],
+        "The HVHZ is Miami-Dade and Broward only. It is its own code regime, not a wind speed.",
+        null));
+    }
 
     host.appendChild(el("div", { style: "margin-bottom:16px" }, [
-      card("Design criteria", null, dl(critRows),
-        "Every value carries its provenance class. A [site] value is a planning default until it is confirmed.")
+      card("Design criteria", null, critBody,
+        "Every value carries its provenance class and its citation, and the citation is " +
+        "printed rather than truncated. A [site] value is a planning default until it is " +
+        "confirmed; a row reading NOT DECLARED or NOT DETERMINED is one this product " +
+        "refuses to supply, not one it forgot.")
     ]));
 
     /* the pack this maps to, and how well */

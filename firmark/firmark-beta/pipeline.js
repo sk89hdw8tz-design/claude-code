@@ -672,10 +672,10 @@
   function begin() { if (scopeDepth++ === 0) scope = { read: {}, blocked: {} }; }
   function end() { if (--scopeDepth <= 0) { scopeDepth = 0; scope = null; } }
 
-  /* -> { has, content, fp, complete, why:[], threw } */
+  /* -> { has, content, threw, digest } — the content only. */
   function readStage(stageId) {
     if (scope && Object.prototype.hasOwnProperty.call(scope.read, stageId)) return scope.read[stageId];
-    var r = { has: false, content: null, fp: null, complete: true, why: [], threw: null };
+    var r = { has: false, content: null, threw: null, digest: null };
     if (providers[stageId]) {
       var c = null;
       try { c = providers[stageId](); }
@@ -686,14 +686,49 @@
         r.threw = (e && e.message) ? e.message : String(e);
         c = null;
       }
-      if (c !== null && c !== undefined) {
-        var d = fingerprintOf(c);
-        r.has = true; r.content = c;
-        r.fp = d.fp; r.complete = d.complete; r.why = d.why;
-      }
+      if (c !== null && c !== undefined) { r.has = true; r.content = c; }
     }
     if (scope) scope.read[stageId] = r;
     return r;
+  }
+
+  /* Taken LAZILY and at most once per read, because on a large model it is
+     the most expensive thing this file does and most of the six stages on a
+     run screen have no question outstanding that the answer could settle.
+     Nothing that could open a gate skips it — see `canInner`.
+
+     The shape is normalised on the way out, and `why` is guaranteed to be an
+     array even when it is empty. Every caller of this is on the path whose
+     whole job is to EXPLAIN why a fingerprint is not whole, so a caller that
+     throws while describing the problem takes down the mechanism that
+     protects the approval guarantee, and does it precisely when that
+     mechanism has something to say. An empty list is an answer; undefined is
+     a second failure on top of the first. */
+  function digestOf(read) {
+    if (read.digest) return read.digest;
+    var d = null;
+    if (read.has) {
+      try { d = fingerprintOf(read.content); }
+      catch (e) {
+        /* fingerprintOf catches everything the walk can throw. Reaching here
+           means the failure was in the machinery itself — a stack the engine
+           gave up on inside the handler, most likely. Fail closed. */
+        d = { fp: PARTIAL + "00000000000000000000000000000000", complete: false,
+              why: ["the fingerprint of this content could not be taken at all — " +
+                    ((e && e.message) ? e.message : String(e))], steps: 0 };
+      }
+    }
+    if (!d || typeof d !== "object") d = { fp: null, complete: true, why: [], steps: 0 };
+    if (!isArr(d.why)) d.why = [];
+    if (typeof d.complete !== "boolean") d.complete = false;
+    read.digest = d;
+    return d;
+  }
+
+  /* Reasons, joined, never empty — see the note on digestOf. */
+  function whyText(list) {
+    return (isArr(list) && list.length) ? list.join("; ")
+         : "no reason was recorded, which is itself a defect in this check";
   }
 
   function contentOf(stageId) {
@@ -726,9 +761,10 @@
               "not a stage with nothing in it, and neither one can be approved."];
     }
     if (!read.has) return [];        /* "nothing yet" is said elsewhere, once */
-    if (!read.complete) {
+    var d = digestOf(read);
+    if (!d.complete) {
       return [label + " cannot be fingerprinted in full, so an approval could not be tied to " +
-              "it — " + read.why.join("; ") + ". An approval recorded against a partial " +
+              "it — " + whyText(d.why) + ". An approval recorded against a partial " +
               "fingerprint could not be falsified by a change to the part that was not read, " +
               "which is not an approval."];
     }
@@ -795,18 +831,18 @@
        CONTENT THAT CAN NO LONGER BE READ IN FULL is the same shape again, one
        step subtler: the fingerprint still comes back, it just no longer covers
        everything. It must not be compared as though it did. */
-    var me = readStage(stageId);
+    var me = readStage(stageId), meD;
     if (me.threw) {
       moved.push({ stage: stageId, label: labelOf(stageId), self: true,
                    why: "reading this stage's content threw — " + me.threw });
     } else if (!me.has) {
       moved.push({ stage: stageId, label: labelOf(stageId), self: true,
                    why: "the content this stage was approved on is no longer there" });
-    } else if (!me.complete) {
+    } else if (!(meD = digestOf(me)).complete) {
       moved.push({ stage: stageId, label: labelOf(stageId), self: true,
                    why: "this stage's content can no longer be fingerprinted in full, so the " +
-                        "approval cannot be checked against it — " + me.why.join("; ") });
-    } else if (me.fp !== rec.fp) {
+                        "approval cannot be checked against it — " + whyText(meD.why) });
+    } else if (meD.fp !== rec.fp) {
       moved.push({ stage: stageId, label: labelOf(stageId), self: true });
     }
 
@@ -814,7 +850,7 @@
 
     for (var i = 0; i < st.inputs.length; i++) {
       var upId = st.inputs[i], upLabel = labelOf(upId);
-      var up = readStage(upId);
+      var up = readStage(upId), upD;
       var upThen = (rec.sawFp && typeof rec.sawFp === "object" && !isArr(rec.sawFp))
                  ? rec.sawFp[upId] : null;
       if (typeof upThen !== "string" || !upThen || upThen.charAt(0) === PARTIAL) {
@@ -829,11 +865,11 @@
       } else if (!up.has) {
         moved.push({ stage: upId, label: upLabel, self: false,
                      why: upLabel + "'s content is no longer there" });
-      } else if (!up.complete) {
+      } else if (!(upD = digestOf(up)).complete) {
         moved.push({ stage: upId, label: upLabel, self: false,
                      why: upLabel + "'s content can no longer be fingerprinted in full — " +
-                          up.why.join("; ") });
-      } else if (up.fp !== upThen) {
+                          whyText(upD.why) });
+      } else if (upD.fp !== upThen) {
         moved.push({ stage: upId, label: upLabel, self: false });
       }
     }
@@ -869,18 +905,31 @@
       blocked.push("there is nothing to approve yet — " + st.label.toLowerCase() +
                    " has produced no content");
     }
-    blocked = blocked.concat(unusable(stageId, me));
-
-    /* An approval also records what it saw upstream, so an upstream stage
-       whose fingerprint is not whole blocks this gate too — otherwise the
-       tie to it would be to a partial reading. */
-    for (i = 0; i < st.inputs.length; i++) {
-      blocked = blocked.concat(unusable(st.inputs[i], readStage(st.inputs[i])));
-    }
+    if (me.threw) blocked = blocked.concat(unusable(stageId, me));
 
     /* a stage that declares blocking problems cannot be approved past them */
     var b = blockers(stageId);
     for (var j = 0; j < b.length; j++) blocked.push(b[j]);
+
+    /* THE FINGERPRINT CHECK IS LAST AND CONDITIONAL, and that ordering is
+       load-bearing rather than an optimisation with a nice story.
+
+       Taking a fingerprint is the expensive thing this file does, and the run
+       screen calls this for six stages on every render. So it is skipped
+       exactly when the gate is already shut for a reason that is already
+       being reported — and run, always, whenever the gate would otherwise be
+       OPEN. No stage can become approvable without its own content and every
+       input's content having been proved fingerprintable in full first.
+
+       An approval also records what it saw upstream, so an upstream stage
+       whose fingerprint is not whole blocks this gate too: otherwise the tie
+       to it would be a tie to a partial reading. */
+    if (!blocked.length) {
+      blocked = blocked.concat(unusable(stageId, me));
+      for (i = 0; i < st.inputs.length; i++) {
+        blocked = blocked.concat(unusable(st.inputs[i], readStage(st.inputs[i])));
+      }
+    }
 
     return { ok: blocked.length === 0, blockedBy: blocked };
   }
@@ -903,16 +952,16 @@
          Belt and braces on top of it: an approval whose fingerprint is
          missing or partial is unfalsifiable, so writing one is worse than
          not approving at all. */
-      var me = readStage(stageId);
-      if (!me.has || !me.complete || typeof me.fp !== "string") {
+      var me = readStage(stageId), meD = digestOf(me);
+      if (!me.has || !meD.complete || typeof meD.fp !== "string") {
         return { ok: false, why: ["this stage's content could not be read in full at the moment " +
                                   "of approval, so there is nothing to record the approval against"] };
       }
       var saw = {}, blind = [];
       for (var i = 0; i < st.inputs.length; i++) {
-        var up = readStage(st.inputs[i]);
-        if (!up.has || !up.complete || typeof up.fp !== "string") blind.push(labelOf(st.inputs[i]));
-        else saw[st.inputs[i]] = up.fp;
+        var up = readStage(st.inputs[i]), upD = digestOf(up);
+        if (!up.has || !upD.complete || typeof upD.fp !== "string") blind.push(labelOf(st.inputs[i]));
+        else saw[st.inputs[i]] = upD.fp;
       }
       if (blind.length) {
         return { ok: false, why: ["could not read " + blind.join(" and ") + " in full at the " +
@@ -924,10 +973,10 @@
         status: "approved",
         by: u.name, byId: u.id, role: st.needs,
         at: now(), note: note || "",
-        fp: me.fp, sawFp: saw
+        fp: meD.fp, sawFp: saw
       };
       save();
-      log({ kind: "approve", stage: stageId, note: note || "", fp: me.fp });
+      log({ kind: "approve", stage: stageId, note: note || "", fp: meD.fp });
       return { ok: true };
     } finally { end(); }
   }
@@ -967,18 +1016,22 @@
         var s = statusOfInner(st.id);
         var gate = canInner(st.id);
         var read = readStage(st.id);
+        /* Whatever THIS call had reason to compute — see digestOf(). null
+           means no decision in this snapshot turned on it, not that it is
+           unknowable. */
+        var d = read.digest;
         var row = {
           stage: st, status: s.status, rec: s.rec, moved: s.moved,
           can: gate.ok, blockedBy: gate.blockedBy,
           blockers: blockers(st.id),
           hasContent: read.has,
           threw: read.threw,
-          fp: read.fp,
-          fpComplete: read.has ? read.complete : null,
-          fpWhy: read.why
+          fpNow: d ? d.fp : null,
+          fpComplete: d ? d.complete : null,
+          fpWhy: d ? d.why : []
         };
         if (s.status === "stale") out.staleCount++;
-        if (read.has && !read.complete) out.notFingerprintable++;
+        if (d && read.has && !d.complete) out.notFingerprintable++;
         if (s.status !== "approved") {
           out.complete = false;
           if (!out.current) out.current = st.id;
