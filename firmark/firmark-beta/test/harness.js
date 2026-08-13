@@ -23,7 +23,8 @@ var path = require("path");
 var DEFAULT = [
   "scope.js", "engine.js", "weights.js", "solver.js",
   "jurisdiction.js", "cad.js", "takeoff.js", "bom.js",
-  "export.js", "planset.js"
+  "export.js", "planset.js",
+  "auth.js", "pipeline.js", "project.js"
 ];
 
 function stubNode() {

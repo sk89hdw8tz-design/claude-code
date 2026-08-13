@@ -51,10 +51,12 @@ var SCRIPTS = [
   "planset.js",
   "auth.js",
   "pipeline.js",
+  "project.js",
   "materials.js",
   "sheet.js",
   "sizing.js",
-  "pipeline-view.js"
+  "pipeline-view.js",
+  "stages-view.js"
 ];
 
 /* Modules under construction may not exist yet. A missing part is announced

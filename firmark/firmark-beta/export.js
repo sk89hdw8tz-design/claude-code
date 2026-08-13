@@ -812,4 +812,8 @@
 
   FM.exportSchedule = exportSchedule;
   FM.scheduleText = scheduleText;
+  /* the BOM view, the plan set and the takeoff all need to hand a text file to
+     the user; one implementation rather than four is the same lesson scope.js
+     already taught this codebase */
+  FM.download = download;
 })();
