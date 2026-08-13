@@ -1482,6 +1482,11 @@
     defaults: { thicknessIn: ASSUMED_STUD_IN, openWidthFt: 4, headHeightFt: 6.67, kind: "window", framingKind: "roof" }
   };
   var MODEL = null;
+  /* what MODEL was built from. The address bar is only addressable if landing
+     on #/cad/plan/townhome-1220 shows Townhome 1220 — and edits to a model
+     have to survive navigating away and back, so the reload is keyed on the
+     source CHANGING, not on every render. */
+  var LOADED = { kind: null, id: null };
   var UNDO = [], REDO = [];
   var IMG = null;                    /* decoded underlay, for its pixel size */
 
@@ -1783,7 +1788,7 @@
     }
   }
 
-  function drawFramingRegion(g, f, isSel) {
+  function drawFramingRegion(g, f, isSel, idx) {
     var pts = (f.polygon || []).map(function (p) { return sx(p[0]) + "," + sy(p[1]); }).join(" ");
     g.appendChild(sv("polygon", { points: pts, class: "cad-region is-" + f.kind + (isSel ? " is-sel" : "") }));
 
@@ -1822,9 +1827,15 @@
           }));
         });
       }
-      var lab = f.id + " · " + f.kind + " · " + dir + "°" +
-                (num(f.spacingIn) ? " @ " + num(f.spacingIn) + " in o.c." : " · spacing not set");
-      g.appendChild(txt(sx(cx), sy(cy), lab, "cad-t cad-t-region"));
+      /* Three regions can share one footprint — a roof and two floor bays do
+         on the townhome — so the labels stack down from the top of each box
+         rather than piling up on a common centre. */
+      var lab = f.id + " · " + f.kind + " · " + dir + "\u00b0" +
+                (num(f.spacingIn) ? " @ " + num(f.spacingIn) + " in o.c." : " · SPACING NOT SET");
+      var ly = sy(box.y2) + 15 + (idx || 0) * 14;
+      if (ly > sy(box.y1) - 4) ly = sy(box.y1) - 4;
+      g.appendChild(txt(sx(cx), ly, lab,
+        "cad-t cad-t-region" + (num(f.spacingIn) ? "" : " cad-t-warn")));
     }
   }
 
@@ -1834,7 +1845,7 @@
       var len = wallLength(w);
       if (len * S.view.k < 40) return;
       var m = pointAlong(w, len / 2), n = wallNormal(w);
-      var off = 15;
+      var off = 28;              /* clear of the opening width labels at 15 */
       var ang = wallAngleDeg(w);
       if (ang > 90) ang -= 180;
       if (ang < -90) ang += 180;
@@ -1874,8 +1885,8 @@
     drawGrid(gBack);
 
     if (L) {
-      (L.framing || []).forEach(function (f) {
-        drawFramingRegion(gMid, f, S.sel && S.sel.kind === "framing" && S.sel.id === f.id);
+      (L.framing || []).forEach(function (f, i) {
+        drawFramingRegion(gMid, f, S.sel && S.sel.kind === "framing" && S.sel.id === f.id, i);
       });
       (L.walls || []).forEach(function (w) {
         drawWall(gMid, w, S.sel && S.sel.kind === "wall" && S.sel.id === w.id);
@@ -2075,9 +2086,21 @@
 
   var drag = null;
 
+  /* The canvas must keep the keyboard after a click, or every shortcut stops
+     working until you click again. Two things fight over that: the browser's
+     own focus-on-mousedown, which runs AFTER pointerdown and hit-tests an
+     element that a redraw during pointerdown has already destroyed — focus
+     then lands on <body> — and a panel input that had focus before. So the
+     default is suppressed and the focus set explicitly, at both ends of the
+     handler, because the redraw happens between them. */
+  function keepFocus() {
+    if (SVG && document.activeElement !== SVG) SVG.focus();
+  }
+
   function onDown(e) {
     if (e.button === 2) return;
-    SVG.focus();
+    e.preventDefault();
+    keepFocus();
     var pt = eventPoint(e);
     var isPan = S.tool === "pan" || e.button === 1 || e.altKey;
     if (isPan) {
@@ -2108,15 +2131,18 @@
         S.draft = null;
         addFramingPoly(poly);
         redraw();
+        keepFocus();
         return;
       }
       S.draft.pts.push([sp.x, sp.y]);
       drawCanvas();
+      keepFocus();
       return;
     }
     if (S.tool === "opening") {
       addOpeningAt(pt);
       redraw();
+      keepFocus();
       return;
     }
     if (S.tool === "calib") {
@@ -2149,6 +2175,7 @@
       if (SVG.setPointerCapture && e.pointerId !== undefined) SVG.setPointerCapture(e.pointerId);
     }
     redraw();
+    keepFocus();
   }
 
   function onMove(e) {
@@ -2198,6 +2225,7 @@
       if (!drag.moved && drag.kind === "move") UNDO.pop();   /* a click is not an edit */
       drag = null;
       redraw();
+      keepFocus();
       return;
     }
     if (S.draft && S.draft.kind === "wall") {
@@ -2211,6 +2239,7 @@
         }
         drag = null;
         redraw();
+        keepFocus();
         return;
       }
       var sp = snap(pt, S.draft.from, e.shiftKey);
@@ -2218,6 +2247,7 @@
       S.draft = null;
       drag = null;
       redraw();
+      keepFocus();
       return;
     }
     if (S.draft && S.draft.kind === "rect") {
@@ -2229,6 +2259,7 @@
         addFramingPoly([[x1, y1], [x2, y1], [x2, y2], [x1, y2]]);
       }
       redraw();
+      keepFocus();
       return;
     }
     drag = null;
@@ -2694,8 +2725,9 @@
         MODEL = m;
         if (announce) {
           var st = stats(m);
-          toast(m.name + ": " + st.walls + " walls, " + st.openings + " openings, " + st.framing +
-                " framing regions, " + m.unresolved.length + " open items the plan does not determine.");
+          toast(m.name + ": " + plural(st.walls, "wall") + ", " + plural(st.openings, "opening") +
+                ", " + plural(st.framing, "framing region") + ", " +
+                plural(m.unresolved.length, "open item") + " the plan does not determine.");
         }
       }
     } else if (S.src.kind === "saved") {
@@ -2717,6 +2749,7 @@
       }
       if (announce) toast("Empty model. Press W and drag to draw the first wall.");
     }
+    LOADED = { kind: S.src.kind, id: S.src.id };
     UNDO.length = 0; REDO.length = 0;
     S.sel = null; S.draft = null;
     fit();
@@ -2725,7 +2758,8 @@
   /* ---------------- the view ---------------- */
 
   FM.VIEWS.cad = function (host) {
-    if (!MODEL) loadSource(false);
+    var routed = MODEL && (LOADED.kind !== S.src.kind || LOADED.id !== S.src.id);
+    if (!MODEL || routed) loadSource(routed);
 
     host.appendChild(FM.pageHead("Plan",
       "Draw the geometry, or trace it over a calibrated plan. Everything downstream — spans, " +
@@ -2961,6 +2995,8 @@
     return card("JSON in and out", null, body,
       "The export is the whole model, including what it does not know");
   }
+
+  function plural(n, one) { return n + " " + one + (n === 1 ? "" : "s"); }
 
   function slug(s) {
     return String(s || "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 40);

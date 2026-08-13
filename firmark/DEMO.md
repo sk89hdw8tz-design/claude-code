@@ -61,10 +61,9 @@ Say this out loud early, because someone will ask:
 - It **checks and selects members**. It does not produce sealed engineering. A
   licensed PE reviews and stamps every package.
 - It is **gravity only**. No wind, seismic, uplift, or lateral. Three of the six
-  region packs — `tx-gulf`, `fl-central`, `fl-hvhz` — are wind-governed and say so
-  on screen in their own words — the
-  point of that banner is that the thing governing those regions is outside this
-  engine.
+  region packs — `tx-gulf`, `fl-central`, `fl-hvhz` — are wind-governed and say
+  so on screen in their own words. The point of that banner is that the thing
+  governing those regions is outside this engine.
 - It is **simply-supported single spans, sawn dimension lumber**. No continuous
   spans, no cantilevers, no glulam, LVL, PSL, LSL, I-joists or CLT.
 - The full boundary list is **calc-spec §8, 24 items, verbatim** — printed on
@@ -257,9 +256,9 @@ selected elevation, not the plan.)
 <!-- fm:variants -->
 | Built with | Lots | What it does to the schedule |
 |---|---|---|
-| Elevation A · as stamped + Bonus room over the garage | 12 | nothing — every member holds |
-| Elevation A · as stamped + Extended rear deck · 26 ft × 14 ft | 8 | **moves** DK-1: 2x12 Southern Pine No.2 → 2x12 Southern Pine No.1; DK-2: 4x12 Southern Pine No.2 → 4x12 Southern Pine No.1 |
-| Elevation A · as stamped + Concrete tile roof | 5 | same members, DCR shifts: HDR-2 0.462 → 0.553 |
+| Elevation A · base case + Bonus room over the garage | 12 | nothing — every member holds |
+| Elevation A · base case + Extended rear deck · 26 ft × 14 ft | 8 | **moves** DK-1: 2x12 Southern Pine No.2 → 2x12 Southern Pine No.1; DK-2: 4x12 Southern Pine No.2 → 4x12 Southern Pine No.1 |
+| Elevation A · base case + Concrete tile roof | 5 | same members, DCR shifts: HDR-2 0.462 → 0.553 |
 | Elevation B · covered front porch | 27 | **adds** BM-POR (4x8 Southern Pine No.2), PST-POR-B (not sized) |
 | Elevation B · covered front porch + Bonus room over the garage | 9 | **adds** BM-POR (4x8 Southern Pine No.2), PST-POR-B (not sized) |
 | Elevation B · covered front porch + Extended rear deck · 26 ft × 14 ft | 7 | **adds** BM-POR (4x8 Southern Pine No.2), PST-POR-B (not sized)<br>**moves** DK-1: 2x12 Southern Pine No.2 → 2x12 Southern Pine No.1; DK-2: 4x12 Southern Pine No.2 → 4x12 Southern Pine No.1 |

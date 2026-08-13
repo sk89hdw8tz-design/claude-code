@@ -400,7 +400,7 @@
           v.planWide.forEach(function (k) { effect.push("PLAN-WIDE: " + k); });
           if (!effect.length) {
             effect.push(v.movesNoMember ? "declared to move no member this engine sizes"
-                        : (v.base ? "the stamped base case — what the marks below were sized as"
+                        : (v.base ? "the base case — what the marks below were sized as"
                                   : "no change declared"));
           } else if (v.movesNoMember) {
             effect.push("declared to move no member this engine sizes");
@@ -696,7 +696,7 @@
     wrap("ROOF LOAD BASIS — " + pack.loads.roofLoadBasis, 74, "    ").forEach(function (x) { say("  " + x); });
     say();
     say("  SITE VALUES BELOW ARE PLANNING DEFAULTS, NOT SITE VALUES. Replace them from");
-    say("  the ASCE 7 Hazard Tool and the AHJ before anything is stamped.");
+    say("  the ASCE 7 Hazard Tool and the AHJ before a licensed engineer seals anything.");
     ["groundSnow", "roofLive", "windMph", "exposure", "sdc"].forEach(function (k) {
       var c = pack.climate[k];
       if (!c) return;

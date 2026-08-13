@@ -710,7 +710,7 @@
       elevations: [
         { id: "a", kind: "elevation", label: "Elevation A · gable, 14 ft lanai", base: true,
           takeRate: 0.40,
-          note: "The stamped base case. What the marks above are." },
+          note: "The base case. What the marks above are." },
         { id: "b", kind: "elevation", label: "Elevation B · hip", takeRate: 0.35,
           movesNoMember: true,
           note: "The most-built elevation in most of these subdivisions and it moves no member this " +
@@ -847,8 +847,8 @@
               "HDR-GAR-2S derives its 11.0 ft roof tributary from."
       },
       elevations: [
-        { id: "a", kind: "elevation", label: "Elevation A · as stamped", base: true, takeRate: 0.55,
-          note: "The stamped base case. What the marks above are." },
+        { id: "a", kind: "elevation", label: "Elevation A · base case", base: true, takeRate: 0.55,
+          note: "The base case. What the marks above are." },
         { id: "b", kind: "elevation", label: "Elevation B · covered front porch", takeRate: 0.45,
           geometry: { porchFt: [20, 8], posts: 3, eaveOverhangFt: 1.0,
                       note: "Geometry this elevation adds, from which its added marks derive." },
@@ -986,7 +986,7 @@
       elevations: [
         { id: "a", kind: "elevation", label: "Elevation A · gable, 12 ft covered porch", base: true,
           takeRate: 0.60,
-          note: "The stamped base case. What the marks above are." },
+          note: "The base case. What the marks above are." },
         { id: "b", kind: "elevation", label: "Elevation B · deep screened lanai", takeRate: 0.40,
           note: "The porch goes from 12 ft to 14 ft deep and the wider load buys a fourth post, so " +
                 "the 20 ft run becomes three 6.67 ft bays instead of two 10.0 ft ones. Both porch " +
@@ -1144,13 +1144,13 @@
       elevations: [
         { id: "a", kind: "elevation", label: "Elevation A · gable, one-car garage", base: true,
           takeRate: 0.45,
-          note: "The stamped base case: simple gable, 12 ft x 22 ft one-car garage, 8 ft x 6 ft " +
+          note: "The base case: simple gable, 12 ft x 22 ft one-car garage, 8 ft x 6 ft " +
                 "covered entry. What the marks above are." },
         { id: "b", kind: "elevation", label: "Elevation B · gable, deeper covered entry",
           takeRate: 0.30,
           note: "The same roof and the same garage; the entry stoop grows to 12 ft wide by 8 ft " +
                 "deep for a front-porch look. The beam span and tributary both move, so this is a " +
-                "different member on the same stamped plan.",
+                "different member on the same sealed plan set.",
           overrides: {
             "BM-ENT": { span: 12.0, trib: 5.0,
               note: "Elevation B stoop: 12 ft wide by 8 ft deep. Span is the 12 ft width on two " +
@@ -1346,7 +1346,7 @@
       elevations: [
         { id: "a", kind: "elevation", label: "Elevation A · interior unit, 8 ft covered patio",
           base: true, takeRate: 0.70,
-          note: "The stamped base case and the great majority of the row: an interior unit with " +
+          note: "The base case and the great majority of the row: an interior unit with " +
                 "both party walls shared." },
         { id: "b", kind: "elevation", label: "Elevation B · interior unit, 12 ft covered patio",
           takeRate: 0.30,
@@ -1540,8 +1540,8 @@
 
   var SYNTHETIC_BASE = {
     id: "base", kind: "elevation", base: true, takeRate: 1.0, synthetic: true,
-    label: "As stamped",
-    note: "This plan declares no elevations, so the stamped base case is the only variant."
+    label: "Base case",
+    note: "This plan declares no elevations, so the base case is the only variant."
   };
 
   /* built once per plan object, and it validates while it builds */
