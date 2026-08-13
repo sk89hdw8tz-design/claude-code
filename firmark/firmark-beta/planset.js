@@ -71,6 +71,30 @@
     return s === "undefined" || s === "NaN" || s === "[object Object]" ? d : s;
   }
 
+  /* Reads the first field an upstream record actually carries, from a list of
+     the names that record might plausibly use. ARCHITECTURE.md fixes the shape
+     of `unresolved` and `excluded` but says only `warnings: [...]` — so a
+     warning arrives as {kind, text, refs} from one module and as {what, why}
+     from another, and printing "(unnamed)" over a sentence somebody wrote is
+     losing the finding, not guarding against it. Returns the default only when
+     the record genuinely carries nothing readable. */
+  function pick(o, keys, dflt) {
+    if (o === null || o === undefined) return dflt;
+    if (typeof o !== "object") return safe(o, dflt);
+    for (var i = 0; i < keys.length; i++) {
+      if (!own(o, keys[i])) continue;
+      var v = o[keys[i]];
+      if (v === null || v === undefined || v === "" || typeof v === "object") continue;
+      return String(v);
+    }
+    return dflt;
+  }
+  function refsOf(o) {
+    if (!o || !isArr(o.refs)) return "";
+    var r = o.refs.filter(function (x) { return x !== null && x !== undefined && typeof x !== "object"; });
+    return r.length ? r.map(String).join(", ") : "";
+  }
+
   function n2(v, d) {
     if (v === null || v === undefined || v === "" || !isFinite(Number(v))) return "—";
     return Number(v).toFixed(d === undefined ? 2 : d);
@@ -676,18 +700,58 @@
     if (p.have.takeoff) {
       var tk = p.have.takeoff;
       (isArr(tk.unresolved) ? tk.unresolved : []).forEach(function (u) {
-        add("TAKEOFF — UNRESOLVED", safe(u.what, "(unnamed)"), safe(u.why, "no reason given"),
-            safe(u.need, "a human must answer this before the takeoff is complete"));
+        var head = pick(u, ["what", "item", "mark", "markId", "title", "kind"], "");
+        var refs = refsOf(u);
+        add("TAKEOFF — UNRESOLVED",
+            (head || pick(u, ["text", "why", "message"], "(unnamed)")) + (refs ? " — " + refs : ""),
+            pick(u, ["why", "reason", "text", "message", "detail"], "no reason given"),
+            pick(u, ["need", "action", "resolve", "fix"],
+                 "a human must answer this before the takeoff is complete"));
       });
       (isArr(tk.warnings) ? tk.warnings : []).forEach(function (wn) {
-        add("TAKEOFF — WARNING", safe(wn && wn.what ? wn.what : wn, "(unnamed warning)"),
-            safe(wn && wn.why, ""), safe(wn && wn.need, "review before gate 2 is approved"));
+        var head = pick(wn, ["what", "title", "item", "kind"], "");
+        var refs = refsOf(wn);
+        add("TAKEOFF — WARNING",
+            (head || pick(wn, ["text", "message", "why"], "(unnamed warning)")) + (refs ? " — " + refs : ""),
+            pick(wn, ["why", "reason", "text", "message", "detail"], "no detail given"),
+            pick(wn, ["need", "action"], "review before gate 2 (the takeoff gate) is approved"));
       });
       if (!isArr(tk.derivations) || !tk.derivations.length) {
         add("TAKEOFF — UNRESOLVED", "No derivation trail was supplied.",
             "The contract requires every span, tributary and bearing to be traced so a " +
             "reviewer can reconstruct it without reading code. None was supplied.",
             "Produce derivations before gate 2 (the takeoff gate) is approved.");
+      }
+    }
+
+    /* ---- 3b. does the schedule describe the house on the framing plan? ----
+
+       ctx.planResult and ctx.takeoff arrive independently. Solve a catalogue
+       plan while the takeoff derives its marks from a drawn model and the two
+       carry different mark ids — the schedule then belongs to a different
+       document than the framing plan bound behind it. Nothing downstream
+       detects that, and both sheets look perfectly finished. So it is
+       checked here and named. */
+    if (p.have.takeoff && isArr(p.have.takeoff.marks) && p.have.takeoff.marks.length &&
+        res && isArr(res.marks) && res.marks.length) {
+      var tkSet = {}, tkList = [];
+      p.have.takeoff.marks.forEach(function (m) {
+        var id = safe(m && m.id, "");
+        if (id && id !== "—") { tkSet[" " + id] = 1; tkList.push(id); }
+      });
+      var reList = res.marks.map(function (m) { return safe(m.mark && m.mark.id, "—"); });
+      var shared = reList.filter(function (id) { return own(tkSet, " " + id); });
+      if (shared.length !== reList.length || shared.length !== tkList.length) {
+        add("GEOMETRY", "The schedule and the takeoff do not describe the same marks.",
+            "The schedule on S2.0 carries " + reList.length + " mark(s) (" +
+            reList.join(", ") + ") and the takeoff behind S1.0 carries " + tkList.length +
+            " (" + tkList.join(", ") + "). " + shared.length + " appear in both. The " +
+            "members on S2.0 were therefore not sized from the takeoff drawn on S1.0, " +
+            "and the two sheets are describing the same house through two different " +
+            "documents.",
+            "Solve the marks the takeoff produced, or reconcile the mark ids, before " +
+            "this package is issued. Until then read S1.0 as geometry and S2.0 as a " +
+            "schedule, and do not read a span off one against a member on the other.");
       }
     }
 
@@ -752,8 +816,9 @@
             "bom.js must publish `excluded` before the quantities are used to buy anything.");
       } else {
         exc.forEach(function (x) {
-          add("BILL OF MATERIALS — EXCLUDED", safe(x.what, "(unnamed)"),
-              safe(x.why, "no reason given"),
+          add("BILL OF MATERIALS — EXCLUDED",
+              pick(x, ["what", "item", "sku", "markId", "text"], "(unnamed)"),
+              pick(x, ["why", "reason", "note", "text"], "no reason given"),
               "Not in the quantities on S4.0. Price and buy it separately.");
         });
       }
@@ -771,9 +836,10 @@
       } else {
         mv.forEach(function (v) {
           add("JURISDICTION — MUST VERIFY",
-              safe(v && v.what ? v.what : v, "(unnamed)"),
-              safe(v && v.why, ""),
-              safe(v && v.against, safe(v && v.need, "Verify with the authority having jurisdiction.")));
+              pick(v, ["what", "item", "title", "text", "check"], "(unnamed)"),
+              pick(v, ["why", "reason", "note", "detail"], "not stated"),
+              pick(v, ["against", "source", "verifyWith", "need", "how"],
+                   "Verify with the authority having jurisdiction."));
         });
       }
     } else {
@@ -874,6 +940,14 @@
       }
     }
     field("Region pack", pack ? safe(pack.name) + " · " + safe(pack.markets) : "NOT SUPPLIED");
+    /* which document the members were sized from, and which one the framing
+       plan was drawn from — they are not always the same document */
+    field("Marks on the schedule", res && isArr(res.marks)
+          ? res.marks.length + ", from the plan record " + (plan ? safe(plan.id) : "")
+          : "none — no solver result was supplied");
+    field("Marks from the takeoff", (p.have.takeoff && isArr(p.have.takeoff.marks))
+          ? p.have.takeoff.marks.length + ", derived from the geometry on S1.0"
+          : "no takeoff was supplied — nothing on this set is traced to the drawing");
     field("Prepared", pkg.head.at + "  (generation time, not an issue date)");
 
     /* ---- the statement, first, before any number ---- */
@@ -1756,10 +1830,10 @@
       say("     sized anywhere — so an empty exclusion list is a defect, not a clean bill. **");
     } else {
       exc.forEach(function (x) {
-        wrap(safe(x.what, "(unnamed)"), W - 6).forEach(function (y, i) {
-          say("  " + (i ? "    " : "· ") + y);
-        });
-        wrap(safe(x.why, "no reason given"), W - 8).forEach(function (y) { say("      " + y); });
+        wrap(pick(x, ["what", "item", "sku", "markId", "text"], "(unnamed)"), W - 6)
+          .forEach(function (y, i) { say("  " + (i ? "    " : "· ") + y); });
+        wrap(pick(x, ["why", "reason", "note", "text"], "no reason given"), W - 8)
+          .forEach(function (y) { say("      " + y); });
       });
     }
     say();
@@ -2008,13 +2082,20 @@
     "  min-height: 150px; }" +
     ".fm-ps-nav { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }";
 
+  /* Injected once, into whichever of head/body this document actually has.
+     The stylesheet is a nicety; a build without a <head> (the headless
+     harness has none) must render the sheets anyway rather than throw. */
   function ensurePrintCss() {
-    if (typeof document === "undefined") return;
-    if (document.getElementById("fm-planset-css")) return;
-    var s = document.createElement("style");
-    s.id = "fm-planset-css";
-    s.textContent = PRINT_CSS;
-    document.head.appendChild(s);
+    try {
+      if (typeof document === "undefined" || !document) return;
+      if (document.getElementById && document.getElementById("fm-planset-css")) return;
+      var into = document.head || document.body;
+      if (!into || typeof into.appendChild !== "function") return;
+      var s = document.createElement("style");
+      s.id = "fm-planset-css";
+      s.textContent = PRINT_CSS;
+      into.appendChild(s);
+    } catch (e) { /* no stylesheet; the sheets still render */ }
   }
 
   function el(tag, attrs, kids) {
@@ -2239,8 +2320,11 @@
     if (plan && pack && FM.solver && FM.solver.solvePlan) {
       try { res = FM.solver.solvePlan(plan, pack); } catch (e) { res = null; }
     }
-    /* Every one of these is read defensively: the module may not be loaded in
-       this build, and the package must say so rather than fail to open. */
+    /* Every one of these is read defensively — the module may not be loaded
+       in this build, may not have grown the entry point yet, and may throw.
+       Any of those produces `null`, and the package SAYS the input was not
+       supplied rather than failing to open. This is the whole guard strategy
+       in one function. */
     var juris = null;
     if (FM.juris && typeof FM.juris.forSite === "function" && s.jurisId) {
       try { juris = FM.juris.forSite(s.jurisId); } catch (e) { juris = null; }
@@ -2251,7 +2335,7 @@
     }
     var takeoff = null;
     if (model && FM.takeoff && typeof FM.takeoff.run === "function") {
-      try { takeoff = FM.takeoff.run(model, {}); } catch (e) { takeoff = null; }
+      try { takeoff = FM.takeoff.run(model, { plan: plan, pack: pack }); } catch (e) { takeoff = null; }
     }
     var bom = null;
     if (res && FM.bom && typeof FM.bom.build === "function") {
@@ -2303,7 +2387,31 @@
       }));
       planSel.addEventListener("change", function () { s.planId = this.value; FM.go("planset"); });
       packSel.addEventListener("change", function () { s.packId = this.value; FM.go("planset"); });
-      host.appendChild(el("div", { class: "filter-bar", style: "margin-bottom:14px" }, [planSel, packSel]));
+      var controls = [planSel, packSel];
+
+      /* The jurisdiction selector appears only once jurisdiction.js publishes
+         both entry points. Until then the cover says, in terms, that no
+         jurisdiction record was supplied and that the criteria table is the
+         region pack's planning defaults — which is the truth, and better than
+         a selector that silently returns nothing. */
+      if (FM.juris && typeof FM.juris.forSite === "function" &&
+          typeof FM.juris.jurisdictions === "function" && isArr(FM.juris.STATES)) {
+        var opts = [el("option", { value: "", text: "No jurisdiction — region pack defaults" })];
+        FM.juris.STATES.forEach(function (st) {
+          var list = [];
+          try { list = FM.juris.jurisdictions(st) || []; } catch (e) { list = []; }
+          list.forEach(function (j) {
+            opts.push(el("option", { value: safe(j.id), text: st + " · " + safe(j.name, safe(j.id)),
+                                     selected: j.id === s.jurisId ? "selected" : null }));
+          });
+        });
+        var jurSel = el("select", { "aria-label": "Jurisdiction" }, opts);
+        jurSel.addEventListener("change", function () {
+          s.jurisId = this.value || null; FM.go("planset");
+        });
+        controls.push(jurSel);
+      }
+      host.appendChild(el("div", { class: "filter-bar", style: "margin-bottom:14px" }, controls));
 
       if (pkg.missing.length) {
         host.appendChild(el("div", { class: "banner banner-warn" }, [

@@ -1556,6 +1556,295 @@
               "F.S. §553.73(4).", "fs-553-73", { incomplete: true })
       ],
       mustVerify: []
+    },
+
+    /* ---------------- NORTH CAROLINA ----------------
+       One code, statewide, no local technical amendments. Every
+       record below therefore carries the SAME code and differs only
+       in site data — which is the cleanest illustration in the module
+       of the difference between a code question and a site question.
+
+       All six are on the 2018 NCRC: 2015 IRC basis, ASCE 7-10. */
+
+    {
+      id: "nc-mecklenburg", name: "Charlotte / Mecklenburg County", county: "Mecklenburg",
+      state: "NC", kind: "county",
+      packId: "nc-piedmont", packWhy: "The pack's named market.",
+      governs: "gravity",
+      codes: [codeRec({ name: "NC State Building Code: Residential Code", edition: "2018 NCRC",
+        basis: "2015 IRC", asce: "ASCE 7-10", adopted: "2019-01-01",
+        cite: "2018 NC State Building Code: Residential Code, 2015 IRC basis with NC amendments, " +
+              "effective 1 January 2019. The 2024 NCRC is adopted but not in force — see " +
+              "forState('NC').", src: "ncrc2018" })],
+      wind: windOf({ vMph: 115, band: [110, 120], asce: "ASCE 7-10", exposureCommon: "B",
+        confirmed: "unverified",
+        basis: "Planning band for the NC Piedmont. The NCRC's own wind figure was not retrievable and " +
+               "the secondary sources for North Carolina were poor — several conflated the NCRC wind " +
+               "zones with HUD manufactured-housing wind zones, which are a different scheme entirely " +
+               "and were discarded.",
+        cite: "2018 NCRC Figure R301.2(4) / ASCE 7-10, Risk Category II.", src: "asce7",
+        note: "ASCE 7-10, NOT 7-16 or 7-22. A number taken off a newer map is off the wrong map for a " +
+              "North Carolina permit today." }),
+      snow: snowOf({ pgPsf: 15, band: [10, 15], confirmed: "unverified",
+        cite: "Planning band for the Piedmont counties; the NCRC tabulates ground snow load by county " +
+              "and that table was not retrievable.", src: "ncrc2018",
+        note: "At 15 psf the flat-roof snow load is about 10.5 psf, well under the 20 psf roof live " +
+              "load, so Lr governs and C_D stays at 1.25. Snow only takes over above roughly 26 psf " +
+              "ground snow." }),
+      seismic: seismicOf({ sdc: "B", confirmed: "unverified",
+        cite: "Planning value for the NC Piedmont.", src: "asce7",
+        note: "Higher than the A carried across Texas and Florida, and it is the only part of this " +
+              "module where the seismic design category is not A." }),
+      frostDepthIn: frostOf({ confirmed: "unverified",
+        cite: "The NCRC frost line depth for this county could not be established. NCRC R403.1.4 " +
+              "requires footings below the frost line specified in Table R301.2(1).", src: "ncrc2018" }),
+      termite: levelOf({ level: "moderate to heavy", confirmed: "unverified",
+        cite: "IRC Figure R301.2(6) as carried into the NCRC.", src: "ncrc2018" }),
+      decay: levelOf({ level: "slight to moderate", confirmed: "unverified",
+        cite: "IRC Figure R301.2(7) as carried into the NCRC.", src: "ncrc2018" }),
+      windborneDebris: wbdOf({ inRegion: false, likely: false, determinedBy: "site",
+        confirmed: "secondary",
+        cite: "IRC/NCRC R301.2.1.2 — roughly 180 miles from the coast and far below 140 mph, so " +
+              "neither limb of the criterion is reached.", src: "ncrc2018" }),
+      amendments: [
+        amend("No local technical amendments. The NCRC is the code; a more stringent local provision " +
+              "requires Building Code Council / Residential Code Council approval.",
+              "N.C.G.S. §143-138(e).", "nc-gs-143",
+              { effect: "This is the one state in the module where the code text does not have to be " +
+                        "diffed per jurisdiction. What varies is site data." })
+      ],
+      mustVerify: []
+    },
+
+    {
+      id: "nc-wake", name: "Raleigh / Wake County", county: "Wake", state: "NC", kind: "county",
+      packId: "nc-piedmont", packWhy: "The pack's named market.",
+      governs: "gravity",
+      codes: [codeRec({ name: "NC State Building Code: Residential Code", edition: "2018 NCRC",
+        basis: "2015 IRC", asce: "ASCE 7-10", adopted: "2019-01-01",
+        cite: "2018 NC State Building Code: Residential Code, effective 1 January 2019.",
+        src: "ncrc2018" })],
+      wind: windOf({ vMph: 115, band: [110, 120], asce: "ASCE 7-10", exposureCommon: "B",
+        confirmed: "unverified",
+        basis: "Planning band for the NC Piedmont; the NCRC wind figure was not retrievable.",
+        cite: "2018 NCRC Figure R301.2(4) / ASCE 7-10, Risk Category II.", src: "asce7" }),
+      snow: snowOf({ pgPsf: 15, band: [10, 15], confirmed: "unverified",
+        cite: "Planning band for the Piedmont counties; the NCRC county table was not retrievable.",
+        src: "ncrc2018" }),
+      seismic: seismicOf({ sdc: "B", confirmed: "unverified",
+        cite: "Planning value for the NC Piedmont.", src: "asce7" }),
+      frostDepthIn: frostOf({ confirmed: "unverified",
+        cite: "The NCRC frost line depth for this county could not be established.", src: "ncrc2018" }),
+      termite: levelOf({ level: "moderate to heavy", confirmed: "unverified",
+        cite: "IRC Figure R301.2(6) as carried into the NCRC.", src: "ncrc2018" }),
+      decay: levelOf({ level: "slight to moderate", confirmed: "unverified",
+        cite: "IRC Figure R301.2(7) as carried into the NCRC.", src: "ncrc2018" }),
+      windborneDebris: wbdOf({ inRegion: false, likely: false, determinedBy: "site",
+        confirmed: "secondary",
+        cite: "IRC/NCRC R301.2.1.2 — neither limb of the criterion is reached this far inland.",
+        src: "ncrc2018" }),
+      amendments: [
+        amend("No local technical amendments; NCRC statewide.", "N.C.G.S. §143-138(e).", "nc-gs-143")
+      ],
+      mustVerify: []
+    },
+
+    {
+      id: "nc-guilford", name: "Greensboro / Guilford County", county: "Guilford", state: "NC",
+      kind: "county",
+      packId: "nc-piedmont", packWhy: "The pack's named market.",
+      governs: "gravity",
+      codes: [codeRec({ name: "NC State Building Code: Residential Code", edition: "2018 NCRC",
+        basis: "2015 IRC", asce: "ASCE 7-10", adopted: "2019-01-01",
+        cite: "2018 NC State Building Code: Residential Code, effective 1 January 2019.",
+        src: "ncrc2018" })],
+      wind: windOf({ vMph: 115, band: [110, 120], asce: "ASCE 7-10", exposureCommon: "B",
+        confirmed: "unverified",
+        basis: "Planning band for the NC Piedmont; the NCRC wind figure was not retrievable.",
+        cite: "2018 NCRC Figure R301.2(4) / ASCE 7-10, Risk Category II.", src: "asce7" }),
+      snow: snowOf({ pgPsf: 15, band: [10, 20], confirmed: "unverified",
+        cite: "Planning band for the northern Piedmont; the NCRC county table was not retrievable.",
+        src: "ncrc2018",
+        note: "Guilford is the northernmost of the three Piedmont jurisdictions here and the most " +
+              "likely of them to carry a higher tabulated p_g." }),
+      seismic: seismicOf({ sdc: "B", confirmed: "unverified",
+        cite: "Planning value for the NC Piedmont.", src: "asce7" }),
+      frostDepthIn: frostOf({ confirmed: "unverified",
+        cite: "The NCRC frost line depth for this county could not be established.", src: "ncrc2018" }),
+      termite: levelOf({ level: "moderate to heavy", confirmed: "unverified",
+        cite: "IRC Figure R301.2(6) as carried into the NCRC.", src: "ncrc2018" }),
+      decay: levelOf({ level: "slight to moderate", confirmed: "unverified",
+        cite: "IRC Figure R301.2(7) as carried into the NCRC.", src: "ncrc2018" }),
+      windborneDebris: wbdOf({ inRegion: false, likely: false, determinedBy: "site",
+        confirmed: "secondary",
+        cite: "IRC/NCRC R301.2.1.2 — neither limb of the criterion is reached this far inland.",
+        src: "ncrc2018" }),
+      amendments: [
+        amend("No local technical amendments; NCRC statewide.", "N.C.G.S. §143-138(e).", "nc-gs-143")
+      ],
+      mustVerify: []
+    },
+
+    {
+      id: "nc-buncombe", name: "Asheville / Buncombe County", county: "Buncombe", state: "NC",
+      kind: "county",
+      packId: "nc-mountain", packWhy: "The pack's named market; the only snow-governed pack.",
+      governs: "gravity",
+      codes: [codeRec({ name: "NC State Building Code: Residential Code", edition: "2018 NCRC",
+        basis: "2015 IRC", asce: "ASCE 7-10", adopted: "2019-01-01",
+        cite: "2018 NC State Building Code: Residential Code, effective 1 January 2019.",
+        src: "ncrc2018" })],
+      wind: windOf({ vMph: 115, band: [110, 120], asce: "ASCE 7-10", exposureCommon: "C",
+        confirmed: "unverified",
+        basis: "Planning band for western North Carolina; the NCRC wind figure was not retrievable.",
+        cite: "2018 NCRC Figure R301.2(4) / ASCE 7-10, Risk Category II.", src: "asce7",
+        note: "Topographic speed-up K_zt on ridges and escarpments (ASCE 7 §26.8) is a site effect " +
+              "that no jurisdiction-level number can carry. In this terrain it is not a rounding " +
+              "adjustment." }),
+      snow: snowOf({ pgPsf: 25, band: [15, 35], confirmed: "unverified",
+        cite: "Planning band at valley elevation. The NCRC tabulates ground snow load by county and " +
+              "the table was not retrievable.", src: "ncrc2018",
+        note: "ELEVATION, NOT COUNTY. Above roughly 3,000 ft the ASCE 7 ground snow map hands off to " +
+              "case-study (CS) zones where NO mapped value exists and a site-specific study is " +
+              "required. Buncombe County contains a great deal of land above that line. A single " +
+              "county number is wrong for those sites in a way no band can fix." }),
+      seismic: seismicOf({ sdc: "B", confirmed: "unverified",
+        cite: "Planning value for western North Carolina.", src: "asce7",
+        note: "Western NC is the highest-seismicity part of this module and some western counties " +
+              "reach C. B is a planning value and the boundary was not established." }),
+      frostDepthIn: frostOf({ confirmed: "unverified",
+        cite: "The NCRC frost line depth for this county could not be established, and it is the one " +
+              "jurisdiction in this module where a real frost line exists and matters.",
+        src: "ncrc2018" }),
+      termite: levelOf({ level: "moderate to heavy", confirmed: "unverified",
+        cite: "IRC Figure R301.2(6) as carried into the NCRC.", src: "ncrc2018" }),
+      decay: levelOf({ level: "slight to moderate", confirmed: "unverified",
+        cite: "IRC Figure R301.2(7) as carried into the NCRC.", src: "ncrc2018" }),
+      windborneDebris: wbdOf({ inRegion: false, likely: false, determinedBy: "site",
+        confirmed: "secondary",
+        cite: "IRC/NCRC R301.2.1.2 — neither limb of the criterion is reached in the mountains.",
+        src: "ncrc2018" }),
+      amendments: [
+        amend("No local technical amendments; NCRC statewide.", "N.C.G.S. §143-138(e).", "nc-gs-143"),
+        amend("Snow governs here and C_D drops from 1.25 to 1.15 — a real 8% capacity reduction on " +
+              "every bending check. Unbalanced, drift, sliding and rain-on-snow loads are all excluded " +
+              "by calc-spec §8.14, and in this terrain roof-step drift is often what governs.",
+              "ASCE 7 Chapter 7; calc-spec §8.14.", "asce7",
+              { effect: "The engine's answer here is a floor on the member, not the design." })
+      ],
+      mustVerify: [
+        mv({ id: "nc-bun-cs", severity: "blocking",
+          what: "Whether the site is in an ASCE 7 case-study (CS) ground snow zone.",
+          why: "Above roughly 3,000 ft the ground snow map publishes no value at all and a " +
+               "site-specific study is required. A planning number substituted for a CS-zone study " +
+               "is not conservative or unconservative — there is no mapped value to compare it to.",
+          check: "ASCE 7 ground snow map / Hazard Tool at the site coordinates, and the NCRC county " +
+                 "table.",
+          authority: "ASCE 7 Hazard Tool; NC OSFM; a licensed engineer for the site study." })
+      ]
+    },
+
+    {
+      id: "nc-newhanover", name: "Wilmington / New Hanover County", county: "New Hanover",
+      state: "NC", kind: "county",
+      packId: "nc-piedmont",
+      packWhy: "THE PRODUCT HAS NO COASTAL NORTH CAROLINA PACK. This is the least-bad of six wrong " +
+               "answers and packFor() reports how wrong it is.",
+      governs: "wind",
+      codes: [codeRec({ name: "NC State Building Code: Residential Code", edition: "2018 NCRC",
+        basis: "2015 IRC", asce: "ASCE 7-10", adopted: "2019-01-01",
+        cite: "2018 NC State Building Code: Residential Code, effective 1 January 2019, including " +
+              "NCRC Chapter 45 High Wind Zones where applicable.", src: "ncrc2018" })],
+      wind: windOf({ vMph: 140, band: [130, 150], asce: "ASCE 7-10", exposureCommon: "C",
+        confirmed: "unverified",
+        basis: "Planning band for the Cape Fear coast from secondary summaries quoting 130–140 mph " +
+               "for Wilmington and 140–150 for the coastline itself.",
+        cite: "2018 NCRC Figure R301.2(4) / ASCE 7-10, Risk Category II; NCRC Chapter 45.",
+        src: "ncrc2018",
+        note: "Exposure D applies at open shoreline. The county runs from barrier island to inland " +
+              "and the contour crosses it." }),
+      snow: snowOf({ pgPsf: 10, band: [5, 10], confirmed: "unverified",
+        cite: "Planning value for the NC coast; the NCRC county table was not retrievable.",
+        src: "ncrc2018" }),
+      seismic: seismicOf({ sdc: "B", confirmed: "unverified",
+        cite: "Planning value.", src: "asce7" }),
+      frostDepthIn: frostOf({ confirmed: "unverified",
+        cite: "The NCRC frost line depth for this county could not be established.", src: "ncrc2018" }),
+      termite: levelOf({ level: "moderate to heavy", confirmed: "unverified",
+        cite: "IRC Figure R301.2(6) as carried into the NCRC. Coastal Carolina may be in the very " +
+              "heavy band; the boundary was not established.", src: "ncrc2018" }),
+      decay: levelOf({ level: "moderate to severe", confirmed: "unverified",
+        cite: "IRC Figure R301.2(7) as carried into the NCRC.", src: "ncrc2018" }),
+      windborneDebris: wbdOf({ inRegion: null, likely: true, determinedBy: "site",
+        confirmed: "unverified",
+        cite: "IRC/NCRC R301.2.1.2. The 1-mile / 130 mph limb reaches the coastal strip and the 140 " +
+              "mph limb may reach further inland. The county spans the boundary.", src: "ncrc2018" }),
+      amendments: [
+        amend("No local technical amendments; NCRC statewide.", "N.C.G.S. §143-138(e).", "nc-gs-143"),
+        amend("NCRC Chapter 45, High Wind Zones, applies where the design wind speed zone triggers " +
+              "it — one tie at each end of each rafter at 130 mph, two at 140 and 150 mph, and " +
+              "continuous concrete footings under all exterior walls in the 140 and 150 mph zones.",
+              "NCRC Chapter 45.", "ncrc-ch45",
+              { effect: "Chapter 45 is a PRESCRIPTIVE path and this engine is not on it. Its " +
+                        "requirements are additional, they are largely connections and foundations, " +
+                        "and calc-spec §8.17 designs no connection of any kind. A gravity-passing " +
+                        "member here is not a finished design." })
+      ],
+      mustVerify: [
+        mv({ id: "nc-nh-ch45", severity: "major",
+          what: "Whether NCRC Chapter 45 applies at this site and what it requires.",
+          why: "It is triggered by the design wind speed zone, which is a site determination, and it " +
+               "adds connection and foundation requirements this engine neither checks nor designs.",
+          check: "NCRC Chapter 45 scope against the site's design wind speed.",
+          authority: "New Hanover County / City of Wilmington inspections." })
+      ]
+    },
+
+    {
+      id: "nc-brunswick", name: "Brunswick County", county: "Brunswick", state: "NC", kind: "county",
+      packId: "nc-piedmont",
+      packWhy: "THE PRODUCT HAS NO COASTAL NORTH CAROLINA PACK. See packFor() for the size of the gap.",
+      governs: "wind",
+      codes: [codeRec({ name: "NC State Building Code: Residential Code", edition: "2018 NCRC",
+        basis: "2015 IRC", asce: "ASCE 7-10", adopted: "2019-01-01",
+        cite: "2018 NC State Building Code: Residential Code, effective 1 January 2019, including " +
+              "NCRC Chapter 45 High Wind Zones where applicable.", src: "ncrc2018" })],
+      wind: windOf({ vMph: 140, band: [130, 150], asce: "ASCE 7-10", exposureCommon: "C",
+        confirmed: "unverified",
+        basis: "Planning band for the Cape Fear coast, as New Hanover.",
+        cite: "2018 NCRC Figure R301.2(4) / ASCE 7-10, Risk Category II; NCRC Chapter 45.",
+        src: "ncrc2018",
+        note: "Brunswick is the fastest-growing tract-housing county on the North Carolina coast and " +
+              "the one where this product's absence of a coastal NC pack costs the most." }),
+      snow: snowOf({ pgPsf: 10, band: [5, 10], confirmed: "unverified",
+        cite: "Planning value for the NC coast; the NCRC county table was not retrievable.",
+        src: "ncrc2018" }),
+      seismic: seismicOf({ sdc: "B", confirmed: "unverified", cite: "Planning value.", src: "asce7" }),
+      frostDepthIn: frostOf({ confirmed: "unverified",
+        cite: "The NCRC frost line depth for this county could not be established.", src: "ncrc2018" }),
+      termite: levelOf({ level: "moderate to heavy", confirmed: "unverified",
+        cite: "IRC Figure R301.2(6) as carried into the NCRC.", src: "ncrc2018" }),
+      decay: levelOf({ level: "moderate to severe", confirmed: "unverified",
+        cite: "IRC Figure R301.2(7) as carried into the NCRC.", src: "ncrc2018" }),
+      windborneDebris: wbdOf({ inRegion: null, likely: true, determinedBy: "site",
+        confirmed: "unverified",
+        cite: "IRC/NCRC R301.2.1.2. Brunswick has extensive ocean and river frontage; the county " +
+              "spans the boundary.", src: "ncrc2018" }),
+      amendments: [
+        amend("No local technical amendments; NCRC statewide.", "N.C.G.S. §143-138(e).", "nc-gs-143"),
+        amend("NCRC Chapter 45, High Wind Zones, applies where the design wind speed zone triggers it.",
+              "NCRC Chapter 45.", "ncrc-ch45",
+              { effect: "Prescriptive path; connections and foundations, which calc-spec §8.17 " +
+                        "excludes entirely." })
+      ],
+      mustVerify: [
+        mv({ id: "nc-bru-ch45", severity: "major",
+          what: "Whether NCRC Chapter 45 applies at this site and what it requires.",
+          why: "Triggered by the site's design wind speed zone and adds requirements this engine does " +
+               "not check.",
+          check: "NCRC Chapter 45 scope against the site's design wind speed.",
+          authority: "Brunswick County Inspections." })
+      ]
     }
   ];
 
@@ -1571,5 +1860,739 @@
   FM.juris._build = {
     wind: windOf, snow: snowOf, seismic: seismicOf, frost: frostOf,
     level: levelOf, wbd: wbdOf, code: codeRec, amendment: amend, mustVerify: mv
+  };
+
+  /* ------------------------------------------------------------
+     LOOKUP. An unknown id fails by name. It does not fall back to
+     a default jurisdiction, because a silently substituted
+     jurisdiction is a silently substituted code basis.
+     ------------------------------------------------------------ */
+
+  var BY_ID = {};
+  JURIS.forEach(function (j) {
+    if (has(BY_ID, j.id)) {
+      throw new Error("jurisdiction.js: duplicate jurisdiction id \"" + j.id + "\"");
+    }
+    BY_ID[j.id] = j;
+  });
+
+  function idList() {
+    return JURIS.map(function (j) { return j.id; }).join(", ");
+  }
+
+  function rawFor(jurisId) {
+    if (!has(BY_ID, jurisId)) {
+      throw new Error("unknown jurisdiction \"" + jurisId + "\" — this module covers " + idList() +
+                      ". It does not guess, and there is no default: substituting a jurisdiction " +
+                      "substitutes a code basis.");
+    }
+    return BY_ID[jurisId];
+  }
+
+  /* ------------------------------------------------------------
+     mustVerify. Assembled, never authored by hand alone.
+
+     Three sources feed it: the state's standing conditions, the
+     jurisdiction's own conditions, and — the important one — an
+     entry generated for EVERY value in the record that is null or
+     not `primary`. Because nothing in this file is `primary`, the
+     generated set is never empty, which is why the contract's
+     "ALWAYS non-empty" holds structurally rather than by promise.
+     ------------------------------------------------------------ */
+
+  function weak(rec) {
+    return !rec || rec.confirmed !== "primary";
+  }
+
+  function autoVerify(j) {
+    var out = [];
+
+    /* wind — unconditional, in every jurisdiction, forever */
+    out.push(mv({
+      id: j.id + "/wind", severity: "blocking",
+      what: "The basic design wind speed at the site" +
+            (j.wind.vMph === null ? "" : " (this record carries " + j.wind.vMph + " mph, Risk " +
+             "Category II" + (j.wind.band ? ", band " + j.wind.band[0] + "–" + j.wind.band[1] : "") + ")") +
+            ", and the exposure category.",
+      why: j.wind.codeFixed
+        ? "Even where the code fixes the speed by county, the figure in the edition in force on the " +
+          "permit date is the authority, and the exposure category is still a site determination."
+        : "This is a PLANNING value read from a band, not a lookup. Wind speed is not a property of " +
+          "a city. Exposure is a fetch determination under ASCE 7 §26.7 and this module publishes " +
+          "none.",
+      check: "The ASCE 7 Hazard Tool at the site coordinates on the " + j.wind.asce + " map, and " +
+             "the adopted code's own wind figure.",
+      authority: "ASCE 7 Hazard Tool; the AHJ."
+    }));
+
+    /* code currency — unconditional, because nothing here is primary */
+    out.push(mv({
+      id: j.id + "/adoption", severity: "blocking",
+      what: "The code edition actually in force on the permit date: " +
+            j.codes.map(function (c) { return c.name + " " + c.edition + " (" + c.status + ")"; })
+              .join("; ") + ".",
+      why: "Every adoption fact in this module came from a search-engine summary of a page that " +
+           "could not be opened (see FM.juris.RESEARCH). Adoption cycles also move: a date that was " +
+           "right when it was checked on " + CHECKED + " is not necessarily right now.",
+      check: "The adopting authority's current adopted-codes page and ordinance.",
+      authority: STATES_DATA[j.state].authority
+    }));
+
+    /* seismic — unconditional, S_s and S_1 are null everywhere */
+    out.push(mv({
+      id: j.id + "/seismic", severity: "major",
+      what: "S_s, S_1 and the seismic design category at the site. This module publishes no S_s or " +
+            "S_1 at all and carries SDC " + (j.seismic.sdc === null ? "nothing" : j.seismic.sdc) +
+            " as a planning value.",
+      why: "Seismic ground motion is a coordinate lookup. No jurisdiction-level value is defensible, " +
+           "and the SDC also depends on the site class, which is a geotechnical determination.",
+      check: "USGS / ASCE 7 Hazard Tool at the site coordinates, with the site class.",
+      authority: "ASCE 7 Hazard Tool; the geotechnical report."
+    }));
+
+    if (j.snow.pgPsf === null || weak(j.snow)) {
+      out.push(mv({
+        id: j.id + "/snow", severity: j.snow.pgPsf === 0 ? "minor" : "major",
+        what: "The ground snow load p_g at the site" +
+              (j.snow.pgPsf === null ? " — this module carries none" :
+               " (this record carries " + j.snow.pgPsf + " psf" +
+               (j.snow.band ? ", band " + j.snow.band[0] + "–" + j.snow.band[1] : "") + ")") + ".",
+        why: j.snow.pgPsf === 0
+          ? "Zero is stated with confidence for Florida and the Texas coast, but it is still the " +
+            "value that decides whether the D + S combination exists at all, and C_D with it."
+          : "The adopted code tabulates p_g by county and that table was not retrievable. Snow " +
+            "overtakes the 20 psf roof live load above roughly 26 psf ground snow, and the load " +
+            "duration factor drops from 1.25 to 1.15 when it does.",
+        check: "The adopted code's ground snow table for the county, and the ASCE 7 Hazard Tool.",
+        authority: "ASCE 7 Hazard Tool; the AHJ."
+      }));
+    }
+
+    if (j.frostDepthIn.inches === null || weak(j.frostDepthIn)) {
+      out.push(mv({
+        id: j.id + "/frost", severity: "minor",
+        what: j.frostDepthIn.inches === null
+          ? "The frost line depth. This module carries NONE for this jurisdiction."
+          : "The frost line depth (this record carries " + j.frostDepthIn.inches + " in).",
+        why: "Frost line depth is entered by the adopting jurisdiction in Table R301.2(1) and that " +
+             "table was not retrievable. The separate 12 in minimum footing depth of R403.1.4 is " +
+             "carried as `minFootingDepthIn` and applies regardless.",
+        check: "The jurisdiction's completed Table R301.2(1).",
+        authority: "The AHJ."
+      }));
+    }
+
+    if (weak(j.termite) || weak(j.decay)) {
+      out.push(mv({
+        id: j.id + "/durability", severity: "minor",
+        what: "Termite infestation probability (" + (j.termite.level || "none carried") +
+              ") and decay probability (" + (j.decay.level || "none carried") + ").",
+        why: "Both are read off national figures and then ENTERED BY THE JURISDICTION in Table " +
+             "R301.2(1); the entered value governs and it was not retrievable. They drive treatment " +
+             "and, through NDS Table 4.3.8 incising, the capacity of every treated member in a " +
+             "refractory species.",
+        check: "The jurisdiction's completed Table R301.2(1); IRC/FBC-R R317 and R318.",
+        authority: "The AHJ."
+      }));
+    }
+
+    if (j.windborneDebris.inRegion === null) {
+      out.push(mv({
+        id: j.id + "/wbd", severity: "major",
+        what: "Whether the SITE is in the wind-borne debris region. This module deliberately " +
+              "publishes no county-wide answer here" +
+              (j.windborneDebris.likely === null ? "." :
+               "; the likely answer is " + (j.windborneDebris.likely ? "yes" : "no") + "."),
+        why: "The region is drawn by wind speed contour and distance from the coastal mean high " +
+             "water line, not by county line. A single county routinely has land inside and outside " +
+             "it, and publishing a county flag would be a confident error.",
+        check: j.windborneDebris.criterion,
+        authority: "The AHJ; the ASCE 7 Hazard Tool for the site's mapped speed."
+      }));
+    }
+
+    (j.amendments || []).forEach(function (a, i) {
+      if (a.incomplete) {
+        out.push(mv({
+          id: j.id + "/amendments-" + (i + 1), severity: "blocking",
+          what: "The jurisdiction's local amendments affecting structural design.",
+          why: "NOT RETRIEVED. This module's amendment list for this jurisdiction is empty of " +
+               "content, which is not the same as there being no amendments. Read it as a gap.",
+          check: a.cite,
+          authority: "The AHJ."
+        }));
+      }
+    });
+
+    return out;
+  }
+
+  function verifyFor(j) {
+    var out = [];
+    STATES_DATA[j.state].mustVerify.forEach(function (m) { out.push(m); });
+    autoVerify(j).forEach(function (m) { out.push(m); });
+    (j.mustVerify || []).forEach(function (m) { out.push(m); });
+    return out;
+  }
+
+  /* ------------------------------------------------------------
+     THE CONTRACT SURFACE
+     ------------------------------------------------------------ */
+
+  FM.juris.forState = function (stateCode) {
+    var st = String(stateCode || "").toUpperCase();
+    if (!has(STATES_DATA, st)) {
+      throw new Error("unknown state \"" + stateCode + "\" — this module covers " +
+                      FM.juris.STATES.join(", ") + " only.");
+    }
+    var s = STATES_DATA[st];
+    var out = {};
+    copyInto(out, s);
+    out.checked = CHECKED;
+    out.jurisdictions = FM.juris.jurisdictions(st).map(function (j) { return j.id; });
+    out.provenanceNote =
+      "Nothing in this record is `confirmed: \"primary\"`. See FM.juris.RESEARCH for why, and " +
+      "treat every adoption date here as a planning fact rather than a permit fact.";
+    return out;
+  };
+
+  FM.juris.jurisdictions = function (stateCode) {
+    var st = stateCode === undefined || stateCode === null
+      ? null : String(stateCode).toUpperCase();
+    if (st !== null && !has(STATES_DATA, st)) {
+      throw new Error("unknown state \"" + stateCode + "\" — this module covers " +
+                      FM.juris.STATES.join(", ") + " only.");
+    }
+    return JURIS.filter(function (j) { return st === null || j.state === st; })
+      .map(function (j) {
+        return {
+          id: j.id, name: j.name, county: j.county, state: j.state, kind: j.kind,
+          packId: j.packId, governs: j.governs,
+          hvhz: !!j.hvhz,
+          catastropheArea: !!j.catastropheArea,
+          edition: j.codes[0].edition,
+          editionStatus: j.codes[0].status
+        };
+      });
+  };
+
+  FM.juris.forSite = function (jurisId) {
+    var j = rawFor(jurisId);
+    var st = STATES_DATA[j.state];
+    return {
+      jurisdiction: { id: j.id, name: j.name, county: j.county, state: j.state, kind: j.kind },
+      state: { code: st.code, name: st.name, statewide: st.statewide, authority: st.authority },
+      codes: j.codes,
+      wind: j.wind,
+      snow: j.snow,
+      seismic: j.seismic,
+      frostDepthIn: j.frostDepthIn,
+      termite: j.termite,
+      decay: j.decay,
+      windborneDebris: j.windborneDebris,
+      hvhz: !!j.hvhz,
+      catastropheArea: !!j.catastropheArea,
+      governs: j.governs,
+      amendments: j.amendments || [],
+      packId: j.packId,
+      packWhy: j.packWhy,
+      mustVerify: verifyFor(j),
+      checked: CHECKED,
+      note: "`frostDepthIn`, `termite`, `decay` and `windborneDebris` are RECORDS, not bare values — " +
+            "each carries its own cls, cite, confirmed and checked, because the architecture rule " +
+            "that every value carries a class and a citation outranks the convenience of a bare " +
+            "number. Read `frostDepthIn.inches`, `termite.level`, `decay.level` and " +
+            "`windborneDebris.inRegion`."
+    };
+  };
+
+  /* ------------------------------------------------------------
+     PROVENANCE WALKER
+
+     Returns every value-bearing record in forSite() with its class
+     and citation, plus `orphans` — numbers that are NOT inside a
+     record carrying a class. An orphan is a defect: it is a number
+     with no citation, which this product does not ship.
+     ------------------------------------------------------------ */
+
+  var IGNORE_NUMERIC_KEYS = { };
+
+  FM.juris.provenance = function (jurisId) {
+    var site = FM.juris.forSite(jurisId);
+    var records = [], orphans = [];
+
+    function numbersIn(o) {
+      var nums = [], k, v, i;
+      for (k in o) {
+        if (!has(o, k) || has(IGNORE_NUMERIC_KEYS, k)) continue;
+        v = o[k];
+        if (typeof v === "number") nums.push({ key: k, v: v });
+        else if (Array.isArray(v)) {
+          for (i = 0; i < v.length; i++) {
+            if (typeof v[i] === "number") nums.push({ key: k + "[" + i + "]", v: v[i] });
+          }
+        }
+      }
+      return nums;
+    }
+
+    function walk(node, path, covered) {
+      var k, v, i;
+      if (node === null || typeof node !== "object") return;
+      if (Array.isArray(node)) {
+        for (i = 0; i < node.length; i++) walk(node[i], path + "[" + i + "]", covered);
+        return;
+      }
+      var isRecord = typeof node.cls === "string";
+      if (isRecord) {
+        records.push({
+          path: path, cls: node.cls,
+          cite: typeof node.cite === "string" && node.cite.length ? node.cite : null,
+          confirmed: node.confirmed || null,
+          checked: node.checked || null,
+          numbers: numbersIn(node)
+        });
+        covered = true;
+      } else {
+        numbersIn(node).forEach(function (n) {
+          if (!covered) orphans.push({ path: path + "." + n.key, v: n.v });
+        });
+      }
+      for (k in node) {
+        if (!has(node, k)) continue;
+        v = node[k];
+        if (v !== null && typeof v === "object") {
+          walk(v, path ? path + "." + k : k, isRecord ? true : covered);
+        }
+      }
+    }
+
+    walk(site, "", false);
+    return {
+      jurisId: jurisId,
+      records: records,
+      orphans: orphans,
+      uncited: records.filter(function (r) { return !r.cite; }),
+      unclassed: []
+    };
+  };
+
+  /* ------------------------------------------------------------
+     CHECKLIST — what a package must satisfy to be submittable.
+
+     These are SUBMITTAL requirements, not design loads. None of
+     them changes a member size. Several of them decide whether the
+     package can be permitted at all, and this engine satisfies
+     none of them by itself.
+     ------------------------------------------------------------ */
+
+  function ck(o) {
+    return {
+      id: o.id, item: o.item, why: o.why, cite: o.cite, src: o.src || null,
+      stage: o.stage || "submittal",
+      blocking: o.blocking === undefined ? true : !!o.blocking,
+      satisfiedByThisTool: false,
+      cls: o.cls || "code", confirmed: o.confirmed || "secondary", checked: CHECKED
+    };
+  }
+
+  FM.juris.checklist = function (jurisId) {
+    var j = rawFor(jurisId);
+    var st = STATES_DATA[j.state];
+    var out = [];
+
+    /* --- universal --- */
+    out.push(ck({
+      id: "seal", stage: "closeout",
+      item: "The set is sealed by a professional engineer licensed in " + st.name + ". This package " +
+            "is prepared FOR that review and seal; the software does not seal and never will.",
+      why: "Architecture non-negotiable 1. Every output says so.",
+      cite: "Firmark ARCHITECTURE.md, non-negotiables §1." }));
+
+    out.push(ck({
+      id: "criteria-table",
+      item: "The design criteria table on the cover reproduces the jurisdiction's completed Table " +
+            "R301.2(1) values — wind speed and exposure, ground snow, seismic design category and " +
+            "site class, frost line depth, termite and decay probability — as CONFIRMED for this " +
+            "site, not as carried by this module.",
+      why: "Every one of those values in this module is a planning value or null. See " +
+           "forSite().mustVerify.",
+      cite: (j.state === "FL" ? "FBC-R" : "IRC") + " Table R301.2(1); " + j.codes[0].cite,
+      src: j.codes[0].src }));
+
+    out.push(ck({
+      id: "truss-package", stage: "design",
+      item: "The roof truss package is a deferred sealed submittal by the truss supplier, with its " +
+            "own engineer's seal, and is not part of this package.",
+      why: "A production roof in all three states is a truss package. This engine designs simple-span " +
+           "solid-sawn members only (calc-spec §8.6, §8.19).",
+      cite: "calc-spec §8.6, §8.19." }));
+
+    out.push(ck({
+      id: "connections", stage: "design",
+      item: "Uplift, the continuous load path, hold-downs, straps, anchors and every connection are " +
+            "designed by others and are NOT in this package.",
+      why: "calc-spec §8.11 and §8.17 exclude them outright. In every wind-governed jurisdiction in " +
+           "this module they are what actually governs the building.",
+      cite: "calc-spec §8.11, §8.17." }));
+
+    /* --- Texas --- */
+    if (j.state === "TX") {
+      out.push(ck({
+        id: "tx-edition",
+        item: "The cover states the city ordinance and IRC edition the set is designed to, by " +
+              "number and effective date — currently " + j.codes[0].edition + " per " +
+              j.codes[0].cite.split(";")[0] + ".",
+        why: "Texas has no statewide edition. Two cities in this module are on different IRC " +
+             "editions and therefore different ASCE 7 maps.",
+        cite: "Tex. Loc. Gov't Code §214.212.", src: "tx-lgc-214" }));
+
+      if (j.id === "tx-houston") {
+        out.push(ck({
+          id: "tx-hou-windprint",
+          item: "The ASCE 7 Hazard Tool wind-speed printout for the property's physical address is " +
+                "ATTACHED TO THE PLANS, with the building identified as Risk Category II.",
+          why: "Houston requires it by amendment. It is not optional and it is not satisfied by " +
+               "citing a city-wide number.",
+          cite: "Houston Amendments to the 2021 IRC, §R301.2.1.", src: "hou-amend" }));
+      }
+
+      if (j.kind === "county-unincorporated") {
+        out.push(ck({
+          id: "tx-uninc-regime", stage: "design",
+          item: "Establish which regulatory regime the site is in — a municipality's ETJ code, " +
+                "Tex. Loc. Gov't Code ch. 233 Subchapter F, or no code at all — BEFORE the geometry " +
+                "gate.",
+          why: "The three produce three different code bases and three different submittal sets, and " +
+               "one of them has no plan review behind it at all.",
+          cite: "Tex. Loc. Gov't Code §§233.151–233.153.", src: "tx-lgc-233" }));
+      }
+
+      if (j.catastropheArea) {
+        out.push(ck({
+          id: "tx-wpi1", stage: "design",
+          item: "WPI-1 application filed with TDI BEFORE construction begins, and a TDI-appointed " +
+                "qualified inspector or TDI-appointed Texas-licensed professional engineer engaged " +
+                "to oversee the work.",
+          why: "Windstorm certification is an inspection programme, not a paperwork step. It cannot " +
+               "be retrofitted after framing.",
+          cite: "Tex. Ins. Code §§2210.251–2210.252, 2210.258–2210.259.", src: "tdi-wpi8" }));
+
+        out.push(ck({
+          id: "tx-tdi-code", stage: "design",
+          item: "The windstorm design complies with the 2024 IRC / 2024 IBC as required by TDI for " +
+                "WPI-1 applications from 1 April 2026 — WHICH MAY BE A NEWER EDITION THAN THE CITY " +
+                "ENFORCES. Where the two differ, satisfy both.",
+          why: "The city permit and the windstorm certificate are two separate approvals on two " +
+               "separate code cycles. A set that satisfies only the city passes plan review and then " +
+               "fails windstorm certification, which is discovered after framing.",
+          cite: "28 TAC §5.4008, amendment adopted 21 November 2025, effective 1 April 2026.",
+          src: "tdi-rule" }));
+
+        out.push(ck({
+          id: "tx-wpi8", stage: "closeout",
+          item: "WPI-8 certificate of compliance issued by TDI at completion.",
+          why: "Without it the structure is not eligible for TWIA windstorm coverage, which in " +
+               "practice means it is not mortgageable.",
+          cite: "TDI windstorm inspection programme.", src: "tdi-wpi8" }));
+      }
+    }
+
+    /* --- Florida --- */
+    if (j.state === "FL") {
+      out.push(ck({
+        id: "fl-edition",
+        item: "The cover states the FBC edition governing the permit — currently the 8th Edition " +
+              "(2023) — AND confirms which edition applies given the permit application date, with " +
+              "the 9th Edition (2026) expected effective 31 December 2026.",
+        why: "The governing edition is set by the date the permit application is submitted and " +
+             "accepted, not the date the set was drawn.",
+        cite: "Florida Building Code, Residential, 8th Edition (2023); 9th Edition (2026) pending.",
+        src: "fbc9" }));
+
+      out.push(ck({
+        id: "fl-product-approval",
+        item: j.hvhz
+          ? "Every product in a regulated category carries a Miami-Dade NOA, or a statewide Florida " +
+            "Product Approval bearing the HVHZ endorsement. A statewide approval WITHOUT the HVHZ " +
+            "endorsement is rejected at permit review."
+          : "Every product in a regulated category carries a valid statewide Florida Product " +
+            "Approval (FL number in the BCIS) or an approved local product approval.",
+        why: "A submittal requirement, not a design load. It changes no member size and it decides " +
+             "whether the package can be permitted. NOTHING this engine sizes carries an approval of " +
+             "any kind.",
+        cite: "F.A.C. Rule 61G20-3; Florida Product Approval / Miami-Dade NOA.", src: "fl-prod" }));
+
+      out.push(ck({
+        id: "fl-opening-protection",
+        item: "Opening protection is provided where the SITE is in the wind-borne debris region, " +
+              "determined from the site's mapped wind speed and its distance from the coastal mean " +
+              "high water line — not from the county.",
+        why: WBD_CRITERION,
+        cite: "FBC-R R301.2.1.2.", src: "fbc8",
+        blocking: j.windborneDebris.inRegion !== false }));
+
+      out.push(ck({
+        id: "fl-termite",
+        item: "Subterranean termite protection per FBC-R R318, with the method and the treatment " +
+              "certificate in the submittal.",
+        why: "Required throughout Florida, and it interacts with what may be installed below grade.",
+        cite: "FBC-R R318.", src: "fbc8" }));
+
+      if (j.hvhz) {
+        out.push(ck({
+          id: "fl-hvhz-ch44", stage: "design",
+          item: "The design complies with FBC-R Chapter 44, High-Velocity Hurricane Zones, in full.",
+          why: "Chapter 44 is a distinct design and approval regime, not a set of stricter numbers. " +
+               "Whether it permits a prescriptive path or mandates engineered design is UNRESOLVED " +
+               "in this module and in weights.js, and it decides what this tool's output is for.",
+          cite: "FBC-R Chapter 44; FBC-B §1620.", src: "fl-hvhz" }));
+      } else {
+        out.push(ck({
+          id: "fl-not-hvhz", stage: "design", blocking: false,
+          item: "Confirm this jurisdiction is NOT in the HVHZ and is not being detailed to Chapter 44 " +
+                "by analogy to a neighbour.",
+          why: "The HVHZ is Miami-Dade and Broward only. Palm Beach and Lee carry near-HVHZ wind " +
+               "speeds under the ordinary statewide regime, which is exactly the combination that " +
+               "gets them mis-detailed in both directions.",
+          cite: "FBC-R Chapter 44 scope — Broward and Miami-Dade counties only.", src: "fl-hvhz" }));
+      }
+
+      out.push(ck({
+        id: "fl-local-amend", blocking: false,
+        item: "Check for a local technical amendment in force, and whether it survives the 9th Edition.",
+        why: "F.S. §553.73(4) amendments are more-stringent-only and are VOID when the code is " +
+             "updated, except Community Rating System amendments.",
+        cite: "F.S. §553.73(4).", src: "fs-553-73" }));
+    }
+
+    /* --- North Carolina --- */
+    if (j.state === "NC") {
+      out.push(ck({
+        id: "nc-edition",
+        item: "The cover states which NCRC edition governs on the permit date. This module carries " +
+              "the 2018 NCRC (2015 IRC basis) as in force; the 2024 NCRC is adopted and delayed.",
+        why: "The 2024 NCRC effective date has moved three times and the last confirmable statement " +
+             "is six months old. It changes the base IRC year and the referenced wind standard " +
+             "together.",
+        cite: "S.L. 2024-57 §1F.3; S.L. 2025-2; NC licensing board code update, 15 February 2026.",
+        src: "nc-lic-2026" }));
+
+      out.push(ck({
+        id: "nc-asce710", stage: "design",
+        item: "An engineered design is performed to ASCE 7-10 while the 2018 NCRC is in force.",
+        why: "2018 NCRC R301.1.3 references ASCE 7-10. A wind speed taken off the ASCE 7-16 or " +
+             "7-22 map is off the wrong map for a North Carolina permit today.",
+        cite: "2018 NCRC R301.1.3; OSFM formal interpretation, 29 February 2024.",
+        src: "ncrc-asce710" }));
+
+      out.push(ck({
+        id: "nc-ch45",
+        item: "Where the site's design wind speed zone triggers NCRC Chapter 45, its High Wind Zone " +
+              "provisions are satisfied — rafter ties, continuous concrete footings under exterior " +
+              "walls in the 140 and 150 mph zones, and the rest of the chapter.",
+        why: "Chapter 45 is a prescriptive path this engine is not on, and its requirements are " +
+             "largely connections and foundations, which calc-spec §8.17 excludes entirely.",
+        cite: "NCRC Chapter 45, High Wind Zones.", src: "ncrc-ch45",
+        blocking: j.governs === "wind" }));
+
+      out.push(ck({
+        id: "nc-no-local", blocking: false,
+        item: "Do not look for, or rely on, a local technical amendment. There are none.",
+        why: "The NCRC is statewide and a more stringent local provision requires Council approval " +
+             "under G.S. §143-138(e). This is the only state in the module where the code text does " +
+             "not have to be diffed per jurisdiction.",
+        cite: "N.C.G.S. §143-138(e).", src: "nc-gs-143" }));
+    }
+
+    return out;
+  };
+
+  /* ------------------------------------------------------------
+     PACK MAPPING
+
+     Which weights.js region pack is the nearest load basis, and —
+     the part that earns its keep — WHERE THAT PACK IS WRONG FOR
+     THIS JURISDICTION. A pack is an approximation of a site. The
+     approximation is only safe if its error is published.
+
+     Reads FM.weights.PACKS live. It does not carry a copy, because
+     a copy would drift and then this module would be reporting
+     differences against a pack that no longer exists.
+     ------------------------------------------------------------ */
+
+  function packsOrNull(packs) {
+    if (packs) return packs;
+    if (typeof FM !== "undefined" && FM.weights && FM.weights.PACKS) return FM.weights.PACKS;
+    return null;
+  }
+
+  function findPack(packs, id) {
+    var hit = packs.filter(function (p) { return p.id === id; });
+    return hit.length ? hit[0] : null;
+  }
+
+  function diff(field, what, jv, pv, why, effect) {
+    return {
+      field: field, what: what,
+      jurisValue: jv, packValue: pv,
+      delta: (typeof jv === "number" && typeof pv === "number") ? (jv - pv) : null,
+      pctOfPack: (typeof jv === "number" && typeof pv === "number" && pv !== 0)
+        ? Math.round(((jv - pv) / pv) * 1000) / 10 : null,
+      why: why, effect: effect || null, cls: "site", checked: CHECKED
+    };
+  }
+
+  FM.juris.packFor = function (jurisId, packs) {
+    var j = rawFor(jurisId);
+    var P = packsOrNull(packs);
+
+    if (!P) {
+      return {
+        jurisId: jurisId, packId: j.packId, resolved: false,
+        why: "FM.weights is not loaded, so the pack's real values could not be read and no " +
+             "difference could be computed. The pack id is reported unchecked. Load weights.js " +
+             "before jurisdiction.js — build.js already orders it that way.",
+        differences: null, agreements: null,
+        mustVerify: verifyFor(j), checked: CHECKED
+      };
+    }
+
+    var pack = findPack(P, j.packId);
+    if (!pack) {
+      return {
+        jurisId: jurisId, packId: j.packId, resolved: false,
+        why: "jurisdiction.js maps " + jurisId + " to pack \"" + j.packId + "\", which does not " +
+             "exist in FM.weights.PACKS. Available: " +
+             P.map(function (p) { return p.id; }).join(", ") + ". This is a defect in one of the " +
+             "two files and it is reported rather than silently defaulted.",
+        differences: null, agreements: null,
+        mustVerify: verifyFor(j), checked: CHECKED
+      };
+    }
+
+    var differences = [], agreements = [];
+
+    /* wind */
+    var pw = pack.climate.windMph.v, jw = j.wind.vMph;
+    if (typeof jw === "number" && typeof pw === "number" && jw !== pw) {
+      differences.push(diff("wind.vMph", "Basic design wind speed, Risk Category II", jw, pw,
+        "The pack carries one planning speed for a whole region; this jurisdiction's planning band " +
+        "is " + (j.wind.band ? j.wind.band[0] + "–" + j.wind.band[1] : "not banded") + " mph on the " +
+        j.wind.asce + " map.",
+        "Wind pressure goes as V². " +
+        (jw > pw
+          ? "The pack is " + Math.round(((jw * jw) / (pw * pw) - 1) * 100) + "% LIGHT on wind " +
+            "pressure for this jurisdiction. It understates the hazard."
+          : "The pack is " + Math.round((1 - (jw * jw) / (pw * pw)) * 100) + "% heavy on wind " +
+            "pressure for this jurisdiction.") +
+        " This engine checks gravity only (calc-spec §8.11), so the difference does not move a " +
+        "member here — it moves everything downstream that this engine does not design."));
+    } else if (typeof jw === "number" && jw === pw) {
+      agreements.push({ field: "wind.vMph", value: jw,
+        note: "Agrees with the pack — but both are planning values and neither is a site lookup." });
+    }
+
+    /* ASCE edition the pack implies vs the one the adopted code references */
+    differences.push(diff("wind.asce", "Referenced ASCE 7 edition",
+      j.wind.asce, null,
+      "The pack declares no ASCE 7 edition at all — `climate.windMph` is a bare number with a note. " +
+      "This jurisdiction's adopted code references " + j.wind.asce + ".",
+      "A wind speed is only meaningful against the map it came off. Two of this module's Texas " +
+      "cities are on different ASCE editions while sharing the tx-i35 pack."));
+
+    /* snow */
+    var ps = pack.climate.groundSnow.v, js = j.snow.pgPsf;
+    if (typeof js === "number" && typeof ps === "number" && js !== ps) {
+      differences.push(diff("snow.pgPsf", "Ground snow load", js, ps,
+        "The pack carries one planning p_g for a whole region.",
+        (js > ps || ps > js)
+          ? "Roof snow overtakes the 20 psf roof live load above roughly 26 psf ground snow, and " +
+            "the load duration factor drops from C_D = 1.25 to 1.15 when it does — a real 8% " +
+            "capacity reduction on every bending check. Check which side of that line BOTH numbers " +
+            "fall on before treating the difference as harmless."
+          : null));
+    } else if (typeof js === "number" && js === ps) {
+      agreements.push({ field: "snow.pgPsf", value: js, note: "Agrees with the pack." });
+    }
+
+    /* seismic */
+    var psd = pack.climate.sdc.v, jsd = j.seismic.sdc;
+    if (jsd !== null && psd !== undefined && jsd !== psd) {
+      differences.push(diff("seismic.sdc", "Seismic design category", jsd, psd,
+        "Planning values on both sides; neither is a site-class determination.",
+        "Not a gravity driver in any of these markets, but it changes the detailing category."));
+    } else if (jsd !== null && jsd === psd) {
+      agreements.push({ field: "seismic.sdc", value: jsd, note: "Agrees with the pack." });
+    }
+
+    /* what governs */
+    if (j.governs !== pack.governs) {
+      differences.push(diff("governs", "What governs the design", j.governs, pack.governs,
+        "The jurisdiction and the pack disagree about the dominant action.",
+        j.governs === "wind" && pack.governs === "gravity"
+          ? "THIS IS THE SERIOUS ONE. The pack is a GRAVITY pack and this is a WIND jurisdiction, so " +
+            "the pack carries no `governsNote` and the export will not lead with a wind banner. The " +
+            "member this engine sizes is a gravity floor and nothing more, and the pack will not say " +
+            "so on the sheet."
+          : "The pack treats this as wind-governed where the jurisdiction does not; the wind banner " +
+            "will appear on a sheet that does not need it, which is the safe direction."));
+    } else {
+      agreements.push({ field: "governs", value: j.governs, note: "Agrees with the pack." });
+    }
+
+    /* HVHZ / windstorm regime the pack cannot express */
+    if (j.hvhz && pack.id !== "fl-hvhz") {
+      differences.push(diff("hvhz", "High-Velocity Hurricane Zone", true, false,
+        "This is an HVHZ jurisdiction mapped to a non-HVHZ pack.",
+        "Wrong regime entirely, not merely wrong numbers."));
+    }
+    if (!j.hvhz && pack.id === "fl-hvhz") {
+      differences.push(diff("hvhz", "High-Velocity Hurricane Zone", false, true,
+        "This is NOT an HVHZ jurisdiction but it is mapped to the HVHZ pack.",
+        "The pack ships a concrete tile roof and a 0.85 DCR cap that this jurisdiction has not " +
+        "asked for."));
+    }
+    if (j.catastropheArea) {
+      differences.push(diff("catastropheArea", "TDI designated catastrophe area", true, null,
+        "The pack has no field for the windstorm regime; tx-gulf mentions it only in prose.",
+        "WPI-1 / WPI-8 certification on the 2024 IRC is a submittal and inspection requirement the " +
+        "pack cannot express and the solver cannot see."));
+    }
+
+    /* code edition — the pack carries prose, not a field */
+    differences.push(diff("code.edition", "Adopted code edition",
+      j.codes[0].edition, null,
+      "The pack carries `code.family: \"" + pack.code.family + "\"` and a prose note. It has no " +
+      "edition field, so nothing downstream can compare an edition against it.",
+      "This module is where the edition lives. The pack cannot be right or wrong about it because " +
+      "it does not state it."));
+
+    return {
+      jurisId: jurisId,
+      jurisName: j.name,
+      packId: pack.id,
+      packName: pack.name,
+      resolved: true,
+      basis: j.packWhy,
+      differences: differences,
+      agreements: agreements,
+      verdict: differences.length
+        ? "THE PACK IS AN APPROXIMATION OF THIS SITE, AND HERE IS HOW FAR OFF IT IS. " +
+          differences.length + " difference" + (differences.length === 1 ? "" : "s") + " reported."
+        : "No difference detected on the fields this module can compare — which is not the same as " +
+          "the pack being right for the site.",
+      note: "A pack chooses a LOAD BASIS and a market palette. It is not a code basis and it is not " +
+            "a site. Use forSite() for the code and the hazard parameters, and treat the pack as the " +
+            "commercial and load-preset layer underneath them.",
+      mustVerify: verifyFor(j),
+      checked: CHECKED
+    };
+  };
+
+  /* Every jurisdiction's pack mapping in one call, for a reviewer
+     who wants to see the whole approximation surface at once. */
+  FM.juris.packAudit = function (packs) {
+    return JURIS.map(function (j) { return FM.juris.packFor(j.id, packs); });
   };
 })();

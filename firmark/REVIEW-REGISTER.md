@@ -696,3 +696,66 @@ that makes writing them again fail.
 
 The seal answer is unchanged: **do not seal.** L1, L2, L3, L5, L6, L7 and L9 remain open, and so do
 the three items §N could not close.
+
+---
+
+## Q. The takeoff's jack rule disagrees with every shipped mark — and that is safe
+
+The takeoff derives a header's bearing length from the opening width: **1 jack under 6 ft**, 2 to
+12, 3 to 18, refuse at 18+, at 1.5 in per jack. Every hand-written header in `weights.js` declares
+**2 jacks** at openings of 3.67, 4.5, 5.0 and 6.5 ft. Below 6 ft the two disagree by one jack,
+which is **a factor of two on the bearing check**.
+
+Neither is a table lookup, and that is the honest description of both. IRC R602.7 Table
+R602.7(1)/(2) sets the jack count from the opening width **and the load carried**; the takeoff's
+rule reads only the width, and the hand-written marks were an author's judgement. The takeoff
+discloses this on every header it emits — `JACK_RULE_TEXT` names the disagreement, names the four
+spans, and says where to settle it — rather than burying it in a report.
+
+**The disagreement was left in rather than resolved, because the less-conservative rule cannot
+fail quietly.** Measured, not assumed. Same header, `tx-i35`, 1 jack against 2:
+
+| trib × span | 1 jack (1.5 in) | 2 jacks (3.0 in) |
+|---|---|---|
+| 20 ft × 8 ft | **escalates** — procurement | 4x12, bending, 0.844 |
+| 28 ft × 6 ft | **escalates** — strength | 4x10, bending, 0.814 |
+| 34 ft × 5 ft | **escalates — bearing** | 4x10, bending, 0.900 |
+| 40 ft × 4 ft | **escalates** — procurement | 4x8, shear, 0.760 |
+
+And at ordinary tract loads (16 ft tributary, 5 ft opening) the two produce the **identical
+member at the identical DCR**, because bending governs and bearing is nowhere near.
+
+So the under-declared bearing has exactly two outcomes: the same answer, or an escalation a human
+must resolve. It cannot produce a quietly under-designed member, because `engine.js` checks
+`F_c⊥` and the solver gates on it. That is the property that makes the disagreement tolerable —
+not the rule being right.
+
+**Open, and it belongs at approval gate 2.** The takeoff is the stage a person signs; the jack
+count is printed on the mark, marked `derived`, with the rule quoted. Whoever approves the takeoff
+is the right person to settle it against R602.7 for the tributary actually derived.
+
+### Q.1 What the takeoff will not do, stated by its author
+
+Worth carrying because each is a place a PE would push back, and each is disclosed on the run
+rather than in a document nobody opens:
+
+- **Clear span, not centre-to-centre of bearings.** `calc-spec`'s symbol table says both. The
+  takeoff emits clear and prints the c/c value beside it in every span derivation — on a typical
+  starter window that is span 4.00 against the shipped mark's 4.50, and tributary 15.854 against
+  16.0. Roughly 1–4% unconservative on moment. It refused to pick the larger number on the
+  reviewer's behalf.
+- **`braced: true` on everything** — a construction assumption, not geometry; the model draws no
+  sheathing. The engine's own §7.3 fixture moves 0.543 → 1.252 unbraced, so this is not small.
+- **No eave or overhang tributary.** A 1 ft eave on a 16 ft tributary is 6% of load that is not
+  there. The model has no eave.
+- **Roof spans are horizontal projections** — there is no pitch in the model, so sloped length is
+  not derivable. This is register §L7, reached from a second direction.
+- **A header carrying only a storey of wall is refused**, because `ASSEMBLY{}` carries no wall
+  dead load (§L6). Where it also has real framing tributary it is emitted with a warning.
+
+### Q.2 The structural gap
+
+The geometry model has **no beam, post or column entity**. Any framing landing on a post line can
+never get a determined span — which is exactly the lanai, porch and deck-beam family, the marks
+this engine is genuinely best at. Today they can only be refused. Refusing is the right behaviour
+given the model; the model is what needs to grow.

@@ -243,6 +243,9 @@
       exterior: true, bearing: true,
       heightFt: level.topPlateFt === null ? null : level.topPlateFt,
       thicknessIn: null,
+      /* "user" — a human set it; "assumed" — fromPlan chose it because the
+         source plan declares no stud size, and validate() says so out loud */
+      thicknessBasis: "user",
       note: ""
     };
     if (over) Object.keys(over).forEach(function (k) { w[k] = over[k]; });
@@ -313,6 +316,7 @@
           x1: num(w.x1) || 0, y1: num(w.y1) || 0, x2: num(w.x2) || 0, y2: num(w.y2) || 0,
           exterior: !!w.exterior, bearing: !!w.bearing,
           heightFt: num(w.heightFt), thicknessIn: num(w.thicknessIn),
+          thicknessBasis: w.thicknessBasis === "assumed" ? "assumed" : "user",
           note: w.note || "", basis: w.basis || ""
         });
       });
@@ -517,6 +521,10 @@
       var lid = L.id;
       var walls = L.walls || [], openings = L.openings || [], framing = L.framing || [];
       var i, j;
+      /* Findings that would otherwise repeat once per element are collected
+         and reported once. Fourteen identical warnings bury the one finding
+         that is not identical. */
+      var noThick = [], assumedThick = [], placeholders = {};
 
       if (walls.length) anyWall = true;
 
@@ -538,9 +546,12 @@
         }
         var th = num(w.thicknessIn);
         if (th === null) {
-          add(lid, w.id, "warn", "wall-no-thickness",
-              w.id + " has no wall thickness. Set it in the wall panel — 3.5 in for a 2x4 wall, " +
-              "5.5 in for a 2x6 — before the takeoff gate.");
+          noThick.push(w.id);
+        } else if (w.thicknessBasis === "assumed") {
+          assumedThick.push(w.id + " " + f1(th) + " in");
+        }
+        if (th === null) {
+          /* grouped below */
         } else if (th <= 0) {
           add(lid, w.id, "error", "wall-thickness-zero",
               w.id + " has a thickness of " + f2(th) + " in. A wall has to be thicker than nothing; " +
@@ -597,11 +608,37 @@
               " ft wall — there is no room above it for a header. Lower the head or raise the wall.");
         }
         if (o.offsetBasis === "placeholder") {
-          add(lid, o.id, "warn", "opening-placeholder-offset",
-              o.id + " (" + o.kind + ", " + ftIn(o.widthFt) + ") sits at a PLACEHOLDER offset of " +
-              f2(o.offsetFt) + " ft along " + w.id + ". Nothing in the source plan says where along the " +
-              "wall it goes. Drag it to the architectural elevation before the takeoff gate.");
+          placeholders[w.id] = placeholders[w.id] || [];
+          placeholders[w.id].push(o.id);
         }
+      });
+
+      /* ---- the grouped wall and opening findings ---- */
+      if (noThick.length) {
+        add(lid, noThick.length === 1 ? noThick[0] : "walls", "warn", "wall-no-thickness",
+            (noThick.length === 1 ? noThick[0] + " has" : noThick.length + " walls have") +
+            " no thickness (" + noThick.join(", ") + "). The takeoff measures a clear span between " +
+            "wall FACES, so half of each wall comes out of the centreline dimension and it cannot " +
+            "derive a span without one. Set 3.5 in for a 2x4 wall or 5.5 in for a 2x6.");
+      }
+      if (assumedThick.length) {
+        add(lid, assumedThick.length === 1 ? assumedThick[0].split(" ")[0] : "walls", "warn",
+            "wall-thickness-assumed",
+            "Wall thickness on " + assumedThick.length + " wall" + (assumedThick.length === 1 ? "" : "s") +
+            " was ASSUMED, not read from the plan: " + assumedThick.join(", ") + ". No plan or region " +
+            "pack in this build declares a stud size, so a 2x4 (3.5 in) framed wall was taken as the " +
+            "default — it is the common production wall in TX, FL and NC, and it is the conservative " +
+            "reading, because a thinner wall leaves a LONGER clear span between faces. Confirm the " +
+            "stud size against the architectural set and change it here if the walls are 2x6.");
+      }
+      Object.keys(placeholders).forEach(function (wid) {
+        var ids = placeholders[wid];
+        add(lid, wid, "warn", "opening-placeholder-offset",
+            wid + " carries " + ids.length + " opening" + (ids.length === 1 ? "" : "s") +
+            " at PLACEHOLDER offsets (" + ids.join(", ") + "). The source plan declares how many " +
+            "openings this wall has and how wide they are, not where along it they sit — these are " +
+            "spaced evenly so the wall can be read, and no dimension off them is real. Drag them to " +
+            "the architectural elevation before the takeoff gate.");
       });
 
       /* ---- framing ---- */
@@ -772,16 +809,50 @@
     return out;
   }
 
-  function fromPlan(planId) {
+  /* No plan and no region pack in this build declares a stud size, and the
+     takeoff measures a clear span between wall FACES — so a wall with no
+     thickness stops the whole pipeline. A stated assumption a reviewer can
+     see and change is the right answer; a null is not, and neither is a
+     silent one. 2x4 because it is the production wall in these three states,
+     and because it is the conservative reading: a THINNER wall leaves a
+     LONGER clear span between faces, so nothing downstream is under-sized by
+     it. validate() reports every wall carrying this value as assumed. */
+  var ASSUMED_STUD_IN = 3.5;
+
+  function fromPlan(planId, variantId) {
     var W = FM.weights;
     if (!W || typeof W.planById !== "function") return null;
     var plan = W.planById(planId);
     if (!plan) return null;
 
+    var basePlan = plan, variantNote = "";
+    if (variantId) {
+      if (typeof W.planForVariant !== "function") {
+        variantNote = "This build's weights.js has no planForVariant(), so variant \"" + variantId +
+                      "\" was not applied.";
+      } else {
+        try { plan = W.planForVariant(basePlan, variantId); }
+        catch (e) { plan = basePlan; variantNote = e.message; }
+      }
+    }
+
     var m = blank(plan.name);
-    m.source = { kind: "plan", planId: plan.id, builtBy: "FM.cad.fromPlan" };
+    m.source = { kind: "plan", planId: basePlan.id, variantId: variantId || null,
+                 builtBy: "FM.cad.fromPlan" };
     var un = m.unresolved;
     function hole(what, why, need) { un.push({ what: what, why: why, need: need }); }
+
+    if (variantNote) {
+      hole("Variant \"" + variantId + "\"",
+           "It was not applied, so this geometry is the base plan: " + variantNote,
+           "Name a variant this build has, or read this model as the stamped base case.");
+    }
+    if (plan.variant && plan.variant.geometry) {
+      hole("Geometry added by variant \"" + (plan.variant.id || variantId) + "\"",
+           "This variant declares its own geometry block, and this model draws the base footprint " +
+           "only — a porch or a stoop the variant adds is not on the canvas.",
+           "Declare where the added geometry sits relative to a named corner, then draw it.");
+    }
 
     var g = plan.geometry || {};
     var fp = isArr(g.footprintFt) ? g.footprintFt : null;
@@ -810,22 +881,24 @@
     var Wd = num(fp[0]), D = num(fp[1]);
 
     /* ---- the exterior envelope ---- */
+    var thickNote = "Thickness " + ASSUMED_STUD_IN + " in is ASSUMED — a 2x4 framed wall. " +
+                    plan.name + " declares no stud size and neither does any region pack.";
     var basis = "Exterior envelope from " + plan.name + " geometry.footprintFt = [" + Wd + ", " + D +
-                "] ft. Front is the wall at y = 0 (drawing convention).";
+                "] ft. Front is the wall at y = 0 (drawing convention). " + thickNote;
     /* pushed one at a time — nextId reads the list, so building all four
        first hands out the same id twice */
-    var front = newWall(L, 0, 0, Wd, 0, { note: "Front wall", basis: basis, bearing: false });
-    L.walls.push(front);
-    var right = newWall(L, Wd, 0, Wd, D, { note: "Right wall", basis: basis, bearing: false });
-    L.walls.push(right);
-    var rear = newWall(L, 0, D, Wd, D, { note: "Rear wall", basis: basis, bearing: false });
-    L.walls.push(rear);
-    var left = newWall(L, 0, 0, 0, D, { note: "Left wall", basis: basis, bearing: false });
-    L.walls.push(left);
-
-    /* Wall thickness is not declared by any plan or pack — the packs carry a
-       plate height, not a stud size. It is left null and validate() names it
-       per wall, which is where a reader will be looking when they fix it. */
+    function envelope(x1, y1, x2, y2, label) {
+      var w = newWall(L, x1, y1, x2, y2, {
+        note: label + " · " + thickNote, basis: basis, bearing: false,
+        thicknessIn: ASSUMED_STUD_IN, thicknessBasis: "assumed"
+      });
+      L.walls.push(w);
+      return w;
+    }
+    var front = envelope(0, 0, Wd, 0, "Front wall");
+    var right = envelope(Wd, 0, Wd, D, "Right wall");
+    var rear = envelope(0, D, Wd, D, "Rear wall");
+    var left = envelope(0, 0, 0, D, "Left wall");
 
     /* ---- which walls bear, and which way the roof spans ---- */
     var span = num(g.trussSpanFt);
@@ -898,17 +971,21 @@
       var acrossX = near(sum, Wd, 0.01), acrossY = near(sum, D, 0.01);
       if (acrossX && !acrossY) {
         interior = newWall(L, joistSpans[0], 0, joistSpans[0], D, {
-          exterior: false, bearing: true, note: "Interior bearing line",
+          exterior: false, bearing: true,
+          note: "Interior bearing line · " + thickNote,
+          thicknessIn: ASSUMED_STUD_IN, thicknessBasis: "assumed",
           basis: "Derived: the two declared joist bays (" + joistSpans[0] + " ft and " + joistSpans[1] +
                  " ft) add to the " + Wd + " ft footprint width, so the line sits " + joistSpans[0] +
-                 " ft from one side."
+                 " ft from one side. " + thickNote
         });
         floorDirDeg = 0;
       } else if (acrossY && !acrossX) {
         interior = newWall(L, 0, joistSpans[0], Wd, joistSpans[0], {
-          exterior: false, bearing: true, note: "Interior bearing line",
+          exterior: false, bearing: true,
+          note: "Interior bearing line · " + thickNote,
+          thicknessIn: ASSUMED_STUD_IN, thicknessBasis: "assumed",
           basis: "Derived: the two declared joist bays (" + joistSpans[0] + " ft and " + joistSpans[1] +
-                 " ft) add to the " + D + " ft footprint depth."
+                 " ft) add to the " + D + " ft footprint depth. " + thickNote
         });
         floorDirDeg = 90;
       }
@@ -1209,6 +1286,7 @@
   FM.cad = {
     MODEL_VERSION: MODEL_VERSION,
     RULES: RULES,
+    ASSUMED_STUD_IN: ASSUMED_STUD_IN,
     OPENING_KINDS: OPENING_KINDS,
     FRAMING_KINDS: FRAMING_KINDS,
     STORE_KEY: STORE_KEY,
@@ -1297,7 +1375,7 @@
     hover: null,
     cursor: null,
     saveKey: "",
-    defaults: { thicknessIn: 5.5, openWidthFt: 4, headHeightFt: 6.67, kind: "window", framingKind: "roof" }
+    defaults: { thicknessIn: ASSUMED_STUD_IN, openWidthFt: 4, headHeightFt: 6.67, kind: "window", framingKind: "roof" }
   };
   var MODEL = null;
   var UNDO = [], REDO = [];
@@ -2193,8 +2271,9 @@
       toggle("Exterior wall", w.exterior, function (v) { edit(function () { w.exterior = v; }); }),
       toggle("Bearing — carries framing above", w.bearing, function (v) { edit(function () { w.bearing = v; }); }),
       el("div", { class: "field-row" }, [
-        field("Thickness (in)", numBox(w.thicknessIn, "0.5", function (v) { edit(function () { w.thicknessIn = v; }); }),
-          "3.5 = 2x4, 5.5 = 2x6"),
+        field("Thickness (in)", numBox(w.thicknessIn, "0.5", function (v) {
+          edit(function () { w.thicknessIn = v; w.thicknessBasis = "user"; });
+        }), w.thicknessBasis === "assumed" ? "ASSUMED 2x4 — confirm and retype" : "3.5 = 2x4, 5.5 = 2x6"),
         field("Height (ft)", numBox(w.heightFt, "0.25", function (v) { edit(function () { w.heightFt = v; }); }))
       ]),
       field("Note", textBox(w.note, function (v) { edit(function () { w.note = v; }); }))

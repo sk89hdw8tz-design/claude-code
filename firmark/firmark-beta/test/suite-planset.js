@@ -438,6 +438,30 @@ module.exports = function (t, FM) {
 
     /* it collects from every upstream stage */
     truthy(/HDR-GBL tributary/.test(s50), "S5.0 collects the takeoff's unresolved items");
+
+    /* ARCHITECTURE.md fixes the shape of `unresolved` and `excluded` but says
+       only `warnings: [...]`, so the real modules use {kind, text, refs}.
+       A finding somebody wrote a sentence for must not come out as
+       "(unnamed)" — that loses the finding while looking like a guard. */
+    var oddShapes = FM.planset.build({
+      planResult: solve("starter-1210", "fl-hvhz"),
+      takeoff: { derivations: [{ markId: "X" }], unresolved: [],
+                 warnings: [{ kind: "no-header", refs: ["O12", "W4"],
+                              text: "No header mark for opening O12: wall W4 is bearing:false." }] },
+      bom: { lines: [], excluded: [{ item: "the girder", reason: "escalated, so it has no member" }] },
+      juris: { mustVerify: [{ check: "the adopted edition", note: "not confirmed", source: "the AHJ" }] },
+      at: "x"
+    }).sheetByNo("S5.0").text();
+    truthy(/no-header — O12, W4/.test(oddShapes),
+           "a warning shaped {kind, text, refs} is reported by its kind and its refs");
+    truthy(/wall W4 is bearing:false/.test(oddShapes),
+           "and the sentence somebody wrote survives into the sheet");
+    truthy(/the girder/.test(oddShapes) && /escalated, so it has no member/.test(oddShapes),
+           "an exclusion shaped {item, reason} is read, not dropped as unnamed");
+    truthy(/the adopted edition/.test(oddShapes) && /the AHJ/.test(oddShapes),
+           "and a must-verify shaped {check, note, source} likewise");
+    truthy(oddShapes.indexOf("(unnamed") === -1,
+           "none of the three comes out as \"(unnamed)\"");
     truthy(/every connector, strap and anchor/.test(s50), "and the BOM's excluded items");
     truthy(/FBC-R Chapter 44 mandates engineered design/.test(s50),
            "and the jurisdiction's must-verify items");
@@ -696,5 +720,94 @@ module.exports = function (t, FM) {
     });
     var trailing = pkg.text().split("\n").filter(function (l) { return /[ \t]$/.test(l); });
     eq(trailing.length, 0, "and no line carries trailing whitespace into the exported file");
+  })();
+
+  /* ============================================================
+     10. The drawn form
+     ============================================================ */
+
+  suite("planset · the sheets render without a real browser");
+  (function () {
+    /* The harness supplies inert DOM stubs. Nothing here proves the sheets
+       LOOK right — that is ui-tests.js's job against a real browser — but a
+       renderer that throws on a document with no <head>, or on an SVG path
+       with no geometry, would take the whole view down, and that is worth
+       catching here. */
+    function node() {
+      var n = {
+        children: [], style: {}, id: "",
+        classList: { add: function () {}, remove: function () {}, toggle: function () {},
+                     contains: function () { return false; } },
+        appendChild: function (c) { this.children.push(c); return c; },
+        setAttribute: function () {}, addEventListener: function () {},
+        textContent: "", innerHTML: ""
+      };
+      return n;
+    }
+
+    var withGeom = FM.planset.build(fullCtx("starter-1210", "fl-hvhz"));
+    var host = node(), threw = null;
+    try { FM.planset.render(host, withGeom); } catch (e) { threw = e; }
+    truthy(!threw, "render(host, pkg) does not throw" + (threw ? " — " + threw.message : ""));
+    eq(host.children.length, 7, "and appends one node per sheet");
+
+    withGeom.sheets.forEach(function (s) {
+      var t2 = null, h = node();
+      try { s.render(h); } catch (e) { t2 = e; }
+      truthy(!t2, s.no + ".render(host) does not throw" + (t2 ? " — " + t2.message : ""));
+    });
+
+    /* the same, with NO geometry: the SVG path must be skipped, not crash */
+    var noGeom = FM.planset.build({ planResult: solve("starter-1210", "fl-hvhz"), at: "x" });
+    var h2 = node(), t3 = null;
+    try { FM.planset.render(h2, noGeom); } catch (e) { t3 = e; }
+    truthy(!t3, "a package with no CAD model renders too" + (t3 ? " — " + t3.message : ""));
+
+    /* a model with degenerate coordinates must not produce a broken drawing */
+    var junkModel = { version: 1, name: "junk", levels: [{ id: "L1", label: "L1",
+      walls: [{ id: "W1", x1: "x", y1: null, x2: undefined, y2: NaN }], openings: [], framing: [] }] };
+    var g = FM.planset.geometry(junkModel, null, null);
+    eq(g.ok, false, "a model with no usable coordinate is reported as undrawable");
+    truthy(g.why.length > 0, "and says why rather than drawing nothing silently");
+    var junkPkg = FM.planset.build({ planResult: solve("starter-1210", "fl-hvhz"),
+                                     model: junkModel, at: "x" });
+    truthy(/THE MODEL COULD NOT BE READ/.test(junkPkg.sheetByNo("S1.0").text()),
+           "and S1.0 says the model could not be read");
+  })();
+
+  /* ============================================================
+     11. Against the real upstream modules, when they are present
+     ============================================================ */
+
+  suite("planset · integration with cad.js, takeoff.js and bom.js as they actually are");
+  (function () {
+    var have = !!(FM.cad && FM.takeoff && FM.bom);
+    truthy(true, "cad.js / takeoff.js / bom.js " + (have ? "are loaded — integrating" : "are not loaded — the guarded path is what runs"));
+    if (!have) return;
+
+    var problems = [], n = 0;
+    every(function (pl, pk) {
+      n++;
+      var res = FM.solver.solvePlan(pl, pk);
+      var model = null, tk = null, bom = null;
+      try { model = FM.cad.fromPlan(pl.id); } catch (e) { model = null; }
+      try { tk = FM.takeoff.run(model, { plan: pl, pack: pk }); } catch (e) { tk = null; }
+      try { bom = FM.bom.build(res, {}); } catch (e) { bom = null; }
+      var pkg = FM.planset.build({ model: model, takeoff: tk, planResult: res, bom: bom,
+                                   pipeline: FM.pipeline, at: "x" });
+      var txt = pkg.text();
+      var where = pl.id + "/" + pk.id;
+      if (/stamp/i.test(txt)) problems.push(where + ": upstream prose carried \"stamp\" into the package");
+      if (/undefined/.test(txt) || /NaN/.test(txt) || /\[object Object\]/.test(txt)) {
+        problems.push(where + ": an upstream value leaked as undefined/NaN/[object Object]");
+      }
+      txt.split("\n").forEach(function (l) {
+        if (l.length > 80) problems.push(where + ": upstream text overflows the sheet at " + l.length + " columns");
+      });
+      if (!pkg.openItems.length) problems.push(where + ": S5.0 came out empty");
+    });
+    eq(n, 30, "integrated across all 30 combinations");
+    eq(problems.length, 0, "real upstream content survives the sheet layout intact" +
+       (problems.length ? " — " + problems.slice(0, 3).join(" | ") : ""));
   })();
 };

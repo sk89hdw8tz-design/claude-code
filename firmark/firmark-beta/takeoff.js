@@ -167,7 +167,10 @@
     "jack count from the opening width AND the load carried, and this rule reads only the width. " +
     "Confirm it against the table for the tributary actually derived before the drawing is issued. " +
     "The value is marked `derived` so it can be challenged, and the engine checks bearing (Fc perp), " +
-    "so an under-declared bearing escalates rather than passing quietly.";
+    "so an under-declared bearing escalates rather than passing quietly. FOR COMPARISON: the " +
+    "hand-written marks in weights.js PLANS declare 2 jacks at openings of 3.67, 4.5, 5.0 and 6.5 ft " +
+    "and 3 jacks at 9.67 ft — one MORE jack than this rule gives below 6 ft, which is a factor of two " +
+    "on the bearing check. Whichever is right, they disagree, and this is where to settle it.";
 
   var POST_NOTE =
     "AXIAL MEMBER — NOT CHECKED HERE. calc-spec §4.10 specifies C_P (NDS §3.7.1) and §8.20 states " +
@@ -243,11 +246,6 @@
         how: how, cls: cls || "derived"
       });
       return sp;
-    };
-    sp.get = function (name) {
-      var i;
-      for (i = 0; i < sp.fields.length; i++) if (sp.fields[i].name === name) return sp.fields[i].value;
-      return undefined;
     };
     sp.replace = function (name, value, from, fromIds, how, cls) {
       var i;
@@ -584,7 +582,12 @@
         "the span is the CLEAR distance between wall faces, so half of each wall's thickness comes " +
         "out of the centreline distance. With no thickness there is no face, and assuming 2x6 " +
         "framing would invent up to 0.46 ft of span.",
-        "declare thicknessIn on every bearing wall.",
+        "declare thicknessIn on each wall named above — 3.5 in for a 2x4 wall, 5.5 in for 2x6. " +
+        "PIPELINE NOTE: FM.cad.validate reports a missing wall thickness as `warn`, which does not " +
+        "block approval gate 1, so a model can arrive here already approved and still be " +
+        "unmeasurable. Either that check becomes an error, or the geometry stage declares a stated " +
+        "thickness convention the way it already declares 'the front of the house is the wall at " +
+        "y = 0'.",
         [reg.id].concat(badT));
       rec.why = "support thickness not declared";
       return rec;
@@ -778,8 +781,10 @@
       f3(spanFt + 3 / 12) + " ft at a 3 in bearing; this module emits the CLEAR distance the " +
       "FM.takeoff contract specifies and does not pad.");
     sp.set("runFt", clean(runFt), fromRegion, [reg.id],
-      "the region's extent measured perpendicular to the framing direction (along the bearing " +
-      "lines): " + f3(vmax) + " ft - " + f3(vmin) + " ft = " + f3(runFt) + " ft.");
+      "the region's dimension measured ACROSS the members, parallel to the bearing lines — the " +
+      "length of wall this framing lands on: " + f3(runFt) + " ft. It is not the polygon's longest " +
+      "side: the framing direction (" + f2(reg.directionDeg) + " deg) is what decides which " +
+      "dimension is the span and which is the run.");
     sp.set("spacingIn", reg.spacingIn, fromRegion, [reg.id],
       "read straight off the drawn region.", "user");
     sp.set("count", count, fromRegion + " and its spacing", [reg.id],
@@ -845,7 +850,7 @@
         entry(wid).contributions.push({
           regionId: rec.id, kind: rec.kind, carries: rec.carries,
           spanFt: rec.spanFt, halfSpanFt: rec.halfSpanFt,
-          side: sn >= 0 ? "+" : "-",
+          side: sn >= 0 ? "+" : "-", centroid: rec.centroid,
           extent: rec.extentByWall[wid] || [0, g.len],
           markId: rec.markId
         });
@@ -897,7 +902,7 @@
 
   /* another bearing wall teeing into this one inside the opening = a point
      load on the header */
-  function teeInOpening(model, index, entry, o1, o2) {
+  function teeInOpening(model, entry, o1, o2) {
     var g = entry.geom, hits = [];
     (model.levels || []).forEach(function (lv, li) {
       if (li !== entry.levelIndex) return;
@@ -1153,7 +1158,7 @@
     }
 
     /* --- a bearing wall teeing into the opening is a point load --- */
-    var tees = teeInOpening(model, index, entry, o1, o2);
+    var tees = teeInOpening(model, entry, o1, o2);
     if (tees.length) {
       refuse(run, "header-point-load",
         "bearing wall(s) " + list(tees) + " land on wall " + w.id + " inside opening " + op.id,
@@ -1176,14 +1181,15 @@
 
     var regionIds = over.map(function (c) { return c.regionId; });
     var tribHow = over.map(function (c) {
-      return "region " + c.regionId + " (" + c.kind + ", " + (c.side === "+" ? "one side" : "other side") +
-             " of the wall): clear span " + f3(c.spanFt) + " ft / 2 = " + f3(c.halfSpanFt) + " ft";
+      return "region " + c.regionId + " (" + c.kind + ", centroid at (" + f2(c.centroid[0]) + ", " +
+             f2(c.centroid[1]) + ") ft, which puts it on the " + c.side + " side of the wall line): " +
+             "clear span " + f3(c.spanFt) + " ft / 2 = " + f3(c.halfSpanFt) + " ft";
     }).join("; ");
     if (nSides < 2) {
       tribHow += ". The other side contributes nothing: wall " + w.id + " is declared exterior:true, " +
                  "so the outboard side is outside the building and no framing region bears on it " +
                  "there. Roof overhang / eave tributary is NOT included — the geometry model has no " +
-                 "eave, and inventing one would be a number off a sales sheet.";
+                 "eave, and inventing one would be a number off a sales sheet";
     }
     tribHow += ". Half of the CLEAR span, consistent with the span rule; half of the centre-to-" +
                "centre span would be about " + f3(over.length * (w.thicknessIn || 0) / 48) +

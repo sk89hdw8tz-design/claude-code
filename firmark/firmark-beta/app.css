@@ -846,3 +846,99 @@ tbody tr.clickable:focus-visible {
   font-size: .8rem; color: var(--fail);
   background: var(--fail-wash); border-radius: var(--r); padding: 6px 9px;
 }
+
+/* ============================================================
+   CAD view — the drawing canvas (agent CAD, cad.js)
+   Appended block; nothing above this line is touched.
+   Every colour is a theme token, so the canvas follows the
+   light/dark toggle without a second palette.
+   ============================================================ */
+
+.cad-wrap { display: grid; grid-template-columns: minmax(0, 1fr) 312px; gap: 14px; align-items: start; }
+@media (max-width: 1040px) { .cad-wrap { grid-template-columns: minmax(0, 1fr); } }
+
+.cad-stage {
+  position: relative; overflow: hidden;
+  border: 1px solid var(--line); border-radius: var(--r-lg);
+  background: var(--surface); box-shadow: var(--shadow-sm);
+}
+.cad-stage.is-drop { border-color: var(--blue); box-shadow: inset 0 0 0 3px var(--blue-wash); }
+.cad-stage.is-drop .cad-drop-note { display: block; }
+.cad-drop-note {
+  display: none; position: absolute; inset: auto 0 0 0; padding: 8px 12px;
+  background: var(--blue-wash); color: var(--blue);
+  font-family: var(--mono); font-size: .7rem; letter-spacing: .08em; text-transform: uppercase;
+}
+.cad-svg {
+  display: block; width: 100%; height: 580px;
+  background: var(--surface); cursor: crosshair; touch-action: none;
+}
+.cad-svg:focus-visible { outline: 2px solid var(--focus); outline-offset: -2px; }
+.cad-hud {
+  position: absolute; left: 10px; top: 10px; pointer-events: none;
+  font-family: var(--mono); font-size: .68rem; color: var(--muted);
+  background: var(--surface-2); border: 1px solid var(--line);
+  border-radius: var(--r); padding: 4px 8px;
+}
+
+/* grid */
+.cad-grid-minor { stroke: var(--line); stroke-width: 1; opacity: .55; }
+.cad-grid-major { stroke: var(--line-strong); stroke-width: 1; opacity: .8; }
+.cad-grid-axis  { stroke: var(--blue); stroke-width: 1; opacity: .45; }
+.cad-scale      { stroke: var(--ink); stroke-width: 1.5; }
+.cad-origin     { fill: var(--blue); }
+
+/* walls */
+.cad-wall            { stroke: var(--ink); stroke-width: 1.6; stroke-linecap: square; }
+.cad-wall.is-int     { stroke: var(--muted); stroke-dasharray: 7 3; }
+.cad-wall.is-sel     { stroke: var(--blue); stroke-width: 3; stroke-dasharray: none; }
+.cad-wall-nothick    { stroke: var(--warn); stroke-width: 5; opacity: .28; stroke-linecap: butt; }
+.cad-wall-band       { fill: var(--surface-3); stroke: var(--ink); stroke-width: 1; }
+.cad-wall-band.is-bearing { fill: var(--blue-wash); stroke: var(--blue); }
+.cad-wall-band.is-sel     { fill: var(--gold-wash); stroke: var(--blue); stroke-width: 2; }
+
+/* openings */
+.cad-open                 { fill: var(--surface); stroke: var(--ink); stroke-width: 1; }
+.cad-open.is-garage       { fill: var(--gold-wash); stroke: var(--gold-ink); }
+.cad-open.is-slider       { fill: var(--blue-wash); stroke: var(--blue); }
+.cad-open.is-door         { fill: var(--pass-wash); stroke: var(--pass); }
+.cad-open.is-placeholder  { stroke-dasharray: 4 2; }
+.cad-open.is-sel          { fill: var(--gold-wash); stroke: var(--blue); stroke-width: 2; }
+.cad-open-line            { stroke: var(--muted); stroke-width: 1; }
+.cad-open-line.is-window  { stroke: var(--blue); stroke-width: 2; }
+
+/* framing regions */
+.cad-region            { fill: var(--blue); fill-opacity: .05; stroke: var(--blue); stroke-width: 1; stroke-dasharray: 6 4; }
+.cad-region.is-roof    { fill: var(--gold); fill-opacity: .07; stroke: var(--gold-ink); }
+.cad-region.is-deck    { fill: var(--pass); fill-opacity: .07; stroke: var(--pass); }
+.cad-region.is-sel     { stroke-width: 2.5; stroke-dasharray: none; }
+.cad-region-dir        { stroke: var(--blue); stroke-width: 1; opacity: .38; }
+.cad-region-dir.is-roof { stroke: var(--gold-ink); }
+.cad-region-dir.is-deck { stroke: var(--pass); }
+
+/* in-progress and handles */
+.cad-draft      { stroke: var(--blue); stroke-width: 2; stroke-dasharray: 5 3; fill: none; }
+.cad-draft-fill { stroke: var(--blue); stroke-width: 2; stroke-dasharray: 5 3; fill: var(--blue); fill-opacity: .07; }
+.cad-handle     { fill: var(--surface); stroke: var(--blue); stroke-width: 2; }
+.cad-calib-pt   { fill: var(--gold); stroke: var(--gold-ink); stroke-width: 1.5; }
+.cad-calib-line { stroke: var(--gold-ink); stroke-width: 2; stroke-dasharray: 3 3; }
+.cad-underlay-warn { fill: none; stroke: var(--warn); stroke-width: 2; stroke-dasharray: 9 5; }
+
+/* canvas type */
+.cad-t          { font-family: var(--mono); font-size: 10px; fill: var(--muted); }
+.cad-t-dim      { fill: var(--text); }
+.cad-t-open     { fill: var(--muted); font-size: 9px; }
+.cad-t-region   { fill: var(--blue); font-size: 10px; font-weight: 650; }
+.cad-t-live     { fill: var(--blue); font-size: 11px; font-weight: 650; }
+.cad-t-warn     { fill: var(--warn); font-size: 11px; font-weight: 650; }
+
+/* side panel and legend */
+.cad-panel { display: grid; gap: 12px; }
+.cad-keys  { display: grid; gap: 6px; }
+.cad-key   { display: flex; gap: 9px; align-items: baseline; font-size: .8rem; color: var(--muted); }
+.cad-kbd {
+  flex: none; min-width: 116px;
+  font-family: var(--mono); font-size: .68rem; color: var(--ink);
+  background: var(--surface-2); border: 1px solid var(--line);
+  border-radius: 3px; padding: 2px 6px;
+}

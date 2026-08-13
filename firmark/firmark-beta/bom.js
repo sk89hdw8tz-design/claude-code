@@ -365,6 +365,27 @@
                         " ft but the costed stick was " + cost.lengthFt + " ft");
       }
 
+      /* THE BEARING ALLOWANCE IS FLAT AND THE MARK'S BEARING IS NOT.
+         stockLength() adds a fixed 0.5 ft — 3 in at each end — while a mark
+         DECLARES its bearing in inches, and weights.js made that a design
+         input precisely because it governs. HDR-GAR declares 4.5 in per end
+         (three jacks), which is 0.75 ft of the stick, not 0.50. The 2 ft
+         rounding absorbs it in every case in the current corpus, so nothing
+         is short today — but it is absorbed by luck, not by rule, and a BOM
+         that buys a stick too short to reach its bearings is a framing-day
+         problem. Measured per line, reported, and escalated to a self-check
+         (which blocks issue) the moment it would actually shorten a stick. */
+      var bearNeedFt = 2 * num(d.bearing) / 12;
+      var trueCutFt = num(d.span) + bearNeedFt;
+      var wouldNeedFt = Math.max(8, Math.ceil(trueCutFt / 2) * 2);
+      var bearingTight = bearNeedFt > BEARING_ALLOWANCE_FT + 1e-9;
+      if (bearingTight && wouldNeedFt > stockFt) {
+        selfChecks.push(mk.id + ": the stick is SHORT. The mark declares " + n2(d.bearing, 2) +
+          " in of bearing at each end (" + n2(bearNeedFt, 3) + " ft of the piece), so the cut is " +
+          n2(trueCutFt, 2) + " ft and needs a " + wouldNeedFt + " ft stick — FM.solver.stockLength " +
+          "allows a flat " + n2(BEARING_ALLOWANCE_FT, 2) + " ft and bought a " + stockFt + " ft one.");
+      }
+
       var bfPerPiece = bfPerLf * stockFt;
       var matPerPiece = num(cost.terms && cost.terms.material);
       var dropPerPiece = num(cost.terms && cost.terms.drop);

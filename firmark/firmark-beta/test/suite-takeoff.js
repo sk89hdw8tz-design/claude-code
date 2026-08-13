@@ -567,19 +567,21 @@ module.exports = function (t, FM) {
       if (m) CAD.push({ id: pid, res: roundTrip(pid, m, "FM.cad.fromPlan") });
     });
 
-    /* This is a CROSS-MODULE state, not a pass/fail: fromPlan leaves
-       thicknessIn null on every wall (it says so, deliberately — no plan or
-       pack declares a stud size), and a clear span cannot be measured to a
-       face that is not located. The assertion below stays true whichever way
-       that is settled; the message reports where it stands today. */
+    /* This is a CROSS-MODULE state, not a pass/fail — cad.js is being
+       written in parallel, so the blocking reasons are read out of this run
+       rather than typed in, and this line cannot go stale the way a
+       hand-written summary would. */
     var noMarks = CAD.filter(function (r) { return !r.res.marks.length; });
     t.truthy(true, "CAD round trip state: " + (CAD.length - noMarks.length) + " of " + CAD.length +
-      " plans produce marks. " + (noMarks.length
-        ? noMarks.length + " produce none — " + noMarks.map(function (r) { return r.id; }).join(", ") +
-          ". The blocking item is wall thicknessIn: fromPlan leaves it null on purpose, and a CLEAR " +
-          "span cannot be measured to a face that is not located. Either fromPlan declares a " +
-          "thickness as the stated drawing convention it already uses for other things, or a human " +
-          "sets it at gate 1. This module will not assume 2x6."
+      " plans produce marks through FM.cad.fromPlan. " + (noMarks.length
+        ? noMarks.length + " produce none: " + noMarks.map(function (r) {
+            var kinds = [];
+            r.res.unresolved.forEach(function (u) {
+              if (kinds.indexOf(u.kind) === -1) kinds.push(u.kind);
+            });
+            return r.id + " [" + (kinds.join(", ") || "no framing or openings drawn") + "]";
+          }).join("; ") + ". Each is a geometry-stage item — the unresolved entries name the wall, " +
+          "region or opening and what has to be declared. This module supplies none of them."
         : "No blocking items."));
   }
 
