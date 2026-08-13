@@ -1586,7 +1586,13 @@
           lost.push("source “" + kind + "”");
         }
         if (lost.length && FM.toast) {
-          FM.toast("This link names " + lost.join(" and ") + ", which this browser does not have. " +
+          /* "this browser" is right for a SAVED model, which lives in
+             localStorage, and wrong for a plan, which ships in the build.
+             Say which, because a reader deciding whether a link is stale or
+             just opened on the wrong machine needs to know. */
+          FM.toast("This link names " + lost.join(" and ") + ", which this " +
+                   (lost.join(" ").indexOf("saved model") !== -1 ? "browser" : "build") +
+                   " does not have. " +
                    "Showing " + (S.src.kind === "plan" ? "the " +
                    ((FM.weights.planById(S.src.id) || {}).name || S.src.id) + " geometry" : S.src.id) +
                    " instead — check the link before drawing on it.");

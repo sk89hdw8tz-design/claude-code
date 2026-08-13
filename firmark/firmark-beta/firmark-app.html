@@ -11080,7 +11080,13 @@ var FM = (function () {
           lost.push("source “" + kind + "”");
         }
         if (lost.length && FM.toast) {
-          FM.toast("This link names " + lost.join(" and ") + ", which this browser does not have. " +
+          /* "this browser" is right for a SAVED model, which lives in
+             localStorage, and wrong for a plan, which ships in the build.
+             Say which, because a reader deciding whether a link is stale or
+             just opened on the wrong machine needs to know. */
+          FM.toast("This link names " + lost.join(" and ") + ", which this " +
+                   (lost.join(" ").indexOf("saved model") !== -1 ? "browser" : "build") +
+                   " does not have. " +
                    "Showing " + (S.src.kind === "plan" ? "the " +
                    ((FM.weights.planById(S.src.id) || {}).name || S.src.id) + " geometry" : S.src.id) +
                    " instead — check the link before drawing on it.");
@@ -19097,15 +19103,56 @@ var FM = (function () {
     };
   }
 
+  /* the addressable sheets, so a link naming one that does not exist is caught
+     rather than silently ignored */
+  var SHEET_NOS = ["S0.0", "S0.1", "S1.0", "S2.0", "S3.0", "S4.0", "S5.0", "all"];
+
   if (typeof FM.registerSubRoute === "function") {
     FM.registerSubRoute("planset", {
       read: function () { var s = vstate(); return [s.planId, s.packId, s.sheet]; },
+      /* A segment this build does not have was DISCARDED IN SILENCE, and this
+         is the worst screen in the product for that to happen on.
+         `#/planset/nope` rendered a different plan's package; a substituted
+         REGION PACK changes every load, every member and the whole design
+         criteria table on the cover sheet — and the reader has a URL in the
+         address bar saying otherwise. That is a wrong answer wearing the shape
+         of a right one, on the document a licensed engineer is being asked to
+         seal.
+
+         The same defect was fixed for #/sizing, #/sheet, #/project and #/cad
+         and it came straight back here, because each view spells its own
+         codec. Name what could not be found, correct the address bar, and say
+         what is actually on screen instead. */
       write: function (args) {
         var s = vstate();
         args = args || [];
-        if (args[0] && FM.weights && FM.weights.planById(args[0])) s.planId = args[0];
-        if (args[1] && FM.weights && FM.weights.packById(args[1])) s.packId = args[1];
-        if (args[2]) s.sheet = args[2];
+        var lost = [];
+
+        if (args[0]) {
+          if (FM.weights && FM.weights.planById(args[0])) s.planId = args[0];
+          else lost.push("plan “" + args[0] + "”");
+        }
+        if (args[1]) {
+          if (FM.weights && FM.weights.packById(args[1])) s.packId = args[1];
+          else lost.push("region “" + args[1] + "”");
+        }
+        if (args[2]) {
+          /* a sheet number only means something if this package has it */
+          var known = false, i;
+          for (i = 0; i < SHEET_NOS.length; i++) if (SHEET_NOS[i] === args[2]) known = true;
+          if (known) s.sheet = args[2];
+          else lost.push("sheet “" + args[2] + "”");
+        }
+
+        if (lost.length && FM.toast) {
+          var pl = FM.weights && FM.weights.planById(s.planId);
+          var pk = FM.weights && FM.weights.packById(s.packId);
+          FM.toast("This link names " + lost.join(" and ") + ", which this build does not have. " +
+                   "Showing " + ((pl && pl.name) || s.planId) + " in " +
+                   ((pk && pk.name) || s.packId) + " instead — a package is not the one the link " +
+                   "named, so check the link before reading or issuing it.");
+          if (FM.syncHash) setTimeout(function () { FM.syncHash(true); }, 0);
+        }
       }
     });
   }

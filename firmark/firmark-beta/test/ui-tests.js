@@ -385,13 +385,23 @@ const APP = 'file://' + path.join(__dirname, '..', 'firmark-app.html');
      project did not. That is the dangerous half: you send a colleague a link,
      the plan id changed, and they open a schedule that renders perfectly and
      is not the one you sent — a wrong answer wearing the shape of a right one. */
+  /* EVERY addressable view, not just the ones a defect was found in. This
+     list started at four and the defect came straight back on #/planset,
+     because each view spells its own codec and nothing made them agree. The
+     PE package is the worst place for it: a substituted region pack changes
+     every load, every member and the whole design-criteria table, and the
+     reader has a URL saying otherwise. */
   const staleCases = [
     { hash: '#/no-such-view/whatever',                           what: 'unknown view' },
     { hash: '#/sizing/gone-plan/nc-piedmont/schedule',           what: 'unknown plan' },
     { hash: '#/sizing/two-story-2450/gone-pack/schedule',        what: 'unknown region' },
     { hash: '#/sizing/two-story-2450/nc-piedmont/schedule/gone', what: 'unknown variant' },
     { hash: '#/sheet/S-999',                                     what: 'unknown sheet' },
-    { hash: '#/project/nope',                                    what: 'unknown project' }
+    { hash: '#/project/nope',                                    what: 'unknown project' },
+    { hash: '#/cad/plan/gone-plan',                              what: 'unknown CAD plan' },
+    { hash: '#/planset/gone-plan',                               what: 'unknown planset plan' },
+    { hash: '#/planset/starter-1210/gone-pack',                  what: 'unknown planset region' },
+    { hash: '#/planset/starter-1210/tx-i35/S9.9',                what: 'unknown planset sheet' }
   ];
   for (const c of staleCases) {
     await open(APP + c.hash);
@@ -399,7 +409,9 @@ const APP = 'file://' + path.join(__dirname, '..', 'firmark-app.html');
     const r = await p.evaluate(() => ({
       route: FM.state.route,
       hash: location.hash,
-      toast: document.body.innerText.indexOf('which this build does not have') !== -1 ||
+      /* every view must NAME what it could not find; the exact noun differs
+         (a saved model is missing from this browser, a plan from this build) */
+      toast: /which this (build|browser) does not have/.test(document.body.innerText) ||
              document.body.innerText.indexOf('No such view') !== -1
     }));
     if (!r.toast) bad.push(`routing: ${c.what} (${c.hash}) fell back SILENTLY — no notice on screen`);
