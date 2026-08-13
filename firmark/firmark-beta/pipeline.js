@@ -351,9 +351,12 @@
     if (t === "string") { s.word(T_STR); s.text(v); this.steps += (v.length >>> 3); return; }
     if (t === "boolean") { s.word(v ? T_TRUE : T_FALSE); return; }
     if (t === "undefined") { s.word(T_UNDEF); return; }
-    /* A rebuilt closure is not a content change, so a function is written as
-       one tag and nothing else. It still gets a tag: a key that HOLDS a
-       function and a key that is absent are different facts. */
+    /* A rebuilt closure is not a content change. As an OBJECT PROPERTY a
+       function is dropped entirely, key and all (see `object` below) — that
+       is the long-standing contract and `planset.sheets[].render` depends on
+       it. As an ARRAY ELEMENT it cannot be dropped without shifting every
+       index after it, so it is written as its own tag. The old walk wrote
+       "null" there, which collided with a genuine null. */
     if (t === "function") { s.word(T_FN); return; }
 
     /* objects from here down */
@@ -397,6 +400,7 @@
       if (!Object.prototype.hasOwnProperty.call(v, k)) continue;
       if (k === "length") continue;
       if (String(k >>> 0) === k && (k >>> 0) < n) continue;
+      if (typeof v[k] === "function" || v[k] === undefined) continue;
       extra.push(k);
     }
     extra.sort();
@@ -440,7 +444,17 @@
       }
     }
 
-    for (k in v) if (Object.prototype.hasOwnProperty.call(v, k)) keys.push(k);
+    /* A function-valued property and an undefined-valued one are dropped key
+       and all: the first because a rebuilt closure is not a content change,
+       the second because JSON drops it, so keeping it would make a save and
+       reload look like an edit. The count below is of what is actually
+       written, so the stream stays unambiguous. */
+    for (k in v) {
+      if (!Object.prototype.hasOwnProperty.call(v, k)) continue;
+      var probe = v[k];
+      if (typeof probe === "function" || probe === undefined) continue;
+      keys.push(k);
+    }
     /* sort() is UTF-16 code-unit order — total, and the same in every engine */
     keys.sort();
     s.word(keys.length);

@@ -358,12 +358,40 @@
      Nothing on this table is invented. A criterion this build does not
      carry as a field prints as NOT DECLARED and becomes an open item
      on S5.0; it never receives a plausible number.
+
+     The second half of that sentence was not true. The table printed
+     "Risk category  NOT DECLARED", "Wall dead load  NONE CARRIED" and
+     an em-dash under Exposure category on every package this product
+     has ever produced, the legend under it said in terms "it is NOT a
+     value, and it is an open item" — and NOT ONE of them reached S5.0.
+     Risk category is the input that chooses the wind map; a cover that
+     says it is undeclared and an open-items sheet that never mentions
+     it again is the sheet claiming a collection it did not make.
+
+     So an undeclared row is now MARKED, here, at the point where the
+     absence is known, and collectOpen() reads the mark. A row is
+     undeclared when this build has no field behind it — never because
+     a string happened to look empty.
      ============================================================ */
+
+  var NOT_DECLARED = "NOT DECLARED";
 
   function criteria(pack, juris) {
     var rows = [], notes = [];
-    function row(k, v, cls, cite) {
-      rows.push({ k: k, v: v, cls: cls, cite: cite || "" });
+    function row(k, v, cls, cite, undeclared) {
+      rows.push({ k: k, v: v, cls: cls, cite: cite || "", undeclared: !!undeclared });
+    }
+    /* a value this build does not carry: print NOT DECLARED and mark it */
+    function val(k, v, unit, cls, cite, whenMissing) {
+      var s = safe(v, "");
+      if (s === "" || s === "—") {
+        row(k, NOT_DECLARED, "not stated",
+            whenMissing || (cite ? cite + "  " : "") +
+            "This build carries no value for it on either the region pack or the " +
+            "jurisdiction record.", true);
+        return;
+      }
+      row(k, s + (unit ? " " + unit : ""), cls, cite);
     }
     var jur = juris && typeof juris === "object" ? juris : null;
 
@@ -390,20 +418,25 @@
 
     /* ---- wind ---- */
     if (jur && jur.wind) {
-      row("Design wind speed", safe(jur.wind.vMph) + " mph", clsOf(jur.wind.cls), safe(jur.wind.cite, ""));
-      row("Exposure category", safe(jur.wind.exposure), clsOf(jur.wind.cls), safe(jur.wind.note, ""));
+      val("Design wind speed", jur.wind.vMph, "mph", clsOf(jur.wind.cls), safe(jur.wind.cite, ""));
+      val("Exposure category", jur.wind.exposure, "", clsOf(jur.wind.cls), safe(jur.wind.note, ""),
+          "The jurisdiction record carries no exposure category. ASCE 7 §26.7 makes it a " +
+          "fetch determination at the actual site — it is not a regional constant and " +
+          "nothing here may supply one.");
     } else if (pack && pack.climate) {
-      row("Design wind speed", safe(pack.climate.windMph && pack.climate.windMph.v) + " mph",
+      val("Design wind speed", pack.climate.windMph && pack.climate.windMph.v, "mph",
           clsOf(pack.climate.windMph && pack.climate.windMph.cls),
           safe(pack.climate.windMph && pack.climate.windMph.note, ""));
-      row("Exposure category", safe(pack.climate.exposure && pack.climate.exposure.v),
+      val("Exposure category", pack.climate.exposure && pack.climate.exposure.v, "",
           clsOf(pack.climate.exposure && pack.climate.exposure.cls),
-          safe(pack.climate.exposure && pack.climate.exposure.note, ""));
+          safe(pack.climate.exposure && pack.climate.exposure.note, ""),
+          "The region pack carries no exposure category, and ASCE 7 §26.7 makes it a " +
+          "fetch determination at the actual site rather than a regional constant.");
     }
-    row("Risk category", "NOT DECLARED", "not stated",
+    row("Risk category", NOT_DECLARED, "not stated",
         "This build carries no risk-category field on either the region pack or the " +
         "jurisdiction record. Confirm against ASCE 7 Table 1.5-1 before the wind " +
-        "speed above is used for anything.");
+        "speed above is used for anything.", true);
 
     /* ---- snow ---- */
     if (jur && jur.snow) {
@@ -415,15 +448,24 @@
 
     /* ---- seismic ---- */
     if (jur && jur.seismic) {
-      row("Seismic design category", safe(jur.seismic.sdc), clsOf(jur.seismic.cls), safe(jur.seismic.cite, ""));
-      row("S_s / S_1", safe(jur.seismic.ss) + " / " + safe(jur.seismic.s1), clsOf(jur.seismic.cls),
+      val("Seismic design category", jur.seismic.sdc, "", clsOf(jur.seismic.cls),
           safe(jur.seismic.cite, ""));
+      var ss = safe(jur.seismic.ss, ""), s1 = safe(jur.seismic.s1, "");
+      if (ss === "" || s1 === "") {
+        row("S_s / S_1", NOT_DECLARED, "not stated",
+            "The jurisdiction record carries " +
+            (ss === "" && s1 === "" ? "neither S_s nor S_1"
+              : (ss === "" ? "S_1 = " + s1 + " but no S_s" : "S_s = " + ss + " but no S_1")) +
+            ". Look the pair up on the ASCE 7 Hazard Tool for this site.", true);
+      } else {
+        row("S_s / S_1", ss + " / " + s1, clsOf(jur.seismic.cls), safe(jur.seismic.cite, ""));
+      }
     } else if (pack && pack.climate && pack.climate.sdc) {
-      row("Seismic design category", safe(pack.climate.sdc.v), clsOf(pack.climate.sdc.cls),
+      val("Seismic design category", pack.climate.sdc.v, "", clsOf(pack.climate.sdc.cls),
           safe(pack.climate.sdc.note, ""));
-      row("S_s / S_1", "NOT DECLARED", "not stated",
+      row("S_s / S_1", NOT_DECLARED, "not stated",
           "No jurisdiction record was supplied; the mapped spectral accelerations are " +
-          "not carried by a region pack. Look them up on the ASCE 7 Hazard Tool.");
+          "not carried by a region pack. Look them up on the ASCE 7 Hazard Tool.", true);
     }
 
     /* ---- live loads ---- */
@@ -462,7 +504,8 @@
     }
     row("Wall dead load", "NONE CARRIED", "not stated",
         "The engine carries no wall dead load of any kind. A header under a gable end " +
-        "or an upper storey must have that load added by hand — see S0.1 engine limits.");
+        "or an upper storey must have that load added by hand — see S0.1 engine limits.",
+        true);
 
     /* ---- serviceability ---- */
     var D = FM.engine && FM.engine.DEFL;
@@ -971,6 +1014,28 @@
         });
       }
     }
+
+    /* ---- 5b. the design criteria this build does not carry ----
+
+       criteria() has always printed NOT DECLARED / NONE CARRIED rows, and
+       the legend beneath the table has always read "not stated — this build
+       carries no field for it — it is NOT a value, AND IT IS AN OPEN ITEM".
+       It was not one. Risk category — the input that chooses which wind map
+       to read — said NOT DECLARED on the cover of every package this product
+       has produced and appeared nowhere on S5.0. Each undeclared row is
+       marked at the point where the absence is known, and every marked row
+       lands here. */
+    (function () {
+      var crit = criteria(res ? res.pack : (ctx.pack || null), p.have.juris);
+      crit.rows.forEach(function (r) {
+        if (!r.undeclared) return;
+        add("DESIGN CRITERIA — NOT DECLARED", r.k + " is " + r.v + " on S0.0.",
+            safe(r.cite, "This build carries no field for it."),
+            "Establish it before the members on S2.0 are relied on. A criterion the " +
+            "cover prints as undeclared is one the reviewing engineer has to supply, " +
+            "not one the package resolved.");
+      });
+    })();
 
     /* ---- 6. the jurisdiction ---- */
     if (p.have.juris) {
@@ -2117,6 +2182,7 @@
           ? bom.totals.byCategoryOrder.filter(function (k) { return own(bom.totals.byCategory, k); })
           : Object.keys(bom.totals.byCategory);
         if (catKeys.length) {
+          say();
           say("      " + pad("  by member role", 20) + "material dollars [market]");
           var catSum = 0, catAllNumeric = true;
           catKeys.forEach(function (k) {
@@ -2173,8 +2239,9 @@
             (pc0 && pc0.usd !== undefined ? usd(pc0.usd) : safe(bom.perCommunity, "supplied")) +
             (pc0 && isFinite(Number(pc0.pieces))
               ? "   " + comma(pc0.pieces) + " pc · " + comma(pc0.bf) + " bf" : ""));
-        say("      " + pad("over", 16) + ": " +
-            (lots === null
+        var overField = fielder(say, 6, 16);
+        overField("over",
+            lots === null
               ? "** THE LOT COUNT IS NOT DECLARED. The community figure above cannot be "
                 + "checked against the per-lot figure without it. **"
               : comma(lots) + " lot(s)" +
@@ -2184,7 +2251,7 @@
                   : (pc0.weighted === false
                       ? ", as one house × " + comma(lots) + " — every lot priced as the " +
                         "combination solved on S2.0, take rates NOT applied"
-                      : ", and this record does not say whether take rates were applied"))));
+                      : ", and this record does not say whether take rates were applied")));
         if (pc0 && pc0.basis) {
           wrap("basis: " + safe(pc0.basis), W - 10).forEach(function (x) { say("        " + x); });
         }
