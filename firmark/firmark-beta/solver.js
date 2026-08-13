@@ -82,24 +82,43 @@
     return (gamma * sec.A_in2 / 144) / t;
   }
 
+  /* `Number(x) || 0` turns NaN into 0, which designs the member for no load.
+     engine.js refuses a NaN load — but only if it ever sees one, and this is the
+     only path the product actually uses, so the laundering happened here first.
+     Pass the value through untouched and let the engine refuse it. */
+  function num(v, dflt) {
+    if (v === undefined || v === null) return dflt;
+    return Number(v);
+  }
+
   function memberInputs(demand, cand, policy) {
     var sw = selfWeightPsf(demand, cand, policy);
     return {
       species: cand.species, grade: cand.grade, size: cand.size,
       span: demand.span,
       spacing: demand.repetitive ? cand.spacing : Number(demand.trib || 0) * 12,
-      dead: Number(demand.dead || 0) + sw,
-      live: Number(demand.live || 0),
-      roofLoad: Number(demand.roofLoad || 0),
+      dead: num(demand.dead, 0) + sw,
+      live: num(demand.live, 0),
+      roofLoad: num(demand.roofLoad, 0),
       roofType: demand.roofType || "snow",
       repetitive: !!demand.repetitive,
       wet: !!demand.wet,
       braced: !!demand.braced,
-      bearing: Number(demand.bearing || 1.5),
+      bearing: num(demand.bearing, 1.5),
       memberUse: demand.memberUse || "floor",
       CF: "auto",                      /* the depth moves, so C_F must move with it */
+      /* a refractory species must be incised to take preservative, so a treated
+         mark in one carries C_i = 0.80 on F_b and F_v (NDS Table 4.3.8). This
+         used to be handled by excluding the species; it is now checked. */
+      incised: isIncised(demand, cand, policy),
       selfWeightPsf: sw
     };
+  }
+
+  function isIncised(demand, cand, policy) {
+    if (!(demand.treated || demand.wet)) return false;
+    var m = policy && policy.incisedWhenTreated;
+    return !!(m && Object.prototype.hasOwnProperty.call(m, cand.species) && m[cand.species]);
   }
 
   /* ---------- the weighted objective ----------
@@ -174,6 +193,12 @@
   function own(o, k) {
     return (o && Object.prototype.hasOwnProperty.call(o, k)) ? o[k] : undefined;
   }
+  /* guarding reads is half the job: `groups[g] = []` silently no-ops for a group
+     named "__proto__", so the group vanishes from unification with no error */
+  function safeKey(k) {
+    var s = String(k);
+    return (s === "__proto__" || s === "constructor" || s === "prototype") ? "\u0000" + s : s;
+  }
 
   /* slack is scored only after a candidate is known feasible, so it can never
      act on the pass/fail decision — it just stops the search from proposing a
@@ -197,7 +222,7 @@
 
   function seedBounds(demand, policy) {
     var span = Number(demand.span), L_in = span * 12;
-    var D = Number(demand.dead || 0), L = Number(demand.live || 0), Lr = Number(demand.roofLoad || 0);
+    var D = num(demand.dead, 0), L = num(demand.live, 0), Lr = num(demand.roofLoad, 0);
     var combos = combosFor(D, L, Lr, demand.roofType);
     var use = FM.engine.DEFL[demand.memberUse] || FM.engine.DEFL.floor;
 
@@ -210,9 +235,17 @@
         if (!mat) return;
         var cf = FM.engine.sizeFactor(p.species, p.grade, size);
         var v = mat.values_psi;
-        if (v.Fb * cf.CF > best.Fb) best.Fb = v.Fb * cf.CF;
-        if (v.Fv > best.Fv) best.Fv = v.Fv;
-        if (v.E > best.E) best.E = v.E;
+        /* the bound is only admissible if it sees every factor the check applies —
+           C_i reduces F_b and F_v by 20%, so taking the un-incised value would
+           overstate capacity for a species that will be checked incised. Using the
+           MAXIMUM across the palette keeps it optimistic, which is the safe side. */
+        var inc = isIncised(demand, { species: p.species }, policy);
+        var fb = v.Fb * cf.CF * (inc ? 0.80 : 1);
+        var fv = v.Fv * (inc ? 0.80 : 1);
+        var ee = v.E * (inc ? 0.95 : 1);
+        if (fb > best.Fb) best.Fb = fb;
+        if (fv > best.Fv) best.Fv = fv;
+        if (ee > best.E) best.E = ee;
         if (v.Fc_perp > best.Fcp) best.Fcp = v.Fc_perp;
       });
     });
@@ -312,19 +345,6 @@
       }
     }
 
-    /* treated refractory species — the engine applies C_M but NOT C_i.
-       calc-spec §4.8 specifies the incising factor; engine.js does not implement
-       it. For species that must be incised to take preservative, running the
-       check without C_i overstates F_b and F_v by 20% (NDS Table 4.3.8). So the
-       candidate is excluded rather than checked optimistically. Southern Pine
-       takes treatment without incising, which is why it survives this gate. */
-    if ((demand.treated || demand.wet) && policy.incisedWhenTreated &&
-        Object.prototype.hasOwnProperty.call(policy.incisedWhenTreated, cand.species) &&
-        policy.incisedWhenTreated[cand.species]) {
-      return { ok: false, kind: "scope",
-               why: "treated " + cand.species + " must be incised; C_i = 0.80 (NDS Table 4.3.8) is not " +
-                    "implemented in this engine, so checking it here would overstate capacity by 20%" };
-    }
     return { ok: true };
   }
 
@@ -404,7 +424,7 @@
        understates bending by up to 8.4%; declared snow, roof-live understates
        deflection. Make the exposure visible instead of silent. */
     var advisories = [];
-    var rl = Number(demand.roofLoad || 0);
+    var rl = num(demand.roofLoad, 0);
     if (rl > 0 && rl >= 16 && rl <= 25) {
       advisories.push({
         kind: "roof-load-crossover",
@@ -416,6 +436,21 @@
                 : "the snow case — which governs bending above about 18.4 psf — was not checked.") +
               " Check the other case by hand before this member is used."
       });
+    }
+
+    /* if the demand itself is not numeric, no candidate can be checked and none
+       should be proposed — refuse the whole search rather than the members */
+    var badLoad = ["dead", "live", "roofLoad", "span", "bearing"].filter(function (k) {
+      return demand[k] !== undefined && demand[k] !== null && !isFinite(Number(demand[k]));
+    });
+    if (badLoad.length) {
+      return { demand: demand, status: "escalate:input", pick: null, feasible: [], rejected: [],
+               advisories: advisories, stats: { evaluated: 0 }, searchSpace: 0,
+               policy: { id: policy.id, name: policy.name, maxDCR: policy.maxDCR,
+                         ladder: policy.ladder, spacings: policy.spacings, palette: [] },
+               note: { wall: "the demand is not numeric: " + badLoad.join(", "),
+                       move: "correct the input", counts: {},
+                       outOfScope: "Nothing was checked. A member was not proposed." } };
     }
 
     var bounds = seedBounds(demand, policy);
@@ -797,7 +832,7 @@
     var groups = {};
     planResult.marks.forEach(function (m) {
       if (!m.solution || !m.solution.pick) return;
-      var g = m.mark.skuGroup || m.mark.role;
+      var g = safeKey(m.mark.skuGroup || m.mark.role);
       if (!Object.prototype.hasOwnProperty.call(groups, g)) groups[g] = [];
       groups[g].push(m);
     });
@@ -910,7 +945,7 @@
       solved++;
       var n = pieceCount(m);
       totalUSD += row.cost.totalUSD * n;
-      var k = skuOf(row.cand);
+      var k = safeKey(skuOf(row.cand));
       if (!Object.prototype.hasOwnProperty.call(skus, k)) skus[k] = 0;
       skus[k] += n;
       if (row.cost.cfBasis === "held") flagged++;

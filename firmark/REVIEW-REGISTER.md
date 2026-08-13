@@ -7,14 +7,16 @@ allowed to be closed silently.
 Panel: structural PE (A&E), QA/QC, production-build & estimating, building code
 & regulatory (TX/NC/FL), software integration & test.
 
-Test suite: `node firmark-beta/test/run-tests.js` — **122 assertions, 0 failing**.
+Test suite: `node firmark-beta/test/run-tests.js` — **124 assertions, 0 failing**.
 UI sweep: `node firmark-beta/test/ui-tests.js` — renders the built bundle across every
 pack × plan, opens every mark's detail, fails on any NaN / undefined / empty numeric slot.
 Bundle freshness gate: `node firmark-beta/build.js --check`.
 
-**Coverage, stated plainly:** across 6 packs × 3 plans, **58 of 114 mark-slots produce a
-member; 30 escalate and 26 are not this engine's member.** A schedule that answers half its
-marks is defensible only if it says so, so it is said here and on every plan in the UI.
+**Coverage, stated plainly:** across 6 packs × 3 plans, **66 of 114 mark-slots produce a
+member; 24 escalate and 24 are not this engine's member.** A schedule that answers 58% of its
+marks is defensible only if it says so, so it is said here and on every plan in the UI. (An
+earlier printing of this line said 58/30/26 and was simply wrong — measured, not derived; the
+replacement test specialist caught it.)
 
 ---
 
@@ -228,3 +230,95 @@ replaced. Both DO-NOT-SHIP verdicts stand until the conditions in §H are met.
 No specialist required replacement. The two outstanding reports are tracked and
 their findings are to be folded in on arrival; nothing above may be treated as a
 complete review until they land.
+
+
+---
+
+## I. Third round — the replacement test specialist and the structural PE
+
+PM-A replaced the software integration & test specialist and re-scoped the brief to a
+**claim-to-evidence map**. The structural PE model-fidelity review (H1) was run at the same
+time. Both found blockers.
+
+### I.1 From the claim-to-evidence map
+
+The headline is a good one. The replacement extended the admissibility battery from
+packs × roles × spans × braced to also cross `wet`, `treated`, `trib`, `bearing` and `maxDCR`,
+added the `deck` role the shipped battery omitted, and compared the **full feasible sets**
+candidate-for-candidate rather than the winner:
+
+> **20,736 demands. 120,841 feasible rows compared. Zero mismatches** — no member the solver
+> admitted that exhaustive rejected, no feasible member the pruning lost, no winner
+> disagreement, no score or DCR drift, and no case where the explain budget truncated the
+> ladder. A separate hand-written oracle checked the demand assembly over 114 mark×pack pairs
+> with 0 problems.
+
+| # | Severity | Finding | Disposition |
+|---|---|---|---|
+| I1 | **BLOCKER** | **F13's fix was bypassed on the only path the product uses.** The engine refuses a NaN load — but `solver.js` did `Number(demand.dead \|\| 0)` first, which turns NaN into 0 and designs the member for no load. A NaN dead load returned a pick at DCR 0.494. The pin called `engine.run()` directly and structurally could not reach it. | Fixed. Values pass through untouched so the engine's refusal fires, and a non-numeric demand now refuses the whole search rather than proposing members for it. |
+| I2 | **MAJOR** | **A15's "class closed" was refuted** — 10 key sites × 5 prototype names gave 20 silent-wrong outcomes and 0 throws. An unknown assembly name returned `undefined` and laundered into a **dead load of zero**; an unknown size made availability `NaN`, which the `isFinite` guard read as fully available, so **the hard availability floor failed open**. And `own()` guarded reads while `groups[g] = []` silently no-opped on a write. | Fixed. Unknown assembly or `carries` names now throw as loudly as a typo does; availability defaults on a real `hasOwnProperty` check; write sites go through a key-namespacing guard. |
+| I3 | **MAJOR** | **The coverage headline was false** — 58/30/26 claimed, 68/26/20 measured, in the same commit that shipped the code. | Corrected, and re-measured again after the PE fixes: **66/24/24**. |
+| I4 | **MAJOR** | **Six pins were weaker than their claims.** F2's property test never checked dead load or `C_D` — mutation testing proved the literal F2 defect would pass it. F5's test used a pack where `wet === treated`, so it could not distinguish the fix from the bug. F4's objective test contained a tautology and an `ok()` on both branches. A3, A6, A7 assert less than they claim. | Property test strengthened; the tautologies removed. |
+| I5 | **MAJOR** | **§F.1's Rule-2 claim was false.** `minAvailability` is a policy field, not a member of `pol.weights`, so the test that "perturbs the gate inputs too" perturbs 12 scoring weights and no gate. Raising the floor 0.10 → 0.90 collapses the feasible set from 5 members to 1. | Claim withdrawn; the untested direction is real and is the one D8 was rewritten to state. |
+| I6 | MINOR | `solver-spec.md` still claimed the admissibility test asserts the feasible **sets** are identical when it compared only the winner — **verbatim the third false pin §G says the predecessor was replaced for**, never corrected. Several test names cited in the specs and in code comments do not exist. | Corrected. |
+
+### I.2 From the structural PE
+
+| # | Severity | Finding | Disposition |
+|---|---|---|---|
+| PE-1 | **BLOCKER** | **`HDR-W` was sized for half the tributary its own note specifies.** The trusses clear-span 46 ft and bear on the 50 ft walls, so a header there takes t_w = 23.0 ft — which is what the note says and what `HDR-SLD` declares for the same wall. The mark said 11.5, which is neither the bearing value nor the gable value. The delivered 4x6 is at **DCR 1.377** against the load the note describes, and 1.709 in the mountain pack. 14 headers per house, 100 lots. | Fixed → 23.0. The mark now solves as **4x8 at 0.858**, the member the PE derived independently. |
+| PE-2 | **BLOCKER** | **`carries: "roof+floor"` cannot be modelled with one tributary, and its two users meant opposite things by it.** `HDR-1` declared the floor tributary alone and had the roof applied over it; `HDR-SLD` declared roof + floor summed and had both full load sets applied over the sum — running 2.3× heavy and falsely escalating. `HDR-1` was at **1.081** (tx-i35) and **1.248** (fl-hvhz). | Fixed. Marks declare `tribRoof` and `tribFloor`, and the two load paths are converted exactly into the engine's single-tributary vocabulary: total line load `q_roof·t_roof + q_floor·t_floor`, expressed as psf over the sum. A mark that declares `roof+floor` without both now throws. |
+| PE-4 | MAJOR | **A header's bearing default of 3.5 in was 2.33× optimistic** — a jack stud is 1.5 in. Bearing is the governing check in 98 of 790 picks. | Fixed — headers default to 1.5 in, beams keep 3.5 in on a post cap. |
+| PE-7 | MAJOR | **`CARRIES_DEFAULT` still guessed `beam → roof` and `header → roof`** — F2's exact state, latent for the next mark somebody adds. | Fixed. Headers and beams have **no default**; a mark that does not declare what it carries throws. A joist carries a floor by definition; a beam carries whatever the plan puts on it. |
+| PE-9 | MINOR | The coastal slider header lacked `wallPosition` and was checked as wood in both concrete-block markets. | Fixed. |
+| PE-3, PE-5, PE-6, PE-8 | MAJOR/MINOR | Thermal factor on open-air porch roofs in a snow pack (`C_t`, out of engine scope); the garage header's deflection row against a veneer overlay; IRC 40 psf vs ASCE 7 60 psf deck live load; an uncovered deck inheriting a covered-porch wet flag (inert only because Southern Pine's `F_b` trips the `C_M` threshold exception). | **OPEN** — carried to §J. Each is a load or criteria question the firm must answer, not a code defect. |
+
+### I.3 The two rulings that closed open conditions
+
+**H2 — `C_i` is implemented, not gated.** The PE ruled that excluding refractory species from
+treated marks was a containment keyed on a proxy, and F5 had already proved that fails. `C_i` is
+the same class of constant as `C_D`, `C_M` and `C_t`, all of which the engine hard-codes.
+It is now applied: 0.80 on `F_b`, `F_t`, `F_v`, `F_c`; 0.95 on `E` and `E_min`; 1.00 on
+`F_c⊥` (NDS Table 4.3.8). The exclusion gate is gone — a treated Douglas Fir-Larch member is
+now **checked with the factor** rather than refused. The PE also ran the market consequence:
+Southern Pine still wins every treated mark in all six packs, so the containment was costing
+nothing and hiding a real capability. **H2 closed.**
+
+**D4 / §C — hold ℓ/180.** The PE ran the post-F2 sensitivity §F.1 asked for: relaxing
+`roof_no_ceiling` total from ℓ/180 to ℓ/120 changes **not one pick** on any beam mark in any
+pack. Zero gain against relaxing a limit nobody has read. The label should change — it is a firm
+overlay, not the table — not the number. **D4 closed as a documentation item.**
+
+A systemic note worth recording: **bending governs all 114 mark-slots.** Deflection binds
+nothing today, which is why the deflection-row errors above were cheap to fix — and why they
+will not stay cheap.
+
+---
+
+## J. Conditions on release — current
+
+**Closed this round:** H1 (the PE review happened), H2 (`C_i` implemented), D4.
+
+**Still open:**
+
+| # | Condition |
+|---|---|
+| J1 | **H3** — correct `calc-spec` §5.5, the `ex1_defl_total` / `ex2_*` fixtures, and the comment block above `DEFL` in `engine.js`. Both third-round reviewers independently confirmed the landmine is still in place: the comment recites the wrong rule directly above correct code. |
+| J2 | **H4** — split `q_Lr` and `q_S` and enumerate all six §2.1 combinations. The runtime advisory makes the exposure visible; it does not remove it. |
+| J3 | **H5** — replace the market placeholders and the site loads. Availability decides feasibility, so this is not cosmetic. |
+| J4 | **H6** — ship a schedule export carrying `calc-spec` §8 verbatim, the wind note, the escalation list and the not-applicable list. |
+| J5 | **H7** — answer D6 and D10 rather than carrying them. |
+| J6 | **PE-3, PE-5, PE-6, PE-8** — the open load and criteria questions in §I.2. |
+| J7 | **The PE's six missing marks** — a stair-opening header (the largest silent omission), a two-story garage header, a coastal interior bearing line, a coastal second-floor header, a coastal deck, and posts under the four beams. The archetypes are incomplete as schedules. |
+| J8 | **No numeric-correctness assertion exists in the DOM layers.** `ui-tests.js` is a smoke test — a wrong-but-finite number renders clean and passes. 48% of the bundled lines have no node coverage. |
+| J9 | **The prototype-key class is closed in `weights.js` and `solver.js` and unmeasured in the DOM layers.** |
+
+### Panel, final
+
+The replacement test specialist is **retained**. It produced the claim-to-evidence map that was
+asked for, found the blocker its predecessor's fix had left bypassed, refuted a register claim
+of its own commissioner's ("class closed"), corrected the coverage headline, and — the thing
+that most distinguishes it — mutation-tested the pins rather than reading them, then listed nine
+things it could not verify. The structural PE is **retained**: it found the two blockers the
+entire rest of the panel had walked past, and answered both open rulings with a sensitivity run
+rather than an opinion.

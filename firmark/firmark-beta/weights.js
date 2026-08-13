@@ -530,8 +530,11 @@
      against the deck load it actually supports. A role is a name; `carries` is
      the structure. Every non-obvious mark must declare it. */
   var CARRIES_DEFAULT = {
-    rafter: "roof", ceiling: "ceiling", joist: "floor", deck: "deck",
-    header: "roof", beam: "roof"
+    rafter: "roof", ceiling: "ceiling", joist: "floor", deck: "deck"
+    /* header and beam are deliberately absent. A joist carries a floor by
+       definition; a beam carries whatever the plan puts on it, and guessing
+       "roof" is exactly the defect that printed a passing deck beam. They must
+       declare `carries`. */
   };
 
   var DEFL_BY_CARRIES = {
@@ -568,27 +571,27 @@
             "The roof clear-spans on common trusses, which is the product feature — it is what makes the " +
             "partitions movable between elevations.",
       marks: [
-        { id: "T-1",     label: "Common roof truss · 46 ft clear span", role: "rafter", span: 46, runFt: 50, count: 26,
+        { id: "T-1",     label: "Common roof truss · 46 ft clear span", role: "rafter", span: 46, runFt: 50, count: 26, carries: "roof",
           component: true,
           componentNote: "Truss package, deferred sealed submittal by the truss supplier. Out of scope: this engine " +
                          "designs simple-span solid-sawn members only (calc-spec §8.6, §8.19)." },
         { id: "BM-LAN",  label: "Lanai beam", role: "beam", span: 12.0, trib: 7.0, count: 2,
-          exposure: "exterior", braced: false, skuGroup: "porch", roofAssembly: "open",
+          exposure: "exterior", braced: false, skuGroup: "porch", roofAssembly: "open", carries: "roof",
           note: "The best-fitting mark in the system: simple span, uniform load, treated Southern Pine, wet service." },
         { id: "BM-LAN-W", label: "Lanai beam · wide bay", role: "beam", span: 16.0, trib: 7.0, count: 1,
-          exposure: "exterior", braced: false, skuGroup: "porch", roofAssembly: "open" },
-        { id: "HDR-W",   label: "Window header · typical", role: "header", span: 5.0, trib: 11.5, count: 14,
-          skuGroup: "header", headHeightIn: 80, wallPosition: "exterior-first-floor",
+          exposure: "exterior", braced: false, skuGroup: "porch", roofAssembly: "open", carries: "roof" },
+        { id: "HDR-W",   label: "Window header · typical", role: "header", span: 5.0, trib: 23.0, count: 14,
+          carries: "roof", skuGroup: "header", headHeightIn: 80, wallPosition: "exterior-first-floor",
           note: "Tributary is half the truss span where the trusses bear on this wall. A 4 ft " +
                 "tributary here would follow from neither the 46 ft clear span nor the gable end." },
         { id: "HDR-GAR-G", label: "Garage header · gable end over the door", role: "header", span: 16.67, trib: 2.0, count: 1,
-          skuGroup: "header", headHeightIn: 84, wallPosition: "exterior-first-floor",
+          carries: "roof", skuGroup: "header", headHeightIn: 84, wallPosition: "exterior-first-floor",
           note: "Same opening as HDR-GAR-B. The truss direction is the entire design: 2 ft of tributary here, 11 ft there." },
         { id: "HDR-GAR-B", label: "Garage header · trusses bearing", role: "header", span: 16.67, trib: 11.0, count: 1,
-          skuGroup: "header", headHeightIn: 84, wallPosition: "exterior-first-floor", escalateExpected: true,
+          carries: "roof", skuGroup: "header", headHeightIn: 84, wallPosition: "exterior-first-floor", escalateExpected: true,
           note: "Under a bearing truss line this is a 3-ply LVL or a girder truss in every one of these markets." },
         { id: "HDR-SLD", label: "Rear slider header · under clear-span truss", role: "header", span: 12.0, trib: 23.0, count: 1,
-          skuGroup: "header", headHeightIn: 80, wallPosition: "exterior-first-floor", escalateExpected: true,
+          carries: "roof", skuGroup: "header", headHeightIn: 80, wallPosition: "exterior-first-floor", escalateExpected: true,
           note: "Tributary is half the 46 ft truss span. This is why exterior openings in production single-stories " +
                 "are almost always engineered." }
       ]
@@ -610,10 +613,12 @@
           braced: true, escalateExpected: true, carries: "floor",
           note: "Multi-ply LVL or a steel W-shape in the market. The catalog carries 48 W-shapes; the calc-spec has " +
                 "no steel method, so this engine cannot design either answer." },
-        { id: "HDR-1", label: "1st-floor opening header", role: "header", span: 5.0, trib: 6.75, count: 10,
-          carries: "roof+floor", skuGroup: "header", headHeightIn: 80 },
+        { id: "HDR-1", label: "1st-floor opening header", role: "header", span: 5.0, count: 10,
+          carries: "roof+floor", tribRoof: 19.0, tribFloor: 6.75,
+          skuGroup: "header", headHeightIn: 80, wallPosition: "exterior-first-floor" },
         { id: "HDR-2", label: "2nd-floor window header", role: "header", span: 4.0, trib: 12.0, count: 12,
-          skuGroup: "header", headHeightIn: 80 },
+          carries: "roof", skuGroup: "header", headHeightIn: 80,
+          note: "Second floor, so it is a wood header even in a concrete-block market." },
         { id: "DK-1", label: "Deck joist · treated", role: "deck", span: 12.0, runFt: 20, count: 16, skuGroup: "deck",
           exposure: "exterior",
           note: "North Carolina production homes very often carry one. IRC R507, 40 psf live." },
@@ -632,14 +637,16 @@
             "This is the archetype where the engine has the least to say: the design action that governs the " +
             "building is the continuous uplift load path, and it is excluded by calc-spec §8.11 and §8.17.",
       marks: [
-        { id: "T-1",  label: "Common roof truss · 26 ft", role: "rafter", span: 26, count: 17, component: true,
+        { id: "T-1",  label: "Common roof truss · 26 ft", role: "rafter", span: 26, count: 17, component: true, carries: "roof",
           componentNote: "Truss package, uplift-governed, deferred sealed submittal. Out of scope." },
         { id: "FJ-1", label: "2nd floor joist", role: "joist", span: 15.5, runFt: 32, count: 25, skuGroup: "floor",
           note: "Runs tight against the 2x12 limit — the mark that shows why a firm DCR target below 1.00 exists." },
         { id: "BM-POR", label: "Porch beam · treated", role: "beam", span: 10.0, trib: 6.0, count: 2,
-          exposure: "exterior", braced: false, skuGroup: "porch", roofAssembly: "open" },
-        { id: "HDR-SLD", label: "1st-floor slider header · roof + floor", role: "header", span: 8.0, trib: 20.75, count: 2,
-          carries: "roof+floor", skuGroup: "header", headHeightIn: 80, escalateExpected: true }
+          exposure: "exterior", braced: false, skuGroup: "porch", roofAssembly: "open", carries: "roof" },
+        { id: "HDR-SLD", label: "1st-floor slider header · roof + floor", role: "header", span: 8.0, count: 2,
+          carries: "roof+floor", tribRoof: 13.0, tribFloor: 7.75,
+          skuGroup: "header", headHeightIn: 80, wallPosition: "exterior-first-floor",
+          escalateExpected: true }
       ]
     }
   ];
@@ -687,8 +694,9 @@
            beam is stocked as treated; keying this off moisture made the flagship
            Texas lanai beam a special order in the one market that racks it. */
         var channel = (demand && (demand.treated || demand.wet)) ? STOCK.wet : STOCK.dry;
-        var sizeAvail = channel[cand.size];
-        if (sizeAvail === undefined) sizeAvail = 0.25;
+        var sizeAvail = Object.prototype.hasOwnProperty.call(channel, cand.size)
+          ? channel[cand.size] : 0.25;
+        if (!isFinite(sizeAvail)) sizeAvail = 0.25;
         return {
           bfUSD: p && isFinite(p.bfUSD) ? p.bfUSD : weights.baseBfUSD,
           cullRate: p && isFinite(p.cullRate) ? p.cullRate : 0,
@@ -701,23 +709,43 @@
   function demandFor(mark, plan, pack) {
     var role = mark.role;
     var L = pack.loads;
-    var roofDead = ASSEMBLY[L.roofAssembly].psf;
-    var floorDead = ASSEMBLY[L.floorAssembly].psf;
-    var ceilingDead = ASSEMBLY[L.ceilingAssembly].psf;
+    function assembly(name) {
+      /* a typo throws loudly; a prototype key used to return silently and
+         launder into a dead load of zero. Both must fail the same way. */
+      if (!Object.prototype.hasOwnProperty.call(ASSEMBLY, name)) {
+        throw new Error("unknown assembly \"" + name + "\" in pack " + pack.id);
+      }
+      return ASSEMBLY[name].psf;
+    }
+    var roofDead = assembly(L.roofAssembly);
+    var floorDead = assembly(L.floorAssembly);
+    var ceilingDead = assembly(L.ceilingAssembly);
 
     var d = {
       role: role,
       span: mark.span,
       trib: mark.trib || 0,
-      repetitive: !!Object.prototype.hasOwnProperty.call(REPETITIVE, role) && !!REPETITIVE[role],
+      repetitive: Object.prototype.hasOwnProperty.call(REPETITIVE, role) ? !!REPETITIVE[role] : false,
       wet: mark.exposure === "exterior" ? !!pack.service.exteriorWet : !!pack.service.wet,
       braced: mark.braced === undefined ? true : !!mark.braced,
-      bearing: mark.bearing || (REPETITIVE[role] ? 3.0 : 3.5),
+      /* a header bears on jack studs — 1.5 in per jack, not the 3.5 in a beam
+         gets on a post cap. Defaulting a header to 3.5 in was 2.33x optimistic
+         on bearing, which is the governing check more often than it looks. */
+      bearing: mark.bearing ||
+        (Object.prototype.hasOwnProperty.call(REPETITIVE, role) && REPETITIVE[role] ? 3.0
+          : (role === "header" ? 1.5 : 3.5)),
       roofType: L.roofType
     };
 
-    var carries = mark.carries || CARRIES_DEFAULT[role] || "roof";
+    var carries = mark.carries ||
+      (Object.prototype.hasOwnProperty.call(CARRIES_DEFAULT, role) ? CARRIES_DEFAULT[role] : null);
+    if (!carries) {
+      throw new Error("mark " + mark.id + " is a " + role + " and must declare what it carries");
+    }
     if (carries === "roof" && mark.roofAssembly === "open") carries = "roof-open";
+    if (!Object.prototype.hasOwnProperty.call(DEFL_BY_CARRIES, carries)) {
+      throw new Error("unknown carries \"" + carries + "\" on mark " + mark.id);
+    }
     d.carries = carries;
     d.memberUse = mark.memberUse || DEFL_BY_CARRIES[carries] || "floor";
 
@@ -736,7 +764,7 @@
 
     /* a porch or lanai beam carries an OPEN roof — no ceiling, no insulation */
     if (mark.roofAssembly === "open") {
-      roofDead = ASSEMBLY[L.roofAssembly === "roof_tile" ? "roof_open_tile" : "roof_open"].psf;
+      roofDead = assembly(L.roofAssembly === "roof_tile" ? "roof_open_tile" : "roof_open");
     }
 
     if (carries === "roof" || carries === "roof-open") {
@@ -748,7 +776,20 @@
     } else if (carries === "deck") {
       d.dead = ASSEMBLY.deck_pt.psf; d.live = L.deckLive; d.roofLoad = 0; d.roofType = "snow";
     } else if (carries === "roof+floor") {
-      d.dead = roofDead + floorDead; d.live = L.floorLive; d.roofLoad = L.roofLoad;
+      /* Two load paths with two different tributary widths cannot be expressed by
+         one number: HDR-1 meant the floor tributary and HDR-SLD meant the sum, and
+         the model applied both full load sets over whichever it was given. The
+         engine takes one tributary, so convert exactly — total line load is
+         q_roof*t_roof + q_floor*t_floor, expressed as psf over t = t_roof + t_floor. */
+      var tR = Number(mark.tribRoof), tF = Number(mark.tribFloor);
+      if (!(tR >= 0) || !(tF >= 0) || !(tR + tF > 0)) {
+        throw new Error("mark " + mark.id + " carries roof+floor and must declare tribRoof and tribFloor");
+      }
+      var tT = tR + tF;
+      d.trib = tT;
+      d.dead = (roofDead * tR + floorDead * tF) / tT;
+      d.live = (L.floorLive * tF) / tT;
+      d.roofLoad = (L.roofLoad * tR) / tT;
     } else {
       d.dead = roofDead; d.live = 0; d.roofLoad = L.roofLoad;
     }

@@ -100,6 +100,12 @@ So the solver always passes `CF: "auto"`, and `engine.js` resolves it per candid
 | `held` | Nothing covers it. `C_F` held at 1.00 and flagged | unsourced |
 | *refused* | Nominal width ≥ 14 in | the check returns an error rather than proceed |
 
+`C_i`, the incising factor, moves the same way and for the same reason. A refractory species must
+be incised to take preservative, so a treated mark in one carries `C_i = 0.80` on `F_b`, `F_t`,
+`F_v` and `F_c` and 0.95 on `E` (NDS Table 4.3.8). That was once handled by *excluding* those
+species from treated marks — a containment, and one keyed on moisture rather than on treatment,
+which meant a single price change could route around it. It is now computed.
+
 The refusal is the important one. Holding `C_F` at 1.00 is **conservative** everywhere the
 catalog is silent *except* at 14 in and wider, where Table 4A publishes a factor below 1.00 that
 the catalog does not carry (gap register #1). Rather than hold a value it cannot show to be
@@ -160,10 +166,10 @@ check. The converse is not claimed and is not needed.
 bound inherits that omission, and it is the eligibility gate in §H1's companion, not the bound,
 that keeps an incised species away from the engine.
 
-**This is a claim, so it is tested, not asserted.** The regression test
-*"pruned candidates are genuinely infeasible"* runs an exhaustive search — every candidate in
+**This is a claim, so it is tested, not asserted.** The regression suite
+*"solver · pruning is admissible — exhaustive vs pruned"* runs an exhaustive search — every candidate in
 ladder × palette × spacing through the real engine — against the pruned search, across a battery
-of demands, and asserts the feasible sets and the winner are identical.
+of demands, and compares the winner, the score and the full feasible sets.
 
 ### H2 — Dominance within a family (sound, conditionally)
 

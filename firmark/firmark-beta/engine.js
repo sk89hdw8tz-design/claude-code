@@ -25,6 +25,14 @@
   /* ---- wet service multipliers, NDS Table 4A (dimension lumber) ---- */
   var CM_WET = { Fb: 0.85, Fv: 0.97, Fc_perp: 0.67, Fc: 0.80, E: 0.90, Emin: 0.90 };
 
+  /* ---- incising factor, NDS Table 4.3.8 ----
+     Refractory species must be incised to take preservative. This was previously
+     handled by excluding those species from treated marks, which is a containment
+     rather than a fix — and a containment keyed on a proxy eventually keys on the
+     wrong one. C_i is the same class of constant as C_D, C_M and C_t, all of
+     which are hard-coded here already. */
+  var CI = { Fb: 0.80, Ft: 0.80, Fv: 0.80, Fc: 0.80, E: 0.95, Emin: 0.95, Fc_perp: 1.00 };
+
   /* ---- deflection limits, IBC Table 1604.3 ----
      The "not supporting a ceiling" roof row is L/180 in BOTH columns;
      L/240 belongs to the row supporting a non-plaster ceiling. */
@@ -44,7 +52,8 @@
     "ASD only — LRFD not implemented",
     "Creep (K_cr, NDS §3.5.2) not applied to long-term deflection",
     "C_b = 1.0 — bearings are at member ends, so NDS §3.10.4 does not apply",
-    "C_F is a typed input; it is not carried in the material catalog"
+    "C_F is a typed input; it is not carried in the material catalog",
+    "C_i (incising, Table 4.3.8) applied when the member is declared incised"
   ];
 
   /* ---------- lookups ---------- */
@@ -354,11 +363,15 @@
       ? (v.Fb * CF <= 1150 ? "MC > 19% · (F_b)(C_F) ≤ 1150 → C_M = 1.0" : "MC > 19% · Table 4A")
       : "dry service";
 
+    var incised = !!inp.incised;
+    var Ci = incised ? CI : { Fb: 1, Ft: 1, Fv: 1, Fc: 1, E: 1, Emin: 1, Fc_perp: 1 };
+    var CiNote = incised ? "incised · Table 4.3.8" : "not incised";
+
     var Ct = 1;                                   /* NDS Table 2.3.3, normal temperature */
     var Cb = 1;                                   /* end bearing — §3.10.4 does not apply */
 
-    var Eprime = v.E * CM.E * Ct;
-    var EminPrime = v.Emin * CM.Emin * Ct;
+    var Eprime = v.E * CM.E * Ct * Ci.E;
+    var EminPrime = v.Emin * CM.Emin * Ct * Ci.Emin;
 
     /* ---- load combinations, ASCE 7 §2.4 ----
        C_D is set by the shortest-duration load of NONZERO magnitude. */
@@ -408,7 +421,7 @@
       var w = c.psf * spacing / 12;
       var M = w * span * span / 8;
       var fb = M * 12 / S;
-      var FbStar = v.Fb * c.cd.v * CM.Fb * Ct * CF * Cr;
+      var FbStar = v.Fb * c.cd.v * CM.Fb * Ct * Ci.Fb * CF * Cr;
       var stab = beamStability(inp.braced ? 0 : span * 12, d, b, FbStar, EminPrime);
       var Fbp = FbStar * stab.CL;
       var dcr = Fbp > 0 ? fb / Fbp : Infinity;
@@ -438,6 +451,7 @@
         { k: "× C_D · load duration", v: f(best.cd.v, 2), cite: "Table 2.3.2 · " + best.cd.label },
         { k: "× C_M · wet service", v: f(CM.Fb, 2), cite: CMnote },
         { k: "× C_t · temperature", v: f(Ct, 2), cite: "Table 2.3.3 · normal" },
+        { k: "× C_i · incising", v: f(Ci.Fb, 2), cite: CiNote },
         { k: "× C_L · beam stability", v: f(best.stab.CL, 3), cite: best.stab.note || ("§3.3.3 · R_B " + f(best.stab.RB, 1)) },
         { k: "× C_F · size factor", v: f(CF, 2),
           cite: spFlag ? "built into Table 4B" : (cfSrc ? cfSrc.note : "typed — not in catalog"),
@@ -455,7 +469,7 @@
       var w = c.psf * spacing / 12;
       var V = w * span / 2;
       var fv = 1.5 * V / A;
-      var Fvp = v.Fv * c.cd.v * CM.Fv * Ct;
+      var Fvp = v.Fv * c.cd.v * CM.Fv * Ct * Ci.Fv;
       var dcr = fv / Fvp;
       if (!sh || dcr > sh.dcr) sh = { dcr: dcr, combo: c.label, V: V, fv: fv, Fvp: Fvp, cd: c.cd };
     });
@@ -470,6 +484,7 @@
         { k: "F_v (reference)", v: comma(v.Fv) + " psi", cite: "Table 4A", src: true },
         { k: "× C_D", v: f(sh.cd.v, 2), cite: "Table 2.3.2" },
         { k: "× C_M", v: f(CM.Fv, 2), cite: wet ? "MC > 19%" : "dry service" },
+        { k: "× C_i", v: f(Ci.Fv, 2), cite: CiNote },
         { k: "F_v′", v: comma(sh.Fvp) + " psi", total: true },
         { k: "f_v (applied)", v: f(sh.fv, 1) + " psi" }
       ]
@@ -520,7 +535,7 @@
       if (r > R) { R = r; Rc = c.label; }
     });
     var fcp = R / (b * lb);
-    var Fcpp = v.Fc_perp * CM.Fc_perp * Ct * Cb;
+    var Fcpp = v.Fc_perp * CM.Fc_perp * Ct * Ci.Fc_perp * Cb;
 
     consider("Bearing (Fc⊥)", fcp / Fcpp, Rc, [
       "R = " + f(R, 0) + " lb on " + f(lb, 2) + " in of bearing",

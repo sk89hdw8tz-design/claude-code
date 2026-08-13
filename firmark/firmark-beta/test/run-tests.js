@@ -270,7 +270,10 @@ function battery() {
     ["rafter", "ceiling", "joist", "header", "beam"].forEach(function (role) {
       spans[role].forEach(function (span) {
         [true, false].forEach(function (braced) {
-          var mark = { id: "T", label: "t", role: role, span: span, trib: 7, count: 1, braced: braced };
+          var carries = { rafter: "roof", ceiling: "ceiling", joist: "floor", deck: "deck",
+                          header: "roof", beam: "roof" }[role];
+          var mark = { id: "T", label: "t", role: role, span: span, trib: 7, count: 1,
+                       braced: braced, carries: carries };
           var d = FM.weights.demandFor(mark, { marks: [] }, pk);
           out.push({ demand: d, pol: FM.weights.policyFor(pk, null, role),
                      label: pk.id + "/" + role + "/" + span + "ft/" + (braced ? "braced" : "unbraced") });
@@ -308,7 +311,9 @@ suite("solver · the pick is the head of the ranked list");
   FM.weights.PACKS.forEach(function (pk) {
     ["rafter", "joist", "ceiling", "header", "beam", "deck"].forEach(function (role) {
       [8, 11, 14, 17].forEach(function (span) {
-        var d = FM.weights.demandFor({ id: "T", role: role, span: span, trib: 7, count: 1 }, { marks: [] }, pk);
+        var carries2 = { rafter: "roof", ceiling: "ceiling", joist: "floor", deck: "deck",
+                         header: "roof", beam: "roof" }[role];
+        var d = FM.weights.demandFor({ id: "T", role: role, span: span, trib: 7, count: 1, carries: carries2 }, { marks: [] }, pk);
         var sol = FM.solver.size(d, FM.weights.policyFor(pk, null, role));
         checked++;
         if (sol.pick && sol.feasible.length && sol.pick !== sol.feasible[0]) mismatches++;
@@ -567,18 +572,38 @@ suite("solver · gates are recorded, not silent");
   var pk = FM.weights.packById("nc-mountain");
   /* a treated exterior beam must not be checked in an incised species */
   var d = FM.weights.demandFor(
-    { id: "B", role: "beam", span: 10, trib: 6, exposure: "exterior", braced: false },
+    { id: "B", role: "beam", span: 10, trib: 6, exposure: "exterior", braced: false, carries: "roof" },
     { marks: [] }, pk);
   truthy(d.wet, "an exterior mark in this pack is wet service");
-  var sol = FM.solver.size(d, FM.weights.policyFor(pk, null, "beam"));
-  var incised = sol.rejected.filter(function (r) { return r.gate === "scope"; });
-  truthy(incised.length > 0, "treated Douglas Fir-Larch is excluded, with the C_i reason recorded");
-  truthy(!sol.pick || !FM.weights.INCISED_WHEN_TREATED[sol.pick.cand.species],
-         "and no incised species can be the pick on a wet mark");
+  var pol = FM.weights.policyFor(pk, null, "beam");
+  var sol = FM.solver.size(d, pol);
+  /* C_i is implemented now, so a refractory species is CHECKED with the factor
+     rather than excluded — the containment became the calculation. */
+  var dfl = { species: "Douglas Fir-Larch", grade: "No. 2", size: "4x10", spacing: 0 };
+  var inp = FM.solver.memberInputs(d, dfl, pol);
+  eq(inp.incised, true, "a treated refractory species is flagged incised, not excluded");
+  var withCi = FM.engine.run(inp);
+  var withoutCi = FM.engine.run((function () {
+    var c = {}; for (var k in inp) c[k] = inp[k]; c.incised = false; return c;
+  })());
+  /* assert the factor where C_L is pinned at 1.0 — on an unbraced member C_i also
+     feeds F_b*, which shifts C_L, so the ratio is 1.245 rather than exactly 1.25.
+     That coupling is correct physics; it just is not the thing being measured. */
+  function braced(o, ci) {
+    var c = {}; for (var k in o) c[k] = o[k];
+    c.braced = true; c.incised = ci; return c;
+  }
+  var b1 = FM.engine.run(braced(inp, true)).checks.filter(function (c) { return c.name === "Bending"; })[0];
+  var b0 = FM.engine.run(braced(inp, false)).checks.filter(function (c) { return c.name === "Bending"; })[0];
+  near(b1.dcr / b0.dcr, 1 / 0.80, 1e-9, "and C_i = 0.80 on F_b is actually applied (NDS Table 4.3.8)");
+  var v1 = withCi.checks.filter(function (c) { return c.name === "Shear"; })[0];
+  var v0 = withoutCi.checks.filter(function (c) { return c.name === "Shear"; })[0];
+  near(v1.dcr / v0.dcr, 1 / 0.80, 1e-9, "and on F_v");
+  truthy(sol.pick, "the treated beam still solves with the factor applied");
 
   /* the geometry gate */
   var hd = FM.weights.demandFor(
-    { id: "H", role: "header", span: 6, trib: 8, headHeightIn: 80 }, { marks: [] }, pk);
+    { id: "H", role: "header", span: 6, trib: 8, headHeightIn: 80, carries: "roof" }, { marks: [] }, pk);
   near(hd.maxDepthIn, 109.125 - 80 - 3.5, 1e-9, "header depth budget comes from plate minus head height");
   var hs = FM.solver.size(hd, FM.weights.policyFor(pk, null, "header"));
   truthy(!hs.pick || hs.pick.cand.d_in <= hd.maxDepthIn + 1e-9,
@@ -588,8 +613,8 @@ suite("solver · gates are recorded, not silent");
 suite("solver · end reactions are published");
 (function () {
   var pk = FM.weights.packById("fl-central");
-  var d = FM.weights.demandFor({ id: "B", role: "beam", span: 12, trib: 7, exposure: "exterior", braced: false },
-                               { marks: [] }, pk);
+  var d = FM.weights.demandFor({ id: "B", role: "beam", span: 12, trib: 7, exposure: "exterior",
+                                 braced: false, carries: "roof" }, { marks: [] }, pk);
   var sol = FM.solver.size(d, FM.weights.policyFor(pk, null, "beam"));
   truthy(sol.pick, "the lanai beam solves");
   truthy(sol.reactions && sol.reactions.perBearingLb > 0,
@@ -612,7 +637,17 @@ suite("weights · every mark is checked as the member it actually is");
         var c = d.carries;
         var where = pk.id + "/" + pl.id + "/" + mk.id + " (" + c + ")";
 
-        if (c === "floor" || c === "deck" || c === "roof+floor") {
+        if (c === "roof+floor") {
+          /* two tributaries are converted into one equivalent psf set, so the
+             live load is SCALED — assert the resulting LINE loads instead */
+          var tR = Number(mk.tribRoof), tF = Number(mk.tribFloor), tT = tR + tF;
+          if (Math.abs(d.live * tT - pk.loads.floorLive * tF) > 1e-9)
+            problems.push(where + " floor live line load does not match tribFloor");
+          if (Math.abs(d.roofLoad * tT - pk.loads.roofLoad * tR) > 1e-9)
+            problems.push(where + " roof line load does not match tribRoof");
+          if (Math.abs(d.trib - tT) > 1e-9) problems.push(where + " tributary is not the sum");
+          if (d.memberUse !== "floor") problems.push(where + " carries a floor but uses the " + d.memberUse + " row");
+        } else if (c === "floor" || c === "deck") {
           if (d.live !== pk.loads.floorLive && c !== "deck") problems.push(where + " carries a floor but has no floor live load");
           if (c === "deck" && d.live !== pk.loads.deckLive) problems.push(where + " is a deck with no deck live load");
           if (d.memberUse !== "floor") problems.push(where + " carries a floor but uses the " + d.memberUse + " deflection row");
