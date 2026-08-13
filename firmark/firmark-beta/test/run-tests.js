@@ -273,7 +273,7 @@ function battery() {
           var carries = { rafter: "roof", ceiling: "ceiling", joist: "floor", deck: "deck",
                           header: "roof", beam: "roof" }[role];
           var mark = { id: "T", label: "t", role: role, span: span, trib: 7, count: 1,
-                       braced: braced, carries: carries };
+                       braced: braced, carries: carries, bearing: role === "header" ? 3.0 : undefined };
           var d = FM.weights.demandFor(mark, { marks: [] }, pk);
           out.push({ demand: d, pol: FM.weights.policyFor(pk, null, role),
                      label: pk.id + "/" + role + "/" + span + "ft/" + (braced ? "braced" : "unbraced") });
@@ -313,7 +313,8 @@ suite("solver · the pick is the head of the ranked list");
       [8, 11, 14, 17].forEach(function (span) {
         var carries2 = { rafter: "roof", ceiling: "ceiling", joist: "floor", deck: "deck",
                          header: "roof", beam: "roof" }[role];
-        var d = FM.weights.demandFor({ id: "T", role: role, span: span, trib: 7, count: 1, carries: carries2 }, { marks: [] }, pk);
+        var d = FM.weights.demandFor({ id: "T", role: role, span: span, trib: 7, count: 1, carries: carries2,
+                                       bearing: role === "header" ? 3.0 : undefined }, { marks: [] }, pk);
         var sol = FM.solver.size(d, FM.weights.policyFor(pk, null, role));
         checked++;
         if (sol.pick && sol.feasible.length && sol.pick !== sol.feasible[0]) mismatches++;
@@ -603,7 +604,7 @@ suite("solver · gates are recorded, not silent");
 
   /* the geometry gate */
   var hd = FM.weights.demandFor(
-    { id: "H", role: "header", span: 6, trib: 8, headHeightIn: 80, carries: "roof" }, { marks: [] }, pk);
+    { id: "H", role: "header", span: 6, trib: 8, headHeightIn: 80, carries: "roof", bearing: 3.0 }, { marks: [] }, pk);
   near(hd.maxDepthIn, 109.125 - 80 - 3.5, 1e-9, "header depth budget comes from plate minus head height");
   var hs = FM.solver.size(hd, FM.weights.policyFor(pk, null, "header"));
   truthy(!hs.pick || hs.pick.cand.d_in <= hd.maxDepthIn + 1e-9,
@@ -632,7 +633,8 @@ suite("weights · every mark is checked as the member it actually is");
   FM.weights.PACKS.forEach(function (pk) {
     FM.weights.PLANS.forEach(function (pl) {
       pl.marks.forEach(function (mk) {
-        if (mk.component) return;
+        var ap = FM.weights.applicability(mk, pk);
+        if (!ap.applicable) return;
         var d = FM.weights.demandFor(mk, pl, pk);
         var c = d.carries;
         var where = pk.id + "/" + pl.id + "/" + mk.id + " (" + c + ")";
@@ -694,6 +696,127 @@ suite("solver · the roof-load crossover is surfaced, not silent");
   var d2 = FM.weights.demandFor({ id: "R", role: "rafter", span: 14, count: 1 }, { marks: [] }, pk2);
   var s2 = FM.solver.size(d2, FM.weights.policyFor(pk2, null, "rafter"));
   truthy((s2.advisories || []).length === 1, "and so does a 25 psf snow load, from the other direction");
+})();
+
+suite("solver · nothing is named as passing unless the engine checked it");
+(function () {
+  /* The procurement gate runs before any engine call, so naming a gated candidate
+     "the member that passes" was an assertion about a member nobody checked.
+     Measured across 112 escalations, 82% of those named were overstressed — one
+     at DCR 2.025. */
+  var named = 0, unchecked = 0, overstressed = 0;
+  FM.weights.PACKS.forEach(function (pk) {
+    FM.weights.PLANS.forEach(function (pl) {
+      FM.solver.solvePlan(pl, pk).marks.forEach(function (m) {
+        var sol = m.solution;
+        if (!sol || !sol.note || !sol.note.procurement) return;
+        sol.rejected.filter(function (r) { return r.gate === "procurement"; }).forEach(function (r) {
+          if (sol.note.procurement.indexOf(FM.solver.skuOf(r.cand)) === -1) return;
+          named++;
+          if (r.checkedDcr === undefined || r.checkedDcr === null) unchecked++;
+          else if (r.checkedDcr > m.policy.maxDCR + 1e-9) overstressed++;
+        });
+      });
+    });
+  });
+  eq(unchecked, 0, "every member named in a procurement note was run through the engine (" + named + " named)");
+  eq(overstressed, 0, "and not one of them is above the DCR target");
+})();
+
+suite("solver · the escalation status and its note come from one classifier");
+(function () {
+  var contradictions = 0, seen = {};
+  FM.weights.PACKS.forEach(function (pk) {
+    FM.weights.PLANS.forEach(function (pl) {
+      FM.solver.solvePlan(pl, pk).marks.forEach(function (m) {
+        var sol = m.solution;
+        if (!sol) return;
+        seen[sol.status] = (seen[sol.status] || 0) + 1;
+        if (sol.status === "ok") { if (!sol.pick) contradictions++; return; }
+        if (sol.pick) contradictions++;
+        /* a procurement note may only appear under a procurement status */
+        if (!!(sol.note && sol.note.procurement) !== (sol.status === "escalate:procurement")) contradictions++;
+      });
+    });
+  });
+  eq(contradictions, 0, "status and note never disagree · statuses seen: " + JSON.stringify(seen));
+  truthy(seen["escalate:procurement"] > 0, "escalate:procurement is reachable — three of four statuses used to be dead");
+})();
+
+suite("solver · the reported wall is the one that actually binds");
+(function () {
+  /* boundWall ranked in³ against in⁴ against in² by raw magnitude, so I_x was
+     named in 17 of 17 reports — including seven where the ladder cleared it. */
+  var wrong = 0, checked = 0;
+  FM.weights.PACKS.forEach(function (pk) {
+    FM.weights.PLANS.forEach(function (pl) {
+      FM.solver.solvePlan(pl, pk).marks.forEach(function (m) {
+        var b = m.solution && m.solution.blocked;
+        if (!b) return;
+        checked++;
+        if (!(b.shortfall > 1)) wrong++;                    /* the ladder satisfies it */
+        if (b.required <= b.available + 1e-9) wrong++;
+      });
+    });
+  });
+  eq(wrong, 0, "no reported wall names a property the ladder already satisfies (" + checked + " walls)");
+})();
+
+suite("engine · Stud above 6 in takes No. 3 values, not Stud values");
+(function () {
+  var stud = FM.engine.findValues("Douglas Fir-Larch", "Stud", 9.25, 1.5);
+  eq(stud.grade, "No. 3", "DF-L Stud at 2x10 resolves to the No. 3 row (NDS-S T4A)");
+  eq(stud.values_psi.Fb, 525, "and takes 525 psi, not Stud's 700 — a 33% overstatement");
+  eq(FM.engine.findValues("Douglas Fir-Larch", "Stud", 5.5, 1.5).grade, "Stud",
+     "Stud at 2x6 and narrower is unaffected");
+  /* the C_F rows are identical, so the fix belongs in findValues and not sizeFactor */
+  near(FM.engine.sizeFactor("Douglas Fir-Larch", "Stud", "2x10").CF,
+       FM.engine.sizeFactor("Douglas Fir-Larch", "No. 3", "2x10").CF, 1e-9,
+       "the two C_F rows coincide — the whole error was in the reference values");
+})();
+
+suite("engine · C_F provenance keys on the catalog flag, not a species name");
+(function () {
+  var ds = FM.engine.sizeFactor("Southern Pine", "Dense Structural 86", "2x14");
+  eq(ds.refuse, true, "SP Dense Structural at 2x14 is refused — its own record says the size factor was not applied");
+  eq(FM.engine.sizeFactor("Southern Pine", "No.2", "2x10").basis, "table_4b",
+     "and a record whose flag is true is still recognised as carrying it");
+})();
+
+suite("weights · a header must declare its jack count");
+(function () {
+  var pk = FM.weights.packById("tx-i35");
+  var threw = false;
+  try {
+    FM.weights.demandFor({ id: "X", role: "header", span: 6, trib: 8, carries: "roof" }, { marks: [] }, pk);
+  } catch (e) { threw = /bearing/.test(e.message); }
+  truthy(threw, "a header with no declared bearing throws — it governed 3 of 66 picks as a silent default");
+  var problems = [];
+  FM.weights.PLANS.forEach(function (pl) {
+    pl.marks.forEach(function (mk) {
+      if (mk.role === "header" && !mk.component && !mk.underdetermined && !mk.bearing) problems.push(mk.id);
+    });
+  });
+  eq(problems.length, 0, "every shipped header declares one" + (problems.length ? ": " + problems.join(", ") : ""));
+})();
+
+suite("weights · the six missing marks are carried");
+(function () {
+  var want = ["HDR-ST", "HDR-GAR-2S", "BM-BRG", "HDR-2F", "DK-C1", "PST-LAN", "PST-DK", "PST-POR"];
+  var have = {};
+  FM.weights.PLANS.forEach(function (pl) { pl.marks.forEach(function (m) { have[m.id] = pl.id; }); });
+  want.forEach(function (id) { truthy(have[id], id + " is on " + (have[id] || "NO PLAN")); });
+  /* the posts cannot be checked at all and must say so rather than be omitted */
+  var pk = FM.weights.packById("tx-i35");
+  FM.weights.PLANS.forEach(function (pl) {
+    pl.marks.filter(function (m) { return m.role === "post"; }).forEach(function (m) {
+      var ap = FM.weights.applicability(m, pk);
+      eq(ap.applicable, false, m.id + " is not sized — it is an axial member and there is no C_P");
+      eq(ap.reason, "out-of-scope", "and it is labelled out-of-scope, not a manufactured component");
+      truthy(/§8\.20/.test(ap.note), "and cites the clause that excludes it");
+      truthy(/\d,?\d* lb/.test(ap.note), "and publishes the reaction the tool does compute");
+    });
+  });
 })();
 
 suite("weights · packs are internally coherent");

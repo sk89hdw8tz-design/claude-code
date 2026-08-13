@@ -53,7 +53,11 @@
     "Creep (K_cr, NDS §3.5.2) not applied to long-term deflection",
     "C_b = 1.0 — bearings are at member ends, so NDS §3.10.4 does not apply",
     "C_F is a typed input; it is not carried in the material catalog",
-    "C_i (incising, Table 4.3.8) applied when the member is declared incised"
+    "C_i (incising, Table 4.3.8) applied when the member is declared incised",
+    "Spans are HORIZONTAL PROJECTIONS and every psf is on the horizontal projection — " +
+      "converting a sloped-roof assembly to the horizontal is the user's responsibility (§1.4)",
+    "No wall dead load is carried anywhere — a header under a gable end or an upper storey " +
+      "must have that load added by hand"
   ];
 
   /* ---------- lookups ---------- */
@@ -148,6 +152,17 @@
     var isSP = sp.some(function (r) { return r.species === species; });
     var pool = isSP ? sp : MATDATA.species_grades;
 
+    /* NDS-S Table 4A: over 6 in wide, Stud grade takes No. 3 tabulated VALUES and
+       No. 3 size factors. The catalog tabulates Stud as '2" & wider' with no width
+       limit, so a Stud 2x10 was reading Stud's own F_b — 700 psi where No. 3 gives
+       525, a 33% overstatement that flips a floor joist from 0.79 to 1.05. The two
+       C_F rows are numerically identical, so the whole error is in the values and
+       none of it is in C_F. */
+    if (!isSP && grade === "Stud" && depth !== undefined && depth > 6.0 - 0.5 + 0.01) {
+      var no3 = pool.filter(function (r) { return r.species === species && r.grade === "No. 3"; });
+      if (no3.length) grade = "No. 3";
+    }
+
     var exact = pool.filter(function (r) { return r.species === species && r.grade === grade; });
     if (!exact.length) return null;
 
@@ -219,6 +234,8 @@
 
   var CF_ROW = {
     "Select Structural": "SS / No.1 / No.2 / No.3",
+    "No. 1 & Btr": "SS / No.1 / No.2 / No.3",
+    "No. 1/No. 2": "SS / No.1 / No.2 / No.3",
     "No. 1": "SS / No.1 / No.2 / No.3",
     "No. 2": "SS / No.1 / No.2 / No.3",
     "No. 3": "SS / No.1 / No.2 / No.3",
@@ -226,17 +243,30 @@
   };
 
   function sizeFactor(species, grade, nominal) {
-    if (isSouthernPine(species)) {
-      return { CF: 1, basis: "table_4b", sourced: true, refuse: false,
-               note: "Table 4B is tabulated per width — the size factor is already in the value" };
-    }
     var sec = findSection(nominal);
     var m = /^(\d+)x(\d+)$/.exec(nominal || "");
     var width = m ? Number(m[2]) : null;
 
+    /* The 14 in refusal comes FIRST. It used to sit behind the Southern Pine
+       branch, so it fired for every species where holding C_F at 1.00 is
+       conservative and was bypassed for the one family where the catalog says
+       the size factor was never applied. */
     if (width !== null && width >= 14) {
       return { CF: 1, basis: "held", sourced: false, refuse: true,
                note: "Table 4A publishes a size factor below 1.00 at 14\" and wider and the catalog does not carry it — holding C_F at 1.00 would be unconservative (gap #1)" };
+    }
+
+    /* calc-spec §4.5: "The app must key off that flag, not off a species-name
+       string match." Six Southern Pine Dense Structural records carry
+       size_factor_applied: false, and a species-pool test called them sourced. */
+    var rec = sec ? findValues(species, grade, sec.d_in, sec.b_in) : null;
+    if (rec && rec.size_factor_applied === true) {
+      return { CF: 1, basis: "table_4b", sourced: true, refuse: false,
+               note: "size_factor_applied is true on this record — the size factor is already in the value" };
+    }
+    if (isSouthernPine(species) && !rec) {
+      return { CF: 1, basis: "table_4b", sourced: true, refuse: false,
+               note: "Table 4B is tabulated per width — the size factor is already in the value" };
     }
     var tbl = (window.MATDATA && MATDATA.size_factors_CF && MATDATA.size_factors_CF.partial_from_repo) || null;
     var row = tbl && tbl.by_grade_category && tbl.by_grade_category[CF_ROW[grade]];
@@ -353,7 +383,10 @@
     /* ---- C_M, with the Table 4A threshold exception ---- */
     var wet = !!inp.wet;
     var CM = {
-      Fb: wet ? (v.Fb * CF <= 1150 ? 1.00 : CM_WET.Fb) : 1,
+      /* The threshold is tested on the LARGEST C_F the cell could take whenever
+         C_F is held, because 1.00 is not the conservative choice here — a bigger
+         C_F pushes the product over 1150 and costs the exception. */
+      Fb: wet ? (v.Fb * (cfSrc && cfSrc.basis === "held" ? 1.5 : CF) <= 1150 ? 1.00 : CM_WET.Fb) : 1,
       Fv: wet ? CM_WET.Fv : 1,
       Fc_perp: wet ? CM_WET.Fc_perp : 1,
       E: wet ? CM_WET.E : 1,
@@ -442,7 +475,7 @@
       "M = wL²/8 = " + f(best.M, 0) + " lb-ft = " + f(best.M * 12, 0) + " lb-in",
       "f_b = M/S = " + f(best.M * 12, 0) + " / " + f(S, 2) + " = " + f(best.fb, 0) + " psi",
       "F_b′ = " + f(v.Fb, 0) + " × C_D " + f(best.cd.v, 2) + " × C_M " + f(CM.Fb, 2) +
-        " × C_t " + f(Ct, 2) + " × C_L " + f(best.stab.CL, 3) + " × C_F " + f(CF, 2) +
+        " × C_t " + f(Ct, 2) + " × C_i " + f(Ci.Fb, 2) + " × C_L " + f(best.stab.CL, 3) + " × C_F " + f(CF, 2) +
         " × C_r " + f(Cr, 2) + " = " + f(best.Fbp, 0) + " psi",
       "DCR = " + f(best.fb, 0) + " / " + f(best.Fbp, 0) + " = " + f(best.dcr, 3)
     ], {
@@ -477,7 +510,7 @@
     consider("Shear", sh.dcr, sh.combo, [
       "V = wL/2 = " + f(sh.V, 0) + " lb  (taken at the support; no §3.4.3.1 reduction to d)",
       "f_v = 1.5V/A = " + f(sh.fv, 1) + " psi",
-      "F_v′ = " + f(v.Fv, 0) + " × C_D " + f(sh.cd.v, 2) + " × C_M " + f(CM.Fv, 2) + " = " + f(sh.Fvp, 0) + " psi",
+      "F_v′ = " + f(v.Fv, 0) + " × C_D " + f(sh.cd.v, 2) + " × C_M " + f(CM.Fv, 2) + " × C_i " + f(Ci.Fv, 2) + " = " + f(sh.Fvp, 0) + " psi",
       "DCR = " + f(sh.dcr, 3)
     ], {
       factors: [

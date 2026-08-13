@@ -103,13 +103,14 @@
 
   /* ---------------- treated-species incising ----------------
      NDS Table 4.3.8 gives C_i = 0.80 on F_b, F_t, F_v and F_c for incised
-     lumber. calc-spec §4.8 specifies it; engine.js does NOT implement it.
-     Refractory species must be incised to take preservative, so checking a
-     treated one without C_i overstates bending and shear by 20%. The solver
-     therefore excludes these species from any wet-service demand rather than
-     checking them optimistically. Southern Pine takes treatment without
-     incising, which is why it survives the gate — and why it is the porch-beam
-     species of the entire Southeast. */
+     lumber, and engine.js now IMPLEMENTS it. Refractory species must be incised
+     to take preservative, so a treated mark in one is checked WITH the factor —
+     0.80 on F_b/F_t/F_v/F_c and 0.95 on E. This map is what tells the solver
+     which species that applies to. It was once an exclusion gate; the gate keyed
+     on moisture rather than treatment, which meant a price change could route
+     around it, so the containment became the calculation. Southern Pine takes
+     treatment without incising and is unaffected — which is why it is the
+     porch-beam species of the entire Southeast. */
   var INCISED_WHEN_TREATED = {
     "Douglas Fir-Larch": true,
     "Douglas Fir-Larch (North)": true,
@@ -156,6 +157,12 @@
     roof_open_tile: {
       psf: 17, label: "Open porch / lanai roof, concrete tile", cls: "market",
       makeup: "concrete tile 9-11 psf on battens over sheathing and framing — no ceiling, no insulation"
+    },
+    floor_wet: {
+      psf: 22, label: "Residential floor, tiled wet area", cls: "market",
+      makeup: "ceramic tile on backer with thinset (+10 psf) over 3/4 in sheathing, framing, gypsum below",
+      note: "A bath or laundry bay carrying floor_res (which says 'no tile or mortar bed') is checked " +
+            "31% light, and it is the bay a floor-depth unification decision is made on."
     },
     deck_pt: {
       psf: 10, label: "Pressure-treated deck", cls: "market",
@@ -288,7 +295,7 @@
           note: "Mills are close. The only species here that takes treatment without incising." },
         { species: "Southern Pine", grade: "No.1", bfUSD: 0.82, stockFactor: 0.85, cullRate: 0.035 },
         { species: "Spruce-Pine-Fir", grade: "No. 1/No. 2", bfUSD: 0.78, stockFactor: 0.60, cullRate: 0.02,
-          note: "Dry framing only — excluded from treated marks because the engine does not apply C_i." }
+          note: "Checked with C_i = 0.80 on treated marks (NDS Table 4.3.8) — it must be incised to take preservative." }
       ],
       maxDCR: 0.90
     },
@@ -426,7 +433,7 @@
           note: "Cull rate runs higher in this humidity — SYP crook and twist on re-equilibration." },
         { species: "Southern Pine", grade: "No.1", bfUSD: 0.84, stockFactor: 0.85, cullRate: 0.04 },
         { species: "Spruce-Pine-Fir", grade: "No. 1/No. 2", bfUSD: 0.86, stockFactor: 0.35, cullRate: 0.02,
-          note: "Not a Florida staple, and excluded from treated marks." }
+          note: "Not a Florida staple. Checked with C_i on treated marks." }
       ],
       maxDCR: 0.90
     },
@@ -581,19 +588,37 @@
         { id: "BM-LAN-W", label: "Lanai beam · wide bay", role: "beam", span: 16.0, trib: 7.0, count: 1,
           exposure: "exterior", braced: false, skuGroup: "porch", roofAssembly: "open", carries: "roof" },
         { id: "HDR-W",   label: "Window header · typical", role: "header", span: 5.0, trib: 23.0, count: 14,
-          carries: "roof", skuGroup: "header", headHeightIn: 80, wallPosition: "exterior-first-floor",
+          carries: "roof", bearing: 3.0, skuGroup: "header", headHeightIn: 80, wallPosition: "exterior-first-floor",
           note: "Tributary is half the truss span where the trusses bear on this wall. A 4 ft " +
                 "tributary here would follow from neither the 46 ft clear span nor the gable end." },
         { id: "HDR-GAR-G", label: "Garage header · gable end over the door", role: "header", span: 16.67, trib: 2.0, count: 1,
-          carries: "roof", skuGroup: "header", headHeightIn: 84, wallPosition: "exterior-first-floor",
+          component: true,
+          componentNote: "OUT OF SCOPE — NOT CHECKED. A gable-end header carries the gable wall " +
+            "standing on it, and ASSEMBLY{} has no wall dead load of any kind, so the model cannot " +
+            "express the dominant term. It is also a TRIANGULAR load, which calc-spec §8.3 excludes " +
+            "outright. Checked as a 2 ft roof strip this mark printed 4x8 at DCR 0.896; across the " +
+            "plausible envelope of pitch, gable width and wall weight the same member runs 1.10 to " +
+            "1.78 — it fails in every case. Re-admit only once the plan declares roof pitch, gable " +
+            "width and opening offset, with a stated moment-equivalent uniform.",
+          carries: "roof", bearing: 3.0, skuGroup: "header", headHeightIn: 84, wallPosition: "exterior-first-floor",
           note: "Same opening as HDR-GAR-B. The truss direction is the entire design: 2 ft of tributary here, 11 ft there." },
         { id: "HDR-GAR-B", label: "Garage header · trusses bearing", role: "header", span: 16.67, trib: 11.0, count: 1,
-          carries: "roof", skuGroup: "header", headHeightIn: 84, wallPosition: "exterior-first-floor", escalateExpected: true,
+          carries: "roof", bearing: 3.0, skuGroup: "header", headHeightIn: 84, wallPosition: "exterior-first-floor", escalateExpected: true,
           note: "Under a bearing truss line this is a 3-ply LVL or a girder truss in every one of these markets." },
         { id: "HDR-SLD", label: "Rear slider header · under clear-span truss", role: "header", span: 12.0, trib: 23.0, count: 1,
-          carries: "roof", skuGroup: "header", headHeightIn: 80, wallPosition: "exterior-first-floor", escalateExpected: true,
+          carries: "roof", bearing: 3.0, skuGroup: "header", headHeightIn: 80, wallPosition: "exterior-first-floor", escalateExpected: true,
           note: "Tributary is half the 46 ft truss span. This is why exterior openings in production single-stories " +
-                "are almost always engineered." }
+                "are almost always engineered." },
+        { id: "PST-LAN", label: "Lanai beam posts · BM-LAN / BM-LAN-W", role: "post",
+          count: 6, component: true,
+          componentNote: "AXIAL MEMBER — NOT CHECKED HERE (calc-spec §4.10 specifies C_P, §8.20 " +
+            "states no interaction equation is evaluated, and engine.js implements neither). Design " +
+            "loads from the end reactions this tool DOES compute: BM-LAN 1,317 lb per post " +
+            "(1,527 nc-mountain, 1,611 fl-hvhz); BM-LAN-W 1,757 lb (2,037 nc-mountain, 2,149 fl-hvhz, " +
+            "on a trial 4x12 — that mark escalates, so the tool publishes no reaction for it). Uplift, " +
+            "the continuous load path and both the base and cap connections are out of scope " +
+            "(§8.11, §8.17). Slenderness is not a formality: for a typical 8 ft 4x4, C_P runs 0.25 to " +
+            "0.35, so a check that omits it overstates axial capacity roughly threefold." }
       ]
     },
     {
@@ -608,16 +633,17 @@
           note: "The DCR-policy mark: 2x10 SYP #2 reaches 13 ft 3 in at a 0.90 target and 14 ft 0 in at 1.00." },
         { id: "FJ-2", label: "2nd floor joist · rear bay", role: "joist", span: 15.0, runFt: 31, count: 24, skuGroup: "floor" },
         { id: "FJ-3", label: "2nd floor joist · bath and laundry", role: "joist", span: 9.5, runFt: 13, count: 10, skuGroup: "floor",
+          floorAssembly: "floor_wet",
           note: "Solves shallow, and is the prime unification target — one floor depth is worth more than the lumber." },
         { id: "GB-1", label: "Centre floor girder", role: "beam", span: 12.0, trib: 14.25, count: 2, skuGroup: "girder",
           braced: true, escalateExpected: true, carries: "floor",
           note: "Multi-ply LVL or a steel W-shape in the market. The catalog carries 48 W-shapes; the calc-spec has " +
                 "no steel method, so this engine cannot design either answer." },
         { id: "HDR-1", label: "1st-floor opening header", role: "header", span: 5.0, count: 10,
-          carries: "roof+floor", tribRoof: 19.0, tribFloor: 6.75,
-          skuGroup: "header", headHeightIn: 80, wallPosition: "exterior-first-floor" },
+          carries: "roof+floor", tribRoof: 19.0, tribFloor: 6.75, underdetermined: true,
+          bearing: 3.0, skuGroup: "header", headHeightIn: 80, wallPosition: "exterior-first-floor" },
         { id: "HDR-2", label: "2nd-floor window header", role: "header", span: 4.0, trib: 12.0, count: 12,
-          carries: "roof", skuGroup: "header", headHeightIn: 80,
+          carries: "roof", bearing: 1.5, skuGroup: "header", headHeightIn: 80,
           note: "Second floor, so it is a wood header even in a concrete-block market." },
         { id: "DK-1", label: "Deck joist · treated", role: "deck", span: 12.0, runFt: 20, count: 16, skuGroup: "deck",
           exposure: "exterior",
@@ -625,7 +651,34 @@
         { id: "DK-2", label: "Deck beam · treated", role: "beam", span: 8.0, trib: 6.0, count: 2, skuGroup: "deckbeam",
           exposure: "exterior", braced: false, carries: "deck",
           note: "Carries the deck, not a roof. Checked as a roof beam it printed a 4x8 at 59% that is " +
-                "overstressed at 1.05 against 40 psf of deck live load." }
+                "overstressed at 1.05 against 40 psf of deck live load." },
+        { id: "HDR-ST", label: "Stair opening header · 2nd floor", role: "header",
+          span: 12.5, trib: 5.0, count: 1, carries: "floor",
+          braced: true, bearing: 3.0, skuGroup: "header",
+          note: "12'-6\" clear opening = 15 treads at 10 in, derived from this pack's own 109.125 in " +
+                "plate (16R at 7.6 in per IRC R311.7.1). The opening runs ALONG the bearing line, so the " +
+                "header takes the tail joists over the remaining 10.0 ft of the 13.5 ft bay, t = 5.0 ft. " +
+                "NOT CHECKED HERE, and neither is anything else in this assembly: the two double TRIMMERS " +
+                "carry this header's end reaction as a CONCENTRATED load (calc-spec §8.3 — uniform " +
+                "full-span load only), the upper stringer lands on it as a second point load, and the " +
+                "joist-to-header connection is a face-mount hanger (§8.17)." },
+        { id: "HDR-GAR-2S", label: "Garage door header · bonus room over", role: "header",
+          span: 16.67, count: 1, carries: "roof+floor", tribRoof: 11.0, tribFloor: 5.5,
+          bearing: 4.5, skuGroup: "header", headHeightIn: 84, wallPosition: "exterior-first-floor",
+          escalateExpected: true,
+          note: "16'-0\" door. The roof spans the 22 ft garage depth onto this wall, t_roof = 11.0 — the " +
+                "same derivation HDR-GAR-B uses. The BONUS-ROOM elevation (register D11) puts a floor " +
+                "over the garage; 22 ft is beyond sawn range so it needs a mid girder, giving " +
+                "t_floor = 11.0/2 = 5.5. This is the envelope mark D11 asks for: sizing the base " +
+                "elevation and letting an option move the bearing is how a revision gets manufactured." },
+        { id: "PST-DK", label: "Deck beam posts · DK-2", role: "post", count: 2, component: true,
+          componentNote: "AXIAL MEMBER — NOT CHECKED HERE. calc-spec §4.10 specifies C_P (NDS §3.7.1) " +
+            "and §8.20 states no interaction equation is evaluated; engine.js implements neither. " +
+            "Design load, from the end reaction this tool DOES compute for DK-2: 1,231 lb per post, " +
+            "flat across all six packs. Also out of scope on this member: uplift and the continuous " +
+            "load path (§8.11, §8.17) and both the base and cap connections (§8.17). Slenderness is " +
+            "not a formality — for a typical 8 ft 4x4, C_P runs 0.25 to 0.35, so a check that omits " +
+            "it overstates axial capacity roughly threefold." }
       ]
     },
     {
@@ -645,8 +698,41 @@
           exposure: "exterior", braced: false, skuGroup: "porch", roofAssembly: "open", carries: "roof" },
         { id: "HDR-SLD", label: "1st-floor slider header · roof + floor", role: "header", span: 8.0, count: 2,
           carries: "roof+floor", tribRoof: 13.0, tribFloor: 7.75,
-          skuGroup: "header", headHeightIn: 80, wallPosition: "exterior-first-floor",
-          escalateExpected: true }
+          bearing: 3.0, skuGroup: "header", headHeightIn: 80, wallPosition: "exterior-first-floor" },
+        { id: "BM-BRG", label: "Interior bearing line · great-room girder", role: "beam",
+          span: 12.0, trib: 13.0, count: 1, carries: "floor", braced: true,
+          skuGroup: "girder", escalateExpected: true,
+          note: "The interior line FJ-1 already implies: FJ-1 spans 15.5 of the 26 ft width and " +
+                "HDR-SLD declares tribFloor 7.75 = 15.5/2, so this line takes 15.5/2 + 10.5/2 = 13.0 ft. " +
+                "It is the mark that gives this plan something to say in the two concrete-block markets, " +
+                "where every other header is a lintel. NOT CHECKED: the 10.5 ft party-wall bay has no " +
+                "joist mark of its own — FJ-1 covers the 15.5 ft bay only." },
+        { id: "HDR-2F", label: "2nd-floor window header · bearing wall", role: "header",
+          span: 5.0, trib: 13.0, count: 8, carries: "roof", bearing: 3.0,
+          skuGroup: "header", headHeightIn: 80,
+          note: "Tributary is half the 26 ft truss span — the same 13.0 ft HDR-SLD declares for " +
+                "tribRoof. wallPosition is deliberately ABSENT: second-floor framing is wood even in " +
+                "a concrete-block market, and declaring it would delete the mark. The gable-end variant " +
+                "of the same window takes about 2 ft and is a separate mark." },
+        { id: "DK-C1", label: "Deck joist · treated, under the covered porch", role: "deck",
+          span: 12.0, runFt: 20, count: 16, carries: "deck",
+          exposure: "exterior", skuGroup: "deck",
+          note: "12 ft = the porch depth implied by BM-POR's 6.0 ft tributary; the 20 ft run is " +
+                "BM-POR's two 10 ft bays. OPEN: IRC R507 gives 40 psf where ASCE 7-22 Table 4.3-1 " +
+                "gives 60 psf for an exterior balcony, and at 60 this member is overstressed at 1.024." },
+        { id: "DK-C2", label: "Deck beam · treated", role: "beam",
+          span: 10.0, trib: 6.0, count: 2, carries: "deck",
+          exposure: "exterior", braced: false, skuGroup: "deckbeam",
+          note: "Shares posts with BM-POR — one post takes both this reaction and the porch-roof " +
+                "beam's. A deck without its beam is the same silent omission this mark set exists " +
+                "to remove." },
+        { id: "PST-POR", label: "Porch and deck beam posts · BM-POR / DK-C2", role: "post",
+          count: 4, component: true,
+          componentNote: "AXIAL MEMBER — NOT CHECKED HERE (calc-spec §4.10, §8.20: C_P is specified " +
+            "and no interaction equation is evaluated). Design loads from the reactions this tool " +
+            "computes: BM-POR 931 to 1,149 lb per post across the packs; DK-C2 1,548 lb. In a " +
+            "wind-governed market UPLIFT on this post and its base and cap connections (§8.11, " +
+            "§8.17) govern, and none of that is checked here." }
       ]
     }
   ];
@@ -718,7 +804,7 @@
       return ASSEMBLY[name].psf;
     }
     var roofDead = assembly(L.roofAssembly);
-    var floorDead = assembly(L.floorAssembly);
+    var floorDead = assembly(mark.floorAssembly || L.floorAssembly);
     var ceilingDead = assembly(L.ceilingAssembly);
 
     var d = {
@@ -731,12 +817,24 @@
       /* a header bears on jack studs — 1.5 in per jack, not the 3.5 in a beam
          gets on a post cap. Defaulting a header to 3.5 in was 2.33x optimistic
          on bearing, which is the governing check more often than it looks. */
-      bearing: mark.bearing ||
-        (Object.prototype.hasOwnProperty.call(REPETITIVE, role) && REPETITIVE[role] ? 3.0
-          : (role === "header" ? 1.5 : 3.5)),
+      /* Bearing became a DESIGN INPUT the moment the header default moved to one
+         jack stud: it governs 3 of 66 picks and produced 4 of 24 escalations, and
+         no mark declared it. Same ruling as `carries` — a header must state its
+         jack count rather than inherit one. */
+      bearing: mark.bearing || (Object.prototype.hasOwnProperty.call(REPETITIVE, role) && REPETITIVE[role]
+        ? 3.0 : (role === "header" ? null : 3.5)),
       roofType: L.roofType
     };
 
+    if (mark.underdetermined) {
+      throw new Error("mark " + mark.id + " has an underdetermined tributary and must not be sized: " +
+                      "its roof tributary contradicts a sibling mark on the same wall, and the plan " +
+                      "declares no roof mark, no upper-storey outline and no truss direction");
+    }
+    if (role === "header" && !mark.bearing) {
+      throw new Error("header " + mark.id + " must declare `bearing` (jack studs x 1.5 in) — " +
+                      "it governs the check and produced false escalations as a silent default");
+    }
     var carries = mark.carries ||
       (Object.prototype.hasOwnProperty.call(CARRIES_DEFAULT, role) ? CARRIES_DEFAULT[role] : null);
     if (!carries) {
@@ -787,6 +885,8 @@
       }
       var tT = tR + tF;
       d.trib = tT;
+      d.roofLoadActual = L.roofLoad;   /* the advisory must see the real load, not the blend */
+      d.tribRoof = tR; d.tribFloor = tF;
       d.dead = (roofDead * tR + floorDead * tF) / tT;
       d.live = (L.floorLive * tF) / tT;
       d.roofLoad = (L.roofLoad * tR) / tT;
@@ -799,6 +899,18 @@
   /* a mark can be structurally irrelevant in a region — a wood exterior header
      in a concrete-block market is not a member anybody will build */
   function applicability(mark, pack) {
+    if (mark.underdetermined) {
+      return { applicable: false, reason: "underdetermined", note:
+        "NOT SIZED — the tributary is not derivable. This mark's roof tributary (19.0 ft, half the " +
+        "first-floor depth) contradicts the sibling header in the same wall one storey up (12.0 ft), " +
+        "and the plan declares no roof mark, no second-floor outline and no truss direction. Three " +
+        "values are in play (12.0, 16.32, 19.0) and none follows from the plan. Substituting one for " +
+        "another closes the finding without answering it. Declare the second-floor outline and the " +
+        "truss direction, then derive both headers from it." };
+    }
+    if (mark.component && mark.role === "post") {
+      return { applicable: false, reason: "out-of-scope", note: mark.componentNote };
+    }
     if (mark.component) {
       return { applicable: false, reason: "component", note: mark.componentNote ||
                "Manufactured component — designed by its supplier as a deferred sealed submittal." };

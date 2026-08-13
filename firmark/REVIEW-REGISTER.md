@@ -7,16 +7,17 @@ allowed to be closed silently.
 Panel: structural PE (A&E), QA/QC, production-build & estimating, building code
 & regulatory (TX/NC/FL), software integration & test.
 
-Test suite: `node firmark-beta/test/run-tests.js` — **124 assertions, 0 failing**.
+Test suite: `node firmark-beta/test/run-tests.js` — **157 assertions, 0 failing**.
 UI sweep: `node firmark-beta/test/ui-tests.js` — renders the built bundle across every
 pack × plan, opens every mark's detail, fails on any NaN / undefined / empty numeric slot.
 Bundle freshness gate: `node firmark-beta/build.js --check`.
 
-**Coverage, stated plainly:** across 6 packs × 3 plans, **66 of 114 mark-slots produce a
-member; 24 escalate and 24 are not this engine's member.** A schedule that answers 58% of its
-marks is defensible only if it says so, so it is said here and on every plan in the UI. (An
-earlier printing of this line said 58/30/26 and was simply wrong — measured, not derived; the
-replacement test specialist caught it.)
+**Coverage, stated plainly:** across 6 packs × 3 plans, **85 of 162 mark-slots produce a
+member; 31 escalate and 46 are not this engine's member.** It is said here and on every plan in
+the UI. Two earlier printings of this line were wrong (58/30/26, then 66/24/24) — the first
+measured nothing, the second was correct until the six missing marks landed. Note what adding
+them did: **the solved count rose and so did the escalations**, because the missing marks are the
+hard ones. Silence was flattering the number.
 
 ---
 
@@ -322,3 +323,112 @@ that most distinguishes it — mutation-tested the pins rather than reading them
 things it could not verify. The structural PE is **retained**: it found the two blockers the
 entire rest of the panel had walked past, and answered both open rulings with a sensitivity run
 rather than an opinion.
+
+
+---
+
+## K. Fourth round — three senior engineers, and their cross-review
+
+Three senior structural engineers reviewed independently on separate lenses — load path (SE-1),
+capacity and the factor stack (SE-2), scope and sealability (SE-3) — and were then required to
+**audit each other**, each ending with the findings it was least sure of and what would settle
+them. The cross-review moved findings in both directions, and in one case showed that a fix would
+have been applied to the wrong function.
+
+### K.1 Blockers fixed
+
+| # | Finding | Disposition |
+|---|---|---|
+| K1 | **The escalation note asserted that an unchecked member was adequate.** The procurement gate runs inside `eligibility()` *before any engine call*, yet the note read *"the member that passes … The member is adequate."* Across 112 escalations, **82% named only overstressed members** — one at DCR 2.025; the shipped coastal case named a 4x10 at **1.295**. SE-2's framing is the exact one: *"the claim is not always false — it is never checked."* | Fixed. Gated candidates are now run through the engine before any is named, only those that actually pass are listed with their measured DCR, and the note says how many others were checked and failed. |
+| K2 | **Status and note came from two disagreeing classifiers**, so `escalate:procurement`, `:geometry` and `:scope` were unreachable — 7,920 synthetic demands produced only `ok` and `escalate:strength`, while the note independently took a different branch in the same object. Three of the four first-class statuses B9 introduced never fired. | Fixed. One classifier produces both, and a new `escalate:bearing` names the detailing case. A test asserts they can never disagree and that `escalate:procurement` is reachable. |
+| K3 | **`boundWall()` ranked in³ against in⁴ against in² by raw magnitude**, so `I_x` was named in **17 of 17** reports — seven of them naming a property the ladder cleared by up to 68%, and *all seventeen* naming the wrong binder. | Fixed. Ranked by dimensionless shortfall ratio against the deepest rung, properties the ladder satisfies are skipped, and bearing is removed from the section wall entirely. |
+| K4 | **Stud grade above 6 in wide overstated `F_b` by 33–40%** and flipped a DF-L 2x10 floor joist from 0.791 PASS to 1.054 FAIL. 266 unconservative cells, every one Stud above 6 in. | Fixed — **and the cross-review is why it was fixed in the right place.** SE-2 initially filed it as a `C_F` defect; on re-examination the two `C_F` rows are numerically identical (1.2/1.1/1.0), so `sizeFactor()` returned the right factor *by coincidence* and the entire error was in the reference values. Fixing `sizeFactor()` would have fixed nothing. The substitution now happens in `findValues()`. |
+| K5 | **The garage gable header carried a wall load the model has no vocabulary for.** `ASSEMBLY{}` has zero wall entries, and the load is triangular, which `calc-spec` §8.3 excludes outright. Checked as a 2 ft roof strip it printed 4x8 at 0.896; across 27 cases spanning the plausible pitch, gable width and wall weight it runs **1.098 to 1.781 — it fails in every one.** | Fixed by refusal, the disposition SE-3 ruled for: carried as an out-of-scope mark stating what is missing and what must be declared before it can be re-admitted. |
+
+### K.2 Findings the cross-review moved
+
+| Finding | Filed as | Became | Why |
+|---|---|---|---|
+| Attic live load reaches no member | BLOCKER | **MAJOR, re-scoped** | SE-1 measured both readings: under the prevailing non-concurrent bottom-chord convention `D+Lr` beats `D+BCLL` in all six packs and **zero rows change**; under the concurrent ASCE reading, 8 of 114 move with one escalation flip. SE-1 also withdrew its own implication that the ceiling *dead* load was missing — it is inside the roof assembly makeup, and adding it would double-count. Its own conclusion: *"this needs a sentence in the spec more than it needs code."* |
+| Jack-stud/plate bearing at DCR 1.04 | MAJOR | **capacity failure WITHDRAWN, scope gap upheld** | SE-2 ruled `C_b = 1.25` applies at a plate — `calc-spec` §5.4 names that exact case — so every header clears with ≥16% margin and the 1.04 was an artifact of using 1.0. SE-2 then found the live thread underneath: a **treated sill on slab** brings `C_M(F_c⊥) = 0.67` and gives **1.24**, unmodelled in either direction. Carried to §L. |
+| Held `C_F` feeding the 1150 psi threshold | MAJOR | **MINOR (provenance)** | SE-2 measured the direction and found the shipped path **9.3% conservative**, not unconservative; no shipped wet cell falls in the window where holding hurts. Fixed anyway, since the fix is one expression. |
+| Southern Pine `C_F` provenance | MAJOR | **MAJOR-latent** | SE-3 established the 14 in refusal is unreachable on *every* shipped path — `CF: "auto"` occurs exactly once in the codebase. Fixed anyway: the harm was a false `sourced: true` rendering as a **DB** badge beside a record whose own flag says otherwise. |
+| Wet-service exception "fires universally" | stated reason | **FALSIFIED, conclusion upheld** | SE-2 enumerated all 35 reachable wet cells and found **10 that exceed 1150** and take the reduction. The conclusion — wet `F_c⊥` binds on no shipped mark — survives, but because wet marks and bearing-governed marks are disjoint sets, not for the reason given. |
+
+### K.3 The finding the round produced that no single review had
+
+**`bearing` had become a decisive input carried as a silent default.** PE-4 was right to move headers
+from 3.5 in to 1.5 in — but that promoted bearing from a benign assumption to a design input: it
+governs 3 of 66 picks and produced **4 of 24 escalations**, and **zero of 19 marks declared it.**
+SE-1 ruled the correct detail independently (governing reaction 2,862 lb/end; one jack gives DCR
+1.072 against the firm's own target, two jacks 0.482) and found five more rows needing more than
+one jack, one needing three. SE-3 reached the same disposition from the other side.
+
+Both also found the mechanism that concealed it: **`b_req` entered the seed bounds against member
+*breadth*, and every rung in a header ladder is the same breadth** — so a bearing shortfall emptied
+the entire ladder and was then reported as a stiffness wall, while the product's own repair table
+says of bearing *"depth does nothing."*
+
+Fixed with the same disposition `carries` got: **no default — a header that does not declare its
+jack count throws**, every shipped header declares one, and a bearing shortfall now reports as
+`escalate:bearing` with the remedy a framer can act on in ten seconds.
+
+### K.4 The six missing marks
+
+All six are in, derived by SE-3 from each plan's stated geometry with the derivation on the record:
+the **stair opening header** (12'-6" from the pack's own plate height, 16R at 7.6 in), the
+**two-story garage header** (the bonus-room envelope mark D11 asks for), the **coastal interior
+bearing line**, the **coastal second-floor header** (deliberately without `wallPosition`, because
+second-floor framing is wood even in a block market), the **coastal deck** and its beam, and the
+**posts** under all four beam groups.
+
+The posts cannot be checked at all — they are axial, `calc-spec` §8.20 evaluates no interaction
+equation, and there is no `C_P`. They are carried as out-of-scope marks that **publish the end
+reactions the tool does compute** into the note, with a third badge added because a 4x4 post is
+neither a manufactured component nor "not a wood member here."
+
+### K.5 Also fixed this round
+
+The crossover advisory now keys on the pack's real roof load rather than the blended psf, so it
+stops being suppressed on the roof+floor marks — including `nc-mountain`, the one pack where the
+collapse changes the answer. `C_i` now appears in the two printed equations that did not multiply
+out. Four documentation sites still claiming `C_i` is unimplemented are corrected, one of which
+rendered to the user. The bath-and-laundry bay gets an assembly that includes tile. `calc-spec`
+§1.4's slope statement and the absence of any wall dead load are now printed in `LIMITS`, which is
+where §1.4 says they must be. And `HDR-1`, whose roof tributary contradicts its sibling one storey
+up by 58%, is now carried as **not sized** rather than asserting one of three undeterminable values
+— SE-3's ruling: *"substituting 12.0 replaces one asserted tributary with another and closes the
+finding without answering it."*
+
+---
+
+## L. Conditions on release — current
+
+**Closed:** H1, H2, D4, and all of §K.1.
+
+**Still open:**
+
+| # | Condition |
+|---|---|
+| L1 | **H3** — correct `calc-spec` §5.5, the `ex1_defl_total` / `ex2_*` fixtures, and the comment above `DEFL` in `engine.js`. Confirmed still in place by three independent reviewers now. |
+| L2 | **H4 / D3** — split `q_Lr` and `q_S`. SE-1 measured the exposure as **nil on all six shipped packs today**, going live at 17.2 ≤ p_s ≤ 20 psf — a band `nc-mountain`'s own p_g of 30 reaches once p_s is actually computed. The advisory makes it visible; it does not remove it. |
+| L3 | **H5** — replace the market placeholders and the site loads. |
+| L4 | **H6 / M-1** — the schedule export. `calc-spec` §8 says its 24 boundaries "must be printed, verbatim and unabridged, on every output"; what ships is a 10-item paraphrase on the sheet only, and the schedule view has no export at all. Every honesty mechanism in the product currently dies at the browser window. |
+| L5 | **The attic / bottom-chord live load question** — `ceilingLive` is wired into all six packs and read by no mark, and the spec is silent on whether a truss-bearing header receives it. A sentence in `calc-spec`, then code if the answer is yes. |
+| L6 | **No wall dead load exists anywhere in the model.** Now printed in `LIMITS`; the vocabulary is still missing, and it is what made K5 unrefusable rather than checkable. |
+| L7 | **Slope.** No plan declares a pitch, and the assembly psf mix on-slope and horizontal components with no published split — so the user cannot perform the conversion §1.4 makes them responsible for. At 6:12 the garage header already exceeds target; at 9:12 the typical window header does. |
+| L8 | **The sheet is the optimistic path and the solver the conservative one**, which inverts the relationship — the sheet is what a PE reaches for to check the solver. It has no way to declare a member incised (24.5% unconservative on refractory species) and its typed `C_F` bypasses `sizeFactor()` entirely, so a 2x14 checks clean there while the solver refuses it. |
+| L9 | **A treated sill on slab** — `C_M(F_c⊥) = 0.67` with `C_b = 1.25` gives 1.24 against the plate. Unmodelled in either direction. |
+| L10 | **PE-6** — IRC R507's 40 psf against ASCE 7-22 Table 4.3-1's 60 psf for a deck. At 60 both delivered deck members are overstressed (1.024, 1.040). Answer it; do not carry it. |
+| L11 | **J8** — no numeric-correctness assertion exists in the DOM layers. A wrong-but-finite number renders clean. |
+
+### Panel, final
+
+All three senior engineers are **retained**, and the round justified its own cost: it produced five
+blockers, and the cross-review then **downgraded two findings, withdrew one, falsified the reasoning
+behind a fourth while upholding its conclusion, and redirected a fifth to a different function
+entirely.** Each engineer downgraded or withdrew at least one of its own findings under peer
+examination. That is the behaviour the structure was built to get.
+
+The seal answer is unchanged and was never expected to change in this round: **do not seal.** The
+remaining conditions are in §L, and L4 is the one that decides whether any of the rest travels.

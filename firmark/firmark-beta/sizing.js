@@ -128,7 +128,10 @@
             el("td", { class: "k", text: m.mark.id }),
             el("td", { text: m.mark.label }),
             el("td", { colspan: "4" }, [
-              el("span", { class: "badge b-blue", text: m.notApplicable.reason === "component" ? "Manufactured component" : "Not a wood member here" }),
+              el("span", { class: "badge " + (m.notApplicable.reason === "out-of-scope" || m.notApplicable.reason === "underdetermined" ? "b-warn" : "b-blue"),
+                text: { component: "Manufactured component", "wall-system": "Not a wood member here",
+                        "out-of-scope": "Out of this engine's scope",
+                        underdetermined: "Not sized — tributary not derivable" }[m.notApplicable.reason] || "Not this engine" }),
               el("span", { class: "clause", text: m.notApplicable.note })
             ]),
             el("td", { class: "n", text: "—" })
@@ -433,7 +436,7 @@
       var cmp = FM.solver.compare(plan, packs);
 
       body.appendChild(el("div", { class: "grid g5", style: "margin-bottom:16px" }, [
-        FM.statCard(String(cmp.commonMarks), "Same member everywhere", "pass"),
+        FM.statCard(String(cmp.commonMarks), "Same member where applicable", "pass"),
         FM.statCard(String(cmp.varyingMarks), "Regionally forced", "gold"),
         FM.statCard(String(cmp.unansweredMarks), "Unanswered anywhere", cmp.unansweredMarks ? "fail" : ""),
         FM.statCard(String(cmp.solvedMarks) + "/" + plan.marks.length, "Marks with an answer"),

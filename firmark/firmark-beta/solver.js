@@ -303,7 +303,7 @@
     };
   }
 
-  function passesBounds(cand, bounds) {
+  function passesBounds(cand, bounds, demandBearing) {
     var s = FM.engine.findSection(cand.size);
     if (!s) return { ok: false, why: "no section properties" };
     var b = bounds.at(cand.spacing);
@@ -311,7 +311,16 @@
     if (s.Sx_in3 < b.S_req - EPS) return { ok: false, why: "S_x below the palette's best-case bending requirement" };
     if (s.Ix_in4 < b.I_req - EPS) return { ok: false, why: "I_x below the deflection requirement" };
     if (s.A_in2 < b.A_req - EPS) return { ok: false, why: "A below the shear requirement" };
-    if (s.b_in < b.b_req - EPS) return { ok: false, why: "breadth below the bearing requirement" };
+    if (s.b_in < b.b_req - EPS) {
+      /* Bearing is NOT a section wall. Every rung in a header ladder is the same
+         breadth, so a bearing shortfall empties the whole ladder and then gets
+         reported as a stiffness problem — while the solver's own repair table
+         says of bearing "depth does nothing". Classify it separately so the
+         answer is "this header needs a second jack stud", not "buy an LVL". */
+      return { ok: false, why: "breadth " + s.b_in.toFixed(2) + " in is below the " +
+               b.b_req.toFixed(3) + " in the bearing reaction needs at l_b = " +
+               Number(demandBearing).toFixed(2) + " in", bearing: true };
+    }
     return { ok: true };
   }
 
@@ -424,7 +433,12 @@
        understates bending by up to 8.4%; declared snow, roof-live understates
        deflection. Make the exposure visible instead of silent. */
     var advisories = [];
-    var rl = num(demand.roofLoad, 0);
+    /* For a roof+floor mark the roof load is blended into an equivalent psf over
+       the summed tributary, so `demand.roofLoad` reads ~14.8 where the member
+       carries 20. Testing the blended number switched this advisory off on the
+       marks that carry two load paths — including nc-mountain, the one pack
+       where the collapse changes the answer. */
+    var rl = num(demand.roofLoadActual !== undefined ? demand.roofLoadActual : demand.roofLoad, 0);
     if (rl > 0 && rl >= 16 && rl <= 25) {
       advisories.push({
         kind: "roof-load-crossover",
@@ -474,8 +488,8 @@
     fams.forEach(function (fam) {
       fam.rungs.forEach(function (c) { c.cost = costOf(demand, c, policy); });
       fam.admissible = fam.rungs.filter(function (c) {
-        var pb = passesBounds(c, bounds);
-        if (!pb.ok) boundPruned.push({ cand: c, reason: pb.why, bound: true });
+        var pb = passesBounds(c, bounds, demand.bearing);
+        if (!pb.ok) boundPruned.push({ cand: c, reason: pb.why, bound: !pb.bearing, bearing: !!pb.bearing });
         return pb.ok;
       });
       fam.monotone = true;
@@ -596,8 +610,11 @@
     /* bound-pruned candidates enter the record too — "we never checked a 2x6
        because no 2x6 can reach the required S_x" is an answer */
     boundPruned.forEach(function (bp) {
-      rejected.push({ cand: bp.cand, dcr: null, governing: null, bound: true,
-                      reason: bp.reason, next: "a deeper or stronger section" });
+      rejected.push({ cand: bp.cand, dcr: null, governing: null,
+                      bound: bp.bound, gate: bp.bearing ? "bearing" : undefined,
+                      reason: bp.reason,
+                      next: bp.bearing ? "lengthen the bearing — a second jack stud, not a deeper section"
+                                       : "a deeper or stronger section" });
     });
 
     var ordered = fams.slice().sort(function (a, b) { return a.id < b.id ? -1 : (a.id > b.id ? 1 : 0); });
@@ -666,6 +683,24 @@
 
     /* Escalation is a status, not a footnote. A plan with an escalation is not
        a finished schedule and must not read like one. */
+    /* B-1: a candidate excluded at the procurement gate was rejected BEFORE any
+       engine call. Naming it "the member that passes" was an assertion about a
+       member nobody checked — and measured across 112 escalations, 82% of those
+       named were overstressed, one at DCR 2.025. Check them, then name only the
+       ones that actually passed. */
+    var gatedPassing = [], gatedFailing = [];
+    if (!pick) {
+      rejected.forEach(function (r) {
+        if (r.gate !== "procurement") return;
+        var gev = evaluate(r.cand);
+        stats.contextEvaluated++;
+        if (gev.result.error || !isFinite(gev.result.governing.dcr)) { r.checkedDcr = null; return; }
+        r.checkedDcr = gev.result.governing.dcr;
+        r.checkedGoverning = gev.result.governing.name;
+        if (r.checkedDcr <= policy.maxDCR + EPS) gatedPassing.push(r); else gatedFailing.push(r);
+      });
+    }
+
     /* Report the wall that actually stopped the search, in this order:
          strength   nothing in the ladder reaches the required section, or every
                     evaluated candidate was overstressed — a real engineering wall
@@ -674,16 +709,21 @@
        Falling through to whichever gate happened to appear in the rejection list
        produced "lower your availability floor" as the advice for a member that
        was 4% short on section modulus. */
+    /* B-2: ONE classifier produces both the status and the note. They used to be
+       decided independently and disagreed — `escalate:strength` was set first on
+       any evaluated candidate, so three of the four statuses were unreachable
+       while the note took a different branch in the same object. */
     var status = "ok", blocked = null;
     if (!pick) {
-      var gatedPassing = rejected.filter(function (r) { return r.gate === "procurement"; });
-      if (considered.length) status = "escalate:strength";
-      else if (!fams.length || !fams.some(function (f) { return f.admissible.length; })) {
+      var bearingWall = rejected.filter(function (r) { return r.gate === "bearing"; });
+      if (gatedPassing.length)        status = "escalate:procurement";
+      else if (bearingWall.length && !considered.length) status = "escalate:bearing";
+      else if (rejected.some(function (r) { return r.gate === "geometry"; }) && !considered.length)
+                                      status = "escalate:geometry";
+      else {
         status = "escalate:strength";
-        blocked = boundWall(bounds, policy);
-      } else if (gatedPassing.length) status = "escalate:procurement";
-      else if (rejected.some(function (r) { return r.gate === "geometry"; })) status = "escalate:geometry";
-      else status = "escalate:scope";
+        blocked = boundWall(bounds, policy, policy.ladder);
+      }
     }
 
     return {
@@ -701,8 +741,8 @@
       bounds: bounds,
       stats: stats,
       searchSpace: fams.reduce(function (n, f) { return n + f.rungs.length; }, 0),
-      note: feasible.length ? null : noFeasibleNote(demand, policy, rejected, blocked,
-              rejected.filter(function (r) { return r.gate === "procurement"; })),
+      note: feasible.length ? null
+        : noFeasibleNote(demand, policy, rejected, blocked, status, gatedPassing, gatedFailing),
     };
   }
 
@@ -730,20 +770,40 @@
   /* When the seed bounds emptied the ladder, name the section property that did
      it and by how much — "no section reaches S_x = 76.95 in³" is an answer; a
      gate label is not. */
-  function boundWall(bounds, policy) {
-    var keys = Object.keys(bounds.bySpacing), worst = null;
-    keys.forEach(function (k) {
+  /* Rank by how far SHORT the ladder falls, not by which number is numerically
+     largest. Comparing in³ against in⁴ against in² meant I_x won essentially
+     always — it was named in 17 of 17 reports, including the ones where the
+     ladder cleared it with 25% to spare. Bearing is excluded: it is not a
+     property of the section. */
+  function boundWall(bounds, policy, ladder) {
+    var best = { Sx: 0, Ix: 0, A: 0 };
+    (ladder || []).forEach(function (sz) {
+      var sec = FM.engine.findSection(sz);
+      if (!sec) return;
+      if (sec.Sx_in3 > best.Sx) best.Sx = sec.Sx_in3;
+      if (sec.Ix_in4 > best.Ix) best.Ix = sec.Ix_in4;
+      if (sec.A_in2 > best.A) best.A = sec.A_in2;
+    });
+    var worst = null;
+    Object.keys(bounds.bySpacing).forEach(function (k) {
       var b = bounds.bySpacing[k];
-      [["S_x", "in³", b.S_req], ["I_x", "in⁴", b.I_req], ["A", "in²", b.A_req], ["breadth", "in", b.b_req]]
+      [["S_x", "in³", b.S_req, best.Sx], ["I_x", "in⁴", b.I_req, best.Ix], ["A", "in²", b.A_req, best.A]]
         .forEach(function (t) {
-          if (!worst || t[2] > worst.value) worst = { prop: t[0], unit: t[1], value: t[2], spacing: k };
+          if (!(t[3] > 0)) return;
+          var ratio = t[2] / t[3];
+          if (ratio <= 1 + EPS) return;                 /* the ladder satisfies it — not a wall */
+          if (!worst || ratio > worst.ratio) {
+            worst = { prop: t[0], unit: t[1], value: t[2], available: t[3], ratio: ratio, spacing: k };
+          }
         });
     });
     return worst ? {
-      property: worst.prop, required: worst.value, unit: worst.unit,
-      text: "no section in the ladder reaches the required " + worst.prop + " of " +
-            worst.value.toFixed(2) + " " + worst.unit + " at the firm's DCR target of " +
-            policy.maxDCR.toFixed(2)
+      property: worst.prop, required: worst.value, available: worst.available,
+      unit: worst.unit, shortfall: worst.ratio,
+      text: "the deepest section in the ladder gives " + worst.available.toFixed(2) + " " +
+            worst.unit + " of " + worst.prop + " and this member needs " +
+            worst.value.toFixed(2) + " — short by " + Math.round((worst.ratio - 1) * 100) +
+            "% at the firm's DCR target of " + policy.maxDCR.toFixed(2)
     } : null;
   }
 
@@ -758,19 +818,34 @@
 
   /* When nothing fits, say which wall the search hit and what would move it.
      A solver that only reports "no solution" is telling the engineer nothing. */
-  function noFeasibleNote(demand, policy, rejected, blocked, gatedPassing) {
-    if (blocked) {
-      return { wall: blocked.text, counts: {}, move: "a deeper or stronger section than the ladder offers",
-               outOfScope: OUT_OF_SCOPE };
-    }
-    if (gatedPassing && gatedPassing.length) {
-      var names = gatedPassing.map(function (r) { return skuOf(r.cand); }).join(", ");
+  function noFeasibleNote(demand, policy, rejected, blocked, status, gatedPassing, gatedFailing) {
+    if (status === "escalate:procurement") {
+      var names = gatedPassing.map(function (r) {
+        return skuOf(r.cand) + " (checked, DCR " + r.checkedDcr.toFixed(3) + ")";
+      }).join(", ");
+      var alsoTried = gatedFailing.length
+        ? " " + gatedFailing.length + " other excluded member(s) were checked and do NOT pass." : "";
       return {
         wall: "a solid-sawn member passes this check — your availability floor excludes it",
         counts: {}, procurement: names,
         move: "confirm the yard will supply " + names + ", or lower the availability floor deliberately",
-        outOfScope: "This is a PROCUREMENT decision, not an engineering one. The member is adequate."
+        outOfScope: "This is a PROCUREMENT decision for the member(s) named — each was run through " +
+                    "the engine and passed." + alsoTried + " " + OUT_OF_SCOPE
       };
+    }
+    if (status === "escalate:bearing") {
+      var br = rejected.filter(function (r) { return r.gate === "bearing"; })[0];
+      return {
+        wall: br ? br.reason : "the bearing reaction exceeds what this bearing length can carry",
+        counts: {},
+        move: "lengthen the bearing — a second jack stud. Depth does nothing for bearing.",
+        outOfScope: "This is a DETAILING question, not a member-size question. No section in the " +
+                    "ladder is wider, so a deeper member cannot solve it."
+      };
+    }
+    if (blocked) {
+      return { wall: blocked.text, counts: {}, move: "a deeper or stronger section than the ladder offers",
+               outOfScope: OUT_OF_SCOPE };
     }
     var byCheck = {};
     rejected.forEach(function (r) {
