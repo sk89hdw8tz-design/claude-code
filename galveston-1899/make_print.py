@@ -292,8 +292,19 @@ def main() -> int:
     font = find_font(max(12, int(label_h_in * args.dpi * 0.6))) if args.labels else None
     draw = ImageDraw.Draw(canvas) if args.labels else None
 
+    # A partial final row looks ragged left-aligned; nudge it to centre.
+    # Only for implicit row-major placement -- an explicit layout means the
+    # caller has decided where things go.
+    row_indent = [0.0] * rows
+    if layout is None and args.mode == "grid":
+        for r in range(rows):
+            in_row = max(0, min(n - r * cols, cols))
+            if 0 < in_row < cols:
+                row_indent[r] = (cols - in_row) * (cell_w_in + gutter) / 2
+
     def cell_origin(r: int, c: int) -> tuple[float, float]:
-        return (off_x + c * (cell_w_in + gutter), off_y + r * (cell_h_in + gutter))
+        return (off_x + row_indent[r] + c * (cell_w_in + gutter),
+                off_y + r * (cell_h_in + gutter))
 
     placed = 0
     for i, p in enumerate(paths):

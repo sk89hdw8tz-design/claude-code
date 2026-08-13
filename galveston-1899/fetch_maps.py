@@ -37,11 +37,10 @@ INDEX_URL = "https://maps.lib.utexas.edu/maps/sanborn/g.html"
 # The 13 map sheets requested, in the order they were given.
 DEFAULT_SHEETS = [8, 7, 6, 5, 11, 13, 15, 12, 14, 16, 41, 39, 37]
 
-# Front matter to ship alongside the sheets. The page's 1899 listing has a
-# "Key" but no item literally called "Legend" -- in this atlas the symbol
-# legend rides on the title page / index, so both are included by default.
-# Override with --front to change.
-DEFAULT_FRONT = ["key", "title", "index"]
+# Front matter to ship alongside the sheets. The 1899 listing has a "Key" but
+# nothing literally called "Legend"; confirmed that "the key and legend" means
+# the Key sheet alone. Add title/index back with --front key,title,index.
+DEFAULT_FRONT = ["key"]
 
 FRONT_PATTERNS = {
     "key": re.compile(r"\bkey\b", re.I),

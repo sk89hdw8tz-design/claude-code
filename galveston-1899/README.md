@@ -5,8 +5,10 @@ the UT Austin PCL map library index, zips them, and assembles them into a
 print-ready 27×40 inch sheet.
 
 Requested selection: sheets **8, 7, 6, 5, 11, 13, 15, 12, 14, 16, 41, 39, 37**
-(13 sheets) plus the key and legend, taken from the **second** Galveston 1899
-group on the index page.
+(13 sheets) plus the **Key**, taken from the **second** Galveston 1899 group on
+the index page — 14 items.
+
+Both print versions are produced: a plate montage and a geographic mosaic.
 
 ## Status
 
@@ -18,14 +20,25 @@ GitHub are reachable. Nothing here routes around that — the scripts are ready
 to run wherever the host is reachable.
 
 To unblock in a web session, add the host to the environment's network policy
-(see https://code.claude.com/docs/en/claude-code-on-the-web); or just run
-these two scripts locally.
+(see https://code.claude.com/docs/en/claude-code-on-the-web) — the environment
+generally has to be restarted before a policy change takes effect. Or just run
+these scripts locally; they need only Python 3 and Pillow.
 
 ## Usage
 
+Everything, in one command:
+
 ```bash
 pip install Pillow
+./run_all.sh out
+```
 
+That lists the groups, downloads group 2 with the Key, zips it, then renders
+both the montage and the mosaic with JPEG proofs.
+
+Step by step:
+
+```bash
 # 1. See what is actually on the page. Downloads nothing.
 python3 fetch_maps.py --list
 
@@ -55,9 +68,9 @@ with exponential backoff, are verified as decodable images, and are recorded in
 `manifest.json` with SHA-256, byte size and pixel dimensions.
 
 **On the "legend":** the 1899 listing has a *Key* but no item literally named
-*Legend* — in this atlas the symbol explanation rides on the title page/index.
-So `--front` defaults to `key,title,index`. Narrow it with e.g.
-`--front key,index` once the actual sheets confirm where the legend sits.
+*Legend*; confirmed that "the key and legend" means the Key sheet alone, so
+`--front` defaults to `key`. Widen it with `--front key,title,index` if the
+symbol explanation turns out to sit on the title page.
 
 ### `make_print.py`
 
@@ -76,14 +89,20 @@ below that, so the script raises the ceiling deliberately.
   pooling between rows. `--fit stretch` fills the canvas and letterboxes inside
   each cell.
 - The grid is chosen automatically by maximising coverage for the measured
-  sheet aspect; override with `--cols`/`--rows`.
+  sheet aspect; override with `--cols`/`--rows`. A partial final row is centred
+  rather than left ragged.
 - `--trim` removes the uniform white scan margin, refusing to cut more than 15%
   of either dimension so a genuinely pale sheet is never gutted.
 - `--probe` reports sizes, the chosen grid, cell size and the worst-case
   effective resolution, then exits. If it warns below 150 ppi, use fewer sheets
   per print or a bigger canvas.
 
-`--layout` takes `{"sheet-08": [row, col], ...}`.
+`--layout` takes `{"sheet-08": [row, col], ...}`. `layout-provisional.json` is
+a starting point inferred **only** from the order the sheets were requested
+(8,7,6,5 / 11,13,15 / 12,14,16 / 41,39,37), which looks like geographic
+adjacency. It must be checked against the Key sheet before the mosaic is
+trusted. Sheets absent from the layout — the Key itself — are reported and
+left out of the mosaic rather than silently dropped.
 
 ## Verification
 

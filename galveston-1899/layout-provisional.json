@@ -1,0 +1,16 @@
+{
+  "_comment": "PROVISIONAL geographic placement, inferred only from the order the sheets were requested (8,7,6,5 / 11,13,15 / 12,14,16 / 41,39,37). Real adjacency must be read off the Key sheet before this is trusted for a mosaic render. Values are [row, col].",
+  "sheet-08": [0, 0],
+  "sheet-07": [0, 1],
+  "sheet-06": [0, 2],
+  "sheet-05": [0, 3],
+  "sheet-11": [1, 0],
+  "sheet-13": [1, 1],
+  "sheet-15": [1, 2],
+  "sheet-12": [2, 0],
+  "sheet-14": [2, 1],
+  "sheet-16": [2, 2],
+  "sheet-41": [3, 0],
+  "sheet-39": [3, 1],
+  "sheet-37": [3, 2]
+}
