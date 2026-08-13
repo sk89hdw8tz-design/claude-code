@@ -356,9 +356,27 @@ def main() -> int:
             return 1
 
     print(f"Found {len(paths)} image(s) in {args.src}")
+
+    def prepared(path: str) -> Image.Image:
+        """Open a sheet and apply exactly the crops the renderer will apply."""
+        im = Image.open(path).convert("RGB")
+        if args.trim:
+            im = autocrop_border(im, tol=args.trim_tol)
+            if args.neatline:
+                im, _ = crop_to_neatline(im)
+        if inset:
+            im = apply_inset(im, inset)
+        return im
+
+    # Measure the sheets as they will actually be placed, not as they arrive.
+    # Cell shape is derived from these, and trimming changes the aspect
+    # materially (0.831 raw -> 0.811 after trim and inset on this batch). Sizing
+    # cells from the raw aspect while pasting trimmed sheets makes the uniform
+    # scale bind on height, leaving each sheet short of its cell width and
+    # pillarboxed -- a white gutter down every vertical seam.
     sizes = []
     for p in paths:
-        with Image.open(p) as im:
+        with prepared(p) as im:
             sizes.append(im.size)
     aspects = [w / h for w, h in sizes]
     median_aspect = sorted(aspects)[len(aspects) // 2]
@@ -564,14 +582,7 @@ def main() -> int:
     if args.mode == "mosaic" and args.mosaic_scale == "uniform":
         widths = []
         for p in paths:
-            with Image.open(p) as im:
-                im = im.convert("RGB")
-                if args.trim:
-                    im = autocrop_border(im, tol=args.trim_tol)
-                    if args.neatline:
-                        im, _ = crop_to_neatline(im)
-                if inset:
-                    im = apply_inset(im, inset)
+            with prepared(p) as im:
                 widths.append(im.width)
         widths.sort()
         uniform_ppi = widths[len(widths) // 2] / cell_w_in
