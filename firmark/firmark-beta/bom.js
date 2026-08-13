@@ -71,6 +71,7 @@
      K() prefixes keys for INTERNAL maps that never leave this file. */
   function K(s) { return " " + String(s); }
   function hasK(o, s) { return Object.prototype.hasOwnProperty.call(o, K(s)); }
+  function isArray(v) { return Object.prototype.toString.call(v) === "[object Array]"; }
 
   /* PUBLIC maps get real keys, because a consumer doing Object.keys() must
      see "header", not " header". Prototype safety comes from a null
@@ -288,14 +289,127 @@
     return m.mark.count || 1;
   }
 
-  function countBasisOf(m, pieces) {
+  /* WHERE A COUNT CAME FROM, AND ONLY WHAT WAS CHECKED.
+
+     This used to end every non-repetitive line with the words
+
+         "plan count for this mark = 8 pc (not derived from a run; the plan
+          states it)"
+
+     and on a takeoff-derived run that sentence was false. HDR-O1's 8 came
+     out of the takeoff's grouping rule — eight openings identical in every
+     derived value, O1-O4 in wall W1 and O7-O10 in W3 — and THE PLAN STATED
+     NOTHING. The string was correct for a weights.js master set and wrong
+     for the other path, so the one field on the line whose entire job is
+     provenance was asserting a source it had never looked at. That is the
+     worst version of this defect: not a missing number, a confident wrong
+     attribution, on the field a reviewer trusts precisely because it is
+     supposed to be the audit.
+
+     So the basis now states the mechanism it actually used, and names a
+     source ONLY where it resolved one:
+
+       · from a run — unchanged, and it shows the arithmetic;
+       · from the takeoff's own `count` derivation, quoted with the ids it
+         grouped, when the caller supplies the takeoff run (opts.takeoff);
+       · from the shipped plan record, when FM.weights.planById() carries
+         this mark and declares this count — a checked claim, not an assumed
+         one, and a DISAGREEMENT between the record and the count in hand is
+         reported rather than smoothed over;
+       · otherwise: the count is carried on the mark, this module did not
+         derive it, and it says so and points at the derivation trail rather
+         than inventing an author for it. */
+  function countBasisOf(m, pieces, prov) {
     var row = m.unifiedTo || (m.solution && m.solution.pick);
     if (row && m.demand && m.demand.repetitive && m.mark.runFt && row.cand.spacing) {
       return "run " + n2(m.mark.runFt, 1) + " ft x 12 / " + row.cand.spacing +
              " in o.c. = " + n2(Number(m.mark.runFt) * 12 / row.cand.spacing, 2) +
              " bays, rounded UP to " + (pieces - 1) + " plus 1 closing member = " + pieces + " pc";
     }
-    return "plan count for this mark = " + pieces + " pc (not derived from a run; the plan states it)";
+
+    var id = (m.mark && m.mark.id) || "(unnamed mark)";
+    var head = "count " + pieces + " pc is carried on mark " + id + ", not derived from a run";
+
+    /* 1. the takeoff traced it — quote the trace */
+    var d = prov ? countDerivationOf(prov, id) : null;
+    if (d) {
+      var ids = isArray(d.fromIds) ? d.fromIds.join(", ") : "";
+      var mismatch = (isFinite(Number(d.value)) && Number(d.value) !== pieces)
+        ? "  ** THE TAKEOFF DERIVED " + d.value + " AND THIS LINE BUYS " + pieces +
+          " — they disagree; do not order against either until that is settled. **" : "";
+      return head + "; the takeoff derived it" +
+             (d.from ? " from " + d.from : "") +
+             (ids && String(d.from || "").indexOf(ids) === -1 ? " (" + ids + ")" : "") + mismatch;
+    }
+
+    /* 2. a shipped plan record declares it — check, do not assume */
+    var rec = prov ? prov.planRecordMark(id) : null;
+    if (rec) {
+      var stated = rec.mark.count;
+      if (isFinite(Number(stated)) && Number(stated) === pieces) {
+        return head + "; the plan record " + rec.planId + " states it";
+      }
+      return head + "; the plan record " + rec.planId + " states " +
+             (stated === undefined || stated === null ? "no count at all" : stated + " pc") +
+             " for this mark — ** THE RECORD AND THIS LINE DISAGREE **, so the source of " +
+             pieces + " is not established here";
+    }
+
+    /* 3. nothing was resolved — say that, by name */
+    return head + "; NO SOURCE IS ESTABLISHED HERE — this module did not derive the count " +
+           "and neither a takeoff derivation nor a plan record was available to it to name " +
+           "one. Read the derivation trail for " + id + " before ordering to it";
+  }
+
+  /* The provenance lookups countBasisOf() is allowed to make. Built once per
+     build() so the plan record is read once, and deliberately tolerant: every
+     lookup returns null rather than throwing, because a BOM that cannot
+     identify a source must still print, saying so. */
+  function provenanceOf(planResult, opts) {
+    var takeoff = (opts && opts.takeoff) || null;
+    var byMark = {};
+    if (takeoff && isArray(takeoff.derivations)) {
+      takeoff.derivations.forEach(function (d) {
+        if (!d || d.field !== "count") return;
+        var k = K(String(d.markId));
+        if (!hasK(byMark, String(d.markId))) byMark[k] = d;
+      });
+    }
+    var plan = (planResult && planResult.plan) || {};
+    var recId = plan.ofPlan || plan.id || null;
+    var record = null, recordRead = false;
+
+    function planRecord() {
+      if (recordRead) return record;
+      recordRead = true;
+      if (!recId || !FM.weights || typeof FM.weights.planById !== "function") return (record = null);
+      try { record = FM.weights.planById(recId) || null; } catch (e) { record = null; }
+      return record;
+    }
+
+    return {
+      countDerivation: function (id) {
+        return hasK(byMark, String(id)) ? byMark[K(String(id))] : null;
+      },
+      planRecordMark: function (id) {
+        var r = planRecord();
+        if (!r || !isArray(r.marks)) return null;
+        var hit = null;
+        r.marks.forEach(function (mk) { if (!hit && mk && mk.id === id) hit = mk; });
+        return hit ? { planId: r.id, mark: hit } : null;
+      },
+      /* what this run could and could not consult, printed on the sheet so a
+         reader knows which of the branches above was even reachable */
+      sources: {
+        takeoff: !!(takeoff && isArray(takeoff.derivations) && takeoff.derivations.length),
+        planRecordId: recId,
+        planRecordFound: function () { return !!planRecord(); }
+      }
+    };
+  }
+
+  function countDerivationOf(prov, id) {
+    return prov && typeof prov.countDerivation === "function" ? prov.countDerivation(id) : null;
   }
 
   /* Which procurement channel this member comes out of. Exactly the rule
@@ -311,6 +425,7 @@
 
   function perHouse(planResult, opts) {
     opts = opts || {};
+    var prov = provenanceOf(planResult, opts);
     var pack = planResult.pack || {};
     var plan = planResult.plan || {};
     var groups = {}, order = [];
@@ -439,7 +554,7 @@
         pieces: pieces, spanFt: num(d.span), cutLengthFt: cutFt,
         dropFt: stockFt - cutFt, spacingIn: cand.spacing || 0,
         unified: !!m.unifiedTo,
-        countBasis: countBasisOf(m, pieces),
+        countBasis: countBasisOf(m, pieces, prov),
         dcr: isFinite(row.dcr) ? row.dcr : null,
         governing: row.governing || null,
         bearingPerEndIn: num(d.bearing),
@@ -493,7 +608,16 @@
     var waste = wasteOf(lines, totals, planResult);
     return {
       lines: lines, totals: totals, excluded: excluded, waste: waste,
-      pricedMarks: priced, selfChecks: selfChecks
+      pricedMarks: priced, selfChecks: selfChecks,
+      countSources: {
+        takeoffSupplied: prov.sources.takeoff,
+        planRecordId: prov.sources.planRecordId,
+        planRecordFound: prov.sources.planRecordFound(),
+        note: "A piece count on a line is either DERIVED FROM A RUN (arithmetic shown), " +
+              "traced by the takeoff's own count derivation, checked against the shipped " +
+              "plan record, or — where none of those was available — declared UNESTABLISHED " +
+              "by name. This module never states a source it did not consult."
+      }
     };
   }
 
@@ -1136,13 +1260,17 @@
         "for that reason. It prices the simple-span solid-sawn members the engine sized and nothing " +
         "else. Read EXCLUDED before reading any total.",
       selfChecks: house.selfChecks,
+      countSources: house.countSources,
       at: opts.at || null,
       cls: "derived",
       provenance: {
         quantities: "derived — every count, length and board-foot figure shows its arithmetic in " +
                     "the line's `basis`. Stock lengths come from FM.solver.stockLength(); board " +
                     "feet from FM.solver.boardFeetPerLF(); piece counts mirror the solver's own " +
-                    "rule; the SKU string is FM.solver.skuOf().",
+                    "rule; the SKU string is FM.solver.skuOf(). A piece count that is NOT derived " +
+                    "from a run names the source it was checked against — the takeoff's count " +
+                    "derivation or the shipped plan record — and says UNESTABLISHED where neither " +
+                    "was available, rather than attributing it to a plan it never read.",
         prices: "market — $/bf, cull rates, availability, dropHandling, lot counts and take rates " +
                 "are firm placeholders with NO CODE STANDING. They rank members and estimate " +
                 "purchases; they cannot make a member pass and they are not a quotation.",

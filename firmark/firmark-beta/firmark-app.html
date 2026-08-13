@@ -6950,8 +6950,13 @@ var FM = (function () {
    Government Code §214.212 makes the IRC as it existed on
    1 May 2012 the municipal residential code, but the EDITION
    actually enforced is a city ordinance question and varies
-   city by city — San Antonio is on the 2024 IRC while Austin is
-   on the 2021. Unincorporated county land may have no adopted
+   city by city — San Antonio and Austin are on the 2024 IRC
+   (ASCE 7-22) while Houston, Dallas and Fort Worth are still on
+   the 2021 (ASCE 7-16). Two cities 200 miles apart are on
+   different codes and different wind maps.
+   (Austin was published here as a 2021 IRC city until 13 August
+   2026. That was wrong — see §7 and FM.juris.CORRECTIONS.)
+   Unincorporated county land may have no adopted
    code, no permit and no inspection at all. And on the coast
    there is a SECOND, INDEPENDENT regime: TDI/TWIA windstorm
    certification (WPI-1 before construction, WPI-8 at
@@ -7040,6 +7045,51 @@ var FM = (function () {
    ground) is carried separately because that one IS knowable.
 
    An honest gap beats a confident error.
+
+   ------------------------------------------------------------
+   7. WHAT THE 13 AUGUST 2026 RE-CHECK FOUND
+
+   The whole table was put back through independent searches.
+   The access position did not improve — see RESEARCH: curl was
+   re-tested against 12 hosts and the page-fetch tool against 6
+   more, and EVERY ONE was refused at the egress proxy, including
+   en.wikipedia.org. This is a total block, not a policy about
+   official sources. Nothing in this file is `primary` and, in
+   this environment, nothing can be.
+
+   What DID improve is corroboration: 15 load-bearing facts were
+   re-established from two or three independent routes each and
+   are listed in FM.juris.RECHECKED. Among them, and worth saying
+   plainly because they are the ones people get wrong: the HVHZ
+   is still exactly two counties; the TDI catastrophe-area county
+   list in this file matches TWIA's own list exactly, all 14; and
+   North Carolina is still on the 2018 Code.
+
+   TWO THINGS WERE WRONG. Both are in FM.juris.CORRECTIONS.
+
+   (a) AUSTIN WAS ON THE WRONG CODE. This file published Austin
+       as a 2021 IRC / ASCE 7-16 city. Austin adopted the 2024
+       IRC by Ordinance 20250410-040, effective 10 July 2025.
+       Wrong by a generation, wrong wind map with it, and the
+       error was doubly damaging because Austin was the file's
+       worked EXAMPLE of Texas code divergence in two places.
+
+   (b) THE WIND-BORNE DEBRIS TEST WAS THE OLD ONE. The file
+       published only the pre-ASCE-7-22 form — "within 1 mile of
+       the COASTAL mean high water line". ASCE 7-22 deletes
+       "coastal" and substitutes an Exposure D condition upwind
+       at the water line, which pulls large INLAND lakes and bays
+       into the region. Florida adopted that with the 8th
+       Edition. This is the difference between requiring opening
+       protection and not, and the file was arguing the wrong way
+       for inland Florida — Orange County carried `likely: false`
+       on reasoning the current code does not support.
+
+   Note the shape of both errors: the file's own mustVerify list
+   had FLAGGED Austin as the adoption most likely to have moved,
+   and it had still published the stale value as fact. The list
+   was right and the data was wrong. That is the argument for
+   reading the list rather than the table.
    ============================================================ */
 
 (function () {
@@ -7089,8 +7139,10 @@ var FM = (function () {
       url: "https://codelibrary.amlegal.com/codes/ftworth/latest/ftworth_tx/0-0-0-8128", retrieved: "search-summary" },
     { id: "sat-ord",      what: "San Antonio Chapter 10 Building-Related Codes — 2024 I-Codes incl. IRC, Ordinance 2025-01-30-0075, effective 1 May 2025",
       url: "https://docsonline.sanantonio.gov/DSDUploads/2024Ch10Building-RelatedCodesFinal.pdf", retrieved: "search-summary" },
-    { id: "aus-code",     what: "Austin City Code Ch. 25-12 Article 11 (Residential Code) — 2021 IRC, effective 1 September 2021",
-      url: "https://www.austintexas.gov/page/building-technical-codes", retrieved: "search-summary" },
+    { id: "aus-ord",      what: "City of Austin Ordinance No. 20250410-040 — adoption of the 2024 International Residential Code and Local Amendments, adopted 10 April 2025, effective 10 JULY 2025. THIS SUPERSEDES the 2021 adoption this module previously carried; see FM.juris.CORRECTIONS.",
+      url: "https://www.austintexas.gov/development-services/building-technical-codes", retrieved: "search-summary-corroborated" },
+    { id: "aus-code",     what: "Austin City Code Ch. 25-12 (Technical Codes) — SUPERSEDED 2021 IRC adoption, effective 1 September 2021, replaced by the 2024 IRC on 10 July 2025",
+      url: "https://www.austintexas.gov/development-services/building-technical-codes", retrieved: "search-summary" },
     { id: "cc-ord",       what: "City of Corpus Christi Code Chapter 14 — 2021 I-Codes incl. IRC with local amendments, effective 1 August 2023",
       url: "https://www.corpuschristitx.gov/department-directory/development-services/construction-codes-and-ordinances/", retrieved: "search-summary" },
     { id: "galv-ord",     what: "City of Galveston Code Chapter 10 / Ordinance 23-012 — 2021 I-Codes incl. IRC with local amendments",
@@ -7105,8 +7157,12 @@ var FM = (function () {
       url: "https://up.codes/s/high-velocity-hurricane-zones-wind-loads", retrieved: "search-summary" },
     { id: "fl-prod",      what: "Florida Product Approval, F.A.C. Rule 61G20-3 and the BCIS; Miami-Dade NOA is a local approval; a statewide approval must carry the HVHZ endorsement to be used in the HVHZ",
       url: "https://www.floridabuilding.org/fbc/commission/FBC_0615/Commission_Education_POC/588/588-1-MATERIAL.pdf", retrieved: "search-summary" },
-    { id: "fl-wbdr",      what: "Florida Building Commission investigation of the wind-borne debris regions in ASCE 7-22",
+    { id: "fl-wbdr",      what: "Florida Building Commission investigation of the wind-borne debris regions in ASCE 7-22 — Interim Report",
       url: "https://www.floridabuilding.org/fbc/commission/FBC_0125/hrac/Interim_Report_WBDR.pdf", retrieved: "search-summary" },
+    { id: "fl-wbdr-fin",  what: "Florida Building Commission, Investigation of the Wind-borne Debris Regions in ASCE 7-22 — FINAL Report. ASCE 7-22 DELETES the word \"coastal\" from the wind-borne debris region definition and instead requires an Exposure D condition upwind at the water line (>= 5,000 ft of water fetch). Adopting that definition in the FBC 8th Edition created INLAND wind-borne debris regions next to large lakes and bays in central Florida and the panhandle.",
+      url: "https://www.floridabuilding.org/fbc/publications/Research_2024-2025/Final%20Report%20WBDR_revised.pdf", retrieved: "search-summary-corroborated" },
+    { id: "twia-cat",     what: "TWIA — the designated catastrophe area is all 14 first-tier coastal counties plus the part of Harris County east of SH 146",
+      url: "https://www.twia.org/about-us/overview/", retrieved: "search-summary-corroborated" },
     { id: "fl-asce722",   what: "Florida Building Commission fact sheet — wind load impacts from ASCE 7-22 in the 8th Edition",
       url: "http://www.floridabuilding.org/fbc/thecode/2023_Code_Development/2023_Code_Resources/ASCE-7-22_Wind_Loads_Fact_Sheet.pdf", retrieved: "search-summary" },
     { id: "nc-gs-143",    what: "N.C.G.S. §143-138 — the NC State Building Code is adopted by the Building Code Council / Residential Code Council; local rules require Council approval",
@@ -7130,11 +7186,38 @@ var FM = (function () {
      nothing about X" and "the module could not find out about X". */
   var RESEARCH = {
     checked: CHECKED,
-    method: "WebSearch only.",
-    blocked: "Outbound page fetches are blocked at this environment's egress proxy. Every official " +
-             "source in SOURCES refused, including ncosfm.gov, tdi.texas.gov, floridabuilding.org, " +
-             "codes.iccsafe.org, up.codes, flsenate.gov, statutes.capitol.texas.gov and every " +
-             "municipal code library. curl through the proxy returns 'CONNECT tunnel failed, 403'.",
+    method: "WebSearch only, with every load-bearing fact triangulated across at least two " +
+            "independent queries before it was allowed to change a value. Where two summaries " +
+            "disagreed, the one citing a named ordinance, rule or agency report won and the " +
+            "disagreement is recorded rather than hidden.",
+    blocked: "Outbound page fetches are blocked at this environment's egress proxy, and the block is " +
+             "TOTAL, not a domain policy. Re-tested exhaustively on " + CHECKED + ": curl was run " +
+             "against 12 hosts (floridabuilding.org, codes.iccsafe.org, tdi.texas.gov, ncosfm.gov, " +
+             "statutes.capitol.texas.gov, flsenate.gov, iccsafe.org, fema.gov, weather.gov, " +
+             "govinfo.gov, law.justia.com and en.wikipedia.org) and every one returned HTTP 000 " +
+             "with the proxy recording 'gateway answered 403 to CONNECT (policy denial)'. The " +
+             "page-fetch tool was run against 6 more (floridabuilding.org, codes.iccsafe.org, " +
+             "up.codes, aiafla.org, floridacontractor.com, windloadcalc.com) and returned " +
+             "EGRESS_BLOCKED for each. Even en.wikipedia.org is blocked, so this is not an " +
+             "official-source policy — nothing outside the search tool is reachable at all.",
+    accessRoutesTried: [
+      { route: "curl through HTTPS_PROXY with the environment CA bundle", result: "FAILED — 403 on " +
+               "CONNECT for all 12 hosts tested; confirmed against the proxy's own status endpoint" },
+      { route: "page-fetch tool (routes separately from curl)", result: "FAILED — EGRESS_BLOCKED for " +
+               "all 6 hosts tested, including non-official ones" },
+      { route: "mirrored primary PDFs on third-party hosts (a full FBC-R 2023 copy and an AIA " +
+               "Florida 8th Edition presentation were both located)", result: "FAILED — the mirrors " +
+               "are blocked too; being findable is not being readable" },
+      { route: "WebSearch", result: "WORKED. Its answer synthesis reads live page content, so " +
+               "targeted questions returned quoted code text, ordinance numbers and effective " +
+               "dates. This is the only route that produced anything, and it is a summariser: it " +
+               "returned a flatly wrong answer at least once in this pass (see `knownSummaryError`), " +
+               "which is why nothing here rests on a single query." }
+    ],
+    knownSummaryError: "Asked whether the FBC 8th Edition references ASCE 7-16 or 7-22, one search " +
+                       "route answered 7-16 (reading a window vendor's blog). Three further queries, " +
+                       "including one that surfaced the Florida Building Commission's own ASCE 7-22 " +
+                       "fact sheet, established 7-22. A single search summary is not evidence.",
     consequence: "No record in this file is `confirmed: \"primary\"`. Everything is a search-engine " +
                  "summary of a page that was never opened. That is enough to plan against and NOT " +
                  "enough to permit against.",
@@ -7149,13 +7232,150 @@ var FM = (function () {
       "table was not retrievable.",
       "Whether Tex. Loc. Gov't Code ch. 233 Subchapter F applies to Galveston County, and whether " +
       "Galveston County has adopted any residential building code for its unincorporated area.",
-      "Whether the City of Austin has a 2024 IRC adoption in progress. Only the 2021 adoption " +
-      "(effective 1 September 2021) could be confirmed, and a five-year-old adoption is exactly " +
-      "the kind of fact that goes stale without anyone noticing.",
+      "Frost line depth for any jurisdiction. Aggregator sites publish per-city numbers (Dallas 6 in, " +
+      "Austin 10 in, San Antonio 0 in and so on) but they disagree with each other, cite nothing, " +
+      "and the governing value is the one the jurisdiction ENTERED in its own Table R301.2(1). " +
+      "Those numbers were deliberately NOT adopted here.",
       "The exact wind-borne debris region boundary in any Florida or North Carolina county. It is " +
-      "a contour, not a county line, and it cannot be tabulated by jurisdiction at all."
+      "a contour, not a county line, and it cannot be tabulated by jurisdiction at all. Under " +
+      "ASCE 7-22 it is not even a coastline offset any more — see WBD_CRITERION."
     ]
   };
+
+  /* ------------------------------------------------------------
+     CORRECTIONS. What an earlier pass of this file published that
+     was WRONG, what it is now, and how the correction was
+     established. This is published rather than quietly patched,
+     because a user who read the earlier value needs to know it
+     moved — and because the pattern of the errors is itself the
+     argument for not trusting the rest without checking.
+     ------------------------------------------------------------ */
+
+  var CORRECTIONS = [
+    {
+      id: "tx-austin-2024",
+      severity: "blocking",
+      was: "Austin on the 2021 IRC, effective 1 September 2021, referencing ASCE 7-16.",
+      now: "Austin on the 2024 IRC, Ordinance No. 20250410-040, adopted 10 April 2025, effective " +
+           "10 JULY 2025, referencing ASCE 7-22.",
+      why: "Wrong by a full code generation, and it carried the wind standard with it — a wind " +
+           "speed taken for an Austin permit off the earlier version of this record came off the " +
+           "ASCE 7-16 map when the adopted code calls for ASCE 7-22. Austin was also the file's " +
+           "worked EXAMPLE of Texas code divergence in two places, so the error was being taught " +
+           "as well as published.",
+      establishedBy: "Four independent search routes agreeing on the same ordinance number and " +
+                     "effective date: the city's Development Services technical-codes page, the " +
+                     "city's public-input record for the 2024 IRC amendments, a commercial code " +
+                     "library carrying 'Austin Residential Code 2024', and a trade-press notice " +
+                     "titled 'City of Austin Adopts 2024 Technical Building Codes, Effective " +
+                     "July 10'.",
+      confirmed: "secondary",
+      checked: CHECKED
+    },
+    {
+      id: "wbdr-asce722",
+      severity: "blocking",
+      was: "One wind-borne debris criterion for every jurisdiction: within 1 mile of the COASTAL " +
+           "mean high water line at 130 mph or more, or anywhere at 140 mph or more.",
+      now: "Two criteria, selected by the ASCE 7 edition the adopted code references. ASCE 7-22 " +
+           "DELETES 'coastal' and requires instead an Exposure D condition upwind at the water " +
+           "line (>= 5,000 ft of fetch), which brings large INLAND lakes and bays inside the " +
+           "region. Florida adopted this with the FBC 8th Edition.",
+      why: "This decides whether opening protection is required. The old text made 'not coastal' " +
+           "look like a complete answer for an inland Florida county, and under the code actually " +
+           "in force it is not. Orange County was carrying `likely: false` on exactly that " +
+           "reasoning; it is now null with a blocking check, because a false 'no' here deletes " +
+           "impact-rated glazing from a package that the code requires to have it.",
+      establishedBy: "The Florida Building Commission's own commissioned study, 'Investigation of " +
+                     "the Wind-borne Debris Regions in ASCE 7-22' (interim and final reports), " +
+                     "surfaced by two independent queries, which states that adopting the changed " +
+                     "definition in the 8th Edition produced new glazing protection requirements " +
+                     "next to inland water bodies in central Florida and the panhandle.",
+      dissent: "Commercial window-vendor pages assert that Orlando is outside the region under the " +
+               "8th Edition and will only be brought in by the 9th. They are lower authority than " +
+               "the Commission's own research and they do not engage with the Exposure D limb. " +
+               "The disagreement is why `inRegion` and `likely` are both null rather than true.",
+      confirmed: "secondary",
+      checked: CHECKED
+    }
+  ];
+
+  /* ------------------------------------------------------------
+     RECHECKED. Facts that were put back through independent
+     searches on CHECKED and came back AGREEING with what the file
+     already said. These are still `secondary` — no primary
+     document was opened — but "two or more independent routes
+     agree" is a materially stronger claim than "a search summary
+     said so once", and the difference is worth publishing.
+     ------------------------------------------------------------ */
+
+  var RECHECKED = [
+    { item: "FBC 8th Edition (2023) is the edition in force, effective 31 December 2023.",
+      routes: 3, agreed: true,
+      against: "Charlotte County and Palm Bay building-department notices, the Florida roofing " +
+               "association, and the Commission's published effective-dates list." },
+    { item: "The FBC 8th Edition references ASCE 7-22, not ASCE 7-16.",
+      routes: 3, agreed: true,
+      against: "The Florida Building Commission's 'Wind Loads — Impacts from ASCE 7-22' fact sheet " +
+               "and an AIA Florida 8th Edition presentation. NOTE: one route answered 7-16 and was " +
+               "wrong; see RESEARCH.knownSummaryError." },
+    { item: "FBC 9th Edition (2026) expected effective 31 December 2026; draft posted 22 December 2025.",
+      routes: 2, agreed: true,
+      against: "Multiple independent Florida engineering and code-summary publications." },
+    { item: "The HVHZ is Miami-Dade and Broward counties ONLY.",
+      routes: 2, agreed: true,
+      against: "Wind-load and HVHZ trade references, consistently and without exception. Nothing " +
+               "found suggests any change, or any third county." },
+    { item: "HVHZ Risk Category II design wind speeds: Miami-Dade 175 mph, Broward 170 mph.",
+      routes: 2, agreed: true,
+      against: "Several independent wind-load references, which also state that these county values " +
+               "supersede the ASCE map inside the HVHZ. All commercial sources — no code figure was " +
+               "read — so this stays `secondary` and stays in mustVerify." },
+    { item: "TWIA/TDI designated catastrophe area: the 14 first-tier coastal counties plus part of " +
+            "Harris County east of SH 146.",
+      routes: 2, agreed: true,
+      against: "TWIA's own overview, which lists all 14 by name and the Harris County carve-out. " +
+               "The list in this file matched it exactly, county for county, with no additions or " +
+               "omissions." },
+    { item: "TDI requires the 2024 IRC/IBC for WPI-1 applications from 1 April 2026.",
+      routes: 2, agreed: true,
+      against: "TDI's adopted-codes page and independent engineering and legislative summaries of " +
+               "the rule change." },
+    { item: "North Carolina is still on the 2018 NCRC (2015 IRC basis) as of " + CHECKED + ".",
+      routes: 3, agreed: true,
+      against: "OSFM's current-codes page, OSFM's April 2025 delay press release, and an OSFM " +
+               "formal interpretation issued 30 January 2026 written against the 2018 NCRC — an " +
+               "agency still interpreting the 2018 code in 2026 is good evidence that it is the " +
+               "code. Also newly established: the 2024 Code may be used as an ALTERNATIVE method " +
+               "of construction on the owner's request while the 2018 Code governs." },
+    { item: "2018 NCRC engineered design references ASCE 7-10.",
+      routes: 2, agreed: true,
+      against: "OSFM's own formal interpretation of R301.1.3, surfaced directly by search." },
+    { item: "San Antonio is on the 2024 IRC, Ordinance 2025-01-30-0075, effective 1 May 2025.",
+      routes: 2, agreed: true,
+      against: "The ordinance document itself and the city's published Chapter 10 cover page, " +
+               "headed 'EFFECTIVE DATE: MAY 1, 2025'." },
+    { item: "Houston is on the 2021 IRC, effective 1 January 2024 (council adoption 25 October 2023).",
+      routes: 2, agreed: true,
+      against: "The Houston Permitting Center's own January 2026 IRC training material, which is " +
+               "still teaching the 2021 IRC, and a public-works code-modernisation briefing " +
+               "describing the 2024 updates as still PLANNED for 2026." },
+    { item: "Dallas is on the 2021 IRC with Dallas amendments, effective 12 May 2023.",
+      routes: 2, agreed: true,
+      against: "The city's current-code page and the Chapter 57 amendment ordinance documents." },
+    { item: "Fort Worth is on the 2021 IRC.",
+      routes: 1, agreed: true,
+      against: "The municipal code library text of City Code § 7-61, headed 'THE 2021 EDITION OF " +
+               "THE INTERNATIONAL RESIDENTIAL CODE ADOPTED'. One route — but it is the codified " +
+               "ordinance text itself rather than a description of it." },
+    { item: "Corpus Christi is on the 2021 I-Codes with local amendments, effective 1 August 2023.",
+      routes: 1, agreed: true,
+      against: "The city's construction-codes page, which states the effective date and lists the " +
+               "adopted 2021 codes including the Residential Code." },
+    { item: "Galveston is on the 2021 I-Codes with amendments (Ordinance 23-012).",
+      routes: 1, agreed: true,
+      against: "The city's building-codes page and the ordinance document." }
+  ];
 
   /* ------------------------------------------------------------
      Record builders. Every one stamps cls, cite, checked, src and
@@ -7249,12 +7469,26 @@ var FM = (function () {
     };
   }
 
+  /* THE CRITERION DEPENDS ON WHICH ASCE 7 EDITION THE ADOPTED CODE
+     REFERENCES, AND THE TWO ARE NOT THE SAME TEST. This module got
+     that wrong in its first pass — it published only the older
+     "coastal" form. See FM.juris.CORRECTIONS entry `wbdr-asce722`. */
+
   var WBD_CRITERION =
-    "The wind-borne debris region is drawn by WIND SPEED CONTOUR and distance from the coastal mean " +
-    "high water line, NOT by county line: within 1 mile of the coastal mean high water line where " +
-    "the basic design wind speed is 130 mph or greater, or anywhere the basic design wind speed is " +
-    "140 mph or greater (IRC / FBC-R R301.2.1.2). A single county routinely has land inside and " +
-    "outside it. This module publishes `inRegion` only where the code itself fixes the answer.";
+    "The wind-borne debris region is drawn by WIND SPEED CONTOUR and distance from water, NOT by " +
+    "county line, and the test itself CHANGED with ASCE 7-22. " +
+    "(a) ASCE 7-16 and earlier / 2015-2021 IRC — within 1 mile of the COASTAL mean high water line " +
+    "where the basic design wind speed is 130 mph or greater, or anywhere it is 140 mph or greater. " +
+    "(b) ASCE 7-22 — the word 'coastal' is DELETED and replaced by a requirement that an Exposure D " +
+    "condition exist upwind at the water line (at least 5,000 ft of water fetch upwind): within 1 " +
+    "mile of the mean high water line of ANY such water body where the basic design wind speed is " +
+    "130 mph or greater, or anywhere it is 140 mph or greater. Large INLAND lakes and bays qualify. " +
+    "Florida adopted (b) with the FBC 8th Edition, which created inland wind-borne debris regions " +
+    "in central Florida and the panhandle that did not exist under the 7th Edition — the Florida " +
+    "Building Commission commissioned a study of exactly this. Read the test that belongs to the " +
+    "ASCE 7 edition YOUR adopted code references (see `wind.asce`), not the one you remember. " +
+    "A single county routinely has land inside and outside the region. This module publishes " +
+    "`inRegion` only where the code itself fixes the answer.";
 
   function wbdOf(o) {
     return {
@@ -7317,8 +7551,10 @@ var FM = (function () {
         what: "The IRC edition the municipality actually enforces today.",
         why: "Texas has no statewide residential code enforcement. §214.212 sets the 2012 IRC as the " +
              "floor and every home-rule city adopts newer editions by its own ordinance on its own " +
-             "clock. San Antonio is on the 2024 IRC and Austin is on the 2021; two cities 80 miles " +
-             "apart are on different codes and different ASCE 7 wind maps.",
+             "clock. San Antonio and Austin are on the 2024 IRC (ASCE 7-22) while Houston, Dallas " +
+             "and Fort Worth are on the 2021 (ASCE 7-16) — same state, different codes, different " +
+             "wind maps. This module had Austin on the wrong side of that line until 13 August 2026, " +
+             "which is the best argument in the file for checking rather than trusting it.",
         check: "The city's currently adopted construction-code ordinance and its effective date.",
         authority: "The adopting municipality's building official." }),
       mv({ id: "tx-annex", severity: "major",
@@ -7584,9 +7820,15 @@ var FM = (function () {
                 "NC licensing board code update that certification had not occurred and the earliest " +
                 "possible effective date stated was 1 March 2027.",
           src: "nc-lic-2026",
-          note: "This is the most perishable fact in this module and it is six months old. Re-check " +
-                "before it is relied on. If it has taken effect, the base code changes to the 2021 " +
-                "IRC and the referenced wind standard changes with it." })
+          note: "RE-CHECKED " + CHECKED + " and it held: three independent routes agree the 2018 " +
+                "NCRC is still the code in force, including an OSFM formal interpretation issued " +
+                "30 January 2026 that is written against the 2018 NCRC. Separately established on " +
+                "the same date: while the 2018 Code governs, the 2024 Code MAY be used as an " +
+                "ALTERNATIVE METHOD OF CONSTRUCTION if the building owner or their agent requests " +
+                "it — so a 2024 NCRC design is not necessarily inadmissible, it is elective and " +
+                "must be requested. This remains the most perishable fact in this module: if it " +
+                "takes effect, the base code changes to the 2021 IRC and the referenced wind " +
+                "standard changes with it." })
       ],
       localAmendments: {
         permitted: false,
@@ -7693,10 +7935,16 @@ var FM = (function () {
       ],
       mustVerify: [
         mv({ id: "tx-houston-2024", severity: "major",
-          what: "Whether Houston has moved to the 2024 I-Codes since January 2024.",
-          why: "Two-and-a-half years is long enough for a code-modernisation programme to produce " +
-               "another adoption, and Houston runs one.",
-          check: "The Houston Permitting Center construction-code page and the current ordinance.",
+          what: "Whether Houston's targeted 2024 code updates have taken effect yet.",
+          why: "Re-checked " + CHECKED + ": Houston is still on the 2021 IRC, and the Permitting " +
+               "Centre was still publishing 2021 IRC training material in January 2026. But Houston " +
+               "Public Works has a code-modernisation programme that is explicitly preparing " +
+               "TARGETED 2024 code updates FOR 2026 — this calendar year — before a full 2027-cycle " +
+               "adoption aimed at 2028. A targeted update is easy to miss precisely because it is " +
+               "not a headline re-adoption, and one search route already reported the 2021 code as " +
+               "running only through 31 July 2026.",
+          check: "The Houston Permitting Center construction-code page, the code-amendment log, and " +
+                 "the current ordinance.",
           authority: "City of Houston Department of Public Works, Building Code Enforcement." })
       ]
     },
@@ -7867,20 +8115,30 @@ var FM = (function () {
       id: "tx-austin", name: "Austin", county: "Travis", state: "TX", kind: "municipality",
       packId: "tx-i35", packWhy: "I-35 corridor market, gravity-governed.",
       governs: "gravity",
-      codes: [codeRec({ name: "Austin Residential Code", edition: "2021 IRC",
-        basis: "2021 IRC with Austin amendments", asce: TX_ASCE_2021,
-        adopted: "2021-09-01",
-        cite: "Austin City Code Chapter 25-12, Article 11 (Residential Code), adopting the 2021 " +
-              "International Residential Code; approved by Council 3 June 2021, effective " +
-              "1 September 2021.", src: "aus-code" })],
-      wind: windOf({ vMph: 115, band: [105, 120], asce: TX_ASCE_2021, exposureCommon: "B",
+      codes: [codeRec({ name: "Austin Residential Code", edition: "2024 IRC",
+        basis: "2024 IRC with Austin amendments", asce: TX_ASCE_2024,
+        adopted: "2025-07-10",
+        cite: "City of Austin Ordinance No. 20250410-040, adoption of the 2024 International " +
+              "Residential Code and Local Amendments; adopted by Council 10 April 2025, effective " +
+              "10 JULY 2025. City Code Chapter 25-12 (Technical Codes). This REPLACED the 2021 IRC " +
+              "adoption (effective 1 September 2021) that this module carried in its first pass.",
+        src: "aus-ord",
+        note: "CORRECTED " + CHECKED + ". The first pass of this module published Austin as still on " +
+              "the 2021 IRC and used it as the worked example of Texas code divergence. That was " +
+              "WRONG by a full code generation — and it moved the referenced wind standard from " +
+              "ASCE 7-16 to ASCE 7-22 with it. See FM.juris.CORRECTIONS entry `tx-austin-2024`." })],
+      wind: windOf({ vMph: 115, band: [105, 120], asce: TX_ASCE_2024, exposureCommon: "B",
         confirmed: "unverified",
-        basis: "Planning band for central Texas from secondary map summaries, which quoted 120–135 " +
-               "for 'Austin / Central TX' — a range this module does not believe for Risk Category II " +
-               "on the ASCE 7-16 map and has not adopted.",
-        cite: "ASCE 7-16 Figure 26.5-1 / 2021 IRC Figure R301.2(2), Risk Category II.", src: "asce7",
-        note: "The secondary sources for Austin were the worst in the module and disagreed by 30 mph. " +
-              "This band is the conservative reading of the ASCE 7-16 map, not a quotation. Look it up." }),
+        basis: "Planning band for central Texas. Austin is well inside the non-hurricane region of " +
+               "the map, where ASCE 7-22 did not materially move Risk Category II speeds from " +
+               "ASCE 7-16; the band is unchanged by the edition correction. Secondary map summaries " +
+               "quoted 120–135 for 'Austin / Central TX' — a range this module does not believe for " +
+               "Risk Category II and has not adopted.",
+        cite: "ASCE 7-22 Figure 26.5-1 / 2024 IRC Figure R301.2(2), Risk Category II.", src: "asce7",
+        note: "READ THIS OFF THE ASCE 7-22 MAP, NOT 7-16. Austin moved to the 2024 IRC on 10 July " +
+              "2025 and the referenced standard moved with it. The secondary sources for Austin were " +
+              "the worst in the module and disagreed by 30 mph. This band is the conservative reading " +
+              "of the map, not a quotation. Look it up." }),
       snow: snowOf({ pgPsf: 5, band: [0, 10], confirmed: "unverified",
         cite: "Planning value for central Texas.", src: "asce7" }),
       seismic: seismicOf({ sdc: "A", confirmed: "unverified", cite: "Planning value.", src: "asce7" }),
@@ -7896,20 +8154,23 @@ var FM = (function () {
         cite: "IRC R301.2.1.2 — neither limb of the criterion is reached this far inland.",
         src: "aus-code" }),
       amendments: [
-        amend("Austin's local amendments to the 2021 IRC live in City Code Chapter 25-12 Article 11 " +
-              "and were NOT retrieved. Austin also runs a separate Land Development Code that " +
-              "constrains what may be built but not how it is framed.",
-              "Austin City Code Chapter 25-12, Article 11.", "aus-code", { incomplete: true })
+        amend("Austin's local amendments to the 2024 IRC were adopted with the code in Ordinance " +
+              "20250410-040 and live in City Code Chapter 25-12. They were NOT retrieved. Austin " +
+              "also runs a separate Land Development Code that constrains what may be built but not " +
+              "how it is framed.",
+              "Austin City Code Chapter 25-12; Ordinance 20250410-040.", "aus-ord",
+              { incomplete: true })
       ],
       mustVerify: [
-        mv({ id: "tx-austin-age", severity: "blocking",
-          what: "Whether Austin is still on the 2021 IRC.",
-          why: "The only confirmable Austin adoption is five years old. Of every adoption date in " +
-               "this module this is the one most likely to have moved, and nothing found here either " +
-               "confirms or denies a 2024 adoption.",
-          check: "Austin Development Services building technical codes page and City Code " +
-                 "Chapter 25-12.",
-          authority: "City of Austin Development Services Department." })
+        mv({ id: "tx-austin-asce", severity: "blocking",
+          what: "That the wind speed for this site was read off the ASCE 7-22 map, not ASCE 7-16.",
+          why: "This module published Austin as a 2021 IRC / ASCE 7-16 jurisdiction until " + CHECKED +
+               ". It is not: Ordinance 20250410-040 put Austin on the 2024 IRC effective 10 July " +
+               "2025, and the referenced wind standard moved to ASCE 7-22. Anything drawn against " +
+               "the earlier version of this record used the wrong map. The band is believed " +
+               "unchanged inland, but 'believed unchanged' is not 'looked up'.",
+          check: "ASCE 7-22 Figure 26.5-1 / 2024 IRC Figure R301.2(2) at the site coordinates.",
+          authority: "ASCE 7 Hazard Tool; City of Austin Development Services Department." })
       ]
     },
 
@@ -8324,23 +8585,44 @@ var FM = (function () {
         cite: "FBC-R R318 requires termite protection throughout Florida.", src: "fbc8" }),
       decay: levelOf({ level: "moderate to severe", confirmed: "unverified",
         cite: "IRC/FBC-R decay probability figure.", src: "fbc8" }),
-      windborneDebris: wbdOf({ inRegion: null, likely: false, determinedBy: "site",
+      windborneDebris: wbdOf({ inRegion: null, likely: null, determinedBy: "site",
         confirmed: "unverified",
-        cite: "FBC-R R301.2.1.2. Orange County is inland — no part is within 1 mile of a coastal mean " +
-              "high water line — so the region is reached only if the mapped speed at the site is " +
-              "140 mph or greater, which is at the top of the planning band.",
-        src: "fbc8",
-        note: "THIS IS THE CASE THE COUNTY-LINE HABIT GETS WRONG IN BOTH DIRECTIONS. Orlando is not " +
-              "coastal, so people assume no opening protection; but the 140 mph limb applies " +
-              "anywhere, coast or not. And the 9th Edition's five-mile-from-tidal-water rule is a " +
-              "third, different geometry again." }),
+        cite: "FBC-R R301.2.1.2 on the ASCE 7-22 definition. Orange County is not coastal, but under " +
+              "ASCE 7-22 that no longer settles it: the 1-mile limb attaches to ANY water body with " +
+              "an Exposure D condition upwind (>= 5,000 ft of fetch), which the large central-Florida " +
+              "lakes supply, and this county's planning speed of 130 mph is exactly the trigger for " +
+              "that limb. The 140 mph limb applies anywhere regardless.",
+        src: "fl-wbdr-fin",
+        note: "CORRECTED " + CHECKED + ". This record previously carried `likely: false` and reasoned " +
+              "that an inland county could only be reached by the 140 mph limb. THAT REASONING IS " +
+              "WRONG UNDER THE 8TH EDITION. Adopting ASCE 7-22 deleted 'coastal' from the test and " +
+              "created inland wind-borne debris regions beside large lakes in central Florida and " +
+              "the panhandle — the Florida Building Commission commissioned a study of precisely " +
+              "this effect. `likely` is now null: at 130 mph with major lakes in the county, a " +
+              "confident 'no' is not available, and a false 'no' here deletes opening protection " +
+              "from the package. The 9th Edition's five-mile-from-tidal-water rule is a third, " +
+              "different geometry again." }),
       amendments: [
         amend("Any local technical amendment adopted by Orange County or the City of Orlando was NOT " +
               "retrieved. Under F.S. §553.73(4) any that exist are void at the 9th Edition unless " +
               "adopted for Community Rating System purposes.",
               "F.S. §553.73(4).", "fs-553-73", { incomplete: true })
       ],
-      mustVerify: []
+      mustVerify: [
+        mv({ id: "fl-orange-lake", severity: "blocking",
+          what: "Whether the site is within 1 mile of the mean high water line of a lake or bay that " +
+                "creates an Exposure D condition upwind (>= 5,000 ft of water fetch), with a mapped " +
+                "speed of 130 mph or greater — which puts it in the wind-borne debris region and " +
+                "requires opening protection.",
+          why: "This is the inland limb that the ASCE 7-22 definition added and the FBC 8th Edition " +
+               "adopted. Central Florida is the region it was found to affect. This module asserted " +
+               "the opposite until " + CHECKED + ". Getting it wrong deletes impact-rated glazing or " +
+               "shutters from a package that the code requires to have them.",
+          check: "FBC-R R301.2.1.2 and the ASCE 7-22 wind-borne debris region definition, against " +
+                 "the site's distance to Lake Apopka, Lake Conway and the other large county lakes, " +
+                 "and the site's mapped speed.",
+          authority: "Orange County / City of Orlando building department; ASCE 7 Hazard Tool." })
+      ]
     },
 
     {
@@ -8747,6 +9029,13 @@ var FM = (function () {
   FM.juris.SOURCES = SOURCES;
   FM.juris.RESEARCH = RESEARCH;
 
+  /* What an earlier pass got WRONG, and what was re-checked and held.
+     Both are part of the contract: a reader who saw the old value
+     needs to know it moved, and a reader deciding how far to trust
+     this file needs to know which facts have been looked at twice. */
+  FM.juris.CORRECTIONS = CORRECTIONS;
+  FM.juris.RECHECKED = RECHECKED;
+
   /* the builders are exported so a reviewer can see that every
      record in this file went through one, and so a later
      jurisdiction cannot be added by hand without the stamps */
@@ -8896,9 +9185,12 @@ var FM = (function () {
               "publishes no county-wide answer here" +
               (j.windborneDebris.likely === null ? "." :
                "; the likely answer is " + (j.windborneDebris.likely ? "yes" : "no") + "."),
-        why: "The region is drawn by wind speed contour and distance from the coastal mean high " +
-             "water line, not by county line. A single county routinely has land inside and outside " +
-             "it, and publishing a county flag would be a confident error.",
+        why: "The region is drawn by wind speed contour and distance from water, not by county line, " +
+             "and the test changed with ASCE 7-22 — 'coastal' was deleted and replaced by an " +
+             "Exposure D condition upwind at the water line, which brings large inland lakes and " +
+             "bays in. A single county routinely has land inside and outside the region, and " +
+             "publishing a county flag would be a confident error. Read the limb that belongs to " +
+             "the ASCE 7 edition this jurisdiction's adopted code references (" + j.wind.asce + ").",
         check: j.windborneDebris.criterion,
         authority: "The AHJ; the ASCE 7 Hazard Tool for the site's mapped speed."
       }));
@@ -14278,6 +14570,7 @@ var FM = (function () {
      K() prefixes keys for INTERNAL maps that never leave this file. */
   function K(s) { return " " + String(s); }
   function hasK(o, s) { return Object.prototype.hasOwnProperty.call(o, K(s)); }
+  function isArray(v) { return Object.prototype.toString.call(v) === "[object Array]"; }
 
   /* PUBLIC maps get real keys, because a consumer doing Object.keys() must
      see "header", not " header". Prototype safety comes from a null
@@ -14495,14 +14788,127 @@ var FM = (function () {
     return m.mark.count || 1;
   }
 
-  function countBasisOf(m, pieces) {
+  /* WHERE A COUNT CAME FROM, AND ONLY WHAT WAS CHECKED.
+
+     This used to end every non-repetitive line with the words
+
+         "plan count for this mark = 8 pc (not derived from a run; the plan
+          states it)"
+
+     and on a takeoff-derived run that sentence was false. HDR-O1's 8 came
+     out of the takeoff's grouping rule — eight openings identical in every
+     derived value, O1-O4 in wall W1 and O7-O10 in W3 — and THE PLAN STATED
+     NOTHING. The string was correct for a weights.js master set and wrong
+     for the other path, so the one field on the line whose entire job is
+     provenance was asserting a source it had never looked at. That is the
+     worst version of this defect: not a missing number, a confident wrong
+     attribution, on the field a reviewer trusts precisely because it is
+     supposed to be the audit.
+
+     So the basis now states the mechanism it actually used, and names a
+     source ONLY where it resolved one:
+
+       · from a run — unchanged, and it shows the arithmetic;
+       · from the takeoff's own `count` derivation, quoted with the ids it
+         grouped, when the caller supplies the takeoff run (opts.takeoff);
+       · from the shipped plan record, when FM.weights.planById() carries
+         this mark and declares this count — a checked claim, not an assumed
+         one, and a DISAGREEMENT between the record and the count in hand is
+         reported rather than smoothed over;
+       · otherwise: the count is carried on the mark, this module did not
+         derive it, and it says so and points at the derivation trail rather
+         than inventing an author for it. */
+  function countBasisOf(m, pieces, prov) {
     var row = m.unifiedTo || (m.solution && m.solution.pick);
     if (row && m.demand && m.demand.repetitive && m.mark.runFt && row.cand.spacing) {
       return "run " + n2(m.mark.runFt, 1) + " ft x 12 / " + row.cand.spacing +
              " in o.c. = " + n2(Number(m.mark.runFt) * 12 / row.cand.spacing, 2) +
              " bays, rounded UP to " + (pieces - 1) + " plus 1 closing member = " + pieces + " pc";
     }
-    return "plan count for this mark = " + pieces + " pc (not derived from a run; the plan states it)";
+
+    var id = (m.mark && m.mark.id) || "(unnamed mark)";
+    var head = "count " + pieces + " pc is carried on mark " + id + ", not derived from a run";
+
+    /* 1. the takeoff traced it — quote the trace */
+    var d = prov ? countDerivationOf(prov, id) : null;
+    if (d) {
+      var ids = isArray(d.fromIds) ? d.fromIds.join(", ") : "";
+      var mismatch = (isFinite(Number(d.value)) && Number(d.value) !== pieces)
+        ? "  ** THE TAKEOFF DERIVED " + d.value + " AND THIS LINE BUYS " + pieces +
+          " — they disagree; do not order against either until that is settled. **" : "";
+      return head + "; the takeoff derived it" +
+             (d.from ? " from " + d.from : "") +
+             (ids && String(d.from || "").indexOf(ids) === -1 ? " (" + ids + ")" : "") + mismatch;
+    }
+
+    /* 2. a shipped plan record declares it — check, do not assume */
+    var rec = prov ? prov.planRecordMark(id) : null;
+    if (rec) {
+      var stated = rec.mark.count;
+      if (isFinite(Number(stated)) && Number(stated) === pieces) {
+        return head + "; the plan record " + rec.planId + " states it";
+      }
+      return head + "; the plan record " + rec.planId + " states " +
+             (stated === undefined || stated === null ? "no count at all" : stated + " pc") +
+             " for this mark — ** THE RECORD AND THIS LINE DISAGREE **, so the source of " +
+             pieces + " is not established here";
+    }
+
+    /* 3. nothing was resolved — say that, by name */
+    return head + "; NO SOURCE IS ESTABLISHED HERE — this module did not derive the count " +
+           "and neither a takeoff derivation nor a plan record was available to it to name " +
+           "one. Read the derivation trail for " + id + " before ordering to it";
+  }
+
+  /* The provenance lookups countBasisOf() is allowed to make. Built once per
+     build() so the plan record is read once, and deliberately tolerant: every
+     lookup returns null rather than throwing, because a BOM that cannot
+     identify a source must still print, saying so. */
+  function provenanceOf(planResult, opts) {
+    var takeoff = (opts && opts.takeoff) || null;
+    var byMark = {};
+    if (takeoff && isArray(takeoff.derivations)) {
+      takeoff.derivations.forEach(function (d) {
+        if (!d || d.field !== "count") return;
+        var k = K(String(d.markId));
+        if (!hasK(byMark, String(d.markId))) byMark[k] = d;
+      });
+    }
+    var plan = (planResult && planResult.plan) || {};
+    var recId = plan.ofPlan || plan.id || null;
+    var record = null, recordRead = false;
+
+    function planRecord() {
+      if (recordRead) return record;
+      recordRead = true;
+      if (!recId || !FM.weights || typeof FM.weights.planById !== "function") return (record = null);
+      try { record = FM.weights.planById(recId) || null; } catch (e) { record = null; }
+      return record;
+    }
+
+    return {
+      countDerivation: function (id) {
+        return hasK(byMark, String(id)) ? byMark[K(String(id))] : null;
+      },
+      planRecordMark: function (id) {
+        var r = planRecord();
+        if (!r || !isArray(r.marks)) return null;
+        var hit = null;
+        r.marks.forEach(function (mk) { if (!hit && mk && mk.id === id) hit = mk; });
+        return hit ? { planId: r.id, mark: hit } : null;
+      },
+      /* what this run could and could not consult, printed on the sheet so a
+         reader knows which of the branches above was even reachable */
+      sources: {
+        takeoff: !!(takeoff && isArray(takeoff.derivations) && takeoff.derivations.length),
+        planRecordId: recId,
+        planRecordFound: function () { return !!planRecord(); }
+      }
+    };
+  }
+
+  function countDerivationOf(prov, id) {
+    return prov && typeof prov.countDerivation === "function" ? prov.countDerivation(id) : null;
   }
 
   /* Which procurement channel this member comes out of. Exactly the rule
@@ -14518,6 +14924,7 @@ var FM = (function () {
 
   function perHouse(planResult, opts) {
     opts = opts || {};
+    var prov = provenanceOf(planResult, opts);
     var pack = planResult.pack || {};
     var plan = planResult.plan || {};
     var groups = {}, order = [];
@@ -14646,7 +15053,7 @@ var FM = (function () {
         pieces: pieces, spanFt: num(d.span), cutLengthFt: cutFt,
         dropFt: stockFt - cutFt, spacingIn: cand.spacing || 0,
         unified: !!m.unifiedTo,
-        countBasis: countBasisOf(m, pieces),
+        countBasis: countBasisOf(m, pieces, prov),
         dcr: isFinite(row.dcr) ? row.dcr : null,
         governing: row.governing || null,
         bearingPerEndIn: num(d.bearing),
@@ -14700,7 +15107,16 @@ var FM = (function () {
     var waste = wasteOf(lines, totals, planResult);
     return {
       lines: lines, totals: totals, excluded: excluded, waste: waste,
-      pricedMarks: priced, selfChecks: selfChecks
+      pricedMarks: priced, selfChecks: selfChecks,
+      countSources: {
+        takeoffSupplied: prov.sources.takeoff,
+        planRecordId: prov.sources.planRecordId,
+        planRecordFound: prov.sources.planRecordFound(),
+        note: "A piece count on a line is either DERIVED FROM A RUN (arithmetic shown), " +
+              "traced by the takeoff's own count derivation, checked against the shipped " +
+              "plan record, or — where none of those was available — declared UNESTABLISHED " +
+              "by name. This module never states a source it did not consult."
+      }
     };
   }
 
@@ -15343,13 +15759,17 @@ var FM = (function () {
         "for that reason. It prices the simple-span solid-sawn members the engine sized and nothing " +
         "else. Read EXCLUDED before reading any total.",
       selfChecks: house.selfChecks,
+      countSources: house.countSources,
       at: opts.at || null,
       cls: "derived",
       provenance: {
         quantities: "derived — every count, length and board-foot figure shows its arithmetic in " +
                     "the line's `basis`. Stock lengths come from FM.solver.stockLength(); board " +
                     "feet from FM.solver.boardFeetPerLF(); piece counts mirror the solver's own " +
-                    "rule; the SKU string is FM.solver.skuOf().",
+                    "rule; the SKU string is FM.solver.skuOf(). A piece count that is NOT derived " +
+                    "from a run names the source it was checked against — the takeoff's count " +
+                    "derivation or the shipped plan record — and says UNESTABLISHED where neither " +
+                    "was available, rather than attributing it to a plan it never read.",
         prices: "market — $/bf, cull rates, availability, dropHandling, lot counts and take rates " +
                 "are firm placeholders with NO CODE STANDING. They rank members and estimate " +
                 "purchases; they cannot make a member pass and they are not a quotation.",
@@ -16698,6 +17118,24 @@ var FM = (function () {
            "." + (cents < 10 ? "0" : "") + cents;
   }
 
+  /* A timestamp a person reads. pipeline.js records `at` as a full ISO
+     instant — "2026-08-13T15:13:46.862Z" — and pipeline-view.js already
+     shortens it for the screen. The package was printing the raw string, so
+     the same approval read one way on screen and another on the document
+     going to a plan reviewer, milliseconds and all, in a 24-column cell that
+     also overflowed the 78-column sheet.
+
+     One implementation, and it never invents: anything that is not an ISO
+     instant is printed exactly as it arrived, because a timestamp this file
+     cannot parse is a fact about the trail and not a formatting problem. */
+  function when(v) {
+    var s = str(v);
+    if (!s) return "—";
+    var m = /^(\d{4}-\d{2}-\d{2})T(\d{2}:\d{2})(?::\d{2}(?:\.\d+)?)?(Z|[+-]\d{2}:?\d{2})?$/.exec(s);
+    if (!m) return s;
+    return m[1] + " " + m[2] + " " + (m[3] === undefined || m[3] === "Z" ? "UTC" : m[3]);
+  }
+
   /* wrap() collapses runs of whitespace, exactly as export.js's does, so a
      label with column padding in it cannot be passed through — pad outside. */
   function wrap(text, width, indent) {
@@ -17230,6 +17668,123 @@ var FM = (function () {
   }
 
   /* ============================================================
+     WHICH OPENINGS AND WHICH WALLS A MARK ACTUALLY COVERS
+
+     The takeoff groups openings that are identical in every derived value
+     into ONE mark built n times, and it traces the group in the mark's
+     `count` derivation: HDR-O1, count 8, "from openings O1, O2, O3, O4, O7,
+     O8, O9, O10".
+
+     The mark's LABEL names only the first opening's wall — "Header · window
+     4.00 ft · wall W1 · First floor" — because the mark id is taken from the
+     first opening in the group. The schedule printed that label beside QTY 8,
+     so S2.0 read "wall W1 … QTY 8" on a wall that has six openings, while
+     four of the eight were in W3. The takeoff's own derivation names both
+     walls. A schedule that names one wall for a mark covering two sends a
+     framer to the wrong elevation, and the count no longer ties to the wall
+     it is printed against.
+
+     Nothing here is inferred from prose: it reads `fromIds` off the count
+     derivation and resolves each id against the model's own opening → wall
+     map. An id the model does not carry is NAMED as unresolved rather than
+     quietly dropped, because a partial list under a total is the same defect
+     one level down.
+     ============================================================ */
+
+  function spreadOf(g, takeoff) {
+    var out = { available: false, byMark: {} };
+    if (!g || !isArr(g.levels) || !takeoff || !isArr(takeoff.derivations)) return out;
+
+    var wallOf = {}, isOpening = {};
+    g.levels.forEach(function (L) {
+      L.openings.forEach(function (o) {
+        wallOf[" " + o.id] = o.hostFound ? o.wallId : null;
+        isOpening[" " + o.id] = true;
+      });
+    });
+
+    takeoff.derivations.forEach(function (d) {
+      if (!d || safe(d.field) !== "count") return;
+      var id = safe(d.markId, "");
+      if (!id || id === "—" || own(out.byMark, " " + id)) return;
+      var ids = isArr(d.fromIds) ? d.fromIds.map(function (x) { return safe(x); }) : [];
+      var openings = [], walls = [], unresolved = [], hostless = [];
+      ids.forEach(function (x) {
+        if (!own(isOpening, " " + x)) { unresolved.push(x); return; }
+        openings.push(x);
+        var w = wallOf[" " + x];
+        if (w === null || w === undefined || w === "—") { hostless.push(x); return; }
+        if (walls.indexOf(w) === -1) walls.push(w);
+      });
+      /* a count derived from a run names its framing region, not openings —
+         that is a different derivation and this table has nothing to add */
+      if (!openings.length && !unresolved.length) return;
+      out.available = true;
+      out.byMark[" " + id] = {
+        markId: id, openings: openings, walls: walls,
+        unresolved: unresolved, hostless: hostless,
+        count: d.value, from: safe(d.from, "")
+      };
+    });
+    return out;
+  }
+
+  function spreadFor(spread, markId) {
+    if (!spread || !spread.available) return null;
+    return own(spread.byMark, " " + markId) ? spread.byMark[" " + markId] : null;
+  }
+
+  /* The openings a mark stands for, and the wall each of them is in. */
+  function spreadWhere(s) {
+    if (!s) return "";
+    var all = s.openings.concat(s.unresolved);
+    return "opening" + (all.length === 1 ? " " : "s ") + all.join(", ") +
+           (s.walls.length
+             ? " · wall" + (s.walls.length === 1 ? " " : "s ") + s.walls.join(", ")
+             : " · no wall is resolved for any of them");
+  }
+
+  /* The sentence a schedule row needs when its mark is more than one opening.
+     Returns "" when the mark is a single opening and the row already says
+     everything true about it. */
+  function spreadNote(spread, markId, labelText) {
+    var s = spreadFor(spread, markId);
+    if (!s) return "";
+    var n = s.openings.length + s.unresolved.length;
+    if (n < 2) return "";
+    var parts = ["QTY " + safe(s.count, String(n)) + " is " + n + " openings — " +
+                 s.openings.concat(s.unresolved).join(", ") + " —"];
+    if (s.walls.length > 1) {
+      parts.push("in " + s.walls.length + " walls: " + s.walls.join(", ") + ".");
+      /* only worth saying when the row's own label names one of them */
+      var named = null;
+      s.walls.forEach(function (w) {
+        if (named) return;
+        var re = new RegExp("(^|[^A-Za-z0-9_-])" + w.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") +
+                            "([^A-Za-z0-9_-]|$)");
+        if (re.test(String(labelText || ""))) named = w;
+      });
+      if (named) {
+        parts.push("The label names " + named + " only, because the mark id is taken from " +
+                   "the first opening in the group — do not read this quantity against " +
+                   named + " alone.");
+      }
+    } else if (s.walls.length === 1) {
+      parts.push("all in wall " + s.walls[0] + ".");
+    } else {
+      parts.push("and the model resolves no wall for any of them.");
+    }
+    if (s.hostless.length) {
+      parts.push("Opening(s) " + s.hostless.join(", ") + " name a wall the model does not carry.");
+    }
+    if (s.unresolved.length) {
+      parts.push("Id(s) " + s.unresolved.join(", ") + " are named by the takeoff's count " +
+                 "derivation but are not openings in this model, so their wall is unknown.");
+    }
+    return parts.join(" ");
+  }
+
+  /* ============================================================
      OPEN ITEMS
 
      Collected from every stage, and the standing items ALWAYS print.
@@ -17238,7 +17793,7 @@ var FM = (function () {
      claiming a completeness the system cannot have.
      ============================================================ */
 
-  function collectOpen(ctx, p, res) {
+  function collectOpen(ctx, p, res, g) {
     var items = [];
     function add(group, what, why, need) {
       items.push({ group: group, what: what, why: why, need: need });
@@ -17450,11 +18005,60 @@ var FM = (function () {
       });
     }
 
-    /* ---- 8. the geometry ---- */
+    /* ---- 8. the geometry ----
+
+       EVERY cad.validate() FINDING IS AN OPEN ITEM. This sheet is billed as
+       the collection point for every stage, and stage 1 is the geometry — so
+       for a long time it collected exactly one geometry item, and that item
+       was one this file wrote itself. Meanwhile cad.validate() returned seven
+       findings on `starter-1210` — four walls whose thickness was ASSUMED and
+       four walls carrying openings at PLACEHOLDER offsets, "no dimension off
+       them is real" — and every one of them printed on S1.0 and NOWHERE on
+       S5.0. They were not hidden from the package; they were absent from the
+       sheet a PE reads to know what they are inheriting, which is worse than
+       hidden, because the sheet claims to have looked.
+
+       The findings are carried verbatim, with cad.js's own severity, and an
+       `error` says outright that it blocks gate 1. Nothing is summarised: a
+       validator's sentence is the finding. */
     if (p.have.model) {
+      var val = g && isArr(g.validation) ? g.validation : null;
+      if (val) {
+        val.forEach(function (v) {
+          var sev = safe(v.severity, "").toLowerCase();
+          var where = [];
+          if (str(v.level)) where.push("level " + safe(v.level));
+          if (str(v.id)) where.push(safe(v.id));
+          add("GEOMETRY",
+              "cad.validate [" + (sev || "severity not stated") + "] " +
+                (where.length ? where.join(" · ") : "location not stated") +
+                (str(v.code) ? "  (" + safe(v.code) + ")" : ""),
+              safe(v.text, "cad.js reported this finding with no text."),
+              sev === "error"
+                ? "An ERROR from cad.validate() blocks approval gate 1 (geometry). The " +
+                  "package cannot be issued until the model is corrected and the takeoff re-run."
+                : "A WARNING from cad.validate(). It does not block gate 1, so approving " +
+                  "the geometry means a named person read this and accepted it.");
+        });
+        if (!val.length) {
+          add("GEOMETRY", "cad.validate() returned no findings against this model.",
+              "That is a statement about the checks cad.js performs, not a statement that " +
+              "the geometry is right. Nothing here confirms the model against the " +
+              "architectural set.",
+              "Check the drawn geometry against the architectural set before gate 1.");
+        }
+      } else if (p.cad) {
+        add("GEOMETRY", "The model could not be validated.",
+            "cad.js is loaded but FM.cad.validate() did not return a finding list for this " +
+            "model — it threw, or returned something this package could not read. A wall " +
+            "with no thickness, an opening wider than its wall or a framing region bearing " +
+            "on nothing would not have been caught.",
+            "Run FM.cad.validate() against this model directly and fix what it reports.");
+      }
       add("GEOMETRY", "Plan north is not declared by the model.",
           "The CAD model carries an origin and axes but no true-north bearing, so the " +
-          "north arrow on S1.0 is an assumption of the drawing.",
+          "north arrow on S1.0 is an assumption of the drawing. This is this package's " +
+          "own finding, not one of cad.validate()'s.",
           "Confirm the orientation against the architectural site plan.");
     }
     if (!p.cad && p.have.model) {
@@ -17655,7 +18259,7 @@ var FM = (function () {
                    : (r.status === "stale" ? "VOID (stale)"
                    : (r.status === "rejected" ? "REJECTED" : "not approved"));
         say("  " + pad(r.label, 22) + pad(status, 14) +
-            pad(r.by || "—", 18) + (r.at || "—"));
+            pad(r.by || "—", 18) + when(r.at));
         if (r.status === "stale" && r.moved.length) {
           wrap("invalidated because " + r.moved.join(", ") + " moved after it was given — " +
                "an approval that survives a change to what was approved is worthless", W - 8)
@@ -17672,7 +18276,7 @@ var FM = (function () {
         say();
         say("  AUDIT TRAIL — last " + Math.min(8, pipe.audit.length) + " of " + pipe.audit.length + " entries");
         pipe.audit.slice(Math.max(0, pipe.audit.length - 8)).forEach(function (a) {
-          say("      " + pad(safe(a.at, "—"), 26) + pad(safe(a.kind, "—"), 10) +
+          say("      " + pad(when(a.at), 22) + pad(safe(a.kind, "—"), 10) +
               pad(safe(a.stage, "—"), 12) + safe(a.by, "—"));
         });
       }
@@ -18051,7 +18655,7 @@ var FM = (function () {
 
   /* ---- S2.0 SCHEDULES ---- */
 
-  function sheetSchedules(ctx, p, res) {
+  function sheetSchedules(ctx, p, res, spread) {
     var L = [];
     function say(s) { L.push(s === undefined ? "" : s); }
     function block(t) { say(); say(rule("-")); say(t); say(rule("-")); say(); }
@@ -18129,6 +18733,8 @@ var FM = (function () {
            (m.demand ? (m.demand.braced ? ", braced" : ", UNBRACED") : "") +
            (m.unifiedTo ? " · RAISED FOR SKU UNIFICATION, not for capacity" : ""), W - 16)
         .forEach(function (x) { say("  " + pad("", 12) + x); });
+      var sn = spreadNote(spread, id, safe(m.mark.label));
+      if (sn) wrap(sn, W - 16).forEach(function (x) { say("  " + pad("", 12) + x); });
     });
 
     /* ---- headers ---- */
@@ -18136,22 +18742,59 @@ var FM = (function () {
     block("HEADER SCHEDULE — " + hdrs.length + " MARK(S)");
     if (!hdrs.length) say("  No mark on this plan is a header.");
     else {
-      say("  " + pad("MARK", 12) + pad("SPAN", 10) + pad("TRIB", 10) + pad("BEARING", 10) +
-          "HEAD HEIGHT");
+      /* QTY belongs on this schedule. A header schedule of four marks over a
+         house with eleven openings is not a lie only if it says which of the
+         two numbers it is counting — and the openings each mark stands for
+         are named underneath, with their walls, because the mark id names
+         one opening and the group can straddle several walls. */
+      say("  " + pad("MARK", 12) + pad("SPAN", 9) + pad("TRIB", 9) + pad("BEARING", 9) +
+          pad("HEAD", 8) + "QTY");
       say("  " + rule("-").slice(0, W - 2));
+      var openingsCovered = 0, spreadKnown = 0;
       hdrs.forEach(function (m) {
         var row = m.unifiedTo || (m.solution && m.solution.pick);
         var member = m.notApplicable ? "— not sized (" + safe(m.notApplicable.reason) + ") —"
                    : (row ? safe(row.cand.size) + " " + safe(row.cand.species) + " " + safe(row.cand.grade)
                           : "— ESCALATED, no member —");
         say("  " + pad(safe(m.mark.id), 12) +
-            pad(n2(m.mark.span, 2) + " ft", 10) +
-            pad(m.mark.trib === undefined ? "—" : n2(m.mark.trib, 2) + " ft", 10) +
-            pad(m.mark.bearing === undefined ? "—" : n2(m.mark.bearing, 2) + " in", 10) +
-            (m.mark.headHeightIn === undefined ? "—" : n2(m.mark.headHeightIn, 0) + " in"));
+            pad(n2(m.mark.span, 2) + " ft", 9) +
+            pad(m.mark.trib === undefined ? "—" : n2(m.mark.trib, 2) + " ft", 9) +
+            pad(m.mark.bearing === undefined ? "—" : n2(m.mark.bearing, 2) + " in", 9) +
+            pad(m.mark.headHeightIn === undefined ? "—" : n2(m.mark.headHeightIn, 0) + " in", 8) +
+            (isFinite(Number(m.mark.count)) ? String(m.mark.count) : "—"));
         wrap("→ " + member, W - 16).forEach(function (x) { say("  " + pad("", 12) + x); });
+        var hs = spreadFor(spread, safe(m.mark.id));
+        if (hs) {
+          spreadKnown++;
+          openingsCovered += hs.openings.length + hs.unresolved.length;
+          var line = spreadWhere(hs);
+          if (hs.walls.length > 1) {
+            line += ". The mark id and the label name " + hs.openings[0] + " and its wall " +
+                    "only — the group straddles " + hs.walls.length + " walls and this " +
+                    "quantity may not be read against one of them.";
+          }
+          if (hs.hostless.length) {
+            line += " Opening(s) " + hs.hostless.join(", ") + " name a wall the model does not carry.";
+          }
+          if (hs.unresolved.length) {
+            line += " Id(s) " + hs.unresolved.join(", ") + " are named by the count derivation " +
+                    "but are not openings in this model.";
+          }
+          wrap(line, W - 16).forEach(function (x) { say("  " + pad("", 12) + x); });
+        }
       });
       say();
+      if (spreadKnown) {
+        wrap(hdrs.length + " header mark(s) on this schedule stand for " + openingsCovered +
+             " drawn opening(s)" +
+             (spreadKnown === hdrs.length ? ""
+               : " — " + (hdrs.length - spreadKnown) + " of the marks carry no takeoff count " +
+                 "derivation, so the openings behind them are not named here") +
+             ". The mark count and the opening count are different numbers and both are " +
+             "printed, because a schedule row is a member and an elevation is a hole.", W - 4)
+          .forEach(function (x) { say("  " + x); });
+        say();
+      }
       wrap("Bearing is the declared jack-stud length, and it is a DESIGN INPUT on a header " +
            "— it governs the check often enough that a silent default produced false " +
            "escalations. Head height is what limits the depth available.", W - 4)
@@ -18424,14 +19067,46 @@ var FM = (function () {
     if (bom.totals) {
       say();
       say("  TOTALS");
-      say("      " + pad("Board feet", 20) + comma(bom.totals.bf));
-      say("      " + pad("Pieces", 20) + comma(bom.totals.pieces));
+      say("      " + pad("Board feet", 20) + comma(bom.totals.bf) + " bf");
+      say("      " + pad("Pieces", 20) + comma(bom.totals.pieces) + " pc");
       say("      " + pad("Modelled cost", 20) + usd(bom.totals.usd) +
           "   [market placeholders — no code standing]");
+      /* byCategory is MATERIAL DOLLARS by member role. It was printed as the
+         raw stored number — "header 149.39733333333334" under a line reading
+         "Modelled cost $149.40" — which is a float with no unit on a document
+         a plan reviewer reads, and two spellings of one figure on consecutive
+         lines. Money is money here, and the parts are stated to TIE to the
+         whole: a breakdown a reader cannot add up is worse than no breakdown,
+         because it looks checked. */
       if (bom.totals.byCategory && typeof bom.totals.byCategory === "object") {
-        Object.keys(bom.totals.byCategory).forEach(function (k) {
-          say("      " + pad("  " + k, 20) + safe(bom.totals.byCategory[k]));
-        });
+        var catKeys = isArr(bom.totals.byCategoryOrder)
+          ? bom.totals.byCategoryOrder.filter(function (k) { return own(bom.totals.byCategory, k); })
+          : Object.keys(bom.totals.byCategory);
+        if (catKeys.length) {
+          say("      " + pad("  by member role", 20) + "material dollars [market]");
+          var catSum = 0, catAllNumeric = true;
+          catKeys.forEach(function (k) {
+            var v = Number(bom.totals.byCategory[k]);
+            if (isFinite(v)) catSum += v; else catAllNumeric = false;
+            say("      " + pad("    " + safe(k, "(unnamed role)"), 20) +
+                (isFinite(v) ? usd(v) : "** NOT A NUMBER — bom.js supplied " +
+                 safe(bom.totals.byCategory[k], "nothing readable") + " **"));
+          });
+          var tot = Number(bom.totals.usd);
+          if (catAllNumeric && isFinite(tot)) {
+            if (Math.abs(catSum - tot) > 0.005) {
+              wrap("** THE ROLES DO NOT TIE TO THE TOTAL. They add to " + usd(catSum) +
+                   " against a modelled cost of " + usd(tot) + ", a difference of " +
+                   usd(tot - catSum) + ". One of the two numbers is wrong and this sheet " +
+                   "cannot say which — do not reconcile a quote against either until " +
+                   "bom.js is checked. **", W - 8)
+                .forEach(function (x) { say("      " + x); });
+            } else {
+              say("      " + pad("    (they tie)", 20) + usd(catSum) +
+                  "   = the modelled cost above");
+            }
+          }
+        }
       }
     }
     if (bom.waste) {
@@ -18531,7 +19206,9 @@ var FM = (function () {
     var plan = res ? res.plan : (ctx.plan || null);
     var pack = res ? res.pack : (ctx.pack || null);
 
-    var at = str(ctx.at) || (function () {
+    /* `at` may arrive as an ISO instant (project.js stores one) or already
+       formatted; when() shortens the first and passes the second through. */
+    var at = str(ctx.at) ? when(ctx.at) : (function () {
       try { return new Date().toISOString().slice(0, 16).replace("T", " ") + " UTC"; }
       catch (e) { return "generation time not available"; }
     })();
@@ -18561,7 +19238,11 @@ var FM = (function () {
     }
     pkg.geometry = g;
 
-    var items = collectOpen(ctx, p, res);
+    /* which openings and which walls each grouped mark actually covers */
+    var spread = spreadOf(g, p.have.takeoff);
+    pkg.spread = spread;
+
+    var items = collectOpen(ctx, p, res, g);
     pkg.openItems = items;
 
     var defs = [
@@ -18578,7 +19259,7 @@ var FM = (function () {
       { no: "S2.0", title: "Schedules", kind: "schedules",
         note: res ? "member, header and reaction schedules; escalations; marks not sized"
                   : "NOT GENERATED — no solver result",
-        lines: function () { return sheetSchedules(ctx, p, res); } },
+        lines: function () { return sheetSchedules(ctx, p, res, spread); } },
       { no: "S3.0", title: "Calculations", kind: "calcs",
         note: res ? "the engine's working, mark by mark, reproducible from its own inputs"
                   : "NOT GENERATED — no solver result",
@@ -18995,7 +19676,10 @@ var FM = (function () {
     }
     var bom = null;
     if (res && FM.bom && typeof FM.bom.build === "function") {
-      try { bom = FM.bom.build(res, {}); } catch (e) { bom = null; }
+      /* the takeoff goes in so a piece count that came out of the takeoff's
+         grouping rule can name that rule, instead of the BOM attributing it
+         to a plan record that states nothing about it */
+      try { bom = FM.bom.build(res, { takeoff: takeoff }); } catch (e) { bom = null; }
     }
     return { model: model, takeoff: takeoff, planResult: res, bom: bom,
              juris: juris, pipeline: FM.pipeline || null };
@@ -22743,6 +23427,35 @@ var FM = (function () {
     return (v === null || v === undefined || !isFinite(v)) ? "—" : Number(v).toFixed(d === undefined ? 2 : d);
   }
 
+  /* WHAT AN EXPORTED FILE IS FOR.
+
+     This was `firmark-materials.txt` — no plan, no region, no variant — while
+     its two siblings in this product both carry identity:
+
+         firmark-planset-starter-1210-tx-i35-for-PE-review.txt
+         firmark-schedule-two-story-2450-tx-i35.txt
+
+     Two materials exports from two different plans therefore collided in
+     Downloads under one name, the second silently replacing the first, and
+     neither could be traced back to what produced it. A quantity takeoff that
+     cannot be tied to a plan and a region pack is a number with no basis,
+     which is the one thing this product exists not to ship.
+
+     The identity is read off the BOM's own `plan` and `pack` records rather
+     than off the project state, so the name always describes the document in
+     the file. What is missing is NAMED in the filename — "no-plan" /
+     "no-region", the same words planset.js uses on the cover — never quietly
+     omitted, because a file called `firmark-materials-tx-i35.txt` reads like
+     a complete name and is not one. */
+  function bomFilename(b) {
+    var pl = (b && b.plan) || null, pk = (b && b.pack) || null;
+    var parts = [pl && pl.id ? String(pl.id) : "no-plan",
+                 pk && pk.id ? String(pk.id) : "no-region"];
+    if (pl && pl.variant && pl.variant.id) parts.push(String(pl.variant.id));
+    return ("firmark-materials-" + parts.join("-")).replace(/[^\w.-]+/g, "-") + ".txt";
+  }
+  FM.bomFilename = bomFilename;
+
   /* A block of things a stage could not answer. Never collapsed, never
      truncated silently, and it says zero rather than disappearing — an
      absent list and an empty list read identically and mean opposite things. */
@@ -23165,8 +23878,13 @@ var FM = (function () {
           onclick: function () {
             var b = FM.project.bom();
             if (!b || !FM.bom.text) { FM.toast("Nothing to export yet."); return; }
-            FM.download ? FM.download(FM.bom.text(b), "firmark-materials.txt")
-                        : FM.toast("Export is unavailable in this build.");
+            if (!FM.download) { FM.toast("Export is unavailable in this build."); return; }
+            var name = bomFilename(b);
+            FM.download(FM.bom.text(b), name);
+            FM.toast(/no-plan|no-region/.test(name)
+              ? "Exported as " + name + " — this list could not name the plan or the region " +
+                "pack it came from, and the filename says so rather than hiding it."
+              : "Exported as " + name + " — quantities only; prices are [market] placeholders.");
           }
         })
       ]));

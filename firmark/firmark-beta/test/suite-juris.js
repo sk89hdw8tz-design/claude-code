@@ -337,8 +337,74 @@ module.exports = function (t, FM) {
          "North Carolina is on ASCE 7-10 because the 2018 NCRC is, not on the newest map available");
     t.eq(FM.juris.forSite("tx-sanantonio").wind.asce, "ASCE 7-22",
          "San Antonio is on ASCE 7-22 because it adopted the 2024 IRC");
-    t.eq(FM.juris.forSite("tx-austin").wind.asce, "ASCE 7-16",
-         "Austin is on ASCE 7-16 because it is still on the 2021 IRC — two Texas cities, two maps");
+    t.eq(FM.juris.forSite("tx-austin").wind.asce, "ASCE 7-22",
+         "Austin is on ASCE 7-22 because Ordinance 20250410-040 put it on the 2024 IRC on " +
+         "10 July 2025 — this file published ASCE 7-16 here until the 13 August 2026 re-check");
+    t.eq(FM.juris.forSite("tx-houston").wind.asce, "ASCE 7-16",
+         "Houston is still on ASCE 7-16 because it is still on the 2021 IRC — the Texas split is " +
+         "real, it just does not run where this file first drew it");
+    t.eq(FM.juris.forSite("tx-austin").codes[0].edition, "2024 IRC",
+         "and the Austin adoption itself is the 2024 IRC, not the 2021");
+  })();
+
+  /* ============================================================
+     5b. Corrections are published, not quietly patched
+     ============================================================ */
+
+  t.suite("juris · what an earlier pass got wrong is published as data");
+  (function () {
+    t.truthy(FM.juris.CORRECTIONS && FM.juris.CORRECTIONS.length >= 2,
+             "the module publishes the corrections an earlier pass required");
+
+    var byId = {};
+    FM.juris.CORRECTIONS.forEach(function (c) { byId[c.id] = c; });
+
+    t.truthy(byId["tx-austin-2024"] && byId["tx-austin-2024"].was && byId["tx-austin-2024"].now,
+             "the Austin edition error records both what was published and what replaced it");
+    t.truthy(byId["wbdr-asce722"] && byId["wbdr-asce722"].dissent,
+             "the wind-borne debris correction records the sources that DISAGREE with it, because " +
+             "it was decided on weight of authority rather than unanimity");
+
+    var everyCorrectionSourced = FM.juris.CORRECTIONS.every(function (c) {
+      return !!c.establishedBy && !!c.checked && !!c.why;
+    });
+    t.truthy(everyCorrectionSourced,
+             "every correction says how it was established, when, and what it costs to get wrong");
+
+    var everyRecheckSourced = FM.juris.RECHECKED.every(function (r) {
+      return !!r.against && typeof r.routes === "number" && r.routes >= 1;
+    });
+    t.truthy(everyRecheckSourced,
+             "and every re-checked fact names what it was checked against and how many routes agreed");
+  })();
+
+  /* ============================================================
+     5c. The wind-borne debris criterion carries BOTH ASCE forms
+     ============================================================ */
+
+  t.suite("juris · the debris criterion is edition-dependent, and says so");
+  (function () {
+    var crit = FM.juris.forSite("fl-orange").windborneDebris.criterion;
+
+    t.truthy(crit.indexOf("ASCE 7-22") !== -1 && crit.indexOf("Exposure D") !== -1,
+             "the criterion carries the ASCE 7-22 form — Exposure D upwind, not a coastline offset");
+    t.truthy(crit.indexOf("5,000 ft") !== -1,
+             "including the fetch threshold that decides whether an inland lake counts");
+    t.truthy(crit.indexOf("ASCE 7-16") !== -1,
+             "and still carries the older form, because North Carolina is on ASCE 7-10 and three " +
+             "Texas cities are on ASCE 7-16 — the old test is not obsolete, it is just not universal");
+
+    var orange = FM.juris.forSite("fl-orange").windborneDebris;
+    t.eq(orange.likely, null,
+         "inland Florida no longer carries a confident 'not in the debris region' — under the " +
+         "8th Edition's ASCE 7-22 basis, not being coastal does not settle it");
+
+    var lakeCheck = FM.juris.forSite("fl-orange").mustVerify.some(function (m) {
+      return m.id === "fl-orange-lake" && m.severity === "blocking";
+    });
+    t.truthy(lakeCheck,
+             "and the inland-lake limb is a BLOCKING check, because a false negative here deletes " +
+             "opening protection the code requires");
   })();
 
   /* ============================================================

@@ -57,8 +57,13 @@
    Government Code §214.212 makes the IRC as it existed on
    1 May 2012 the municipal residential code, but the EDITION
    actually enforced is a city ordinance question and varies
-   city by city — San Antonio is on the 2024 IRC while Austin is
-   on the 2021. Unincorporated county land may have no adopted
+   city by city — San Antonio and Austin are on the 2024 IRC
+   (ASCE 7-22) while Houston, Dallas and Fort Worth are still on
+   the 2021 (ASCE 7-16). Two cities 200 miles apart are on
+   different codes and different wind maps.
+   (Austin was published here as a 2021 IRC city until 13 August
+   2026. That was wrong — see §7 and FM.juris.CORRECTIONS.)
+   Unincorporated county land may have no adopted
    code, no permit and no inspection at all. And on the coast
    there is a SECOND, INDEPENDENT regime: TDI/TWIA windstorm
    certification (WPI-1 before construction, WPI-8 at
@@ -103,11 +108,19 @@
    ASCE 7-16 and not ASCE 7-22. A North Carolina wind number
    taken off an ASCE 7-16 or 7-22 map is off the wrong map.
 
-   weights.js `nc-piedmont` carries "delayed by statute to
-   1 July 2025", which is stale by two rounds of legislation.
-   It does say VERIFY, so it is not a lie — but a reader would
-   come away believing a 2021-IRC-basis code is in force. It is
-   not. Flagged in the report; that file is not mine to edit.
+   This was flagged against weights.js `nc-piedmont`, which used
+   to stop at "delayed by statute to 1 July 2025". RE-CHECKED
+   13 August 2026: that pack has since been corrected and now
+   states the 2018 NCRC / 2015 IRC / ASCE 7-10 basis and both
+   rounds of delay. The two files agree. The complaint is
+   resolved and is recorded here only so the fix is not undone.
+
+   One soft divergence remains against the packs: `nc-mountain`
+   carries a 30 psf planning ground snow and this module carries
+   25 psf for Buncombe on a 15–35 band. Both are planning values
+   inside the same band and neither is retrievable from the NCRC
+   county table, so this is a difference of default, not of fact
+   — but they should be reconciled rather than left to disagree.
 
    ------------------------------------------------------------
    5. THE SECOND HEADLINE: FLORIDA'S CODE EXPIRES THIS YEAR.
@@ -147,6 +160,51 @@
    ground) is carried separately because that one IS knowable.
 
    An honest gap beats a confident error.
+
+   ------------------------------------------------------------
+   7. WHAT THE 13 AUGUST 2026 RE-CHECK FOUND
+
+   The whole table was put back through independent searches.
+   The access position did not improve — see RESEARCH: curl was
+   re-tested against 12 hosts and the page-fetch tool against 6
+   more, and EVERY ONE was refused at the egress proxy, including
+   en.wikipedia.org. This is a total block, not a policy about
+   official sources. Nothing in this file is `primary` and, in
+   this environment, nothing can be.
+
+   What DID improve is corroboration: 15 load-bearing facts were
+   re-established from two or three independent routes each and
+   are listed in FM.juris.RECHECKED. Among them, and worth saying
+   plainly because they are the ones people get wrong: the HVHZ
+   is still exactly two counties; the TDI catastrophe-area county
+   list in this file matches TWIA's own list exactly, all 14; and
+   North Carolina is still on the 2018 Code.
+
+   TWO THINGS WERE WRONG. Both are in FM.juris.CORRECTIONS.
+
+   (a) AUSTIN WAS ON THE WRONG CODE. This file published Austin
+       as a 2021 IRC / ASCE 7-16 city. Austin adopted the 2024
+       IRC by Ordinance 20250410-040, effective 10 July 2025.
+       Wrong by a generation, wrong wind map with it, and the
+       error was doubly damaging because Austin was the file's
+       worked EXAMPLE of Texas code divergence in two places.
+
+   (b) THE WIND-BORNE DEBRIS TEST WAS THE OLD ONE. The file
+       published only the pre-ASCE-7-22 form — "within 1 mile of
+       the COASTAL mean high water line". ASCE 7-22 deletes
+       "coastal" and substitutes an Exposure D condition upwind
+       at the water line, which pulls large INLAND lakes and bays
+       into the region. Florida adopted that with the 8th
+       Edition. This is the difference between requiring opening
+       protection and not, and the file was arguing the wrong way
+       for inland Florida — Orange County carried `likely: false`
+       on reasoning the current code does not support.
+
+   Note the shape of both errors: the file's own mustVerify list
+   had FLAGGED Austin as the adoption most likely to have moved,
+   and it had still published the stale value as fact. The list
+   was right and the data was wrong. That is the argument for
+   reading the list rather than the table.
    ============================================================ */
 
 (function () {
@@ -196,8 +254,10 @@
       url: "https://codelibrary.amlegal.com/codes/ftworth/latest/ftworth_tx/0-0-0-8128", retrieved: "search-summary" },
     { id: "sat-ord",      what: "San Antonio Chapter 10 Building-Related Codes — 2024 I-Codes incl. IRC, Ordinance 2025-01-30-0075, effective 1 May 2025",
       url: "https://docsonline.sanantonio.gov/DSDUploads/2024Ch10Building-RelatedCodesFinal.pdf", retrieved: "search-summary" },
-    { id: "aus-code",     what: "Austin City Code Ch. 25-12 Article 11 (Residential Code) — 2021 IRC, effective 1 September 2021",
-      url: "https://www.austintexas.gov/page/building-technical-codes", retrieved: "search-summary" },
+    { id: "aus-ord",      what: "City of Austin Ordinance No. 20250410-040 — adoption of the 2024 International Residential Code and Local Amendments, adopted 10 April 2025, effective 10 JULY 2025. THIS SUPERSEDES the 2021 adoption this module previously carried; see FM.juris.CORRECTIONS.",
+      url: "https://www.austintexas.gov/development-services/building-technical-codes", retrieved: "search-summary-corroborated" },
+    { id: "aus-code",     what: "Austin City Code Ch. 25-12 (Technical Codes) — SUPERSEDED 2021 IRC adoption, effective 1 September 2021, replaced by the 2024 IRC on 10 July 2025",
+      url: "https://www.austintexas.gov/development-services/building-technical-codes", retrieved: "search-summary" },
     { id: "cc-ord",       what: "City of Corpus Christi Code Chapter 14 — 2021 I-Codes incl. IRC with local amendments, effective 1 August 2023",
       url: "https://www.corpuschristitx.gov/department-directory/development-services/construction-codes-and-ordinances/", retrieved: "search-summary" },
     { id: "galv-ord",     what: "City of Galveston Code Chapter 10 / Ordinance 23-012 — 2021 I-Codes incl. IRC with local amendments",
@@ -212,8 +272,12 @@
       url: "https://up.codes/s/high-velocity-hurricane-zones-wind-loads", retrieved: "search-summary" },
     { id: "fl-prod",      what: "Florida Product Approval, F.A.C. Rule 61G20-3 and the BCIS; Miami-Dade NOA is a local approval; a statewide approval must carry the HVHZ endorsement to be used in the HVHZ",
       url: "https://www.floridabuilding.org/fbc/commission/FBC_0615/Commission_Education_POC/588/588-1-MATERIAL.pdf", retrieved: "search-summary" },
-    { id: "fl-wbdr",      what: "Florida Building Commission investigation of the wind-borne debris regions in ASCE 7-22",
+    { id: "fl-wbdr",      what: "Florida Building Commission investigation of the wind-borne debris regions in ASCE 7-22 — Interim Report",
       url: "https://www.floridabuilding.org/fbc/commission/FBC_0125/hrac/Interim_Report_WBDR.pdf", retrieved: "search-summary" },
+    { id: "fl-wbdr-fin",  what: "Florida Building Commission, Investigation of the Wind-borne Debris Regions in ASCE 7-22 — FINAL Report. ASCE 7-22 DELETES the word \"coastal\" from the wind-borne debris region definition and instead requires an Exposure D condition upwind at the water line (>= 5,000 ft of water fetch). Adopting that definition in the FBC 8th Edition created INLAND wind-borne debris regions next to large lakes and bays in central Florida and the panhandle.",
+      url: "https://www.floridabuilding.org/fbc/publications/Research_2024-2025/Final%20Report%20WBDR_revised.pdf", retrieved: "search-summary-corroborated" },
+    { id: "twia-cat",     what: "TWIA — the designated catastrophe area is all 14 first-tier coastal counties plus the part of Harris County east of SH 146",
+      url: "https://www.twia.org/about-us/overview/", retrieved: "search-summary-corroborated" },
     { id: "fl-asce722",   what: "Florida Building Commission fact sheet — wind load impacts from ASCE 7-22 in the 8th Edition",
       url: "http://www.floridabuilding.org/fbc/thecode/2023_Code_Development/2023_Code_Resources/ASCE-7-22_Wind_Loads_Fact_Sheet.pdf", retrieved: "search-summary" },
     { id: "nc-gs-143",    what: "N.C.G.S. §143-138 — the NC State Building Code is adopted by the Building Code Council / Residential Code Council; local rules require Council approval",
@@ -237,11 +301,38 @@
      nothing about X" and "the module could not find out about X". */
   var RESEARCH = {
     checked: CHECKED,
-    method: "WebSearch only.",
-    blocked: "Outbound page fetches are blocked at this environment's egress proxy. Every official " +
-             "source in SOURCES refused, including ncosfm.gov, tdi.texas.gov, floridabuilding.org, " +
-             "codes.iccsafe.org, up.codes, flsenate.gov, statutes.capitol.texas.gov and every " +
-             "municipal code library. curl through the proxy returns 'CONNECT tunnel failed, 403'.",
+    method: "WebSearch only, with every load-bearing fact triangulated across at least two " +
+            "independent queries before it was allowed to change a value. Where two summaries " +
+            "disagreed, the one citing a named ordinance, rule or agency report won and the " +
+            "disagreement is recorded rather than hidden.",
+    blocked: "Outbound page fetches are blocked at this environment's egress proxy, and the block is " +
+             "TOTAL, not a domain policy. Re-tested exhaustively on " + CHECKED + ": curl was run " +
+             "against 12 hosts (floridabuilding.org, codes.iccsafe.org, tdi.texas.gov, ncosfm.gov, " +
+             "statutes.capitol.texas.gov, flsenate.gov, iccsafe.org, fema.gov, weather.gov, " +
+             "govinfo.gov, law.justia.com and en.wikipedia.org) and every one returned HTTP 000 " +
+             "with the proxy recording 'gateway answered 403 to CONNECT (policy denial)'. The " +
+             "page-fetch tool was run against 6 more (floridabuilding.org, codes.iccsafe.org, " +
+             "up.codes, aiafla.org, floridacontractor.com, windloadcalc.com) and returned " +
+             "EGRESS_BLOCKED for each. Even en.wikipedia.org is blocked, so this is not an " +
+             "official-source policy — nothing outside the search tool is reachable at all.",
+    accessRoutesTried: [
+      { route: "curl through HTTPS_PROXY with the environment CA bundle", result: "FAILED — 403 on " +
+               "CONNECT for all 12 hosts tested; confirmed against the proxy's own status endpoint" },
+      { route: "page-fetch tool (routes separately from curl)", result: "FAILED — EGRESS_BLOCKED for " +
+               "all 6 hosts tested, including non-official ones" },
+      { route: "mirrored primary PDFs on third-party hosts (a full FBC-R 2023 copy and an AIA " +
+               "Florida 8th Edition presentation were both located)", result: "FAILED — the mirrors " +
+               "are blocked too; being findable is not being readable" },
+      { route: "WebSearch", result: "WORKED. Its answer synthesis reads live page content, so " +
+               "targeted questions returned quoted code text, ordinance numbers and effective " +
+               "dates. This is the only route that produced anything, and it is a summariser: it " +
+               "returned a flatly wrong answer at least once in this pass (see `knownSummaryError`), " +
+               "which is why nothing here rests on a single query." }
+    ],
+    knownSummaryError: "Asked whether the FBC 8th Edition references ASCE 7-16 or 7-22, one search " +
+                       "route answered 7-16 (reading a window vendor's blog). Three further queries, " +
+                       "including one that surfaced the Florida Building Commission's own ASCE 7-22 " +
+                       "fact sheet, established 7-22. A single search summary is not evidence.",
     consequence: "No record in this file is `confirmed: \"primary\"`. Everything is a search-engine " +
                  "summary of a page that was never opened. That is enough to plan against and NOT " +
                  "enough to permit against.",
@@ -256,13 +347,150 @@
       "table was not retrievable.",
       "Whether Tex. Loc. Gov't Code ch. 233 Subchapter F applies to Galveston County, and whether " +
       "Galveston County has adopted any residential building code for its unincorporated area.",
-      "Whether the City of Austin has a 2024 IRC adoption in progress. Only the 2021 adoption " +
-      "(effective 1 September 2021) could be confirmed, and a five-year-old adoption is exactly " +
-      "the kind of fact that goes stale without anyone noticing.",
+      "Frost line depth for any jurisdiction. Aggregator sites publish per-city numbers (Dallas 6 in, " +
+      "Austin 10 in, San Antonio 0 in and so on) but they disagree with each other, cite nothing, " +
+      "and the governing value is the one the jurisdiction ENTERED in its own Table R301.2(1). " +
+      "Those numbers were deliberately NOT adopted here.",
       "The exact wind-borne debris region boundary in any Florida or North Carolina county. It is " +
-      "a contour, not a county line, and it cannot be tabulated by jurisdiction at all."
+      "a contour, not a county line, and it cannot be tabulated by jurisdiction at all. Under " +
+      "ASCE 7-22 it is not even a coastline offset any more — see WBD_CRITERION."
     ]
   };
+
+  /* ------------------------------------------------------------
+     CORRECTIONS. What an earlier pass of this file published that
+     was WRONG, what it is now, and how the correction was
+     established. This is published rather than quietly patched,
+     because a user who read the earlier value needs to know it
+     moved — and because the pattern of the errors is itself the
+     argument for not trusting the rest without checking.
+     ------------------------------------------------------------ */
+
+  var CORRECTIONS = [
+    {
+      id: "tx-austin-2024",
+      severity: "blocking",
+      was: "Austin on the 2021 IRC, effective 1 September 2021, referencing ASCE 7-16.",
+      now: "Austin on the 2024 IRC, Ordinance No. 20250410-040, adopted 10 April 2025, effective " +
+           "10 JULY 2025, referencing ASCE 7-22.",
+      why: "Wrong by a full code generation, and it carried the wind standard with it — a wind " +
+           "speed taken for an Austin permit off the earlier version of this record came off the " +
+           "ASCE 7-16 map when the adopted code calls for ASCE 7-22. Austin was also the file's " +
+           "worked EXAMPLE of Texas code divergence in two places, so the error was being taught " +
+           "as well as published.",
+      establishedBy: "Four independent search routes agreeing on the same ordinance number and " +
+                     "effective date: the city's Development Services technical-codes page, the " +
+                     "city's public-input record for the 2024 IRC amendments, a commercial code " +
+                     "library carrying 'Austin Residential Code 2024', and a trade-press notice " +
+                     "titled 'City of Austin Adopts 2024 Technical Building Codes, Effective " +
+                     "July 10'.",
+      confirmed: "secondary",
+      checked: CHECKED
+    },
+    {
+      id: "wbdr-asce722",
+      severity: "blocking",
+      was: "One wind-borne debris criterion for every jurisdiction: within 1 mile of the COASTAL " +
+           "mean high water line at 130 mph or more, or anywhere at 140 mph or more.",
+      now: "Two criteria, selected by the ASCE 7 edition the adopted code references. ASCE 7-22 " +
+           "DELETES 'coastal' and requires instead an Exposure D condition upwind at the water " +
+           "line (>= 5,000 ft of fetch), which brings large INLAND lakes and bays inside the " +
+           "region. Florida adopted this with the FBC 8th Edition.",
+      why: "This decides whether opening protection is required. The old text made 'not coastal' " +
+           "look like a complete answer for an inland Florida county, and under the code actually " +
+           "in force it is not. Orange County was carrying `likely: false` on exactly that " +
+           "reasoning; it is now null with a blocking check, because a false 'no' here deletes " +
+           "impact-rated glazing from a package that the code requires to have it.",
+      establishedBy: "The Florida Building Commission's own commissioned study, 'Investigation of " +
+                     "the Wind-borne Debris Regions in ASCE 7-22' (interim and final reports), " +
+                     "surfaced by two independent queries, which states that adopting the changed " +
+                     "definition in the 8th Edition produced new glazing protection requirements " +
+                     "next to inland water bodies in central Florida and the panhandle.",
+      dissent: "Commercial window-vendor pages assert that Orlando is outside the region under the " +
+               "8th Edition and will only be brought in by the 9th. They are lower authority than " +
+               "the Commission's own research and they do not engage with the Exposure D limb. " +
+               "The disagreement is why `inRegion` and `likely` are both null rather than true.",
+      confirmed: "secondary",
+      checked: CHECKED
+    }
+  ];
+
+  /* ------------------------------------------------------------
+     RECHECKED. Facts that were put back through independent
+     searches on CHECKED and came back AGREEING with what the file
+     already said. These are still `secondary` — no primary
+     document was opened — but "two or more independent routes
+     agree" is a materially stronger claim than "a search summary
+     said so once", and the difference is worth publishing.
+     ------------------------------------------------------------ */
+
+  var RECHECKED = [
+    { item: "FBC 8th Edition (2023) is the edition in force, effective 31 December 2023.",
+      routes: 3, agreed: true,
+      against: "Charlotte County and Palm Bay building-department notices, the Florida roofing " +
+               "association, and the Commission's published effective-dates list." },
+    { item: "The FBC 8th Edition references ASCE 7-22, not ASCE 7-16.",
+      routes: 3, agreed: true,
+      against: "The Florida Building Commission's 'Wind Loads — Impacts from ASCE 7-22' fact sheet " +
+               "and an AIA Florida 8th Edition presentation. NOTE: one route answered 7-16 and was " +
+               "wrong; see RESEARCH.knownSummaryError." },
+    { item: "FBC 9th Edition (2026) expected effective 31 December 2026; draft posted 22 December 2025.",
+      routes: 2, agreed: true,
+      against: "Multiple independent Florida engineering and code-summary publications." },
+    { item: "The HVHZ is Miami-Dade and Broward counties ONLY.",
+      routes: 2, agreed: true,
+      against: "Wind-load and HVHZ trade references, consistently and without exception. Nothing " +
+               "found suggests any change, or any third county." },
+    { item: "HVHZ Risk Category II design wind speeds: Miami-Dade 175 mph, Broward 170 mph.",
+      routes: 2, agreed: true,
+      against: "Several independent wind-load references, which also state that these county values " +
+               "supersede the ASCE map inside the HVHZ. All commercial sources — no code figure was " +
+               "read — so this stays `secondary` and stays in mustVerify." },
+    { item: "TWIA/TDI designated catastrophe area: the 14 first-tier coastal counties plus part of " +
+            "Harris County east of SH 146.",
+      routes: 2, agreed: true,
+      against: "TWIA's own overview, which lists all 14 by name and the Harris County carve-out. " +
+               "The list in this file matched it exactly, county for county, with no additions or " +
+               "omissions." },
+    { item: "TDI requires the 2024 IRC/IBC for WPI-1 applications from 1 April 2026.",
+      routes: 2, agreed: true,
+      against: "TDI's adopted-codes page and independent engineering and legislative summaries of " +
+               "the rule change." },
+    { item: "North Carolina is still on the 2018 NCRC (2015 IRC basis) as of " + CHECKED + ".",
+      routes: 3, agreed: true,
+      against: "OSFM's current-codes page, OSFM's April 2025 delay press release, and an OSFM " +
+               "formal interpretation issued 30 January 2026 written against the 2018 NCRC — an " +
+               "agency still interpreting the 2018 code in 2026 is good evidence that it is the " +
+               "code. Also newly established: the 2024 Code may be used as an ALTERNATIVE method " +
+               "of construction on the owner's request while the 2018 Code governs." },
+    { item: "2018 NCRC engineered design references ASCE 7-10.",
+      routes: 2, agreed: true,
+      against: "OSFM's own formal interpretation of R301.1.3, surfaced directly by search." },
+    { item: "San Antonio is on the 2024 IRC, Ordinance 2025-01-30-0075, effective 1 May 2025.",
+      routes: 2, agreed: true,
+      against: "The ordinance document itself and the city's published Chapter 10 cover page, " +
+               "headed 'EFFECTIVE DATE: MAY 1, 2025'." },
+    { item: "Houston is on the 2021 IRC, effective 1 January 2024 (council adoption 25 October 2023).",
+      routes: 2, agreed: true,
+      against: "The Houston Permitting Center's own January 2026 IRC training material, which is " +
+               "still teaching the 2021 IRC, and a public-works code-modernisation briefing " +
+               "describing the 2024 updates as still PLANNED for 2026." },
+    { item: "Dallas is on the 2021 IRC with Dallas amendments, effective 12 May 2023.",
+      routes: 2, agreed: true,
+      against: "The city's current-code page and the Chapter 57 amendment ordinance documents." },
+    { item: "Fort Worth is on the 2021 IRC.",
+      routes: 1, agreed: true,
+      against: "The municipal code library text of City Code § 7-61, headed 'THE 2021 EDITION OF " +
+               "THE INTERNATIONAL RESIDENTIAL CODE ADOPTED'. One route — but it is the codified " +
+               "ordinance text itself rather than a description of it." },
+    { item: "Corpus Christi is on the 2021 I-Codes with local amendments, effective 1 August 2023.",
+      routes: 1, agreed: true,
+      against: "The city's construction-codes page, which states the effective date and lists the " +
+               "adopted 2021 codes including the Residential Code." },
+    { item: "Galveston is on the 2021 I-Codes with amendments (Ordinance 23-012).",
+      routes: 1, agreed: true,
+      against: "The city's building-codes page and the ordinance document." }
+  ];
 
   /* ------------------------------------------------------------
      Record builders. Every one stamps cls, cite, checked, src and
@@ -356,12 +584,26 @@
     };
   }
 
+  /* THE CRITERION DEPENDS ON WHICH ASCE 7 EDITION THE ADOPTED CODE
+     REFERENCES, AND THE TWO ARE NOT THE SAME TEST. This module got
+     that wrong in its first pass — it published only the older
+     "coastal" form. See FM.juris.CORRECTIONS entry `wbdr-asce722`. */
+
   var WBD_CRITERION =
-    "The wind-borne debris region is drawn by WIND SPEED CONTOUR and distance from the coastal mean " +
-    "high water line, NOT by county line: within 1 mile of the coastal mean high water line where " +
-    "the basic design wind speed is 130 mph or greater, or anywhere the basic design wind speed is " +
-    "140 mph or greater (IRC / FBC-R R301.2.1.2). A single county routinely has land inside and " +
-    "outside it. This module publishes `inRegion` only where the code itself fixes the answer.";
+    "The wind-borne debris region is drawn by WIND SPEED CONTOUR and distance from water, NOT by " +
+    "county line, and the test itself CHANGED with ASCE 7-22. " +
+    "(a) ASCE 7-16 and earlier / 2015-2021 IRC — within 1 mile of the COASTAL mean high water line " +
+    "where the basic design wind speed is 130 mph or greater, or anywhere it is 140 mph or greater. " +
+    "(b) ASCE 7-22 — the word 'coastal' is DELETED and replaced by a requirement that an Exposure D " +
+    "condition exist upwind at the water line (at least 5,000 ft of water fetch upwind): within 1 " +
+    "mile of the mean high water line of ANY such water body where the basic design wind speed is " +
+    "130 mph or greater, or anywhere it is 140 mph or greater. Large INLAND lakes and bays qualify. " +
+    "Florida adopted (b) with the FBC 8th Edition, which created inland wind-borne debris regions " +
+    "in central Florida and the panhandle that did not exist under the 7th Edition — the Florida " +
+    "Building Commission commissioned a study of exactly this. Read the test that belongs to the " +
+    "ASCE 7 edition YOUR adopted code references (see `wind.asce`), not the one you remember. " +
+    "A single county routinely has land inside and outside the region. This module publishes " +
+    "`inRegion` only where the code itself fixes the answer.";
 
   function wbdOf(o) {
     return {
@@ -424,8 +666,10 @@
         what: "The IRC edition the municipality actually enforces today.",
         why: "Texas has no statewide residential code enforcement. §214.212 sets the 2012 IRC as the " +
              "floor and every home-rule city adopts newer editions by its own ordinance on its own " +
-             "clock. San Antonio is on the 2024 IRC and Austin is on the 2021; two cities 80 miles " +
-             "apart are on different codes and different ASCE 7 wind maps.",
+             "clock. San Antonio and Austin are on the 2024 IRC (ASCE 7-22) while Houston, Dallas " +
+             "and Fort Worth are on the 2021 (ASCE 7-16) — same state, different codes, different " +
+             "wind maps. This module had Austin on the wrong side of that line until 13 August 2026, " +
+             "which is the best argument in the file for checking rather than trusting it.",
         check: "The city's currently adopted construction-code ordinance and its effective date.",
         authority: "The adopting municipality's building official." }),
       mv({ id: "tx-annex", severity: "major",
@@ -691,9 +935,15 @@
                 "NC licensing board code update that certification had not occurred and the earliest " +
                 "possible effective date stated was 1 March 2027.",
           src: "nc-lic-2026",
-          note: "This is the most perishable fact in this module and it is six months old. Re-check " +
-                "before it is relied on. If it has taken effect, the base code changes to the 2021 " +
-                "IRC and the referenced wind standard changes with it." })
+          note: "RE-CHECKED " + CHECKED + " and it held: three independent routes agree the 2018 " +
+                "NCRC is still the code in force, including an OSFM formal interpretation issued " +
+                "30 January 2026 that is written against the 2018 NCRC. Separately established on " +
+                "the same date: while the 2018 Code governs, the 2024 Code MAY be used as an " +
+                "ALTERNATIVE METHOD OF CONSTRUCTION if the building owner or their agent requests " +
+                "it — so a 2024 NCRC design is not necessarily inadmissible, it is elective and " +
+                "must be requested. This remains the most perishable fact in this module: if it " +
+                "takes effect, the base code changes to the 2021 IRC and the referenced wind " +
+                "standard changes with it." })
       ],
       localAmendments: {
         permitted: false,
@@ -800,10 +1050,16 @@
       ],
       mustVerify: [
         mv({ id: "tx-houston-2024", severity: "major",
-          what: "Whether Houston has moved to the 2024 I-Codes since January 2024.",
-          why: "Two-and-a-half years is long enough for a code-modernisation programme to produce " +
-               "another adoption, and Houston runs one.",
-          check: "The Houston Permitting Center construction-code page and the current ordinance.",
+          what: "Whether Houston's targeted 2024 code updates have taken effect yet.",
+          why: "Re-checked " + CHECKED + ": Houston is still on the 2021 IRC, and the Permitting " +
+               "Centre was still publishing 2021 IRC training material in January 2026. But Houston " +
+               "Public Works has a code-modernisation programme that is explicitly preparing " +
+               "TARGETED 2024 code updates FOR 2026 — this calendar year — before a full 2027-cycle " +
+               "adoption aimed at 2028. A targeted update is easy to miss precisely because it is " +
+               "not a headline re-adoption, and one search route already reported the 2021 code as " +
+               "running only through 31 July 2026.",
+          check: "The Houston Permitting Center construction-code page, the code-amendment log, and " +
+                 "the current ordinance.",
           authority: "City of Houston Department of Public Works, Building Code Enforcement." })
       ]
     },
@@ -974,20 +1230,30 @@
       id: "tx-austin", name: "Austin", county: "Travis", state: "TX", kind: "municipality",
       packId: "tx-i35", packWhy: "I-35 corridor market, gravity-governed.",
       governs: "gravity",
-      codes: [codeRec({ name: "Austin Residential Code", edition: "2021 IRC",
-        basis: "2021 IRC with Austin amendments", asce: TX_ASCE_2021,
-        adopted: "2021-09-01",
-        cite: "Austin City Code Chapter 25-12, Article 11 (Residential Code), adopting the 2021 " +
-              "International Residential Code; approved by Council 3 June 2021, effective " +
-              "1 September 2021.", src: "aus-code" })],
-      wind: windOf({ vMph: 115, band: [105, 120], asce: TX_ASCE_2021, exposureCommon: "B",
+      codes: [codeRec({ name: "Austin Residential Code", edition: "2024 IRC",
+        basis: "2024 IRC with Austin amendments", asce: TX_ASCE_2024,
+        adopted: "2025-07-10",
+        cite: "City of Austin Ordinance No. 20250410-040, adoption of the 2024 International " +
+              "Residential Code and Local Amendments; adopted by Council 10 April 2025, effective " +
+              "10 JULY 2025. City Code Chapter 25-12 (Technical Codes). This REPLACED the 2021 IRC " +
+              "adoption (effective 1 September 2021) that this module carried in its first pass.",
+        src: "aus-ord",
+        note: "CORRECTED " + CHECKED + ". The first pass of this module published Austin as still on " +
+              "the 2021 IRC and used it as the worked example of Texas code divergence. That was " +
+              "WRONG by a full code generation — and it moved the referenced wind standard from " +
+              "ASCE 7-16 to ASCE 7-22 with it. See FM.juris.CORRECTIONS entry `tx-austin-2024`." })],
+      wind: windOf({ vMph: 115, band: [105, 120], asce: TX_ASCE_2024, exposureCommon: "B",
         confirmed: "unverified",
-        basis: "Planning band for central Texas from secondary map summaries, which quoted 120–135 " +
-               "for 'Austin / Central TX' — a range this module does not believe for Risk Category II " +
-               "on the ASCE 7-16 map and has not adopted.",
-        cite: "ASCE 7-16 Figure 26.5-1 / 2021 IRC Figure R301.2(2), Risk Category II.", src: "asce7",
-        note: "The secondary sources for Austin were the worst in the module and disagreed by 30 mph. " +
-              "This band is the conservative reading of the ASCE 7-16 map, not a quotation. Look it up." }),
+        basis: "Planning band for central Texas. Austin is well inside the non-hurricane region of " +
+               "the map, where ASCE 7-22 did not materially move Risk Category II speeds from " +
+               "ASCE 7-16; the band is unchanged by the edition correction. Secondary map summaries " +
+               "quoted 120–135 for 'Austin / Central TX' — a range this module does not believe for " +
+               "Risk Category II and has not adopted.",
+        cite: "ASCE 7-22 Figure 26.5-1 / 2024 IRC Figure R301.2(2), Risk Category II.", src: "asce7",
+        note: "READ THIS OFF THE ASCE 7-22 MAP, NOT 7-16. Austin moved to the 2024 IRC on 10 July " +
+              "2025 and the referenced standard moved with it. The secondary sources for Austin were " +
+              "the worst in the module and disagreed by 30 mph. This band is the conservative reading " +
+              "of the map, not a quotation. Look it up." }),
       snow: snowOf({ pgPsf: 5, band: [0, 10], confirmed: "unverified",
         cite: "Planning value for central Texas.", src: "asce7" }),
       seismic: seismicOf({ sdc: "A", confirmed: "unverified", cite: "Planning value.", src: "asce7" }),
@@ -1003,20 +1269,23 @@
         cite: "IRC R301.2.1.2 — neither limb of the criterion is reached this far inland.",
         src: "aus-code" }),
       amendments: [
-        amend("Austin's local amendments to the 2021 IRC live in City Code Chapter 25-12 Article 11 " +
-              "and were NOT retrieved. Austin also runs a separate Land Development Code that " +
-              "constrains what may be built but not how it is framed.",
-              "Austin City Code Chapter 25-12, Article 11.", "aus-code", { incomplete: true })
+        amend("Austin's local amendments to the 2024 IRC were adopted with the code in Ordinance " +
+              "20250410-040 and live in City Code Chapter 25-12. They were NOT retrieved. Austin " +
+              "also runs a separate Land Development Code that constrains what may be built but not " +
+              "how it is framed.",
+              "Austin City Code Chapter 25-12; Ordinance 20250410-040.", "aus-ord",
+              { incomplete: true })
       ],
       mustVerify: [
-        mv({ id: "tx-austin-age", severity: "blocking",
-          what: "Whether Austin is still on the 2021 IRC.",
-          why: "The only confirmable Austin adoption is five years old. Of every adoption date in " +
-               "this module this is the one most likely to have moved, and nothing found here either " +
-               "confirms or denies a 2024 adoption.",
-          check: "Austin Development Services building technical codes page and City Code " +
-                 "Chapter 25-12.",
-          authority: "City of Austin Development Services Department." })
+        mv({ id: "tx-austin-asce", severity: "blocking",
+          what: "That the wind speed for this site was read off the ASCE 7-22 map, not ASCE 7-16.",
+          why: "This module published Austin as a 2021 IRC / ASCE 7-16 jurisdiction until " + CHECKED +
+               ". It is not: Ordinance 20250410-040 put Austin on the 2024 IRC effective 10 July " +
+               "2025, and the referenced wind standard moved to ASCE 7-22. Anything drawn against " +
+               "the earlier version of this record used the wrong map. The band is believed " +
+               "unchanged inland, but 'believed unchanged' is not 'looked up'.",
+          check: "ASCE 7-22 Figure 26.5-1 / 2024 IRC Figure R301.2(2) at the site coordinates.",
+          authority: "ASCE 7 Hazard Tool; City of Austin Development Services Department." })
       ]
     },
 
@@ -1431,23 +1700,44 @@
         cite: "FBC-R R318 requires termite protection throughout Florida.", src: "fbc8" }),
       decay: levelOf({ level: "moderate to severe", confirmed: "unverified",
         cite: "IRC/FBC-R decay probability figure.", src: "fbc8" }),
-      windborneDebris: wbdOf({ inRegion: null, likely: false, determinedBy: "site",
+      windborneDebris: wbdOf({ inRegion: null, likely: null, determinedBy: "site",
         confirmed: "unverified",
-        cite: "FBC-R R301.2.1.2. Orange County is inland — no part is within 1 mile of a coastal mean " +
-              "high water line — so the region is reached only if the mapped speed at the site is " +
-              "140 mph or greater, which is at the top of the planning band.",
-        src: "fbc8",
-        note: "THIS IS THE CASE THE COUNTY-LINE HABIT GETS WRONG IN BOTH DIRECTIONS. Orlando is not " +
-              "coastal, so people assume no opening protection; but the 140 mph limb applies " +
-              "anywhere, coast or not. And the 9th Edition's five-mile-from-tidal-water rule is a " +
-              "third, different geometry again." }),
+        cite: "FBC-R R301.2.1.2 on the ASCE 7-22 definition. Orange County is not coastal, but under " +
+              "ASCE 7-22 that no longer settles it: the 1-mile limb attaches to ANY water body with " +
+              "an Exposure D condition upwind (>= 5,000 ft of fetch), which the large central-Florida " +
+              "lakes supply, and this county's planning speed of 130 mph is exactly the trigger for " +
+              "that limb. The 140 mph limb applies anywhere regardless.",
+        src: "fl-wbdr-fin",
+        note: "CORRECTED " + CHECKED + ". This record previously carried `likely: false` and reasoned " +
+              "that an inland county could only be reached by the 140 mph limb. THAT REASONING IS " +
+              "WRONG UNDER THE 8TH EDITION. Adopting ASCE 7-22 deleted 'coastal' from the test and " +
+              "created inland wind-borne debris regions beside large lakes in central Florida and " +
+              "the panhandle — the Florida Building Commission commissioned a study of precisely " +
+              "this effect. `likely` is now null: at 130 mph with major lakes in the county, a " +
+              "confident 'no' is not available, and a false 'no' here deletes opening protection " +
+              "from the package. The 9th Edition's five-mile-from-tidal-water rule is a third, " +
+              "different geometry again." }),
       amendments: [
         amend("Any local technical amendment adopted by Orange County or the City of Orlando was NOT " +
               "retrieved. Under F.S. §553.73(4) any that exist are void at the 9th Edition unless " +
               "adopted for Community Rating System purposes.",
               "F.S. §553.73(4).", "fs-553-73", { incomplete: true })
       ],
-      mustVerify: []
+      mustVerify: [
+        mv({ id: "fl-orange-lake", severity: "blocking",
+          what: "Whether the site is within 1 mile of the mean high water line of a lake or bay that " +
+                "creates an Exposure D condition upwind (>= 5,000 ft of water fetch), with a mapped " +
+                "speed of 130 mph or greater — which puts it in the wind-borne debris region and " +
+                "requires opening protection.",
+          why: "This is the inland limb that the ASCE 7-22 definition added and the FBC 8th Edition " +
+               "adopted. Central Florida is the region it was found to affect. This module asserted " +
+               "the opposite until " + CHECKED + ". Getting it wrong deletes impact-rated glazing or " +
+               "shutters from a package that the code requires to have them.",
+          check: "FBC-R R301.2.1.2 and the ASCE 7-22 wind-borne debris region definition, against " +
+                 "the site's distance to Lake Apopka, Lake Conway and the other large county lakes, " +
+                 "and the site's mapped speed.",
+          authority: "Orange County / City of Orlando building department; ASCE 7 Hazard Tool." })
+      ]
     },
 
     {
@@ -1854,6 +2144,13 @@
   FM.juris.SOURCES = SOURCES;
   FM.juris.RESEARCH = RESEARCH;
 
+  /* What an earlier pass got WRONG, and what was re-checked and held.
+     Both are part of the contract: a reader who saw the old value
+     needs to know it moved, and a reader deciding how far to trust
+     this file needs to know which facts have been looked at twice. */
+  FM.juris.CORRECTIONS = CORRECTIONS;
+  FM.juris.RECHECKED = RECHECKED;
+
   /* the builders are exported so a reviewer can see that every
      record in this file went through one, and so a later
      jurisdiction cannot be added by hand without the stamps */
@@ -2003,9 +2300,12 @@
               "publishes no county-wide answer here" +
               (j.windborneDebris.likely === null ? "." :
                "; the likely answer is " + (j.windborneDebris.likely ? "yes" : "no") + "."),
-        why: "The region is drawn by wind speed contour and distance from the coastal mean high " +
-             "water line, not by county line. A single county routinely has land inside and outside " +
-             "it, and publishing a county flag would be a confident error.",
+        why: "The region is drawn by wind speed contour and distance from water, not by county line, " +
+             "and the test changed with ASCE 7-22 — 'coastal' was deleted and replaced by an " +
+             "Exposure D condition upwind at the water line, which brings large inland lakes and " +
+             "bays in. A single county routinely has land inside and outside the region, and " +
+             "publishing a county flag would be a confident error. Read the limb that belongs to " +
+             "the ASCE 7 edition this jurisdiction's adopted code references (" + j.wind.asce + ").",
         check: j.windborneDebris.criterion,
         authority: "The AHJ; the ASCE 7 Hazard Tool for the site's mapped speed."
       }));

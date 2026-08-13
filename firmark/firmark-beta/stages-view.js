@@ -63,6 +63,35 @@
     return (v === null || v === undefined || !isFinite(v)) ? "—" : Number(v).toFixed(d === undefined ? 2 : d);
   }
 
+  /* WHAT AN EXPORTED FILE IS FOR.
+
+     This was `firmark-materials.txt` — no plan, no region, no variant — while
+     its two siblings in this product both carry identity:
+
+         firmark-planset-starter-1210-tx-i35-for-PE-review.txt
+         firmark-schedule-two-story-2450-tx-i35.txt
+
+     Two materials exports from two different plans therefore collided in
+     Downloads under one name, the second silently replacing the first, and
+     neither could be traced back to what produced it. A quantity takeoff that
+     cannot be tied to a plan and a region pack is a number with no basis,
+     which is the one thing this product exists not to ship.
+
+     The identity is read off the BOM's own `plan` and `pack` records rather
+     than off the project state, so the name always describes the document in
+     the file. What is missing is NAMED in the filename — "no-plan" /
+     "no-region", the same words planset.js uses on the cover — never quietly
+     omitted, because a file called `firmark-materials-tx-i35.txt` reads like
+     a complete name and is not one. */
+  function bomFilename(b) {
+    var pl = (b && b.plan) || null, pk = (b && b.pack) || null;
+    var parts = [pl && pl.id ? String(pl.id) : "no-plan",
+                 pk && pk.id ? String(pk.id) : "no-region"];
+    if (pl && pl.variant && pl.variant.id) parts.push(String(pl.variant.id));
+    return ("firmark-materials-" + parts.join("-")).replace(/[^\w.-]+/g, "-") + ".txt";
+  }
+  FM.bomFilename = bomFilename;
+
   /* A block of things a stage could not answer. Never collapsed, never
      truncated silently, and it says zero rather than disappearing — an
      absent list and an empty list read identically and mean opposite things. */
@@ -485,8 +514,13 @@
           onclick: function () {
             var b = FM.project.bom();
             if (!b || !FM.bom.text) { FM.toast("Nothing to export yet."); return; }
-            FM.download ? FM.download(FM.bom.text(b), "firmark-materials.txt")
-                        : FM.toast("Export is unavailable in this build.");
+            if (!FM.download) { FM.toast("Export is unavailable in this build."); return; }
+            var name = bomFilename(b);
+            FM.download(FM.bom.text(b), name);
+            FM.toast(/no-plan|no-region/.test(name)
+              ? "Exported as " + name + " — this list could not name the plan or the region " +
+                "pack it came from, and the filename says so rather than hiding it."
+              : "Exported as " + name + " — quantities only; prices are [market] placeholders.");
           }
         })
       ]));

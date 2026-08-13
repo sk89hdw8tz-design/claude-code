@@ -116,6 +116,24 @@
            "." + (cents < 10 ? "0" : "") + cents;
   }
 
+  /* A timestamp a person reads. pipeline.js records `at` as a full ISO
+     instant — "2026-08-13T15:13:46.862Z" — and pipeline-view.js already
+     shortens it for the screen. The package was printing the raw string, so
+     the same approval read one way on screen and another on the document
+     going to a plan reviewer, milliseconds and all, in a 24-column cell that
+     also overflowed the 78-column sheet.
+
+     One implementation, and it never invents: anything that is not an ISO
+     instant is printed exactly as it arrived, because a timestamp this file
+     cannot parse is a fact about the trail and not a formatting problem. */
+  function when(v) {
+    var s = str(v);
+    if (!s) return "—";
+    var m = /^(\d{4}-\d{2}-\d{2})T(\d{2}:\d{2})(?::\d{2}(?:\.\d+)?)?(Z|[+-]\d{2}:?\d{2})?$/.exec(s);
+    if (!m) return s;
+    return m[1] + " " + m[2] + " " + (m[3] === undefined || m[3] === "Z" ? "UTC" : m[3]);
+  }
+
   /* wrap() collapses runs of whitespace, exactly as export.js's does, so a
      label with column padding in it cannot be passed through — pad outside. */
   function wrap(text, width, indent) {
@@ -648,6 +666,123 @@
   }
 
   /* ============================================================
+     WHICH OPENINGS AND WHICH WALLS A MARK ACTUALLY COVERS
+
+     The takeoff groups openings that are identical in every derived value
+     into ONE mark built n times, and it traces the group in the mark's
+     `count` derivation: HDR-O1, count 8, "from openings O1, O2, O3, O4, O7,
+     O8, O9, O10".
+
+     The mark's LABEL names only the first opening's wall — "Header · window
+     4.00 ft · wall W1 · First floor" — because the mark id is taken from the
+     first opening in the group. The schedule printed that label beside QTY 8,
+     so S2.0 read "wall W1 … QTY 8" on a wall that has six openings, while
+     four of the eight were in W3. The takeoff's own derivation names both
+     walls. A schedule that names one wall for a mark covering two sends a
+     framer to the wrong elevation, and the count no longer ties to the wall
+     it is printed against.
+
+     Nothing here is inferred from prose: it reads `fromIds` off the count
+     derivation and resolves each id against the model's own opening → wall
+     map. An id the model does not carry is NAMED as unresolved rather than
+     quietly dropped, because a partial list under a total is the same defect
+     one level down.
+     ============================================================ */
+
+  function spreadOf(g, takeoff) {
+    var out = { available: false, byMark: {} };
+    if (!g || !isArr(g.levels) || !takeoff || !isArr(takeoff.derivations)) return out;
+
+    var wallOf = {}, isOpening = {};
+    g.levels.forEach(function (L) {
+      L.openings.forEach(function (o) {
+        wallOf[" " + o.id] = o.hostFound ? o.wallId : null;
+        isOpening[" " + o.id] = true;
+      });
+    });
+
+    takeoff.derivations.forEach(function (d) {
+      if (!d || safe(d.field) !== "count") return;
+      var id = safe(d.markId, "");
+      if (!id || id === "—" || own(out.byMark, " " + id)) return;
+      var ids = isArr(d.fromIds) ? d.fromIds.map(function (x) { return safe(x); }) : [];
+      var openings = [], walls = [], unresolved = [], hostless = [];
+      ids.forEach(function (x) {
+        if (!own(isOpening, " " + x)) { unresolved.push(x); return; }
+        openings.push(x);
+        var w = wallOf[" " + x];
+        if (w === null || w === undefined || w === "—") { hostless.push(x); return; }
+        if (walls.indexOf(w) === -1) walls.push(w);
+      });
+      /* a count derived from a run names its framing region, not openings —
+         that is a different derivation and this table has nothing to add */
+      if (!openings.length && !unresolved.length) return;
+      out.available = true;
+      out.byMark[" " + id] = {
+        markId: id, openings: openings, walls: walls,
+        unresolved: unresolved, hostless: hostless,
+        count: d.value, from: safe(d.from, "")
+      };
+    });
+    return out;
+  }
+
+  function spreadFor(spread, markId) {
+    if (!spread || !spread.available) return null;
+    return own(spread.byMark, " " + markId) ? spread.byMark[" " + markId] : null;
+  }
+
+  /* The openings a mark stands for, and the wall each of them is in. */
+  function spreadWhere(s) {
+    if (!s) return "";
+    var all = s.openings.concat(s.unresolved);
+    return "opening" + (all.length === 1 ? " " : "s ") + all.join(", ") +
+           (s.walls.length
+             ? " · wall" + (s.walls.length === 1 ? " " : "s ") + s.walls.join(", ")
+             : " · no wall is resolved for any of them");
+  }
+
+  /* The sentence a schedule row needs when its mark is more than one opening.
+     Returns "" when the mark is a single opening and the row already says
+     everything true about it. */
+  function spreadNote(spread, markId, labelText) {
+    var s = spreadFor(spread, markId);
+    if (!s) return "";
+    var n = s.openings.length + s.unresolved.length;
+    if (n < 2) return "";
+    var parts = ["QTY " + safe(s.count, String(n)) + " is " + n + " openings — " +
+                 s.openings.concat(s.unresolved).join(", ") + " —"];
+    if (s.walls.length > 1) {
+      parts.push("in " + s.walls.length + " walls: " + s.walls.join(", ") + ".");
+      /* only worth saying when the row's own label names one of them */
+      var named = null;
+      s.walls.forEach(function (w) {
+        if (named) return;
+        var re = new RegExp("(^|[^A-Za-z0-9_-])" + w.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") +
+                            "([^A-Za-z0-9_-]|$)");
+        if (re.test(String(labelText || ""))) named = w;
+      });
+      if (named) {
+        parts.push("The label names " + named + " only, because the mark id is taken from " +
+                   "the first opening in the group — do not read this quantity against " +
+                   named + " alone.");
+      }
+    } else if (s.walls.length === 1) {
+      parts.push("all in wall " + s.walls[0] + ".");
+    } else {
+      parts.push("and the model resolves no wall for any of them.");
+    }
+    if (s.hostless.length) {
+      parts.push("Opening(s) " + s.hostless.join(", ") + " name a wall the model does not carry.");
+    }
+    if (s.unresolved.length) {
+      parts.push("Id(s) " + s.unresolved.join(", ") + " are named by the takeoff's count " +
+                 "derivation but are not openings in this model, so their wall is unknown.");
+    }
+    return parts.join(" ");
+  }
+
+  /* ============================================================
      OPEN ITEMS
 
      Collected from every stage, and the standing items ALWAYS print.
@@ -656,7 +791,7 @@
      claiming a completeness the system cannot have.
      ============================================================ */
 
-  function collectOpen(ctx, p, res) {
+  function collectOpen(ctx, p, res, g) {
     var items = [];
     function add(group, what, why, need) {
       items.push({ group: group, what: what, why: why, need: need });
@@ -807,6 +942,19 @@
     /* ---- 5. the bill of materials ---- */
     if (p.have.bom) {
       var bom = p.have.bom;
+      /* bom.js's own DO-NOT-ISSUE signal, which this sheet did not collect.
+         A stick bought short is a framing-day problem and it is the loudest
+         thing bom.js can say; a sheet billed as the collection point that
+         omits it is claiming a completeness it does not have. */
+      if (isArr(bom.selfChecks) && bom.selfChecks.length) {
+        bom.selfChecks.forEach(function (s) {
+          add("BILL OF MATERIALS — SELF-CHECK FAILED",
+              "bom.js self-check: " + safe(s, "(no detail supplied)"),
+              "The bill of materials checked its own arithmetic against solver.js and the " +
+              "two disagree. bom.js prints DO NOT ISSUE on its own export for this.",
+              "Resolve it before any quantity on S4.0 is used to order material.");
+        });
+      }
       var exc = isArr(bom.excluded) ? bom.excluded : null;
       if (!exc) {
         add("BILL OF MATERIALS — EXCLUDED", "The bill of materials declares no exclusion list.",
@@ -868,11 +1016,60 @@
       });
     }
 
-    /* ---- 8. the geometry ---- */
+    /* ---- 8. the geometry ----
+
+       EVERY cad.validate() FINDING IS AN OPEN ITEM. This sheet is billed as
+       the collection point for every stage, and stage 1 is the geometry — so
+       for a long time it collected exactly one geometry item, and that item
+       was one this file wrote itself. Meanwhile cad.validate() returned seven
+       findings on `starter-1210` — four walls whose thickness was ASSUMED and
+       four walls carrying openings at PLACEHOLDER offsets, "no dimension off
+       them is real" — and every one of them printed on S1.0 and NOWHERE on
+       S5.0. They were not hidden from the package; they were absent from the
+       sheet a PE reads to know what they are inheriting, which is worse than
+       hidden, because the sheet claims to have looked.
+
+       The findings are carried verbatim, with cad.js's own severity, and an
+       `error` says outright that it blocks gate 1. Nothing is summarised: a
+       validator's sentence is the finding. */
     if (p.have.model) {
+      var val = g && isArr(g.validation) ? g.validation : null;
+      if (val) {
+        val.forEach(function (v) {
+          var sev = safe(v.severity, "").toLowerCase();
+          var where = [];
+          if (str(v.level)) where.push("level " + safe(v.level));
+          if (str(v.id)) where.push(safe(v.id));
+          add("GEOMETRY",
+              "cad.validate [" + (sev || "severity not stated") + "] " +
+                (where.length ? where.join(" · ") : "location not stated") +
+                (str(v.code) ? "  (" + safe(v.code) + ")" : ""),
+              safe(v.text, "cad.js reported this finding with no text."),
+              sev === "error"
+                ? "An ERROR from cad.validate() blocks approval gate 1 (geometry). The " +
+                  "package cannot be issued until the model is corrected and the takeoff re-run."
+                : "A WARNING from cad.validate(). It does not block gate 1, so approving " +
+                  "the geometry means a named person read this and accepted it.");
+        });
+        if (!val.length) {
+          add("GEOMETRY", "cad.validate() returned no findings against this model.",
+              "That is a statement about the checks cad.js performs, not a statement that " +
+              "the geometry is right. Nothing here confirms the model against the " +
+              "architectural set.",
+              "Check the drawn geometry against the architectural set before gate 1.");
+        }
+      } else if (p.cad) {
+        add("GEOMETRY", "The model could not be validated.",
+            "cad.js is loaded but FM.cad.validate() did not return a finding list for this " +
+            "model — it threw, or returned something this package could not read. A wall " +
+            "with no thickness, an opening wider than its wall or a framing region bearing " +
+            "on nothing would not have been caught.",
+            "Run FM.cad.validate() against this model directly and fix what it reports.");
+      }
       add("GEOMETRY", "Plan north is not declared by the model.",
           "The CAD model carries an origin and axes but no true-north bearing, so the " +
-          "north arrow on S1.0 is an assumption of the drawing.",
+          "north arrow on S1.0 is an assumption of the drawing. This is this package's " +
+          "own finding, not one of cad.validate()'s.",
           "Confirm the orientation against the architectural site plan.");
     }
     if (!p.cad && p.have.model) {
@@ -1073,7 +1270,7 @@
                    : (r.status === "stale" ? "VOID (stale)"
                    : (r.status === "rejected" ? "REJECTED" : "not approved"));
         say("  " + pad(r.label, 22) + pad(status, 14) +
-            pad(r.by || "—", 18) + (r.at || "—"));
+            pad(r.by || "—", 18) + when(r.at));
         if (r.status === "stale" && r.moved.length) {
           wrap("invalidated because " + r.moved.join(", ") + " moved after it was given — " +
                "an approval that survives a change to what was approved is worthless", W - 8)
@@ -1090,7 +1287,7 @@
         say();
         say("  AUDIT TRAIL — last " + Math.min(8, pipe.audit.length) + " of " + pipe.audit.length + " entries");
         pipe.audit.slice(Math.max(0, pipe.audit.length - 8)).forEach(function (a) {
-          say("      " + pad(safe(a.at, "—"), 26) + pad(safe(a.kind, "—"), 10) +
+          say("      " + pad(when(a.at), 22) + pad(safe(a.kind, "—"), 10) +
               pad(safe(a.stage, "—"), 12) + safe(a.by, "—"));
         });
       }
@@ -1469,7 +1666,7 @@
 
   /* ---- S2.0 SCHEDULES ---- */
 
-  function sheetSchedules(ctx, p, res) {
+  function sheetSchedules(ctx, p, res, spread) {
     var L = [];
     function say(s) { L.push(s === undefined ? "" : s); }
     function block(t) { say(); say(rule("-")); say(t); say(rule("-")); say(); }
@@ -1547,6 +1744,8 @@
            (m.demand ? (m.demand.braced ? ", braced" : ", UNBRACED") : "") +
            (m.unifiedTo ? " · RAISED FOR SKU UNIFICATION, not for capacity" : ""), W - 16)
         .forEach(function (x) { say("  " + pad("", 12) + x); });
+      var sn = spreadNote(spread, id, safe(m.mark.label));
+      if (sn) wrap(sn, W - 16).forEach(function (x) { say("  " + pad("", 12) + x); });
     });
 
     /* ---- headers ---- */
@@ -1554,22 +1753,59 @@
     block("HEADER SCHEDULE — " + hdrs.length + " MARK(S)");
     if (!hdrs.length) say("  No mark on this plan is a header.");
     else {
-      say("  " + pad("MARK", 12) + pad("SPAN", 10) + pad("TRIB", 10) + pad("BEARING", 10) +
-          "HEAD HEIGHT");
+      /* QTY belongs on this schedule. A header schedule of four marks over a
+         house with eleven openings is not a lie only if it says which of the
+         two numbers it is counting — and the openings each mark stands for
+         are named underneath, with their walls, because the mark id names
+         one opening and the group can straddle several walls. */
+      say("  " + pad("MARK", 12) + pad("SPAN", 9) + pad("TRIB", 9) + pad("BEARING", 9) +
+          pad("HEAD", 8) + "QTY");
       say("  " + rule("-").slice(0, W - 2));
+      var openingsCovered = 0, spreadKnown = 0;
       hdrs.forEach(function (m) {
         var row = m.unifiedTo || (m.solution && m.solution.pick);
         var member = m.notApplicable ? "— not sized (" + safe(m.notApplicable.reason) + ") —"
                    : (row ? safe(row.cand.size) + " " + safe(row.cand.species) + " " + safe(row.cand.grade)
                           : "— ESCALATED, no member —");
         say("  " + pad(safe(m.mark.id), 12) +
-            pad(n2(m.mark.span, 2) + " ft", 10) +
-            pad(m.mark.trib === undefined ? "—" : n2(m.mark.trib, 2) + " ft", 10) +
-            pad(m.mark.bearing === undefined ? "—" : n2(m.mark.bearing, 2) + " in", 10) +
-            (m.mark.headHeightIn === undefined ? "—" : n2(m.mark.headHeightIn, 0) + " in"));
+            pad(n2(m.mark.span, 2) + " ft", 9) +
+            pad(m.mark.trib === undefined ? "—" : n2(m.mark.trib, 2) + " ft", 9) +
+            pad(m.mark.bearing === undefined ? "—" : n2(m.mark.bearing, 2) + " in", 9) +
+            pad(m.mark.headHeightIn === undefined ? "—" : n2(m.mark.headHeightIn, 0) + " in", 8) +
+            (isFinite(Number(m.mark.count)) ? String(m.mark.count) : "—"));
         wrap("→ " + member, W - 16).forEach(function (x) { say("  " + pad("", 12) + x); });
+        var hs = spreadFor(spread, safe(m.mark.id));
+        if (hs) {
+          spreadKnown++;
+          openingsCovered += hs.openings.length + hs.unresolved.length;
+          var line = spreadWhere(hs);
+          if (hs.walls.length > 1) {
+            line += ". The mark id and the label name " + hs.openings[0] + " and its wall " +
+                    "only — the group straddles " + hs.walls.length + " walls and this " +
+                    "quantity may not be read against one of them.";
+          }
+          if (hs.hostless.length) {
+            line += " Opening(s) " + hs.hostless.join(", ") + " name a wall the model does not carry.";
+          }
+          if (hs.unresolved.length) {
+            line += " Id(s) " + hs.unresolved.join(", ") + " are named by the count derivation " +
+                    "but are not openings in this model.";
+          }
+          wrap(line, W - 16).forEach(function (x) { say("  " + pad("", 12) + x); });
+        }
       });
       say();
+      if (spreadKnown) {
+        wrap(hdrs.length + " header mark(s) on this schedule stand for " + openingsCovered +
+             " drawn opening(s)" +
+             (spreadKnown === hdrs.length ? ""
+               : " — " + (hdrs.length - spreadKnown) + " of the marks carry no takeoff count " +
+                 "derivation, so the openings behind them are not named here") +
+             ". The mark count and the opening count are different numbers and both are " +
+             "printed, because a schedule row is a member and an elevation is a hole.", W - 4)
+          .forEach(function (x) { say("  " + x); });
+        say();
+      }
       wrap("Bearing is the declared jack-stud length, and it is a DESIGN INPUT on a header " +
            "— it governs the check often enough that a silent default produced false " +
            "escalations. Head height is what limits the depth available.", W - 4)
@@ -1842,14 +2078,69 @@
     if (bom.totals) {
       say();
       say("  TOTALS");
-      say("      " + pad("Board feet", 20) + comma(bom.totals.bf));
-      say("      " + pad("Pieces", 20) + comma(bom.totals.pieces));
-      say("      " + pad("Modelled cost", 20) + usd(bom.totals.usd) +
+      say("      " + pad("Board feet", 20) + comma(bom.totals.bf) + " bf");
+      say("      " + pad("Pieces", 20) + comma(bom.totals.pieces) + " pc");
+      /* THE LABEL HAS TO NAME WHAT THE NUMBER IS. bom.js states outright that
+         `usd` is MATERIAL ONLY and carries `dropHandlingUSD` on its own line
+         so it can never be read as a waste allowance on the material. This
+         sheet was calling the same figure "Modelled cost", which is the name
+         of a larger thing, and was dropping the handling line entirely — so
+         the package and the materials export disagreed by the handling
+         figure and neither said why. */
+      say("      " + pad("Material cost", 20) + usd(bom.totals.usd) +
           "   [market placeholders — no code standing]");
+      if (bom.totals.dropHandlingUSD !== undefined) {
+        say("      " + pad("Drop handling", 20) + usd(bom.totals.dropHandlingUSD) +
+            "   [market — NOT lumber]");
+        wrap("Drop handling prices sorting and disposing of the offcut, net of salvage. " +
+             "It is NOT an estimating waste allowance and it is NOT inside the material " +
+             "figure above — the two are added only where a reader wants them added.", W - 10)
+          .forEach(function (x) { say("        " + x); });
+      }
+      if (isFinite(Number(bom.totals.modelledSelectionUSD))) {
+        say("      " + pad("Selection objective", 20) + usd(bom.totals.modelledSelectionUSD) +
+            "   [market — RANKS members, not an invoice]");
+        wrap(safe(bom.totals.selectionTieBack, "This is FM.solver's ranking objective, not " +
+             "the bill of materials total, and the difference between them is the " +
+             "non-material weights inside it."), W - 10)
+          .forEach(function (x) { say("        " + x); });
+      }
+      /* byCategory is MATERIAL DOLLARS by member role. It was printed as the
+         raw stored number — "header 149.39733333333334" under a line reading
+         "Modelled cost $149.40" — which is a float with no unit on a document
+         a plan reviewer reads, and two spellings of one figure on consecutive
+         lines. Money is money here, and the parts are stated to TIE to the
+         whole: a breakdown a reader cannot add up is worse than no breakdown,
+         because it looks checked. */
       if (bom.totals.byCategory && typeof bom.totals.byCategory === "object") {
-        Object.keys(bom.totals.byCategory).forEach(function (k) {
-          say("      " + pad("  " + k, 20) + safe(bom.totals.byCategory[k]));
-        });
+        var catKeys = isArr(bom.totals.byCategoryOrder)
+          ? bom.totals.byCategoryOrder.filter(function (k) { return own(bom.totals.byCategory, k); })
+          : Object.keys(bom.totals.byCategory);
+        if (catKeys.length) {
+          say("      " + pad("  by member role", 20) + "material dollars [market]");
+          var catSum = 0, catAllNumeric = true;
+          catKeys.forEach(function (k) {
+            var v = Number(bom.totals.byCategory[k]);
+            if (isFinite(v)) catSum += v; else catAllNumeric = false;
+            say("      " + pad("    " + safe(k, "(unnamed role)"), 20) +
+                (isFinite(v) ? usd(v) : "** NOT A NUMBER — bom.js supplied " +
+                 safe(bom.totals.byCategory[k], "nothing readable") + " **"));
+          });
+          var tot = Number(bom.totals.usd);
+          if (catAllNumeric && isFinite(tot)) {
+            if (Math.abs(catSum - tot) > 0.005) {
+              wrap("** THE ROLES DO NOT TIE TO THE TOTAL. They add to " + usd(catSum) +
+                   " against a material cost of " + usd(tot) + ", a difference of " +
+                   usd(tot - catSum) + ". One of the two numbers is wrong and this sheet " +
+                   "cannot say which — do not reconcile a quote against either until " +
+                   "bom.js is checked. **", W - 8)
+                .forEach(function (x) { say("      " + x); });
+            } else {
+              say("      " + pad("    (they tie)", 20) + usd(catSum) +
+                  "   = the material cost above");
+            }
+          }
+        }
       }
     }
     if (bom.waste) {
@@ -1859,11 +2150,101 @@
         .forEach(function (x, i) { say("  " + pad(i ? "" : "WASTE POLICY", 14) + (i ? "  " : ": ") + x); });
       if (bom.waste.basis) wrap("basis: " + safe(bom.waste.basis), W - 8).forEach(function (x) { say("      " + x); });
     }
+    /* A COMMUNITY TOTAL WITH NO DIVISOR IS NOT CHECKABLE.
+       This printed "per community : $110,953.25" and nothing else — no lot
+       count, no multiplier, no statement of whether take rates were applied.
+       $110k on a PE package that a reader cannot divide by anything is a
+       number with no unit wearing a dollar sign; the lot count is right there
+       on the record bom.js hands over, along with the arithmetic. */
     if (bom.perLot || bom.perCommunity) {
       say();
       say("  SCALED QUANTITIES");
-      if (bom.perLot) say("      per lot       : " + safe(bom.perLot.usd !== undefined ? usd(bom.perLot.usd) : bom.perLot, "supplied"));
-      if (bom.perCommunity) say("      per community : " + safe(bom.perCommunity.usd !== undefined ? usd(bom.perCommunity.usd) : bom.perCommunity, "supplied"));
+      var pl0 = bom.perLot && typeof bom.perLot === "object" ? bom.perLot : null;
+      var pc0 = bom.perCommunity && typeof bom.perCommunity === "object" ? bom.perCommunity : null;
+      if (bom.perLot) {
+        say("      " + pad("per lot", 16) + ": " +
+            (pl0 && pl0.usd !== undefined ? usd(pl0.usd) : safe(bom.perLot, "supplied")) +
+            (pl0 && isFinite(Number(pl0.pieces))
+              ? "   " + comma(pl0.pieces) + " pc · " + comma(pl0.bf) + " bf" : ""));
+      }
+      if (bom.perCommunity) {
+        var lots = pc0 && isFinite(Number(pc0.lots)) ? Number(pc0.lots) : null;
+        say("      " + pad("per community", 16) + ": " +
+            (pc0 && pc0.usd !== undefined ? usd(pc0.usd) : safe(bom.perCommunity, "supplied")) +
+            (pc0 && isFinite(Number(pc0.pieces))
+              ? "   " + comma(pc0.pieces) + " pc · " + comma(pc0.bf) + " bf" : ""));
+        say("      " + pad("over", 16) + ": " +
+            (lots === null
+              ? "** THE LOT COUNT IS NOT DECLARED. The community figure above cannot be "
+                + "checked against the per-lot figure without it. **"
+              : comma(lots) + " lot(s)" +
+                (pc0.weighted === true
+                  ? ", WEIGHTED by the variants' [market] take rates — not one house × " +
+                    comma(lots)
+                  : (pc0.weighted === false
+                      ? ", as one house × " + comma(lots) + " — every lot priced as the " +
+                        "combination solved on S2.0, take rates NOT applied"
+                      : ", and this record does not say whether take rates were applied"))));
+        if (pc0 && pc0.basis) {
+          wrap("basis: " + safe(pc0.basis), W - 10).forEach(function (x) { say("        " + x); });
+        }
+      }
+      if (pl0 && pc0 && isFinite(Number(pl0.usd)) && isFinite(Number(pc0.usd)) &&
+          isFinite(Number(pc0.lots)) && pc0.weighted !== true) {
+        var expect = Number(pl0.usd) * Number(pc0.lots);
+        if (Math.abs(expect - Number(pc0.usd)) > 0.01) {
+          wrap("** THE TWO SCALED FIGURES DO NOT TIE. Per lot × " + comma(pc0.lots) +
+               " lots is " + usd(expect) + " against a community figure of " +
+               usd(pc0.usd) + ". Do not use either until bom.js is checked. **", W - 8)
+            .forEach(function (x) { say("      " + x); });
+        }
+      }
+    }
+
+    /* WHAT THE LINES ABOVE DO AND DO NOT COVER — the tie back to S2.0.
+       bom.js counts this for itself and prints it at the top of the materials
+       export; the sheet dropped it, so a reader of S4.0 saw three purchase
+       lines with no statement of how many marks on the schedule are behind
+       them and how many are not in them at all. */
+    if (bom.counts && typeof bom.counts === "object") {
+      say();
+      say("  WHAT THESE LINES COVER");
+      say("      " + pad("Marks on the plan", 30) + lpad(safe(bom.counts.marksOnPlan), 5));
+      say("      " + pad("Marks priced above", 30) + lpad(safe(bom.counts.marksPriced), 5));
+      say("      " + pad("Marks ESCALATED — no member", 30) + lpad(safe(bom.counts.marksEscalated), 5));
+      say("      " + pad("Marks OUT OF SCOPE", 30) + lpad(safe(bom.counts.marksOutOfScope), 5));
+      say("      " + pad("Whole categories not sized", 30) + lpad(safe(bom.counts.categoriesNotSized), 5));
+      var onPlan = Number(bom.counts.marksOnPlan);
+      var accounted = Number(bom.counts.marksPriced) + Number(bom.counts.marksEscalated) +
+                      Number(bom.counts.marksOutOfScope);
+      if (isFinite(onPlan) && isFinite(accounted) && onPlan !== accounted) {
+        wrap("** " + onPlan + " mark(s) are on the plan and " + accounted + " are accounted " +
+             "for as priced, escalated or out of scope. " + Math.abs(onPlan - accounted) +
+             " mark(s) are in neither column, and this sheet cannot say which. **", W - 8)
+          .forEach(function (x) { say("      " + x); });
+      }
+      if (bom.complete === false) {
+        say();
+        wrap("** " + safe(bom.completeNote, "This bill of materials is not complete."), W - 6)
+          .forEach(function (x, i) { say("  " + (i ? "   " : "") + x); });
+      }
+    }
+
+    /* bom.js's own DO-NOT-ISSUE signal. It reads "SELF-CHECK FAILED — n
+       ITEM(S). DO NOT ISSUE." in the materials export and did not appear on
+       this sheet at all, which meant the one document going to a PE was the
+       one document that did not carry it. */
+    if (isArr(bom.selfChecks) && bom.selfChecks.length) {
+      say();
+      say("  " + rule("!").slice(0, W - 2));
+      say("  !! BILL OF MATERIALS SELF-CHECK FAILED — " + bom.selfChecks.length +
+          " ITEM(S). DO NOT ISSUE.");
+      say("  " + rule("!").slice(0, W - 2));
+      bom.selfChecks.forEach(function (s) {
+        wrap(safe(s, "(no detail supplied)"), W - 8).forEach(function (x, i) {
+          say("      " + (i ? "  " : "· ") + x);
+        });
+      });
     }
 
     block("WHAT THIS BILL OF MATERIALS DOES NOT CONTAIN");
@@ -1949,7 +2330,9 @@
     var plan = res ? res.plan : (ctx.plan || null);
     var pack = res ? res.pack : (ctx.pack || null);
 
-    var at = str(ctx.at) || (function () {
+    /* `at` may arrive as an ISO instant (project.js stores one) or already
+       formatted; when() shortens the first and passes the second through. */
+    var at = str(ctx.at) ? when(ctx.at) : (function () {
       try { return new Date().toISOString().slice(0, 16).replace("T", " ") + " UTC"; }
       catch (e) { return "generation time not available"; }
     })();
@@ -1979,7 +2362,11 @@
     }
     pkg.geometry = g;
 
-    var items = collectOpen(ctx, p, res);
+    /* which openings and which walls each grouped mark actually covers */
+    var spread = spreadOf(g, p.have.takeoff);
+    pkg.spread = spread;
+
+    var items = collectOpen(ctx, p, res, g);
     pkg.openItems = items;
 
     var defs = [
@@ -1996,7 +2383,7 @@
       { no: "S2.0", title: "Schedules", kind: "schedules",
         note: res ? "member, header and reaction schedules; escalations; marks not sized"
                   : "NOT GENERATED — no solver result",
-        lines: function () { return sheetSchedules(ctx, p, res); } },
+        lines: function () { return sheetSchedules(ctx, p, res, spread); } },
       { no: "S3.0", title: "Calculations", kind: "calcs",
         note: res ? "the engine's working, mark by mark, reproducible from its own inputs"
                   : "NOT GENERATED — no solver result",
@@ -2413,7 +2800,10 @@
     }
     var bom = null;
     if (res && FM.bom && typeof FM.bom.build === "function") {
-      try { bom = FM.bom.build(res, {}); } catch (e) { bom = null; }
+      /* the takeoff goes in so a piece count that came out of the takeoff's
+         grouping rule can name that rule, instead of the BOM attributing it
+         to a plan record that states nothing about it */
+      try { bom = FM.bom.build(res, { takeoff: takeoff }); } catch (e) { bom = null; }
     }
     return { model: model, takeoff: takeoff, planResult: res, bom: bom,
              juris: juris, pipeline: FM.pipeline || null };

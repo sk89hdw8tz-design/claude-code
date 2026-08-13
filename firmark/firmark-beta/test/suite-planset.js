@@ -588,7 +588,18 @@ module.exports = function (t, FM) {
     var cover = withA.sheetByNo("S0.0").text();
     truthy(/1 of 3 gates approved/.test(cover), "the trail counts the gates that are approved");
     truthy(cover.indexOf("A. Drafter") !== -1, "and names who approved, by name");
-    truthy(cover.indexOf("2026-08-01T10:00:00Z") !== -1, "and when");
+    /* WHEN — as a person reads it, not as pipeline.js stores it.
+       This assertion used to require the RAW ISO instant on the cover, which
+       is what kept "2026-08-13T15:13:46.862Z" — milliseconds and a Z — on a
+       document going to a plan reviewer, while pipeline-view.js showed the
+       same approval as "2026-08-13 15:13 UTC" on screen. One approval, two
+       spellings, and the paper had the worse one. The assertion now requires
+       the readable form and FORBIDS the raw one, so the defect cannot come
+       back through this test. */
+    truthy(cover.indexOf("2026-08-01 10:00 UTC") !== -1,
+           "and when — as a date and a time a reader can use");
+    truthy(cover.indexOf("2026-08-01T10:00:00Z") === -1,
+           "and the raw ISO instant is NOT on the sheet");
     truthy(cover.indexOf("traced from sheet A2.1") !== -1, "and what they wrote");
     truthy(/VOID \(stale\)/.test(cover),
            "an approval invalidated by a later change is shown VOID, not approved");
