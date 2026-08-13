@@ -105,6 +105,12 @@
       }
 
       var r = res.rollup;
+      if (!r.complete) {
+        body.appendChild(el("div", { class: "banner banner-warn" }, [
+          el("strong", { text: "Not a complete schedule — " }),
+          el("span", { text: r.incompleteBecause + ". Do not read the solved marks as a finished design." })
+        ]));
+      }
       body.appendChild(el("div", { class: "grid g5", style: "margin-bottom:16px" }, [
         FM.statCard(String(r.solved) + "/" + plan.marks.length, "Marks solved", r.escalated ? "warn" : "pass"),
         FM.statCard(String(r.escalated), "Escalated", r.escalated ? "fail" : ""),
@@ -224,8 +230,13 @@
       wrap.appendChild(card("Search trace", el("span", { class: "badge b-blue", text: st.evaluated + " engine calls", style: "margin-left:auto" }),
         el("div", { style: "display:grid;gap:10px" }, [
           el("div", { class: "eq", html:
-            "S_x required &ge; " + fmt(b.S_req, 2) + " in&sup3;  ·  I_x required &ge; " + fmt(b.I_req, 1) + " in&#8308;<br>" +
-            "A required &ge; " + fmt(b.A_req, 2) + " in&sup2;  ·  breadth required &ge; " + fmt(b.b_req, 3) + " in<br>" +
+            Object.keys(b.bySpacing).map(function (sp) {
+              var x = b.bySpacing[sp];
+              return (sp === "0" ? "single member" : "at " + sp + "&Prime; o.c.") +
+                     ": S_x &ge; " + fmt(x.S_req, 2) + " in&sup3; · I_x &ge; " + fmt(x.I_req, 1) +
+                     " in&#8308; · A &ge; " + fmt(x.A_req, 2) + " in&sup2; · b &ge; " + fmt(x.b_req, 3) + " in";
+            }).join("<br>") + "<br>" +
+            "computed per spacing — a member at 16&Prime; o.c. carries two-thirds of what it carries at 24&Prime;<br>" +
             "computed against the best material in the palette, C_L = 1, C_M = 1, self-weight omitted — so a section " +
             "below a bound cannot pass for any material offered"
           }),
@@ -287,11 +298,21 @@
           "Sensitivity from the closed forms: deflection goes as d³, bending as d², shear as d, bearing not at all"));
       }
 
+      /* the roof-load crossover and anything else the search wants flagged */
+      (sol.advisories || []).forEach(function (a) {
+        wrap.appendChild(el("div", { class: "banner banner-warn" }, [
+          el("strong", { text: "Not checked — " }), el("span", { text: a.text })
+        ]));
+      });
+
       /* nothing worked */
       if (!sol.pick && sol.note) {
-        wrap.appendChild(card("No solid-sawn solution", el("span", { class: "badge b-fail", text: "Blocked", style: "margin-left:auto" }),
+        var escLabel = sol.status === "escalate:procurement" ? "Procurement, not engineering"
+          : (sol.status === "escalate:geometry" ? "Will not fit" : "Beyond solid sawn");
+        wrap.appendChild(card("Escalated — " + escLabel, el("span", { class: "badge b-fail", text: sol.status.replace("escalate:", ""), style: "margin-left:auto" }),
           el("div", { style: "display:grid;gap:9px;font-size:.86rem" }, [
             el("p", {}, [el("strong", { text: "Wall: " }), el("span", { text: sol.note.wall })]),
+            sol.note.procurement ? el("p", {}, [el("strong", { text: "The member that passes: " }), el("span", { text: sol.note.procurement })]) : null,
             el("p", {}, [el("strong", { text: "What would move it: " }), el("span", { text: sol.note.move })]),
             el("p", { class: "src-note", text: sol.note.outOfScope })
           ]), null));
@@ -365,7 +386,7 @@
           el("td", { class: "k", text: p.species }),
           el("td", { text: p.grade }),
           el("td", { class: "n", text: usd(p.bfUSD) + "/bf" }),
-          el("td", { class: "n", text: fmt(p.availability, 2) }),
+          el("td", { class: "n", text: fmt(p.stockFactor, 2) }),
           el("td", { text: p.note || "" })
         ]));
       });
@@ -375,7 +396,7 @@
             el("table", {}, [
               el("thead", {}, [el("tr", {}, [
                 el("th", { text: "Species" }), el("th", { text: "Grade" }), el("th", { class: "n", text: "Price" }),
-                el("th", { class: "n", text: "Availability" }), el("th", { text: "Note" })
+                el("th", { class: "n", text: "Stock factor" }), el("th", { text: "Note" })
               ])]), ptb
             ])
           ]),
@@ -412,11 +433,11 @@
       var cmp = FM.solver.compare(plan, packs);
 
       body.appendChild(el("div", { class: "grid g5", style: "margin-bottom:16px" }, [
-        FM.statCard(String(cmp.commonMarks), "Marks common to every region", "pass"),
-        FM.statCard(String(cmp.varyingMarks), "Marks that change", "gold"),
-        FM.statCard(String(packs.length), "Regions compared"),
-        FM.statCard(String(plan.marks.length), "Marks in plan"),
-        FM.statCard(plan.lots ? String(plan.lots) : "—", "Lots in program")
+        FM.statCard(String(cmp.commonMarks), "Same member everywhere", "pass"),
+        FM.statCard(String(cmp.varyingMarks), "Regionally forced", "gold"),
+        FM.statCard(String(cmp.unansweredMarks), "Unanswered anywhere", cmp.unansweredMarks ? "fail" : ""),
+        FM.statCard(String(cmp.solvedMarks) + "/" + plan.marks.length, "Marks with an answer"),
+        FM.statCard(String(packs.length), "Regions compared")
       ]));
 
       var tb = el("tbody");
@@ -424,8 +445,9 @@
         var cells = [
           el("td", { class: "k" }, [
             el("span", { text: row.mark.id }),
-            row.varies ? el("span", { class: "badge b-gold", style: "margin-left:6px", text: "Varies" })
-                       : el("span", { class: "badge b-pass", style: "margin-left:6px", text: "Common" })
+            row.unanswered ? el("span", { class: "badge b-fail", style: "margin-left:6px", text: "Unanswered" })
+              : (row.varies ? el("span", { class: "badge b-gold", style: "margin-left:6px", text: "Varies" })
+                            : el("span", { class: "badge b-pass", style: "margin-left:6px", text: "Common" }))
           ]),
           el("td", { text: row.mark.label })
         ];
@@ -451,8 +473,9 @@
 
       body.appendChild(el("div", { style: "margin-top:16px" }, [
         card("Reading this", null, el("div", { style: "display:grid;gap:9px;font-size:.86rem" }, [
+          el("p", { text: "A mark marked Unanswered produced no member in any region — it is not portable, it is unanswered, and counting it as common would turn silence into evidence for this product's central claim." }),
           el("p", { text: "A mark marked Common is the same member in every region on this board — build it the same everywhere and buy it in one order. A mark marked Varies is regionally forced, and the region pack says which variable forced it." }),
-          el("p", { text: "The three forcings that actually move members across these six packs are: snow duration in the Carolina mountains, which drops C_D from 1.25 to 1.15; concrete tile dead load in the HVHZ, which is 27 psf against 15 for shingle; and species availability, which decides what the yard can hand the framer." }),
+          el("p", { text: "The three forcings that actually move members across these six packs are: snow duration in the Carolina mountains, which drops C_D from 1.25 to 1.15; concrete tile dead load in the HVHZ, which is 22 psf against 15 for shingle; and species availability, which decides what the yard can hand the framer." }),
           el("p", { class: "src-note", text: "Every cell is an independent solve against that region's palette, ladder, loads and DCR target. No cell is inferred from another." })
         ]), null)
       ]));

@@ -2177,6 +2177,16 @@ var FM = (function () {
     if (!isFinite(span) || span <= 0) return bad("Span must be greater than zero.");
     if (!isFinite(spacing) || spacing <= 0) return bad("Spacing must be greater than zero.");
     if (D < 0 || L < 0 || Lr < 0) return bad("Loads cannot be negative.");
+    /* a load that arrived as NaN was coerced to 0 above — designing for no load
+       is the one failure mode worse than refusing to design */
+    if (!isFinite(Number(inp.dead)) && inp.dead !== undefined && inp.dead !== null)
+      return bad("Dead load is not a number.");
+    if (!isFinite(Number(inp.live)) && inp.live !== undefined && inp.live !== null)
+      return bad("Floor live load is not a number.");
+    if (!isFinite(Number(inp.roofLoad)) && inp.roofLoad !== undefined && inp.roofLoad !== null)
+      return bad("Roof load is not a number.");
+    if (!DEFL[inp.memberUse] && inp.memberUse !== undefined)
+      warnings.push("Unknown deflection row \"" + inp.memberUse + "\" — IBC floor limits assumed.");
 
     var sec = findSection(inp.size);
     if (!sec) return bad("No dimension-lumber section properties for " + inp.size + ". Timbers and beams & stringers are out of scope.");
@@ -2268,7 +2278,15 @@ var FM = (function () {
 
     function consider(name, dcr, combo, lines, detail, kind) {
       checks.push({ name: name, dcr: dcr, combo: combo, lines: lines, detail: detail || null, kind: kind });
-      if (!isFinite(dcr)) return;
+      /* A non-finite STRENGTH ratio is a failure, not an absence. Skipping it
+         here let a member with zero bending capacity report PASS on deflection. */
+      if (!isFinite(dcr)) {
+        if (kind !== "service") {
+          var t0 = strength;
+          if (!isFinite(t0.dcr) || t0.dcr < Infinity) { t0.name = name; t0.dcr = Infinity; t0.combo = combo; }
+        }
+        return;
+      }
       var tgt = kind === "service" ? service : strength;
       if (dcr > tgt.dcr) {
         tgt.name = name; tgt.dcr = dcr; tgt.combo = combo;
@@ -2276,7 +2294,7 @@ var FM = (function () {
     }
 
     /* ---------- bending ---------- */
-    var best = null;
+    var best = null, invalidStability = null;
     combos.forEach(function (c) {
       var w = c.psf * spacing / 12;
       var M = w * span * span / 8;
@@ -2285,8 +2303,17 @@ var FM = (function () {
       var stab = beamStability(inp.braced ? 0 : span * 12, d, b, FbStar, EminPrime);
       var Fbp = FbStar * stab.CL;
       var dcr = Fbp > 0 ? fb / Fbp : Infinity;
+      if (stab.invalid) invalidStability = stab;
       if (!best || dcr > best.dcr) best = { dcr: dcr, combo: c.label, w: w, M: M, fb: fb, Fbp: Fbp, cd: c.cd, stab: stab };
     });
+
+    /* NDS §3.3.3.7 — R_B may not exceed 50. That is a prohibition, not a low
+       capacity: the member is not permitted and the app must say so rather than
+       return an infinite DCR that the governing-case selection then drops. */
+    if (invalidStability) {
+      return bad("Not permitted — " + invalidStability.note +
+                 ". Reduce the unbraced length, or increase the breadth.");
+    }
 
     consider("Bending", best.dcr, best.combo, [
       "w = " + f(best.w, 1) + " plf",
@@ -2489,6 +2516,7 @@ var FM = (function () {
       laborPerPiece:   3.50,   /* $/piece, fallback                                            [market] */
       laborPerPieceByRole: {
         joist: 3.50, rafter: 3.50, ceiling: 3.25,
+        deck: 5.50,            /* treated, heavier, on hangers, outdoors                      [market] */
         header: 18.00,         /* two people, in a wall, with cripples and a king stud         [market] */
         beam: 45.00            /* exterior, elevated, often into a post cap                    [market] */
       },
@@ -2498,6 +2526,7 @@ var FM = (function () {
       depthPerInchSf:  0.020,  /* $/sf per inch, fallback                                      [market] */
       depthPerInchSfByRole: {
         joist:   0.100,        /* floor depth is building height: siding, brick, drywall       [market] */
+        deck:    0.010,        /* a deck's depth costs a rim board and nothing else            [market] */
         rafter:  0.010,
         ceiling: 0.005,
         header:  0.000,        /* replaced by the hard maxDepthIn constraint — see MARKS       [market] */
@@ -2527,8 +2556,16 @@ var FM = (function () {
                                   instead — see STOCK                                          [market] */
     },
     maxDCR: 0.90,
-    minAvailability: 0.35,     /* a member below this cannot be the pick. The field substitutes
-                                  what it cannot buy, and the substitute is nobody's design    [market] */
+    minAvailability: 0.10,     /* HARD FLOOR — below this the member cannot be the pick at all.
+                                  Set low on purpose. A floor of 0.35 measured against STOCK.dry
+                                  silently excluded every dry 4x in every pack, which turned a
+                                  placeholder market number into what looked like an engineering
+                                  finding: the flagship plan reported "no solid-sawn solution" for
+                                  a garage header that in fact passes at DCR 0.90. Refusing to
+                                  answer is not the same as answering that it is a special order.
+                                  Raise it deliberately if your firm wants the harder rule  [market] */
+    specialOrderBelow: 0.35,   /* not a gate — a LABEL. A pick under this is flagged as a special
+                                  order on the schedule, with its availability shown         [market] */
     gammaPcf: 35               /* calc-spec §1.3 — assumption, editable, not a sourced density */
   };
 
@@ -2577,6 +2614,16 @@ var FM = (function () {
     ceiling_attic: {
       psf: 10, label: "Gypsum ceiling, attic above", cls: "market",
       makeup: "1/2 in gypsum, ceiling framing, blown insulation"
+    },
+    roof_open: {
+      psf: 10, label: "Open porch / lanai roof", cls: "market",
+      makeup: "shingle or tile over sheathing and framing, exposed or vented soffit — no ceiling, no insulation",
+      note: "A porch beam whose deflection row is 'no ceiling' cannot also be carrying a gypsum " +
+            "ceiling and R-38 in its dead load. The enclosed-roof assembly is the wrong one here."
+    },
+    roof_open_tile: {
+      psf: 17, label: "Open porch / lanai roof, concrete tile", cls: "market",
+      makeup: "concrete tile 9-11 psf on battens over sheathing and framing — no ceiling, no insulation"
     },
     deck_pt: {
       psf: 10, label: "Pressure-treated deck", cls: "market",
@@ -2797,7 +2844,6 @@ var FM = (function () {
         { species: "Douglas Fir-Larch", grade: "No. 2", bfUSD: 1.00, stockFactor: 0.40, cullRate: 0.015,
           note: "Worth the freight where snow makes the extra span matter — dry framing only." }
       ],
-      weights: { depthPerInchSfByRole: { joist: 0.030, rafter: 0.010, ceiling: 0.005, header: 0, beam: 0.010 } },
       maxDCR: 0.90
     },
 
@@ -2895,7 +2941,6 @@ var FM = (function () {
         { species: "Southern Pine", grade: "No.1", bfUSD: 0.90, stockFactor: 0.85, cullRate: 0.04 },
         { species: "Southern Pine", grade: "Select Structural", bfUSD: 1.15, stockFactor: 0.55, cullRate: 0.04 }
       ],
-      weights: { depthPerInchSfByRole: { joist: 0.120, rafter: 0.010, ceiling: 0.005, header: 0, beam: 0.015 } },
       maxDCR: 0.85,
       maxDCRBasis: "Firm policy: leave gravity headroom where the same section will also be checked for uplift."
     }
@@ -2946,13 +2991,24 @@ var FM = (function () {
 
   var REPETITIVE = { rafter: true, joist: true, ceiling: true, deck: true, header: false, beam: false };
 
-  var DEFL_ROW = {
-    rafter:  "roof_nonplaster",     /* gypsum ceiling below */
-    ceiling: "roof_nonplaster",
-    joist:   "floor",
-    deck:    "floor",
-    header:  "roof_nonplaster",
-    beam:    "roof_no_ceiling"      /* open porch soffit, nothing applied to the underside */
+  /* What a member CARRIES decides its loads, its duration factor and its
+     deflection row. Deriving those from the member's ROLE STRING instead put a
+     treated deck beam on roof dead load, roof live at C_D 1.25 and l/180 — and
+     printed a 4x8 at 59% utilisation for a member that is overstressed at 1.05
+     against the deck load it actually supports. A role is a name; `carries` is
+     the structure. Every non-obvious mark must declare it. */
+  var CARRIES_DEFAULT = {
+    rafter: "roof", ceiling: "ceiling", joist: "floor", deck: "deck",
+    header: "roof", beam: "roof"
+  };
+
+  var DEFL_BY_CARRIES = {
+    roof:         "roof_nonplaster",   /* gypsum ceiling below */
+    "roof-open":  "roof_no_ceiling",   /* open porch soffit, nothing on the underside */
+    ceiling:      "roof_nonplaster",
+    floor:        "floor",
+    deck:         "floor",
+    "roof+floor": "floor"              /* the tighter of the two rows governs */
   };
 
   /* ---------------- repeatable tract-home plans ----------------
@@ -2980,25 +3036,27 @@ var FM = (function () {
             "The roof clear-spans on common trusses, which is the product feature — it is what makes the " +
             "partitions movable between elevations.",
       marks: [
-        { id: "T-1",     label: "Common roof truss · 46 ft clear span", role: "rafter", span: 46, count: 22,
+        { id: "T-1",     label: "Common roof truss · 46 ft clear span", role: "rafter", span: 46, runFt: 50, count: 26,
           component: true,
           componentNote: "Truss package, deferred sealed submittal by the truss supplier. Out of scope: this engine " +
                          "designs simple-span solid-sawn members only (calc-spec §8.6, §8.19)." },
         { id: "BM-LAN",  label: "Lanai beam", role: "beam", span: 12.0, trib: 7.0, count: 2,
-          exposure: "exterior", braced: false, skuGroup: "porch",
+          exposure: "exterior", braced: false, skuGroup: "porch", roofAssembly: "open",
           note: "The best-fitting mark in the system: simple span, uniform load, treated Southern Pine, wet service." },
         { id: "BM-LAN-W", label: "Lanai beam · wide bay", role: "beam", span: 16.0, trib: 7.0, count: 1,
-          exposure: "exterior", braced: false, skuGroup: "porch" },
-        { id: "HDR-W",   label: "Window header · typical", role: "header", span: 5.0, trib: 4.0, count: 14,
-          skuGroup: "header", headHeightIn: 80 },
+          exposure: "exterior", braced: false, skuGroup: "porch", roofAssembly: "open" },
+        { id: "HDR-W",   label: "Window header · typical", role: "header", span: 5.0, trib: 11.5, count: 14,
+          skuGroup: "header", headHeightIn: 80, wallPosition: "exterior-first-floor",
+          note: "Tributary is half the truss span where the trusses bear on this wall. A 4 ft " +
+                "tributary here would follow from neither the 46 ft clear span nor the gable end." },
         { id: "HDR-GAR-G", label: "Garage header · gable end over the door", role: "header", span: 16.67, trib: 2.0, count: 1,
-          skuGroup: "header", headHeightIn: 84,
+          skuGroup: "header", headHeightIn: 84, wallPosition: "exterior-first-floor",
           note: "Same opening as HDR-GAR-B. The truss direction is the entire design: 2 ft of tributary here, 11 ft there." },
         { id: "HDR-GAR-B", label: "Garage header · trusses bearing", role: "header", span: 16.67, trib: 11.0, count: 1,
-          skuGroup: "header", headHeightIn: 84, escalateExpected: true,
+          skuGroup: "header", headHeightIn: 84, wallPosition: "exterior-first-floor", escalateExpected: true,
           note: "Under a bearing truss line this is a 3-ply LVL or a girder truss in every one of these markets." },
         { id: "HDR-SLD", label: "Rear slider header · under clear-span truss", role: "header", span: 12.0, trib: 23.0, count: 1,
-          skuGroup: "header", headHeightIn: 80, escalateExpected: true,
+          skuGroup: "header", headHeightIn: 80, wallPosition: "exterior-first-floor", escalateExpected: true,
           note: "Tributary is half the 46 ft truss span. This is why exterior openings in production single-stories " +
                 "are almost always engineered." }
       ]
@@ -3006,29 +3064,31 @@ var FM = (function () {
     {
       id: "two-story-2450",
       name: "Two-Story 2450",
-      summary: "2,450 sf two-story, 40 ft × 38 ft first floor, ~1,180 sf second floor, centre bearing line",
+      summary: "2,450 sf two-story, 40 ft × 38 ft first floor (1,520 sf) plus 930 sf second floor, centre bearing line",
       lots: 60,
       note: "The second floor is the mark set that matters. In Texas and Florida this floor is increasingly an " +
             "open-web truss or an I-joist; sawn 2x is Carolina value product and some Texas builders.",
       marks: [
-        { id: "FJ-1", label: "2nd floor joist · front bay", role: "joist", span: 13.5, count: 26, skuGroup: "floor",
+        { id: "FJ-1", label: "2nd floor joist · front bay", role: "joist", span: 13.5, runFt: 34, count: 26, skuGroup: "floor",
           note: "The DCR-policy mark: 2x10 SYP #2 reaches 13 ft 3 in at a 0.90 target and 14 ft 0 in at 1.00." },
-        { id: "FJ-2", label: "2nd floor joist · rear bay", role: "joist", span: 15.0, count: 24, skuGroup: "floor" },
-        { id: "FJ-3", label: "2nd floor joist · bath and laundry", role: "joist", span: 9.5, count: 10, skuGroup: "floor",
+        { id: "FJ-2", label: "2nd floor joist · rear bay", role: "joist", span: 15.0, runFt: 31, count: 24, skuGroup: "floor" },
+        { id: "FJ-3", label: "2nd floor joist · bath and laundry", role: "joist", span: 9.5, runFt: 13, count: 10, skuGroup: "floor",
           note: "Solves shallow, and is the prime unification target — one floor depth is worth more than the lumber." },
-        { id: "GB-1", label: "Centre floor girder", role: "beam", span: 12.0, trib: 13.5, count: 2, skuGroup: "girder",
-          braced: true, escalateExpected: true,
+        { id: "GB-1", label: "Centre floor girder", role: "beam", span: 12.0, trib: 14.25, count: 2, skuGroup: "girder",
+          braced: true, escalateExpected: true, carries: "floor",
           note: "Multi-ply LVL or a steel W-shape in the market. The catalog carries 48 W-shapes; the calc-spec has " +
                 "no steel method, so this engine cannot design either answer." },
         { id: "HDR-1", label: "1st-floor opening header", role: "header", span: 5.0, trib: 6.75, count: 10,
           carries: "roof+floor", skuGroup: "header", headHeightIn: 80 },
         { id: "HDR-2", label: "2nd-floor window header", role: "header", span: 4.0, trib: 12.0, count: 12,
           skuGroup: "header", headHeightIn: 80 },
-        { id: "DK-1", label: "Deck joist · treated", role: "deck", span: 12.0, count: 16, skuGroup: "deck",
+        { id: "DK-1", label: "Deck joist · treated", role: "deck", span: 12.0, runFt: 20, count: 16, skuGroup: "deck",
           exposure: "exterior",
           note: "North Carolina production homes very often carry one. IRC R507, 40 psf live." },
-        { id: "DK-2", label: "Deck beam · treated", role: "beam", span: 8.0, trib: 6.0, count: 2, skuGroup: "deck",
-          exposure: "exterior", braced: false }
+        { id: "DK-2", label: "Deck beam · treated", role: "beam", span: 8.0, trib: 6.0, count: 2, skuGroup: "deckbeam",
+          exposure: "exterior", braced: false, carries: "deck",
+          note: "Carries the deck, not a roof. Checked as a roof beam it printed a 4x8 at 59% that is " +
+                "overstressed at 1.05 against 40 psf of deck live load." }
       ]
     },
     {
@@ -3042,10 +3102,10 @@ var FM = (function () {
       marks: [
         { id: "T-1",  label: "Common roof truss · 26 ft", role: "rafter", span: 26, count: 17, component: true,
           componentNote: "Truss package, uplift-governed, deferred sealed submittal. Out of scope." },
-        { id: "FJ-1", label: "2nd floor joist", role: "joist", span: 15.5, count: 25, skuGroup: "floor",
+        { id: "FJ-1", label: "2nd floor joist", role: "joist", span: 15.5, runFt: 32, count: 25, skuGroup: "floor",
           note: "Runs tight against the 2x12 limit — the mark that shows why a firm DCR target below 1.00 exists." },
         { id: "BM-POR", label: "Porch beam · treated", role: "beam", span: 10.0, trib: 6.0, count: 2,
-          exposure: "exterior", braced: false, skuGroup: "porch" },
+          exposure: "exterior", braced: false, skuGroup: "porch", roofAssembly: "open" },
         { id: "HDR-SLD", label: "1st-floor slider header · roof + floor", role: "header", span: 8.0, trib: 20.75, count: 2,
           carries: "roof+floor", skuGroup: "header", headHeightIn: 80, escalateExpected: true }
       ]
@@ -3069,8 +3129,9 @@ var FM = (function () {
 
   function policyFor(pack, plan, role) {
     var weights = merge(BASE.weights, pack.weights, plan && plan.weights);
-    var ladder = LADDERS[role] || LADDERS.rafter;
-    var spacings = REPETITIVE[role] ? (SPACINGS[role] || [16, 24]) : [0];
+    function own(o, k) { return Object.prototype.hasOwnProperty.call(o, k) ? o[k] : undefined; }
+    var ladder = own(LADDERS, role) || LADDERS.rafter;
+    var spacings = own(REPETITIVE, role) ? (own(SPACINGS, role) || [16, 24]) : [0];
 
     return {
       id: pack.id + (role ? ":" + role : ""),
@@ -3078,6 +3139,7 @@ var FM = (function () {
       role: role || null,
       maxDCR: (plan && plan.maxDCR) || pack.maxDCR || BASE.maxDCR,
       minAvailability: pack.minAvailability === undefined ? BASE.minAvailability : pack.minAvailability,
+      specialOrderBelow: pack.specialOrderBelow === undefined ? BASE.specialOrderBelow : pack.specialOrderBelow,
       gammaPcf: pack.gammaPcf || BASE.gammaPcf,
       palette: pack.palette,
       ladder: ladder,
@@ -3089,7 +3151,10 @@ var FM = (function () {
         var p = pack.palette.filter(function (x) {
           return x.species === cand.species && x.grade === cand.grade;
         })[0];
-        var channel = (demand && demand.wet) ? STOCK.wet : STOCK.dry;
+        /* the treated channel, not the wet-service one. A treated-but-dry porch
+           beam is stocked as treated; keying this off moisture made the flagship
+           Texas lanai beam a special order in the one market that racks it. */
+        var channel = (demand && (demand.treated || demand.wet)) ? STOCK.wet : STOCK.dry;
         var sizeAvail = channel[cand.size];
         if (sizeAvail === undefined) sizeAvail = 0.25;
         return {
@@ -3112,13 +3177,22 @@ var FM = (function () {
       role: role,
       span: mark.span,
       trib: mark.trib || 0,
-      repetitive: !!REPETITIVE[role],
+      repetitive: !!Object.prototype.hasOwnProperty.call(REPETITIVE, role) && !!REPETITIVE[role],
       wet: mark.exposure === "exterior" ? !!pack.service.exteriorWet : !!pack.service.wet,
       braced: mark.braced === undefined ? true : !!mark.braced,
       bearing: mark.bearing || (REPETITIVE[role] ? 3.0 : 3.5),
-      memberUse: mark.memberUse || DEFL_ROW[role] || "floor",
       roofType: L.roofType
     };
+
+    var carries = mark.carries || CARRIES_DEFAULT[role] || "roof";
+    if (carries === "roof" && mark.roofAssembly === "open") carries = "roof-open";
+    d.carries = carries;
+    d.memberUse = mark.memberUse || DEFL_BY_CARRIES[carries] || "floor";
+
+    /* Treatment, not moisture, is what forces incising — and it is what decides
+       which stock channel the member comes out of. A treated-but-dry porch beam
+       in the I-35 corridor is still treated. */
+    d.treated = mark.treated !== undefined ? !!mark.treated : (mark.exposure === "exterior");
 
     /* a header's depth budget is set by the plate and the head height, less a
        double top plate and a shim. A member that does not fit is not a cheaper
@@ -3128,22 +3202,21 @@ var FM = (function () {
       d.maxDepthIn = pack.plateHeightIn - mark.headHeightIn - 3.0 - 0.5;
     }
 
-    if (role === "rafter") {
+    /* a porch or lanai beam carries an OPEN roof — no ceiling, no insulation */
+    if (mark.roofAssembly === "open") {
+      roofDead = ASSEMBLY[L.roofAssembly === "roof_tile" ? "roof_open_tile" : "roof_open"].psf;
+    }
+
+    if (carries === "roof" || carries === "roof-open") {
       d.dead = roofDead; d.live = 0; d.roofLoad = L.roofLoad;
-    } else if (role === "ceiling") {
+    } else if (carries === "ceiling") {
       d.dead = ceilingDead; d.live = L.ceilingLive; d.roofLoad = 0; d.roofType = "snow";
-    } else if (role === "joist") {
+    } else if (carries === "floor") {
       d.dead = floorDead; d.live = L.floorLive; d.roofLoad = 0; d.roofType = "snow";
-    } else if (role === "deck") {
+    } else if (carries === "deck") {
       d.dead = ASSEMBLY.deck_pt.psf; d.live = L.deckLive; d.roofLoad = 0; d.roofType = "snow";
-    } else if (role === "header" || role === "beam") {
-      if (mark.carries === "roof+floor") {
-        d.dead = roofDead + floorDead; d.live = L.floorLive; d.roofLoad = L.roofLoad;
-      } else if (mark.carries === "floor") {
-        d.dead = floorDead; d.live = L.floorLive; d.roofLoad = 0; d.roofType = "snow";
-      } else {
-        d.dead = roofDead; d.live = 0; d.roofLoad = L.roofLoad;
-      }
+    } else if (carries === "roof+floor") {
+      d.dead = roofDead + floorDead; d.live = L.floorLive; d.roofLoad = L.roofLoad;
     } else {
       d.dead = roofDead; d.live = 0; d.roofLoad = L.roofLoad;
     }
@@ -3157,9 +3230,15 @@ var FM = (function () {
       return { applicable: false, reason: "component", note: mark.componentNote ||
                "Manufactured component — designed by its supplier as a deferred sealed submittal." };
     }
-    if (mark.role === "header" && pack.exteriorWall === "cmu" && mark.carries !== "floor") {
+    /* Only a FIRST-FLOOR EXTERIOR opening is spanned by a concrete lintel. The
+       rule used to fire on every header in a block market, which deleted the
+       second-floor window headers and the interior roof+floor headers — the very
+       members the pack's own note says ARE wood. A mark must opt in by declaring
+       itself exterior and first-floor. */
+    if (mark.role === "header" && pack.exteriorWall === "cmu" &&
+        mark.wallPosition === "exterior-first-floor") {
       return { applicable: false, reason: "wall-system", note: pack.exteriorWallNote ||
-               "Exterior walls are concrete block in this market; this opening is spanned by a concrete lintel, not a wood header." };
+               "First-floor exterior walls are concrete block in this market; this opening is spanned by a concrete lintel, not a wood header." };
     }
     return { applicable: true };
   }
@@ -3167,7 +3246,8 @@ var FM = (function () {
   FM.weights = {
     BASE: BASE, PACKS: PACKS, PLANS: PLANS,
     ASSEMBLY: ASSEMBLY, LIVE: LIVE, STOCK: STOCK,
-    LADDERS: LADDERS, SPACINGS: SPACINGS, REPETITIVE: REPETITIVE, DEFL_ROW: DEFL_ROW,
+    LADDERS: LADDERS, SPACINGS: SPACINGS, REPETITIVE: REPETITIVE,
+    CARRIES_DEFAULT: CARRIES_DEFAULT, DEFL_BY_CARRIES: DEFL_BY_CARRIES,
     UNIFY_BONUS: UNIFY_BONUS,
     INCISED_WHEN_TREATED: INCISED_WHEN_TREATED,
     policyFor: policyFor, demandFor: demandFor, applicability: applicability,
@@ -3213,7 +3293,10 @@ var FM = (function () {
   function stockLength(spanFt) {
     var need = spanFt + 0.5;                  /* bearing at both ends */
     var len = Math.ceil(need / 2) * 2;
-    return Math.max(8, Math.min(24, len));
+    /* No upper clamp. Clamping at 24 ft billed a 46 ft member as a 24-footer and
+       gave it a NEGATIVE drop cost — the longest stick the yard racks is a
+       supply constraint (availability), not a discount. */
+    return Math.max(8, len);
   }
 
   function boardFeetPerLF(nominal) {
@@ -3318,8 +3401,14 @@ var FM = (function () {
     var risk = cf.basis === "held" ? w.unsourcedCF : 0;
 
     var total = material + labor + drop + depth + stock + risk;
+    /* THE RANKING UNIT. A piece at 16" o.c. and a piece at 24" o.c. do not do the
+       same amount of work, so ranking two spacings on per-piece cost silently
+       prefers the tighter one — which is how the solver came to recommend 16" o.c.
+       roofs to markets that sheathe everything at 24". Repetitive members are
+       ranked per square foot of framed area; single members per piece. */
+    var unit = demand.repetitive ? area : 1;
     return {
-      totalUSD: total, perSF: total / area, area: area,
+      totalUSD: total, unitUSD: total / unit, perSF: total / area, area: area, unit: unit,
       lengthFt: len, boardFeet: bf, weightLb: lb,
       terms: { material: material, labor: labor, drop: drop, depth: depth, stock: stock, risk: risk },
       bfUSD: bfUSD, availability: availability, cullRate: cullRate, cfBasis: cf.basis
@@ -3331,13 +3420,18 @@ var FM = (function () {
      therefore keyed by role, falling back to the flat value. */
   function laborPerPiece(demand, w) {
     var byRole = w.laborPerPieceByRole || {};
-    var v = byRole[demand.role];
+    var v = own(byRole, demand.role);
     return isFinite(v) ? v : w.laborPerPiece;
   }
   function depthWeight(demand, w) {
     var byRole = w.depthPerInchSfByRole || {};
-    var v = byRole[demand.role];
+    var v = own(byRole, demand.role);
     return isFinite(v) ? v : w.depthPerInchSf;
+  }
+  /* author-supplied strings are used as keys throughout; a mark whose role or
+     SKU group is named "constructor" must not pick up Object.prototype */
+  function own(o, k) {
+    return (o && Object.prototype.hasOwnProperty.call(o, k)) ? o[k] : undefined;
   }
 
   /* slack is scored only after a candidate is known feasible, so it can never
@@ -3483,9 +3577,11 @@ var FM = (function () {
        check without C_i overstates F_b and F_v by 20% (NDS Table 4.3.8). So the
        candidate is excluded rather than checked optimistically. Southern Pine
        takes treatment without incising, which is why it survives this gate. */
-    if (demand.wet && policy.incisedWhenTreated && policy.incisedWhenTreated[cand.species]) {
+    if ((demand.treated || demand.wet) && policy.incisedWhenTreated &&
+        Object.prototype.hasOwnProperty.call(policy.incisedWhenTreated, cand.species) &&
+        policy.incisedWhenTreated[cand.species]) {
       return { ok: false, kind: "scope",
-               why: "treated " + cand.species + " is incised; C_i = 0.80 (NDS Table 4.3.8) is not " +
+               why: "treated " + cand.species + " must be incised; C_i = 0.80 (NDS Table 4.3.8) is not " +
                     "implemented in this engine, so checking it here would overstate capacity by 20%" };
     }
     return { ok: true };
@@ -3552,10 +3648,37 @@ var FM = (function () {
 
   function size(demand, policy) {
     if (!FM.engine) throw new Error("solver requires FM.engine");
-    var t0 = 0;
-    var cache = {}, stats = { evaluated: 0, cacheHits: 0, prunedByBound: 0, prunedByDominance: 0, prunedByIncumbent: 0, families: 0 };
+    /* calc-spec §6.2: DCR <= 1.000 passes, with no tolerance band. A firm may
+       set a TIGHTER target; it may not set a looser one. */
+    if (!(policy.maxDCR > 0) || policy.maxDCR > 1) {
+      policy = shallow(policy);
+      policy.maxDCR = Math.min(1, Math.max(0.01, Number(policy.maxDCR) || 0.9));
+    }
+    var cache = {}, stats = { evaluated: 0, contextEvaluated: 0, cacheHits: 0, prunedByBound: 0, prunedByDominance: 0, prunedByIncumbent: 0, families: 0 };
+
+    /* calc-spec §2.1 wants six combinations built from separate q_Lr and q_S; the
+       engine carries ONE roof load tagged either snow or roof-live, so D + Lr and
+       D + S can never be evaluated together. Near the 20 psf roof-live minimum
+       either tag is unconservative on one limit state: declared roof-live, snow
+       understates bending by up to 8.4%; declared snow, roof-live understates
+       deflection. Make the exposure visible instead of silent. */
+    var advisories = [];
+    var rl = Number(demand.roofLoad || 0);
+    if (rl > 0 && rl >= 16 && rl <= 25) {
+      advisories.push({
+        kind: "roof-load-crossover",
+        text: "Roof load " + rl.toFixed(0) + " psf sits near the 20 psf roof-live minimum, where the " +
+              "snow and roof-live cases cross. This engine evaluates only the one you declared (" +
+              (demand.roofType === "snow" ? "snow, C_D 1.15" : "roof live, C_D 1.25") + "), so " +
+              (demand.roofType === "snow"
+                ? "the roof-live case — which governs deflection below 20 psf — was not checked."
+                : "the snow case — which governs bending above about 18.4 psf — was not checked.") +
+              " Check the other case by hand before this member is used."
+      });
+    }
 
     var bounds = seedBounds(demand, policy);
+    var boundPruned = [];
     var fams = families(demand, policy);
     stats.families = fams.length;
 
@@ -3574,14 +3697,18 @@ var FM = (function () {
        exact rather than heuristic guesses */
     fams.forEach(function (fam) {
       fam.rungs.forEach(function (c) { c.cost = costOf(demand, c, policy); });
-      fam.admissible = fam.rungs.filter(function (c) { return passesBounds(c, bounds).ok; });
+      fam.admissible = fam.rungs.filter(function (c) {
+        var pb = passesBounds(c, bounds);
+        if (!pb.ok) boundPruned.push({ cand: c, reason: pb.why, bound: true });
+        return pb.ok;
+      });
       fam.monotone = true;
       for (var i = 1; i < fam.rungs.length; i++) {
         if (fam.rungs[i].cost && fam.rungs[i - 1].cost &&
-            fam.rungs[i].cost.totalUSD < fam.rungs[i - 1].cost.totalUSD - EPS) { fam.monotone = false; break; }
+            fam.rungs[i].cost.unitUSD < fam.rungs[i - 1].cost.unitUSD - EPS) { fam.monotone = false; break; }
       }
       fam.lowerBoundUSD = fam.admissible.reduce(function (m, c) {
-        return c.cost && c.cost.totalUSD < m ? c.cost.totalUSD : m;
+        return c.cost && c.cost.unitUSD < m ? c.cost.unitUSD : m;
       }, Infinity);
       stats.prunedByBound += fam.rungs.length - fam.admissible.length;
     });
@@ -3604,14 +3731,14 @@ var FM = (function () {
     });
 
     fams.forEach(function (fam) {
-      if (incumbent && fam.lowerBoundUSD >= incumbent.score - EPS) {
+      if (incumbent && fam.lowerBoundUSD > incumbent.score + EPS) {
         stats.prunedByIncumbent += fam.admissible.length;
         return;
       }
       for (var i = 0; i < fam.admissible.length; i++) {
         var cand = fam.admissible[i];
 
-        if (incumbent && cand.cost.totalUSD >= incumbent.score - EPS) {
+        if (incumbent && cand.cost.unitUSD > incumbent.score + EPS) {
           /* "rungs are depth-ordered, so cost only grows" is exactly the
              property fam.monotone verifies — and it is not free. A per-size
              price vector (short supply on one rung, clearance on another) makes
@@ -3653,7 +3780,11 @@ var FM = (function () {
           continue;
         }
 
-        row.score = cand.cost.totalUSD + slackPenalty(dcr, policy);
+        /* score is the ranking objective, in $/sf for repetitive members and
+           $/piece for single ones. pieceScore stays absolute, because SKU
+           unification and the plan cost rollup are per-piece questions. */
+        row.pieceScore = cand.cost.totalUSD + slackPenalty(dcr, policy);
+        row.score = row.pieceScore / cand.cost.unit;
         /* tieBreak decides ties, not losses — reaching it on a strictly worse
            score would let a more expensive candidate take the incumbency */
         if (!incumbent || row.score < incumbent.score - EPS ||
@@ -3686,6 +3817,13 @@ var FM = (function () {
     var seen = {};
     considered.forEach(function (c) { seen[keyOf(c.cand)] = true; });
 
+    /* bound-pruned candidates enter the record too — "we never checked a 2x6
+       because no 2x6 can reach the required S_x" is an answer */
+    boundPruned.forEach(function (bp) {
+      rejected.push({ cand: bp.cand, dcr: null, governing: null, bound: true,
+                      reason: bp.reason, next: "a deeper or stronger section" });
+    });
+
     var ordered = fams.slice().sort(function (a, b) { return a.id < b.id ? -1 : (a.id > b.id ? 1 : 0); });
     var context = [], exhausted = true;
     for (var fi = 0; fi < ordered.length; fi++) {
@@ -3709,7 +3847,10 @@ var FM = (function () {
           warnings: cev.result.warnings || [], inputs: cev.inputs,
           checks: cev.result.checks.map(function (c) { return { name: c.name, dcr: c.dcr }; })
         };
-        if (cok) crow.score = cc.cost.totalUSD + slackPenalty(cdcr, policy);
+        if (cok) {
+          crow.pieceScore = cc.cost.totalUSD + slackPenalty(cdcr, policy);
+          crow.score = crow.pieceScore / cc.cost.unit;
+        }
         else {
           var crep = REPAIR[cev.result.governing.name] || { move: "no repair rule for this limit state" };
           rejected.push({
@@ -3728,12 +3869,17 @@ var FM = (function () {
       .sort(function (a, b) { return a.score - b.score || tieBreak(a, b); });
 
     /* self-check: the search claimed optimality, the context pass evaluated more.
-       If anything the context pass found scores below the pick, the search was
-       wrong — surface it rather than quietly serve the better one. */
+       Compare on score AND tie-break, because agreeing on score while disagreeing
+       on which member won is exactly the defect this guards. */
     stats.searchOptimal = !incumbent || !feasible.length ||
-      feasible[0].score >= incumbent.score - 1e-9;
+      (feasible[0] === incumbent) ||
+      (Math.abs(feasible[0].score - incumbent.score) <= 1e-9 && tieBreak(feasible[0], incumbent) === 0);
 
-    var pick = incumbent || null;
+    /* The pick is the head of the ranked list, full stop. Returning the search
+       incumbent instead let the recommendation disagree with the table printed
+       beside it whenever two candidates tied exactly on score — the incumbent
+       was chosen in search order, the list by tieBreak. */
+    var pick = feasible[0] || null;
 
     /* End reactions are the currency of coordination. The truss supplier, the
        EWP supplier and the foundation engineer all need the number in pounds at
@@ -3744,18 +3890,31 @@ var FM = (function () {
 
     /* Escalation is a status, not a footnote. A plan with an escalation is not
        a finished schedule and must not read like one. */
-    var status = "ok";
+    /* Report the wall that actually stopped the search, in this order:
+         strength   nothing in the ladder reaches the required section, or every
+                    evaluated candidate was overstressed — a real engineering wall
+         procurement a member PASSED but the availability floor excluded it
+         geometry    a member would fit structurally but not physically
+       Falling through to whichever gate happened to appear in the rejection list
+       produced "lower your availability floor" as the advice for a member that
+       was 4% short on section modulus. */
+    var status = "ok", blocked = null;
     if (!pick) {
-      status = rejected.some(function (r) { return r.gate === "geometry"; }) && !considered.length
-        ? "escalate:geometry"
-        : (rejected.some(function (r) { return r.gate === "procurement"; }) && !considered.length
-            ? "escalate:procurement"
-            : "escalate:scope");
+      var gatedPassing = rejected.filter(function (r) { return r.gate === "procurement"; });
+      if (considered.length) status = "escalate:strength";
+      else if (!fams.length || !fams.some(function (f) { return f.admissible.length; })) {
+        status = "escalate:strength";
+        blocked = boundWall(bounds, policy);
+      } else if (gatedPassing.length) status = "escalate:procurement";
+      else if (rejected.some(function (r) { return r.gate === "geometry"; })) status = "escalate:geometry";
+      else status = "escalate:scope";
     }
 
     return {
       demand: demand,
       status: status,
+      advisories: advisories,
+      blocked: blocked,
       reactions: reactions,
       policy: { id: policy.id, name: policy.name, maxDCR: policy.maxDCR,
                 ladder: policy.ladder, spacings: policy.spacings,
@@ -3766,8 +3925,8 @@ var FM = (function () {
       bounds: bounds,
       stats: stats,
       searchSpace: fams.reduce(function (n, f) { return n + f.rungs.length; }, 0),
-      note: feasible.length ? null : noFeasibleNote(demand, policy, rejected),
-      elapsed: t0
+      note: feasible.length ? null : noFeasibleNote(demand, policy, rejected, blocked,
+              rejected.filter(function (r) { return r.gate === "procurement"; })),
     };
   }
 
@@ -3792,6 +3951,26 @@ var FM = (function () {
     };
   }
 
+  /* When the seed bounds emptied the ladder, name the section property that did
+     it and by how much — "no section reaches S_x = 76.95 in³" is an answer; a
+     gate label is not. */
+  function boundWall(bounds, policy) {
+    var keys = Object.keys(bounds.bySpacing), worst = null;
+    keys.forEach(function (k) {
+      var b = bounds.bySpacing[k];
+      [["S_x", "in³", b.S_req], ["I_x", "in⁴", b.I_req], ["A", "in²", b.A_req], ["breadth", "in", b.b_req]]
+        .forEach(function (t) {
+          if (!worst || t[2] > worst.value) worst = { prop: t[0], unit: t[1], value: t[2], spacing: k };
+        });
+    });
+    return worst ? {
+      property: worst.prop, required: worst.value, unit: worst.unit,
+      text: "no section in the ladder reaches the required " + worst.prop + " of " +
+            worst.value.toFixed(2) + " " + worst.unit + " at the firm's DCR target of " +
+            policy.maxDCR.toFixed(2)
+    } : null;
+  }
+
   /* deterministic all the way down — same inputs, same schedule, every run */
   function tieBreak(a, b) {
     if (a.cand.d_in !== b.cand.d_in) return a.cand.d_in - b.cand.d_in;
@@ -3803,7 +3982,20 @@ var FM = (function () {
 
   /* When nothing fits, say which wall the search hit and what would move it.
      A solver that only reports "no solution" is telling the engineer nothing. */
-  function noFeasibleNote(demand, policy, rejected) {
+  function noFeasibleNote(demand, policy, rejected, blocked, gatedPassing) {
+    if (blocked) {
+      return { wall: blocked.text, counts: {}, move: "a deeper or stronger section than the ladder offers",
+               outOfScope: OUT_OF_SCOPE };
+    }
+    if (gatedPassing && gatedPassing.length) {
+      var names = gatedPassing.map(function (r) { return skuOf(r.cand); }).join(", ");
+      return {
+        wall: "a solid-sawn member passes this check — your availability floor excludes it",
+        counts: {}, procurement: names,
+        move: "confirm the yard will supply " + names + ", or lower the availability floor deliberately",
+        outOfScope: "This is a PROCUREMENT decision, not an engineering one. The member is adequate."
+      };
+    }
     var byCheck = {};
     rejected.forEach(function (r) {
       if (!r.governing) return;
@@ -3815,11 +4007,14 @@ var FM = (function () {
       wall: worst || "no candidate could even be evaluated",
       counts: byCheck,
       move: rep ? rep.move : "widen the palette or the size ladder",
-      outOfScope: "Multi-ply built-up members, engineered lumber (LVL/PSL/LSL) and I-joists are " +
-                  "outside this engine (calc-spec §8.6, §8.19). A span this size in a tract plan is " +
-                  "normally an engineered header — that selection cannot be made here."
+      outOfScope: OUT_OF_SCOPE
     };
   }
+
+  var OUT_OF_SCOPE =
+    "Multi-ply built-up members, engineered lumber (LVL/PSL/LSL) and I-joists are outside this " +
+    "engine (calc-spec §8.6, §8.19). A span this size in a tract plan is normally an engineered " +
+    "header — that selection cannot be made here.";
 
   /* ---------- plan-level solve ---------- */
 
@@ -3904,7 +4099,7 @@ var FM = (function () {
           if (!alt) { ok = false; return; }
           /* compare on SCORE, the same objective the search optimised. Raising a
              member always increases its slack, and cost alone cannot see that. */
-          delta += (alt.score - pick.score) * (m.mark.count || 1);
+          delta += (alt.pieceScore - pick.pieceScore) * pieceCount(m);
           raised.push({ mark: m.mark.id, from: skuOf(pick.cand), to: skuOf(target), row: m, alt: alt });
           skusAfter[skuOf(target)] = 1;
         });
@@ -3912,8 +4107,14 @@ var FM = (function () {
         var nAfter = Object.keys(skusAfter).length;
         /* the per-SKU handling charge, plus the system bonus that only exists
            when the group actually collapses to a single size */
+        /* the system bonus is for collapsing to ONE SIZE — a same-size grade
+           swap creates no band, no single rim depth and no single hanger SKU */
+        var sizesBefore = {}, sizesAfter = {};
+        members.forEach(function (m) { sizesBefore[m.solution.pick.cand.size] = 1; });
+        Object.keys(skusAfter).forEach(function (k) { sizesAfter[k.split(" ")[0]] = 1; });
+        var collapsedSizes = Object.keys(sizesBefore).length > 1 && Object.keys(sizesAfter).length === 1;
         var saved = (skusBefore - nAfter) * w.skuPenalty +
-                    (nAfter === 1 ? (bonus[g] || 0) : 0);
+                    (nAfter === 1 && collapsedSizes ? (own(bonus, g) || 0) : 0);
         if (saved <= 0) return;
         var net = delta - saved;
         if (!best || net < best.net) {
@@ -3935,8 +4136,25 @@ var FM = (function () {
     return moves;
   }
 
+  /* A repetitive mark's piece count follows from the run and the spacing the
+     solver chose, so it cannot be a fixed number in the plan: quoting a 12 ft
+     deck at 16 marks while the solver picks 12" o.c. (which needs 22) makes the
+     plan cost meaningless. Non-repetitive marks keep their literal count. */
+  function pieceCount(m) {
+    var row = m.unifiedTo || (m.solution && m.solution.pick);
+    if (row && m.demand && m.demand.repetitive && m.mark.runFt && row.cand.spacing) {
+      return Math.ceil(Number(m.mark.runFt) * 12 / row.cand.spacing) + 1;
+    }
+    return m.mark.count || 1;
+  }
+
   function skuOf(cand) {
     return cand.size + " " + cand.species + " " + cand.grade;
+  }
+  function shallow(o) {
+    var out = {}, k;
+    for (k in o) if (Object.prototype.hasOwnProperty.call(o, k)) out[k] = o[k];
+    return out;
   }
   function keyOf(cand) {
     return skuOf(cand) + "@" + (cand.spacing || 0);
@@ -3949,16 +4167,24 @@ var FM = (function () {
       var row = m.unifiedTo || (m.solution && m.solution.pick);
       if (!row) { escalated++; return; }
       solved++;
-      var n = m.mark.count || 1;
+      var n = pieceCount(m);
       totalUSD += row.cost.totalUSD * n;
       var k = skuOf(row.cand);
       if (!Object.prototype.hasOwnProperty.call(skus, k)) skus[k] = 0;
       skus[k] += n;
       if (row.cost.cfBasis === "held") flagged++;
     });
+    var windGoverned = !!(planResult.pack && planResult.pack.governs === "wind");
     return {
       solved: solved, escalated: escalated, unsolved: escalated, notApplicable: notApplicable,
-      flaggedCF: flagged, complete: escalated === 0,
+      flaggedCF: flagged,
+      /* A schedule is not complete while anything is escalated, while any mark
+         was removed as not-this-engine, or in a market where wind governs the
+         members this engine only checked for gravity. */
+      complete: escalated === 0 && notApplicable === 0 && !windGoverned,
+      incompleteBecause: escalated ? "marks escalated"
+        : (notApplicable ? "marks removed as not this engine's member"
+        : (windGoverned ? "wind governs in this market and is not checked here" : null)),
       skuCount: Object.keys(skus).length, skus: skus, lumberUSD: totalUSD
     };
   }
@@ -3988,13 +4214,19 @@ var FM = (function () {
       });
       var distinct = {};
       cells.forEach(function (c) { if (c.sku) distinct[c.sku + "@" + c.spacing] = 1; });
-      return { mark: mk, cells: cells, varies: Object.keys(distinct).length > 1,
-               everSolved: Object.keys(distinct).length > 0 };
+      var n = Object.keys(distinct).length;
+      /* A mark that produced no member anywhere is NOT portable — it is
+         unanswered. Counting it as "common to every region" turned silence into
+         evidence for the product's central claim. */
+      return { mark: mk, cells: cells, everSolved: n > 0,
+               varies: n > 1, common: n === 1, unanswered: n === 0 };
     });
     return {
       plan: plan, runs: runs, rows: rows,
-      commonMarks: rows.filter(function (r) { return !r.varies; }).length,
-      varyingMarks: rows.filter(function (r) { return r.varies; }).length
+      commonMarks: rows.filter(function (r) { return r.common; }).length,
+      varyingMarks: rows.filter(function (r) { return r.varies; }).length,
+      unansweredMarks: rows.filter(function (r) { return r.unanswered; }).length,
+      solvedMarks: rows.filter(function (r) { return r.everSolved; }).length
     };
   }
 
@@ -4775,6 +5007,12 @@ var FM = (function () {
       }
 
       var r = res.rollup;
+      if (!r.complete) {
+        body.appendChild(el("div", { class: "banner banner-warn" }, [
+          el("strong", { text: "Not a complete schedule — " }),
+          el("span", { text: r.incompleteBecause + ". Do not read the solved marks as a finished design." })
+        ]));
+      }
       body.appendChild(el("div", { class: "grid g5", style: "margin-bottom:16px" }, [
         FM.statCard(String(r.solved) + "/" + plan.marks.length, "Marks solved", r.escalated ? "warn" : "pass"),
         FM.statCard(String(r.escalated), "Escalated", r.escalated ? "fail" : ""),
@@ -4894,8 +5132,13 @@ var FM = (function () {
       wrap.appendChild(card("Search trace", el("span", { class: "badge b-blue", text: st.evaluated + " engine calls", style: "margin-left:auto" }),
         el("div", { style: "display:grid;gap:10px" }, [
           el("div", { class: "eq", html:
-            "S_x required &ge; " + fmt(b.S_req, 2) + " in&sup3;  ·  I_x required &ge; " + fmt(b.I_req, 1) + " in&#8308;<br>" +
-            "A required &ge; " + fmt(b.A_req, 2) + " in&sup2;  ·  breadth required &ge; " + fmt(b.b_req, 3) + " in<br>" +
+            Object.keys(b.bySpacing).map(function (sp) {
+              var x = b.bySpacing[sp];
+              return (sp === "0" ? "single member" : "at " + sp + "&Prime; o.c.") +
+                     ": S_x &ge; " + fmt(x.S_req, 2) + " in&sup3; · I_x &ge; " + fmt(x.I_req, 1) +
+                     " in&#8308; · A &ge; " + fmt(x.A_req, 2) + " in&sup2; · b &ge; " + fmt(x.b_req, 3) + " in";
+            }).join("<br>") + "<br>" +
+            "computed per spacing — a member at 16&Prime; o.c. carries two-thirds of what it carries at 24&Prime;<br>" +
             "computed against the best material in the palette, C_L = 1, C_M = 1, self-weight omitted — so a section " +
             "below a bound cannot pass for any material offered"
           }),
@@ -4957,11 +5200,21 @@ var FM = (function () {
           "Sensitivity from the closed forms: deflection goes as d³, bending as d², shear as d, bearing not at all"));
       }
 
+      /* the roof-load crossover and anything else the search wants flagged */
+      (sol.advisories || []).forEach(function (a) {
+        wrap.appendChild(el("div", { class: "banner banner-warn" }, [
+          el("strong", { text: "Not checked — " }), el("span", { text: a.text })
+        ]));
+      });
+
       /* nothing worked */
       if (!sol.pick && sol.note) {
-        wrap.appendChild(card("No solid-sawn solution", el("span", { class: "badge b-fail", text: "Blocked", style: "margin-left:auto" }),
+        var escLabel = sol.status === "escalate:procurement" ? "Procurement, not engineering"
+          : (sol.status === "escalate:geometry" ? "Will not fit" : "Beyond solid sawn");
+        wrap.appendChild(card("Escalated — " + escLabel, el("span", { class: "badge b-fail", text: sol.status.replace("escalate:", ""), style: "margin-left:auto" }),
           el("div", { style: "display:grid;gap:9px;font-size:.86rem" }, [
             el("p", {}, [el("strong", { text: "Wall: " }), el("span", { text: sol.note.wall })]),
+            sol.note.procurement ? el("p", {}, [el("strong", { text: "The member that passes: " }), el("span", { text: sol.note.procurement })]) : null,
             el("p", {}, [el("strong", { text: "What would move it: " }), el("span", { text: sol.note.move })]),
             el("p", { class: "src-note", text: sol.note.outOfScope })
           ]), null));
@@ -5035,7 +5288,7 @@ var FM = (function () {
           el("td", { class: "k", text: p.species }),
           el("td", { text: p.grade }),
           el("td", { class: "n", text: usd(p.bfUSD) + "/bf" }),
-          el("td", { class: "n", text: fmt(p.availability, 2) }),
+          el("td", { class: "n", text: fmt(p.stockFactor, 2) }),
           el("td", { text: p.note || "" })
         ]));
       });
@@ -5045,7 +5298,7 @@ var FM = (function () {
             el("table", {}, [
               el("thead", {}, [el("tr", {}, [
                 el("th", { text: "Species" }), el("th", { text: "Grade" }), el("th", { class: "n", text: "Price" }),
-                el("th", { class: "n", text: "Availability" }), el("th", { text: "Note" })
+                el("th", { class: "n", text: "Stock factor" }), el("th", { text: "Note" })
               ])]), ptb
             ])
           ]),
@@ -5082,11 +5335,11 @@ var FM = (function () {
       var cmp = FM.solver.compare(plan, packs);
 
       body.appendChild(el("div", { class: "grid g5", style: "margin-bottom:16px" }, [
-        FM.statCard(String(cmp.commonMarks), "Marks common to every region", "pass"),
-        FM.statCard(String(cmp.varyingMarks), "Marks that change", "gold"),
-        FM.statCard(String(packs.length), "Regions compared"),
-        FM.statCard(String(plan.marks.length), "Marks in plan"),
-        FM.statCard(plan.lots ? String(plan.lots) : "—", "Lots in program")
+        FM.statCard(String(cmp.commonMarks), "Same member everywhere", "pass"),
+        FM.statCard(String(cmp.varyingMarks), "Regionally forced", "gold"),
+        FM.statCard(String(cmp.unansweredMarks), "Unanswered anywhere", cmp.unansweredMarks ? "fail" : ""),
+        FM.statCard(String(cmp.solvedMarks) + "/" + plan.marks.length, "Marks with an answer"),
+        FM.statCard(String(packs.length), "Regions compared")
       ]));
 
       var tb = el("tbody");
@@ -5094,8 +5347,9 @@ var FM = (function () {
         var cells = [
           el("td", { class: "k" }, [
             el("span", { text: row.mark.id }),
-            row.varies ? el("span", { class: "badge b-gold", style: "margin-left:6px", text: "Varies" })
-                       : el("span", { class: "badge b-pass", style: "margin-left:6px", text: "Common" })
+            row.unanswered ? el("span", { class: "badge b-fail", style: "margin-left:6px", text: "Unanswered" })
+              : (row.varies ? el("span", { class: "badge b-gold", style: "margin-left:6px", text: "Varies" })
+                            : el("span", { class: "badge b-pass", style: "margin-left:6px", text: "Common" }))
           ]),
           el("td", { text: row.mark.label })
         ];
@@ -5121,8 +5375,9 @@ var FM = (function () {
 
       body.appendChild(el("div", { style: "margin-top:16px" }, [
         card("Reading this", null, el("div", { style: "display:grid;gap:9px;font-size:.86rem" }, [
+          el("p", { text: "A mark marked Unanswered produced no member in any region — it is not portable, it is unanswered, and counting it as common would turn silence into evidence for this product's central claim." }),
           el("p", { text: "A mark marked Common is the same member in every region on this board — build it the same everywhere and buy it in one order. A mark marked Varies is regionally forced, and the region pack says which variable forced it." }),
-          el("p", { text: "The three forcings that actually move members across these six packs are: snow duration in the Carolina mountains, which drops C_D from 1.25 to 1.15; concrete tile dead load in the HVHZ, which is 27 psf against 15 for shingle; and species availability, which decides what the yard can hand the framer." }),
+          el("p", { text: "The three forcings that actually move members across these six packs are: snow duration in the Carolina mountains, which drops C_D from 1.25 to 1.15; concrete tile dead load in the HVHZ, which is 22 psf against 15 for shingle; and species availability, which decides what the yard can hand the framer." }),
           el("p", { class: "src-note", text: "Every cell is an independent solve against that region's palette, ladder, loads and DCR target. No cell is inferred from another." })
         ]), null)
       ]));

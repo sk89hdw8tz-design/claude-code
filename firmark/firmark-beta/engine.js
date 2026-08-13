@@ -286,6 +286,16 @@
     if (!isFinite(span) || span <= 0) return bad("Span must be greater than zero.");
     if (!isFinite(spacing) || spacing <= 0) return bad("Spacing must be greater than zero.");
     if (D < 0 || L < 0 || Lr < 0) return bad("Loads cannot be negative.");
+    /* a load that arrived as NaN was coerced to 0 above — designing for no load
+       is the one failure mode worse than refusing to design */
+    if (!isFinite(Number(inp.dead)) && inp.dead !== undefined && inp.dead !== null)
+      return bad("Dead load is not a number.");
+    if (!isFinite(Number(inp.live)) && inp.live !== undefined && inp.live !== null)
+      return bad("Floor live load is not a number.");
+    if (!isFinite(Number(inp.roofLoad)) && inp.roofLoad !== undefined && inp.roofLoad !== null)
+      return bad("Roof load is not a number.");
+    if (!DEFL[inp.memberUse] && inp.memberUse !== undefined)
+      warnings.push("Unknown deflection row \"" + inp.memberUse + "\" — IBC floor limits assumed.");
 
     var sec = findSection(inp.size);
     if (!sec) return bad("No dimension-lumber section properties for " + inp.size + ". Timbers and beams & stringers are out of scope.");
@@ -377,7 +387,15 @@
 
     function consider(name, dcr, combo, lines, detail, kind) {
       checks.push({ name: name, dcr: dcr, combo: combo, lines: lines, detail: detail || null, kind: kind });
-      if (!isFinite(dcr)) return;
+      /* A non-finite STRENGTH ratio is a failure, not an absence. Skipping it
+         here let a member with zero bending capacity report PASS on deflection. */
+      if (!isFinite(dcr)) {
+        if (kind !== "service") {
+          var t0 = strength;
+          if (!isFinite(t0.dcr) || t0.dcr < Infinity) { t0.name = name; t0.dcr = Infinity; t0.combo = combo; }
+        }
+        return;
+      }
       var tgt = kind === "service" ? service : strength;
       if (dcr > tgt.dcr) {
         tgt.name = name; tgt.dcr = dcr; tgt.combo = combo;
@@ -385,7 +403,7 @@
     }
 
     /* ---------- bending ---------- */
-    var best = null;
+    var best = null, invalidStability = null;
     combos.forEach(function (c) {
       var w = c.psf * spacing / 12;
       var M = w * span * span / 8;
@@ -394,8 +412,17 @@
       var stab = beamStability(inp.braced ? 0 : span * 12, d, b, FbStar, EminPrime);
       var Fbp = FbStar * stab.CL;
       var dcr = Fbp > 0 ? fb / Fbp : Infinity;
+      if (stab.invalid) invalidStability = stab;
       if (!best || dcr > best.dcr) best = { dcr: dcr, combo: c.label, w: w, M: M, fb: fb, Fbp: Fbp, cd: c.cd, stab: stab };
     });
+
+    /* NDS §3.3.3.7 — R_B may not exceed 50. That is a prohibition, not a low
+       capacity: the member is not permitted and the app must say so rather than
+       return an infinite DCR that the governing-case selection then drops. */
+    if (invalidStability) {
+      return bad("Not permitted — " + invalidStability.note +
+                 ". Reduce the unbraced length, or increase the breadth.");
+    }
 
     consider("Bending", best.dcr, best.combo, [
       "w = " + f(best.w, 1) + " plf",

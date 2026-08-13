@@ -34,7 +34,10 @@
   function stockLength(spanFt) {
     var need = spanFt + 0.5;                  /* bearing at both ends */
     var len = Math.ceil(need / 2) * 2;
-    return Math.max(8, Math.min(24, len));
+    /* No upper clamp. Clamping at 24 ft billed a 46 ft member as a 24-footer and
+       gave it a NEGATIVE drop cost — the longest stick the yard racks is a
+       supply constraint (availability), not a discount. */
+    return Math.max(8, len);
   }
 
   function boardFeetPerLF(nominal) {
@@ -139,8 +142,14 @@
     var risk = cf.basis === "held" ? w.unsourcedCF : 0;
 
     var total = material + labor + drop + depth + stock + risk;
+    /* THE RANKING UNIT. A piece at 16" o.c. and a piece at 24" o.c. do not do the
+       same amount of work, so ranking two spacings on per-piece cost silently
+       prefers the tighter one — which is how the solver came to recommend 16" o.c.
+       roofs to markets that sheathe everything at 24". Repetitive members are
+       ranked per square foot of framed area; single members per piece. */
+    var unit = demand.repetitive ? area : 1;
     return {
-      totalUSD: total, perSF: total / area, area: area,
+      totalUSD: total, unitUSD: total / unit, perSF: total / area, area: area, unit: unit,
       lengthFt: len, boardFeet: bf, weightLb: lb,
       terms: { material: material, labor: labor, drop: drop, depth: depth, stock: stock, risk: risk },
       bfUSD: bfUSD, availability: availability, cullRate: cullRate, cfBasis: cf.basis
@@ -152,13 +161,18 @@
      therefore keyed by role, falling back to the flat value. */
   function laborPerPiece(demand, w) {
     var byRole = w.laborPerPieceByRole || {};
-    var v = byRole[demand.role];
+    var v = own(byRole, demand.role);
     return isFinite(v) ? v : w.laborPerPiece;
   }
   function depthWeight(demand, w) {
     var byRole = w.depthPerInchSfByRole || {};
-    var v = byRole[demand.role];
+    var v = own(byRole, demand.role);
     return isFinite(v) ? v : w.depthPerInchSf;
+  }
+  /* author-supplied strings are used as keys throughout; a mark whose role or
+     SKU group is named "constructor" must not pick up Object.prototype */
+  function own(o, k) {
+    return (o && Object.prototype.hasOwnProperty.call(o, k)) ? o[k] : undefined;
   }
 
   /* slack is scored only after a candidate is known feasible, so it can never
@@ -304,9 +318,11 @@
        check without C_i overstates F_b and F_v by 20% (NDS Table 4.3.8). So the
        candidate is excluded rather than checked optimistically. Southern Pine
        takes treatment without incising, which is why it survives this gate. */
-    if (demand.wet && policy.incisedWhenTreated && policy.incisedWhenTreated[cand.species]) {
+    if ((demand.treated || demand.wet) && policy.incisedWhenTreated &&
+        Object.prototype.hasOwnProperty.call(policy.incisedWhenTreated, cand.species) &&
+        policy.incisedWhenTreated[cand.species]) {
       return { ok: false, kind: "scope",
-               why: "treated " + cand.species + " is incised; C_i = 0.80 (NDS Table 4.3.8) is not " +
+               why: "treated " + cand.species + " must be incised; C_i = 0.80 (NDS Table 4.3.8) is not " +
                     "implemented in this engine, so checking it here would overstate capacity by 20%" };
     }
     return { ok: true };
@@ -373,10 +389,37 @@
 
   function size(demand, policy) {
     if (!FM.engine) throw new Error("solver requires FM.engine");
-    var t0 = 0;
-    var cache = {}, stats = { evaluated: 0, cacheHits: 0, prunedByBound: 0, prunedByDominance: 0, prunedByIncumbent: 0, families: 0 };
+    /* calc-spec §6.2: DCR <= 1.000 passes, with no tolerance band. A firm may
+       set a TIGHTER target; it may not set a looser one. */
+    if (!(policy.maxDCR > 0) || policy.maxDCR > 1) {
+      policy = shallow(policy);
+      policy.maxDCR = Math.min(1, Math.max(0.01, Number(policy.maxDCR) || 0.9));
+    }
+    var cache = {}, stats = { evaluated: 0, contextEvaluated: 0, cacheHits: 0, prunedByBound: 0, prunedByDominance: 0, prunedByIncumbent: 0, families: 0 };
+
+    /* calc-spec §2.1 wants six combinations built from separate q_Lr and q_S; the
+       engine carries ONE roof load tagged either snow or roof-live, so D + Lr and
+       D + S can never be evaluated together. Near the 20 psf roof-live minimum
+       either tag is unconservative on one limit state: declared roof-live, snow
+       understates bending by up to 8.4%; declared snow, roof-live understates
+       deflection. Make the exposure visible instead of silent. */
+    var advisories = [];
+    var rl = Number(demand.roofLoad || 0);
+    if (rl > 0 && rl >= 16 && rl <= 25) {
+      advisories.push({
+        kind: "roof-load-crossover",
+        text: "Roof load " + rl.toFixed(0) + " psf sits near the 20 psf roof-live minimum, where the " +
+              "snow and roof-live cases cross. This engine evaluates only the one you declared (" +
+              (demand.roofType === "snow" ? "snow, C_D 1.15" : "roof live, C_D 1.25") + "), so " +
+              (demand.roofType === "snow"
+                ? "the roof-live case — which governs deflection below 20 psf — was not checked."
+                : "the snow case — which governs bending above about 18.4 psf — was not checked.") +
+              " Check the other case by hand before this member is used."
+      });
+    }
 
     var bounds = seedBounds(demand, policy);
+    var boundPruned = [];
     var fams = families(demand, policy);
     stats.families = fams.length;
 
@@ -395,14 +438,18 @@
        exact rather than heuristic guesses */
     fams.forEach(function (fam) {
       fam.rungs.forEach(function (c) { c.cost = costOf(demand, c, policy); });
-      fam.admissible = fam.rungs.filter(function (c) { return passesBounds(c, bounds).ok; });
+      fam.admissible = fam.rungs.filter(function (c) {
+        var pb = passesBounds(c, bounds);
+        if (!pb.ok) boundPruned.push({ cand: c, reason: pb.why, bound: true });
+        return pb.ok;
+      });
       fam.monotone = true;
       for (var i = 1; i < fam.rungs.length; i++) {
         if (fam.rungs[i].cost && fam.rungs[i - 1].cost &&
-            fam.rungs[i].cost.totalUSD < fam.rungs[i - 1].cost.totalUSD - EPS) { fam.monotone = false; break; }
+            fam.rungs[i].cost.unitUSD < fam.rungs[i - 1].cost.unitUSD - EPS) { fam.monotone = false; break; }
       }
       fam.lowerBoundUSD = fam.admissible.reduce(function (m, c) {
-        return c.cost && c.cost.totalUSD < m ? c.cost.totalUSD : m;
+        return c.cost && c.cost.unitUSD < m ? c.cost.unitUSD : m;
       }, Infinity);
       stats.prunedByBound += fam.rungs.length - fam.admissible.length;
     });
@@ -425,14 +472,14 @@
     });
 
     fams.forEach(function (fam) {
-      if (incumbent && fam.lowerBoundUSD >= incumbent.score - EPS) {
+      if (incumbent && fam.lowerBoundUSD > incumbent.score + EPS) {
         stats.prunedByIncumbent += fam.admissible.length;
         return;
       }
       for (var i = 0; i < fam.admissible.length; i++) {
         var cand = fam.admissible[i];
 
-        if (incumbent && cand.cost.totalUSD >= incumbent.score - EPS) {
+        if (incumbent && cand.cost.unitUSD > incumbent.score + EPS) {
           /* "rungs are depth-ordered, so cost only grows" is exactly the
              property fam.monotone verifies — and it is not free. A per-size
              price vector (short supply on one rung, clearance on another) makes
@@ -474,7 +521,11 @@
           continue;
         }
 
-        row.score = cand.cost.totalUSD + slackPenalty(dcr, policy);
+        /* score is the ranking objective, in $/sf for repetitive members and
+           $/piece for single ones. pieceScore stays absolute, because SKU
+           unification and the plan cost rollup are per-piece questions. */
+        row.pieceScore = cand.cost.totalUSD + slackPenalty(dcr, policy);
+        row.score = row.pieceScore / cand.cost.unit;
         /* tieBreak decides ties, not losses — reaching it on a strictly worse
            score would let a more expensive candidate take the incumbency */
         if (!incumbent || row.score < incumbent.score - EPS ||
@@ -507,6 +558,13 @@
     var seen = {};
     considered.forEach(function (c) { seen[keyOf(c.cand)] = true; });
 
+    /* bound-pruned candidates enter the record too — "we never checked a 2x6
+       because no 2x6 can reach the required S_x" is an answer */
+    boundPruned.forEach(function (bp) {
+      rejected.push({ cand: bp.cand, dcr: null, governing: null, bound: true,
+                      reason: bp.reason, next: "a deeper or stronger section" });
+    });
+
     var ordered = fams.slice().sort(function (a, b) { return a.id < b.id ? -1 : (a.id > b.id ? 1 : 0); });
     var context = [], exhausted = true;
     for (var fi = 0; fi < ordered.length; fi++) {
@@ -530,7 +588,10 @@
           warnings: cev.result.warnings || [], inputs: cev.inputs,
           checks: cev.result.checks.map(function (c) { return { name: c.name, dcr: c.dcr }; })
         };
-        if (cok) crow.score = cc.cost.totalUSD + slackPenalty(cdcr, policy);
+        if (cok) {
+          crow.pieceScore = cc.cost.totalUSD + slackPenalty(cdcr, policy);
+          crow.score = crow.pieceScore / cc.cost.unit;
+        }
         else {
           var crep = REPAIR[cev.result.governing.name] || { move: "no repair rule for this limit state" };
           rejected.push({
@@ -549,12 +610,17 @@
       .sort(function (a, b) { return a.score - b.score || tieBreak(a, b); });
 
     /* self-check: the search claimed optimality, the context pass evaluated more.
-       If anything the context pass found scores below the pick, the search was
-       wrong — surface it rather than quietly serve the better one. */
+       Compare on score AND tie-break, because agreeing on score while disagreeing
+       on which member won is exactly the defect this guards. */
     stats.searchOptimal = !incumbent || !feasible.length ||
-      feasible[0].score >= incumbent.score - 1e-9;
+      (feasible[0] === incumbent) ||
+      (Math.abs(feasible[0].score - incumbent.score) <= 1e-9 && tieBreak(feasible[0], incumbent) === 0);
 
-    var pick = incumbent || null;
+    /* The pick is the head of the ranked list, full stop. Returning the search
+       incumbent instead let the recommendation disagree with the table printed
+       beside it whenever two candidates tied exactly on score — the incumbent
+       was chosen in search order, the list by tieBreak. */
+    var pick = feasible[0] || null;
 
     /* End reactions are the currency of coordination. The truss supplier, the
        EWP supplier and the foundation engineer all need the number in pounds at
@@ -565,18 +631,31 @@
 
     /* Escalation is a status, not a footnote. A plan with an escalation is not
        a finished schedule and must not read like one. */
-    var status = "ok";
+    /* Report the wall that actually stopped the search, in this order:
+         strength   nothing in the ladder reaches the required section, or every
+                    evaluated candidate was overstressed — a real engineering wall
+         procurement a member PASSED but the availability floor excluded it
+         geometry    a member would fit structurally but not physically
+       Falling through to whichever gate happened to appear in the rejection list
+       produced "lower your availability floor" as the advice for a member that
+       was 4% short on section modulus. */
+    var status = "ok", blocked = null;
     if (!pick) {
-      status = rejected.some(function (r) { return r.gate === "geometry"; }) && !considered.length
-        ? "escalate:geometry"
-        : (rejected.some(function (r) { return r.gate === "procurement"; }) && !considered.length
-            ? "escalate:procurement"
-            : "escalate:scope");
+      var gatedPassing = rejected.filter(function (r) { return r.gate === "procurement"; });
+      if (considered.length) status = "escalate:strength";
+      else if (!fams.length || !fams.some(function (f) { return f.admissible.length; })) {
+        status = "escalate:strength";
+        blocked = boundWall(bounds, policy);
+      } else if (gatedPassing.length) status = "escalate:procurement";
+      else if (rejected.some(function (r) { return r.gate === "geometry"; })) status = "escalate:geometry";
+      else status = "escalate:scope";
     }
 
     return {
       demand: demand,
       status: status,
+      advisories: advisories,
+      blocked: blocked,
       reactions: reactions,
       policy: { id: policy.id, name: policy.name, maxDCR: policy.maxDCR,
                 ladder: policy.ladder, spacings: policy.spacings,
@@ -587,8 +666,8 @@
       bounds: bounds,
       stats: stats,
       searchSpace: fams.reduce(function (n, f) { return n + f.rungs.length; }, 0),
-      note: feasible.length ? null : noFeasibleNote(demand, policy, rejected),
-      elapsed: t0
+      note: feasible.length ? null : noFeasibleNote(demand, policy, rejected, blocked,
+              rejected.filter(function (r) { return r.gate === "procurement"; })),
     };
   }
 
@@ -613,6 +692,26 @@
     };
   }
 
+  /* When the seed bounds emptied the ladder, name the section property that did
+     it and by how much — "no section reaches S_x = 76.95 in³" is an answer; a
+     gate label is not. */
+  function boundWall(bounds, policy) {
+    var keys = Object.keys(bounds.bySpacing), worst = null;
+    keys.forEach(function (k) {
+      var b = bounds.bySpacing[k];
+      [["S_x", "in³", b.S_req], ["I_x", "in⁴", b.I_req], ["A", "in²", b.A_req], ["breadth", "in", b.b_req]]
+        .forEach(function (t) {
+          if (!worst || t[2] > worst.value) worst = { prop: t[0], unit: t[1], value: t[2], spacing: k };
+        });
+    });
+    return worst ? {
+      property: worst.prop, required: worst.value, unit: worst.unit,
+      text: "no section in the ladder reaches the required " + worst.prop + " of " +
+            worst.value.toFixed(2) + " " + worst.unit + " at the firm's DCR target of " +
+            policy.maxDCR.toFixed(2)
+    } : null;
+  }
+
   /* deterministic all the way down — same inputs, same schedule, every run */
   function tieBreak(a, b) {
     if (a.cand.d_in !== b.cand.d_in) return a.cand.d_in - b.cand.d_in;
@@ -624,7 +723,20 @@
 
   /* When nothing fits, say which wall the search hit and what would move it.
      A solver that only reports "no solution" is telling the engineer nothing. */
-  function noFeasibleNote(demand, policy, rejected) {
+  function noFeasibleNote(demand, policy, rejected, blocked, gatedPassing) {
+    if (blocked) {
+      return { wall: blocked.text, counts: {}, move: "a deeper or stronger section than the ladder offers",
+               outOfScope: OUT_OF_SCOPE };
+    }
+    if (gatedPassing && gatedPassing.length) {
+      var names = gatedPassing.map(function (r) { return skuOf(r.cand); }).join(", ");
+      return {
+        wall: "a solid-sawn member passes this check — your availability floor excludes it",
+        counts: {}, procurement: names,
+        move: "confirm the yard will supply " + names + ", or lower the availability floor deliberately",
+        outOfScope: "This is a PROCUREMENT decision, not an engineering one. The member is adequate."
+      };
+    }
     var byCheck = {};
     rejected.forEach(function (r) {
       if (!r.governing) return;
@@ -636,11 +748,14 @@
       wall: worst || "no candidate could even be evaluated",
       counts: byCheck,
       move: rep ? rep.move : "widen the palette or the size ladder",
-      outOfScope: "Multi-ply built-up members, engineered lumber (LVL/PSL/LSL) and I-joists are " +
-                  "outside this engine (calc-spec §8.6, §8.19). A span this size in a tract plan is " +
-                  "normally an engineered header — that selection cannot be made here."
+      outOfScope: OUT_OF_SCOPE
     };
   }
+
+  var OUT_OF_SCOPE =
+    "Multi-ply built-up members, engineered lumber (LVL/PSL/LSL) and I-joists are outside this " +
+    "engine (calc-spec §8.6, §8.19). A span this size in a tract plan is normally an engineered " +
+    "header — that selection cannot be made here.";
 
   /* ---------- plan-level solve ---------- */
 
@@ -725,7 +840,7 @@
           if (!alt) { ok = false; return; }
           /* compare on SCORE, the same objective the search optimised. Raising a
              member always increases its slack, and cost alone cannot see that. */
-          delta += (alt.score - pick.score) * (m.mark.count || 1);
+          delta += (alt.pieceScore - pick.pieceScore) * pieceCount(m);
           raised.push({ mark: m.mark.id, from: skuOf(pick.cand), to: skuOf(target), row: m, alt: alt });
           skusAfter[skuOf(target)] = 1;
         });
@@ -733,8 +848,14 @@
         var nAfter = Object.keys(skusAfter).length;
         /* the per-SKU handling charge, plus the system bonus that only exists
            when the group actually collapses to a single size */
+        /* the system bonus is for collapsing to ONE SIZE — a same-size grade
+           swap creates no band, no single rim depth and no single hanger SKU */
+        var sizesBefore = {}, sizesAfter = {};
+        members.forEach(function (m) { sizesBefore[m.solution.pick.cand.size] = 1; });
+        Object.keys(skusAfter).forEach(function (k) { sizesAfter[k.split(" ")[0]] = 1; });
+        var collapsedSizes = Object.keys(sizesBefore).length > 1 && Object.keys(sizesAfter).length === 1;
         var saved = (skusBefore - nAfter) * w.skuPenalty +
-                    (nAfter === 1 ? (bonus[g] || 0) : 0);
+                    (nAfter === 1 && collapsedSizes ? (own(bonus, g) || 0) : 0);
         if (saved <= 0) return;
         var net = delta - saved;
         if (!best || net < best.net) {
@@ -756,8 +877,25 @@
     return moves;
   }
 
+  /* A repetitive mark's piece count follows from the run and the spacing the
+     solver chose, so it cannot be a fixed number in the plan: quoting a 12 ft
+     deck at 16 marks while the solver picks 12" o.c. (which needs 22) makes the
+     plan cost meaningless. Non-repetitive marks keep their literal count. */
+  function pieceCount(m) {
+    var row = m.unifiedTo || (m.solution && m.solution.pick);
+    if (row && m.demand && m.demand.repetitive && m.mark.runFt && row.cand.spacing) {
+      return Math.ceil(Number(m.mark.runFt) * 12 / row.cand.spacing) + 1;
+    }
+    return m.mark.count || 1;
+  }
+
   function skuOf(cand) {
     return cand.size + " " + cand.species + " " + cand.grade;
+  }
+  function shallow(o) {
+    var out = {}, k;
+    for (k in o) if (Object.prototype.hasOwnProperty.call(o, k)) out[k] = o[k];
+    return out;
   }
   function keyOf(cand) {
     return skuOf(cand) + "@" + (cand.spacing || 0);
@@ -770,16 +908,24 @@
       var row = m.unifiedTo || (m.solution && m.solution.pick);
       if (!row) { escalated++; return; }
       solved++;
-      var n = m.mark.count || 1;
+      var n = pieceCount(m);
       totalUSD += row.cost.totalUSD * n;
       var k = skuOf(row.cand);
       if (!Object.prototype.hasOwnProperty.call(skus, k)) skus[k] = 0;
       skus[k] += n;
       if (row.cost.cfBasis === "held") flagged++;
     });
+    var windGoverned = !!(planResult.pack && planResult.pack.governs === "wind");
     return {
       solved: solved, escalated: escalated, unsolved: escalated, notApplicable: notApplicable,
-      flaggedCF: flagged, complete: escalated === 0,
+      flaggedCF: flagged,
+      /* A schedule is not complete while anything is escalated, while any mark
+         was removed as not-this-engine, or in a market where wind governs the
+         members this engine only checked for gravity. */
+      complete: escalated === 0 && notApplicable === 0 && !windGoverned,
+      incompleteBecause: escalated ? "marks escalated"
+        : (notApplicable ? "marks removed as not this engine's member"
+        : (windGoverned ? "wind governs in this market and is not checked here" : null)),
       skuCount: Object.keys(skus).length, skus: skus, lumberUSD: totalUSD
     };
   }
@@ -809,13 +955,19 @@
       });
       var distinct = {};
       cells.forEach(function (c) { if (c.sku) distinct[c.sku + "@" + c.spacing] = 1; });
-      return { mark: mk, cells: cells, varies: Object.keys(distinct).length > 1,
-               everSolved: Object.keys(distinct).length > 0 };
+      var n = Object.keys(distinct).length;
+      /* A mark that produced no member anywhere is NOT portable — it is
+         unanswered. Counting it as "common to every region" turned silence into
+         evidence for the product's central claim. */
+      return { mark: mk, cells: cells, everSolved: n > 0,
+               varies: n > 1, common: n === 1, unanswered: n === 0 };
     });
     return {
       plan: plan, runs: runs, rows: rows,
-      commonMarks: rows.filter(function (r) { return !r.varies; }).length,
-      varyingMarks: rows.filter(function (r) { return r.varies; }).length
+      commonMarks: rows.filter(function (r) { return r.common; }).length,
+      varyingMarks: rows.filter(function (r) { return r.varies; }).length,
+      unansweredMarks: rows.filter(function (r) { return r.unanswered; }).length,
+      solvedMarks: rows.filter(function (r) { return r.everSolved; }).length
     };
   }
 

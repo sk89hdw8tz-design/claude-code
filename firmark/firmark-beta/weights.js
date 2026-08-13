@@ -48,6 +48,7 @@
       laborPerPiece:   3.50,   /* $/piece, fallback                                            [market] */
       laborPerPieceByRole: {
         joist: 3.50, rafter: 3.50, ceiling: 3.25,
+        deck: 5.50,            /* treated, heavier, on hangers, outdoors                      [market] */
         header: 18.00,         /* two people, in a wall, with cripples and a king stud         [market] */
         beam: 45.00            /* exterior, elevated, often into a post cap                    [market] */
       },
@@ -57,6 +58,7 @@
       depthPerInchSf:  0.020,  /* $/sf per inch, fallback                                      [market] */
       depthPerInchSfByRole: {
         joist:   0.100,        /* floor depth is building height: siding, brick, drywall       [market] */
+        deck:    0.010,        /* a deck's depth costs a rim board and nothing else            [market] */
         rafter:  0.010,
         ceiling: 0.005,
         header:  0.000,        /* replaced by the hard maxDepthIn constraint — see MARKS       [market] */
@@ -86,8 +88,16 @@
                                   instead — see STOCK                                          [market] */
     },
     maxDCR: 0.90,
-    minAvailability: 0.35,     /* a member below this cannot be the pick. The field substitutes
-                                  what it cannot buy, and the substitute is nobody's design    [market] */
+    minAvailability: 0.10,     /* HARD FLOOR — below this the member cannot be the pick at all.
+                                  Set low on purpose. A floor of 0.35 measured against STOCK.dry
+                                  silently excluded every dry 4x in every pack, which turned a
+                                  placeholder market number into what looked like an engineering
+                                  finding: the flagship plan reported "no solid-sawn solution" for
+                                  a garage header that in fact passes at DCR 0.90. Refusing to
+                                  answer is not the same as answering that it is a special order.
+                                  Raise it deliberately if your firm wants the harder rule  [market] */
+    specialOrderBelow: 0.35,   /* not a gate — a LABEL. A pick under this is flagged as a special
+                                  order on the schedule, with its availability shown         [market] */
     gammaPcf: 35               /* calc-spec §1.3 — assumption, editable, not a sourced density */
   };
 
@@ -136,6 +146,16 @@
     ceiling_attic: {
       psf: 10, label: "Gypsum ceiling, attic above", cls: "market",
       makeup: "1/2 in gypsum, ceiling framing, blown insulation"
+    },
+    roof_open: {
+      psf: 10, label: "Open porch / lanai roof", cls: "market",
+      makeup: "shingle or tile over sheathing and framing, exposed or vented soffit — no ceiling, no insulation",
+      note: "A porch beam whose deflection row is 'no ceiling' cannot also be carrying a gypsum " +
+            "ceiling and R-38 in its dead load. The enclosed-roof assembly is the wrong one here."
+    },
+    roof_open_tile: {
+      psf: 17, label: "Open porch / lanai roof, concrete tile", cls: "market",
+      makeup: "concrete tile 9-11 psf on battens over sheathing and framing — no ceiling, no insulation"
     },
     deck_pt: {
       psf: 10, label: "Pressure-treated deck", cls: "market",
@@ -356,7 +376,6 @@
         { species: "Douglas Fir-Larch", grade: "No. 2", bfUSD: 1.00, stockFactor: 0.40, cullRate: 0.015,
           note: "Worth the freight where snow makes the extra span matter — dry framing only." }
       ],
-      weights: { depthPerInchSfByRole: { joist: 0.030, rafter: 0.010, ceiling: 0.005, header: 0, beam: 0.010 } },
       maxDCR: 0.90
     },
 
@@ -454,7 +473,6 @@
         { species: "Southern Pine", grade: "No.1", bfUSD: 0.90, stockFactor: 0.85, cullRate: 0.04 },
         { species: "Southern Pine", grade: "Select Structural", bfUSD: 1.15, stockFactor: 0.55, cullRate: 0.04 }
       ],
-      weights: { depthPerInchSfByRole: { joist: 0.120, rafter: 0.010, ceiling: 0.005, header: 0, beam: 0.015 } },
       maxDCR: 0.85,
       maxDCRBasis: "Firm policy: leave gravity headroom where the same section will also be checked for uplift."
     }
@@ -505,13 +523,24 @@
 
   var REPETITIVE = { rafter: true, joist: true, ceiling: true, deck: true, header: false, beam: false };
 
-  var DEFL_ROW = {
-    rafter:  "roof_nonplaster",     /* gypsum ceiling below */
-    ceiling: "roof_nonplaster",
-    joist:   "floor",
-    deck:    "floor",
-    header:  "roof_nonplaster",
-    beam:    "roof_no_ceiling"      /* open porch soffit, nothing applied to the underside */
+  /* What a member CARRIES decides its loads, its duration factor and its
+     deflection row. Deriving those from the member's ROLE STRING instead put a
+     treated deck beam on roof dead load, roof live at C_D 1.25 and l/180 — and
+     printed a 4x8 at 59% utilisation for a member that is overstressed at 1.05
+     against the deck load it actually supports. A role is a name; `carries` is
+     the structure. Every non-obvious mark must declare it. */
+  var CARRIES_DEFAULT = {
+    rafter: "roof", ceiling: "ceiling", joist: "floor", deck: "deck",
+    header: "roof", beam: "roof"
+  };
+
+  var DEFL_BY_CARRIES = {
+    roof:         "roof_nonplaster",   /* gypsum ceiling below */
+    "roof-open":  "roof_no_ceiling",   /* open porch soffit, nothing on the underside */
+    ceiling:      "roof_nonplaster",
+    floor:        "floor",
+    deck:         "floor",
+    "roof+floor": "floor"              /* the tighter of the two rows governs */
   };
 
   /* ---------------- repeatable tract-home plans ----------------
@@ -539,25 +568,27 @@
             "The roof clear-spans on common trusses, which is the product feature — it is what makes the " +
             "partitions movable between elevations.",
       marks: [
-        { id: "T-1",     label: "Common roof truss · 46 ft clear span", role: "rafter", span: 46, count: 22,
+        { id: "T-1",     label: "Common roof truss · 46 ft clear span", role: "rafter", span: 46, runFt: 50, count: 26,
           component: true,
           componentNote: "Truss package, deferred sealed submittal by the truss supplier. Out of scope: this engine " +
                          "designs simple-span solid-sawn members only (calc-spec §8.6, §8.19)." },
         { id: "BM-LAN",  label: "Lanai beam", role: "beam", span: 12.0, trib: 7.0, count: 2,
-          exposure: "exterior", braced: false, skuGroup: "porch",
+          exposure: "exterior", braced: false, skuGroup: "porch", roofAssembly: "open",
           note: "The best-fitting mark in the system: simple span, uniform load, treated Southern Pine, wet service." },
         { id: "BM-LAN-W", label: "Lanai beam · wide bay", role: "beam", span: 16.0, trib: 7.0, count: 1,
-          exposure: "exterior", braced: false, skuGroup: "porch" },
-        { id: "HDR-W",   label: "Window header · typical", role: "header", span: 5.0, trib: 4.0, count: 14,
-          skuGroup: "header", headHeightIn: 80 },
+          exposure: "exterior", braced: false, skuGroup: "porch", roofAssembly: "open" },
+        { id: "HDR-W",   label: "Window header · typical", role: "header", span: 5.0, trib: 11.5, count: 14,
+          skuGroup: "header", headHeightIn: 80, wallPosition: "exterior-first-floor",
+          note: "Tributary is half the truss span where the trusses bear on this wall. A 4 ft " +
+                "tributary here would follow from neither the 46 ft clear span nor the gable end." },
         { id: "HDR-GAR-G", label: "Garage header · gable end over the door", role: "header", span: 16.67, trib: 2.0, count: 1,
-          skuGroup: "header", headHeightIn: 84,
+          skuGroup: "header", headHeightIn: 84, wallPosition: "exterior-first-floor",
           note: "Same opening as HDR-GAR-B. The truss direction is the entire design: 2 ft of tributary here, 11 ft there." },
         { id: "HDR-GAR-B", label: "Garage header · trusses bearing", role: "header", span: 16.67, trib: 11.0, count: 1,
-          skuGroup: "header", headHeightIn: 84, escalateExpected: true,
+          skuGroup: "header", headHeightIn: 84, wallPosition: "exterior-first-floor", escalateExpected: true,
           note: "Under a bearing truss line this is a 3-ply LVL or a girder truss in every one of these markets." },
         { id: "HDR-SLD", label: "Rear slider header · under clear-span truss", role: "header", span: 12.0, trib: 23.0, count: 1,
-          skuGroup: "header", headHeightIn: 80, escalateExpected: true,
+          skuGroup: "header", headHeightIn: 80, wallPosition: "exterior-first-floor", escalateExpected: true,
           note: "Tributary is half the 46 ft truss span. This is why exterior openings in production single-stories " +
                 "are almost always engineered." }
       ]
@@ -565,29 +596,31 @@
     {
       id: "two-story-2450",
       name: "Two-Story 2450",
-      summary: "2,450 sf two-story, 40 ft × 38 ft first floor, ~1,180 sf second floor, centre bearing line",
+      summary: "2,450 sf two-story, 40 ft × 38 ft first floor (1,520 sf) plus 930 sf second floor, centre bearing line",
       lots: 60,
       note: "The second floor is the mark set that matters. In Texas and Florida this floor is increasingly an " +
             "open-web truss or an I-joist; sawn 2x is Carolina value product and some Texas builders.",
       marks: [
-        { id: "FJ-1", label: "2nd floor joist · front bay", role: "joist", span: 13.5, count: 26, skuGroup: "floor",
+        { id: "FJ-1", label: "2nd floor joist · front bay", role: "joist", span: 13.5, runFt: 34, count: 26, skuGroup: "floor",
           note: "The DCR-policy mark: 2x10 SYP #2 reaches 13 ft 3 in at a 0.90 target and 14 ft 0 in at 1.00." },
-        { id: "FJ-2", label: "2nd floor joist · rear bay", role: "joist", span: 15.0, count: 24, skuGroup: "floor" },
-        { id: "FJ-3", label: "2nd floor joist · bath and laundry", role: "joist", span: 9.5, count: 10, skuGroup: "floor",
+        { id: "FJ-2", label: "2nd floor joist · rear bay", role: "joist", span: 15.0, runFt: 31, count: 24, skuGroup: "floor" },
+        { id: "FJ-3", label: "2nd floor joist · bath and laundry", role: "joist", span: 9.5, runFt: 13, count: 10, skuGroup: "floor",
           note: "Solves shallow, and is the prime unification target — one floor depth is worth more than the lumber." },
-        { id: "GB-1", label: "Centre floor girder", role: "beam", span: 12.0, trib: 13.5, count: 2, skuGroup: "girder",
-          braced: true, escalateExpected: true,
+        { id: "GB-1", label: "Centre floor girder", role: "beam", span: 12.0, trib: 14.25, count: 2, skuGroup: "girder",
+          braced: true, escalateExpected: true, carries: "floor",
           note: "Multi-ply LVL or a steel W-shape in the market. The catalog carries 48 W-shapes; the calc-spec has " +
                 "no steel method, so this engine cannot design either answer." },
         { id: "HDR-1", label: "1st-floor opening header", role: "header", span: 5.0, trib: 6.75, count: 10,
           carries: "roof+floor", skuGroup: "header", headHeightIn: 80 },
         { id: "HDR-2", label: "2nd-floor window header", role: "header", span: 4.0, trib: 12.0, count: 12,
           skuGroup: "header", headHeightIn: 80 },
-        { id: "DK-1", label: "Deck joist · treated", role: "deck", span: 12.0, count: 16, skuGroup: "deck",
+        { id: "DK-1", label: "Deck joist · treated", role: "deck", span: 12.0, runFt: 20, count: 16, skuGroup: "deck",
           exposure: "exterior",
           note: "North Carolina production homes very often carry one. IRC R507, 40 psf live." },
-        { id: "DK-2", label: "Deck beam · treated", role: "beam", span: 8.0, trib: 6.0, count: 2, skuGroup: "deck",
-          exposure: "exterior", braced: false }
+        { id: "DK-2", label: "Deck beam · treated", role: "beam", span: 8.0, trib: 6.0, count: 2, skuGroup: "deckbeam",
+          exposure: "exterior", braced: false, carries: "deck",
+          note: "Carries the deck, not a roof. Checked as a roof beam it printed a 4x8 at 59% that is " +
+                "overstressed at 1.05 against 40 psf of deck live load." }
       ]
     },
     {
@@ -601,10 +634,10 @@
       marks: [
         { id: "T-1",  label: "Common roof truss · 26 ft", role: "rafter", span: 26, count: 17, component: true,
           componentNote: "Truss package, uplift-governed, deferred sealed submittal. Out of scope." },
-        { id: "FJ-1", label: "2nd floor joist", role: "joist", span: 15.5, count: 25, skuGroup: "floor",
+        { id: "FJ-1", label: "2nd floor joist", role: "joist", span: 15.5, runFt: 32, count: 25, skuGroup: "floor",
           note: "Runs tight against the 2x12 limit — the mark that shows why a firm DCR target below 1.00 exists." },
         { id: "BM-POR", label: "Porch beam · treated", role: "beam", span: 10.0, trib: 6.0, count: 2,
-          exposure: "exterior", braced: false, skuGroup: "porch" },
+          exposure: "exterior", braced: false, skuGroup: "porch", roofAssembly: "open" },
         { id: "HDR-SLD", label: "1st-floor slider header · roof + floor", role: "header", span: 8.0, trib: 20.75, count: 2,
           carries: "roof+floor", skuGroup: "header", headHeightIn: 80, escalateExpected: true }
       ]
@@ -628,8 +661,9 @@
 
   function policyFor(pack, plan, role) {
     var weights = merge(BASE.weights, pack.weights, plan && plan.weights);
-    var ladder = LADDERS[role] || LADDERS.rafter;
-    var spacings = REPETITIVE[role] ? (SPACINGS[role] || [16, 24]) : [0];
+    function own(o, k) { return Object.prototype.hasOwnProperty.call(o, k) ? o[k] : undefined; }
+    var ladder = own(LADDERS, role) || LADDERS.rafter;
+    var spacings = own(REPETITIVE, role) ? (own(SPACINGS, role) || [16, 24]) : [0];
 
     return {
       id: pack.id + (role ? ":" + role : ""),
@@ -637,6 +671,7 @@
       role: role || null,
       maxDCR: (plan && plan.maxDCR) || pack.maxDCR || BASE.maxDCR,
       minAvailability: pack.minAvailability === undefined ? BASE.minAvailability : pack.minAvailability,
+      specialOrderBelow: pack.specialOrderBelow === undefined ? BASE.specialOrderBelow : pack.specialOrderBelow,
       gammaPcf: pack.gammaPcf || BASE.gammaPcf,
       palette: pack.palette,
       ladder: ladder,
@@ -648,7 +683,10 @@
         var p = pack.palette.filter(function (x) {
           return x.species === cand.species && x.grade === cand.grade;
         })[0];
-        var channel = (demand && demand.wet) ? STOCK.wet : STOCK.dry;
+        /* the treated channel, not the wet-service one. A treated-but-dry porch
+           beam is stocked as treated; keying this off moisture made the flagship
+           Texas lanai beam a special order in the one market that racks it. */
+        var channel = (demand && (demand.treated || demand.wet)) ? STOCK.wet : STOCK.dry;
         var sizeAvail = channel[cand.size];
         if (sizeAvail === undefined) sizeAvail = 0.25;
         return {
@@ -671,13 +709,22 @@
       role: role,
       span: mark.span,
       trib: mark.trib || 0,
-      repetitive: !!REPETITIVE[role],
+      repetitive: !!Object.prototype.hasOwnProperty.call(REPETITIVE, role) && !!REPETITIVE[role],
       wet: mark.exposure === "exterior" ? !!pack.service.exteriorWet : !!pack.service.wet,
       braced: mark.braced === undefined ? true : !!mark.braced,
       bearing: mark.bearing || (REPETITIVE[role] ? 3.0 : 3.5),
-      memberUse: mark.memberUse || DEFL_ROW[role] || "floor",
       roofType: L.roofType
     };
+
+    var carries = mark.carries || CARRIES_DEFAULT[role] || "roof";
+    if (carries === "roof" && mark.roofAssembly === "open") carries = "roof-open";
+    d.carries = carries;
+    d.memberUse = mark.memberUse || DEFL_BY_CARRIES[carries] || "floor";
+
+    /* Treatment, not moisture, is what forces incising — and it is what decides
+       which stock channel the member comes out of. A treated-but-dry porch beam
+       in the I-35 corridor is still treated. */
+    d.treated = mark.treated !== undefined ? !!mark.treated : (mark.exposure === "exterior");
 
     /* a header's depth budget is set by the plate and the head height, less a
        double top plate and a shim. A member that does not fit is not a cheaper
@@ -687,22 +734,21 @@
       d.maxDepthIn = pack.plateHeightIn - mark.headHeightIn - 3.0 - 0.5;
     }
 
-    if (role === "rafter") {
+    /* a porch or lanai beam carries an OPEN roof — no ceiling, no insulation */
+    if (mark.roofAssembly === "open") {
+      roofDead = ASSEMBLY[L.roofAssembly === "roof_tile" ? "roof_open_tile" : "roof_open"].psf;
+    }
+
+    if (carries === "roof" || carries === "roof-open") {
       d.dead = roofDead; d.live = 0; d.roofLoad = L.roofLoad;
-    } else if (role === "ceiling") {
+    } else if (carries === "ceiling") {
       d.dead = ceilingDead; d.live = L.ceilingLive; d.roofLoad = 0; d.roofType = "snow";
-    } else if (role === "joist") {
+    } else if (carries === "floor") {
       d.dead = floorDead; d.live = L.floorLive; d.roofLoad = 0; d.roofType = "snow";
-    } else if (role === "deck") {
+    } else if (carries === "deck") {
       d.dead = ASSEMBLY.deck_pt.psf; d.live = L.deckLive; d.roofLoad = 0; d.roofType = "snow";
-    } else if (role === "header" || role === "beam") {
-      if (mark.carries === "roof+floor") {
-        d.dead = roofDead + floorDead; d.live = L.floorLive; d.roofLoad = L.roofLoad;
-      } else if (mark.carries === "floor") {
-        d.dead = floorDead; d.live = L.floorLive; d.roofLoad = 0; d.roofType = "snow";
-      } else {
-        d.dead = roofDead; d.live = 0; d.roofLoad = L.roofLoad;
-      }
+    } else if (carries === "roof+floor") {
+      d.dead = roofDead + floorDead; d.live = L.floorLive; d.roofLoad = L.roofLoad;
     } else {
       d.dead = roofDead; d.live = 0; d.roofLoad = L.roofLoad;
     }
@@ -716,9 +762,15 @@
       return { applicable: false, reason: "component", note: mark.componentNote ||
                "Manufactured component — designed by its supplier as a deferred sealed submittal." };
     }
-    if (mark.role === "header" && pack.exteriorWall === "cmu" && mark.carries !== "floor") {
+    /* Only a FIRST-FLOOR EXTERIOR opening is spanned by a concrete lintel. The
+       rule used to fire on every header in a block market, which deleted the
+       second-floor window headers and the interior roof+floor headers — the very
+       members the pack's own note says ARE wood. A mark must opt in by declaring
+       itself exterior and first-floor. */
+    if (mark.role === "header" && pack.exteriorWall === "cmu" &&
+        mark.wallPosition === "exterior-first-floor") {
       return { applicable: false, reason: "wall-system", note: pack.exteriorWallNote ||
-               "Exterior walls are concrete block in this market; this opening is spanned by a concrete lintel, not a wood header." };
+               "First-floor exterior walls are concrete block in this market; this opening is spanned by a concrete lintel, not a wood header." };
     }
     return { applicable: true };
   }
@@ -726,7 +778,8 @@
   FM.weights = {
     BASE: BASE, PACKS: PACKS, PLANS: PLANS,
     ASSEMBLY: ASSEMBLY, LIVE: LIVE, STOCK: STOCK,
-    LADDERS: LADDERS, SPACINGS: SPACINGS, REPETITIVE: REPETITIVE, DEFL_ROW: DEFL_ROW,
+    LADDERS: LADDERS, SPACINGS: SPACINGS, REPETITIVE: REPETITIVE,
+    CARRIES_DEFAULT: CARRIES_DEFAULT, DEFL_BY_CARRIES: DEFL_BY_CARRIES,
     UNIFY_BONUS: UNIFY_BONUS,
     INCISED_WHEN_TREATED: INCISED_WHEN_TREATED,
     policyFor: policyFor, demandFor: demandFor, applicability: applicability,

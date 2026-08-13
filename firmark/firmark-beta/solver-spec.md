@@ -149,10 +149,16 @@ direction:
 | `C_L ≤ 1` taken as 1 | Same direction. |
 | Self-weight omitted | Self-weight only *adds* demand, so the real requirement is at least this large. |
 | `C_D` taken per combination, exactly | Not an approximation; matches the engine's envelope. |
+| `F_b`, `F_v`, `E` and `F_c⊥` are maximised **independently** across the palette | The bound therefore corresponds to a best-of-all-worlds material that may not exist. Each of the four bounds is independently valid, so this is safe — it is the reason pruning is weaker than it could be, not a hole. |
 | Bearing bounds **breadth**, not depth, and carries no `C_D` | `C_D` does not apply to `F_c⊥` (NDS Table 4.3.1), and `f_c⊥ = R/(b·l_b)` has no depth term. |
 
 Since every bound understates what is required, a candidate failing a bound fails the real
 check. The converse is not claimed and is not needed.
+
+**The proof is relative, not absolute.** The bounds are admissible with respect to
+`FM.engine.run()` — not with respect to the NDS. The engine does not implement `C_i`, so the
+bound inherits that omission, and it is the eligibility gate in §H1's companion, not the bound,
+that keeps an incised species away from the engine.
 
 **This is a claim, so it is tested, not asserted.** The regression test
 *"pruned candidates are genuinely infeasible"* runs an exhaustive search — every candidate in
@@ -229,12 +235,15 @@ for a framer to grab the wrong one. `unify()` collapses a group of marks onto th
 in the group when the extra lumber costs less than the modelled cost of the extra SKU:
 
 ```
-accept if   Σ (cost_raised − cost_own) × count   ≤   (SKUs_before − 1) × skuPenalty
+accept if   Σ (pieceScore_raised − pieceScore_own) × count
+              ≤   (SKUs_before − SKUs_after) × skuPenalty  +  bonus(group) if it collapsed to one size
 ```
 
 Two constraints make this safe:
 
-1. It only ever collapses **upward**, onto a larger member.
+1. It never collapses **downward** — the target is never shallower than a mark's own pick. (It
+   does permit a lateral move to the same depth in a stronger grade; the system bonus is not paid
+   for that, because no band is created.)
 2. The raised member must itself appear in that mark's **own feasible set** — a member that
    already passed its own check with its own loads and span. Unification never assumes a member
    is adequate because a sibling mark's was.
@@ -257,10 +266,13 @@ The objective is **dollars**, not an index. Two reasons, and the second is the i
 |---|---|---|
 | `material` | multiplier | Scale lumber against everything else. |
 | `baseBfUSD` | $/board-foot | Fallback price when a pack does not price a species. |
-| `waste` | multiplier | The offcut between the span and the stock length it is cut from. Lumber comes in even 2 ft lengths; a 13'-0" rafter is cut from a 14-footer. |
-| `laborPerPiece` | $/piece | Cut, place, nail. Independent of size. |
+| `dropHandling` | multiplier | Sorting, stacking and disposing of the offcut, net of salvage. Material is charged over the **full** stick, because that is what you buy — charging the drop again as "waste" was a double count, and this is **not** an estimating waste factor. |
+| `cullRate` | fraction, per palette entry | Crook and twist on re-equilibration, worse in humid markets. Applied to material cost. |
+| `laborPerPiece` | $/piece | Cut, place, nail. **Role-keyed** — an interior header is not a floor joist and an exterior lanai beam is neither. |
 | `laborPerLb` | $/lb | Handling. A 4x12 is a two-man lift. |
-| `depthPerInchSf` | $/sf per inch | What structural depth costs downstream — plate height, siding, drywall, HVAC chase, brick coursing. |
+| `depthPerInchSf` | $/sf per inch | What structural depth costs downstream — plate height, siding, drywall, HVAC chase, brick coursing. **Role-keyed**: a floor joist's depth is building height, a rafter's mostly is not. |
+| `minAvailability` / `specialOrderBelow` | fraction | A hard floor below which a member cannot be the pick, and a softer threshold above it that only *labels* the pick a special order. Set the floor low: a floor of 0.35 against the dry-4x tier silently excluded every dry 4x in every pack and turned a market placeholder into what read as an engineering finding. |
+| `UNIFY_BONUS` | $/plan, per SKU group | The system effect of collapsing a group to ONE SIZE — one rim depth, one hanger SKU, one subfloor elevation. Paid only on a real size collapse, never on a same-size grade swap. |
 | `stockPenaltySf` | $/sf at zero availability | Prorated by availability. A member the yard does not rack is not free. |
 | `unsourcedCF` | $/member | Review time when `C_F` is held at 1.00 because the catalog is silent. Not lumber — engineering. |
 | `slackPenalty` | $ per unit unused capacity | Breaks ties toward the member that works for its living. Deliberately small; it must never outweigh a real cost difference. |
@@ -271,18 +283,34 @@ Per candidate:
 ```
 area      = repetitive ? (spacing_ft × span)   : (trib × span)      [sf served by one piece]
 length    = next even 2 ft ≥ span + 0.5, clamped to [8, 24]         [ft]
-material  = boardFeet × $/bf × material
+material  = boardFeet × $/bf × material × (1 + cullRate)
 labor     = laborPerPiece + laborPerLb × weight_lb
-waste     = offcut board-feet × $/bf × waste
+drop      = offcut board-feet × $/bf × dropHandling
 depth     = d_in × depthPerInchSf × area
 stock     = (1 − availability) × stockPenaltySf × area
 risk      = unsourcedCF if C_F is held, else 0
 
-score     = material + labor + waste + depth + stock + risk + slackPenalty(DCR)
+cost      = material + labor + drop + depth + stock + risk
+unit      = repetitive ? area served : 1 piece
+score     = (cost + slackPenalty(DCR)) / unit
 ```
 
 `slackPenalty` is applied **only after feasibility is established**, which is what makes Rule 2
 mechanical rather than a promise.
+
+**The ranking unit is not the piece.** A member at 16 in o.c. and the same member at 24 in o.c.
+do not do the same amount of work, so ranking two spacings on per-piece cost silently prefers
+the tighter one. That is how the solver came to recommend 16 in o.c. roofs to three markets that
+sheathe everything at 24. Repetitive members are ranked **per square foot of framed area**;
+single members per piece. SKU unification and the plan cost rollup stay per-piece, because those
+are per-piece questions — the two numbers are carried separately as `score` and `pieceScore`.
+
+**And the loads follow what a member carries, not what it is called.** A mark's `role` is a name;
+its `carries` is the structure. Deriving load case, duration factor and deflection row from the
+role string put a treated deck beam on roof dead load, roof live at `C_D` 1.25 and ℓ/180, and
+printed a passing 4x8 for a member overstressed at 1.05 against the 40 psf deck live load it
+actually supports. Every mark that is not obvious declares `carries`, and a property test asserts
+the derived demand agrees with it for every mark in every plan.
 
 ### 5.1 What the weights are and are not
 
@@ -314,7 +342,7 @@ load case.
 | `nc-piedmont` | Charlotte · Raleigh · Greensboro | Ground snow small enough that the 20 psf roof live load governs — so `C_D` stays 1.25. |
 | `nc-mountain` | Asheville · Boone · Brevard | **Snow governs, so `C_D` drops to 1.15.** That is a real capacity reduction, not bookkeeping, and it is the single largest structural difference between the two NC packs. |
 | `fl-central` | Orlando · Tampa | No snow. Wind governs. Lanai framing wet-service; PT in contact with masonry. |
-| `fl-hvhz` | Miami-Dade · Broward | **Concrete tile roof: 27 psf dead instead of 15.** Tighter DCR target, because the same section is about to be checked for uplift. |
+| `fl-hvhz` | Miami-Dade · Broward | **Concrete tile roof: 22 psf dead instead of 15.** Tighter DCR target, because the same section is about to be checked for uplift. |
 
 The `roofLoadBasis` field on every pack records *why* the roof load is what it is and which
 duration factor follows from it. A pack that declares a roof load as snow instead of roof live
@@ -385,7 +413,7 @@ Continuing `calc-spec.md` §9. These are the gaps the solver introduced or expos
 | S8 | **One roof load, one duration** | The engine carries a single `roofLoad` tagged either snow or roof-live, so `D + Lr` and `D + S` can never be evaluated in the same run. Between roughly 17 and 20 psf roof snow, snow governs strength while roof-live governs deflection — and no single setting produces both. That band is in the North Carolina market. | Carry `q_Lr` and `q_S` separately and enumerate all six §2.1 combinations. `combosFor()` must move in lockstep; the "solver combos match engine combos" test is what catches the drift. |
 | S4 | **Region price and availability data** | Placeholders | Replace with the firm's purchasing data. Affects ranking only. |
 | S5 | **Ground snow, wind, exposure, seismic per site** | Planning defaults | Replace with ASCE 7 Hazard Tool / AHJ values. `nc-mountain` is the one where this changes the answer, because it changes `C_D`. |
-| S6 | **Dead-load takeoffs** (15 psf shingle, 27 psf tile, 12 psf floor, 10 psf ceiling) | Market values, not code | Confirm against the actual assembly schedule per plan. Tile in particular varies widely by product. |
+| S6 | **Dead-load takeoffs** (15 psf shingle, 22 psf tile, 12 psf floor, 10 psf ceiling, 10 psf open porch) | Market values, not code | Confirm against the actual assembly schedule per plan. Tile in particular varies widely by product. |
 
 ### 9.1 The deflection conflict, adjudicated
 

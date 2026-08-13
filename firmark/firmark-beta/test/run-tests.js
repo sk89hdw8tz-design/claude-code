@@ -241,8 +241,12 @@ function exhaustive(demand, pol) {
         if (r.error || !isFinite(r.governing.dcr)) return;
         if (r.governing.dcr > pol.maxDCR + 1e-9) return;
         var cost = FM.solver.costOf(demand, cand, pol);
+        /* the reference must rank on the SAME objective the solver does: cost per
+           unit of building served — per square foot for repetitive framing, per
+           piece for a single member. Ranking per piece across two spacings is
+           what made the solver prefer 16" o.c. everywhere. */
         rows.push({ key: sz + "|" + p.species + "|" + p.grade + "|" + sp,
-                    score: cost.totalUSD + FM.solver.slackPenalty(r.governing.dcr, pol),
+                    score: (cost.totalUSD + FM.solver.slackPenalty(r.governing.dcr, pol)) / cost.unit,
                     dcr: r.governing.dcr, cand: cand });
       });
     });
@@ -276,6 +280,75 @@ function battery() {
   });
   return out;
 }
+
+suite("solver · the ranking objective is per unit of building, not per piece");
+(function () {
+  var pk = FM.weights.packById("nc-piedmont");
+  var pol = FM.weights.policyFor(pk, null, "rafter");
+  var d = FM.weights.demandFor({ id: "R", role: "rafter", span: 14, count: 1 }, { marks: [] }, pk);
+  var sol = FM.solver.size(d, pol);
+  truthy(sol.pick, "a 14 ft rafter solves");
+  var all = sol.feasible;
+  var byUnit = all.slice().sort(function (a, b) { return a.score - b.score; });
+  eq(sol.pick === byUnit[0], true, "the pick is the cheapest per square foot of roof, not per piece");
+  /* and per-piece cost alone would have chosen differently in at least one case */
+  var byPiece = all.slice().sort(function (a, b) { return a.pieceScore - b.pieceScore; });
+  if (byPiece[0] !== byUnit[0]) {
+    ok("per-piece ranking would have picked " + FM.solver.skuOf(byPiece[0].cand) + " @" +
+       byPiece[0].cand.spacing + " instead of " + FM.solver.skuOf(byUnit[0].cand) + " @" +
+       byUnit[0].cand.spacing + " — the two objectives genuinely differ here");
+  } else {
+    ok("per-piece and per-sf agree on this demand");
+  }
+})();
+
+suite("solver · the pick is the head of the ranked list");
+(function () {
+  var mismatches = 0, checked = 0;
+  FM.weights.PACKS.forEach(function (pk) {
+    ["rafter", "joist", "ceiling", "header", "beam", "deck"].forEach(function (role) {
+      [8, 11, 14, 17].forEach(function (span) {
+        var d = FM.weights.demandFor({ id: "T", role: role, span: span, trib: 7, count: 1 }, { marks: [] }, pk);
+        var sol = FM.solver.size(d, FM.weights.policyFor(pk, null, role));
+        checked++;
+        if (sol.pick && sol.feasible.length && sol.pick !== sol.feasible[0]) mismatches++;
+        if (sol.pick && !sol.stats.searchOptimal) mismatches++;
+      });
+    });
+  });
+  eq(mismatches, 0, "pick === feasible[0] on all " + checked + " demands, and the search agrees it is optimal");
+})();
+
+suite("engine · a member NDS does not permit cannot report a pass");
+(function () {
+  /* R_B > 50 is a prohibition (NDS §3.3.3.7). Returning C_L = 0 made the bending
+     DCR infinite, and the governing-case selection dropped it — so the member
+     reported PASS on deflection with no warning. */
+  var r = FM.engine.run({ species: "Douglas Fir-Larch", grade: "No. 2", size: "2x12", span: 23,
+    spacing: 12, dead: 5, live: 0, roofLoad: 8, roofType: "snow", repetitive: true, wet: false,
+    braced: false, bearing: 3, memberUse: "roof_no_ceiling", CF: "auto" });
+  eq(r.error, true, "an R_B > 50 member is refused outright, not reported as passing");
+  truthy(/not permitted/i.test(r.message || ""), "and the refusal cites the prohibition");
+
+  /* NaN loads must not be coerced to zero */
+  ["dead", "live", "roofLoad"].forEach(function (k) {
+    var inp = copy(EX1); inp[k] = NaN;
+    eq(FM.engine.run(inp).error, true, "a NaN " + k + " load is refused, not designed for as zero");
+  });
+})();
+
+suite("solver · policy inputs are bounded");
+(function () {
+  var pk = FM.weights.packById("tx-i35");
+  var pol = FM.weights.policyFor(pk, null, "joist");
+  pol.maxDCR = 1.5;                       /* calc-spec §6.2 allows no tolerance band */
+  var d = FM.weights.demandFor({ id: "J", role: "joist", span: 17, count: 1 }, { marks: [] }, pk);
+  var sol = FM.solver.size(d, pol);
+  truthy(!sol.pick || sol.pick.dcr <= 1 + 1e-9,
+         "a DCR target above 1.00 is clamped — the code threshold is 1.000 with no band");
+  truthy(FM.solver.stockLength(46) >= 46,
+         "stockLength never bills a member shorter than its span (a 46 ft span gave a negative drop cost)");
+})();
 
 suite("solver · pruning is admissible — exhaustive vs pruned");
 (function () {
@@ -522,6 +595,70 @@ suite("solver · end reactions are published");
   truthy(sol.reactions && sol.reactions.perBearingLb > 0,
          "and reports its end reaction (" + (sol.reactions ? Math.round(sol.reactions.perBearingLb) : "—") +
          " lb) for the connector designer");
+})();
+
+suite("weights · every mark is checked as the member it actually is");
+(function () {
+  /* A role is a name; `carries` is the structure. Deriving loads and the
+     deflection row from the role string put a treated deck beam on roof dead
+     load, roof live at C_D 1.25 and l/180, and printed a passing 4x8 for a
+     member overstressed at 1.05 against the deck load it supports. */
+  var problems = [];
+  FM.weights.PACKS.forEach(function (pk) {
+    FM.weights.PLANS.forEach(function (pl) {
+      pl.marks.forEach(function (mk) {
+        if (mk.component) return;
+        var d = FM.weights.demandFor(mk, pl, pk);
+        var c = d.carries;
+        var where = pk.id + "/" + pl.id + "/" + mk.id + " (" + c + ")";
+
+        if (c === "floor" || c === "deck" || c === "roof+floor") {
+          if (d.live !== pk.loads.floorLive && c !== "deck") problems.push(where + " carries a floor but has no floor live load");
+          if (c === "deck" && d.live !== pk.loads.deckLive) problems.push(where + " is a deck with no deck live load");
+          if (d.memberUse !== "floor") problems.push(where + " carries a floor but uses the " + d.memberUse + " deflection row");
+        }
+        if (c === "roof" || c === "roof-open") {
+          if (d.roofLoad !== pk.loads.roofLoad) problems.push(where + " carries a roof but has no roof load");
+          if (d.live !== 0) problems.push(where + " carries a roof but has floor live load on it");
+        }
+        if (c === "roof-open" && d.memberUse !== "roof_no_ceiling") {
+          problems.push(where + " is an open roof but not on the no-ceiling row");
+        }
+        if (c === "roof" && d.memberUse === "roof_no_ceiling") {
+          problems.push(where + " has a ceiling below but uses the no-ceiling row");
+        }
+        /* an exterior mark is treated, wherever it is, and treatment is what
+           forces incising and what decides the stock channel */
+        if (mk.exposure === "exterior" && !d.treated) problems.push(where + " is exterior but not marked treated");
+      });
+    });
+  });
+  truthy(problems.length === 0, "loads, C_D and deflection row follow what each mark carries, not its role string");
+  problems.slice(0, 6).forEach(function (p) { console.log("      " + p); });
+
+  /* the specific mark that shipped wrong */
+  var pk2 = FM.weights.packById("nc-piedmont");
+  var dk2 = FM.weights.PLANS.filter(function (p) { return p.id === "two-story-2450"; })[0]
+              .marks.filter(function (m) { return m.id === "DK-2"; })[0];
+  var d2 = FM.weights.demandFor(dk2, null, pk2);
+  eq(d2.live, 40, "DK-2, a deck beam, carries 40 psf of deck live load");
+  eq(d2.roofLoad, 0, "and no roof load");
+  eq(d2.memberUse, "floor", "and is checked against the floor deflection row");
+})();
+
+suite("solver · the roof-load crossover is surfaced, not silent");
+(function () {
+  var pk = FM.weights.packById("nc-piedmont");
+  var d = FM.weights.demandFor({ id: "R", role: "rafter", span: 14, count: 1 }, { marks: [] }, pk);
+  var sol = FM.solver.size(d, FM.weights.policyFor(pk, null, "rafter"));
+  var adv = (sol.advisories || []).filter(function (a) { return a.kind === "roof-load-crossover"; });
+  truthy(adv.length === 1, "a 20 psf roof load raises the crossover advisory");
+  truthy(/not checked/.test(adv[0] ? adv[0].text : ""), "and names the case that was not evaluated");
+
+  var pk2 = FM.weights.packById("nc-mountain");
+  var d2 = FM.weights.demandFor({ id: "R", role: "rafter", span: 14, count: 1 }, { marks: [] }, pk2);
+  var s2 = FM.solver.size(d2, FM.weights.policyFor(pk2, null, "rafter"));
+  truthy((s2.advisories || []).length === 1, "and so does a 25 psf snow load, from the other direction");
 })();
 
 suite("weights · packs are internally coherent");
