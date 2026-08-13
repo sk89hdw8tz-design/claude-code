@@ -402,8 +402,8 @@
           availability: num(cost.availability),
           piecesPerHouse: 0, bf: 0, cutBf: 0, dropBf: 0, lf: 0,
           extUSD: 0, dropHandlingUSD: 0,
-          marks: [], cuts: [], roles: {}, roleOrder: [],
-          spacings: {}, wetService: 0, dryService: 0, unified: 0, bearingTight: 0
+          marks: [], cuts: [], spacings: [],
+          wetService: 0, dryService: 0, unified: 0, bearingTight: 0
         };
         order.push(key);
       }
@@ -419,12 +419,10 @@
       if (g.marks.indexOf(mk.id) === -1) g.marks.push(mk.id);
       if (d.wet) g.wetService++; else g.dryService++;
       if (m.unifiedTo) g.unified++;
-      if (!hasK(g.roles, mk.role || "unclassified")) {
-        g.roles[K(mk.role || "unclassified")] = 0;
-        g.roleOrder.push(mk.role || "unclassified");
-      }
-      g.roles[K(mk.role || "unclassified")] += pieces;
-      if (cand.spacing) g.spacings[K(String(cand.spacing))] = true;
+      /* spacing is a property of the MARK, not of the SKU: one 2x12 line can
+         serve a 16 in o.c. bay and a 24 in o.c. one. Kept as a list so the
+         line can say so instead of implying a single spacing. */
+      if (cand.spacing && g.spacings.indexOf(cand.spacing) === -1) g.spacings.push(cand.spacing);
       if (bearingTight) g.bearingTight++;
       g.cuts.push({
         markId: mk.id, label: mk.label || "", role: mk.role || null,
@@ -460,8 +458,9 @@
       g.priceCls = "market";
       g.marksLabel = g.marks.join(" + ");
       g.basis = lineBasis(g);
-      /* a line is a plain record: no functions, so it survives JSON */
-      delete g.roles;
+      g.spacings.sort(function (a, b) { return a - b; });
+      /* a line is a plain record: no functions and no internal scratch, so it
+         survives JSON and a consumer sees only fields it can rely on */
       delete g.wetService;
       delete g.dryService;
       return g;

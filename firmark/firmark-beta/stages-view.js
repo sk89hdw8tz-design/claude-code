@@ -311,10 +311,21 @@
       ]);
       if (fit && fit.differences && fit.differences.length) {
         fit.differences.forEach(function (d) {
+          /* The module reports jurisValue / packValue / why / effect. `effect`
+             is the one that matters and it is written to be read out loud —
+             it says whether a difference moves a member here or moves
+             something this engine does not design at all. */
+          var num = (d.jurisValue !== null && d.jurisValue !== undefined)
+            ? String(d.jurisValue) + " here vs " +
+              (d.packValue === null || d.packValue === undefined
+                 ? "nothing declared by the pack" : String(d.packValue) + " in the pack")
+            : null;
           fitBody.appendChild(el("div", { style: "border-left:3px solid var(--gold);padding-left:10px" }, [
             el("div", { style: "font-size:.84rem;font-weight:650", text: d.what }),
-            el("div", { class: "clause", text: d.detail || "" })
-          ]));
+            num ? el("div", { class: "mono", style: "font-size:.8rem", text: num }) : null,
+            d.why ? el("div", { class: "clause", text: d.why }) : null,
+            d.effect ? el("div", { style: "font-size:.82rem;margin-top:3px", text: d.effect }) : null
+          ].filter(Boolean)));
         });
       } else {
         fitBody.appendChild(el("p", { class: "clause",

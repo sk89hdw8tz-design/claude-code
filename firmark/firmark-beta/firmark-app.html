@@ -3658,9 +3658,22 @@ var FM = (function () {
       markets: "Charlotte · Raleigh · Greensboro",
       states: ["NC"],
       code: { family: "IRC", cls: "code",
+        /* This note used to end at "delayed by statute to 1 July 2025", which
+           was true when written and had been superseded twice by the time
+           anyone read it. It said VERIFY, so it was not a lie — but a reader
+           came away believing a 2021-IRC basis governs North Carolina, and the
+           basis is 2015 IRC with ASCE 7-10. Two code generations back, on the
+           reference this engine's own combinations are built against.
+
+           A "VERIFY" on a stale sentence is not a disclaimer. It is a wrong
+           answer with a footnote. */
         note: "North Carolina Residential Code, adopted statewide by the Building Code Council — local jurisdictions " +
-              "do not write their own technical amendments. The 2024 NCRC (2021 IRC basis) was delayed by statute to " +
-              "1 July 2025. VERIFY the currently effective edition and any permit-date grandfathering with OSFM." },
+              "do not write their own technical amendments. IN FORCE: the 2018 NCRC, on a 2015 IRC basis, which " +
+              "references ASCE 7-10 — NOT 7-16 and NOT 7-22. The 2024 NCRC was delayed by S.L. 2024-57 to 1 July 2025, " +
+              "then delayed again by S.L. 2025-2 until 12 months after the State Fire Marshal certifies both " +
+              "publication and a fully constituted Residential Code Council; as of 15 Feb 2026 neither had happened " +
+              "and the earliest possible effective date stated was 1 March 2027. VERIFY the effective edition and any " +
+              "permit-date grandfathering with OSFM before this is used." },
       climate: {
         groundSnow:  { v: 15,  cls: "site", note: "Piedmont counties commonly 10–15 psf; the NCRC county table governs." },
         roofLive:    { v: 20,  cls: "code", note: LIVE.roof_live.cite },
@@ -5650,8 +5663,19 @@ var FM = (function () {
 
   /* Lumber is bought in even 2-ft lengths. A 13'-0" rafter is cut from a 14-footer,
      so the piece that shows up on the invoice is longer than the span. */
-  function stockLength(spanFt) {
-    var need = spanFt + 0.5;                  /* bearing at both ends */
+  function stockLength(spanFt, bearingIn) {
+    /* Bearing at BOTH ends. This was a flat 0.5 ft — 3 in each end — while a
+       mark DECLARES its bearing in inches, and weights.js made that a design
+       input precisely because it governs the F_c-perp check. A header
+       declaring 4.5 in per end needs 0.75 ft of stick, not 0.5.
+
+       Across all 136 mark-slots in the corpus the 2 ft rounding absorbs the
+       difference and not one stick changes length. That is why this was worth
+       fixing rather than shrugging at: the rule was wrong and the answers were
+       right, which is the state a defect hides in. A plan with a 4 ft opening
+       at 6 in bearing would have been billed a stick 2 in short with nothing
+       anywhere saying so. */
+    var need = spanFt + Math.max(0.5, 2 * (Number(bearingIn) || 3) / 12);
     var len = Math.ceil(need / 2) * 2;
     /* No upper clamp. Clamping at 24 ft billed a 46 ft member as a 24-footer and
        gave it a NEGATIVE drop cost — the longest stick the yard racks is a
@@ -5751,7 +5775,7 @@ var FM = (function () {
     var sec = FM.engine.findSection(cand.size);
     if (!sec) return null;
 
-    var len = stockLength(demand.span);
+    var len = stockLength(demand.span, demand.bearing);
     var bf = boardFeetPerLF(cand.size) * len;
     var lb = (policy.gammaPcf || GAMMA_PCF) * sec.A_in2 / 144 * len;
 
@@ -6860,7 +6884,7 @@ var FM = (function () {
     seedBounds: seedBounds, families: families, combosFor: combosFor,
     memberInputs: memberInputs, costOf: costOf, skuOf: skuOf, slackPenalty: slackPenalty,
     eligibility: eligibility,
-    stockLength: stockLength, boardFeetPerLF: boardFeetPerLF,
+    stockLength: stockLength, boardFeetPerLF: boardFeetPerLF, pieceCount: pieceCount,
     REPAIR: REPAIR, GAMMA_PCF: GAMMA_PCF
   };
 })();
@@ -10085,11 +10109,12 @@ var FM = (function () {
 
       /* ---- the grouped wall and opening findings ---- */
       if (noThick.length) {
-        add(lid, noThick.length === 1 ? noThick[0] : "walls", "warn", "wall-no-thickness",
+        add(lid, noThick.length === 1 ? noThick[0] : "walls", "error", "wall-no-thickness",
             (noThick.length === 1 ? noThick[0] + " has" : noThick.length + " walls have") +
             " no thickness (" + noThick.join(", ") + "). The takeoff measures a clear span between " +
             "wall FACES, so half of each wall comes out of the centreline dimension and it cannot " +
-            "derive a span without one. Set 3.5 in for a 2x4 wall or 5.5 in for a 2x6.");
+            "derive a span without one, so this blocks the geometry gate rather than following it " +
+            "downstream. Set 3.5 in for a 2x4 wall or 5.5 in for a 2x6.");
       }
       if (assumedThick.length) {
         add(lid, assumedThick.length === 1 ? assumedThick[0].split(" ")[0] : "walls", "warn",
@@ -10158,17 +10183,18 @@ var FM = (function () {
           }
         });
         if (num(f.spacingIn) === null) {
-          add(lid, f.id, "warn", "framing-no-spacing",
-              f.id + " has no member spacing. Set it (16 in or 24 in o.c.) — the takeoff cannot count " +
-              "members without it.");
+          add(lid, f.id, "error", "framing-no-spacing",
+              f.id + " has no member spacing, so the takeoff cannot count the members in it. Set it — " +
+              "16 in or 24 in o.c. — before this geometry is approved. " +
+              (f.basis ? "What is known: " + f.basis : ""));
         } else if (num(f.spacingIn) <= 0) {
           add(lid, f.id, "error", "framing-spacing-zero",
               f.id + " has a spacing of " + f2(f.spacingIn) + " in. Set a real o.c. spacing.");
         }
         if (num(f.directionDeg) === null) {
-          add(lid, f.id, "warn", "framing-no-direction",
-              f.id + " has no span direction. Set which way the members run — 0° along +x, 90° along " +
-              "+y — because the direction is what decides the span.");
+          add(lid, f.id, "error", "framing-no-direction",
+              f.id + " has no span direction, and the direction is what decides the span. Set which " +
+              "way the members run — 0 along +x, 90 along +y.");
         }
       });
 
@@ -10302,13 +10328,18 @@ var FM = (function () {
     }
     if (derived !== null) {
       return { inches: derived,
-               basis: "Spacing " + derived + " in DERIVED from " + truss.id + ": its count of " +
-                      truss.count + " is declared as the " +
-                      (num(truss.runFt) !== null ? truss.runFt : runFt) +
-                      " ft run at that spacing plus one, so the spacing follows from the count." };
+               basis: "Spacing " + derived + " in DERIVED from " + truss.id + ": " +
+                      (num(truss.runFt) !== null ? truss.runFt : runFt) + " ft of run across " +
+                      truss.count + " trusses is one per " + derived +
+                      " in plus one at the end — the same relationship the other plans in this " +
+                      "build state for their own truss counts. It lands on a standard spacing, " +
+                      "which is the check that the count means what it looks like." };
     }
     return { inches: null,
-             basis: "Spacing is not declared and no count reads it back." };
+             basis: "Spacing is not declared" +
+                    (rawDerived === null ? " and no truss count reads it back."
+                     : "; the truss count reads back " + rawDerived + " in, which is not a spacing " +
+                       "anybody frames at, so the count does not mean one member per spacing.") };
   }
 
   /* equal gaps, openings in the order given — the only layout that
@@ -10470,11 +10501,16 @@ var FM = (function () {
     /* ---- an interior bearing line, only when the joist bays derive one ----
        Two declared joist spans that add exactly to a footprint dimension
        locate the line between them. Anything else does not. */
-    var joistSpans = [];
+    var joistSpans = [], frontBay = null;
     (plan.marks || []).forEach(function (mk) {
       if (mk.role !== "joist") return;
       var s = num(mk.span);
       if (s === null) return;
+      /* A bay the plan calls the FRONT bay starts at the front wall, so its
+         own span locates the line behind it — even when the bays do not fill
+         the footprint, which on a two-storey plan they need not. The label is
+         the declaration; nothing here is measured off prose. */
+      if (frontBay === null && /\bfront bay\b/i.test(String(mk.label || ""))) frontBay = s;
       var seen = false;
       joistSpans.forEach(function (v) { if (near(v, s, 0.001)) seen = true; });
       if (!seen) joistSpans.push(s);
@@ -10510,6 +10546,33 @@ var FM = (function () {
              "does not say which edge.",
              "Name the side on the plan, or mirror the drawing to match the architectural set.");
       }
+    }
+    /* The bays did not add up to a footprint dimension, but one of them is
+       named the FRONT bay — which does fix the line, because a front bay
+       starts at the front wall. The bays not filling the footprint is a
+       separate hole and is recorded as one. */
+    if (!interior && frontBay !== null && frontBay > 0 && frontBay < D) {
+      interior = newWall(L, 0, frontBay, Wd, frontBay, {
+        exterior: false, bearing: true,
+        note: "Centre bearing line · " + thickNote,
+        thicknessIn: ASSUMED_STUD_IN, thicknessBasis: "assumed",
+        basis: "Derived: the plan declares a " + frontBay + " ft FRONT bay, and a front bay starts " +
+               "at the front wall, so the line behind it sits " + frontBay + " ft from y = 0. " +
+               "The bays do not fill the " + D + " ft depth, so no floor region is drawn from them. " +
+               thickNote
+      });
+      L.walls.push(interior);
+      hole("The floor bays either side of the centre bearing line",
+           "The declared joist bays (" + joistSpans.join(" ft and ") + " ft deep, running " +
+           (function () {
+             var runs = [];
+             (plan.marks || []).forEach(function (mk) {
+               if (mk.role === "joist" && num(mk.runFt) !== null && runs.indexOf(mk.runFt) === -1) runs.push(mk.runFt);
+             });
+             return runs.length ? runs.join(" ft and ") + " ft" : "an undeclared length";
+           })() + ") do not span the " + Wd + " ft width, and the plan does not say where along it " +
+           "they sit — so the bearing line is drawn and the floor regions are not.",
+           "Declare the second-floor outline, then draw the floor regions on it.");
     }
     /* "There is no third bearing line" declares the absence of one. Reading
        that as a hole would invent a finding out of a plan being explicit. */
@@ -10558,18 +10621,37 @@ var FM = (function () {
          interior line, which are bearing for the floor whatever carries
          the roof */
       [side1, side2].forEach(function (w) { w.bearing = true; });
+      /* The spacing is left undeclared on purpose. These plans state that the
+         joist piece count follows whatever spacing the solver picks, so the
+         count is a CONSEQUENCE and inverting it would assert a fact the plan
+         disclaims — unlike the truss counts above, which the plans declare as
+         derived from a spacing. What the counts are consistent with is written
+         down for the reviewer; it is evidence, not a value. */
+      function bayBasis(spanFt) {
+        var ev = [];
+        (plan.marks || []).forEach(function (mk) {
+          if (mk.role !== "joist" || !near(num(mk.span), spanFt, 0.001)) return;
+          if (num(mk.runFt) === null || num(mk.count) === null || num(mk.count) < 2) return;
+          var oc = Math.round((num(mk.runFt) / (num(mk.count) - 1)) * 12 * 10) / 10;
+          ev.push(mk.id + " counts " + mk.count + " over " + mk.runFt + " ft, about " + oc + " in o.c.");
+        });
+        return "Bay from the declared joist span " + spanFt + " ft. SPACING IS NOT SET: " + plan.name +
+               " states the joist piece count follows the spacing the solver picks, so the count is a " +
+               "consequence and cannot be read back as a declaration. For the reviewer's information " +
+               "only, the declared counts imply — " + (ev.length ? ev.join("; ") : "nothing readable") +
+               ". Set the spacing here once it is chosen.";
+      }
       L.framing.push(newFraming(L, poly1, {
         kind: "floor", directionDeg: floorDirDeg, spacingIn: null,
         bearsOn: [side1.id, interior.id],
         note: "Floor bay · " + joistSpans[0] + " ft",
-        basis: "Bay from the declared joist span " + joistSpans[0] + " ft. Spacing is not declared — " +
-               "the plan says the piece count follows the spacing the solver picks."
+        basis: bayBasis(joistSpans[0])
       }));
       L.framing.push(newFraming(L, poly2, {
         kind: "floor", directionDeg: floorDirDeg, spacingIn: null,
         bearsOn: [interior.id, side2.id],
         note: "Floor bay · " + joistSpans[1] + " ft",
-        basis: "Bay from the declared joist span " + joistSpans[1] + " ft. Spacing is not declared."
+        basis: bayBasis(joistSpans[1])
       }));
       hole("Floor member spacing",
            plan.name + " declares no spacing for the second-floor joists — the marks say the piece " +
@@ -14396,8 +14478,8 @@ var FM = (function () {
           availability: num(cost.availability),
           piecesPerHouse: 0, bf: 0, cutBf: 0, dropBf: 0, lf: 0,
           extUSD: 0, dropHandlingUSD: 0,
-          marks: [], cuts: [], roles: {}, roleOrder: [],
-          spacings: {}, wetService: 0, dryService: 0, unified: 0, bearingTight: 0
+          marks: [], cuts: [], spacings: [],
+          wetService: 0, dryService: 0, unified: 0, bearingTight: 0
         };
         order.push(key);
       }
@@ -14413,12 +14495,10 @@ var FM = (function () {
       if (g.marks.indexOf(mk.id) === -1) g.marks.push(mk.id);
       if (d.wet) g.wetService++; else g.dryService++;
       if (m.unifiedTo) g.unified++;
-      if (!hasK(g.roles, mk.role || "unclassified")) {
-        g.roles[K(mk.role || "unclassified")] = 0;
-        g.roleOrder.push(mk.role || "unclassified");
-      }
-      g.roles[K(mk.role || "unclassified")] += pieces;
-      if (cand.spacing) g.spacings[K(String(cand.spacing))] = true;
+      /* spacing is a property of the MARK, not of the SKU: one 2x12 line can
+         serve a 16 in o.c. bay and a 24 in o.c. one. Kept as a list so the
+         line can say so instead of implying a single spacing. */
+      if (cand.spacing && g.spacings.indexOf(cand.spacing) === -1) g.spacings.push(cand.spacing);
       if (bearingTight) g.bearingTight++;
       g.cuts.push({
         markId: mk.id, label: mk.label || "", role: mk.role || null,
@@ -14454,8 +14534,9 @@ var FM = (function () {
       g.priceCls = "market";
       g.marksLabel = g.marks.join(" + ");
       g.basis = lineBasis(g);
-      /* a line is a plain record: no functions, so it survives JSON */
-      delete g.roles;
+      g.spacings.sort(function (a, b) { return a - b; });
+      /* a line is a plain record: no functions and no internal scratch, so it
+         survives JSON and a consumer sees only fields it can rely on */
       delete g.wetService;
       delete g.dryService;
       return g;
@@ -17300,13 +17381,30 @@ var FM = (function () {
       }
     }
     field("Region pack", pack ? safe(pack.name) + " · " + safe(pack.markets) : "NOT SUPPLIED");
-    /* which document the members were sized from, and which one the framing
-       plan was drawn from — they are not always the same document */
+    /* Which document the members were sized from, and which one the framing
+       plan was drawn from. They are not always the same document, and the
+       answer is derived by comparing the two mark lists rather than taken on
+       trust from a flag somebody has to remember to set. */
+    var tkMarks = (p.have.takeoff && isArr(p.have.takeoff.marks)) ? p.have.takeoff.marks : null;
+    var sameMarks = null;
+    if (tkMarks && tkMarks.length && res && isArr(res.marks) && res.marks.length) {
+      var tkSet = {};
+      tkMarks.forEach(function (m) { tkSet[" " + safe(m && m.id, "")] = 1; });
+      var shared = res.marks.filter(function (m) {
+        return own(tkSet, " " + safe(m.mark && m.mark.id, ""));
+      }).length;
+      sameMarks = (shared === res.marks.length && shared === tkMarks.length);
+    }
     field("Marks on the schedule", res && isArr(res.marks)
-          ? res.marks.length + ", from the plan record " + (plan ? safe(plan.id) : "")
+          ? res.marks.length + (sameMarks === true
+              ? ", sized from the takeoff's own marks — S1.0 and S2.0 are the same house"
+              : (sameMarks === false
+                  ? ", from the plan record " + (plan ? safe(plan.id) : "") +
+                    " — NOT the takeoff's marks, see S5.0"
+                  : ", from the plan record " + (plan ? safe(plan.id) : "")))
           : "none — no solver result was supplied");
-    field("Marks from the takeoff", (p.have.takeoff && isArr(p.have.takeoff.marks))
-          ? p.have.takeoff.marks.length + ", derived from the geometry on S1.0"
+    field("Marks from the takeoff", tkMarks
+          ? tkMarks.length + ", derived from the geometry on S1.0"
           : "no takeoff was supplied — nothing on this set is traced to the drawing");
     field("Prepared", pkg.head.at + "  (generation time, not an issue date)");
 
@@ -17441,8 +17539,39 @@ var FM = (function () {
 
     /* ---- master set ---- */
     if (plan && FM.weights && typeof FM.weights.variantsFor === "function") {
-      var vi = null;
-      try { vi = FM.weights.variantsFor(plan); } catch (e) { vi = null; }
+      var vi = null, viWhy = "";
+      try { vi = FM.weights.variantsFor(plan); }
+      catch (e) { vi = null; viWhy = safe(e && e.message, "the declarations could not be read"); }
+
+      /* A plan set that does not say which combination of a master set it
+         covers is the defect this section exists to prevent, so it must not
+         disappear just because the variant declarations could not be resolved
+         against the mark list that was actually solved. Read the plan record
+         back and say what it declares even then. */
+      var cat = null;
+      if (typeof FM.weights.planById === "function") {
+        try { cat = FM.weights.planById(safe(plan.id)); } catch (e2) { cat = null; }
+      }
+      var catDeclares = !!(cat && ((isArr(cat.elevations) && cat.elevations.length) ||
+                                   (isArr(cat.options) && cat.options.length)));
+
+      if ((!vi || !vi.declaresVariants) && catDeclares) {
+        block("MASTER SET — WHAT THIS PACKAGE COVERS");
+        wrap("The plan record " + safe(plan.id) + " declares " +
+             (isArr(cat.elevations) ? cat.elevations.length : 0) + " elevation(s) and " +
+             (isArr(cat.options) ? cat.options.length : 0) + " option(s), so this is a " +
+             "MASTER SET: one plan built several ways.", W - 4)
+          .forEach(function (x) { say("  " + x); });
+        say();
+        wrap("** THIS PACKAGE DOES NOT STATE WHICH COMBINATION IT COVERS. The variant " +
+             "declarations could not be resolved against the marks this package was " +
+             "solved from" + (viWhy ? " — " + viWhy : "") + ". Treat the members on S2.0 " +
+             "as ONE combination and confirm which one before this set is issued: a " +
+             "master set whose sheets do not name their combination is how a revision " +
+             "gets manufactured after permit. **", W - 4)
+          .forEach(function (x) { say("  " + x); });
+      }
+
       if (vi && vi.declaresVariants) {
         block("MASTER SET — WHAT THIS PACKAGE COVERS");
         wrap("This plan is a master set: " + (isArr(vi.elevations) ? vi.elevations.length : 0) +
@@ -18696,6 +18825,29 @@ var FM = (function () {
     var takeoff = null;
     if (model && FM.takeoff && typeof FM.takeoff.run === "function") {
       try { takeoff = FM.takeoff.run(model, { plan: plan, pack: pack }); } catch (e) { takeoff = null; }
+    }
+
+    /* ARCHITECTURE.md's pipeline is geometry → takeoff → demands → calcs, so
+       when the takeoff has produced marks the schedule is solved from THOSE —
+       otherwise the framing plan on S1.0 and the schedule on S2.0 describe the
+       same house through two different documents, and a reviewer reading a
+       span off one against a member on the other is reading two drawings.
+       If that solve fails the catalogue plan stands, and S5.0 names the
+       discrepancy rather than the package hiding it. */
+    if (takeoff && isArr(takeoff.marks) && takeoff.marks.length && plan && pack &&
+        FM.solver && FM.solver.solvePlan) {
+      /* The elevations and options are deliberately NOT carried across: they
+         patch the catalogue's mark ids, and weights.js correctly refuses a
+         variant that overrides a mark the list does not have. S0.0 reads the
+         master-set declarations back off the plan record instead, and says
+         when it could not resolve them against this mark list. */
+      var derived = { id: plan.id, name: plan.name, summary: plan.summary,
+                      lots: plan.lots, note: plan.note, geometry: plan.geometry,
+                      marks: takeoff.marks };
+      try {
+        var r2 = FM.solver.solvePlan(derived, pack);
+        if (r2 && isArr(r2.marks) && r2.marks.length) res = r2;
+      } catch (e) { /* the catalogue plan's result stands; S5.0 says the two differ */ }
     }
     var bom = null;
     if (res && FM.bom && typeof FM.bom.build === "function") {
@@ -22563,10 +22715,21 @@ var FM = (function () {
       ]);
       if (fit && fit.differences && fit.differences.length) {
         fit.differences.forEach(function (d) {
+          /* The module reports jurisValue / packValue / why / effect. `effect`
+             is the one that matters and it is written to be read out loud —
+             it says whether a difference moves a member here or moves
+             something this engine does not design at all. */
+          var num = (d.jurisValue !== null && d.jurisValue !== undefined)
+            ? String(d.jurisValue) + " here vs " +
+              (d.packValue === null || d.packValue === undefined
+                 ? "nothing declared by the pack" : String(d.packValue) + " in the pack")
+            : null;
           fitBody.appendChild(el("div", { style: "border-left:3px solid var(--gold);padding-left:10px" }, [
             el("div", { style: "font-size:.84rem;font-weight:650", text: d.what }),
-            el("div", { class: "clause", text: d.detail || "" })
-          ]));
+            num ? el("div", { class: "mono", style: "font-size:.8rem", text: num }) : null,
+            d.why ? el("div", { class: "clause", text: d.why }) : null,
+            d.effect ? el("div", { style: "font-size:.82rem;margin-top:3px", text: d.effect }) : null
+          ].filter(Boolean)));
         });
       } else {
         fitBody.appendChild(el("p", { class: "clause",

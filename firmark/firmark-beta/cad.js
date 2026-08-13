@@ -615,11 +615,12 @@
 
       /* ---- the grouped wall and opening findings ---- */
       if (noThick.length) {
-        add(lid, noThick.length === 1 ? noThick[0] : "walls", "warn", "wall-no-thickness",
+        add(lid, noThick.length === 1 ? noThick[0] : "walls", "error", "wall-no-thickness",
             (noThick.length === 1 ? noThick[0] + " has" : noThick.length + " walls have") +
             " no thickness (" + noThick.join(", ") + "). The takeoff measures a clear span between " +
             "wall FACES, so half of each wall comes out of the centreline dimension and it cannot " +
-            "derive a span without one. Set 3.5 in for a 2x4 wall or 5.5 in for a 2x6.");
+            "derive a span without one, so this blocks the geometry gate rather than following it " +
+            "downstream. Set 3.5 in for a 2x4 wall or 5.5 in for a 2x6.");
       }
       if (assumedThick.length) {
         add(lid, assumedThick.length === 1 ? assumedThick[0].split(" ")[0] : "walls", "warn",
@@ -688,17 +689,18 @@
           }
         });
         if (num(f.spacingIn) === null) {
-          add(lid, f.id, "warn", "framing-no-spacing",
-              f.id + " has no member spacing. Set it (16 in or 24 in o.c.) — the takeoff cannot count " +
-              "members without it.");
+          add(lid, f.id, "error", "framing-no-spacing",
+              f.id + " has no member spacing, so the takeoff cannot count the members in it. Set it — " +
+              "16 in or 24 in o.c. — before this geometry is approved. " +
+              (f.basis ? "What is known: " + f.basis : ""));
         } else if (num(f.spacingIn) <= 0) {
           add(lid, f.id, "error", "framing-spacing-zero",
               f.id + " has a spacing of " + f2(f.spacingIn) + " in. Set a real o.c. spacing.");
         }
         if (num(f.directionDeg) === null) {
-          add(lid, f.id, "warn", "framing-no-direction",
-              f.id + " has no span direction. Set which way the members run — 0° along +x, 90° along " +
-              "+y — because the direction is what decides the span.");
+          add(lid, f.id, "error", "framing-no-direction",
+              f.id + " has no span direction, and the direction is what decides the span. Set which " +
+              "way the members run — 0 along +x, 90 along +y.");
         }
       });
 
@@ -832,13 +834,18 @@
     }
     if (derived !== null) {
       return { inches: derived,
-               basis: "Spacing " + derived + " in DERIVED from " + truss.id + ": its count of " +
-                      truss.count + " is declared as the " +
-                      (num(truss.runFt) !== null ? truss.runFt : runFt) +
-                      " ft run at that spacing plus one, so the spacing follows from the count." };
+               basis: "Spacing " + derived + " in DERIVED from " + truss.id + ": " +
+                      (num(truss.runFt) !== null ? truss.runFt : runFt) + " ft of run across " +
+                      truss.count + " trusses is one per " + derived +
+                      " in plus one at the end — the same relationship the other plans in this " +
+                      "build state for their own truss counts. It lands on a standard spacing, " +
+                      "which is the check that the count means what it looks like." };
     }
     return { inches: null,
-             basis: "Spacing is not declared and no count reads it back." };
+             basis: "Spacing is not declared" +
+                    (rawDerived === null ? " and no truss count reads it back."
+                     : "; the truss count reads back " + rawDerived + " in, which is not a spacing " +
+                       "anybody frames at, so the count does not mean one member per spacing.") };
   }
 
   /* equal gaps, openings in the order given — the only layout that
@@ -1000,11 +1007,16 @@
     /* ---- an interior bearing line, only when the joist bays derive one ----
        Two declared joist spans that add exactly to a footprint dimension
        locate the line between them. Anything else does not. */
-    var joistSpans = [];
+    var joistSpans = [], frontBay = null;
     (plan.marks || []).forEach(function (mk) {
       if (mk.role !== "joist") return;
       var s = num(mk.span);
       if (s === null) return;
+      /* A bay the plan calls the FRONT bay starts at the front wall, so its
+         own span locates the line behind it — even when the bays do not fill
+         the footprint, which on a two-storey plan they need not. The label is
+         the declaration; nothing here is measured off prose. */
+      if (frontBay === null && /\bfront bay\b/i.test(String(mk.label || ""))) frontBay = s;
       var seen = false;
       joistSpans.forEach(function (v) { if (near(v, s, 0.001)) seen = true; });
       if (!seen) joistSpans.push(s);
@@ -1040,6 +1052,33 @@
              "does not say which edge.",
              "Name the side on the plan, or mirror the drawing to match the architectural set.");
       }
+    }
+    /* The bays did not add up to a footprint dimension, but one of them is
+       named the FRONT bay — which does fix the line, because a front bay
+       starts at the front wall. The bays not filling the footprint is a
+       separate hole and is recorded as one. */
+    if (!interior && frontBay !== null && frontBay > 0 && frontBay < D) {
+      interior = newWall(L, 0, frontBay, Wd, frontBay, {
+        exterior: false, bearing: true,
+        note: "Centre bearing line · " + thickNote,
+        thicknessIn: ASSUMED_STUD_IN, thicknessBasis: "assumed",
+        basis: "Derived: the plan declares a " + frontBay + " ft FRONT bay, and a front bay starts " +
+               "at the front wall, so the line behind it sits " + frontBay + " ft from y = 0. " +
+               "The bays do not fill the " + D + " ft depth, so no floor region is drawn from them. " +
+               thickNote
+      });
+      L.walls.push(interior);
+      hole("The floor bays either side of the centre bearing line",
+           "The declared joist bays (" + joistSpans.join(" ft and ") + " ft deep, running " +
+           (function () {
+             var runs = [];
+             (plan.marks || []).forEach(function (mk) {
+               if (mk.role === "joist" && num(mk.runFt) !== null && runs.indexOf(mk.runFt) === -1) runs.push(mk.runFt);
+             });
+             return runs.length ? runs.join(" ft and ") + " ft" : "an undeclared length";
+           })() + ") do not span the " + Wd + " ft width, and the plan does not say where along it " +
+           "they sit — so the bearing line is drawn and the floor regions are not.",
+           "Declare the second-floor outline, then draw the floor regions on it.");
     }
     /* "There is no third bearing line" declares the absence of one. Reading
        that as a hole would invent a finding out of a plan being explicit. */
@@ -1088,18 +1127,37 @@
          interior line, which are bearing for the floor whatever carries
          the roof */
       [side1, side2].forEach(function (w) { w.bearing = true; });
+      /* The spacing is left undeclared on purpose. These plans state that the
+         joist piece count follows whatever spacing the solver picks, so the
+         count is a CONSEQUENCE and inverting it would assert a fact the plan
+         disclaims — unlike the truss counts above, which the plans declare as
+         derived from a spacing. What the counts are consistent with is written
+         down for the reviewer; it is evidence, not a value. */
+      function bayBasis(spanFt) {
+        var ev = [];
+        (plan.marks || []).forEach(function (mk) {
+          if (mk.role !== "joist" || !near(num(mk.span), spanFt, 0.001)) return;
+          if (num(mk.runFt) === null || num(mk.count) === null || num(mk.count) < 2) return;
+          var oc = Math.round((num(mk.runFt) / (num(mk.count) - 1)) * 12 * 10) / 10;
+          ev.push(mk.id + " counts " + mk.count + " over " + mk.runFt + " ft, about " + oc + " in o.c.");
+        });
+        return "Bay from the declared joist span " + spanFt + " ft. SPACING IS NOT SET: " + plan.name +
+               " states the joist piece count follows the spacing the solver picks, so the count is a " +
+               "consequence and cannot be read back as a declaration. For the reviewer's information " +
+               "only, the declared counts imply — " + (ev.length ? ev.join("; ") : "nothing readable") +
+               ". Set the spacing here once it is chosen.";
+      }
       L.framing.push(newFraming(L, poly1, {
         kind: "floor", directionDeg: floorDirDeg, spacingIn: null,
         bearsOn: [side1.id, interior.id],
         note: "Floor bay · " + joistSpans[0] + " ft",
-        basis: "Bay from the declared joist span " + joistSpans[0] + " ft. Spacing is not declared — " +
-               "the plan says the piece count follows the spacing the solver picks."
+        basis: bayBasis(joistSpans[0])
       }));
       L.framing.push(newFraming(L, poly2, {
         kind: "floor", directionDeg: floorDirDeg, spacingIn: null,
         bearsOn: [interior.id, side2.id],
         note: "Floor bay · " + joistSpans[1] + " ft",
-        basis: "Bay from the declared joist span " + joistSpans[1] + " ft. Spacing is not declared."
+        basis: bayBasis(joistSpans[1])
       }));
       hole("Floor member spacing",
            plan.name + " declares no spacing for the second-floor joists — the marks say the piece " +

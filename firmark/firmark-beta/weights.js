@@ -345,9 +345,22 @@
       markets: "Charlotte · Raleigh · Greensboro",
       states: ["NC"],
       code: { family: "IRC", cls: "code",
+        /* This note used to end at "delayed by statute to 1 July 2025", which
+           was true when written and had been superseded twice by the time
+           anyone read it. It said VERIFY, so it was not a lie — but a reader
+           came away believing a 2021-IRC basis governs North Carolina, and the
+           basis is 2015 IRC with ASCE 7-10. Two code generations back, on the
+           reference this engine's own combinations are built against.
+
+           A "VERIFY" on a stale sentence is not a disclaimer. It is a wrong
+           answer with a footnote. */
         note: "North Carolina Residential Code, adopted statewide by the Building Code Council — local jurisdictions " +
-              "do not write their own technical amendments. The 2024 NCRC (2021 IRC basis) was delayed by statute to " +
-              "1 July 2025. VERIFY the currently effective edition and any permit-date grandfathering with OSFM." },
+              "do not write their own technical amendments. IN FORCE: the 2018 NCRC, on a 2015 IRC basis, which " +
+              "references ASCE 7-10 — NOT 7-16 and NOT 7-22. The 2024 NCRC was delayed by S.L. 2024-57 to 1 July 2025, " +
+              "then delayed again by S.L. 2025-2 until 12 months after the State Fire Marshal certifies both " +
+              "publication and a fully constituted Residential Code Council; as of 15 Feb 2026 neither had happened " +
+              "and the earliest possible effective date stated was 1 March 2027. VERIFY the effective edition and any " +
+              "permit-date grandfathering with OSFM before this is used." },
       climate: {
         groundSnow:  { v: 15,  cls: "site", note: "Piedmont counties commonly 10–15 psf; the NCRC county table governs." },
         roofLive:    { v: 20,  cls: "code", note: LIVE.roof_live.cite },

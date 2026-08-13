@@ -166,6 +166,10 @@ module.exports = function (t, FM) {
     var txt = pkg.text();
     truthy(txt.length > 20000, "the package text is a document, not a stub");
     eq(FM.planset.text(pkg), txt, "FM.planset.text(pkg) is pkg.text()");
+    truthy(/NO PACKAGE/.test(FM.planset.text(null)) &&
+           /NO PACKAGE/.test(FM.planset.text({ sheets: 3 })),
+           "and text() called with something that is not a package says so " +
+           "rather than returning an empty document");
 
     /* the full-ctx content actually reaches the sheets */
     var s10 = pkg.sheetByNo("S1.0").text();
@@ -669,6 +673,27 @@ module.exports = function (t, FM) {
     jrows.forEach(function (r) { if (/Florida Building Code/.test(r.k)) ed = r; });
     truthy(ed && ed.v.indexOf("8th Edition (2023)") === 0,
            "with a jurisdiction record the adopted edition is stated and cited");
+
+    /* A master set whose sheets do not name their combination is how a
+       revision gets manufactured after permit, so that warning must survive
+       even when the variant declarations cannot be resolved against the mark
+       list that was actually solved. */
+    var master = FM.planset.build(fullCtx("starter-1210", "fl-hvhz")).sheetByNo("S0.0").text();
+    truthy(/MASTER SET/.test(master), "a plan that declares variants gets a master-set block");
+    truthy(/ONE COMBINATION, NOT AN ENVELOPE|DOES NOT STATE WHICH COMBINATION/.test(master),
+           "and is told, in terms, that it covers one combination and not an envelope");
+
+    var full = solve("starter-1210", "fl-hvhz");
+    var reMarked = { plan: { id: "starter-1210", name: full.plan.name, summary: full.plan.summary,
+                             lots: full.plan.lots, marks: full.plan.marks },
+                     pack: full.pack, marks: full.marks, rollup: full.rollup,
+                     policy: full.policy };
+    var stripped = FM.planset.build({ planResult: reMarked, at: "x" }).sheetByNo("S0.0").text();
+    truthy(/MASTER SET/.test(stripped),
+           "a plan result whose own record carries no elevations still gets the block, " +
+           "read back off the plan catalogue");
+    truthy(/DOES NOT STATE WHICH COMBINATION IT COVERS/.test(stripped),
+           "and says outright that this package does not name its combination");
 
     /* provenance classes are explained on the sheet, not assumed */
     var s00 = FM.planset.build(fullCtx("starter-1210", "fl-hvhz")).sheetByNo("S0.0").text();

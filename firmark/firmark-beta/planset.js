@@ -940,13 +940,30 @@
       }
     }
     field("Region pack", pack ? safe(pack.name) + " · " + safe(pack.markets) : "NOT SUPPLIED");
-    /* which document the members were sized from, and which one the framing
-       plan was drawn from — they are not always the same document */
+    /* Which document the members were sized from, and which one the framing
+       plan was drawn from. They are not always the same document, and the
+       answer is derived by comparing the two mark lists rather than taken on
+       trust from a flag somebody has to remember to set. */
+    var tkMarks = (p.have.takeoff && isArr(p.have.takeoff.marks)) ? p.have.takeoff.marks : null;
+    var sameMarks = null;
+    if (tkMarks && tkMarks.length && res && isArr(res.marks) && res.marks.length) {
+      var tkSet = {};
+      tkMarks.forEach(function (m) { tkSet[" " + safe(m && m.id, "")] = 1; });
+      var shared = res.marks.filter(function (m) {
+        return own(tkSet, " " + safe(m.mark && m.mark.id, ""));
+      }).length;
+      sameMarks = (shared === res.marks.length && shared === tkMarks.length);
+    }
     field("Marks on the schedule", res && isArr(res.marks)
-          ? res.marks.length + ", from the plan record " + (plan ? safe(plan.id) : "")
+          ? res.marks.length + (sameMarks === true
+              ? ", sized from the takeoff's own marks — S1.0 and S2.0 are the same house"
+              : (sameMarks === false
+                  ? ", from the plan record " + (plan ? safe(plan.id) : "") +
+                    " — NOT the takeoff's marks, see S5.0"
+                  : ", from the plan record " + (plan ? safe(plan.id) : "")))
           : "none — no solver result was supplied");
-    field("Marks from the takeoff", (p.have.takeoff && isArr(p.have.takeoff.marks))
-          ? p.have.takeoff.marks.length + ", derived from the geometry on S1.0"
+    field("Marks from the takeoff", tkMarks
+          ? tkMarks.length + ", derived from the geometry on S1.0"
           : "no takeoff was supplied — nothing on this set is traced to the drawing");
     field("Prepared", pkg.head.at + "  (generation time, not an issue date)");
 
@@ -1081,8 +1098,39 @@
 
     /* ---- master set ---- */
     if (plan && FM.weights && typeof FM.weights.variantsFor === "function") {
-      var vi = null;
-      try { vi = FM.weights.variantsFor(plan); } catch (e) { vi = null; }
+      var vi = null, viWhy = "";
+      try { vi = FM.weights.variantsFor(plan); }
+      catch (e) { vi = null; viWhy = safe(e && e.message, "the declarations could not be read"); }
+
+      /* A plan set that does not say which combination of a master set it
+         covers is the defect this section exists to prevent, so it must not
+         disappear just because the variant declarations could not be resolved
+         against the mark list that was actually solved. Read the plan record
+         back and say what it declares even then. */
+      var cat = null;
+      if (typeof FM.weights.planById === "function") {
+        try { cat = FM.weights.planById(safe(plan.id)); } catch (e2) { cat = null; }
+      }
+      var catDeclares = !!(cat && ((isArr(cat.elevations) && cat.elevations.length) ||
+                                   (isArr(cat.options) && cat.options.length)));
+
+      if ((!vi || !vi.declaresVariants) && catDeclares) {
+        block("MASTER SET — WHAT THIS PACKAGE COVERS");
+        wrap("The plan record " + safe(plan.id) + " declares " +
+             (isArr(cat.elevations) ? cat.elevations.length : 0) + " elevation(s) and " +
+             (isArr(cat.options) ? cat.options.length : 0) + " option(s), so this is a " +
+             "MASTER SET: one plan built several ways.", W - 4)
+          .forEach(function (x) { say("  " + x); });
+        say();
+        wrap("** THIS PACKAGE DOES NOT STATE WHICH COMBINATION IT COVERS. The variant " +
+             "declarations could not be resolved against the marks this package was " +
+             "solved from" + (viWhy ? " — " + viWhy : "") + ". Treat the members on S2.0 " +
+             "as ONE combination and confirm which one before this set is issued: a " +
+             "master set whose sheets do not name their combination is how a revision " +
+             "gets manufactured after permit. **", W - 4)
+          .forEach(function (x) { say("  " + x); });
+      }
+
       if (vi && vi.declaresVariants) {
         block("MASTER SET — WHAT THIS PACKAGE COVERS");
         wrap("This plan is a master set: " + (isArr(vi.elevations) ? vi.elevations.length : 0) +
@@ -2029,10 +2077,13 @@
     return L.join("\n");
   }
 
+  /* Returning "" for something that is not a package would be a silent
+     fallback: the caller writes an empty file and nothing says why. */
   function text(pkg) {
-    if (!pkg) return "";
-    if (typeof pkg.text === "function" && pkg.sheets) return packageText(pkg);
-    return "";
+    if (pkg && pkg.sheets && typeof pkg.text === "function") return packageText(pkg);
+    return "FIRMARK — NO PACKAGE\n" + rule("=") + "\n" +
+           "FM.planset.text() was called with something that is not a package built by\n" +
+           "FM.planset.build(). Nothing is printed here because there is nothing to print.\n";
   }
 
   /* ============================================================
@@ -2336,6 +2387,29 @@
     var takeoff = null;
     if (model && FM.takeoff && typeof FM.takeoff.run === "function") {
       try { takeoff = FM.takeoff.run(model, { plan: plan, pack: pack }); } catch (e) { takeoff = null; }
+    }
+
+    /* ARCHITECTURE.md's pipeline is geometry → takeoff → demands → calcs, so
+       when the takeoff has produced marks the schedule is solved from THOSE —
+       otherwise the framing plan on S1.0 and the schedule on S2.0 describe the
+       same house through two different documents, and a reviewer reading a
+       span off one against a member on the other is reading two drawings.
+       If that solve fails the catalogue plan stands, and S5.0 names the
+       discrepancy rather than the package hiding it. */
+    if (takeoff && isArr(takeoff.marks) && takeoff.marks.length && plan && pack &&
+        FM.solver && FM.solver.solvePlan) {
+      /* The elevations and options are deliberately NOT carried across: they
+         patch the catalogue's mark ids, and weights.js correctly refuses a
+         variant that overrides a mark the list does not have. S0.0 reads the
+         master-set declarations back off the plan record instead, and says
+         when it could not resolve them against this mark list. */
+      var derived = { id: plan.id, name: plan.name, summary: plan.summary,
+                      lots: plan.lots, note: plan.note, geometry: plan.geometry,
+                      marks: takeoff.marks };
+      try {
+        var r2 = FM.solver.solvePlan(derived, pack);
+        if (r2 && isArr(r2.marks) && r2.marks.length) res = r2;
+      } catch (e) { /* the catalogue plan's result stands; S5.0 says the two differ */ }
     }
     var bom = null;
     if (res && FM.bom && typeof FM.bom.build === "function") {

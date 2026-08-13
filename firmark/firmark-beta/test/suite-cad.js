@@ -195,8 +195,8 @@ module.exports = function (t, FM) {
     var m3 = base();
     m3.levels[0].walls[0].thicknessIn = null;
     var r3 = cad.validate(m3);
-    t.eq(row(r3, "wall-no-thickness").severity, "warn",
-         "defect · an undeclared thickness is a warn, not an error");
+    t.eq(row(r3, "wall-no-thickness").severity, "error",
+         "defect · an undeclared thickness BLOCKS the gate — a span cannot be measured without it");
     t.truthy(row(r3, "wall-no-thickness").text.indexOf("clear span") !== -1,
              "defect · and it says why the takeoff needs it");
   })();
@@ -372,12 +372,12 @@ module.exports = function (t, FM) {
 
     var m4 = base();
     m4.levels[0].framing[0].spacingIn = null;
-    t.eq(row(cad.validate(m4), "framing-no-spacing").severity, "warn",
-         "defect · an undeclared spacing is a warn");
+    t.eq(row(cad.validate(m4), "framing-no-spacing").severity, "error",
+         "defect · an undeclared spacing blocks the gate — no member count comes out of it");
     var m5 = base();
     m5.levels[0].framing[0].directionDeg = null;
-    t.eq(row(cad.validate(m5), "framing-no-direction").severity, "warn",
-         "defect · an undeclared span direction is a warn");
+    t.eq(row(cad.validate(m5), "framing-no-direction").severity, "error",
+         "defect · an undeclared span direction blocks the gate — it is what decides the span");
   })();
 
   /* --- model-wide --- */
@@ -414,6 +414,29 @@ module.exports = function (t, FM) {
     t.eq(r5.severity, "warn", "defect · an unresolved item is reported as a warn");
     t.truthy(r5.text.indexOf("the porch") !== -1 && r5.text.indexOf("Need: an offset") !== -1,
              "defect · and it carries what, why and what is needed");
+  })();
+
+  /* The gate rule: approving geometry means it was fit to pass on. Anything
+     the takeoff cannot proceed without is an ERROR, never a warn — a warn that
+     silently blocks the next stage means someone put their name on a model
+     that cannot produce a span. */
+  (function () {
+    var blocking = ["wall-no-thickness", "framing-no-spacing", "framing-no-direction",
+                    "framing-bears-on-too-few"];
+    var m = base();
+    var L = m.levels[0];
+    L.walls[0].thicknessIn = null;
+    L.framing[0].spacingIn = null;
+    L.framing[0].directionDeg = null;
+    L.framing[0].bearsOn = [];
+    var rows = cad.validate(m);
+    blocking.forEach(function (c) {
+      t.truthy(has(rows, c), "gate · " + c + " is reported");
+      t.eq(row(rows, c).severity, "error",
+           "gate · " + c + " blocks the geometry gate rather than following it downstream");
+    });
+    t.eq(warns(rows).filter(function (r) { return blocking.indexOf(r.code) !== -1; }).length, 0,
+         "gate · none of the four blocking classes is filed as a warn");
   })();
 
   /* every finding names an element and tells the reader what to do */
@@ -515,12 +538,24 @@ module.exports = function (t, FM) {
   (function () {
     t.eq(cad.fromPlan("no-such-plan"), null, "fromPlan · an unknown plan id returns null, not a guess");
 
+    /* Four of the five plans declare enough to be approved as drawn. The
+       fifth does not, and the error it produces is named here rather than
+       tolerated: Townhome 1220 states that its joist piece count follows
+       whatever spacing the solver picks, so no spacing can be read back out
+       of it, and a human has to declare one before this geometry passes the
+       gate. That is the intended outcome, not a gap. */
+    var EXPECT_ERRORS = {
+      "townhome-1220": ["framing-no-spacing", "framing-no-spacing"]
+    };
+
     FM.weights.PLANS.forEach(function (p) {
       var m = cad.fromPlan(p.id);
       var rows = cad.validate(m);
       var e = errs(rows);
-      t.eq(e.length, 0, "fromPlan · " + p.id + " validates with no errors" +
-           (e.length ? " (got: " + e[0].text.slice(0, 90) + ")" : ""));
+      var want = EXPECT_ERRORS[p.id] || [];
+      t.eq(codes(e).join(","), want.join(","),
+           "fromPlan · " + p.id + " produces exactly the errors it should" +
+           (e.length ? " (got: " + e[0].text.slice(0, 90) + ")" : " — none"));
       t.eq(m.version, cad.MODEL_VERSION, "fromPlan · " + p.id + " is stamped with the model version");
       t.truthy(m.levels[0].walls.length >= 4,
                "fromPlan · " + p.id + " draws at least the four envelope walls");
@@ -640,7 +675,13 @@ module.exports = function (t, FM) {
              "townhome · the 20 x 8 patio has no element here and says so");
     t.truthy(un.indexOf("HDR-ST") !== -1,
              "townhome · the stair header is not an opening in a wall and says why");
-    t.eq(errs(cad.validate(m)).length, 0, "townhome · no errors");
+    var trows = cad.validate(m);
+    t.eq(codes(errs(trows)).join(","), "framing-no-spacing,framing-no-spacing",
+         "townhome · the only errors are the two floor bays with no declared spacing");
+    t.truthy(row(trows, "framing-no-spacing").text.indexOf("consequence") !== -1,
+             "townhome · and the finding explains why the piece count cannot be read back as one");
+    t.truthy(row(trows, "framing-no-spacing").text.indexOf("16 in o.c.") !== -1,
+             "townhome · while still handing the reviewer what the counts are consistent with");
   })();
 
   t.suite("cad · fromPlan · the plans whose geometry does not determine a layout");
@@ -657,12 +698,22 @@ module.exports = function (t, FM) {
     var un = m.unresolved.map(function (u) { return u.what; }).join(" | ");
     t.truthy(un.indexOf("roof span direction") !== -1,
              "two-story · the roof span direction is named as undetermined");
-    t.truthy(un.indexOf("interior bearing line") !== -1,
-             "two-story · so is the centre bearing line the plan declares but does not locate");
+
+    /* the centre bearing line IS located — a 13.5 ft FRONT bay starts at the
+       front wall, so the line behind it is fixed even though the bays do not
+       add up to the footprint depth */
+    var mid = m.levels[0].walls[4];
+    t.eq(m.levels[0].walls.length, 5, "two-story · the centre bearing line is drawn");
+    t.eq(mid.exterior, false, "two-story · as an interior wall");
+    t.eq(mid.bearing, true, "two-story · that bears");
+    t.near(mid.y1, 13.5, 1e-9, "two-story · 13.5 ft back from the front wall, FJ-1's front bay");
+    t.near(mid.y2, 13.5, 1e-9, "two-story · running side to side");
+    t.truthy(un.indexOf("floor bays") !== -1,
+             "two-story · but the bays themselves are unresolved — they do not span the 40 ft width");
     t.truthy(m.unresolved.filter(function (u) {
-      return u.what.indexOf("interior bearing line") !== -1;
+      return u.what.indexOf("floor bays") !== -1;
     })[0].why.indexOf("13.5") !== -1,
-             "two-story · and the finding shows the joist spans that failed to locate it");
+             "two-story · and the finding shows the declared bay depths it could not place");
 
     /* Coastal Duplex 1600: one of the bearing walls is a party wall and
        the plan does not say which, so no opening is placed in either. */
@@ -670,10 +721,10 @@ module.exports = function (t, FM) {
     t.eq(cad.stats(c).openings, 0,
          "coastal · no opening is placed, because one candidate wall may be the party wall");
     t.eq(cad.stats(c).bearingWalls, 2, "coastal · the 26 ft truss span still marks two walls bearing");
-    t.eq(c.levels[0].framing[0].spacingIn, null,
-         "coastal · the roof region carries no spacing, because the plan declares none");
-    t.eq(row(cad.validate(c), "framing-no-spacing").severity, "warn",
-         "coastal · which is reported rather than filled in");
+    t.eq(c.levels[0].framing[0].spacingIn, 24,
+         "coastal · the roof spacing is recovered from T-1's count: 32 ft of run across 17 trusses");
+    t.truthy(c.levels[0].framing[0].basis.indexOf("DERIVED") !== -1,
+             "coastal · and the region says the spacing was derived, not declared");
     t.eq(errs(cad.validate(c)).length, 0, "coastal · no errors");
 
     /* Sunbelt Ranch 1850 carries two marks for one garage opening and they

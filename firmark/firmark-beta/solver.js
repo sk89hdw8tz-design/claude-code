@@ -31,8 +31,19 @@
 
   /* Lumber is bought in even 2-ft lengths. A 13'-0" rafter is cut from a 14-footer,
      so the piece that shows up on the invoice is longer than the span. */
-  function stockLength(spanFt) {
-    var need = spanFt + 0.5;                  /* bearing at both ends */
+  function stockLength(spanFt, bearingIn) {
+    /* Bearing at BOTH ends. This was a flat 0.5 ft — 3 in each end — while a
+       mark DECLARES its bearing in inches, and weights.js made that a design
+       input precisely because it governs the F_c-perp check. A header
+       declaring 4.5 in per end needs 0.75 ft of stick, not 0.5.
+
+       Across all 136 mark-slots in the corpus the 2 ft rounding absorbs the
+       difference and not one stick changes length. That is why this was worth
+       fixing rather than shrugging at: the rule was wrong and the answers were
+       right, which is the state a defect hides in. A plan with a 4 ft opening
+       at 6 in bearing would have been billed a stick 2 in short with nothing
+       anywhere saying so. */
+    var need = spanFt + Math.max(0.5, 2 * (Number(bearingIn) || 3) / 12);
     var len = Math.ceil(need / 2) * 2;
     /* No upper clamp. Clamping at 24 ft billed a 46 ft member as a 24-footer and
        gave it a NEGATIVE drop cost — the longest stick the yard racks is a
@@ -132,7 +143,7 @@
     var sec = FM.engine.findSection(cand.size);
     if (!sec) return null;
 
-    var len = stockLength(demand.span);
+    var len = stockLength(demand.span, demand.bearing);
     var bf = boardFeetPerLF(cand.size) * len;
     var lb = (policy.gammaPcf || GAMMA_PCF) * sec.A_in2 / 144 * len;
 
@@ -1241,7 +1252,7 @@
     seedBounds: seedBounds, families: families, combosFor: combosFor,
     memberInputs: memberInputs, costOf: costOf, skuOf: skuOf, slackPenalty: slackPenalty,
     eligibility: eligibility,
-    stockLength: stockLength, boardFeetPerLF: boardFeetPerLF,
+    stockLength: stockLength, boardFeetPerLF: boardFeetPerLF, pieceCount: pieceCount,
     REPAIR: REPAIR, GAMMA_PCF: GAMMA_PCF
   };
 })();
