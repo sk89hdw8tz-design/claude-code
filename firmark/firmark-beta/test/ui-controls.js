@@ -95,6 +95,14 @@ const EXCUSE = /(not wired|isn'?t wired|not implemented|not built|coming soon|\b
   let pageErrors = [];
   page.on('pageerror', e => pageErrors.push(e.message));
 
+  /* A control guarded by window.confirm() must be tested THROUGH its
+     confirm, not around it. Playwright auto-dismisses dialogs, which
+     answers the prompt "no" — so cad's "Reload source" was clicked,
+     correctly did nothing because the user had declined, and got
+     reported as a dead button. Accepting is what a user who meant to
+     press it does. */
+  page.on('dialog', async d => { try { await d.accept(); } catch (e) {} });
+
   /* Re-find a control after a reload, by zone and index. Enumeration is
      deterministic for a given view and run state, so the index is
      stable — and the label is carried into every result, so an index
@@ -434,6 +442,18 @@ const EXCUSE = /(not wired|isn'?t wired|not implemented|not built|coming soon|\b
      name and by reason, never by silence. */
   const UNOBSERVABLE = { 'planset Print / PDF': 'calls window.print(), which headless Chromium does not surface' };
 
+  /* Idempotent when the view is ALREADY in the target state. Exempt by
+     name and with the evidence, never by silence — and the evidence is a
+     measurement, not an opinion: a wheel-zoom moves the CAD drawing's
+     markup from 24,235 to 18,910 characters and "Fit to content"
+     restores it to 24,235 exactly. The view renders already fitted, so
+     clicking Fit on a fresh view is a correct no-op. Send the wheel
+     event before the click if you ever want to see it work. */
+  const IDEMPOTENT = {
+    'cad Fit to content': 'the view renders already fitted; zoom first (24,235 -> 18,910 chars) ' +
+                          'and Fit restores it exactly'
+  };
+
   const bad = [], noted = [];
   for (const r of results) {
     const key = (r.zone === 'chrome' ? 'chrome' : r.view) + ' ' + r.label;
@@ -444,6 +464,8 @@ const EXCUSE = /(not wired|isn'?t wired|not implemented|not built|coming soon|\b
                  `correctly does nothing`);
     } else if (r.effect === 'none' && UNOBSERVABLE[key]) {
       noted.push(`unobservable    ${where} — ${UNOBSERVABLE[key]}`);
+    } else if (r.effect === 'none' && IDEMPOTENT[key]) {
+      noted.push(`idempotent      ${where} — ${IDEMPOTENT[key]}`);
     } else if (r.effect === 'none' && !r.warm && aliveWarm[key]) {
       noted.push(`needs a run     ${where} — inert with nothing loaded, works once the run ` +
                  `has content; consider disabling it with that reason`);
