@@ -101,30 +101,63 @@
   }
 
   /* Stable stringify: sorts keys, so a re-serialised model with the same
-     content fingerprints the same. Skips functions and undefined. */
-  function stable(v, depth) {
+     content fingerprints the same. Skips functions and undefined.
+
+     TWO GUARDS, both learned the hard way in one sitting.
+
+     A solver result is not a tree. A mark points at its solution, a solution
+     points at candidates, a unification move points back at the marks it
+     collapsed — so the graph has shared nodes and back-references. Without a
+     seen-set this walk revisits the same subgraph down every path that reaches
+     it, and at depth 12 with real branching that does not terminate in any
+     useful time. It did not merely get slow: the test suite stopped finishing.
+
+     So: an object already on the current path is emitted as a cycle marker,
+     and the whole walk is bounded by a node budget. Both are DETERMINISTIC —
+     the same input always produces the same string, including the same
+     truncation — because a fingerprint that varied with traversal luck would
+     invalidate approvals at random, which is worse than one that is coarse.
+
+     A truncated fingerprint is still sound for what it is used for. It can
+     only ever say "these differ" too rarely, never too often, and the callers
+     in project.js key on small explicit values precisely so that never bites. */
+
+  var NODE_BUDGET = 20000;
+
+  function stable(v, depth, path, budget) {
     depth = depth || 0;
-    if (depth > 12) return '"…"';
+    path = path || [];
+    budget = budget || { n: 0 };
+    if (++budget.n > NODE_BUDGET) return '"…budget…"';
+    if (depth > 12) return '"…deep…"';
     if (v === null || v === undefined) return "null";
     var t = typeof v;
     if (t === "number") return isFinite(v) ? String(Math.round(v * 1e6) / 1e6) : "null";
     if (t === "boolean" || t === "string") return JSON.stringify(v);
     if (t === "function") return "null";
+
+    for (var c = 0; c < path.length; c++) if (path[c] === v) return '"…cycle…"';
+    path.push(v);
+
+    var out;
     if (Object.prototype.toString.call(v) === "[object Array]") {
       var a = [];
-      for (var i = 0; i < v.length; i++) a.push(stable(v[i], depth + 1));
-      return "[" + a.join(",") + "]";
+      for (var i = 0; i < v.length; i++) a.push(stable(v[i], depth + 1, path, budget));
+      out = "[" + a.join(",") + "]";
+    } else {
+      var keys = [];
+      for (var k in v) if (Object.prototype.hasOwnProperty.call(v, k)) keys.push(k);
+      keys.sort();
+      var parts = [];
+      for (var j = 0; j < keys.length; j++) {
+        var val = v[keys[j]];
+        if (typeof val === "function" || val === undefined) continue;
+        parts.push(JSON.stringify(keys[j]) + ":" + stable(val, depth + 1, path, budget));
+      }
+      out = "{" + parts.join(",") + "}";
     }
-    var keys = [];
-    for (var k in v) if (Object.prototype.hasOwnProperty.call(v, k)) keys.push(k);
-    keys.sort();
-    var out = [];
-    for (var j = 0; j < keys.length; j++) {
-      var val = v[keys[j]];
-      if (typeof val === "function" || val === undefined) continue;
-      out.push(JSON.stringify(keys[j]) + ":" + stable(val, depth + 1));
-    }
-    return "{" + out.join(",") + "}";
+    path.pop();
+    return out;
   }
 
   function fingerprint(v) { return digest(stable(v)); }

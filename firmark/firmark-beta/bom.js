@@ -67,9 +67,18 @@
 
   /* author-supplied strings (SKUs, mark ids, roles) are used as map
      keys throughout — a role named "constructor" must not pick up
-     Object.prototype, and `groups["__proto__"] = []` must not vanish */
+     Object.prototype, and `groups["__proto__"] = []` must not vanish.
+     K() prefixes keys for INTERNAL maps that never leave this file. */
   function K(s) { return " " + String(s); }
   function hasK(o, s) { return Object.prototype.hasOwnProperty.call(o, K(s)); }
+
+  /* PUBLIC maps get real keys, because a consumer doing Object.keys() must
+     see "header", not " header". Prototype safety comes from a null
+     prototype instead of a prefix: there is nothing to inherit, and
+     assigning "__proto__" on one creates an ordinary own property rather
+     than silently vanishing. JSON.stringify handles them normally. */
+  function bag() { return Object.create(null); }
+  function has(o, s) { return Object.prototype.hasOwnProperty.call(o, String(s)); }
   function own(o, k) {
     return (o && Object.prototype.hasOwnProperty.call(o, k)) ? o[k] : undefined;
   }
@@ -488,9 +497,12 @@
   function totalsOf(lines, planResult) {
     var t = {
       bf: 0, cutBf: 0, dropBf: 0, lf: 0, pieces: 0, usd: 0, dropHandlingUSD: 0,
-      byCategory: {}, byCategoryOrder: [],
-      bySku: {}, bySkuOrder: [],
-      byStockLength: {}, byStockLengthOrder: [],
+      /* byCategory is MATERIAL DOLLARS BY ROLE — a scalar per key, so any
+         consumer can print it without knowing this file's shapes. The
+         breakdown behind it is byCategoryDetail. */
+      byCategory: bag(), byCategoryDetail: bag(), byCategoryOrder: [],
+      bySku: bag(), bySkuOrder: [],
+      byStockLength: bag(), byStockLengthOrder: [],
       lineCount: lines.length, skuCount: 0
     };
     lines.forEach(function (g) {
@@ -499,45 +511,52 @@
       t.usd += g.extUSD; t.dropHandlingUSD += g.dropHandlingUSD;
 
       var skuKey = g.sku + " · " + g.treatment;
-      if (!hasK(t.bySku, skuKey)) {
-        t.bySku[K(skuKey)] = { sku: g.sku, treatment: g.treatment, pieces: 0, bf: 0, usd: 0,
-                               lengths: {}, lengthOrder: [], marks: [] };
+      if (!has(t.bySku, skuKey)) {
+        t.bySku[skuKey] = { sku: g.sku, treatment: g.treatment, pieces: 0, bf: 0, usd: 0,
+                            lengths: bag(), lengthOrder: [], marks: [] };
         t.bySkuOrder.push(skuKey);
       }
-      var s = t.bySku[K(skuKey)];
+      var s = t.bySku[skuKey];
       s.pieces += g.piecesPerHouse; s.bf += g.bf; s.usd += g.extUSD;
-      if (!hasK(s.lengths, String(g.stockLengthFt))) {
-        s.lengths[K(String(g.stockLengthFt))] = 0;
+      if (!has(s.lengths, g.stockLengthFt)) {
+        s.lengths[String(g.stockLengthFt)] = 0;
         s.lengthOrder.push(g.stockLengthFt);
       }
-      s.lengths[K(String(g.stockLengthFt))] += g.piecesPerHouse;
+      s.lengths[String(g.stockLengthFt)] += g.piecesPerHouse;
       g.marks.forEach(function (id) { if (s.marks.indexOf(id) === -1) s.marks.push(id); });
 
       var lk = String(g.stockLengthFt);
-      if (!hasK(t.byStockLength, lk)) {
-        t.byStockLength[K(lk)] = { stockLengthFt: g.stockLengthFt, pieces: 0, bf: 0, usd: 0, skus: [] };
+      if (!has(t.byStockLength, lk)) {
+        t.byStockLength[lk] = { stockLengthFt: g.stockLengthFt, pieces: 0, bf: 0, usd: 0, skus: [] };
         t.byStockLengthOrder.push(g.stockLengthFt);
       }
-      var bl = t.byStockLength[K(lk)];
+      var bl = t.byStockLength[lk];
       bl.pieces += g.piecesPerHouse; bl.bf += g.bf; bl.usd += g.extUSD;
       if (bl.skus.indexOf(g.sku) === -1) bl.skus.push(g.sku);
 
       g.cuts.forEach(function (c) {
         var r = c.role || "unclassified";
-        if (!hasK(t.byCategory, r)) {
-          t.byCategory[K(r)] = { role: r, pieces: 0, bf: 0, usd: 0, marks: [] };
+        if (!has(t.byCategoryDetail, r)) {
+          t.byCategoryDetail[r] = { role: r, pieces: 0, bf: 0, usd: 0, marks: [] };
+          t.byCategory[r] = 0;
           t.byCategoryOrder.push(r);
         }
-        var cat = t.byCategory[K(r)];
+        var cat = t.byCategoryDetail[r];
+        /* a line can serve marks in several roles; split its board feet and
+           dollars by the share of pieces each mark contributes */
         var share = g.piecesPerHouse > 0 ? c.pieces / g.piecesPerHouse : 0;
         cat.pieces += c.pieces;
         cat.bf += g.bf * share;
         cat.usd += g.extUSD * share;
+        t.byCategory[r] = cat.usd;
         if (cat.marks.indexOf(c.markId) === -1) cat.marks.push(c.markId);
       });
     });
     t.skuCount = t.bySkuOrder.length;
     t.byStockLengthOrder.sort(function (a, b) { return a - b; });
+    t.byCategoryNote = "byCategory is MATERIAL DOLLARS by member role [market]. " +
+                       "byCategoryDetail carries the pieces, board feet, dollars and marks " +
+                       "behind each one.";
     t.usdWithHandling = t.usd + t.dropHandlingUSD;
     t.modelledSelectionUSD = (planResult && planResult.rollup && isFinite(planResult.rollup.lumberUSD))
       ? planResult.rollup.lumberUSD : null;
@@ -741,10 +760,10 @@
   function baseCommunity(house, lots, why) {
     var scale = isFinite(lots) ? lots : null;
     var mul = function (v) { return scale === null ? null : v * scale; };
-    var byLen = {}, order = [];
+    var byLen = bag(), order = [];
     house.totals.byStockLengthOrder.forEach(function (L) {
-      var src = house.totals.byStockLength[K(String(L))];
-      byLen[K(String(L))] = {
+      var src = house.totals.byStockLength[String(L)];
+      byLen[String(L)] = {
         stockLengthFt: L,
         pieces: mul(src.pieces), bf: mul(src.bf), usd: mul(src.usd), skus: src.skus
       };
@@ -939,14 +958,14 @@
       return a.stockLengthFt - b.stockLengthFt;
     });
 
-    var byLen = {}, lenOrder = [];
+    var byLen = bag(), lenOrder = [];
     lines.forEach(function (a) {
       var lk = String(a.stockLengthFt);
-      if (!hasK(byLen, lk)) {
-        byLen[K(lk)] = { stockLengthFt: a.stockLengthFt, pieces: 0, piecesExpected: 0, bf: 0, usd: 0, skus: [] };
+      if (!has(byLen, lk)) {
+        byLen[lk] = { stockLengthFt: a.stockLengthFt, pieces: 0, piecesExpected: 0, bf: 0, usd: 0, skus: [] };
         lenOrder.push(a.stockLengthFt);
       }
-      var b = byLen[K(lk)];
+      var b = byLen[lk];
       b.piecesExpected += a.piecesExpected;
       b.pieces += a.pieces;
       b.bf += a.bf; b.usd += a.usd;
@@ -1179,7 +1198,7 @@
         lpad("MATERIAL", 13) + "  SKUs ON THIS LENGTH");
     say("  " + rule("-").slice(0, 76));
     t.byStockLengthOrder.forEach(function (Lft) {
-      var b = t.byStockLength[K(String(Lft))];
+      var b = t.byStockLength[String(Lft)];
       say("  " + pad(Lft + " ft", 10) + lpad(comma(b.pieces), 8) + lpad(n2(b.bf, 2), 12) +
           lpad(usd(b.usd), 13) + "  " + b.skus.join(", "));
     });
@@ -1229,11 +1248,11 @@
       say("  " + pad("SKU", 46) + lpad("PC", 6) + lpad("BD FT", 10) + lpad("EXT $", 12));
       say("  " + rule("-").slice(0, 76));
       t.bySkuOrder.forEach(function (k) {
-        var s = t.bySku[K(k)];
+        var s = t.bySku[k];
         say("  " + pad(k, 46) + lpad(comma(s.pieces), 6) + lpad(n2(s.bf, 2), 10) +
             lpad(usd(s.usd), 12));
         var byLen = s.lengthOrder.slice().sort(function (a, b) { return a - b; })
-          .map(function (Lft) { return s.lengths[K(String(Lft))] + " @ " + Lft + " ft"; });
+          .map(function (Lft) { return s.lengths[String(Lft)] + " @ " + Lft + " ft"; });
         say("      lengths: " + byLen.join(", ") + "   ·   marks: " + s.marks.join(", "));
       });
       say();
@@ -1245,11 +1264,13 @@
     /* ---- by category ---- */
     if (t.byCategoryOrder.length) {
       block("BY CATEGORY");
+      say("  byCategory is material dollars by role; the detail is byCategoryDetail.");
+      say();
       say("  " + pad("ROLE", 14) + lpad("PC", 6) + lpad("BD FT", 11) + lpad("MATERIAL $", 13) +
           "  MARKS");
       say("  " + rule("-").slice(0, 76));
       t.byCategoryOrder.forEach(function (r) {
-        var c = t.byCategory[K(r)];
+        var c = t.byCategoryDetail[r];
         say("  " + pad(r, 14) + lpad(comma(c.pieces), 6) + lpad(n2(c.bf, 2), 11) +
             lpad(usd(c.usd), 13) + "  " + c.marks.join(", "));
       });
@@ -1362,9 +1383,10 @@
       say("      " + pad("TOTAL NOT TAKEN", 55) + n2(w.nesting.lfSaved, 1) + " lf · " +
           usd(w.nesting.usdSaved));
       say();
-      say("      Scan ceiling " + w.nesting.scanCeilingFt + " ft [market] — an assumption");
-      say("      about the longest stick a yard racks, bounding this REPORT only. No");
-      say("      purchase above was changed by it and no total above was reduced by it.");
+      say("      ** NOT deducted from any total above. **");
+      para("Scan ceiling " + w.nesting.scanCeilingFt + " ft [market] — an assumption about the " +
+           "longest stick a yard racks, bounding this REPORT only. No purchase above was " +
+           "changed by it and no piece count was altered.", 68, "      ");
     }
     say();
     say("  ROUNDING RULES — stated, because a silent rounding changes a count:");

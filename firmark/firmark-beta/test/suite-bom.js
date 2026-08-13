@@ -448,7 +448,7 @@ module.exports = function (t, FM) {
     eq(floor.length, 3, "FJ-1/FJ-2/FJ-3 unified onto ONE SKU buy THREE lengths — 10, 14 and 16 ft");
     var lens = floor.map(function (g) { return g.stockLengthFt; }).sort(function (a, b2) { return a - b2; });
     eq(lens.join(","), "10,14,16", "the three lengths are 10, 14 and 16 ft, as the spans require");
-    var sku = ts.totals.bySku[" 2x12 Southern Pine No.2 · dry"];
+    var sku = ts.totals.bySku["2x12 Southern Pine No.2 · dry"];
     truthy(sku, "the SKU view collapses those three lines back to one product");
     eq(sku.marks.length, 3, "the SKU view names all three marks it serves");
     eq(sku.pieces, floor[0].piecesPerHouse + floor[1].piecesPerHouse + floor[2].piecesPerHouse,
@@ -482,8 +482,20 @@ module.exports = function (t, FM) {
 
     /* the SKU view must keep them apart too — that is where a flattening
        would actually happen, because the size string is identical */
-    truthy(b.totals.bySku[" 2x12 Southern Pine No.2 · dry"], "SKU view has the dry 2x12");
-    truthy(b.totals.bySku[" 2x12 Southern Pine No.2 · TREATED"], "SKU view has the treated 2x12");
+    truthy(b.totals.bySku["2x12 Southern Pine No.2 · dry"], "SKU view has the dry 2x12");
+    truthy(b.totals.bySku["2x12 Southern Pine No.2 · TREATED"], "SKU view has the treated 2x12");
+
+    /* and the public maps must use REAL keys — a consumer doing Object.keys()
+       has to see "header", not a prefixed sentinel this file uses internally */
+    var keys = Object.keys(b.totals.byCategory);
+    truthy(keys.length > 0 && keys.every(function (k) { return k === k.replace(/^\s+/, ""); }),
+           "public maps expose plain keys, not internal prototype-guard prefixes");
+    truthy(keys.every(function (k) { return typeof b.totals.byCategory[k] === "number"; }),
+           "byCategory is a scalar per role (material dollars), printable by any consumer");
+    truthy(b.totals.byCategoryDetail[keys[0]].pieces > 0,
+           "byCategoryDetail carries the pieces/bf/marks behind each category");
+    truthy(JSON.parse(JSON.stringify(b)).totals.byCategory[keys[0]] !== undefined,
+           "the whole BOM survives a JSON round trip — no functions, no lost keys");
 
     /* the global rule: no line may ever mix treated and untreated marks */
     var mixed = [];

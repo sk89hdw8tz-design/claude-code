@@ -11,12 +11,26 @@
    -------------------------------
    Because a cached downstream result that outlives its input is the
    same defect as an approval that outlives what was approved, and
-   this codebase has now been bitten by that shape four times: a stale
+   this codebase has been bitten by that shape four times: a stale
    bundle, a stale coverage headline, a stale reaction figure in prose,
    and an approval with no fingerprint. Derived state is derived on
-   demand. Where that is too slow, it is memoised against a
-   fingerprint of its input and NEVER against a flag someone has to
+   demand, memoised against a KEY, and there is no flag anyone has to
    remember to clear.
+
+   The key is the part to get right, and the first version of this file
+   got it wrong: it keyed each stage on a fingerprint of the previous
+   stage's OUTPUT. A solver result is not a tree — marks point at
+   solutions, solutions at candidates, unification moves back at marks
+   — so fingerprinting one walked a graph with shared nodes down every
+   path that reached them, and the test suite stopped terminating. Not
+   slowly: at all.
+
+   Two changes came out of that, and both are right on their own.
+   `stable()` in pipeline.js now has a cycle guard and a node budget,
+   so a fingerprint can never hang whatever it is handed. And every
+   stage here keys on a short string chained from the small,
+   human-authored things upstream — a plan id, a pack id, a fingerprint
+   of the drawn model — never on a derived object.
 
    The pipeline's gates read from here through FM.pipeline.provide(),
    so the fingerprint a gate records is a fingerprint of exactly what
@@ -69,58 +83,90 @@
 
   function reset() { state = blank(); save(); return state; }
 
-  /* ---------------- memoisation, keyed on content ----------------
+  /* ---------------- memoisation, keyed on a CHEAP key ----------------
 
-     A memo entry is valid only while the fingerprint of its input is
-     unchanged. There is no invalidate() to forget to call. */
+     A memo entry is valid only while its key is unchanged. There is no
+     invalidate() to forget to call.
+
+     The key is a short string the caller builds from the small, human-authored
+     things a stage depends on — the plan id, the pack id, the fingerprint of
+     the drawn model. It is NEVER the previous stage's output.
+
+     That distinction is not a micro-optimisation, it is the difference between
+     a suite that finishes and one that does not. Fingerprinting a whole solver
+     result walks a graph with shared nodes and back-references, and the first
+     version of this file did exactly that: `bom` keyed on the entire
+     `solvePlan` output and `planset` keyed on all of them at once. The test
+     run stopped terminating. `stable()` now has a cycle guard and a node
+     budget so it can never hang again — but the right fix is to not hand it
+     a derived object in the first place.
+
+     So each stage exposes a `*Key()` and the next stage chains it. The keys
+     are what change when a human changes something; the outputs are what
+     follow from that. */
 
   var memo = {};
 
-  function derive(name, input, fn) {
-    if (input === null || input === undefined) return null;
-    var fp = FM.pipeline ? FM.pipeline.fingerprint(input) : String(input);
-    if (memo[name] && memo[name].fp === fp) return memo[name].value;
+  function derive(name, key, fn) {
+    if (key === null || key === undefined) return null;
+    if (memo[name] && memo[name].key === key) return memo[name].value;
     var value;
-    try { value = fn(input); }
+    try { value = fn(); }
     catch (e) {
-      /* A stage that throws must not look like a stage that produced
-         nothing — those are different facts and the gate treats them
-         differently. */
-      value = { error: true, message: e.message,
-                where: name,
+      /* A stage that threw must not look like a stage that produced nothing —
+         those are different facts and the gate treats them differently. */
+      value = { error: true, message: e.message, where: name,
                 note: "This stage threw rather than returning a result. That is a defect, " +
                       "not an empty input — the gate stays closed and this text is the reason." };
     }
-    memo[name] = { fp: fp, value: value };
+    memo[name] = { key: key, value: value };
     return value;
   }
 
-  /* ---------------- the derived chain ---------------- */
+  function fp(v) {
+    return FM.pipeline ? FM.pipeline.fingerprint(v) : JSON.stringify(v);
+  }
+
+  /* ---------------- the derived chain ----------------
+
+     Each stage has a KEY (cheap, small, chains from upstream) and a VALUE
+     (derived, possibly large, never used as anyone's key). */
+
+  function modelKey() {
+    var s = load();
+    if (s.model) return "drawn:" + fp(s.model);
+    if (s.planId) return "plan:" + s.planId + "/" + (s.variantId || "base");
+    return null;
+  }
 
   function model() {
     var s = load();
     if (s.model) return s.model;
     /* A run driven from a shipped plan gets its geometry from that plan, so
-       the demo has real walls without anyone drawing. This is derived, not
-       stored, so editing the plan cannot leave a stale model behind. */
+       the demo has real walls without anyone drawing. Derived, not stored, so
+       editing the plan cannot leave a stale model behind. */
     if (s.planId && FM.cad && FM.cad.fromPlan) {
-      return derive("model", { planId: s.planId, variantId: s.variantId }, function (k) {
-        return FM.cad.fromPlan(k.planId, k.variantId);
+      return derive("model", modelKey(), function () {
+        return FM.cad.fromPlan(s.planId, s.variantId);
       });
     }
     return null;
   }
 
   function modelIssues() {
-    var m = model();
-    if (!m || !FM.cad || !FM.cad.validate) return [];
-    return derive("modelIssues", m, function (mm) { return FM.cad.validate(mm); }) || [];
+    var k = modelKey();
+    if (!k || !FM.cad || !FM.cad.validate) return [];
+    return derive("modelIssues", k, function () { return FM.cad.validate(model()); }) || [];
+  }
+
+  function takeoffKey() {
+    var k = modelKey();
+    return k ? "t|" + k : null;
   }
 
   function takeoff() {
-    var m = model();
-    if (!m || !FM.takeoff || !FM.takeoff.run) return null;
-    return derive("takeoff", m, function (mm) { return FM.takeoff.run(mm, {}); });
+    if (!FM.takeoff || !FM.takeoff.run || !model()) return null;
+    return derive("takeoff", takeoffKey(), function () { return FM.takeoff.run(model(), {}); });
   }
 
   function pack() {
@@ -138,10 +184,17 @@
   function site() {
     var s = load();
     if (!s.jurisId || !FM.juris || !FM.juris.forSite) return null;
-    return derive("site", s.jurisId, function (id) { return FM.juris.forSite(id); });
+    return derive("site", "j|" + s.jurisId, function () { return FM.juris.forSite(s.jurisId); });
   }
 
-  /* The plan the solver consumes. Either a shipped plan (with its variant) or
+  function planKey() {
+    var s = load();
+    if (s.planId) return "p|" + s.planId + "/" + (s.variantId || "base");
+    var k = takeoffKey();
+    return k ? "p|" + k : null;
+  }
+
+  /* The plan the solver consumes: either a shipped plan (with its variant) or
      one assembled from the takeoff's marks. */
   function plan() {
     var s = load();
@@ -168,35 +221,53 @@
     };
   }
 
+  function calcsKey() {
+    var pk = pack(), k = planKey();
+    return (pk && k) ? k + "|" + pk.id : null;
+  }
+
   function calcs() {
-    var pl = plan(), pk = pack();
-    if (!pl || !pk || !FM.solver) return null;
-    return derive("calcs", { plan: pl, pack: pk.id }, function () {
+    if (!FM.solver || !calcsKey()) return null;
+    return derive("calcs", calcsKey(), function () {
+      var pl = plan(), pk = pack();
+      if (!pl || !pk) return null;
       return FM.solver.solvePlan(pl, pk);
     });
   }
 
+  function bomKey() {
+    var k = calcsKey();
+    return k ? k + "|lots:" + ((plan() || {}).lots || 1) : null;
+  }
+
   function bom() {
-    var c = calcs();
-    if (!c || c.error || !FM.bom || !FM.bom.build) return null;
-    var s = load();
-    return derive("bom", { calcs: c, lots: (plan() || {}).lots }, function () {
-      return FM.bom.build(c, { lots: (plan() || {}).lots || 1, variantId: s.variantId });
+    if (!FM.bom || !FM.bom.build || !bomKey()) return null;
+    return derive("bom", bomKey(), function () {
+      var c = calcs();
+      if (!c || c.error) return null;
+      return FM.bom.build(c, { lots: (plan() || {}).lots || 1, variantId: load().variantId });
     });
+  }
+
+  function plansetKey() {
+    var s = load();
+    var parts = [bomKey() || calcsKey() || takeoffKey() || modelKey() || "empty",
+                 s.jurisId || "no-juris"];
+    /* the approval trail is printed on the cover, so it is part of the key —
+       and it is small, so fingerprinting it is safe */
+    if (FM.pipeline) parts.push(fp(FM.pipeline.state().stages));
+    return parts.join("|");
   }
 
   function planset() {
     if (!FM.planset || !FM.planset.build) return null;
-    var ctx = {
-      project: load(), model: model(), takeoff: takeoff(),
-      planResult: calcs(), bom: bom(), juris: site(),
-      pipeline: FM.pipeline ? FM.pipeline.snapshot() : null
-    };
-    return derive("planset", {
-      m: model(), t: takeoff(), c: calcs(), b: bom(), j: site(),
-      /* the approval trail is part of the package, so it is part of the key */
-      p: FM.pipeline ? FM.pipeline.state().stages : null
-    }, function () { return FM.planset.build(ctx); });
+    return derive("planset", plansetKey(), function () {
+      return FM.planset.build({
+        project: load(), model: model(), takeoff: takeoff(),
+        planResult: calcs(), bom: bom(), juris: site(),
+        pipeline: FM.pipeline ? FM.pipeline.snapshot() : null
+      });
+    });
   }
 
   /* ---------------- wiring the gates ----------------
@@ -293,6 +364,10 @@
     takeoff: takeoff, pack: pack, site: site,
     plan: plan, calcs: calcs, bom: bom, planset: planset,
     wire: wire,
+    keys: function () {
+      return { model: modelKey(), takeoff: takeoffKey(), plan: planKey(),
+               calcs: calcsKey(), bom: bomKey(), planset: plansetKey() };
+    },
     /* exposed so a view can show what is derived vs stored */
     memoKeys: function () { var k = []; for (var n in memo) k.push(n); return k; }
   };

@@ -1232,7 +1232,9 @@
       (jk.jacks === 1 ? "" : "s") + " per end x 1.5 in = " + f2(jk.bearingIn) + " in of bearing. " +
       JACK_RULE_TEXT);
     sp.set("count", 1, "opening " + op.id, [op.id],
-      "one header per opening.");
+      "one header per opening: opening " + op.id + " is the only one in this model whose derived " +
+      "values are all identical (clear opening, tributary, load path, bearing, head height, wall " +
+      "position), so it stands alone rather than being grouped into a type.");
     sp.set("skuGroup", "header", "role", [op.id],
       "headers are unified against other headers only.");
     sp.set("braced", true, "wall " + w.id, [w.id],
@@ -1371,6 +1373,14 @@
 
   /* ---------------- run ---------------- */
 
+  /* run(model, opts) -> { marks, derivations, unresolved, warnings, stats }
+
+     opts.groupHeaders   default true. Openings identical in EVERY derived
+                         value become one mark with a count, the way a
+                         schedule names a type rather than an instance.
+                         Set false to keep one mark per opening.
+
+     There is no option that makes this module assume anything. */
   function run(model, opts) {
     opts = opts || {};
     if (!model || typeof model !== "object" || !Array.isArray(model.levels)) {
@@ -1388,10 +1398,14 @@
       return finish(out, model);
     }
 
-    /* --- pass A --- */
+    /* --- pass A ---
+       Every level is analysed, always. There is deliberately no "just this
+       level" option: framing on level 2 bears on walls on level 1, so a
+       level filter would drop supports and turn a determined span into a
+       refusal — or worse, drop a load path off a header and leave the mark
+       looking complete. Filter the returned marks by id prefix instead. */
     var regions = [];
     levels.forEach(function (lv, li) {
-      if (opts.levelId && lv.id !== opts.levelId) return;
       var prefix = multiLevel ? lv.id + "-" : "";
       (lv.framing || []).forEach(function (reg) {
         regions.push(regionRecord(out, model, index, lv, li, reg, prefix));
@@ -1427,7 +1441,6 @@
     /* --- pass C --- */
     var pending = [];
     levels.forEach(function (lv, li) {
-      if (opts.levelId && lv.id !== opts.levelId) return;
       var prefix = multiLevel ? lv.id + "-" : "";
       (lv.openings || []).forEach(function (op) {
         var h = headerSpec(out, model, index, table, lv, li, op, prefix, multiLevel);

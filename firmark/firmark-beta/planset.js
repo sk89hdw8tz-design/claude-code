@@ -79,7 +79,18 @@
     if (v === null || v === undefined || v === "" || !isFinite(Number(v))) return "—";
     return String(Math.round(Number(v))).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
-  function usd(v) { return isFinite(Number(v)) ? "$" + comma(v) : "—"; }
+  /* money keeps its cents: a bill of materials rounded to the dollar stops
+     reconciling against the quote it will be checked against */
+  function usd(v) {
+    if (!isFinite(Number(v))) return "—";
+    var n = Number(v), sign = n < 0 ? "-" : "";
+    n = Math.abs(n);
+    var whole = Math.floor(n);
+    var cents = Math.round((n - whole) * 100);
+    if (cents === 100) { whole += 1; cents = 0; }
+    return sign + "$" + String(whole).replace(/\B(?=(\d{3})+(?!\d))/g, ",") +
+           "." + (cents < 10 ? "0" : "") + cents;
+  }
 
   /* wrap() collapses runs of whitespace, exactly as export.js's does, so a
      label with column padding in it cannot be passed through — pad outside. */
@@ -104,7 +115,7 @@
      one column narrower and every continuation line hangs off a column that
      is no longer there. Wrap the value, then lay the label alongside it. */
   function fielder(emit, indent, labelWidth) {
-    var lead = new Array((indent || 2) + 1).join(" ");
+    var lead = new Array((indent === undefined ? 2 : indent) + 1).join(" ");
     return function (label, value) {
       var head = lead + pad(label, labelWidth || 6) + ": ";
       var body = new Array(head.length + 1).join(" ");
@@ -544,16 +555,31 @@
                   "orientation against the architectural site plan.";
 
     /* ---- placement ---- */
-    var index = {};
+    /* Order matters: an opening is a more specific place than the framing
+       region over it, and a framing region is more specific than a wall, so
+       the search that follows tries them in that order and stops at the
+       first. A header drawn at the centroid of the whole roof is not wrong
+       by a little, it is on the wrong part of the house. */
+    var index = {}, order = [];
+    function put(id, at, on, kind) {
+      if (!at || own(index, id)) return;
+      index[id] = { at: at, on: on, kind: kind };
+      order.push(id);
+    }
     g.levels.forEach(function (L) {
-      L.framing.forEach(function (f) { if (f.at) index[f.id] = { at: f.at, on: "framing region " + f.id, kind: "framing" }; });
-      L.openings.forEach(function (o) { if (o.at) index[o.id] = { at: o.at, on: "opening " + o.id, kind: "opening" }; });
+      L.openings.forEach(function (o) { put(o.id, o.at, "opening " + o.id, "opening"); });
+    });
+    g.levels.forEach(function (L) {
+      L.framing.forEach(function (f) { put(f.id, f.at, "framing region " + f.id, "framing"); });
+    });
+    g.levels.forEach(function (L) {
       L.walls.forEach(function (w) {
         if (!w.drawable) return;
-        index[w.id] = { at: { x: (w.x1 + w.x2) / 2, y: (w.y1 + w.y2) / 2 }, on: "wall " + w.id, kind: "wall" };
+        put(w.id, { x: (w.x1 + w.x2) / 2, y: (w.y1 + w.y2) / 2 }, "wall " + w.id, "wall");
       });
     });
     g.index = index;
+    g.indexOrder = order;
 
     var derivs = (takeoff && isArr(takeoff.derivations)) ? takeoff.derivations : null;
     g.placementBasis = derivs
@@ -566,22 +592,29 @@
   function placeMarks(g, markIds, takeoff) {
     if (!g || !g.ok) return;
     var derivs = (takeoff && isArr(takeoff.derivations)) ? takeoff.derivations : [];
-    var keys = Object.keys(g.index || {});
+    var keys = g.indexOrder || Object.keys(g.index || {});
+    function findIn(text) {
+      for (var j = 0; j < keys.length; j++) {
+        if (text.indexOf(keys[j]) === -1) continue;
+        /* the whole token, not a prefix: W1 must not match W11 */
+        var re = new RegExp("(^|[^A-Za-z0-9_-])" +
+                            keys[j].replace(/[.*+?^${}()|[\]\\]/g, "\\$&") +
+                            "([^A-Za-z0-9_-]|$)");
+        if (re.test(text)) return g.index[keys[j]];
+      }
+      return null;
+    }
     markIds.forEach(function (id) {
       var hit = null, how = "";
       for (var i = 0; i < derivs.length && !hit; i++) {
         var d = derivs[i];
         if (!d || safe(d.markId) !== id) continue;
-        var from = safe(d.from, "") + " " + safe(d.how, "");
-        for (var j = 0; j < keys.length; j++) {
-          if (from.indexOf(keys[j]) === -1) continue;
-          /* the whole token, not a prefix: W1 must not match W11 */
-          var re = new RegExp("(^|[^A-Za-z0-9_-])" + keys[j].replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "([^A-Za-z0-9_-]|$)");
-          if (!re.test(from)) continue;
-          hit = g.index[keys[j]];
-          how = safe(d.field, "") + (d.field ? " " : "") + "from " + safe(d.from, "the takeoff");
-          break;
-        }
+        /* `from` is the derivation's own statement of where the number came
+           from and is authoritative; `how` is prose and is only consulted
+           when `from` names nothing this drawing knows about */
+        hit = findIn(safe(d.from, ""));
+        if (!hit) hit = findIn(safe(d.how, ""));
+        if (hit) how = safe(d.field, "") + (d.field ? " " : "") + "from " + safe(d.from, "the takeoff");
       }
       if (hit) g.placed.push({ id: id, x: hit.at.x, y: hit.at.y, on: hit.on, how: how });
       else g.unplaced.push({ id: id, why: g.derivationsAvailable
@@ -1212,7 +1245,10 @@
          "email. Neither form adds anything the model does not contain.", W - 4)
       .forEach(function (x) { say("  " + x); });
     say();
-    wrap(g.northNote, W - 4).forEach(function (x) { say("  ** " + x + " **"); });
+    var nn = wrap(g.northNote, W - 10);
+    nn.forEach(function (x, i) {
+      say("  " + (i ? "     " : "  ** ") + x + (i === nn.length - 1 ? " **" : ""));
+    });
 
     if (g.validation && g.validation.length) {
       block("MODEL VALIDATION — " + g.validation.length + " FINDING(S) FROM cad.validate()");
@@ -1230,14 +1266,14 @@
             (lv.topPlateFt === undefined ? "" : "   top plate " + n2(lv.topPlateFt, 2) + " ft"));
       say("  WALLS — " + lv.walls.length);
       say("  " + pad("ID", 8) + pad("FROM", 16) + pad("TO", 16) + pad("LENGTH", 10) +
-          pad("TYPE", 12) + "THK");
+          pad("TYPE", 18) + "THK");
       say("  " + rule("-").slice(0, W - 2));
       lv.walls.forEach(function (w) {
         say("  " + pad(w.id, 8) +
             pad(w.drawable ? n2(w.x1, 1) + ", " + n2(w.y1, 1) : "—", 16) +
             pad(w.drawable ? n2(w.x2, 1) + ", " + n2(w.y2, 1) : "—", 16) +
             pad(w.lengthFt === null ? "—" : n2(w.lengthFt, 2) + " ft", 10) +
-            pad((w.exterior ? "exterior" : "interior") + (w.bearing ? "/bearing" : ""), 12) +
+            pad((w.exterior ? "exterior" : "interior") + (w.bearing ? "/bearing" : ""), 18) +
             (w.thicknessIn === undefined ? "—" : n2(w.thicknessIn, 2) + " in"));
       });
       var noThk = lv.walls.filter(function (w) { return w.thicknessIn === undefined || w.thicknessIn === null; });
@@ -1256,8 +1292,8 @@
           say("  " + pad(o.id, 8) + pad(o.wallId, 8) + pad(o.kind, 10) +
               pad(o.offsetFt === undefined ? "—" : n2(o.offsetFt, 2) + " ft", 10) +
               pad(o.widthFt === undefined ? "—" : n2(o.widthFt, 2) + " ft", 10) +
-              (o.headHeightFt === undefined ? "—" : n2(o.headHeightFt, 2) + " ft") +
-              (o.hostFound ? "" : "   ** no such wall **"));
+              pad(o.headHeightFt === undefined ? "—" : n2(o.headHeightFt, 2) + " ft", 10) +
+              (o.hostFound ? "" : "** NO SUCH WALL **"));
         });
       }
 
@@ -1266,19 +1302,20 @@
       if (!lv.framing.length) say("      (none declared)");
       else {
         say("  " + pad("ID", 8) + pad("KIND", 10) + pad("DIRECTION", 12) +
-            pad("SPACING", 10) + "BEARS ON");
+            pad("SPACING", 12) + "BEARS ON");
         say("  " + rule("-").slice(0, W - 2));
         lv.framing.forEach(function (f) {
           say("  " + pad(f.id, 8) + pad(f.kind, 10) +
               pad(f.directionDeg === undefined ? "—" : n2(f.directionDeg, 0) + "°", 12) +
-              pad(f.spacingIn === undefined ? "—" : n2(f.spacingIn, 0) + " in o.c.", 10) +
+              pad(f.spacingIn === undefined ? "—" : n2(f.spacingIn, 0) + " in o.c.", 12) +
               (f.bearsOn.length ? f.bearsOn.join(", ") : "** NOTHING DECLARED **"));
         });
       }
     });
 
     block("MEMBER MARKS ON THE PLAN");
-    say("  " + g.placementBasis + ".");
+    wrap(g.placementBasis.charAt(0).toUpperCase() + g.placementBasis.slice(1) + ".", W - 4)
+      .forEach(function (x) { say("  " + x); });
     say();
     if (g.placed.length) {
       say("  PLACED — " + g.placed.length);
@@ -1346,36 +1383,45 @@
       say();
     }
 
+    /* Column widths are set by the widest thing the catalog can actually
+       produce — "4x12 Southern Pine Select Structural" is 36 characters — so
+       the table cannot collide with itself on a plan that picks it. */
     block("MEMBER SCHEDULE");
-    say("  " + pad("MARK", 12) + pad("MEMBER", 30) + pad("SPACING", 10) +
-        pad("QTY", 5) + pad("GOVERNS", 14) + lpad("DCR", 6));
+    say("  " + pad("MARK", 12) + pad("MEMBER", 40) + pad("SPACING", 12) +
+        pad("QTY", 5) + lpad("DCR", 7));
     say("  " + rule("-").slice(0, W - 2));
     res.marks.forEach(function (m) {
       var id = safe(m.mark && m.mark.id, "—");
       var qty = (m.mark && isFinite(Number(m.mark.count))) ? String(m.mark.count) : "—";
       if (m.notApplicable) {
-        say("  " + pad(id, 12) + pad("— not sized —", 30) + "see NOT SIZED, below");
+        say("  " + pad(id, 12) + pad("— not sized —", 40) + pad("", 12) + pad(qty, 5));
+        say("  " + pad("", 12) + "not this engine's member [" +
+            safe(m.notApplicable.reason) + "] — see NOT SIZED, below");
         return;
       }
       var row = m.unifiedTo || (m.solution && m.solution.pick);
       if (!row) {
         var e = (FM.solver && FM.solver.escalationOf)
               ? FM.solver.escalationOf(m.solution && m.solution.status)
-              : { badge: "escalate", tag: "ESCALATED" };
-        say("  " + pad(id, 12) + pad("— ESCALATED: " + safe(e.badge) + " —", 30) + safe(e.tag));
+              : { badge: "escalate", tag: "ESCALATED", short: "" };
+        say("  " + pad(id, 12) + pad("— ESCALATED: " + safe(e.badge) + " —", 40) +
+            pad("", 12) + pad(qty, 5));
+        wrap(safe(e.tag) + " — " + safe(e.short), W - 16)
+          .forEach(function (x) { say("  " + pad("", 12) + x); });
         return;
       }
       say("  " + pad(id, 12) +
-          pad(safe(row.cand.size) + " " + safe(row.cand.species) + " " + safe(row.cand.grade), 30) +
-          pad(row.cand.spacing ? safe(row.cand.spacing) + "\" o.c." : "single", 10) +
-          pad(qty, 5) + pad(safe(row.governing), 14) + lpad(n2(row.dcr, 3), 6) +
-          (m.unifiedTo ? "  [unified]" : ""));
-      wrap(safe(m.mark.label) + " · span " + n2(m.mark.span, 1) + " ft" +
+          pad(safe(row.cand.size) + " " + safe(row.cand.species) + " " + safe(row.cand.grade), 40) +
+          pad(row.cand.spacing ? safe(row.cand.spacing) + "\" o.c." : "single", 12) +
+          pad(qty, 5) + lpad(n2(row.dcr, 3), 7));
+      wrap("governs " + safe(row.governing) + " · " + safe(m.mark.label) +
+           " · span " + n2(m.mark.span, 1) + " ft" +
            (m.demand && m.demand.trib ? " · tributary " + n2(m.demand.trib, 2) + " ft" : "") +
            (m.demand ? " · bearing " + n2(m.demand.bearing, 2) + " in" : "") +
            (m.demand ? " · " + (m.demand.wet ? "wet service" : "dry") : "") +
            (m.demand && m.demand.treated ? ", treated" : "") +
-           (m.demand ? (m.demand.braced ? ", braced" : ", UNBRACED") : ""), W - 16)
+           (m.demand ? (m.demand.braced ? ", braced" : ", UNBRACED") : "") +
+           (m.unifiedTo ? " · RAISED FOR SKU UNIFICATION, not for capacity" : ""), W - 16)
         .forEach(function (x) { say("  " + pad("", 12) + x); });
     });
 
@@ -1384,20 +1430,20 @@
     block("HEADER SCHEDULE — " + hdrs.length + " MARK(S)");
     if (!hdrs.length) say("  No mark on this plan is a header.");
     else {
-      say("  " + pad("MARK", 12) + pad("SPAN", 9) + pad("TRIB", 9) + pad("BRG", 8) +
-          pad("HEAD HT", 10) + "MEMBER");
+      say("  " + pad("MARK", 12) + pad("SPAN", 10) + pad("TRIB", 10) + pad("BEARING", 10) +
+          "HEAD HEIGHT");
       say("  " + rule("-").slice(0, W - 2));
       hdrs.forEach(function (m) {
         var row = m.unifiedTo || (m.solution && m.solution.pick);
         var member = m.notApplicable ? "— not sized (" + safe(m.notApplicable.reason) + ") —"
                    : (row ? safe(row.cand.size) + " " + safe(row.cand.species) + " " + safe(row.cand.grade)
-                          : "— ESCALATED —");
+                          : "— ESCALATED, no member —");
         say("  " + pad(safe(m.mark.id), 12) +
-            pad(n2(m.mark.span, 2) + " ft", 9) +
-            pad(m.mark.trib === undefined ? "—" : n2(m.mark.trib, 2) + " ft", 9) +
-            pad(m.mark.bearing === undefined ? "—" : n2(m.mark.bearing, 2) + " in", 8) +
-            pad(m.mark.headHeightIn === undefined ? "—" : n2(m.mark.headHeightIn, 0) + " in", 10) +
-            member);
+            pad(n2(m.mark.span, 2) + " ft", 10) +
+            pad(m.mark.trib === undefined ? "—" : n2(m.mark.trib, 2) + " ft", 10) +
+            pad(m.mark.bearing === undefined ? "—" : n2(m.mark.bearing, 2) + " in", 10) +
+            (m.mark.headHeightIn === undefined ? "—" : n2(m.mark.headHeightIn, 0) + " in"));
+        wrap("→ " + member, W - 16).forEach(function (x) { say("  " + pad("", 12) + x); });
       });
       say();
       wrap("Bearing is the declared jack-stud length, and it is a DESIGN INPUT on a header " +
@@ -1429,10 +1475,12 @@
       say();
       say("  " + safe(m.mark.id) + " — design load borrowed from the member above it:");
       borrowed.forEach(function (rx) {
-        say("      from " + safe(rx.id) + ": " +
-            (rx.perBearingLb === null || !isFinite(Number(rx.perBearingLb))
-              ? "NO REACTION PUBLISHED — " + safe(rx.why, "not computed")
-              : comma(rx.perBearingLb) + " lb per bearing" + (rx.combo ? "  (" + safe(rx.combo) + ")" : "")));
+        wrap("from " + safe(rx.id) + ": " +
+             (rx.perBearingLb === null || !isFinite(Number(rx.perBearingLb))
+               ? "NO REACTION PUBLISHED — " + safe(rx.why, "not computed")
+               : comma(rx.perBearingLb) + " lb per bearing" +
+                 (rx.combo ? "  (" + safe(rx.combo) + ")" : "")), W - 10)
+          .forEach(function (x, i) { say("      " + (i ? "  " : "") + x); });
       });
     });
 
@@ -1450,7 +1498,10 @@
             reasons.length + " CATEGOR" + (reasons.length === 1 ? "Y" : "IES"));
       reasons.forEach(function (k) {
         var e = FM.solver && FM.solver.escalationOf ? FM.solver.escalationOf(k) : { tag: k, short: "" };
-        say("  " + pad(byReason[k].length + " × " + safe(e.tag), 34) + safe(e.short));
+        var head = byReason[k].length + " × " + safe(e.tag);
+        wrap(safe(e.short), W - 38).forEach(function (x, i) {
+          say("  " + pad(i ? "" : head, 34) + x);
+        });
       });
       if (reasons.length > 1) {
         say();
@@ -1463,7 +1514,8 @@
       esc.forEach(function (m) {
         var s = m.solution;
         var ei = FM.solver && FM.solver.escalationOf ? FM.solver.escalationOf(s.status) : { tag: safe(s.status) };
-        say("  " + safe(m.mark.id) + " — " + safe(m.mark.label) + "   [" + safe(ei.tag) + "]");
+        wrap(safe(m.mark.id) + " — " + safe(m.mark.label) + "   [" + safe(ei.tag) + "]", W - 4)
+          .forEach(function (x, i) { say("  " + (i ? "    " : "") + x); });
         if (s.note && s.note.wall) wrap("wall : " + safe(s.note.wall), W - 10).forEach(function (x) { say("      " + x); });
         if (s.note && s.note.move) wrap("next : " + safe(s.note.move), W - 10).forEach(function (x) { say("      " + x); });
         say();
@@ -1476,8 +1528,9 @@
       say("  Carried deliberately. A schedule that omits them reads as if they were fine.");
       say();
       na.forEach(function (m) {
-        say("  " + safe(m.mark.id) + " — " + safe(m.mark.label) +
-            "   [" + safe(m.notApplicable.reason) + "]");
+        wrap(safe(m.mark.id) + " — " + safe(m.mark.label) +
+             "   [" + safe(m.notApplicable.reason) + "]", W - 4)
+          .forEach(function (x, i) { say("  " + (i ? "    " : "") + x); });
         wrap(safe(m.notApplicable.note), W - 8).forEach(function (x) { say("      " + x); });
         say();
       });
@@ -1522,7 +1575,8 @@
       var id = safe(m.mark && m.mark.id, "—");
       say();
       say(rule("="));
-      say("MARK " + id + " — " + safe(m.mark && m.mark.label));
+      wrap("MARK " + id + " — " + safe(m.mark && m.mark.label), W)
+        .forEach(function (x, i) { say(i ? "     " + x : x); });
       say(rule("="));
 
       if (m.notApplicable) {
@@ -1534,7 +1588,8 @@
       if (!row) {
         var e = FM.solver && FM.solver.escalationOf ? FM.solver.escalationOf(m.solution && m.solution.status)
               : { tag: "ESCALATED", short: "" };
-        say("  NO MEMBER — [" + safe(e.tag) + "] " + safe(e.short));
+        wrap("NO MEMBER — [" + safe(e.tag) + "] " + safe(e.short), W - 4)
+          .forEach(function (x, i) { say("  " + (i ? "  " : "") + x); });
         say("  There is no calculation for this mark because nothing was selected for it.");
         if (m.solution && m.solution.note && m.solution.note.wall) {
           wrap("wall: " + safe(m.solution.note.wall), W - 6).forEach(function (x) { say("      " + x); });
@@ -1562,7 +1617,9 @@
       say("  Service   : " + (inputs.wet ? "wet" : "dry") +
           (inputs.incised ? ", incised" : "") + (inputs.braced ? ", braced" : ", UNBRACED") +
           "   C_F " + safe(inputs.CF));
-      say("  Basis     : " + safe(r.basis));
+      wrap(safe(r.basis), W - 16).forEach(function (x, i) {
+        say("  " + pad(i ? "" : "Basis", 10) + (i ? "  " : ": ") + x);
+      });
       say();
       (isArr(r.checks) ? r.checks : []).forEach(function (c) {
         say("  " + String(safe(c.name)).toUpperCase() +
@@ -1826,7 +1883,14 @@
         indexNote: d.note,
         body: null,
         lines: function () {
-          if (!this.body) this.body = d.lines();
+          /* trailing spaces are invisible on screen and land in the exported
+             text file, where a diff of two packages reports a change that is
+             not one */
+          if (!this.body) {
+            this.body = d.lines().map(function (x) {
+              return String(x === undefined ? "" : x).replace(/[ \t]+$/, "");
+            });
+          }
           return this.body;
         }
       };
