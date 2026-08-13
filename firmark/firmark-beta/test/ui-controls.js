@@ -348,6 +348,31 @@ const EXCUSE = /(not wired|isn'?t wired|not implemented|not built|coming soon|\b
 
   const results = [];
 
+  /* Some controls are no-ops BECAUSE THE VIEW IS ALREADY IN THE STATE
+     THEY PRODUCE. "Fit to content" is the honest example: the CAD view
+     renders already fitted, so clicking Fit on a fresh view correctly
+     does nothing, and an audit that stops there records a working
+     control as dead.
+
+     The wrong fix is an exemption list — that is a promise to the reader
+     that somebody checked once, and it rots. The right fix is to put the
+     view OUT of the target state first and then test the control for
+     real. Wheel-zoom moves the drawing's markup 24,235 -> 18,910
+     characters; Fit must bring it back.
+
+     Anything added here must PERTURB, never assert. A preparation step
+     that fakes the outcome is worse than no test at all. */
+  const PREPARE = {
+    'cad Fit to content': async () => {
+      await page.evaluate(() => {
+        const svg = document.querySelector('#view-cad svg');
+        if (svg) svg.dispatchEvent(new WheelEvent('wheel',
+          { deltaY: -600, clientX: 400, clientY: 300, bubbles: true, cancelable: true }));
+      });
+      await page.waitForTimeout(280);
+    }
+  };
+
   async function auditControl(view, warm, zone, idx) {
     pageErrors = [];
     await open(view, warm);
@@ -355,6 +380,9 @@ const EXCUSE = /(not wired|isn'?t wired|not implemented|not built|coming soon|\b
     const list = await page.evaluate(ENUMERATE, zone);
     const c = list[idx];
     if (!c) return null;
+
+    const prep = PREPARE[(zone === 'chrome' ? 'chrome' : view) + ' ' + c.label];
+    if (prep) await prep();
 
     if (c.disabled) {
       return { view, warm, zone, ...c, effect: 'disabled', errs: [] };
@@ -442,17 +470,6 @@ const EXCUSE = /(not wired|isn'?t wired|not implemented|not built|coming soon|\b
      name and by reason, never by silence. */
   const UNOBSERVABLE = { 'planset Print / PDF': 'calls window.print(), which headless Chromium does not surface' };
 
-  /* Idempotent when the view is ALREADY in the target state. Exempt by
-     name and with the evidence, never by silence — and the evidence is a
-     measurement, not an opinion: a wheel-zoom moves the CAD drawing's
-     markup from 24,235 to 18,910 characters and "Fit to content"
-     restores it to 24,235 exactly. The view renders already fitted, so
-     clicking Fit on a fresh view is a correct no-op. Send the wheel
-     event before the click if you ever want to see it work. */
-  const IDEMPOTENT = {
-    'cad Fit to content': 'the view renders already fitted; zoom first (24,235 -> 18,910 chars) ' +
-                          'and Fit restores it exactly'
-  };
 
   const bad = [], noted = [];
   for (const r of results) {
@@ -464,8 +481,6 @@ const EXCUSE = /(not wired|isn'?t wired|not implemented|not built|coming soon|\b
                  `correctly does nothing`);
     } else if (r.effect === 'none' && UNOBSERVABLE[key]) {
       noted.push(`unobservable    ${where} — ${UNOBSERVABLE[key]}`);
-    } else if (r.effect === 'none' && IDEMPOTENT[key]) {
-      noted.push(`idempotent      ${where} — ${IDEMPOTENT[key]}`);
     } else if (r.effect === 'none' && !r.warm && aliveWarm[key]) {
       noted.push(`needs a run     ${where} — inert with nothing loaded, works once the run ` +
                  `has content; consider disabling it with that reason`);

@@ -4,6 +4,10 @@ Written 13 Aug 2026, against the beta at `1616965`. Every claim about the
 current build is measured, not remembered; every gap is named with what it
 would take to close it.
 
+Readable version:
+<https://claude.ai/code/artifact/06421d7d-ddff-4886-9a64-81b9e815509d>
+(private until shared). This file is the source of truth — update it first.
+
 The product goal, in your words: *an architectural plan into calculations, a
 bill of materials, and PE-stampable plan sets in minutes, with human approval
 gates at every stage* — for cookie-cutter residential, tract homes and master
