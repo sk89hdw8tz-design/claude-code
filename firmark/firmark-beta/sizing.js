@@ -186,7 +186,7 @@
   /* an option set, named the way a sales sheet names it */
   function optionLabel(v, combo) {
     if (!combo.optionIds || !combo.optionIds.length) {
-      return combo.isBase ? "As stamped" : "Elevation only";
+      return combo.isBase ? "Base case" : "Elevation only";
     }
     return combo.optionIds.map(function (id) {
       var hit = null;
@@ -631,7 +631,7 @@
         }
 
         /* this row is the SELECTED variant's member; the badge says how it
-           departs from the stamped base */
+           departs from the base case */
         var mv = current ? own(current.byMark, key(m.mark.baseMarkId || m.mark.id)) : null;
         function deltaBadge() {
           if (!mv) return null;
@@ -845,7 +845,7 @@
       /* what the selection does to the schedule below */
       if (!sel || sel.isBase) {
         wrap.appendChild(el("p", { style: "font-size:.86rem" }, [
-          el("strong", { text: "The stamped base case. " }),
+          el("strong", { text: "The base case. " }),
           el("span", { text: "The schedule below is this combination, solved end to end — not the base with a " +
             "note attached. Pick another elevation or an option and every number below re-solves. " +
             plural(v.combinations.length, "combination is", "combinations are") + " buildable off this master set." })
@@ -860,7 +860,7 @@
         if (c.removed) bits.push(plural(c.removed, "mark is", "marks are") + " deleted");
         wrap.appendChild(el("p", { style: "font-size:.86rem" }, [
           el("strong", { text: sel.label + " — " }),
-          el("span", { text: (bits.length ? bits.join(", ") + "." : "nothing moves off the stamped base.") +
+          el("span", { text: (bits.length ? bits.join(", ") + "." : "nothing moves off the base case.") +
             (sel.lotsExpected ? " Expected on " + plural(sel.lotsExpected, "lot", "lots") + " of " +
               (v.lots || basePlan.lots) + "." : "") }),
           el("span", { class: "clause", text: "the schedule below IS this variant" })
@@ -1199,7 +1199,7 @@
               "Code is a published requirement; Site is a value somebody must confirm for the address; Market is a " +
               "purchasing assumption. Snow, wind, exposure and seismic are PLANNING DEFAULTS for laying out a " +
               "repeatable plan — not site values. Replace them from the ASCE 7 Hazard Tool and the AHJ before " +
-              "anything is stamped." })
+              "a licensed engineer seals anything." })
           ]), pack.climate.groundSnow.note || null),
 
         card("Design loads handed to the engine", null, el("div", {}, [
@@ -1505,7 +1505,7 @@
           baseRes = FM.solver.solvePlan(plan, pack);
         } else {
           sel = ms.base;      /* the variant would not resolve — fall back, visibly */
-          FM.toast("That variant could not be resolved — showing the stamped base.");
+          FM.toast("That variant could not be resolved — showing the base case.");
         }
       }
       if (!res) res = FM.solver.solvePlan(plan, pack);

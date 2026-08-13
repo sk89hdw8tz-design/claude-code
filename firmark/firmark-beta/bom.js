@@ -827,7 +827,7 @@
              (scale === null ? "an undeclared lot count (plan.lots is missing, so no community " +
               "quantity is stated; the fields are null rather than guessed)" : comma(scale) +
               " lots") + ". " +
-             "EVERY LOT IS ASSUMED TO BE THE STAMPED BASE CASE. " + why +
+             "EVERY LOT IS ASSUMED TO BE THE BASE CASE. " + why +
              " Lot counts are [market] planning figures from the plan record, not contracts.",
       takeRateBasis: null
     };

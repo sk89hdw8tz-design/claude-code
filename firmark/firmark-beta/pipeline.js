@@ -179,8 +179,14 @@
       var raw = localStorage.getItem(KEY);
       state = raw ? JSON.parse(raw) : blank();
     } catch (e) { state = blank(); }
-    if (!state.stages) state.stages = {};
-    if (!state.trail) state.trail = [];
+    /* `if (!state.trail)` let a truthy non-array through, and a hand-written
+       {"trail":"notanarray"} threw on the run screen — taking the audit trail
+       card with it, which is the one card whose footer reads "a clean history
+       is not the goal; a true one is". Storage is user-writable; shape-check
+       it, do not truth-check it. */
+    if (!state.stages || typeof state.stages !== "object" ||
+        Object.prototype.toString.call(state.stages) === "[object Array]") state.stages = {};
+    if (Object.prototype.toString.call(state.trail) !== "[object Array]") state.trail = [];
     return state;
   }
   function save() {
@@ -231,17 +237,56 @@
     if (!rec || rec.status !== "approved") {
       return { status: rec ? rec.status : "pending", rec: rec || null, moved: [] };
     }
+
+    /* An approval with NO FINGERPRINT can never be falsified, so it is not an
+       approval — it is a claim. This happens two ways: a record hand-written
+       into localStorage, or approve() writing one when a provider threw
+       between the gate check and the write. Both must read stale. */
+    if (!rec.fp) {
+      return { status: "stale", rec: rec, moved: [{
+        stage: stageId, label: stageById(stageId).label, self: true,
+        why: "this approval carries no fingerprint, so there is nothing to check it against"
+      }] };
+    }
+
     var moved = [];
+    var st = stageById(stageId);
+
+    /* CONTENT GONE IS NOT CONTENT UNCHANGED.
+       This read `mine !== null && rec.fp && mine !== rec.fp`, so when a stage's
+       content became unavailable — the model deleted, the plan cleared — fpOf()
+       returned null, BOTH comparisons were skipped, and the approval stood.
+       Delete the geometry after approving all six and the run reported
+       "6/6 STAGES APPROVED · Ready for PE", with one card simultaneously saying
+       APPROVED and "cannot be approved: no geometry yet". The false trail then
+       printed on the PE package's cover sheet.
+
+       That is precisely the defect the comment at the top of this file says the
+       fingerprint exists to prevent — the audit trail testifying to a review
+       that did not happen — and the check had a hole in exactly the shape of
+       the thing it was guarding. Disappearing is the most complete change a
+       stage's content can undergo. */
     var mine = fpOf(stageId);
-    if (mine !== null && rec.fp && mine !== rec.fp) {
+    if (mine === null) {
+      moved.push({ stage: stageId, label: stageById(stageId).label, self: true,
+                   why: "the content this stage was approved on is no longer there" });
+    } else if (mine !== rec.fp) {
       moved.push({ stage: stageId, label: stageById(stageId).label, self: true });
     }
-    var st = stageById(stageId);
+
     for (var i = 0; i < st.inputs.length; i++) {
       var upId = st.inputs[i];
       var upNow = fpOf(upId);
       var upThen = rec.sawFp ? rec.sawFp[upId] : null;
-      if (upNow !== null && upThen && upNow !== upThen) {
+      if (!upThen) {
+        /* approved without recording what it saw upstream — same unfalsifiable
+           shape as a missing self-fingerprint */
+        moved.push({ stage: upId, label: stageById(upId).label, self: false,
+                     why: "this approval did not record what it saw of " + stageById(upId).label });
+      } else if (upNow === null) {
+        moved.push({ stage: upId, label: stageById(upId).label, self: false,
+                     why: stageById(upId).label + "'s content is no longer there" });
+      } else if (upNow !== upThen) {
         moved.push({ stage: upId, label: stageById(upId).label, self: false });
       }
     }
@@ -296,14 +341,31 @@
 
     var st = stageById(stageId);
     var u = FM.auth.state().user;
-    var saw = {};
-    for (var i = 0; i < st.inputs.length; i++) saw[st.inputs[i]] = fpOf(st.inputs[i]);
+
+    /* Take the fingerprints BEFORE writing, and refuse if any is missing. An
+       approval whose fingerprint is null is unfalsifiable — nothing can ever
+       make it stale — so writing one is worse than not approving at all. */
+    var fpSelf = fpOf(stageId);
+    if (fpSelf === null) {
+      return { ok: false, why: ["this stage's content could not be read at the moment of approval, " +
+                                "so there is nothing to record the approval against"] };
+    }
+    var saw = {}, blind = [];
+    for (var i = 0; i < st.inputs.length; i++) {
+      var f = fpOf(st.inputs[i]);
+      if (f === null) blind.push(stageById(st.inputs[i]).label);
+      saw[st.inputs[i]] = f;
+    }
+    if (blind.length) {
+      return { ok: false, why: ["could not read " + blind.join(" and ") + " at the moment of " +
+                                "approval, so this approval could not be tied to them"] };
+    }
 
     load().stages[stageId] = {
       status: "approved",
       by: u.name, byId: u.id, role: st.needs,
       at: now(), note: note || "",
-      fp: fpOf(stageId), sawFp: saw
+      fp: fpSelf, sawFp: saw
     };
     save();
     log({ kind: "approve", stage: stageId, note: note || "", fp: load().stages[stageId].fp });

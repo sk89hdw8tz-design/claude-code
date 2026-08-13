@@ -770,6 +770,36 @@
       "carries is read from the framing KIND (\"" + reg.kind + "\" -> \"" + rec.carries + "\"), " +
       "never from the role string. weights.js CARRIES_DEFAULT exists for the obvious cases; it is " +
       "declared here anyway so the load path is on the mark and not inferred downstream.");
+
+    /* A region may declare the SYSTEM that frames it. A manufactured system is
+       not this engine's member at ANY span — the supplier engineers it as a
+       deferred sealed submittal — so the mark is carried as a component and no
+       member is selected for it.
+
+       Without this, framing kind "roof" mapped to role "rafter" unconditionally
+       and a 32 ft clear-span truss package arrived at the solver as a
+       solid-sawn rafter. It escalated on strength, which reads as an honest
+       refusal, but the escalation's stated remedy is "a deeper or stronger
+       section than the ladder offers" — wrong advice about a truss, printed on
+       a sheet a PE reads, on a mark whose own label says "Common trusses".
+       weights.js calls the same thing a deferred submittal; this is that
+       classification surviving the trip through the geometry instead of being
+       lost in it. */
+    if (reg.system === "truss" || reg.system === "manufactured") {
+      sp.set("component", true, fromRegion, [reg.id],
+        "the region declares system \"" + reg.system + "\", so this is a manufactured component " +
+        "and not a member this engine selects (calc-spec §8.6, §8.19).", "user");
+      sp.set("componentNote",
+        "MANUFACTURED COMPONENT — NOT CHECKED HERE. This region declares system \"" + reg.system +
+        "\", so it is engineered by its supplier as a deferred sealed submittal (calc-spec §8.6, " +
+        "§8.19). This engine designs simple-span solid-sawn members only. The mark is carried on " +
+        "the schedule rather than dropped, and its span, count and spacing are published so the " +
+        "supplier has the geometry — but NO MEMBER IS SELECTED and none should be read from this " +
+        "line.",
+        fromRegion, [reg.id],
+        "composed from the declared system; states what is out of scope and why, in the same terms " +
+        "weights.js uses for its own component marks.", "user");
+    }
     sp.set("span", clean(spanFt), fromWalls, supportIds,
       "clear distance between the bearing lines along the framing direction (" + f2(reg.directionDeg) +
       " deg): centreline to centreline " + f3(spanFt + tA / 2 + tB / 2) + " ft, less half of " +

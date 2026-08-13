@@ -263,11 +263,16 @@
     if (over) Object.keys(over).forEach(function (k) { o[k] = over[k]; });
     return o;
   }
+  /* What frames a region. `null` means stick-built solid sawn — the only thing
+     this engine selects members for. Anything else is somebody else's design
+     and the takeoff carries it as a component rather than sizing it. */
+  var SYSTEMS = ["truss", "manufactured"];
+
   function newFraming(level, poly, over) {
     var f = {
       id: nextId(level.framing, "F"),
       polygon: poly, kind: "floor",
-      directionDeg: 0, spacingIn: null, bearsOn: [], note: ""
+      directionDeg: 0, spacingIn: null, bearsOn: [], system: null, note: ""
     };
     if (over) Object.keys(over).forEach(function (k) { f[k] = over[k]; });
     return f;
@@ -342,6 +347,12 @@
           directionDeg: num(f.directionDeg),
           spacingIn: num(f.spacingIn),
           bearsOn: isArr(f.bearsOn) ? f.bearsOn.slice() : [],
+          /* The framing SYSTEM, when the region declares one. This normaliser
+             is a whitelist, so a field missing from it is dropped silently on
+             every save and reload — which is how the truss classification
+             vanished between fromPlan() and the takeoff the first time.
+             Anything added to newFraming() must be added here too. */
+          system: SYSTEMS.indexOf(f.system) === -1 ? null : f.system,
           note: f.note || "", basis: f.basis || ""
         });
       });
@@ -1101,6 +1112,15 @@
       L.framing.push(newFraming(L, fpPoly, {
         kind: "roof", directionDeg: roofDirDeg, spacingIn: sp.inches,
         bearsOn: bearWalls.map(function (w) { return w.id; }),
+        /* The plan's own truss mark drove this region — its spacing was read
+           back out of the truss count — so the region says what SYSTEM frames
+           it. Without this the takeoff mapped kind "roof" to role "rafter"
+           unconditionally and a 32 ft clear-span truss package arrived at the
+           solver as a solid-sawn rafter, escalating on strength with the
+           remedy "a deeper section". weights.js and bom.js both call the same
+           thing a deferred sealed submittal; this is how that classification
+           survives the trip through geometry. */
+        system: "truss",
         note: "Common trusses, " + span + " ft clear span",
         basis: "Region is the footprint. Direction from geometry.trussSpanFt = " + span + " ft. " + sp.basis
       }));
@@ -1387,7 +1407,27 @@
 
   /* ---------------- the surface ---------------- */
 
+  /* ---------------- the bridge to the run ----------------
+
+     The CAD view IS stage 1 of the pipeline, so whatever is on this canvas is
+     the geometry the run is about. Until this existed, nothing anywhere wrote
+     the project's model: cad.js saved to its own localStorage key and
+     project.js read a field no file set, so all six approval gates were
+     permanently blocked behind "no geometry yet — draw a plan or start from a
+     master set". The product could not be started.
+
+     Deliberately a PULL, not a push. If this file wrote FM.project on every
+     edit it would thrash storage on every nudge of a wall, and — worse — the
+     approval fingerprint would move while somebody was mid-drag. The run asks
+     what is on the canvas at the moment it needs to know. */
+
+  function currentModel() { return MODEL || null; }
+  function currentSource() { return { kind: S.src.kind, id: S.src.id }; }
+
   FM.cad = {
+    currentModel: currentModel,
+    currentSource: currentSource,
+    SYSTEMS: SYSTEMS,
     MODEL_VERSION: MODEL_VERSION,
     RULES: RULES,
     ASSUMED_STUD_IN: ASSUMED_STUD_IN,

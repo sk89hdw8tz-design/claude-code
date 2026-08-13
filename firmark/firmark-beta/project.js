@@ -132,9 +132,35 @@
      Each stage has a KEY (cheap, small, chains from upstream) and a VALUE
      (derived, possibly large, never used as anyone's key). */
 
+  /* WHERE THE GEOMETRY COMES FROM, in precedence order:
+
+       1. an explicit model pinned onto the run
+       2. WHATEVER IS ON THE CAD CANVAS RIGHT NOW
+       3. derived from a shipped plan id, so a run can start from a master set
+          without anyone drawing
+
+     (2) is the one that was missing, and its absence meant the whole product
+     could not be started: no file in the build ever wrote the run's model, so
+     every one of the six gates sat permanently blocked behind "no geometry
+     yet". The CAD view is stage 1 — what is on its canvas IS the geometry the
+     run is about — so the run reads it rather than waiting to be told. */
+
+  function canvasModel() {
+    if (!FM.cad || typeof FM.cad.currentModel !== "function") return null;
+    try { return FM.cad.currentModel(); } catch (e) { return null; }
+  }
+
   function modelKey() {
     var s = load();
-    if (s.model) return "drawn:" + fp(s.model);
+    if (s.model) return "pinned:" + fp(s.model);
+    var c = canvasModel();
+    /* The canvas key includes its SOURCE as well as its content, so loading a
+       different plan that happens to produce identical geometry still reads as
+       a different thing to approve. */
+    if (c) {
+      var src = FM.cad.currentSource ? FM.cad.currentSource() : { kind: "?", id: "?" };
+      return "canvas:" + src.kind + "/" + src.id + "/" + fp(c);
+    }
     if (s.planId) return "plan:" + s.planId + "/" + (s.variantId || "base");
     return null;
   }
@@ -142,9 +168,8 @@
   function model() {
     var s = load();
     if (s.model) return s.model;
-    /* A run driven from a shipped plan gets its geometry from that plan, so
-       the demo has real walls without anyone drawing. Derived, not stored, so
-       editing the plan cannot leave a stale model behind. */
+    var c = canvasModel();
+    if (c) return c;
     if (s.planId && FM.cad && FM.cad.fromPlan) {
       return derive("model", modelKey(), function () {
         return FM.cad.fromPlan(s.planId, s.variantId);
@@ -189,7 +214,11 @@
 
   function planKey() {
     var s = load();
-    if (s.planId) return "p|" + s.planId + "/" + (s.variantId || "base");
+    /* A canvas model outranks a plan id here for the same reason it does in
+       model(): if somebody has drawn geometry, the run is about THAT, and
+       solving the shipped plan's hand-written marks instead would put a
+       different schedule behind the same approval. */
+    if (!s.model && !canvasModel() && s.planId) return "p|" + s.planId + "/" + (s.variantId || "base");
     var k = takeoffKey();
     return k ? "p|" + k : null;
   }
@@ -198,7 +227,7 @@
      one assembled from the takeoff's marks. */
   function plan() {
     var s = load();
-    if (s.planId && FM.weights) {
+    if (!s.model && !canvasModel() && s.planId && FM.weights) {
       var base = FM.weights.planById(s.planId);
       if (!base) return null;
       if (s.variantId && FM.weights.planForVariant) {

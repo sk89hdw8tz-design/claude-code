@@ -1,5 +1,5 @@
 <title>Firmark Structural Harness</title>
-<meta name="description" content="Firmark beta — stamp-ready structural calcs with every value traced to its clause.">
+<meta name="description" content="Firmark beta — structural calcs prepared for PE review, every value traced to its clause.">
 <style>
 /* ============================================================
    Firmark — app shell (beta)
@@ -1563,7 +1563,7 @@ var FM = (function () {
   /* ---------------- views: dashboard ---------------- */
 
   VIEWS.dashboard = function (host) {
-    host.appendChild(pageHead("Dashboard", "Every lot on one board, intake to stamped set.", [
+    host.appendChild(pageHead("Dashboard", "Every lot on one board, intake to sealed set.", [
       el("button", { class: "btn", onclick: function () { go("materials"); }, text: "Materials" }),
       el("button", { class: "btn btn-primary", onclick: function () { toast("Beta: project intake isn’t wired up yet."); }, text: "+ New project" })
     ]));
@@ -1881,7 +1881,7 @@ var FM = (function () {
   /* ---------------- views: output ---------------- */
 
   VIEWS.output = function (host) {
-    host.appendChild(pageHead("Output & Docs", "Calc-report packages and stamp-ready plan sets."));
+    host.appendChild(pageHead("Output & Docs", "Calc-report packages and plan sets prepared for PE review."));
 
     var rows = el("tbody");
     SHEETS.forEach(function (s) {
@@ -1907,7 +1907,7 @@ var FM = (function () {
 
     host.appendChild(el("div", { class: "grid g2" }, [
       card("Export", null, el("div", {}, [
-        el("p", { style: "font-size:.86rem;margin-bottom:10px", text: "A calc-report package and a stamp-ready plan set, assembled straight from the design. A licensed PE reviews and stamps every package; AI never does." }),
+        el("p", { style: "font-size:.86rem;margin-bottom:10px", text: "A calc-report package and a plan set prepared for PE review, assembled straight from the design. A licensed PE reviews and seals every package; this software never does, and the seal block it produces is empty." }),
         el("div", { class: "chips" }, [
           el("button", { class: "btn btn-sm", onclick: function () { FM.exportCalcs(); }, text: "Download calc record (.txt)" }),
           el("button", { class: "btn btn-sm", onclick: function () { toast("Beta: DXF plan-set export isn’t wired up yet."); }, text: "Plan set (DXF)" })
@@ -1917,7 +1917,7 @@ var FM = (function () {
         dl([
           { k: "Design & run the engine", v: "Engineer · PE" },
           { k: "Override a design value", v: "Engineer · PE" },
-          { k: "Approve &amp; apply the stamp", v: "PE only", cls: "gold" },
+          { k: "Accept the package for sealing", v: "PE only", cls: "gold" },
           { k: "Read another firm’s data", v: "Never" }
         ]),
         "Least privilege · the stamp is the PE’s alone")
@@ -9757,11 +9757,16 @@ var FM = (function () {
     if (over) Object.keys(over).forEach(function (k) { o[k] = over[k]; });
     return o;
   }
+  /* What frames a region. `null` means stick-built solid sawn — the only thing
+     this engine selects members for. Anything else is somebody else's design
+     and the takeoff carries it as a component rather than sizing it. */
+  var SYSTEMS = ["truss", "manufactured"];
+
   function newFraming(level, poly, over) {
     var f = {
       id: nextId(level.framing, "F"),
       polygon: poly, kind: "floor",
-      directionDeg: 0, spacingIn: null, bearsOn: [], note: ""
+      directionDeg: 0, spacingIn: null, bearsOn: [], system: null, note: ""
     };
     if (over) Object.keys(over).forEach(function (k) { f[k] = over[k]; });
     return f;
@@ -9836,6 +9841,12 @@ var FM = (function () {
           directionDeg: num(f.directionDeg),
           spacingIn: num(f.spacingIn),
           bearsOn: isArr(f.bearsOn) ? f.bearsOn.slice() : [],
+          /* The framing SYSTEM, when the region declares one. This normaliser
+             is a whitelist, so a field missing from it is dropped silently on
+             every save and reload — which is how the truss classification
+             vanished between fromPlan() and the takeoff the first time.
+             Anything added to newFraming() must be added here too. */
+          system: SYSTEMS.indexOf(f.system) === -1 ? null : f.system,
           note: f.note || "", basis: f.basis || ""
         });
       });
@@ -10595,6 +10606,15 @@ var FM = (function () {
       L.framing.push(newFraming(L, fpPoly, {
         kind: "roof", directionDeg: roofDirDeg, spacingIn: sp.inches,
         bearsOn: bearWalls.map(function (w) { return w.id; }),
+        /* The plan's own truss mark drove this region — its spacing was read
+           back out of the truss count — so the region says what SYSTEM frames
+           it. Without this the takeoff mapped kind "roof" to role "rafter"
+           unconditionally and a 32 ft clear-span truss package arrived at the
+           solver as a solid-sawn rafter, escalating on strength with the
+           remedy "a deeper section". weights.js and bom.js both call the same
+           thing a deferred sealed submittal; this is how that classification
+           survives the trip through geometry. */
+        system: "truss",
         note: "Common trusses, " + span + " ft clear span",
         basis: "Region is the footprint. Direction from geometry.trussSpanFt = " + span + " ft. " + sp.basis
       }));
@@ -10881,7 +10901,27 @@ var FM = (function () {
 
   /* ---------------- the surface ---------------- */
 
+  /* ---------------- the bridge to the run ----------------
+
+     The CAD view IS stage 1 of the pipeline, so whatever is on this canvas is
+     the geometry the run is about. Until this existed, nothing anywhere wrote
+     the project's model: cad.js saved to its own localStorage key and
+     project.js read a field no file set, so all six approval gates were
+     permanently blocked behind "no geometry yet — draw a plan or start from a
+     master set". The product could not be started.
+
+     Deliberately a PULL, not a push. If this file wrote FM.project on every
+     edit it would thrash storage on every nudge of a wall, and — worse — the
+     approval fingerprint would move while somebody was mid-drag. The run asks
+     what is on the canvas at the moment it needs to know. */
+
+  function currentModel() { return MODEL || null; }
+  function currentSource() { return { kind: S.src.kind, id: S.src.id }; }
+
   FM.cad = {
+    currentModel: currentModel,
+    currentSource: currentSource,
+    SYSTEMS: SYSTEMS,
     MODEL_VERSION: MODEL_VERSION,
     RULES: RULES,
     ASSUMED_STUD_IN: ASSUMED_STUD_IN,
@@ -13290,6 +13330,36 @@ var FM = (function () {
       "carries is read from the framing KIND (\"" + reg.kind + "\" -> \"" + rec.carries + "\"), " +
       "never from the role string. weights.js CARRIES_DEFAULT exists for the obvious cases; it is " +
       "declared here anyway so the load path is on the mark and not inferred downstream.");
+
+    /* A region may declare the SYSTEM that frames it. A manufactured system is
+       not this engine's member at ANY span — the supplier engineers it as a
+       deferred sealed submittal — so the mark is carried as a component and no
+       member is selected for it.
+
+       Without this, framing kind "roof" mapped to role "rafter" unconditionally
+       and a 32 ft clear-span truss package arrived at the solver as a
+       solid-sawn rafter. It escalated on strength, which reads as an honest
+       refusal, but the escalation's stated remedy is "a deeper or stronger
+       section than the ladder offers" — wrong advice about a truss, printed on
+       a sheet a PE reads, on a mark whose own label says "Common trusses".
+       weights.js calls the same thing a deferred submittal; this is that
+       classification surviving the trip through the geometry instead of being
+       lost in it. */
+    if (reg.system === "truss" || reg.system === "manufactured") {
+      sp.set("component", true, fromRegion, [reg.id],
+        "the region declares system \"" + reg.system + "\", so this is a manufactured component " +
+        "and not a member this engine selects (calc-spec §8.6, §8.19).", "user");
+      sp.set("componentNote",
+        "MANUFACTURED COMPONENT — NOT CHECKED HERE. This region declares system \"" + reg.system +
+        "\", so it is engineered by its supplier as a deferred sealed submittal (calc-spec §8.6, " +
+        "§8.19). This engine designs simple-span solid-sawn members only. The mark is carried on " +
+        "the schedule rather than dropped, and its span, count and spacing are published so the " +
+        "supplier has the geometry — but NO MEMBER IS SELECTED and none should be read from this " +
+        "line.",
+        fromRegion, [reg.id],
+        "composed from the declared system; states what is out of scope and why, in the same terms " +
+        "weights.js uses for its own component marks.", "user");
+    }
     sp.set("span", clean(spanFt), fromWalls, supportIds,
       "clear distance between the bearing lines along the framing direction (" + f2(reg.directionDeg) +
       " deg): centreline to centreline " + f3(spanFt + tA / 2 + tB / 2) + " ft, less half of " +
@@ -14958,7 +15028,7 @@ var FM = (function () {
              (scale === null ? "an undeclared lot count (plan.lots is missing, so no community " +
               "quantity is stated; the fields are null rather than guessed)" : comma(scale) +
               " lots") + ". " +
-             "EVERY LOT IS ASSUMED TO BE THE STAMPED BASE CASE. " + why +
+             "EVERY LOT IS ASSUMED TO BE THE BASE CASE. " + why +
              " Lot counts are [market] planning figures from the plan record, not contracts.",
       takeRateBasis: null
     };
@@ -19359,8 +19429,14 @@ var FM = (function () {
       var raw = localStorage.getItem(KEY);
       state = raw ? JSON.parse(raw) : blank();
     } catch (e) { state = blank(); }
-    if (!state.stages) state.stages = {};
-    if (!state.trail) state.trail = [];
+    /* `if (!state.trail)` let a truthy non-array through, and a hand-written
+       {"trail":"notanarray"} threw on the run screen — taking the audit trail
+       card with it, which is the one card whose footer reads "a clean history
+       is not the goal; a true one is". Storage is user-writable; shape-check
+       it, do not truth-check it. */
+    if (!state.stages || typeof state.stages !== "object" ||
+        Object.prototype.toString.call(state.stages) === "[object Array]") state.stages = {};
+    if (Object.prototype.toString.call(state.trail) !== "[object Array]") state.trail = [];
     return state;
   }
   function save() {
@@ -19411,17 +19487,56 @@ var FM = (function () {
     if (!rec || rec.status !== "approved") {
       return { status: rec ? rec.status : "pending", rec: rec || null, moved: [] };
     }
+
+    /* An approval with NO FINGERPRINT can never be falsified, so it is not an
+       approval — it is a claim. This happens two ways: a record hand-written
+       into localStorage, or approve() writing one when a provider threw
+       between the gate check and the write. Both must read stale. */
+    if (!rec.fp) {
+      return { status: "stale", rec: rec, moved: [{
+        stage: stageId, label: stageById(stageId).label, self: true,
+        why: "this approval carries no fingerprint, so there is nothing to check it against"
+      }] };
+    }
+
     var moved = [];
+    var st = stageById(stageId);
+
+    /* CONTENT GONE IS NOT CONTENT UNCHANGED.
+       This read `mine !== null && rec.fp && mine !== rec.fp`, so when a stage's
+       content became unavailable — the model deleted, the plan cleared — fpOf()
+       returned null, BOTH comparisons were skipped, and the approval stood.
+       Delete the geometry after approving all six and the run reported
+       "6/6 STAGES APPROVED · Ready for PE", with one card simultaneously saying
+       APPROVED and "cannot be approved: no geometry yet". The false trail then
+       printed on the PE package's cover sheet.
+
+       That is precisely the defect the comment at the top of this file says the
+       fingerprint exists to prevent — the audit trail testifying to a review
+       that did not happen — and the check had a hole in exactly the shape of
+       the thing it was guarding. Disappearing is the most complete change a
+       stage's content can undergo. */
     var mine = fpOf(stageId);
-    if (mine !== null && rec.fp && mine !== rec.fp) {
+    if (mine === null) {
+      moved.push({ stage: stageId, label: stageById(stageId).label, self: true,
+                   why: "the content this stage was approved on is no longer there" });
+    } else if (mine !== rec.fp) {
       moved.push({ stage: stageId, label: stageById(stageId).label, self: true });
     }
-    var st = stageById(stageId);
+
     for (var i = 0; i < st.inputs.length; i++) {
       var upId = st.inputs[i];
       var upNow = fpOf(upId);
       var upThen = rec.sawFp ? rec.sawFp[upId] : null;
-      if (upNow !== null && upThen && upNow !== upThen) {
+      if (!upThen) {
+        /* approved without recording what it saw upstream — same unfalsifiable
+           shape as a missing self-fingerprint */
+        moved.push({ stage: upId, label: stageById(upId).label, self: false,
+                     why: "this approval did not record what it saw of " + stageById(upId).label });
+      } else if (upNow === null) {
+        moved.push({ stage: upId, label: stageById(upId).label, self: false,
+                     why: stageById(upId).label + "'s content is no longer there" });
+      } else if (upNow !== upThen) {
         moved.push({ stage: upId, label: stageById(upId).label, self: false });
       }
     }
@@ -19476,14 +19591,31 @@ var FM = (function () {
 
     var st = stageById(stageId);
     var u = FM.auth.state().user;
-    var saw = {};
-    for (var i = 0; i < st.inputs.length; i++) saw[st.inputs[i]] = fpOf(st.inputs[i]);
+
+    /* Take the fingerprints BEFORE writing, and refuse if any is missing. An
+       approval whose fingerprint is null is unfalsifiable — nothing can ever
+       make it stale — so writing one is worse than not approving at all. */
+    var fpSelf = fpOf(stageId);
+    if (fpSelf === null) {
+      return { ok: false, why: ["this stage's content could not be read at the moment of approval, " +
+                                "so there is nothing to record the approval against"] };
+    }
+    var saw = {}, blind = [];
+    for (var i = 0; i < st.inputs.length; i++) {
+      var f = fpOf(st.inputs[i]);
+      if (f === null) blind.push(stageById(st.inputs[i]).label);
+      saw[st.inputs[i]] = f;
+    }
+    if (blind.length) {
+      return { ok: false, why: ["could not read " + blind.join(" and ") + " at the moment of " +
+                                "approval, so this approval could not be tied to them"] };
+    }
 
     load().stages[stageId] = {
       status: "approved",
       by: u.name, byId: u.id, role: st.needs,
       at: now(), note: note || "",
-      fp: fpOf(stageId), sawFp: saw
+      fp: fpSelf, sawFp: saw
     };
     save();
     log({ kind: "approve", stage: stageId, note: note || "", fp: load().stages[stageId].fp });
@@ -19696,9 +19828,35 @@ var FM = (function () {
      Each stage has a KEY (cheap, small, chains from upstream) and a VALUE
      (derived, possibly large, never used as anyone's key). */
 
+  /* WHERE THE GEOMETRY COMES FROM, in precedence order:
+
+       1. an explicit model pinned onto the run
+       2. WHATEVER IS ON THE CAD CANVAS RIGHT NOW
+       3. derived from a shipped plan id, so a run can start from a master set
+          without anyone drawing
+
+     (2) is the one that was missing, and its absence meant the whole product
+     could not be started: no file in the build ever wrote the run's model, so
+     every one of the six gates sat permanently blocked behind "no geometry
+     yet". The CAD view is stage 1 — what is on its canvas IS the geometry the
+     run is about — so the run reads it rather than waiting to be told. */
+
+  function canvasModel() {
+    if (!FM.cad || typeof FM.cad.currentModel !== "function") return null;
+    try { return FM.cad.currentModel(); } catch (e) { return null; }
+  }
+
   function modelKey() {
     var s = load();
-    if (s.model) return "drawn:" + fp(s.model);
+    if (s.model) return "pinned:" + fp(s.model);
+    var c = canvasModel();
+    /* The canvas key includes its SOURCE as well as its content, so loading a
+       different plan that happens to produce identical geometry still reads as
+       a different thing to approve. */
+    if (c) {
+      var src = FM.cad.currentSource ? FM.cad.currentSource() : { kind: "?", id: "?" };
+      return "canvas:" + src.kind + "/" + src.id + "/" + fp(c);
+    }
     if (s.planId) return "plan:" + s.planId + "/" + (s.variantId || "base");
     return null;
   }
@@ -19706,9 +19864,8 @@ var FM = (function () {
   function model() {
     var s = load();
     if (s.model) return s.model;
-    /* A run driven from a shipped plan gets its geometry from that plan, so
-       the demo has real walls without anyone drawing. Derived, not stored, so
-       editing the plan cannot leave a stale model behind. */
+    var c = canvasModel();
+    if (c) return c;
     if (s.planId && FM.cad && FM.cad.fromPlan) {
       return derive("model", modelKey(), function () {
         return FM.cad.fromPlan(s.planId, s.variantId);
@@ -19753,7 +19910,11 @@ var FM = (function () {
 
   function planKey() {
     var s = load();
-    if (s.planId) return "p|" + s.planId + "/" + (s.variantId || "base");
+    /* A canvas model outranks a plan id here for the same reason it does in
+       model(): if somebody has drawn geometry, the run is about THAT, and
+       solving the shipped plan's hand-written marks instead would put a
+       different schedule behind the same approval. */
+    if (!s.model && !canvasModel() && s.planId) return "p|" + s.planId + "/" + (s.variantId || "base");
     var k = takeoffKey();
     return k ? "p|" + k : null;
   }
@@ -19762,7 +19923,7 @@ var FM = (function () {
      one assembled from the takeoff's marks. */
   function plan() {
     var s = load();
-    if (s.planId && FM.weights) {
+    if (!s.model && !canvasModel() && s.planId && FM.weights) {
       var base = FM.weights.planById(s.planId);
       if (!base) return null;
       if (s.variantId && FM.weights.planForVariant) {
@@ -20905,7 +21066,7 @@ var FM = (function () {
   /* an option set, named the way a sales sheet names it */
   function optionLabel(v, combo) {
     if (!combo.optionIds || !combo.optionIds.length) {
-      return combo.isBase ? "As stamped" : "Elevation only";
+      return combo.isBase ? "Base case" : "Elevation only";
     }
     return combo.optionIds.map(function (id) {
       var hit = null;
@@ -21350,7 +21511,7 @@ var FM = (function () {
         }
 
         /* this row is the SELECTED variant's member; the badge says how it
-           departs from the stamped base */
+           departs from the base case */
         var mv = current ? own(current.byMark, key(m.mark.baseMarkId || m.mark.id)) : null;
         function deltaBadge() {
           if (!mv) return null;
@@ -21564,7 +21725,7 @@ var FM = (function () {
       /* what the selection does to the schedule below */
       if (!sel || sel.isBase) {
         wrap.appendChild(el("p", { style: "font-size:.86rem" }, [
-          el("strong", { text: "The stamped base case. " }),
+          el("strong", { text: "The base case. " }),
           el("span", { text: "The schedule below is this combination, solved end to end — not the base with a " +
             "note attached. Pick another elevation or an option and every number below re-solves. " +
             plural(v.combinations.length, "combination is", "combinations are") + " buildable off this master set." })
@@ -21579,7 +21740,7 @@ var FM = (function () {
         if (c.removed) bits.push(plural(c.removed, "mark is", "marks are") + " deleted");
         wrap.appendChild(el("p", { style: "font-size:.86rem" }, [
           el("strong", { text: sel.label + " — " }),
-          el("span", { text: (bits.length ? bits.join(", ") + "." : "nothing moves off the stamped base.") +
+          el("span", { text: (bits.length ? bits.join(", ") + "." : "nothing moves off the base case.") +
             (sel.lotsExpected ? " Expected on " + plural(sel.lotsExpected, "lot", "lots") + " of " +
               (v.lots || basePlan.lots) + "." : "") }),
           el("span", { class: "clause", text: "the schedule below IS this variant" })
@@ -21918,7 +22079,7 @@ var FM = (function () {
               "Code is a published requirement; Site is a value somebody must confirm for the address; Market is a " +
               "purchasing assumption. Snow, wind, exposure and seismic are PLANNING DEFAULTS for laying out a " +
               "repeatable plan — not site values. Replace them from the ASCE 7 Hazard Tool and the AHJ before " +
-              "anything is stamped." })
+              "a licensed engineer seals anything." })
           ]), pack.climate.groundSnow.note || null),
 
         card("Design loads handed to the engine", null, el("div", {}, [
@@ -22224,7 +22385,7 @@ var FM = (function () {
           baseRes = FM.solver.solvePlan(plan, pack);
         } else {
           sel = ms.base;      /* the variant would not resolve — fall back, visibly */
-          FM.toast("That variant could not be resolved — showing the stamped base.");
+          FM.toast("That variant could not be resolved — showing the base case.");
         }
       }
       if (!res) res = FM.solver.solvePlan(plan, pack);
@@ -22501,6 +22662,36 @@ var FM = (function () {
     ]));
   }
 
+  /* Six modules, six authors, one contract — and a field name that moved is
+     invisible until it renders as "undefined" in front of somebody. Read the
+     first field that is actually present rather than asserting one. */
+  function pick(o, names) {
+    if (!o) return "";
+    for (var i = 0; i < names.length; i++) {
+      var v = o[names[i]];
+      if (v !== undefined && v !== null && v !== "") return String(v);
+    }
+    return "";
+  }
+
+  /* A provenance-carrying record rendered as one row: the value, its class
+     badge, and its citation. */
+  function rec(label, r, valueKey, unit) {
+    if (!r) return null;
+    var v = (typeof r === "object") ? r[valueKey] : r;
+    if (v === undefined || v === null) {
+      v = "not established";
+      unit = "";
+    }
+    return {
+      k: label,
+      v: esc(String(v)) + (unit ? " " + unit : "") +
+         (r.cls ? " <span class='badge " + clsBadge(r.cls) + "' style='margin-left:6px'>" +
+                  esc(String(r.cls)) + "</span>" : "") +
+         (r.cite ? "<span class='clause'>" + esc(r.cite) + "</span>" : "")
+    };
+  }
+
   function n2(v, d) {
     return (v === null || v === undefined || !isFinite(v)) ? "—" : Number(v).toFixed(d === undefined ? 2 : d);
   }
@@ -22508,7 +22699,19 @@ var FM = (function () {
   /* A block of things a stage could not answer. Never collapsed, never
      truncated silently, and it says zero rather than disappearing — an
      absent list and an empty list read identically and mean opposite things. */
-  function openItems(title, rows, emptyText) {
+  /* `blocks` says whether this list ACTUALLY stops the gate — it is not a
+     decoration. The footer read "A stage is not approvable while anything here
+     is unanswered" on all three screens, and it was true on exactly one:
+     project.js pushes every takeoff `unresolved` as a blocker, but the loads
+     gate blocks only on a missing jurisdiction and the BOM gate blocks on
+     nothing at all. So a card with a gold BLOCKING badge sat over ten
+     unanswered must-verify items on a stage that approved cleanly.
+
+     A false claim about a gate is worse than a missing gate: it tells a
+     reviewer the system is holding a line it is not holding. Either the badge
+     tells the truth or the gate does; here the badge does, and the wording
+     says who the item is for instead. */
+  function openItems(title, rows, emptyText, blocks, forWhom) {
     var body = el("div", { style: "display:grid;gap:7px" });
     if (!rows.length) {
       body.appendChild(el("p", { class: "clause", text: emptyText }));
@@ -22521,11 +22724,16 @@ var FM = (function () {
         ].filter(Boolean)));
       });
     }
+    var badge = !rows.length ? { c: "b-pass", t: "None" }
+              : blocks ? { c: "b-fail", t: "Blocks this gate" }
+                       : { c: "b-gold", t: "Does not block" };
     return card(title + " — " + rows.length,
-      el("span", { class: "badge " + (rows.length ? "b-gold" : "b-pass"), style: "margin-left:auto",
-                   text: rows.length ? "Blocking" : "None" }),
+      el("span", { class: "badge " + badge.c, style: "margin-left:auto", text: badge.t }),
       body,
-      "A stage is not approvable while anything here is unanswered.");
+      blocks
+        ? "This gate cannot be approved while anything here is unanswered."
+        : (forWhom || "These do not stop the gate. Approving this stage means you have read them " +
+                      "and accepted them as open — they travel to the PE package as open items."));
   }
 
   /* ============================================================
@@ -22575,7 +22783,7 @@ var FM = (function () {
     host.appendChild(el("div", { style: "margin-bottom:16px" }, [
       openItems("Unresolved", unresolved.map(function (u) {
         return { what: u.what, why: u.why, need: u.need };
-      }), "The geometry determined every value. Nothing was assumed.")
+      }), "The geometry determined every value. Nothing was assumed.", true)
     ]));
 
     if ((t.warnings || []).length) {
@@ -22685,10 +22893,22 @@ var FM = (function () {
 
     var jurisSel = el("select", { "aria-label": "Jurisdiction" });
 
+    /* This called FM.juris.jurisdictionById(), which does not exist — so it
+       returned "" on every render, the state picker read "Choose a state…"
+       above a full criteria table, and picking a state wiped the jurisdiction
+       you were already on. The module has no by-id lookup, so find it the way
+       the data allows: the id is prefixed with the state, and the listing is
+       authoritative. */
     function currentState() {
       if (!s.jurisId) return stateSel.value || "";
-      var j = FM.juris.jurisdictionById ? FM.juris.jurisdictionById(s.jurisId) : null;
-      return j ? j.state : (stateSel.value || "");
+      for (var i = 0; i < FM.juris.STATES.length; i++) {
+        var st = FM.juris.STATES[i];
+        var found = (FM.juris.jurisdictions(st) || []).filter(function (j) {
+          return j.id === s.jurisId;
+        })[0];
+        if (found) return st;
+      }
+      return stateSel.value || "";
     }
 
     function fillJuris() {
@@ -22758,8 +22978,12 @@ var FM = (function () {
       site.wind && site.wind.exposure ? { k: "Exposure", v: esc(site.wind.exposure) } : null,
       crit("Ground snow", site.snow, "psf"),
       crit("Seismic", site.seismic, ""),
-      site.frostDepthIn ? { k: "Frost depth", v: esc(String(site.frostDepthIn)) + " in" } : null,
-      site.termite ? { k: "Termite", v: esc(String(site.termite)) } : null,
+      /* These arrive as RECORDS — {inches, cls, cite, confirmed} and {level, …} —
+         because "every value carries cls and cite" outranks the convenience of
+         a bare number. String() on one prints "[object Object]". */
+      rec("Frost depth", site.frostDepthIn, "inches", "in"),
+      rec("Termite", site.termite, "level", ""),
+      rec("Decay", site.decay, "level", ""),
       site.windborneDebris !== undefined
         ? { k: "Wind-borne debris region", v: site.windborneDebris ? "Yes — opening protection required" : "No" }
         : null,
@@ -22816,9 +23040,22 @@ var FM = (function () {
     host.appendChild(el("div", { style: "margin-bottom:16px" }, [
       openItems("Must be verified before this is sealed",
         (site.mustVerify || []).map(function (v) {
-          return typeof v === "string" ? { what: v } : { what: v.what, why: v.why, need: v.need || v.against };
+          /* mustVerify carries `check` (what to check) and `authority` (who
+             against). ARCHITECTURE requires the item say what to check it
+             against; the module does that and this view was dropping both. */
+          if (typeof v === "string") return { what: v };
+          return {
+            what: pick(v, ["what", "item", "label"]),
+            why: pick(v, ["why", "note", "detail"]),
+            need: pick(v, ["need", "check", "against", "how"]) +
+                  (v.authority ? " — " + v.authority : "")
+          };
         }),
-        "Nothing listed — which should not happen. Wind speed and snow are site-specific and this list should never be empty.")
+        "Nothing listed — which should not happen. Wind speed and snow are site-specific and this list should never be empty.",
+        false,
+        "These do NOT stop the loads gate — a site is confirmed against the ASCE 7 Hazard Tool " +
+        "and the AHJ, not in this browser. Approving this stage means you accept them as open, " +
+        "and every one of them prints on the PE package as an open item.")
     ]));
 
     if ((site.amendments || []).length) {
@@ -22838,8 +23075,20 @@ var FM = (function () {
     if ((site.checklist || (FM.juris.checklist && FM.juris.checklist(s.jurisId)) || []).length) {
       var list = site.checklist || FM.juris.checklist(s.jurisId);
       var cb = el("div", { style: "display:grid;gap:6px" });
+      /* A checklist item is `{item, why, cite}` — reading `.text` printed the
+         literal word "undefined" five times on every jurisdiction, and the
+         first of those five is the sentence that says this software does not
+         seal. suite-juris asserts that sentence exists; it passes, because it
+         tests the module. The view was deleting it. Read whichever field is
+         actually there rather than assuming one. */
       list.forEach(function (c) {
-        cb.appendChild(el("p", { style: "font-size:.84rem", text: "· " + (typeof c === "string" ? c : c.text) }));
+        var txt = typeof c === "string" ? c : pick(c, ["item", "text", "what", "label"]);
+        var why = typeof c === "string" ? null : pick(c, ["why", "note", "detail"]);
+        cb.appendChild(el("div", { style: "font-size:.84rem" }, [
+          el("span", { text: "· " + txt }),
+          why ? el("div", { class: "clause", style: "margin-left:12px", text: why }) : null,
+          (c && c.cite) ? el("div", { class: "clause", style: "margin-left:12px", text: c.cite }) : null
+        ].filter(Boolean)));
       });
       host.appendChild(card("Submittal checklist", null, cb,
         "What this jurisdiction expects to receive. This system produces some of it, not all of it."));
@@ -22915,7 +23164,11 @@ var FM = (function () {
         (b.excluded || []).map(function (x) {
           return { what: x.what, why: x.why, need: x.need };
         }),
-        "Nothing excluded — which cannot be right. Connectors, sheathing and fasteners are never sized here.")
+        "Nothing excluded — which cannot be right. Connectors, sheathing and fasteners are never sized here.",
+        false,
+        "These do NOT stop the materials gate — they are what the list does not cover, not defects " +
+        "in it. Approving this stage means you have read them and know what still has to be priced " +
+        "elsewhere.")
     ]));
 
     var tb = el("tbody");

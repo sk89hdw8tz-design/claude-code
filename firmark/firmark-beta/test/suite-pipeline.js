@@ -153,4 +153,113 @@ module.exports = function (t, FM) {
   /* leave the machinery clean for anything that runs after */
   FM.pipeline.reset();
   FM.auth.logout();
+
+  t.suite("pipeline · an approval cannot outlive the DISAPPEARANCE of what it approved");
+
+  /* The check read `mine !== null && rec.fp && mine !== rec.fp`, so when a
+     stage's content became unavailable fpOf() returned null, BOTH comparisons
+     were skipped, and the approval stood. Delete the geometry after approving
+     all six and the run reported "6/6 STAGES APPROVED · Ready for PE", with one
+     card simultaneously reading APPROVED and "cannot be approved: no geometry
+     yet" — and the false trail printed on the PE package's cover.
+
+     Disappearing is the most complete change a stage's content can undergo,
+     and the guard had a hole in exactly the shape of the thing it guarded. */
+  /* the block above ends by signing out, and an approval needs a name on it */
+  FM.auth.login("Demo", "Demo");
+
+  var live = { walls: 4 };
+  FM.pipeline.reset();
+  FM.pipeline.provide("geometry", function () { return live; });
+  FM.pipeline.blocksOn("geometry", function () { return []; });
+  t.eq(FM.pipeline.approve("geometry", "content present").ok, true, "approves with content");
+
+  live = null;
+  var gone = FM.pipeline.statusOf("geometry");
+  t.eq(gone.status, "stale", "and goes STALE when that content disappears entirely");
+  t.truthy(/no longer there/.test((gone.moved[0] || {}).why || ""),
+    "saying the content is no longer there, not merely that something changed");
+  t.eq(FM.pipeline.snapshot().complete, false,
+    "so the run cannot report itself complete on content that is gone");
+
+  /* an approval with no fingerprint is unfalsifiable — nothing can ever make it
+     stale — so it is not an approval, it is a claim */
+  FM.pipeline.reset();
+  FM.pipeline.state().stages.geometry = { status: "approved", by: "hand-written" };
+  t.eq(FM.pipeline.statusOf("geometry").status, "stale",
+    "an approval record with no fingerprint reads stale, not approved");
+
+  /* and approve() refuses to create one */
+  FM.pipeline.reset();
+  FM.pipeline.provide("geometry", function () { return null; });
+  var refused = FM.pipeline.approve("geometry", "nothing there");
+  t.eq(refused.ok, false, "approve() refuses when the content cannot be read at the moment of approval");
+
+  /* corrupt storage must not throw — it is user-writable */
+  FM.pipeline.reset();
+  FM.pipeline.state().trail = "not an array";
+  var threw = null;
+  try { FM.pipeline.audit(); FM.pipeline.snapshot(); } catch (e) { threw = e.message; }
+  t.eq(threw, null, "a corrupt trail in storage does not throw and take the audit card with it");
+
+  FM.pipeline.reset();
+  FM.pipeline.provide("geometry", function () { return { walls: 4 }; });
+
+  t.suite("product · nothing anywhere claims this software seals");
+
+  /* suite-planset.js sweeps its OWN output for this. That is not enough: the
+     word re-entered the product three times from three other modules — a
+     permissions row reading "Approve & apply the stamp" (an action this
+     software does not have), a meta description calling the output
+     "stamp-ready" (a completeness claim it cannot make), and the sizing view
+     printing "Nothing here is stamped" forty lines above "AS STAMPED".
+     Sweep the SOURCE of every shipping part, so a claim cannot enter through
+     a module nobody thought to check. */
+  var fs5 = require("fs"), path5 = require("path");
+  var dir5 = path5.join(__dirname, "..");
+  var parts5 = ["core.js", "engine.js", "weights.js", "solver.js", "export.js", "scope.js",
+                "jurisdiction.js", "cad.js", "takeoff.js", "bom.js", "planset.js",
+                "auth.js", "pipeline.js", "project.js",
+                "materials.js", "sheet.js", "sizing.js", "pipeline-view.js", "stages-view.js"];
+
+  /* Phrases that ASSERT the software's output is sealed or ready to be. Not a
+     ban on the word: "a licensed PE reviews and seals every package" and "this
+     software never stamps" both contain it and both must survive. */
+  var CLAIMS = [
+    { re: /stamp-ready|seal-ready|ready to stamp|ready for stamping/i,
+      why: "claims the output is ready to be stamped — a completeness claim this system cannot make" },
+    { re: /apply the stamp|applies the stamp|apply a seal|applies the seal/i,
+      why: "names a stamp-applying action this software does not have" },
+    { re: /\bstamped (calc|plan set|package|drawing|set of)/i,
+      why: "describes this system's own output as stamped" }
+  ];
+
+  var leaks = [];
+  parts5.forEach(function (f) {
+    var p5 = path5.join(dir5, f);
+    if (!fs5.existsSync(p5)) return;
+    /* strip block comments — a comment explaining the policy quotes the very
+       phrases it forbids, and a sweep that cannot tell code from prose reads
+       the fix as the defect */
+    var src = fs5.readFileSync(p5, "utf8").replace(/\/\*[\s\S]*?\*\//g, "");
+    CLAIMS.forEach(function (c) {
+      var m = c.re.exec(src);
+      if (m) leaks.push(f + ': "' + m[0] + '" — ' + c.why);
+    });
+  });
+  t.eq(leaks.length, 0, "no shipping part claims this software seals, stamps or produces a stamped set" +
+     (leaks.length ? "\n      " + leaks.join("\n      ") : ""));
+
+  /* and the disclaimers that must NOT be sanitised away */
+  var keeps = 0;
+  parts5.forEach(function (f) {
+    var p5 = path5.join(dir5, f);
+    if (!fs5.existsSync(p5)) return;
+    if (/never (seals|stamps)|does not (seal|stamp)|reviews and seals|To be sealed by/i
+        .test(fs5.readFileSync(p5, "utf8"))) keeps++;
+  });
+  t.truthy(keeps >= 4, "and the statements that say a PE seals it are still there, in " + keeps + " parts");
+
+  FM.pipeline.reset();
+  FM.auth.logout();
 };

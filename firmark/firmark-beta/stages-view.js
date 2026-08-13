@@ -29,6 +29,36 @@
     ]));
   }
 
+  /* Six modules, six authors, one contract — and a field name that moved is
+     invisible until it renders as "undefined" in front of somebody. Read the
+     first field that is actually present rather than asserting one. */
+  function pick(o, names) {
+    if (!o) return "";
+    for (var i = 0; i < names.length; i++) {
+      var v = o[names[i]];
+      if (v !== undefined && v !== null && v !== "") return String(v);
+    }
+    return "";
+  }
+
+  /* A provenance-carrying record rendered as one row: the value, its class
+     badge, and its citation. */
+  function rec(label, r, valueKey, unit) {
+    if (!r) return null;
+    var v = (typeof r === "object") ? r[valueKey] : r;
+    if (v === undefined || v === null) {
+      v = "not established";
+      unit = "";
+    }
+    return {
+      k: label,
+      v: esc(String(v)) + (unit ? " " + unit : "") +
+         (r.cls ? " <span class='badge " + clsBadge(r.cls) + "' style='margin-left:6px'>" +
+                  esc(String(r.cls)) + "</span>" : "") +
+         (r.cite ? "<span class='clause'>" + esc(r.cite) + "</span>" : "")
+    };
+  }
+
   function n2(v, d) {
     return (v === null || v === undefined || !isFinite(v)) ? "—" : Number(v).toFixed(d === undefined ? 2 : d);
   }
@@ -36,7 +66,19 @@
   /* A block of things a stage could not answer. Never collapsed, never
      truncated silently, and it says zero rather than disappearing — an
      absent list and an empty list read identically and mean opposite things. */
-  function openItems(title, rows, emptyText) {
+  /* `blocks` says whether this list ACTUALLY stops the gate — it is not a
+     decoration. The footer read "A stage is not approvable while anything here
+     is unanswered" on all three screens, and it was true on exactly one:
+     project.js pushes every takeoff `unresolved` as a blocker, but the loads
+     gate blocks only on a missing jurisdiction and the BOM gate blocks on
+     nothing at all. So a card with a gold BLOCKING badge sat over ten
+     unanswered must-verify items on a stage that approved cleanly.
+
+     A false claim about a gate is worse than a missing gate: it tells a
+     reviewer the system is holding a line it is not holding. Either the badge
+     tells the truth or the gate does; here the badge does, and the wording
+     says who the item is for instead. */
+  function openItems(title, rows, emptyText, blocks, forWhom) {
     var body = el("div", { style: "display:grid;gap:7px" });
     if (!rows.length) {
       body.appendChild(el("p", { class: "clause", text: emptyText }));
@@ -49,11 +91,16 @@
         ].filter(Boolean)));
       });
     }
+    var badge = !rows.length ? { c: "b-pass", t: "None" }
+              : blocks ? { c: "b-fail", t: "Blocks this gate" }
+                       : { c: "b-gold", t: "Does not block" };
     return card(title + " — " + rows.length,
-      el("span", { class: "badge " + (rows.length ? "b-gold" : "b-pass"), style: "margin-left:auto",
-                   text: rows.length ? "Blocking" : "None" }),
+      el("span", { class: "badge " + badge.c, style: "margin-left:auto", text: badge.t }),
       body,
-      "A stage is not approvable while anything here is unanswered.");
+      blocks
+        ? "This gate cannot be approved while anything here is unanswered."
+        : (forWhom || "These do not stop the gate. Approving this stage means you have read them " +
+                      "and accepted them as open — they travel to the PE package as open items."));
   }
 
   /* ============================================================
@@ -103,7 +150,7 @@
     host.appendChild(el("div", { style: "margin-bottom:16px" }, [
       openItems("Unresolved", unresolved.map(function (u) {
         return { what: u.what, why: u.why, need: u.need };
-      }), "The geometry determined every value. Nothing was assumed.")
+      }), "The geometry determined every value. Nothing was assumed.", true)
     ]));
 
     if ((t.warnings || []).length) {
@@ -213,10 +260,22 @@
 
     var jurisSel = el("select", { "aria-label": "Jurisdiction" });
 
+    /* This called FM.juris.jurisdictionById(), which does not exist — so it
+       returned "" on every render, the state picker read "Choose a state…"
+       above a full criteria table, and picking a state wiped the jurisdiction
+       you were already on. The module has no by-id lookup, so find it the way
+       the data allows: the id is prefixed with the state, and the listing is
+       authoritative. */
     function currentState() {
       if (!s.jurisId) return stateSel.value || "";
-      var j = FM.juris.jurisdictionById ? FM.juris.jurisdictionById(s.jurisId) : null;
-      return j ? j.state : (stateSel.value || "");
+      for (var i = 0; i < FM.juris.STATES.length; i++) {
+        var st = FM.juris.STATES[i];
+        var found = (FM.juris.jurisdictions(st) || []).filter(function (j) {
+          return j.id === s.jurisId;
+        })[0];
+        if (found) return st;
+      }
+      return stateSel.value || "";
     }
 
     function fillJuris() {
@@ -286,8 +345,12 @@
       site.wind && site.wind.exposure ? { k: "Exposure", v: esc(site.wind.exposure) } : null,
       crit("Ground snow", site.snow, "psf"),
       crit("Seismic", site.seismic, ""),
-      site.frostDepthIn ? { k: "Frost depth", v: esc(String(site.frostDepthIn)) + " in" } : null,
-      site.termite ? { k: "Termite", v: esc(String(site.termite)) } : null,
+      /* These arrive as RECORDS — {inches, cls, cite, confirmed} and {level, …} —
+         because "every value carries cls and cite" outranks the convenience of
+         a bare number. String() on one prints "[object Object]". */
+      rec("Frost depth", site.frostDepthIn, "inches", "in"),
+      rec("Termite", site.termite, "level", ""),
+      rec("Decay", site.decay, "level", ""),
       site.windborneDebris !== undefined
         ? { k: "Wind-borne debris region", v: site.windborneDebris ? "Yes — opening protection required" : "No" }
         : null,
@@ -344,9 +407,22 @@
     host.appendChild(el("div", { style: "margin-bottom:16px" }, [
       openItems("Must be verified before this is sealed",
         (site.mustVerify || []).map(function (v) {
-          return typeof v === "string" ? { what: v } : { what: v.what, why: v.why, need: v.need || v.against };
+          /* mustVerify carries `check` (what to check) and `authority` (who
+             against). ARCHITECTURE requires the item say what to check it
+             against; the module does that and this view was dropping both. */
+          if (typeof v === "string") return { what: v };
+          return {
+            what: pick(v, ["what", "item", "label"]),
+            why: pick(v, ["why", "note", "detail"]),
+            need: pick(v, ["need", "check", "against", "how"]) +
+                  (v.authority ? " — " + v.authority : "")
+          };
         }),
-        "Nothing listed — which should not happen. Wind speed and snow are site-specific and this list should never be empty.")
+        "Nothing listed — which should not happen. Wind speed and snow are site-specific and this list should never be empty.",
+        false,
+        "These do NOT stop the loads gate — a site is confirmed against the ASCE 7 Hazard Tool " +
+        "and the AHJ, not in this browser. Approving this stage means you accept them as open, " +
+        "and every one of them prints on the PE package as an open item.")
     ]));
 
     if ((site.amendments || []).length) {
@@ -366,8 +442,20 @@
     if ((site.checklist || (FM.juris.checklist && FM.juris.checklist(s.jurisId)) || []).length) {
       var list = site.checklist || FM.juris.checklist(s.jurisId);
       var cb = el("div", { style: "display:grid;gap:6px" });
+      /* A checklist item is `{item, why, cite}` — reading `.text` printed the
+         literal word "undefined" five times on every jurisdiction, and the
+         first of those five is the sentence that says this software does not
+         seal. suite-juris asserts that sentence exists; it passes, because it
+         tests the module. The view was deleting it. Read whichever field is
+         actually there rather than assuming one. */
       list.forEach(function (c) {
-        cb.appendChild(el("p", { style: "font-size:.84rem", text: "· " + (typeof c === "string" ? c : c.text) }));
+        var txt = typeof c === "string" ? c : pick(c, ["item", "text", "what", "label"]);
+        var why = typeof c === "string" ? null : pick(c, ["why", "note", "detail"]);
+        cb.appendChild(el("div", { style: "font-size:.84rem" }, [
+          el("span", { text: "· " + txt }),
+          why ? el("div", { class: "clause", style: "margin-left:12px", text: why }) : null,
+          (c && c.cite) ? el("div", { class: "clause", style: "margin-left:12px", text: c.cite }) : null
+        ].filter(Boolean)));
       });
       host.appendChild(card("Submittal checklist", null, cb,
         "What this jurisdiction expects to receive. This system produces some of it, not all of it."));
@@ -443,7 +531,11 @@
         (b.excluded || []).map(function (x) {
           return { what: x.what, why: x.why, need: x.need };
         }),
-        "Nothing excluded — which cannot be right. Connectors, sheathing and fasteners are never sized here.")
+        "Nothing excluded — which cannot be right. Connectors, sheathing and fasteners are never sized here.",
+        false,
+        "These do NOT stop the materials gate — they are what the list does not cover, not defects " +
+        "in it. Approving this stage means you have read them and know what still has to be priced " +
+        "elsewhere.")
     ]));
 
     var tb = el("tbody");

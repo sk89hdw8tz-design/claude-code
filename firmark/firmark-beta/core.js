@@ -487,7 +487,7 @@ var FM = (function () {
   /* ---------------- views: dashboard ---------------- */
 
   VIEWS.dashboard = function (host) {
-    host.appendChild(pageHead("Dashboard", "Every lot on one board, intake to stamped set.", [
+    host.appendChild(pageHead("Dashboard", "Every lot on one board, intake to sealed set.", [
       el("button", { class: "btn", onclick: function () { go("materials"); }, text: "Materials" }),
       el("button", { class: "btn btn-primary", onclick: function () { toast("Beta: project intake isn’t wired up yet."); }, text: "+ New project" })
     ]));
@@ -805,7 +805,7 @@ var FM = (function () {
   /* ---------------- views: output ---------------- */
 
   VIEWS.output = function (host) {
-    host.appendChild(pageHead("Output & Docs", "Calc-report packages and stamp-ready plan sets."));
+    host.appendChild(pageHead("Output & Docs", "Calc-report packages and plan sets prepared for PE review."));
 
     var rows = el("tbody");
     SHEETS.forEach(function (s) {
@@ -831,7 +831,7 @@ var FM = (function () {
 
     host.appendChild(el("div", { class: "grid g2" }, [
       card("Export", null, el("div", {}, [
-        el("p", { style: "font-size:.86rem;margin-bottom:10px", text: "A calc-report package and a stamp-ready plan set, assembled straight from the design. A licensed PE reviews and stamps every package; AI never does." }),
+        el("p", { style: "font-size:.86rem;margin-bottom:10px", text: "A calc-report package and a plan set prepared for PE review, assembled straight from the design. A licensed PE reviews and seals every package; this software never does, and the seal block it produces is empty." }),
         el("div", { class: "chips" }, [
           el("button", { class: "btn btn-sm", onclick: function () { FM.exportCalcs(); }, text: "Download calc record (.txt)" }),
           el("button", { class: "btn btn-sm", onclick: function () { toast("Beta: DXF plan-set export isn’t wired up yet."); }, text: "Plan set (DXF)" })
@@ -841,7 +841,7 @@ var FM = (function () {
         dl([
           { k: "Design & run the engine", v: "Engineer · PE" },
           { k: "Override a design value", v: "Engineer · PE" },
-          { k: "Approve &amp; apply the stamp", v: "PE only", cls: "gold" },
+          { k: "Accept the package for sealing", v: "PE only", cls: "gold" },
           { k: "Read another firm’s data", v: "Never" }
         ]),
         "Least privilege · the stamp is the PE’s alone")

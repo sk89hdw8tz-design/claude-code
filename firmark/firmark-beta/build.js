@@ -29,7 +29,7 @@ var OUT = path.join(DIR, "firmark-app.html");
 
 var HEAD =
   '<title>Firmark Structural Harness</title>\n' +
-  '<meta name="description" content="Firmark beta — stamp-ready structural calcs with every value traced to its clause.">\n';
+  '<meta name="description" content="Firmark beta — structural calcs prepared for PE review, every value traced to its clause.">\n';
 
 var NOSCRIPT =
   '<noscript><p style="padding:24px;font-family:system-ui">' +
