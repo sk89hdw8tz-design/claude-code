@@ -100,44 +100,45 @@ def load_paths(src: str, pattern: str) -> list[str]:
     return sorted(paths, key=sort_key)
 
 
-def autocrop_border(im: Image.Image, tol: int = 18, max_frac: float = 0.15) -> Image.Image:
-    """Trim a near-uniform border (scan margin) from the edges.
+def autocrop_border(im: Image.Image, tol: int = 18, max_frac: float = 0.15,
+                    white: int = 250) -> Image.Image:
+    """Cut the scan surround and the library caption band off a sheet.
 
-    Conservative by design: refuses to remove more than `max_frac` of either
-    dimension, so a sheet with a genuinely pale edge is never gutted.
+    These scans sit on a pure-white bed and carry a printed credit line under
+    the map ("Original located at ..."), separated from the sheet by a band of
+    white. The sheet itself is aged cream, well below white, so the sheet is the
+    contiguous not-white run through the middle of the image; anything beyond a
+    white gap -- the caption, the bed -- is outside it.
+
+    Keying on "not white" rather than "matches the corner pixel" matters: a
+    single dark speck at the origin used to disable trimming entirely, and on a
+    cream sheet the corner never matches the paper anyway.
     """
     gray = im.convert("L")
     w, h = gray.size
-    px = gray.load()
+    row_mean = list(gray.resize((1, h), Image.BOX).tobytes())
+    col_mean = list(gray.resize((w, 1), Image.BOX).tobytes())
 
-    def row_uniform(y: int, ref: int) -> bool:
-        step = max(1, w // 256)
-        return all(abs(px[x, y] - ref) <= tol for x in range(0, w, step))
+    def middle_run(vals: list[int]) -> tuple[int, int]:
+        centre = len(vals) // 2
+        lo = centre
+        while lo > 0 and vals[lo - 1] < white:
+            lo -= 1
+        hi = centre
+        while hi < len(vals) - 1 and vals[hi + 1] < white:
+            hi += 1
+        return lo, hi
 
-    def col_uniform(x: int, ref: int) -> bool:
-        step = max(1, h // 256)
-        return all(abs(px[x, y] - ref) <= tol for y in range(0, h, step))
-
-    ref = px[0, 0]
-    top, bottom, left, right = 0, h - 1, 0, w - 1
-    lim_y, lim_x = int(h * max_frac), int(w * max_frac)
-
-    while top < lim_y and row_uniform(top, ref):
-        top += 1
-    while bottom > h - 1 - lim_y and row_uniform(bottom, ref):
-        bottom -= 1
-    while left < lim_x and col_uniform(left, ref):
-        left += 1
-    while right > w - 1 - lim_x and col_uniform(right, ref):
-        right -= 1
+    top, bottom = middle_run(row_mean)
+    left, right = middle_run(col_mean)
 
     if right - left < w * 0.5 or bottom - top < h * 0.5:
         return im
     return im.crop((left, top, right + 1, bottom + 1))
 
 
-def crop_to_neatline(im: Image.Image, dark: int = 110, min_frac: float = 0.55,
-                     search_frac: float = 0.20, pad: int = 2) -> tuple[Image.Image, bool]:
+def crop_to_neatline(im: Image.Image, dark_drop: int = 40,
+                     search_frac: float = 0.22, pad: int = 2) -> tuple[Image.Image, bool]:
     """Crop to just inside the printed border rule (the neatline).
 
     For a mosaic the sheets have to butt at the *map* edge, not the paper edge;
@@ -152,29 +153,55 @@ def crop_to_neatline(im: Image.Image, dark: int = 110, min_frac: float = 0.55,
     """
     gray = im.convert("L")
     w, h = gray.size
-    # Threshold to a dark mask, then let a BOX resize do the averaging: collapsing
-    # to width 1 gives the dark fraction of each row, to height 1 each column.
-    # Keeps this Pillow-only -- no numpy -- so the documented install stays true.
-    mask = gray.point(lambda v, d=dark: 255 if v < d else 0)
-    row_frac = [p / 255 for p in mask.resize((1, h), Image.BOX).tobytes()]
-    col_frac = [p / 255 for p in mask.resize((w, 1), Image.BOX).tobytes()]
-    sy, sx = max(1, int(h * search_frac)), max(1, int(w * search_frac))
+    # Collapse to a 1-px strip so each value is a whole row's or column's mean
+    # brightness. Pillow-only, and mean brightness finds a thin printed rule that
+    # a hard "fraction of pixels below X" test misses: an antialiased 2px line on
+    # aged paper never gets a majority of the row under a black threshold, but it
+    # does move the row's mean well below the paper tone.
+    row_mean = list(gray.resize((1, h), Image.BOX).tobytes())
+    col_mean = list(gray.resize((w, 1), Image.BOX).tobytes())
 
-    top_c = [i for i in range(sy) if row_frac[i] >= min_frac]
-    bot_c = [i for i in range(h - 1, h - 1 - sy, -1) if row_frac[i] >= min_frac]
-    lft_c = [i for i in range(sx) if col_frac[i] >= min_frac]
-    rgt_c = [i for i in range(w - 1, w - 1 - sx, -1) if col_frac[i] >= min_frac]
+    # Paper tone from the middle of the sheet, so the scan's own background sets
+    # the reference rather than an assumed white.
+    mid = sorted(row_mean[int(h * 0.25):int(h * 0.75)])
+    paper = mid[len(mid) // 2] if mid else 255
+    floor = paper - dark_drop
 
-    if not (top_c and bot_c and lft_c and rgt_c):
+    sy, sx = max(2, int(h * search_frac)), max(2, int(w * search_frac))
+
+    def darkest(vals, lo, hi):
+        """Index of the darkest line in a window, if it is a rule and not paper."""
+        window = range(max(0, lo), min(len(vals), hi))
+        best = min(window, key=lambda i: vals[i], default=None)
+        return best if best is not None and vals[best] <= floor else None
+
+    top = darkest(row_mean, 0, sy)
+    bottom = darkest(row_mean, h - sy, h)
+    left = darkest(col_mean, 0, sx)
+    right = darkest(col_mean, w - sx, w)
+
+    if None in (top, bottom, left, right):
         return im, False
 
-    # Innermost rule on each side, then step just past it.
-    top, bottom = max(top_c) + 1 + pad, min(bot_c) - pad
-    left, right = max(lft_c) + 1 + pad, min(rgt_c) - pad
-
-    if right - left < w * 0.5 or bottom - top < h * 0.5:
+    box = (left + 1 + pad, top + 1 + pad, right - pad, bottom - pad)
+    if box[2] - box[0] < w * 0.5 or box[3] - box[1] < h * 0.5:
         return im, False
-    return im.crop((left, top, right, bottom)), True
+    return im.crop(box), True
+
+
+def apply_inset(im: Image.Image, inset: list) -> Image.Image:
+    """Crop a fraction off each side: [left, top, right, bottom].
+
+    Used to cut the printed margin so sheets butt at the map edge instead of the
+    paper edge. Applied after trimming, so the fractions are of the trimmed
+    sheet, which is what makes one set of numbers valid across the batch.
+    """
+    l, t, r, b = inset
+    w, h = im.size
+    box = (int(w * l), int(h * t), int(w * (1 - r)), int(h * (1 - b)))
+    if box[2] - box[0] < 8 or box[3] - box[1] < 8:
+        return im
+    return im.crop(box)
 
 
 def content_extent(im: Image.Image, white: int = 244) -> dict:
@@ -290,6 +317,10 @@ def main() -> int:
                          "its cell -- only correct when every sheet covers equal ground.")
     ap.add_argument("--coverage", action="store_true",
                     help="report how much map content each sheet carries and flag part-sheets")
+    ap.add_argument("--inset", default="",
+                    help="after trimming, crop this much off each side as percentages of the "
+                         "sheet, 'L,T,R,B' (e.g. 7.2,3.7,9.3,8.2). Use to cut the printed "
+                         "margin so sheets butt at the map edge rather than the paper edge.")
     ap.add_argument("--labels", action="store_true", help="draw the sheet label under each cell")
     ap.add_argument("--bg", default="#ffffff", help="canvas background colour")
     ap.add_argument("--proof", default=None, help="also write a downsampled JPEG proof here")
@@ -302,6 +333,16 @@ def main() -> int:
     if not paths:
         print(f"error: no images found in {args.src!r} matching {args.pattern!r}", file=sys.stderr)
         return 1
+
+    inset = None
+    if args.inset:
+        try:
+            inset = [float(x) / 100.0 for x in args.inset.split(",")]
+        except ValueError:
+            inset = None
+        if inset is None or len(inset) != 4 or not all(0 <= v < 0.45 for v in inset):
+            print("error: --inset takes four percentages 'L,T,R,B', each 0-45", file=sys.stderr)
+            return 2
 
     drops = [d.strip().lower() for d in args.exclude.split(",") if d.strip()]
     if drops:
@@ -468,6 +509,8 @@ def main() -> int:
                     im = autocrop_border(im, tol=args.trim_tol)
                     if args.neatline:
                         im, _ = crop_to_neatline(im)
+                if inset:
+                    im = apply_inset(im, inset)
                 cov.append((os.path.basename(p), content_extent(im)))
         areas = sorted(c["area_frac"] for _, c in cov)
         med = areas[len(areas) // 2] if areas else 0.0
@@ -527,6 +570,8 @@ def main() -> int:
                     im = autocrop_border(im, tol=args.trim_tol)
                     if args.neatline:
                         im, _ = crop_to_neatline(im)
+                if inset:
+                    im = apply_inset(im, inset)
                 widths.append(im.width)
         widths.sort()
         uniform_ppi = widths[len(widths) // 2] / cell_w_in
@@ -562,6 +607,8 @@ def main() -> int:
                 if im.size != before:
                     print(f"  {label}: trimmed {before[0]}x{before[1]} -> "
                           f"{im.size[0]}x{im.size[1]}{note}")
+            if inset:
+                im = apply_inset(im, inset)
 
             ox_in, oy_in = cell_origin(r, c)
 
