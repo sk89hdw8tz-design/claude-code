@@ -131,6 +131,46 @@ def autocrop_border(im: Image.Image, tol: int = 18, max_frac: float = 0.15) -> I
     return im.crop((left, top, right + 1, bottom + 1))
 
 
+def crop_to_neatline(im: Image.Image, dark: int = 110, min_frac: float = 0.55,
+                     search_frac: float = 0.20, pad: int = 2) -> tuple[Image.Image, bool]:
+    """Crop to just inside the printed border rule (the neatline).
+
+    For a mosaic the sheets have to butt at the *map* edge, not the paper edge;
+    leaving the rule in place draws a black grid through the middle of the
+    finished map. Each edge is searched inward for the innermost row/column
+    that is predominantly dark -- that is the rule -- and the crop lands just
+    inside it.
+
+    Returns (image, found). If a rule is not clearly present on all four sides
+    the image is returned untouched, so a sheet that was scanned without one is
+    never mangled.
+    """
+    import numpy as np
+
+    a = np.asarray(im.convert("L"))
+    h, w = a.shape
+    dark_mask = a < dark
+    row_frac = dark_mask.mean(axis=1)
+    col_frac = dark_mask.mean(axis=0)
+    sy, sx = max(1, int(h * search_frac)), max(1, int(w * search_frac))
+
+    top_c = [i for i in range(sy) if row_frac[i] >= min_frac]
+    bot_c = [i for i in range(h - 1, h - 1 - sy, -1) if row_frac[i] >= min_frac]
+    lft_c = [i for i in range(sx) if col_frac[i] >= min_frac]
+    rgt_c = [i for i in range(w - 1, w - 1 - sx, -1) if col_frac[i] >= min_frac]
+
+    if not (top_c and bot_c and lft_c and rgt_c):
+        return im, False
+
+    # Innermost rule on each side, then step just past it.
+    top, bottom = max(top_c) + 1 + pad, min(bot_c) - pad
+    left, right = max(lft_c) + 1 + pad, min(rgt_c) - pad
+
+    if right - left < w * 0.5 or bottom - top < h * 0.5:
+        return im, False
+    return im.crop((left, top, right, bottom)), True
+
+
 def choose_grid(n: int, canvas_w: float, canvas_h: float, sheet_aspect: float,
                 margin: float, gutter: float) -> tuple[int, int, float]:
     """Pick cols x rows that wastes the least canvas.
@@ -184,6 +224,12 @@ def main() -> int:
                     help="JSON mapping label -> [row, col] for explicit placement")
     ap.add_argument("--trim", action="store_true", help="auto-trim uniform scan borders")
     ap.add_argument("--trim-tol", type=int, default=18)
+    ap.add_argument("--neatline", action="store_true",
+                    help="after --trim, crop just inside the printed border rule so sheets "
+                         "butt at the map edge (recommended for --mode mosaic)")
+    ap.add_argument("--exclude", default="",
+                    help="comma-separated substrings; matching files are left out of the "
+                         "print entirely (e.g. --exclude key)")
     ap.add_argument("--labels", action="store_true", help="draw the sheet label under each cell")
     ap.add_argument("--bg", default="#ffffff", help="canvas background colour")
     ap.add_argument("--proof", default=None, help="also write a downsampled JPEG proof here")
@@ -196,6 +242,17 @@ def main() -> int:
     if not paths:
         print(f"error: no images found in {args.src!r} matching {args.pattern!r}", file=sys.stderr)
         return 1
+
+    drops = [d.strip().lower() for d in args.exclude.split(",") if d.strip()]
+    if drops:
+        kept = [p for p in paths if not any(d in os.path.basename(p).lower() for d in drops)]
+        for p in paths:
+            if p not in kept:
+                print(f"  excluded from print: {os.path.basename(p)}")
+        paths = kept
+        if not paths:
+            print(f"error: --exclude {args.exclude!r} removed every image", file=sys.stderr)
+            return 1
 
     print(f"Found {len(paths)} image(s) in {args.src}")
     sizes = []
@@ -220,6 +277,34 @@ def main() -> int:
     margin = args.margin_in if args.mode == "grid" else 0.0
     gutter = args.gutter_in if args.mode == "grid" else 0.0
 
+    layout = None
+    if args.layout:
+        with open(args.layout) as fh:
+            raw = json.load(fh)
+        layout = {k: v for k, v in raw.items() if not k.startswith("_")}
+        bad = [k for k, v in layout.items()
+               if not (isinstance(v, (list, tuple)) and len(v) == 2
+                       and all(isinstance(i, int) and i >= 0 for i in v))]
+        if bad:
+            print(f"error: layout entries must be [row, col] with non-negative ints; "
+                  f"bad: {', '.join(sorted(bad))}", file=sys.stderr)
+            return 2
+        seen: dict[tuple[int, int], str] = {}
+        for k, (r, c) in layout.items():
+            if (r, c) in seen:
+                print(f"error: layout puts {seen[(r, c)]!r} and {k!r} both at "
+                      f"[{r}, {c}]", file=sys.stderr)
+                return 2
+            seen[(r, c)] = k
+        print(f"Layout: {len(layout)} placement(s) from {args.layout}")
+        labels_present = {os.path.splitext(os.path.basename(p))[0] for p in paths}
+        unplaced = sorted(labels_present - set(layout))
+        unknown = sorted(set(layout) - labels_present)
+        if unplaced:
+            print(f"  ! not in layout, will be left out: {', '.join(unplaced)}")
+        if unknown:
+            print(f"  ! in layout but no such file: {', '.join(unknown)}")
+
     if args.cols and args.rows:
         cols, rows = args.cols, args.rows
     elif args.cols:
@@ -227,13 +312,21 @@ def main() -> int:
     elif args.rows:
         rows = args.rows
         cols = math.ceil(n / rows)
+    elif layout:
+        # The layout defines the geography; the grid must match its extent, not
+        # the image count, or sheets fall outside the grid and get dropped.
+        cols = max(c for _, c in layout.values()) + 1
+        rows = max(r for r, _ in layout.values()) + 1
+        print(f"Grid from layout extent: {cols} x {rows}")
     else:
         cols, rows, cov = choose_grid(n, args.width_in, args.height_in, median_aspect, margin, gutter)
         print(f"Auto grid: {cols} x {rows} (coverage {cov * 100:.1f}% of the sheet)")
-    if cols * rows < n:
-        print(f"error: {cols}x{rows} = {cols * rows} cells cannot hold {n} images", file=sys.stderr)
+    n_cells = len(layout) if layout else n
+    if cols * rows < n_cells:
+        print(f"error: {cols}x{rows} = {cols * rows} cells cannot hold {n_cells} images",
+              file=sys.stderr)
         return 2
-    print(f"Grid: {cols} cols x {rows} rows ({cols * rows - n} empty cell(s))")
+    print(f"Grid: {cols} cols x {rows} rows ({cols * rows - n_cells} empty cell(s))")
 
     label_h_in = args.label_in if args.labels else 0.0
     avail_w = args.width_in - 2 * margin - gutter * (cols - 1)
@@ -278,12 +371,6 @@ def main() -> int:
         print("  ! Below 150 ppi -- expect visible softness at arm's length. "
               "Consider fewer sheets per print or a larger canvas.")
 
-    layout = None
-    if args.layout:
-        with open(args.layout) as fh:
-            layout = json.load(fh)
-        print(f"Layout: explicit placement from {args.layout}")
-
     if args.probe:
         print("\n--probe: stopping before render.")
         return 0
@@ -307,6 +394,7 @@ def main() -> int:
                 off_y + r * (cell_h_in + gutter))
 
     placed = 0
+    neatline_misses: list[str] = []
     for i, p in enumerate(paths):
         label = os.path.splitext(os.path.basename(p))[0]
         if layout is not None:
@@ -325,8 +413,15 @@ def main() -> int:
             if args.trim:
                 before = im.size
                 im = autocrop_border(im, tol=args.trim_tol)
+                note = ""
+                if args.neatline:
+                    im, found = crop_to_neatline(im)
+                    note = " (to neatline)" if found else " (no rule found)"
+                    if not found:
+                        neatline_misses.append(label)
                 if im.size != before:
-                    print(f"  {label}: trimmed {before[0]}x{before[1]} -> {im.size[0]}x{im.size[1]}")
+                    print(f"  {label}: trimmed {before[0]}x{before[1]} -> "
+                          f"{im.size[0]}x{im.size[1]}{note}")
 
             if args.mode == "mosaic":
                 target = (int(round(cell_w_in * args.dpi)), int(round(img_h_in * args.dpi)))
@@ -357,6 +452,11 @@ def main() -> int:
                           text, fill="#333333", font=font)
 
     print(f"\nPlaced {placed}/{len(paths)} image(s)")
+    if neatline_misses:
+        print(f"  ! no border rule detected on {len(neatline_misses)} sheet(s): "
+              f"{', '.join(neatline_misses)}")
+        print("    those sheets keep their paper edge and will not butt cleanly; "
+              "check the proof before printing.")
 
     ext = os.path.splitext(args.out)[1].lower()
     save_kw = {"dpi": (args.dpi, args.dpi)}

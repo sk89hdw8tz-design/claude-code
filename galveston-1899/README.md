@@ -5,8 +5,12 @@ the UT Austin PCL map library index, zips them, and assembles them into a
 print-ready 27×40 inch sheet.
 
 Requested selection: sheets **8, 7, 6, 5, 11, 13, 15, 12, 14, 16, 41, 39, 37**
-(13 sheets) plus the **Key**, taken from the **second** Galveston 1899 group on
-the index page — 14 items.
+(13 sheets) from the **second** Galveston 1899 group on the index page.
+
+- The **Key** and **Index** are downloaded and go in the zip, but neither is
+  printed as a tile. The Key was dropped from the print by request; the index
+  map is the *alignment reference*, not a tile.
+- The mosaic is aligned per the index map, via `layout-index.json`.
 
 Both print versions are produced: a plate montage and a geographic mosaic.
 
@@ -93,16 +97,50 @@ below that, so the script raises the ceiling deliberately.
   rather than left ragged.
 - `--trim` removes the uniform white scan margin, refusing to cut more than 15%
   of either dimension so a genuinely pale sheet is never gutted.
+- `--neatline` goes further and crops just inside the printed border rule, so
+  sheets butt at the *map* edge instead of drawing a black grid through the
+  finished mosaic. Recommended with `--mode mosaic`. A sheet with no detectable
+  rule is left untouched and reported rather than mangled.
+- `--exclude key,index` leaves matching files out of the print while they stay
+  in the zip.
 - `--probe` reports sizes, the chosen grid, cell size and the worst-case
   effective resolution, then exits. If it warns below 150 ppi, use fewer sheets
   per print or a bigger canvas.
 
-`--layout` takes `{"sheet-08": [row, col], ...}`. `layout-provisional.json` is
-a starting point inferred **only** from the order the sheets were requested
-(8,7,6,5 / 11,13,15 / 12,14,16 / 41,39,37), which looks like geographic
-adjacency. It must be checked against the Key sheet before the mosaic is
-trusted. Sheets absent from the layout — the Key itself — are reported and
-left out of the mosaic rather than silently dropped.
+`--layout` takes `{"sheet-08": [row, col], ...}`, row 0 = north, col 0 = west.
+When a layout is given the grid is sized from the layout's **extent**, not the
+image count, so a layout wider than the auto-grid cannot silently drop sheets.
+Duplicate positions and malformed entries are rejected before rendering.
+
+`layout-provisional.json` is a fallback inferred **only** from the order the
+sheets were requested — it is a guess, not geography. `layout-index.json` is
+the real thing, transcribed from the index map.
+
+### `read_index.py` — aligning to the index map
+
+The mosaic must follow the atlas, not the sheet numbering. The index map is the
+authority, but its numbers are small on a full-page scan, so:
+
+```bash
+# blow the index map up into readable, overlapping tiles
+python3 read_index.py tiles --src maps/00-index.jpg --out index-tiles
+
+# transcribe positions into layout-index.json, then check it
+python3 read_index.py validate --layout layout-index.json
+```
+
+`validate` prints the layout back as an ASCII map so it can be compared with the
+index map at a glance, and flags duplicate cells, missing sheets, and holes
+inside the footprint:
+
+```
+  (row 0 = north, col 0 = west)
+      8   7   6   5
+     11  13  15   .
+```
+
+`run_all.sh` uses `layout-index.json` when present and falls back to the
+provisional layout with a loud warning when it is not.
 
 ## Verification
 

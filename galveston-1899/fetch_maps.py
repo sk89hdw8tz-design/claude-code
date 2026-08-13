@@ -38,9 +38,11 @@ INDEX_URL = "https://maps.lib.utexas.edu/maps/sanborn/g.html"
 DEFAULT_SHEETS = [8, 7, 6, 5, 11, 13, 15, 12, 14, 16, 41, 39, 37]
 
 # Front matter to ship alongside the sheets. The 1899 listing has a "Key" but
-# nothing literally called "Legend"; confirmed that "the key and legend" means
-# the Key sheet alone. Add title/index back with --front key,title,index.
-DEFAULT_FRONT = ["key"]
+# nothing literally called "Legend"; "the key and legend" means the Key sheet.
+# The Index is pulled too because one of these two is the index map that gives
+# each sheet's geographic position -- it is the alignment reference for the
+# mosaic. Both go in the zip; neither is printed as a tile.
+DEFAULT_FRONT = ["key", "index"]
 
 FRONT_PATTERNS = {
     "key": re.compile(r"\bkey\b", re.I),
