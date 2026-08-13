@@ -2812,9 +2812,39 @@
   var viewState = null;
   function vstate() {
     if (viewState) return viewState;
+
+    /* SEED FROM THE RUN, not from the first plan in the catalogue.
+
+       This opened on PLANS[0] / PACKS[0] regardless of what had been
+       approved. Approve all five gates for starter-1210 in Houston, walk
+       to stage 6, and the plan set on screen was sunbelt-ranch-1850 on
+       the tx-i35 pack — a different house, in a different region, under
+       a cover page carrying the approval trail of the run you just did.
+
+       Stage 6 is "Package for PE". The package a licensed engineer
+       reviews and seals has to be the package that was approved, or the
+       trail on the cover attests to something other than the sheets
+       underneath it. That is the precise failure this product exists to
+       prevent, and it was the default.
+
+       The selects below still let a reviewer browse any plan — this only
+       decides where the view OPENS. jurisId is seeded too: it was never
+       initialised at all, so ctxFromState() read undefined and every
+       package built from this view carried no jurisdiction until someone
+       touched the picker. */
+    var run = (FM.project && typeof FM.project.state === "function") ? FM.project.state() : null;
+    var runPackId = null;
+    if (FM.project && typeof FM.project.pack === "function") {
+      try { var pk = FM.project.pack(); if (pk) runPackId = pk.id; } catch (e) { runPackId = null; }
+    }
     var plan = FM.weights && FM.weights.PLANS && FM.weights.PLANS[0];
     var pack = FM.weights && FM.weights.PACKS && FM.weights.PACKS[0];
-    viewState = { planId: plan ? plan.id : null, packId: pack ? pack.id : null, sheet: "S0.0" };
+    viewState = {
+      planId: (run && run.planId) || (plan ? plan.id : null),
+      packId: runPackId || (pack ? pack.id : null),
+      jurisId: (run && run.jurisId) || null,
+      sheet: "S0.0"
+    };
     return viewState;
   }
 
