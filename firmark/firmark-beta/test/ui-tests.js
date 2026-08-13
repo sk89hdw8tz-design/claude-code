@@ -24,8 +24,129 @@ const APP = 'file://' + path.join(__dirname, '..', 'firmark-app.html');
   const b = await chromium.launch();
   const p = await b.newPage({ viewport: { width: 1440, height: 1200 } });
   const errs = []; p.on('pageerror', e => errs.push(e.message));
-  await p.goto(APP);
   let bad = [];
+
+  /* Every navigation lands on the closed gate, so every navigation has to get
+     through it. localStorage does persist across a file:// reload in Chromium,
+     but relying on that would make the whole suite depend on a browser detail
+     nobody asserted — so `open()` signs in explicitly whenever it finds the
+     gate up, and fails loudly if it cannot. */
+  async function open(url) {
+    await p.goto(url || APP);
+    await p.waitForTimeout(150);
+    const gated = await p.evaluate(() => {
+      const g = document.getElementById('gate');
+      return !!g && !g.hasAttribute('hidden');
+    });
+    if (!gated) return;
+    await p.evaluate(() => {
+      document.getElementById('gateUser').value = 'Demo';
+      document.getElementById('gatePass').value = 'Demo';
+      document.getElementById('gateForm').dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
+    });
+    await p.waitForTimeout(200);
+    const stillGated = await p.evaluate(() =>
+      !document.getElementById('gate').hasAttribute('hidden'));
+    if (stillGated) throw new Error('could not sign in with Demo/Demo at ' + (url || APP));
+  }
+
+  await p.goto(APP);
+
+  /* ---- the closed gate ----
+     Nothing behind it may render until someone signs in, because every
+     artefact downstream is attributable and an approval with no name on it
+     is not an approval. */
+  {
+    const shut = await p.evaluate(() => ({
+      gateShown: !document.getElementById('gate').hasAttribute('hidden'),
+      shellHidden: document.getElementById('shell').getAttribute('aria-hidden'),
+      signedIn: FM.auth.require()
+    }));
+    if (!shut.gateShown) bad.push('gate: the app rendered without anyone signing in');
+    if (shut.shellHidden !== 'true') bad.push('gate: the shell behind the gate is not hidden from assistive tech');
+    if (shut.signedIn) bad.push('gate: a cold load arrived already signed in');
+
+    const wrong = await p.evaluate(async () => {
+      const wait = ms => new Promise(r => setTimeout(r, ms));
+      document.getElementById('gateUser').value = 'Demo';
+      document.getElementById('gatePass').value = 'nope';
+      document.getElementById('gateForm').dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
+      await wait(120);
+      return { err: document.getElementById('gateErr').textContent,
+               shown: !document.getElementById('gateErr').hasAttribute('hidden'),
+               stillGated: !document.getElementById('gate').hasAttribute('hidden'),
+               passCleared: document.getElementById('gatePass').value === '' };
+    });
+    if (!wrong.stillGated) bad.push('gate: a wrong password got in');
+    if (!wrong.shown || !wrong.err) bad.push('gate: a wrong password failed silently');
+    if (!wrong.passCleared) bad.push('gate: the password field was not cleared after a failure');
+
+    const inNow = await p.evaluate(async () => {
+      const wait = ms => new Promise(r => setTimeout(r, ms));
+      document.getElementById('gateUser').value = 'Demo';
+      document.getElementById('gatePass').value = 'Demo';
+      document.getElementById('gateForm').dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
+      await wait(250);
+      return { hidden: document.getElementById('gate').hasAttribute('hidden'),
+               user: FM.auth.state().user && FM.auth.state().user.name,
+               avatar: (document.querySelector('.avatar') || {}).textContent };
+    });
+    if (!inNow.hidden) bad.push('gate: Demo/Demo did not get in');
+    if (!inNow.user) bad.push('gate: signed in with no user on the session');
+    if (!inNow.avatar || inNow.avatar.length > 3) bad.push(`gate: the avatar does not show the signed-in user (${inNow.avatar})`);
+  }
+
+  /* ---- the pipeline gates ----
+     A gate that can be opened out of order, or opened with nothing behind it,
+     is theatre. And a gate whose refusal gives no reason is worse than a gate
+     that is simply absent. */
+  {
+    const gates = await p.evaluate(async () => {
+      const wait = ms => new Promise(r => setTimeout(r, ms));
+      FM.pipeline.reset();
+      FM.go('pipeline');
+      await wait(250);
+      const snap = FM.pipeline.snapshot();
+      const view = document.getElementById('view-pipeline');
+      return {
+        stages: snap.stages.length,
+        anyApprovable: snap.stages.filter(s => s.can).map(s => s.stage.id),
+        reasonless: snap.stages.filter(s => !s.can && !s.blockedBy.length).map(s => s.stage.id),
+        buttons: view.querySelectorAll('button').length,
+        enabledApprove: [].slice.call(view.querySelectorAll('button'))
+          .filter(b => /^Approve$/.test(b.textContent) && !b.disabled).length,
+        text: view.innerText
+      };
+    });
+    if (gates.stages !== 6) bad.push(`pipeline: expected 6 stages, got ${gates.stages}`);
+    if (gates.anyApprovable.length) bad.push(`pipeline: ${gates.anyApprovable.join(',')} approvable from empty`);
+    if (gates.reasonless.length) bad.push(`pipeline: ${gates.reasonless.join(',')} blocked with no reason given`);
+    if (gates.enabledApprove) bad.push(`pipeline: ${gates.enabledApprove} Approve buttons enabled with nothing to approve`);
+    if (/undefined|NaN/.test(gates.text)) bad.push('pipeline: undefined/NaN on the run screen');
+
+    /* the staleness rule, through the real UI */
+    const stale = await p.evaluate(async () => {
+      const wait = ms => new Promise(r => setTimeout(r, ms));
+      let geom = { walls: 4 };
+      FM.pipeline.reset();
+      FM.pipeline.provide('geometry', () => geom);
+      FM.pipeline.blocksOn('geometry', () => []);
+      const a = FM.pipeline.approve('geometry', 'ui test');
+      const before = FM.pipeline.statusOf('geometry').status;
+      geom = { walls: 5 };
+      FM.go('pipeline');
+      await wait(200);
+      return { approved: a.ok, before, after: FM.pipeline.statusOf('geometry').status,
+               says: /Withdrawn|needs re-approval|Needs re-approval/i.test(
+                 document.getElementById('view-pipeline').innerText) };
+    });
+    if (!stale.approved || stale.before !== 'approved') bad.push('pipeline: could not approve a stage with content');
+    if (stale.after !== 'stale') bad.push('pipeline: an approval survived a change to what was approved');
+    if (!stale.says) bad.push('pipeline: an approval went stale and the screen does not say so');
+    await p.evaluate(() => FM.pipeline.reset());
+  }
+
+  await open();
   const packs = await p.evaluate(() => FM.weights.PACKS.map(x=>x.id));
   const plans = await p.evaluate(() => FM.weights.PLANS.map(x=>x.id));
   await p.evaluate(() => FM.go('sizing'));
@@ -217,7 +338,7 @@ const APP = 'file://' + path.join(__dirname, '..', 'firmark-app.html');
      The app had no URL at all, so the browser's own controls threw the
      demo out of the product. These exercise the real browser history,
      not FM.go — the point is that the buttons on the chrome work. */
-  await p.goto(APP);
+  await open();
   await p.waitForTimeout(150);
   const h0 = await p.evaluate(() => location.hash);
   if (!/^#\/dashboard/.test(h0)) bad.push(`routing: boot did not write a hash (got ${JSON.stringify(h0)})`);
@@ -238,7 +359,7 @@ const APP = 'file://' + path.join(__dirname, '..', 'firmark-app.html');
   if (fwd !== 'materials') bad.push(`routing: Forward landed on ${fwd}, not materials`);
 
   /* a deep link, cold, in a fresh page load — the shareable case */
-  await p.goto(APP + '#/sizing/two-story-2450/fl-hvhz');
+  await open(APP + '#/sizing/two-story-2450/fl-hvhz');
   await p.waitForTimeout(400);
   const deep = await p.evaluate(() => ({
     route: FM.state.route,
@@ -273,7 +394,7 @@ const APP = 'file://' + path.join(__dirname, '..', 'firmark-app.html');
     { hash: '#/project/nope',                                    what: 'unknown project' }
   ];
   for (const c of staleCases) {
-    await p.goto(APP + c.hash);
+    await open(APP + c.hash);
     await p.waitForTimeout(350);
     const r = await p.evaluate(() => ({
       route: FM.state.route,
@@ -285,7 +406,7 @@ const APP = 'file://' + path.join(__dirname, '..', 'firmark-app.html');
     /* the address bar must not keep naming something that is not on screen */
     if (r.hash === c.hash) bad.push(`routing: ${c.what} left the stale hash in the address bar`);
   }
-  await p.goto(APP + '#/no-such-view/whatever');
+  await open(APP + '#/no-such-view/whatever');
   await p.waitForTimeout(250);
   const junk = await p.evaluate(() => FM.state.route);
   if (junk !== 'dashboard') bad.push(`routing: an unknown route landed on ${junk} instead of falling back`);
@@ -294,7 +415,7 @@ const APP = 'file://' + path.join(__dirname, '..', 'firmark-app.html');
      Every sub-state change used to `replace`, so switching Texas -> Florida
      and pressing Back landed on the dashboard: the two regions had never been
      two entries. Region, plan and variant are steps; the tab is a lens. */
-  await p.goto(APP);
+  await open();
   await p.waitForTimeout(300);
   const nav = await p.evaluate(async () => {
     const wait = ms => new Promise(r => setTimeout(r, ms));
@@ -321,7 +442,7 @@ const APP = 'file://' + path.join(__dirname, '..', 'firmark-app.html');
   }
 
   /* a tab change is NOT a step — it must not stack history */
-  await p.goto(APP + '#/sizing/two-story-2450/nc-piedmont/schedule');
+  await open(APP + '#/sizing/two-story-2450/nc-piedmont/schedule');
   await p.waitForTimeout(300);
   const tabStack = await p.evaluate(async () => {
     const wait = ms => new Promise(r => setTimeout(r, ms));

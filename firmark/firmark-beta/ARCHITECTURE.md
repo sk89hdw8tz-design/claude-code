@@ -282,6 +282,32 @@ Sheets, at minimum:
 
 ---
 
+## `FM.project` — main (added after the modules were commissioned)
+
+The run. One object holding what the user is working on, with everything
+downstream **derived on demand** rather than stored.
+
+```js
+FM.project.state()      // {name, model, jurisId, packId, planId, variantId}
+FM.project.set(patch)
+FM.project.model()      // the CAD model — stored, or derived from planId via FM.cad.fromPlan
+FM.project.takeoff()    // FM.takeoff.run(model)
+FM.project.site()       // FM.juris.forSite(jurisId)
+FM.project.pack()       // the weights.js region pack carrying the loads
+FM.project.plan()       // the plan the solver consumes
+FM.project.calcs()      // FM.solver.solvePlan(plan, pack)
+FM.project.bom()        // FM.bom.build(calcs)
+FM.project.planset()    // FM.planset.build(ctx)
+```
+
+Derived values are memoised **against a fingerprint of their input**, never
+against a dirty flag. There is no `invalidate()` to forget to call. A module
+that throws is caught and returned as `{error:true, message, where}` — a stage
+that threw and a stage that produced nothing are different facts and the gate
+treats them differently.
+
+Modules do **not** need to know about this file. `project.js` reaches into them.
+
 ## `FM.pipeline` — main
 
 ```js
@@ -292,6 +318,12 @@ FM.pipeline.approve(stageId, note)   // requires FM.auth user with the right rol
 FM.pipeline.reject(stageId, note)
 FM.pipeline.audit()       // append-only trail
 FM.pipeline.reset()
+
+// how a stage gets its content and its blockers — called by project.js,
+// NOT by the modules themselves:
+FM.pipeline.provide(stageId, function () { return <what the view shows>; })
+FM.pipeline.blocksOn(stageId, function () { return ["reason", ...]; })
+FM.pipeline.fingerprint(value)   // stable, key-order-insensitive, ignores functions
 ```
 A gate records **who** approved, **when**, and **what they were looking at** (a
 hash of the stage's inputs). If an upstream stage changes after approval, every

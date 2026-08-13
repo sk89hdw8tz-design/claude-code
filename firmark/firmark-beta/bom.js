@@ -416,8 +416,8 @@
          applied. Applying it would change a count silently and would also
          disagree with the cost the solver already published. */
       g.nestPerStock = g.lengthFt > 0 ? Math.floor(g.stockLengthFt / g.lengthFt) : 1;
-      g.service = g.wetService && g.dryService ? "mixed"
-                : (g.wetService ? "wet service" : "dry service");
+      g.service = g.wetService && g.dryService ? "service: MIXED wet and dry"
+                : (g.wetService ? "service: wet" : "service: dry");
       g.cls = "derived";
       g.priceCls = "market";
       g.marksLabel = g.marks.join(" + ");
@@ -570,19 +570,58 @@
      percentage is zero, and the drop is measured and printed instead.
      ============================================================ */
 
+  /* The scan ceiling for the nesting REPORT. 24 ft is a [market] assumption
+     about the longest stick a yard racks, not a code or engineering value, and
+     it bounds a report only — no purchase is changed by it. solver.js makes the
+     same point from the other side: it refuses to clamp stock length at 24 ft
+     because rack length is an availability question, not a discount. */
+  var NEST_SCAN_MAX_FT = 24;
+
   function wasteOf(lines, totals, planResult) {
     var w = (planResult && planResult.policy && planResult.policy.weights) || {};
     var dropLf = 0, nestable = [];
+    var nestLfSaved = 0, nestBfSaved = 0, nestUsdSaved = 0;
+
     lines.forEach(function (g) {
-      dropLf += (g.stockLengthFt - g.lengthFt) * g.piecesPerHouse;
-      if (g.nestPerStock > 1) {
+      g.cuts.forEach(function (c) {
+        dropLf += (g.stockLengthFt - c.cutLengthFt) * c.pieces;
+      });
+
+      /* Would a LONGER stick, cross-cut, buy less lumber? Two 5.00 ft header
+         cuts fit a 10-footer exactly and waste nothing, where two 8-footers
+         waste 6 ft. This is the first thing an estimator does by hand and the
+         BOM has no business hiding it. It is REPORTED, never applied: applying
+         it would change a piece count silently and would disagree with the
+         cost solver.js already published for the same members. */
+      g.cuts.forEach(function (c) {
+        if (!(c.cutLengthFt > 0) || !(c.pieces > 0)) return;
+        var asBoughtLf = g.stockLengthFt * c.pieces;
+        var best = null, C;
+        for (C = 8; C <= NEST_SCAN_MAX_FT; C += 2) {
+          if (C < c.cutLengthFt) continue;
+          var per = Math.floor(C / c.cutLengthFt);
+          if (per < 2) continue;                    /* not a nest, just a longer stick */
+          var sticks = Math.ceil(c.pieces / per);
+          var lf = sticks * C;
+          if (lf < asBoughtLf - 1e-9 && (!best || lf < best.lf)) {
+            best = { stockLengthFt: C, perStick: per, sticks: sticks, lf: lf };
+          }
+        }
+        if (!best) return;
+        var lfSaved = asBoughtLf - best.lf;
+        var bfSaved = lfSaved * g.bfPerLf;
+        var usdSaved = bfSaved * g.bfUSD * (1 + g.cullRate) *
+                       (isFinite(w.material) ? w.material : 1);
+        nestLfSaved += lfSaved; nestBfSaved += bfSaved; nestUsdSaved += usdSaved;
         nestable.push({
-          sku: g.sku, treatment: g.treatment, stockLengthFt: g.stockLengthFt,
-          cutLengthFt: g.lengthFt, pieces: g.piecesPerHouse, couldYield: g.nestPerStock,
-          sticksIfNested: Math.ceil(g.piecesPerHouse / g.nestPerStock),
-          sticksAsBought: g.piecesPerHouse
+          markId: c.markId, sku: g.sku, treatment: g.treatment,
+          cutLengthFt: c.cutLengthFt, pieces: c.pieces,
+          asBoughtStockFt: g.stockLengthFt, sticksAsBought: c.pieces, asBoughtLf: asBoughtLf,
+          nestStockFt: best.stockLengthFt, perStick: best.perStick,
+          sticksIfNested: best.sticks, nestedLf: best.lf,
+          lfSaved: lfSaved, bfSaved: bfSaved, usdSaved: usdSaved
         });
-      }
+      });
     });
     var pct = totals.bf > 0 ? (totals.dropBf / totals.bf) * 100 : 0;
     return {
@@ -619,15 +658,23 @@
       dropHandlingNote: "Charged once, on its own line, and never inside `usd`. It is a handling " +
                         "cost, not lumber.",
       nesting: {
+        applied: false,
+        scanCeilingFt: NEST_SCAN_MAX_FT,
+        scanCeilingCls: "market",
         candidates: nestable,
+        lfSaved: nestLfSaved, bfSaved: nestBfSaved, usdSaved: nestUsdSaved,
         note: nestable.length
-          ? nestable.length + " line(s) have a cut short enough that a stick could geometrically " +
-            "yield more than one piece. THIS BOM DOES NOT NEST: it buys one stick per piece, which " +
-            "is conservative and matches the cost the solver published. Nesting is a yard-floor " +
-            "optimisation that depends on the cut list and the saw, and taking it here would " +
-            "silently change a piece count. The opportunity is reported so it can be captured " +
-            "deliberately."
-          : "No line has a cut short enough for a second piece out of one stick."
+          ? nestable.length + " cut(s) would buy LESS lumber out of a longer stick, cross-cut. " +
+            "THIS BOM DOES NOT NEST — it buys one stick per piece at FM.solver.stockLength(), " +
+            "which is what the solver costed and what the schedule's economics were decided on. " +
+            "Nesting is reported and not applied for two reasons: it would silently change a " +
+            "piece count, and it trades a real cost saving for a longer SKU on the plan, which " +
+            "this product prices as a genuine cost (skuPenalty). The arithmetic is printed so an " +
+            "estimator can take it deliberately. Modelled saving if every one were taken: " +
+            n2(nestLfSaved, 1) + " lf / " + n2(nestBfSaved, 1) + " bf / " + usd(nestUsdSaved) +
+            " per house [market] — and NOT deducted from any total above."
+          : "No cut on this bill would buy less lumber out of a longer stick within the " +
+            NEST_SCAN_MAX_FT + " ft scan ceiling. Nothing to capture."
       },
       roundingRules: [
         "Repetitive piece counts round UP: ceil(run x 12 / spacing) + 1, one closing member. " +
@@ -813,6 +860,11 @@
     var acc = {}, order = [], failures = [];
     var pieces = 0, bf = 0, lf = 0, dollars = 0, handling = 0;
     var perConfig = [];
+    /* A mark that escalates only on some elevations is the most dangerous
+       thing a community number can hide: the base sheet prices cleanly and a
+       quarter of the lots have a member nobody selected. Collected here and
+       lifted into `excluded` by build(). */
+    var escBeyondBase = {}, escOrder = [];
 
     space.configs.forEach(function (cfg) {
       var vp, vres, vh;
@@ -830,11 +882,24 @@
       lf += vh.totals.lf * lotsHere;
       dollars += vh.totals.usd * lotsHere;
       handling += vh.totals.dropHandlingUSD * lotsHere;
+      var escHere = vh.excluded.filter(function (x) { return x.kind === "escalated"; });
+      escHere.forEach(function (x) {
+        var id = x.markId || x.what;
+        if (!hasK(escBeyondBase, id)) {
+          escBeyondBase[K(id)] = { markId: id, status: x.status || null, why: x.why,
+                                   configs: [], lotsExpected: 0 };
+          escOrder.push(id);
+        }
+        var rec = escBeyondBase[K(id)];
+        rec.configs.push(cfg.id);
+        rec.lotsExpected += lotsHere;
+      });
       perConfig.push({
         id: cfg.id, label: cfg.label, p: cfg.p, isBase: cfg.isBase,
         lotsExpected: lotsHere,
         piecesPerLot: vh.totals.pieces, bfPerLot: vh.totals.bf, usdPerLot: vh.totals.usd,
-        escalated: vh.excluded.filter(function (x) { return x.kind === "escalated"; }).length
+        escalated: escHere.length,
+        escalatedMarks: escHere.map(function (x) { return x.markId; })
       });
       vh.lines.forEach(function (g) {
         var key = g.sku + "|" + (g.treated ? "T" : "D") + "|" + g.stockLengthFt;
@@ -901,6 +966,7 @@
       bf: bf, lf: lf, usd: dollars, dropHandlingUSD: handling,
       byStockLength: byLen, byStockLengthOrder: lenOrder,
       lines: lines,
+      escalatedAcrossSet: escOrder.map(function (id) { return escBeyondBase[K(id)]; }),
       cls: "derived",
       basis: "TAKE-RATE WEIGHTED EXPECTATION over " + perConfig.length + " of " + space.count +
              " buildable configuration(s) of the master set, each solved through FM.solver.solvePlan() " +
@@ -950,12 +1016,46 @@
           "that add or delete a member — a carport in place of a garage, a deeper porch — this " +
           "number is the base elevation on every lot and is wrong for the lots that are not it.");
 
+    /* A mark that escalates only on SOME elevations never reaches the base
+       BOM's excluded list, because the base BOM never solved that elevation.
+       It is exactly the omission this list exists to prevent, so when the
+       weighting ran it is lifted in — named, with the share of lots it hits. */
+    var excluded = house.excluded;
+    if (perCommunity.weighted && perCommunity.escalatedAcrossSet) {
+      var extra = perCommunity.escalatedAcrossSet.filter(function (e) {
+        return !house.excluded.some(function (x) {
+          return x.kind === "escalated" && x.markId === e.markId;
+        });
+      });
+      if (extra.length) {
+        excluded = extra.map(function (e) {
+          var priced = house.lines.some(function (g) { return g.marks.indexOf(e.markId) !== -1; });
+          return {
+            what: e.markId + " — ESCALATES ON SOME ELEVATIONS BUT NOT THE ONE SOLVED ABOVE" +
+                  "  (~" + n2(e.lotsExpected, 1) + " of " + comma(perCommunity.lots) + " lots)",
+            why: (priced
+                    ? "This mark PRODUCED A MEMBER in the configuration the bill above was solved " +
+                      "for and is priced there, and NO MEMBER in "
+                    : "This mark DOES NOT EXIST in the configuration the bill above was solved for " +
+                      "— an elevation adds it — and it produced NO MEMBER in ") +
+                 e.configs.length + " buildable configuration(s): " +
+                 e.configs.join(", ") + ". The community quantity therefore prices it on the lots " +
+                 "where it works and prices NOTHING on the lots where it does not — those lots " +
+                 "still get built. Found only because take-rate weighting re-solved the master " +
+                 "set; it is invisible on the base sheet.  " + e.why,
+            kind: "escalated", markId: e.markId, status: e.status,
+            scope: "variant", lotsExpected: e.lotsExpected, configs: e.configs, cls: "derived"
+          };
+        }).concat(house.excluded);
+      }
+    }
+
     return {
       lines: house.lines,
       totals: house.totals,
       perLot: perLotOf(house, lots),
       perCommunity: perCommunity,
-      excluded: house.excluded,
+      excluded: excluded,
       waste: house.waste,
 
       /* context a renderer needs and a reviewer will ask for */
@@ -969,9 +1069,9 @@
       counts: {
         marksOnPlan: (planResult.marks || []).length,
         marksPriced: house.pricedMarks,
-        marksEscalated: house.excluded.filter(function (e) { return e.kind === "escalated"; }).length,
-        marksOutOfScope: house.excluded.filter(function (e) { return e.kind === "out-of-scope"; }).length,
-        categoriesNotSized: house.excluded.filter(function (e) { return e.kind === "not-sized"; }).length
+        marksEscalated: excluded.filter(function (e) { return e.kind === "escalated"; }).length,
+        marksOutOfScope: excluded.filter(function (e) { return e.kind === "out-of-scope"; }).length,
+        categoriesNotSized: excluded.filter(function (e) { return e.kind === "not-sized"; }).length
       },
       complete: false,
       completeNote:
@@ -1173,8 +1273,8 @@
     } else {
       say("      " + pad("Pieces", 26) + lpad(comma(pc.pieces), 12) +
           (pc.weighted ? "   (expected " + n2(pc.piecesExpected, 1) + ", rounded up)" : ""));
-      say("      " + pad("Board feet", 26) + lpad(n2(pc.bf, 0), 12));
-      say("      " + pad("Linear feet", 26) + lpad(n2(pc.lf, 0), 12));
+      say("      " + pad("Board feet", 26) + lpad(comma(pc.bf), 12));
+      say("      " + pad("Linear feet", 26) + lpad(comma(pc.lf), 12));
       say("      " + pad("Material [market]", 26) + lpad(usd(pc.usd), 12));
       say("      " + pad("Drop handling [market]", 26) + lpad(usd(pc.dropHandlingUSD), 12));
     }
@@ -1186,13 +1286,19 @@
       say("      CONFIGURATIONS — " + pc.solvedConfigurations + " of " + pc.configurations +
           " solved");
       say("      " + pad("CONFIGURATION", 40) + lpad("SHARE", 8) + lpad("LOTS", 8) +
-          lpad("PC/LOT", 8) + lpad("ESC", 5));
+          lpad("PC/LOT", 8) + "  ESCALATED");
       say("      " + rule("-").slice(0, 72));
       pc.perConfiguration.forEach(function (c) {
-        say("      " + pad((c.label || c.id).slice(0, 39), 40) +
+        say("      " + pad(String(c.id).slice(0, 39), 40) +
             lpad(n2(c.p * 100, 2) + "%", 8) + lpad(n2(c.lotsExpected, 1), 8) +
-            lpad(comma(c.piecesPerLot), 8) + lpad(String(c.escalated), 5));
+            lpad(comma(c.piecesPerLot), 8) + "  " +
+            (c.escalatedMarks && c.escalatedMarks.length ? c.escalatedMarks.join(", ") : "—") +
+            (c.isBase ? "   [base]" : ""));
       });
+      say();
+      say("      Configuration ids are elevation+option. The ESCALATED column is the");
+      say("      point of this table: a mark with no member on some elevations is");
+      say("      priced at zero on those lots and still gets built there.");
       if (pc.failedConfigurations && pc.failedConfigurations.length) {
         say();
         para("** " + pc.failedConfigurations.length + " configuration(s) FAILED TO SOLVE and are " +
@@ -1230,24 +1336,34 @@
     say("  " + pad("  of which, drop (offcut)", 34) + lpad(n2(w.dropBf, 2), 12) +
         "   = " + n2(w.dropPctOfPurchasedBf, 1) + "% of the buy");
     say("  " + pad("Drop, linear feet", 34) + lpad(n2(w.dropLf, 2), 12));
-    say("  " + pad("Identity check " + w.dropCheck.identity, 34) +
-        lpad("residual " + n2(w.dropCheck.residualBf, 9), 12));
+    say("  " + pad("Identity check: " + w.dropCheck.identity, 34) +
+        lpad("residual " + n2(w.dropCheck.residualBf, 9) + " bf", 20));
     say();
     say("  " + pad("dropHandling weight [market]", 34) +
         lpad(w.dropHandlingRate === null ? "—" : n2(w.dropHandlingRate, 3), 12));
     say("  " + pad("Drop handling cost, per house", 34) + lpad(usd(w.dropHandlingUSD), 12));
     para(w.dropHandlingNote, 72, "      ");
     say();
-    para("NESTING — " + w.nesting.note);
+    para("NESTING — NOT APPLIED. " + w.nesting.note);
     if (w.nesting.candidates.length) {
       say();
-      say("      " + pad("SKU", 34) + pad("STOCK", 8) + pad("CUT", 8) +
-          lpad("PC", 6) + lpad("IF NESTED", 11));
+      say("      " + pad("MARK", 10) + pad("SKU", 26) + pad("CUT", 8) +
+          pad("AS BOUGHT", 14) + pad("IF NESTED", 16) + "SAVES");
+      say("      " + rule("-").slice(0, 72));
       w.nesting.candidates.forEach(function (c) {
-        say("      " + pad(c.sku + " " + c.treatment, 34) + pad(c.stockLengthFt + " ft", 8) +
-            pad(n2(c.cutLengthFt, 2) + " ft", 8) + lpad(comma(c.sticksAsBought), 6) +
-            lpad(comma(c.sticksIfNested), 11));
+        say("      " + pad(c.markId, 10) + pad(c.sku, 26) +
+            pad(n2(c.cutLengthFt, 2) + " ft", 8) +
+            pad(c.sticksAsBought + " @ " + c.asBoughtStockFt + " ft", 14) +
+            pad(c.sticksIfNested + " @ " + c.nestStockFt + " ft (" + c.perStick + "/stick)", 16) +
+            n2(c.lfSaved, 1) + " lf · " + usd(c.usdSaved));
       });
+      say("      " + rule("-").slice(0, 72));
+      say("      " + pad("TOTAL NOT TAKEN", 58) + n2(w.nesting.lfSaved, 1) + " lf · " +
+          usd(w.nesting.usdSaved));
+      say();
+      say("      Scan ceiling " + w.nesting.scanCeilingFt + " ft [market] — an assumption about");
+      say("      the longest stick a yard racks, bounding this REPORT only. No purchase");
+      say("      above was changed by it and no total above was reduced by it.");
     }
     say();
     say("  ROUNDING RULES — stated, because a silent rounding changes a count:");
@@ -1272,7 +1388,7 @@
 
     say("  A. MARKS THAT ESCALATED — " + esc.length + " (the schedule proposed NO member)");
     say("  " + rule("-").slice(0, 76));
-    if (!esc.length) say("      (none — every mark this engine accepted produced a member)");
+    if (!esc.length) { say("      (none — every mark this engine accepted produced a member)"); say(); }
     esc.forEach(function (e) {
       say("      " + e.what);
       para(e.why, 66, "          ");
@@ -1281,7 +1397,7 @@
 
     say("  B. MARKS OUT OF SCOPE — " + oos.length + " (not this engine's member)");
     say("  " + rule("-").slice(0, 76));
-    if (!oos.length) say("      (none)");
+    if (!oos.length) { say("      (none)"); say(); }
     oos.forEach(function (e) {
       say("      " + e.what);
       para(e.why, 66, "          ");
