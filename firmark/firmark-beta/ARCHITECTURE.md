@@ -351,3 +351,44 @@ Add your assertions to `test/run-tests.js` in your own `suite(...)` block. DOM
 behaviour goes in `test/ui-tests.js`. The suite must stay green: run
 `node test/run-tests.js` before reporting done. The register's assertion count
 self-heals with `--sync-register`.
+
+Run the suite so the exit code is visible:
+
+```
+node test/run-tests.js > /tmp/t.txt 2>&1; echo "exit=$?"
+```
+
+Never `node test/run-tests.js | tail -2` inside an `&&` chain. A pipe returns
+the exit status of the LAST command, so the chain sails past a red suite and
+reports it as green. That is not a hypothetical: it is how a commit came to
+claim 1,221 passing assertions while five were failing.
+
+### What the node suite does NOT cover
+
+`test/harness.js` loads fourteen modules and **not one of them is a view**:
+scope, engine, weights, solver, jurisdiction, cad, dxf, takeoff, bom, export,
+planset, auth, pipeline, project. `core.js`, `stages-view.js`,
+`pipeline-view.js`, `sheet.js`, `sizing.js` and `materials.js` have no headless
+coverage at all. Every assertion in that suite can be green while the user
+interface is inoperable, and that has happened: the jurisdiction picker shipped
+completely non-functional — choosing a state re-rendered the view, the fresh
+`<select>` read back its own empty value, and stage 3 was unreachable through
+the only path a human has. The suite was green throughout, because every
+end-to-end run that "passed" had set `jurisId` from the console.
+
+So a green `run-tests.js` is necessary and is **not** sufficient to call a build
+shippable. Two browser runs stand between green and shippable:
+
+```
+node test/ui-tests.js        # behaviour: the gate, the run screen, every pack x plan
+node test/ui-controls.js     # every button, link and select, clicked
+```
+
+`ui-controls.js` classifies each click against a before/after fingerprint —
+route, dialogs, storage, toast — because measuring "did the DOM change" cannot
+catch a dead control: **re-rendering the view IS a DOM change.** Detection by
+side-effect is not detection of the right side-effect. A bare repaint of the
+same view counts as nothing and fails. It also fails any control whose entire
+effect is a toast admitting it does nothing — a button that says "not wired up
+yet" is a promise the product cannot keep. A control either works, or it is not
+there.
