@@ -145,13 +145,14 @@ def crop_to_neatline(im: Image.Image, dark: int = 110, min_frac: float = 0.55,
     the image is returned untouched, so a sheet that was scanned without one is
     never mangled.
     """
-    import numpy as np
-
-    a = np.asarray(im.convert("L"))
-    h, w = a.shape
-    dark_mask = a < dark
-    row_frac = dark_mask.mean(axis=1)
-    col_frac = dark_mask.mean(axis=0)
+    gray = im.convert("L")
+    w, h = gray.size
+    # Threshold to a dark mask, then let a BOX resize do the averaging: collapsing
+    # to width 1 gives the dark fraction of each row, to height 1 each column.
+    # Keeps this Pillow-only -- no numpy -- so the documented install stays true.
+    mask = gray.point(lambda v, d=dark: 255 if v < d else 0)
+    row_frac = [p / 255 for p in mask.resize((1, h), Image.BOX).tobytes()]
+    col_frac = [p / 255 for p in mask.resize((w, 1), Image.BOX).tobytes()]
     sy, sx = max(1, int(h * search_frac)), max(1, int(w * search_frac))
 
     top_c = [i for i in range(sy) if row_frac[i] >= min_frac]
@@ -332,12 +333,21 @@ def main() -> int:
     avail_w = args.width_in - 2 * margin - gutter * (cols - 1)
     avail_h = args.height_in - 2 * margin - gutter * (rows - 1)
 
-    if args.fit == "block" and args.mode == "grid":
+    if args.fit == "block":
         # Size the cell to the sheet aspect so images fill their cells exactly,
         # then centre the whole block. Leftover space lands in the outer margin
         # instead of pooling between rows.
+        #
+        # This matters most in mosaic mode: stretching each sheet to a cell of a
+        # different aspect scales the map by different factors horizontally and
+        # vertically, so a city block prints as the wrong shape. A map has one
+        # scale or it is not a map.
         cw = avail_w / cols
         ch = (avail_h / rows) - label_h_in
+        if ch <= 0:
+            print(f"error: --label-in {label_h_in}\" leaves no height for images "
+                  f"in a {rows}-row grid", file=sys.stderr)
+            return 2
         if cw / ch > median_aspect:            # height-limited
             cell_h_in, cell_w_in = ch + label_h_in, ch * median_aspect
         else:                                   # width-limited
@@ -351,6 +361,12 @@ def main() -> int:
     else:
         cell_w_in, cell_h_in = avail_w / cols, avail_h / rows
         off_x = off_y = margin
+        if args.mode == "mosaic":
+            sx = (cell_w_in / (cell_h_in - label_h_in)) / median_aspect
+            if abs(sx - 1) > 0.02:
+                print(f"  ! --fit stretch distorts the mosaic: sheets are scaled "
+                      f"{abs(sx - 1) * 100:.1f}% differently across than down, so the "
+                      f"map has two scales. Use --fit block to keep it true.")
     img_h_in = cell_h_in - label_h_in
     print(f"Cell: {cell_w_in:.2f}\" x {cell_h_in:.2f}\" (image area {cell_w_in:.2f}\" x {img_h_in:.2f}\")")
 
@@ -423,10 +439,22 @@ def main() -> int:
                     print(f"  {label}: trimmed {before[0]}x{before[1]} -> "
                           f"{im.size[0]}x{im.size[1]}{note}")
 
+            ox_in, oy_in = cell_origin(r, c)
+
             if args.mode == "mosaic":
-                target = (int(round(cell_w_in * args.dpi)), int(round(img_h_in * args.dpi)))
-                im = im.resize(target, Image.LANCZOS)
-                dw_in, dh_in = cell_w_in, img_h_in
+                # Derive the tile's pixel box from the rounded cell *boundaries*,
+                # not from a rounded cell size. Rounding a shared size and each
+                # origin independently lets round(r*s) exceed round((r-1)*s)+
+                # round(s), which leaves an uncovered scanline -- a white hairline
+                # printed straight across a map that is meant to butt edge to edge.
+                # Taking both edges from the same rounding makes neighbours share
+                # their boundary pixel by construction.
+                x0 = int(round(ox_in * args.dpi))
+                x1 = int(round((ox_in + cell_w_in) * args.dpi))
+                y0 = int(round(oy_in * args.dpi))
+                y1 = int(round((oy_in + img_h_in) * args.dpi))
+                im = im.resize((max(1, x1 - x0), max(1, y1 - y0)), Image.LANCZOS)
+                ox, oy = x0, y0
             else:
                 a = im.width / im.height
                 if cell_w_in / img_h_in > a:
@@ -437,10 +465,9 @@ def main() -> int:
                     (max(1, int(round(dw_in * args.dpi))), max(1, int(round(dh_in * args.dpi)))),
                     Image.LANCZOS,
                 )
+                ox = int(round((ox_in + (cell_w_in - dw_in) / 2) * args.dpi))
+                oy = int(round((oy_in + (img_h_in - dh_in) / 2) * args.dpi))
 
-            ox_in, oy_in = cell_origin(r, c)
-            ox = int(round((ox_in + (cell_w_in - dw_in) / 2) * args.dpi))
-            oy = int(round((oy_in + (img_h_in - dh_in) / 2) * args.dpi))
             canvas.paste(im, (ox, oy))
             placed += 1
 

@@ -20,6 +20,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import re
 import sys
 
 from PIL import Image, ImageOps
@@ -75,6 +76,18 @@ def cmd_tiles(args: argparse.Namespace) -> int:
     return 0
 
 
+def short_name(label: str) -> str:
+    """Three-character cell label for the ASCII map.
+
+    Any key can appear here -- someone may place '00-index' or a renamed sheet --
+    so this never assumes the 'sheet-<int>' shape.
+    """
+    m = re.search(r"(\d+)\s*$", label)
+    if m:
+        return str(int(m.group(1)))
+    return label[:3]
+
+
 def cmd_validate(args: argparse.Namespace) -> int:
     with open(args.layout) as fh:
         raw = json.load(fh)
@@ -127,7 +140,7 @@ def cmd_validate(args: argparse.Namespace) -> int:
         cells = []
         for c in range(cols):
             name = seen.get((r, c))
-            cells.append(f"{int(name.split('-')[1]):>3}" if name else "  .")
+            cells.append(f"{short_name(name):>3}" if name else "  .")
         grid.append(" ".join(cells))
     print("\n  (row 0 = north, col 0 = west)")
     for line in grid:

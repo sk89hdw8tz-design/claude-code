@@ -50,10 +50,12 @@ python3 fetch_maps.py --list
 python3 fetch_maps.py --group 2 --out maps
 
 # 3. Check the fit before committing to a 97 MP render.
-python3 make_print.py --src maps --probe --labels
+python3 make_print.py --src maps --exclude key,index --probe --labels
 
-# 4. Render.
-python3 make_print.py --src maps --out galveston-1899-27x40.tif \
+# 4. Render. --exclude keeps the Key and the index map out of the print;
+#    they stay in the zip.
+python3 make_print.py --src maps --exclude key,index \
+    --out galveston-1899-27x40.tif \
     --trim --labels --proof proof.jpg --pdf galveston-1899-27x40.pdf
 ```
 
@@ -90,8 +92,14 @@ below that, so the script raises the ceiling deliberately.
   geographic positions.
 - `--fit block` (default) sizes cells to the sheets' median aspect and centres
   the whole block, so leftover space becomes even outer margin instead of
-  pooling between rows. `--fit stretch` fills the canvas and letterboxes inside
-  each cell.
+  pooling between rows. In **mosaic** mode this is what keeps the map to a
+  single scale: stretching sheets to a cell of a different aspect scales the
+  map by different factors across and down, so a city block prints the wrong
+  shape. `--fit stretch` fills the canvas instead, and warns when doing so
+  would distort a mosaic.
+- Mosaic tiles take their pixel boundaries from the rounded cell edges, so
+  neighbours share a boundary exactly and no white hairlines appear between
+  sheets on grids that do not divide the canvas evenly.
 - The grid is chosen automatically by maximising coverage for the measured
   sheet aspect; override with `--cols`/`--rows`. A partial final row is centred
   rather than left ragged.
@@ -158,3 +166,15 @@ mock index page carrying two Galveston 1899 groups:
 The stand-ins are portrait (aspect ≈ 0.79), for which the auto-grid picks 4×4.
 Real sheets may differ; the grid is chosen from measurement at run time, so
 check `--probe` output against the real scans before rendering.
+
+A 24-agent adversarial review raised 20 candidate defects; 14 were refuted and
+6 survived and were fixed, each with a regression test:
+
+| Defect | Test that pins it |
+| --- | --- |
+| Mosaic stretched sheets to the cell aspect, distorting the map | a 500×500 px square renders 507×507 (was 507×577, 12% off) |
+| Rounding tile size and origin separately left 1-px white seams | a 2×7 mosaic of solid grey has zero white rows/columns |
+| `--neatline` needed numpy, undeclared against a "Pillow only" install | crops identically with numpy blocked from import |
+| Cache keyed on label alone reused another group's file | refetching group 1 over group 2 reports "stale", refetches |
+| README's step-by-step omitted `--exclude`, printing the Key | command corrected |
+| Layout validator crashed on any non-`sheet-NN` key | validates a layout containing `00-index`/`keymap` |

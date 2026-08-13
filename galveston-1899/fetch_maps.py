@@ -350,12 +350,31 @@ def main() -> int:
     manifest = []
     failures = []
 
+    # Output names are derived from the sheet number alone, so a file left over
+    # from a different --group (or --skeleton, or --index-url) would otherwise be
+    # reused as a cache hit while the manifest recorded the newly selected URL --
+    # i.e. the wrong 1899 run, silently. Record what each file was fetched from
+    # and only trust a cache hit when the source URL still matches.
+    sources_path = os.path.join(args.out, ".sources.json")
+    try:
+        with open(sources_path) as fh:
+            sources = json.load(fh)
+    except (OSError, ValueError):
+        sources = {}
+
     for i, (label, link) in enumerate(selected, start=1):
         ext = os.path.splitext(link.filename)[1] or ".jpg"
         dest_name = f"{label}{ext}"
         dest = os.path.join(args.out, dest_name)
 
-        if os.path.exists(dest) and not args.force and os.path.getsize(dest) > 0:
+        cached = (os.path.exists(dest) and not args.force
+                  and os.path.getsize(dest) > 0
+                  and sources.get(dest_name) == link.url)
+        if os.path.exists(dest) and not cached and not args.force \
+                and sources.get(dest_name) not in (None, link.url):
+            print(f"  [{i:2d}/{len(selected)}] {dest_name:<28} stale (different source), refetching")
+
+        if cached:
             print(f"  [{i:2d}/{len(selected)}] {dest_name:<28} cached")
         else:
             print(f"  [{i:2d}/{len(selected)}] {dest_name:<28} <- {link.filename}", end="", flush=True)
@@ -369,6 +388,9 @@ def main() -> int:
             with open(tmp, "wb") as fh:
                 fh.write(data)
             os.replace(tmp, dest)
+            sources[dest_name] = link.url
+            with open(sources_path, "w") as fh:
+                json.dump(sources, fh, indent=2)
             print(f"  {len(data) / 1e6:.1f} MB")
             if args.delay:
                 time.sleep(args.delay)
