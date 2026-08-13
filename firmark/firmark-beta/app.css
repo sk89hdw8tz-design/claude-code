@@ -709,6 +709,10 @@ details.acc > summary:hover { color: var(--blue); }
   padding: 40px 20px; text-align: center; color: var(--muted); font-size: .88rem;
   border: 1px dashed var(--line-strong); border-radius: var(--r-lg); background: var(--surface);
 }
+/* an empty result inside a table keeps the table's frame, so the reader can
+   see it is the filter that is empty and not the catalog */
+td.empty-cell { padding: 14px; background: transparent; }
+td.empty-cell .empty { padding: 26px 20px; }
 
 .src-note {
   font-family: var(--mono); font-size: .66rem; color: var(--faint); line-height: 1.6;

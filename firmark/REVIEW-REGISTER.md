@@ -7,17 +7,41 @@ allowed to be closed silently.
 Panel: structural PE (A&E), QA/QC, production-build & estimating, building code
 & regulatory (TX/NC/FL), software integration & test.
 
-Test suite: `node firmark-beta/test/run-tests.js` — **171 assertions, 0 failing**.
+Test suite: `node firmark-beta/test/run-tests.js` — **249 assertions, 0 failing**.
 UI sweep: `node firmark-beta/test/ui-tests.js` — renders the built bundle across every
 pack × plan, opens every mark's detail, fails on any NaN / undefined / empty numeric slot.
 Bundle freshness gate: `node firmark-beta/build.js --check`.
 
-**Coverage, stated plainly:** across 6 packs × 3 plans, **85 of 162 mark-slots produce a
-member; 31 escalate and 46 are not this engine's member.** It is said here and on every plan in
-the UI. Two earlier printings of this line were wrong (58/30/26, then 66/24/24) — the first
-measured nothing, the second was correct until the six missing marks landed. Note what adding
-them did: **the solved count rose and so did the escalations**, because the missing marks are the
-hard ones. Silence was flattering the number.
+**Coverage, stated plainly:** across 6 packs × 5 plans, **136 of 270 mark-slots produce a
+member; 38 escalate and 96 are not this engine's member.** It is said here and on every plan in
+the UI.
+
+**That line is no longer typed by hand.** Four printings of it were wrong — 58/30/26, then
+66/24/24, then 85/162 over "6 packs × 3 plans" when the product had grown to five plans. Each
+time the number was correct when a human read it off a run and stale by the next commit, and
+each time the correction was another hand-typed number waiting to go stale. So it is measured
+now: `node firmark-beta/test/coverage.js` prints it, `--sync` rewrites this sentence, and the
+test suite parses this sentence back out of this file and fails if it disagrees with a live
+measurement. A register whose headline can rot is decoration, not evidence.
+
+Note what adding the six missing marks did, back when they landed: **the solved count rose and
+so did the escalations**, because the missing marks are the hard ones. Silence was flattering
+the number.
+
+Per plan, sized · escalated · not sized:
+
+| Plan | Sized | Escalated | Not sized | Slots |
+|---|---|---|---|---|
+| `sunbelt-ranch-1850` | 10 | 14 | 24 | 48 |
+| `two-story-2450` | 41 | 11 | 14 | 66 |
+| `coastal-duplex-1600` | 34 | 6 | 14 | 54 |
+| `starter-1210` | 21 | 1 | 26 | 48 |
+| `townhome-1220` | 30 | 6 | 18 | 54 |
+
+`sunbelt-ranch-1850` is the weakest plan in the product and was the demo's landing page until
+B2. Half its slots are marks this engine declines to size. That is a true finding about the
+plan, not a bug — but it is the wrong first impression, and it was chosen by list order, not
+because it shows the product.
 
 ---
 

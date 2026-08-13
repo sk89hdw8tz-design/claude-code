@@ -411,6 +411,31 @@
     "Bearing (Fc⊥)":      { axis: "bearing", exponent: 0, move: "lengthen the bearing or widen the member — depth does nothing" }
   };
 
+  /* Why a mark has no member — one vocabulary for the screen and the paper.
+
+     These are not five flavours of the same answer. "The ladder has nothing
+     strong enough" and "a member passes but your availability floor excludes
+     it" are opposite findings: one needs a bigger section, the other needs a
+     phone call to the yard. The screen distinguished them and the export
+     printed a flat "— ESCALATED —" over all of them, which erased exactly the
+     distinction the escalation exists to make. */
+  var ESCALATION = {
+    "escalate:strength":    { badge: "strength",    tag: "NO SECTION STRONG ENOUGH",
+                              short: "nothing in the ladder passes the governing check" },
+    "escalate:procurement": { badge: "procurement", tag: "EXCLUDED BY AVAILABILITY",
+                              short: "a member passes — the availability floor excludes it" },
+    "escalate:bearing":     { badge: "bearing",     tag: "BEARING, NOT SIZE",
+                              short: "the bearing length governs; a deeper member cannot fix it" },
+    "escalate:geometry":    { badge: "geometry",    tag: "DEPTH NOT AVAILABLE",
+                              short: "no section fits the depth the condition allows" },
+    "escalate:input":       { badge: "input",       tag: "INPUT INCOMPLETE",
+                              short: "the demand is underdetermined — nothing was searched" }
+  };
+  function escalationOf(status) {
+    return ESCALATION[status] ||
+      { badge: "escalate", tag: "ESCALATED", short: "no member was selected" };
+  }
+
   var GATE_MOVE = {
     geometry:    "raise the plate height, drop the head height, or flush-frame the condition",
     procurement: "confirm the yard will stock it, or lower the availability floor deliberately",
@@ -1058,6 +1083,34 @@
      One plan, several region packs. This is the whole point of a tract plan:
      what actually has to change when the same house is built in another state. */
 
+  /* One vocabulary for a mark's portability, so the matrix badge, the stat
+     cards and the export cannot describe the same row three different ways.
+     `tone` is the badge class the views already use; `text` is the sentence
+     that has to survive being read on paper with no colour at all. */
+  function portability(row) {
+    var nSilent = row.silentPacks.length, nNa = row.naPacks.length;
+    if (row.unanswered) {
+      return { key: "unanswered", badge: "Unanswered", tone: "b-fail",
+               text: "no member in any region — this mark is unanswered, not portable" };
+    }
+    if (row.common) {
+      return { key: "common", badge: "Common", tone: "b-gold",
+               text: "one member, all " + row.ofPacks + " regions" };
+    }
+    if (row.partial) {
+      var parts = [];
+      if (nSilent) parts.push("no member in " + row.silentPacks.join(", "));
+      if (nNa) parts.push("out of scope in " + row.naPacks.join(", "));
+      return { key: "partial", badge: "Partial · " + row.answeredIn + "/" + row.ofPacks,
+               tone: "b-mute",
+               text: (row.varies || row.answeredIn > 1 ? "sized in " + row.answeredIn + " of " +
+                      row.ofPacks + " regions" : "sized in one region only") +
+                     " — " + parts.join("; ") + ". Not one member everywhere." };
+    }
+    return { key: "varies", badge: "Varies", tone: "b-blue",
+             text: "a different member by region — " + row.ofPacks + " regions, all answered" };
+  }
+
   function compare(plan, packs) {
     var runs = packs.map(function (p) { return { pack: p, result: solvePlan(plan, p) }; });
     var rows = plan.marks.map(function (mk) {
@@ -1080,23 +1133,47 @@
       var distinct = {};
       cells.forEach(function (c) { if (c.sku) distinct[c.sku + "@" + c.spacing] = 1; });
       var n = Object.keys(distinct).length;
-      /* A mark that produced no member anywhere is NOT portable — it is
-         unanswered. Counting it as "common to every region" turned silence into
-         evidence for the product's central claim. */
+
+      /* "One member, every region" is the product's central claim, so the bar
+         for making it has to be every region — not every region that answered.
+
+         Silence was counted as agreement twice. The first fix caught TOTAL
+         silence: a mark with no member anywhere was reading as common to all
+         six. It left PARTIAL silence behind, which is the more dangerous half —
+         a mark sized identically in five regions and escalated in the sixth
+         still had n === 1, so it printed a green Common badge next to a NONE
+         cell. That is the badge asserting portability against the evidence in
+         the same row.
+
+         So: common requires an answer in every cell. A mark that agrees where
+         it answers but is silent somewhere is `partial` — worth showing, and
+         worth naming the silent regions, but not the same claim. */
+      var silent = cells.filter(function (c) { return !c.sku && !c.notApplicable; });
+      var na     = cells.filter(function (c) { return c.notApplicable; });
+      var gaps   = silent.length + na.length;
+
       return { mark: mk, cells: cells, everSolved: n > 0,
-               varies: n > 1, common: n === 1, unanswered: n === 0 };
+               varies: n > 1 && gaps === 0,
+               common: n === 1 && gaps === 0,
+               partial: n > 0 && gaps > 0,
+               unanswered: n === 0,
+               silentPacks: silent.map(function (c) { return c.pack; }),
+               naPacks: na.map(function (c) { return c.pack; }),
+               answeredIn: cells.length - gaps, ofPacks: cells.length };
     });
     return {
       plan: plan, runs: runs, rows: rows,
       commonMarks: rows.filter(function (r) { return r.common; }).length,
       varyingMarks: rows.filter(function (r) { return r.varies; }).length,
+      partialMarks: rows.filter(function (r) { return r.partial; }).length,
       unansweredMarks: rows.filter(function (r) { return r.unanswered; }).length,
       solvedMarks: rows.filter(function (r) { return r.everSolved; }).length
     };
   }
 
   FM.solver = {
-    size: size, solvePlan: solvePlan, compare: compare,
+    size: size, solvePlan: solvePlan, compare: compare, portability: portability,
+    ESCALATION: ESCALATION, escalationOf: escalationOf,
     seedBounds: seedBounds, families: families, combosFor: combosFor,
     memberInputs: memberInputs, costOf: costOf, skuOf: skuOf, slackPenalty: slackPenalty,
     eligibility: eligibility,

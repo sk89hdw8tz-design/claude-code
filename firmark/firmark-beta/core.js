@@ -227,9 +227,48 @@ var FM = (function () {
     });
   }
 
-  /* ---------------- router ---------------- */
+  /* ---------------- router ----------------
+
+     The app had no URL. Every route was in-memory, so Back left the app
+     entirely and Reload dropped you on the dashboard — during a demo, the
+     browser's own controls were a cliff. Worse for this product than for
+     most: a schedule you want a colleague to look at had no address to send.
+
+     Hash routing, not History API, deliberately. This ships as a single
+     file that people open with file:// — pushState throws a SecurityError
+     on a file: origin in some browsers and silently does nothing useful in
+     others. The hash works everywhere the bundle does.
+
+     Shape:  #/sizing/two-story-2450/fl-hvhz     #/sheet/S-102
+     Views own their own segments; the router just carries them. */
 
   var VIEWS = {};
+  var ROUTE_PARAM = { project: "projectId", sheet: "sheetId" };
+  var applyingHash = false;   /* suppresses the hashchange we cause ourselves */
+
+  function hashFor(route, opts) {
+    var seg = ["#", route];
+    var key = ROUTE_PARAM[route];
+    if (key && opts[key] !== undefined && opts[key] !== null) seg.push(String(opts[key]));
+    else if (key && state[key]) seg.push(String(state[key]));
+    if (opts.sub && opts.sub.length) opts.sub.forEach(function (s) { seg.push(String(s)); });
+    return seg.join("/");
+  }
+
+  function parseHash() {
+    var raw = String(location.hash || "").replace(/^#\/?/, "");
+    if (!raw) return null;
+    var parts = raw.split("/").filter(function (s) { return s !== ""; })
+                   .map(function (s) { return decodeURIComponent(s); });
+    if (!parts.length) return null;
+    return { route: parts[0], args: parts.slice(1) };
+  }
+
+  /* A view that carries its own state past the route — which plan and which
+     region the Sizing view is showing — registers a codec here rather than
+     reaching into the router. Nothing breaks if a view registers nothing. */
+  var subRoute = {};
+  function registerSubRoute(route, o) { subRoute[route] = o; }
 
   function go(route, opts) {
     opts = opts || {};
@@ -253,6 +292,55 @@ var FM = (function () {
     /* move focus to the new view so a screen reader lands in the fresh content */
     if (host) { host.setAttribute("tabindex", "-1"); host.focus({ preventScroll: true }); }
     closeRailDrawer();
+
+    if (!opts.fromHash) {
+      var sub = subRoute[route] && subRoute[route].read ? subRoute[route].read() : null;
+      var want = hashFor(route, { projectId: opts.projectId, sheetId: opts.sheetId, sub: sub });
+      if (location.hash !== want) {
+        applyingHash = true;
+        /* replace, not push, when the route did not change — a view updating
+           its own sub-state should not fill the Back stack with itself */
+        if (opts.replace) location.replace(location.href.split("#")[0] + want);
+        else location.hash = want;
+        applyingHash = false;
+      }
+    }
+  }
+
+  /* Called by a view when its own sub-state changes (plan, region, tab) so the
+     URL keeps up without the view knowing how the URL is spelled. */
+  function syncHash(replace) {
+    if (applyingHash) return;
+    var sub = subRoute[state.route] && subRoute[state.route].read ? subRoute[state.route].read() : null;
+    var want = hashFor(state.route, { sub: sub });
+    if (location.hash === want) return;
+    applyingHash = true;
+    if (replace) location.replace(location.href.split("#")[0] + want);
+    else location.hash = want;
+    applyingHash = false;
+  }
+
+  function applyHash() {
+    if (applyingHash) return;
+    var h = parseHash();
+    if (!h) { go("dashboard", { fromHash: true }); return; }
+    /* an unknown route is a typo or a stale link, not a crash */
+    if (!VIEWS[h.route] && !document.getElementById("view-" + h.route)) {
+      toast("No such view: " + h.route);
+      go("dashboard", { fromHash: true });
+      return;
+    }
+    var opts = { fromHash: true };
+    var key = ROUTE_PARAM[h.route];
+    if (key && h.args.length) opts[key] = h.args[0];
+    /* hand the view its own segments BEFORE it renders, so it draws the
+       right thing once rather than drawing the default and then correcting */
+    var sr = subRoute[h.route];
+    if (sr && sr.write) {
+      try { sr.write(key ? h.args.slice(1) : h.args); }
+      catch (e) { toast("That link points at something this build does not have."); }
+    }
+    go(h.route, opts);
   }
 
   /* ---------------- shared bits ---------------- */
@@ -949,8 +1037,19 @@ var FM = (function () {
                  " · combination " + r.governing.combo);
       lines.push("");
     });
-    lines.push(new Array(73).join("="));
-    lines.push("Scope limits: " + FM.engine.LIMITS.join(" | "));
+    /* The boundaries, from the one renderer in scope.js.
+
+       This used to be `"Scope limits: " + FM.engine.LIMITS.join(" | ")` — a
+       thirteen-item paraphrase, run together on a single 1,177-character line,
+       missing twelve of the twenty-four calc-spec §8 boundaries. Item 17 was
+       among the missing ones, and item 17 is the one that says the bearing
+       check this record publishes above is a bearing-stress check and not a
+       connection design. §8 says the list prints verbatim and unabridged on
+       every output; the schedule export honoured that and this one did not. */
+    var ruleLine = new Array(73).join("=");
+    FM.scope.render(function (s) { lines.push(s === undefined ? "" : s); }, {
+      heading: function (t) { lines.push(""); lines.push(ruleLine); lines.push(t); lines.push(ruleLine); lines.push(""); }
+    });
     var blob = new Blob([lines.join("\n")], { type: "text/plain" });
     var a = document.createElement("a");
     a.href = URL.createObjectURL(blob);
@@ -1031,11 +1130,15 @@ var FM = (function () {
       }
     });
 
-    go("dashboard");
+    window.addEventListener("hashchange", applyHash);
+    /* open on whatever the URL says — a reload, a bookmark or a pasted link
+       all land where they point; an empty hash lands on the dashboard */
+    applyHash();
   }
 
   return {
     boot: boot, go: go, el: el, esc: esc, fmt: fmt, comma: comma, toast: toast,
+    registerSubRoute: registerSubRoute, syncHash: syncHash,
     dl: dl, card: card, pageHead: pageHead, betaStrip: betaStrip, statCard: statCard,
     dcrClass: dcrClass, dcrBadge: dcrBadge, gradeRank: gradeRank, effectiveTheme: effectiveTheme, getProfile: getProfile, exportCalcs: exportCalcs, inputsFor: inputsFor,
     VIEWS: VIEWS, state: state, SHEETS: SHEETS, PROJECTS: PROJECTS, PROFILES: PROFILES, ACTIVITY: ACTIVITY,

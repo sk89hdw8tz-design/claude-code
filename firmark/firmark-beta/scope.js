@@ -141,4 +141,70 @@
           }
     ]
   };
+
+  /* ---------------- the one renderer ----------------
+
+     The schedule export and the calc record both have to carry §8, and
+     they used to carry it separately: the schedule printed all 24 from
+     FM.scope.items, and the calc record printed a 13-item paraphrase of
+     FM.engine.LIMITS on a single line — missing item 17, which is the
+     one that says the bearing check the calc record publishes is NOT a
+     connection design. Closing §8 in one output and not the other is
+     how a scope list stops being a scope boundary, so there is now one
+     implementation and both outputs call it.
+
+     Takes an emit callback rather than returning a string so a caller
+     can interleave it with its own line buffer at any indent. */
+
+  function wrap(text, width) {
+    var words = String(text).split(/\s+/), lines = [], line = "";
+    width = width || 70;
+    for (var i = 0; i < words.length; i++) {
+      if (line && (line + " " + words[i]).length > width) { lines.push(line); line = ""; }
+      line = line ? line + " " + words[i] : words[i];
+    }
+    if (line) lines.push(line);
+    return lines;
+  }
+  function lpad(s, n) { s = String(s); while (s.length < n) s = " " + s; return s; }
+
+  /* opts.heading lets a caller supply its own section banner — the schedule
+     rules its headings with '=' lines, the calc record does not — without
+     either caller owning a second copy of the list itself. */
+  function render(emit, opts) {
+    opts = opts || {};
+    var heading = opts.heading || function (t) { emit(""); emit(t); emit(""); };
+
+    /* engine.LIMITS is the check's own list. It is NOT a summary of §8 and does
+       not stand in for it — both are printed, labelled, in that order. */
+    var lim = opts.limits === false ? null
+            : (opts.limits || (FM.engine && FM.engine.LIMITS));
+    if (lim && lim.length) {
+      heading("ENGINE LIMITS — " + lim.length + " ITEM(S), AS engine.js DECLARES THEM");
+      emit("  Printed from FM.engine.LIMITS, the check's own list. This is not a summary");
+      emit("  of the calc-spec §8 boundaries below and does not replace them — read both.");
+      emit("");
+      lim.forEach(function (t, i) {
+        var lines = wrap(String(t), 70);
+        emit("  " + lpad(i + 1, 3) + ". " + lines[0]);
+        lines.slice(1).forEach(function (x) { emit("       " + x); });
+      });
+    }
+
+    heading("SCOPE BOUNDARIES — calc-spec §8, VERBATIM AND UNABRIDGED");
+    wrap(FM.scope.preamble, 76).forEach(emit);
+    emit("");
+    var group = null;
+    FM.scope.items.forEach(function (it) {
+      if (it.group !== group) { group = it.group; emit(""); emit("  " + group.toUpperCase()); emit(""); }
+      var lines = wrap(it.text, 70);
+      emit("  " + lpad(it.n, 3) + ". " + lines[0]);
+      lines.slice(1).forEach(function (x) { emit("       " + x); });
+    });
+    emit("");
+    emit("  Source: " + FM.scope.source + ". Reproduced in full, not paraphrased.");
+  }
+
+  FM.scope.render = render;
+  FM.scope.wrap = wrap;
 })();

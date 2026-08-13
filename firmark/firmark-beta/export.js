@@ -503,7 +503,12 @@
       }
       var row = m.unifiedTo || (m.solution && m.solution.pick);
       if (!row) {
-        say("  " + pad(m.mark.id, 12) + pad("— ESCALATED —", 34) + "see ESCALATIONS below");
+        /* The reason belongs on the line. A reader scanning the member table
+           for what to buy needs to know that a procurement escalation has a
+           member behind it and a strength escalation does not — printing the
+           same "— ESCALATED —" over both made them one problem. */
+        var e = FM.solver.escalationOf(m.solution && m.solution.status);
+        say("  " + pad(m.mark.id, 12) + pad("— ESCALATED: " + e.badge + " —", 34) + e.tag);
         return;
       }
       say("  " + pad(m.mark.id, 12) +
@@ -554,16 +559,52 @@
     /* ---- what it refused to answer, and why ---- */
     var esc = res.marks.filter(function (m) { return !m.notApplicable && m.solution && !m.solution.pick; });
     if (esc.length) {
-      block("ESCALATIONS — " + esc.length + " MARK(S) HAVE NO MEMBER");
+      /* grouped and counted by reason, because "5 marks escalated" is a number
+         a reader cannot act on and "3 need a bigger section, 2 need a phone
+         call to the yard" is two different afternoons */
+      var byReason = {};
+      esc.forEach(function (m) {
+        var k = (m.solution && m.solution.status) || "escalate";
+        (byReason[k] = byReason[k] || []).push(m);
+      });
+      var reasons = Object.keys(byReason).sort();
+      block("ESCALATIONS — " + esc.length + " MARK(S) HAVE NO MEMBER, IN " +
+            reasons.length + " CATEGOR" + (reasons.length === 1 ? "Y" : "IES"));
+      reasons.forEach(function (k) {
+        var e = FM.solver.escalationOf(k);
+        say("  " + pad(byReason[k].length + " × " + e.tag, 34) + e.short);
+      });
+      if (reasons.length > 1) {
+        say();
+        say("  These are not the same finding. A procurement escalation names a member that");
+        say("  was run through the engine and passed; a strength escalation means no section");
+        say("  in the ladder passes at all. Read the category before the mark.");
+      }
+      say();
+
+      /* Labelled field with a hanging indent under the text, not under the
+         label. wrap() normalises runs of whitespace, so the label cannot be
+         padded inside the wrapped string — "wall   :" came back out as
+         "wall :" and the continuations hung off a column that was no longer
+         there. Wrap the value, then lay the label alongside it. */
+      function field(label, text) {
+        var head = "    " + pad(label, 7) + ": ";
+        var body = new Array(head.length + 1).join(" ");
+        var lines = wrap(String(text === undefined || text === null || text === "" ? "—" : text),
+                         78 - head.length);
+        say(head + lines[0]);
+        lines.slice(1).forEach(function (x) { say(body + x); });
+      }
+
       esc.forEach(function (m) {
         var s = m.solution;
-        say("  " + m.mark.id + " — " + m.mark.label);
-        say("    status : " + s.status);
-        wrap("wall   : " + (s.note ? s.note.wall : "—"), 74, "             ").forEach(function (x) { say("    " + x); });
-        wrap("next   : " + (s.note ? s.note.move : "—"), 74, "             ").forEach(function (x) { say("    " + x); });
-        if (s.note && s.note.outOfScope) {
-          wrap(s.note.outOfScope, 74, "             ").forEach(function (x) { say("             " + x); });
-        }
+        var ei = FM.solver.escalationOf(s.status);
+        say("  " + m.mark.id + " — " + m.mark.label + "   [" + ei.tag + "]");
+        field("status", s.status + " — " + ei.short);
+        field("wall", s.note ? s.note.wall : null);
+        field("next", s.note ? s.note.move : null);
+        if (s.note && s.note.procurement) field("member", s.note.procurement);
+        if (s.note && s.note.outOfScope) field("scope", s.note.outOfScope);
         say();
       });
     }
@@ -717,33 +758,11 @@
        the array rather than restating it means an item added there reaches the
        schedule without anyone remembering to copy it. It is NOT a summary of
        the 24 below — the two lists overlap and neither replaces the other. */
-    var lim = (FM.engine && FM.engine.LIMITS) || null;
-    if (lim && lim.length) {
-      block("ENGINE LIMITS — " + lim.length + " ITEM(S), AS engine.js DECLARES THEM");
-      say("  Printed from FM.engine.LIMITS, the check's own list. This is not a summary");
-      say("  of the calc-spec §8 boundaries below and does not replace them — read both.");
-      say();
-      lim.forEach(function (t, i) {
-        var lines = wrap(String(t), 70);
-        say("  " + lpad(i + 1, 3) + ". " + lines[0]);
-        lines.slice(1).forEach(function (x) { say("       " + x); });
-      });
-    }
-
-    /* ---- the 24, verbatim ---- */
-    block("SCOPE BOUNDARIES — calc-spec §8, VERBATIM AND UNABRIDGED");
-    wrap(FM.scope.preamble, 76).forEach(say);
-    say();
-    var group = null;
-    FM.scope.items.forEach(function (it) {
-      if (it.group !== group) { group = it.group; say(); say("  " + group.toUpperCase()); say(); }
-      var head = "  " + lpad(it.n, 3) + ". ";
-      var lines = wrap(it.text, 70);
-      say(head + lines[0]);
-      lines.slice(1).forEach(function (x) { say("       " + x); });
-    });
-    say();
-    say("  Source: " + FM.scope.source + ". Reproduced in full, not paraphrased.");
+    /* ---- engine limits, then the 24 verbatim ----
+       Both come from FM.scope.render, which the calc record in core.js also
+       calls. The two outputs used to build this section independently and the
+       calc record's copy had gone stale at 13 paraphrased items. */
+    FM.scope.render(say, { heading: block });
 
     say();
     say(rule("="));

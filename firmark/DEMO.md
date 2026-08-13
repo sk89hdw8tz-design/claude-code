@@ -1,0 +1,283 @@
+# Firmark beta — demo runbook
+
+For the person driving tomorrow. Read the first two sections before you open it;
+the rest is a script you can follow live.
+
+Every number in this file is **generated from the build**, not typed. `node
+firmark-beta/test/demo-values.js` prints them and says whether this file agrees;
+`--sync` rewrites the tables. The test suite fails if they drift, so if the demo
+shows something different from what is written here, that is a bug in the
+product and not a stale document.
+
+---
+
+## 1. Running it
+
+```
+open firmark-beta/firmark-app.html
+```
+
+That is the whole install. It is one self-contained HTML file — no server, no
+build step, no network. Double-click it, or drag it into a browser tab. It works
+from `file://`, which is why routing uses the URL hash rather than the History
+API.
+
+If you change any part (`core.js`, `engine.js`, `solver.js`, `weights.js`,
+`sizing.js`, …) you must rebuild the bundle before demoing:
+
+```
+cd firmark-beta
+node build.js              # rewrites firmark-app.html from the parts
+node build.js --check      # fails loudly if the bundle and parts have drifted
+```
+
+**Rebuild before you demo.** The bundle is a build product, and it has shipped
+stale before — that is the single most likely way for the demo to disagree with
+this runbook.
+
+### Pre-flight, the morning of
+
+```
+cd firmark-beta
+node test/run-tests.js     # engine, solver, weights, exports
+node build.js --check      # bundle matches the parts
+node test/ui-tests.js      # real Chromium across every pack × plan
+node test/coverage.js      # coverage numbers vs the review register
+node test/demo-values.js   # the tables below vs the live build
+```
+
+All five clean means what is written here is what will be on screen.
+
+---
+
+## 2. What this is, and what it is not
+
+Firmark is an **NDS 2024 ASD member check** with a sizing search on top of it,
+aimed at repeatable residential work — tract homes, cookie-cutter plans, and
+master sets reused across lots and regions.
+
+Say this out loud early, because someone will ask:
+
+- It **checks and selects members**. It does not produce sealed engineering. A
+  licensed PE reviews and stamps every package.
+- It is **gravity only**. No wind, seismic, uplift, or lateral. Two of the six
+  region packs are wind-governed and say so on screen in their own words — the
+  point of that banner is that the thing governing those regions is outside this
+  engine.
+- It is **simply-supported single spans, sawn dimension lumber**. No continuous
+  spans, no cantilevers, no glulam, LVL, PSL, LSL, I-joists or CLT.
+- The full boundary list is **calc-spec §8, 24 items, verbatim** — printed on
+  the schedule export and on the calc record, unabridged, every time.
+
+The honest framing that lands best: *the value is not that it sizes a joist. The
+value is that it tells you, in writing, everything it did not do.*
+
+---
+
+## 3. The five-minute walk
+
+### 3.1 Open on the Sizing view
+
+The demo lands on **`two-story-2450`** — a 2,450 sf two-storey plan. Pick this
+one deliberately: it is the plan with the most marks the engine can actually
+size, so the first screen is full rather than mostly caveats.
+
+Across all six regions this plan is 41 sized, 11 escalated, 14 not-sized of 66
+slots. Do not open `sunbelt-ranch-1850` cold in front of an audience — it is
+10 / 14 / 24, and the first thing on screen would be refusals.
+
+### 3.2 The schedule, in Texas
+
+Region: **Texas · I-35 corridor**.
+
+<!-- fm:schedule-tx-i35 -->
+| Mark | Member | Spacing | Governs | DCR | Note |
+|---|---|---|---|---|---|
+| FJ-1 | `2x12 Southern Pine No.2` | 16″ | Bending | 0.695 | unified onto this SKU |
+| FJ-2 | `2x12 Southern Pine No.2` | 16″ | Bending | 0.857 |  |
+| FJ-3 | `2x12 Southern Pine No.2` | 16″ | Bending | 0.410 | unified onto this SKU |
+| GB-1 | **escalates** | — | — | — | no section strong enough |
+| HDR-1 | _not sized_ | — | — | — | underdetermined |
+| HDR-2 | `4x6 Southern Pine No.2` | single | Bending | 0.462 |  |
+| DK-1 | `2x10 Southern Pine No.2` | 16″ | Bending | 0.732 |  |
+| DK-2 | `4x10 Southern Pine No.2` | single | Bending | 0.748 |  |
+| HDR-ST | `4x12 Southern Pine No.1` | single | Bending | 0.856 |  |
+| HDR-GAR-2S | **escalates** | — | — | — | no section strong enough |
+| PST-DK | _not sized_ | — | — | — | out-of-scope |
+<!-- /fm:schedule-tx-i35 -->
+
+Three things to point at, in this order:
+
+1. **FJ-3 is at DCR 0.410.** That is not the solver being wasteful. Its own pick
+   was a 2x8; it was *unified* onto the 2x12 that FJ-2 needs. Click the row —
+   the detail shows the member it chose, the member it moved to, and the net
+   cost of the move. **One SKU instead of three is worth more on a tract plan
+   than the lumber saved on the short joist**, and that trade is the product.
+2. **GB-1 escalates.** The centre floor girder wants more section modulus than
+   the deepest sawn member in the ladder has. The escalation says by how much,
+   and says that a span like this in a tract plan is normally an engineered
+   header — which this engine does not select. It refuses instead of guessing.
+3. **HDR-1 is not sized, PST-DK is not sized.** Different reason: those are
+   carried deliberately rather than dropped. A schedule that omits a mark reads
+   as if the mark were fine.
+
+### 3.3 Switch the region to Florida HVHZ
+
+Same plan, same spans, same loads. Change only the region.
+
+<!-- fm:schedule-fl-hvhz -->
+| Mark | Member | Spacing | Governs | DCR | Note |
+|---|---|---|---|---|---|
+| FJ-1 | `2x10 Southern Pine No.1` | 16″ | Bending | 0.734 |  |
+| FJ-2 | `2x12 Southern Pine No.1` | 16″ | Bending | 0.643 |  |
+| FJ-3 | `2x8 Southern Pine No.2` | 16″ | Bending | 0.801 |  |
+| GB-1 | **escalates** | — | — | — | no section strong enough |
+| HDR-1 | _not sized_ | — | — | — | underdetermined |
+| HDR-2 | `4x6 Southern Pine No.2` | single | Bending | 0.553 |  |
+| DK-1 | `2x10 Southern Pine No.2` | 16″ | Bending | 0.732 |  |
+| DK-2 | `4x10 Southern Pine No.2` | single | Bending | 0.749 |  |
+| HDR-ST | **escalates** | — | — | — | excluded by availability |
+| HDR-GAR-2S | _not sized_ | — | — | — | wall-system |
+| PST-DK | _not sized_ | — | — | — | out-of-scope |
+<!-- /fm:schedule-fl-hvhz -->
+
+Two moments here, and they are the best two in the demo:
+
+1. **The joists stop unifying.** Texas collapses FJ-1 and FJ-3 onto FJ-2's
+   2x12; Florida does not. The reason is the palette: Spruce-Pine-Fir is in the
+   Texas palette and is not in the HVHZ palette, so the whole cost landscape
+   moves and the unification that paid in Texas stops paying in Florida. Nobody
+   configured that outcome — it falls out of the weights.
+2. **HDR-ST escalates for a completely different reason than GB-1.** It is not
+   "no member is strong enough." A member **passes the check** and the region
+   pack's availability floor excludes it. The escalation names that member and
+   prints its DCR, because that is a phone call to the yard, not a redesign.
+   This distinction is the one to labour: an escalation that does not say which
+   kind it is has told you nothing.
+
+Also note **HDR-GAR-2S flips from escalating to not-sized** between the two
+regions — the mark's applicability is regional.
+
+### 3.4 North Carolina Mountains, briefly
+
+<!-- fm:schedule-nc-mountain -->
+| Mark | Member | Spacing | Governs | DCR | Note |
+|---|---|---|---|---|---|
+| FJ-1 | `2x12 Southern Pine No.2` | 16″ | Bending | 0.695 | unified onto this SKU |
+| FJ-2 | `2x12 Southern Pine No.2` | 16″ | Bending | 0.857 |  |
+| FJ-3 | `2x12 Southern Pine No.2` | 16″ | Bending | 0.410 | unified onto this SKU |
+| GB-1 | **escalates** | — | — | — | no section strong enough |
+| HDR-1 | _not sized_ | — | — | — | underdetermined |
+| HDR-2 | `4x6 Southern Pine No.2` | single | Bending | 0.573 |  |
+| DK-1 | `2x10 Southern Pine No.2` | 16″ | Bending | 0.732 |  |
+| DK-2 | `4x10 Southern Pine No.2` | single | Bending | 0.749 |  |
+| HDR-ST | `4x12 Southern Pine No.1` | single | Bending | 0.856 |  |
+| HDR-GAR-2S | **escalates** | — | — | — | no section strong enough |
+| PST-DK | _not sized_ | — | — | — | out-of-scope |
+<!-- /fm:schedule-nc-mountain -->
+
+The floor comes back identical to Texas; **HDR-2 moves from 0.462 to 0.573**
+because the mountain snow load is real. Use this to make the point that the
+plan is portable and the *loads* are not.
+
+### 3.5 The repeat matrix
+
+The tab that answers the question a production builder actually has: *which
+marks can I buy once for the whole region set, and which have to be decided per
+region?*
+
+<!-- fm:skus -->
+| Region | Distinct SKUs | Marks unified | Escalations |
+|---|---|---|---|
+| Texas · I-35 corridor (`tx-i35`) | 5 | 2 | 2 |
+| Florida · High-Velocity Hurricane Zone (`fl-hvhz`) | 6 | 0 | 2 |
+| North Carolina · Mountains (`nc-mountain`) | 5 | 2 | 2 |
+<!-- /fm:skus -->
+
+Watch the badges. A mark is **Common** only when *every* region produced a
+member. A mark that agrees in five regions and has no member in the sixth reads
+**Partial** and names the region it could not answer — on `two-story-2450` that
+is `HDR-ST`, silent in `fl-hvhz`. That is deliberate and it is worth calling
+out: the badge is not allowed to make a portability claim the row's own cells
+contradict.
+
+### 3.6 Export the schedule
+
+Hit the export. Show the text file. The things to scroll to:
+
+- the wind note **first**, banner-ruled, on the two wind-governed packs
+- **THIS IS NOT A COMPLETE SCHEDULE** near the top
+- the reaction schedule (the marks that are out of scope still publish their
+  reactions — you cannot size the post here but you can hand someone the load)
+- the escalations, **grouped and counted by category**, with the sentence
+  saying the categories are not the same finding
+- the **24 scope boundaries, verbatim** at the back
+
+The same 24 come out of the calc record on the Calculations view. One renderer
+feeds both — they cannot say different things.
+
+---
+
+## 4. Questions you will get
+
+**"Can it do the whole house?"**
+No, and it says so per mark rather than quietly. Girders over long spans,
+engineered headers, posts, and anything wall-system escalate or come back as
+not-sized with a reason. On `two-story-2450` that is 11 escalations and 14
+not-sized slots out of 66 across six regions.
+
+**"Why is that member so oversized?"**
+Almost always unification. Open the row — the detail shows both the member the
+search picked and the member it was moved onto, with the net cost of the move.
+If it is not unification, the DCR and governing check are on the row.
+
+**"Where do the loads come from?"**
+The export has a load-provenance section with every value tagged `code`, `site`
+or `market`. Site loads are labelled **planning defaults, not site values** —
+they are placeholders until someone puts the real ground snow and the real
+exposure in. Do not let this one slide past; it is an open item, not a feature.
+
+**"Is the material data real?"**
+Yes — NDS Supplement Tables 1B, 4A, 4B, 4D and 5A, plus AISC shapes, in the
+Materials view with citations. The one gap is deliberate and stated on that
+page: the size-factor (`C_F`) table is not in the catalog, so `C_F` is a typed
+input and every member that uses an unsourced one is flagged on the schedule
+line, not in a footnote.
+
+**"What happens on a bad link / refresh?"**
+Routing is in the URL hash. `#/sizing/two-story-2450/fl-hvhz` opens that plan in
+that region from cold, Back and Forward work, reload lands where you were, and
+an unknown route falls back to the dashboard with a toast. Feel free to
+demonstrate this — it is tested.
+
+---
+
+## 5. Known-weak spots — steer around or own them
+
+| Thing | What happens | What to say |
+|---|---|---|
+| `sunbelt-ranch-1850` | 10 sized, 14 escalated, 24 not-sized of 48 | Do not open it cold. If asked, it is a real result about a plan with a lot of long-span and wall-system marks, not a failure to run. |
+| Site loads | Ground snow, exposure and wind speed are planning defaults | Say it before they find it. They are labelled everywhere they are used. |
+| Deflection on the sheet vs the schedule | The sheet is the optimistic path | Open items §L8 in the review register. |
+| No wall dead load | A header under a gable end or an upper storey needs that load added by hand | It is boundary item in the printed 24, so it is already in the export. |
+| Attic bottom-chord live, slope/pitch | Not modelled | Spans are horizontal projections; converting a sloped assembly is the user's job, and the export says so. |
+
+The full list of open release conditions is `REVIEW-REGISTER.md` §L. If someone
+technical is in the room, that document is the better thing to hand them than
+any slide — it is a register of what is wrong, with dispositions, and it holds
+up better than a claim that nothing is.
+
+---
+
+## 6. If something breaks live
+
+- **Blank view / nothing renders** — open the console. If `FM is not defined`,
+  the bundle is stale or a part has a syntax error; run `node build.js`.
+- **A number reads `NaN` or `—`** — that is a real bug, and `test/ui-tests.js`
+  is supposed to catch it across every pack × plan. Note the mark and the
+  region; it is reproducible.
+- **The demo disagrees with this document** — trust the app, then run
+  `node test/demo-values.js` afterwards. Either the tables here are stale (they
+  should not be — the suite checks them) or the build changed.
+- **Nothing at all works** — `git stash` any local edits and `node build.js`.
+  The committed bundle is known green.

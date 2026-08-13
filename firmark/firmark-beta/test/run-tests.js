@@ -933,6 +933,152 @@ suite("export · the schedule carries what calc-spec §8 says it must");
   problems.slice(0, 5).forEach(function (p) { console.log("      " + p); });
 })();
 
+suite("compare · a green badge cannot outrun the row it sits in");
+(function () {
+  /* Silence was counted as agreement twice. The first fix caught TOTAL silence.
+     This one is PARTIAL silence: a mark sized identically in five regions and
+     escalated in the sixth still had n === 1, so it printed Common next to a
+     NONE cell — the badge asserting portability against the evidence beside it. */
+  var offenders = [], overclaim = [], mismatch = [];
+  FM.weights.PLANS.forEach(function (pl) {
+    var c = FM.solver.compare(pl, FM.weights.PACKS);
+    c.rows.forEach(function (r) {
+      var gaps = r.cells.filter(function (x) { return !x.sku; }).length;
+      if (r.common && gaps) offenders.push(pl.id + "/" + r.mark.id + " (" + gaps + " empty cell(s))");
+      if (r.varies && gaps) offenders.push(pl.id + "/" + r.mark.id + " varies with " + gaps + " empty");
+
+      var p = FM.solver.portability(r);
+      /* the sentence must not claim every region unless every region answered */
+      if (gaps && /all \d+ regions|all six/.test(p.text)) overclaim.push(pl.id + "/" + r.mark.id);
+      /* exactly one of the four states, always */
+      var n = [r.common, r.varies, r.partial, r.unanswered].filter(Boolean).length;
+      if (n !== 1) mismatch.push(pl.id + "/" + r.mark.id + " is in " + n + " states");
+      if (r.answeredIn !== r.cells.length - gaps) mismatch.push(pl.id + "/" + r.mark.id + " miscounts answers");
+    });
+  });
+  eq(offenders.length, 0, "no mark claims Common or Varies while a region has no member" +
+     (offenders.length ? " — " + offenders.slice(0, 4).join("; ") : ""));
+  eq(overclaim.length, 0, "no portability sentence claims every region over a gap" +
+     (overclaim.length ? " — " + overclaim.slice(0, 4).join("; ") : ""));
+  eq(mismatch.length, 0, "every row is in exactly one portability state, counted correctly" +
+     (mismatch.length ? " — " + mismatch.slice(0, 4).join("; ") : ""));
+
+  /* the defect had a specific victim; pin it so the flag cannot regress */
+  var st = FM.solver.compare(FM.weights.planById("two-story-2450"), FM.weights.PACKS)
+             .rows.filter(function (r) { return r.mark.id === "HDR-ST"; })[0];
+  truthy(st && st.partial && !st.common,
+         "HDR-ST on two-story-2450 — identical in 5 regions, none in fl-hvhz — reads Partial, not Common");
+  truthy(st && st.silentPacks.length === 1 && st.silentPacks[0] === "fl-hvhz",
+         "and it names the region it could not answer");
+  truthy(st && FM.solver.portability(st).text.indexOf("fl-hvhz") !== -1,
+         "and says so in the sentence, so paper carries what colour carried");
+
+  /* a plan that really is portable must still be able to say so */
+  var anyCommon = 0;
+  FM.weights.PLANS.forEach(function (pl) {
+    anyCommon += FM.solver.compare(pl, FM.weights.PACKS).commonMarks;
+  });
+  truthy(anyCommon > 0, "the stricter rule still leaves genuinely portable marks (" + anyCommon + ")");
+})();
+
+suite("export · an escalation says which kind it is");
+(function () {
+  /* Five statuses, five different afternoons. "No section is strong enough" and
+     "a member passes but your availability floor excludes it" are opposite
+     findings; the export printed a flat "— ESCALATED —" over both. */
+  var stat = Object.keys(FM.solver.ESCALATION);
+  eq(stat.length, 5, "five escalation reasons are named");
+  var dupTag = {}, dupes = [];
+  stat.forEach(function (k) {
+    var e = FM.solver.ESCALATION[k];
+    if (dupTag[e.tag]) dupes.push(e.tag); else dupTag[e.tag] = 1;
+    if (!e.badge || !e.tag || !e.short) dupes.push(k + " is incomplete");
+  });
+  eq(dupes.length, 0, "each reason has its own tag, badge and one-line meaning");
+  truthy(FM.solver.escalationOf("something:new").tag === "ESCALATED",
+         "an unknown status degrades to a generic label rather than throwing");
+
+  var t = FM.scheduleText(FM.weights.planById("two-story-2450"), FM.weights.packById("fl-hvhz"));
+  truthy(/ESCALATIONS — 2 MARK\(S\) HAVE NO MEMBER, IN 2 CATEGORIES/.test(t),
+         "the heading counts categories, not just marks");
+  truthy(/EXCLUDED BY AVAILABILITY/.test(t) && /NO SECTION STRONG ENOUGH/.test(t),
+         "and both categories are named in the summary");
+  truthy(/— ESCALATED: procurement —/.test(t) && /— ESCALATED: strength —/.test(t),
+         "the member table carries the reason on the line, not a flat ESCALATED");
+  truthy(!/— ESCALATED —/.test(t), "the undifferentiated label is gone");
+  truthy(/These are not the same finding/.test(t),
+         "and a mixed schedule says outright that the categories differ");
+
+  /* the label alignment the wrapper used to eat */
+  var L = t.split("\n");
+  var wall = L.filter(function (x) { return /^    wall   : /.test(x); });
+  truthy(wall.length > 0, "escalation fields keep their padded labels through the wrapper");
+  var single = FM.scheduleText(FM.weights.planById("two-story-2450"), FM.weights.packById("nc-mountain"));
+  truthy(/IN 1 CATEGORY\b/.test(single) && !/These are not the same finding/.test(single),
+         "a single-category schedule does not lecture about a distinction it has no instance of");
+})();
+
+suite("export · §8 reaches EVERY text output, not just the schedule");
+(function () {
+  /* §8 says "on every output". The schedule honoured that and the calc record
+     in core.js did not: it carried `FM.engine.LIMITS.join(" | ")` — thirteen
+     paraphrased items on one line, missing twelve of the twenty-four, item 17
+     among them, while the same file printed a bearing check above it. Item 17
+     is the boundary that says that bearing check is bearing stress and not a
+     connection design. The fix is one renderer, so this tests the renderer and
+     then tests that nobody has grown a second copy of the list. */
+  var buf = [];
+  FM.scope.render(function (s) { buf.push(s === undefined ? "" : s); });
+  var rendered = buf.join("\n");
+
+  var absent = FM.scope.items.filter(function (it) {
+    return rendered.replace(/\s+/g, " ").indexOf(it.text.slice(0, 60)) === -1;
+  });
+  eq(absent.length, 0, "FM.scope.render emits all 24 boundaries" +
+     (absent.length ? " — missing " + absent.map(function (x) { return x.n; }).join(", ") : ""));
+  truthy(rendered.indexOf(FM.scope.preamble.slice(0, 60)) !== -1,
+         "and the §8 preamble that says verbatim and unabridged");
+  truthy(/ENGINE LIMITS/.test(rendered) && /does not replace them/.test(rendered),
+         "engine.LIMITS is printed alongside §8, labelled as not a substitute for it");
+  truthy(rendered.indexOf("Bearing is checked") !== -1,
+         "item 17 — the bearing/connection boundary — is in the rendered text");
+  /* the record's own defect, pinned: a paraphrase is shorter than the thing */
+  truthy(rendered.split("\n").length > 60,
+         "the boundaries render as a list, not a single run-on line");
+
+  var fs = require("fs"), path = require("path");
+  var dir = path.join(__dirname, "..");
+  var parts = ["core.js", "engine.js", "weights.js", "solver.js", "export.js",
+               "materials.js", "sheet.js", "sizing.js"];
+  /* Comments are stripped before scanning: the fix's own comment quotes the
+     defective line verbatim so the next reader knows what was there, and a
+     scan that cannot tell code from prose would read that as the defect. */
+  var src = {};
+  parts.forEach(function (f) {
+    src[f] = fs.readFileSync(path.join(dir, f), "utf8").replace(/\/\*[\s\S]*?\*\//g, "");
+  });
+
+  truthy(/FM\.scope\.render\(/.test(src["core.js"]),
+         "core.js's calc record calls the shared renderer");
+  truthy(!/LIMITS\.join\(/.test(src["core.js"]),
+         "and no longer joins engine.LIMITS into a one-line paraphrase");
+  truthy(/FM\.scope\.render\(/.test(src["export.js"]),
+         "export.js's schedule calls the same renderer");
+
+  /* nobody re-implements the walk. scope.js owns it; a view may still read
+     FM.scope.items for a count or a lookup, but iterating them to print is
+     how the two copies diverged in the first place. */
+  var reimplemented = parts.filter(function (f) {
+    return /FM\.scope\.items\.(forEach|map)\(/.test(src[f]);
+  });
+  eq(reimplemented.length, 0, "no shipping part walks FM.scope.items to print its own copy" +
+     (reimplemented.length ? " — " + reimplemented.join(", ") + " does" : ""));
+
+  /* every output that names the boundaries must be able to produce them */
+  var outputs = parts.filter(function (f) { return /FM\.scope\.render\(/.test(src[f]); });
+  eq(outputs.length, 2, "exactly two outputs carry §8 today: the schedule and the calc record");
+})();
+
 suite("weights · packs are internally coherent");
 (function () {
   FM.weights.PACKS.forEach(function (p) {
@@ -959,6 +1105,101 @@ suite("weights · packs are internally coherent");
     });
     truthy(wide.length === 0, "the " + role + " ladder offers nothing the engine must refuse for C_F");
   });
+})();
+
+suite("demo · the runbook says what the build will actually do");
+(function () {
+  /* DEMO.md tells someone what they will see on screen tomorrow. That is a
+     promise made to an audience, and a hand-typed promise goes stale on the
+     next commit — at which point it is worse than no runbook, because the
+     demo diverges from the script in front of the room. Same treatment as the
+     register: the tables are generated and asserted. */
+  var demo = require("./demo-values.js");
+  var c = demo.check(FM);
+  truthy(!c.missing, "DEMO.md exists");
+  if (c.missing) return;
+  eq(c.absent.length, 0, "every generated table in DEMO.md still has its markers" +
+     (c.absent.length ? " — missing " + c.absent.join(", ") : ""));
+  eq(c.off.length, 0, "DEMO.md's tables match the live build" +
+     (c.off.length ? " — stale: " + c.off.join(", ") + ". Run: node test/demo-values.js --sync" : ""));
+
+  /* The runbook's narrative claims, not just its tables. These are the beats
+     the presenter will say out loud; if the build stops doing them the script
+     has to change, and silence is not an acceptable way to find that out. */
+  var tx = demo.skuSummary(FM, "tx-i35"), fl = demo.skuSummary(FM, "fl-hvhz");
+  truthy(tx.unified > 0,
+         "the Texas walk-through still has marks unifying onto one SKU (" + tx.unified + ")");
+  truthy(fl.unified === 0,
+         "and Florida HVHZ still does not unify — the contrast the demo is built on");
+  truthy(fl.skus.length > tx.skus.length,
+         "so Florida carries more distinct SKUs than Texas (" + fl.skus.length + " vs " + tx.skus.length + ")");
+
+  var flRes = FM.solver.solvePlan(FM.weights.planById(demo.PLAN), FM.weights.packById("fl-hvhz"));
+  var st = flRes.marks.filter(function (m) { return m.mark.id === "HDR-ST"; })[0];
+  truthy(st && st.solution && st.solution.status === "escalate:procurement",
+         "HDR-ST in fl-hvhz still escalates on PROCUREMENT — the demo's key distinction");
+  truthy(st && st.solution.note && /DCR/.test(st.solution.note.procurement || ""),
+         "and still names the member that passed, with its DCR");
+
+  var gb = flRes.marks.filter(function (m) { return m.mark.id === "GB-1"; })[0];
+  truthy(gb && gb.solution && gb.solution.status === "escalate:strength",
+         "GB-1 still escalates on STRENGTH, so the two kinds are both on screen in one region");
+
+  /* the runbook tells the presenter not to open the weak plan cold */
+  var cov = require("./coverage.js").measure(FM);
+  var weak = cov.byPlan.slice().sort(function (a, b) { return a.solved - b.solved; })[0];
+  eq(weak.id, "sunbelt-ranch-1850",
+     "the plan DEMO.md warns about is still the weakest one (" + weak.solved + " of " + weak.slots + ")");
+  var demoPlan = cov.byPlan.filter(function (r) { return r.id === demo.PLAN; })[0];
+  truthy(demoPlan && demoPlan.solved === Math.max.apply(null, cov.byPlan.map(function (r) { return r.solved; })),
+         "and the plan it opens on is still the strongest (" + demoPlan.solved + " sized)");
+})();
+
+suite("register · the document's own numbers are measured, not remembered");
+(function () {
+  /* The coverage headline was wrong four times running — 58/30/26, 66/24/24,
+     then 85/162 over "6 packs × 3 plans" when the product had five plans. Each
+     correction was another hand-typed number with the same shelf life. The
+     register is the artefact that says what is true about this branch; a
+     headline in it that can go stale without anything failing is worse than no
+     headline, because it launders a guess into evidence. So it is parsed back
+     out of the document and compared to a live measurement. */
+  var cov = require("./coverage.js");
+  var live = cov.measure(FM);
+  var said = cov.stated();
+
+  truthy(said, "REVIEW-REGISTER.md still carries the coverage sentence in the shape the tool writes");
+  if (said) {
+    var off = ["packs", "plans", "solved", "slots", "escalated", "notSized"]
+      .filter(function (k) { return said[k] !== live[k]; });
+    eq(off.length, 0, "the register's coverage line matches a live measurement" +
+       (off.length ? " — disagrees on " + off.map(function (k) {
+         return k + " (says " + said[k] + ", is " + live[k] + ")";
+       }).join(", ") + ". Run: node test/coverage.js --sync" : ""));
+  }
+  eq(live.solved + live.escalated + live.notSized, live.slots,
+     "every mark-slot is accounted for as sized, escalated or not-sized — " + live.slots + " of " + live.slots);
+  truthy(live.slots === live.packs * live.byPlan.reduce(function (a, r) { return a + r.slots / live.packs; }, 0),
+         "the slot count is packs × marks, with no plan silently skipped");
+
+  /* the assertion total the register quotes, checked against this run.
+     +1 because this assertion is itself one of them. */
+  var fs2 = require("fs"), path2 = require("path");
+  var md = fs2.readFileSync(path2.join(__dirname, "..", "..", "REVIEW-REGISTER.md"), "utf8");
+  var am = /\*\*(\d+) assertions, 0 failing\*\*/.exec(md);
+  truthy(am, "the register states an assertion count");
+  if (am) {
+    /* +1: this assertion is one of the ones being counted */
+    var total = pass + fail + 1;
+    if (process.argv.indexOf("--sync-register") !== -1 && Number(am[1]) !== total) {
+      fs2.writeFileSync(path2.join(__dirname, "..", "..", "REVIEW-REGISTER.md"),
+        md.replace(am[0], "**" + total + " assertions, 0 failing**"));
+      am = [null, String(total)];
+    }
+    eq(Number(am[1]), total,
+       "and it is this run's count — " + total + " assertions" +
+       (Number(am[1]) === total ? "" : ". Run: node test/run-tests.js --sync-register"));
+  }
 })();
 
 /* ============================================================ */

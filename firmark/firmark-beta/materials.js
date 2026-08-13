@@ -33,16 +33,53 @@
     ]);
   }
 
-  function tableFrom(cols, rows, rowFn) {
+  /* meta = { total, query, noun } — the count context.
+
+     A filter with no matches used to render a table with headers and nothing
+     under them, while the stat cards overhead still read "86 S4S sections".
+     Nothing on the page said the list had been filtered, so an empty catalog
+     and an over-narrow filter looked identical. The row count travels with the
+     table now, and an empty result says what was searched and what it searched
+     against — a table is not allowed to be silent about being empty. */
+  function tableFrom(cols, rows, rowFn, meta) {
+    meta = meta || {};
+    var total = meta.total === undefined ? rows.length : meta.total;
+    var noun = meta.noun || "rows";
+    var q = (meta.query || "").trim();
+
     var tb = el("tbody");
-    rows.forEach(function (r) { tb.appendChild(rowFn(r)); });
-    return el("div", { class: "tw", tabindex: "0", role: "region", "aria-label": "Material data table" }, [
-      el("table", {}, [
-        el("thead", {}, [el("tr", {}, cols.map(function (c) {
-          return el("th", { class: c.n ? "n" : null, text: c.label });
-        }))]),
-        tb
-      ])
+    if (!rows.length) {
+      tb.appendChild(el("tr", {}, [
+        el("td", { colspan: String(cols.length), class: "empty-cell" }, [
+          el("div", { class: "empty", style: "margin:0" }, [
+            el("strong", { text: q ? "No " + noun + " match “" + q + "”" : "No " + noun + " in this tab" }),
+            el("div", { class: "clause", style: "margin-top:4px",
+                        text: q ? "The tab holds " + comma(total) + " " + noun +
+                                  ". Clear the filter to see them."
+                                : "The catalog payload carries none for this tab." })
+          ])
+        ])
+      ]));
+    } else {
+      rows.forEach(function (r) { tb.appendChild(rowFn(r)); });
+    }
+
+    var showing = rows.length === total
+      ? comma(total) + " " + noun
+      : comma(rows.length) + " of " + comma(total) + " " + noun + (q ? " · filter “" + q + "”" : "");
+
+    return el("div", {}, [
+      el("div", { class: "tw", tabindex: "0", role: "region",
+                  "aria-label": "Material data table — " + showing }, [
+        el("table", {}, [
+          el("thead", {}, [el("tr", {}, cols.map(function (c) {
+            return el("th", { class: c.n ? "n" : null, text: c.label });
+          }))]),
+          tb
+        ])
+      ]),
+      el("div", { class: "clause", style: "margin-top:6px", role: "status",
+                  text: "Showing " + showing })
     ]);
   }
 
@@ -142,7 +179,8 @@
               el("td", { class: "n", text: fmt(r.Sx_in3, 3) }),
               el("td", { class: "n", text: fmt(r.Ix_in4, 2) })
             ]);
-          }
+          },
+          { total: MATDATA.sections.length, query: state.q, noun: "S4S sections" }
         );
       } else if (state.tab === "sawn" || state.tab === "southern") {
         key = state.tab === "sawn" ? "species_grades" : "southern_pine";
@@ -170,7 +208,9 @@
               el("td", { class: "n", text: v.E == null ? "—" : comma(v.E) }),
               el("td", { class: "n", text: v.Emin == null ? "—" : comma(v.Emin) })
             ]);
-          }
+          },
+          { total: src.length, query: state.q,
+            noun: state.tab === "sawn" ? "sawn design-value rows" : "Southern Pine rows" }
         );
       } else if (state.tab === "glulam") {
         key = "glulam";
@@ -191,7 +231,8 @@
               el("td", { class: "n", text: r.Ft == null ? "—" : comma(r.Ft) }),
               el("td", { class: "n", text: r.Fc == null ? "—" : comma(r.Fc) })
             ]);
-          }
+          },
+          { total: MATDATA.glulam.length, query: state.q, noun: "glulam classes" }
         );
       } else {
         key = "steel_shapes";
@@ -211,7 +252,8 @@
               el("td", { class: "n", text: fmt(r.Zx_in3, 1) }),
               el("td", { class: "n", text: fmt(r.ry_in, 2) })
             ]);
-          }
+          },
+          { total: MATDATA.steel_shapes.length, query: state.q, noun: "W-shapes" }
         );
       }
 
