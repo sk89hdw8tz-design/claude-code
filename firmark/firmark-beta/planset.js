@@ -3074,8 +3074,26 @@
           else lost.push("region “" + args[1] + "”");
         }
         if (args[2]) {
-          /* a sheet number only means something if this package has it */
-          var known = false, i;
+          /* a sheet number only means something if this package has it —
+             and "ALL" is a selector this view sets itself.
+
+             The "All sheets" button assigns s.sheet = "ALL" and the
+             renderer handles it, but "ALL" is not in SHEET_NOS, so the
+             round-trip through the hash came back here as an unknown
+             sheet. The result: the button rendered all seven sheets
+             correctly AND told you it had failed —
+
+               "This link names sheet “ALL”, which this build does not
+                have … a package is not the one the link named, so check
+                the link before reading or issuing it."
+
+             That warning exists for a real hazard: a link naming a plan
+             or a region this build lacks, silently showing a different
+             package. Firing it on a working control is worse than not
+             having it, because a warning that cries wolf on the one
+             control that does work is a warning nobody reads on the day
+             it is true. */
+          var known = args[2] === "ALL", i;
           for (i = 0; i < SHEET_NOS.length; i++) if (SHEET_NOS[i] === args[2]) known = true;
           if (known) s.sheet = args[2];
           else lost.push("sheet “" + args[2] + "”");

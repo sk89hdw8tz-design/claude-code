@@ -860,13 +860,31 @@
           onclick: function () {
             var b = FM.project.bom();
             if (!b || !FM.bom.text) { FM.toast("Nothing to export yet."); return; }
-            if (!FM.download) { FM.toast("Export is unavailable in this build."); return; }
             var name = bomFilename(b);
-            FM.download(FM.bom.text(b), name);
-            FM.toast(/no-plan|no-region/.test(name)
-              ? "Exported as " + name + " — this list could not name the plan or the region " +
-                "pack it came from, and the filename says so rather than hiding it."
-              : "Exported as " + name + " — quantities only; prices are [market] placeholders.");
+            var body = FM.bom.text(b);
+            var whose = /no-plan|no-region/.test(name)
+              ? "This list could not name the plan or the region pack it came from, and the " +
+                "filename says so rather than hiding it. "
+              : "Quantities only; prices are [market] placeholders. ";
+            /* The record panel, not a bare download and a past-tense toast.
+               "Exported as …" is a claim this page cannot check: in a hosted
+               sandbox the anchor click is blocked and nothing tells the page,
+               so the toast announced a file that was never written. Put the
+               artefact on screen and offer the file beside it. */
+            if (FM.deliver) {
+              FM.deliver({
+                title: "Materials list · " + ((b.plan && b.plan.name) || "this run"),
+                filename: name,
+                text: body,
+                note: whose + "“Save as file” asks your browser for a copy; some hosted " +
+                      "sandboxes block page-initiated downloads and this page cannot tell when " +
+                      "yours has, so copy the text if no file appears."
+              });
+              return;
+            }
+            if (!FM.download) { FM.toast("Export is unavailable in this build."); return; }
+            FM.download(body, name);
+            FM.toast(whose + "Offered as " + name + ".");
           }
         })
       ]));

@@ -22969,8 +22969,26 @@ var FM = (function () {
           else lost.push("region “" + args[1] + "”");
         }
         if (args[2]) {
-          /* a sheet number only means something if this package has it */
-          var known = false, i;
+          /* a sheet number only means something if this package has it —
+             and "ALL" is a selector this view sets itself.
+
+             The "All sheets" button assigns s.sheet = "ALL" and the
+             renderer handles it, but "ALL" is not in SHEET_NOS, so the
+             round-trip through the hash came back here as an unknown
+             sheet. The result: the button rendered all seven sheets
+             correctly AND told you it had failed —
+
+               "This link names sheet “ALL”, which this build does not
+                have … a package is not the one the link named, so check
+                the link before reading or issuing it."
+
+             That warning exists for a real hazard: a link naming a plan
+             or a region this build lacks, silently showing a different
+             package. Firing it on a working control is worse than not
+             having it, because a warning that cries wolf on the one
+             control that does work is a warning nobody reads on the day
+             it is true. */
+          var known = args[2] === "ALL", i;
           for (i = 0; i < SHEET_NOS.length; i++) if (SHEET_NOS[i] === args[2]) known = true;
           if (known) s.sheet = args[2];
           else lost.push("sheet “" + args[2] + "”");
@@ -28307,13 +28325,31 @@ var FM = (function () {
           onclick: function () {
             var b = FM.project.bom();
             if (!b || !FM.bom.text) { FM.toast("Nothing to export yet."); return; }
-            if (!FM.download) { FM.toast("Export is unavailable in this build."); return; }
             var name = bomFilename(b);
-            FM.download(FM.bom.text(b), name);
-            FM.toast(/no-plan|no-region/.test(name)
-              ? "Exported as " + name + " — this list could not name the plan or the region " +
-                "pack it came from, and the filename says so rather than hiding it."
-              : "Exported as " + name + " — quantities only; prices are [market] placeholders.");
+            var body = FM.bom.text(b);
+            var whose = /no-plan|no-region/.test(name)
+              ? "This list could not name the plan or the region pack it came from, and the " +
+                "filename says so rather than hiding it. "
+              : "Quantities only; prices are [market] placeholders. ";
+            /* The record panel, not a bare download and a past-tense toast.
+               "Exported as …" is a claim this page cannot check: in a hosted
+               sandbox the anchor click is blocked and nothing tells the page,
+               so the toast announced a file that was never written. Put the
+               artefact on screen and offer the file beside it. */
+            if (FM.deliver) {
+              FM.deliver({
+                title: "Materials list · " + ((b.plan && b.plan.name) || "this run"),
+                filename: name,
+                text: body,
+                note: whose + "“Save as file” asks your browser for a copy; some hosted " +
+                      "sandboxes block page-initiated downloads and this page cannot tell when " +
+                      "yours has, so copy the text if no file appears."
+              });
+              return;
+            }
+            if (!FM.download) { FM.toast("Export is unavailable in this build."); return; }
+            FM.download(body, name);
+            FM.toast(whose + "Offered as " + name + ".");
           }
         })
       ]));
