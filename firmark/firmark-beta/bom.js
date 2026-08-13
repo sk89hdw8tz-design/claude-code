@@ -403,7 +403,7 @@
           piecesPerHouse: 0, bf: 0, cutBf: 0, dropBf: 0, lf: 0,
           extUSD: 0, dropHandlingUSD: 0,
           marks: [], cuts: [], roles: {}, roleOrder: [],
-          spacings: {}, wetService: 0, dryService: 0, unified: 0
+          spacings: {}, wetService: 0, dryService: 0, unified: 0, bearingTight: 0
         };
         order.push(key);
       }
@@ -425,6 +425,7 @@
       }
       g.roles[K(mk.role || "unclassified")] += pieces;
       if (cand.spacing) g.spacings[K(String(cand.spacing))] = true;
+      if (bearingTight) g.bearingTight++;
       g.cuts.push({
         markId: mk.id, label: mk.label || "", role: mk.role || null,
         pieces: pieces, spanFt: num(d.span), cutLengthFt: cutFt,
@@ -432,7 +433,14 @@
         unified: !!m.unifiedTo,
         countBasis: countBasisOf(m, pieces),
         dcr: isFinite(row.dcr) ? row.dcr : null,
-        governing: row.governing || null
+        governing: row.governing || null,
+        bearingPerEndIn: num(d.bearing),
+        bearingNeedFt: bearNeedFt,
+        bearingAllowanceFt: BEARING_ALLOWANCE_FT,
+        bearingTight: bearingTight,
+        cutWithDeclaredBearingFt: trueCutFt,
+        stockIfDeclaredBearingFt: wouldNeedFt,
+        stockAbsorbsIt: wouldNeedFt <= stockFt
       });
       priced++;
     });
@@ -1261,6 +1269,39 @@
            "because you order 14-footers and 10-footers separately. See BY SKU below. " +
            "TREATED AND DRY ARE NEVER THE SAME LINE even at the same size, species and " +
            "grade: they are different products, out of different racks, at different prices.");
+    }
+
+    /* ---- the bearing allowance, where it is thinner than the mark ---- */
+    var tight = [];
+    bom.lines.forEach(function (g) {
+      g.cuts.forEach(function (c) { if (c.bearingTight) tight.push(c); });
+    });
+    if (tight.length) {
+      block("BEARING ALLOWANCE — " + tight.length + " MARK(S) DECLARE MORE THAN THE STICK RULE ADDS");
+      para("FM.solver.stockLength() adds a FLAT " + n2(FM.bom.BEARING_ALLOWANCE_FT, 2) +
+           " ft — 3 in at each end — to every span. A mark DECLARES its bearing in inches, " +
+           "and weights.js made that a design input because it governs the check. Where the " +
+           "declared bearing is longer than the flat allowance, the cut is longer than the " +
+           "rule assumes. The 2 ft rounding usually absorbs it; where it does not, the stick " +
+           "is short and this document says so at the top and refuses to be issued.");
+      say();
+      say("  " + pad("MARK", 10) + pad("BEARING/END", 13) + pad("RULE CUT", 11) +
+          pad("TRUE CUT", 11) + pad("BOUGHT", 9) + "NEEDS");
+      say("  " + rule("-").slice(0, 76));
+      tight.forEach(function (c) {
+        say("  " + pad(c.markId, 10) + pad(n2(c.bearingPerEndIn, 2) + " in", 13) +
+            pad(n2(c.cutLengthFt, 2) + " ft", 11) +
+            pad(n2(c.cutWithDeclaredBearingFt, 2) + " ft", 11) +
+            pad(bom.lines.filter(function (g) {
+              return g.cuts.indexOf(c) !== -1;
+            })[0].stockLengthFt + " ft", 9) +
+            c.stockIfDeclaredBearingFt + " ft" +
+            (c.stockAbsorbsIt ? "   (absorbed by the 2 ft rounding)" : "   ** SHORT **"));
+      });
+      say();
+      say("  This is reported, not corrected: the stick length rule lives in solver.js and");
+      say("  the BOM does not get a second opinion about it. Absorbed by rounding is not");
+      say("  the same as correct — it is correct by luck on this plan.");
     }
 
     /* ---- SKU view ---- */

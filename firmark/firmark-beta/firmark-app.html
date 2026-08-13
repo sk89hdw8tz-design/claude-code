@@ -850,6 +850,102 @@ tbody tr.clickable:focus-visible {
   background: var(--fail-wash); border-radius: var(--r); padding: 6px 9px;
 }
 
+/* ============================================================
+   CAD view — the drawing canvas (agent CAD, cad.js)
+   Appended block; nothing above this line is touched.
+   Every colour is a theme token, so the canvas follows the
+   light/dark toggle without a second palette.
+   ============================================================ */
+
+.cad-wrap { display: grid; grid-template-columns: minmax(0, 1fr) 312px; gap: 14px; align-items: start; }
+@media (max-width: 1040px) { .cad-wrap { grid-template-columns: minmax(0, 1fr); } }
+
+.cad-stage {
+  position: relative; overflow: hidden;
+  border: 1px solid var(--line); border-radius: var(--r-lg);
+  background: var(--surface); box-shadow: var(--shadow-sm);
+}
+.cad-stage.is-drop { border-color: var(--blue); box-shadow: inset 0 0 0 3px var(--blue-wash); }
+.cad-stage.is-drop .cad-drop-note { display: block; }
+.cad-drop-note {
+  display: none; position: absolute; inset: auto 0 0 0; padding: 8px 12px;
+  background: var(--blue-wash); color: var(--blue);
+  font-family: var(--mono); font-size: .7rem; letter-spacing: .08em; text-transform: uppercase;
+}
+.cad-svg {
+  display: block; width: 100%; height: 580px;
+  background: var(--surface); cursor: crosshair; touch-action: none;
+}
+.cad-svg:focus-visible { outline: 2px solid var(--focus); outline-offset: -2px; }
+.cad-hud {
+  position: absolute; left: 10px; top: 10px; pointer-events: none;
+  font-family: var(--mono); font-size: .68rem; color: var(--muted);
+  background: var(--surface-2); border: 1px solid var(--line);
+  border-radius: var(--r); padding: 4px 8px;
+}
+
+/* grid */
+.cad-grid-minor { stroke: var(--line); stroke-width: 1; opacity: .55; }
+.cad-grid-major { stroke: var(--line-strong); stroke-width: 1; opacity: .8; }
+.cad-grid-axis  { stroke: var(--blue); stroke-width: 1; opacity: .45; }
+.cad-scale      { stroke: var(--ink); stroke-width: 1.5; }
+.cad-origin     { fill: var(--blue); }
+
+/* walls */
+.cad-wall            { stroke: var(--ink); stroke-width: 1.6; stroke-linecap: square; }
+.cad-wall.is-int     { stroke: var(--muted); stroke-dasharray: 7 3; }
+.cad-wall.is-sel     { stroke: var(--blue); stroke-width: 3; stroke-dasharray: none; }
+.cad-wall-nothick    { stroke: var(--warn); stroke-width: 5; opacity: .28; stroke-linecap: butt; }
+.cad-wall-band       { fill: var(--surface-3); stroke: var(--ink); stroke-width: 1; }
+.cad-wall-band.is-bearing { fill: var(--blue-wash); stroke: var(--blue); }
+.cad-wall-band.is-sel     { fill: var(--gold-wash); stroke: var(--blue); stroke-width: 2; }
+
+/* openings */
+.cad-open                 { fill: var(--surface); stroke: var(--ink); stroke-width: 1; }
+.cad-open.is-garage       { fill: var(--gold-wash); stroke: var(--gold-ink); }
+.cad-open.is-slider       { fill: var(--blue-wash); stroke: var(--blue); }
+.cad-open.is-door         { fill: var(--pass-wash); stroke: var(--pass); }
+.cad-open.is-placeholder  { stroke-dasharray: 4 2; }
+.cad-open.is-sel          { fill: var(--gold-wash); stroke: var(--blue); stroke-width: 2; }
+.cad-open-line            { stroke: var(--muted); stroke-width: 1; }
+.cad-open-line.is-window  { stroke: var(--blue); stroke-width: 2; }
+
+/* framing regions */
+.cad-region            { fill: var(--blue); fill-opacity: .05; stroke: var(--blue); stroke-width: 1; stroke-dasharray: 6 4; }
+.cad-region.is-roof    { fill: var(--gold); fill-opacity: .07; stroke: var(--gold-ink); }
+.cad-region.is-deck    { fill: var(--pass); fill-opacity: .07; stroke: var(--pass); }
+.cad-region.is-sel     { stroke-width: 2.5; stroke-dasharray: none; }
+.cad-region-dir        { stroke: var(--blue); stroke-width: 1; opacity: .38; }
+.cad-region-dir.is-roof { stroke: var(--gold-ink); }
+.cad-region-dir.is-deck { stroke: var(--pass); }
+
+/* in-progress and handles */
+.cad-draft      { stroke: var(--blue); stroke-width: 2; stroke-dasharray: 5 3; fill: none; }
+.cad-draft-fill { stroke: var(--blue); stroke-width: 2; stroke-dasharray: 5 3; fill: var(--blue); fill-opacity: .07; }
+.cad-handle     { fill: var(--surface); stroke: var(--blue); stroke-width: 2; }
+.cad-calib-pt   { fill: var(--gold); stroke: var(--gold-ink); stroke-width: 1.5; }
+.cad-calib-line { stroke: var(--gold-ink); stroke-width: 2; stroke-dasharray: 3 3; }
+.cad-underlay-warn { fill: none; stroke: var(--warn); stroke-width: 2; stroke-dasharray: 9 5; }
+
+/* canvas type */
+.cad-t          { font-family: var(--mono); font-size: 10px; fill: var(--muted); }
+.cad-t-dim      { fill: var(--text); }
+.cad-t-open     { fill: var(--muted); font-size: 9px; }
+.cad-t-region   { fill: var(--blue); font-size: 10px; font-weight: 650; }
+.cad-t-live     { fill: var(--blue); font-size: 11px; font-weight: 650; }
+.cad-t-warn     { fill: var(--warn); font-size: 11px; font-weight: 650; }
+
+/* side panel and legend */
+.cad-panel { display: grid; gap: 12px; }
+.cad-keys  { display: grid; gap: 6px; }
+.cad-key   { display: flex; gap: 9px; align-items: baseline; font-size: .8rem; color: var(--muted); }
+.cad-kbd {
+  flex: none; min-width: 116px;
+  font-family: var(--mono); font-size: .68rem; color: var(--ink);
+  background: var(--surface-2); border: 1px solid var(--line);
+  border-radius: 3px; padding: 2px 6px;
+}
+
 </style>
 
 <a class="skip" href="#main">Skip to content</a>
@@ -8008,6 +8104,616 @@ var FM = (function () {
           check: "Tex. Loc. Gov't Code §233.151 applicability.",
           authority: "Galveston County; Texas Local Government Code." })
       ]
+    },
+
+    /* ---------------- FLORIDA ----------------
+       Every Florida jurisdiction is on the same code. What varies is
+       the site data, the HVHZ line (two counties), and whatever local
+       technical amendment the jurisdiction has bought itself under
+       §553.73(4) — all of which the 9th Edition voids. */
+
+    {
+      id: "fl-miamidade", name: "Miami-Dade County", county: "Miami-Dade", state: "FL",
+      kind: "county",
+      packId: "fl-hvhz", packWhy: "The pack is built for exactly this jurisdiction.",
+      governs: "wind", hvhz: true,
+      codes: [codeRec({ name: "Florida Building Code, Residential", edition: "8th Edition (2023)",
+        basis: "2021 IRC", asce: "ASCE 7-22", adopted: "2023-12-31",
+        cite: "FBC-R 8th Edition (2023), effective 31 December 2023, PLUS FBC-R Chapter 44, " +
+              "High-Velocity Hurricane Zones.", src: "fbc8" })],
+      wind: windOf({ vMph: 175, band: [175, 175], asce: "ASCE 7-22", exposureCommon: "C",
+        codeFixed: true, confirmed: "secondary",
+        basis: "The FBC fixes the HVHZ design wind speed by county rather than leaving it to the " +
+               "ASCE contour; 175 mph Risk Category II for Miami-Dade.",
+        cite: "FBC-R Figure R301.2(2) / FBC-B §1620, HVHZ wind loads, Risk Category II.",
+        src: "fl-hvhz",
+        note: "Even a code-fixed number is confirmed against the figure in the edition in force on " +
+              "the permit date. The 9th Edition arrives 31 December 2026." }),
+      snow: snowOf({ pgPsf: 0, cls: "code", confirmed: "secondary",
+        cite: "Ground snow load is zero throughout Florida; FBC-R Table R301.2(1).", src: "fbc8",
+        note: "Zero. The D + S combination is never formed and C_D = 1.15 must not appear on a " +
+              "Florida sheet." }),
+      seismic: seismicOf({ sdc: "A", confirmed: "unverified",
+        cite: "Planning value. Seismic does not govern residential wood framing in south Florida.",
+        src: "asce7" }),
+      frostDepthIn: frostOf({ inches: 0, confirmed: "secondary",
+        cite: "No frost line in Florida; footing depth governed by the 12 in minimum of FBC-R " +
+              "R403.1.4.", src: "fbc8" }),
+      termite: levelOf({ level: "very heavy", confirmed: "secondary",
+        cite: "FBC-R R318 requires subterranean termite protection throughout Florida; the whole " +
+              "state is in the very heavy band of the termite infestation probability map.",
+        src: "fbc8" }),
+      decay: levelOf({ level: "moderate to severe", confirmed: "unverified",
+        cite: "IRC/FBC-R decay probability figure.", src: "fbc8" }),
+      windborneDebris: wbdOf({ inRegion: true, likely: true, determinedBy: "code", cls: "code",
+        confirmed: "secondary",
+        cite: "The entire HVHZ is a wind-borne debris region; FBC-R Chapter 44.", src: "fl-hvhz",
+        note: "This is one of only two jurisdictions in the module where the code fixes the answer " +
+              "and the contour does not have to be consulted." }),
+      amendments: [
+        amend("FBC-R Chapter 44 (High-Velocity Hurricane Zones) applies in full and is a distinct " +
+              "design and approval regime, not a set of stricter numbers.",
+              "FBC-R Chapter 44; FBC-B §1620.", "fl-hvhz",
+              { effect: "Whether Chapter 44 permits the prescriptive/WFCM path or mandates engineered " +
+                        "design was NOT resolved — the same open question weights.js records on the " +
+                        "fl-hvhz pack. It decides what this tool's output is for." }),
+        amend("Every product in a regulated category needs a Miami-Dade NOA, or a statewide Florida " +
+              "Product Approval bearing the HVHZ endorsement. A statewide approval without the HVHZ " +
+              "endorsement is rejected at permit review.",
+              "F.A.C. Rule 61G20-3; Miami-Dade NOA programme.", "fl-prod"),
+        amend("First-floor exterior walls in this market are concrete block with a tie beam, so " +
+              "exterior openings are spanned by precast or cast-in-place concrete lintels, not wood " +
+              "headers.",
+              "Market practice, recorded on the fl-hvhz pack in weights.js.", "fbc8",
+              { cls: "market",
+                effect: "weights.js applicability() already deletes first-floor exterior wood headers " +
+                        "in a cmu market. It is repeated here so the jurisdiction record and the pack " +
+                        "agree rather than each asserting it separately." })
+      ],
+      mustVerify: [
+        mv({ id: "fl-md-ch44", severity: "blocking",
+          what: "Whether FBC-R Chapter 44 permits a prescriptive path or mandates engineered design " +
+                "for this building.",
+          why: "Unresolved here and unresolved in weights.js. It decides whether a gravity member " +
+               "schedule is an input to a design or a substitute for one.",
+          check: "FBC-R Chapter 44 in the edition in force on the permit date.",
+          authority: "Miami-Dade County Department of Regulatory and Economic Resources." })
+      ]
+    },
+
+    {
+      id: "fl-broward", name: "Broward County", county: "Broward", state: "FL", kind: "county",
+      packId: "fl-hvhz", packWhy: "The other HVHZ county; the pack is built for both.",
+      governs: "wind", hvhz: true,
+      codes: [codeRec({ name: "Florida Building Code, Residential", edition: "8th Edition (2023)",
+        basis: "2021 IRC", asce: "ASCE 7-22", adopted: "2023-12-31",
+        cite: "FBC-R 8th Edition (2023), effective 31 December 2023, PLUS FBC-R Chapter 44, " +
+              "High-Velocity Hurricane Zones.", src: "fbc8" })],
+      wind: windOf({ vMph: 170, band: [170, 170], asce: "ASCE 7-22", exposureCommon: "C",
+        codeFixed: true, confirmed: "secondary",
+        basis: "The FBC fixes the HVHZ design wind speed by county; 170 mph Risk Category II for " +
+               "Broward — five mph below Miami-Dade, on the same code, across a county line.",
+        cite: "FBC-R Figure R301.2(2) / FBC-B §1620, HVHZ wind loads, Risk Category II.",
+        src: "fl-hvhz" }),
+      snow: snowOf({ pgPsf: 0, cls: "code", confirmed: "secondary",
+        cite: "Ground snow load is zero throughout Florida; FBC-R Table R301.2(1).", src: "fbc8" }),
+      seismic: seismicOf({ sdc: "A", confirmed: "unverified", cite: "Planning value.", src: "asce7" }),
+      frostDepthIn: frostOf({ inches: 0, confirmed: "secondary",
+        cite: "No frost line in Florida; FBC-R R403.1.4 12 in minimum applies.", src: "fbc8" }),
+      termite: levelOf({ level: "very heavy", confirmed: "secondary",
+        cite: "FBC-R R318 requires termite protection throughout Florida.", src: "fbc8" }),
+      decay: levelOf({ level: "moderate to severe", confirmed: "unverified",
+        cite: "IRC/FBC-R decay probability figure.", src: "fbc8" }),
+      windborneDebris: wbdOf({ inRegion: true, likely: true, determinedBy: "code", cls: "code",
+        confirmed: "secondary",
+        cite: "The entire HVHZ is a wind-borne debris region; FBC-R Chapter 44.", src: "fl-hvhz" }),
+      amendments: [
+        amend("FBC-R Chapter 44 (HVHZ) applies in full.", "FBC-R Chapter 44.", "fl-hvhz"),
+        amend("Miami-Dade NOA or HVHZ-endorsed statewide Florida Product Approval required for every " +
+              "product in a regulated category. A Miami-Dade NOA is accepted in Broward as satisfying " +
+              "the HVHZ testing protocols, but the reverse — a Broward-only approval — does not exist; " +
+              "verify the acceptance route with the county rather than assuming reciprocity.",
+              "F.A.C. Rule 61G20-3; Miami-Dade NOA programme.", "fl-prod", { confirmed: "unverified" }),
+        amend("Concrete block first-floor exterior walls with concrete lintels, as Miami-Dade.",
+              "Market practice, recorded on the fl-hvhz pack in weights.js.", "fbc8", { cls: "market" })
+      ],
+      mustVerify: [
+        mv({ id: "fl-bro-noa", severity: "major",
+          what: "How Broward accepts product approvals — whether a Miami-Dade NOA is accepted " +
+                "directly or an HVHZ-endorsed statewide approval is required.",
+          why: "The NOA is by name a Miami-Dade instrument. Its acceptance in Broward is asserted by " +
+               "secondary sources and was not confirmed against either county's rules.",
+          check: "Broward County Board of Rules and Appeals product-approval policy.",
+          authority: "Broward County Board of Rules and Appeals." })
+      ]
+    },
+
+    {
+      id: "fl-palmbeach", name: "Palm Beach County", county: "Palm Beach", state: "FL",
+      kind: "county",
+      packId: "fl-central",
+      packWhy: "The only non-HVHZ Florida pack. It is a poor fit — see packFor() differences.",
+      governs: "wind", hvhz: false,
+      codes: [codeRec({ name: "Florida Building Code, Residential", edition: "8th Edition (2023)",
+        basis: "2021 IRC", asce: "ASCE 7-22", adopted: "2023-12-31",
+        cite: "FBC-R 8th Edition (2023), effective 31 December 2023.", src: "fbc8" })],
+      wind: windOf({ vMph: 165, band: [150, 175], asce: "ASCE 7-22", exposureCommon: "C",
+        confirmed: "unverified",
+        basis: "Planning band from secondary ASCE 7-22 summaries. Palm Beach sits immediately north " +
+               "of the HVHZ line with mapped speeds close to Broward's, and the county spans a wide " +
+               "contour range from the barrier island to the western communities.",
+        cite: "ASCE 7-22 Figure 26.5-1 / FBC-R Figure R301.2(2), Risk Category II.", src: "asce7",
+        note: "PALM BEACH IS NOT IN THE HVHZ. It carries near-HVHZ wind speeds under the ordinary " +
+              "statewide code, which is exactly the combination that gets it mistaken for HVHZ. The " +
+              "wind number is nearly Broward's; the approval regime is not." }),
+      snow: snowOf({ pgPsf: 0, cls: "code", confirmed: "secondary",
+        cite: "Ground snow load is zero throughout Florida; FBC-R Table R301.2(1).", src: "fbc8" }),
+      seismic: seismicOf({ sdc: "A", confirmed: "unverified", cite: "Planning value.", src: "asce7" }),
+      frostDepthIn: frostOf({ inches: 0, confirmed: "secondary",
+        cite: "No frost line in Florida; FBC-R R403.1.4 12 in minimum applies.", src: "fbc8" }),
+      termite: levelOf({ level: "very heavy", confirmed: "secondary",
+        cite: "FBC-R R318 requires termite protection throughout Florida.", src: "fbc8" }),
+      decay: levelOf({ level: "moderate to severe", confirmed: "unverified",
+        cite: "IRC/FBC-R decay probability figure.", src: "fbc8" }),
+      windborneDebris: wbdOf({ inRegion: null, likely: true, determinedBy: "site",
+        confirmed: "unverified",
+        cite: "FBC-R R301.2.1.2. At mapped speeds of 150 mph and above the 140 mph limb of the " +
+              "criterion is reached county-wide, but the county spans the contour and the answer is " +
+              "read at the site.", src: "fbc8" }),
+      amendments: [
+        amend("Palm Beach County administers the statewide code and maintains a product-approval " +
+              "process for permit submittals. Any local technical amendment was NOT retrieved.",
+              "F.S. §553.73(4); Palm Beach County Planning, Zoning and Building.", "fs-553-73",
+              { incomplete: true })
+      ],
+      mustVerify: [
+        mv({ id: "fl-pb-hvhz", severity: "major",
+          what: "That the package is NOT being detailed to HVHZ requirements by analogy to its " +
+                "neighbour.",
+          why: "Palm Beach borders Broward and carries similar wind speeds under a different regime. " +
+               "Detailing it as HVHZ buys unnecessary product cost; detailing Broward as Palm Beach " +
+               "fails permit review. The wind number does not tell you which side of the line you " +
+               "are on — the county name does.",
+          check: "FBC-R Chapter 44 scope: Broward and Miami-Dade only.",
+          authority: "Palm Beach County Planning, Zoning and Building." })
+      ]
+    },
+
+    {
+      id: "fl-orange", name: "Orlando / Orange County", county: "Orange", state: "FL",
+      kind: "county",
+      packId: "fl-central", packWhy: "The pack's named market. Closest fit in the product.",
+      governs: "wind", hvhz: false,
+      codes: [codeRec({ name: "Florida Building Code, Residential", edition: "8th Edition (2023)",
+        basis: "2021 IRC", asce: "ASCE 7-22", adopted: "2023-12-31",
+        cite: "FBC-R 8th Edition (2023), effective 31 December 2023.", src: "fbc8" })],
+      wind: windOf({ vMph: 130, band: [125, 140], asce: "ASCE 7-22", exposureCommon: "C",
+        confirmed: "unverified",
+        basis: "Planning band for inland central Florida from secondary ASCE 7-22 summaries.",
+        cite: "ASCE 7-22 Figure 26.5-1 / FBC-R Figure R301.2(2), Risk Category II.", src: "asce7" }),
+      snow: snowOf({ pgPsf: 0, cls: "code", confirmed: "secondary",
+        cite: "Ground snow load is zero throughout Florida; FBC-R Table R301.2(1).", src: "fbc8" }),
+      seismic: seismicOf({ sdc: "A", confirmed: "unverified", cite: "Planning value.", src: "asce7" }),
+      frostDepthIn: frostOf({ inches: 0, confirmed: "secondary",
+        cite: "No frost line in Florida; FBC-R R403.1.4 12 in minimum applies.", src: "fbc8" }),
+      termite: levelOf({ level: "very heavy", confirmed: "secondary",
+        cite: "FBC-R R318 requires termite protection throughout Florida.", src: "fbc8" }),
+      decay: levelOf({ level: "moderate to severe", confirmed: "unverified",
+        cite: "IRC/FBC-R decay probability figure.", src: "fbc8" }),
+      windborneDebris: wbdOf({ inRegion: null, likely: false, determinedBy: "site",
+        confirmed: "unverified",
+        cite: "FBC-R R301.2.1.2. Orange County is inland — no part is within 1 mile of a coastal mean " +
+              "high water line — so the region is reached only if the mapped speed at the site is " +
+              "140 mph or greater, which is at the top of the planning band.",
+        src: "fbc8",
+        note: "THIS IS THE CASE THE COUNTY-LINE HABIT GETS WRONG IN BOTH DIRECTIONS. Orlando is not " +
+              "coastal, so people assume no opening protection; but the 140 mph limb applies " +
+              "anywhere, coast or not. And the 9th Edition's five-mile-from-tidal-water rule is a " +
+              "third, different geometry again." }),
+      amendments: [
+        amend("Any local technical amendment adopted by Orange County or the City of Orlando was NOT " +
+              "retrieved. Under F.S. §553.73(4) any that exist are void at the 9th Edition unless " +
+              "adopted for Community Rating System purposes.",
+              "F.S. §553.73(4).", "fs-553-73", { incomplete: true })
+      ],
+      mustVerify: []
+    },
+
+    {
+      id: "fl-hillsborough", name: "Tampa / Hillsborough County", county: "Hillsborough",
+      state: "FL", kind: "county",
+      packId: "fl-central", packWhy: "The pack's named market.",
+      governs: "wind", hvhz: false,
+      codes: [codeRec({ name: "Florida Building Code, Residential", edition: "8th Edition (2023)",
+        basis: "2021 IRC", asce: "ASCE 7-22", adopted: "2023-12-31",
+        cite: "FBC-R 8th Edition (2023), effective 31 December 2023.", src: "fbc8" })],
+      wind: windOf({ vMph: 140, band: [130, 150], asce: "ASCE 7-22", exposureCommon: "C",
+        confirmed: "unverified",
+        basis: "Planning band for the Tampa Bay area from secondary ASCE 7-22 summaries. The county " +
+               "runs from open bay frontage to well inland and the contour crosses it.",
+        cite: "ASCE 7-22 Figure 26.5-1 / FBC-R Figure R301.2(2), Risk Category II.", src: "asce7" }),
+      snow: snowOf({ pgPsf: 0, cls: "code", confirmed: "secondary",
+        cite: "Ground snow load is zero throughout Florida; FBC-R Table R301.2(1).", src: "fbc8" }),
+      seismic: seismicOf({ sdc: "A", confirmed: "unverified", cite: "Planning value.", src: "asce7" }),
+      frostDepthIn: frostOf({ inches: 0, confirmed: "secondary",
+        cite: "No frost line in Florida; FBC-R R403.1.4 12 in minimum applies.", src: "fbc8" }),
+      termite: levelOf({ level: "very heavy", confirmed: "secondary",
+        cite: "FBC-R R318 requires termite protection throughout Florida.", src: "fbc8" }),
+      decay: levelOf({ level: "moderate to severe", confirmed: "unverified",
+        cite: "IRC/FBC-R decay probability figure.", src: "fbc8" }),
+      windborneDebris: wbdOf({ inRegion: null, likely: true, determinedBy: "site",
+        confirmed: "unverified",
+        cite: "FBC-R R301.2.1.2. Tampa Bay frontage puts land inside the 1-mile / 130 mph limb while " +
+              "eastern Hillsborough may be outside both limbs. The county line is not the boundary.",
+        src: "fbc8",
+        note: "The clearest single illustration in the module of why a per-county windborne-debris " +
+              "flag is wrong: two lots in the same county, same code, same builder, different " +
+              "opening-protection requirement." }),
+      amendments: [
+        amend("Any local technical amendment adopted by Hillsborough County or the City of Tampa was " +
+              "NOT retrieved.",
+              "F.S. §553.73(4).", "fs-553-73", { incomplete: true })
+      ],
+      mustVerify: []
+    },
+
+    {
+      id: "fl-lee", name: "Lee County", county: "Lee", state: "FL", kind: "county",
+      packId: "fl-central",
+      packWhy: "The only non-HVHZ Florida pack. Understates this county's wind badly — see packFor().",
+      governs: "wind", hvhz: false,
+      codes: [codeRec({ name: "Florida Building Code, Residential", edition: "8th Edition (2023)",
+        basis: "2021 IRC", asce: "ASCE 7-22", adopted: "2023-12-31",
+        cite: "FBC-R 8th Edition (2023), effective 31 December 2023.", src: "fbc8" })],
+      wind: windOf({ vMph: 160, band: [150, 170], asce: "ASCE 7-22", exposureCommon: "C",
+        confirmed: "unverified",
+        basis: "Planning band for coastal south-west Florida from secondary ASCE 7-22 summaries.",
+        cite: "ASCE 7-22 Figure 26.5-1 / FBC-R Figure R301.2(2), Risk Category II.", src: "asce7",
+        note: "Lee County is not in the HVHZ and carries wind speeds within 10 mph of Broward's. " +
+              "The design load is nearly HVHZ; the approval regime is the ordinary statewide one." }),
+      snow: snowOf({ pgPsf: 0, cls: "code", confirmed: "secondary",
+        cite: "Ground snow load is zero throughout Florida; FBC-R Table R301.2(1).", src: "fbc8" }),
+      seismic: seismicOf({ sdc: "A", confirmed: "unverified", cite: "Planning value.", src: "asce7" }),
+      frostDepthIn: frostOf({ inches: 0, confirmed: "secondary",
+        cite: "No frost line in Florida; FBC-R R403.1.4 12 in minimum applies.", src: "fbc8" }),
+      termite: levelOf({ level: "very heavy", confirmed: "secondary",
+        cite: "FBC-R R318 requires termite protection throughout Florida.", src: "fbc8" }),
+      decay: levelOf({ level: "moderate to severe", confirmed: "unverified",
+        cite: "IRC/FBC-R decay probability figure.", src: "fbc8" }),
+      windborneDebris: wbdOf({ inRegion: null, likely: true, determinedBy: "site",
+        confirmed: "unverified",
+        cite: "FBC-R R301.2.1.2. At mapped speeds of 150 mph and above the 140 mph limb is reached " +
+              "throughout, but the determination is still made at the site.", src: "fbc8" }),
+      amendments: [
+        amend("Any local technical amendment adopted by Lee County was NOT retrieved. Post-Ian " +
+              "floodplain and substantial-improvement rules are administered here and are not " +
+              "modelled by this product in any form.",
+              "F.S. §553.73(4); FEMA NFIP; Lee County floodplain ordinance.", "fs-553-73",
+              { incomplete: true })
+      ],
+      mustVerify: []
+    },
+
+    {
+      id: "fl-duval", name: "Jacksonville / Duval County", county: "Duval", state: "FL",
+      kind: "county",
+      packId: "fl-central", packWhy: "Nearest Florida non-HVHZ pack; north Florida is not its market.",
+      governs: "wind", hvhz: false,
+      codes: [codeRec({ name: "Florida Building Code, Residential", edition: "8th Edition (2023)",
+        basis: "2021 IRC", asce: "ASCE 7-22", adopted: "2023-12-31",
+        cite: "FBC-R 8th Edition (2023), effective 31 December 2023.", src: "fbc8" })],
+      wind: windOf({ vMph: 130, band: [120, 140], asce: "ASCE 7-22", exposureCommon: "C",
+        confirmed: "unverified",
+        basis: "Planning band for north-east Florida from secondary ASCE 7-22 summaries. This is the " +
+               "lowest-wind jurisdiction in the Florida set.",
+        cite: "ASCE 7-22 Figure 26.5-1 / FBC-R Figure R301.2(2), Risk Category II.", src: "asce7" }),
+      snow: snowOf({ pgPsf: 0, cls: "code", confirmed: "secondary",
+        cite: "Ground snow load is zero throughout Florida; FBC-R Table R301.2(1).", src: "fbc8" }),
+      seismic: seismicOf({ sdc: "A", confirmed: "unverified", cite: "Planning value.", src: "asce7" }),
+      frostDepthIn: frostOf({ inches: 0, confirmed: "secondary",
+        cite: "No frost line in Florida; FBC-R R403.1.4 12 in minimum applies.", src: "fbc8" }),
+      termite: levelOf({ level: "very heavy", confirmed: "secondary",
+        cite: "FBC-R R318 requires termite protection throughout Florida.", src: "fbc8" }),
+      decay: levelOf({ level: "moderate to severe", confirmed: "unverified",
+        cite: "IRC/FBC-R decay probability figure.", src: "fbc8" }),
+      windborneDebris: wbdOf({ inRegion: null, likely: true, determinedBy: "site",
+        confirmed: "unverified",
+        cite: "FBC-R R301.2.1.2. Duval has Atlantic frontage and the St Johns River through it; the " +
+              "1-mile / 130 mph limb reaches part of the county and not all of it.", src: "fbc8" }),
+      amendments: [
+        amend("Any local technical amendment adopted by the City of Jacksonville was NOT retrieved.",
+              "F.S. §553.73(4).", "fs-553-73", { incomplete: true })
+      ],
+      mustVerify: []
+    },
+
+    /* ---------------- NORTH CAROLINA ----------------
+       One code, statewide, no local technical amendments. Every
+       record below therefore carries the SAME code and differs only
+       in site data — which is the cleanest illustration in the module
+       of the difference between a code question and a site question.
+
+       All six are on the 2018 NCRC: 2015 IRC basis, ASCE 7-10. */
+
+    {
+      id: "nc-mecklenburg", name: "Charlotte / Mecklenburg County", county: "Mecklenburg",
+      state: "NC", kind: "county",
+      packId: "nc-piedmont", packWhy: "The pack's named market.",
+      governs: "gravity",
+      codes: [codeRec({ name: "NC State Building Code: Residential Code", edition: "2018 NCRC",
+        basis: "2015 IRC", asce: "ASCE 7-10", adopted: "2019-01-01",
+        cite: "2018 NC State Building Code: Residential Code, 2015 IRC basis with NC amendments, " +
+              "effective 1 January 2019. The 2024 NCRC is adopted but not in force — see " +
+              "forState('NC').", src: "ncrc2018" })],
+      wind: windOf({ vMph: 115, band: [110, 120], asce: "ASCE 7-10", exposureCommon: "B",
+        confirmed: "unverified",
+        basis: "Planning band for the NC Piedmont. The NCRC's own wind figure was not retrievable and " +
+               "the secondary sources for North Carolina were poor — several conflated the NCRC wind " +
+               "zones with HUD manufactured-housing wind zones, which are a different scheme entirely " +
+               "and were discarded.",
+        cite: "2018 NCRC Figure R301.2(4) / ASCE 7-10, Risk Category II.", src: "asce7",
+        note: "ASCE 7-10, NOT 7-16 or 7-22. A number taken off a newer map is off the wrong map for a " +
+              "North Carolina permit today." }),
+      snow: snowOf({ pgPsf: 15, band: [10, 15], confirmed: "unverified",
+        cite: "Planning band for the Piedmont counties; the NCRC tabulates ground snow load by county " +
+              "and that table was not retrievable.", src: "ncrc2018",
+        note: "At 15 psf the flat-roof snow load is about 10.5 psf, well under the 20 psf roof live " +
+              "load, so Lr governs and C_D stays at 1.25. Snow only takes over above roughly 26 psf " +
+              "ground snow." }),
+      seismic: seismicOf({ sdc: "B", confirmed: "unverified",
+        cite: "Planning value for the NC Piedmont.", src: "asce7",
+        note: "Higher than the A carried across Texas and Florida, and it is the only part of this " +
+              "module where the seismic design category is not A." }),
+      frostDepthIn: frostOf({ confirmed: "unverified",
+        cite: "The NCRC frost line depth for this county could not be established. NCRC R403.1.4 " +
+              "requires footings below the frost line specified in Table R301.2(1).", src: "ncrc2018" }),
+      termite: levelOf({ level: "moderate to heavy", confirmed: "unverified",
+        cite: "IRC Figure R301.2(6) as carried into the NCRC.", src: "ncrc2018" }),
+      decay: levelOf({ level: "slight to moderate", confirmed: "unverified",
+        cite: "IRC Figure R301.2(7) as carried into the NCRC.", src: "ncrc2018" }),
+      windborneDebris: wbdOf({ inRegion: false, likely: false, determinedBy: "site",
+        confirmed: "secondary",
+        cite: "IRC/NCRC R301.2.1.2 — roughly 180 miles from the coast and far below 140 mph, so " +
+              "neither limb of the criterion is reached.", src: "ncrc2018" }),
+      amendments: [
+        amend("No local technical amendments. The NCRC is the code; a more stringent local provision " +
+              "requires Building Code Council / Residential Code Council approval.",
+              "N.C.G.S. §143-138(e).", "nc-gs-143",
+              { effect: "This is the one state in the module where the code text does not have to be " +
+                        "diffed per jurisdiction. What varies is site data." })
+      ],
+      mustVerify: []
+    },
+
+    {
+      id: "nc-wake", name: "Raleigh / Wake County", county: "Wake", state: "NC", kind: "county",
+      packId: "nc-piedmont", packWhy: "The pack's named market.",
+      governs: "gravity",
+      codes: [codeRec({ name: "NC State Building Code: Residential Code", edition: "2018 NCRC",
+        basis: "2015 IRC", asce: "ASCE 7-10", adopted: "2019-01-01",
+        cite: "2018 NC State Building Code: Residential Code, effective 1 January 2019.",
+        src: "ncrc2018" })],
+      wind: windOf({ vMph: 115, band: [110, 120], asce: "ASCE 7-10", exposureCommon: "B",
+        confirmed: "unverified",
+        basis: "Planning band for the NC Piedmont; the NCRC wind figure was not retrievable.",
+        cite: "2018 NCRC Figure R301.2(4) / ASCE 7-10, Risk Category II.", src: "asce7" }),
+      snow: snowOf({ pgPsf: 15, band: [10, 15], confirmed: "unverified",
+        cite: "Planning band for the Piedmont counties; the NCRC county table was not retrievable.",
+        src: "ncrc2018" }),
+      seismic: seismicOf({ sdc: "B", confirmed: "unverified",
+        cite: "Planning value for the NC Piedmont.", src: "asce7" }),
+      frostDepthIn: frostOf({ confirmed: "unverified",
+        cite: "The NCRC frost line depth for this county could not be established.", src: "ncrc2018" }),
+      termite: levelOf({ level: "moderate to heavy", confirmed: "unverified",
+        cite: "IRC Figure R301.2(6) as carried into the NCRC.", src: "ncrc2018" }),
+      decay: levelOf({ level: "slight to moderate", confirmed: "unverified",
+        cite: "IRC Figure R301.2(7) as carried into the NCRC.", src: "ncrc2018" }),
+      windborneDebris: wbdOf({ inRegion: false, likely: false, determinedBy: "site",
+        confirmed: "secondary",
+        cite: "IRC/NCRC R301.2.1.2 — neither limb of the criterion is reached this far inland.",
+        src: "ncrc2018" }),
+      amendments: [
+        amend("No local technical amendments; NCRC statewide.", "N.C.G.S. §143-138(e).", "nc-gs-143")
+      ],
+      mustVerify: []
+    },
+
+    {
+      id: "nc-guilford", name: "Greensboro / Guilford County", county: "Guilford", state: "NC",
+      kind: "county",
+      packId: "nc-piedmont", packWhy: "The pack's named market.",
+      governs: "gravity",
+      codes: [codeRec({ name: "NC State Building Code: Residential Code", edition: "2018 NCRC",
+        basis: "2015 IRC", asce: "ASCE 7-10", adopted: "2019-01-01",
+        cite: "2018 NC State Building Code: Residential Code, effective 1 January 2019.",
+        src: "ncrc2018" })],
+      wind: windOf({ vMph: 115, band: [110, 120], asce: "ASCE 7-10", exposureCommon: "B",
+        confirmed: "unverified",
+        basis: "Planning band for the NC Piedmont; the NCRC wind figure was not retrievable.",
+        cite: "2018 NCRC Figure R301.2(4) / ASCE 7-10, Risk Category II.", src: "asce7" }),
+      snow: snowOf({ pgPsf: 15, band: [10, 20], confirmed: "unverified",
+        cite: "Planning band for the northern Piedmont; the NCRC county table was not retrievable.",
+        src: "ncrc2018",
+        note: "Guilford is the northernmost of the three Piedmont jurisdictions here and the most " +
+              "likely of them to carry a higher tabulated p_g." }),
+      seismic: seismicOf({ sdc: "B", confirmed: "unverified",
+        cite: "Planning value for the NC Piedmont.", src: "asce7" }),
+      frostDepthIn: frostOf({ confirmed: "unverified",
+        cite: "The NCRC frost line depth for this county could not be established.", src: "ncrc2018" }),
+      termite: levelOf({ level: "moderate to heavy", confirmed: "unverified",
+        cite: "IRC Figure R301.2(6) as carried into the NCRC.", src: "ncrc2018" }),
+      decay: levelOf({ level: "slight to moderate", confirmed: "unverified",
+        cite: "IRC Figure R301.2(7) as carried into the NCRC.", src: "ncrc2018" }),
+      windborneDebris: wbdOf({ inRegion: false, likely: false, determinedBy: "site",
+        confirmed: "secondary",
+        cite: "IRC/NCRC R301.2.1.2 — neither limb of the criterion is reached this far inland.",
+        src: "ncrc2018" }),
+      amendments: [
+        amend("No local technical amendments; NCRC statewide.", "N.C.G.S. §143-138(e).", "nc-gs-143")
+      ],
+      mustVerify: []
+    },
+
+    {
+      id: "nc-buncombe", name: "Asheville / Buncombe County", county: "Buncombe", state: "NC",
+      kind: "county",
+      packId: "nc-mountain", packWhy: "The pack's named market; the only snow-governed pack.",
+      governs: "gravity",
+      codes: [codeRec({ name: "NC State Building Code: Residential Code", edition: "2018 NCRC",
+        basis: "2015 IRC", asce: "ASCE 7-10", adopted: "2019-01-01",
+        cite: "2018 NC State Building Code: Residential Code, effective 1 January 2019.",
+        src: "ncrc2018" })],
+      wind: windOf({ vMph: 115, band: [110, 120], asce: "ASCE 7-10", exposureCommon: "C",
+        confirmed: "unverified",
+        basis: "Planning band for western North Carolina; the NCRC wind figure was not retrievable.",
+        cite: "2018 NCRC Figure R301.2(4) / ASCE 7-10, Risk Category II.", src: "asce7",
+        note: "Topographic speed-up K_zt on ridges and escarpments (ASCE 7 §26.8) is a site effect " +
+              "that no jurisdiction-level number can carry. In this terrain it is not a rounding " +
+              "adjustment." }),
+      snow: snowOf({ pgPsf: 25, band: [15, 35], confirmed: "unverified",
+        cite: "Planning band at valley elevation. The NCRC tabulates ground snow load by county and " +
+              "the table was not retrievable.", src: "ncrc2018",
+        note: "ELEVATION, NOT COUNTY. Above roughly 3,000 ft the ASCE 7 ground snow map hands off to " +
+              "case-study (CS) zones where NO mapped value exists and a site-specific study is " +
+              "required. Buncombe County contains a great deal of land above that line. A single " +
+              "county number is wrong for those sites in a way no band can fix." }),
+      seismic: seismicOf({ sdc: "B", confirmed: "unverified",
+        cite: "Planning value for western North Carolina.", src: "asce7",
+        note: "Western NC is the highest-seismicity part of this module and some western counties " +
+              "reach C. B is a planning value and the boundary was not established." }),
+      frostDepthIn: frostOf({ confirmed: "unverified",
+        cite: "The NCRC frost line depth for this county could not be established, and it is the one " +
+              "jurisdiction in this module where a real frost line exists and matters.",
+        src: "ncrc2018" }),
+      termite: levelOf({ level: "moderate to heavy", confirmed: "unverified",
+        cite: "IRC Figure R301.2(6) as carried into the NCRC.", src: "ncrc2018" }),
+      decay: levelOf({ level: "slight to moderate", confirmed: "unverified",
+        cite: "IRC Figure R301.2(7) as carried into the NCRC.", src: "ncrc2018" }),
+      windborneDebris: wbdOf({ inRegion: false, likely: false, determinedBy: "site",
+        confirmed: "secondary",
+        cite: "IRC/NCRC R301.2.1.2 — neither limb of the criterion is reached in the mountains.",
+        src: "ncrc2018" }),
+      amendments: [
+        amend("No local technical amendments; NCRC statewide.", "N.C.G.S. §143-138(e).", "nc-gs-143"),
+        amend("Snow governs here and C_D drops from 1.25 to 1.15 — a real 8% capacity reduction on " +
+              "every bending check. Unbalanced, drift, sliding and rain-on-snow loads are all excluded " +
+              "by calc-spec §8.14, and in this terrain roof-step drift is often what governs.",
+              "ASCE 7 Chapter 7; calc-spec §8.14.", "asce7",
+              { effect: "The engine's answer here is a floor on the member, not the design." })
+      ],
+      mustVerify: [
+        mv({ id: "nc-bun-cs", severity: "blocking",
+          what: "Whether the site is in an ASCE 7 case-study (CS) ground snow zone.",
+          why: "Above roughly 3,000 ft the ground snow map publishes no value at all and a " +
+               "site-specific study is required. A planning number substituted for a CS-zone study " +
+               "is not conservative or unconservative — there is no mapped value to compare it to.",
+          check: "ASCE 7 ground snow map / Hazard Tool at the site coordinates, and the NCRC county " +
+                 "table.",
+          authority: "ASCE 7 Hazard Tool; NC OSFM; a licensed engineer for the site study." })
+      ]
+    },
+
+    {
+      id: "nc-newhanover", name: "Wilmington / New Hanover County", county: "New Hanover",
+      state: "NC", kind: "county",
+      packId: "nc-piedmont",
+      packWhy: "THE PRODUCT HAS NO COASTAL NORTH CAROLINA PACK. This is the least-bad of six wrong " +
+               "answers and packFor() reports how wrong it is.",
+      governs: "wind",
+      codes: [codeRec({ name: "NC State Building Code: Residential Code", edition: "2018 NCRC",
+        basis: "2015 IRC", asce: "ASCE 7-10", adopted: "2019-01-01",
+        cite: "2018 NC State Building Code: Residential Code, effective 1 January 2019, including " +
+              "NCRC Chapter 45 High Wind Zones where applicable.", src: "ncrc2018" })],
+      wind: windOf({ vMph: 140, band: [130, 150], asce: "ASCE 7-10", exposureCommon: "C",
+        confirmed: "unverified",
+        basis: "Planning band for the Cape Fear coast from secondary summaries quoting 130–140 mph " +
+               "for Wilmington and 140–150 for the coastline itself.",
+        cite: "2018 NCRC Figure R301.2(4) / ASCE 7-10, Risk Category II; NCRC Chapter 45.",
+        src: "ncrc2018",
+        note: "Exposure D applies at open shoreline. The county runs from barrier island to inland " +
+              "and the contour crosses it." }),
+      snow: snowOf({ pgPsf: 10, band: [5, 10], confirmed: "unverified",
+        cite: "Planning value for the NC coast; the NCRC county table was not retrievable.",
+        src: "ncrc2018" }),
+      seismic: seismicOf({ sdc: "B", confirmed: "unverified",
+        cite: "Planning value.", src: "asce7" }),
+      frostDepthIn: frostOf({ confirmed: "unverified",
+        cite: "The NCRC frost line depth for this county could not be established.", src: "ncrc2018" }),
+      termite: levelOf({ level: "moderate to heavy", confirmed: "unverified",
+        cite: "IRC Figure R301.2(6) as carried into the NCRC. Coastal Carolina may be in the very " +
+              "heavy band; the boundary was not established.", src: "ncrc2018" }),
+      decay: levelOf({ level: "moderate to severe", confirmed: "unverified",
+        cite: "IRC Figure R301.2(7) as carried into the NCRC.", src: "ncrc2018" }),
+      windborneDebris: wbdOf({ inRegion: null, likely: true, determinedBy: "site",
+        confirmed: "unverified",
+        cite: "IRC/NCRC R301.2.1.2. The 1-mile / 130 mph limb reaches the coastal strip and the 140 " +
+              "mph limb may reach further inland. The county spans the boundary.", src: "ncrc2018" }),
+      amendments: [
+        amend("No local technical amendments; NCRC statewide.", "N.C.G.S. §143-138(e).", "nc-gs-143"),
+        amend("NCRC Chapter 45, High Wind Zones, applies where the design wind speed zone triggers " +
+              "it — one tie at each end of each rafter at 130 mph, two at 140 and 150 mph, and " +
+              "continuous concrete footings under all exterior walls in the 140 and 150 mph zones.",
+              "NCRC Chapter 45.", "ncrc-ch45",
+              { effect: "Chapter 45 is a PRESCRIPTIVE path and this engine is not on it. Its " +
+                        "requirements are additional, they are largely connections and foundations, " +
+                        "and calc-spec §8.17 designs no connection of any kind. A gravity-passing " +
+                        "member here is not a finished design." })
+      ],
+      mustVerify: [
+        mv({ id: "nc-nh-ch45", severity: "major",
+          what: "Whether NCRC Chapter 45 applies at this site and what it requires.",
+          why: "It is triggered by the design wind speed zone, which is a site determination, and it " +
+               "adds connection and foundation requirements this engine neither checks nor designs.",
+          check: "NCRC Chapter 45 scope against the site's design wind speed.",
+          authority: "New Hanover County / City of Wilmington inspections." })
+      ]
+    },
+
+    {
+      id: "nc-brunswick", name: "Brunswick County", county: "Brunswick", state: "NC", kind: "county",
+      packId: "nc-piedmont",
+      packWhy: "THE PRODUCT HAS NO COASTAL NORTH CAROLINA PACK. See packFor() for the size of the gap.",
+      governs: "wind",
+      codes: [codeRec({ name: "NC State Building Code: Residential Code", edition: "2018 NCRC",
+        basis: "2015 IRC", asce: "ASCE 7-10", adopted: "2019-01-01",
+        cite: "2018 NC State Building Code: Residential Code, effective 1 January 2019, including " +
+              "NCRC Chapter 45 High Wind Zones where applicable.", src: "ncrc2018" })],
+      wind: windOf({ vMph: 140, band: [130, 150], asce: "ASCE 7-10", exposureCommon: "C",
+        confirmed: "unverified",
+        basis: "Planning band for the Cape Fear coast, as New Hanover.",
+        cite: "2018 NCRC Figure R301.2(4) / ASCE 7-10, Risk Category II; NCRC Chapter 45.",
+        src: "ncrc2018",
+        note: "Brunswick is the fastest-growing tract-housing county on the North Carolina coast and " +
+              "the one where this product's absence of a coastal NC pack costs the most." }),
+      snow: snowOf({ pgPsf: 10, band: [5, 10], confirmed: "unverified",
+        cite: "Planning value for the NC coast; the NCRC county table was not retrievable.",
+        src: "ncrc2018" }),
+      seismic: seismicOf({ sdc: "B", confirmed: "unverified", cite: "Planning value.", src: "asce7" }),
+      frostDepthIn: frostOf({ confirmed: "unverified",
+        cite: "The NCRC frost line depth for this county could not be established.", src: "ncrc2018" }),
+      termite: levelOf({ level: "moderate to heavy", confirmed: "unverified",
+        cite: "IRC Figure R301.2(6) as carried into the NCRC.", src: "ncrc2018" }),
+      decay: levelOf({ level: "moderate to severe", confirmed: "unverified",
+        cite: "IRC Figure R301.2(7) as carried into the NCRC.", src: "ncrc2018" }),
+      windborneDebris: wbdOf({ inRegion: null, likely: true, determinedBy: "site",
+        confirmed: "unverified",
+        cite: "IRC/NCRC R301.2.1.2. Brunswick has extensive ocean and river frontage; the county " +
+              "spans the boundary.", src: "ncrc2018" }),
+      amendments: [
+        amend("No local technical amendments; NCRC statewide.", "N.C.G.S. §143-138(e).", "nc-gs-143"),
+        amend("NCRC Chapter 45, High Wind Zones, applies where the design wind speed zone triggers it.",
+              "NCRC Chapter 45.", "ncrc-ch45",
+              { effect: "Prescriptive path; connections and foundations, which calc-spec §8.17 " +
+                        "excludes entirely." })
+      ],
+      mustVerify: [
+        mv({ id: "nc-bru-ch45", severity: "major",
+          what: "Whether NCRC Chapter 45 applies at this site and what it requires.",
+          why: "Triggered by the site's design wind speed zone and adds requirements this engine does " +
+               "not check.",
+          check: "NCRC Chapter 45 scope against the site's design wind speed.",
+          authority: "Brunswick County Inspections." })
+      ]
     }
   ];
 
@@ -8023,6 +8729,740 @@ var FM = (function () {
   FM.juris._build = {
     wind: windOf, snow: snowOf, seismic: seismicOf, frost: frostOf,
     level: levelOf, wbd: wbdOf, code: codeRec, amendment: amend, mustVerify: mv
+  };
+
+  /* ------------------------------------------------------------
+     LOOKUP. An unknown id fails by name. It does not fall back to
+     a default jurisdiction, because a silently substituted
+     jurisdiction is a silently substituted code basis.
+     ------------------------------------------------------------ */
+
+  var BY_ID = {};
+  JURIS.forEach(function (j) {
+    if (has(BY_ID, j.id)) {
+      throw new Error("jurisdiction.js: duplicate jurisdiction id \"" + j.id + "\"");
+    }
+    BY_ID[j.id] = j;
+  });
+
+  function idList() {
+    return JURIS.map(function (j) { return j.id; }).join(", ");
+  }
+
+  function rawFor(jurisId) {
+    if (!has(BY_ID, jurisId)) {
+      throw new Error("unknown jurisdiction \"" + jurisId + "\" — this module covers " + idList() +
+                      ". It does not guess, and there is no default: substituting a jurisdiction " +
+                      "substitutes a code basis.");
+    }
+    return BY_ID[jurisId];
+  }
+
+  /* ------------------------------------------------------------
+     mustVerify. Assembled, never authored by hand alone.
+
+     Three sources feed it: the state's standing conditions, the
+     jurisdiction's own conditions, and — the important one — an
+     entry generated for EVERY value in the record that is null or
+     not `primary`. Because nothing in this file is `primary`, the
+     generated set is never empty, which is why the contract's
+     "ALWAYS non-empty" holds structurally rather than by promise.
+     ------------------------------------------------------------ */
+
+  function weak(rec) {
+    return !rec || rec.confirmed !== "primary";
+  }
+
+  function autoVerify(j) {
+    var out = [];
+
+    /* wind — unconditional, in every jurisdiction, forever */
+    out.push(mv({
+      id: j.id + "/wind", severity: "blocking",
+      what: "The basic design wind speed at the site" +
+            (j.wind.vMph === null ? "" : " (this record carries " + j.wind.vMph + " mph, Risk " +
+             "Category II" + (j.wind.band ? ", band " + j.wind.band[0] + "–" + j.wind.band[1] : "") + ")") +
+            ", and the exposure category.",
+      why: j.wind.codeFixed
+        ? "Even where the code fixes the speed by county, the figure in the edition in force on the " +
+          "permit date is the authority, and the exposure category is still a site determination."
+        : "This is a PLANNING value read from a band, not a lookup. Wind speed is not a property of " +
+          "a city. Exposure is a fetch determination under ASCE 7 §26.7 and this module publishes " +
+          "none.",
+      check: "The ASCE 7 Hazard Tool at the site coordinates on the " + j.wind.asce + " map, and " +
+             "the adopted code's own wind figure.",
+      authority: "ASCE 7 Hazard Tool; the AHJ."
+    }));
+
+    /* code currency — unconditional, because nothing here is primary */
+    out.push(mv({
+      id: j.id + "/adoption", severity: "blocking",
+      what: "The code edition actually in force on the permit date: " +
+            j.codes.map(function (c) { return c.name + " " + c.edition + " (" + c.status + ")"; })
+              .join("; ") + ".",
+      why: "Every adoption fact in this module came from a search-engine summary of a page that " +
+           "could not be opened (see FM.juris.RESEARCH). Adoption cycles also move: a date that was " +
+           "right when it was checked on " + CHECKED + " is not necessarily right now.",
+      check: "The adopting authority's current adopted-codes page and ordinance.",
+      authority: STATES_DATA[j.state].authority
+    }));
+
+    /* seismic — unconditional, S_s and S_1 are null everywhere */
+    out.push(mv({
+      id: j.id + "/seismic", severity: "major",
+      what: "S_s, S_1 and the seismic design category at the site. This module publishes no S_s or " +
+            "S_1 at all and carries SDC " + (j.seismic.sdc === null ? "nothing" : j.seismic.sdc) +
+            " as a planning value.",
+      why: "Seismic ground motion is a coordinate lookup. No jurisdiction-level value is defensible, " +
+           "and the SDC also depends on the site class, which is a geotechnical determination.",
+      check: "USGS / ASCE 7 Hazard Tool at the site coordinates, with the site class.",
+      authority: "ASCE 7 Hazard Tool; the geotechnical report."
+    }));
+
+    if (j.snow.pgPsf === null || weak(j.snow)) {
+      out.push(mv({
+        id: j.id + "/snow", severity: j.snow.pgPsf === 0 ? "minor" : "major",
+        what: "The ground snow load p_g at the site" +
+              (j.snow.pgPsf === null ? " — this module carries none" :
+               " (this record carries " + j.snow.pgPsf + " psf" +
+               (j.snow.band ? ", band " + j.snow.band[0] + "–" + j.snow.band[1] : "") + ")") + ".",
+        why: j.snow.pgPsf === 0
+          ? "Zero is stated with confidence for Florida and the Texas coast, but it is still the " +
+            "value that decides whether the D + S combination exists at all, and C_D with it."
+          : "The adopted code tabulates p_g by county and that table was not retrievable. Snow " +
+            "overtakes the 20 psf roof live load above roughly 26 psf ground snow, and the load " +
+            "duration factor drops from 1.25 to 1.15 when it does.",
+        check: "The adopted code's ground snow table for the county, and the ASCE 7 Hazard Tool.",
+        authority: "ASCE 7 Hazard Tool; the AHJ."
+      }));
+    }
+
+    if (j.frostDepthIn.inches === null || weak(j.frostDepthIn)) {
+      out.push(mv({
+        id: j.id + "/frost", severity: "minor",
+        what: j.frostDepthIn.inches === null
+          ? "The frost line depth. This module carries NONE for this jurisdiction."
+          : "The frost line depth (this record carries " + j.frostDepthIn.inches + " in).",
+        why: "Frost line depth is entered by the adopting jurisdiction in Table R301.2(1) and that " +
+             "table was not retrievable. The separate 12 in minimum footing depth of R403.1.4 is " +
+             "carried as `minFootingDepthIn` and applies regardless.",
+        check: "The jurisdiction's completed Table R301.2(1).",
+        authority: "The AHJ."
+      }));
+    }
+
+    if (weak(j.termite) || weak(j.decay)) {
+      out.push(mv({
+        id: j.id + "/durability", severity: "minor",
+        what: "Termite infestation probability (" + (j.termite.level || "none carried") +
+              ") and decay probability (" + (j.decay.level || "none carried") + ").",
+        why: "Both are read off national figures and then ENTERED BY THE JURISDICTION in Table " +
+             "R301.2(1); the entered value governs and it was not retrievable. They drive treatment " +
+             "and, through NDS Table 4.3.8 incising, the capacity of every treated member in a " +
+             "refractory species.",
+        check: "The jurisdiction's completed Table R301.2(1); IRC/FBC-R R317 and R318.",
+        authority: "The AHJ."
+      }));
+    }
+
+    if (j.windborneDebris.inRegion === null) {
+      out.push(mv({
+        id: j.id + "/wbd", severity: "major",
+        what: "Whether the SITE is in the wind-borne debris region. This module deliberately " +
+              "publishes no county-wide answer here" +
+              (j.windborneDebris.likely === null ? "." :
+               "; the likely answer is " + (j.windborneDebris.likely ? "yes" : "no") + "."),
+        why: "The region is drawn by wind speed contour and distance from the coastal mean high " +
+             "water line, not by county line. A single county routinely has land inside and outside " +
+             "it, and publishing a county flag would be a confident error.",
+        check: j.windborneDebris.criterion,
+        authority: "The AHJ; the ASCE 7 Hazard Tool for the site's mapped speed."
+      }));
+    }
+
+    (j.amendments || []).forEach(function (a, i) {
+      if (a.incomplete) {
+        out.push(mv({
+          id: j.id + "/amendments-" + (i + 1), severity: "blocking",
+          what: "The jurisdiction's local amendments affecting structural design.",
+          why: "NOT RETRIEVED. This module's amendment list for this jurisdiction is empty of " +
+               "content, which is not the same as there being no amendments. Read it as a gap.",
+          check: a.cite,
+          authority: "The AHJ."
+        }));
+      }
+    });
+
+    return out;
+  }
+
+  function verifyFor(j) {
+    var out = [];
+    STATES_DATA[j.state].mustVerify.forEach(function (m) { out.push(m); });
+    autoVerify(j).forEach(function (m) { out.push(m); });
+    (j.mustVerify || []).forEach(function (m) { out.push(m); });
+    return out;
+  }
+
+  /* ------------------------------------------------------------
+     THE CONTRACT SURFACE
+     ------------------------------------------------------------ */
+
+  FM.juris.forState = function (stateCode) {
+    var st = String(stateCode || "").toUpperCase();
+    if (!has(STATES_DATA, st)) {
+      throw new Error("unknown state \"" + stateCode + "\" — this module covers " +
+                      FM.juris.STATES.join(", ") + " only.");
+    }
+    var s = STATES_DATA[st];
+    var out = {};
+    copyInto(out, s);
+    out.checked = CHECKED;
+    out.jurisdictions = FM.juris.jurisdictions(st).map(function (j) { return j.id; });
+    out.provenanceNote =
+      "Nothing in this record is `confirmed: \"primary\"`. See FM.juris.RESEARCH for why, and " +
+      "treat every adoption date here as a planning fact rather than a permit fact.";
+    return out;
+  };
+
+  FM.juris.jurisdictions = function (stateCode) {
+    var st = stateCode === undefined || stateCode === null
+      ? null : String(stateCode).toUpperCase();
+    if (st !== null && !has(STATES_DATA, st)) {
+      throw new Error("unknown state \"" + stateCode + "\" — this module covers " +
+                      FM.juris.STATES.join(", ") + " only.");
+    }
+    return JURIS.filter(function (j) { return st === null || j.state === st; })
+      .map(function (j) {
+        return {
+          id: j.id, name: j.name, county: j.county, state: j.state, kind: j.kind,
+          packId: j.packId, governs: j.governs,
+          hvhz: !!j.hvhz,
+          catastropheArea: !!j.catastropheArea,
+          edition: j.codes[0].edition,
+          editionStatus: j.codes[0].status
+        };
+      });
+  };
+
+  FM.juris.forSite = function (jurisId) {
+    var j = rawFor(jurisId);
+    var st = STATES_DATA[j.state];
+    return {
+      jurisdiction: { id: j.id, name: j.name, county: j.county, state: j.state, kind: j.kind },
+      state: { code: st.code, name: st.name, statewide: st.statewide, authority: st.authority },
+      codes: j.codes,
+      wind: j.wind,
+      snow: j.snow,
+      seismic: j.seismic,
+      frostDepthIn: j.frostDepthIn,
+      termite: j.termite,
+      decay: j.decay,
+      windborneDebris: j.windborneDebris,
+      hvhz: !!j.hvhz,
+      catastropheArea: !!j.catastropheArea,
+      governs: j.governs,
+      amendments: j.amendments || [],
+      packId: j.packId,
+      packWhy: j.packWhy,
+      mustVerify: verifyFor(j),
+      checked: CHECKED,
+      note: "`frostDepthIn`, `termite`, `decay` and `windborneDebris` are RECORDS, not bare values — " +
+            "each carries its own cls, cite, confirmed and checked, because the architecture rule " +
+            "that every value carries a class and a citation outranks the convenience of a bare " +
+            "number. Read `frostDepthIn.inches`, `termite.level`, `decay.level` and " +
+            "`windborneDebris.inRegion`."
+    };
+  };
+
+  /* ------------------------------------------------------------
+     PROVENANCE WALKER
+
+     Returns every value-bearing record in forSite() with its class
+     and citation, plus `orphans` — numbers that are NOT inside a
+     record carrying a class. An orphan is a defect: it is a number
+     with no citation, which this product does not ship.
+     ------------------------------------------------------------ */
+
+  var IGNORE_NUMERIC_KEYS = { };
+
+  FM.juris.provenance = function (jurisId) {
+    var site = FM.juris.forSite(jurisId);
+    var records = [], orphans = [];
+
+    function numbersIn(o) {
+      var nums = [], k, v, i;
+      for (k in o) {
+        if (!has(o, k) || has(IGNORE_NUMERIC_KEYS, k)) continue;
+        v = o[k];
+        if (typeof v === "number") nums.push({ key: k, v: v });
+        else if (Array.isArray(v)) {
+          for (i = 0; i < v.length; i++) {
+            if (typeof v[i] === "number") nums.push({ key: k + "[" + i + "]", v: v[i] });
+          }
+        }
+      }
+      return nums;
+    }
+
+    function walk(node, path, covered) {
+      var k, v, i;
+      if (node === null || typeof node !== "object") return;
+      if (Array.isArray(node)) {
+        for (i = 0; i < node.length; i++) walk(node[i], path + "[" + i + "]", covered);
+        return;
+      }
+      var isRecord = typeof node.cls === "string";
+      if (isRecord) {
+        records.push({
+          path: path, cls: node.cls,
+          cite: typeof node.cite === "string" && node.cite.length ? node.cite : null,
+          confirmed: node.confirmed || null,
+          checked: node.checked || null,
+          numbers: numbersIn(node)
+        });
+        covered = true;
+      } else {
+        numbersIn(node).forEach(function (n) {
+          if (!covered) orphans.push({ path: path + "." + n.key, v: n.v });
+        });
+      }
+      for (k in node) {
+        if (!has(node, k)) continue;
+        v = node[k];
+        if (v !== null && typeof v === "object") {
+          walk(v, path ? path + "." + k : k, isRecord ? true : covered);
+        }
+      }
+    }
+
+    walk(site, "", false);
+    return {
+      jurisId: jurisId,
+      records: records,
+      orphans: orphans,
+      uncited: records.filter(function (r) { return !r.cite; }),
+      unclassed: []
+    };
+  };
+
+  /* ------------------------------------------------------------
+     CHECKLIST — what a package must satisfy to be submittable.
+
+     These are SUBMITTAL requirements, not design loads. None of
+     them changes a member size. Several of them decide whether the
+     package can be permitted at all, and this engine satisfies
+     none of them by itself.
+     ------------------------------------------------------------ */
+
+  function ck(o) {
+    return {
+      id: o.id, item: o.item, why: o.why, cite: o.cite, src: o.src || null,
+      stage: o.stage || "submittal",
+      blocking: o.blocking === undefined ? true : !!o.blocking,
+      satisfiedByThisTool: false,
+      cls: o.cls || "code", confirmed: o.confirmed || "secondary", checked: CHECKED
+    };
+  }
+
+  FM.juris.checklist = function (jurisId) {
+    var j = rawFor(jurisId);
+    var st = STATES_DATA[j.state];
+    var out = [];
+
+    /* --- universal --- */
+    out.push(ck({
+      id: "seal", stage: "closeout",
+      item: "The set is sealed by a professional engineer licensed in " + st.name + ". This package " +
+            "is prepared FOR that review and seal; the software does not seal and never will.",
+      why: "Architecture non-negotiable 1. Every output says so.",
+      cite: "Firmark ARCHITECTURE.md, non-negotiables §1." }));
+
+    out.push(ck({
+      id: "criteria-table",
+      item: "The design criteria table on the cover reproduces the jurisdiction's completed Table " +
+            "R301.2(1) values — wind speed and exposure, ground snow, seismic design category and " +
+            "site class, frost line depth, termite and decay probability — as CONFIRMED for this " +
+            "site, not as carried by this module.",
+      why: "Every one of those values in this module is a planning value or null. See " +
+           "forSite().mustVerify.",
+      cite: (j.state === "FL" ? "FBC-R" : "IRC") + " Table R301.2(1); " + j.codes[0].cite,
+      src: j.codes[0].src }));
+
+    out.push(ck({
+      id: "truss-package", stage: "design",
+      item: "The roof truss package is a deferred sealed submittal by the truss supplier, with its " +
+            "own engineer's seal, and is not part of this package.",
+      why: "A production roof in all three states is a truss package. This engine designs simple-span " +
+           "solid-sawn members only (calc-spec §8.6, §8.19).",
+      cite: "calc-spec §8.6, §8.19." }));
+
+    out.push(ck({
+      id: "connections", stage: "design",
+      item: "Uplift, the continuous load path, hold-downs, straps, anchors and every connection are " +
+            "designed by others and are NOT in this package.",
+      why: "calc-spec §8.11 and §8.17 exclude them outright. In every wind-governed jurisdiction in " +
+           "this module they are what actually governs the building.",
+      cite: "calc-spec §8.11, §8.17." }));
+
+    /* --- Texas --- */
+    if (j.state === "TX") {
+      out.push(ck({
+        id: "tx-edition",
+        item: "The cover states the city ordinance and IRC edition the set is designed to, by " +
+              "number and effective date — currently " + j.codes[0].edition + " per " +
+              j.codes[0].cite.split(";")[0] + ".",
+        why: "Texas has no statewide edition. Two cities in this module are on different IRC " +
+             "editions and therefore different ASCE 7 maps.",
+        cite: "Tex. Loc. Gov't Code §214.212.", src: "tx-lgc-214" }));
+
+      if (j.id === "tx-houston") {
+        out.push(ck({
+          id: "tx-hou-windprint",
+          item: "The ASCE 7 Hazard Tool wind-speed printout for the property's physical address is " +
+                "ATTACHED TO THE PLANS, with the building identified as Risk Category II.",
+          why: "Houston requires it by amendment. It is not optional and it is not satisfied by " +
+               "citing a city-wide number.",
+          cite: "Houston Amendments to the 2021 IRC, §R301.2.1.", src: "hou-amend" }));
+      }
+
+      if (j.kind === "county-unincorporated") {
+        out.push(ck({
+          id: "tx-uninc-regime", stage: "design",
+          item: "Establish which regulatory regime the site is in — a municipality's ETJ code, " +
+                "Tex. Loc. Gov't Code ch. 233 Subchapter F, or no code at all — BEFORE the geometry " +
+                "gate.",
+          why: "The three produce three different code bases and three different submittal sets, and " +
+               "one of them has no plan review behind it at all.",
+          cite: "Tex. Loc. Gov't Code §§233.151–233.153.", src: "tx-lgc-233" }));
+      }
+
+      if (j.catastropheArea) {
+        out.push(ck({
+          id: "tx-wpi1", stage: "design",
+          item: "WPI-1 application filed with TDI BEFORE construction begins, and a TDI-appointed " +
+                "qualified inspector or TDI-appointed Texas-licensed professional engineer engaged " +
+                "to oversee the work.",
+          why: "Windstorm certification is an inspection programme, not a paperwork step. It cannot " +
+               "be retrofitted after framing.",
+          cite: "Tex. Ins. Code §§2210.251–2210.252, 2210.258–2210.259.", src: "tdi-wpi8" }));
+
+        out.push(ck({
+          id: "tx-tdi-code", stage: "design",
+          item: "The windstorm design complies with the 2024 IRC / 2024 IBC as required by TDI for " +
+                "WPI-1 applications from 1 April 2026 — WHICH MAY BE A NEWER EDITION THAN THE CITY " +
+                "ENFORCES. Where the two differ, satisfy both.",
+          why: "The city permit and the windstorm certificate are two separate approvals on two " +
+               "separate code cycles. A set that satisfies only the city passes plan review and then " +
+               "fails windstorm certification, which is discovered after framing.",
+          cite: "28 TAC §5.4008, amendment adopted 21 November 2025, effective 1 April 2026.",
+          src: "tdi-rule" }));
+
+        out.push(ck({
+          id: "tx-wpi8", stage: "closeout",
+          item: "WPI-8 certificate of compliance issued by TDI at completion.",
+          why: "Without it the structure is not eligible for TWIA windstorm coverage, which in " +
+               "practice means it is not mortgageable.",
+          cite: "TDI windstorm inspection programme.", src: "tdi-wpi8" }));
+      }
+    }
+
+    /* --- Florida --- */
+    if (j.state === "FL") {
+      out.push(ck({
+        id: "fl-edition",
+        item: "The cover states the FBC edition governing the permit — currently the 8th Edition " +
+              "(2023) — AND confirms which edition applies given the permit application date, with " +
+              "the 9th Edition (2026) expected effective 31 December 2026.",
+        why: "The governing edition is set by the date the permit application is submitted and " +
+             "accepted, not the date the set was drawn.",
+        cite: "Florida Building Code, Residential, 8th Edition (2023); 9th Edition (2026) pending.",
+        src: "fbc9" }));
+
+      out.push(ck({
+        id: "fl-product-approval",
+        item: j.hvhz
+          ? "Every product in a regulated category carries a Miami-Dade NOA, or a statewide Florida " +
+            "Product Approval bearing the HVHZ endorsement. A statewide approval WITHOUT the HVHZ " +
+            "endorsement is rejected at permit review."
+          : "Every product in a regulated category carries a valid statewide Florida Product " +
+            "Approval (FL number in the BCIS) or an approved local product approval.",
+        why: "A submittal requirement, not a design load. It changes no member size and it decides " +
+             "whether the package can be permitted. NOTHING this engine sizes carries an approval of " +
+             "any kind.",
+        cite: "F.A.C. Rule 61G20-3; Florida Product Approval / Miami-Dade NOA.", src: "fl-prod" }));
+
+      out.push(ck({
+        id: "fl-opening-protection",
+        item: "Opening protection is provided where the SITE is in the wind-borne debris region, " +
+              "determined from the site's mapped wind speed and its distance from the coastal mean " +
+              "high water line — not from the county.",
+        why: WBD_CRITERION,
+        cite: "FBC-R R301.2.1.2.", src: "fbc8",
+        blocking: j.windborneDebris.inRegion !== false }));
+
+      out.push(ck({
+        id: "fl-termite",
+        item: "Subterranean termite protection per FBC-R R318, with the method and the treatment " +
+              "certificate in the submittal.",
+        why: "Required throughout Florida, and it interacts with what may be installed below grade.",
+        cite: "FBC-R R318.", src: "fbc8" }));
+
+      if (j.hvhz) {
+        out.push(ck({
+          id: "fl-hvhz-ch44", stage: "design",
+          item: "The design complies with FBC-R Chapter 44, High-Velocity Hurricane Zones, in full.",
+          why: "Chapter 44 is a distinct design and approval regime, not a set of stricter numbers. " +
+               "Whether it permits a prescriptive path or mandates engineered design is UNRESOLVED " +
+               "in this module and in weights.js, and it decides what this tool's output is for.",
+          cite: "FBC-R Chapter 44; FBC-B §1620.", src: "fl-hvhz" }));
+      } else {
+        out.push(ck({
+          id: "fl-not-hvhz", stage: "design", blocking: false,
+          item: "Confirm this jurisdiction is NOT in the HVHZ and is not being detailed to Chapter 44 " +
+                "by analogy to a neighbour.",
+          why: "The HVHZ is Miami-Dade and Broward only. Palm Beach and Lee carry near-HVHZ wind " +
+               "speeds under the ordinary statewide regime, which is exactly the combination that " +
+               "gets them mis-detailed in both directions.",
+          cite: "FBC-R Chapter 44 scope — Broward and Miami-Dade counties only.", src: "fl-hvhz" }));
+      }
+
+      out.push(ck({
+        id: "fl-local-amend", blocking: false,
+        item: "Check for a local technical amendment in force, and whether it survives the 9th Edition.",
+        why: "F.S. §553.73(4) amendments are more-stringent-only and are VOID when the code is " +
+             "updated, except Community Rating System amendments.",
+        cite: "F.S. §553.73(4).", src: "fs-553-73" }));
+    }
+
+    /* --- North Carolina --- */
+    if (j.state === "NC") {
+      out.push(ck({
+        id: "nc-edition",
+        item: "The cover states which NCRC edition governs on the permit date. This module carries " +
+              "the 2018 NCRC (2015 IRC basis) as in force; the 2024 NCRC is adopted and delayed.",
+        why: "The 2024 NCRC effective date has moved three times and the last confirmable statement " +
+             "is six months old. It changes the base IRC year and the referenced wind standard " +
+             "together.",
+        cite: "S.L. 2024-57 §1F.3; S.L. 2025-2; NC licensing board code update, 15 February 2026.",
+        src: "nc-lic-2026" }));
+
+      out.push(ck({
+        id: "nc-asce710", stage: "design",
+        item: "An engineered design is performed to ASCE 7-10 while the 2018 NCRC is in force.",
+        why: "2018 NCRC R301.1.3 references ASCE 7-10. A wind speed taken off the ASCE 7-16 or " +
+             "7-22 map is off the wrong map for a North Carolina permit today.",
+        cite: "2018 NCRC R301.1.3; OSFM formal interpretation, 29 February 2024.",
+        src: "ncrc-asce710" }));
+
+      out.push(ck({
+        id: "nc-ch45",
+        item: "Where the site's design wind speed zone triggers NCRC Chapter 45, its High Wind Zone " +
+              "provisions are satisfied — rafter ties, continuous concrete footings under exterior " +
+              "walls in the 140 and 150 mph zones, and the rest of the chapter.",
+        why: "Chapter 45 is a prescriptive path this engine is not on, and its requirements are " +
+             "largely connections and foundations, which calc-spec §8.17 excludes entirely.",
+        cite: "NCRC Chapter 45, High Wind Zones.", src: "ncrc-ch45",
+        blocking: j.governs === "wind" }));
+
+      out.push(ck({
+        id: "nc-no-local", blocking: false,
+        item: "Do not look for, or rely on, a local technical amendment. There are none.",
+        why: "The NCRC is statewide and a more stringent local provision requires Council approval " +
+             "under G.S. §143-138(e). This is the only state in the module where the code text does " +
+             "not have to be diffed per jurisdiction.",
+        cite: "N.C.G.S. §143-138(e).", src: "nc-gs-143" }));
+    }
+
+    return out;
+  };
+
+  /* ------------------------------------------------------------
+     PACK MAPPING
+
+     Which weights.js region pack is the nearest load basis, and —
+     the part that earns its keep — WHERE THAT PACK IS WRONG FOR
+     THIS JURISDICTION. A pack is an approximation of a site. The
+     approximation is only safe if its error is published.
+
+     Reads FM.weights.PACKS live. It does not carry a copy, because
+     a copy would drift and then this module would be reporting
+     differences against a pack that no longer exists.
+     ------------------------------------------------------------ */
+
+  function packsOrNull(packs) {
+    if (packs) return packs;
+    if (typeof FM !== "undefined" && FM.weights && FM.weights.PACKS) return FM.weights.PACKS;
+    return null;
+  }
+
+  function findPack(packs, id) {
+    var hit = packs.filter(function (p) { return p.id === id; });
+    return hit.length ? hit[0] : null;
+  }
+
+  function diff(field, what, jv, pv, why, effect) {
+    return {
+      field: field, what: what,
+      jurisValue: jv, packValue: pv,
+      delta: (typeof jv === "number" && typeof pv === "number") ? (jv - pv) : null,
+      pctOfPack: (typeof jv === "number" && typeof pv === "number" && pv !== 0)
+        ? Math.round(((jv - pv) / pv) * 1000) / 10 : null,
+      why: why, effect: effect || null, cls: "site", checked: CHECKED
+    };
+  }
+
+  FM.juris.packFor = function (jurisId, packs) {
+    var j = rawFor(jurisId);
+    var P = packsOrNull(packs);
+
+    if (!P) {
+      return {
+        jurisId: jurisId, packId: j.packId, resolved: false,
+        why: "FM.weights is not loaded, so the pack's real values could not be read and no " +
+             "difference could be computed. The pack id is reported unchecked. Load weights.js " +
+             "before jurisdiction.js — build.js already orders it that way.",
+        differences: null, agreements: null,
+        mustVerify: verifyFor(j), checked: CHECKED
+      };
+    }
+
+    var pack = findPack(P, j.packId);
+    if (!pack) {
+      return {
+        jurisId: jurisId, packId: j.packId, resolved: false,
+        why: "jurisdiction.js maps " + jurisId + " to pack \"" + j.packId + "\", which does not " +
+             "exist in FM.weights.PACKS. Available: " +
+             P.map(function (p) { return p.id; }).join(", ") + ". This is a defect in one of the " +
+             "two files and it is reported rather than silently defaulted.",
+        differences: null, agreements: null,
+        mustVerify: verifyFor(j), checked: CHECKED
+      };
+    }
+
+    var differences = [], agreements = [];
+
+    /* wind */
+    var pw = pack.climate.windMph.v, jw = j.wind.vMph;
+    if (typeof jw === "number" && typeof pw === "number" && jw !== pw) {
+      differences.push(diff("wind.vMph", "Basic design wind speed, Risk Category II", jw, pw,
+        "The pack carries one planning speed for a whole region; this jurisdiction's planning band " +
+        "is " + (j.wind.band ? j.wind.band[0] + "–" + j.wind.band[1] : "not banded") + " mph on the " +
+        j.wind.asce + " map.",
+        "Wind pressure goes as V². " +
+        (jw > pw
+          ? "The pack is " + Math.round(((jw * jw) / (pw * pw) - 1) * 100) + "% LIGHT on wind " +
+            "pressure for this jurisdiction. It understates the hazard."
+          : "The pack is " + Math.round((1 - (jw * jw) / (pw * pw)) * 100) + "% heavy on wind " +
+            "pressure for this jurisdiction.") +
+        " This engine checks gravity only (calc-spec §8.11), so the difference does not move a " +
+        "member here — it moves everything downstream that this engine does not design."));
+    } else if (typeof jw === "number" && jw === pw) {
+      agreements.push({ field: "wind.vMph", value: jw,
+        note: "Agrees with the pack — but both are planning values and neither is a site lookup." });
+    }
+
+    /* ASCE edition the pack implies vs the one the adopted code references */
+    differences.push(diff("wind.asce", "Referenced ASCE 7 edition",
+      j.wind.asce, null,
+      "The pack declares no ASCE 7 edition at all — `climate.windMph` is a bare number with a note. " +
+      "This jurisdiction's adopted code references " + j.wind.asce + ".",
+      "A wind speed is only meaningful against the map it came off. Two of this module's Texas " +
+      "cities are on different ASCE editions while sharing the tx-i35 pack."));
+
+    /* snow */
+    var ps = pack.climate.groundSnow.v, js = j.snow.pgPsf;
+    if (typeof js === "number" && typeof ps === "number" && js !== ps) {
+      differences.push(diff("snow.pgPsf", "Ground snow load", js, ps,
+        "The pack carries one planning p_g for a whole region.",
+        (js > ps || ps > js)
+          ? "Roof snow overtakes the 20 psf roof live load above roughly 26 psf ground snow, and " +
+            "the load duration factor drops from C_D = 1.25 to 1.15 when it does — a real 8% " +
+            "capacity reduction on every bending check. Check which side of that line BOTH numbers " +
+            "fall on before treating the difference as harmless."
+          : null));
+    } else if (typeof js === "number" && js === ps) {
+      agreements.push({ field: "snow.pgPsf", value: js, note: "Agrees with the pack." });
+    }
+
+    /* seismic */
+    var psd = pack.climate.sdc.v, jsd = j.seismic.sdc;
+    if (jsd !== null && psd !== undefined && jsd !== psd) {
+      differences.push(diff("seismic.sdc", "Seismic design category", jsd, psd,
+        "Planning values on both sides; neither is a site-class determination.",
+        "Not a gravity driver in any of these markets, but it changes the detailing category."));
+    } else if (jsd !== null && jsd === psd) {
+      agreements.push({ field: "seismic.sdc", value: jsd, note: "Agrees with the pack." });
+    }
+
+    /* what governs */
+    if (j.governs !== pack.governs) {
+      differences.push(diff("governs", "What governs the design", j.governs, pack.governs,
+        "The jurisdiction and the pack disagree about the dominant action.",
+        j.governs === "wind" && pack.governs === "gravity"
+          ? "THIS IS THE SERIOUS ONE. The pack is a GRAVITY pack and this is a WIND jurisdiction, so " +
+            "the pack carries no `governsNote` and the export will not lead with a wind banner. The " +
+            "member this engine sizes is a gravity floor and nothing more, and the pack will not say " +
+            "so on the sheet."
+          : "The pack treats this as wind-governed where the jurisdiction does not; the wind banner " +
+            "will appear on a sheet that does not need it, which is the safe direction."));
+    } else {
+      agreements.push({ field: "governs", value: j.governs, note: "Agrees with the pack." });
+    }
+
+    /* HVHZ / windstorm regime the pack cannot express */
+    if (j.hvhz && pack.id !== "fl-hvhz") {
+      differences.push(diff("hvhz", "High-Velocity Hurricane Zone", true, false,
+        "This is an HVHZ jurisdiction mapped to a non-HVHZ pack.",
+        "Wrong regime entirely, not merely wrong numbers."));
+    }
+    if (!j.hvhz && pack.id === "fl-hvhz") {
+      differences.push(diff("hvhz", "High-Velocity Hurricane Zone", false, true,
+        "This is NOT an HVHZ jurisdiction but it is mapped to the HVHZ pack.",
+        "The pack ships a concrete tile roof and a 0.85 DCR cap that this jurisdiction has not " +
+        "asked for."));
+    }
+    if (j.catastropheArea) {
+      differences.push(diff("catastropheArea", "TDI designated catastrophe area", true, null,
+        "The pack has no field for the windstorm regime; tx-gulf mentions it only in prose.",
+        "WPI-1 / WPI-8 certification on the 2024 IRC is a submittal and inspection requirement the " +
+        "pack cannot express and the solver cannot see."));
+    }
+
+    /* code edition — the pack carries prose, not a field */
+    differences.push(diff("code.edition", "Adopted code edition",
+      j.codes[0].edition, null,
+      "The pack carries `code.family: \"" + pack.code.family + "\"` and a prose note. It has no " +
+      "edition field, so nothing downstream can compare an edition against it.",
+      "This module is where the edition lives. The pack cannot be right or wrong about it because " +
+      "it does not state it."));
+
+    return {
+      jurisId: jurisId,
+      jurisName: j.name,
+      packId: pack.id,
+      packName: pack.name,
+      resolved: true,
+      basis: j.packWhy,
+      differences: differences,
+      agreements: agreements,
+      verdict: differences.length
+        ? "THE PACK IS AN APPROXIMATION OF THIS SITE, AND HERE IS HOW FAR OFF IT IS. " +
+          differences.length + " difference" + (differences.length === 1 ? "" : "s") + " reported."
+        : "No difference detected on the fields this module can compare — which is not the same as " +
+          "the pack being right for the site.",
+      note: "A pack chooses a LOAD BASIS and a market palette. It is not a code basis and it is not " +
+            "a site. Use forSite() for the code and the hazard parameters, and treat the pack as the " +
+            "commercial and load-preset layer underneath them.",
+      mustVerify: verifyFor(j),
+      checked: CHECKED
+    };
+  };
+
+  /* Every jurisdiction's pack mapping in one call, for a reviewer
+     who wants to see the whole approximation surface at once. */
+  FM.juris.packAudit = function (packs) {
+    return JURIS.map(function (j) { return FM.juris.packFor(j.id, packs); });
   };
 })();
 
@@ -8273,6 +9713,9 @@ var FM = (function () {
       exterior: true, bearing: true,
       heightFt: level.topPlateFt === null ? null : level.topPlateFt,
       thicknessIn: null,
+      /* "user" — a human set it; "assumed" — fromPlan chose it because the
+         source plan declares no stud size, and validate() says so out loud */
+      thicknessBasis: "user",
       note: ""
     };
     if (over) Object.keys(over).forEach(function (k) { w[k] = over[k]; });
@@ -8343,6 +9786,7 @@ var FM = (function () {
           x1: num(w.x1) || 0, y1: num(w.y1) || 0, x2: num(w.x2) || 0, y2: num(w.y2) || 0,
           exterior: !!w.exterior, bearing: !!w.bearing,
           heightFt: num(w.heightFt), thicknessIn: num(w.thicknessIn),
+          thicknessBasis: w.thicknessBasis === "assumed" ? "assumed" : "user",
           note: w.note || "", basis: w.basis || ""
         });
       });
@@ -8547,6 +9991,10 @@ var FM = (function () {
       var lid = L.id;
       var walls = L.walls || [], openings = L.openings || [], framing = L.framing || [];
       var i, j;
+      /* Findings that would otherwise repeat once per element are collected
+         and reported once. Fourteen identical warnings bury the one finding
+         that is not identical. */
+      var noThick = [], assumedThick = [], placeholders = {};
 
       if (walls.length) anyWall = true;
 
@@ -8568,9 +10016,12 @@ var FM = (function () {
         }
         var th = num(w.thicknessIn);
         if (th === null) {
-          add(lid, w.id, "warn", "wall-no-thickness",
-              w.id + " has no wall thickness. Set it in the wall panel — 3.5 in for a 2x4 wall, " +
-              "5.5 in for a 2x6 — before the takeoff gate.");
+          noThick.push(w.id);
+        } else if (w.thicknessBasis === "assumed") {
+          assumedThick.push(w.id + " " + f1(th) + " in");
+        }
+        if (th === null) {
+          /* grouped below */
         } else if (th <= 0) {
           add(lid, w.id, "error", "wall-thickness-zero",
               w.id + " has a thickness of " + f2(th) + " in. A wall has to be thicker than nothing; " +
@@ -8627,11 +10078,37 @@ var FM = (function () {
               " ft wall — there is no room above it for a header. Lower the head or raise the wall.");
         }
         if (o.offsetBasis === "placeholder") {
-          add(lid, o.id, "warn", "opening-placeholder-offset",
-              o.id + " (" + o.kind + ", " + ftIn(o.widthFt) + ") sits at a PLACEHOLDER offset of " +
-              f2(o.offsetFt) + " ft along " + w.id + ". Nothing in the source plan says where along the " +
-              "wall it goes. Drag it to the architectural elevation before the takeoff gate.");
+          placeholders[w.id] = placeholders[w.id] || [];
+          placeholders[w.id].push(o.id);
         }
+      });
+
+      /* ---- the grouped wall and opening findings ---- */
+      if (noThick.length) {
+        add(lid, noThick.length === 1 ? noThick[0] : "walls", "warn", "wall-no-thickness",
+            (noThick.length === 1 ? noThick[0] + " has" : noThick.length + " walls have") +
+            " no thickness (" + noThick.join(", ") + "). The takeoff measures a clear span between " +
+            "wall FACES, so half of each wall comes out of the centreline dimension and it cannot " +
+            "derive a span without one. Set 3.5 in for a 2x4 wall or 5.5 in for a 2x6.");
+      }
+      if (assumedThick.length) {
+        add(lid, assumedThick.length === 1 ? assumedThick[0].split(" ")[0] : "walls", "warn",
+            "wall-thickness-assumed",
+            "Wall thickness on " + assumedThick.length + " wall" + (assumedThick.length === 1 ? "" : "s") +
+            " was ASSUMED, not read from the plan: " + assumedThick.join(", ") + ". No plan or region " +
+            "pack in this build declares a stud size, so a 2x4 (3.5 in) framed wall was taken as the " +
+            "default — it is the common production wall in TX, FL and NC, and it is the conservative " +
+            "reading, because a thinner wall leaves a LONGER clear span between faces. Confirm the " +
+            "stud size against the architectural set and change it here if the walls are 2x6.");
+      }
+      Object.keys(placeholders).forEach(function (wid) {
+        var ids = placeholders[wid];
+        add(lid, wid, "warn", "opening-placeholder-offset",
+            wid + " carries " + ids.length + " opening" + (ids.length === 1 ? "" : "s") +
+            " at PLACEHOLDER offsets (" + ids.join(", ") + "). The source plan declares how many " +
+            "openings this wall has and how wide they are, not where along it they sit — these are " +
+            "spaced evenly so the wall can be read, and no dimension off them is real. Drag them to " +
+            "the architectural elevation before the takeoff gate.");
       });
 
       /* ---- framing ---- */
@@ -8790,6 +10267,50 @@ var FM = (function () {
     return { ft: seen[0] / 12, inches: seen[0] };
   }
 
+  /* Truss spacing: declared if the plan declares it, otherwise read back out
+     of the truss mark's own count — but ONLY because these plans state that
+     relationship in as many words ("Count is the 46 ft ridge run at 24 in
+     o.c. plus one"). A count that is declared as a CONSEQUENCE of a spacing
+     can be inverted to recover it; a count the plan says follows whatever the
+     solver picks cannot, and the floor bays below are left undeclared for
+     exactly that reason. */
+  function trussSpacing(plan, g, runFt) {
+    var declared = num(g.trussSpacingIn);
+    var truss = null;
+    (plan.marks || []).forEach(function (mk) {
+      if (!truss && mk.role === "rafter" && mk.component && num(mk.count) > 1) truss = mk;
+    });
+    /* The inversion checks itself: a count that really is "the run at some
+       spacing plus one" reads back as one of the spacings anybody frames at.
+       A count that means something else does not, and then nothing is
+       derived. 19.2 in is the 5-per-8-ft layout. */
+    var STD = [12, 16, 19.2, 24];
+    var derived = null, rawDerived = null;
+    if (truss && runFt > 0) {
+      var run = num(truss.runFt) !== null ? num(truss.runFt) : runFt;
+      rawDerived = Math.round((run / (num(truss.count) - 1)) * 12 * 100) / 100;
+      STD.forEach(function (s) { if (derived === null && near(rawDerived, s, 0.05)) derived = s; });
+    }
+    if (declared !== null) {
+      var agree = derived === null || near(declared, derived, 0.01);
+      return { inches: declared,
+               basis: "Spacing " + declared + " in from geometry.trussSpacingIn" +
+                      (derived === null ? "." : agree
+                        ? "; the truss mark's count reads back the same " + derived + " in."
+                        : "; NOTE the truss mark's count reads back " + derived +
+                          " in instead — reconcile the two before the takeoff gate.") };
+    }
+    if (derived !== null) {
+      return { inches: derived,
+               basis: "Spacing " + derived + " in DERIVED from " + truss.id + ": its count of " +
+                      truss.count + " is declared as the " +
+                      (num(truss.runFt) !== null ? truss.runFt : runFt) +
+                      " ft run at that spacing plus one, so the spacing follows from the count." };
+    }
+    return { inches: null,
+             basis: "Spacing is not declared and no count reads it back." };
+  }
+
   /* equal gaps, openings in the order given — the only layout that
      does not favour one end of a wall over the other */
   function layoutEqualGaps(wallLenFt, widths) {
@@ -8802,16 +10323,50 @@ var FM = (function () {
     return out;
   }
 
-  function fromPlan(planId) {
+  /* No plan and no region pack in this build declares a stud size, and the
+     takeoff measures a clear span between wall FACES — so a wall with no
+     thickness stops the whole pipeline. A stated assumption a reviewer can
+     see and change is the right answer; a null is not, and neither is a
+     silent one. 2x4 because it is the production wall in these three states,
+     and because it is the conservative reading: a THINNER wall leaves a
+     LONGER clear span between faces, so nothing downstream is under-sized by
+     it. validate() reports every wall carrying this value as assumed. */
+  var ASSUMED_STUD_IN = 3.5;
+
+  function fromPlan(planId, variantId) {
     var W = FM.weights;
     if (!W || typeof W.planById !== "function") return null;
     var plan = W.planById(planId);
     if (!plan) return null;
 
+    var basePlan = plan, variantNote = "";
+    if (variantId) {
+      if (typeof W.planForVariant !== "function") {
+        variantNote = "This build's weights.js has no planForVariant(), so variant \"" + variantId +
+                      "\" was not applied.";
+      } else {
+        try { plan = W.planForVariant(basePlan, variantId); }
+        catch (e) { plan = basePlan; variantNote = e.message; }
+      }
+    }
+
     var m = blank(plan.name);
-    m.source = { kind: "plan", planId: plan.id, builtBy: "FM.cad.fromPlan" };
+    m.source = { kind: "plan", planId: basePlan.id, variantId: variantId || null,
+                 builtBy: "FM.cad.fromPlan" };
     var un = m.unresolved;
     function hole(what, why, need) { un.push({ what: what, why: why, need: need }); }
+
+    if (variantNote) {
+      hole("Variant \"" + variantId + "\"",
+           "It was not applied, so this geometry is the base plan: " + variantNote,
+           "Name a variant this build has, or read this model as the stamped base case.");
+    }
+    if (plan.variant && plan.variant.geometry) {
+      hole("Geometry added by variant \"" + (plan.variant.id || variantId) + "\"",
+           "This variant declares its own geometry block, and this model draws the base footprint " +
+           "only — a porch or a stoop the variant adds is not on the canvas.",
+           "Declare where the added geometry sits relative to a named corner, then draw it.");
+    }
 
     var g = plan.geometry || {};
     var fp = isArr(g.footprintFt) ? g.footprintFt : null;
@@ -8819,7 +10374,7 @@ var FM = (function () {
 
     var plate = plateFtFromPacks();
     if (plate) {
-      L.topPlateFt = Math.round(plate.ft * 10000) / 10000;
+      L.topPlateFt = plate.ft;
       L.note = "Top plate " + plate.inches + " in — every region pack in weights.js declares the same " +
                "precut plate height, so it is the one value the plan does not have to state. " +
                "Provenance [market], not code.";
@@ -8840,22 +10395,24 @@ var FM = (function () {
     var Wd = num(fp[0]), D = num(fp[1]);
 
     /* ---- the exterior envelope ---- */
+    var thickNote = "Thickness " + ASSUMED_STUD_IN + " in is ASSUMED — a 2x4 framed wall. " +
+                    plan.name + " declares no stud size and neither does any region pack.";
     var basis = "Exterior envelope from " + plan.name + " geometry.footprintFt = [" + Wd + ", " + D +
-                "] ft. Front is the wall at y = 0 (drawing convention).";
+                "] ft. Front is the wall at y = 0 (drawing convention). " + thickNote;
     /* pushed one at a time — nextId reads the list, so building all four
        first hands out the same id twice */
-    var front = newWall(L, 0, 0, Wd, 0, { note: "Front wall", basis: basis, bearing: false });
-    L.walls.push(front);
-    var right = newWall(L, Wd, 0, Wd, D, { note: "Right wall", basis: basis, bearing: false });
-    L.walls.push(right);
-    var rear = newWall(L, 0, D, Wd, D, { note: "Rear wall", basis: basis, bearing: false });
-    L.walls.push(rear);
-    var left = newWall(L, 0, 0, 0, D, { note: "Left wall", basis: basis, bearing: false });
-    L.walls.push(left);
-
-    /* Wall thickness is not declared by any plan or pack — the packs carry a
-       plate height, not a stud size. It is left null and validate() names it
-       per wall, which is where a reader will be looking when they fix it. */
+    function envelope(x1, y1, x2, y2, label) {
+      var w = newWall(L, x1, y1, x2, y2, {
+        note: label + " · " + thickNote, basis: basis, bearing: false,
+        thicknessIn: ASSUMED_STUD_IN, thicknessBasis: "assumed"
+      });
+      L.walls.push(w);
+      return w;
+    }
+    var front = envelope(0, 0, Wd, 0, "Front wall");
+    var right = envelope(Wd, 0, Wd, D, "Right wall");
+    var rear = envelope(0, D, Wd, D, "Rear wall");
+    var left = envelope(0, 0, 0, D, "Left wall");
 
     /* ---- which walls bear, and which way the roof spans ---- */
     var span = num(g.trussSpanFt);
@@ -8928,17 +10485,21 @@ var FM = (function () {
       var acrossX = near(sum, Wd, 0.01), acrossY = near(sum, D, 0.01);
       if (acrossX && !acrossY) {
         interior = newWall(L, joistSpans[0], 0, joistSpans[0], D, {
-          exterior: false, bearing: true, note: "Interior bearing line",
+          exterior: false, bearing: true,
+          note: "Interior bearing line · " + thickNote,
+          thicknessIn: ASSUMED_STUD_IN, thicknessBasis: "assumed",
           basis: "Derived: the two declared joist bays (" + joistSpans[0] + " ft and " + joistSpans[1] +
                  " ft) add to the " + Wd + " ft footprint width, so the line sits " + joistSpans[0] +
-                 " ft from one side."
+                 " ft from one side. " + thickNote
         });
         floorDirDeg = 0;
       } else if (acrossY && !acrossX) {
         interior = newWall(L, 0, joistSpans[0], Wd, joistSpans[0], {
-          exterior: false, bearing: true, note: "Interior bearing line",
+          exterior: false, bearing: true,
+          note: "Interior bearing line · " + thickNote,
+          thicknessIn: ASSUMED_STUD_IN, thicknessBasis: "assumed",
           basis: "Derived: the two declared joist bays (" + joistSpans[0] + " ft and " + joistSpans[1] +
-                 " ft) add to the " + D + " ft footprint depth."
+                 " ft) add to the " + D + " ft footprint depth. " + thickNote
         });
         floorDirDeg = 90;
       }
@@ -8966,17 +10527,18 @@ var FM = (function () {
     /* ---- framing regions ---- */
     var fpPoly = [[0, 0], [Wd, 0], [Wd, D], [0, D]];
     if (bearWalls && roofDirDeg !== null) {
+      var runFt = roofDirDeg === 90 ? Wd : D;      /* the ridge run, across the span */
+      var sp = trussSpacing(plan, g, runFt);
       L.framing.push(newFraming(L, fpPoly, {
-        kind: "roof", directionDeg: roofDirDeg, spacingIn: num(g.trussSpacingIn),
+        kind: "roof", directionDeg: roofDirDeg, spacingIn: sp.inches,
         bearsOn: bearWalls.map(function (w) { return w.id; }),
         note: "Common trusses, " + span + " ft clear span",
-        basis: "Region is the footprint. Direction from geometry.trussSpanFt = " + span +
-               " ft; spacing from geometry.trussSpacingIn" +
-               (num(g.trussSpacingIn) === null ? ", which this plan does not declare." : ".")
+        basis: "Region is the footprint. Direction from geometry.trussSpanFt = " + span + " ft. " + sp.basis
       }));
-      if (num(g.trussSpacingIn) === null) {
+      if (sp.inches === null) {
         hole("Roof member spacing",
-             plan.name + " declares no geometry.trussSpacingIn.",
+             plan.name + " declares no geometry.trussSpacingIn, and its truss mark declares no count " +
+             "the spacing could be read back out of.",
              "Declare the truss spacing, or set it on the roof region by hand.");
       }
     }
@@ -9098,9 +10660,10 @@ var FM = (function () {
         marks.forEach(function (x) { ids.push(x.id); var h = wallHint(x) || "unhinted"; if (hints.indexOf(h) === -1) hints.push(h); });
         if (hints.length > 1) {
           hole("The " + f1(num(mk.span)) + " ft opening behind " + ids.join(" and "),
-               plan.name + " carries " + ids.length + " header marks for one opening and they put it " +
-               "in different walls (" + hints.join(", ") + ") — the truss direction there decides " +
-               "which reading applies and the plan does not state it.",
+               plan.name + " carries " + ids.length + " header marks for one opening — " +
+               ids.join(" and ") + " — and they put it in different walls (" + hints.join(", ") +
+               "). The truss direction there decides which reading applies and the plan does not " +
+               "state it.",
                "State the truss direction at that opening, then draw it in the wall that follows.");
           return;
         }
@@ -9239,6 +10802,7 @@ var FM = (function () {
   FM.cad = {
     MODEL_VERSION: MODEL_VERSION,
     RULES: RULES,
+    ASSUMED_STUD_IN: ASSUMED_STUD_IN,
     OPENING_KINDS: OPENING_KINDS,
     FRAMING_KINDS: FRAMING_KINDS,
     STORE_KEY: STORE_KEY,
@@ -9327,7 +10891,7 @@ var FM = (function () {
     hover: null,
     cursor: null,
     saveKey: "",
-    defaults: { thicknessIn: 5.5, openWidthFt: 4, headHeightFt: 6.67, kind: "window", framingKind: "roof" }
+    defaults: { thicknessIn: ASSUMED_STUD_IN, openWidthFt: 4, headHeightFt: 6.67, kind: "window", framingKind: "roof" }
   };
   var MODEL = null;
   var UNDO = [], REDO = [];
@@ -10166,6 +11730,653 @@ var FM = (function () {
     S.draft = null;
     redraw();
   }
+
+  /* ---------------- form helpers ---------------- */
+
+  var uid = 0;
+  function field(label, node, hint) {
+    var id = "cad-f" + (++uid);
+    node.setAttribute("id", id);
+    var f = el("div", { class: "field" }, [el("label", { "for": id, text: label }), node]);
+    if (hint) f.appendChild(el("span", { class: "field-hint", text: hint }));
+    return f;
+  }
+  function numBox(value, step, onCommit) {
+    var n = el("input", { type: "number", step: step || "0.5",
+      value: (value === null || value === undefined) ? "" : String(value) });
+    n.addEventListener("change", function () { onCommit(this.value === "" ? null : num(this.value)); });
+    return n;
+  }
+  function textBox(value, onCommit) {
+    var n = el("input", { type: "text", value: value || "" });
+    n.addEventListener("change", function () { onCommit(this.value); });
+    return n;
+  }
+  function pickBox(options, value, onCommit) {
+    var n = el("select", {}, options.map(function (o) {
+      return el("option", { value: o, text: o, selected: o === value ? "selected" : null });
+    }));
+    n.addEventListener("change", function () { onCommit(this.value); });
+    return n;
+  }
+  function toggle(label, checked, onCommit) {
+    var id = "cad-c" + (++uid);
+    var box = el("input", { type: "checkbox", id: id, style: "width:auto" });
+    box.checked = !!checked;
+    box.addEventListener("change", function () { onCommit(this.checked); });
+    return el("div", { style: "display:flex;align-items:center;gap:7px" }, [
+      box, el("label", { "for": id, text: label, style: "text-transform:none;letter-spacing:0;font-size:.83rem;font-family:var(--sans);color:var(--ink)" })
+    ]);
+  }
+  function edit(fn) { pushUndo(); fn(); redraw(); }
+
+  /* ---------------- the side panel ---------------- */
+
+  function panelWall(w) {
+    var L = level();
+    var mine = L.openings.filter(function (o) { return o.wallId === w.id; });
+    var rows = [
+      el("div", { class: "field-row" }, [
+        field("x1 (ft)", numBox(w.x1, "0.5", function (v) { edit(function () { w.x1 = v === null ? 0 : v; }); })),
+        field("y1 (ft)", numBox(w.y1, "0.5", function (v) { edit(function () { w.y1 = v === null ? 0 : v; }); }))
+      ]),
+      el("div", { class: "field-row" }, [
+        field("x2 (ft)", numBox(w.x2, "0.5", function (v) { edit(function () { w.x2 = v === null ? 0 : v; }); })),
+        field("y2 (ft)", numBox(w.y2, "0.5", function (v) { edit(function () { w.y2 = v === null ? 0 : v; }); }))
+      ]),
+      toggle("Exterior wall", w.exterior, function (v) { edit(function () { w.exterior = v; }); }),
+      toggle("Bearing — carries framing above", w.bearing, function (v) { edit(function () { w.bearing = v; }); }),
+      el("div", { class: "field-row" }, [
+        field("Thickness (in)", numBox(w.thicknessIn, "0.5", function (v) {
+          edit(function () { w.thicknessIn = v; w.thicknessBasis = "user"; });
+        }), w.thicknessBasis === "assumed" ? "ASSUMED 2x4 — confirm and retype" : "3.5 = 2x4, 5.5 = 2x6"),
+        field("Height (ft)", numBox(w.heightFt, "0.25", function (v) { edit(function () { w.heightFt = v; }); }))
+      ]),
+      field("Note", textBox(w.note, function (v) { edit(function () { w.note = v; }); }))
+    ];
+    var body = el("div", { style: "display:grid;gap:10px" }, rows);
+    body.appendChild(dl([
+      { k: "Length", v: esc(ftIn(wallLength(w))) + " · " + f2(wallLength(w)) + " ft" },
+      { k: "Bearing", v: w.bearing ? "yes" : "no", cls: w.bearing ? "" : "gold" },
+      { k: "Openings", v: String(mine.length) }
+    ]));
+    if (w.basis) body.appendChild(el("p", { class: "clause", text: w.basis }));
+    if (mine.length) {
+      var chips = el("div", { class: "chips" }, mine.map(function (o) {
+        return el("button", { class: "chip", text: o.id + " " + ftIn(o.widthFt),
+          onclick: function () { S.sel = { kind: "opening", id: o.id }; redraw(); } });
+      }));
+      body.appendChild(chips);
+    }
+    body.appendChild(el("button", { class: "btn btn-sm", text: "Delete " + w.id, onclick: deleteSelected }));
+    return card("Wall " + w.id, el("span", { class: "badge " + (w.exterior ? "b-blue" : "b-mute"),
+      text: w.exterior ? "Exterior" : "Interior", style: "margin-left:auto" }), body, null);
+  }
+
+  function panelOpening(o) {
+    var L = level(), w = wallById(L, o.wallId);
+    var fitNow = w ? openingFits(w, o, L.openings) : { ok: false, text: "This opening names no wall." };
+    var body = el("div", { style: "display:grid;gap:10px" }, [
+      field("Kind", pickBox(OPENING_KINDS, o.kind, function (v) { edit(function () { o.kind = v; }); })),
+      el("div", { class: "field-row" }, [
+        field("Offset (ft)", numBox(o.offsetFt, "0.25", function (v) {
+          edit(function () { o.offsetFt = v === null ? 0 : v; if (o.offsetBasis === "placeholder") o.offsetBasis = "user"; });
+        }), "from " + o.wallId + " start"),
+        field("Width (ft)", numBox(o.widthFt, "0.25", function (v) { edit(function () { o.widthFt = v === null ? 0 : v; }); }))
+      ]),
+      field("Head height (ft)", numBox(o.headHeightFt, "0.25", function (v) { edit(function () { o.headHeightFt = v; }); }),
+        "6.67 = 6'-8\"; 7.0 = 7'-0\""),
+      field("Note", textBox(o.note, function (v) { edit(function () { o.note = v; }); }))
+    ]);
+    body.appendChild(dl([
+      { k: "In wall", v: esc(o.wallId) + " · " + esc(ftIn(w ? wallLength(w) : 0)) },
+      { k: "Fits", v: fitNow.ok ? "yes" : "NO", cls: fitNow.ok ? "pass" : "fail" },
+      { k: "Position", v: o.offsetBasis === "placeholder" ? "placeholder" : o.offsetBasis,
+        cls: o.offsetBasis === "placeholder" ? "gold" : "" }
+    ]));
+    if (!fitNow.ok) body.appendChild(el("div", { class: "banner banner-warn", style: "margin:0" }, [el("span", { text: fitNow.text })]));
+    if (o.offsetBasis === "placeholder") {
+      body.appendChild(el("p", { class: "clause",
+        text: "Placeholder position — the source plan does not say where along the wall this opening " +
+              "sits. Drag it or type an offset; the flag clears when you do." }));
+    }
+    if (o.note) body.appendChild(el("p", { class: "clause", text: o.note }));
+    body.appendChild(el("button", { class: "btn btn-sm", text: "Delete " + o.id, onclick: deleteSelected }));
+    return card("Opening " + o.id, el("span", { class: "badge b-mute", text: o.kind, style: "margin-left:auto" }), body, null);
+  }
+
+  function panelFraming(f) {
+    var L = level();
+    var body = el("div", { style: "display:grid;gap:10px" }, [
+      field("Kind", pickBox(FRAMING_KINDS, f.kind, function (v) { edit(function () { f.kind = v; }); })),
+      el("div", { class: "field-row" }, [
+        field("Direction (deg)", numBox(f.directionDeg, "15", function (v) { edit(function () { f.directionDeg = v; }); }),
+          "0 = along +x"),
+        field("Spacing (in o.c.)", numBox(f.spacingIn, "2", function (v) { edit(function () { f.spacingIn = v; }); }))
+      ]),
+      el("div", { class: "chips" }, [
+        el("button", { class: "chip", text: "0° — along +x", onclick: function () { edit(function () { f.directionDeg = 0; }); } }),
+        el("button", { class: "chip", text: "90° — along +y", onclick: function () { edit(function () { f.directionDeg = 90; }); } }),
+        el("button", { class: "chip", text: "16 in", onclick: function () { edit(function () { f.spacingIn = 16; }); } }),
+        el("button", { class: "chip", text: "24 in", onclick: function () { edit(function () { f.spacingIn = 24; }); } })
+      ])
+    ]);
+    body.appendChild(el("div", { class: "lbl", text: "Bears on", style: "margin-top:4px" }));
+    var list = el("div", { style: "display:grid;gap:5px" });
+    L.walls.forEach(function (w) {
+      var on = f.bearsOn.indexOf(w.id) !== -1;
+      var touches = touchesRegion(f.polygon, w);
+      var lab = w.id + " · " + ftIn(wallLength(w)) + (w.bearing ? " · bearing" : " · NOT bearing") +
+                (touches ? "" : " · does not touch this region");
+      list.appendChild(toggle(lab, on, function (v) {
+        edit(function () {
+          if (v && f.bearsOn.indexOf(w.id) === -1) f.bearsOn.push(w.id);
+          if (!v) f.bearsOn = f.bearsOn.filter(function (id) { return id !== w.id; });
+        });
+      }));
+    });
+    body.appendChild(list);
+    body.appendChild(field("Note", textBox(f.note, function (v) { edit(function () { f.note = v; }); })));
+    body.appendChild(dl([
+      { k: "Area", v: FM.comma(Math.round(polyArea(f.polygon))) + " sf" },
+      { k: "Corners", v: String((f.polygon || []).length) },
+      { k: "Bears on", v: String(f.bearsOn.length), cls: f.bearsOn.length < 2 ? "fail" : "" }
+    ]));
+    if (f.basis) body.appendChild(el("p", { class: "clause", text: f.basis }));
+    body.appendChild(el("button", { class: "btn btn-sm", text: "Delete " + f.id, onclick: deleteSelected }));
+    return card("Framing " + f.id, el("span", { class: "badge b-blue", text: f.kind, style: "margin-left:auto" }), body, null);
+  }
+
+  function panelModel() {
+    var L = level();
+    var body = el("div", { style: "display:grid;gap:10px" }, [
+      field("Model name", textBox(MODEL.name, function (v) { edit(function () { MODEL.name = v || "Untitled plan"; }); })),
+      field("Level top plate (ft)", numBox(L.topPlateFt, "0.25", function (v) {
+        edit(function () { L.topPlateFt = v; });
+      }), "applies to new walls; use the button below for the ones already drawn")
+    ]);
+    body.appendChild(el("button", {
+      class: "btn btn-sm", text: "Set every wall height to the top plate",
+      onclick: function () {
+        if (L.topPlateFt === null) { toast("Set a top plate height first — there is nothing to apply."); return; }
+        edit(function () { L.walls.forEach(function (w) { w.heightFt = L.topPlateFt; }); });
+        toast("Set " + L.walls.length + " wall heights to " + f2(L.topPlateFt) + " ft.");
+      }
+    }));
+    body.appendChild(el("div", { class: "lbl", text: "New-element defaults", style: "margin-top:6px" }));
+    body.appendChild(el("div", { class: "field-row" }, [
+      field("Wall thickness (in)", numBox(S.defaults.thicknessIn, "0.5", function (v) { S.defaults.thicknessIn = v; })),
+      field("Opening width (ft)", numBox(S.defaults.openWidthFt, "0.5", function (v) { S.defaults.openWidthFt = v === null ? 3 : v; }))
+    ]));
+    body.appendChild(el("div", { class: "field-row" }, [
+      field("Head height (ft)", numBox(S.defaults.headHeightFt, "0.25", function (v) { S.defaults.headHeightFt = v; })),
+      field("Opening kind", pickBox(OPENING_KINDS, S.defaults.kind, function (v) { S.defaults.kind = v; }))
+    ]));
+    body.appendChild(field("Region kind", pickBox(FRAMING_KINDS, S.defaults.framingKind, function (v) { S.defaults.framingKind = v; })));
+    if (L.note) body.appendChild(el("p", { class: "clause", text: L.note }));
+    return card("Model", el("span", { class: "badge b-mute", text: L.label, style: "margin-left:auto" }), body,
+      "Nothing is selected — click a wall, an opening or a region to edit it");
+  }
+
+  function panelUnderlay() {
+    var u = MODEL.underlay;
+    var body = el("div", { style: "display:grid;gap:10px" });
+    var picker = el("input", { type: "file", accept: "image/png,image/jpeg", style: "width:100%;font-size:.8rem" });
+    picker.addEventListener("change", function () { if (this.files && this.files[0]) acceptFile(this.files[0]); });
+    body.appendChild(field("PNG or JPG", picker, "or drop the file straight onto the drawing"));
+
+    if (!u) {
+      body.appendChild(el("p", { class: "clause",
+        text: "No underlay. A PDF cannot be traced directly — run  node tools/pdf-to-underlay.js <file.pdf>  " +
+              "and drop the PNG it writes." }));
+      return card("Underlay", null, body, null);
+    }
+    var ftPerPx = scaleOf(u);
+    var op = el("input", { type: "range", min: "0.05", max: "1", step: "0.05", value: String(u.opacity),
+      style: "width:100%", "aria-label": "Underlay opacity" });
+    op.addEventListener("input", function () { u.opacity = num(this.value); drawCanvas(); });
+    body.appendChild(field("Opacity", op));
+    body.appendChild(dl([
+      { k: "Image", v: esc(u.name || "untitled") },
+      { k: "Pixels", v: (u.pxW || "?") + " x " + (u.pxH || "?") },
+      { k: "Scale", v: ftPerPx ? (Math.round(ftPerPx * 100000) / 100000) + " ft/px" : "NOT CALIBRATED",
+        cls: ftPerPx ? "pass" : "fail" },
+      ftPerPx ? { k: "Known distance", v: esc(ftIn(u.calib.knownFt)) } : null,
+      ftPerPx ? { k: "Across", v: Math.round(dist(u.calib.ax, u.calib.ay, u.calib.bx, u.calib.by)) + " px" } : null
+    ]));
+    body.appendChild(el("div", { class: "chips" }, [
+      el("button", { class: "chip", text: ftPerPx ? "Re-calibrate" : "Calibrate — 2 clicks",
+        onclick: function () { setTool("calib"); toast("Click two points on the underlay a known distance apart."); } }),
+      el("button", { class: "chip", text: "Remove underlay", onclick: function () {
+        edit(function () { MODEL.underlay = null; });
+        toast("Underlay removed. The walls you traced stay.");
+      } })
+    ]));
+    if (!ftPerPx) {
+      body.appendChild(el("div", { class: "banner banner-warn", style: "margin:0" }, [
+        el("strong", { text: "Not calibrated — " }),
+        el("span", { text: "the image is shown at a provisional size. Nothing traced off it is a real dimension yet." })
+      ]));
+    }
+    return card("Underlay", ftPerPx ? el("span", { class: "badge b-pass", text: "Calibrated", style: "margin-left:auto" })
+      : el("span", { class: "badge b-fail", text: "Uncalibrated", style: "margin-left:auto" }), body, null);
+  }
+
+  /* ---------------- findings ---------------- */
+
+  function panelFindings() {
+    var rows = validate(MODEL);
+    var errs = rows.filter(function (r) { return r.severity === "error"; });
+    var warns = rows.filter(function (r) { return r.severity !== "error"; });
+    var body = el("div", { class: "dl" });
+    if (!rows.length) {
+      body = el("div", { class: "empty", text: "No findings. This geometry is ready for the takeoff gate." });
+    } else {
+      errs.concat(warns).forEach(function (r) {
+        var badge = el("span", { class: "badge " + (r.severity === "error" ? "b-fail" : "b-warn"),
+          text: r.severity === "error" ? "Error" : "Warn" });
+        var row = el("div", { class: "dl-row", style: "align-items:flex-start;gap:9px" }, [
+          el("span", { class: "dl-k", style: "display:flex;gap:8px;align-items:flex-start" }, [
+            badge, el("span", { text: r.text })
+          ]),
+          el("span", { class: "dl-v", text: r.id })
+        ]);
+        var L = level();
+        var kind = L && wallById(L, r.id) ? "wall"
+          : (L && L.openings.filter(function (o) { return o.id === r.id; }).length ? "opening"
+          : (L && L.framing.filter(function (f) { return f.id === r.id; }).length ? "framing" : null));
+        if (kind) {
+          row.setAttribute("tabindex", "0");
+          row.setAttribute("role", "button");
+          row.setAttribute("aria-label", "Select " + r.id + " — " + r.text);
+          row.className += " clickable";
+          row.addEventListener("click", function () { S.sel = { kind: kind, id: r.id }; redraw(); });
+          row.addEventListener("keydown", function (e) {
+            if (e.key === "Enter" || e.key === " ") { e.preventDefault(); S.sel = { kind: kind, id: r.id }; redraw(); }
+          });
+        }
+        body.appendChild(row);
+      });
+    }
+    return card("Findings", el("span", {
+      class: "badge " + (errs.length ? "b-fail" : (warns.length ? "b-warn" : "b-pass")),
+      text: errs.length + " error" + (errs.length === 1 ? "" : "s") + " · " + warns.length + " warn",
+      style: "margin-left:auto"
+    }), body, errs.length
+      ? "Errors block the geometry gate. Warnings do not — they are the things a reviewer has to answer."
+      : "Warnings do not block the gate. They are what this model does not know, named.");
+  }
+
+  /* ---------------- underlay input ---------------- */
+
+  function acceptFile(file) {
+    if (!file) return;
+    var name = file.name || "the dropped file";
+    if (/\.pdf$/i.test(name) || file.type === "application/pdf") {
+      toast("A PDF cannot be traced in the browser. Run  node tools/pdf-to-underlay.js \"" + name +
+            "\"  — it writes a PNG beside the PDF — then drop that PNG here.");
+      return;
+    }
+    if (!/^image\/(png|jpeg)$/i.test(file.type || "") && !/\.(png|jpe?g)$/i.test(name)) {
+      toast("“" + name + "” is " + (file.type ? "a " + file.type : "not a type this build recognises") +
+            ". The underlay has to be a PNG or a JPG.");
+      return;
+    }
+    var rd = new FileReader();
+    rd.onerror = function () { toast("This browser could not read “" + name + "”. Try re-saving it as a PNG."); };
+    rd.onload = function () {
+      var img = new window.Image();
+      img.onerror = function () {
+        toast("“" + name + "” was read but could not be decoded as an image. Re-save it as a PNG.");
+      };
+      img.onload = function () {
+        pushUndo();
+        MODEL.underlay = {
+          dataUri: rd.result, calib: null, opacity: 0.35,
+          pxW: img.naturalWidth, pxH: img.naturalHeight, originFt: [0, 0], name: name
+        };
+        IMG = img;
+        fit();
+        redraw();
+        toast("Loaded " + name + " · " + img.naturalWidth + " x " + img.naturalHeight +
+              " px. It is NOT calibrated: click Calibrate, click two points a known distance apart, " +
+              "and type that distance.");
+      };
+      img.src = rd.result;
+    };
+    rd.readAsDataURL(file);
+  }
+
+  /* ---------------- redraw ---------------- */
+
+  var PANEL = null, FINDINGS = null, STATS = null, HUD = null, TOOLBAR = null;
+
+  function updateHud() {
+    if (!HUD) return;
+    var tool = null;
+    TOOLS.forEach(function (t) { if (t.id === S.tool) tool = t; });
+    var c = S.cursor;
+    HUD.textContent = (tool ? tool.label : S.tool) +
+      (c ? "  ·  x " + f1(c.x) + " ft, y " + f1(c.y) + " ft" : "") +
+      "  ·  grid " + ftIn(S.snapFt) + (S.snapOn ? "" : " (snap off)") +
+      "  ·  " + Math.round(S.view.k) + " px/ft";
+  }
+
+  function redraw() {
+    if (!PANEL) return;
+    drawCanvas();
+    updateHud();
+    clear(PANEL);
+    var sel = selected();
+    if (sel && S.sel.kind === "wall") PANEL.appendChild(panelWall(sel));
+    else if (sel && S.sel.kind === "opening") PANEL.appendChild(panelOpening(sel));
+    else if (sel && S.sel.kind === "framing") PANEL.appendChild(panelFraming(sel));
+    else PANEL.appendChild(panelModel());
+    PANEL.appendChild(panelUnderlay());
+
+    clear(FINDINGS);
+    FINDINGS.appendChild(panelFindings());
+
+    var st = stats(MODEL);
+    clear(STATS);
+    [FM.statCard(String(st.walls), "Walls"),
+     FM.statCard(String(st.bearingWalls), "Bearing walls", st.bearingWalls ? "" : "fail"),
+     FM.statCard(String(st.openings), "Openings"),
+     FM.statCard(String(st.framing), "Framing regions"),
+     FM.statCard(st.areaSf === null ? "—" : FM.comma(st.areaSf), "Footprint sf",
+       st.areaSf === null ? "gold" : "blue")
+    ].forEach(function (n) { STATS.appendChild(n); });
+
+    if (TOOLBAR) {
+      Array.prototype.forEach.call(TOOLBAR.querySelectorAll("button[data-tool]"), function (b) {
+        b.setAttribute("aria-pressed", b.getAttribute("data-tool") === S.tool ? "true" : "false");
+      });
+    }
+  }
+
+  /* ---------------- loading a source ---------------- */
+
+  function loadSource(announce) {
+    if (S.src.kind === "plan") {
+      var m = fromPlan(S.src.id);
+      if (!m) {
+        toast("This build has no plan called “" + S.src.id + "”. Starting an empty model instead.");
+        MODEL = blank("Untitled plan");
+      } else {
+        MODEL = m;
+        if (announce) {
+          var st = stats(m);
+          toast(m.name + ": " + st.walls + " walls, " + st.openings + " openings, " + st.framing +
+                " framing regions, " + m.unresolved.length + " open items the plan does not determine.");
+        }
+      }
+    } else if (S.src.kind === "saved") {
+      var s = loadLocal(S.src.id);
+      if (!s) {
+        toast("No saved model called “" + S.src.id + "” in this browser. Starting an empty model.");
+        MODEL = blank("Untitled plan");
+      } else {
+        MODEL = s;
+        if (announce) toast("Loaded “" + S.src.id + "”.");
+      }
+    } else {
+      MODEL = blank("Untitled plan");
+      var plate = plateFtFromPacks();
+      if (plate) {
+        MODEL.levels[0].topPlateFt = plate.ft;
+        MODEL.levels[0].note = "Top plate " + plate.inches + " in — the precut height every region " +
+                               "pack in weights.js declares. Provenance [market], not code.";
+      }
+      if (announce) toast("Empty model. Press W and drag to draw the first wall.");
+    }
+    UNDO.length = 0; REDO.length = 0;
+    S.sel = null; S.draft = null;
+    fit();
+  }
+
+  /* ---------------- the view ---------------- */
+
+  FM.VIEWS.cad = function (host) {
+    if (!MODEL) loadSource(false);
+
+    host.appendChild(FM.pageHead("Plan",
+      "Draw the geometry, or trace it over a calibrated plan. Everything downstream — spans, " +
+      "tributaries, headers — is read off what is on this canvas.", [
+        el("button", { class: "btn", text: "Sizing", onclick: function () { FM.go("sizing"); } }),
+        el("button", { class: "btn btn-primary", text: "Fit to content", onclick: function () { fit(); redraw(); } })
+      ]));
+
+    host.appendChild(FM.betaStrip(
+      "This is the geometry gate. A model with errors does not pass it. Warnings are the things the " +
+      "source plan does not determine — an opening the plan sizes but does not locate, a porch beam " +
+      "this model has no element for — and they are listed rather than filled in."));
+
+    /* ---- source bar ---- */
+    var srcSel = el("select", { "aria-label": "Geometry source" });
+    srcSel.appendChild(el("option", { value: "new|blank", text: "Empty model — draw from scratch" }));
+    (FM.weights ? FM.weights.PLANS : []).forEach(function (p) {
+      srcSel.appendChild(el("option", { value: "plan|" + p.id, text: "Plan · " + p.name + " — " + p.summary }));
+    });
+    listLocal().forEach(function (r) {
+      srcSel.appendChild(el("option", { value: "saved|" + r.key, text: "Saved · " + r.name + " (" + r.key + ")" }));
+    });
+    srcSel.value = S.src.kind + "|" + S.src.id;
+    srcSel.addEventListener("change", function () {
+      var parts = this.value.split("|");
+      S.src = { kind: parts[0], id: parts[1] };
+      loadSource(true);
+      redraw();
+      if (FM.syncHash) FM.syncHash(false);
+    });
+
+    var tools = el("div", { class: "seg", role: "group", "aria-label": "Drawing tool" },
+      TOOLS.map(function (t) {
+        return el("button", {
+          "data-tool": t.id, text: t.label, title: t.label + " (" + t.key + ") — " + t.hint,
+          "aria-pressed": t.id === S.tool ? "true" : "false",
+          onclick: function () { setTool(t.id); }
+        });
+      }));
+    TOOLBAR = tools;
+
+    var snapSel = el("select", { "aria-label": "Grid and snap step" }, [
+      el("option", { value: "0.25", text: "Grid 3\"" }),
+      el("option", { value: "0.5", text: "Grid 6\"" }),
+      el("option", { value: "1", text: "Grid 1 ft" }),
+      el("option", { value: "2", text: "Grid 2 ft" })
+    ]);
+    snapSel.value = String(S.snapFt);
+    snapSel.addEventListener("change", function () { S.snapFt = num(this.value); redraw(); });
+
+    host.appendChild(el("div", { class: "filter-bar", style: "margin-bottom:12px" }, [
+      srcSel, tools, snapSel,
+      el("button", { class: "btn btn-sm", text: "Undo", onclick: undo, title: "Ctrl+Z" }),
+      el("button", { class: "btn btn-sm", text: "Redo", onclick: redo, title: "Ctrl+Shift+Z" }),
+      el("button", { class: "btn btn-sm", text: "Reload source", title: "Discard edits and rebuild from the source",
+        onclick: function () {
+          if (window.confirm("Rebuild from the source and discard every edit on this canvas?")) {
+            loadSource(true); redraw();
+          }
+        } })
+    ]));
+
+    /* ---- stage + panel ---- */
+    var stage = el("div", { class: "cad-stage" });
+    SVG = document.createElementNS(NS, "svg");
+    SVG.setAttribute("class", "cad-svg");
+    SVG.setAttribute("tabindex", "0");
+    SVG.setAttribute("role", "application");
+    SVG.setAttribute("aria-label",
+      "Plan drawing canvas. Keyboard: V select, W wall, O opening, R region, P polygon, C calibrate, " +
+      "H pan. Arrow keys nudge the selection, Delete removes it, Escape cancels, F fits, G toggles snap.");
+    stage.appendChild(SVG);
+    HUD = el("div", { class: "cad-hud", "aria-live": "off" });
+    stage.appendChild(HUD);
+    stage.appendChild(el("div", { class: "cad-drop-note", text: "Drop a PNG or JPG plan here to trace it" }));
+
+    SVG.addEventListener("pointerdown", onDown);
+    SVG.addEventListener("pointermove", onMove);
+    SVG.addEventListener("pointerup", onUp);
+    SVG.addEventListener("pointercancel", function () { drag = null; });
+    SVG.addEventListener("wheel", onWheel, { passive: false });
+    SVG.addEventListener("keydown", onKey);
+    SVG.addEventListener("contextmenu", function (e) { e.preventDefault(); });
+
+    stage.addEventListener("dragover", function (e) { e.preventDefault(); stage.className = "cad-stage is-drop"; });
+    stage.addEventListener("dragleave", function () { stage.className = "cad-stage"; });
+    stage.addEventListener("drop", function (e) {
+      e.preventDefault();
+      stage.className = "cad-stage";
+      var f = e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0];
+      if (f) acceptFile(f);
+      else toast("Nothing came with that drop. Drag a PNG or JPG file from your file manager.");
+    });
+
+    PANEL = el("div", { class: "cad-panel" });
+    host.appendChild(el("div", { class: "cad-wrap" }, [stage, PANEL]));
+
+    STATS = el("div", { class: "grid g5", style: "margin-top:14px" });
+    host.appendChild(STATS);
+
+    FINDINGS = el("div", { style: "margin-top:14px" });
+    host.appendChild(FINDINGS);
+
+    /* ---- shortcuts, persistence, JSON ---- */
+    host.appendChild(el("div", { class: "grid g2", style: "margin-top:14px" }, [
+      cardShortcuts(), cardStore()
+    ]));
+    host.appendChild(el("div", { style: "margin-top:14px" }, [cardJson()]));
+
+    /* size the canvas from its box, then draw */
+    var box = SVG.getBoundingClientRect();
+    VW = Math.max(320, Math.round(box.width || 900));
+    VH = Math.max(320, Math.round(box.height || 560));
+    SVG.setAttribute("viewBox", "0 0 " + VW + " " + VH);
+    if (!MODEL._fitted) { fit(); MODEL._fitted = true; }
+    redraw();
+
+    if (window.addEventListener) {
+      window.addEventListener("resize", function () {
+        if (!SVG || !SVG.parentNode) return;
+        var b2 = SVG.getBoundingClientRect();
+        if (!b2.width) return;
+        VW = Math.round(b2.width); VH = Math.round(b2.height);
+        SVG.setAttribute("viewBox", "0 0 " + VW + " " + VH);
+        drawCanvas();
+      });
+    }
+  };
+
+  function cardShortcuts() {
+    var body = el("div", { class: "cad-keys" });
+    var keys = [
+      ["V / W / O", "select · wall · opening"],
+      ["R / P", "rectangular region · polygon region"],
+      ["C / H", "calibrate the underlay · pan"],
+      ["drag", "draw a wall; click-click chains wall to wall"],
+      ["Shift", "lock the wall orthogonal (it also locks itself within " + RULES.orthoDeg + "°)"],
+      ["wheel", "zoom at the cursor · Alt-drag or middle-drag pans"],
+      ["arrows", "nudge the selection one grid step · Shift for ten"],
+      ["Delete", "remove the selection — a wall takes its openings with it"],
+      ["Esc", "cancel the wall, polygon or calibration in progress"],
+      ["Enter", "close a polygon region"],
+      ["Ctrl+Z / Ctrl+Shift+Z", "undo · redo (" + RULES.undoDepth + " deep)"],
+      ["F / G", "fit to content · snap on and off"]
+    ];
+    keys.forEach(function (k) {
+      body.appendChild(el("div", { class: "cad-key" }, [
+        el("span", { class: "cad-kbd", text: k[0] }),
+        el("span", { text: k[1] })
+      ]));
+    });
+    return card("Keyboard and mouse", null, body,
+      "The canvas takes focus when you click it, and it is reachable by Tab");
+  }
+
+  function cardStore() {
+    var body = el("div", { style: "display:grid;gap:10px" });
+    var keyIn = el("input", { type: "text", value: S.saveKey || slug(MODEL.name),
+      placeholder: "a short key, e.g. lot-17-plan" });
+    body.appendChild(field("Save as", keyIn, "stored in this browser under " + STORE_KEY));
+    body.appendChild(el("div", { class: "chips" }, [
+      el("button", { class: "chip", text: "Save", onclick: function () {
+        var k = slug(keyIn.value);
+        if (!k) { toast("Give the model a key first — a short name like lot-17-plan."); return; }
+        var r = saveLocal(k, MODEL);
+        if (!r.ok) { toast(r.why); return; }
+        S.saveKey = k;
+        S.src = { kind: "saved", id: k };
+        toast("Saved “" + k + "”. It is in this browser only — export the JSON to move it.");
+        if (FM.syncHash) FM.syncHash(true);
+        FM.go("cad");
+      } }),
+      el("button", { class: "chip", text: "New empty model", onclick: function () {
+        S.src = { kind: "new", id: "blank" };
+        loadSource(true); redraw();
+        if (FM.syncHash) FM.syncHash(false);
+      } })
+    ]));
+    var saved = listLocal();
+    if (!saved.length) {
+      body.appendChild(el("p", { class: "clause", text: "Nothing saved in this browser yet." }));
+    } else {
+      var list = el("div", { class: "dl" });
+      saved.forEach(function (r) {
+        list.appendChild(el("div", { class: "dl-row" }, [
+          el("span", { class: "dl-k", text: r.name + " · " + r.key }),
+          el("span", { class: "dl-v" }, [
+            el("button", { class: "chip", text: "Load", onclick: function () {
+              S.src = { kind: "saved", id: r.key }; loadSource(true); redraw();
+              if (FM.syncHash) FM.syncHash(false);
+            } }),
+            el("button", { class: "chip", text: "Delete", onclick: function () {
+              if (!window.confirm("Delete the saved model “" + r.key + "”?")) return;
+              removeLocal(r.key);
+              toast("Deleted “" + r.key + "”.");
+              FM.go("cad");
+            } })
+          ])
+        ]));
+      });
+      body.appendChild(list);
+    }
+    return card("Save and load", null, body, "localStorage · this browser, this profile, nothing else");
+  }
+
+  function cardJson() {
+    var ta = el("textarea", {
+      rows: "8", spellcheck: "false", "aria-label": "Model JSON",
+      style: "width:100%;font-family:var(--mono);font-size:.76rem;padding:9px;border-radius:var(--r);" +
+             "border:1px solid var(--line-strong);background:var(--surface);color:var(--ink)"
+    });
+    var body = el("div", { style: "display:grid;gap:10px" }, [
+      el("div", { class: "chips" }, [
+        el("button", { class: "chip", text: "Export into the box", onclick: function () {
+          ta.value = toJSON(MODEL);
+          toast("The whole model is in the box — " + ta.value.length + " characters. Select all and copy.");
+        } }),
+        el("button", { class: "chip", text: "Import from the box", onclick: function () {
+          if (!ta.value.trim()) { toast("The box is empty. Paste a model JSON into it first."); return; }
+          var m;
+          try { m = fromJSON(ta.value); }
+          catch (err) { toast(err.message); return; }
+          pushUndo();
+          MODEL = m;
+          S.src = { kind: "new", id: "blank" };
+          S.sel = null;
+          fit(); redraw();
+          toast("Imported “" + m.name + "” — " + stats(m).walls + " walls. It is not saved yet.");
+        } })
+      ]),
+      ta
+    ]);
+    return card("JSON in and out", null, body,
+      "The export is the whole model, including what it does not know");
+  }
+
+  function slug(s) {
+    return String(s || "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 40);
+  }
 })();
 
 </script>
@@ -10339,7 +12550,10 @@ var FM = (function () {
     "jack count from the opening width AND the load carried, and this rule reads only the width. " +
     "Confirm it against the table for the tributary actually derived before the drawing is issued. " +
     "The value is marked `derived` so it can be challenged, and the engine checks bearing (Fc perp), " +
-    "so an under-declared bearing escalates rather than passing quietly.";
+    "so an under-declared bearing escalates rather than passing quietly. FOR COMPARISON: the " +
+    "hand-written marks in weights.js PLANS declare 2 jacks at openings of 3.67, 4.5, 5.0 and 6.5 ft " +
+    "and 3 jacks at 9.67 ft — one MORE jack than this rule gives below 6 ft, which is a factor of two " +
+    "on the bearing check. Whichever is right, they disagree, and this is where to settle it.";
 
   var POST_NOTE =
     "AXIAL MEMBER — NOT CHECKED HERE. calc-spec §4.10 specifies C_P (NDS §3.7.1) and §8.20 states " +
@@ -10415,11 +12629,6 @@ var FM = (function () {
         how: how, cls: cls || "derived"
       });
       return sp;
-    };
-    sp.get = function (name) {
-      var i;
-      for (i = 0; i < sp.fields.length; i++) if (sp.fields[i].name === name) return sp.fields[i].value;
-      return undefined;
     };
     sp.replace = function (name, value, from, fromIds, how, cls) {
       var i;
@@ -10756,7 +12965,12 @@ var FM = (function () {
         "the span is the CLEAR distance between wall faces, so half of each wall's thickness comes " +
         "out of the centreline distance. With no thickness there is no face, and assuming 2x6 " +
         "framing would invent up to 0.46 ft of span.",
-        "declare thicknessIn on every bearing wall.",
+        "declare thicknessIn on each wall named above — 3.5 in for a 2x4 wall, 5.5 in for 2x6. " +
+        "PIPELINE NOTE: FM.cad.validate reports a missing wall thickness as `warn`, which does not " +
+        "block approval gate 1, so a model can arrive here already approved and still be " +
+        "unmeasurable. Either that check becomes an error, or the geometry stage declares a stated " +
+        "thickness convention the way it already declares 'the front of the house is the wall at " +
+        "y = 0'.",
         [reg.id].concat(badT));
       rec.why = "support thickness not declared";
       return rec;
@@ -10950,8 +13164,10 @@ var FM = (function () {
       f3(spanFt + 3 / 12) + " ft at a 3 in bearing; this module emits the CLEAR distance the " +
       "FM.takeoff contract specifies and does not pad.");
     sp.set("runFt", clean(runFt), fromRegion, [reg.id],
-      "the region's extent measured perpendicular to the framing direction (along the bearing " +
-      "lines): " + f3(vmax) + " ft - " + f3(vmin) + " ft = " + f3(runFt) + " ft.");
+      "the region's dimension measured ACROSS the members, parallel to the bearing lines — the " +
+      "length of wall this framing lands on: " + f3(runFt) + " ft. It is not the polygon's longest " +
+      "side: the framing direction (" + f2(reg.directionDeg) + " deg) is what decides which " +
+      "dimension is the span and which is the run.");
     sp.set("spacingIn", reg.spacingIn, fromRegion, [reg.id],
       "read straight off the drawn region.", "user");
     sp.set("count", count, fromRegion + " and its spacing", [reg.id],
@@ -11017,7 +13233,7 @@ var FM = (function () {
         entry(wid).contributions.push({
           regionId: rec.id, kind: rec.kind, carries: rec.carries,
           spanFt: rec.spanFt, halfSpanFt: rec.halfSpanFt,
-          side: sn >= 0 ? "+" : "-",
+          side: sn >= 0 ? "+" : "-", centroid: rec.centroid,
           extent: rec.extentByWall[wid] || [0, g.len],
           markId: rec.markId
         });
@@ -11069,7 +13285,7 @@ var FM = (function () {
 
   /* another bearing wall teeing into this one inside the opening = a point
      load on the header */
-  function teeInOpening(model, index, entry, o1, o2) {
+  function teeInOpening(model, entry, o1, o2) {
     var g = entry.geom, hits = [];
     (model.levels || []).forEach(function (lv, li) {
       if (li !== entry.levelIndex) return;
@@ -11325,7 +13541,7 @@ var FM = (function () {
     }
 
     /* --- a bearing wall teeing into the opening is a point load --- */
-    var tees = teeInOpening(model, index, entry, o1, o2);
+    var tees = teeInOpening(model, entry, o1, o2);
     if (tees.length) {
       refuse(run, "header-point-load",
         "bearing wall(s) " + list(tees) + " land on wall " + w.id + " inside opening " + op.id,
@@ -11348,14 +13564,15 @@ var FM = (function () {
 
     var regionIds = over.map(function (c) { return c.regionId; });
     var tribHow = over.map(function (c) {
-      return "region " + c.regionId + " (" + c.kind + ", " + (c.side === "+" ? "one side" : "other side") +
-             " of the wall): clear span " + f3(c.spanFt) + " ft / 2 = " + f3(c.halfSpanFt) + " ft";
+      return "region " + c.regionId + " (" + c.kind + ", centroid at (" + f2(c.centroid[0]) + ", " +
+             f2(c.centroid[1]) + ") ft, which puts it on the " + c.side + " side of the wall line): " +
+             "clear span " + f3(c.spanFt) + " ft / 2 = " + f3(c.halfSpanFt) + " ft";
     }).join("; ");
     if (nSides < 2) {
       tribHow += ". The other side contributes nothing: wall " + w.id + " is declared exterior:true, " +
                  "so the outboard side is outside the building and no framing region bears on it " +
                  "there. Roof overhang / eave tributary is NOT included — the geometry model has no " +
-                 "eave, and inventing one would be a number off a sales sheet.";
+                 "eave, and inventing one would be a number off a sales sheet";
     }
     tribHow += ". Half of the CLEAR span, consistent with the span rule; half of the centre-to-" +
                "centre span would be about " + f3(over.length * (w.thicknessIn || 0) / 48) +
@@ -11714,6 +13931,19 @@ var FM = (function () {
             [m.id]);
         }
       });
+    }
+
+    /* The geometry may have arrived with open items of its own. They are NOT
+       repeated here — they belong to gate 1 — but a reader must not take
+       this module's unresolved list for the whole story. */
+    if (Array.isArray(model.unresolved) && model.unresolved.length) {
+      warn(out, "upstream-open-items",
+        "The MODEL arrived with " + model.unresolved.length + " open item(s) of its own from the " +
+        "geometry stage" + (model.source && model.source.builtBy ? " (" + model.source.builtBy + ")" : "") +
+        ": " + model.unresolved.map(function (u) { return u.what; }).join("; ") + ". Those are gate " +
+        "1 items and are not restated in this takeoff's unresolved list. A takeoff of geometry that " +
+        "is not yet approved is a draft, whatever this module says about it.",
+        []);
     }
 
     /* regions drawn but not taken off */
@@ -12129,6 +14359,27 @@ var FM = (function () {
                         " ft but the costed stick was " + cost.lengthFt + " ft");
       }
 
+      /* THE BEARING ALLOWANCE IS FLAT AND THE MARK'S BEARING IS NOT.
+         stockLength() adds a fixed 0.5 ft — 3 in at each end — while a mark
+         DECLARES its bearing in inches, and weights.js made that a design
+         input precisely because it governs. HDR-GAR declares 4.5 in per end
+         (three jacks), which is 0.75 ft of the stick, not 0.50. The 2 ft
+         rounding absorbs it in every case in the current corpus, so nothing
+         is short today — but it is absorbed by luck, not by rule, and a BOM
+         that buys a stick too short to reach its bearings is a framing-day
+         problem. Measured per line, reported, and escalated to a self-check
+         (which blocks issue) the moment it would actually shorten a stick. */
+      var bearNeedFt = 2 * num(d.bearing) / 12;
+      var trueCutFt = num(d.span) + bearNeedFt;
+      var wouldNeedFt = Math.max(8, Math.ceil(trueCutFt / 2) * 2);
+      var bearingTight = bearNeedFt > BEARING_ALLOWANCE_FT + 1e-9;
+      if (bearingTight && wouldNeedFt > stockFt) {
+        selfChecks.push(mk.id + ": the stick is SHORT. The mark declares " + n2(d.bearing, 2) +
+          " in of bearing at each end (" + n2(bearNeedFt, 3) + " ft of the piece), so the cut is " +
+          n2(trueCutFt, 2) + " ft and needs a " + wouldNeedFt + " ft stick — FM.solver.stockLength " +
+          "allows a flat " + n2(BEARING_ALLOWANCE_FT, 2) + " ft and bought a " + stockFt + " ft one.");
+      }
+
       var bfPerPiece = bfPerLf * stockFt;
       var matPerPiece = num(cost.terms && cost.terms.material);
       var dropPerPiece = num(cost.terms && cost.terms.drop);
@@ -12146,7 +14397,7 @@ var FM = (function () {
           piecesPerHouse: 0, bf: 0, cutBf: 0, dropBf: 0, lf: 0,
           extUSD: 0, dropHandlingUSD: 0,
           marks: [], cuts: [], roles: {}, roleOrder: [],
-          spacings: {}, wetService: 0, dryService: 0, unified: 0
+          spacings: {}, wetService: 0, dryService: 0, unified: 0, bearingTight: 0
         };
         order.push(key);
       }
@@ -12168,6 +14419,7 @@ var FM = (function () {
       }
       g.roles[K(mk.role || "unclassified")] += pieces;
       if (cand.spacing) g.spacings[K(String(cand.spacing))] = true;
+      if (bearingTight) g.bearingTight++;
       g.cuts.push({
         markId: mk.id, label: mk.label || "", role: mk.role || null,
         pieces: pieces, spanFt: num(d.span), cutLengthFt: cutFt,
@@ -12175,7 +14427,14 @@ var FM = (function () {
         unified: !!m.unifiedTo,
         countBasis: countBasisOf(m, pieces),
         dcr: isFinite(row.dcr) ? row.dcr : null,
-        governing: row.governing || null
+        governing: row.governing || null,
+        bearingPerEndIn: num(d.bearing),
+        bearingNeedFt: bearNeedFt,
+        bearingAllowanceFt: BEARING_ALLOWANCE_FT,
+        bearingTight: bearingTight,
+        cutWithDeclaredBearingFt: trueCutFt,
+        stockIfDeclaredBearingFt: wouldNeedFt,
+        stockAbsorbsIt: wouldNeedFt <= stockFt
       });
       priced++;
     });
@@ -13004,6 +15263,39 @@ var FM = (function () {
            "because you order 14-footers and 10-footers separately. See BY SKU below. " +
            "TREATED AND DRY ARE NEVER THE SAME LINE even at the same size, species and " +
            "grade: they are different products, out of different racks, at different prices.");
+    }
+
+    /* ---- the bearing allowance, where it is thinner than the mark ---- */
+    var tight = [];
+    bom.lines.forEach(function (g) {
+      g.cuts.forEach(function (c) { if (c.bearingTight) tight.push(c); });
+    });
+    if (tight.length) {
+      block("BEARING ALLOWANCE — " + tight.length + " MARK(S) DECLARE MORE THAN THE STICK RULE ADDS");
+      para("FM.solver.stockLength() adds a FLAT " + n2(FM.bom.BEARING_ALLOWANCE_FT, 2) +
+           " ft — 3 in at each end — to every span. A mark DECLARES its bearing in inches, " +
+           "and weights.js made that a design input because it governs the check. Where the " +
+           "declared bearing is longer than the flat allowance, the cut is longer than the " +
+           "rule assumes. The 2 ft rounding usually absorbs it; where it does not, the stick " +
+           "is short and this document says so at the top and refuses to be issued.");
+      say();
+      say("  " + pad("MARK", 10) + pad("BEARING/END", 13) + pad("RULE CUT", 11) +
+          pad("TRUE CUT", 11) + pad("BOUGHT", 9) + "NEEDS");
+      say("  " + rule("-").slice(0, 76));
+      tight.forEach(function (c) {
+        say("  " + pad(c.markId, 10) + pad(n2(c.bearingPerEndIn, 2) + " in", 13) +
+            pad(n2(c.cutLengthFt, 2) + " ft", 11) +
+            pad(n2(c.cutWithDeclaredBearingFt, 2) + " ft", 11) +
+            pad(bom.lines.filter(function (g) {
+              return g.cuts.indexOf(c) !== -1;
+            })[0].stockLengthFt + " ft", 9) +
+            c.stockIfDeclaredBearingFt + " ft" +
+            (c.stockAbsorbsIt ? "   (absorbed by the 2 ft rounding)" : "   ** SHORT **"));
+      });
+      say();
+      say("  This is reported, not corrected: the stick length rule lives in solver.js and");
+      say("  the BOM does not get a second opinion about it. Absorbed by rounding is not");
+      say("  the same as correct — it is correct by luck on this plan.");
     }
 
     /* ---- SKU view ---- */
@@ -14139,6 +16431,30 @@ var FM = (function () {
     return s === "undefined" || s === "NaN" || s === "[object Object]" ? d : s;
   }
 
+  /* Reads the first field an upstream record actually carries, from a list of
+     the names that record might plausibly use. ARCHITECTURE.md fixes the shape
+     of `unresolved` and `excluded` but says only `warnings: [...]` — so a
+     warning arrives as {kind, text, refs} from one module and as {what, why}
+     from another, and printing "(unnamed)" over a sentence somebody wrote is
+     losing the finding, not guarding against it. Returns the default only when
+     the record genuinely carries nothing readable. */
+  function pick(o, keys, dflt) {
+    if (o === null || o === undefined) return dflt;
+    if (typeof o !== "object") return safe(o, dflt);
+    for (var i = 0; i < keys.length; i++) {
+      if (!own(o, keys[i])) continue;
+      var v = o[keys[i]];
+      if (v === null || v === undefined || v === "" || typeof v === "object") continue;
+      return String(v);
+    }
+    return dflt;
+  }
+  function refsOf(o) {
+    if (!o || !isArr(o.refs)) return "";
+    var r = o.refs.filter(function (x) { return x !== null && x !== undefined && typeof x !== "object"; });
+    return r.length ? r.map(String).join(", ") : "";
+  }
+
   function n2(v, d) {
     if (v === null || v === undefined || v === "" || !isFinite(Number(v))) return "—";
     return Number(v).toFixed(d === undefined ? 2 : d);
@@ -14744,18 +17060,58 @@ var FM = (function () {
     if (p.have.takeoff) {
       var tk = p.have.takeoff;
       (isArr(tk.unresolved) ? tk.unresolved : []).forEach(function (u) {
-        add("TAKEOFF — UNRESOLVED", safe(u.what, "(unnamed)"), safe(u.why, "no reason given"),
-            safe(u.need, "a human must answer this before the takeoff is complete"));
+        var head = pick(u, ["what", "item", "mark", "markId", "title", "kind"], "");
+        var refs = refsOf(u);
+        add("TAKEOFF — UNRESOLVED",
+            (head || pick(u, ["text", "why", "message"], "(unnamed)")) + (refs ? " — " + refs : ""),
+            pick(u, ["why", "reason", "text", "message", "detail"], "no reason given"),
+            pick(u, ["need", "action", "resolve", "fix"],
+                 "a human must answer this before the takeoff is complete"));
       });
       (isArr(tk.warnings) ? tk.warnings : []).forEach(function (wn) {
-        add("TAKEOFF — WARNING", safe(wn && wn.what ? wn.what : wn, "(unnamed warning)"),
-            safe(wn && wn.why, ""), safe(wn && wn.need, "review before gate 2 is approved"));
+        var head = pick(wn, ["what", "title", "item", "kind"], "");
+        var refs = refsOf(wn);
+        add("TAKEOFF — WARNING",
+            (head || pick(wn, ["text", "message", "why"], "(unnamed warning)")) + (refs ? " — " + refs : ""),
+            pick(wn, ["why", "reason", "text", "message", "detail"], "no detail given"),
+            pick(wn, ["need", "action"], "review before gate 2 (the takeoff gate) is approved"));
       });
       if (!isArr(tk.derivations) || !tk.derivations.length) {
         add("TAKEOFF — UNRESOLVED", "No derivation trail was supplied.",
             "The contract requires every span, tributary and bearing to be traced so a " +
             "reviewer can reconstruct it without reading code. None was supplied.",
             "Produce derivations before gate 2 (the takeoff gate) is approved.");
+      }
+    }
+
+    /* ---- 3b. does the schedule describe the house on the framing plan? ----
+
+       ctx.planResult and ctx.takeoff arrive independently. Solve a catalogue
+       plan while the takeoff derives its marks from a drawn model and the two
+       carry different mark ids — the schedule then belongs to a different
+       document than the framing plan bound behind it. Nothing downstream
+       detects that, and both sheets look perfectly finished. So it is
+       checked here and named. */
+    if (p.have.takeoff && isArr(p.have.takeoff.marks) && p.have.takeoff.marks.length &&
+        res && isArr(res.marks) && res.marks.length) {
+      var tkSet = {}, tkList = [];
+      p.have.takeoff.marks.forEach(function (m) {
+        var id = safe(m && m.id, "");
+        if (id && id !== "—") { tkSet[" " + id] = 1; tkList.push(id); }
+      });
+      var reList = res.marks.map(function (m) { return safe(m.mark && m.mark.id, "—"); });
+      var shared = reList.filter(function (id) { return own(tkSet, " " + id); });
+      if (shared.length !== reList.length || shared.length !== tkList.length) {
+        add("GEOMETRY", "The schedule and the takeoff do not describe the same marks.",
+            "The schedule on S2.0 carries " + reList.length + " mark(s) (" +
+            reList.join(", ") + ") and the takeoff behind S1.0 carries " + tkList.length +
+            " (" + tkList.join(", ") + "). " + shared.length + " appear in both. The " +
+            "members on S2.0 were therefore not sized from the takeoff drawn on S1.0, " +
+            "and the two sheets are describing the same house through two different " +
+            "documents.",
+            "Solve the marks the takeoff produced, or reconcile the mark ids, before " +
+            "this package is issued. Until then read S1.0 as geometry and S2.0 as a " +
+            "schedule, and do not read a span off one against a member on the other.");
       }
     }
 
@@ -14820,8 +17176,9 @@ var FM = (function () {
             "bom.js must publish `excluded` before the quantities are used to buy anything.");
       } else {
         exc.forEach(function (x) {
-          add("BILL OF MATERIALS — EXCLUDED", safe(x.what, "(unnamed)"),
-              safe(x.why, "no reason given"),
+          add("BILL OF MATERIALS — EXCLUDED",
+              pick(x, ["what", "item", "sku", "markId", "text"], "(unnamed)"),
+              pick(x, ["why", "reason", "note", "text"], "no reason given"),
               "Not in the quantities on S4.0. Price and buy it separately.");
         });
       }
@@ -14839,9 +17196,10 @@ var FM = (function () {
       } else {
         mv.forEach(function (v) {
           add("JURISDICTION — MUST VERIFY",
-              safe(v && v.what ? v.what : v, "(unnamed)"),
-              safe(v && v.why, ""),
-              safe(v && v.against, safe(v && v.need, "Verify with the authority having jurisdiction.")));
+              pick(v, ["what", "item", "title", "text", "check"], "(unnamed)"),
+              pick(v, ["why", "reason", "note", "detail"], "not stated"),
+              pick(v, ["against", "source", "verifyWith", "need", "how"],
+                   "Verify with the authority having jurisdiction."));
         });
       }
     } else {
@@ -14942,6 +17300,14 @@ var FM = (function () {
       }
     }
     field("Region pack", pack ? safe(pack.name) + " · " + safe(pack.markets) : "NOT SUPPLIED");
+    /* which document the members were sized from, and which one the framing
+       plan was drawn from — they are not always the same document */
+    field("Marks on the schedule", res && isArr(res.marks)
+          ? res.marks.length + ", from the plan record " + (plan ? safe(plan.id) : "")
+          : "none — no solver result was supplied");
+    field("Marks from the takeoff", (p.have.takeoff && isArr(p.have.takeoff.marks))
+          ? p.have.takeoff.marks.length + ", derived from the geometry on S1.0"
+          : "no takeoff was supplied — nothing on this set is traced to the drawing");
     field("Prepared", pkg.head.at + "  (generation time, not an issue date)");
 
     /* ---- the statement, first, before any number ---- */
@@ -15298,9 +17664,11 @@ var FM = (function () {
     say("  Extents       : " + n2(g.bounds.wFt, 1) + " ft × " + n2(g.bounds.hFt, 1) + " ft" +
         "   (origin " + n2(g.bounds.minX, 1) + ", " + n2(g.bounds.minY, 1) + ")");
     if (g.stats) {
-      say("  cad.stats     : " + Object.keys(g.stats).map(function (k) {
+      wrap(Object.keys(g.stats).map(function (k) {
         return k + " " + safe(g.stats[k]);
-      }).join(" · "));
+      }).join(" · "), W - 18).forEach(function (x, i) {
+        say("  " + pad(i ? "" : "cad.stats", 14) + (i ? "  " : ": ") + x);
+      });
     }
     if (g.underlay) {
       say("  Underlay      : present, " + (g.underlay.calibrated ? "calibrated" :
@@ -15757,16 +18125,22 @@ var FM = (function () {
       say("  ** The bill of materials supplied carries no `lines` array. Nothing can be");
       say("     listed here. **");
     } else {
-      say("  " + pad("SKU", 22) + pad("SIZE/SPECIES", 24) + pad("PCS", 6) +
-          pad("LENGTH", 9) + lpad("EXT", 10));
+      /* The SKU a real bill of materials carries IS the member description —
+         "2x12 Spruce-Pine-Fir No. 1/No. 2" — so a separate size/species
+         column repeats it and collides. One wide SKU column, and everything
+         else on the line under it. */
+      say("  " + pad("SKU", 42) + pad("PCS", 7) + pad("LENGTH", 10) + lpad("EXTENDED", 9));
       say("  " + rule("-").slice(0, W - 2));
       lines.forEach(function (ln) {
-        say("  " + pad(safe(ln.sku), 22) +
-            pad(safe(ln.size) + " " + safe(ln.species, "") + " " + safe(ln.grade, ""), 24) +
-            pad(safe(ln.piecesPerHouse), 6) +
-            pad(ln.lengthFt === undefined ? "—" : n2(ln.lengthFt, 1) + " ft", 9) +
-            lpad(usd(ln.extUSD), 10));
+        wrap(safe(ln.sku, "(unnamed SKU)"), 40).forEach(function (x, i) {
+          if (i) { say("  " + x); return; }
+          say("  " + pad(x, 42) + pad(safe(ln.piecesPerHouse), 7) +
+              pad(ln.lengthFt === undefined ? "—" : n2(ln.lengthFt, 1) + " ft", 10) +
+              lpad(usd(ln.extUSD), 9));
+        });
         var sub = [];
+        var desc = (safe(ln.size, "") + " " + safe(ln.species, "") + " " + safe(ln.grade, "")).replace(/\s+/g, " ").replace(/^ | $/g, "");
+        if (desc && safe(ln.sku).indexOf(desc) === -1) sub.push(desc);
         if (ln.treatment) sub.push("treatment " + safe(ln.treatment));
         if (ln.stockLengthFt !== undefined) sub.push("stock " + n2(ln.stockLengthFt, 1) + " ft");
         if (ln.bf !== undefined) sub.push(n2(ln.bf, 1) + " bf");
@@ -15792,8 +18166,9 @@ var FM = (function () {
     }
     if (bom.waste) {
       say();
-      say("  WASTE POLICY : " + safe(bom.waste.policy) + " · applied " +
-          (bom.waste.appliedPct === undefined ? "—" : n2(bom.waste.appliedPct, 1) + "%"));
+      wrap(safe(bom.waste.policy) + " · applied " +
+           (bom.waste.appliedPct === undefined ? "—" : n2(bom.waste.appliedPct, 1) + "%"), W - 18)
+        .forEach(function (x, i) { say("  " + pad(i ? "" : "WASTE POLICY", 14) + (i ? "  " : ": ") + x); });
       if (bom.waste.basis) wrap("basis: " + safe(bom.waste.basis), W - 8).forEach(function (x) { say("      " + x); });
     }
     if (bom.perLot || bom.perCommunity) {
@@ -15815,8 +18190,10 @@ var FM = (function () {
       say("     sized anywhere — so an empty exclusion list is a defect, not a clean bill. **");
     } else {
       exc.forEach(function (x) {
-        say("  · " + safe(x.what, "(unnamed)"));
-        wrap(safe(x.why, "no reason given"), W - 8).forEach(function (y) { say("      " + y); });
+        wrap(pick(x, ["what", "item", "sku", "markId", "text"], "(unnamed)"), W - 6)
+          .forEach(function (y, i) { say("  " + (i ? "    " : "· ") + y); });
+        wrap(pick(x, ["why", "reason", "note", "text"], "no reason given"), W - 8)
+          .forEach(function (y) { say("      " + y); });
       });
     }
     say();
@@ -16065,13 +18442,20 @@ var FM = (function () {
     "  min-height: 150px; }" +
     ".fm-ps-nav { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }";
 
+  /* Injected once, into whichever of head/body this document actually has.
+     The stylesheet is a nicety; a build without a <head> (the headless
+     harness has none) must render the sheets anyway rather than throw. */
   function ensurePrintCss() {
-    if (typeof document === "undefined") return;
-    if (document.getElementById("fm-planset-css")) return;
-    var s = document.createElement("style");
-    s.id = "fm-planset-css";
-    s.textContent = PRINT_CSS;
-    document.head.appendChild(s);
+    try {
+      if (typeof document === "undefined" || !document) return;
+      if (document.getElementById && document.getElementById("fm-planset-css")) return;
+      var into = document.head || document.body;
+      if (!into || typeof into.appendChild !== "function") return;
+      var s = document.createElement("style");
+      s.id = "fm-planset-css";
+      s.textContent = PRINT_CSS;
+      into.appendChild(s);
+    } catch (e) { /* no stylesheet; the sheets still render */ }
   }
 
   function el(tag, attrs, kids) {
@@ -16296,8 +18680,11 @@ var FM = (function () {
     if (plan && pack && FM.solver && FM.solver.solvePlan) {
       try { res = FM.solver.solvePlan(plan, pack); } catch (e) { res = null; }
     }
-    /* Every one of these is read defensively: the module may not be loaded in
-       this build, and the package must say so rather than fail to open. */
+    /* Every one of these is read defensively — the module may not be loaded
+       in this build, may not have grown the entry point yet, and may throw.
+       Any of those produces `null`, and the package SAYS the input was not
+       supplied rather than failing to open. This is the whole guard strategy
+       in one function. */
     var juris = null;
     if (FM.juris && typeof FM.juris.forSite === "function" && s.jurisId) {
       try { juris = FM.juris.forSite(s.jurisId); } catch (e) { juris = null; }
@@ -16308,7 +18695,7 @@ var FM = (function () {
     }
     var takeoff = null;
     if (model && FM.takeoff && typeof FM.takeoff.run === "function") {
-      try { takeoff = FM.takeoff.run(model, {}); } catch (e) { takeoff = null; }
+      try { takeoff = FM.takeoff.run(model, { plan: plan, pack: pack }); } catch (e) { takeoff = null; }
     }
     var bom = null;
     if (res && FM.bom && typeof FM.bom.build === "function") {
@@ -16360,7 +18747,31 @@ var FM = (function () {
       }));
       planSel.addEventListener("change", function () { s.planId = this.value; FM.go("planset"); });
       packSel.addEventListener("change", function () { s.packId = this.value; FM.go("planset"); });
-      host.appendChild(el("div", { class: "filter-bar", style: "margin-bottom:14px" }, [planSel, packSel]));
+      var controls = [planSel, packSel];
+
+      /* The jurisdiction selector appears only once jurisdiction.js publishes
+         both entry points. Until then the cover says, in terms, that no
+         jurisdiction record was supplied and that the criteria table is the
+         region pack's planning defaults — which is the truth, and better than
+         a selector that silently returns nothing. */
+      if (FM.juris && typeof FM.juris.forSite === "function" &&
+          typeof FM.juris.jurisdictions === "function" && isArr(FM.juris.STATES)) {
+        var opts = [el("option", { value: "", text: "No jurisdiction — region pack defaults" })];
+        FM.juris.STATES.forEach(function (st) {
+          var list = [];
+          try { list = FM.juris.jurisdictions(st) || []; } catch (e) { list = []; }
+          list.forEach(function (j) {
+            opts.push(el("option", { value: safe(j.id), text: st + " · " + safe(j.name, safe(j.id)),
+                                     selected: j.id === s.jurisId ? "selected" : null }));
+          });
+        });
+        var jurSel = el("select", { "aria-label": "Jurisdiction" }, opts);
+        jurSel.addEventListener("change", function () {
+          s.jurisId = this.value || null; FM.go("planset");
+        });
+        controls.push(jurSel);
+      }
+      host.appendChild(el("div", { class: "filter-bar", style: "margin-bottom:14px" }, controls));
 
       if (pkg.missing.length) {
         host.appendChild(el("div", { class: "banner banner-warn" }, [

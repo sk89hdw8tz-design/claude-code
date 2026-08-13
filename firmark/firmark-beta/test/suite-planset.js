@@ -462,6 +462,29 @@ module.exports = function (t, FM) {
            "and a must-verify shaped {check, note, source} likewise");
     truthy(oddShapes.indexOf("(unnamed") === -1,
            "none of the three comes out as \"(unnamed)\"");
+
+    /* A framing plan of one document bound to a schedule of another is the
+       failure this system exists to prevent, and nothing downstream detects
+       it — both sheets look finished. */
+    var res2 = solve("starter-1210", "fl-hvhz");
+    var mismatched = FM.planset.build({
+      planResult: res2,
+      takeoff: { marks: [{ id: "RF-F1" }, { id: "HDR-O1" }], derivations: [], unresolved: [] },
+      at: "x"
+    }).sheetByNo("S5.0").text();
+    truthy(/schedule and the takeoff do not describe the same marks/.test(mismatched),
+           "a schedule whose marks are not the takeoff's marks is reported as an open item");
+    truthy(/0 appear in both/.test(mismatched),
+           "counting how many marks the two documents actually share");
+
+    var matched = FM.planset.build({
+      planResult: res2,
+      takeoff: { marks: res2.marks.map(function (m) { return { id: m.mark.id }; }),
+                 derivations: [], unresolved: [] },
+      at: "x"
+    }).sheetByNo("S5.0").text();
+    truthy(!/do not describe the same marks/.test(matched),
+           "and it is NOT raised when the schedule was sized from the takeoff's own marks");
     truthy(/every connector, strap and anchor/.test(s50), "and the BOM's excluded items");
     truthy(/FBC-R Chapter 44 mandates engineered design/.test(s50),
            "and the jurisdiction's must-verify items");

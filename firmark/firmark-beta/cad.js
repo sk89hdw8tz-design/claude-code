@@ -797,6 +797,50 @@
     return { ft: seen[0] / 12, inches: seen[0] };
   }
 
+  /* Truss spacing: declared if the plan declares it, otherwise read back out
+     of the truss mark's own count — but ONLY because these plans state that
+     relationship in as many words ("Count is the 46 ft ridge run at 24 in
+     o.c. plus one"). A count that is declared as a CONSEQUENCE of a spacing
+     can be inverted to recover it; a count the plan says follows whatever the
+     solver picks cannot, and the floor bays below are left undeclared for
+     exactly that reason. */
+  function trussSpacing(plan, g, runFt) {
+    var declared = num(g.trussSpacingIn);
+    var truss = null;
+    (plan.marks || []).forEach(function (mk) {
+      if (!truss && mk.role === "rafter" && mk.component && num(mk.count) > 1) truss = mk;
+    });
+    /* The inversion checks itself: a count that really is "the run at some
+       spacing plus one" reads back as one of the spacings anybody frames at.
+       A count that means something else does not, and then nothing is
+       derived. 19.2 in is the 5-per-8-ft layout. */
+    var STD = [12, 16, 19.2, 24];
+    var derived = null, rawDerived = null;
+    if (truss && runFt > 0) {
+      var run = num(truss.runFt) !== null ? num(truss.runFt) : runFt;
+      rawDerived = Math.round((run / (num(truss.count) - 1)) * 12 * 100) / 100;
+      STD.forEach(function (s) { if (derived === null && near(rawDerived, s, 0.05)) derived = s; });
+    }
+    if (declared !== null) {
+      var agree = derived === null || near(declared, derived, 0.01);
+      return { inches: declared,
+               basis: "Spacing " + declared + " in from geometry.trussSpacingIn" +
+                      (derived === null ? "." : agree
+                        ? "; the truss mark's count reads back the same " + derived + " in."
+                        : "; NOTE the truss mark's count reads back " + derived +
+                          " in instead — reconcile the two before the takeoff gate.") };
+    }
+    if (derived !== null) {
+      return { inches: derived,
+               basis: "Spacing " + derived + " in DERIVED from " + truss.id + ": its count of " +
+                      truss.count + " is declared as the " +
+                      (num(truss.runFt) !== null ? truss.runFt : runFt) +
+                      " ft run at that spacing plus one, so the spacing follows from the count." };
+    }
+    return { inches: null,
+             basis: "Spacing is not declared and no count reads it back." };
+  }
+
   /* equal gaps, openings in the order given — the only layout that
      does not favour one end of a wall over the other */
   function layoutEqualGaps(wallLenFt, widths) {
@@ -860,7 +904,7 @@
 
     var plate = plateFtFromPacks();
     if (plate) {
-      L.topPlateFt = Math.round(plate.ft * 10000) / 10000;
+      L.topPlateFt = plate.ft;
       L.note = "Top plate " + plate.inches + " in — every region pack in weights.js declares the same " +
                "precut plate height, so it is the one value the plan does not have to state. " +
                "Provenance [market], not code.";
@@ -1013,17 +1057,18 @@
     /* ---- framing regions ---- */
     var fpPoly = [[0, 0], [Wd, 0], [Wd, D], [0, D]];
     if (bearWalls && roofDirDeg !== null) {
+      var runFt = roofDirDeg === 90 ? Wd : D;      /* the ridge run, across the span */
+      var sp = trussSpacing(plan, g, runFt);
       L.framing.push(newFraming(L, fpPoly, {
-        kind: "roof", directionDeg: roofDirDeg, spacingIn: num(g.trussSpacingIn),
+        kind: "roof", directionDeg: roofDirDeg, spacingIn: sp.inches,
         bearsOn: bearWalls.map(function (w) { return w.id; }),
         note: "Common trusses, " + span + " ft clear span",
-        basis: "Region is the footprint. Direction from geometry.trussSpanFt = " + span +
-               " ft; spacing from geometry.trussSpacingIn" +
-               (num(g.trussSpacingIn) === null ? ", which this plan does not declare." : ".")
+        basis: "Region is the footprint. Direction from geometry.trussSpanFt = " + span + " ft. " + sp.basis
       }));
-      if (num(g.trussSpacingIn) === null) {
+      if (sp.inches === null) {
         hole("Roof member spacing",
-             plan.name + " declares no geometry.trussSpacingIn.",
+             plan.name + " declares no geometry.trussSpacingIn, and its truss mark declares no count " +
+             "the spacing could be read back out of.",
              "Declare the truss spacing, or set it on the roof region by hand.");
       }
     }
@@ -1145,9 +1190,10 @@
         marks.forEach(function (x) { ids.push(x.id); var h = wallHint(x) || "unhinted"; if (hints.indexOf(h) === -1) hints.push(h); });
         if (hints.length > 1) {
           hole("The " + f1(num(mk.span)) + " ft opening behind " + ids.join(" and "),
-               plan.name + " carries " + ids.length + " header marks for one opening and they put it " +
-               "in different walls (" + hints.join(", ") + ") — the truss direction there decides " +
-               "which reading applies and the plan does not state it.",
+               plan.name + " carries " + ids.length + " header marks for one opening — " +
+               ids.join(" and ") + " — and they put it in different walls (" + hints.join(", ") +
+               "). The truss direction there decides which reading applies and the plan does not " +
+               "state it.",
                "State the truss direction at that opening, then draw it in the wall that follows.");
           return;
         }
@@ -2607,7 +2653,7 @@
       MODEL = blank("Untitled plan");
       var plate = plateFtFromPacks();
       if (plate) {
-        MODEL.levels[0].topPlateFt = Math.round(plate.ft * 10000) / 10000;
+        MODEL.levels[0].topPlateFt = plate.ft;
         MODEL.levels[0].note = "Top plate " + plate.inches + " in — the precut height every region " +
                                "pack in weights.js declares. Provenance [market], not code.";
       }

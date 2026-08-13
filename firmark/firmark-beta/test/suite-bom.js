@@ -692,6 +692,60 @@ module.exports = function (t, FM) {
   })();
 
   /* ============================================================
+     9b. THE FLAT BEARING ALLOWANCE vs THE MARK'S DECLARED BEARING
+     ============================================================
+     stockLength() adds a flat 0.5 ft. HDR-GAR declares 4.5 in of bearing
+     at EACH end — 0.75 ft of the piece — so its cut is 10.42 ft, not the
+     10.17 ft the flat rule computes. The 2 ft rounding absorbs it here
+     (both land on a 12-footer) and the BOM must say so rather than let
+     "absorbed by luck" pass as "correct".
+     ============================================================ */
+
+  suite("bom · the flat bearing allowance is measured against each mark's declared bearing");
+  (function () {
+    eq(FM.bom.BEARING_ALLOWANCE_FT, 0.5,
+       "the allowance inside FM.solver.stockLength is 0.5 ft and is named, not magic");
+
+    var b = bomOf("starter-1210", "tx-i35");
+    var gar = null;
+    b.lines.forEach(function (g) {
+      g.cuts.forEach(function (c) { if (c.markId === "HDR-GAR") gar = c; });
+    });
+    truthy(gar, "HDR-GAR is on the bill");
+    near(gar.bearingPerEndIn, 4.5, 1e-9, "HDR-GAR declares 4.5 in of bearing at each end");
+    near(gar.bearingNeedFt, 0.75, 1e-9, "which is 0.75 ft of the piece, not the flat 0.50");
+    eq(gar.bearingTight, true, "so the line records that the flat rule is thinner than the mark");
+    near(gar.cutWithDeclaredBearingFt, 10.42, 1e-9,
+         "the true cut is 9.67 + 0.75 = 10.42 ft, longer than the 10.17 the rule computes");
+    eq(gar.stockIfDeclaredBearingFt, 12, "and still lands on a 12 ft stick");
+    eq(gar.stockAbsorbsIt, true, "— absorbed by the 2 ft rounding, which is luck, not a rule");
+
+    var txt = FM.bom.text(b);
+    truthy(txt.indexOf("BEARING ALLOWANCE") !== -1,
+           "the text carries a BEARING ALLOWANCE section rather than burying it");
+    truthy(txt.indexOf("correct by luck") !== -1,
+           "and says plainly that absorbed-by-rounding is not the same as correct");
+
+    /* the whole corpus: nothing may be SHORT, and a short stick must block issue */
+    var flagged = 0, short = 0, combos = 0;
+    every(function (p, k) {
+      combos++;
+      var bb = FM.bom.build(FM.solver.solvePlan(p, k), {});
+      bb.lines.forEach(function (g) {
+        g.cuts.forEach(function (c) {
+          if (c.bearingTight) flagged++;
+          if (!c.stockAbsorbsIt) short++;
+        });
+      });
+      if (bb.selfChecks.length && short === 0) short++;   /* a self-check means a short stick */
+    });
+    eq(combos, 30, "the bearing sweep ran on all 30 combinations");
+    truthy(flagged >= 30, "the corpus really does declare bearings past the flat allowance (" +
+           flagged + " marks) — this is not a dead branch");
+    eq(short, 0, "no stick in the corpus is actually short of its declared bearing");
+  })();
+
+  /* ============================================================
      10. PROVENANCE — money says what it is, everywhere
      ============================================================ */
 
