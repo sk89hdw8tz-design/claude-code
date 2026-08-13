@@ -10992,18 +10992,30 @@ var FM = (function () {
     if (UNDO.length > RULES.undoDepth) UNDO.shift();
     REDO.length = 0;
   }
+  /* An undo keeps the selection when the element it names is still there.
+     Dropping it every time makes nudge-nudge-undo hand the panel back to the
+     model, which is not what the person who pressed the key was doing. */
+  function keepSelection() {
+    if (!S.sel) return;
+    var L = level();
+    var pool = !L ? [] : (S.sel.kind === "wall" ? L.walls
+                        : (S.sel.kind === "opening" ? L.openings : L.framing));
+    var still = false;
+    pool.forEach(function (o) { if (o.id === S.sel.id) still = true; });
+    if (!still) S.sel = null;
+  }
   function undo() {
     if (!UNDO.length) { toast("Nothing to undo."); return; }
     REDO.push(toJSON(MODEL));
     MODEL = normalise(JSON.parse(UNDO.pop()));
-    S.sel = null;
+    keepSelection();
     redraw();
   }
   function redo() {
     if (!REDO.length) { toast("Nothing to redo."); return; }
     UNDO.push(toJSON(MODEL));
     MODEL = normalise(JSON.parse(REDO.pop()));
-    S.sel = null;
+    keepSelection();
     redraw();
   }
 
@@ -11605,7 +11617,14 @@ var FM = (function () {
     var sp = snap(pt, null, e.shiftKey);
 
     if (S.tool === "wall") {
-      if (S.draft && S.draft.kind === "wall") return;   /* chained: the up-click ends it */
+      if (S.draft && S.draft.kind === "wall") {
+        /* Mid-chain. The press has to re-anchor the drag measurement to THIS
+           click, or the up-handler measures back to where the chain STARTED,
+           reads a long drag, and ends the chain after one wall instead of
+           continuing it. */
+        S.draft.downPx = { x: pt.px, y: pt.py };
+        return;
+      }
       S.draft = { kind: "wall", from: { x: sp.x, y: sp.y }, to: null, downPx: { x: pt.px, y: pt.py } };
       drag = { kind: "draw" };
       if (SVG.setPointerCapture && e.pointerId !== undefined) SVG.setPointerCapture(e.pointerId);
