@@ -34,8 +34,28 @@ Everything, in one command:
 
 ```bash
 pip install Pillow
-./run_all.sh out
+./run_all.sh out                    # download, then render
+./run_all.sh out sheets.zip         # use sheets already downloaded by hand
 ```
+
+### `ingest.py` — taking a hand-saved zip
+
+Files saved by hand carry whatever names the browser gave them, and may include
+both the plain and `(Skeleton)` version of a sheet. `ingest.py` works out what
+each file is, copies it under the canonical name, verifies it decodes, and
+reports what is present, missing, duplicated or unidentifiable:
+
+```bash
+python3 ingest.py --src incoming.zip --out maps
+```
+
+It reads the source only — nothing is renamed or deleted in place.
+
+**Skeletons are kept but never printed.** They carry the same sheet numbers as
+the plain sheets, so leaving them in would put sheets 11–14 on the print twice;
+`run_all.sh` excludes them. They are worth keeping on disk, because the
+outline-only versions are often the clearest thing to read block layout from
+when checking the alignment against the index map.
 
 That lists the groups, downloads group 2 with the Key, zips it, then renders
 both the montage and the mosaic with JPEG proofs.
