@@ -123,7 +123,10 @@
      localStorage is user-writable, so an unknown id will arrive one day */
   function labelOf(id) { var s = stageById(id); return s ? s.label : String(id); }
 
-  function isArr(v) { return Object.prototype.toString.call(v) === "[object Array]"; }
+  /* Array.isArray is ES5 and, unlike `instanceof`, is right across realms. */
+  var isArr = Array.isArray || function (v) {
+    return Object.prototype.toString.call(v) === "[object Array]";
+  };
 
   /* ============================================================
      THE DIGEST
@@ -301,12 +304,38 @@
       T_DATE = 0x10, T_REGEXP = 0x11, T_BOX = 0x12, T_ERR = 0x13,
       T_CYCLE = 0x14, T_CUT_DEPTH = 0x15, T_CUT_STEPS = 0x16;
 
+  /* Is `k` the string form of an index below `n`? Written out rather than as
+     String(k >>> 0) === k because that allocates a string for every element
+     of every array, which on a 20,000-wall model is 20,000 allocations
+     nobody ever looks at. */
+  function isIndexKey(k, n) {
+    var len = k.length, c, num, i;
+    if (len === 0 || len > 10) return false;
+    c = k.charCodeAt(0);
+    if (c < 48 || c > 57) return false;
+    if (c === 48 && len > 1) return false;      /* "01" is not an index */
+    num = c - 48;
+    for (i = 1; i < len; i++) {
+      c = k.charCodeAt(i);
+      if (c < 48 || c > 57) return false;
+      num = num * 10 + (c - 48);
+    }
+    return num < n;
+  }
+
   function Walk(sink) {
     this.sink = sink;
     this.steps = 0;
     this.path = [];       /* objects on the current path, for cycle detection */
-    this.keys = [];       /* the key names alongside them, so a cut can say WHERE */
+    /* The key names alongside them, so a cut can say WHERE. Array indices go
+       in as NUMBERS and are only formatted if a cut actually happens —
+       building "[" + i + "]" per element costs an allocation per element for
+       a message that is produced approximately never. */
+    this.keys = [];
     this.reading = null;  /* the key being fetched, so a throwing getter can be named */
+    /* One scratch key-buffer per depth, reused. The walk is depth-first, so
+       at most one frame is live at each depth and they cannot collide. */
+    this.pool = [];
     this.why = [];        /* named reasons the walk did not cover everything */
     this.cutDepth = false;
     this.cutSteps = false;
@@ -315,12 +344,21 @@
      because the interesting case is 512 levels deep and a message nobody can
      read on a screen is the same as no message. */
   Walk.prototype.where = function () {
-    var k = this.keys;
-    if (this.reading !== null) k = k.concat([this.reading]);
+    var k = [], i;
+    for (i = 0; i < this.keys.length; i++) {
+      k.push(typeof this.keys[i] === "number" ? "[" + this.keys[i] + "]" : this.keys[i]);
+    }
+    if (this.reading !== null) k.push(this.reading);
     if (!k.length) return "the value itself";
     if (k.length <= 8) return k.join(".");
     return k.slice(0, 4).join(".") + " … (" + (k.length - 8) + " more) … " +
            k.slice(k.length - 4).join(".");
+  };
+  Walk.prototype.buf = function (depth) {
+    var b = this.pool[depth];
+    if (b === undefined) { b = []; this.pool[depth] = b; }
+    else b.length = 0;
+    return b;
   };
   Walk.prototype.cutBySteps = function (s) {
     if (!this.cutSteps) {
@@ -396,39 +434,45 @@
     path.pop();
   };
   Walk.prototype.array = function (v, depth) {
-    var s = this.sink, n = v.length, i, k, extra = [];
+    var s = this.sink, n = v.length, i, k, probe, extra;
+    var d1 = depth + 1, kp = this.keys, slot = kp.length;
     s.word(T_ARR); s.word(n);
-    this.keys.push("[]");
+    kp.push(0);
     for (i = 0; i < n; i++) {
-      this.keys[this.keys.length - 1] = "[" + i + "]";
+      kp[slot] = i;
       /* a hole and an explicit undefined are different facts; JSON cannot
          tell them apart, this can */
-      if (i in v) this.value(v[i], depth + 1);
+      if (i in v) this.value(v[i], d1);
       else s.word(T_HOLE);
     }
-    this.keys.pop();
+    kp.pop();
     /* An array may carry own properties that are not indices. JSON drops
        them, so the old walk did too — which meant [1,2] and an [1,2] with a
        .note on it fingerprinted the same. They are written after the
        elements, count first, so the usual empty case costs one word. */
+    extra = this.buf(depth);
     for (k in v) {
       if (!Object.prototype.hasOwnProperty.call(v, k)) continue;
-      if (k === "length") continue;
-      if (String(k >>> 0) === k && (k >>> 0) < n) continue;
-      if (typeof v[k] === "function" || v[k] === undefined) continue;
+      if (k === "length" || isIndexKey(k, n)) continue;
+      this.reading = k;
+      probe = v[k];
+      this.reading = null;
+      if (typeof probe === "function" || probe === undefined) continue;
       extra.push(k);
     }
-    extra.sort();
+    if (extra.length > 1) extra.sort();
     s.word(extra.length);
     for (i = 0; i < extra.length; i++) {
-      s.text(extra[i]);
-      this.keys.push(extra[i]);
-      this.value(v[extra[i]], depth + 1);
-      this.keys.pop();
+      k = extra[i];
+      s.text(k);
+      kp.push(k);
+      this.value(v[k], d1);
+      kp.pop();
     }
   };
   Walk.prototype.object = function (v, depth) {
-    var s = this.sink, k, i, keys = [];
+    var s = this.sink, k, i, probe, keys = this.buf(depth);
+    var d1 = depth + 1, kp = this.keys;
     var cls = Object.prototype.toString.call(v);
 
     if (cls === "[object Object]") {
@@ -467,19 +511,20 @@
     for (k in v) {
       if (!Object.prototype.hasOwnProperty.call(v, k)) continue;
       this.reading = k;                 /* so a getter that throws is named */
-      var probe = v[k];
+      probe = v[k];
       this.reading = null;
       if (typeof probe === "function" || probe === undefined) continue;
       keys.push(k);
     }
     /* sort() is UTF-16 code-unit order — total, and the same in every engine */
-    keys.sort();
+    if (keys.length > 1) keys.sort();
     s.word(keys.length);
     for (i = 0; i < keys.length; i++) {
-      s.text(keys[i]);
-      this.keys.push(keys[i]);
-      this.value(v[keys[i]], depth + 1);
-      this.keys.pop();
+      k = keys[i];
+      s.text(k);
+      kp.push(k);
+      this.value(v[k], d1);
+      kp.pop();
     }
   };
 

@@ -63,6 +63,26 @@
     return (v === null || v === undefined || !isFinite(v)) ? "—" : Number(v).toFixed(d === undefined ? 2 : d);
   }
 
+  /* A DERIVED NUMBER, AS A PERSON READS IT — AND AS THE ENGINE HOLDS IT.
+
+     The derivation panel printed String(d.value), so a tributary derived as
+     half a 31.708333 ft clear span rendered as "15.854167" on the one screen
+     whose whole purpose is being read by a person before they approve it.
+     Seventeen significant figures is not more accurate, it is less legible,
+     and the takeoff's own prose beside it says 15.854 ft.
+
+     Rounding for display and then saying nothing would be the worse fix,
+     because the number the solver consumed is the long one and a reviewer
+     re-deriving from the short one gets a different answer in the last
+     place. So the short form is shown and the exact one is named whenever
+     they differ. Nothing is hidden and nothing is over-stated. */
+  function derivedValue(v) {
+    if (typeof v !== "number" || !isFinite(v)) return { shown: String(v), exact: null };
+    var shown = v.toFixed(3);
+    if (shown.indexOf(".") !== -1) shown = shown.replace(/0+$/, "").replace(/\.$/, "");
+    return { shown: shown, exact: Number(shown) === v ? null : String(v) };
+  }
+
   /* WHAT AN EXPORTED FILE IS FOR.
 
      This was `firmark-materials.txt` — no plan, no region, no variant — while
@@ -241,9 +261,13 @@
     }
     keys.forEach(function (id) {
       var rows = byMark[id].map(function (d) {
+        var dv = derivedValue(d.value);
         return {
           k: esc(d.field),
-          v: esc(String(d.value)) + " <span class='clause'>" + esc(d.how || "") +
+          v: esc(dv.shown) +
+             (dv.exact ? " <span class='clause'>shown to 3 dp — the value carried into the " +
+                         "calculation is " + esc(dv.exact) + "</span>" : "") +
+             " <span class='clause'>" + esc(d.how || "") +
              (d.from ? " · from " + esc(String(d.from)) : "") + "</span>"
         };
       });
@@ -264,7 +288,197 @@
 
   /* ============================================================
      3 · LOADS AND CODE
+
+     THE CAVEAT GOES ABOVE THE NUMBERS.
+
+     On 13 August 2026 a verification pass found two published values in
+     jurisdiction.js wrong. Austin was carried on the 2021 IRC when the city
+     adopted the 2024 IRC (Ordinance 20250410-040, effective 10 July 2025) —
+     wrong by a full code generation, and it took the referenced wind
+     standard with it, so anyone who read an Austin wind speed off this
+     screen read the ASCE 7-16 map for a permit governed by ASCE 7-22. And
+     the wind-borne-debris test — the one that decides whether opening
+     protection is required — was the pre-ASCE-7-22 criterion, which made
+     "not coastal" look like a complete answer for an inland Florida county
+     when the code in force deletes the word "coastal" and substitutes an
+     Exposure D fetch condition that pulls large inland lakes in.
+
+     What this screen has to carry is not those two facts. It is their SHAPE:
+     a plausible, confidently formatted, five-year-stale value survived until
+     somebody checked, and the module's own must-verify list had already
+     named Austin's adoption as the one most likely to have moved. The list
+     was right and the data was wrong. So the caveat sits ABOVE the design
+     criteria rather than under them, because this is the screen where a
+     reader is most likely to take a number and act on it, and a warning
+     underneath a table has already been scrolled past by the person who
+     needed it.
+
+     The must-verify count is COUNTED, never typed. It went 203 -> 204
+     during the verification: it grew, which is the honest direction, and
+     this codebase has been bitten four times by a headline number written
+     into prose by hand.
      ============================================================ */
+
+  var mvTotal = null;
+  function mustVerifyTotal() {
+    if (mvTotal !== null) return mvTotal;
+    var n = 0, ok = true;
+    try {
+      FM.juris.STATES.forEach(function (st) {
+        (FM.juris.jurisdictions(st) || []).forEach(function (j) {
+          var site = FM.juris.forSite(j.id);
+          n += (site && site.mustVerify ? site.mustVerify.length : 0);
+        });
+      });
+    } catch (e) { ok = false; }
+    mvTotal = ok ? n : null;
+    return mvTotal;
+  }
+
+  /* How a source was retrieved is a provenance class in its own right, and
+     "two independent routes agreed" is not the same claim as "one search
+     summary said so". They get different badges. */
+  function retrievalOf(srcId) {
+    if (!srcId || !FM.juris.SOURCES) return null;
+    var hit = null;
+    FM.juris.SOURCES.forEach(function (s) { if (!hit && s.id === srcId) hit = s; });
+    return hit ? hit.retrieved : null;
+  }
+  function retrievalBadge(retrieved) {
+    if (retrieved === "search-summary-corroborated") {
+      return { c: "b-blue", t: "corroborated", title: "Multiple independent search routes agreed on this value." };
+    }
+    if (retrieved === "search-summary") {
+      return { c: "b-gold", t: "one summary", title: "A single search summary. The primary document was not opened." };
+    }
+    if (retrieved === "not-fetched") {
+      return { c: "b-mute", t: "not fetched", title: "The source was named but not retrieved at all." };
+    }
+    return null;
+  }
+
+  /* The banner. Deliberately not collapsible and deliberately first. */
+  function planningDataCaveat() {
+    var n = mustVerifyTotal();
+    var box = el("div", { class: "banner banner-warn",
+                          style: "margin-bottom:16px;display:block",
+                          role: "note", "aria-label": "Planning data caveat" });
+    box.appendChild(el("div", { style: "font-weight:700;font-size:.95rem;margin-bottom:6px",
+      text: "Planning data only — not permit data." }));
+    box.appendChild(el("p", { style: "margin:0 0 6px;font-size:.86rem", text:
+      "No value on this screen was read from a primary code document. Every one of them " +
+      "came from search summaries of pages this build could not open." }));
+    box.appendChild(el("p", { style: "margin:0 0 6px;font-size:.86rem", text:
+      "Two published values were found WRONG on " +
+      (FM.juris.CHECKED || "13 August 2026") +
+      ": Austin's code edition, and the wind-borne-debris test. Both are corrected and " +
+      "both are shown below, because a product that shows its own corrections is making " +
+      "a stronger claim than one that shows none." }));
+    box.appendChild(el("p", { style: "margin:0;font-size:.86rem", text:
+      "Confirm the edition in force on your permit date, and every design value, with the " +
+      "authority having jurisdiction and the ASCE 7 Hazard Tool before drawing. " +
+      (n === null
+        ? "The must-verify items on this dataset could not be counted in this build — read them per jurisdiction."
+        : n + " open items across the covered jurisdictions — read them.") }));
+    return box;
+  }
+
+  /* WHAT WAS WRONG, WHAT REPLACED IT, AND WHO DISAGREES.
+
+     Shown open, not behind a toggle, and shown on every jurisdiction rather
+     than only on the two that were corrected — because the finding is about
+     the dataset and a reader looking at Wake County has the same reason to
+     distrust a confidently formatted edition date as a reader looking at
+     Austin. The dissent is printed: the window-vendor pages that say Orlando
+     is outside the debris region are lower authority than the Commission's
+     own study, and saying so is more useful than deleting them. */
+  function correctionsCard() {
+    var list = FM.juris.CORRECTIONS;
+    var body = el("div", { style: "display:grid;gap:12px" });
+    if (!list || !list.length) {
+      body.appendChild(el("p", { class: "clause", text:
+        "This build records no corrections to the jurisdiction dataset. That is not the " +
+        "same as the dataset being right — two values were found wrong the first time " +
+        "anyone checked, and nothing here has been read from a primary document." }));
+      return card("Corrections to this dataset — 0",
+        el("span", { class: "badge b-mute", text: "None recorded", style: "margin-left:auto" }),
+        body, null);
+    }
+    /* Stacked, not dl(). `.dl-v` is a right-aligned nowrap MONO COLUMN built
+       for numbers: hand it a paragraph and the paragraph runs off the right
+       edge of the card and is clipped without a scrollbar. These findings are
+       prose and the prose is the point, so each one gets a label above its
+       text rather than beside it. */
+    function part(label, text) {
+      if (!text) return null;
+      return el("div", { style: "margin-top:6px" }, [
+        el("div", { class: "lbl", text: label }),
+        el("p", { style: "margin:2px 0 0;font-size:.84rem", text: String(text) })
+      ]);
+    }
+    list.forEach(function (c) {
+      body.appendChild(el("div", { style: "border-left:3px solid var(--warn);padding-left:10px" }, [
+        el("div", { style: "font-size:.88rem;font-weight:700;display:flex;gap:8px;align-items:center;flex-wrap:wrap" }, [
+          el("span", { class: "badge " + (c.severity === "blocking" ? "b-fail" : "b-gold"),
+                       text: String(c.severity || "correction") }),
+          el("span", { text: String(c.id || "correction") }),
+          c.checked ? el("span", { class: "clause", text: "checked " + c.checked }) : null
+        ].filter(Boolean)),
+        part("Was — and this is what the product published", c.was),
+        part("Now", c.now),
+        part("Why it matters", c.why),
+        part("Established by", c.establishedBy),
+        part("Sources that dissent", c.dissent),
+        part("Confirmed", String(c.confirmed || "not stated") +
+             " — search summaries agreed across independent routes; no primary document " +
+             "was opened, because this build cannot reach one.")
+      ].filter(Boolean)));
+    });
+    var rc = FM.juris.RECHECKED;
+    if (rc && rc.length) {
+      var agreed = 0;
+      rc.forEach(function (r) { if (r.agreed) agreed++; });
+      body.appendChild(el("p", { class: "clause", style: "margin-top:2px", text:
+        "The same pass re-checked " + rc.length + " other published facts and " + agreed +
+        " of them held, each against a named route — see “What was re-checked and held”, below." }));
+    }
+    return el("div", { style: "margin-bottom:16px" }, [
+      card("Corrections to this dataset — " + list.length,
+        el("span", { class: "badge b-fail", text: "Found wrong on " + (FM.juris.CHECKED || "13 Aug 2026"),
+                     style: "margin-left:auto" }),
+        body,
+        "A published value that is wrong and confident is the failure mode this whole " +
+        "product is built against. These two survived until somebody checked, and the " +
+        "module's own must-verify list had already named the first of them as the " +
+        "adoption most likely to have moved. The list was right and the data was wrong.")
+    ]);
+  }
+
+  function recheckedCard() {
+    var rc = FM.juris.RECHECKED;
+    if (!rc || !rc.length) return null;
+    var body = el("div", { style: "display:grid;gap:7px" });
+    rc.forEach(function (r) {
+      body.appendChild(el("div", {}, [
+        el("div", { style: "font-size:.84rem" }, [
+          el("span", { class: "badge " + (r.agreed ? "b-pass" : "b-gold"),
+                       text: (isFinite(r.routes) ? r.routes + " route" + (r.routes === 1 ? "" : "s") : "routes not stated") +
+                             (r.agreed ? " agreed" : " DISAGREED") }),
+          el("span", { style: "margin-left:6px", text: String(r.item || "(unnamed fact)") })
+        ]),
+        r.against ? el("div", { class: "clause", style: "margin-left:12px",
+                                text: "checked against " + r.against }) : null
+      ].filter(Boolean)));
+    });
+    return el("div", { style: "margin-bottom:16px" }, [
+      card("What was re-checked and held — " + rc.length,
+        el("span", { class: "badge b-blue", text: "Secondary sources only", style: "margin-left:auto" }),
+        body,
+        "Holding across two or three search routes is the strongest claim this build can " +
+        "make about any of these values, and it is weaker than reading the ordinance. " +
+        "Nothing in this list is a substitute for the AHJ.")
+    ]);
+  }
 
   FM.VIEWS.jurisdiction = function (host) {
     if (!FM.juris || !FM.project) {
@@ -333,6 +547,11 @@
 
     host.appendChild(el("div", { class: "filter-bar", style: "margin-bottom:16px" }, [stateSel, jurisSel]));
 
+    /* ABOVE EVERY PUBLISHED VALUE, including the empty state — the caveat is
+       about the dataset the picker is about to hand you, not about one site. */
+    host.appendChild(planningDataCaveat());
+    host.appendChild(correctionsCard());
+
     var site = FM.project.site();
     if (!site) {
       host.appendChild(el("div", { class: "empty" }, [
@@ -346,16 +565,28 @@
 
     /* the code basis */
     var codeRows = (site.codes || []).map(function (c) {
+      /* HOW the value was retrieved rides next to the value, because "four
+         independent routes agreed on this ordinance number" and "one search
+         summary said so" are different claims and the Austin error was
+         published under the second one wearing the confidence of the first. */
+      var rb = retrievalBadge(retrievalOf(c.src));
       return {
         k: esc(c.name),
         v: esc(c.edition || "—") +
            " <span class='badge " + clsBadge(c.cls) + "' style='margin-left:6px'>" + esc(String(c.cls || "?")) + "</span>" +
-           "<span class='clause'>" + esc(c.cite || "") + (c.adopted ? " · adopted " + esc(c.adopted) : "") + "</span>"
+           (rb ? " <span class='badge " + rb.c + "' style='margin-left:4px' title='" + esc(rb.title) + "'>" +
+                 esc(rb.t) + "</span>" : "") +
+           (c.status && c.status !== "in force"
+             ? " <span class='badge b-mute' style='margin-left:4px'>" + esc(String(c.status)) + "</span>" : "") +
+           "<span class='clause'>" + esc(c.cite || "") + (c.adopted ? " · adopted " + esc(c.adopted) : "") +
+           (c.asce ? " · references " + esc(c.asce) : "") + "</span>"
       };
     });
     host.appendChild(el("div", { style: "margin-bottom:16px" }, [
       card("Governing code", null, dl(codeRows.length ? codeRows : [{ k: "—", v: "none recorded" }]),
-        site.authority ? "Authority having jurisdiction: " + site.authority : null)
+        (site.authority ? "Authority having jurisdiction: " + site.authority + ". " : "") +
+        "The badge on each row says how the value was retrieved, not how sure this " +
+        "product is of it: nothing here was read from a primary code document.")
     ]));
 
     /* the design criteria */
@@ -486,9 +717,18 @@
           (c && c.cite) ? el("div", { class: "clause", style: "margin-left:12px", text: c.cite }) : null
         ].filter(Boolean)));
       });
-      host.appendChild(card("Submittal checklist", null, cb,
-        "What this jurisdiction expects to receive. This system produces some of it, not all of it."));
+      host.appendChild(el("div", { style: "margin-bottom:16px" }, [
+        card("Submittal checklist", null, cb,
+          "What this jurisdiction expects to receive. This system produces some of it, not all of it.")
+      ]));
     }
+
+    /* the 15 facts that HELD, and the route each was checked against. Last,
+       because it is the reassuring half and the caveat is the load-bearing
+       one — a screen that opens with what held and closes with what was
+       wrong has the emphasis backwards. */
+    var rcCard = recheckedCard();
+    if (rcCard) host.appendChild(rcCard);
   };
 
   function clsBadge(cls) {

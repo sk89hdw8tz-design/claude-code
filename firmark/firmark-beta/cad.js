@@ -1103,6 +1103,7 @@
     }
 
     var g = plan.geometry || {};
+    var dr = g.drawn || {};
     var fp = isArr(g.footprintFt) ? g.footprintFt : null;
     var L = m.levels[0];
 
@@ -1128,314 +1129,393 @@
 
     var Wd = num(fp[0]), D = num(fp[1]);
 
-    /* ---- the exterior envelope ---- */
+    /* ---- the exterior envelope ----
+
+       A rectangle from footprintFt unless the plan declares an outline. A
+       declared outline is how a garage wing, an L or a rear bump reaches the
+       drawing: the plan states the corner-to-corner runs of its own exterior
+       walls, which is what a floor plan dimensions anyway. */
     var thickNote = "Thickness " + ASSUMED_STUD_IN + " in is ASSUMED — a 2x4 framed wall. " +
                     plan.name + " declares no stud size and neither does any region pack.";
-    var basis = "Exterior envelope from " + plan.name + " geometry.footprintFt = [" + Wd + ", " + D +
-                "] ft. Front is the wall at y = 0 (drawing convention). " + thickNote;
-    /* pushed one at a time — nextId reads the list, so building all four
+    var outline = isArr(dr.outline) && dr.outline.length >= 3 ? dr.outline : [
+      { fromFt: [0, 0],   toFt: [Wd, 0], face: "front", note: "Front wall" },
+      { fromFt: [Wd, 0],  toFt: [Wd, D], face: "right", note: "Right wall" },
+      { fromFt: [0, D],   toFt: [Wd, D], face: "rear",  note: "Rear wall" },
+      { fromFt: [0, 0],   toFt: [0, D],  face: "left",  note: "Left wall" }
+    ];
+    var basis = "Exterior envelope from " + plan.name +
+                (isArr(dr.outline) ? " geometry.drawn.outline (" + dr.outline.length + " walls)"
+                                   : " geometry.footprintFt = [" + Wd + ", " + D + "] ft") +
+                ". Front is the wall at y = 0 (drawing convention). " + thickNote;
+
+    var faces = {};                 /* face name -> [wall] on level 1 */
+    var byDeclId = {};              /* declared wall id -> wall */
+    var obb = bboxOfSegs(outline);
+
+    /* pushed one at a time — nextId reads the list, so building them all
        first hands out the same id twice */
-    function envelope(x1, y1, x2, y2, label) {
-      var w = newWall(L, x1, y1, x2, y2, {
-        note: label + " · " + thickNote, basis: basis, bearing: false,
-        thicknessIn: ASSUMED_STUD_IN, thicknessBasis: "assumed"
-      });
-      L.walls.push(w);
+    function pushWall(level, decl, over) {
+      /* an `id` of undefined must not reach newWall's override loop — it
+         overwrites the generated id with undefined and every bearsOn in the
+         model then names a wall called "undefined" */
+      if (over && over.id === undefined) delete over.id;
+      var w = newWall(level, decl.fromFt[0], decl.fromFt[1], decl.toFt[0], decl.toFt[1], over);
+      level.walls.push(w);
       return w;
     }
-    var front = envelope(0, 0, Wd, 0, "Front wall");
-    var right = envelope(Wd, 0, Wd, D, "Right wall");
-    var rear = envelope(0, D, Wd, D, "Rear wall");
-    var left = envelope(0, 0, 0, D, "Left wall");
 
-    /* ---- which walls bear, and which way the roof spans ---- */
-    var span = num(g.trussSpanFt);
-    var bearWalls = null, roofDirDeg = null, gableWalls = null;
-    var bl = String(g.bearingLines || "");
-
-    if (span !== null && near(span, D, 0.01) && !near(span, Wd, 0.01)) {
-      bearWalls = [front, rear]; gableWalls = [left, right]; roofDirDeg = 90;
-    } else if (span !== null && near(span, Wd, 0.01) && !near(span, D, 0.01)) {
-      bearWalls = [left, right]; gableWalls = [front, rear]; roofDirDeg = 0;
-    } else if (span !== null) {
-      hole("Which walls carry the roof",
-           "geometry.trussSpanFt is " + span + " ft, which matches " +
-           (near(span, D, 0.01) ? "both footprint dimensions" : "neither footprint dimension (" +
-            Wd + " ft and " + D + " ft)") + ", so the truss direction does not follow from it.",
-           "State the truss bearing walls, or correct trussSpanFt to one footprint dimension.");
-    } else if (/exterior walls/i.test(bl)) {
-      /* the plan says so in as many words */
-      bearWalls = [front, right, rear, left];
-      hole("The roof span direction",
-           plan.name + " declares no trussSpanFt, so nothing says which way the roof or ceiling spans " +
-           "even though its bearingLines names the exterior walls as bearing.",
-           "Declare trussSpanFt, or draw the roof region and set its direction by hand.");
-    } else {
-      hole("Which walls bear",
-           plan.name + " declares no trussSpanFt and its bearingLines text does not name the exterior " +
-           "walls, so no wall can be marked bearing from what the plan states.",
-           "Declare trussSpanFt, or mark the bearing walls by hand.");
-    }
-    if (bearWalls) {
-      bearWalls.forEach(function (w) {
-        w.bearing = true;
-        w.basis = basis + " Bearing: " + (span !== null
-          ? "geometry.trussSpanFt = " + span + " ft spans this pair."
-          : "geometry.bearingLines names the exterior walls.");
+    outline.forEach(function (seg) {
+      var face = seg.face || faceOfSeg(seg.fromFt[0], seg.fromFt[1], seg.toFt[0], seg.toFt[1], obb);
+      var w = pushWall(L, seg, {
+        id: seg.id || undefined,
+        note: (seg.note || (face ? face + " wall" : "Exterior wall")) + " · " + thickNote,
+        basis: basis + (seg.note ? " " + seg.note : ""),
+        bearing: false, exterior: true,
+        thicknessIn: ASSUMED_STUD_IN, thicknessBasis: "assumed"
       });
-    }
-    if (gableWalls) {
-      gableWalls.forEach(function (w) {
-        w.note = w.note + " · gable end, non-bearing";
-        w.basis = basis + " Non-bearing: the " + span + " ft truss span runs onto the other pair.";
-      });
-    }
-    if (bl) {
-      L.note = (L.note ? L.note + " " : "") + "Plan bearingLines: " + bl;
-    }
-    if (/party wall/i.test(bl)) {
-      hole("Which wall is the party wall",
-           plan.name + " is an attached unit and its bearingLines names a party wall, but nothing says " +
-           "which side of the footprint is shared.",
-           "Name the shared wall on the plan. Until then the drawing may be mirrored, and no opening " +
-           "has been placed in a wall that could be the party wall.");
-    }
-
-    /* ---- an interior bearing line, only when the joist bays derive one ----
-       Two declared joist spans that add exactly to a footprint dimension
-       locate the line between them. Anything else does not. */
-    var joistSpans = [], frontBay = null;
-    (plan.marks || []).forEach(function (mk) {
-      if (mk.role !== "joist") return;
-      var s = num(mk.span);
-      if (s === null) return;
-      /* A bay the plan calls the FRONT bay starts at the front wall, so its
-         own span locates the line behind it — even when the bays do not fill
-         the footprint, which on a two-storey plan they need not. The label is
-         the declaration; nothing here is measured off prose. */
-      if (frontBay === null && /\bfront bay\b/i.test(String(mk.label || ""))) frontBay = s;
-      var seen = false;
-      joistSpans.forEach(function (v) { if (near(v, s, 0.001)) seen = true; });
-      if (!seen) joistSpans.push(s);
+      w.face = face;
+      if (face) { faces[face] = faces[face] || []; faces[face].push(w); }
+      if (seg.id) byDeclId[seg.id] = w;
     });
-    var interior = null, floorDirDeg = null;
-    if (joistSpans.length === 2) {
-      var sum = joistSpans[0] + joistSpans[1];
-      var acrossX = near(sum, Wd, 0.01), acrossY = near(sum, D, 0.01);
-      if (acrossX && !acrossY) {
-        interior = newWall(L, joistSpans[0], 0, joistSpans[0], D, {
-          exterior: false, bearing: true,
-          note: "Interior bearing line · " + thickNote,
+
+    function firstFace(f) { return faces[f] && faces[f].length ? faces[f][0] : null; }
+    var front = firstFace("front"), rear = firstFace("rear");
+    var left = firstFace("left"), right = firstFace("right");
+
+    /* ---- declared interior walls on the first floor ---- */
+    function addInteriorWalls(level, list, levelLabel) {
+      (isArr(list) ? list : []).forEach(function (d) {
+        if (!isArr(d.fromFt) || !isArr(d.toFt)) return;
+        var w = pushWall(level, d, {
+          id: d.id,
+          exterior: false, bearing: d.bearing === true,
+          note: (d.note ? d.note.split(".")[0] + "." : "Interior wall") + " · " + thickNote,
           thicknessIn: ASSUMED_STUD_IN, thicknessBasis: "assumed",
-          basis: "Derived: the two declared joist bays (" + joistSpans[0] + " ft and " + joistSpans[1] +
-                 " ft) add to the " + Wd + " ft footprint width, so the line sits " + joistSpans[0] +
-                 " ft from one side. " + thickNote
+          basis: "Declared on the plan (" + levelLabel + ", geometry.drawn): " +
+                 (d.note || "no note given") + " " + thickNote
         });
-        floorDirDeg = 0;
-      } else if (acrossY && !acrossX) {
-        interior = newWall(L, 0, joistSpans[0], Wd, joistSpans[0], {
-          exterior: false, bearing: true,
-          note: "Interior bearing line · " + thickNote,
-          thicknessIn: ASSUMED_STUD_IN, thicknessBasis: "assumed",
-          basis: "Derived: the two declared joist bays (" + joistSpans[0] + " ft and " + joistSpans[1] +
-                 " ft) add to the " + D + " ft footprint depth. " + thickNote
-        });
-        floorDirDeg = 90;
-      }
-      if (interior) {
-        L.walls.push(interior);
-        hole("Which side the interior bearing line is measured from",
-             "The two joist bays locate the line " + joistSpans[0] + " ft from one edge, but the plan " +
-             "does not say which edge.",
-             "Name the side on the plan, or mirror the drawing to match the architectural set.");
-      }
-    }
-    /* The bays did not add up to a footprint dimension, but one of them is
-       named the FRONT bay — which does fix the line, because a front bay
-       starts at the front wall. The bays not filling the footprint is a
-       separate hole and is recorded as one. */
-    if (!interior && frontBay !== null && frontBay > 0 && frontBay < D) {
-      interior = newWall(L, 0, frontBay, Wd, frontBay, {
-        exterior: false, bearing: true,
-        note: "Centre bearing line · " + thickNote,
-        thicknessIn: ASSUMED_STUD_IN, thicknessBasis: "assumed",
-        basis: "Derived: the plan declares a " + frontBay + " ft FRONT bay, and a front bay starts " +
-               "at the front wall, so the line behind it sits " + frontBay + " ft from y = 0. " +
-               "The bays do not fill the " + D + " ft depth, so no floor region is drawn from them. " +
-               thickNote
+        byDeclId[d.id] = w;
       });
-      L.walls.push(interior);
-      hole("The floor bays either side of the centre bearing line",
-           "The declared joist bays (" + joistSpans.join(" ft and ") + " ft deep, running " +
-           (function () {
-             var runs = [];
-             (plan.marks || []).forEach(function (mk) {
-               if (mk.role === "joist" && num(mk.runFt) !== null && runs.indexOf(mk.runFt) === -1) runs.push(mk.runFt);
-             });
-             return runs.length ? runs.join(" ft and ") + " ft" : "an undeclared length";
-           })() + ") do not span the " + Wd + " ft width, and the plan does not say where along it " +
-           "they sit — so the bearing line is drawn and the floor regions are not.",
-           "Declare the second-floor outline, then draw the floor regions on it.");
     }
-    /* "There is no third bearing line" declares the absence of one. Reading
-       that as a hole would invent a finding out of a plan being explicit. */
-    var declaresInterior = /interior line|centre bearing|center bearing|third bearing/i.test(bl) &&
-                           !/\bno (third bearing|interior|other bearing)/i.test(bl);
-    if (!interior && declaresInterior) {
-      hole("The interior bearing line",
-           plan.name + " declares an interior bearing line in its bearingLines text, but no pair of " +
-           "declared joist spans adds to a footprint dimension, so its position does not follow from " +
-           "any stated number" +
-           (joistSpans.length ? " (the declared joist spans are " + joistSpans.join(" ft, ") + " ft)" : "") + ".",
-           "Declare the offset of the interior bearing line from a named exterior wall.");
-    }
+    addInteriorWalls(L, dr.interiorWalls, "first floor");
 
-    /* ---- framing regions ---- */
-    var fpPoly = [[0, 0], [Wd, 0], [Wd, D], [0, D]];
-    if (bearWalls && roofDirDeg !== null) {
-      var runFt = roofDirDeg === 90 ? Wd : D;      /* the ridge run, across the span */
-      var sp = trussSpacing(plan, g, runFt);
-      L.framing.push(newFraming(L, fpPoly, {
-        kind: "roof", directionDeg: roofDirDeg, spacingIn: sp.inches,
-        bearsOn: bearWalls.map(function (w) { return w.id; }),
-        /* The plan's own truss mark drove this region — its spacing was read
-           back out of the truss count — so the region says what SYSTEM frames
-           it. Without this the takeoff mapped kind "roof" to role "rafter"
-           unconditionally and a 32 ft clear-span truss package arrived at the
-           solver as a solid-sawn rafter, escalating on strength with the
-           remedy "a deeper section". weights.js and bom.js both call the same
-           thing a deferred sealed submittal; this is how that classification
-           survives the trip through geometry. */
-        system: "truss",
-        note: "Common trusses, " + span + " ft clear span",
-        basis: "Region is the footprint. Direction from geometry.trussSpanFt = " + span + " ft. " + sp.basis
-      }));
-      if (sp.inches === null) {
-        hole("Roof member spacing",
-             plan.name + " declares no geometry.trussSpacingIn, and its truss mark declares no count " +
-             "the spacing could be read back out of.",
-             "Declare the truss spacing, or set it on the roof region by hand.");
-      }
-    }
-    if (interior && floorDirDeg !== null && num(g.storeys) > 1) {
-      var a = joistSpans[0];
-      var poly1, poly2;
-      if (floorDirDeg === 0) {
-        poly1 = [[0, 0], [a, 0], [a, D], [0, D]];
-        poly2 = [[a, 0], [Wd, 0], [Wd, D], [a, D]];
-      } else {
-        poly1 = [[0, 0], [Wd, 0], [Wd, a], [0, a]];
-        poly2 = [[0, a], [Wd, a], [Wd, D], [0, D]];
-      }
-      var side1 = floorDirDeg === 0 ? left : front;
-      var side2 = floorDirDeg === 0 ? right : rear;
-      /* the floor bays land on the two envelope walls parallel to the
-         interior line, which are bearing for the floor whatever carries
-         the roof */
-      [side1, side2].forEach(function (w) { w.bearing = true; });
-      /* The spacing is left undeclared on purpose. These plans state that the
-         joist piece count follows whatever spacing the solver picks, so the
-         count is a CONSEQUENCE and inverting it would assert a fact the plan
-         disclaims — unlike the truss counts above, which the plans declare as
-         derived from a spacing. What the counts are consistent with is written
-         down for the reviewer; it is evidence, not a value. */
-      function bayBasis(spanFt) {
-        var ev = [];
-        (plan.marks || []).forEach(function (mk) {
-          if (mk.role !== "joist" || !near(num(mk.span), spanFt, 0.001)) return;
-          if (num(mk.runFt) === null || num(mk.count) === null || num(mk.count) < 2) return;
-          var oc = Math.round((num(mk.runFt) / (num(mk.count) - 1)) * 12 * 10) / 10;
-          ev.push(mk.id + " counts " + mk.count + " over " + mk.runFt + " ft, about " + oc + " in o.c.");
+    /* ---- the upper storey ---- */
+    var upper = null;
+    var us = dr.upperStorey;
+    if (us && isArr(us.outline) && us.outline.length >= 3) {
+      upper = blankLevel(us.id || "L2", us.label || "Second floor", plate ? plate.ft : null);
+      upper.note = (us.note || "") +
+        " Wall, opening and framing ids on this level are prefixed with the level id: takeoff.js " +
+        "indexes walls model-wide and refuses the whole model if one id names two walls.";
+      m.levels.push(upper);
+      var ubb = bboxOfSegs(us.outline);
+      us.outline.forEach(function (seg) {
+        var face = seg.face || faceOfSeg(seg.fromFt[0], seg.fromFt[1], seg.toFt[0], seg.toFt[1], ubb);
+        var w = pushWall(upper, seg, {
+          id: (upper.id + "-") + (seg.id || ("W" + (upper.walls.length + 1))),
+          note: (seg.note || (face ? face + " wall" : "Exterior wall")) + " · " + thickNote,
+          basis: "Upper-storey envelope declared on the plan (geometry.drawn.upperStorey). " +
+                 (seg.note || "") + " " + thickNote,
+          bearing: false, exterior: true,
+          thicknessIn: ASSUMED_STUD_IN, thicknessBasis: "assumed"
         });
-        return "Bay from the declared joist span " + spanFt + " ft. SPACING IS NOT SET: " + plan.name +
-               " states the joist piece count follows the spacing the solver picks, so the count is a " +
-               "consequence and cannot be read back as a declaration. For the reviewer's information " +
-               "only, the declared counts imply — " + (ev.length ? ev.join("; ") : "nothing readable") +
-               ". Set the spacing here once it is chosen.";
-      }
-      L.framing.push(newFraming(L, poly1, {
-        kind: "floor", directionDeg: floorDirDeg, spacingIn: null,
-        bearsOn: [side1.id, interior.id],
-        note: "Floor bay · " + joistSpans[0] + " ft",
-        basis: bayBasis(joistSpans[0])
-      }));
-      L.framing.push(newFraming(L, poly2, {
-        kind: "floor", directionDeg: floorDirDeg, spacingIn: null,
-        bearsOn: [interior.id, side2.id],
-        note: "Floor bay · " + joistSpans[1] + " ft",
-        basis: bayBasis(joistSpans[1])
-      }));
-      hole("Floor member spacing",
-           plan.name + " declares no spacing for the second-floor joists — the marks say the piece " +
-           "count follows the spacing the solver picks.",
-           "Set the spacing on each floor region once the solver has picked one.");
-    }
-
-    /* ---- storeys this model does not carry ---- */
-    if (num(g.storeys) > 1) {
+        w.face = face;
+        if (face) { faces[(upper.id + ":") + face] = (faces[(upper.id + ":") + face] || []).concat([w]); }
+        if (seg.id) byDeclId[(upper.id + "-") + seg.id] = w;
+      });
+      (isArr(us.interiorWalls) ? us.interiorWalls : []).forEach(function (d) {
+        var w = pushWall(upper, d, {
+          id: (upper.id + "-") + d.id,
+          exterior: false, bearing: d.bearing === true,
+          note: (d.note ? d.note.split(".")[0] + "." : "Interior wall") + " · " + thickNote,
+          thicknessIn: ASSUMED_STUD_IN, thicknessBasis: "assumed",
+          basis: "Declared on the plan (upper storey, geometry.drawn): " + (d.note || "") + " " + thickNote
+        });
+        byDeclId[(upper.id + "-") + d.id] = w;
+      });
+    } else if (num(g.storeys) > 1) {
       hole("The upper storey",
            plan.name + " is " + g.storeys + " storeys and this model carries the first-floor level " +
            "only. footprintFt describes the first floor" +
            (num(g.secondFloorSf) !== null ? " (" + g.secondFloorSf + " sf above " +
             (num(g.firstFloorSf) !== null ? g.firstFloorSf + " sf" : "it") + "), and the upper " +
             "outline is not declared" : "") + ".",
-           "Declare the upper-floor outline, then draw it as a second level.");
+           "Declare geometry.drawn.upperStorey.outline, then this model draws it as a second level.");
     }
 
-    /* ---- porches, lanais, patios: declared depth, undeclared position ---- */
-    var appendages = [
-      { key: "lanaiDepthFt", label: "lanai" },
-      { key: "coveredEntryFt", label: "covered entry" },
-      { key: "coveredPatioFt", label: "covered patio" },
-      { key: "porchFt", label: "porch" },
-      { key: "deckFt", label: "deck" }
-    ];
-    appendages.forEach(function (ap) {
-      var v = own(g, ap.key);
-      if (v === undefined || v === null) return;
-      var sizeText = isArr(v) ? v[0] + " ft x " + v[1] + " ft" : v + " ft deep";
-      hole("The " + ap.label + " (" + sizeText + ")",
-           plan.name + " declares the size of the " + ap.label + " but not where along the face it " +
-           "sits, and it is carried by a beam on posts — which this model has no element for, since " +
-           "framing here bears on walls only.",
-           "Declare the offset of the " + ap.label + " from a named corner. Its beam and posts stay " +
-           "out of this model either way; they are marks on the schedule.");
-    });
-    if (g.garage && num(g.garage.widthFt) !== null) {
+    /* ============================================================
+       framing
+
+       Declared regions win. Each one states the rectangle it covers,
+       which way its members run and at what spacing; the walls it
+       BEARS ON are then found from the drawing, never named by hand,
+       so a wall that moves takes the load path with it.
+       ============================================================ */
+    var declaredFraming = isArr(dr.framing) && dr.framing.length;
+    var bearWalls = null, gableWalls = null, roofDirDeg = null;
+    var span = num(g.trussSpanFt);
+    var bl = String(g.bearingLines || "");
+
+    if (declaredFraming) {
+      dr.framing.forEach(function (d) {
+        var lv = d.level && upper && d.level === upper.id ? upper : L;
+        var pre = lv === upper ? upper.id + "-" : "";
+        var r = isArr(d.rectFt) ? d.rectFt : null;
+        if (!r || r.length < 4) {
+          hole("Framing region " + d.id,
+               "It declares no rectFt, so there is no region to draw.",
+               "Declare rectFt: [x0, y0, x1, y1] in feet on geometry.drawn.framing.");
+          return;
+        }
+        var x0 = Math.min(num(r[0]), num(r[2])), x1 = Math.max(num(r[0]), num(r[2]));
+        var y0 = Math.min(num(r[1]), num(r[3])), y1 = Math.max(num(r[1]), num(r[3]));
+        var dirDeg = own(SPAN_DIRS, d.spanDir) ? SPAN_DIRS[d.spanDir] : null;
+        if (dirDeg === null) {
+          hole("Framing region " + d.id + " span direction",
+               "spanDir is \"" + String(d.spanDir) + "\", and only \"front-to-back\" and " +
+               "\"left-to-right\" are defined. 0 and 90 give different spans and different members.",
+               "Declare spanDir on the region.");
+          return;
+        }
+        /* the two edges the members END on — the supports are the walls
+           lying under them */
+        var edges = dirDeg === 90
+          ? [[x0, y0, x1, y0], [x0, y1, x1, y1]]
+          : [[x0, y0, x0, y1], [x1, y0, x1, y1]];
+        var sup = [], edgeNames = [];
+        edges.forEach(function (e, i) {
+          var hits = wallsAlongEdge(m, e[0], e[1], e[2], e[3]);
+          if (!hits.length) {
+            hole("What framing region " + d.id + " bears on at its " + (i === 0 ? "first" : "second") +
+                 " end",
+                 "No wall in this model lies along the edge from (" + f1(e[0]) + ", " + f1(e[1]) +
+                 ") to (" + f1(e[2]) + ", " + f1(e[3]) + " ) ft. A simple span needs two supports and " +
+                 "this model has no beam or post entity (register §Q.2), so a region landing on a beam " +
+                 "line cannot be expressed at all.",
+                 "Draw the wall at that edge, or move the region edge onto the wall that carries it.");
+          }
+          hits.forEach(function (w) {
+            if (sup.indexOf(w) === -1) sup.push(w);
+            w.bearing = true;
+            if (edgeNames.indexOf(w.id) === -1) edgeNames.push(w.id);
+          });
+        });
+        var stated = num(d.spanFt);
+        var drawnSpan = dirDeg === 90 ? (y1 - y0) : (x1 - x0);
+        if (stated !== null && !near(stated, drawnSpan, 0.02)) {
+          hole("Framing region " + d.id + "'s span",
+               "The plan states spanFt " + stated + " ft and the rectangle it declares is " +
+               f2(drawnSpan) + " ft between bearing centrelines. Those are two different numbers for " +
+               "one span and the model cannot hold both.",
+               "Correct rectFt or spanFt so they agree. (The takeoff measures the CLEAR span between " +
+               "wall faces, which is shorter than either by half a wall each end.)");
+        }
+        lv.framing.push(newFraming(lv, [[x0, y0], [x1, y0], [x1, y1], [x0, y1]], {
+          id: pre + d.id,
+          kind: FRAMING_KINDS.indexOf(d.kind) === -1 ? "floor" : d.kind,
+          directionDeg: dirDeg,
+          spacingIn: num(d.spacingIn),
+          bearsOn: sup.map(function (w) { return w.id; }),
+          system: SYSTEMS.indexOf(d.system) === -1 ? null : d.system,
+          note: d.note ? d.note.split(".")[0] + "." : (d.kind + " region"),
+          basis: "Declared on the plan (geometry.drawn.framing." + d.id + "): the region runs (" +
+                 f1(x0) + ", " + f1(y0) + ") to (" + f1(x1) + ", " + f1(y1) + ") ft, members " +
+                 d.spanDir + (stated === null ? "" : ", stated span " + stated + " ft") +
+                 (num(d.spacingIn) === null ? ", SPACING NOT DECLARED" : " at " + d.spacingIn + " in o.c.") +
+                 ". Bearing walls " + (edgeNames.length ? edgeNames.join(" and ") : "NONE FOUND") +
+                 " were found from the drawing — the walls lying under the region's two span-end " +
+                 "edges — not named by hand. " + (d.note || "")
+        }));
+        if (num(d.spacingIn) === null) {
+          hole("Member spacing in framing region " + d.id,
+               plan.name + " declares no spacingIn for this region, and the takeoff cannot count the " +
+               "members in it or derive their own tributary without one.",
+               "Declare spacingIn on geometry.drawn.framing." + d.id + " — 16 or 24 in o.c.");
+        }
+      });
+      if (bl) L.note = (L.note ? L.note + " " : "") + "Plan bearingLines: " + bl;
+    } else {
+      /* ---------- no declared framing: the old derivation ----------
+         Kept whole. A plan that states loads and marks but no drawing
+         still reaches as far as it ever did, and says what it could
+         not determine. */
+      if (span !== null && near(span, D, 0.01) && !near(span, Wd, 0.01)) {
+        bearWalls = [front, rear]; gableWalls = [left, right]; roofDirDeg = 90;
+      } else if (span !== null && near(span, Wd, 0.01) && !near(span, D, 0.01)) {
+        bearWalls = [left, right]; gableWalls = [front, rear]; roofDirDeg = 0;
+      } else if (span !== null) {
+        hole("Which walls carry the roof",
+             "geometry.trussSpanFt is " + span + " ft, which matches " +
+             (near(span, D, 0.01) ? "both footprint dimensions" : "neither footprint dimension (" +
+              Wd + " ft and " + D + " ft)") + ", so the truss direction does not follow from it.",
+             "State the truss bearing walls, or correct trussSpanFt to one footprint dimension.");
+      } else if (/exterior walls/i.test(bl)) {
+        bearWalls = [front, right, rear, left];
+        hole("The roof span direction",
+             plan.name + " declares no trussSpanFt, so nothing says which way the roof or ceiling spans " +
+             "even though its bearingLines names the exterior walls as bearing.",
+             "Declare trussSpanFt, or draw the roof region and set its direction by hand.");
+      } else {
+        hole("Which walls bear",
+             plan.name + " declares no trussSpanFt and its bearingLines text does not name the exterior " +
+             "walls, so no wall can be marked bearing from what the plan states.",
+             "Declare trussSpanFt, or mark the bearing walls by hand.");
+      }
+      if (bearWalls) {
+        bearWalls.forEach(function (w) {
+          if (!w) return;
+          w.bearing = true;
+          w.basis = basis + " Bearing: " + (span !== null
+            ? "geometry.trussSpanFt = " + span + " ft spans this pair."
+            : "geometry.bearingLines names the exterior walls.");
+        });
+      }
+      if (gableWalls) {
+        gableWalls.forEach(function (w) {
+          if (!w) return;
+          w.note = w.note + " · gable end, non-bearing";
+          w.basis = basis + " Non-bearing: the " + span + " ft truss span runs onto the other pair.";
+        });
+      }
+      if (bl) L.note = (L.note ? L.note + " " : "") + "Plan bearingLines: " + bl;
+
+      if (bearWalls && roofDirDeg !== null) {
+        var runFt = roofDirDeg === 90 ? Wd : D;      /* the ridge run, across the span */
+        var sp = trussSpacing(plan, g, runFt);
+        L.framing.push(newFraming(L, [[0, 0], [Wd, 0], [Wd, D], [0, D]], {
+          kind: "roof", directionDeg: roofDirDeg, spacingIn: sp.inches,
+          bearsOn: bearWalls.map(function (w) { return w.id; }),
+          /* The plan's own truss mark drove this region — its spacing was read
+             back out of the truss count — so the region says what SYSTEM frames
+             it. Without this the takeoff mapped kind "roof" to role "rafter"
+             unconditionally and a 32 ft clear-span truss package arrived at the
+             solver as a solid-sawn rafter. */
+          system: "truss",
+          note: "Common trusses, " + span + " ft clear span",
+          basis: "Region is the footprint. Direction from geometry.trussSpanFt = " + span + " ft. " + sp.basis
+        }));
+        if (sp.inches === null) {
+          hole("Roof member spacing",
+               plan.name + " declares no geometry.trussSpacingIn, and its truss mark declares no count " +
+               "the spacing could be read back out of.",
+               "Declare the truss spacing, or set it on the roof region by hand.");
+        }
+      }
+    }
+
+    /* ---- an interior bearing line the plan did not locate ----
+       Only reached when the plan declares one in prose and no drawing. */
+    var declaresInterior = /interior line|centre bearing|center bearing|third bearing/i.test(bl) &&
+                           !/\bno (third bearing|interior|other bearing)/i.test(bl);
+    var haveInterior = L.walls.filter(function (w) { return !w.exterior; }).length > 0;
+    if (!haveInterior && declaresInterior) {
+      hole("The interior bearing line",
+           plan.name + " declares an interior bearing line in its bearingLines text and geometry.drawn " +
+           "does not locate it, so its position does not follow from any stated number.",
+           "Declare it in geometry.drawn.interiorWalls with its two endpoints.");
+    }
+    if (/party wall/i.test(bl) && !dr.partyWallSide) {
+      hole("Which wall is the party wall",
+           plan.name + " is an attached unit and its bearingLines names a party wall, but nothing says " +
+           "which side of the footprint is shared.",
+           "Declare geometry.drawn.partyWallSide — \"left\", \"right\" or \"both\".");
+    }
+
+    /* ---- porches, lanais, patios, decks: sized, and now located ----
+       Position closes half of this hole. The other half does not close and
+       must not read as if it had: the beam and its posts have no element in
+       this model at all (register §Q.2), so the region they carry cannot be
+       drawn even when everybody knows where it is. */
+    var appendages = isArr(dr.appendages) ? dr.appendages : null;
+    if (appendages) {
+      appendages.forEach(function (ap) {
+        var sizeText = (num(ap.widthFt) !== null ? ap.widthFt + " ft x " : "") +
+                       (num(ap.depthFt) !== null ? ap.depthFt + " ft" : "size not declared");
+        hole("The " + ap.label + " (" + sizeText + ", " + ap.face + " face at " + ap.offsetFt + " ft)",
+             "Its position IS declared: it runs from " + ap.offsetFt + " ft along the " + ap.face +
+             " face. What is still missing is a member, not a dimension — it is carried by " +
+             (ap.carriedBy || "a beam on posts") + ", and this geometry model has no beam, post or " +
+             "column entity of any kind (register §Q.2). A framing region that lands on a post line " +
+             "can never get a determined span here, so drawing it would produce a refusal rather than " +
+             "a member.",
+             "Nothing further is needed from the PLAN. This is a model limitation: add a beam/post " +
+             "entity to the CAD model and to takeoff.js, or keep carrying " +
+             (ap.carriedBy || "these members") + " as schedule marks sized outside the drawing.");
+      });
+    } else {
+      [{ key: "lanaiDepthFt", label: "lanai" },
+       { key: "coveredEntryFt", label: "covered entry" },
+       { key: "coveredPatioFt", label: "covered patio" },
+       { key: "porchFt", label: "porch" },
+       { key: "deckFt", label: "deck" }].forEach(function (ap) {
+        var v = own(g, ap.key);
+        if (v === undefined || v === null) return;
+        var sizeText = isArr(v) ? v[0] + " ft x " + v[1] + " ft" : v + " ft deep";
+        hole("The " + ap.label + " (" + sizeText + ")",
+             plan.name + " declares the size of the " + ap.label + " but not where along the face it " +
+             "sits, and it is carried by a beam on posts — which this model has no element for, since " +
+             "framing here bears on walls only.",
+             "Declare the offset of the " + ap.label + " from a named corner. Its beam and posts stay " +
+             "out of this model either way; they are marks on the schedule.");
+      });
+    }
+    if (g.garage && num(g.garage.widthFt) !== null && !dr.garageAt) {
       hole("The garage walls (" + g.garage.widthFt + " ft x " + g.garage.depthFt + " ft)",
            plan.name + " declares the garage size but not its position along the footprint, so its " +
            "interior walls cannot be drawn.",
-           "Declare the garage offset from a named corner.");
+           "Declare geometry.drawn.garageAt with the face and the offset from a named corner.");
     }
 
-    /* ---- openings from the header marks ---- */
-    placeOpenings(plan, L, {
-      front: front, rear: rear, left: left, right: right,
+    /* ---- openings from the marks ---- */
+    placeOpenings(plan, m, {
+      levels: [L, upper],
+      faces: faces,
+      byDeclId: byDeclId,
       bearWalls: bearWalls, gableWalls: gableWalls,
-      partyWall: /party wall/i.test(bl)
+      partySide: dr.partyWallSide || null,
+      partyWallUnknown: /party wall/i.test(bl) && !dr.partyWallSide
     }, hole);
 
     return m;
   }
 
-  /* Openings are the only thing here that gets a PLACEHOLDER position.
-     A plan that declares eight windows in its bearing walls has declared
-     eight windows; refusing to draw them would lose a fact the plan
-     states. Refusing to state WHERE they go is the honest half, and
-     that is what offsetBasis: "placeholder" and the warn are for. */
-  function placeOpenings(plan, L, W, hole) {
-    var pending = {};   /* wall id -> [{mark, widthFt, kind, headFt}] */
+  /* ============================================================
+     openings
+
+     A plan that declares eight windows in its bearing walls has
+     declared eight windows; refusing to draw them would lose a fact
+     the plan states. Refusing to state WHERE they go is the honest
+     half, and that is what offsetBasis: "placeholder" is for.
+
+     Three things changed when the plans grew a drawing:
+
+       · a mark may declare `opening: {level, face|faces|wall,
+         offsetFt}`. A declared offsetFt is a PINNED position and is
+         marked as read from the plan, not as a placeholder.
+       · placeholders are laid out only within the stretches of wall
+         that actually have framing over them. An opening placed by
+         equal gaps used to land past the end of the framed area and
+         then be refused for having no tributary — a refusal caused
+         by the placeholder rather than by the plan.
+       · openings that do not fit are named with their mark and their
+         count. They are not silently dropped and they are not
+         crammed in on top of each other.
+     ============================================================ */
+  function placeOpenings(plan, m, ctx, hole) {
+    var L1 = ctx.levels[0], L2 = ctx.levels[1] || null;
+    var pending = {};   /* wall id -> [{widthFt, kind, headFt, note, markId, pin}] */
+    var wallLevel = {};
     var groups = {};
 
-    /* Two marks can describe ONE hole — the Sunbelt garage door is carried
-       twice, once read as a gable end and once as a bearing line. The plan
-       says so in as many words ("Same opening as HDR-GAR-B"), so that
-       declaration is what groups them. Two marks that merely share a width
-       are two openings. */
-    var headers = (plan.marks || []).filter(function (mk) { return mk.role === "header"; });
+    /* Two marks can describe ONE hole — the plan says so in as many words
+       ("Same opening as HDR-GAR-B"), and that declaration is what groups
+       them. Two marks that merely share a width are two openings. */
+    var placeable = (plan.marks || []).filter(function (mk) {
+      return mk.role === "header" || (mk.opening && mk.role === "beam");
+    });
     var ids = {};
-    headers.forEach(function (mk) { ids[mk.id] = 1; });
-    headers.forEach(function (mk) {
+    placeable.forEach(function (mk) { ids[mk.id] = 1; });
+    placeable.forEach(function (mk) {
       var alias = /same opening as\s+([A-Za-z0-9_-]+)/i.exec(String(mk.note || ""));
       var k = mk.id;
       if (alias && own(ids, alias[1])) k = alias[1];
@@ -1443,19 +1523,36 @@
       groups[k].push(mk);
     });
 
+    function levelOfDecl(o) {
+      if (!o) return L1;
+      var n = num(o.level);
+      if (n === 2) return L2;
+      return L1;
+    }
+    /* face -> the walls it names, on the level the mark declares */
+    function wallsForFace(lv, name) {
+      var key = (lv && L2 && lv === L2) ? (L2.id + ":" + name) : name;
+      var hit = ctx.faces[key];
+      return hit && hit.length ? hit : null;
+    }
+
     Object.keys(groups).forEach(function (k) {
       var marks = groups[k];
       var mk = marks[0];
+      var od = mk.opening || null;
 
-      /* two marks for the same opening — the plan is carrying two
-         readings of one hole, and they do not agree on the wall */
       if (marks.length > 1) {
-        var hints = [], ids = [];
-        marks.forEach(function (x) { ids.push(x.id); var h = wallHint(x) || "unhinted"; if (hints.indexOf(h) === -1) hints.push(h); });
+        var hints = [], mids = [];
+        marks.forEach(function (x) {
+          mids.push(x.id);
+          var h = (x.opening && (x.opening.face || (x.opening.faces || []).join("+"))) ||
+                  wallHint(x) || "unhinted";
+          if (hints.indexOf(h) === -1) hints.push(h);
+        });
         if (hints.length > 1) {
-          hole("The " + f1(num(mk.span)) + " ft opening behind " + ids.join(" and "),
-               plan.name + " carries " + ids.length + " header marks for one opening — " +
-               ids.join(" and ") + " — and they put it in different walls (" + hints.join(", ") +
+          hole("The " + f1(num(mk.span)) + " ft opening behind " + mids.join(" and "),
+               plan.name + " carries " + mids.length + " header marks for one opening — " +
+               mids.join(" and ") + " — and they put it in different walls (" + hints.join(", ") +
                "). The truss direction there decides which reading applies and the plan does not " +
                "state it.",
                "State the truss direction at that opening, then draw it in the wall that follows.");
@@ -1466,35 +1563,62 @@
       var count = 0;
       marks.forEach(function (x) { count = Math.max(count, num(x.count) || 1); });
 
-      if (mk.wallPosition !== "exterior-first-floor") {
+      var lv = levelOfDecl(od);
+      if (od && num(od.level) === 2 && !L2) {
+        hole("Opening for " + mk.id + " (" + mk.label + ")",
+             "The mark declares it is on the second floor and this model has no second level.",
+             "Declare geometry.drawn.upperStorey so the level exists, then this opening is drawn.");
+        return;
+      }
+      if (!od && mk.wallPosition !== "exterior-first-floor") {
         hole("Opening for " + mk.id + " (" + mk.label + ")",
              "This header is not declared as a first-floor exterior opening (wallPosition is " +
-             (mk.wallPosition ? "\"" + mk.wallPosition + "\"" : "absent") + "), so there is no wall on " +
-             "this level to put it in — it is a floor-framing or upper-storey header.",
-             "Draw the level it belongs to, or declare wallPosition on the mark.");
+             (mk.wallPosition ? "\"" + mk.wallPosition + "\"" : "absent") + ") and it declares no " +
+             "`opening` block, so there is no wall on this level to put it in — it is a " +
+             "floor-framing or upper-storey header.",
+             "Declare `opening: {level, face}` on the mark, or draw the level it belongs to.");
         return;
       }
 
-      var hint = wallHint(mk);
-      var targets = null;
-      if (hint === "front") targets = [W.front];
-      else if (hint === "rear") targets = [W.rear];
-      else if (hint === "gable") targets = W.gableWalls;
-      else targets = W.bearWalls;
+      /* ---- which walls ---- */
+      var targets = null, how = "";
+      if (od && od.wall) {
+        var key = (lv === L2 ? L2.id + "-" : "") + od.wall;
+        var w = ctx.byDeclId[key] || ctx.byDeclId[od.wall];
+        if (w) { targets = [w]; how = "the mark names wall " + od.wall; }
+      } else if (od && (od.face || od.faces)) {
+        var names = od.faces ? od.faces : [od.face];
+        targets = [];
+        names.forEach(function (n) {
+          var nm = n;
+          if (n === "party") nm = ctx.partySide === "right" ? "right" : "left";
+          if (n === "end")   nm = ctx.partySide === "right" ? "left" : "right";
+          var ws = wallsForFace(lv, nm);
+          if (ws) ws.forEach(function (x) { if (targets.indexOf(x) === -1) targets.push(x); });
+        });
+        if (!targets.length) targets = null;
+        how = "the mark names the " + names.join(" and ") + " face";
+      } else {
+        var hint = wallHint(mk);
+        if (hint === "front") targets = wallsForFace(L1, "front");
+        else if (hint === "rear") targets = wallsForFace(L1, "rear");
+        else if (hint === "gable") targets = ctx.gableWalls;
+        else targets = ctx.bearWalls;
+        how = "the mark's label reads as the " + (hint || "bearing") + " wall";
+      }
 
       if (!targets || !targets.length) {
         hole("Opening for " + mk.id + " (" + mk.label + ")",
-             "The wall this opening belongs to is not determined — " +
-             (hint === "gable" ? "the gable ends are not identified, because the truss direction is not."
-                               : "the mark names no face and the bearing walls are not determined."),
-             "Declare the truss direction, or name the wall on the mark.");
+             "The wall this opening belongs to is not determined — " + how + ", and no such wall is " +
+             "in this model.",
+             "Declare `opening: {level, face}` on the mark against a face this drawing has.");
         return;
       }
-      if (!hint && W.partyWall) {
+      if (!od && ctx.partyWallUnknown && !wallHint(mk)) {
         hole("Opening for " + mk.id + " (" + mk.label + ")",
              "The mark names no face, and on this plan one of the walls it would land in is a party " +
              "wall — an opening put there would be an invention, not a placement.",
-             "Name the face on the mark, or name which wall is the party wall.");
+             "Name the face on the mark, or declare geometry.drawn.partyWallSide.");
         return;
       }
 
@@ -1503,19 +1627,26 @@
       var bearingIn = num(mk.bearing);
       var roFt = bearingIn === null ? spanFt : spanFt - 2 * bearingIn / 12;
       var headFt = num(mk.headHeightIn) === null ? null : num(mk.headHeightIn) / 12;
+      var pinned = od && num(od.offsetFt) !== null;
       var basisText = "From mark " + mk.id + ": rough opening = span " + f2(spanFt) + " ft less " +
                       (bearingIn === null ? "no declared bearing" : f1(bearingIn) + " in of bearing at each end") +
-                      ". Offset along the wall is a PLACEHOLDER — " + plan.name +
-                      " does not say where along the face it sits.";
+                      ". " + (pinned
+                        ? "Offset " + f2(num(od.offsetFt)) + " ft along the wall is DECLARED on the plan" +
+                          (od.note ? ": " + od.note : ".")
+                        : "Offset along the wall is a PLACEHOLDER — " + plan.name +
+                          " does not say where along the face it sits, so it is laid out in the part " +
+                          "of the wall that has framing over it.");
       var i;
       for (i = 0; i < count; i++) {
-        var w = targets[i % targets.length];
-        pending[w.id] = pending[w.id] || [];
-        pending[w.id].push({
+        var w2 = targets[i % targets.length];
+        pending[w2.id] = pending[w2.id] || [];
+        wallLevel[w2.id] = lv;
+        pending[w2.id].push({
           widthFt: Math.round(roFt * 1000) / 1000,
           kind: openingKind(mk),
           headFt: headFt === null ? null : Math.round(headFt * 1000) / 1000,
-          note: basisText, markId: mk.id
+          note: basisText, markId: mk.id,
+          pin: pinned && i === 0 ? num(od.offsetFt) : null
         });
       }
       if (mk.underdetermined) {
@@ -1526,26 +1657,123 @@
       }
     });
 
-    Object.keys(pending).forEach(function (wid) {
-      var w = wallById(L, wid);
-      var list = pending[wid];
-      var widths = list.map(function (p) { return p.widthFt; });
-      var offs = layoutEqualGaps(wallLength(w), widths);
-      if (!offs) {
-        var total = 0;
-        widths.forEach(function (x) { total += x; });
-        hole(list.length + " openings assigned to " + w.id,
-             "They total " + f1(total) + " ft of rough opening in a " + f1(wallLength(w)) +
-             " ft wall, which leaves no room for jack and king studs between them, so none of them " +
-             "was placed.",
-             "Check the mark counts on " + plan.name + ", or state which face each opening is in.");
-        return;
-      }
-      list.forEach(function (p, i) {
-        L.openings.push(newOpening(L, w.id, Math.round(offs[i] * 1000) / 1000, p.widthFt, {
-          headHeightFt: p.headFt, kind: p.kind, note: p.note, offsetBasis: "placeholder"
-        }));
+    /* ---- lay them out ---- */
+    var end = endClearFt();
+
+    /* The stretches of a wall that something frames onto. A placeholder put
+       outside them is refused for having no tributary — which is a defect of
+       the placeholder, not of the plan. A wall nothing bears on keeps its
+       whole length: there is nothing to be outside of. */
+    function framedSegments(wid) {
+      var segs = [], w = null;
+      m.levels.forEach(function (lv) {
+        (lv.walls || []).forEach(function (x) { if (x.id === wid) w = x; });
       });
+      if (!w) return segs;
+      var len = wallLength(w), ux = (w.x2 - w.x1) / len, uy = (w.y2 - w.y1) / len;
+      m.levels.forEach(function (lv) {
+        (lv.framing || []).forEach(function (f) {
+          if ((f.bearsOn || []).indexOf(wid) === -1) return;
+          var lo = Infinity, hi = -Infinity;
+          f.polygon.forEach(function (p) {
+            var t = (p[0] - w.x1) * ux + (p[1] - w.y1) * uy;
+            if (t < lo) lo = t; if (t > hi) hi = t;
+          });
+          segs.push([Math.max(0, lo), Math.min(len, hi)]);
+        });
+      });
+      if (!segs.length) return [[0, len]];
+      /* merge */
+      segs.sort(function (a, b) { return a[0] - b[0]; });
+      var out = [segs[0].slice()], j;
+      for (j = 1; j < segs.length; j++) {
+        if (segs[j][0] <= out[out.length - 1][1] + 1e-6) {
+          out[out.length - 1][1] = Math.max(out[out.length - 1][1], segs[j][1]);
+        } else out.push(segs[j].slice());
+      }
+      return out;
+    }
+
+    Object.keys(pending).forEach(function (wid) {
+      var w = null;
+      m.levels.forEach(function (lv) {
+        (lv.walls || []).forEach(function (x) { if (x.id === wid) w = x; });
+      });
+      var lv = wallLevel[wid] || L1;
+      var list = pending[wid];
+      var segs = framedSegments(wid);
+      var placedNow = [];
+
+      /* pinned first — they are dimensions off the plan and the placeholders
+         work around them, never the other way round */
+      list.forEach(function (p) {
+        if (p.pin === null) return;
+        lv.openings.push(newOpening(lv, wid, Math.round(p.pin * 1000) / 1000, p.widthFt, {
+          id: (lv === L2 ? L2.id + "-" : "") + nextId(lv.openings, "O"),
+          headHeightFt: p.headFt, kind: p.kind, note: p.note, offsetBasis: "plan"
+        }));
+        placedNow.push([p.pin, p.pin + p.widthFt]);
+      });
+
+      /* what is left of the framed stretches once the pinned ones are out */
+      var free = [];
+      segs.forEach(function (s) {
+        var cur = [[s[0], s[1]]];
+        placedNow.forEach(function (b) {
+          var next = [];
+          cur.forEach(function (c) {
+            if (b[1] + 2 * end <= c[0] || b[0] - 2 * end >= c[1]) { next.push(c); return; }
+            if (c[0] < b[0] - 2 * end) next.push([c[0], b[0] - 2 * end]);
+            if (c[1] > b[1] + 2 * end) next.push([b[1] + 2 * end, c[1]]);
+          });
+          cur = next;
+        });
+        cur.forEach(function (c) { if (c[1] - c[0] > 0) free.push(c); });
+      });
+      free.sort(function (a, b) { return (b[1] - b[0]) - (a[1] - a[0]); });
+
+      var queue = list.filter(function (p) { return p.pin === null; });
+      var unplaced = [];
+      free.forEach(function (seg) {
+        if (!queue.length) return;
+        var take = queue.length;
+        while (take > 0) {
+          var widths = queue.slice(0, take).map(function (p) { return p.widthFt; });
+          var offs = layoutEqualGaps(seg[1] - seg[0], widths);
+          if (offs) {
+            queue.slice(0, take).forEach(function (p, i) {
+              lv.openings.push(newOpening(lv, wid, Math.round((seg[0] + offs[i]) * 1000) / 1000,
+                p.widthFt, {
+                  id: (lv === L2 ? L2.id + "-" : "") + nextId(lv.openings, "O"),
+                  headHeightFt: p.headFt, kind: p.kind, note: p.note, offsetBasis: "placeholder"
+                }));
+            });
+            queue = queue.slice(take);
+            return;
+          }
+          take--;
+        }
+      });
+      queue.forEach(function (p) { unplaced.push(p); });
+
+      if (unplaced.length) {
+        var byMark = {};
+        unplaced.forEach(function (p) { byMark[p.markId] = (byMark[p.markId] || 0) + p.widthFt; });
+        var names = Object.keys(byMark).map(function (id) {
+          return id + " (" + f1(byMark[id]) + " ft)";
+        });
+        var framedFt = 0;
+        segs.forEach(function (s) { framedFt += s[1] - s[0]; });
+        hole(unplaced.length + " opening" + (unplaced.length === 1 ? "" : "s") + " declared for " + wid +
+             " that the wall will not hold — " + names.join(", "),
+             "Wall " + wid + " is " + f1(wallLength(w)) + " ft long, of which " + f1(framedFt) +
+             " ft has framing bearing on it, and the openings already placed plus the jack and king " +
+             "studs each one needs leave no room for these. They are NOT drawn: crowding them in " +
+             "would put openings where the plan does not have wall, and dropping them silently would " +
+             "lose a member the plan declares.",
+             "Check the mark counts on " + plan.name + " against the elevations, or state which face " +
+             "each opening is in with `opening: {level, face}` on the mark.");
+      }
     });
   }
 

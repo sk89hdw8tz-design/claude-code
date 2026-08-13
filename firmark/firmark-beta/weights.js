@@ -467,7 +467,28 @@
       climate: {
         groundSnow:  { v: 0,   cls: "code", note: "Zero. Snow never governs anywhere in Florida." },
         roofLive:    { v: 20,  cls: "code", note: LIVE.roof_live.cite },
-        windMph:     { v: 130, cls: "site", note: "130–139 Orlando, 140–150 coastal Tampa, 150–160 SW Florida coastal. Look up the site." },
+        /* The wind-borne debris note lives on windMph because that is the
+           register the packs already use for it (see tx-gulf) and because it
+           is the only climate field whose note reaches both the schedule
+           export and planset's design-criteria table. A note nobody renders
+           is not a note. */
+        windMph:     { v: 130, cls: "site", note: "130–139 Orlando, 140–150 coastal Tampa, 150–160 SW Florida coastal. Look up the site. " +
+                                                  "WIND-BORNE DEBRIS REGION — SITE-SPECIFIC, AND THE TEST ITSELF CHANGED. The FBC 8th " +
+                                                  "Edition references ASCE 7-22, which DELETED the word \"coastal\" from the criterion: " +
+                                                  "the region is now reached where an Exposure D condition exists upwind at the water " +
+                                                  "line over at least 5,000 ft of fetch and the basic speed is 130 mph or more, or " +
+                                                  "anywhere at 140 mph or more. Large INLAND lakes and bays therefore qualify, and the " +
+                                                  "Florida Building Commission commissioned a study of exactly this effect: it created " +
+                                                  "inland wind-borne debris regions in central Florida and the panhandle that did not " +
+                                                  "exist under the 7th Edition. At the 130 mph planning speed above, Orlando sits ON " +
+                                                  "the first limb rather than safely outside it. The region is drawn by wind-speed " +
+                                                  "contour and water fetch, not by county line, and one county routinely has land both " +
+                                                  "inside and outside it — so this pack does NOT state whether a given site is in it, " +
+                                                  "and a confident \"no\" here would delete impact glazing the code requires. Determine " +
+                                                  "it per site against FBC-R R301.2.1.2 and the wind-speed map. THIS ENGINE CHECKS " +
+                                                  "NONE OF IT: opening protection, component and cladding pressures, and the " +
+                                                  "internal-pressure case that follows a breached opening are all outside calc-spec " +
+                                                  "§8.11 and §8.17." },
         exposure:    { v: "C", cls: "site" },
         sdc:         { v: "A", cls: "site" }
       },
@@ -518,7 +539,17 @@
       climate: {
         groundSnow:  { v: 0,   cls: "code" },
         roofLive:    { v: 20,  cls: "code", note: LIVE.roof_live.cite },
-        windMph:     { v: 175, cls: "site", note: "Miami-Dade 175, Broward 170, Risk Category II — fixed by the FBC. Verify against FBC-R Figure R301.2(2)." },
+        windMph:     { v: 175, cls: "site", note: "Miami-Dade 175, Broward 170, Risk Category II — fixed by the FBC. Verify against FBC-R " +
+                                                  "Figure R301.2(2). WIND-BORNE DEBRIS: the whole HVHZ is in it, and unlike the rest of " +
+                                                  "Florida that is not a site question — every speed here is far above both limbs of the " +
+                                                  "ASCE 7-22 criterion (Exposure D upwind over 5,000 ft of fetch at 130 mph or more, or " +
+                                                  "anywhere at 140 mph or more; the 7-22 edition the FBC 8th references dropped the word " +
+                                                  "\"coastal\" from the first limb). Opening protection is therefore mandatory, and in the " +
+                                                  "HVHZ each assembly must additionally carry a Miami-Dade NOA or Florida product approval " +
+                                                  "for the large-missile test (FBC-R Chapter 44, TAS 201/202/203). THIS ENGINE HOLDS NO " +
+                                                  "APPROVAL AND CHECKS NONE OF IT: no window, door, shutter or garage door here is rated, " +
+                                                  "no component and cladding pressure is computed, and the internal-pressure case that " +
+                                                  "follows a breached opening is never formed (calc-spec §8.11, §8.17)." },
         exposure:    { v: "C", cls: "site" },
         sdc:         { v: "A", cls: "site" }
       },
