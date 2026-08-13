@@ -7878,7 +7878,7 @@ var FM = (function () {
 
   /* one variant (or one combination) against the base case */
   function deltaFor(plan, pack, vid, base) {
-    var rows = [], moved = 0, escalated = 0, recovered = 0, demandOnly = 0;
+    var rows = [], moved = 0, escalated = 0, recovered = 0, demandOnly = 0, stuck = 0;
     plan.marks.forEach(function (mk) {
       var b = own(base, key(mk.id));
       if (!b || b.na) return;                       /* not this engine's member either way */
@@ -7892,6 +7892,8 @@ var FM = (function () {
       else if (!was && now) { state = "recovers"; recovered++; }
       else if (was && now && (was !== now ||
                (b.pick.cand.spacing || 0) !== (r.pick.cand.spacing || 0))) { state = "moves"; moved++; }
+      /* a mark with no member either way did not "hold" anything */
+      else if (!was && !now && why.length) { state = "stuck"; stuck++; }
       else if (why.length) { state = "holds"; demandOnly++; }
       if (!state) return;
       rows.push({
@@ -7902,10 +7904,10 @@ var FM = (function () {
         why: why, note: r.sol && r.sol.note ? r.sol.note : null
       });
     });
-    var order = { escalates: 0, moves: 1, recovers: 2, holds: 3 };
+    var order = { escalates: 0, moves: 1, recovers: 2, holds: 3, stuck: 4 };
     rows.sort(function (x, y) { return order[x.state] - order[y.state]; });
     return { rows: rows, moved: moved, escalated: escalated,
-             recovered: recovered, demandOnly: demandOnly };
+             recovered: recovered, demandOnly: demandOnly, stuck: stuck };
   }
 
   /* The envelope: every variant on record, solved, cached per plan+pack. */
@@ -7933,11 +7935,14 @@ var FM = (function () {
     });
 
     /* union across the whole master set — the envelope a builder buys to */
-    var envelope = {};
+    var envelope = {}, holds = {}, nHolds = 0;
     perVariant.forEach(function (pv) {
       pv.delta.rows.forEach(function (r) {
-        if (r.state === "holds") return;
         var k = key(r.mark.id);
+        if (r.state === "holds") {
+          if (!own(holds, k)) { holds[k] = 1; nHolds++; }
+          return;
+        }
         if (!own(envelope, k)) envelope[k] = { mark: r.mark, hits: [] };
         envelope[k].hits.push({ variant: pv.variant, state: r.state, now: r.now,
                                 nowSpacing: r.nowSpacing, why: r.why });
@@ -7950,7 +7955,7 @@ var FM = (function () {
     });
 
     var out = { base: base, groups: groups, variants: flat, perVariant: perVariant,
-                envRows: envRows, truncated: truncated,
+                envRows: envRows, envHolds: nHolds, truncated: truncated,
                 combo: comboHonoured(plan, pack, groups) };
     MCACHE[ck] = out;
     return out;
@@ -8359,8 +8364,10 @@ var FM = (function () {
           el("span", { text: "Pick an elevation or an option above to see what it does to the schedule below. " +
             "Across the " + plural(ms.variants.length, "variant", "variants") + " on record, " +
             (ms.envRows.length
-              ? plural(ms.envRows.length, "mark moves", "marks move") + " at least once."
-              : "no mark moves off the base member.") })
+              ? plural(ms.envRows.length, "mark moves", "marks move") + " at least once"
+              : "no mark moves off the base member") +
+            (ms.envHolds ? ", and " + plural(ms.envHolds, "mark carries", "marks carry") +
+                           " a different load and holds its member" : "") + "." })
         ]));
       } else {
         var moved = delta ? (delta.moved + delta.escalated + delta.recovered) : 0;

@@ -285,7 +285,7 @@
 
   /* one variant (or one combination) against the base case */
   function deltaFor(plan, pack, vid, base) {
-    var rows = [], moved = 0, escalated = 0, recovered = 0, demandOnly = 0;
+    var rows = [], moved = 0, escalated = 0, recovered = 0, demandOnly = 0, stuck = 0;
     plan.marks.forEach(function (mk) {
       var b = own(base, key(mk.id));
       if (!b || b.na) return;                       /* not this engine's member either way */
@@ -299,6 +299,8 @@
       else if (!was && now) { state = "recovers"; recovered++; }
       else if (was && now && (was !== now ||
                (b.pick.cand.spacing || 0) !== (r.pick.cand.spacing || 0))) { state = "moves"; moved++; }
+      /* a mark with no member either way did not "hold" anything */
+      else if (!was && !now && why.length) { state = "stuck"; stuck++; }
       else if (why.length) { state = "holds"; demandOnly++; }
       if (!state) return;
       rows.push({
@@ -309,10 +311,10 @@
         why: why, note: r.sol && r.sol.note ? r.sol.note : null
       });
     });
-    var order = { escalates: 0, moves: 1, recovers: 2, holds: 3 };
+    var order = { escalates: 0, moves: 1, recovers: 2, holds: 3, stuck: 4 };
     rows.sort(function (x, y) { return order[x.state] - order[y.state]; });
     return { rows: rows, moved: moved, escalated: escalated,
-             recovered: recovered, demandOnly: demandOnly };
+             recovered: recovered, demandOnly: demandOnly, stuck: stuck };
   }
 
   /* The envelope: every variant on record, solved, cached per plan+pack. */
@@ -344,6 +346,8 @@
     perVariant.forEach(function (pv) {
       pv.delta.rows.forEach(function (r) {
         var k = key(r.mark.id);
+        /* neither a member that held nor one that never existed is a move */
+        if (r.state === "stuck") return;
         if (r.state === "holds") {
           if (!own(holds, k)) { holds[k] = 1; nHolds++; }
           return;
@@ -776,15 +780,19 @@
         ]));
       } else {
         var moved = delta ? (delta.moved + delta.escalated + delta.recovered) : 0;
+        var holdsTxt = delta && delta.demandOnly
+          ? plural(delta.demandOnly, "mark", "marks") +
+            (delta.demandOnly === 1 ? " carries a different load and holds its member"
+                                    : " carry a different load and hold theirs")
+          : "";
         wrap.appendChild(el("p", { style: "font-size:.86rem" }, [
           el("strong", { text: label + " — " }),
-          el("span", { text: moved
+          el("span", { text: (moved
             ? moved + " of " + sizeable + " sizeable marks change member" +
-              (delta.escalated ? ", and " + plural(delta.escalated, "mark", "marks") + " no longer solve at all" : "") +
-              (delta.demandOnly ? ". " + plural(delta.demandOnly, "mark carries", "marks carry") + " a different load and holds its member" : "") + "."
-            : "no mark changes member" +
-              (delta && delta.demandOnly ? "; " + plural(delta.demandOnly, "mark carries", "marks carry") + " a different load and holds it" : "") +
-              ". This combination is buildable off the base schedule." })
+              (delta.escalated ? ", and " + plural(delta.escalated, "mark", "marks") + " no longer solve at all" : "")
+            : "no mark changes member") +
+            (holdsTxt ? ". " + holdsTxt.charAt(0).toUpperCase() + holdsTxt.slice(1) : "") + "." +
+            (moved ? "" : " This combination is buildable off the base schedule.") })
         ]));
       }
 
@@ -793,10 +801,11 @@
         var dtb = el("tbody");
         delta.rows.forEach(function (row) {
           var badge = row.state === "escalates"
-            ? el("span", { class: "badge b-fail", text: "no member" })
+            ? el("span", { class: "badge b-fail", text: "loses its member" })
             : (row.state === "moves" ? el("span", { class: "badge b-gold", text: "moves" })
             : (row.state === "recovers" ? el("span", { class: "badge b-pass", text: "now solves" })
-            : el("span", { class: "badge b-mute", text: "holds" })));
+            : (row.state === "stuck" ? el("span", { class: "badge b-fail", text: "no member either way" })
+            : el("span", { class: "badge b-mute", text: "member holds" }))));
           dtb.appendChild(el("tr", {}, [
             el("td", { class: "k" }, [el("span", { text: row.mark.id }),
               el("span", { class: "clause", text: row.mark.label })]),
@@ -822,6 +831,11 @@
 
       /* the envelope across the whole master set */
       if (ms.envRows.length) {
+        wrap.appendChild(el("p", { style: "font-size:.86rem;margin-top:4px" }, [
+          el("strong", { text: "The envelope — " }),
+          el("span", { text: plural(ms.envRows.length, "mark", "marks") + " of " + sizeable +
+            " move on at least one variant of this master set. Size for the envelope and no option is a revision." })
+        ]));
         wrap.appendChild(dl(ms.envRows.map(function (e) {
           var names = {}, out = [];
           e.hits.forEach(function (h) {
@@ -839,10 +853,15 @@
         })));
       }
 
+      if (ms.envRows.length) {
+        wrap.appendChild(el("p", { class: "src-note", text:
+          "The envelope is the union over each variant taken ALONE. A buyer who takes two of them can move a mark " +
+          "further than either does on its own — select the combination above to solve it." }));
+      }
       if (!ms.combo && ms.groups.length > 1) {
         wrap.appendChild(el("p", { class: "src-note", text:
           "One variant at a time: this build of the weights model takes a single variant per solve, so an elevation " +
-          "and an option cannot be stacked here. The envelope above is the union over each variant taken alone." }));
+          "and an option cannot be stacked here." }));
       }
       if (ms.truncated > 0) {
         wrap.appendChild(el("p", { class: "src-note", text:
