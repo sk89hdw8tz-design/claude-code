@@ -553,6 +553,8 @@
           return;
         }
 
+        var mv = current ? own(current.byMark, key(m.mark.id)) : null;
+
         if (!row) {
           var info = escInfo(m.solution.status);
           cells = [
@@ -560,6 +562,9 @@
             el("td", { text: m.mark.label }),
             el("td", { colspan: "4" }, [
               el("span", { class: "badge b-fail", text: "Escalate · " + info.b }),
+              mv && mv.state === "recovers"
+                ? el("span", { class: "badge b-pass", style: "margin-left:6px",
+                               text: "solves on " + current.label + " as " + shortSku(mv.now) }) : null,
               el("span", { class: "clause", text: m.solution.note ? m.solution.note.move : info.t })
             ]),
             el("td", { class: "n", text: "—" })
@@ -569,15 +574,16 @@
           return;
         }
 
-        var moveNote = current ? own(current.byMark, key(m.mark.id)) : null;
+        var MVB = { escalates: "b-fail", moves: "b-gold", recovers: "b-pass", holds: "b-mute" };
         var sel = el("td", {}, [
           el("span", { text: skuText(row.cand) }),
           m.unifiedTo ? el("span", { class: "badge b-blue", style: "margin-left:6px", text: "Unified" }) : null,
-          moveNote ? el("span", {
-            class: "badge " + (moveNote.state === "escalates" ? "b-fail" : "b-gold"),
+          mv ? el("span", {
+            class: "badge " + (own(MVB, mv.state) || "b-mute"),
             style: "margin-left:6px",
-            text: moveNote.state === "escalates" ? "escalates on " + current.label
-                : (moveNote.state === "moves" ? "→ " + shortSku(moveNote.now) : "load moves")
+            text: mv.state === "escalates" ? "no member on " + current.label
+                : (mv.state === "moves" ? "→ " + shortSku(mv.now) + " on " + current.label
+                : "same member, different load")
           }) : null
         ]);
 
@@ -609,6 +615,12 @@
       body.appendChild(el("p", { class: "src-note", style: "margin-top:8px", text:
         "DCR is demand ÷ capacity at the governing check — 1.00 is the code limit and this pack's firm target is " +
         fmt(pack.maxDCR, 2) + ". Cost is per piece at placeholder prices. Open any sized or escalated row for the full search record." }));
+
+      /* the open mark's full search record, next to the row that opened it */
+      var openMark = res.marks.filter(function (m) {
+        return m.mark.id === state.open && !m.notApplicable;
+      })[0];
+      if (openMark) body.appendChild(drawSearch(openMark));
 
       /* ---- the actionable sentence, above the fold rather than inside a row ---- */
       if (escMarks.length) {
@@ -664,12 +676,6 @@
             "Carried deliberately. A schedule that omits them reads as if they were fine — each one is somebody's design, just not this engine's.")
         ]));
       }
-
-      /* the open mark's full search record */
-      var openMark = res.marks.filter(function (m) {
-        return m.mark.id === state.open && !m.notApplicable;
-      })[0];
-      if (openMark) body.appendChild(drawSearch(openMark, pack));
 
       /* SKU unification */
       if (res.unified && res.unified.length) {
@@ -802,7 +808,7 @@
         wrap.appendChild(el("div", { class: "tw", tabindex: "0", role: "region", "aria-label": "Variant deltas" }, [
           el("table", {}, [
             el("thead", {}, [el("tr", {}, [
-              el("th", { text: "Mark" }), el("th", { text: "" }), el("th", { text: "Base" }),
+              el("th", { text: "Mark" }), el("th", { text: "Change" }), el("th", { text: "Base" }),
               el("th", { text: label || "Variant" }), el("th", { text: "What changed in the demand" })
             ])]), dtb
           ])
@@ -853,7 +859,7 @@
 
     /* ---------- the search record for one mark ---------- */
 
-    function drawSearch(m, pack) {
+    function drawSearch(m) {
       var sol = m.solution, b = sol.bounds, st = sol.stats || {};
       var wrap = el("div", { style: "margin-top:14px;display:grid;gap:12px" });
       var pick = m.unifiedTo || sol.pick;
@@ -1205,9 +1211,15 @@
         FM.statCard(String(cmp.solvedMarks) + "/" + plan.marks.length, "Marks with an answer")
       ]));
 
+      var st8 = {}, nStates = 0;
+      packs.forEach(function (p) {
+        (p.states || []).forEach(function (s) {
+          if (!own(st8, key(s))) { st8[key(s)] = 1; nStates++; }
+        });
+      });
       body.appendChild(line(
         "One master set, solved independently in " + plural(packs.length, "region pack", "region packs") +
-        " across " + plural(3, "state", "states") + ". " + nCommon + " marks are the same member in every region " +
+        " across " + plural(nStates, "state", "states") + ". " + nCommon + " marks are the same member in every region " +
         "where they apply — buy those in one order. " + nVaries + " are regionally forced. " +
         (nNone + nNa) + " have no member on this board: " + nNone + " nobody could size and " + nNa +
         " are not this engine's member anywhere.",

@@ -28,11 +28,22 @@
       elsewhere and it grows, so it is rendered from the array.
 
    And a schedule for a MASTER SET — one stamped plan reused across
-   elevations and options — that does not say which variant it covers is
-   not a usable document. Where weights.js exposes variantsFor(), the
-   record names the variant and partitions the marks that move across
-   the set from the ones that do not. Where it does not, none of that
-   is guessed at and the record is unchanged.
+   elevations and options — that does not say which combination it
+   covers is not a usable document. The record names the combination it
+   was solved for, says in terms that it is one combination and not an
+   envelope, partitions the marks that move across the set from the ones
+   that do not, lists the marks a variant ADDS or REMOVES, and — the
+   question the master set exists to ask — reports per mark whether the
+   combination solved here is the one that GOVERNS it, or whether the
+   member printed above was sized against a case that is not the worst
+   one the builder will build.
+
+   It reads FM.weights.variantsFor() and envelopeFor() where they exist
+   and the plan's own `elevations` / `options` where they do not, and it
+   emits nothing at all for a plan that declares neither. What it must
+   never do is infer: a variant's effect is read from what the variant
+   declares, and any key it declares that this file does not model is
+   printed as a plan-wide change rather than silently dropped.
    ============================================================ */
 
 (function () {
@@ -104,92 +115,193 @@
 
   /* ---------------- master sets ----------------
 
-     A production plan is one stamped set reused across elevations and options.
-     `weights.js` exposes them as FM.weights.variantsFor(plan). The helper is
-     not in every build, so everything below is written to return null rather
-     than guess — a schedule with no variant section is the old schedule,
-     byte for byte. When it IS present, a schedule that does not name the
-     elevation and option set it covers is not a usable document, and the
-     solver optimises one demand per mark, so it is not an envelope either. */
+     A production plan is one stamped set reused across elevations and options,
+     and `weights.js` now models that properly: `variantsFor(plan)` returns the
+     elevations, the options, and — the number that matters — the
+     COMBINATIONS the builder actually builds, each with its expected lot
+     count and the marks it `touches`. `envelopeFor(plan, markId, pack)` says
+     which combination governs a given mark, or that no single one does.
+
+     This section exists because a schedule for a master set that does not say
+     which variant it covers is not a usable document, and because the solver
+     sizes ONE combination at a time. If the members below were sized for a
+     combination that does not govern a mark, that is the revision D11 warns
+     about, and it should be visible on the schedule rather than discovered at
+     framing.
+
+     Everything is read through the helpers where they exist and through the
+     plan's own `elevations` / `options` where they do not. A plan that
+     declares neither exports exactly as it always did. Nothing is inferred:
+     a key a variant declares that this file does not model is printed rather
+     than dropped. */
+
+  var VARIANT_META = { id: 1, kind: 1, type: 1, label: 1, name: 1, base: 1, isBase: 1,
+                       "default": 1, takeRate: 1, takeRateCls: 1, takeRateBasis: 1, note: 1,
+                       notes: 1, overrides: 1, markOverrides: 1, declared: 1, touches: 1,
+                       add: 1, adds: 1, remove: 1, removes: 1, geometry: 1, movesNoMember: 1,
+                       requiresElevation: 1, excludes: 1, planId: 1, elevationId: 1,
+                       optionIds: 1, lotsExpected: 1, roofAssemblyKey: 1 };
+
+  function idsOf(v) {
+    var ids = [];
+    if (!v) return ids;
+    if (isArr(v)) v.forEach(function (o) {
+      if (o === null || o === undefined) return;
+      ids.push(String(typeof o === "object" ? (o.id || o.mark || o.markId || "(unnamed)") : o));
+    });
+    else if (typeof v === "object") Object.keys(v).forEach(function (k) { ids.push(String(k)); });
+    return ids;
+  }
 
   function normVariant(v, kind) {
     if (!v || typeof v !== "object") return null;
-    var over = v.overrides || v.markOverrides || v.marks || null, ids = [];
-    if (over && typeof over === "object") {
-      if (isArr(over)) {
-        over.forEach(function (o) {
-          var mid = o && (o.mark || o.markId || o.id);
-          if (mid) ids.push(String(mid));
-        });
-      } else {
-        Object.keys(over).forEach(function (k) { ids.push(String(k)); });
-      }
-    }
     var tr = Number(v.takeRate);
+    var decl = (v.declared && typeof v.declared === "object") ? v.declared : v;
+    /* `touches` is the helper's resolved answer and already accounts for a
+       plan-wide change such as a roof-assembly swap; fall back to the raw
+       override keys only when it is absent */
+    var touches = isArr(v.touches) ? v.touches.map(String)
+                                   : idsOf(v.overrides || v.markOverrides || null);
+    var wide = [];
+    Object.keys(v).forEach(function (k) {
+      if (Object.prototype.hasOwnProperty.call(VARIANT_META, k)) return;
+      var val = v[k];
+      if (val === null || val === undefined || val === false) return;
+      wide.push(k + (typeof val === "object" ? "" : " = " + String(val)));
+    });
+    if (v.roofAssemblyKey) wide.push("roof assembly → " + String(v.roofAssemblyKey));
     return {
       id: str(v.id, str(v.name, str(v.label, "(unnamed)"))),
       label: str(v.label, str(v.name, str(v.id, ""))),
       kind: kind,
-      takeRate: isFinite(tr) && v.takeRate !== undefined && v.takeRate !== null ? tr : null,
-      base: !!(v.base || v.isBase || v['default']),
-      marks: ids
+      takeRate: (v.takeRate === undefined || v.takeRate === null || !isFinite(tr)) ? null : tr,
+      lots: isFinite(Number(v.lotsExpected)) ? Number(v.lotsExpected) : null,
+      base: !!(v.base || v.isBase || v["default"]),
+      movesNoMember: !!v.movesNoMember,
+      marks: touches,
+      added: idsOf(decl.add || decl.adds || null),
+      removed: idsOf(decl.remove || decl.removes || null),
+      planWide: wide
     };
   }
 
-  function variantInfo(plan, opts) {
-    if (!FM.weights || typeof FM.weights.variantsFor !== "function") return null;
-    var raw;
-    try { raw = FM.weights.variantsFor(plan); } catch (e) { return null; }
-    if (!raw || typeof raw !== "object") return null;
+  function variantInfo(plan, pack, opts) {
+    /* A plan materialised by planForVariant() carries the combination it is and
+       an `ofPlan` back-reference — which is an ID STRING, not the object. The
+       master set is that plan, and computing the envelope against the variant
+       plan instead silently answers a different question: it reports the
+       variant as its own base and names the wrong governing combination. */
+    var master = plan;
+    if (plan && plan.ofPlan) {
+      if (plan.ofPlan.marks) master = plan.ofPlan;
+      else if (FM.weights && typeof FM.weights.planById === "function") {
+        var back = null;
+        try { back = FM.weights.planById(String(plan.ofPlan)); } catch (e) { back = null; }
+        if (back && back.marks) master = back;
+      }
+    }
+    var raw = null, viaHelper = false;
+    if (FM.weights && typeof FM.weights.variantsFor === "function") {
+      try { raw = FM.weights.variantsFor(master); viaHelper = !!raw; } catch (e) { raw = null; }
+    }
+    if (!raw && (isArr(master.elevations) || isArr(master.options))) {
+      raw = { elevations: master.elevations, options: master.options };
+    }
+    if (!raw || typeof raw !== "object" || isArr(raw) === false && raw.declaresVariants === false) {
+      if (!raw || typeof raw !== "object") return null;
+    }
 
-    var elevations = [], options = [];
-    function take(v) {
-      /* an entry that prices a take rate is an option; anything else is an
-         elevation. Classify from the entry, not from the key we found it under,
-         so a flat list works too. */
-      var kind = str(v && (v.kind || v.type)) ||
-                 ((v && v.takeRate !== undefined && v.takeRate !== null) ? "option" : "elevation");
+    var elevations = [], options = [], combinations = [];
+    function take(v, fallbackKind) {
+      var kind = str(v && (v.kind || v.type), fallbackKind || "elevation");
       var n = normVariant(v, kind === "option" ? "option" : "elevation");
-      if (!n) return;
-      (n.kind === "option" ? options : elevations).push(n);
+      if (n) (n.kind === "option" ? options : elevations).push(n);
     }
-    if (isArr(raw)) raw.forEach(take);
+    if (isArr(raw)) raw.forEach(function (v) { take(v, "elevation"); });
     else {
-      if (isArr(raw.elevations)) raw.elevations.forEach(function (v) { take(v); });
-      if (isArr(raw.options)) raw.options.forEach(function (v) { take(v); });
-      if (isArr(raw.variants)) raw.variants.forEach(take);
-    }
-    if (!elevations.length && !options.length) return null;
-
-    /* which one the members below were actually solved for */
-    var sf = (opts && opts.variant) || (!isArr(raw) && (raw.solvedFor || raw.current)) ||
-             plan.variant || plan.variantId || plan.elevation || null;
-    var solvedFor = null;
-    if (sf && typeof sf === "object") solvedFor = str(sf.label, str(sf.name, str(sf.id, "")));
-    else if (sf) solvedFor = String(sf);
-    if (!solvedFor) {
-      var b = elevations.filter(function (e) { return e.base; })[0];
-      if (b) solvedFor = b.label || b.id;
-    }
-
-    /* a mark any variant overrides is a mark that moves across the set */
-    var by = {}, order = [];
-    elevations.concat(options).forEach(function (v) {
-      v.marks.forEach(function (mid) {
-        var k = " " + mid;                     /* author strings as keys */
-        if (!Object.prototype.hasOwnProperty.call(by, k)) { by[k] = []; order.push(mid); }
-        by[k].push((v.kind === "option" ? "option " : "elevation ") + (v.label || v.id));
+      if (isArr(raw.elevations)) raw.elevations.forEach(function (v) { take(v, "elevation"); });
+      if (isArr(raw.options)) raw.options.forEach(function (v) { take(v, "option"); });
+      if (isArr(raw.variants)) raw.variants.forEach(function (v) { take(v, "elevation"); });
+      if (isArr(raw.combinations)) raw.combinations.forEach(function (c) {
+        var n = normVariant(c, "combination");
+        if (n) combinations.push(n);
       });
+    }
+    if (!elevations.length && !options.length && !combinations.length) return null;
+
+    /* which combination the members below were solved for */
+    var sf = (opts && opts.variant) || plan.variant || plan.variantId || plan.elevation ||
+             (!isArr(raw) && (raw.solvedFor || raw.current)) || null;
+    var solvedId = null, solvedFor = null, solvedIsBase = false;
+    if (sf && typeof sf === "object") { solvedId = str(sf.id); solvedFor = str(sf.label, str(sf.name, solvedId)); }
+    else if (sf) { solvedId = String(sf); solvedFor = solvedId; }
+    if (solvedId) {
+      var hit = combinations.filter(function (c) { return c.id === solvedId; })[0] ||
+                elevations.concat(options).filter(function (c) { return c.id === solvedId; })[0];
+      if (hit) { solvedFor = hit.label || hit.id; solvedIsBase = hit.base; }
+    }
+    if (!solvedId) {
+      var b = combinations.filter(function (c) { return c.base; })[0] ||
+              elevations.filter(function (e) { return e.base; })[0];
+      if (b) { solvedId = b.id; solvedFor = b.label || b.id; solvedIsBase = true; }
+    }
+
+    var all = elevations.concat(options);
+
+    var by = {}, order = [];
+    function note(map, list, mid, txt) {
+      var k = " " + mid;                                  /* author strings as keys */
+      if (!Object.prototype.hasOwnProperty.call(map, k)) { map[k] = []; list.push(mid); }
+      if (map[k].indexOf(txt) === -1) map[k].push(txt);
+    }
+    all.forEach(function (v) {
+      var who = (v.kind === "option" ? "option " : "elevation ") + (v.label || v.id);
+      v.marks.forEach(function (mid) { note(by, order, mid, who); });
     });
-    var changing = order.map(function (mid) { return { mark: mid, by: by[" " + mid] }; });
+    var changing = order.map(function (mid) { return { mark: mid, by: by[" " + mid] }; });
+
+    var addBy = {}, addOrder = [], remBy = {}, remOrder = [];
+    all.forEach(function (v) {
+      var who = (v.kind === "option" ? "option " : "elevation ") + (v.label || v.id);
+      v.added.forEach(function (mid) { note(addBy, addOrder, mid, who); });
+      v.removed.forEach(function (mid) { note(remBy, remOrder, mid, who); });
+    });
+
     var changed = {};
-    order.forEach(function (mid) { changed[" " + mid] = true; });
+    order.forEach(function (mid) { changed[" " + mid] = true; });
     var common = plan.marks.filter(function (mk) {
-      return !Object.prototype.hasOwnProperty.call(changed, " " + mk.id);
+      return !Object.prototype.hasOwnProperty.call(changed, " " + mk.id);
     }).map(function (mk) { return mk.id; });
 
-    return { elevations: elevations, options: options, solvedFor: solvedFor,
-             declared: !!sf, changing: changing, common: common };
+    /* and the question a master set exists to ask: for each mark, is the
+       combination this schedule was solved for the one that governs it? */
+    var envelope = null;
+    if (FM.weights && typeof FM.weights.envelopeFor === "function" && pack) {
+      envelope = [];
+      plan.marks.forEach(function (mk) {
+        var e;
+        try { e = FM.weights.envelopeFor(master, mk.id, pack); } catch (err) { return; }
+        if (!e) return;
+        envelope.push({
+          mark: mk.id,
+          sizedOn: Number(e.sizedOn) || 0,
+          builtOn: Number(e.builtOn) || 0,
+          split: !!e.split,
+          governedBy: e.governedBy ? String(e.governedBy) : null,
+          isHere: !!(solvedId && e.governedBy && String(e.governedBy) === solvedId)
+        });
+      });
+      if (!envelope.length) envelope = null;
+    }
+
+    return { elevations: elevations, options: options, combinations: combinations,
+             solvedFor: solvedFor, solvedId: solvedId, declared: !!sf,
+             solvedIsBase: solvedIsBase, viaHelper: viaHelper,
+             lots: (!isArr(raw) && isFinite(Number(raw.lots))) ? Number(raw.lots) : null,
+             changing: changing,
+             added: addOrder.map(function (m) { return { mark: m, by: addBy[" " + m] }; }),
+             removed: remOrder.map(function (m) { return { mark: m, by: remBy[" " + m] }; }),
+             common: common, envelope: envelope };
   }
 
   /* ---------------- the record ---------------- */
@@ -206,7 +318,7 @@
     say(rule("="));
     say("Plan          : " + plan.name + " — " + plan.summary);
     say("Region pack   : " + pack.name + " · " + pack.markets);
-    var vi = variantInfo(plan, opts);
+    var vi = variantInfo(plan, pack, opts);
     if (vi) {
       say("Variant       : " + (vi.solvedFor ? vi.solvedFor : "NOT DECLARED — base marks as the plan carries them") +
           "   (master set — see MASTER SET)");
@@ -253,56 +365,129 @@
     /* ---- which of the master set's variants this actually is ---- */
     if (vi) {
       block("MASTER SET — WHAT THIS SCHEDULE COVERS");
-      say("  Solved for   : " + (vi.solvedFor ? vi.solvedFor : "NOT DECLARED"));
-      say("  Master set   : " + vi.elevations.length + " elevation(s), " + vi.options.length + " option(s)");
+      say("  Solved for   : " + (vi.solvedFor ? vi.solvedFor : "NOT DECLARED") +
+          (vi.solvedIsBase ? "   [the declared base case]" : ""));
+      say("  Master set   : " + vi.elevations.length + " elevation(s) x " +
+          vi.options.length + " option(s)" +
+          (vi.combinations.length ? " = " + vi.combinations.length + " buildable combination(s)" : "") +
+          (vi.lots === null ? "" : "   over " + comma(vi.lots) + " lots"));
+      if (!vi.viaHelper) {
+        say("  Read from    : the plan's own `elevations` / `options` declarations");
+      }
       say();
-      if (!vi.declared && !vi.solvedFor) {
+      if (!vi.declared && !vi.solvedId) {
         say("  ** THE VARIANT IS NOT DECLARED. The members were solved from the plan's");
         say("     base marks. Do not issue this against a specific elevation or option");
         say("     set until the variant is named. **");
         say();
       }
-      say("  ** ONE VARIANT, NOT AN ENVELOPE. The solver optimises one demand per mark.");
-      say("     The members above are sized for the variant named here and for nothing");
-      say("     else. Sizing a base elevation and letting an option move a bearing is");
-      say("     how a revision gets manufactured. **");
+      say("  ** ONE COMBINATION, NOT AN ENVELOPE. The solver optimises one demand per");
+      say("     mark, and the marks it was given are this combination's. Sizing a base");
+      say("     elevation and letting an option move a bearing is how a revision gets");
+      say("     manufactured after permit. **");
       say();
-      if (vi.elevations.length) {
-        say("  ELEVATIONS");
-        vi.elevations.forEach(function (e) {
-          say("      " + pad(e.label || e.id, 26) + (e.base ? "[base]  " : "        ") +
-              (e.marks.length ? "overrides " + e.marks.length + " mark(s): " + e.marks.join(", ")
-                              : "no mark overrides declared"));
+
+      /* one renderer for elevations and options alike — an elevation carries a
+         take rate too, and both can move a member */
+      function variantRows(title, list) {
+        if (!list.length) return;
+        say("  " + title);
+        list.forEach(function (v) {
+          var effect = [];
+          if (v.marks.length) effect.push("touches " + v.marks.length + ": " + v.marks.join(", "));
+          if (v.added.length) effect.push("ADDS " + v.added.length + ": " + v.added.join(", "));
+          if (v.removed.length) effect.push("REMOVES " + v.removed.length + ": " + v.removed.join(", "));
+          v.planWide.forEach(function (k) { effect.push("PLAN-WIDE: " + k); });
+          if (!effect.length) {
+            effect.push(v.movesNoMember ? "declared to move no member this engine sizes"
+                        : (v.base ? "the stamped base case — what the marks below were sized as"
+                                  : "no change declared"));
+          } else if (v.movesNoMember) {
+            effect.push("declared to move no member this engine sizes");
+          }
+          var head = "      " + pad(v.label || v.id, 46) +
+                     pad(v.takeRate === null ? "take rate —" : "take " + n2(v.takeRate * 100, 0) + "%", 11) +
+                     (v.base ? "[base]" : "");
+          say(head.replace(/\s+$/, ""));
+          wrap(effect.join(" · "), 64).forEach(function (x) { say("          " + x); });
         });
         say();
       }
-      if (vi.options.length) {
-        say("  OPTIONS");
-        vi.options.forEach(function (o) {
-          say("      " + pad(o.label || o.id, 26) +
-              pad(o.takeRate === null ? "take rate —" : "take rate " + n2(o.takeRate * 100, 0) + "%", 18) +
-              (o.marks.length ? "overrides " + o.marks.length + " mark(s): " + o.marks.join(", ")
-                              : "no mark overrides declared"));
+      variantRows("ELEVATIONS", vi.elevations);
+      variantRows("OPTIONS", vi.options);
+
+      /* the question the master set exists to ask */
+      if (vi.envelope) {
+        var off = vi.envelope.filter(function (e) {
+          return e.sizedOn > 0 && !e.isHere && (e.split || e.governedBy);
+        });
+        say("  DOES THIS COMBINATION GOVERN? — per mark, across all " +
+            vi.combinations.length + " combination(s)");
+        say("  " + rule("-").slice(0, 76));
+        say("  " + pad("MARK", 12) + pad("GOVERNING COMBINATION", 40) + "THIS SCHEDULE");
+        vi.envelope.forEach(function (e) {
+          var gov, verdict;
+          if (!e.sizedOn) { gov = "not sized in any combination"; verdict = "—"; }
+          else if (e.split) { gov = "NO SINGLE COMBINATION GOVERNS"; verdict = "NOT THE ENVELOPE"; }
+          else if (!e.governedBy) { gov = "—"; verdict = "—"; }
+          else { gov = e.governedBy; verdict = e.isHere ? "governs" : "NOT THE GOVERNING CASE"; }
+          say("  " + pad(e.mark, 12) + pad(gov, 40) + verdict);
         });
         say();
+        if (off.length) {
+          wrap("** " + off.length + " mark(s) above are governed by a combination this schedule " +
+               "was NOT solved for. The member printed for each of them is adequate for THIS " +
+               "combination and was not checked against the one that governs. Re-run the " +
+               "schedule for the governing combination before the set is issued, or size the " +
+               "envelope. **", 74, "  ").forEach(function (x) { say("  " + x); });
+          say();
+        }
+        say("  \"Governs\" compares the DEMAND drivers — span, tributary, dead, live, roof");
+        say("  load, bearing and depth budget — and names a combination only where one is");
+        say("  at least as severe as every other on all of them. It is a comparison of");
+        say("  demands, not of members: no member was re-solved for another combination.");
+        say();
       }
+
       say("  MARKS THAT CHANGE ACROSS THE MASTER SET — " + vi.changing.length);
-      if (!vi.changing.length) say("      (none declared)");
+      if (!vi.changing.length) say("      (no variant touches a mark)");
       vi.changing.forEach(function (c) {
         var onPlan = plan.marks.filter(function (mk) { return mk.id === c.mark; })[0];
         /* wrap() collapses whitespace, so the mark column is applied outside it */
-        wrap((onPlan ? "" : "(not a mark on this plan) ") + "moved by: " + c.by.join(", "), 58)
+        wrap((onPlan ? "" : "(not a mark on this combination) ") + "moved by: " + c.by.join(", "), 58)
           .forEach(function (x, i) { say("      " + (i ? pad("", 14) : pad(c.mark, 14)) + x); });
       });
       say();
+
+      if (vi.added.length) {
+        say("  MARKS A VARIANT ADDS — " + vi.added.length);
+        vi.added.forEach(function (c) {
+          var onPlan = plan.marks.filter(function (mk) { return mk.id === c.mark; })[0];
+          wrap((onPlan ? "on this combination · " : "NOT ON THIS COMBINATION — NOT SIZED ABOVE · ") +
+               "added by: " + c.by.join(", "), 58)
+            .forEach(function (x, i) { say("      " + (i ? pad("", 14) : pad(c.mark, 14)) + x); });
+        });
+        say("      A mark that is not on the base sheet has nobody checking it. Run the");
+        say("      schedule for the variant that adds it.");
+        say();
+      }
+      if (vi.removed.length) {
+        say("  MARKS A VARIANT REMOVES — " + vi.removed.length);
+        vi.removed.forEach(function (c) {
+          wrap("removed by: " + c.by.join(", "), 58)
+            .forEach(function (x, i) { say("      " + (i ? pad("", 14) : pad(c.mark, 14)) + x); });
+        });
+        say();
+      }
+
       say("  MARKS COMMON TO EVERY VARIANT — " + vi.common.length);
       if (!vi.common.length) say("      (none)");
       else wrap(vi.common.join(", "), 68).forEach(function (x) { say("      " + x); });
       say();
-      say("  A mark is listed as common because NO variant declares an override on it.");
+      say("  A mark is listed as common because no variant declares that it touches it.");
       say("  That is a statement about the declared inputs, not a re-check: nothing here");
       say("  was re-solved against every variant, and a shared input that moves — a plate");
-      say("  height, a truss direction — still moves a mark nobody overrode.");
+      say("  height, a truss direction, a roof assembly — still moves a mark nobody named.");
     }
 
     /* ---- the members ---- */

@@ -89,8 +89,9 @@ outside the firm's envelope, and the solver reports it as such rather than silen
 `FM.solver.memberInputs(demand, cand, policy)` is the single place engine inputs are assembled,
 so a member scored by the solver and the same member re-checked on a sheet cannot disagree.
 
-**Repetitive members** (rafter, joist, ceiling joist) pass `spacing` straight through. Per
-`calc-spec.md` §1.3 case (a), self-weight is already inside `q_D` and is **not** added again.
+**Repetitive members** — `REPETITIVE` in `weights.js` names them, and they are rafter, joist,
+ceiling and deck — pass `spacing` straight through. Per `calc-spec.md` §1.3 case (a),
+self-weight is already inside `q_D` and is **not** added again.
 
 **Beams and headers** are not repetitive. The engine computes `w = psf · spacing/12`, so the
 solver passes `spacing = trib_ft × 12`, which makes `w = psf · t_w` — the §1.1 case (b)
@@ -210,7 +211,8 @@ an eligibility gate excluding refractory species; the containment became the cal
 The regression suite **`solver · pruning is admissible — exhaustive vs pruned`** builds an
 exhaustive reference — every candidate in ladder × palette × spacing through the real engine,
 subject to the same policy gates, ranked on the same per-unit objective — and compares it to the
-pruned search across a battery of **204 demands** (6 packs × 5 roles × spans × braced/unbraced).
+pruned search across a battery of **204 demands** — 6 packs × 5 roles × the spans listed for
+each role × braced and unbraced.
 
 What it compares is **the winning candidate and its score**. It does **not** compare the full
 feasible sets, and it does not cross `wet`, `treated`, `trib`, `bearing` or `maxDCR`, and its
@@ -390,11 +392,11 @@ A sixth status, **`escalate:input`**, short-circuits ahead of all of them: a non
 members for it. `Number(x) || 0` turns `NaN` into `0` and designs the member for no load; the
 engine refuses that, but the solver used to launder it before the engine ever saw it.
 
-**What fires today.** Across all 18 shipped pack × plan runs, three statuses occur: `ok`,
-`escalate:strength` and `escalate:procurement`. `escalate:bearing`, `escalate:geometry` and
-`escalate:input` are reachable — each has been produced from a hand-built demand — but **no
-shipped pack or plan produces them.** Their correctness rests on the code path and on those
-probes, not on the shipped configuration.
+**What fires today.** Across all 30 shipped pack × plan runs — 6 packs × 5 plans — three
+statuses occur: `ok` (136), `escalate:strength` (37) and `escalate:procurement` (1).
+`escalate:bearing`, `escalate:geometry` and `escalate:input` are reachable — each has been
+produced from a hand-built demand — but **no shipped pack or plan produces them.** Their
+correctness rests on the code path and on those probes, not on the shipped configuration.
 
 **The shortfall wall.** When the status is `escalate:strength`, `boundWall()` names the section
 property that emptied the ladder and by how much:
@@ -408,7 +410,8 @@ by raw magnitude compares in³ against in⁴ against in², which `I_x` wins esse
 was named in **17 of 17** reports, seven of them naming a property the ladder cleared by up to
 68%. Bearing is excluded from this wall entirely, because it is not a property of the section.
 Pinned by **`solver · the reported wall is the one that actually binds`**, which asserts across
-every pack × plan that no reported wall has `shortfall ≤ 1` or `required ≤ available`.
+every pack × plan that no reported wall has `shortfall ≤ 1` or `required ≤ available`. The
+example above is the real `HDR-GAR-B` wall in `tx-i35`; §8 item 2 quotes the same one.
 
 **Nothing is named as passing unless the engine returned a DCR for it.** The procurement gate runs
 inside `eligibility()` *before any engine call*, so the note that read *"the member that passes …
@@ -587,7 +590,7 @@ load case.
 | `tx-gulf` | Houston · Beaumont · Corpus Christi | No snow. **Wind governs**, and this engine does not check it. Open porch framing treated as wet service. |
 | `nc-piedmont` | Charlotte · Raleigh · Greensboro | Ground snow small enough that the 20 psf roof live load governs — so `C_D` stays 1.25. |
 | `nc-mountain` | Asheville · Boone · Brevard | **Snow governs, so `C_D` drops to 1.15.** That is a real capacity reduction, not bookkeeping, and it is the single largest structural difference between the two NC packs. |
-| `fl-central` | Orlando · Tampa | No snow. Wind governs. Lanai framing wet-service; PT in contact with masonry. |
+| `fl-central` | Orlando · Tampa · Punta Gorda | No snow. Wind governs. Lanai framing wet-service; PT in contact with masonry. |
 | `fl-hvhz` | Miami-Dade · Broward | **Concrete tile roof: 22 psf dead instead of 15.** Tighter DCR target, because the same section is about to be checked for uplift. |
 
 The `roofLoadBasis` field on every pack records *why* the roof load is what it is and which
@@ -627,42 +630,61 @@ the HVHZ, species availability in Florida.
 The repeat matrix answers *one plan across several markets*. A master set is the other axis:
 **one plan across several versions of itself.** A production plan is stamped once and built as
 three to five **elevations** and four to ten structural **options** — tile instead of shingle, a
-bonus room over the garage, an extended patio, a slider where a window was. Every lot in the
+bonus room over the garage, an extended patio, 8 ft doors on the first floor. Every lot in the
 subdivision is one combination of those, and the stamped set has to cover all of them.
 
-`weights.js` carries them as `plan.elevations` and `plan.options`, read through
-**`FM.weights.variantsFor(plan)`**. An elevation or an option is a set of **overrides on marks**;
-an option additionally carries a **`takeRate`**, the fraction of lots that buy it.
+`weights.js` carries the master set on the plan and exposes it through five helpers:
 
-**What the solver does with them: nothing yet.** The search optimises **one demand per mark**.
-Given a variant, it sizes that variant. It does not compute an envelope across the master set,
-and it does not use `takeRate` to weight anything. That is a real gap, and it is the expensive
-one — sizing the base elevation and letting an option move a bearing is how a revision gets
-manufactured, and a revision is the most expensive line item in the model.
+| Helper | What it returns |
+|---|---|
+| `variantsFor(plan)` | The normalised set: `elevations`, `options`, and **`combinations`** — the enumerated configurations the builder actually builds, each with an expected lot count and the marks it `touches`. |
+| `planForVariant(plan, id)` | A materialised plan for one combination, with overrides applied and added marks in. Feed it straight to `solvePlan`. |
+| `variantPlansFor(plan)` | Every combination, materialised. |
+| `markFor(plan, markId, id)` | One mark as it exists in one combination. |
+| `envelopeFor(plan, markId, pack)` | The per-mark envelope across combinations: the worst value of each demand driver and which combination supplies it, whether one combination **dominates** every other, and `split: true` when none does. |
 
-**What the product does do about it, and it is a documentation guarantee rather than a
-structural one:** `export.js` will not issue a schedule for a master set without saying which
-variant it covers. The exported record names the variant it was solved for, states in terms that
-**it is one variant and not an envelope**, lists the elevations and the options with their take
-rates, and partitions the plan's marks into
+An elevation and an option each carry a `takeRate`; an elevation's is the lot mix, an option's is
+an attach rate, and both are `[market]` estimates with no code standing. A variant declares its
+effect as `overrides` on marks, `add` and `remove` for marks that exist only in some
+combinations, and a plan-wide key such as `roofAssemblyKey` — the tile option names no mark and
+moves every roof mark on the sheet. `touches` is the resolved answer that accounts for all three.
+A variant may also declare `movesNoMember: true`, which is a claim being exercised rather than an
+omission.
 
-- **marks that change across the set** — some elevation or option declares an override on them —
-  each with the variants that move it, and
-- **marks common to every variant** — no variant overrides them.
+**What the solver does with them: it sizes one combination.** `size()` optimises one demand per
+mark, and the marks it is handed are one combination's. It does not solve an envelope, and
+`takeRate` reaches no part of the search. What exists is the **demand envelope**, in
+`envelopeFor` — a comparison of *demands*, not of members. It can say that combination
+`c+opt-tile` is at least as severe as every other on every driver for `BM-LAN`; it does not size
+`BM-LAN` for it.
 
-That partition is a statement about **declared inputs**, not a re-check. Nothing is re-solved
-against every variant, so a mark listed as common is common in what the plan says about it; a
-shared input that moves — a plate height, a truss direction — still moves a mark nobody
-overrode. The export says exactly that, in those words, underneath the list.
+That distinction is the whole gap, and the export refuses to let it be invisible. A schedule
+carries:
 
-Where `variantsFor()` is absent from a build, none of this is inferred and the record is
-unchanged.
+- the combination it was solved for, by name, and how many combinations the master set has;
+- an explicit **one combination, not an envelope** statement;
+- the elevations and options with take rates and what each touches, adds or removes;
+- and a per-mark table — **does this combination govern?** — naming the governing combination for
+  every mark and marking the ones where the member above was sized against a case that is not the
+  worst the builder will build.
 
-**What would close the gap** is not a report but an objective change: solve each mark against the
-**worst demand across the variants it appears in**, and report per mark which variant governed
-it. `takeRate` then has a legitimate use — deciding whether a rare option is worth carrying in
-the base member or is better handled as its own mark — and it is a genuine economics question,
-which means it belongs in the weights and not in the feasibility path.
+On `sunbelt-ranch-1850` in `tx-i35`, solved for its own base elevation, **five of its eight
+marks are governed by some other combination** — `BM-LAN` and `BM-LAN-W` by `c+opt-tile`,
+`HDR-W` and `HDR-SLD` by `a+opt-tile+opt-8ft`, `HDR-GAR-B` by `a+opt-tile`. That is the D11
+finding, printed on the deliverable instead of discovered at framing.
+
+Two honesty constraints on that table, both stated on the export itself:
+
+1. **"Governs" compares demands, not members.** No member is re-solved for another combination,
+   so the table says which case *should* have been sized, not what it would have produced.
+2. **A mark listed as common is common in its declared inputs.** Nothing is re-checked across
+   variants, and a mark no variant names can still move when a shared input does.
+
+**What would close it** is an objective change, not a report: solve each mark against the worst
+demand across the combinations it is built in — which `envelopeFor` already identifies — and
+report the governing combination per mark. Where `envelopeFor` returns `split: true`, no single
+combination dominates and there is no single worst case to size; that mark needs either a
+per-combination member or a hand ruling, and the tool should say which.
 
 ---
 
@@ -710,7 +732,7 @@ Continuing `calc-spec.md` §9. These are the gaps the solver introduced or expos
 | S2 | **Engineered lumber** for spans solid sawn cannot reach | Out of scope per §8.19 | Without it the solver cannot answer the garage-header question, which every tract plan asks. |
 | S3 | **IBC Table 1604.3 total-load deflection, roof rows** | **Adjudicated — see §9.1.** `engine.js` is correct on the two rows that matter; `calc-spec.md` §5.5 is in error and the fixture `ex1_defl_total = 0.375` is wrong. One cell (`roof_no_ceiling` total) remains open. | Correct §5.5, its fixture, and the `engine.js` comment block in one commit. Do NOT change the engine. |
 | S7 | **IRC vs IBC** | Repeatable one- and two-family homes are permitted under the **IRC**, whose deflection table R301.7 has no `D + L` column at all. The total-load row this tool reports for a rafter is an IBC-derived firm overlay, not an IRC requirement. | Region packs carry `code.family`, and `export.js` now derives the deflection statement from it rather than printing "IBC Table 1604.3" flat: on an IRC pack the schedule says the total-load row is a **firm overlay** and prints the engine's rows with their citation strings labelled as the engine's, not as the code's. The `DEFL` table itself still needs an IRC/IBC switch and its `cite` strings still say "IBC" unconditionally — the export can label the problem, it cannot fix it. |
-| S8 | **One roof load, one duration** | The engine carries a single `roofLoad` tagged either snow or roof-live, so `D + Lr` and `D + S` can never be evaluated in the same run. Between roughly 17 and 20 psf roof snow, snow governs strength while roof-live governs deflection — and no single setting produces both. That band is in the North Carolina market. | Carry `q_Lr` and `q_S` separately and enumerate all six §2.1 combinations. `combosFor()` must move in lockstep; **`solver · load combinations match the engine`** is the test that catches the drift. (It was cited here, and in a comment in `solver.js`, as *"solver combos match engine combos"* — a name no test has ever had.) A runtime advisory now fires when the roof load lands in the crossover band, pinned by **`solver · the roof-load crossover is surfaced, not silent`**; it makes the exposure visible and does not remove it. |
+| S8 | **One roof load, one duration** | **Closed in the engine, open in the packs.** `engine.buildCombos()` now enumerates all six §2.1 combinations from separate `roofLive` and `snow`, `solver.combosFor()` delegates to it rather than carrying a second implementation, and the legacy `roofLoad` + `roofType` path is preserved bit-identically. The six **shipped packs still declare one `roofLoad` and one `roofType`**, so no shipped pack yet feeds both terms and the crossover advisory still fires. Pinned by **`engine · all six ASCE 7 §2.4.1 combinations, and C_D from nonzero terms only`** and **`engine · snow and roof live are evaluated in the same run`**. | Migrate the packs to declare `q_Lr` and `q_S` separately; until they do, the capability is unexercised in production and the advisory is what carries the exposure. That advisory is pinned by **`solver · the roof-load crossover is surfaced, not silent`**. (A cross-check test was cited here, and is still cited in a comment in `solver.js`, as *"solver combos match engine combos"* — a name no test has ever had. The comparison it named is now tautological anyway, because the solver delegates rather than duplicating.) |
 | S4 | **Region price and availability data** | Placeholders | Replace with the firm's purchasing data. Affects ranking only. |
 | S5 | **Ground snow, wind, exposure, seismic per site** | Planning defaults | Replace with ASCE 7 Hazard Tool / AHJ values. `nc-mountain` is the one where this changes the answer, because it changes `C_D`. |
 | S6 | **Dead-load takeoffs** (15 psf shingle, 22 psf tile, 12 psf floor, 10 psf ceiling, 10 psf open porch) | Market values, not code | Confirm against the actual assembly schedule per plan. Tile in particular varies widely by product. |
@@ -718,7 +740,7 @@ Continuing `calc-spec.md` §9. These are the gaps the solver introduced or expos
 | S10 | **Slope** | No plan declares a pitch, and the assembly psf mix on-slope and horizontal components with no published split | `calc-spec.md` §1.4 makes the horizontal-projection conversion the user's responsibility and the model gives them nothing to do it with. Also in `LIMITS`. |
 | S11 | **The admissibility pin is narrower than the claim it supports** | The shipped exhaustive-vs-pruned test compares the winner and the score over 204 demands; it does not compare feasible sets and does not cross `wet`, `treated`, `trib`, `bearing`, `maxDCR` or the `deck` role | Widen the battery and compare sets. Until then the set-level claim rests on a hand-run battery that is not in the suite (§4, H1). |
 | S12 | **Three of the six escalation statuses fire on no shipped configuration** | `escalate:bearing`, `escalate:geometry` and `escalate:input` are reachable from hand-built demands and are produced by no shipped pack × plan | Add fixtures that exercise them, or accept that their notes are unexercised in production. `escalate:geometry` in particular falls through to the generic note branch and advises *"widen the palette or the size ladder"* for a member that physically does not fit — the right move (`GATE_MOVE.geometry`) exists and the note does not use it. |
-| S13 | **No envelope across a master set** | `elevations` and `options` are carried and reported; the solver optimises one demand per mark, per variant | §7.1. The export refuses to leave the tool without naming its variant; that is a documentation guarantee, not a structural one. |
+| S13 | **No envelope across a master set** | The master set is fully modelled in `weights.js` — combinations, take rates, added and removed marks, and a per-mark **demand** envelope in `envelopeFor()`. The **solver** still sizes one combination. On the flagship plan at its base elevation, 5 of 8 marks are governed by a different combination. | §7.1. Size each mark against the worst demand across the combinations it is built in, and rule on the marks where `envelopeFor` returns `split` and no combination dominates. Until then the export names the governing combination per mark — a documentation guarantee, not a structural one. |
 
 ### 9.1 The deflection conflict, adjudicated
 

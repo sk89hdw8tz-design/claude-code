@@ -835,11 +835,13 @@
                 "is written down here instead of being invisible." },
         { id: "opt-deck-ext", kind: "option", label: "Extended rear deck · 26 ft × 14 ft",
           takeRate: 0.25,
-          note: "The deck grows from 20 ft × 12 ft to 26 ft × 14 ft. Both deck members move and they " +
-                "move in different directions, which is the point: the joist gets longer, and the " +
-                "beam gets SHORTER because the wider deck buys a fourth post. Neither variant of the " +
-                "beam dominates the other, so the envelope for that mark cannot be collapsed to one " +
-                "demand — see envelopeFor().",
+          note: "The deck grows from 20 ft × 12 ft to 26 ft × 14 ft. The extra width buys a fourth " +
+                "post, so the beam bays go from two at 8.0 ft to three at 8.67 ft — a longer span " +
+                "AND a heavier tributary, both worse. That makes this the easy envelope case: one " +
+                "variant dominates on every driver, so envelopeFor() names it and a member sized " +
+                "for it covers every lot in the set. Compare the coastal duplex's Elevation B, " +
+                "where the fourth post SHORTENS the span while deepening the porch and no single " +
+                "variant governs.",
           overrides: {
             "DK-1": { span: 14.0, runFt: 26,
               note: "Extended deck is 14 ft deep, so the joists span 14.0 ft, over a 26 ft run. " +
@@ -1050,7 +1052,10 @@
                 "bearing line, so it takes the same 16.0 ft every other opening in that wall takes. " +
                 "Three jacks: §K3 found five rows needing more than one and this is the largest " +
                 "reaction on the plan. This is the mark that decides whether the smallest house in " +
-                "the book needs an engineered header at all." },
+                "the book needs an engineered header at all, and the answer is regional: it lands " +
+                "on a 4x12 in the four gravity and wind markets and ESCALATES in nc-mountain on " +
+                "bending, because snow takes C_D from 1.25 to 1.15 — an 8% capacity cut on the one " +
+                "mark that had no margin for it. Same house, same door, different lumber package." },
 
         { id: "HDR-GBL", label: "Gable-end window header", role: "header",
           span: 4.5, count: 3, carries: "roof", bearing: 3.0,
@@ -1077,8 +1082,8 @@
           count: 2, component: true,
           componentNote: "AXIAL MEMBER — NOT CHECKED HERE (calc-spec §4.10 specifies C_P, §8.20 " +
             "states no interaction equation is evaluated, and engine.js implements neither). Design " +
-            "load from the end reaction this tool DOES compute for BM-ENT: 483 lb per post " +
-            "(560 lb nc-mountain, 591 lb fl-hvhz). Small numbers, and they are still not the design: " +
+            "load from the end reaction this tool DOES compute for BM-ENT: 499 lb per post " +
+            "(579 lb nc-mountain, 611 lb fl-hvhz). Small numbers, and they are still not the design: " +
             "on a covered entry in a wind-governed market UPLIFT and the base and cap connections " +
             "govern, and all three are out of scope (§8.11, §8.17). For a typical 8 ft 4x4, C_P runs " +
             "0.25 to 0.35, so a check that omits it overstates axial capacity roughly threefold." }
@@ -1207,8 +1212,12 @@
         { id: "FJ-2", label: "2nd floor joist · 9 ft bay", role: "joist",
           span: 9.0, runFt: 26, count: 21, skuGroup: "floor",
           note: "20 ft unit width less the 11.0 ft bay = 9.0 ft. Run is the 36 ft depth less the " +
-                "10 ft bath and laundry stretch carried by FJ-3. The two bays landing one rung apart " +
-                "is the whole reason a floor-depth unification decision exists on this plan." },
+                "10 ft bath and laundry stretch carried by FJ-3. An 11 ft bay and a 9 ft bay is a " +
+                "narrow enough spread that both land on the SAME depth in all six packs — so what " +
+                "this plan actually poses is not a depth question but a species-band one, and the " +
+                "unification pass prices it and declines: the extra lumber to put the whole floor " +
+                "on one SKU costs more than the second SKU does. That is the answer being computed, " +
+                "not the answer being assumed." },
 
         { id: "FJ-3", label: "2nd floor joist · bath and laundry", role: "joist",
           span: 9.0, runFt: 10, count: 9, skuGroup: "floor", floorAssembly: "floor_wet",
@@ -1240,7 +1249,7 @@
                 "a face-mount hanger (§8.17)." },
 
         { id: "HDR-GAR", label: "One-car garage door header · front wall", role: "header",
-          span: 9.67, count: 1, carries: "roof", bearing: 4.5,
+          span: 9.67, count: 1, bearing: 4.5,
           skuGroup: "header", headHeightIn: 84, wallPosition: "exterior-first-floor",
           underdetermined: true,
           underdeterminedNote:
@@ -1253,8 +1262,12 @@
             "a detached plan, and a 0.7 ft one would be the rim alone with the wall silently " +
             "dropped. Both are inventions. Declare a wall dead load and the rim condition, then " +
             "derive it. Sizing it on a roof strip is precisely the defect §K5 refused on the garage " +
-            "gable header, and the answer there was refusal too. `carries` and `bearing` are " +
-            "declared so the mark is complete the day the wall load exists." },
+            "gable header, and the answer there was refusal too. `carries` is deliberately ABSENT " +
+            "for the same reason the tributary is: what this member carries is a wall, and \"wall\" " +
+            "is not a value this model has. Writing `carries: \"roof\"` to make the record look " +
+            "complete would assert a load path the framing does not have, and it would put the mark " +
+            "in the blast radius of the tile option, which reaches nothing here. `span` and " +
+            "`bearing` are declared, because those two the plan does know." },
 
         { id: "BM-PAT", label: "Rear covered patio beam · treated", role: "beam",
           span: 10.0, trib: 5.0, count: 2, carries: "roof",
@@ -1269,11 +1282,13 @@
           count: 3, component: true,
           componentNote: "AXIAL MEMBER — NOT CHECKED HERE (calc-spec §4.10 specifies C_P, §8.20 " +
             "states no interaction equation is evaluated, and engine.js implements neither). Design " +
-            "load from the end reaction this tool DOES compute for BM-PAT: 754 lb per bearing " +
-            "(875 lb nc-mountain, 923 lb fl-hvhz). The CENTRE post takes two bearings, so double it. " +
-            "Uplift, the continuous load path and both the base and cap connections are out of scope " +
-            "(§8.11, §8.17). For a typical 9 ft 4x4, C_P runs 0.25 to 0.35, so a check that omits it " +
-            "overstates axial capacity roughly threefold." }
+            "load from the end reaction this tool DOES compute for BM-PAT: 781 lb per bearing " +
+            "(906 lb nc-mountain, 956 lb fl-hvhz), on Elevation A. The CENTRE post takes two " +
+            "bearings, so double it. Elevation B deepens the patio and raises all of these — read " +
+            "that variant's own reaction, not this line. Uplift, the continuous load path and both " +
+            "the base and cap connections are out of scope (§8.11, §8.17). For a typical 9 ft 4x4, " +
+            "C_P runs 0.25 to 0.35, so a check that omits it overstates axial capacity roughly " +
+            "threefold." }
       ],
       elevations: [
         { id: "a", kind: "elevation", label: "Elevation A · interior unit, 8 ft covered patio",
@@ -1289,7 +1304,14 @@
           overrides: {
             "BM-PAT": { trib: 7.0,
               note: "Elevation B patio: 20 ft wide by 12 ft deep, same three posts, so still two " +
-                    "10.0 ft bays. Tributary is half the 12 ft depth plus the 1 ft eave = 7.0 ft." }
+                    "10.0 ft bays. Tributary is half the 12 ft depth plus the 1 ft eave = 7.0 ft." },
+            "PST-PAT": { componentNote: "AXIAL MEMBER — NOT CHECKED HERE (calc-spec §4.10 specifies " +
+              "C_P, §8.20 evaluates no interaction equation). Elevation B loads these posts 40% " +
+              "harder than Elevation A: BM-PAT carries 7.0 ft of tributary instead of 5.0 over the " +
+              "same 10 ft bays. Take the design load from the reaction this tool computes for BM-PAT " +
+              "in THIS variant — the Elevation A figures on the base mark are not the envelope — and " +
+              "double it at the CENTRE post, which takes two bearings. Uplift, the continuous load " +
+              "path and both the base and cap connections remain out of scope (§8.11, §8.17)." }
           } }
       ],
       options: [
@@ -1307,6 +1329,698 @@
       ]
     }
   ];
+
+  /* ============================================================
+     MASTER SETS — one stamped plan, built many ways
+
+     READ THIS BEFORE WIRING A UI TO IT.
+
+     A production builder does not own a plan. He owns a MASTER SET: one plan,
+     stamped once, built across ELEVATIONS (A/B/C — different roof forms and
+     porch configurations over the same footprint) and structural OPTIONS
+     (bonus room over the garage, extended covered patio, 4th bedroom, tile
+     instead of shingle). Sizing the base case and letting an option move a
+     bearing is how a revision gets manufactured after permit, and that is the
+     most expensive line item in this model. So the variants are first-class
+     data, not a note on a drawing.
+
+     ---- what a plan declares ----
+
+       plan.elevations : [Variant]   mutually exclusive. Exactly one is `base`.
+                                     Their takeRates are a MIX and must sum to 1.
+       plan.options    : [Variant]   independently selectable upgrades.
+       plan.geometry   : the plan's own stated dimensions. NOT a weight and it
+                         carries no class marker, for the same reason `span` and
+                         `trib` do not: it is the design, not an estimate of the
+                         world. Every span, tributary and count on the plan is
+                         derived from it and the derivation is on the mark.
+
+     A Variant is plain data:
+
+       { id            "a" | "opt-tile"    unique across BOTH lists, no "+"
+         kind          "elevation" | "option"
+         label         what the builder calls it
+         takeRate      [market] share of lots. Elevations: the mix, summing to
+                       1.00. Options: the attach rate. A commercial estimate
+                       with no code standing, like every other market number
+                       in this file.
+         base          elevations only — the stamped case the plan.marks ARE
+         note          why it exists and what it does structurally
+         movesNoMember true when the variant deliberately moves nothing this
+                       engine sizes. REQUIRED when it touches no mark: a
+                       variant that changes nothing and does not say so is
+                       indistinguishable from one nobody checked, and the
+                       helpers throw rather than let it pass.
+         overrides     { "MARK-ID": { field: value, ... } }  patches on marks
+                       that already exist. Absolute values, never deltas, so
+                       applying twice is applying once.
+         add           [ {full mark record} ]  marks only this variant builds
+         remove        [ "MARK-ID" ]           marks this variant deletes
+         roofAssemblyKey  an ASSEMBLY key replacing the pack's roof covering
+                       for this variant. This is how tile is modelled: it
+                       reaches every roof-carrying mark at once, including a
+                       lanai beam, where it maps to the open-roof tile
+                       assembly. Distinct from `mark.roofAssembly: "open"`,
+                       which says there is no ceiling underneath — a different
+                       question with a different answer.
+         requiresElevation [ids]  options only — elevations that offer it
+         excludes          [ids]  options only — mutually exclusive siblings
+
+     Every one of those is validated. An override or a remove naming a mark the
+     plan does not have, an added mark colliding with an existing id, an unknown
+     assembly key, a duplicate variant id, an elevation mix that does not sum to
+     1.00, an option that excludes itself — all throw. A typo in a master set is
+     a member that is silently never checked, which is the exact failure class
+     this file exists to make impossible.
+
+     ---- what the UI consumes ----
+
+       FM.weights.variantsFor(plan)
+         { planId, elevations[], options[], combinations[], solvedFor, note }
+
+         `elevations` and `options` are the declared set, normalised, each with
+         an `overrides` map EXPANDED to every mark the variant moves — including
+         marks it adds, marks it removes, and, for a roof-covering variant,
+         every roof-carrying mark on the plan. That map is READ-ONLY reporting
+         ("which marks move across this set"); the authored patch data is kept
+         beside it under `declared`.
+
+         `combinations` is the buildable list: every elevation on its own, every
+         elevation with each option it offers, and — because that is where the
+         revisions come from — every compatible PAIR of options that touches a
+         common mark. Pass { combos: "all" } for the full power set, or
+         { combos: "none" } for elevations only. Each entry:
+
+           { id "c+opt-tile", planId, kind: "combination", label,
+             elevationId, optionIds[], isBase, takeRate, lotsExpected,
+             touches[], movesNoMember, roofAssemblyKey, notes[] }
+
+         takeRate on a combination is the share of lots that include ALL of its
+         parts — not the share configured exactly that way. Option rates are
+         treated as independent and conditional on the elevation, which is a
+         planning simplification and [market] like everything under it.
+
+       FM.weights.planForVariant(plan, variantId)
+         A plain plan object with the overrides applied, the removals gone and
+         the additions in. Feed it straight to FM.solver.solvePlan(vp, pack) —
+         the solver is untouched and does not know variants exist. It carries
+         `variant` (the descriptor) and `ofPlan` (the base plan id).
+
+       FM.weights.variantPlansFor(plan, opts)   the same, for every combination
+
+       FM.weights.markFor(plan, markId, variantId)      resolved mark, or null
+       FM.weights.demandFor(mark, plan, pack, variantId)  resolve, then size
+
+       FM.weights.envelopeFor(plan, markId, pack, opts)
+         The envelope report for ONE mark across the whole buildable set.
+
+     ---- what the envelope does, and what it refuses to do ----
+
+     The obvious implementation — take the worst span, the worst tributary and
+     the heaviest assembly across the variants and size that — invents a member
+     for a house nobody builds, and then quietly ships the extra depth on every
+     lot. This one does not do that.
+
+     envelopeFor() reports each variant's demand, and names a GOVERNING variant
+     only when one of them dominates every other on every driver at once: span,
+     tributary, dead, live, roof load and bearing all at least as large, depth
+     budget no larger, and the same member regime (same `carries`, same
+     deflection row, same duration factor, same service and bracing
+     assumptions). Under those conditions a member that passes the governing
+     variant passes all of them, because every load combination's demand is
+     monotone in each driver and the capacity side is identical. That is a
+     provable statement, and it is the only one this file is willing to make.
+
+     When no variant dominates — Elevation B of the coastal duplex gets MORE
+     tributary and LESS span than Elevation A, because a deeper porch buys a
+     fourth post — it returns split: true and says so. The honest answer there
+     is to size each variant and take the deepest pick:
+
+         var vs = FM.weights.variantsFor(plan).combinations;
+         var runs = vs.map(function (v) {
+           return { v: v, r: FM.solver.solvePlan(
+                             FM.weights.planForVariant(plan, v.id), pack) };
+         });
+
+     which is three lines, uses the solver unmodified, and gives a real answer
+     per lot instead of a composite one for none of them.
+     ============================================================ */
+
+  function K(id) { return " " + id; }          /* author strings are never bare keys */
+  function hasK(o, id) { return Object.prototype.hasOwnProperty.call(o, K(id)); }
+
+  function shallowCopy(o) {
+    var out = {}, k;
+    for (k in o) if (Object.prototype.hasOwnProperty.call(o, k)) out[k] = o[k];
+    return out;
+  }
+
+  function carriesOf(mark) {
+    return mark.carries ||
+      (Object.prototype.hasOwnProperty.call(CARRIES_DEFAULT, mark.role) ? CARRIES_DEFAULT[mark.role] : null);
+  }
+  /* which marks a change of roof COVERING reaches */
+  function takesRoofCovering(mark) {
+    var c = carriesOf(mark);
+    return c === "roof" || c === "roof+floor";
+  }
+
+  var SYNTHETIC_BASE = {
+    id: "base", kind: "elevation", base: true, takeRate: 1.0, synthetic: true,
+    label: "As stamped",
+    note: "This plan declares no elevations, so the stamped base case is the only variant."
+  };
+
+  /* built once per plan object, and it validates while it builds */
+  var VCACHE = { keys: [], vals: [] };
+
+  function variantIndex(plan) {
+    var at = VCACHE.keys.indexOf(plan);
+    if (at !== -1) return VCACHE.vals[at];
+    var idx = buildVariantIndex(plan);
+    VCACHE.keys.push(plan);
+    VCACHE.vals.push(idx);
+    return idx;
+  }
+
+  function buildVariantIndex(plan) {
+    if (!plan || !plan.marks || !plan.marks.length) {
+      throw new Error("the master-set helpers need a plan with marks");
+    }
+    var where = "plan " + (plan.id || "(no id)");
+    var marksById = {};
+    plan.marks.forEach(function (m) {
+      if (hasK(marksById, m.id)) throw new Error(where + " declares two marks with id \"" + m.id + "\"");
+      marksById[K(m.id)] = m;
+    });
+
+    var els = plan.elevations || [];
+    var opts = plan.options || [];
+    var ids = {};
+
+    function checkCommon(v, kind) {
+      if (!v || typeof v !== "object") throw new Error(where + " has a malformed " + kind);
+      if (!v.id || typeof v.id !== "string") throw new Error(where + " has an " + kind + " with no id");
+      if (v.id.indexOf("+") !== -1) {
+        throw new Error(where + " " + kind + " id \"" + v.id + "\" contains '+', which is what " +
+                        "composes a variant id — pick another");
+      }
+      if (hasK(ids, v.id)) {
+        throw new Error(where + " declares two variants with id \"" + v.id + "\" — elevation and " +
+                        "option ids share one namespace because a variant id names both");
+      }
+      ids[K(v.id)] = kind;
+      if (!v.label) throw new Error(where + " " + kind + " \"" + v.id + "\" has no label");
+      var tr = Number(v.takeRate);
+      if (!isFinite(tr) || tr < 0 || tr > 1) {
+        throw new Error(where + " " + kind + " \"" + v.id + "\" needs a takeRate in [0,1] — it is a " +
+                        "[market] share of lots and the whole option model is priced off it");
+      }
+      if (v.roofAssemblyKey) {
+        if (!Object.prototype.hasOwnProperty.call(ASSEMBLY, v.roofAssemblyKey)) {
+          throw new Error(where + " " + kind + " \"" + v.id + "\" names unknown assembly \"" +
+                          v.roofAssemblyKey + "\"");
+        }
+      }
+      /* an added mark may be patched by the same variant that adds it */
+      var localAdds = {};
+      (v.add || []).forEach(function (m) {
+        if (!m || !m.id) throw new Error(where + " " + kind + " \"" + v.id + "\" adds a mark with no id");
+        if (hasK(marksById, m.id)) {
+          throw new Error(where + " " + kind + " \"" + v.id + "\" adds mark \"" + m.id +
+                          "\", which the base plan already has — patch it with `overrides` instead");
+        }
+        if (hasK(localAdds, m.id)) {
+          throw new Error(where + " " + kind + " \"" + v.id + "\" adds mark \"" + m.id + "\" twice");
+        }
+        localAdds[K(m.id)] = true;
+      });
+      (v.remove || []).forEach(function (id) {
+        if (!hasK(marksById, id)) {
+          throw new Error(where + " " + kind + " \"" + v.id + "\" removes mark \"" + id +
+                          "\", which is not on the plan");
+        }
+      });
+      var ov = v.overrides || {};
+      Object.keys(ov).forEach(function (id) {
+        if (!hasK(marksById, id) && !hasK(localAdds, id)) {
+          throw new Error(where + " " + kind + " \"" + v.id + "\" overrides mark \"" + id +
+                          "\", which is not on the plan and is not added by this variant. A patch " +
+                          "on a mark that does not exist is a member nobody checks.");
+        }
+        var p = ov[id];
+        if (p && p.roofAssemblyKey &&
+            !Object.prototype.hasOwnProperty.call(ASSEMBLY, p.roofAssemblyKey)) {
+          throw new Error(where + " " + kind + " \"" + v.id + "\" sets unknown assembly \"" +
+                          p.roofAssemblyKey + "\" on " + id);
+        }
+      });
+
+      var touches = touchesOf(plan, v);
+      if (!touches.length && !v.base && !v.movesNoMember) {
+        throw new Error(where + " " + kind + " \"" + v.id + "\" moves no mark and does not declare " +
+                        "`movesNoMember: true`. Say which it is — a variant that changes nothing " +
+                        "and does not say so is indistinguishable from one nobody checked.");
+      }
+      if (touches.length && v.movesNoMember) {
+        throw new Error(where + " " + kind + " \"" + v.id + "\" declares `movesNoMember: true` but " +
+                        "moves " + touches.join(", "));
+      }
+    }
+
+    var bases = 0, mix = 0;
+    els.forEach(function (v) {
+      checkCommon(v, "elevation");
+      if (v.base) bases++;
+      mix += Number(v.takeRate);
+      if (v.requiresElevation || v.excludes) {
+        throw new Error(where + " elevation \"" + v.id + "\" declares requiresElevation or excludes — " +
+                        "elevations are already mutually exclusive");
+      }
+    });
+    if (els.length) {
+      if (bases !== 1) {
+        throw new Error(where + " declares " + bases + " base elevations; exactly one must carry " +
+                        "`base: true`, because the plan's own marks ARE that elevation");
+      }
+      if (Math.abs(mix - 1) > 0.001) {
+        throw new Error(where + " elevation takeRates sum to " + mix.toFixed(3) +
+                        ", not 1.000 — they are a mix of the lots, not independent attach rates");
+      }
+    }
+
+    opts.forEach(function (v) {
+      checkCommon(v, "option");
+      if (v.base) throw new Error(where + " option \"" + v.id + "\" is marked base; only an elevation can be");
+      (v.requiresElevation || []).forEach(function (e) {
+        if (!els.some(function (x) { return x.id === e; })) {
+          throw new Error(where + " option \"" + v.id + "\" requires elevation \"" + e + "\", which does not exist");
+        }
+      });
+      (v.excludes || []).forEach(function (o) {
+        if (o === v.id) throw new Error(where + " option \"" + v.id + "\" excludes itself");
+        if (!opts.some(function (x) { return x.id === o; })) {
+          throw new Error(where + " option \"" + v.id + "\" excludes \"" + o + "\", which does not exist");
+        }
+      });
+    });
+
+    return {
+      plan: plan,
+      marksById: marksById,
+      elevations: els.length ? els : [SYNTHETIC_BASE],
+      options: opts,
+      syntheticBase: !els.length
+    };
+  }
+
+  /* every mark this variant moves, including the ones a roof-covering change
+     reaches without naming */
+  function touchesOf(plan, v) {
+    var seen = {}, out = [];
+    function add(id) { if (!hasK(seen, id)) { seen[K(id)] = true; out.push(id); } }
+    Object.keys(v.overrides || {}).forEach(add);
+    (v.remove || []).forEach(add);
+    (v.add || []).forEach(function (m) { add(m.id); });
+    if (v.roofAssemblyKey) {
+      plan.marks.forEach(function (m) { if (takesRoofCovering(m)) add(m.id); });
+      (v.add || []).forEach(function (m) { if (takesRoofCovering(m)) add(m.id); });
+    }
+    return out;
+  }
+
+  /* the read-only reporting shape: `overrides` expanded to every mark that
+     moves, with the authored data kept beside it */
+  function publicVariant(plan, v) {
+    var expanded = {};
+    var removed = {}, added = {};
+    (v.remove || []).forEach(function (id) { removed[K(id)] = true; });
+    (v.add || []).forEach(function (m) { added[K(m.id)] = true; });
+    touchesOf(plan, v).forEach(function (id) {
+      var p = shallowCopy((v.overrides || {})[id] || {});
+      if (hasK(removed, id)) p.removedByVariant = true;
+      if (hasK(added, id)) p.addedByVariant = true;
+      if (v.roofAssemblyKey && !p.roofAssemblyKey) p.roofAssemblyKey = v.roofAssemblyKey;
+      expanded[id] = p;
+    });
+    return {
+      id: v.id,
+      kind: v.kind || (v.base || v.synthetic ? "elevation" : "option"),
+      label: v.label,
+      takeRate: Number(v.takeRate),
+      takeRateCls: "market",
+      base: !!v.base,
+      note: v.note || "",
+      movesNoMember: !!v.movesNoMember,
+      roofAssemblyKey: v.roofAssemblyKey || null,
+      requiresElevation: v.requiresElevation || null,
+      excludes: v.excludes || null,
+      touches: touchesOf(plan, v),
+      /* READ-ONLY: which marks move. Not a patch source — use `declared`. */
+      overrides: expanded,
+      declared: { overrides: v.overrides || {}, add: v.add || [], remove: v.remove || [],
+                  roofAssemblyKey: v.roofAssemblyKey || null }
+    };
+  }
+
+  function elevationById(idx, id) {
+    return idx.elevations.filter(function (e) { return e.id === id; })[0] || null;
+  }
+  function optionById(idx, id) {
+    return idx.options.filter(function (o) { return o.id === id; })[0] || null;
+  }
+  function offeredOn(option, elevation) {
+    return !option.requiresElevation || option.requiresElevation.indexOf(elevation.id) !== -1;
+  }
+  function compatible(a, b) {
+    return (a.excludes || []).indexOf(b.id) === -1 && (b.excludes || []).indexOf(a.id) === -1;
+  }
+
+  /* "c+opt-tile" -> the elevation and the options, validated as a buildable
+     combination. An empty/absent id is the base elevation with no options. */
+  function partsOf(plan, variantId) {
+    var idx = variantIndex(plan);
+    var raw = (variantId === undefined || variantId === null) ? "" : String(variantId);
+    var ids = raw.length ? raw.split("+") : [];
+    var el;
+    if (!ids.length) {
+      el = idx.elevations.filter(function (e) { return e.base; })[0] || idx.elevations[0];
+    } else {
+      el = elevationById(idx, ids[0]);
+      if (!el) {
+        throw new Error("plan " + plan.id + " has no elevation \"" + ids[0] + "\" (variant \"" +
+                        raw + "\"); a variant id is elevation first, then options");
+      }
+    }
+    var seen = {}, options = [];
+    ids.slice(1).forEach(function (oid) {
+      var o = optionById(idx, oid);
+      if (!o) throw new Error("plan " + plan.id + " has no option \"" + oid + "\" (variant \"" + raw + "\")");
+      if (hasK(seen, oid)) throw new Error("variant \"" + raw + "\" names option \"" + oid + "\" twice");
+      seen[K(oid)] = true;
+      if (!offeredOn(o, el)) {
+        throw new Error("option \"" + oid + "\" is not offered on elevation \"" + el.id + "\"");
+      }
+      options.forEach(function (p) {
+        if (!compatible(p, o)) {
+          throw new Error("options \"" + p.id + "\" and \"" + oid + "\" are mutually exclusive");
+        }
+      });
+      options.push(o);
+    });
+    return { idx: idx, elevation: el, options: options, all: [el].concat(options) };
+  }
+
+  function descriptorFor(plan, elId, optIds) {
+    var vid = [elId].concat(optIds || []).join("+");
+    var p = partsOf(plan, vid);
+    var take = Number(p.elevation.takeRate);
+    p.options.forEach(function (o) { take *= Number(o.takeRate); });
+    var touches = {}, order = [], roofKey = null, notes = [];
+    p.all.forEach(function (v) {
+      touchesOf(plan, v).forEach(function (id) {
+        if (!hasK(touches, id)) { touches[K(id)] = true; order.push(id); }
+      });
+      if (v.roofAssemblyKey) roofKey = v.roofAssemblyKey;
+      if (v.note) notes.push({ from: v.id, label: v.label, text: v.note });
+    });
+    return {
+      id: vid,
+      planId: plan.id,
+      kind: "combination",
+      label: p.all.map(function (v) { return v.label; }).join(" + "),
+      elevationId: p.elevation.id,
+      optionIds: p.options.map(function (o) { return o.id; }),
+      isBase: !!p.elevation.base && !p.options.length,
+      takeRate: take,
+      takeRateCls: "market",
+      takeRateBasis: "Elevation mix x option attach rates, treated as independent and conditional " +
+                     "on the elevation. It is the share of lots that include ALL of these parts, " +
+                     "not the share configured exactly this way. [market] — a commercial estimate " +
+                     "with no code standing.",
+      lotsExpected: isFinite(plan.lots) ? Math.round(plan.lots * take) : null,
+      touches: order,
+      movesNoMember: order.length === 0,
+      roofAssemblyKey: roofKey,
+      notes: notes
+    };
+  }
+
+  function variantsFor(plan, opts) {
+    opts = opts || {};
+    var idx = variantIndex(plan);
+    var mode = opts.combos || "single";
+    var combos = [];
+
+    idx.elevations.forEach(function (el) {
+      combos.push(descriptorFor(plan, el.id, []));
+      if (mode === "none") return;
+      var offered = idx.options.filter(function (o) { return offeredOn(o, el); });
+      offered.forEach(function (o) { combos.push(descriptorFor(plan, el.id, [o.id])); });
+
+      if (mode === "all") {
+        /* full power set, size >= 2, honouring excludes */
+        var n = offered.length, mask, i, pick;
+        for (mask = 0; mask < (1 << n); mask++) {
+          pick = [];
+          for (i = 0; i < n; i++) if (mask & (1 << i)) pick.push(offered[i]);
+          if (pick.length < 2) continue;
+          var ok = true;
+          pick.forEach(function (a) {
+            pick.forEach(function (b) { if (a !== b && !compatible(a, b)) ok = false; });
+          });
+          if (ok) combos.push(descriptorFor(plan, el.id, pick.map(function (o) { return o.id; })));
+        }
+      } else {
+        /* Pairs are not decoration. A revision comes from two options landing on
+           the SAME mark from opposite directions — tile driving a header deeper
+           while an 8 ft head height caps how deep it may be. Emit exactly those. */
+        for (var a = 0; a < offered.length; a++) {
+          for (var b = a + 1; b < offered.length; b++) {
+            if (!compatible(offered[a], offered[b])) continue;
+            var ta = touchesOf(plan, offered[a]), tb = touchesOf(plan, offered[b]);
+            var shares = ta.some(function (id) { return tb.indexOf(id) !== -1; });
+            if (shares) combos.push(descriptorFor(plan, el.id, [offered[a].id, offered[b].id]));
+          }
+        }
+      }
+    });
+
+    return {
+      planId: plan.id,
+      declaresVariants: !idx.syntheticBase || !!idx.options.length,
+      elevations: idx.elevations.map(function (v) { return publicVariant(plan, v); }),
+      options: idx.options.map(function (v) { return publicVariant(plan, v); }),
+      combinations: combos,
+      combos: mode,
+      solvedFor: plan.variant ? (plan.variant.label || plan.variant.id) : undefined,
+      lots: isFinite(plan.lots) ? plan.lots : null,
+      note: "Elevations are mutually exclusive and their takeRates are the lot mix. Options are " +
+            "independent attach rates. Both are [market] estimates and neither has code standing. " +
+            "`combinations` is what the builder actually builds; feed each id to planForVariant() " +
+            "and the result straight to FM.solver.solvePlan()."
+    };
+  }
+
+  function applyTo(out, patch) {
+    var k;
+    for (k in patch) if (Object.prototype.hasOwnProperty.call(patch, k)) out[k] = patch[k];
+    return out;
+  }
+
+  function resolveMark(plan, mark, parts, variantId) {
+    var out = shallowCopy(mark);
+    parts.all.forEach(function (v) {
+      /* the variant's roof covering, unless the mark names its own */
+      if (v.roofAssemblyKey && !out.roofAssemblyKey) out.roofAssemblyKey = v.roofAssemblyKey;
+      var patch = (v.overrides || {})[mark.id];
+      if (patch) applyTo(out, patch);
+    });
+    if (variantId) { out.variantId = variantId; out.baseMarkId = mark.id; }
+    return out;
+  }
+
+  function markFor(plan, markId, variantId) {
+    var parts = partsOf(plan, variantId);
+    var removed = false, found = null;
+    parts.all.forEach(function (v) {
+      (v.remove || []).forEach(function (id) { if (id === markId) removed = true; });
+      (v.add || []).forEach(function (m) { if (m.id === markId) found = m; });
+    });
+    if (removed) return null;
+    if (!found) found = parts.idx.marksById[K(markId)] || null;
+    if (!found) return null;
+    return resolveMark(plan, found, parts, variantId);
+  }
+
+  function planForVariant(plan, variantId) {
+    if (plan.ofPlan) {
+      throw new Error("plan " + plan.id + " is already a variant of " + plan.ofPlan +
+                      " — take variants of the master set, not of a variant");
+    }
+    var parts = partsOf(plan, variantId);
+    var d = descriptorFor(plan, parts.elevation.id, parts.options.map(function (o) { return o.id; }));
+
+    var removed = {}, adds = [], addSeen = {};
+    parts.all.forEach(function (v) {
+      (v.remove || []).forEach(function (id) { removed[K(id)] = v.id; });
+      (v.add || []).forEach(function (m) {
+        if (hasK(addSeen, m.id)) {
+          throw new Error("variant \"" + d.id + "\" of plan " + plan.id + " adds mark \"" + m.id +
+                          "\" from two parts at once");
+        }
+        addSeen[K(m.id)] = true;
+        adds.push(m);
+      });
+    });
+
+    var marks = [];
+    plan.marks.forEach(function (mk) {
+      if (hasK(removed, mk.id)) return;
+      marks.push(resolveMark(plan, mk, parts, d.id));
+    });
+    adds.forEach(function (mk) {
+      if (hasK(removed, mk.id)) return;
+      marks.push(resolveMark(plan, mk, parts, d.id));
+    });
+
+    return merge(plan, {
+      id: plan.id + "--" + d.id.replace(/[^a-zA-Z0-9._-]+/g, "-"),
+      name: plan.name + " · " + d.label,
+      summary: plan.summary + " — " + d.label,
+      marks: marks,
+      variant: d,
+      ofPlan: plan.id,
+      lots: d.lotsExpected === null ? plan.lots : d.lotsExpected
+    });
+  }
+
+  function variantPlansFor(plan, opts) {
+    return variantsFor(plan, opts).combinations.map(function (v) {
+      return planForVariant(plan, v.id);
+    });
+  }
+
+  /* the drivers a simple-span uniformly loaded member's demand is monotone in.
+     Bigger is worse for all of them except maxDepthIn, where smaller is. */
+  var ENVELOPE_DRIVERS = ["span", "trib", "dead", "live", "roofLoad"];
+
+  /* two variants are only comparable by driver if they are the same KIND of
+     member — the same deflection row, duration factor, service condition and
+     bracing assumption. Otherwise the capacity side moves too and dominance on
+     the load side proves nothing. */
+  function regimeOf(d) {
+    return [d.carries, d.memberUse, d.roofType, d.repetitive ? 1 : 0,
+            d.wet ? 1 : 0, d.braced ? 1 : 0, d.treated ? 1 : 0].join("/");
+  }
+
+  function envelopeFor(plan, markId, pack, opts) {
+    var vs = variantsFor(plan, opts).combinations;
+    var rows = vs.map(function (v) {
+      var row = { variantId: v.id, label: v.label, takeRate: v.takeRate,
+                  lotsExpected: v.lotsExpected, present: true, sized: false };
+      var mk = markFor(plan, markId, v.id);
+      if (!mk) {
+        row.present = false;
+        row.note = "Not built in this variant.";
+        return row;
+      }
+      row.mark = mk;
+      var appl = applicability(mk, pack);
+      if (!appl.applicable) {
+        row.notSized = { reason: appl.reason, note: appl.note };
+        return row;
+      }
+      var d = demandFor(mk, plan, pack);
+      row.sized = true;
+      row.demand = d;
+      row.regime = regimeOf(d);
+      row.drivers = {
+        span: Number(d.span) || 0,
+        trib: Number(d.trib) || 0,
+        dead: Number(d.dead) || 0,
+        live: Number(d.live) || 0,
+        roofLoad: Number(d.roofLoad) || 0,
+        bearing: Number(d.bearing) || 0,
+        maxDepthIn: d.maxDepthIn === undefined || d.maxDepthIn === null ? Infinity : Number(d.maxDepthIn)
+      };
+      return row;
+    });
+
+    var sized = rows.filter(function (r) { return r.sized; });
+    var out = {
+      planId: plan.id, markId: markId, packId: pack.id,
+      variants: rows,
+      builtOn: rows.filter(function (r) { return r.present; }).length,
+      absentOn: rows.filter(function (r) { return !r.present; }).map(function (r) { return r.variantId; }),
+      sizedOn: sized.length
+    };
+
+    if (!sized.length) {
+      out.split = false;
+      out.governedBy = null;
+      out.note = "This mark is not sized in any variant — see the per-variant reason. Nothing to " +
+                 "envelope.";
+      return out;
+    }
+
+    /* worst value of each driver, and who supplies it */
+    var worst = {};
+    ["span", "trib", "dead", "live", "roofLoad", "bearing", "maxDepthIn"].forEach(function (k) {
+      var smallerIsWorse = (k === "maxDepthIn" || k === "bearing");
+      var best = null;
+      sized.forEach(function (r) {
+        var v = r.drivers[k];
+        if (best === null || (smallerIsWorse ? v < best : v > best)) best = v;
+      });
+      worst[k] = { value: best, smallerIsWorse: smallerIsWorse,
+                   by: sized.filter(function (r) { return r.drivers[k] === best; })
+                            .map(function (r) { return r.variantId; }) };
+    });
+    out.drivers = worst;
+
+    var regimes = {};
+    sized.forEach(function (r) { regimes[K(r.regime)] = true; });
+    var oneRegime = Object.keys(regimes).length === 1;
+
+    function dominates(a, b) {
+      var ok = true;
+      ENVELOPE_DRIVERS.forEach(function (k) { if (a.drivers[k] < b.drivers[k]) ok = false; });
+      if (a.drivers.bearing > b.drivers.bearing) ok = false;      /* less bearing is worse */
+      if (a.drivers.maxDepthIn > b.drivers.maxDepthIn) ok = false; /* less depth budget is worse */
+      return ok;
+    }
+
+    var gov = oneRegime ? sized.filter(function (a) {
+      return sized.every(function (b) { return a === b || dominates(a, b); });
+    })[0] : null;
+
+    if (gov) {
+      out.split = false;
+      out.governedBy = gov.variantId;
+      out.governing = gov;
+      out.note = "One variant governs: \"" + gov.label + "\" is at least as severe as every other " +
+                 "buildable variant on span, tributary, dead, live and roof load, gives away no " +
+                 "bearing and no depth budget, and is the same kind of member (" + gov.regime +
+                 "). Demand is monotone in each of those and the capacity side is identical, so a " +
+                 "member that passes this variant passes all " + sized.length + ". Size this one " +
+                 "and the master set is covered.";
+    } else {
+      out.split = true;
+      out.governedBy = null;
+      out.note = "NO SINGLE VARIANT GOVERNS" +
+        (oneRegime ? ". " : " — and the variants are not even the same kind of member (" +
+                     Object.keys(regimes).length + " regimes), so the capacity side moves too. ") +
+        "The drivers pull in different directions across the set, so there is no one demand that " +
+        "covers it. This tool will NOT compose a maximum out of them: the worst span from one " +
+        "elevation with the worst tributary from another is a member for a house nobody builds, " +
+        "and it ships the extra depth on every lot. Size each variant — " +
+        "FM.solver.solvePlan(FM.weights.planForVariant(plan, id), pack) — and take the deepest " +
+        "pick. The per-variant demands are in `variants` and the worst value of each driver, with " +
+        "the variant that supplies it, is in `drivers`.";
+    }
+    return out;
+  }
 
   /* ---------------- assembly ---------------- */
 
@@ -1537,6 +2251,13 @@
     UNIFY_BONUS: UNIFY_BONUS,
     INCISED_WHEN_TREATED: INCISED_WHEN_TREATED,
     policyFor: policyFor, demandFor: demandFor, applicability: applicability,
-    packById: packById, planById: planById
+    packById: packById, planById: planById,
+
+    /* master sets — see the contract block above variantsFor() */
+    variantsFor: variantsFor,
+    planForVariant: planForVariant,
+    variantPlansFor: variantPlansFor,
+    markFor: markFor,
+    envelopeFor: envelopeFor
   };
 })();

@@ -3428,6 +3428,82 @@ var FM = (function () {
             "the continuous load path and both the base and cap connections are out of scope " +
             "(§8.11, §8.17). Slenderness is not a formality: for a typical 8 ft 4x4, C_P runs 0.25 to " +
             "0.35, so a check that omits it overstates axial capacity roughly threefold." }
+      ],
+      geometry: {
+        footprintFt: [50, 46],
+        underRoofSf: 1860,
+        trussSpanFt: 46,
+        trussSpacingIn: 24,
+        bearingLines: "the two 50 ft walls. The 46 ft clear span is the product feature — it is what " +
+                      "makes the partitions movable between elevations.",
+        lanaiDepthFt: 14,
+        note: "Stated design geometry, not a weight. The 14 ft lanai depth is what HDR-W's 23.0 ft " +
+              "and BM-LAN's 7.0 ft tributaries already imply — half the truss span and half the " +
+              "lanai depth respectively. It is written down here so an elevation can move it."
+      },
+      elevations: [
+        { id: "a", kind: "elevation", label: "Elevation A · gable, 14 ft lanai", base: true,
+          takeRate: 0.40,
+          note: "The stamped base case. What the marks above are." },
+        { id: "b", kind: "elevation", label: "Elevation B · hip", takeRate: 0.35,
+          movesNoMember: true,
+          note: "The most-built elevation in most of these subdivisions and it moves no member this " +
+                "engine sizes. The common trusses still clear-span 46 ft onto the same two 50 ft " +
+                "walls, so every header tributary is unchanged. What a hip actually changes is the " +
+                "TRUSS PACKAGE — hip girders, step-downs and jacks — which is the supplier's " +
+                "deferred sealed submittal (T-1), and the girder-truss corner reactions, which land " +
+                "on posts §8.20 does not check. Declared as no-move rather than asserted as " +
+                "no-change: the members this engine sizes do not move, and the two things that do " +
+                "are both already out of scope." },
+        { id: "c", kind: "elevation", label: "Elevation C · extended covered patio", takeRate: 0.25,
+          note: "The lanai goes from 14 ft to 18 ft deep. The posts do not move, so neither span " +
+                "changes and both tributaries do — 18/2 = 9.0 ft against 14/2 = 7.0. This is the " +
+                "cleanest demonstration in the book that an elevation is a structural document: one " +
+                "dimension on a sales sheet, two members resized, and the revision is manufactured " +
+                "after permit if nobody sized the envelope.",
+          overrides: {
+            "BM-LAN": { trib: 9.0,
+              note: "Elevation C lanai is 18 ft deep; the beam takes half of it. Same 12 ft span — " +
+                    "the post bays did not move." },
+            "BM-LAN-W": { trib: 9.0,
+              note: "Elevation C lanai is 18 ft deep; the beam takes half of it. Same 16 ft wide " +
+                    "bay." },
+            "PST-LAN": { componentNote: "AXIAL MEMBER — NOT CHECKED HERE (calc-spec §4.10 specifies " +
+              "C_P, §8.20 evaluates no interaction equation). Elevation C loads these posts harder " +
+              "than Elevation A: both lanai beams carry 9.0 ft of tributary instead of 7.0, about " +
+              "29% more reaction. Take the design load from the reactions this tool computes for " +
+              "BM-LAN and BM-LAN-W in THIS variant — the Elevation A figures on the base mark are " +
+              "not the envelope. Uplift, the continuous load path and both the base and cap " +
+              "connections stay out of scope (§8.11, §8.17), and for a typical 8 ft 4x4 C_P runs " +
+              "0.25 to 0.35." }
+          } }
+      ],
+      options: [
+        { id: "opt-tile", kind: "option", label: "Concrete tile roof", takeRate: 0.20,
+          roofAssemblyKey: "roof_tile",
+          note: "The pack note on fl-hvhz already says it: concrete tile at 22 psf against 15 for " +
+                "shingle takes a 12 ft lanai beam from a 4x10 to a 4x12 on its own, so tile must be " +
+                "a plan VARIANT and not an afterthought. This is that variant. It is a no-op in the " +
+                "HVHZ pack, which already ships tile, and it is the single largest gravity change " +
+                "available anywhere else. [market] take rate." },
+        { id: "opt-8ft", kind: "option", label: "8 ft tall doors and windows, first floor",
+          takeRate: 0.30,
+          note: "An 8 ft head height in the 9'-1-1/8\" precut wall leaves 9.625 in for the header, " +
+                "less a double top plate and a shim — so nothing deeper than a 4x10 fits. It changes " +
+                "no load whatsoever and it is still a member change, because a header that does not " +
+                "fit is not a cheaper header, it is a plate-height change and a revision. Take it " +
+                "together with the tile option to see the case that produces one: tile drives the " +
+                "member deeper at the same moment this option caps how deep it may be.",
+          overrides: {
+            "HDR-W": { headHeightIn: 96 },
+            "HDR-SLD": { headHeightIn: 96 }
+          } },
+        { id: "opt-bed4", kind: "option", label: "4th bedroom in lieu of the study", takeRate: 0.50,
+          movesNoMember: true,
+          note: "Half the lots take it and it moves nothing. Under a 46 ft clear-span truss every " +
+                "interior partition is non-bearing, which is exactly what the plan note claims — " +
+                "this option is the claim being exercised rather than asserted. Declared rather than " +
+                "omitted: an option missing from the master set reads as an option nobody checked." }
       ]
     },
     {
@@ -3489,6 +3565,87 @@ var FM = (function () {
             "load path (§8.11, §8.17) and both the base and cap connections (§8.17). Slenderness is " +
             "not a formality — for a typical 8 ft 4x4, C_P runs 0.25 to 0.35, so a check that omits " +
             "it overstates axial capacity roughly threefold." }
+      ],
+      geometry: {
+        footprintFt: [40, 38],
+        firstFloorSf: 1520,
+        secondFloorSf: 930,
+        storeys: 2,
+        bearingLines: "the exterior walls plus a centre bearing line on the first floor; the second " +
+                      "floor splits into a 13.5 ft front bay and a 15.0 ft rear bay across it.",
+        garageDepthFt: 22,
+        deckFt: [20, 12],
+        note: "Stated design geometry, not a weight. The 12 ft deck depth is what DK-1's 12.0 ft " +
+              "joist span and DK-2's 6.0 ft tributary already imply; the 22 ft garage depth is what " +
+              "HDR-GAR-2S derives its 11.0 ft roof tributary from."
+      },
+      elevations: [
+        { id: "a", kind: "elevation", label: "Elevation A · as stamped", base: true, takeRate: 0.55,
+          note: "The stamped base case. What the marks above are." },
+        { id: "b", kind: "elevation", label: "Elevation B · covered front porch", takeRate: 0.45,
+          geometry: { porchFt: [20, 8], posts: 3, eaveOverhangFt: 1.0,
+                      note: "Geometry this elevation adds, from which its added marks derive." },
+          note: "A covered porch across 20 ft of the 40 ft front face, 8 ft deep, on three posts. It " +
+                "adds a member rather than resizing one — which is the case a master set is most " +
+                "likely to lose, because a mark that does not exist on the base sheet has nobody " +
+                "checking it.",
+          add: [
+            { id: "BM-POR", label: "Front porch beam · treated", role: "beam",
+              span: 10.0, trib: 5.0, count: 2, carries: "roof",
+              exposure: "exterior", braced: false, skuGroup: "porch", roofAssembly: "open",
+              note: "Elevation B only. Porch is 20 ft wide by 8 ft deep on three posts, so the beam " +
+                    "is two 10.0 ft bays, and the tributary is half the 8 ft depth plus the 1 ft " +
+                    "eave overhang = 5.0 ft. Open roof: no ceiling, no insulation, no-ceiling " +
+                    "deflection row." },
+            { id: "PST-POR-B", label: "Front porch beam posts · BM-POR", role: "post",
+              count: 3, component: true,
+              componentNote: "AXIAL MEMBER — NOT CHECKED HERE (calc-spec §4.10 specifies C_P, §8.20 " +
+                "evaluates no interaction equation). Elevation B only. Take the design load from the " +
+                "end reaction this tool computes for BM-POR in this variant; the CENTRE post takes " +
+                "two bearings, so double it. Uplift, the continuous load path and both the base and " +
+                "cap connections are out of scope (§8.11, §8.17). For a typical 9 ft 4x4, C_P runs " +
+                "0.25 to 0.35." }
+          ] }
+      ],
+      options: [
+        { id: "opt-bonus", kind: "option", label: "Bonus room over the garage", takeRate: 0.35,
+          movesNoMember: true,
+          note: "This option moves no member, and the reason is the entire argument for master-set " +
+                "sizing. HDR-GAR-2S was ALREADY sized to it: register D11 and §K.4 ruled that the " +
+                "base sheet carries the bonus-room case (tribRoof 11.0 + tribFloor 5.5) rather than " +
+                "the roof-only case, precisely so that taking the option does not manufacture a " +
+                "revision after permit. The cost of that decision is visible on every lot that does " +
+                "NOT take the bonus room and buys the header anyway; the cost of the other decision " +
+                "is a stamped revision on 35% of them. Both are real, the firm chose, and the choice " +
+                "is written down here instead of being invisible." },
+        { id: "opt-deck-ext", kind: "option", label: "Extended rear deck · 26 ft × 14 ft",
+          takeRate: 0.25,
+          note: "The deck grows from 20 ft × 12 ft to 26 ft × 14 ft. The extra width buys a fourth " +
+                "post, so the beam bays go from two at 8.0 ft to three at 8.67 ft — a longer span " +
+                "AND a heavier tributary, both worse. That makes this the easy envelope case: one " +
+                "variant dominates on every driver, so envelopeFor() names it and a member sized " +
+                "for it covers every lot in the set. Compare the coastal duplex's Elevation B, " +
+                "where the fourth post SHORTENS the span while deepening the porch and no single " +
+                "variant governs.",
+          overrides: {
+            "DK-1": { span: 14.0, runFt: 26,
+              note: "Extended deck is 14 ft deep, so the joists span 14.0 ft, over a 26 ft run. " +
+                    "IRC R507, 40 psf live — and see register L10 on the 60 psf reading." },
+            "DK-2": { span: 8.67, trib: 7.0, count: 3,
+              note: "26 ft of beam on four posts = three 8.67 ft bays, and the tributary is half the " +
+                    "14 ft deck depth = 7.0 ft. Shorter span, heavier load: it is the pair that " +
+                    "makes the envelope a genuine question rather than a maximum." },
+            "PST-DK": { count: 4, componentNote: "AXIAL MEMBER — NOT CHECKED HERE (calc-spec §4.10, " +
+              "§8.20). The extended deck stands on FOUR posts, not two, and each carries 7.0 ft of " +
+              "tributary instead of 6.0. Take the design load from the reaction this tool computes " +
+              "for DK-2 in THIS variant — the 1,231 lb on the base mark is the 20 ft deck. Uplift " +
+              "and both connections remain out of scope (§8.11, §8.17), and C_P is not evaluated." }
+          } },
+        { id: "opt-tile", kind: "option", label: "Concrete tile roof", takeRate: 0.15,
+          roofAssemblyKey: "roof_tile",
+          note: "22 psf against 15 reaches every roof-carrying mark on the plan at once — HDR-2 " +
+                "here, and Elevation B's porch beam where that elevation is built. A no-op in the " +
+                "HVHZ pack, which already ships tile. [market] take rate." }
       ]
     },
     {
@@ -3543,6 +3700,68 @@ var FM = (function () {
             "computes: BM-POR 931 to 1,149 lb per post across the packs; DK-C2 1,548 lb. In a " +
             "wind-governed market UPLIFT on this post and its base and cap connections (§8.11, " +
             "§8.17) govern, and none of that is checked here." }
+      ],
+      geometry: {
+        footprintFt: [26, 32],
+        storeys: 2,
+        sfPerUnit: 1600,
+        trussSpanFt: 26,
+        bearingLines: "the party wall and the two end walls, plus one interior line on the second " +
+                      "floor 15.5 ft off the exterior wall — FJ-1's bay — leaving a 10.5 ft " +
+                      "party-wall bay that carries no joist mark.",
+        porchFt: [20, 12],
+        posts: 3,
+        note: "Stated design geometry, not a weight. The 12 ft porch depth is what BM-POR's 6.0 ft " +
+              "tributary and DK-C1's 12.0 ft joist span already imply, and the 20 ft porch width is " +
+              "DK-C1's stated run — two 10 ft bays on three posts."
+      },
+      elevations: [
+        { id: "a", kind: "elevation", label: "Elevation A · gable, 12 ft covered porch", base: true,
+          takeRate: 0.60,
+          note: "The stamped base case. What the marks above are." },
+        { id: "b", kind: "elevation", label: "Elevation B · deep screened lanai", takeRate: 0.40,
+          note: "The porch goes from 12 ft to 14 ft deep and the wider load buys a fourth post, so " +
+                "the 20 ft run becomes three 6.67 ft bays instead of two 10.0 ft ones. Both porch " +
+                "members therefore get MORE tributary and LESS span at the same time, and neither " +
+                "variant dominates the other. This is the case the envelope logic exists for: there " +
+                "is no single conservative demand, and the honest answer is to size both and take " +
+                "the deeper pick, not to compose a maximum no lot is built to.",
+          overrides: {
+            "BM-POR": { span: 6.67, trib: 7.0, count: 3,
+              note: "Elevation B: 20 ft of beam on four posts = three 6.67 ft bays; tributary is " +
+                    "half the 14 ft porch depth = 7.0 ft." },
+            "DK-C1": { span: 14.0,
+              note: "Elevation B porch depth is 14 ft, so the deck joists span it. Run is still " +
+                    "BM-POR's 20 ft. OPEN: IRC R507 gives 40 psf where ASCE 7-22 Table 4.3-1 gives " +
+                    "60 psf for an exterior balcony (register L10) — at 14 ft that gap is wider, " +
+                    "not narrower." },
+            "DK-C2": { span: 6.67, trib: 7.0, count: 3,
+              note: "Shares the same four posts as BM-POR in this elevation: three 6.67 ft bays, " +
+                    "tributary half the 14 ft depth = 7.0 ft." },
+            "PST-POR": { count: 5, componentNote: "AXIAL MEMBER — NOT CHECKED HERE (calc-spec " +
+              "§4.10, §8.20: C_P is specified and no interaction equation is evaluated). Elevation B " +
+              "stands on FOUR posts per porch, not three, and each carries 7.0 ft of tributary " +
+              "instead of 6.0 — and each still takes BOTH the porch-roof beam and the deck beam. " +
+              "Take the design loads from the reactions this tool computes for BM-POR and DK-C2 in " +
+              "THIS variant; the figures on the base mark are Elevation A. In a wind-governed market " +
+              "UPLIFT on this post and its base and cap connections (§8.11, §8.17) govern, and none " +
+              "of that is checked here." }
+          } }
+      ],
+      options: [
+        { id: "opt-tile", kind: "option", label: "Concrete tile roof", takeRate: 0.45,
+          roofAssemblyKey: "roof_tile",
+          note: "Nearly half the lots in this market, and it is a no-op in the HVHZ pack because " +
+                "that pack already ships tile — which is worth showing, because it is the same " +
+                "option costing nothing in one market and moving the porch beam in the other five. " +
+                "[market] take rate." },
+        { id: "opt-3bed-down", kind: "option", label: "3rd bedroom down in lieu of the study",
+          takeRate: 0.35, movesNoMember: true,
+          note: "Moves nothing. The trusses clear-span the 26 ft width party wall to party wall, so " +
+                "no first-floor partition is bearing for the roof, and the second-floor bearing line " +
+                "BM-BRG serves is set by FJ-1's 15.5 ft bay, which this option does not touch. " +
+                "Declared rather than omitted: an option missing from the master set reads as an " +
+                "option nobody checked." }
       ]
     },
 
@@ -3618,7 +3837,10 @@ var FM = (function () {
                 "bearing line, so it takes the same 16.0 ft every other opening in that wall takes. " +
                 "Three jacks: §K3 found five rows needing more than one and this is the largest " +
                 "reaction on the plan. This is the mark that decides whether the smallest house in " +
-                "the book needs an engineered header at all." },
+                "the book needs an engineered header at all, and the answer is regional: it lands " +
+                "on a 4x12 in the four gravity and wind markets and ESCALATES in nc-mountain on " +
+                "bending, because snow takes C_D from 1.25 to 1.15 — an 8% capacity cut on the one " +
+                "mark that had no margin for it. Same house, same door, different lumber package." },
 
         { id: "HDR-GBL", label: "Gable-end window header", role: "header",
           span: 4.5, count: 3, carries: "roof", bearing: 3.0,
@@ -3645,8 +3867,8 @@ var FM = (function () {
           count: 2, component: true,
           componentNote: "AXIAL MEMBER — NOT CHECKED HERE (calc-spec §4.10 specifies C_P, §8.20 " +
             "states no interaction equation is evaluated, and engine.js implements neither). Design " +
-            "load from the end reaction this tool DOES compute for BM-ENT: 483 lb per post " +
-            "(560 lb nc-mountain, 591 lb fl-hvhz). Small numbers, and they are still not the design: " +
+            "load from the end reaction this tool DOES compute for BM-ENT: 499 lb per post " +
+            "(579 lb nc-mountain, 611 lb fl-hvhz). Small numbers, and they are still not the design: " +
             "on a covered entry in a wind-governed market UPLIFT and the base and cap connections " +
             "govern, and all three are out of scope (§8.11, §8.17). For a typical 8 ft 4x4, C_P runs " +
             "0.25 to 0.35, so a check that omits it overstates axial capacity roughly threefold." }
@@ -3775,8 +3997,12 @@ var FM = (function () {
         { id: "FJ-2", label: "2nd floor joist · 9 ft bay", role: "joist",
           span: 9.0, runFt: 26, count: 21, skuGroup: "floor",
           note: "20 ft unit width less the 11.0 ft bay = 9.0 ft. Run is the 36 ft depth less the " +
-                "10 ft bath and laundry stretch carried by FJ-3. The two bays landing one rung apart " +
-                "is the whole reason a floor-depth unification decision exists on this plan." },
+                "10 ft bath and laundry stretch carried by FJ-3. An 11 ft bay and a 9 ft bay is a " +
+                "narrow enough spread that both land on the SAME depth in all six packs — so what " +
+                "this plan actually poses is not a depth question but a species-band one, and the " +
+                "unification pass prices it and declines: the extra lumber to put the whole floor " +
+                "on one SKU costs more than the second SKU does. That is the answer being computed, " +
+                "not the answer being assumed." },
 
         { id: "FJ-3", label: "2nd floor joist · bath and laundry", role: "joist",
           span: 9.0, runFt: 10, count: 9, skuGroup: "floor", floorAssembly: "floor_wet",
@@ -3808,7 +4034,7 @@ var FM = (function () {
                 "a face-mount hanger (§8.17)." },
 
         { id: "HDR-GAR", label: "One-car garage door header · front wall", role: "header",
-          span: 9.67, count: 1, carries: "roof", bearing: 4.5,
+          span: 9.67, count: 1, bearing: 4.5,
           skuGroup: "header", headHeightIn: 84, wallPosition: "exterior-first-floor",
           underdetermined: true,
           underdeterminedNote:
@@ -3821,8 +4047,12 @@ var FM = (function () {
             "a detached plan, and a 0.7 ft one would be the rim alone with the wall silently " +
             "dropped. Both are inventions. Declare a wall dead load and the rim condition, then " +
             "derive it. Sizing it on a roof strip is precisely the defect §K5 refused on the garage " +
-            "gable header, and the answer there was refusal too. `carries` and `bearing` are " +
-            "declared so the mark is complete the day the wall load exists." },
+            "gable header, and the answer there was refusal too. `carries` is deliberately ABSENT " +
+            "for the same reason the tributary is: what this member carries is a wall, and \"wall\" " +
+            "is not a value this model has. Writing `carries: \"roof\"` to make the record look " +
+            "complete would assert a load path the framing does not have, and it would put the mark " +
+            "in the blast radius of the tile option, which reaches nothing here. `span` and " +
+            "`bearing` are declared, because those two the plan does know." },
 
         { id: "BM-PAT", label: "Rear covered patio beam · treated", role: "beam",
           span: 10.0, trib: 5.0, count: 2, carries: "roof",
@@ -3837,11 +4067,13 @@ var FM = (function () {
           count: 3, component: true,
           componentNote: "AXIAL MEMBER — NOT CHECKED HERE (calc-spec §4.10 specifies C_P, §8.20 " +
             "states no interaction equation is evaluated, and engine.js implements neither). Design " +
-            "load from the end reaction this tool DOES compute for BM-PAT: 754 lb per bearing " +
-            "(875 lb nc-mountain, 923 lb fl-hvhz). The CENTRE post takes two bearings, so double it. " +
-            "Uplift, the continuous load path and both the base and cap connections are out of scope " +
-            "(§8.11, §8.17). For a typical 9 ft 4x4, C_P runs 0.25 to 0.35, so a check that omits it " +
-            "overstates axial capacity roughly threefold." }
+            "load from the end reaction this tool DOES compute for BM-PAT: 781 lb per bearing " +
+            "(906 lb nc-mountain, 956 lb fl-hvhz), on Elevation A. The CENTRE post takes two " +
+            "bearings, so double it. Elevation B deepens the patio and raises all of these — read " +
+            "that variant's own reaction, not this line. Uplift, the continuous load path and both " +
+            "the base and cap connections are out of scope (§8.11, §8.17). For a typical 9 ft 4x4, " +
+            "C_P runs 0.25 to 0.35, so a check that omits it overstates axial capacity roughly " +
+            "threefold." }
       ],
       elevations: [
         { id: "a", kind: "elevation", label: "Elevation A · interior unit, 8 ft covered patio",
@@ -3857,7 +4089,14 @@ var FM = (function () {
           overrides: {
             "BM-PAT": { trib: 7.0,
               note: "Elevation B patio: 20 ft wide by 12 ft deep, same three posts, so still two " +
-                    "10.0 ft bays. Tributary is half the 12 ft depth plus the 1 ft eave = 7.0 ft." }
+                    "10.0 ft bays. Tributary is half the 12 ft depth plus the 1 ft eave = 7.0 ft." },
+            "PST-PAT": { componentNote: "AXIAL MEMBER — NOT CHECKED HERE (calc-spec §4.10 specifies " +
+              "C_P, §8.20 evaluates no interaction equation). Elevation B loads these posts 40% " +
+              "harder than Elevation A: BM-PAT carries 7.0 ft of tributary instead of 5.0 over the " +
+              "same 10 ft bays. Take the design load from the reaction this tool computes for BM-PAT " +
+              "in THIS variant — the Elevation A figures on the base mark are not the envelope — and " +
+              "double it at the CENTRE post, which takes two bearings. Uplift, the continuous load " +
+              "path and both the base and cap connections remain out of scope (§8.11, §8.17)." }
           } }
       ],
       options: [
@@ -3875,6 +4114,698 @@ var FM = (function () {
       ]
     }
   ];
+
+  /* ============================================================
+     MASTER SETS — one stamped plan, built many ways
+
+     READ THIS BEFORE WIRING A UI TO IT.
+
+     A production builder does not own a plan. He owns a MASTER SET: one plan,
+     stamped once, built across ELEVATIONS (A/B/C — different roof forms and
+     porch configurations over the same footprint) and structural OPTIONS
+     (bonus room over the garage, extended covered patio, 4th bedroom, tile
+     instead of shingle). Sizing the base case and letting an option move a
+     bearing is how a revision gets manufactured after permit, and that is the
+     most expensive line item in this model. So the variants are first-class
+     data, not a note on a drawing.
+
+     ---- what a plan declares ----
+
+       plan.elevations : [Variant]   mutually exclusive. Exactly one is `base`.
+                                     Their takeRates are a MIX and must sum to 1.
+       plan.options    : [Variant]   independently selectable upgrades.
+       plan.geometry   : the plan's own stated dimensions. NOT a weight and it
+                         carries no class marker, for the same reason `span` and
+                         `trib` do not: it is the design, not an estimate of the
+                         world. Every span, tributary and count on the plan is
+                         derived from it and the derivation is on the mark.
+
+     A Variant is plain data:
+
+       { id            "a" | "opt-tile"    unique across BOTH lists, no "+"
+         kind          "elevation" | "option"
+         label         what the builder calls it
+         takeRate      [market] share of lots. Elevations: the mix, summing to
+                       1.00. Options: the attach rate. A commercial estimate
+                       with no code standing, like every other market number
+                       in this file.
+         base          elevations only — the stamped case the plan.marks ARE
+         note          why it exists and what it does structurally
+         movesNoMember true when the variant deliberately moves nothing this
+                       engine sizes. REQUIRED when it touches no mark: a
+                       variant that changes nothing and does not say so is
+                       indistinguishable from one nobody checked, and the
+                       helpers throw rather than let it pass.
+         overrides     { "MARK-ID": { field: value, ... } }  patches on marks
+                       that already exist. Absolute values, never deltas, so
+                       applying twice is applying once.
+         add           [ {full mark record} ]  marks only this variant builds
+         remove        [ "MARK-ID" ]           marks this variant deletes
+         roofAssemblyKey  an ASSEMBLY key replacing the pack's roof covering
+                       for this variant. This is how tile is modelled: it
+                       reaches every roof-carrying mark at once, including a
+                       lanai beam, where it maps to the open-roof tile
+                       assembly. Distinct from `mark.roofAssembly: "open"`,
+                       which says there is no ceiling underneath — a different
+                       question with a different answer.
+         requiresElevation [ids]  options only — elevations that offer it
+         excludes          [ids]  options only — mutually exclusive siblings
+
+     Every one of those is validated. An override or a remove naming a mark the
+     plan does not have, an added mark colliding with an existing id, an unknown
+     assembly key, a duplicate variant id, an elevation mix that does not sum to
+     1.00, an option that excludes itself — all throw. A typo in a master set is
+     a member that is silently never checked, which is the exact failure class
+     this file exists to make impossible.
+
+     ---- what the UI consumes ----
+
+       FM.weights.variantsFor(plan)
+         { planId, elevations[], options[], combinations[], solvedFor, note }
+
+         `elevations` and `options` are the declared set, normalised, each with
+         an `overrides` map EXPANDED to every mark the variant moves — including
+         marks it adds, marks it removes, and, for a roof-covering variant,
+         every roof-carrying mark on the plan. That map is READ-ONLY reporting
+         ("which marks move across this set"); the authored patch data is kept
+         beside it under `declared`.
+
+         `combinations` is the buildable list: every elevation on its own, every
+         elevation with each option it offers, and — because that is where the
+         revisions come from — every compatible PAIR of options that touches a
+         common mark. Pass { combos: "all" } for the full power set, or
+         { combos: "none" } for elevations only. Each entry:
+
+           { id "c+opt-tile", planId, kind: "combination", label,
+             elevationId, optionIds[], isBase, takeRate, lotsExpected,
+             touches[], movesNoMember, roofAssemblyKey, notes[] }
+
+         takeRate on a combination is the share of lots that include ALL of its
+         parts — not the share configured exactly that way. Option rates are
+         treated as independent and conditional on the elevation, which is a
+         planning simplification and [market] like everything under it.
+
+       FM.weights.planForVariant(plan, variantId)
+         A plain plan object with the overrides applied, the removals gone and
+         the additions in. Feed it straight to FM.solver.solvePlan(vp, pack) —
+         the solver is untouched and does not know variants exist. It carries
+         `variant` (the descriptor) and `ofPlan` (the base plan id).
+
+       FM.weights.variantPlansFor(plan, opts)   the same, for every combination
+
+       FM.weights.markFor(plan, markId, variantId)      resolved mark, or null
+       FM.weights.demandFor(mark, plan, pack, variantId)  resolve, then size
+
+       FM.weights.envelopeFor(plan, markId, pack, opts)
+         The envelope report for ONE mark across the whole buildable set.
+
+     ---- what the envelope does, and what it refuses to do ----
+
+     The obvious implementation — take the worst span, the worst tributary and
+     the heaviest assembly across the variants and size that — invents a member
+     for a house nobody builds, and then quietly ships the extra depth on every
+     lot. This one does not do that.
+
+     envelopeFor() reports each variant's demand, and names a GOVERNING variant
+     only when one of them dominates every other on every driver at once: span,
+     tributary, dead, live, roof load and bearing all at least as large, depth
+     budget no larger, and the same member regime (same `carries`, same
+     deflection row, same duration factor, same service and bracing
+     assumptions). Under those conditions a member that passes the governing
+     variant passes all of them, because every load combination's demand is
+     monotone in each driver and the capacity side is identical. That is a
+     provable statement, and it is the only one this file is willing to make.
+
+     When no variant dominates — Elevation B of the coastal duplex gets MORE
+     tributary and LESS span than Elevation A, because a deeper porch buys a
+     fourth post — it returns split: true and says so. The honest answer there
+     is to size each variant and take the deepest pick:
+
+         var vs = FM.weights.variantsFor(plan).combinations;
+         var runs = vs.map(function (v) {
+           return { v: v, r: FM.solver.solvePlan(
+                             FM.weights.planForVariant(plan, v.id), pack) };
+         });
+
+     which is three lines, uses the solver unmodified, and gives a real answer
+     per lot instead of a composite one for none of them.
+     ============================================================ */
+
+  function K(id) { return " " + id; }          /* author strings are never bare keys */
+  function hasK(o, id) { return Object.prototype.hasOwnProperty.call(o, K(id)); }
+
+  function shallowCopy(o) {
+    var out = {}, k;
+    for (k in o) if (Object.prototype.hasOwnProperty.call(o, k)) out[k] = o[k];
+    return out;
+  }
+
+  function carriesOf(mark) {
+    return mark.carries ||
+      (Object.prototype.hasOwnProperty.call(CARRIES_DEFAULT, mark.role) ? CARRIES_DEFAULT[mark.role] : null);
+  }
+  /* which marks a change of roof COVERING reaches */
+  function takesRoofCovering(mark) {
+    var c = carriesOf(mark);
+    return c === "roof" || c === "roof+floor";
+  }
+
+  var SYNTHETIC_BASE = {
+    id: "base", kind: "elevation", base: true, takeRate: 1.0, synthetic: true,
+    label: "As stamped",
+    note: "This plan declares no elevations, so the stamped base case is the only variant."
+  };
+
+  /* built once per plan object, and it validates while it builds */
+  var VCACHE = { keys: [], vals: [] };
+
+  function variantIndex(plan) {
+    var at = VCACHE.keys.indexOf(plan);
+    if (at !== -1) return VCACHE.vals[at];
+    var idx = buildVariantIndex(plan);
+    VCACHE.keys.push(plan);
+    VCACHE.vals.push(idx);
+    return idx;
+  }
+
+  function buildVariantIndex(plan) {
+    if (!plan || !plan.marks || !plan.marks.length) {
+      throw new Error("the master-set helpers need a plan with marks");
+    }
+    var where = "plan " + (plan.id || "(no id)");
+    var marksById = {};
+    plan.marks.forEach(function (m) {
+      if (hasK(marksById, m.id)) throw new Error(where + " declares two marks with id \"" + m.id + "\"");
+      marksById[K(m.id)] = m;
+    });
+
+    var els = plan.elevations || [];
+    var opts = plan.options || [];
+    var ids = {};
+
+    function checkCommon(v, kind) {
+      if (!v || typeof v !== "object") throw new Error(where + " has a malformed " + kind);
+      if (!v.id || typeof v.id !== "string") throw new Error(where + " has an " + kind + " with no id");
+      if (v.id.indexOf("+") !== -1) {
+        throw new Error(where + " " + kind + " id \"" + v.id + "\" contains '+', which is what " +
+                        "composes a variant id — pick another");
+      }
+      if (hasK(ids, v.id)) {
+        throw new Error(where + " declares two variants with id \"" + v.id + "\" — elevation and " +
+                        "option ids share one namespace because a variant id names both");
+      }
+      ids[K(v.id)] = kind;
+      if (!v.label) throw new Error(where + " " + kind + " \"" + v.id + "\" has no label");
+      var tr = Number(v.takeRate);
+      if (!isFinite(tr) || tr < 0 || tr > 1) {
+        throw new Error(where + " " + kind + " \"" + v.id + "\" needs a takeRate in [0,1] — it is a " +
+                        "[market] share of lots and the whole option model is priced off it");
+      }
+      if (v.roofAssemblyKey) {
+        if (!Object.prototype.hasOwnProperty.call(ASSEMBLY, v.roofAssemblyKey)) {
+          throw new Error(where + " " + kind + " \"" + v.id + "\" names unknown assembly \"" +
+                          v.roofAssemblyKey + "\"");
+        }
+      }
+      /* an added mark may be patched by the same variant that adds it */
+      var localAdds = {};
+      (v.add || []).forEach(function (m) {
+        if (!m || !m.id) throw new Error(where + " " + kind + " \"" + v.id + "\" adds a mark with no id");
+        if (hasK(marksById, m.id)) {
+          throw new Error(where + " " + kind + " \"" + v.id + "\" adds mark \"" + m.id +
+                          "\", which the base plan already has — patch it with `overrides` instead");
+        }
+        if (hasK(localAdds, m.id)) {
+          throw new Error(where + " " + kind + " \"" + v.id + "\" adds mark \"" + m.id + "\" twice");
+        }
+        localAdds[K(m.id)] = true;
+      });
+      (v.remove || []).forEach(function (id) {
+        if (!hasK(marksById, id)) {
+          throw new Error(where + " " + kind + " \"" + v.id + "\" removes mark \"" + id +
+                          "\", which is not on the plan");
+        }
+      });
+      var ov = v.overrides || {};
+      Object.keys(ov).forEach(function (id) {
+        if (!hasK(marksById, id) && !hasK(localAdds, id)) {
+          throw new Error(where + " " + kind + " \"" + v.id + "\" overrides mark \"" + id +
+                          "\", which is not on the plan and is not added by this variant. A patch " +
+                          "on a mark that does not exist is a member nobody checks.");
+        }
+        var p = ov[id];
+        if (p && p.roofAssemblyKey &&
+            !Object.prototype.hasOwnProperty.call(ASSEMBLY, p.roofAssemblyKey)) {
+          throw new Error(where + " " + kind + " \"" + v.id + "\" sets unknown assembly \"" +
+                          p.roofAssemblyKey + "\" on " + id);
+        }
+      });
+
+      var touches = touchesOf(plan, v);
+      if (!touches.length && !v.base && !v.movesNoMember) {
+        throw new Error(where + " " + kind + " \"" + v.id + "\" moves no mark and does not declare " +
+                        "`movesNoMember: true`. Say which it is — a variant that changes nothing " +
+                        "and does not say so is indistinguishable from one nobody checked.");
+      }
+      if (touches.length && v.movesNoMember) {
+        throw new Error(where + " " + kind + " \"" + v.id + "\" declares `movesNoMember: true` but " +
+                        "moves " + touches.join(", "));
+      }
+    }
+
+    var bases = 0, mix = 0;
+    els.forEach(function (v) {
+      checkCommon(v, "elevation");
+      if (v.base) bases++;
+      mix += Number(v.takeRate);
+      if (v.requiresElevation || v.excludes) {
+        throw new Error(where + " elevation \"" + v.id + "\" declares requiresElevation or excludes — " +
+                        "elevations are already mutually exclusive");
+      }
+    });
+    if (els.length) {
+      if (bases !== 1) {
+        throw new Error(where + " declares " + bases + " base elevations; exactly one must carry " +
+                        "`base: true`, because the plan's own marks ARE that elevation");
+      }
+      if (Math.abs(mix - 1) > 0.001) {
+        throw new Error(where + " elevation takeRates sum to " + mix.toFixed(3) +
+                        ", not 1.000 — they are a mix of the lots, not independent attach rates");
+      }
+    }
+
+    opts.forEach(function (v) {
+      checkCommon(v, "option");
+      if (v.base) throw new Error(where + " option \"" + v.id + "\" is marked base; only an elevation can be");
+      (v.requiresElevation || []).forEach(function (e) {
+        if (!els.some(function (x) { return x.id === e; })) {
+          throw new Error(where + " option \"" + v.id + "\" requires elevation \"" + e + "\", which does not exist");
+        }
+      });
+      (v.excludes || []).forEach(function (o) {
+        if (o === v.id) throw new Error(where + " option \"" + v.id + "\" excludes itself");
+        if (!opts.some(function (x) { return x.id === o; })) {
+          throw new Error(where + " option \"" + v.id + "\" excludes \"" + o + "\", which does not exist");
+        }
+      });
+    });
+
+    return {
+      plan: plan,
+      marksById: marksById,
+      elevations: els.length ? els : [SYNTHETIC_BASE],
+      options: opts,
+      syntheticBase: !els.length
+    };
+  }
+
+  /* every mark this variant moves, including the ones a roof-covering change
+     reaches without naming */
+  function touchesOf(plan, v) {
+    var seen = {}, out = [];
+    function add(id) { if (!hasK(seen, id)) { seen[K(id)] = true; out.push(id); } }
+    Object.keys(v.overrides || {}).forEach(add);
+    (v.remove || []).forEach(add);
+    (v.add || []).forEach(function (m) { add(m.id); });
+    if (v.roofAssemblyKey) {
+      plan.marks.forEach(function (m) { if (takesRoofCovering(m)) add(m.id); });
+      (v.add || []).forEach(function (m) { if (takesRoofCovering(m)) add(m.id); });
+    }
+    return out;
+  }
+
+  /* the read-only reporting shape: `overrides` expanded to every mark that
+     moves, with the authored data kept beside it */
+  function publicVariant(plan, v) {
+    var expanded = {};
+    var removed = {}, added = {};
+    (v.remove || []).forEach(function (id) { removed[K(id)] = true; });
+    (v.add || []).forEach(function (m) { added[K(m.id)] = true; });
+    touchesOf(plan, v).forEach(function (id) {
+      var p = shallowCopy((v.overrides || {})[id] || {});
+      if (hasK(removed, id)) p.removedByVariant = true;
+      if (hasK(added, id)) p.addedByVariant = true;
+      if (v.roofAssemblyKey && !p.roofAssemblyKey) p.roofAssemblyKey = v.roofAssemblyKey;
+      expanded[id] = p;
+    });
+    return {
+      id: v.id,
+      kind: v.kind || (v.base || v.synthetic ? "elevation" : "option"),
+      label: v.label,
+      takeRate: Number(v.takeRate),
+      takeRateCls: "market",
+      base: !!v.base,
+      note: v.note || "",
+      movesNoMember: !!v.movesNoMember,
+      roofAssemblyKey: v.roofAssemblyKey || null,
+      requiresElevation: v.requiresElevation || null,
+      excludes: v.excludes || null,
+      touches: touchesOf(plan, v),
+      /* READ-ONLY: which marks move. Not a patch source — use `declared`. */
+      overrides: expanded,
+      declared: { overrides: v.overrides || {}, add: v.add || [], remove: v.remove || [],
+                  roofAssemblyKey: v.roofAssemblyKey || null }
+    };
+  }
+
+  function elevationById(idx, id) {
+    return idx.elevations.filter(function (e) { return e.id === id; })[0] || null;
+  }
+  function optionById(idx, id) {
+    return idx.options.filter(function (o) { return o.id === id; })[0] || null;
+  }
+  function offeredOn(option, elevation) {
+    return !option.requiresElevation || option.requiresElevation.indexOf(elevation.id) !== -1;
+  }
+  function compatible(a, b) {
+    return (a.excludes || []).indexOf(b.id) === -1 && (b.excludes || []).indexOf(a.id) === -1;
+  }
+
+  /* "c+opt-tile" -> the elevation and the options, validated as a buildable
+     combination. An empty/absent id is the base elevation with no options. */
+  function partsOf(plan, variantId) {
+    var idx = variantIndex(plan);
+    var raw = (variantId === undefined || variantId === null) ? "" : String(variantId);
+    var ids = raw.length ? raw.split("+") : [];
+    var el;
+    if (!ids.length) {
+      el = idx.elevations.filter(function (e) { return e.base; })[0] || idx.elevations[0];
+    } else {
+      el = elevationById(idx, ids[0]);
+      if (!el) {
+        throw new Error("plan " + plan.id + " has no elevation \"" + ids[0] + "\" (variant \"" +
+                        raw + "\"); a variant id is elevation first, then options");
+      }
+    }
+    var seen = {}, options = [];
+    ids.slice(1).forEach(function (oid) {
+      var o = optionById(idx, oid);
+      if (!o) throw new Error("plan " + plan.id + " has no option \"" + oid + "\" (variant \"" + raw + "\")");
+      if (hasK(seen, oid)) throw new Error("variant \"" + raw + "\" names option \"" + oid + "\" twice");
+      seen[K(oid)] = true;
+      if (!offeredOn(o, el)) {
+        throw new Error("option \"" + oid + "\" is not offered on elevation \"" + el.id + "\"");
+      }
+      options.forEach(function (p) {
+        if (!compatible(p, o)) {
+          throw new Error("options \"" + p.id + "\" and \"" + oid + "\" are mutually exclusive");
+        }
+      });
+      options.push(o);
+    });
+    return { idx: idx, elevation: el, options: options, all: [el].concat(options) };
+  }
+
+  function descriptorFor(plan, elId, optIds) {
+    var vid = [elId].concat(optIds || []).join("+");
+    var p = partsOf(plan, vid);
+    var take = Number(p.elevation.takeRate);
+    p.options.forEach(function (o) { take *= Number(o.takeRate); });
+    var touches = {}, order = [], roofKey = null, notes = [];
+    p.all.forEach(function (v) {
+      touchesOf(plan, v).forEach(function (id) {
+        if (!hasK(touches, id)) { touches[K(id)] = true; order.push(id); }
+      });
+      if (v.roofAssemblyKey) roofKey = v.roofAssemblyKey;
+      if (v.note) notes.push({ from: v.id, label: v.label, text: v.note });
+    });
+    return {
+      id: vid,
+      planId: plan.id,
+      kind: "combination",
+      label: p.all.map(function (v) { return v.label; }).join(" + "),
+      elevationId: p.elevation.id,
+      optionIds: p.options.map(function (o) { return o.id; }),
+      isBase: !!p.elevation.base && !p.options.length,
+      takeRate: take,
+      takeRateCls: "market",
+      takeRateBasis: "Elevation mix x option attach rates, treated as independent and conditional " +
+                     "on the elevation. It is the share of lots that include ALL of these parts, " +
+                     "not the share configured exactly this way. [market] — a commercial estimate " +
+                     "with no code standing.",
+      lotsExpected: isFinite(plan.lots) ? Math.round(plan.lots * take) : null,
+      touches: order,
+      movesNoMember: order.length === 0,
+      roofAssemblyKey: roofKey,
+      notes: notes
+    };
+  }
+
+  function variantsFor(plan, opts) {
+    opts = opts || {};
+    var idx = variantIndex(plan);
+    var mode = opts.combos || "single";
+    var combos = [];
+
+    idx.elevations.forEach(function (el) {
+      combos.push(descriptorFor(plan, el.id, []));
+      if (mode === "none") return;
+      var offered = idx.options.filter(function (o) { return offeredOn(o, el); });
+      offered.forEach(function (o) { combos.push(descriptorFor(plan, el.id, [o.id])); });
+
+      if (mode === "all") {
+        /* full power set, size >= 2, honouring excludes */
+        var n = offered.length, mask, i, pick;
+        for (mask = 0; mask < (1 << n); mask++) {
+          pick = [];
+          for (i = 0; i < n; i++) if (mask & (1 << i)) pick.push(offered[i]);
+          if (pick.length < 2) continue;
+          var ok = true;
+          pick.forEach(function (a) {
+            pick.forEach(function (b) { if (a !== b && !compatible(a, b)) ok = false; });
+          });
+          if (ok) combos.push(descriptorFor(plan, el.id, pick.map(function (o) { return o.id; })));
+        }
+      } else {
+        /* Pairs are not decoration. A revision comes from two options landing on
+           the SAME mark from opposite directions — tile driving a header deeper
+           while an 8 ft head height caps how deep it may be. Emit exactly those. */
+        for (var a = 0; a < offered.length; a++) {
+          for (var b = a + 1; b < offered.length; b++) {
+            if (!compatible(offered[a], offered[b])) continue;
+            var ta = touchesOf(plan, offered[a]), tb = touchesOf(plan, offered[b]);
+            var shares = ta.some(function (id) { return tb.indexOf(id) !== -1; });
+            if (shares) combos.push(descriptorFor(plan, el.id, [offered[a].id, offered[b].id]));
+          }
+        }
+      }
+    });
+
+    return {
+      planId: plan.id,
+      declaresVariants: !idx.syntheticBase || !!idx.options.length,
+      elevations: idx.elevations.map(function (v) { return publicVariant(plan, v); }),
+      options: idx.options.map(function (v) { return publicVariant(plan, v); }),
+      combinations: combos,
+      combos: mode,
+      solvedFor: plan.variant ? (plan.variant.label || plan.variant.id) : undefined,
+      lots: isFinite(plan.lots) ? plan.lots : null,
+      note: "Elevations are mutually exclusive and their takeRates are the lot mix. Options are " +
+            "independent attach rates. Both are [market] estimates and neither has code standing. " +
+            "`combinations` is what the builder actually builds; feed each id to planForVariant() " +
+            "and the result straight to FM.solver.solvePlan()."
+    };
+  }
+
+  function applyTo(out, patch) {
+    var k;
+    for (k in patch) if (Object.prototype.hasOwnProperty.call(patch, k)) out[k] = patch[k];
+    return out;
+  }
+
+  function resolveMark(plan, mark, parts, variantId) {
+    var out = shallowCopy(mark);
+    parts.all.forEach(function (v) {
+      /* the variant's roof covering, unless the mark names its own */
+      if (v.roofAssemblyKey && !out.roofAssemblyKey) out.roofAssemblyKey = v.roofAssemblyKey;
+      var patch = (v.overrides || {})[mark.id];
+      if (patch) applyTo(out, patch);
+    });
+    if (variantId) { out.variantId = variantId; out.baseMarkId = mark.id; }
+    return out;
+  }
+
+  function markFor(plan, markId, variantId) {
+    var parts = partsOf(plan, variantId);
+    var removed = false, found = null;
+    parts.all.forEach(function (v) {
+      (v.remove || []).forEach(function (id) { if (id === markId) removed = true; });
+      (v.add || []).forEach(function (m) { if (m.id === markId) found = m; });
+    });
+    if (removed) return null;
+    if (!found) found = parts.idx.marksById[K(markId)] || null;
+    if (!found) return null;
+    return resolveMark(plan, found, parts, variantId);
+  }
+
+  function planForVariant(plan, variantId) {
+    if (plan.ofPlan) {
+      throw new Error("plan " + plan.id + " is already a variant of " + plan.ofPlan +
+                      " — take variants of the master set, not of a variant");
+    }
+    var parts = partsOf(plan, variantId);
+    var d = descriptorFor(plan, parts.elevation.id, parts.options.map(function (o) { return o.id; }));
+
+    var removed = {}, adds = [], addSeen = {};
+    parts.all.forEach(function (v) {
+      (v.remove || []).forEach(function (id) { removed[K(id)] = v.id; });
+      (v.add || []).forEach(function (m) {
+        if (hasK(addSeen, m.id)) {
+          throw new Error("variant \"" + d.id + "\" of plan " + plan.id + " adds mark \"" + m.id +
+                          "\" from two parts at once");
+        }
+        addSeen[K(m.id)] = true;
+        adds.push(m);
+      });
+    });
+
+    var marks = [];
+    plan.marks.forEach(function (mk) {
+      if (hasK(removed, mk.id)) return;
+      marks.push(resolveMark(plan, mk, parts, d.id));
+    });
+    adds.forEach(function (mk) {
+      if (hasK(removed, mk.id)) return;
+      marks.push(resolveMark(plan, mk, parts, d.id));
+    });
+
+    return merge(plan, {
+      id: plan.id + "--" + d.id.replace(/[^a-zA-Z0-9._-]+/g, "-"),
+      name: plan.name + " · " + d.label,
+      summary: plan.summary + " — " + d.label,
+      marks: marks,
+      variant: d,
+      ofPlan: plan.id,
+      lots: d.lotsExpected === null ? plan.lots : d.lotsExpected
+    });
+  }
+
+  function variantPlansFor(plan, opts) {
+    return variantsFor(plan, opts).combinations.map(function (v) {
+      return planForVariant(plan, v.id);
+    });
+  }
+
+  /* the drivers a simple-span uniformly loaded member's demand is monotone in.
+     Bigger is worse for all of them except maxDepthIn, where smaller is. */
+  var ENVELOPE_DRIVERS = ["span", "trib", "dead", "live", "roofLoad"];
+
+  /* two variants are only comparable by driver if they are the same KIND of
+     member — the same deflection row, duration factor, service condition and
+     bracing assumption. Otherwise the capacity side moves too and dominance on
+     the load side proves nothing. */
+  function regimeOf(d) {
+    return [d.carries, d.memberUse, d.roofType, d.repetitive ? 1 : 0,
+            d.wet ? 1 : 0, d.braced ? 1 : 0, d.treated ? 1 : 0].join("/");
+  }
+
+  function envelopeFor(plan, markId, pack, opts) {
+    var vs = variantsFor(plan, opts).combinations;
+    var rows = vs.map(function (v) {
+      var row = { variantId: v.id, label: v.label, takeRate: v.takeRate,
+                  lotsExpected: v.lotsExpected, present: true, sized: false };
+      var mk = markFor(plan, markId, v.id);
+      if (!mk) {
+        row.present = false;
+        row.note = "Not built in this variant.";
+        return row;
+      }
+      row.mark = mk;
+      var appl = applicability(mk, pack);
+      if (!appl.applicable) {
+        row.notSized = { reason: appl.reason, note: appl.note };
+        return row;
+      }
+      var d = demandFor(mk, plan, pack);
+      row.sized = true;
+      row.demand = d;
+      row.regime = regimeOf(d);
+      row.drivers = {
+        span: Number(d.span) || 0,
+        trib: Number(d.trib) || 0,
+        dead: Number(d.dead) || 0,
+        live: Number(d.live) || 0,
+        roofLoad: Number(d.roofLoad) || 0,
+        bearing: Number(d.bearing) || 0,
+        maxDepthIn: d.maxDepthIn === undefined || d.maxDepthIn === null ? Infinity : Number(d.maxDepthIn)
+      };
+      return row;
+    });
+
+    var sized = rows.filter(function (r) { return r.sized; });
+    var out = {
+      planId: plan.id, markId: markId, packId: pack.id,
+      variants: rows,
+      builtOn: rows.filter(function (r) { return r.present; }).length,
+      absentOn: rows.filter(function (r) { return !r.present; }).map(function (r) { return r.variantId; }),
+      sizedOn: sized.length
+    };
+
+    if (!sized.length) {
+      out.split = false;
+      out.governedBy = null;
+      out.note = "This mark is not sized in any variant — see the per-variant reason. Nothing to " +
+                 "envelope.";
+      return out;
+    }
+
+    /* worst value of each driver, and who supplies it */
+    var worst = {};
+    ["span", "trib", "dead", "live", "roofLoad", "bearing", "maxDepthIn"].forEach(function (k) {
+      var smallerIsWorse = (k === "maxDepthIn" || k === "bearing");
+      var best = null;
+      sized.forEach(function (r) {
+        var v = r.drivers[k];
+        if (best === null || (smallerIsWorse ? v < best : v > best)) best = v;
+      });
+      worst[k] = { value: best, smallerIsWorse: smallerIsWorse,
+                   by: sized.filter(function (r) { return r.drivers[k] === best; })
+                            .map(function (r) { return r.variantId; }) };
+    });
+    out.drivers = worst;
+
+    var regimes = {};
+    sized.forEach(function (r) { regimes[K(r.regime)] = true; });
+    var oneRegime = Object.keys(regimes).length === 1;
+
+    function dominates(a, b) {
+      var ok = true;
+      ENVELOPE_DRIVERS.forEach(function (k) { if (a.drivers[k] < b.drivers[k]) ok = false; });
+      if (a.drivers.bearing > b.drivers.bearing) ok = false;      /* less bearing is worse */
+      if (a.drivers.maxDepthIn > b.drivers.maxDepthIn) ok = false; /* less depth budget is worse */
+      return ok;
+    }
+
+    var gov = oneRegime ? sized.filter(function (a) {
+      return sized.every(function (b) { return a === b || dominates(a, b); });
+    })[0] : null;
+
+    if (gov) {
+      out.split = false;
+      out.governedBy = gov.variantId;
+      out.governing = gov;
+      out.note = "One variant governs: \"" + gov.label + "\" is at least as severe as every other " +
+                 "buildable variant on span, tributary, dead, live and roof load, gives away no " +
+                 "bearing and no depth budget, and is the same kind of member (" + gov.regime +
+                 "). Demand is monotone in each of those and the capacity side is identical, so a " +
+                 "member that passes this variant passes all " + sized.length + ". Size this one " +
+                 "and the master set is covered.";
+    } else {
+      out.split = true;
+      out.governedBy = null;
+      out.note = "NO SINGLE VARIANT GOVERNS" +
+        (oneRegime ? ". " : " — and the variants are not even the same kind of member (" +
+                     Object.keys(regimes).length + " regimes), so the capacity side moves too. ") +
+        "The drivers pull in different directions across the set, so there is no one demand that " +
+        "covers it. This tool will NOT compose a maximum out of them: the worst span from one " +
+        "elevation with the worst tributary from another is a member for a house nobody builds, " +
+        "and it ships the extra depth on every lot. Size each variant — " +
+        "FM.solver.solvePlan(FM.weights.planForVariant(plan, id), pack) — and take the deepest " +
+        "pick. The per-variant demands are in `variants` and the worst value of each driver, with " +
+        "the variant that supplies it, is in `drivers`.";
+    }
+    return out;
+  }
 
   /* ---------------- assembly ---------------- */
 
@@ -4105,7 +5036,14 @@ var FM = (function () {
     UNIFY_BONUS: UNIFY_BONUS,
     INCISED_WHEN_TREATED: INCISED_WHEN_TREATED,
     policyFor: policyFor, demandFor: demandFor, applicability: applicability,
-    packById: packById, planById: planById
+    packById: packById, planById: planById,
+
+    /* master sets — see the contract block above variantsFor() */
+    variantsFor: variantsFor,
+    planForVariant: planForVariant,
+    variantPlansFor: variantPlansFor,
+    markFor: markFor,
+    envelopeFor: envelopeFor
   };
 })();
 
@@ -5238,11 +6176,22 @@ var FM = (function () {
       elsewhere and it grows, so it is rendered from the array.
 
    And a schedule for a MASTER SET — one stamped plan reused across
-   elevations and options — that does not say which variant it covers is
-   not a usable document. Where weights.js exposes variantsFor(), the
-   record names the variant and partitions the marks that move across
-   the set from the ones that do not. Where it does not, none of that
-   is guessed at and the record is unchanged.
+   elevations and options — that does not say which combination it
+   covers is not a usable document. The record names the combination it
+   was solved for, says in terms that it is one combination and not an
+   envelope, partitions the marks that move across the set from the ones
+   that do not, lists the marks a variant ADDS or REMOVES, and — the
+   question the master set exists to ask — reports per mark whether the
+   combination solved here is the one that GOVERNS it, or whether the
+   member printed above was sized against a case that is not the worst
+   one the builder will build.
+
+   It reads FM.weights.variantsFor() and envelopeFor() where they exist
+   and the plan's own `elevations` / `options` where they do not, and it
+   emits nothing at all for a plan that declares neither. What it must
+   never do is infer: a variant's effect is read from what the variant
+   declares, and any key it declares that this file does not model is
+   printed as a plan-wide change rather than silently dropped.
    ============================================================ */
 
 (function () {
@@ -5314,92 +6263,193 @@ var FM = (function () {
 
   /* ---------------- master sets ----------------
 
-     A production plan is one stamped set reused across elevations and options.
-     `weights.js` exposes them as FM.weights.variantsFor(plan). The helper is
-     not in every build, so everything below is written to return null rather
-     than guess — a schedule with no variant section is the old schedule,
-     byte for byte. When it IS present, a schedule that does not name the
-     elevation and option set it covers is not a usable document, and the
-     solver optimises one demand per mark, so it is not an envelope either. */
+     A production plan is one stamped set reused across elevations and options,
+     and `weights.js` now models that properly: `variantsFor(plan)` returns the
+     elevations, the options, and — the number that matters — the
+     COMBINATIONS the builder actually builds, each with its expected lot
+     count and the marks it `touches`. `envelopeFor(plan, markId, pack)` says
+     which combination governs a given mark, or that no single one does.
+
+     This section exists because a schedule for a master set that does not say
+     which variant it covers is not a usable document, and because the solver
+     sizes ONE combination at a time. If the members below were sized for a
+     combination that does not govern a mark, that is the revision D11 warns
+     about, and it should be visible on the schedule rather than discovered at
+     framing.
+
+     Everything is read through the helpers where they exist and through the
+     plan's own `elevations` / `options` where they do not. A plan that
+     declares neither exports exactly as it always did. Nothing is inferred:
+     a key a variant declares that this file does not model is printed rather
+     than dropped. */
+
+  var VARIANT_META = { id: 1, kind: 1, type: 1, label: 1, name: 1, base: 1, isBase: 1,
+                       "default": 1, takeRate: 1, takeRateCls: 1, takeRateBasis: 1, note: 1,
+                       notes: 1, overrides: 1, markOverrides: 1, declared: 1, touches: 1,
+                       add: 1, adds: 1, remove: 1, removes: 1, geometry: 1, movesNoMember: 1,
+                       requiresElevation: 1, excludes: 1, planId: 1, elevationId: 1,
+                       optionIds: 1, lotsExpected: 1, roofAssemblyKey: 1 };
+
+  function idsOf(v) {
+    var ids = [];
+    if (!v) return ids;
+    if (isArr(v)) v.forEach(function (o) {
+      if (o === null || o === undefined) return;
+      ids.push(String(typeof o === "object" ? (o.id || o.mark || o.markId || "(unnamed)") : o));
+    });
+    else if (typeof v === "object") Object.keys(v).forEach(function (k) { ids.push(String(k)); });
+    return ids;
+  }
 
   function normVariant(v, kind) {
     if (!v || typeof v !== "object") return null;
-    var over = v.overrides || v.markOverrides || v.marks || null, ids = [];
-    if (over && typeof over === "object") {
-      if (isArr(over)) {
-        over.forEach(function (o) {
-          var mid = o && (o.mark || o.markId || o.id);
-          if (mid) ids.push(String(mid));
-        });
-      } else {
-        Object.keys(over).forEach(function (k) { ids.push(String(k)); });
-      }
-    }
     var tr = Number(v.takeRate);
+    var decl = (v.declared && typeof v.declared === "object") ? v.declared : v;
+    /* `touches` is the helper's resolved answer and already accounts for a
+       plan-wide change such as a roof-assembly swap; fall back to the raw
+       override keys only when it is absent */
+    var touches = isArr(v.touches) ? v.touches.map(String)
+                                   : idsOf(v.overrides || v.markOverrides || null);
+    var wide = [];
+    Object.keys(v).forEach(function (k) {
+      if (Object.prototype.hasOwnProperty.call(VARIANT_META, k)) return;
+      var val = v[k];
+      if (val === null || val === undefined || val === false) return;
+      wide.push(k + (typeof val === "object" ? "" : " = " + String(val)));
+    });
+    if (v.roofAssemblyKey) wide.push("roof assembly → " + String(v.roofAssemblyKey));
     return {
       id: str(v.id, str(v.name, str(v.label, "(unnamed)"))),
       label: str(v.label, str(v.name, str(v.id, ""))),
       kind: kind,
-      takeRate: isFinite(tr) && v.takeRate !== undefined && v.takeRate !== null ? tr : null,
-      base: !!(v.base || v.isBase || v['default']),
-      marks: ids
+      takeRate: (v.takeRate === undefined || v.takeRate === null || !isFinite(tr)) ? null : tr,
+      lots: isFinite(Number(v.lotsExpected)) ? Number(v.lotsExpected) : null,
+      base: !!(v.base || v.isBase || v["default"]),
+      movesNoMember: !!v.movesNoMember,
+      marks: touches,
+      added: idsOf(decl.add || decl.adds || null),
+      removed: idsOf(decl.remove || decl.removes || null),
+      planWide: wide
     };
   }
 
-  function variantInfo(plan, opts) {
-    if (!FM.weights || typeof FM.weights.variantsFor !== "function") return null;
-    var raw;
-    try { raw = FM.weights.variantsFor(plan); } catch (e) { return null; }
-    if (!raw || typeof raw !== "object") return null;
+  function variantInfo(plan, pack, opts) {
+    /* A plan materialised by planForVariant() carries the combination it is and
+       an `ofPlan` back-reference — which is an ID STRING, not the object. The
+       master set is that plan, and computing the envelope against the variant
+       plan instead silently answers a different question: it reports the
+       variant as its own base and names the wrong governing combination. */
+    var master = plan;
+    if (plan && plan.ofPlan) {
+      if (plan.ofPlan.marks) master = plan.ofPlan;
+      else if (FM.weights && typeof FM.weights.planById === "function") {
+        var back = null;
+        try { back = FM.weights.planById(String(plan.ofPlan)); } catch (e) { back = null; }
+        if (back && back.marks) master = back;
+      }
+    }
+    var raw = null, viaHelper = false;
+    if (FM.weights && typeof FM.weights.variantsFor === "function") {
+      try { raw = FM.weights.variantsFor(master); viaHelper = !!raw; } catch (e) { raw = null; }
+    }
+    if (!raw && (isArr(master.elevations) || isArr(master.options))) {
+      raw = { elevations: master.elevations, options: master.options };
+    }
+    if (!raw || typeof raw !== "object" || isArr(raw) === false && raw.declaresVariants === false) {
+      if (!raw || typeof raw !== "object") return null;
+    }
 
-    var elevations = [], options = [];
-    function take(v) {
-      /* an entry that prices a take rate is an option; anything else is an
-         elevation. Classify from the entry, not from the key we found it under,
-         so a flat list works too. */
-      var kind = str(v && (v.kind || v.type)) ||
-                 ((v && v.takeRate !== undefined && v.takeRate !== null) ? "option" : "elevation");
+    var elevations = [], options = [], combinations = [];
+    function take(v, fallbackKind) {
+      var kind = str(v && (v.kind || v.type), fallbackKind || "elevation");
       var n = normVariant(v, kind === "option" ? "option" : "elevation");
-      if (!n) return;
-      (n.kind === "option" ? options : elevations).push(n);
+      if (n) (n.kind === "option" ? options : elevations).push(n);
     }
-    if (isArr(raw)) raw.forEach(take);
+    if (isArr(raw)) raw.forEach(function (v) { take(v, "elevation"); });
     else {
-      if (isArr(raw.elevations)) raw.elevations.forEach(function (v) { take(v); });
-      if (isArr(raw.options)) raw.options.forEach(function (v) { take(v); });
-      if (isArr(raw.variants)) raw.variants.forEach(take);
-    }
-    if (!elevations.length && !options.length) return null;
-
-    /* which one the members below were actually solved for */
-    var sf = (opts && opts.variant) || (!isArr(raw) && (raw.solvedFor || raw.current)) ||
-             plan.variant || plan.variantId || plan.elevation || null;
-    var solvedFor = null;
-    if (sf && typeof sf === "object") solvedFor = str(sf.label, str(sf.name, str(sf.id, "")));
-    else if (sf) solvedFor = String(sf);
-    if (!solvedFor) {
-      var b = elevations.filter(function (e) { return e.base; })[0];
-      if (b) solvedFor = b.label || b.id;
-    }
-
-    /* a mark any variant overrides is a mark that moves across the set */
-    var by = {}, order = [];
-    elevations.concat(options).forEach(function (v) {
-      v.marks.forEach(function (mid) {
-        var k = " " + mid;                     /* author strings as keys */
-        if (!Object.prototype.hasOwnProperty.call(by, k)) { by[k] = []; order.push(mid); }
-        by[k].push((v.kind === "option" ? "option " : "elevation ") + (v.label || v.id));
+      if (isArr(raw.elevations)) raw.elevations.forEach(function (v) { take(v, "elevation"); });
+      if (isArr(raw.options)) raw.options.forEach(function (v) { take(v, "option"); });
+      if (isArr(raw.variants)) raw.variants.forEach(function (v) { take(v, "elevation"); });
+      if (isArr(raw.combinations)) raw.combinations.forEach(function (c) {
+        var n = normVariant(c, "combination");
+        if (n) combinations.push(n);
       });
+    }
+    if (!elevations.length && !options.length && !combinations.length) return null;
+
+    /* which combination the members below were solved for */
+    var sf = (opts && opts.variant) || plan.variant || plan.variantId || plan.elevation ||
+             (!isArr(raw) && (raw.solvedFor || raw.current)) || null;
+    var solvedId = null, solvedFor = null, solvedIsBase = false;
+    if (sf && typeof sf === "object") { solvedId = str(sf.id); solvedFor = str(sf.label, str(sf.name, solvedId)); }
+    else if (sf) { solvedId = String(sf); solvedFor = solvedId; }
+    if (solvedId) {
+      var hit = combinations.filter(function (c) { return c.id === solvedId; })[0] ||
+                elevations.concat(options).filter(function (c) { return c.id === solvedId; })[0];
+      if (hit) { solvedFor = hit.label || hit.id; solvedIsBase = hit.base; }
+    }
+    if (!solvedId) {
+      var b = combinations.filter(function (c) { return c.base; })[0] ||
+              elevations.filter(function (e) { return e.base; })[0];
+      if (b) { solvedId = b.id; solvedFor = b.label || b.id; solvedIsBase = true; }
+    }
+
+    var all = elevations.concat(options);
+
+    var by = {}, order = [];
+    function note(map, list, mid, txt) {
+      var k = " " + mid;                                  /* author strings as keys */
+      if (!Object.prototype.hasOwnProperty.call(map, k)) { map[k] = []; list.push(mid); }
+      if (map[k].indexOf(txt) === -1) map[k].push(txt);
+    }
+    all.forEach(function (v) {
+      var who = (v.kind === "option" ? "option " : "elevation ") + (v.label || v.id);
+      v.marks.forEach(function (mid) { note(by, order, mid, who); });
     });
-    var changing = order.map(function (mid) { return { mark: mid, by: by[" " + mid] }; });
+    var changing = order.map(function (mid) { return { mark: mid, by: by[" " + mid] }; });
+
+    var addBy = {}, addOrder = [], remBy = {}, remOrder = [];
+    all.forEach(function (v) {
+      var who = (v.kind === "option" ? "option " : "elevation ") + (v.label || v.id);
+      v.added.forEach(function (mid) { note(addBy, addOrder, mid, who); });
+      v.removed.forEach(function (mid) { note(remBy, remOrder, mid, who); });
+    });
+
     var changed = {};
-    order.forEach(function (mid) { changed[" " + mid] = true; });
+    order.forEach(function (mid) { changed[" " + mid] = true; });
     var common = plan.marks.filter(function (mk) {
-      return !Object.prototype.hasOwnProperty.call(changed, " " + mk.id);
+      return !Object.prototype.hasOwnProperty.call(changed, " " + mk.id);
     }).map(function (mk) { return mk.id; });
 
-    return { elevations: elevations, options: options, solvedFor: solvedFor,
-             declared: !!sf, changing: changing, common: common };
+    /* and the question a master set exists to ask: for each mark, is the
+       combination this schedule was solved for the one that governs it? */
+    var envelope = null;
+    if (FM.weights && typeof FM.weights.envelopeFor === "function" && pack) {
+      envelope = [];
+      plan.marks.forEach(function (mk) {
+        var e;
+        try { e = FM.weights.envelopeFor(master, mk.id, pack); } catch (err) { return; }
+        if (!e) return;
+        envelope.push({
+          mark: mk.id,
+          sizedOn: Number(e.sizedOn) || 0,
+          builtOn: Number(e.builtOn) || 0,
+          split: !!e.split,
+          governedBy: e.governedBy ? String(e.governedBy) : null,
+          isHere: !!(solvedId && e.governedBy && String(e.governedBy) === solvedId)
+        });
+      });
+      if (!envelope.length) envelope = null;
+    }
+
+    return { elevations: elevations, options: options, combinations: combinations,
+             solvedFor: solvedFor, solvedId: solvedId, declared: !!sf,
+             solvedIsBase: solvedIsBase, viaHelper: viaHelper,
+             lots: (!isArr(raw) && isFinite(Number(raw.lots))) ? Number(raw.lots) : null,
+             changing: changing,
+             added: addOrder.map(function (m) { return { mark: m, by: addBy[" " + m] }; }),
+             removed: remOrder.map(function (m) { return { mark: m, by: remBy[" " + m] }; }),
+             common: common, envelope: envelope };
   }
 
   /* ---------------- the record ---------------- */
@@ -5416,7 +6466,7 @@ var FM = (function () {
     say(rule("="));
     say("Plan          : " + plan.name + " — " + plan.summary);
     say("Region pack   : " + pack.name + " · " + pack.markets);
-    var vi = variantInfo(plan, opts);
+    var vi = variantInfo(plan, pack, opts);
     if (vi) {
       say("Variant       : " + (vi.solvedFor ? vi.solvedFor : "NOT DECLARED — base marks as the plan carries them") +
           "   (master set — see MASTER SET)");
@@ -5463,56 +6513,129 @@ var FM = (function () {
     /* ---- which of the master set's variants this actually is ---- */
     if (vi) {
       block("MASTER SET — WHAT THIS SCHEDULE COVERS");
-      say("  Solved for   : " + (vi.solvedFor ? vi.solvedFor : "NOT DECLARED"));
-      say("  Master set   : " + vi.elevations.length + " elevation(s), " + vi.options.length + " option(s)");
+      say("  Solved for   : " + (vi.solvedFor ? vi.solvedFor : "NOT DECLARED") +
+          (vi.solvedIsBase ? "   [the declared base case]" : ""));
+      say("  Master set   : " + vi.elevations.length + " elevation(s) x " +
+          vi.options.length + " option(s)" +
+          (vi.combinations.length ? " = " + vi.combinations.length + " buildable combination(s)" : "") +
+          (vi.lots === null ? "" : "   over " + comma(vi.lots) + " lots"));
+      if (!vi.viaHelper) {
+        say("  Read from    : the plan's own `elevations` / `options` declarations");
+      }
       say();
-      if (!vi.declared && !vi.solvedFor) {
+      if (!vi.declared && !vi.solvedId) {
         say("  ** THE VARIANT IS NOT DECLARED. The members were solved from the plan's");
         say("     base marks. Do not issue this against a specific elevation or option");
         say("     set until the variant is named. **");
         say();
       }
-      say("  ** ONE VARIANT, NOT AN ENVELOPE. The solver optimises one demand per mark.");
-      say("     The members above are sized for the variant named here and for nothing");
-      say("     else. Sizing a base elevation and letting an option move a bearing is");
-      say("     how a revision gets manufactured. **");
+      say("  ** ONE COMBINATION, NOT AN ENVELOPE. The solver optimises one demand per");
+      say("     mark, and the marks it was given are this combination's. Sizing a base");
+      say("     elevation and letting an option move a bearing is how a revision gets");
+      say("     manufactured after permit. **");
       say();
-      if (vi.elevations.length) {
-        say("  ELEVATIONS");
-        vi.elevations.forEach(function (e) {
-          say("      " + pad(e.label || e.id, 26) + (e.base ? "[base]  " : "        ") +
-              (e.marks.length ? "overrides " + e.marks.length + " mark(s): " + e.marks.join(", ")
-                              : "no mark overrides declared"));
+
+      /* one renderer for elevations and options alike — an elevation carries a
+         take rate too, and both can move a member */
+      function variantRows(title, list) {
+        if (!list.length) return;
+        say("  " + title);
+        list.forEach(function (v) {
+          var effect = [];
+          if (v.marks.length) effect.push("touches " + v.marks.length + ": " + v.marks.join(", "));
+          if (v.added.length) effect.push("ADDS " + v.added.length + ": " + v.added.join(", "));
+          if (v.removed.length) effect.push("REMOVES " + v.removed.length + ": " + v.removed.join(", "));
+          v.planWide.forEach(function (k) { effect.push("PLAN-WIDE: " + k); });
+          if (!effect.length) {
+            effect.push(v.movesNoMember ? "declared to move no member this engine sizes"
+                        : (v.base ? "the stamped base case — what the marks below were sized as"
+                                  : "no change declared"));
+          } else if (v.movesNoMember) {
+            effect.push("declared to move no member this engine sizes");
+          }
+          var head = "      " + pad(v.label || v.id, 46) +
+                     pad(v.takeRate === null ? "take rate —" : "take " + n2(v.takeRate * 100, 0) + "%", 11) +
+                     (v.base ? "[base]" : "");
+          say(head.replace(/\s+$/, ""));
+          wrap(effect.join(" · "), 64).forEach(function (x) { say("          " + x); });
         });
         say();
       }
-      if (vi.options.length) {
-        say("  OPTIONS");
-        vi.options.forEach(function (o) {
-          say("      " + pad(o.label || o.id, 26) +
-              pad(o.takeRate === null ? "take rate —" : "take rate " + n2(o.takeRate * 100, 0) + "%", 18) +
-              (o.marks.length ? "overrides " + o.marks.length + " mark(s): " + o.marks.join(", ")
-                              : "no mark overrides declared"));
+      variantRows("ELEVATIONS", vi.elevations);
+      variantRows("OPTIONS", vi.options);
+
+      /* the question the master set exists to ask */
+      if (vi.envelope) {
+        var off = vi.envelope.filter(function (e) {
+          return e.sizedOn > 0 && !e.isHere && (e.split || e.governedBy);
+        });
+        say("  DOES THIS COMBINATION GOVERN? — per mark, across all " +
+            vi.combinations.length + " combination(s)");
+        say("  " + rule("-").slice(0, 76));
+        say("  " + pad("MARK", 12) + pad("GOVERNING COMBINATION", 40) + "THIS SCHEDULE");
+        vi.envelope.forEach(function (e) {
+          var gov, verdict;
+          if (!e.sizedOn) { gov = "not sized in any combination"; verdict = "—"; }
+          else if (e.split) { gov = "NO SINGLE COMBINATION GOVERNS"; verdict = "NOT THE ENVELOPE"; }
+          else if (!e.governedBy) { gov = "—"; verdict = "—"; }
+          else { gov = e.governedBy; verdict = e.isHere ? "governs" : "NOT THE GOVERNING CASE"; }
+          say("  " + pad(e.mark, 12) + pad(gov, 40) + verdict);
         });
         say();
+        if (off.length) {
+          wrap("** " + off.length + " mark(s) above are governed by a combination this schedule " +
+               "was NOT solved for. The member printed for each of them is adequate for THIS " +
+               "combination and was not checked against the one that governs. Re-run the " +
+               "schedule for the governing combination before the set is issued, or size the " +
+               "envelope. **", 74, "  ").forEach(function (x) { say("  " + x); });
+          say();
+        }
+        say("  \"Governs\" compares the DEMAND drivers — span, tributary, dead, live, roof");
+        say("  load, bearing and depth budget — and names a combination only where one is");
+        say("  at least as severe as every other on all of them. It is a comparison of");
+        say("  demands, not of members: no member was re-solved for another combination.");
+        say();
       }
+
       say("  MARKS THAT CHANGE ACROSS THE MASTER SET — " + vi.changing.length);
-      if (!vi.changing.length) say("      (none declared)");
+      if (!vi.changing.length) say("      (no variant touches a mark)");
       vi.changing.forEach(function (c) {
         var onPlan = plan.marks.filter(function (mk) { return mk.id === c.mark; })[0];
         /* wrap() collapses whitespace, so the mark column is applied outside it */
-        wrap((onPlan ? "" : "(not a mark on this plan) ") + "moved by: " + c.by.join(", "), 58)
+        wrap((onPlan ? "" : "(not a mark on this combination) ") + "moved by: " + c.by.join(", "), 58)
           .forEach(function (x, i) { say("      " + (i ? pad("", 14) : pad(c.mark, 14)) + x); });
       });
       say();
+
+      if (vi.added.length) {
+        say("  MARKS A VARIANT ADDS — " + vi.added.length);
+        vi.added.forEach(function (c) {
+          var onPlan = plan.marks.filter(function (mk) { return mk.id === c.mark; })[0];
+          wrap((onPlan ? "on this combination · " : "NOT ON THIS COMBINATION — NOT SIZED ABOVE · ") +
+               "added by: " + c.by.join(", "), 58)
+            .forEach(function (x, i) { say("      " + (i ? pad("", 14) : pad(c.mark, 14)) + x); });
+        });
+        say("      A mark that is not on the base sheet has nobody checking it. Run the");
+        say("      schedule for the variant that adds it.");
+        say();
+      }
+      if (vi.removed.length) {
+        say("  MARKS A VARIANT REMOVES — " + vi.removed.length);
+        vi.removed.forEach(function (c) {
+          wrap("removed by: " + c.by.join(", "), 58)
+            .forEach(function (x, i) { say("      " + (i ? pad("", 14) : pad(c.mark, 14)) + x); });
+        });
+        say();
+      }
+
       say("  MARKS COMMON TO EVERY VARIANT — " + vi.common.length);
       if (!vi.common.length) say("      (none)");
       else wrap(vi.common.join(", "), 68).forEach(function (x) { say("      " + x); });
       say();
-      say("  A mark is listed as common because NO variant declares an override on it.");
+      say("  A mark is listed as common because no variant declares that it touches it.");
       say("  That is a statement about the declared inputs, not a re-check: nothing here");
       say("  was re-solved against every variant, and a shared input that moves — a plate");
-      say("  height, a truss direction — still moves a mark nobody overrode.");
+      say("  height, a truss direction, a roof assembly — still moves a mark nobody named.");
     }
 
     /* ---- the members ---- */
@@ -6459,14 +7582,33 @@ var FM = (function () {
 /* ============================================================
    Sizing — the solver's surface.
 
-   Three questions this view has to answer, in order:
+   Four questions this view has to answer, in order:
      1. What member did it pick, and by how much did it pass?
      2. What did it reject, and why — including what it never
         evaluated, and on what grounds.
      3. What changes when the same plan is built in another state?
+     4. What changes when the buyer picks the other elevation, or
+        the tile roof, or the bonus room?
 
    A recommendation with no visible runner-up is a black box, which
-   is the thing this product exists not to be.
+   is the thing this product exists not to be. The same applies to
+   an option that moves a bearing: a schedule that only sizes the
+   base case is how a post-permit revision gets manufactured.
+
+   MASTER-SET CONTRACT (weights.js) — read defensively, all of it
+   optional. Nothing extra renders unless BOTH of these are true:
+     · FM.weights.variantsFor(plan) exists and returns variants;
+     · FM.weights.demandFor accepts a 4th argument (variant id),
+       or a probe shows a variant actually moves a demand.
+   variantsFor(plan) may return {elevations:[], options:[]},
+   {variants:[]}, or a flat array. An entry may be a string id or
+   an object with id|key|code|name, label|name|title, takeRate
+   (0-1 or 0-100), note|description, and marks|overrides (object
+   keyed by mark id, or an array of ids) — every field optional.
+   demandFor(mark, plan, pack, variantId) takes one id; whether it
+   also takes an ARRAY of ids (an elevation + an option together)
+   is probed at runtime and the picker falls back to one-at-a-time
+   when it is not honoured.
    ============================================================ */
 
 (function () {
@@ -6483,21 +7625,347 @@ var FM = (function () {
     return "$" + FM.comma(n);
   }
   function utilClass(d) { return d > 1 ? "is-fail" : (d > 0.9 ? "is-warn" : "is-pass"); }
+  function plural(n, one, many) { return String(n) + " " + (n === 1 ? one : many); }
+  function own(o, k) {
+    return o && Object.prototype.hasOwnProperty.call(o, k) ? o[k] : undefined;
+  }
+  /* author-supplied ids never touch a bare object key */
+  function key(s) { return "k:" + String(s); }
+  function isArr(x) { return Object.prototype.toString.call(x) === "[object Array]"; }
 
   /* every number in a pack says what kind of number it is */
-  function classBadge(cls) {
-    var m = {
-      code:   { c: "b-blue", t: "Code" },
-      site:   { c: "b-warn", t: "Site" },
-      market: { c: "b-mute", t: "Market" }
-    }[cls];
-    if (!m) return null;
-    return el("span", { class: "badge " + m.c, style: "margin-left:6px", text: m.t });
+  var CLASSES = {
+    code:   { c: "b-blue", t: "Code" },
+    site:   { c: "b-warn", t: "Site" },
+    market: { c: "b-mute", t: "Market" }
+  };
+  function classBadgeHtml(cls) {
+    var m = own(CLASSES, cls);
+    if (!m) return "";
+    return " <span class='badge " + m.c + "' style='margin-left:6px'>" + m.t + "</span>";
   }
 
   function spacingText(cand) {
     return cand.spacing ? cand.spacing + "″ o.c." : "single";
   }
+  function skuText(cand) {
+    return cand.size + " " + cand.species + " " + cand.grade;
+  }
+  var SHORT = [["Southern Pine", "SYP"], ["Spruce-Pine-Fir", "SPF"],
+               ["Douglas Fir-Larch", "DF-L"], ["Hem-Fir", "Hem-Fir"]];
+  function shortSku(s) {
+    var out = String(s), i;
+    for (i = 0; i < SHORT.length; i++) out = out.replace(SHORT[i][0], SHORT[i][1]);
+    return out;
+  }
+  /* six column headings have to fit on one board */
+  function shortPack(p) {
+    var parts = String(p.name).split(" · ");
+    var region = parts.length > 1 ? parts[1] : parts[0];
+    region = region.replace("High-Velocity Hurricane Zone", "HVHZ")
+                   .replace(" corridor", "").replace("Mountains", "Mtns");
+    var st = p.states && p.states.length ? p.states.join("/") : "";
+    return (st ? st + " " : "") + region;
+  }
+
+  /* the four first-class escalation statuses, each named for what a
+     reader has to DO about it */
+  var ESC = {
+    "escalate:strength":    { t: "No section reaches it", b: "strength" },
+    "escalate:bearing":     { t: "Bearing — a detailing fix, not a bigger member", b: "bearing" },
+    "escalate:geometry":    { t: "Will not fit the depth budget", b: "geometry" },
+    "escalate:procurement": { t: "Procurement, not engineering", b: "procurement" },
+    "escalate:scope":       { t: "Beyond solid sawn", b: "scope" },
+    "escalate:input":       { t: "Nothing was checked — the demand is not numeric", b: "input" }
+  };
+  function escInfo(status) {
+    return own(ESC, status) ||
+      { t: "Beyond solid sawn", b: String(status || "escalate").replace("escalate:", "") };
+  }
+
+  var NA = {
+    component:       { t: "Manufactured component", c: "b-blue" },
+    "wall-system":   { t: "Not a wood member here", c: "b-blue" },
+    "out-of-scope":  { t: "Out of this engine's scope", c: "b-warn" },
+    underdetermined: { t: "Not sized — tributary not derivable", c: "b-warn" }
+  };
+  function naInfo(reason) {
+    return own(NA, reason) || { t: "Not this engine's member", c: "b-blue" };
+  }
+
+  /* a DCR bar with the firm's own target marked on it */
+  function dcrMeter(dcr, target, governing) {
+    var kids = [el("span", {
+      class: "meter-fill " + (dcr > 1 ? "fail" : (dcr > 0.9 ? "warn" : "")),
+      style: "display:block;width:" + Math.max(0, Math.min(100, dcr * 100)) + "%"
+    })];
+    if (isFinite(target)) {
+      kids.push(el("span", { class: "meter-cap",
+        style: "left:" + Math.max(0, Math.min(100, target * 100)) + "%" }));
+    }
+    return el("div", { class: "meter" }, [
+      el("div", { class: "meter-bar" }, kids),
+      el("div", { class: "meter-legend" }, [
+        el("span", { text: "0.00" }),
+        el("span", { text: "DCR " + fmt(dcr, 3) + " · " + (governing || "governing") +
+                           (isFinite(target) ? " · firm target " + fmt(target, 2) : "") }),
+        el("span", { text: "1.00" })
+      ])
+    ]);
+  }
+
+  /* ============================================================
+     Master set — elevations and options
+     ============================================================ */
+
+  var MAX_VARIANTS = 8;      /* an envelope, not a combinatorial explosion */
+  var MCACHE = {};           /* plan+pack -> computed envelope; the data is static */
+
+  function normVariant(v, kind) {
+    if (v === null || v === undefined) return null;
+    if (typeof v === "string") {
+      return { id: v, label: v, kind: kind, takeRate: null, note: null, marks: null };
+    }
+    if (typeof v !== "object") return null;
+    var id = v.id || v.key || v.code || v.name;
+    if (!id) return null;
+    var tr = Number(v.takeRate);
+    if (!isFinite(tr)) tr = null; else if (tr > 1) tr = tr / 100;
+    var marks = null, mv = v.marks || v.overrides || v.markOverrides;
+    if (mv && typeof mv === "object") {
+      marks = isArr(mv)
+        ? mv.map(function (x) { return typeof x === "string" ? x : (x && (x.id || x.mark)); })
+        : Object.keys(mv);
+      marks = marks.filter(Boolean);
+    }
+    return {
+      id: String(id),
+      label: String(v.label || v.name || v.title || id),
+      kind: kind,
+      takeRate: tr,
+      note: v.note || v.description || null,
+      marks: marks && marks.length ? marks : null
+    };
+  }
+
+  function variantGroups(plan) {
+    if (!FM.weights || typeof FM.weights.variantsFor !== "function") return null;
+    var raw;
+    try { raw = FM.weights.variantsFor(plan); } catch (e) { return null; }
+    if (!raw) return null;
+
+    var groups = [];
+    function add(kind, label, list) {
+      if (!isArr(list)) return;
+      var items = [];
+      list.forEach(function (v) { var n = normVariant(v, kind); if (n) items.push(n); });
+      if (items.length) groups.push({ kind: kind, label: label, items: items });
+    }
+    if (isArr(raw)) {
+      var elev = [], opts = [], other = [];
+      raw.forEach(function (v) {
+        var k = (v && (v.kind || v.type)) || "";
+        if (k === "elevation") elev.push(v);
+        else if (k === "option") opts.push(v);
+        else other.push(v);
+      });
+      add("elevation", "Elevation", elev);
+      add("option", "Option", opts);
+      add("variant", "Variant", other);
+    } else if (typeof raw === "object") {
+      add("elevation", "Elevation", raw.elevations);
+      add("option", "Option", raw.options);
+      add("variant", "Variant", raw.variants);
+    }
+    return groups.length ? groups : null;
+  }
+
+  /* Compared on a fixed field list rather than on object identity, so a
+     re-ordered demand object is not reported as a change. */
+  var DFIELDS = [
+    ["span", "span", " ft", 1], ["trib", "tributary", " ft", 1],
+    ["tribRoof", "roof tributary", " ft", 1], ["tribFloor", "floor tributary", " ft", 1],
+    ["dead", "dead", " psf", 1], ["live", "floor live", " psf", 0],
+    ["roofLoad", "roof load", " psf", 0], ["bearing", "bearing", " in", 2],
+    ["maxDepthIn", "depth budget", " in", 2]
+  ];
+  var DFLAGS = [["carries", "carries"], ["memberUse", "deflection row"], ["roofType", "roof case"],
+                ["wet", "wet service"], ["treated", "treated"], ["braced", "braced"],
+                ["repetitive", "repetitive"]];
+
+  function demandSig(d) {
+    if (!d) return "";
+    var out = [], i;
+    for (i = 0; i < DFIELDS.length; i++) out.push(String(d[DFIELDS[i][0]]));
+    for (i = 0; i < DFLAGS.length; i++) out.push(String(d[DFLAGS[i][0]]));
+    return out.join("|");
+  }
+  function demandDelta(a, b) {
+    var out = [];
+    if (!a || !b) return out;
+    DFIELDS.forEach(function (f) {
+      var x = Number(a[f[0]]), y = Number(b[f[0]]);
+      if (!isFinite(x) && !isFinite(y)) return;
+      if (x === y) return;
+      out.push(f[1] + " " + fmt(x, f[3]) + " → " + fmt(y, f[3]) + f[2]);
+    });
+    DFLAGS.forEach(function (f) {
+      if (a[f[0]] === b[f[0]]) return;
+      if (a[f[0]] === undefined && b[f[0]] === undefined) return;
+      out.push(f[1] + " " + String(a[f[0]]) + " → " + String(b[f[0]]));
+    });
+    return out;
+  }
+
+  function safeDemand(mark, plan, pack, vid) {
+    try {
+      return vid === null || vid === undefined
+        ? FM.weights.demandFor(mark, plan, pack)
+        : FM.weights.demandFor(mark, plan, pack, vid);
+    } catch (e) { return null; }
+  }
+
+  /* Solve one mark under one variant, mirroring solvePlan's own order:
+     applicability first, then demand, then the search. */
+  function solveOne(mark, plan, pack, vid) {
+    var appl = FM.weights.applicability
+      ? FM.weights.applicability(mark, pack) : { applicable: true };
+    if (!appl.applicable) return { na: appl.reason };
+    var d = safeDemand(mark, plan, pack, vid);
+    if (!d) return { error: true };
+    var sol;
+    try { sol = FM.solver.size(d, FM.weights.policyFor(pack, plan, mark.role)); }
+    catch (e) { return { error: true, demand: d }; }
+    return { demand: d, sol: sol, pick: sol && sol.pick ? sol.pick : null };
+  }
+
+  /* Does this build accept an elevation AND an option in one call? If a
+     single id moves a demand but the pair does not, it does not — and the
+     picker becomes one-at-a-time rather than quietly reporting "nothing
+     moves" for a combination it never actually asked about. */
+  function comboHonoured(plan, pack, groups) {
+    if (groups.length < 2) return false;
+    function mover(items) {
+      var i, j, m, base, alt;
+      for (i = 0; i < items.length; i++) {
+        for (j = 0; j < plan.marks.length; j++) {
+          m = plan.marks[j];
+          base = safeDemand(m, plan, pack, null);
+          if (!base) continue;
+          alt = safeDemand(m, plan, pack, items[i].id);
+          if (alt && demandSig(alt) !== demandSig(base)) return { v: items[i], mark: m, base: base };
+        }
+      }
+      return null;
+    }
+    var a = mover(groups[0].items), b = mover(groups[1].items);
+    if (!a || !b) return false;
+    var pair = safeDemand(a.mark, plan, pack, [a.v.id, b.v.id]);
+    return !!(pair && demandSig(pair) !== demandSig(a.base));
+  }
+
+  /* one variant (or one combination) against the base case */
+  function deltaFor(plan, pack, vid, base) {
+    var rows = [], moved = 0, escalated = 0, recovered = 0, demandOnly = 0;
+    plan.marks.forEach(function (mk) {
+      var b = own(base, key(mk.id));
+      if (!b || b.na) return;                       /* not this engine's member either way */
+      var r = solveOne(mk, plan, pack, vid);
+      if (r.na || r.error) return;
+      var was = b.pick ? skuText(b.pick.cand) : null;
+      var now = r.pick ? skuText(r.pick.cand) : null;
+      var why = demandDelta(b.demand, r.demand);
+      var state = null;
+      if (was && !now) { state = "escalates"; escalated++; }
+      else if (!was && now) { state = "recovers"; recovered++; }
+      else if (was && now && (was !== now ||
+               (b.pick.cand.spacing || 0) !== (r.pick.cand.spacing || 0))) { state = "moves"; moved++; }
+      else if (why.length) { state = "holds"; demandOnly++; }
+      if (!state) return;
+      rows.push({
+        mark: mk, state: state, was: was, now: now,
+        wasSpacing: b.pick ? b.pick.cand.spacing : null,
+        nowSpacing: r.pick ? r.pick.cand.spacing : null,
+        wasDcr: b.pick ? b.pick.dcr : null, nowDcr: r.pick ? r.pick.dcr : null,
+        why: why, note: r.sol && r.sol.note ? r.sol.note : null
+      });
+    });
+    var order = { escalates: 0, moves: 1, recovers: 2, holds: 3 };
+    rows.sort(function (x, y) { return order[x.state] - order[y.state]; });
+    return { rows: rows, moved: moved, escalated: escalated,
+             recovered: recovered, demandOnly: demandOnly };
+  }
+
+  /* The envelope: every variant on record, solved, cached per plan+pack. */
+  function masterSet(plan, pack, groups) {
+    var ck = key(plan.id + "|" + pack.id);
+    var hit = own(MCACHE, ck);
+    if (hit) return hit;
+
+    var flat = [];
+    groups.forEach(function (g) {
+      g.items.forEach(function (it) { if (flat.length < MAX_VARIANTS) flat.push(it); });
+    });
+    var truncated = 0;
+    groups.forEach(function (g) { truncated += g.items.length; });
+    truncated = truncated - flat.length;
+
+    var base = {};
+    plan.marks.forEach(function (mk) {
+      var r = solveOne(mk, plan, pack, null);
+      base[key(mk.id)] = { na: r.na || null, pick: r.pick || null, demand: r.demand || null };
+    });
+
+    var perVariant = flat.map(function (v) {
+      return { variant: v, delta: deltaFor(plan, pack, v.id, base) };
+    });
+
+    /* union across the whole master set — the envelope a builder buys to */
+    var envelope = {};
+    perVariant.forEach(function (pv) {
+      pv.delta.rows.forEach(function (r) {
+        if (r.state === "holds") return;
+        var k = key(r.mark.id);
+        if (!own(envelope, k)) envelope[k] = { mark: r.mark, hits: [] };
+        envelope[k].hits.push({ variant: pv.variant, state: r.state, now: r.now,
+                                nowSpacing: r.nowSpacing, why: r.why });
+      });
+    });
+    var envRows = [];
+    plan.marks.forEach(function (mk) {
+      var e = own(envelope, key(mk.id));
+      if (e) envRows.push(e);
+    });
+
+    var out = { base: base, groups: groups, variants: flat, perVariant: perVariant,
+                envRows: envRows, truncated: truncated,
+                combo: comboHonoured(plan, pack, groups) };
+    MCACHE[ck] = out;
+    return out;
+  }
+
+  /* Is the variant argument actually wired through? If demandFor does not
+     take it and no probe moves a demand, this whole surface stays dark
+     rather than reporting a master set nobody solved. */
+  function masterAvailable(plan, pack, groups) {
+    if (!groups || !FM.weights || typeof FM.weights.demandFor !== "function") return false;
+    if (FM.weights.demandFor.length >= 4) return true;
+    var i, j, base, alt;
+    for (i = 0; i < groups.length; i++) {
+      for (j = 0; j < groups[i].items.length; j++) {
+        var m = plan.marks[0];
+        if (!m) return false;
+        base = safeDemand(m, plan, pack, null);
+        alt = safeDemand(m, plan, pack, groups[i].items[j].id);
+        if (base && alt && demandSig(base) !== demandSig(alt)) return true;
+      }
+    }
+    return false;
+  }
+
+  /* ============================================================
+     The view
+     ============================================================ */
 
   FM.VIEWS.sizing = function (host) {
     if (!FM.solver || !FM.weights) {
@@ -6507,8 +7975,9 @@ var FM = (function () {
     }
 
     var state = FM.state.sizing || (FM.state.sizing = {
-      packId: "nc-piedmont", planId: "sunbelt-ranch-1850", open: null, tab: "schedule"
+      packId: "nc-piedmont", planId: "sunbelt-ranch-1850", open: null, tab: "schedule", sel: {}
     });
+    if (!state.sel) state.sel = {};
 
     host.appendChild(FM.pageHead("Sizing",
       "One plan, solved against a region. The engine decides what passes; the weights only rank what already did.", [
@@ -6548,14 +8017,40 @@ var FM = (function () {
     host.appendChild(body);
 
     packSel.addEventListener("change", function () { state.packId = this.value; state.open = null; draw(); });
-    planSel.addEventListener("change", function () { state.planId = this.value; state.open = null; draw(); });
+    planSel.addEventListener("change", function () {
+      state.planId = this.value; state.open = null; state.sel = {}; draw();
+    });
     Array.prototype.forEach.call(tabs.querySelectorAll("button"), function (b) {
       b.addEventListener("click", function () { state.tab = b.getAttribute("data-tab"); draw(); });
     });
 
+    /* a table row that opens a detail is a disclosure, and announces as one */
+    function openRow(id, label, cells) {
+      var isOpen = state.open === id;
+      function toggle() { state.open = isOpen ? null : id; draw(); }
+      return el("tr", {
+        class: "clickable", tabindex: "0", role: "button",
+        "aria-expanded": isOpen ? "true" : "false",
+        "aria-label": (isOpen ? "Hide" : "Show") + " the search record for " + id + " " + label,
+        onclick: toggle,
+        onkeydown: function (e) {
+          if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggle(); }
+        }
+      }, cells);
+    }
+
+    function line(text, note) {
+      var kids = [el("span", { text: text })];
+      if (note) kids.push(el("span", { class: "clause", text: note }));
+      return el("p", { style: "font-size:.85rem;color:var(--muted);margin:12px 0 8px" }, kids);
+    }
+
     /* ---------- schedule ---------- */
 
     function drawSchedule(res, pack, plan) {
+      /* The wind note leads. It is the largest single thing this engine does
+         not do in three of the six markets, and it does not get to be a
+         footnote under a table of members. */
       if (pack.governs === "wind") {
         body.appendChild(el("div", { class: "banner banner-warn" }, [
           el("strong", { text: "Gravity only — " }),
@@ -6569,95 +8064,206 @@ var FM = (function () {
       }
 
       var r = res.rollup;
+      var escMarks = res.marks.filter(function (m) {
+        return !m.notApplicable && !(m.unifiedTo || (m.solution && m.solution.pick));
+      });
+      var naMarks = res.marks.filter(function (m) { return m.notApplicable; });
+
       if (!r.complete) {
+        var reasons = [];
+        if (r.escalated) {
+          reasons.push(plural(r.escalated, "mark", "marks") + " escalated (" +
+            escMarks.map(function (m) { return m.mark.id; }).join(", ") + ")");
+        }
+        if (r.notApplicable) {
+          reasons.push(plural(r.notApplicable, "mark is", "marks are") + " not this engine's member");
+        }
+        if (pack.governs === "wind") reasons.push("wind governs in this market and is not checked here");
+        /* if the solver ever adds a reason this view does not model, say it anyway */
+        var known = { "marks escalated": 1, "marks removed as not this engine's member": 1,
+                      "wind governs in this market and is not checked here": 1 };
+        if (r.incompleteBecause && !own(known, r.incompleteBecause)) reasons.push(r.incompleteBecause);
+        if (!reasons.length) reasons.push(r.incompleteBecause || "see the notes below");
+
         body.appendChild(el("div", { class: "banner banner-warn" }, [
           el("strong", { text: "Not a complete schedule — " }),
-          el("span", { text: r.incompleteBecause + ". Do not read the solved marks as a finished design." })
+          el("span", { text: reasons.join("; ") + ". Do not read the sized marks as a finished design." })
         ]));
       }
-      body.appendChild(el("div", { class: "grid g5", style: "margin-bottom:16px" }, [
-        FM.statCard(String(r.solved) + "/" + plan.marks.length, "Marks solved", r.escalated ? "warn" : "pass"),
+
+      body.appendChild(el("div", { class: "grid g5", style: "margin-bottom:6px" }, [
+        FM.statCard(String(r.solved) + "/" + plan.marks.length, "Marks sized", r.complete ? "pass" : "gold"),
         FM.statCard(String(r.escalated), "Escalated", r.escalated ? "fail" : ""),
         FM.statCard(String(r.notApplicable), "Not this engine", "blue"),
         FM.statCard(String(r.skuCount), "Distinct SKUs"),
-        FM.statCard(usd0(r.lumberUSD), "Modelled cost / house")
+        FM.statCard(usd0(r.lumberUSD), "Lumber $ / house")
       ]));
+
+      body.appendChild(line(
+        plural(plan.marks.length, "mark", "marks") + " on this plan" +
+        (plan.lots ? ", built on " + plural(plan.lots, "lot", "lots") : "") + ". " +
+        r.solved + " sized, " + r.escalated + " escalated, " + r.notApplicable +
+        " not this engine's member. " + plural(r.skuCount, "distinct SKU", "distinct SKUs") +
+        " across the sized marks.",
+        "lumber $ is placeholder-priced and covers the sized marks only"));
+
+      /* ---- master set: what an elevation or an option does to this schedule ---- */
+      var groups = variantGroups(plan);
+      var ms = groups && masterAvailable(plan, pack, groups)
+        ? masterSet(plan, pack, groups) : null;
+      var current = ms ? drawMasterSet(ms, plan, pack) : null;
 
       var tb = el("tbody");
       res.marks.forEach(function (m) {
         var row = m.unifiedTo || (m.solution && m.solution.pick);
-        var cells;
+        var cells, tr;
+
         if (m.notApplicable) {
+          var na = naInfo(m.notApplicable.reason);
           cells = [
             el("td", { class: "k", text: m.mark.id }),
             el("td", { text: m.mark.label }),
             el("td", { colspan: "4" }, [
-              el("span", { class: "badge " + (m.notApplicable.reason === "out-of-scope" || m.notApplicable.reason === "underdetermined" ? "b-warn" : "b-blue"),
-                text: { component: "Manufactured component", "wall-system": "Not a wood member here",
-                        "out-of-scope": "Out of this engine's scope",
-                        underdetermined: "Not sized — tributary not derivable" }[m.notApplicable.reason] || "Not this engine" }),
-              el("span", { class: "clause", text: m.notApplicable.note })
+              el("span", { class: "badge " + na.c, text: na.t }),
+              el("span", { class: "clause", text: "carried below, not dropped" })
             ]),
             el("td", { class: "n", text: "—" })
           ];
-        } else if (!row) {
-          cells = [
-            el("td", { class: "k", text: m.mark.id }),
-            el("td", { text: m.mark.label }),
-            el("td", { colspan: "4" }, [
-              el("span", { class: "badge b-fail", text: "Escalate" }),
-              el("span", { class: "clause", text: m.solution.note ? m.solution.note.wall + " — " + m.solution.note.move : "" })
-            ]),
-            el("td", { class: "n", text: "—" })
-          ];
-        } else {
-          cells = [
-            el("td", { class: "k", text: m.mark.id }),
-            el("td", { text: m.mark.label }),
-            el("td", {}, [
-              el("span", { text: row.cand.size + " " + row.cand.species + " " + row.cand.grade }),
-              m.unifiedTo ? el("span", { class: "badge b-blue", style: "margin-left:6px", text: "Unified" }) : null
-            ]),
-            el("td", { class: "n", text: spacingText(row.cand) }),
-            el("td", {}, [el("span", { class: "util " + utilClass(row.dcr) }, [
-              el("span", { class: "util-k", text: row.governing }),
-              el("span", { class: "util-v", text: fmt(row.dcr, 3) })
-            ])]),
-            el("td", { class: "n", text: fmt(m.mark.span, 1) + " ft" }),
-            el("td", { class: "n", text: usd(row.cost.totalUSD) })
-          ];
+          /* nothing opens for these — so they are not announced as buttons */
+          tb.appendChild(el("tr", {}, cells));
+          return;
         }
-        var tr = FM.el("tr", {
-          class: "clickable", tabindex: "0", role: "button",
-          "aria-label": "Show search detail for " + m.mark.id,
-          onclick: function () { state.open = state.open === m.mark.id ? null : m.mark.id; draw(); },
-          onkeydown: function (e) {
-            if (e.key === "Enter" || e.key === " ") { e.preventDefault(); state.open = state.open === m.mark.id ? null : m.mark.id; draw(); }
-          }
-        }, cells);
-        tb.appendChild(tr);
+
+        var mv = current ? own(current.byMark, key(m.mark.id)) : null;
+
+        if (!row) {
+          var info = escInfo(m.solution.status);
+          cells = [
+            el("td", { class: "k", text: m.mark.id }),
+            el("td", { text: m.mark.label }),
+            el("td", { colspan: "4" }, [
+              el("span", { class: "badge b-fail", text: "Escalate · " + info.b }),
+              mv && mv.state === "recovers"
+                ? el("span", { class: "badge b-pass", style: "margin-left:6px",
+                               text: "solves on " + current.label + " as " + shortSku(mv.now) }) : null,
+              el("span", { class: "clause", text: m.solution.note ? m.solution.note.move : info.t })
+            ]),
+            el("td", { class: "n", text: "—" })
+          ];
+          tr = openRow(m.mark.id, m.mark.label, cells);
+          tb.appendChild(tr);
+          return;
+        }
+
+        var MVB = { escalates: "b-fail", moves: "b-gold", recovers: "b-pass", holds: "b-mute" };
+        var sel = el("td", {}, [
+          el("span", { text: skuText(row.cand) }),
+          m.unifiedTo ? el("span", { class: "badge b-blue", style: "margin-left:6px", text: "Unified" }) : null,
+          mv ? el("span", {
+            class: "badge " + (own(MVB, mv.state) || "b-mute"),
+            style: "margin-left:6px",
+            text: mv.state === "escalates" ? "no member on " + current.label
+                : (mv.state === "moves" ? "→ " + shortSku(mv.now) + " on " + current.label
+                : "same member, different load")
+          }) : null
+        ]);
+
+        cells = [
+          el("td", { class: "k", text: m.mark.id }),
+          el("td", { text: m.mark.label }),
+          sel,
+          el("td", { class: "n", text: spacingText(row.cand) }),
+          el("td", {}, [el("span", { class: "util " + utilClass(row.dcr) }, [
+            el("span", { class: "util-k", text: row.governing }),
+            el("span", { class: "util-v", text: fmt(row.dcr, 3) })
+          ])]),
+          el("td", { class: "n", text: fmt(m.mark.span, 1) + " ft" }),
+          el("td", { class: "n", text: usd(row.cost.totalUSD) })
+        ];
+        tb.appendChild(openRow(m.mark.id, m.mark.label, cells));
       });
 
       body.appendChild(el("div", { class: "tw", tabindex: "0", role: "region", "aria-label": "Member schedule" }, [
         el("table", {}, [
           el("thead", {}, [el("tr", {}, [
             el("th", { text: "Mark" }), el("th", { text: "Member" }), el("th", { text: "Selected" }),
-            el("th", { class: "n", text: "Spacing" }), el("th", { text: "Governs" }),
-            el("th", { class: "n", text: "Span" }), el("th", { class: "n", text: "Cost" })
+            el("th", { class: "n", text: "Spacing" }), el("th", { text: "Governs · DCR" }),
+            el("th", { class: "n", text: "Span" }), el("th", { class: "n", text: "Cost / pc" })
           ])]),
           tb
         ])
       ]));
+      body.appendChild(el("p", { class: "src-note", style: "margin-top:8px", text:
+        "DCR is demand ÷ capacity at the governing check — 1.00 is the code limit and this pack's firm target is " +
+        fmt(pack.maxDCR, 2) + ". Cost is per piece at placeholder prices. Open any sized or escalated row for the full search record." }));
 
-      /* the open mark's full search record */
-      var openMark = res.marks.filter(function (m) { return m.mark.id === state.open && !m.notApplicable; })[0];
+      /* the open mark's full search record, next to the row that opened it */
+      var openMark = res.marks.filter(function (m) {
+        return m.mark.id === state.open && !m.notApplicable;
+      })[0];
       if (openMark) body.appendChild(drawSearch(openMark));
+
+      /* ---- the actionable sentence, above the fold rather than inside a row ---- */
+      if (escMarks.length) {
+        var eBody = el("div", { style: "display:grid;gap:10px" });
+        escMarks.forEach(function (m) {
+          var info = escInfo(m.solution.status);
+          var n = m.solution.note || {};
+          eBody.appendChild(el("div", { style: "display:grid;gap:4px" }, [
+            el("div", {}, [
+              el("span", { class: "badge b-fail", text: m.mark.id }),
+              el("span", { style: "margin-left:8px;font-weight:650", text: m.mark.label }),
+              el("span", { class: "clause", text: info.t })
+            ]),
+            el("p", { style: "font-size:.86rem" }, [
+              el("strong", { text: "Next move: " }),
+              el("span", { text: n.move || "escalate to an engineer" })
+            ]),
+            el("p", { class: "src-note", text: "Wall: " + (n.wall || "—") }),
+            el("button", {
+              class: "btn btn-sm", style: "justify-self:start",
+              text: state.open === m.mark.id ? "Hide the search record" : "Show the search record",
+              onclick: function () { state.open = state.open === m.mark.id ? null : m.mark.id; draw(); }
+            })
+          ]));
+        });
+        body.appendChild(el("div", { style: "margin-top:16px" }, [
+          card("Escalated — " + plural(escMarks.length, "mark", "marks"),
+            el("span", { class: "badge b-fail", text: "Action required", style: "margin-left:auto" }),
+            eBody,
+            "An escalation is a member this engine could not deliver, not a member that failed quietly. Each one names the wall it hit and the move that clears it.")
+        ]));
+      }
+
+      /* ---- and the marks it will not size at all ---- */
+      if (naMarks.length) {
+        var nBody = el("div", { style: "display:grid;gap:8px" });
+        naMarks.forEach(function (m) {
+          var na = naInfo(m.notApplicable.reason);
+          var note = String(m.notApplicable.note || "");
+          var head = el("summary", {}, [
+            el("span", { class: "badge " + na.c, text: m.mark.id }),
+            el("span", { style: "font-weight:650", text: m.mark.label }),
+            el("span", { class: "clause", text: na.t })
+          ]);
+          nBody.appendChild(el("details", { class: "acc" }, [
+            head, el("div", { class: "acc-body" }, [el("p", { style: "font-size:.84rem", text: note })])
+          ]));
+        });
+        body.appendChild(el("div", { style: "margin-top:16px" }, [
+          card("Not this engine's member — " + plural(naMarks.length, "mark", "marks"),
+            el("span", { class: "badge b-blue", text: "Carried", style: "margin-left:auto" }),
+            nBody,
+            "Carried deliberately. A schedule that omits them reads as if they were fine — each one is somebody's design, just not this engine's.")
+        ]));
+      }
 
       /* SKU unification */
       if (res.unified && res.unified.length) {
         var uRows = res.unified.map(function (u) {
           return {
-            k: esc(u.group) + " <span class='clause'>" + u.skusBefore + " SKUs → 1</span>",
+            k: esc(u.group) + " <span class='clause'>" + u.skusBefore + " SKUs → " +
+               (u.accepted ? u.skusAfter : u.skusBefore) + "</span>",
             v: (u.accepted ? "unified to " + esc(u.target) : "kept separate") +
                " · extra lumber " + usd(u.extraLumberUSD) + " vs SKU saving " + usd(u.skuSavingUSD),
             cls: u.accepted ? "pass" : ""
@@ -6671,11 +8277,205 @@ var FM = (function () {
       }
     }
 
+    /* ---------- master set: the option envelope ---------- */
+
+    function drawMasterSet(ms, plan, pack) {
+      var wrap = el("div", { style: "display:grid;gap:12px" });
+
+      /* the picker */
+      var picks = el("div", { style: "display:grid;gap:8px" });
+      ms.groups.forEach(function (g) {
+        var seg = el("div", { class: "seg", role: "group", "aria-label": g.label });
+        var chosen = own(state.sel, key(g.kind)) || null;
+        seg.appendChild(el("button", {
+          text: "Base", "aria-pressed": chosen ? "false" : "true",
+          onclick: function () { state.sel[key(g.kind)] = null; draw(); }
+        }));
+        g.items.forEach(function (it) {
+          seg.appendChild(el("button", {
+            text: it.label + (it.takeRate !== null ? " · " + Math.round(it.takeRate * 100) + "%" : ""),
+            "aria-pressed": chosen === it.id ? "true" : "false",
+            title: it.note || (it.takeRate !== null ? "Take rate " + Math.round(it.takeRate * 100) + "% of lots" : it.label),
+            onclick: function () {
+              if (!ms.combo) {
+                /* one variant per solve in this build — do not imply otherwise */
+                ms.groups.forEach(function (o) { state.sel[key(o.kind)] = null; });
+              }
+              state.sel[key(g.kind)] = chosen === it.id ? null : it.id;
+              draw();
+            }
+          }));
+        });
+        picks.appendChild(el("div", { style: "display:flex;flex-wrap:wrap;gap:8px;align-items:center" }, [
+          el("span", { class: "badge b-mute", text: g.label }), seg
+        ]));
+      });
+      wrap.appendChild(picks);
+
+      /* what is selected, and what it does */
+      var selIds = [], selLabels = [];
+      ms.groups.forEach(function (g) {
+        var id = own(state.sel, key(g.kind));
+        if (!id) return;
+        var it = g.items.filter(function (x) { return x.id === id; })[0];
+        if (!it) return;
+        selIds.push(it.id); selLabels.push(it.label);
+      });
+
+      var label = selLabels.join(" + ");
+      var delta = null, byMark = {};
+      if (selIds.length === 1) {
+        var pv = ms.perVariant.filter(function (p) { return p.variant.id === selIds[0]; })[0];
+        delta = pv ? pv.delta : deltaFor(plan, pack, selIds[0], ms.base);
+      } else if (selIds.length > 1) {
+        delta = deltaFor(plan, pack, selIds, ms.base);
+      }
+      if (delta) {
+        delta.rows.forEach(function (row) {
+          byMark[key(row.mark.id)] = { state: row.state, now: row.now };
+        });
+      }
+
+      var sizeable = plan.marks.filter(function (mk) {
+        var b = own(ms.base, key(mk.id));
+        return b && !b.na;
+      }).length;
+
+      if (!selIds.length) {
+        wrap.appendChild(el("p", { style: "font-size:.86rem" }, [
+          el("strong", { text: "Base case. " }),
+          el("span", { text: "Pick an elevation or an option above to see what it does to the schedule below. " +
+            "Across the " + plural(ms.variants.length, "variant", "variants") + " on record, " +
+            (ms.envRows.length
+              ? plural(ms.envRows.length, "mark moves", "marks move") + " at least once."
+              : "no mark moves off the base member.") })
+        ]));
+      } else {
+        var moved = delta ? (delta.moved + delta.escalated + delta.recovered) : 0;
+        wrap.appendChild(el("p", { style: "font-size:.86rem" }, [
+          el("strong", { text: label + " — " }),
+          el("span", { text: moved
+            ? moved + " of " + sizeable + " sizeable marks change member" +
+              (delta.escalated ? ", and " + plural(delta.escalated, "mark", "marks") + " no longer solve at all" : "") +
+              (delta.demandOnly ? ". " + plural(delta.demandOnly, "mark carries", "marks carry") + " a different load and holds its member" : "") + "."
+            : "no mark changes member" +
+              (delta && delta.demandOnly ? "; " + plural(delta.demandOnly, "mark carries", "marks carry") + " a different load and holds it" : "") +
+              ". This combination is buildable off the base schedule." })
+        ]));
+      }
+
+      /* the delta table */
+      if (delta && delta.rows.length) {
+        var dtb = el("tbody");
+        delta.rows.forEach(function (row) {
+          var badge = row.state === "escalates"
+            ? el("span", { class: "badge b-fail", text: "no member" })
+            : (row.state === "moves" ? el("span", { class: "badge b-gold", text: "moves" })
+            : (row.state === "recovers" ? el("span", { class: "badge b-pass", text: "now solves" })
+            : el("span", { class: "badge b-mute", text: "holds" })));
+          dtb.appendChild(el("tr", {}, [
+            el("td", { class: "k" }, [el("span", { text: row.mark.id }),
+              el("span", { class: "clause", text: row.mark.label })]),
+            el("td", {}, [badge]),
+            el("td", { text: row.was ? shortSku(row.was) + (row.wasSpacing ? " @ " + row.wasSpacing + "″" : "") : "escalated" }),
+            el("td", {}, [
+              el("span", { text: row.now ? shortSku(row.now) + (row.nowSpacing ? " @ " + row.nowSpacing + "″" : "") : "—" }),
+              row.now && row.nowDcr !== null ? el("span", { class: "clause", text: "DCR " + fmt(row.nowDcr, 2) }) : null
+            ]),
+            el("td", { text: row.why.length ? row.why.join(" · ")
+                             : (row.note ? row.note.wall : "the same demand ranks differently") })
+          ]));
+        });
+        wrap.appendChild(el("div", { class: "tw", tabindex: "0", role: "region", "aria-label": "Variant deltas" }, [
+          el("table", {}, [
+            el("thead", {}, [el("tr", {}, [
+              el("th", { text: "Mark" }), el("th", { text: "Change" }), el("th", { text: "Base" }),
+              el("th", { text: label || "Variant" }), el("th", { text: "What changed in the demand" })
+            ])]), dtb
+          ])
+        ]));
+      }
+
+      /* the envelope across the whole master set */
+      if (ms.envRows.length) {
+        wrap.appendChild(dl(ms.envRows.map(function (e) {
+          var names = {}, out = [];
+          e.hits.forEach(function (h) {
+            var t = h.state === "escalates" ? "no member" : shortSku(h.now || "");
+            if (!own(names, key(t))) { names[key(t)] = 1; out.push(t); }
+          });
+          var b = own(ms.base, key(e.mark.id));
+          return {
+            k: esc(e.mark.id) + " <span class='clause'>" + esc(e.mark.label) + "</span>",
+            v: (b && b.pick ? esc(shortSku(skuText(b.pick.cand))) : "escalated") +
+               " → " + esc(out.join(" / ")) +
+               " <span class='clause'>" + esc(e.hits.map(function (h) { return h.variant.label; }).join(", ")) + "</span>",
+            cls: e.hits.filter(function (h) { return h.state === "escalates"; }).length ? "fail" : "gold"
+          };
+        })));
+      }
+
+      if (!ms.combo && ms.groups.length > 1) {
+        wrap.appendChild(el("p", { class: "src-note", text:
+          "One variant at a time: this build of the weights model takes a single variant per solve, so an elevation " +
+          "and an option cannot be stacked here. The envelope above is the union over each variant taken alone." }));
+      }
+      if (ms.truncated > 0) {
+        wrap.appendChild(el("p", { class: "src-note", text:
+          ms.truncated + " further variant(s) on this plan are not shown — this view solves the first " +
+          MAX_VARIANTS + "." }));
+      }
+
+      body.appendChild(el("div", { style: "margin-bottom:16px" }, [
+        card("Master set · elevations and options",
+          el("span", { class: "badge b-gold", text: plural(ms.variants.length, "variant", "variants"), style: "margin-left:auto" }),
+          wrap,
+          "Each variant is an independent solve against its own demand — no cell is inferred from the base case. " +
+          "Sizing the base and letting an option move a bearing is how a post-permit revision gets manufactured; " +
+          "this is where you find it first.")
+      ]));
+
+      return { byMark: byMark, label: label, ids: selIds };
+    }
+
     /* ---------- the search record for one mark ---------- */
 
     function drawSearch(m) {
-      var sol = m.solution, b = sol.bounds, st = sol.stats;
+      var sol = m.solution, b = sol.bounds, st = sol.stats || {};
       var wrap = el("div", { style: "margin-top:14px;display:grid;gap:12px" });
+      var pick = m.unifiedTo || sol.pick;
+
+      /* the answer first: what was picked, or what stopped it */
+      if (pick) {
+        wrap.appendChild(card("Result · " + m.mark.id + " " + m.mark.label,
+          el("span", { class: "badge b-pass", text: "Sized", style: "margin-left:auto" }),
+          el("div", { style: "display:grid;gap:12px" }, [
+            dcrMeter(pick.dcr, sol.policy ? sol.policy.maxDCR : NaN, pick.governing),
+            dl([
+              { k: "Member", v: esc(skuText(pick.cand)) + " <span class='clause'>" + esc(spacingText(pick.cand)) + "</span>" },
+              { k: "Governing check", v: esc(pick.governing) + " · " + esc(pick.combo || "—"), cls: "gold" },
+              { k: "Cost", v: usd(pick.cost.totalUSD) + " / piece <span class='clause'>placeholder price</span>" },
+              m.unifiedTo ? { k: "Raised by SKU unification", v: "yes <span class='clause'>it passed its own check first</span>" } : null
+            ].filter(Boolean))
+          ]),
+          "The engine decided the DCR. The weights only chose between members that had already passed."));
+      } else if (sol.note) {
+        var info = escInfo(sol.status);
+        wrap.appendChild(card("Escalated · " + m.mark.id + " — " + info.t,
+          el("span", { class: "badge b-fail", text: info.b, style: "margin-left:auto" }),
+          el("div", { style: "display:grid;gap:9px;font-size:.86rem" }, [
+            el("p", {}, [el("strong", { text: "Next move: " }), el("span", { text: sol.note.move })]),
+            el("p", {}, [el("strong", { text: "Wall: " }), el("span", { text: sol.note.wall })]),
+            sol.note.procurement
+              ? el("p", {}, [el("strong", { text: "The member that passes: " }),
+                             el("span", { text: sol.note.procurement })]) : null,
+            sol.note.counts && Object.keys(sol.note.counts).length
+              ? el("p", { class: "clause", text: "checked and failed — " +
+                  Object.keys(sol.note.counts).map(function (k) {
+                    return k + " " + sol.note.counts[k]; }).join(" · ") }) : null,
+            el("p", { class: "src-note", text: sol.note.outOfScope })
+          ].filter(Boolean)), null));
+      }
 
       /* what the search was asked to do */
       wrap.appendChild(card("Demand · " + m.mark.id + " " + m.mark.label, null, dl([
@@ -6687,42 +8487,48 @@ var FM = (function () {
         { k: "Dead", v: fmt(m.demand.dead, 1) + " psf" + (m.demand.repetitive ? " <span class='clause'>includes member self-weight, §1.3(a)</span>" : "") },
         { k: "Floor live", v: fmt(m.demand.live, 0) + " psf" },
         { k: "Roof load", v: fmt(m.demand.roofLoad, 0) + " psf <span class='clause'>" + (m.demand.roofType === "snow" ? "snow · C_D 1.15" : "roof live · C_D 1.25") + "</span>" },
-        { k: "Deflection row", v: esc(b.deflection.row) + " <span class='clause'>L/" + b.deflection.live + " variable, L/" + b.deflection.total + " total</span>" },
+        { k: "Bearing length", v: fmt(m.demand.bearing, 2) + " in <span class='clause'>" + (m.demand.role === "header" ? "jack studs × 1.5 in — declared, never defaulted" : "on a post cap") + "</span>" },
+        b && b.deflection ? { k: "Deflection row", v: esc(b.deflection.row) + " <span class='clause'>L/" + b.deflection.live + " variable, L/" + b.deflection.total + " total</span>" } : null,
         { k: "Service", v: m.demand.wet ? "Wet · MC &gt; 19%" : "Dry" },
+        { k: "Treatment", v: m.demand.treated ? "Treated <span class='clause'>C_i applies · NDS T4.3.8</span>" : "Untreated" },
         { k: "Compression edge", v: m.demand.braced ? "Continuously braced — C_L = 1.0" : "Unbraced — C_L computed from R_B" },
+        { k: "Firm DCR target", v: fmt(sol.policy.maxDCR, 2), cls: "gold" },
         !m.demand.repetitive ? { k: "Self-weight added", v: "§1.3(b) · &gamma; = " + FM.solver.GAMMA_PCF + " pcf <span class='clause'>assumption</span>" } : null
-      ].filter(Boolean)), null));
+      ].filter(Boolean)), "Every value here came from the plan mark and the region pack — none of it is a solver default."));
 
       /* the seed bounds and what they cost the search */
-      wrap.appendChild(card("Search trace", el("span", { class: "badge b-blue", text: st.evaluated + " engine calls", style: "margin-left:auto" }),
-        el("div", { style: "display:grid;gap:10px" }, [
-          el("div", { class: "eq", html:
-            Object.keys(b.bySpacing).map(function (sp) {
-              var x = b.bySpacing[sp];
-              return (sp === "0" ? "single member" : "at " + sp + "&Prime; o.c.") +
-                     ": S_x &ge; " + fmt(x.S_req, 2) + " in&sup3; · I_x &ge; " + fmt(x.I_req, 1) +
-                     " in&#8308; · A &ge; " + fmt(x.A_req, 2) + " in&sup2; · b &ge; " + fmt(x.b_req, 3) + " in";
-            }).join("<br>") + "<br>" +
-            "computed per spacing — a member at 16&Prime; o.c. carries two-thirds of what it carries at 24&Prime;<br>" +
-            "computed against the best material in the palette, C_L = 1, C_M = 1, self-weight omitted — so a section " +
-            "below a bound cannot pass for any material offered"
-          }),
-          dl([
-            { k: "Search space", v: sol.searchSpace + " candidates in " + st.families + " families" },
-            { k: "Cut by seed bounds", v: String(st.prunedByBound) + " <span class='clause'>H1 · admissible</span>" },
-            { k: "Cut by cost dominance", v: String(st.prunedByDominance) + " <span class='clause'>H2 · deeper rung of a family already beaten</span>" },
-            { k: "Cut by incumbent", v: String(st.prunedByIncumbent) + " <span class='clause'>H3 · branch and bound</span>" },
-            { k: "Engine evaluations", v: String(st.evaluated) + (st.cacheHits ? " (+" + st.cacheHits + " cached)" : ""), total: true }
-          ])
-        ]), "Every cut is exact — no candidate was dropped on a guess"));
+      if (b && b.bySpacing) {
+        wrap.appendChild(card("Search trace", el("span", { class: "badge b-blue", text: (st.evaluated || 0) + " engine calls", style: "margin-left:auto" }),
+          el("div", { style: "display:grid;gap:10px" }, [
+            el("div", { class: "eq", html:
+              Object.keys(b.bySpacing).map(function (sp) {
+                var x = b.bySpacing[sp];
+                return (sp === "0" ? "single member" : "at " + sp + "&Prime; o.c.") +
+                       ": S_x &ge; " + fmt(x.S_req, 2) + " in&sup3; · I_x &ge; " + fmt(x.I_req, 1) +
+                       " in&#8308; · A &ge; " + fmt(x.A_req, 2) + " in&sup2; · b &ge; " + fmt(x.b_req, 3) + " in";
+              }).join("<br>") + "<br>" +
+              "computed per spacing — a member at 16&Prime; o.c. carries two-thirds of what it carries at 24&Prime;<br>" +
+              "computed against the best material in the palette, C_L = 1, C_M = 1, self-weight omitted — so a section " +
+              "below a bound cannot pass for any material offered"
+            }),
+            dl([
+              { k: "Search space", v: sol.searchSpace + " candidates in " + (st.families || 0) + " families" },
+              { k: "Cut by seed bounds", v: String(st.prunedByBound || 0) + " <span class='clause'>H1 · admissible</span>" },
+              { k: "Cut by cost dominance", v: String(st.prunedByDominance || 0) + " <span class='clause'>H2 · deeper rung of a family already beaten</span>" },
+              { k: "Cut by incumbent", v: String(st.prunedByIncumbent || 0) + " <span class='clause'>H3 · branch and bound</span>" },
+              { k: "Engine evaluations", v: String(st.evaluated || 0) + (st.cacheHits ? " (+" + st.cacheHits + " cached)" : ""), total: true }
+            ])
+          ]), "Every cut is exact — no candidate was dropped on a guess"));
+      }
 
       /* the feasible ladder */
       if (sol.feasible.length) {
+        var shownF = Math.min(8, sol.feasible.length);
         var ftb = el("tbody");
-        sol.feasible.slice(0, 8).forEach(function (f, i) {
+        sol.feasible.slice(0, shownF).forEach(function (f, i) {
           ftb.appendChild(el("tr", {}, [
             el("td", { class: "k" }, [
-              el("span", { text: f.cand.size + " " + f.cand.species + " " + f.cand.grade }),
+              el("span", { text: skuText(f.cand) }),
               i === 0 ? el("span", { class: "badge b-pass", style: "margin-left:6px", text: "Pick" }) : null
             ]),
             el("td", { class: "n", text: spacingText(f.cand) }),
@@ -6732,29 +8538,35 @@ var FM = (function () {
             el("td", { class: "n", text: usd(f.score) })
           ]));
         });
-        wrap.appendChild(card("Passed the check · ranked", null,
+        var unit = m.demand.repetitive ? "sf" : "pc";
+        wrap.appendChild(card("Passed the check · ranked",
+          el("span", { class: "badge b-mute", text: shownF + " of " + sol.feasible.length, style: "margin-left:auto" }),
           el("div", { class: "tw", tabindex: "0", role: "region", "aria-label": "Feasible members" }, [
             el("table", {}, [
               el("thead", {}, [el("tr", {}, [
                 el("th", { text: "Member" }), el("th", { class: "n", text: "Spacing" }), el("th", { class: "n", text: "DCR" }),
-                el("th", { text: "Governs" }), el("th", { class: "n", text: "Cost" }), el("th", { class: "n", text: "Score" })
+                el("th", { text: "Governs" }), el("th", { class: "n", text: "Cost / pc" }), el("th", { class: "n", text: "Score / " + unit })
               ])]), ftb
             ])
           ]),
-          "Score = cost + a small penalty for unused capacity. The engine decided the DCR column; the weights only ordered the rows."));
+          "Score = cost per " + (m.demand.repetitive ? "square foot of framed area" : "piece") +
+          " plus a small penalty for unused capacity — which is why the cheapest piece is not always the top row. " +
+          "The engine decided the DCR column; the weights only ordered the rows."));
       }
 
       /* why the rest did not make it */
       if (sol.rejected.length) {
+        var shownR = Math.min(10, sol.rejected.length);
         var rtb = el("tbody");
-        sol.rejected.slice(0, 10).forEach(function (rj) {
+        sol.rejected.slice(0, shownR).forEach(function (rj) {
           rtb.appendChild(el("tr", {}, [
-            el("td", { class: "k", text: rj.cand.size + " " + rj.cand.species + " " + rj.cand.grade }),
+            el("td", { class: "k", text: skuText(rj.cand) }),
             el("td", { text: rj.reason }),
             el("td", { text: rj.next || "—" })
           ]));
         });
-        wrap.appendChild(card("Rejected", el("span", { class: "badge b-warn", text: String(sol.rejected.length), style: "margin-left:auto" }),
+        wrap.appendChild(card("Rejected",
+          el("span", { class: "badge b-warn", text: shownR + " of " + sol.rejected.length, style: "margin-left:auto" }),
           el("div", { class: "tw", tabindex: "0", role: "region", "aria-label": "Rejected members" }, [
             el("table", {}, [
               el("thead", {}, [el("tr", {}, [
@@ -6772,19 +8584,6 @@ var FM = (function () {
         ]));
       });
 
-      /* nothing worked */
-      if (!sol.pick && sol.note) {
-        var escLabel = sol.status === "escalate:procurement" ? "Procurement, not engineering"
-          : (sol.status === "escalate:geometry" ? "Will not fit" : "Beyond solid sawn");
-        wrap.appendChild(card("Escalated — " + escLabel, el("span", { class: "badge b-fail", text: sol.status.replace("escalate:", ""), style: "margin-left:auto" }),
-          el("div", { style: "display:grid;gap:9px;font-size:.86rem" }, [
-            el("p", {}, [el("strong", { text: "Wall: " }), el("span", { text: sol.note.wall })]),
-            sol.note.procurement ? el("p", {}, [el("strong", { text: "The member that passes: " }), el("span", { text: sol.note.procurement })]) : null,
-            el("p", {}, [el("strong", { text: "What would move it: " }), el("span", { text: sol.note.move })]),
-            el("p", { class: "src-note", text: sol.note.outOfScope })
-          ]), null));
-      }
-
       /* end reactions — the number the truss and connector designers need */
       if (sol.reactions && sol.reactions.perBearingLb) {
         wrap.appendChild(card("End reactions", el("span", { class: "badge b-blue", text: "Coordination", style: "margin-left:auto" }),
@@ -6796,9 +8595,10 @@ var FM = (function () {
       }
 
       /* the weight breakdown for the pick */
-      var pick = m.unifiedTo || sol.pick;
       if (pick) {
         var t = pick.cost.terms;
+        var perUnit = pick.cost.unitUSD, slack = pick.score - perUnit;
+        var unitName = m.demand.repetitive ? "sf of framed area" : "piece";
         wrap.appendChild(card("Why this one — weight breakdown", null, dl([
           { k: "Material <span class='clause'>" + fmt(pick.cost.boardFeet, 1) + " bf @ " + usd(pick.cost.bfUSD) + "/bf</span>", v: usd(t.material) },
           { k: "Labor <span class='clause'>per piece + " + fmt(pick.cost.weightLb, 0) + " lb handling</span>", v: usd(t.labor) },
@@ -6806,7 +8606,10 @@ var FM = (function () {
           { k: "Structural depth <span class='clause'>plate height, chases, finishes</span>", v: usd(t.depth) },
           { k: "Stock risk <span class='clause'>availability " + fmt(pick.cost.availability, 2) + "</span>", v: usd(t.stock) },
           { k: "Unsourced C_F review <span class='clause'>" + pick.cost.cfBasis + "</span>", v: usd(t.risk) },
-          { k: "Score", v: usd(pick.score), total: true }
+          { k: "Cost per piece", v: usd(pick.cost.totalUSD), total: true },
+          { k: "Cost per " + unitName, v: usd(perUnit) },
+          { k: "Unused capacity <span class='clause'>score − cost, per " + unitName + "</span>", v: usd(slack) },
+          { k: "Score <span class='clause'>the ranked number, per " + unitName + "</span>", v: usd(pick.score), cls: "gold" }
         ]), "Market weights, not code values — they rank passing members and can never promote a failing one"));
       }
 
@@ -6817,34 +8620,51 @@ var FM = (function () {
 
     function drawRegion(pack) {
       var c = pack.climate;
+
+      /* same note, same prominence as the schedule tab — it is not a footnote */
+      if (pack.governs === "wind" && pack.governsNote) {
+        body.appendChild(el("div", { class: "banner banner-warn" }, [
+          el("strong", { text: "Gravity only — " }), el("span", { text: pack.governsNote })
+        ]));
+      }
+
       body.appendChild(el("div", { class: "grid g2" }, [
         card("Site conditions · " + pack.name, el("span", { class: "badge " + (pack.governs === "wind" ? "b-warn" : "b-mute"), text: pack.governs === "wind" ? "Wind governs" : "Gravity governs", style: "margin-left:auto" }),
           el("div", {}, [
             dl([
               { k: "Markets", v: esc(pack.markets) },
-              { k: "Ground snow", v: c.groundSnow.v + " psf" },
-              { k: "Roof live", v: c.roofLive.v + " psf" },
-              { k: "Basic wind", v: c.windMph.v + " mph" },
-              { k: "Exposure", v: esc(c.exposure.v) },
-              { k: "Seismic (SDC)", v: esc(c.sdc.v) },
+              { k: "Code family", v: esc(pack.code ? pack.code.family : "—") + classBadgeHtml(pack.code && pack.code.cls) },
+              { k: "Ground snow", v: c.groundSnow.v + " psf" + classBadgeHtml(c.groundSnow.cls) },
+              { k: "Roof live", v: c.roofLive.v + " psf" + classBadgeHtml(c.roofLive.cls) },
+              { k: "Basic wind", v: c.windMph.v + " mph" + classBadgeHtml(c.windMph.cls) },
+              { k: "Exposure", v: esc(c.exposure.v) + classBadgeHtml(c.exposure.cls) },
+              { k: "Seismic (SDC)", v: esc(c.sdc.v) + classBadgeHtml(c.sdc.cls) },
+              { k: "Foundation", v: esc(pack.foundation || "—") },
+              { k: "Exterior wall", v: esc(pack.exteriorWall || "—") },
+              { k: "Roof framing", v: esc(pack.roofFraming || "—") },
+              { k: "Plate height", v: fmt(pack.plateHeightIn, 2) + " in" },
               { k: "Firm DCR target", v: fmt(pack.maxDCR, 2), cls: "gold" }
             ]),
             el("p", { class: "src-note", style: "margin-top:10px", text:
-              "Snow, wind, exposure and seismic are PLANNING DEFAULTS for laying out a repeatable plan. " +
-              "They are not site values. Replace them from the ASCE 7 Hazard Tool and the AHJ before anything is stamped." })
+              "Code is a published requirement; Site is a value somebody must confirm for the address; Market is a " +
+              "purchasing assumption. Snow, wind, exposure and seismic are PLANNING DEFAULTS for laying out a " +
+              "repeatable plan — not site values. Replace them from the ASCE 7 Hazard Tool and the AHJ before " +
+              "anything is stamped." })
           ]), pack.climate.groundSnow.note || null),
 
         card("Design loads handed to the engine", null, el("div", {}, [
           dl([
-            { k: "Roof assembly", v: esc(FM.weights.ASSEMBLY[pack.loads.roofAssembly].label) + " · " + FM.weights.ASSEMBLY[pack.loads.roofAssembly].psf + " psf" },
+            { k: "Roof assembly <span class='clause'>" + esc(pack.loads.roofAssembly) + "</span>",
+              v: esc(FM.weights.ASSEMBLY[pack.loads.roofAssembly].label) + " · " + FM.weights.ASSEMBLY[pack.loads.roofAssembly].psf + " psf" },
             { k: "Floor assembly", v: esc(FM.weights.ASSEMBLY[pack.loads.floorAssembly].label) + " · " + FM.weights.ASSEMBLY[pack.loads.floorAssembly].psf + " psf" },
             { k: "Ceiling assembly", v: esc(FM.weights.ASSEMBLY[pack.loads.ceilingAssembly].label) + " · " + FM.weights.ASSEMBLY[pack.loads.ceilingAssembly].psf + " psf" },
             { k: "Floor live", v: pack.loads.floorLive + " psf" },
-            { k: "Attic live", v: pack.loads.ceilingLive + " psf" },
+            { k: "Deck live", v: pack.loads.deckLive + " psf" },
+            { k: "Attic live", v: pack.loads.ceilingLive + " psf <span class='clause'>wired, read by no mark</span>" },
             { k: "Design roof load", v: pack.loads.roofLoad + " psf · " + (pack.loads.roofType === "snow" ? "snow, C_D 1.15" : "roof live, C_D 1.25"), cls: "gold" }
           ]),
           el("p", { class: "src-note", style: "margin-top:10px", text: pack.loads.roofLoadBasis })
-        ]), null)
+        ]), "Dead loads are assembly makeups, not single numbers — the makeup travels with the export.")
       ]));
 
       var ptb = el("tbody");
@@ -6854,6 +8674,7 @@ var FM = (function () {
           el("td", { text: p.grade }),
           el("td", { class: "n", text: usd(p.bfUSD) + "/bf" }),
           el("td", { class: "n", text: fmt(p.stockFactor, 2) }),
+          el("td", { class: "n", text: p.cullRate === undefined ? "—" : fmt(p.cullRate * 100, 0) + "%" }),
           el("td", { text: p.note || "" })
         ]));
       });
@@ -6862,89 +8683,242 @@ var FM = (function () {
           el("div", { class: "tw", tabindex: "0", role: "region", "aria-label": "Species palette" }, [
             el("table", {}, [
               el("thead", {}, [el("tr", {}, [
-                el("th", { text: "Species" }), el("th", { text: "Grade" }), el("th", { class: "n", text: "Price" }),
-                el("th", { class: "n", text: "Stock factor" }), el("th", { text: "Note" })
+                el("th", { text: "Species" }), el("th", { text: "Grade" }), el("th", { class: "n", text: "Price $/bf" }),
+                el("th", { class: "n", text: "Stock factor 0–1" }), el("th", { class: "n", text: "Cull" }), el("th", { text: "Note" })
               ])]), ptb
             ])
           ]),
-          "Placeholder prices. Replace with your yard's quoted $/bf — it changes the ranking, never the pass/fail.")
+          "Placeholder prices — replace with your yard's quoted $/bf; price changes the ranking, never the pass/fail. " +
+          "Stock factor does decide feasibility: a member below the availability floor cannot be the pick.")
       ]));
 
       var w = FM.weights.policyFor(pack, null).weights;
       body.appendChild(el("div", { style: "margin-top:16px" }, [
         card("Model weights", el("span", { class: "badge b-mute", text: "Firm-calibrated", style: "margin-left:auto" }), dl([
-          { k: "Material multiplier", v: fmt(w.material, 2) },
-          { k: "Base price fallback", v: usd(w.baseBfUSD) + "/bf" },
-          { k: "Labor per piece", v: usd(w.laborPerPiece) },
-          { k: "Labor per lb handled", v: usd(w.laborPerLb) },
+          { k: "Material multiplier", v: fmt(w.material, 2) + " <span class='clause'>× quoted $/bf</span>" },
+          { k: "Base price fallback", v: usd(w.baseBfUSD) + " /bf" },
+          { k: "Labor per piece", v: usd(w.laborPerPiece) + " /pc" },
+          { k: "Labor per lb handled", v: usd(w.laborPerLb) + " /lb" },
           { k: "Structural depth", v: usd(w.depthPerInchSf) + " /sf per inch" },
           { k: "Stock risk at zero availability", v: usd(w.stockPenaltySf) + " /sf" },
           { k: "Unsourced C_F review", v: usd(w.unsourcedCF) + " /member" },
-          { k: "Unused capacity", v: usd(w.slackPenalty) + " per unit" },
-          { k: "Distinct SKU on the plan", v: usd(w.skuPenalty), cls: "gold" }
+          { k: "Unused capacity", v: usd(w.slackPenalty) + " per unit of slack" },
+          { k: "Distinct SKU on the plan", v: usd(w.skuPenalty) + " /SKU", cls: "gold" }
         ]), "Every weight has a unit. A weight with no unit is one nobody can argue with, which is worse than one that is wrong.")
       ]));
 
-      if (pack.governsNote) {
+      if (pack.service && pack.service.note) {
         body.appendChild(el("div", { style: "margin-top:16px" }, [
-          card("What this pack cannot tell you", el("span", { class: "badge b-warn", text: "Scope", style: "margin-left:auto" }),
-            el("p", { style: "font-size:.86rem", text: pack.governsNote }), null)
+          card("Service condition", el("span", { class: "badge " + (pack.service.exteriorWet ? "b-warn" : "b-mute"), text: pack.service.exteriorWet ? "Exterior wet" : "Dry", style: "margin-left:auto" }),
+            el("p", { style: "font-size:.86rem", text: pack.service.note }), null)
         ]));
       }
     }
 
     /* ---------- repeat matrix ---------- */
 
+    /* Descriptive, never causal: these are the fields on which two packs
+       differ. The pack is what forced the member; this says how it differs. */
+    function packDelta(a, b) {
+      var out = [];
+      if (!a || !b) return out;
+      if (a.loads.roofAssembly !== b.loads.roofAssembly) {
+        out.push(FM.weights.ASSEMBLY[b.loads.roofAssembly].label.toLowerCase() + " " +
+                 FM.weights.ASSEMBLY[b.loads.roofAssembly].psf + " psf vs " +
+                 FM.weights.ASSEMBLY[a.loads.roofAssembly].psf + " psf");
+      }
+      if (a.loads.roofType !== b.loads.roofType) {
+        out.push("roof case " + b.loads.roofType.replace("_", " ") +
+                 " · C_D " + (b.loads.roofType === "snow" ? "1.15" : "1.25"));
+      }
+      if (a.loads.roofLoad !== b.loads.roofLoad) out.push("roof load " + b.loads.roofLoad + " psf vs " + a.loads.roofLoad);
+      if (a.loads.floorLive !== b.loads.floorLive) out.push("floor live " + b.loads.floorLive + " psf vs " + a.loads.floorLive);
+      if (a.maxDCR !== b.maxDCR) out.push("DCR target " + fmt(b.maxDCR, 2) + " vs " + fmt(a.maxDCR, 2));
+      if (a.service.exteriorWet !== b.service.exteriorWet) out.push(b.service.exteriorWet ? "exterior wet service" : "exterior dry service");
+      var pa = a.palette.map(function (p) { return p.species + " " + p.grade; }).join(", ");
+      var pb = b.palette.map(function (p) { return p.species + " " + p.grade; }).join(", ");
+      if (pa !== pb) out.push("a different species palette");
+      if (a.exteriorWall !== b.exteriorWall) out.push("exterior wall " + b.exteriorWall);
+      return out;
+    }
+
     function drawMatrix(plan) {
       var packs = FM.weights.PACKS;
       var cmp = FM.solver.compare(plan, packs);
 
-      body.appendChild(el("div", { class: "grid g5", style: "margin-bottom:16px" }, [
-        FM.statCard(String(cmp.commonMarks), "Same member where applicable", "pass"),
-        FM.statCard(String(cmp.varyingMarks), "Regionally forced", "gold"),
-        FM.statCard(String(cmp.unansweredMarks), "Unanswered anywhere", cmp.unansweredMarks ? "fail" : ""),
-        FM.statCard(String(cmp.solvedMarks) + "/" + plan.marks.length, "Marks with an answer"),
-        FM.statCard(String(packs.length), "Regions compared")
+      /* A mark that is not this engine's member in every region is not
+         "unanswered" — nobody asked this engine the question. Splitting the
+         two keeps a truss out of the same bucket as a girder the solver
+         could not size, without ever letting either read as Common. */
+      var rows = cmp.rows.map(function (row) {
+        var na = 0, none = 0, answered = 0, sizes = {}, mats = {}, spacings = {};
+        row.cells.forEach(function (c) {
+          if (c.notApplicable) { na++; return; }
+          if (!c.sku) { none++; return; }
+          answered++;
+          sizes[key(c.sku.split(" ")[0])] = 1;
+          mats[key(c.sku.split(" ").slice(1).join(" "))] = 1;
+          spacings[key(String(c.spacing || 0))] = 1;
+        });
+        var axes = [];
+        if (Object.keys(sizes).length > 1) axes.push("size");
+        if (Object.keys(mats).length > 1) axes.push("grade");
+        if (Object.keys(spacings).length > 1) axes.push("spacing");
+        var group = row.varies ? "varies"
+          : (row.common ? "common"
+          : (na === row.cells.length ? "na" : "none"));
+        /* the member every region agrees on, so a deviating cell can be marked */
+        var tally = {}, modal = null;
+        row.cells.forEach(function (c) {
+          if (!c.sku) return;
+          var k = key(c.sku + "@" + (c.spacing || 0));
+          tally[k] = (own(tally, k) || 0) + 1;
+          if (!modal || tally[k] > tally[modal]) modal = k;
+        });
+        return { row: row, na: na, none: none, answered: answered,
+                 axes: axes, group: group, modal: modal };
+      });
+
+      var nCommon = rows.filter(function (r) { return r.group === "common"; }).length;
+      var nVaries = rows.filter(function (r) { return r.group === "varies"; }).length;
+      var nNone   = rows.filter(function (r) { return r.group === "none"; }).length;
+      var nNa     = rows.filter(function (r) { return r.group === "na"; }).length;
+
+      body.appendChild(el("div", { class: "grid g5", style: "margin-bottom:6px" }, [
+        FM.statCard(String(nCommon), "Same member everywhere", nCommon ? "pass" : ""),
+        FM.statCard(String(nVaries), "Regionally forced", nVaries ? "gold" : ""),
+        FM.statCard(String(nNone), "No member anywhere", nNone ? "fail" : ""),
+        FM.statCard(String(nNa), "Not this engine, anywhere", "blue"),
+        FM.statCard(String(cmp.solvedMarks) + "/" + plan.marks.length, "Marks with an answer")
       ]));
 
-      var tb = el("tbody");
-      cmp.rows.forEach(function (row) {
-        var cells = [
-          el("td", { class: "k" }, [
-            el("span", { text: row.mark.id }),
-            row.unanswered ? el("span", { class: "badge b-fail", style: "margin-left:6px", text: "Unanswered" })
-              : (row.varies ? el("span", { class: "badge b-gold", style: "margin-left:6px", text: "Varies" })
-                            : el("span", { class: "badge b-pass", style: "margin-left:6px", text: "Common" }))
-          ]),
-          el("td", { text: row.mark.label })
-        ];
-        row.cells.forEach(function (c) {
-          cells.push(el("td", {}, c.notApplicable
-            ? [el("span", { class: "badge b-blue", text: c.note === "component" ? "component" : "n/a" })]
-            : c.sku
-            ? [el("span", { text: c.sku.replace(" Southern Pine", " SYP").replace(" Spruce-Pine-Fir", " SPF").replace(" Douglas Fir-Larch", " DF-L") }),
-               el("span", { class: "clause", text: (c.spacing ? c.spacing + "″ · " : "") + "DCR " + fmt(c.dcr, 2) })]
-            : [el("span", { class: "badge b-fail", text: "none" })]));
+      var st8 = {}, nStates = 0;
+      packs.forEach(function (p) {
+        (p.states || []).forEach(function (s) {
+          if (!own(st8, key(s))) { st8[key(s)] = 1; nStates++; }
         });
-        tb.appendChild(el("tr", {}, cells));
+      });
+      body.appendChild(line(
+        "One master set, solved independently in " + plural(packs.length, "region pack", "region packs") +
+        " across " + plural(nStates, "state", "states") + ". " + nCommon + " marks are the same member in every region " +
+        "where they apply — buy those in one order. " + nVaries + " are regionally forced. " +
+        (nNone + nNa) + " have no member on this board: " + nNone + " nobody could size and " + nNa +
+        " are not this engine's member anywhere.",
+        "each cell is an independent solve — no cell is inferred from another"));
+
+      var GROUPS = [
+        { id: "varies", t: "Regionally forced — the member changes with the market", c: "b-gold" },
+        { id: "common", t: "The same member in every region where it applies", c: "b-pass" },
+        { id: "none",   t: "No member in any region — unanswered, not portable", c: "b-fail" },
+        { id: "na",     t: "Not this engine's member in any region", c: "b-blue" }
+      ];
+
+      var tb = el("tbody");
+      var nCols = packs.length + 1;
+      GROUPS.forEach(function (g) {
+        var mine = rows.filter(function (r) { return r.group === g.id; });
+        if (!mine.length) return;
+        tb.appendChild(el("tr", {}, [
+          el("td", { colspan: String(nCols), style: "background:var(--surface-2)" }, [
+            el("span", { class: "badge " + g.c, text: String(mine.length) }),
+            el("span", { class: "clause", text: g.t })
+          ])
+        ]));
+        mine.forEach(function (r) {
+          var row = r.row;
+          var badge;
+          if (g.id === "varies") badge = el("span", { class: "badge b-gold", style: "margin-left:6px", text: "varies · " + (r.axes.join(" + ") || "member") });
+          else if (g.id === "common") badge = el("span", { class: "badge b-pass", style: "margin-left:6px", text: "common" });
+          else if (g.id === "none") badge = el("span", { class: "badge b-fail", style: "margin-left:6px", text: "no member" });
+          else badge = el("span", { class: "badge b-blue", style: "margin-left:6px", text: "not this engine" });
+
+          var cells = [el("td", { class: "k" }, [
+            el("span", { text: row.mark.id }),
+            badge,
+            r.none && r.answered ? el("span", { class: "badge b-fail", style: "margin-left:6px", text: r.none + " unsolved" }) : null,
+            el("span", { class: "clause", text: row.mark.label })
+          ])];
+          row.cells.forEach(function (c) {
+            if (c.notApplicable) {
+              cells.push(el("td", {}, [el("span", { class: "badge b-blue", text: c.note === "component" ? "component" : "n/a" })]));
+              return;
+            }
+            if (!c.sku) {
+              cells.push(el("td", {}, [el("span", { class: "badge b-fail", text: "none" })]));
+              return;
+            }
+            var deviates = r.group === "varies" && r.modal && key(c.sku + "@" + (c.spacing || 0)) !== r.modal;
+            cells.push(el("td", {}, [
+              deviates ? el("span", { class: "badge b-gold", style: "margin-right:6px", text: "Δ" }) : null,
+              el("span", { style: "white-space:nowrap", text: shortSku(c.sku) }),
+              el("span", { class: "clause", style: "white-space:nowrap",
+                           text: (c.spacing ? c.spacing + "″ · " : "") + "DCR " + fmt(c.dcr, 2) })
+            ]));
+          });
+          tb.appendChild(el("tr", {}, cells));
+        });
       });
 
       body.appendChild(el("div", { class: "tw", tabindex: "0", role: "region", "aria-label": "Cross-region member matrix" }, [
         el("table", {}, [
-          el("thead", {}, [el("tr", {}, [el("th", { text: "Mark" }), el("th", { text: "Member" })].concat(
-            packs.map(function (p) { return el("th", { text: p.name.replace(" · ", " ") }); })
+          el("thead", {}, [el("tr", {}, [el("th", { text: "Mark" })].concat(
+            packs.map(function (p) {
+              return el("th", {}, [
+                el("span", { text: shortPack(p) }),
+                p.governs === "wind" ? el("span", { class: "badge b-warn", style: "margin-left:6px", text: "wind" }) : null
+              ]);
+            })
           ))]),
           tb
         ])
       ]));
+      body.appendChild(el("p", { class: "src-note", style: "margin-top:8px", text:
+        "Δ marks the region that departs from what the other packs agree on. A pack badged wind governs on uplift, " +
+        "which this engine does not check — a member in that column is a gravity floor, not a design." }));
 
+      /* which pack departed, and how that pack differs */
+      var forced = rows.filter(function (r) { return r.group === "varies"; });
+      if (forced.length) {
+        var fRows = [];
+        forced.forEach(function (r) {
+          var modalPacks = [], oddPacks = [];
+          r.row.cells.forEach(function (c, i) {
+            if (!c.sku) return;
+            if (key(c.sku + "@" + (c.spacing || 0)) === r.modal) modalPacks.push(packs[i]);
+            else oddPacks.push({ pack: packs[i], sku: c.sku, spacing: c.spacing });
+          });
+          var ref = modalPacks[0];
+          oddPacks.forEach(function (o) {
+            var diff = packDelta(ref, o.pack);
+            fRows.push({
+              k: esc(r.row.mark.id) + " <span class='clause'>" + esc(shortPack(o.pack)) + "</span>",
+              v: esc(shortSku(o.sku)) + " <span class='clause'>where the others take " +
+                 esc(shortSku(r.modal ? r.modal.replace("k:", "").split("@")[0] : "—")) + "</span>",
+              cls: "gold"
+            });
+            fRows.push({
+              k: "<span class='clause'>that pack differs in</span>",
+              v: diff.length ? esc(diff.join(" · ")) : "no modelled difference — the ranking broke a near-tie"
+            });
+          });
+        });
+        body.appendChild(el("div", { style: "margin-top:16px" }, [
+          card("What forced the change", el("span", { class: "badge b-gold", text: "Regional", style: "margin-left:auto" }),
+            dl(fRows),
+            "These are the fields on which the packs differ, read off the packs themselves — the attribution is " +
+            "descriptive, not a sensitivity study. Run the mark in both packs to see which field carries it.")
+        ]));
+      }
+
+      var mGroups = variantGroups(plan);
       body.appendChild(el("div", { style: "margin-top:16px" }, [
         card("Reading this", null, el("div", { style: "display:grid;gap:9px;font-size:.86rem" }, [
-          el("p", { text: "A mark marked Unanswered produced no member in any region — it is not portable, it is unanswered, and counting it as common would turn silence into evidence for this product's central claim." }),
-          el("p", { text: "A mark marked Common is the same member in every region on this board — build it the same everywhere and buy it in one order. A mark marked Varies is regionally forced, and the region pack says which variable forced it." }),
+          el("p", { text: "A mark with no member in any region is not portable and it is not common — it is unanswered. Counting it as common would turn silence into evidence for this product's central claim." }),
+          el("p", { text: "A mark marked common is the same member in every region on this board — build it the same everywhere and buy it in one order. A mark marked varies is regionally forced, and the badge names the axis: size, grade or spacing." }),
           el("p", { text: "The three forcings that actually move members across these six packs are: snow duration in the Carolina mountains, which drops C_D from 1.25 to 1.15; concrete tile dead load in the HVHZ, which is 22 psf against 15 for shingle; and species availability, which decides what the yard can hand the framer." }),
+          mGroups ? el("p", { text: "This board is the base case of the master set. What an elevation or an option does to it is on the Schedule tab." }) : null,
           el("p", { class: "src-note", text: "Every cell is an independent solve against that region's palette, ladder, loads and DCR target. No cell is inferred from another." })
-        ]), null)
+        ].filter(Boolean)), null)
       ]));
     }
 

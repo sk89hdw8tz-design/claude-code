@@ -901,7 +901,7 @@ suite("export · the schedule carries what calc-spec §8 says it must");
       } catch (e) { problems.push(p.id + "/" + l.id + " threw: " + e.message); }
     });
   });
-  eq(problems.length, 0, "all 18 pack/plan schedules export cleanly");
+  eq(problems.length, 0, "all " + (FM.weights.PACKS.length * FM.weights.PLANS.length) + " pack/plan schedules export cleanly");
   problems.slice(0, 5).forEach(function (p) { console.log("      " + p); });
 })();
 
