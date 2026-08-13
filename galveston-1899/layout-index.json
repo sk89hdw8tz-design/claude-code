@@ -1,20 +1,24 @@
 {
-  "_comment": "Geographic placement read off the 1899 Key (Index Map) and cross-checked against the neighbour numbers printed in each sheet's margins. Galveston Island runs bay (northwest) on the left to Gulf of Mexico (southeast) on the right; street numbers increase top to bottom. Column 0 is the wharf/pier strip along Galveston Bay; columns 1-3 run inland toward Broadway. Sheet 11's margins give west 8/7, north 43, east 12, south 13; sheet 12's give west 11, north 44, east 41, south 14 -- both agree with the Key. The wharf sheets sit about half a row above the inland grid, so sheet 5 has no inland partners in this selection and its row is otherwise empty. Values are [row, col].",
+  "_comment": "Geographic placement read off the 1899 Key (Index Map) and verified against the sheets themselves. Galveston Island runs bay (northwest) on the left to Gulf of Mexico (southeast) on the right; numbered streets run across the sheet and increase top to bottom. Column 0 is the wharf/pier strip along Galveston Bay; columns 1-3 run inland toward Broadway.",
+
+  "_offset": "The wharf column does NOT line up with the inland street grid: it follows the shoreline and sits about two thirds of a sheet HIGHER. Placing both on whole rows put the wharf sheets two full blocks out - at the same height sheet 8 showed 16TH/17TH/18TH where sheet 11 showed 18TH/19TH/20TH. Three independent measurements of the displacement agreed: 0.648 cells (seam 7|13, tracking 21ST OR CENTRE), 0.675 (seam 6|15), 0.682 (seam 8|11, tracking 18TH ST). Mean 0.668, applied here as a fractional row offset on the inland columns. Sheet 11's west margin citing BOTH 8 and 7 as neighbours is the same fact seen from the sheet: it straddles their boundary.",
+
+  "_caution": "Streets here are near-periodic at about 820 print px per block, so a cross-correlation with a search window smaller than one block will happily report 'aligned' at any multiple of the block pitch. Verify with printed street NUMBERS, not with correlation peaks or block-number differences - a uniformly displaced column keeps a constant block-number difference.",
 
   "sheet-08": [0, 0],
-  "sheet-11": [0, 1],
-  "sheet-12": [0, 2],
-  "sheet-41": [0, 3],
-
   "sheet-07": [1, 0],
-  "sheet-13": [1, 1],
-  "sheet-14": [1, 2],
-  "sheet-39": [1, 3],
-
   "sheet-06": [2, 0],
-  "sheet-15": [2, 1],
-  "sheet-16": [2, 2],
-  "sheet-37": [2, 3],
+  "sheet-05": [3, 0],
 
-  "sheet-05": [3, 0]
+  "sheet-11": [0.67, 1],
+  "sheet-12": [0.67, 2],
+  "sheet-41": [0.67, 3],
+
+  "sheet-13": [1.67, 1],
+  "sheet-14": [1.67, 2],
+  "sheet-39": [1.67, 3],
+
+  "sheet-15": [2.67, 1],
+  "sheet-16": [2.67, 2],
+  "sheet-37": [2.67, 3]
 }

@@ -406,8 +406,13 @@ def main() -> int:
         anchors: dict[str, str] = {}
         bad = []
         for k, v in list(layout.items()):
+            # Rows and columns may be fractional. Sheet runs that follow a
+            # shoreline do not line up with the inland street grid -- here the
+            # wharf column sits about two thirds of a sheet above it -- and only
+            # a fractional row can say so.
             ok = (isinstance(v, (list, tuple)) and len(v) in (2, 3)
-                  and all(isinstance(i, int) and i >= 0 for i in v[:2])
+                  and all(isinstance(i, (int, float)) and not isinstance(i, bool) and i >= 0
+                          for i in v[:2])
                   and (len(v) == 2 or (isinstance(v[2], str) and v[2].lower() in ANCHORS)))
             if not ok:
                 bad.append(k)
@@ -446,8 +451,10 @@ def main() -> int:
     elif layout:
         # The layout defines the geography; the grid must match its extent, not
         # the image count, or sheets fall outside the grid and get dropped.
-        cols = max(c for _, c in layout.values()) + 1
-        rows = max(r for r, _ in layout.values()) + 1
+        # Positions may be fractional, and a sheet at row 2.67 still occupies a
+        # full cell below it, so the extent is ceil(max + 1).
+        cols = math.ceil(max(c for _, c in layout.values()) + 1)
+        rows = math.ceil(max(r for r, _ in layout.values()) + 1)
         print(f"Grid from layout extent: {cols} x {rows}")
     else:
         cols, rows, cov = choose_grid(n, args.width_in, args.height_in, median_aspect, margin, gutter)
@@ -572,7 +579,10 @@ def main() -> int:
                 row_indent[r] = (cols - in_row) * (cell_w_in + gutter) / 2
 
     def cell_origin(r: int, c: int) -> tuple[float, float]:
-        return (off_x + row_indent[r] + c * (cell_w_in + gutter),
+        # row_indent only applies to implicit row-major placement, where r is a
+        # whole number; an explicit layout may use fractional rows.
+        indent = row_indent[int(r)] if layout is None else 0.0
+        return (off_x + indent + c * (cell_w_in + gutter),
                 off_y + r * (cell_h_in + gutter))
 
     # For a uniform-scale mosaic every sheet is drawn at the same source-pixels-
