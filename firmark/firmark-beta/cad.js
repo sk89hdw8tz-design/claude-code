@@ -2498,4 +2498,288 @@
       });
     }
   }
+
+  /* ---------------- loading a source ---------------- */
+
+  function loadSource(announce) {
+    if (S.src.kind === "plan") {
+      var m = fromPlan(S.src.id);
+      if (!m) {
+        toast("This build has no plan called “" + S.src.id + "”. Starting an empty model instead.");
+        MODEL = blank("Untitled plan");
+      } else {
+        MODEL = m;
+        if (announce) {
+          var st = stats(m);
+          toast(m.name + ": " + st.walls + " walls, " + st.openings + " openings, " + st.framing +
+                " framing regions, " + m.unresolved.length + " open items the plan does not determine.");
+        }
+      }
+    } else if (S.src.kind === "saved") {
+      var s = loadLocal(S.src.id);
+      if (!s) {
+        toast("No saved model called “" + S.src.id + "” in this browser. Starting an empty model.");
+        MODEL = blank("Untitled plan");
+      } else {
+        MODEL = s;
+        if (announce) toast("Loaded “" + S.src.id + "”.");
+      }
+    } else {
+      MODEL = blank("Untitled plan");
+      var plate = plateFtFromPacks();
+      if (plate) {
+        MODEL.levels[0].topPlateFt = Math.round(plate.ft * 10000) / 10000;
+        MODEL.levels[0].note = "Top plate " + plate.inches + " in — the precut height every region " +
+                               "pack in weights.js declares. Provenance [market], not code.";
+      }
+      if (announce) toast("Empty model. Press W and drag to draw the first wall.");
+    }
+    UNDO.length = 0; REDO.length = 0;
+    S.sel = null; S.draft = null;
+    fit();
+  }
+
+  /* ---------------- the view ---------------- */
+
+  FM.VIEWS.cad = function (host) {
+    if (!MODEL) loadSource(false);
+
+    host.appendChild(FM.pageHead("Plan",
+      "Draw the geometry, or trace it over a calibrated plan. Everything downstream — spans, " +
+      "tributaries, headers — is read off what is on this canvas.", [
+        el("button", { class: "btn", text: "Sizing", onclick: function () { FM.go("sizing"); } }),
+        el("button", { class: "btn btn-primary", text: "Fit to content", onclick: function () { fit(); redraw(); } })
+      ]));
+
+    host.appendChild(FM.betaStrip(
+      "This is the geometry gate. A model with errors does not pass it. Warnings are the things the " +
+      "source plan does not determine — an opening the plan sizes but does not locate, a porch beam " +
+      "this model has no element for — and they are listed rather than filled in."));
+
+    /* ---- source bar ---- */
+    var srcSel = el("select", { "aria-label": "Geometry source" });
+    srcSel.appendChild(el("option", { value: "new|blank", text: "Empty model — draw from scratch" }));
+    (FM.weights ? FM.weights.PLANS : []).forEach(function (p) {
+      srcSel.appendChild(el("option", { value: "plan|" + p.id, text: "Plan · " + p.name + " — " + p.summary }));
+    });
+    listLocal().forEach(function (r) {
+      srcSel.appendChild(el("option", { value: "saved|" + r.key, text: "Saved · " + r.name + " (" + r.key + ")" }));
+    });
+    srcSel.value = S.src.kind + "|" + S.src.id;
+    srcSel.addEventListener("change", function () {
+      var parts = this.value.split("|");
+      S.src = { kind: parts[0], id: parts[1] };
+      loadSource(true);
+      redraw();
+      if (FM.syncHash) FM.syncHash(false);
+    });
+
+    var tools = el("div", { class: "seg", role: "group", "aria-label": "Drawing tool" },
+      TOOLS.map(function (t) {
+        return el("button", {
+          "data-tool": t.id, text: t.label, title: t.label + " (" + t.key + ") — " + t.hint,
+          "aria-pressed": t.id === S.tool ? "true" : "false",
+          onclick: function () { setTool(t.id); }
+        });
+      }));
+    TOOLBAR = tools;
+
+    var snapSel = el("select", { "aria-label": "Grid and snap step" }, [
+      el("option", { value: "0.25", text: "Grid 3\"" }),
+      el("option", { value: "0.5", text: "Grid 6\"" }),
+      el("option", { value: "1", text: "Grid 1 ft" }),
+      el("option", { value: "2", text: "Grid 2 ft" })
+    ]);
+    snapSel.value = String(S.snapFt);
+    snapSel.addEventListener("change", function () { S.snapFt = num(this.value); redraw(); });
+
+    host.appendChild(el("div", { class: "filter-bar", style: "margin-bottom:12px" }, [
+      srcSel, tools, snapSel,
+      el("button", { class: "btn btn-sm", text: "Undo", onclick: undo, title: "Ctrl+Z" }),
+      el("button", { class: "btn btn-sm", text: "Redo", onclick: redo, title: "Ctrl+Shift+Z" }),
+      el("button", { class: "btn btn-sm", text: "Reload source", title: "Discard edits and rebuild from the source",
+        onclick: function () {
+          if (window.confirm("Rebuild from the source and discard every edit on this canvas?")) {
+            loadSource(true); redraw();
+          }
+        } })
+    ]));
+
+    /* ---- stage + panel ---- */
+    var stage = el("div", { class: "cad-stage" });
+    SVG = document.createElementNS(NS, "svg");
+    SVG.setAttribute("class", "cad-svg");
+    SVG.setAttribute("tabindex", "0");
+    SVG.setAttribute("role", "application");
+    SVG.setAttribute("aria-label",
+      "Plan drawing canvas. Keyboard: V select, W wall, O opening, R region, P polygon, C calibrate, " +
+      "H pan. Arrow keys nudge the selection, Delete removes it, Escape cancels, F fits, G toggles snap.");
+    stage.appendChild(SVG);
+    HUD = el("div", { class: "cad-hud", "aria-live": "off" });
+    stage.appendChild(HUD);
+    stage.appendChild(el("div", { class: "cad-drop-note", text: "Drop a PNG or JPG plan here to trace it" }));
+
+    SVG.addEventListener("pointerdown", onDown);
+    SVG.addEventListener("pointermove", onMove);
+    SVG.addEventListener("pointerup", onUp);
+    SVG.addEventListener("pointercancel", function () { drag = null; });
+    SVG.addEventListener("wheel", onWheel, { passive: false });
+    SVG.addEventListener("keydown", onKey);
+    SVG.addEventListener("contextmenu", function (e) { e.preventDefault(); });
+
+    stage.addEventListener("dragover", function (e) { e.preventDefault(); stage.className = "cad-stage is-drop"; });
+    stage.addEventListener("dragleave", function () { stage.className = "cad-stage"; });
+    stage.addEventListener("drop", function (e) {
+      e.preventDefault();
+      stage.className = "cad-stage";
+      var f = e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0];
+      if (f) acceptFile(f);
+      else toast("Nothing came with that drop. Drag a PNG or JPG file from your file manager.");
+    });
+
+    PANEL = el("div", { class: "cad-panel" });
+    host.appendChild(el("div", { class: "cad-wrap" }, [stage, PANEL]));
+
+    STATS = el("div", { class: "grid g5", style: "margin-top:14px" });
+    host.appendChild(STATS);
+
+    FINDINGS = el("div", { style: "margin-top:14px" });
+    host.appendChild(FINDINGS);
+
+    /* ---- shortcuts, persistence, JSON ---- */
+    host.appendChild(el("div", { class: "grid g2", style: "margin-top:14px" }, [
+      cardShortcuts(), cardStore()
+    ]));
+    host.appendChild(el("div", { style: "margin-top:14px" }, [cardJson()]));
+
+    /* size the canvas from its box, then draw */
+    var box = SVG.getBoundingClientRect();
+    VW = Math.max(320, Math.round(box.width || 900));
+    VH = Math.max(320, Math.round(box.height || 560));
+    SVG.setAttribute("viewBox", "0 0 " + VW + " " + VH);
+    if (!MODEL._fitted) { fit(); MODEL._fitted = true; }
+    redraw();
+
+    if (window.addEventListener) {
+      window.addEventListener("resize", function () {
+        if (!SVG || !SVG.parentNode) return;
+        var b2 = SVG.getBoundingClientRect();
+        if (!b2.width) return;
+        VW = Math.round(b2.width); VH = Math.round(b2.height);
+        SVG.setAttribute("viewBox", "0 0 " + VW + " " + VH);
+        drawCanvas();
+      });
+    }
+  };
+
+  function cardShortcuts() {
+    var body = el("div", { class: "cad-keys" });
+    var keys = [
+      ["V / W / O", "select · wall · opening"],
+      ["R / P", "rectangular region · polygon region"],
+      ["C / H", "calibrate the underlay · pan"],
+      ["drag", "draw a wall; click-click chains wall to wall"],
+      ["Shift", "lock the wall orthogonal (it also locks itself within " + RULES.orthoDeg + "°)"],
+      ["wheel", "zoom at the cursor · Alt-drag or middle-drag pans"],
+      ["arrows", "nudge the selection one grid step · Shift for ten"],
+      ["Delete", "remove the selection — a wall takes its openings with it"],
+      ["Esc", "cancel the wall, polygon or calibration in progress"],
+      ["Enter", "close a polygon region"],
+      ["Ctrl+Z / Ctrl+Shift+Z", "undo · redo (" + RULES.undoDepth + " deep)"],
+      ["F / G", "fit to content · snap on and off"]
+    ];
+    keys.forEach(function (k) {
+      body.appendChild(el("div", { class: "cad-key" }, [
+        el("span", { class: "cad-kbd", text: k[0] }),
+        el("span", { text: k[1] })
+      ]));
+    });
+    return card("Keyboard and mouse", null, body,
+      "The canvas takes focus when you click it, and it is reachable by Tab");
+  }
+
+  function cardStore() {
+    var body = el("div", { style: "display:grid;gap:10px" });
+    var keyIn = el("input", { type: "text", value: S.saveKey || slug(MODEL.name),
+      placeholder: "a short key, e.g. lot-17-plan" });
+    body.appendChild(field("Save as", keyIn, "stored in this browser under " + STORE_KEY));
+    body.appendChild(el("div", { class: "chips" }, [
+      el("button", { class: "chip", text: "Save", onclick: function () {
+        var k = slug(keyIn.value);
+        if (!k) { toast("Give the model a key first — a short name like lot-17-plan."); return; }
+        var r = saveLocal(k, MODEL);
+        if (!r.ok) { toast(r.why); return; }
+        S.saveKey = k;
+        S.src = { kind: "saved", id: k };
+        toast("Saved “" + k + "”. It is in this browser only — export the JSON to move it.");
+        if (FM.syncHash) FM.syncHash(true);
+        FM.go("cad");
+      } }),
+      el("button", { class: "chip", text: "New empty model", onclick: function () {
+        S.src = { kind: "new", id: "blank" };
+        loadSource(true); redraw();
+        if (FM.syncHash) FM.syncHash(false);
+      } })
+    ]));
+    var saved = listLocal();
+    if (!saved.length) {
+      body.appendChild(el("p", { class: "clause", text: "Nothing saved in this browser yet." }));
+    } else {
+      var list = el("div", { class: "dl" });
+      saved.forEach(function (r) {
+        list.appendChild(el("div", { class: "dl-row" }, [
+          el("span", { class: "dl-k", text: r.name + " · " + r.key }),
+          el("span", { class: "dl-v" }, [
+            el("button", { class: "chip", text: "Load", onclick: function () {
+              S.src = { kind: "saved", id: r.key }; loadSource(true); redraw();
+              if (FM.syncHash) FM.syncHash(false);
+            } }),
+            el("button", { class: "chip", text: "Delete", onclick: function () {
+              if (!window.confirm("Delete the saved model “" + r.key + "”?")) return;
+              removeLocal(r.key);
+              toast("Deleted “" + r.key + "”.");
+              FM.go("cad");
+            } })
+          ])
+        ]));
+      });
+      body.appendChild(list);
+    }
+    return card("Save and load", null, body, "localStorage · this browser, this profile, nothing else");
+  }
+
+  function cardJson() {
+    var ta = el("textarea", {
+      rows: "8", spellcheck: "false", "aria-label": "Model JSON",
+      style: "width:100%;font-family:var(--mono);font-size:.76rem;padding:9px;border-radius:var(--r);" +
+             "border:1px solid var(--line-strong);background:var(--surface);color:var(--ink)"
+    });
+    var body = el("div", { style: "display:grid;gap:10px" }, [
+      el("div", { class: "chips" }, [
+        el("button", { class: "chip", text: "Export into the box", onclick: function () {
+          ta.value = toJSON(MODEL);
+          toast("The whole model is in the box — " + ta.value.length + " characters. Select all and copy.");
+        } }),
+        el("button", { class: "chip", text: "Import from the box", onclick: function () {
+          if (!ta.value.trim()) { toast("The box is empty. Paste a model JSON into it first."); return; }
+          var m;
+          try { m = fromJSON(ta.value); }
+          catch (err) { toast(err.message); return; }
+          pushUndo();
+          MODEL = m;
+          S.src = { kind: "new", id: "blank" };
+          S.sel = null;
+          fit(); redraw();
+          toast("Imported “" + m.name + "” — " + stats(m).walls + " walls. It is not saved yet.");
+        } })
+      ]),
+      ta
+    ]);
+    return card("JSON in and out", null, body,
+      "The export is the whole model, including what it does not know");
+  }
+
+  function slug(s) {
+    return String(s || "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 40);
+  }
 })();

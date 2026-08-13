@@ -1544,6 +1544,19 @@
       });
     }
 
+    /* The geometry may have arrived with open items of its own. They are NOT
+       repeated here — they belong to gate 1 — but a reader must not take
+       this module's unresolved list for the whole story. */
+    if (Array.isArray(model.unresolved) && model.unresolved.length) {
+      warn(out, "upstream-open-items",
+        "The MODEL arrived with " + model.unresolved.length + " open item(s) of its own from the " +
+        "geometry stage" + (model.source && model.source.builtBy ? " (" + model.source.builtBy + ")" : "") +
+        ": " + model.unresolved.map(function (u) { return u.what; }).join("; ") + ". Those are gate " +
+        "1 items and are not restated in this takeoff's unresolved list. A takeoff of geometry that " +
+        "is not yet approved is a draft, whatever this module says about it.",
+        []);
+    }
+
     /* regions drawn but not taken off */
     var lost = regions.filter(function (r) { return r && !r.determined; });
     if (lost.length) {

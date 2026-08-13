@@ -1230,9 +1230,11 @@
     say("  Extents       : " + n2(g.bounds.wFt, 1) + " ft × " + n2(g.bounds.hFt, 1) + " ft" +
         "   (origin " + n2(g.bounds.minX, 1) + ", " + n2(g.bounds.minY, 1) + ")");
     if (g.stats) {
-      say("  cad.stats     : " + Object.keys(g.stats).map(function (k) {
+      wrap(Object.keys(g.stats).map(function (k) {
         return k + " " + safe(g.stats[k]);
-      }).join(" · "));
+      }).join(" · "), W - 18).forEach(function (x, i) {
+        say("  " + pad(i ? "" : "cad.stats", 14) + (i ? "  " : ": ") + x);
+      });
     }
     if (g.underlay) {
       say("  Underlay      : present, " + (g.underlay.calibrated ? "calibrated" :
@@ -1689,16 +1691,22 @@
       say("  ** The bill of materials supplied carries no `lines` array. Nothing can be");
       say("     listed here. **");
     } else {
-      say("  " + pad("SKU", 22) + pad("SIZE/SPECIES", 24) + pad("PCS", 6) +
-          pad("LENGTH", 9) + lpad("EXT", 10));
+      /* The SKU a real bill of materials carries IS the member description —
+         "2x12 Spruce-Pine-Fir No. 1/No. 2" — so a separate size/species
+         column repeats it and collides. One wide SKU column, and everything
+         else on the line under it. */
+      say("  " + pad("SKU", 42) + pad("PCS", 7) + pad("LENGTH", 10) + lpad("EXTENDED", 9));
       say("  " + rule("-").slice(0, W - 2));
       lines.forEach(function (ln) {
-        say("  " + pad(safe(ln.sku), 22) +
-            pad(safe(ln.size) + " " + safe(ln.species, "") + " " + safe(ln.grade, ""), 24) +
-            pad(safe(ln.piecesPerHouse), 6) +
-            pad(ln.lengthFt === undefined ? "—" : n2(ln.lengthFt, 1) + " ft", 9) +
-            lpad(usd(ln.extUSD), 10));
+        wrap(safe(ln.sku, "(unnamed SKU)"), 40).forEach(function (x, i) {
+          if (i) { say("  " + x); return; }
+          say("  " + pad(x, 42) + pad(safe(ln.piecesPerHouse), 7) +
+              pad(ln.lengthFt === undefined ? "—" : n2(ln.lengthFt, 1) + " ft", 10) +
+              lpad(usd(ln.extUSD), 9));
+        });
         var sub = [];
+        var desc = (safe(ln.size, "") + " " + safe(ln.species, "") + " " + safe(ln.grade, "")).replace(/\s+/g, " ").replace(/^ | $/g, "");
+        if (desc && safe(ln.sku).indexOf(desc) === -1) sub.push(desc);
         if (ln.treatment) sub.push("treatment " + safe(ln.treatment));
         if (ln.stockLengthFt !== undefined) sub.push("stock " + n2(ln.stockLengthFt, 1) + " ft");
         if (ln.bf !== undefined) sub.push(n2(ln.bf, 1) + " bf");
@@ -1724,8 +1732,9 @@
     }
     if (bom.waste) {
       say();
-      say("  WASTE POLICY : " + safe(bom.waste.policy) + " · applied " +
-          (bom.waste.appliedPct === undefined ? "—" : n2(bom.waste.appliedPct, 1) + "%"));
+      wrap(safe(bom.waste.policy) + " · applied " +
+           (bom.waste.appliedPct === undefined ? "—" : n2(bom.waste.appliedPct, 1) + "%"), W - 18)
+        .forEach(function (x, i) { say("  " + pad(i ? "" : "WASTE POLICY", 14) + (i ? "  " : ": ") + x); });
       if (bom.waste.basis) wrap("basis: " + safe(bom.waste.basis), W - 8).forEach(function (x) { say("      " + x); });
     }
     if (bom.perLot || bom.perCommunity) {
@@ -1747,7 +1756,9 @@
       say("     sized anywhere — so an empty exclusion list is a defect, not a clean bill. **");
     } else {
       exc.forEach(function (x) {
-        say("  · " + safe(x.what, "(unnamed)"));
+        wrap(safe(x.what, "(unnamed)"), W - 6).forEach(function (y, i) {
+          say("  " + (i ? "    " : "· ") + y);
+        });
         wrap(safe(x.why, "no reason given"), W - 8).forEach(function (y) { say("      " + y); });
       });
     }

@@ -509,30 +509,31 @@ module.exports = function (t, FM) {
       "lands to exercise the real path.");
 
   var pack = FM.weights.PACKS[0];
-  var ROUND = [];
-  PLAN_IDS.forEach(function (pid) {
-    var m = null, src = "fixture";
-    if (haveFromPlan) {
-      try { m = FM.cad.fromPlan(pid); src = "FM.cad.fromPlan"; } catch (e) { m = null; }
-    }
-    if (!m) m = planFixture(pid);
-    t.truthy(m, pid + " · a model is available to take off (" + src + ")");
-    if (!m) return;
+  var ROUND = [], CAD = [];
 
+  /* the round trip proper, run over whatever model is handed in */
+  function roundTrip(pid, m, src) {
     var res = FM.takeoff.run(m);
-    ROUND.push({ id: pid, res: res });
 
     t.truthy(res.marks.length > 0 || res.unresolved.length > 0,
-             pid + " · the takeoff says something: " + res.marks.length + " marks, " +
+             pid + " (" + src + ") · the takeoff says something: " + res.marks.length + " marks, " +
              res.unresolved.length + " unresolved, " + res.warnings.length + " warnings");
 
-    /* the round trip proper: solvePlan must accept these marks unchanged */
+    /* nothing is ever produced silently: a plan with no marks must point at
+       the drawn objects that stopped it */
+    if (!res.marks.length) {
+      t.truthy(res.unresolved.length > 0 && res.unresolved.some(function (u) {
+        return (u.refs || []).length > 0;
+      }), pid + " (" + src + ") · produced no marks, and every reason names the wall, region or " +
+          "opening responsible — silence is never the answer");
+    }
+
     var plan = { id: "takeoff-" + pid, name: "Takeoff of " + pid, marks: res.marks };
     var threw = null;
     try { FM.solver.solvePlan(plan, pack, { unify: false }); }
     catch (e) { threw = e; }
-    t.truthy(!threw, pid + " · solver.solvePlan accepts every emitted mark without throwing" +
-             (threw ? " — threw: " + threw.message : ""));
+    t.truthy(!threw, pid + " (" + src + ") · solver.solvePlan accepts every emitted mark without " +
+             "throwing" + (threw ? " — threw: " + threw.message : ""));
 
     /* and demandFor accepts each sizeable mark on its own, in every pack —
        this is what a header missing `bearing` or `carries` would fail */
@@ -545,9 +546,42 @@ module.exports = function (t, FM) {
         catch (e) { if (!dThrew) { dThrew = e; dMark = mk.id + " in " + pk.id; } }
       });
     });
-    t.truthy(!dThrew, pid + " · weights.demandFor accepts every applicable mark in all six packs" +
-             (dThrew ? " — " + dMark + ": " + dThrew.message : ""));
+    t.truthy(!dThrew, pid + " (" + src + ") · weights.demandFor accepts every applicable mark in " +
+             "all six packs" + (dThrew ? " — " + dMark + ": " + dThrew.message : ""));
+    return res;
+  }
+
+  /* (a) the fixtures built here, which carry the numeric assertions */
+  PLAN_IDS.forEach(function (pid) {
+    var m = planFixture(pid);
+    t.truthy(m, pid + " · an equivalent fixture model exists in this suite");
+    if (m) ROUND.push({ id: pid, res: roundTrip(pid, m, "suite fixture") });
   });
+
+  /* (b) and the CAD agent's own geometry, whenever it is there */
+  if (haveFromPlan) {
+    PLAN_IDS.forEach(function (pid) {
+      var m = null;
+      try { m = FM.cad.fromPlan(pid); } catch (e) { m = null; }
+      t.truthy(m, pid + " · FM.cad.fromPlan returns a model");
+      if (m) CAD.push({ id: pid, res: roundTrip(pid, m, "FM.cad.fromPlan") });
+    });
+
+    /* This is a CROSS-MODULE state, not a pass/fail: fromPlan leaves
+       thicknessIn null on every wall (it says so, deliberately — no plan or
+       pack declares a stud size), and a clear span cannot be measured to a
+       face that is not located. The assertion below stays true whichever way
+       that is settled; the message reports where it stands today. */
+    var noMarks = CAD.filter(function (r) { return !r.res.marks.length; });
+    t.truthy(true, "CAD round trip state: " + (CAD.length - noMarks.length) + " of " + CAD.length +
+      " plans produce marks. " + (noMarks.length
+        ? noMarks.length + " produce none — " + noMarks.map(function (r) { return r.id; }).join(", ") +
+          ". The blocking item is wall thicknessIn: fromPlan leaves it null on purpose, and a CLEAR " +
+          "span cannot be measured to a face that is not located. Either fromPlan declares a " +
+          "thickness as the stated drawing convention it already uses for other things, or a human " +
+          "sets it at gate 1. This module will not assume 2x6."
+        : "No blocking items."));
+  }
 
   t.suite("takeoff · the conditions each plan exists to pose");
   (function () {
@@ -562,7 +596,7 @@ module.exports = function (t, FM) {
        This is the single biggest gap in the model shape and it must show up
        as a refusal, not as a thinner house. */
     var sb = res("sunbelt-ranch-1850");
-    if (sb && !haveFromPlan) {
+    if (sb) {
       t.truthy(unresolvedMentioning(sb, "F-LANAI").length >= 1,
                "sunbelt · the post-supported lanai roof is unresolved — the model has no post or " +
                "beam entity, so its span has no second support to measure to");
@@ -580,7 +614,7 @@ module.exports = function (t, FM) {
        same first-floor wall. That is the roof+floor case, and weights.js
        will only accept it with BOTH tributaries declared separately. */
     var ts = res("two-story-2450");
-    if (ts && !haveFromPlan) {
+    if (ts) {
       var rf = ts.marks.filter(function (m) { return m.carries === "roof+floor"; })[0];
       t.truthy(rf, "two-storey · a wall carrying both a wing roof and the floor above produces a " +
                "roof+floor header");
@@ -604,7 +638,7 @@ module.exports = function (t, FM) {
        the other side, and the model draws one unit. The takeoff must refuse
        rather than take half the load. */
     var th = res("townhome-1220");
-    if (th && !haveFromPlan) {
+    if (th) {
       t.truthy(unresolvedMentioning(th, "T2-W").length >= 1,
                "townhome · a header in a PARTY wall is refused: the model draws one unit, so what " +
                "frames on the neighbour's side of an interior wall is not in the geometry");
@@ -616,7 +650,7 @@ module.exports = function (t, FM) {
     /* Starter: the gable-end walls bear nothing, so an opening in one makes
        no header — the same answer weights.js reaches for HDR-GBL. */
     var st = res("starter-1210");
-    if (st && !haveFromPlan) {
+    if (st) {
       t.truthy(warningMentioning(st, "O-GBL").length >= 1,
                "starter · the gable-end window produces no header mark and says why");
       var w1 = markOf(st, "HDR-O-W1");
@@ -636,7 +670,7 @@ module.exports = function (t, FM) {
   var ALL = [
     { id: "hand", res: hand }, { id: "one-support", res: one }, { id: "non-bearing", res: nb },
     { id: "wall-above", res: two }
-  ].concat(ROUND);
+  ].concat(ROUND).concat(CAD);
 
   t.suite("takeoff · every emitted mark field has exactly one derivation, over every fixture");
   (function () {

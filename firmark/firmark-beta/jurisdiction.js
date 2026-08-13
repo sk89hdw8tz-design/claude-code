@@ -1235,6 +1235,327 @@
           check: "Tex. Loc. Gov't Code §233.151 applicability.",
           authority: "Galveston County; Texas Local Government Code." })
       ]
+    },
+
+    /* ---------------- FLORIDA ----------------
+       Every Florida jurisdiction is on the same code. What varies is
+       the site data, the HVHZ line (two counties), and whatever local
+       technical amendment the jurisdiction has bought itself under
+       §553.73(4) — all of which the 9th Edition voids. */
+
+    {
+      id: "fl-miamidade", name: "Miami-Dade County", county: "Miami-Dade", state: "FL",
+      kind: "county",
+      packId: "fl-hvhz", packWhy: "The pack is built for exactly this jurisdiction.",
+      governs: "wind", hvhz: true,
+      codes: [codeRec({ name: "Florida Building Code, Residential", edition: "8th Edition (2023)",
+        basis: "2021 IRC", asce: "ASCE 7-22", adopted: "2023-12-31",
+        cite: "FBC-R 8th Edition (2023), effective 31 December 2023, PLUS FBC-R Chapter 44, " +
+              "High-Velocity Hurricane Zones.", src: "fbc8" })],
+      wind: windOf({ vMph: 175, band: [175, 175], asce: "ASCE 7-22", exposureCommon: "C",
+        codeFixed: true, confirmed: "secondary",
+        basis: "The FBC fixes the HVHZ design wind speed by county rather than leaving it to the " +
+               "ASCE contour; 175 mph Risk Category II for Miami-Dade.",
+        cite: "FBC-R Figure R301.2(2) / FBC-B §1620, HVHZ wind loads, Risk Category II.",
+        src: "fl-hvhz",
+        note: "Even a code-fixed number is confirmed against the figure in the edition in force on " +
+              "the permit date. The 9th Edition arrives 31 December 2026." }),
+      snow: snowOf({ pgPsf: 0, cls: "code", confirmed: "secondary",
+        cite: "Ground snow load is zero throughout Florida; FBC-R Table R301.2(1).", src: "fbc8",
+        note: "Zero. The D + S combination is never formed and C_D = 1.15 must not appear on a " +
+              "Florida sheet." }),
+      seismic: seismicOf({ sdc: "A", confirmed: "unverified",
+        cite: "Planning value. Seismic does not govern residential wood framing in south Florida.",
+        src: "asce7" }),
+      frostDepthIn: frostOf({ inches: 0, confirmed: "secondary",
+        cite: "No frost line in Florida; footing depth governed by the 12 in minimum of FBC-R " +
+              "R403.1.4.", src: "fbc8" }),
+      termite: levelOf({ level: "very heavy", confirmed: "secondary",
+        cite: "FBC-R R318 requires subterranean termite protection throughout Florida; the whole " +
+              "state is in the very heavy band of the termite infestation probability map.",
+        src: "fbc8" }),
+      decay: levelOf({ level: "moderate to severe", confirmed: "unverified",
+        cite: "IRC/FBC-R decay probability figure.", src: "fbc8" }),
+      windborneDebris: wbdOf({ inRegion: true, likely: true, determinedBy: "code", cls: "code",
+        confirmed: "secondary",
+        cite: "The entire HVHZ is a wind-borne debris region; FBC-R Chapter 44.", src: "fl-hvhz",
+        note: "This is one of only two jurisdictions in the module where the code fixes the answer " +
+              "and the contour does not have to be consulted." }),
+      amendments: [
+        amend("FBC-R Chapter 44 (High-Velocity Hurricane Zones) applies in full and is a distinct " +
+              "design and approval regime, not a set of stricter numbers.",
+              "FBC-R Chapter 44; FBC-B §1620.", "fl-hvhz",
+              { effect: "Whether Chapter 44 permits the prescriptive/WFCM path or mandates engineered " +
+                        "design was NOT resolved — the same open question weights.js records on the " +
+                        "fl-hvhz pack. It decides what this tool's output is for." }),
+        amend("Every product in a regulated category needs a Miami-Dade NOA, or a statewide Florida " +
+              "Product Approval bearing the HVHZ endorsement. A statewide approval without the HVHZ " +
+              "endorsement is rejected at permit review.",
+              "F.A.C. Rule 61G20-3; Miami-Dade NOA programme.", "fl-prod"),
+        amend("First-floor exterior walls in this market are concrete block with a tie beam, so " +
+              "exterior openings are spanned by precast or cast-in-place concrete lintels, not wood " +
+              "headers.",
+              "Market practice, recorded on the fl-hvhz pack in weights.js.", "fbc8",
+              { cls: "market",
+                effect: "weights.js applicability() already deletes first-floor exterior wood headers " +
+                        "in a cmu market. It is repeated here so the jurisdiction record and the pack " +
+                        "agree rather than each asserting it separately." })
+      ],
+      mustVerify: [
+        mv({ id: "fl-md-ch44", severity: "blocking",
+          what: "Whether FBC-R Chapter 44 permits a prescriptive path or mandates engineered design " +
+                "for this building.",
+          why: "Unresolved here and unresolved in weights.js. It decides whether a gravity member " +
+               "schedule is an input to a design or a substitute for one.",
+          check: "FBC-R Chapter 44 in the edition in force on the permit date.",
+          authority: "Miami-Dade County Department of Regulatory and Economic Resources." })
+      ]
+    },
+
+    {
+      id: "fl-broward", name: "Broward County", county: "Broward", state: "FL", kind: "county",
+      packId: "fl-hvhz", packWhy: "The other HVHZ county; the pack is built for both.",
+      governs: "wind", hvhz: true,
+      codes: [codeRec({ name: "Florida Building Code, Residential", edition: "8th Edition (2023)",
+        basis: "2021 IRC", asce: "ASCE 7-22", adopted: "2023-12-31",
+        cite: "FBC-R 8th Edition (2023), effective 31 December 2023, PLUS FBC-R Chapter 44, " +
+              "High-Velocity Hurricane Zones.", src: "fbc8" })],
+      wind: windOf({ vMph: 170, band: [170, 170], asce: "ASCE 7-22", exposureCommon: "C",
+        codeFixed: true, confirmed: "secondary",
+        basis: "The FBC fixes the HVHZ design wind speed by county; 170 mph Risk Category II for " +
+               "Broward — five mph below Miami-Dade, on the same code, across a county line.",
+        cite: "FBC-R Figure R301.2(2) / FBC-B §1620, HVHZ wind loads, Risk Category II.",
+        src: "fl-hvhz" }),
+      snow: snowOf({ pgPsf: 0, cls: "code", confirmed: "secondary",
+        cite: "Ground snow load is zero throughout Florida; FBC-R Table R301.2(1).", src: "fbc8" }),
+      seismic: seismicOf({ sdc: "A", confirmed: "unverified", cite: "Planning value.", src: "asce7" }),
+      frostDepthIn: frostOf({ inches: 0, confirmed: "secondary",
+        cite: "No frost line in Florida; FBC-R R403.1.4 12 in minimum applies.", src: "fbc8" }),
+      termite: levelOf({ level: "very heavy", confirmed: "secondary",
+        cite: "FBC-R R318 requires termite protection throughout Florida.", src: "fbc8" }),
+      decay: levelOf({ level: "moderate to severe", confirmed: "unverified",
+        cite: "IRC/FBC-R decay probability figure.", src: "fbc8" }),
+      windborneDebris: wbdOf({ inRegion: true, likely: true, determinedBy: "code", cls: "code",
+        confirmed: "secondary",
+        cite: "The entire HVHZ is a wind-borne debris region; FBC-R Chapter 44.", src: "fl-hvhz" }),
+      amendments: [
+        amend("FBC-R Chapter 44 (HVHZ) applies in full.", "FBC-R Chapter 44.", "fl-hvhz"),
+        amend("Miami-Dade NOA or HVHZ-endorsed statewide Florida Product Approval required for every " +
+              "product in a regulated category. A Miami-Dade NOA is accepted in Broward as satisfying " +
+              "the HVHZ testing protocols, but the reverse — a Broward-only approval — does not exist; " +
+              "verify the acceptance route with the county rather than assuming reciprocity.",
+              "F.A.C. Rule 61G20-3; Miami-Dade NOA programme.", "fl-prod", { confirmed: "unverified" }),
+        amend("Concrete block first-floor exterior walls with concrete lintels, as Miami-Dade.",
+              "Market practice, recorded on the fl-hvhz pack in weights.js.", "fbc8", { cls: "market" })
+      ],
+      mustVerify: [
+        mv({ id: "fl-bro-noa", severity: "major",
+          what: "How Broward accepts product approvals — whether a Miami-Dade NOA is accepted " +
+                "directly or an HVHZ-endorsed statewide approval is required.",
+          why: "The NOA is by name a Miami-Dade instrument. Its acceptance in Broward is asserted by " +
+               "secondary sources and was not confirmed against either county's rules.",
+          check: "Broward County Board of Rules and Appeals product-approval policy.",
+          authority: "Broward County Board of Rules and Appeals." })
+      ]
+    },
+
+    {
+      id: "fl-palmbeach", name: "Palm Beach County", county: "Palm Beach", state: "FL",
+      kind: "county",
+      packId: "fl-central",
+      packWhy: "The only non-HVHZ Florida pack. It is a poor fit — see packFor() differences.",
+      governs: "wind", hvhz: false,
+      codes: [codeRec({ name: "Florida Building Code, Residential", edition: "8th Edition (2023)",
+        basis: "2021 IRC", asce: "ASCE 7-22", adopted: "2023-12-31",
+        cite: "FBC-R 8th Edition (2023), effective 31 December 2023.", src: "fbc8" })],
+      wind: windOf({ vMph: 165, band: [150, 175], asce: "ASCE 7-22", exposureCommon: "C",
+        confirmed: "unverified",
+        basis: "Planning band from secondary ASCE 7-22 summaries. Palm Beach sits immediately north " +
+               "of the HVHZ line with mapped speeds close to Broward's, and the county spans a wide " +
+               "contour range from the barrier island to the western communities.",
+        cite: "ASCE 7-22 Figure 26.5-1 / FBC-R Figure R301.2(2), Risk Category II.", src: "asce7",
+        note: "PALM BEACH IS NOT IN THE HVHZ. It carries near-HVHZ wind speeds under the ordinary " +
+              "statewide code, which is exactly the combination that gets it mistaken for HVHZ. The " +
+              "wind number is nearly Broward's; the approval regime is not." }),
+      snow: snowOf({ pgPsf: 0, cls: "code", confirmed: "secondary",
+        cite: "Ground snow load is zero throughout Florida; FBC-R Table R301.2(1).", src: "fbc8" }),
+      seismic: seismicOf({ sdc: "A", confirmed: "unverified", cite: "Planning value.", src: "asce7" }),
+      frostDepthIn: frostOf({ inches: 0, confirmed: "secondary",
+        cite: "No frost line in Florida; FBC-R R403.1.4 12 in minimum applies.", src: "fbc8" }),
+      termite: levelOf({ level: "very heavy", confirmed: "secondary",
+        cite: "FBC-R R318 requires termite protection throughout Florida.", src: "fbc8" }),
+      decay: levelOf({ level: "moderate to severe", confirmed: "unverified",
+        cite: "IRC/FBC-R decay probability figure.", src: "fbc8" }),
+      windborneDebris: wbdOf({ inRegion: null, likely: true, determinedBy: "site",
+        confirmed: "unverified",
+        cite: "FBC-R R301.2.1.2. At mapped speeds of 150 mph and above the 140 mph limb of the " +
+              "criterion is reached county-wide, but the county spans the contour and the answer is " +
+              "read at the site.", src: "fbc8" }),
+      amendments: [
+        amend("Palm Beach County administers the statewide code and maintains a product-approval " +
+              "process for permit submittals. Any local technical amendment was NOT retrieved.",
+              "F.S. §553.73(4); Palm Beach County Planning, Zoning and Building.", "fs-553-73",
+              { incomplete: true })
+      ],
+      mustVerify: [
+        mv({ id: "fl-pb-hvhz", severity: "major",
+          what: "That the package is NOT being detailed to HVHZ requirements by analogy to its " +
+                "neighbour.",
+          why: "Palm Beach borders Broward and carries similar wind speeds under a different regime. " +
+               "Detailing it as HVHZ buys unnecessary product cost; detailing Broward as Palm Beach " +
+               "fails permit review. The wind number does not tell you which side of the line you " +
+               "are on — the county name does.",
+          check: "FBC-R Chapter 44 scope: Broward and Miami-Dade only.",
+          authority: "Palm Beach County Planning, Zoning and Building." })
+      ]
+    },
+
+    {
+      id: "fl-orange", name: "Orlando / Orange County", county: "Orange", state: "FL",
+      kind: "county",
+      packId: "fl-central", packWhy: "The pack's named market. Closest fit in the product.",
+      governs: "wind", hvhz: false,
+      codes: [codeRec({ name: "Florida Building Code, Residential", edition: "8th Edition (2023)",
+        basis: "2021 IRC", asce: "ASCE 7-22", adopted: "2023-12-31",
+        cite: "FBC-R 8th Edition (2023), effective 31 December 2023.", src: "fbc8" })],
+      wind: windOf({ vMph: 130, band: [125, 140], asce: "ASCE 7-22", exposureCommon: "C",
+        confirmed: "unverified",
+        basis: "Planning band for inland central Florida from secondary ASCE 7-22 summaries.",
+        cite: "ASCE 7-22 Figure 26.5-1 / FBC-R Figure R301.2(2), Risk Category II.", src: "asce7" }),
+      snow: snowOf({ pgPsf: 0, cls: "code", confirmed: "secondary",
+        cite: "Ground snow load is zero throughout Florida; FBC-R Table R301.2(1).", src: "fbc8" }),
+      seismic: seismicOf({ sdc: "A", confirmed: "unverified", cite: "Planning value.", src: "asce7" }),
+      frostDepthIn: frostOf({ inches: 0, confirmed: "secondary",
+        cite: "No frost line in Florida; FBC-R R403.1.4 12 in minimum applies.", src: "fbc8" }),
+      termite: levelOf({ level: "very heavy", confirmed: "secondary",
+        cite: "FBC-R R318 requires termite protection throughout Florida.", src: "fbc8" }),
+      decay: levelOf({ level: "moderate to severe", confirmed: "unverified",
+        cite: "IRC/FBC-R decay probability figure.", src: "fbc8" }),
+      windborneDebris: wbdOf({ inRegion: null, likely: false, determinedBy: "site",
+        confirmed: "unverified",
+        cite: "FBC-R R301.2.1.2. Orange County is inland — no part is within 1 mile of a coastal mean " +
+              "high water line — so the region is reached only if the mapped speed at the site is " +
+              "140 mph or greater, which is at the top of the planning band.",
+        src: "fbc8",
+        note: "THIS IS THE CASE THE COUNTY-LINE HABIT GETS WRONG IN BOTH DIRECTIONS. Orlando is not " +
+              "coastal, so people assume no opening protection; but the 140 mph limb applies " +
+              "anywhere, coast or not. And the 9th Edition's five-mile-from-tidal-water rule is a " +
+              "third, different geometry again." }),
+      amendments: [
+        amend("Any local technical amendment adopted by Orange County or the City of Orlando was NOT " +
+              "retrieved. Under F.S. §553.73(4) any that exist are void at the 9th Edition unless " +
+              "adopted for Community Rating System purposes.",
+              "F.S. §553.73(4).", "fs-553-73", { incomplete: true })
+      ],
+      mustVerify: []
+    },
+
+    {
+      id: "fl-hillsborough", name: "Tampa / Hillsborough County", county: "Hillsborough",
+      state: "FL", kind: "county",
+      packId: "fl-central", packWhy: "The pack's named market.",
+      governs: "wind", hvhz: false,
+      codes: [codeRec({ name: "Florida Building Code, Residential", edition: "8th Edition (2023)",
+        basis: "2021 IRC", asce: "ASCE 7-22", adopted: "2023-12-31",
+        cite: "FBC-R 8th Edition (2023), effective 31 December 2023.", src: "fbc8" })],
+      wind: windOf({ vMph: 140, band: [130, 150], asce: "ASCE 7-22", exposureCommon: "C",
+        confirmed: "unverified",
+        basis: "Planning band for the Tampa Bay area from secondary ASCE 7-22 summaries. The county " +
+               "runs from open bay frontage to well inland and the contour crosses it.",
+        cite: "ASCE 7-22 Figure 26.5-1 / FBC-R Figure R301.2(2), Risk Category II.", src: "asce7" }),
+      snow: snowOf({ pgPsf: 0, cls: "code", confirmed: "secondary",
+        cite: "Ground snow load is zero throughout Florida; FBC-R Table R301.2(1).", src: "fbc8" }),
+      seismic: seismicOf({ sdc: "A", confirmed: "unverified", cite: "Planning value.", src: "asce7" }),
+      frostDepthIn: frostOf({ inches: 0, confirmed: "secondary",
+        cite: "No frost line in Florida; FBC-R R403.1.4 12 in minimum applies.", src: "fbc8" }),
+      termite: levelOf({ level: "very heavy", confirmed: "secondary",
+        cite: "FBC-R R318 requires termite protection throughout Florida.", src: "fbc8" }),
+      decay: levelOf({ level: "moderate to severe", confirmed: "unverified",
+        cite: "IRC/FBC-R decay probability figure.", src: "fbc8" }),
+      windborneDebris: wbdOf({ inRegion: null, likely: true, determinedBy: "site",
+        confirmed: "unverified",
+        cite: "FBC-R R301.2.1.2. Tampa Bay frontage puts land inside the 1-mile / 130 mph limb while " +
+              "eastern Hillsborough may be outside both limbs. The county line is not the boundary.",
+        src: "fbc8",
+        note: "The clearest single illustration in the module of why a per-county windborne-debris " +
+              "flag is wrong: two lots in the same county, same code, same builder, different " +
+              "opening-protection requirement." }),
+      amendments: [
+        amend("Any local technical amendment adopted by Hillsborough County or the City of Tampa was " +
+              "NOT retrieved.",
+              "F.S. §553.73(4).", "fs-553-73", { incomplete: true })
+      ],
+      mustVerify: []
+    },
+
+    {
+      id: "fl-lee", name: "Lee County", county: "Lee", state: "FL", kind: "county",
+      packId: "fl-central",
+      packWhy: "The only non-HVHZ Florida pack. Understates this county's wind badly — see packFor().",
+      governs: "wind", hvhz: false,
+      codes: [codeRec({ name: "Florida Building Code, Residential", edition: "8th Edition (2023)",
+        basis: "2021 IRC", asce: "ASCE 7-22", adopted: "2023-12-31",
+        cite: "FBC-R 8th Edition (2023), effective 31 December 2023.", src: "fbc8" })],
+      wind: windOf({ vMph: 160, band: [150, 170], asce: "ASCE 7-22", exposureCommon: "C",
+        confirmed: "unverified",
+        basis: "Planning band for coastal south-west Florida from secondary ASCE 7-22 summaries.",
+        cite: "ASCE 7-22 Figure 26.5-1 / FBC-R Figure R301.2(2), Risk Category II.", src: "asce7",
+        note: "Lee County is not in the HVHZ and carries wind speeds within 10 mph of Broward's. " +
+              "The design load is nearly HVHZ; the approval regime is the ordinary statewide one." }),
+      snow: snowOf({ pgPsf: 0, cls: "code", confirmed: "secondary",
+        cite: "Ground snow load is zero throughout Florida; FBC-R Table R301.2(1).", src: "fbc8" }),
+      seismic: seismicOf({ sdc: "A", confirmed: "unverified", cite: "Planning value.", src: "asce7" }),
+      frostDepthIn: frostOf({ inches: 0, confirmed: "secondary",
+        cite: "No frost line in Florida; FBC-R R403.1.4 12 in minimum applies.", src: "fbc8" }),
+      termite: levelOf({ level: "very heavy", confirmed: "secondary",
+        cite: "FBC-R R318 requires termite protection throughout Florida.", src: "fbc8" }),
+      decay: levelOf({ level: "moderate to severe", confirmed: "unverified",
+        cite: "IRC/FBC-R decay probability figure.", src: "fbc8" }),
+      windborneDebris: wbdOf({ inRegion: null, likely: true, determinedBy: "site",
+        confirmed: "unverified",
+        cite: "FBC-R R301.2.1.2. At mapped speeds of 150 mph and above the 140 mph limb is reached " +
+              "throughout, but the determination is still made at the site.", src: "fbc8" }),
+      amendments: [
+        amend("Any local technical amendment adopted by Lee County was NOT retrieved. Post-Ian " +
+              "floodplain and substantial-improvement rules are administered here and are not " +
+              "modelled by this product in any form.",
+              "F.S. §553.73(4); FEMA NFIP; Lee County floodplain ordinance.", "fs-553-73",
+              { incomplete: true })
+      ],
+      mustVerify: []
+    },
+
+    {
+      id: "fl-duval", name: "Jacksonville / Duval County", county: "Duval", state: "FL",
+      kind: "county",
+      packId: "fl-central", packWhy: "Nearest Florida non-HVHZ pack; north Florida is not its market.",
+      governs: "wind", hvhz: false,
+      codes: [codeRec({ name: "Florida Building Code, Residential", edition: "8th Edition (2023)",
+        basis: "2021 IRC", asce: "ASCE 7-22", adopted: "2023-12-31",
+        cite: "FBC-R 8th Edition (2023), effective 31 December 2023.", src: "fbc8" })],
+      wind: windOf({ vMph: 130, band: [120, 140], asce: "ASCE 7-22", exposureCommon: "C",
+        confirmed: "unverified",
+        basis: "Planning band for north-east Florida from secondary ASCE 7-22 summaries. This is the " +
+               "lowest-wind jurisdiction in the Florida set.",
+        cite: "ASCE 7-22 Figure 26.5-1 / FBC-R Figure R301.2(2), Risk Category II.", src: "asce7" }),
+      snow: snowOf({ pgPsf: 0, cls: "code", confirmed: "secondary",
+        cite: "Ground snow load is zero throughout Florida; FBC-R Table R301.2(1).", src: "fbc8" }),
+      seismic: seismicOf({ sdc: "A", confirmed: "unverified", cite: "Planning value.", src: "asce7" }),
+      frostDepthIn: frostOf({ inches: 0, confirmed: "secondary",
+        cite: "No frost line in Florida; FBC-R R403.1.4 12 in minimum applies.", src: "fbc8" }),
+      termite: levelOf({ level: "very heavy", confirmed: "secondary",
+        cite: "FBC-R R318 requires termite protection throughout Florida.", src: "fbc8" }),
+      decay: levelOf({ level: "moderate to severe", confirmed: "unverified",
+        cite: "IRC/FBC-R decay probability figure.", src: "fbc8" }),
+      windborneDebris: wbdOf({ inRegion: null, likely: true, determinedBy: "site",
+        confirmed: "unverified",
+        cite: "FBC-R R301.2.1.2. Duval has Atlantic frontage and the St Johns River through it; the " +
+              "1-mile / 130 mph limb reaches part of the county and not all of it.", src: "fbc8" }),
+      amendments: [
+        amend("Any local technical amendment adopted by the City of Jacksonville was NOT retrieved.",
+              "F.S. §553.73(4).", "fs-553-73", { incomplete: true })
+      ],
+      mustVerify: []
     }
   ];
 
