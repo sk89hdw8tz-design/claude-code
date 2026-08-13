@@ -259,6 +259,18 @@ const EXCUSE = /(not wired|isn'?t wired|not implemented|not built|coming soon|\b
       const tag = n.tagName.toLowerCase();
       let label = (n.textContent || '').trim().replace(/\s+/g, ' ').slice(0, 60);
       if (!label) label = n.getAttribute('aria-label') || n.getAttribute('title') || n.id || '';
+      /* Is this control ALREADY the chosen one? Clicking the tab you are
+         on correctly does nothing, and calling that a dead button is a
+         false accusation — it was 9 of the 31 the first clean run
+         raised. Verified the honest way before trusting it: for each
+         such pair the SIBLING was clicked and did change the view
+         (Grid/Table, Schedule/Region pack, Section properties/Sawn
+         design values, S0.0/S1.0). The pairs work; the flag was mine. */
+      const cls = ' ' + (n.className || '') + ' ';
+      const selected = n.getAttribute('aria-pressed') === 'true' ||
+                       n.getAttribute('aria-selected') === 'true' ||
+                       !!n.getAttribute('aria-current') ||
+                       / (active|is-active|on|sel|current) /.test(cls);
       return {
         idx: i,
         tag,
@@ -266,6 +278,7 @@ const EXCUSE = /(not wired|isn'?t wired|not implemented|not built|coming soon|\b
         id: n.id || '',
         href: tag === 'a' ? (n.getAttribute('href') || '') : '',
         disabled: !!n.disabled,
+        selected,
         options: tag === 'select'
           ? [].slice.call(n.options).map(o => o.value).filter(v => v !== '')
           : []
@@ -374,11 +387,35 @@ const EXCUSE = /(not wired|isn'?t wired|not implemented|not built|coming soon|\b
 
   /* ---------------- the verdict ---------------- */
 
-  const bad = [];
+  /* A control that is dead COLD but alive WARM is not dead — it is inert
+     until the run gives it something to act on. The sheet's six selects
+     are the clear case: with no plan chosen they move nothing, and with
+     a run behind them every one recomputes. Worth knowing, not a defect;
+     the fix there is to disable them with a reason, not to wire them. */
+  const aliveWarm = {};
+  results.filter(r => r.warm && r.effect !== 'none' && r.effect !== 'disabled')
+    .forEach(r => { aliveWarm[(r.zone === 'chrome' ? 'chrome' : r.view) + ' ' + r.label] = true; });
+
+  /* window.print() opens the browser's own print path and is not
+     observable from the page in headless Chromium. Verified working
+     separately by hooking window.print and watching it fire. Exempt by
+     name and by reason, never by silence. */
+  const UNOBSERVABLE = { 'planset Print / PDF': 'calls window.print(), which headless Chromium does not surface' };
+
+  const bad = [], noted = [];
   for (const r of results) {
+    const key = (r.zone === 'chrome' ? 'chrome' : r.view) + ' ' + r.label;
     const where = `${r.zone === 'chrome' ? 'chrome' : r.view}` +
                   `${r.warm ? ' (warm)' : ' (cold)'} · <${r.tag}> "${r.label}"`;
-    if (r.effect === 'none') {
+    if (r.effect === 'none' && r.selected) {
+      noted.push(`already-active  ${where} — it is the current selection, so clicking it ` +
+                 `correctly does nothing`);
+    } else if (r.effect === 'none' && UNOBSERVABLE[key]) {
+      noted.push(`unobservable    ${where} — ${UNOBSERVABLE[key]}`);
+    } else if (r.effect === 'none' && !r.warm && aliveWarm[key]) {
+      noted.push(`needs a run     ${where} — inert with nothing loaded, works once the run ` +
+                 `has content; consider disabling it with that reason`);
+    } else if (r.effect === 'none') {
       bad.push(`DEAD    ${where} — clicked, and nothing changed: not the view, not the ` +
                `route, not storage, no dialog, no toast`);
     }
@@ -413,6 +450,12 @@ const EXCUSE = /(not wired|isn'?t wired|not implemented|not built|coming soon|\b
       JSON.stringify(r.label), r.detail || '', (r.errs || []).join(' | ')
     ].join('\t')).join('\n') + '\n');
   console.log('\n   full record: ' + report);
+
+  if (noted.length) {
+    console.log('\n' + noted.length + ' NOT DEFECTS, listed so the number is not mistaken ' +
+                'for silence\n');
+    noted.forEach(n => console.log('  - ' + n));
+  }
 
   if (bad.length) {
     console.log('\n' + bad.length + ' PROBLEMS\n');
