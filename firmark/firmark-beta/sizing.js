@@ -340,11 +340,14 @@
     });
 
     /* union across the whole master set — the envelope a builder buys to */
-    var envelope = {};
+    var envelope = {}, holds = {}, nHolds = 0;
     perVariant.forEach(function (pv) {
       pv.delta.rows.forEach(function (r) {
-        if (r.state === "holds") return;
         var k = key(r.mark.id);
+        if (r.state === "holds") {
+          if (!own(holds, k)) { holds[k] = 1; nHolds++; }
+          return;
+        }
         if (!own(envelope, k)) envelope[k] = { mark: r.mark, hits: [] };
         envelope[k].hits.push({ variant: pv.variant, state: r.state, now: r.now,
                                 nowSpacing: r.nowSpacing, why: r.why });
@@ -357,7 +360,7 @@
     });
 
     var out = { base: base, groups: groups, variants: flat, perVariant: perVariant,
-                envRows: envRows, truncated: truncated,
+                envRows: envRows, envHolds: nHolds, truncated: truncated,
                 combo: comboHonoured(plan, pack, groups) };
     MCACHE[ck] = out;
     return out;
@@ -766,8 +769,10 @@
           el("span", { text: "Pick an elevation or an option above to see what it does to the schedule below. " +
             "Across the " + plural(ms.variants.length, "variant", "variants") + " on record, " +
             (ms.envRows.length
-              ? plural(ms.envRows.length, "mark moves", "marks move") + " at least once."
-              : "no mark moves off the base member.") })
+              ? plural(ms.envRows.length, "mark moves", "marks move") + " at least once"
+              : "no mark moves off the base member") +
+            (ms.envHolds ? ", and " + plural(ms.envHolds, "mark carries", "marks carry") +
+                           " a different load and holds its member" : "") + "." })
         ]));
       } else {
         var moved = delta ? (delta.moved + delta.escalated + delta.recovered) : 0;

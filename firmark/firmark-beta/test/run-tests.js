@@ -290,19 +290,36 @@ function exhaustive(demand, pol) {
 function battery() {
   var out = [];
   var packs = FM.weights.PACKS;
+  /* The register once recorded this battery as crossing wet service, treatment,
+     tributary, bearing and DCR target. It did not — it crossed packs, roles,
+     spans and bracing only, and a reviewer caught the claim. This is the battery
+     that was described. `deck` is included; it was missing too. */
   var spans = { rafter: [10, 13.5, 16, 19], ceiling: [9, 12, 15], joist: [10, 14, 17],
-                header: [3, 6, 10, 16], beam: [8, 12, 16] };
+                header: [3, 6, 10, 16], beam: [8, 12, 16], deck: [8, 12, 15] };
   packs.forEach(function (pk) {
-    ["rafter", "ceiling", "joist", "header", "beam"].forEach(function (role) {
+    ["rafter", "ceiling", "joist", "header", "beam", "deck"].forEach(function (role) {
       spans[role].forEach(function (span) {
         [true, false].forEach(function (braced) {
           var carries = { rafter: "roof", ceiling: "ceiling", joist: "floor", deck: "deck",
                           header: "roof", beam: "roof" }[role];
-          var mark = { id: "T", label: "t", role: role, span: span, trib: 7, count: 1,
-                       braced: braced, carries: carries, bearing: role === "header" ? 3.0 : undefined };
-          var d = FM.weights.demandFor(mark, { marks: [] }, pk);
-          out.push({ demand: d, pol: FM.weights.policyFor(pk, null, role),
-                     label: pk.id + "/" + role + "/" + span + "ft/" + (braced ? "braced" : "unbraced") });
+          [true, false].forEach(function (exterior) {
+            [4, 11].forEach(function (trib) {
+              [0.90, 1.00].forEach(function (target) {
+                var mark = { id: "T", label: "t", role: role, span: span, trib: trib, count: 1,
+                             braced: braced, carries: carries,
+                             bearing: role === "header" ? 3.0 : undefined,
+                             exposure: exterior ? "exterior" : undefined };
+                var d = FM.weights.demandFor(mark, { marks: [] }, pk);
+                var pol = FM.weights.policyFor(pk, null, role);
+                pol.maxDCR = target;
+                out.push({ demand: d, pol: pol,
+                           label: pk.id + "/" + role + "/" + span + "ft/" +
+                                  (braced ? "braced" : "unbraced") + "/" +
+                                  (d.wet ? "wet" : "dry") + "/" + (d.treated ? "treated" : "untreated") +
+                                  "/t" + trib + "/dcr" + target });
+              });
+            });
+          });
         });
       });
     });
@@ -393,6 +410,17 @@ suite("solver · pruning is admissible — exhaustive vs pruned");
     totalSpace += sol.searchSpace;
     totalSaved += sol.searchSpace - sol.stats.evaluated;
 
+    /* the whole set, candidate for candidate — the winner alone was what the
+       spec claimed this compared and what it actually compared */
+    var bruteSet = brute.map(function (b) { return b.key; }).sort().join(",");
+    var solSet = sol.feasible.map(function (f) {
+      return f.cand.size + "|" + f.cand.species + "|" + f.cand.grade + "|" + f.cand.spacing;
+    }).sort().join(",");
+    if (bruteSet !== solSet) {
+      mismatches.push(c.label + ": feasible SET differs (" + brute.length + " exhaustive vs " +
+                      sol.feasible.length + " solver)");
+      return;
+    }
     var bruteWin = brute[0] ? brute[0].key : null;
     var solWin = sol.pick ? (sol.pick.cand.size + "|" + sol.pick.cand.species + "|" +
                              sol.pick.cand.grade + "|" + sol.pick.cand.spacing) : null;

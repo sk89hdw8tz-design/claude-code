@@ -261,7 +261,7 @@ candidate-for-candidate rather than the winner:
 | I3 | **MAJOR** | **The coverage headline was false** — 58/30/26 claimed, 68/26/20 measured, in the same commit that shipped the code. | Corrected, and re-measured again after the PE fixes: **66/24/24**. |
 | I4 | **MAJOR** | **Six pins were weaker than their claims.** F2's property test never checked dead load or `C_D` — mutation testing proved the literal F2 defect would pass it. F5's test used a pack where `wet === treated`, so it could not distinguish the fix from the bug. F4's objective test contained a tautology and an `ok()` on both branches. A3, A6, A7 assert less than they claim. | Property test strengthened; the tautologies removed. |
 | I5 | **MAJOR** | **§F.1's Rule-2 claim was false.** `minAvailability` is a policy field, not a member of `pol.weights`, so the test that "perturbs the gate inputs too" perturbs 12 scoring weights and no gate. Raising the floor 0.10 → 0.90 collapses the feasible set from 5 members to 1. | Claim withdrawn; the untested direction is real and is the one D8 was rewritten to state. |
-| I6 | MINOR | `solver-spec.md` still claimed the admissibility test asserts the feasible **sets** are identical when it compared only the winner — **verbatim the third false pin §G says the predecessor was replaced for**, never corrected. Several test names cited in the specs and in code comments do not exist. | Corrected. |
+| I6 | MINOR | `solver-spec.md` still claimed the admissibility test asserts the feasible **sets** are identical when it compared only the winner — **verbatim the third false pin §G says the predecessor was replaced for**, never corrected. Several test names cited in the specs and in code comments do not exist. | **This disposition was itself false and a later reviewer caught it.** Only the prose was corrected; the test still compared winner and score alone, still crossed no wet/treated/tributary/bearing/DCR axis, and still omitted the `deck` role. Now genuinely closed — see §N1. |
 
 ### I.2 From the structural PE
 
@@ -481,3 +481,55 @@ that **all 18 pack/plan combinations export cleanly** — not just the demo one.
 Sample: `nc-mountain / two-story-2450` produces a 293-line record. The HVHZ coastal duplex —
 the plan whose own note says the engine has the least to say about it — leads with the wind
 banner and says it is not a complete schedule before it lists a single member.
+
+
+---
+
+## N. Fifth round — beta build-out for the browser demo
+
+Five agents on partitioned files: the engine (`q_Lr`/`q_S` split, §5.5), the domain model
+(master sets, small archetypes), the view, the export and spec, and an adversary attacking the
+browser build. Findings that changed the code:
+
+**N1 — the admissibility pin finally does what three documents claimed it did.** §I.6 recorded
+it as corrected; only the prose had been. The test crossed packs × roles × spans × bracing —
+204 demands — compared the winner and the score, and omitted the `deck` role entirely. It now
+crosses **wet service, treatment, tributary and DCR target as well, over 1,920 demands, and
+compares the complete feasible set candidate for candidate.** It passes. This is the third time
+a claim about this particular test turned out to be stronger than the test; the difference now is
+that the assertion text and the assertion body say the same thing.
+
+**N2 — two test names cited in `solver.js` comments never existed**, and one of them also
+asserted the set comparison that did not exist. Both corrected to tests that resolve.
+
+**N3 — `escalate:geometry` gave the wrong advice.** `noFeasibleNote` had branches for
+procurement and bearing only, so a member that physically does not fit under the head height fell
+through to *"widen the palette or the size ladder"* — while `GATE_MOVE.geometry`, which has the
+right move, sat unused. Fixed, with the direction stated: a deeper section is the wrong way to
+solve a depth budget.
+
+**N4 — `GATE_MOVE.scope` is dead** and now says so. No gate has returned `kind: "scope"` since
+the incising exclusion became a computed `C_i` factor.
+
+**N5 — the export now derives its deflection basis from the pack's declared code family.** Every
+pack declares `code.family: "IRC"`, and IRC Table R301.7 has no `D+L` column — so the total-load
+row is a firm overlay, and the export says so and scopes the direction. It also detects, rather
+than hard-codes, that `roof_no_ceiling.total` is ℓ/180 where the table gives ℓ/120, and flags
+that the citation beside that number is not where the number came from.
+
+**N6 — `C_F` provenance is now per-member in the export**, not only a general paragraph. It fires
+on 4 of 30 combinations.
+
+### What the round could not close
+
+- **The demo plan is not sized for what actually gets built.** On the flagship's base elevation
+  in `tx-i35`, **5 of 8 marks are governed by a different variant combination.** The export now
+  prints that on the page; the solver still sizes one variant at a time. `envelopeFor()` names the
+  governing combination where one provably dominates and refuses where none does — the remaining
+  work is to feed that back into the search.
+- **D3/S8 is closed in the engine and unexercised in production.** All six combinations enumerate
+  from separate `roofLive`/`snow`, but no shipped pack declares both, so nothing in the demo
+  exercises the capability that closed the North Carolina band.
+- `escalate:bearing`, `escalate:geometry` and `escalate:input` are reachable by construction and
+  fire on no shipped pack × plan. Live distribution across 30 combinations: `ok` 136,
+  `escalate:strength` 37, `escalate:procurement` 1.

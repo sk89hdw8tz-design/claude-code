@@ -5270,8 +5270,9 @@ var FM = (function () {
      offered. Self-weight is deliberately left out: it only adds demand, so
      omitting it keeps the bound low, i.e. safe.
 
-     Test "pruned candidates are genuinely infeasible" runs the full exhaustive
-     search against the pruned one and asserts the feasible sets are identical. */
+     Pinned by "solver · pruning is admissible — exhaustive vs pruned", which runs
+     the full exhaustive search against the pruned one and compares the winner,
+     the score AND the complete feasible set, candidate for candidate. */
 
   function seedBounds(demand, policy) {
     var span = Number(demand.span), L_in = span * 12;
@@ -5464,7 +5465,9 @@ var FM = (function () {
   var GATE_MOVE = {
     geometry:    "raise the plate height, drop the head height, or flush-frame the condition",
     procurement: "confirm the yard will stock it, or lower the availability floor deliberately",
-    scope:       "use a species that takes treatment without incising, or check it by hand with C_i"
+    /* `scope` is retained for a gate that may return it in future; no gate does
+       today, because the incising exclusion became a computed C_i factor. */
+    scope:       "check it by hand against the factor this engine does not implement"
   };
 
   /* ---------- the search ---------- */
@@ -5894,6 +5897,15 @@ var FM = (function () {
         move: "lengthen the bearing — a second jack stud. Depth does nothing for bearing.",
         outOfScope: "This is a DETAILING question, not a member-size question. No section in the " +
                     "ladder is wider, so a deeper member cannot solve it."
+      };
+    }
+    if (status === "escalate:geometry") {
+      var g = rejected.filter(function (r) { return r.gate === "geometry"; })[0];
+      return {
+        wall: g ? g.reason : "no section in the ladder fits the depth available",
+        counts: {}, move: GATE_MOVE.geometry,
+        outOfScope: "This is a GEOMETRY question, not a member-size question. A deeper section " +
+                    "is the wrong direction — the space above the head height is the constraint."
       };
     }
     if (blocked) {
