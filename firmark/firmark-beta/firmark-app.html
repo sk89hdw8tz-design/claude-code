@@ -22060,6 +22060,14 @@ var FM = (function () {
       /* geometry */
       model: null,
       /* loads and code */
+      /* The STATE is run state in its own right, not a transient of the
+         picker. "Texas chosen, jurisdiction not yet" is a real position in the
+         workflow and it has to survive a re-render, or the picker cannot work
+         at all — which is exactly what happened: the view re-rendered on
+         every change, the fresh <select> read back its own empty value, and
+         choosing a state silently reverted to "Choose a state…". Stage 3 was
+         unreachable through the UI for as long as that was true. */
+      stateCode: null,
       jurisId: null,
       packId: null,           /* the weights.js region pack that carries the loads */
       planId: null,           /* when the run is driven from a shipped plan */
@@ -22155,9 +22163,47 @@ var FM = (function () {
      yet". The CAD view is stage 1 — what is on its canvas IS the geometry the
      run is about — so the run reads it rather than waiting to be told. */
 
+  /* WHAT COUNTS AS "THE CANVAS HAS GEOMETRY".
+
+     A BLANK MODEL IS NOT GEOMETRY. It is the absence of a statement, and it
+     must not outrank a plan the user selected.
+
+     This was wrong and it silently disabled the whole product: the precedence
+     is pinned model -> canvas -> plan id, and a blank model is a truthy
+     object with zero walls, so simply OPENING the Geometry stage on an empty
+     canvas shadowed the selected plan. `project.model()` returned the 0-wall
+     blank instead of starter-1210's four walls, the takeoff produced nothing,
+     and the materials list said "Nothing to export yet" while a plan sat
+     selected in the picker. Every stage downstream went quiet with no
+     explanation — exactly the silent-fallback failure this codebase forbids
+     everywhere else.
+
+     Found by clicking all 148 controls in the built app, not by any test:
+     none of the 1,221 assertions covered "the user opens the CAD view before
+     the run has geometry", because they all set state directly. */
+  function hasGeometry(m) {
+    if (!m || !m.levels || !m.levels.length) return false;
+    for (var i = 0; i < m.levels.length; i++) {
+      var lv = m.levels[i];
+      if (lv && lv.walls && lv.walls.length) return true;
+    }
+    return false;
+  }
+
   function canvasModel() {
     if (!FM.cad || typeof FM.cad.currentModel !== "function") return null;
-    try { return FM.cad.currentModel(); } catch (e) { return null; }
+    var m;
+    try { m = FM.cad.currentModel(); } catch (e) { return null; }
+    return hasGeometry(m) ? m : null;
+  }
+
+  /* cad.js's currentSource() reads view state that does not exist until that
+     view has rendered once, and it THROWS rather than returning null. Any call
+     to modelKey() before the user has visited the CAD view would take the whole
+     run down with it, so it is guarded here rather than assumed. */
+  function canvasSource() {
+    if (!FM.cad || typeof FM.cad.currentSource !== "function") return null;
+    try { return FM.cad.currentSource(); } catch (e) { return null; }
   }
 
   function modelKey() {
@@ -22168,7 +22214,7 @@ var FM = (function () {
        different plan that happens to produce identical geometry still reads as
        a different thing to approve. */
     if (c) {
-      var src = FM.cad.currentSource ? FM.cad.currentSource() : { kind: "?", id: "?" };
+      var src = canvasSource() || { kind: "?", id: "?" };
       return "canvas:" + src.kind + "/" + src.id + "/" + fp(c);
     }
     if (s.planId) return "plan:" + s.planId + "/" + (s.variantId || "base");
@@ -25476,7 +25522,19 @@ var FM = (function () {
        you were already on. The module has no by-id lookup, so find it the way
        the data allows: the id is prefixed with the state, and the listing is
        authoritative. */
+    /* Read the CHOSEN state from the run, not from the element.
+
+       This read `stateSel.value` as its fallback, and the change handler calls
+       FM.go("jurisdiction"), which re-renders the whole view — so the element
+       being asked was a brand-new one whose value was "". Choosing a state
+       therefore reverted to "Choose a state…" every time, `jurisId` stayed
+       null forever, and the criteria table never appeared. Stage 3 could not
+       be reached through the UI at all.
+
+       Every end-to-end run that "passed" had set jurisId from the console, so
+       nothing exercised the only path a user actually has. */
     function currentState() {
+      if (s.stateCode) return s.stateCode;
       if (!s.jurisId) return stateSel.value || "";
       for (var i = 0; i < FM.juris.STATES.length; i++) {
         var st = FM.juris.STATES[i];
@@ -25503,12 +25561,21 @@ var FM = (function () {
     fillJuris();
 
     stateSel.addEventListener("change", function () {
-      FM.project.set({ jurisId: null, packId: null });
-      fillJuris();
+      /* Persist the state BEFORE the re-render, or the re-render loses it. */
+      FM.project.set({ stateCode: this.value || null, jurisId: null, packId: null });
       FM.go("jurisdiction");
     });
     jurisSel.addEventListener("change", function () {
-      FM.project.set({ jurisId: this.value || null, packId: null });
+      /* keep the state in step, so a deep link that names only a jurisdiction
+         still shows the right state in the picker above it */
+      var st = "";
+      for (var si = 0; si < FM.juris.STATES.length; si++) {
+        var found = (FM.juris.jurisdictions(FM.juris.STATES[si]) || []).filter(function (j) {
+          return j.id === jurisSel.value;
+        })[0];
+        if (found) { st = FM.juris.STATES[si]; break; }
+      }
+      FM.project.set({ jurisId: this.value || null, stateCode: st || s.stateCode, packId: null });
       FM.go("jurisdiction");
     });
 

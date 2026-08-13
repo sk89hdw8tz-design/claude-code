@@ -529,7 +529,19 @@
        you were already on. The module has no by-id lookup, so find it the way
        the data allows: the id is prefixed with the state, and the listing is
        authoritative. */
+    /* Read the CHOSEN state from the run, not from the element.
+
+       This read `stateSel.value` as its fallback, and the change handler calls
+       FM.go("jurisdiction"), which re-renders the whole view — so the element
+       being asked was a brand-new one whose value was "". Choosing a state
+       therefore reverted to "Choose a state…" every time, `jurisId` stayed
+       null forever, and the criteria table never appeared. Stage 3 could not
+       be reached through the UI at all.
+
+       Every end-to-end run that "passed" had set jurisId from the console, so
+       nothing exercised the only path a user actually has. */
     function currentState() {
+      if (s.stateCode) return s.stateCode;
       if (!s.jurisId) return stateSel.value || "";
       for (var i = 0; i < FM.juris.STATES.length; i++) {
         var st = FM.juris.STATES[i];
@@ -556,12 +568,21 @@
     fillJuris();
 
     stateSel.addEventListener("change", function () {
-      FM.project.set({ jurisId: null, packId: null });
-      fillJuris();
+      /* Persist the state BEFORE the re-render, or the re-render loses it. */
+      FM.project.set({ stateCode: this.value || null, jurisId: null, packId: null });
       FM.go("jurisdiction");
     });
     jurisSel.addEventListener("change", function () {
-      FM.project.set({ jurisId: this.value || null, packId: null });
+      /* keep the state in step, so a deep link that names only a jurisdiction
+         still shows the right state in the picker above it */
+      var st = "";
+      for (var si = 0; si < FM.juris.STATES.length; si++) {
+        var found = (FM.juris.jurisdictions(FM.juris.STATES[si]) || []).filter(function (j) {
+          return j.id === jurisSel.value;
+        })[0];
+        if (found) { st = FM.juris.STATES[si]; break; }
+      }
+      FM.project.set({ jurisId: this.value || null, stateCode: st || s.stateCode, packId: null });
       FM.go("jurisdiction");
     });
 

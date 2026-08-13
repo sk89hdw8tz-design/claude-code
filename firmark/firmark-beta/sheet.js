@@ -59,8 +59,13 @@
       var top = el("div", { class: "sheet-head-top" }, [
         el("h1", { class: "sheet-mark", text: sheet.id }),
         el("span", { class: "badge b-mute", text: sheet.role }),
-        el("span", { style: "font-size:.83rem;color:var(--muted)", text: sheet.label })
+        el("span", { class: "sheet-head-desc", style: "font-size:.83rem;color:var(--muted)", text: sheet.label })
       ]);
+      /* a sheet added in this session is labelled as such, because nothing
+         stores it and a reload will take it away */
+      if (sheet.session) {
+        top.appendChild(el("span", { class: "badge b-warn", title: "Added in this browser session. Nothing stores it — reloading the page clears it.", text: "Session only" }));
+      }
 
       var tools = el("div", { class: "sheet-tools" }, [
         el("div", { class: "seg", role: "group", "aria-label": "View density" }, [
@@ -188,7 +193,51 @@
       }));
       sizeSel.addEventListener("change", function () { inp.size = this.value; recompute(); });
 
+      /* A sheet you can create is a sheet you can name. The mark and the label
+         are what every other surface identifies this calculation by — the list
+         row, the palette, the schedule, the calc record — so they are edited
+         here rather than being fixed at creation.
+
+         Renaming does NOT re-render: drawHead() would rebuild the strip under
+         the caret and the field would lose focus on the first keystroke. The
+         two places the name is shown are updated in place instead. */
+      var markInput = el("input", { type: "text", value: sheet.id, maxlength: "16",
+                                    "aria-label": "Mark", spellcheck: "false" });
+      var labelInput = el("input", { type: "text", value: sheet.label, maxlength: "80",
+                                     "aria-label": "Description", spellcheck: "false" });
+      var markHint = el("span", { class: "field-hint", text: "Identifies this calculation everywhere it appears." });
+
+      function renamed() {
+        document.title = "Firmark · " + sheet.id + " — " + sheet.label;
+        var m = headHost.querySelector(".sheet-mark");
+        if (m) m.textContent = sheet.id;
+        var d = headHost.querySelector(".sheet-head-desc");
+        if (d) d.textContent = sheet.label;
+      }
+      markInput.addEventListener("input", function () {
+        var v = this.value.trim();
+        /* a blank or duplicate mark would make two rows indistinguishable, and
+           the router addresses a sheet BY this id — so it is refused, in place,
+           rather than accepted and silently disambiguated somewhere else */
+        var clash = v && FM.SHEETS.filter(function (s) { return s !== sheet && s.id === v; }).length;
+        this.setAttribute("aria-invalid", (!v || clash) ? "true" : "false");
+        markHint.textContent = !v ? "A mark cannot be blank — the last valid one is kept."
+                             : clash ? "“" + v + "” is already used by another sheet — the last valid one is kept."
+                             : "Identifies this calculation everywhere it appears.";
+        if (!v || clash) return;
+        sheet.id = v;
+        if (FM.state.sheetId !== v) { FM.state.sheetId = v; if (FM.syncHash) FM.syncHash(true); }
+        renamed();
+      });
+      labelInput.addEventListener("input", function () { sheet.label = this.value; renamed(); });
+
+      var nameBlock = el("div", { class: "field" }, [
+        el("label", { text: "Mark" }), markInput, markHint
+      ]);
+
       inputPane.appendChild(card("Member", null, el("div", { style: "display:grid;gap:10px" }, [
+        nameBlock,
+        field("Description", labelInput),
         field("Species", speciesSel),
         field("Grade", gradeSel),
         field("Size (S4S)", sizeSel)

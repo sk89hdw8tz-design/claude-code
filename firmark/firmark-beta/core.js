@@ -132,6 +132,66 @@ var FM = (function () {
 
   function dcrClass(d) { return d > 1 ? "fail" : (d > 0.9 ? "warn" : "pass"); }
 
+  /* ---------------- delivering an artefact ----------------
+
+     `saveText` ASKS the browser for a file. It cannot confirm one arrived, and
+     in the hosted build it never does — a sandboxed frame without
+     allow-downloads swallows the anchor click without an error anyone can
+     catch. So nothing in this file says "downloaded".
+
+     `deliver` is what an export button calls instead. It shows the artefact,
+     names it, and offers the file. Both halves of that are true in every
+     deployment, which is the whole point: a control that silently does nothing
+     in one deployment is as broken as one that does nothing anywhere. */
+
+  function saveText(text, filename) {
+    try {
+      var blob = new Blob([text], { type: "text/plain" });
+      var a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = filename;
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
+      return true;
+    } catch (e) { return false; }
+  }
+
+  var deliverReturn = null;
+
+  function closeRecord() {
+    var scrim = document.getElementById("recordScrim");
+    if (!scrim || !scrim.classList.contains("on")) return;
+    scrim.classList.remove("on");
+    var back = deliverReturn && document.contains(deliverReturn) ? deliverReturn : null;
+    deliverReturn = null;
+    if (back && back.focus) back.focus();
+  }
+
+  /* o = { title, filename, text, note } */
+  function deliver(o) {
+    var scrim = document.getElementById("recordScrim");
+    if (!scrim) { saveText(o.text, o.filename); return; }
+    deliverReturn = document.activeElement;
+    document.getElementById("recordTitle").textContent = o.title;
+    document.getElementById("recordName").textContent = o.filename;
+    document.getElementById("recordNote").textContent = o.note ||
+      "The full artefact is below. “Save as file” asks your browser for a copy — " +
+      "some hosted sandboxes block page-initiated downloads, and this page cannot " +
+      "tell when yours has, so select the text and copy it if no file appears.";
+    var ta = document.getElementById("recordText");
+    ta.value = o.text;
+    ta.scrollTop = 0;
+    document.getElementById("recordSize").textContent =
+      comma(o.text.length) + " characters · " + comma(o.text.split("\n").length) + " lines";
+    document.getElementById("recordSave").onclick = function () {
+      saveText(o.text, o.filename);
+      toast("Asked your browser for " + o.filename + ". If nothing arrives, the text is still on screen.");
+    };
+    document.getElementById("recordSelect").onclick = function () { ta.focus(); ta.select(); };
+    scrim.classList.add("on");
+    document.getElementById("recordClose").focus();
+  }
+
   /* never render a pass badge for an errored or non-finite result */
   function dcrBadge(r) {
     if (!r || r.error || !isFinite(r.governing.dcr)) {
@@ -487,12 +547,23 @@ var FM = (function () {
   /* ---------------- views: dashboard ---------------- */
 
   VIEWS.dashboard = function (host) {
+    /* "+ New project" used to live here and toast "project intake isn't wired
+       up yet". There is no intake to wire: nothing in this build binds an
+       address, a plan upload, a jurisdiction or an owner to a PROJECTS row, so
+       the button could only ever have made an empty card. A missing feature is
+       honest; a button that apologises is a promise the product cannot keep.
+       It is gone, and the beta strip below now SAYS it is missing — which is
+       the disclosure the button was pretending to be.
+
+       The primary action is the one a first-time visitor actually needs and
+       that this build really has: the run. */
     host.appendChild(pageHead("Dashboard", "Every lot on one board, intake to sealed set.", [
       el("button", { class: "btn", onclick: function () { go("materials"); }, text: "Materials" }),
-      el("button", { class: "btn btn-primary", onclick: function () { toast("Beta: project intake isn’t wired up yet."); }, text: "+ New project" })
+      el("button", { class: "btn btn-primary", onclick: function () { go("pipeline"); }, text: "Open the run" })
     ]));
 
-    host.appendChild(betaStrip("Demonstration build — not for construction. Projects are sample data; the calculation engine is live and computes from sourced NDS values."));
+    host.appendChild(betaStrip("Demonstration build — not for construction. Projects are sample data and this build has no project intake: " +
+      "new work starts in the run, at 1 · Geometry. The calculation engine is live and computes from sourced NDS values."));
 
     var c = { total: PROJECTS.length, active: 0, review: 0, running: 0, failed: 0 };
     PROJECTS.forEach(function (p) {
@@ -748,9 +819,36 @@ var FM = (function () {
 
   /* ---------------- views: calculations ---------------- */
 
+  /* A new sheet is a real record, not a placeholder. SHEETS is the one array
+     the list, the sheet view, the palette, Output and the calc-record export
+     all read, so a row pushed here is live everywhere the moment it exists and
+     the engine computes it from sourced NDS values like any other.
+
+     What it is NOT is persistent — there is no store behind SHEETS — and the
+     toast says so rather than letting the user find out at the next reload. */
+  var newSheetSeq = 0;
+
+  function addSheet() {
+    var proj = PROJECTS.filter(function (p) { return p.id === state.projectId; })[0] || PROJECTS[0];
+    var id;
+    do { newSheetSeq++; id = "NEW-" + newSheetSeq; }
+    while (SHEETS.filter(function (s) { return s.id === id; }).length);
+    SHEETS.push({
+      id: id, project: proj.id, role: "Member", label: "New calculation", session: true,
+      inputs: {
+        species: "Douglas Fir-Larch", grade: "No. 2", size: "2x10", span: 12.0, spacing: 16,
+        dead: 15, live: 40, roofLoad: 0, roofType: "snow", repetitive: true, wet: false,
+        incised: false, braced: true, bearing: 3.0, memberUse: "floor", CF: "auto"
+      }
+    });
+    go("sheet", { sheetId: id });
+    toast(id + " added on " + proj.name + " — edit it below. It lives in this browser " +
+          "session only; reloading the page clears it.");
+  }
+
   VIEWS.calculations = function (host) {
     host.appendChild(pageHead("Calculations", SHEETS.length + " sheets · every check cites its clause", [
-      el("button", { class: "btn btn-primary", onclick: function () { toast("Beta: new-sheet creation isn’t wired up yet."); }, text: "+ New calculation" })
+      el("button", { class: "btn btn-primary", onclick: addSheet, text: "+ New calculation" })
     ]));
 
     var tb = el("tbody");
@@ -829,14 +927,30 @@ var FM = (function () {
       rows
     ])]));
 
+    /* The DXF button EXISTS ONLY WHEN THE EXPORTER DOES.
+
+       `dxf.js` is a separate module and a build assembled without it is a real
+       possibility — build.js announces a missing part and carries on. The old
+       button was rendered unconditionally and toasted an apology, which is the
+       defect this whole pass is about. So it is conditional: no FM.dxf, no
+       button, and the note beside it says the capability is absent. */
+    var chips = [
+      el("button", { class: "btn btn-sm", onclick: function () { FM.exportCalcs(); }, text: "Calc record (.txt)" })
+    ];
+    if (dxfReady()) chips.push(el("button", { class: "btn btn-sm", onclick: exportDXF, text: "Plan set (DXF)" }));
+
+    var exportBody = el("div", {}, [
+      el("p", { style: "font-size:.86rem;margin-bottom:10px", text: "A calc-report package and a plan set prepared for PE review, assembled straight from the design. A licensed PE reviews and seals every package; this software never does, and the seal block it produces is empty." }),
+      el("div", { class: "chips" }, chips)
+    ]);
+    if (!dxfReady()) {
+      exportBody.appendChild(el("p", { class: "src-note", style: "margin-top:10px",
+        text: "DXF plan-set export is not in this build — dxf.js was not assembled into it. " +
+              "The calc record above is the only export on this page." }));
+    }
+
     host.appendChild(el("div", { class: "grid g2" }, [
-      card("Export", null, el("div", {}, [
-        el("p", { style: "font-size:.86rem;margin-bottom:10px", text: "A calc-report package and a plan set prepared for PE review, assembled straight from the design. A licensed PE reviews and seals every package; this software never does, and the seal block it produces is empty." }),
-        el("div", { class: "chips" }, [
-          el("button", { class: "btn btn-sm", onclick: function () { FM.exportCalcs(); }, text: "Download calc record (.txt)" }),
-          el("button", { class: "btn btn-sm", onclick: function () { toast("Beta: DXF plan-set export isn’t wired up yet."); }, text: "Plan set (DXF)" })
-        ])
-      ]), "Nothing ships without your licensed PE’s review and seal"),
+      card("Export", null, exportBody, "Nothing ships without your licensed PE’s review and seal"),
       card("Approval gate", el("span", { class: "badge b-gold", text: "PE only", style: "margin-left:auto" }),
         dl([
           { k: "Design & run the engine", v: "Engineer · PE" },
@@ -875,16 +989,17 @@ var FM = (function () {
   VIEWS.help = function (host) {
     host.appendChild(pageHead("Help", "The shell, the palette, and your first project."));
     host.appendChild(el("div", { class: "grid g2" }, [
-      card("Keyboard", null, dl([
-        { k: "Command palette", v: "Ctrl K &nbsp;or&nbsp; /" },
-        { k: "Go to Dashboard", v: "g d" },
-        { k: "Go to Calculations", v: "g c" },
-        { k: "Go to Sizing", v: "g z" },
-        { k: "Go to Projects", v: "g p" },
-        { k: "Go to Materials", v: "g m" },
-        { k: "Go to Help", v: "g h" },
-        { k: "Close / dismiss", v: "Esc" }
-      ]), "Press g, release, then the second key"),
+      /* This card is a claim about the app and is checked against the app: the
+         g-map below is read from the one table boot() dispatches on, so the
+         help page cannot advertise a shortcut that does not work, or omit one
+         that does. It used to omit `g o` and `g s`. */
+      card("Keyboard", null, dl([{ k: "Command palette", v: "Ctrl K &nbsp;or&nbsp; /" }].concat(
+        GO_KEYS.map(function (g) {
+          var v = VIEWS[g.route] || document.getElementById("view-" + g.route);
+          return v ? { k: "Go to " + g.label, v: "g " + g.key } : null;
+        }).filter(Boolean),
+        [{ k: "Close / dismiss", v: "Esc" }]
+      )), "Press g, release, then the second key"),
       card("The shell", null, el("div", { style: "display:grid;gap:9px;font-size:.86rem" }, [
         el("p", { text: "Firmark runs inside one persistent shell: a top bar, a single sidebar slot, and the working surface. Routes change what fills the slot and the surface; the shell itself never swaps out from under you." }),
         el("p", { text: "Inside a calculation the same slot shows that project’s navigation instead — its sheets and the project overview. The portal nav is one click away." }),
@@ -892,6 +1007,28 @@ var FM = (function () {
       ]), null)
     ]));
   };
+
+  /* ---------------- keyboard: the g-sequences ----------------
+
+     ONE table. The dispatcher and the Help page both read it, so the page
+     cannot advertise a shortcut the app does not have — which it did, in the
+     other direction: `g o` and `g s` worked and Help never mentioned them. */
+
+  var GO_KEYS = [
+    { key: "d", route: "dashboard",    label: "Dashboard" },
+    { key: "p", route: "projects",     label: "Projects" },
+    { key: "c", route: "calculations", label: "Calculations" },
+    { key: "z", route: "sizing",       label: "Sizing" },
+    { key: "m", route: "materials",    label: "Materials" },
+    { key: "o", route: "output",       label: "Output & Docs" },
+    { key: "s", route: "settings",     label: "Settings" },
+    { key: "h", route: "help",         label: "Help" }
+  ];
+  function goKeyMap() {
+    var m = {};
+    GO_KEYS.forEach(function (g) { m[g.key] = g.route; });
+    return m;
+  }
 
   /* ---------------- theme ---------------- */
 
@@ -935,7 +1072,11 @@ var FM = (function () {
       items.push({ group: "Calculations", label: s.id + " · " + s.label, run: function () { go("sheet", { sheetId: s.id }); } });
     });
     items.push({ group: "Actions", label: "Toggle theme", run: function () { setTheme(currentTheme() === "dark" ? "light" : "dark"); } });
-    items.push({ group: "Actions", label: "Download calc record", run: function () { FM.exportCalcs(); } });
+    items.push({ group: "Actions", label: "New calculation", run: addSheet });
+    items.push({ group: "Actions", label: "Calc record", run: function () { FM.exportCalcs(); } });
+    /* listed only when the exporter is in the build — the palette does not
+       offer an action that cannot run any more than a button does */
+    if (dxfReady()) items.push({ group: "Actions", label: "Plan set (DXF)", run: exportDXF });
     return items;
   }
 
@@ -962,12 +1103,16 @@ var FM = (function () {
     if (back && back.focus) back.focus();
   }
 
-  /* keep Tab inside the dialog while it is open */
-  function trapPaletteTab(e) {
+  /* keep Tab inside whichever dialog is open — the palette or the record panel */
+  function trapDialogTab(e) {
     if (e.key !== "Tab") return;
-    var scrim = document.getElementById("paletteScrim");
-    if (!scrim.classList.contains("on")) return;
-    var focusables = scrim.querySelectorAll("input, button, [tabindex]:not([tabindex='-1'])");
+    var scrim = null, ids = ["paletteScrim", "recordScrim"], i;
+    for (i = 0; i < ids.length; i++) {
+      var n = document.getElementById(ids[i]);
+      if (n && n.classList.contains("on")) { scrim = n; break; }
+    }
+    if (!scrim) return;
+    var focusables = scrim.querySelectorAll("input, textarea, button, [tabindex]:not([tabindex='-1'])");
     if (!focusables.length) return;
     var first = focusables[0], last = focusables[focusables.length - 1];
     if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
@@ -1085,13 +1230,58 @@ var FM = (function () {
     FM.scope.render(function (s) { lines.push(s === undefined ? "" : s); }, {
       heading: function (t) { lines.push(""); lines.push(ruleLine); lines.push(t); lines.push(ruleLine); lines.push(""); }
     });
-    var blob = new Blob([lines.join("\n")], { type: "text/plain" });
-    var a = document.createElement("a");
-    a.href = URL.createObjectURL(blob);
-    a.download = "firmark-calc-record.txt";
-    document.body.appendChild(a); a.click(); document.body.removeChild(a);
-    setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
-    toast("Calc record downloaded.");
+    deliver({
+      title: "Calculation record",
+      filename: "firmark-calc-record.txt",
+      text: lines.join("\n")
+    });
+  }
+
+  /* ---------------- DXF plan set ----------------
+
+     `FM.dxf.fromModel(model, opts)` returns the DXF text or THROWS a refusal
+     naming what it could not draw. Both outcomes are honest and both are
+     reported: a refusal is a fact about this model, not an apology for a
+     missing feature, and it is the one thing the old placeholder button could
+     never have told anyone. */
+
+  function dxfReady() { return !!(FM.dxf && typeof FM.dxf.fromModel === "function"); }
+
+  function exportDXF() {
+    if (!dxfReady()) { toast("DXF export is not in this build."); return; }
+    var model = null;
+    try { model = FM.project && FM.project.model ? FM.project.model() : null; }
+    catch (e) { model = null; }
+    if (model && model.error) {
+      toast("The geometry could not be read — " + (model.message || "unknown") + ". Open 1 · Geometry.");
+      return;
+    }
+    if (!model) {
+      toast("No geometry to export. Draw or load a plan in 1 · Geometry first.");
+      go("cad");
+      return;
+    }
+    var text, name;
+    try {
+      text = FM.dxf.fromModel(model, {});
+      name = FM.dxf.filename ? FM.dxf.filename(model, {}) : "firmark-framing.dxf";
+    } catch (e) {
+      /* a refusal is the module doing its job — publish it verbatim */
+      toast(e && e.message ? e.message : "The DXF exporter refused this model.");
+      return;
+    }
+    if (typeof text !== "string" || !text.length) {
+      toast("The DXF exporter returned nothing usable, so no file was made.");
+      return;
+    }
+    deliver({
+      title: "Framing plan · AutoCAD R12 DXF",
+      filename: name,
+      text: text,
+      note: "The drawing, as DXF text. “Save as file” asks your browser for a copy — some " +
+            "hosted sandboxes block page-initiated downloads and this page cannot tell when " +
+            "yours has, so select the text and save it as a .dxf yourself if no file appears."
+    });
   }
 
   /* ---------------- boot ---------------- */
@@ -1159,29 +1349,60 @@ var FM = (function () {
   }
 
   /* The stage rail — the same chip row on every pipeline view, so a stage is
-     never looked at without its position in the run being visible. */
-  function stageRail(currentId) {
+     never looked at without its position in the run being visible.
+
+     Every chip used to call go("pipeline"). On the five stage views that made
+     six buttons that all went to the same place regardless of which stage they
+     named; on the Run page itself, where the row also appears, it made six
+     buttons that did NOTHING AT ALL, because you were already there. Six dead
+     controls, in the row whose whole job is wayfinding.
+
+     A chip now opens the stage it names. The chip for the stage you are
+     already looking at is not a button — it is a plain marker carrying
+     aria-current="step". Nothing that looks clickable is inert, and the one
+     that cannot take you anywhere no longer pretends it can.
+
+     The current stage is decided by matching the ROUTE, not by the caller's
+     label. The labels had already drifted: the Loads & code view passes
+     "jurisdiction" and the stage is called "loads", so that view's rail
+     highlighted nothing. */
+  function stageRail() {
     var wrap = el("div", { class: "stage-rail", role: "list", "aria-label": "Pipeline stages" });
     if (!FM.pipeline) return wrap;
     var snap = FM.pipeline.snapshot();
+    var viewOf = FM.STAGE_VIEW || {};
     snap.stages.forEach(function (row, i) {
       var cls = "stage-chip";
       if (row.status === "approved") cls += " is-approved";
       else if (row.status === "stale") cls += " is-stale";
       else if (row.status === "rejected") cls += " is-rejected";
-      if (row.stage.id === currentId) cls += " is-current";
+      var view = viewOf[row.stage.id];
+      var here = !!view && view === state.route;
+      if (here) cls += " is-current";
       var label = row.status === "approved" ? "approved"
                 : row.status === "stale" ? "needs re-approval"
                 : row.status === "rejected" ? "rejected" : "not approved";
-      wrap.appendChild(el("button", {
-        class: cls, role: "listitem",
-        title: row.stage.label + " — " + label + ". " + row.stage.gate,
-        onclick: function () { go("pipeline"); }
-      }, [
+      var kids = [
         el("span", { class: "dot" }),
         el("span", { text: String(i + 1) + " · " + row.stage.label }),
         el("span", { class: "sep", text: label })
-      ]));
+      ];
+      if (here || !view) {
+        wrap.appendChild(el("span", {
+          class: cls, role: "listitem", "aria-current": here ? "step" : null,
+          /* .stage-chip carries cursor:pointer for the button case; a marker
+             that does nothing must not present a pointer */
+          style: "cursor:default",
+          title: row.stage.label + " — " + label + ". " +
+                 (here ? "You are here. " : "No view in this build. ") + row.stage.gate
+        }, kids));
+        return;
+      }
+      wrap.appendChild(el("button", {
+        class: cls, role: "listitem",
+        title: "Open " + row.stage.label + " — " + label + ". " + row.stage.gate,
+        onclick: function () { go(view); }
+      }, kids));
     });
     return wrap;
   }
@@ -1220,6 +1441,12 @@ var FM = (function () {
       if (e.target === this) closePalette();
     });
 
+    var recScrim = document.getElementById("recordScrim");
+    if (recScrim) {
+      recScrim.addEventListener("click", function (e) { if (e.target === this) closeRecord(); });
+      document.getElementById("recordClose").addEventListener("click", closeRecord);
+    }
+
     var inp = document.getElementById("paletteInput");
     inp.addEventListener("input", function () { renderPalette(this.value); });
     inp.addEventListener("keydown", function (e) {
@@ -1231,20 +1458,19 @@ var FM = (function () {
 
     /* global keys: Ctrl+K / "/" palette, g-sequences */
     var gPending = false, gTimer = null;
-    document.addEventListener("keydown", trapPaletteTab);
+    document.addEventListener("keydown", trapDialogTab);
 
     document.addEventListener("keydown", function (e) {
       var t = e.target;
       var typing = t && (t.tagName === "INPUT" || t.tagName === "SELECT" || t.tagName === "TEXTAREA" || t.isContentEditable);
 
       if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") { e.preventDefault(); openPalette(); return; }
-      if (e.key === "Escape") { closePalette(); closeRailDrawer(); return; }
+      if (e.key === "Escape") { closeRecord(); closePalette(); closeRailDrawer(); return; }
       if (typing) return;
       if (e.key === "/") { e.preventDefault(); openPalette(); return; }
 
       if (gPending) {
-        var map = { d: "dashboard", c: "calculations", p: "projects", m: "materials", h: "help", o: "output", s: "settings", z: "sizing" };
-        var target = map[e.key.toLowerCase()];
+        var target = goKeyMap()[e.key.toLowerCase()];
         gPending = false; clearTimeout(gTimer);
         if (target) { e.preventDefault(); go(target); }
         return;
@@ -1268,6 +1494,9 @@ var FM = (function () {
     registerSubRoute: registerSubRoute, syncHash: syncHash, stageRail: stageRail,
     dl: dl, card: card, pageHead: pageHead, betaStrip: betaStrip, statCard: statCard,
     dcrClass: dcrClass, dcrBadge: dcrBadge, gradeRank: gradeRank, effectiveTheme: effectiveTheme, getProfile: getProfile, exportCalcs: exportCalcs, inputsFor: inputsFor,
+    /* every export in the product should hand the artefact over through this,
+       so no button can claim a download that a sandbox silently swallowed */
+    deliver: deliver, saveText: saveText, GO_KEYS: GO_KEYS, addSheet: addSheet,
     VIEWS: VIEWS, state: state, SHEETS: SHEETS, PROJECTS: PROJECTS, PROFILES: PROFILES, ACTIVITY: ACTIVITY,
     engine: null, solver: null, weights: null
   };

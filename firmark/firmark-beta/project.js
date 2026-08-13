@@ -50,6 +50,14 @@
       /* geometry */
       model: null,
       /* loads and code */
+      /* The STATE is run state in its own right, not a transient of the
+         picker. "Texas chosen, jurisdiction not yet" is a real position in the
+         workflow and it has to survive a re-render, or the picker cannot work
+         at all — which is exactly what happened: the view re-rendered on
+         every change, the fresh <select> read back its own empty value, and
+         choosing a state silently reverted to "Choose a state…". Stage 3 was
+         unreachable through the UI for as long as that was true. */
+      stateCode: null,
       jurisId: null,
       packId: null,           /* the weights.js region pack that carries the loads */
       planId: null,           /* when the run is driven from a shipped plan */

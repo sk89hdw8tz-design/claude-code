@@ -118,4 +118,36 @@
   </div>
 </div>
 
+<!-- The record panel.
+
+     A download is a REQUEST, not an outcome. This bundle is opened three ways:
+     off disk over file://, off a local server, and as a hosted artefact whose
+     sandbox blocks page-initiated downloads outright. In the third the anchor
+     click does nothing at all and nothing tells the page so — yet every export
+     button used to toast "downloaded", which is a claim the page cannot check
+     and, in one deployment of three, simply false.
+
+     So an export puts the artefact ON SCREEN, always, and offers the file
+     alongside it. Whatever the browser does with the offer, the user has the
+     record and nothing has claimed otherwise. -->
+<div class="palette-scrim" id="recordScrim" style="padding:7vh 16px 16px;overflow-y:auto">
+  <div class="palette" role="dialog" aria-modal="true" aria-labelledby="recordTitle" id="recordDialog" style="max-width:900px">
+    <div style="display:flex;align-items:center;gap:10px;padding:11px 15px;border-bottom:1px solid var(--line)">
+      <strong id="recordTitle" style="font-size:.92rem;color:var(--ink)">Record</strong>
+      <span class="badge b-mute" id="recordName"></span>
+      <button class="btn btn-sm" id="recordClose" style="margin-left:auto">Close</button>
+    </div>
+    <p class="clause" id="recordNote" style="padding:10px 15px 0;margin:0"></p>
+    <textarea id="recordText" readonly spellcheck="false" aria-label="The record, in full"
+      style="display:block;width:100%;height:44vh;border:0;border-top:1px solid var(--line);
+             margin-top:10px;padding:12px 15px;font-family:var(--mono);font-size:.72rem;
+             line-height:1.55;background:var(--surface);color:var(--text);resize:vertical"></textarea>
+    <div class="palette-foot" style="align-items:center;gap:9px">
+      <button class="btn btn-sm btn-primary" id="recordSave">Save as file</button>
+      <button class="btn btn-sm" id="recordSelect">Select all</button>
+      <span id="recordSize" style="margin-left:auto"></span>
+    </div>
+  </div>
+</div>
+
 <div class="toast" id="toast" role="status" aria-live="polite"></div>

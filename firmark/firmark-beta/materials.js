@@ -90,13 +90,80 @@
       return;
     }
 
-    host.appendChild(FM.pageHead("Materials", "Sourced reference values — the number on the sheet is the number in the book.", [
-      el("button", {
-        class: "btn btn-sm",
-        onclick: function () { FM.toast("Catalogs are published for review at github.com/Firmark/material-databases"); },
-        text: "About this data"
-      })
-    ]));
+    /* "About this data" used to toast a github.com URL.
+
+       This bundle is opened over file:// with no network. A toast that names a
+       web address is not a citation, it is a lie of omission dressed as one:
+       nothing in it can be clicked, nothing can be checked, and the one
+       question the button exists to answer — WHERE DID THESE NUMBERS COME
+       FROM — goes unanswered while looking answered.
+
+       Every dataset in MATDATA already carries its own provenance, so the
+       button now discloses it in place, offline, from the payload itself. */
+    var provOpen = false;
+    var provHost = el("div");
+    var provBtn = el("button", {
+      class: "btn btn-sm", "aria-expanded": "false", "aria-controls": "mat-provenance",
+      text: "About this data",
+      onclick: function () {
+        provOpen = !provOpen;
+        provBtn.setAttribute("aria-expanded", provOpen ? "true" : "false");
+        drawProvenance();
+        if (provOpen) provHost.scrollIntoView({ block: "nearest" });
+      }
+    });
+
+    function drawProvenance() {
+      provHost.innerHTML = "";
+      if (!provOpen) return;
+      var meta = (MATDATA.meta || {});
+      var rows = el("tbody");
+      var keys = [], k;
+      for (k in meta) if (Object.prototype.hasOwnProperty.call(meta, k)) keys.push(k);
+      keys.sort();
+      keys.forEach(function (key) {
+        var m = meta[key] || {};
+        rows.appendChild(el("tr", {}, [
+          el("td", { class: "k", text: key }),
+          el("td", { text: m.source_file || "—" }),
+          el("td", { class: "n", text: m.dataset_version || "—" }),
+          el("td", { text: m.governing_reference || m.title || "—" })
+        ]));
+      });
+      if (!keys.length) {
+        rows.appendChild(el("tr", {}, [el("td", { colspan: "4", class: "empty-cell" }, [
+          el("div", { class: "empty", style: "margin:0",
+            text: "This payload carries no provenance block, so nothing here can be traced to a seed file." })
+        ])]));
+      }
+      provHost.appendChild(el("div", { style: "margin-bottom:16px" }, [
+        card("Where these numbers come from",
+          el("span", { class: "badge b-blue", text: keys.length + " datasets", style: "margin-left:auto" }),
+          el("div", {}, [
+            el("p", { style: "font-size:.85rem;margin-bottom:10px",
+              text: "Each catalog below was extracted verbatim from a published seed file and is " +
+                    "reserialised into this bundle, never edited. The source file and dataset " +
+                    "revision travel with every value the engine reads, and the same strings are " +
+                    "printed on each calculation sheet under Provenance." }),
+            el("div", { class: "tw", tabindex: "0", role: "region", "aria-label": "Catalog provenance" }, [
+              el("table", {}, [
+                el("thead", {}, [el("tr", {}, [
+                  el("th", { text: "Dataset" }), el("th", { text: "Source file" }),
+                  el("th", { class: "n", text: "Revision" }), el("th", { text: "Governing reference" })
+                ])]),
+                rows
+              ])
+            ])
+          ]),
+          "This bundle carries no network. Nothing here is fetched, and nothing here can be — " +
+          "what is printed above is the whole of what the payload knows about itself.")
+      ]));
+    }
+
+    host.appendChild(FM.pageHead("Materials", "Sourced reference values — the number on the sheet is the number in the book.",
+      [provBtn]));
+    provHost.id = "mat-provenance";
+    host.appendChild(provHost);
 
     /* headline counts, computed from the payload itself */
     var counts = [
