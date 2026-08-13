@@ -14393,15 +14393,25 @@ var FM = (function () {
   /* ============================================================
      PIECE COUNTS
 
-     MIRROR of solver.js's private pieceCount(). It is not exported, and
-     the BOM cannot invent its own counting rule: a plan cost of
-     $1,030.99 and a BOM of a different number of pieces is two answers
-     to one question. Kept byte-comparable to the original and flagged
-     here so the duplication is visible rather than forgotten.
-     REQUEST ON RECORD: export FM.solver.pieceCount and delete this.
+     Delegated to solver.js. This was a byte-comparable MIRROR of a
+     private pieceCount(), flagged in the file so the duplication was
+     visible rather than forgotten, with the request on record to export
+     the original and delete the copy. The request was granted, so this
+     is now one implementation.
+
+     The reason it could never be allowed to drift: a plan cost of
+     $1,030.99 and a bill of materials with a different number of pieces
+     are two answers to one question, and nothing in the product would
+     have said which was wrong. That is the same duplication this
+     codebase has removed from the scope boundaries, the escalation
+     vocabulary and the load combinations.
+
+     The local fallback exists only for a build where bom.js somehow
+     loads without solver.js; it is not a second opinion.
      ============================================================ */
 
   function pieceCountOf(m) {
+    if (FM.solver && typeof FM.solver.pieceCount === "function") return FM.solver.pieceCount(m);
     var row = m.unifiedTo || (m.solution && m.solution.pick);
     if (row && m.demand && m.demand.repetitive && m.mark.runFt && row.cand.spacing) {
       return Math.ceil(Number(m.mark.runFt) * 12 / row.cand.spacing) + 1;
