@@ -317,6 +317,34 @@ var FM = (function () {
   var VIEWS = {};
   var ROUTE_PARAM = { project: "projectId", sheet: "sheetId" };
   var applyingHash = false;   /* suppresses the hashchange we cause ourselves */
+  var ourWrites = 0, hashTimer = null;
+
+  /* Count a hash write we are about to make, so the hashchange it causes can
+     be told apart from one the user caused with Back, Forward or a pasted URL.
+
+     This was a boolean raised and lowered on consecutive lines around
+     `location.hash = ...`, which suppressed nothing at all: hashchange fires
+     on a LATER task, so the event always arrived with the flag already back
+     down. applyHash() then ran and re-entered go(), and EVERY navigation in
+     this app rendered its view twice. Invisible in the output, but it doubled
+     every render and ran anything a view does on render a second time — and it
+     is why editing a mark on a calculation sheet tore the sheet out from under
+     the caret: syncHash() wrote the URL, the "suppressed" event came back a
+     tick later and rebuilt the whole view mid-keystroke.
+
+     A timer cannot fix it, because a setTimeout(0) queued before the write
+     runs before the hashchange it is supposed to outlive. So the writes are
+     COUNTED and the listener decrements — and a stray count self-clears after
+     60 ms rather than leaving the router permanently deaf to the address bar. */
+  function writingHash() {
+    ourWrites++;
+    clearTimeout(hashTimer);
+    hashTimer = setTimeout(function () { ourWrites = 0; }, 60);
+  }
+  function onHashChange() {
+    if (ourWrites > 0) { ourWrites--; return; }
+    applyHash();
+  }
 
   function hashFor(route, opts) {
     var seg = ["#", route];
@@ -373,12 +401,11 @@ var FM = (function () {
       var sub = subRoute[route] && subRoute[route].read ? subRoute[route].read() : null;
       var want = hashFor(route, { projectId: opts.projectId, sheetId: opts.sheetId, sub: sub });
       if (location.hash !== want) {
-        applyingHash = true;
+        writingHash();
         /* replace, not push, when the view is only correcting or refining
            itself — that should not fill the Back stack */
         if (opts.replace) location.replace(location.href.split("#")[0] + want);
         else location.hash = want;
-        applyingHash = false;
       }
     }
   }
@@ -390,10 +417,9 @@ var FM = (function () {
     var sub = subRoute[state.route] && subRoute[state.route].read ? subRoute[state.route].read() : null;
     var want = hashFor(state.route, { sub: sub });
     if (location.hash === want) return;
-    applyingHash = true;
+    writingHash();
     if (replace) location.replace(location.href.split("#")[0] + want);
     else location.hash = want;
-    applyingHash = false;
   }
 
   function applyHash() {
@@ -937,7 +963,21 @@ var FM = (function () {
     var chips = [
       el("button", { class: "btn btn-sm", onclick: function () { FM.exportCalcs(); }, text: "Calc record (.txt)" })
     ];
-    if (dxfReady()) chips.push(el("button", { class: "btn btn-sm", onclick: exportDXF, text: "Plan set (DXF)" }));
+    var why = null;
+    if (dxfReady()) {
+      /* A DXF is a drawing OF SOMETHING. With no geometry in the run there is
+         nothing to draw, and a button that navigates you elsewhere instead of
+         doing what its label says is the same defect in a different costume.
+         So it is disabled and it says why, on itself. */
+      why = dxfBlocker();
+      chips.push(el("button", {
+        class: "btn btn-sm", text: "Plan set (DXF)",
+        disabled: why ? "disabled" : null,
+        title: why || null,
+        "aria-describedby": why ? "dxf-why" : null,
+        onclick: exportDXF
+      }));
+    }
 
     var exportBody = el("div", {}, [
       el("p", { style: "font-size:.86rem;margin-bottom:10px", text: "A calc-report package and a plan set prepared for PE review, assembled straight from the design. A licensed PE reviews and seals every package; this software never does, and the seal block it produces is empty." }),
@@ -947,6 +987,8 @@ var FM = (function () {
       exportBody.appendChild(el("p", { class: "src-note", style: "margin-top:10px",
         text: "DXF plan-set export is not in this build — dxf.js was not assembled into it. " +
               "The calc record above is the only export on this page." }));
+    } else if (why) {
+      exportBody.appendChild(el("p", { class: "src-note", id: "dxf-why", style: "margin-top:10px", text: why }));
     }
 
     host.appendChild(el("div", { class: "grid g2" }, [
@@ -1247,20 +1289,27 @@ var FM = (function () {
 
   function dxfReady() { return !!(FM.dxf && typeof FM.dxf.fromModel === "function"); }
 
+  function runModel() {
+    try { return (FM.project && FM.project.model) ? FM.project.model() : null; }
+    catch (e) { return { error: true, message: e && e.message ? e.message : "the geometry threw" }; }
+  }
+
+  /* null when the export can run; otherwise the reason it cannot, in the words
+     shown on the disabled control */
+  function dxfBlocker() {
+    var m = runModel();
+    if (m && m.error) return "The geometry could not be read — " + (m.message || "unknown reason") +
+                             ". Fix it in 1 · Geometry before exporting a drawing of it.";
+    if (!m) return "This run has no geometry yet, so there is nothing to draw. " +
+                   "Draw or load a plan in 1 · Geometry and this becomes available.";
+    return null;
+  }
+
   function exportDXF() {
     if (!dxfReady()) { toast("DXF export is not in this build."); return; }
-    var model = null;
-    try { model = FM.project && FM.project.model ? FM.project.model() : null; }
-    catch (e) { model = null; }
-    if (model && model.error) {
-      toast("The geometry could not be read — " + (model.message || "unknown") + ". Open 1 · Geometry.");
-      return;
-    }
-    if (!model) {
-      toast("No geometry to export. Draw or load a plan in 1 · Geometry first.");
-      go("cad");
-      return;
-    }
+    var stop = dxfBlocker();
+    if (stop) { toast(stop); return; }
+    var model = runModel();
     var text, name;
     try {
       text = FM.dxf.fromModel(model, {});
@@ -1483,7 +1532,7 @@ var FM = (function () {
 
     wireGate();
 
-    window.addEventListener("hashchange", applyHash);
+    window.addEventListener("hashchange", onHashChange);
     /* open on whatever the URL says — a reload, a bookmark or a pasted link
        all land where they point; an empty hash lands on the dashboard */
     applyHash();

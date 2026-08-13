@@ -7,13 +7,13 @@ allowed to be closed silently.
 Panel: structural PE (A&E), QA/QC, production-build & estimating, building code
 & regulatory (TX/NC/FL), software integration & test.
 
-Test suite: `node firmark-beta/test/run-tests.js` — **1221 assertions, 0 failing**.
+Test suite: `node firmark-beta/test/run-tests.js` — **1658 assertions, 0 failing**.
 UI sweep: `node firmark-beta/test/ui-tests.js` — renders the built bundle across every
 pack × plan, opens every mark's detail, fails on any NaN / undefined / empty numeric slot.
 Bundle freshness gate: `node firmark-beta/build.js --check`.
 
-**Coverage, stated plainly:** across 6 packs × 5 plans, **136 of 270 mark-slots produce a
-member; 38 escalate and 96 are not this engine's member.** It is said here and on every plan in
+**Coverage, stated plainly:** across 6 packs × 5 plans, **136 of 264 mark-slots produce a
+member; 38 escalate and 90 are not this engine's member.** It is said here and on every plan in
 the UI.
 
 **That line is no longer typed by hand.** Four printings of it were wrong — 58/30/26, then

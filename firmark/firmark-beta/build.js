@@ -45,6 +45,7 @@ var SCRIPTS = [
   "solver.js",
   "jurisdiction.js",
   "cad.js",
+  "dxf.js",
   "takeoff.js",
   "bom.js",
   "export.js",

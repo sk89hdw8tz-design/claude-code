@@ -538,15 +538,22 @@ module.exports = function (t, FM) {
   (function () {
     t.eq(cad.fromPlan("no-such-plan"), null, "fromPlan · an unknown plan id returns null, not a guess");
 
-    /* Four of the five plans declare enough to be approved as drawn. The
-       fifth does not, and the error it produces is named here rather than
-       tolerated: Townhome 1220 states that its joist piece count follows
-       whatever spacing the solver picks, so no spacing can be read back out
-       of it, and a human has to declare one before this geometry passes the
-       gate. That is the intended outcome, not a gap. */
-    var EXPECT_ERRORS = {
-      "townhome-1220": ["framing-no-spacing", "framing-no-spacing"]
-    };
+    /* All five plans now draw with no errors at all, and the entry that used
+       to sit here is gone rather than relaxed. Townhome 1220 used to produce
+       two `framing-no-spacing` errors because FJ-1 said its piece count
+       "follows the spacing the solver picks" — which is backwards: the
+       solver picks a SECTION for a demand, and the spacing is an INPUT to
+       the tributary that demand is computed from, so it can only ever be a
+       plan declaration. weights.js now declares geometry.floorSpacingIn = 16
+       with that reasoning written out, and all three of the plan's joist
+       counts read back to it (36/(16/12) + 1 = 28 exactly). The errors are
+       gone because the plan closed the hole, not because this map stopped
+       looking: an empty map means EVERY plan must validate error-free.
+
+       This assertion is the gate, so it stays an equality on the whole code
+       list rather than a count — a plan that starts producing a different
+       error must fail here by name. */
+    var EXPECT_ERRORS = {};
 
     FM.weights.PLANS.forEach(function (p) {
       var m = cad.fromPlan(p.id);
@@ -582,12 +589,22 @@ module.exports = function (t, FM) {
 
   t.suite("cad · fromPlan · Starter 1210, the simplest complete house");
   (function () {
+    var plan = FM.weights.planById("starter-1210");
+    var dr = plan.geometry.drawn;
     var m = cad.fromPlan("starter-1210");
     var L = m.levels[0];
     var st = cad.stats(m);
 
-    t.eq(st.walls, 4, "starter · four walls, because the plan says there is no third bearing line");
-    t.eq(st.bearingWalls, 2, "starter · two of them bear");
+    /* SIX walls, not four. The plan used to state the garage's size and not
+       its position, so the two garage walls were an unresolved hole; it now
+       declares geometry.drawn.garageAt (front face at 34 ft) and both walls
+       endpoint by endpoint, so they are DRAWN. "No third bearing line" is
+       still the plan's claim and is still true — it is a claim about what
+       BEARS, and both garage walls are drawn non-bearing below, which is
+       that claim shown on the drawing instead of asserted in prose. */
+    t.eq(st.walls, 6, "starter · six walls — the four envelope walls plus the two garage walls");
+    t.eq(st.bearingWalls, 2, "starter · two of them bear, and the plan says there is no third line");
+    t.eq(st.exteriorWalls, 4, "starter · four of them are envelope, so the garage walls are interior");
     t.near(st.areaSf, 1472, 1e-6, "starter · 46 x 32 = 1,472 sf, the plan's own underRoofSf");
     t.near(cad.wallLength(L.walls[0]), 46, 1e-9, "starter · the front wall is the 46 ft face");
     t.eq(L.walls[0].bearing, true, "starter · the 46 ft front wall carries the trusses");
@@ -596,6 +613,28 @@ module.exports = function (t, FM) {
     t.eq(L.walls[3].bearing, false, "starter · the other gable end does not");
     t.near(L.topPlateFt, 109.125 / 12, 1e-9,
            "starter · the top plate is the 109.125 in precut every region pack declares");
+
+    /* the garage walls, endpoint for endpoint against what the plan declares
+       — read out of weights.js rather than typed here, so the drawing and
+       the declaration cannot drift apart without this failing */
+    dr.interiorWalls.forEach(function (d, i) {
+      var w = cad.wallById(L, d.id);
+      t.truthy(!!w, "starter · " + d.id + " is drawn, because the plan now locates it");
+      t.eq([w.x1, w.y1, w.x2, w.y2].join(","), d.fromFt.concat(d.toFt).join(","),
+           "starter · " + d.id + " runs (" + d.fromFt.join(", ") + ") to (" + d.toFt.join(", ") +
+           ") ft, exactly as geometry.drawn.interiorWalls declares it");
+      t.eq(w.exterior, false, "starter · " + d.id + " is an interior wall");
+      t.eq(w.bearing, false,
+           "starter · and it does NOT bear — the 32 ft trusses clear-span onto the two 46 ft walls" +
+           (i === 0 ? ", so a wall running with them carries none" : ""));
+    });
+    /* 46 - 12 = 34 ft: the garage bay closes against the right envelope wall */
+    t.near(cad.wallById(L, "GW1").x1, plan.geometry.footprintFt[0] - plan.geometry.garage.widthFt, 1e-9,
+           "starter · the garage's inboard wall stands a garage width in from the right corner");
+    t.near(cad.wallLength(cad.wallById(L, "GW2")), plan.geometry.garage.widthFt, 1e-9,
+           "starter · and its rear wall is the 12 ft garage width");
+    t.near(cad.wallLength(cad.wallById(L, "GW1")), plan.geometry.garage.depthFt, 1e-9,
+           "starter · by the 22 ft garage depth — 12 x 22 = 264 sf, the plan's own garage.sf");
 
     t.eq(st.framing, 1, "starter · one framing region — the roof");
     t.eq(L.framing[0].kind, "roof", "starter · and it is a roof");
@@ -620,74 +659,206 @@ module.exports = function (t, FM) {
     var gable = L.openings.filter(function (o) { return o.wallId === "W2" || o.wallId === "W4"; });
     t.eq(gable.length, 3, "starter · the three gable-end windows are in the two gable walls");
 
-    /* every one of them is honest about not being located */
+    /* TWO of the fourteen are PINNED, and they are exactly the two marks that
+       declare an `opening` block in weights.js — the front door and the
+       garage door. Everything else on this plan is still a count and a width
+       with no position, and still says so. The pinned pair is read out of
+       the plan here, not typed in, so a mark that gains or loses a declared
+       offset moves this assertion with it. */
+    var pins = plan.marks.filter(function (mk) {
+      return mk.opening && typeof mk.opening.offsetFt === "number";
+    });
+    t.eq(pins.length, 2, "starter · weights.js declares an offset for exactly two of its marks");
+    t.eq(pins.map(function (mk) { return mk.id; }).join(","), "HDR-ENT,HDR-GAR",
+         "starter · the front entry door and the garage door");
+    var pinned = L.openings.filter(function (o) { return o.offsetBasis === "plan"; });
+    t.eq(pinned.length, 2, "starter · and both are drawn at the offset the plan gives, not a placeholder");
+    pins.forEach(function (mk) {
+      var hit = L.openings.filter(function (o) { return o.note.indexOf("From mark " + mk.id + ":") === 0; })[0];
+      t.near(hit.offsetFt, mk.opening.offsetFt, 1e-9,
+             "starter · " + mk.id + " sits at the " + mk.opening.offsetFt +
+             " ft its own `opening` block declares");
+      t.eq(hit.offsetBasis, "plan", "starter · and " + mk.id + " is marked as read from the plan");
+    });
+    /* and each declared offset is the centre of the thing the plan says it is
+       centred on: the door on the 8 ft stoop that runs 24-32 ft, the garage
+       door in the 12 ft bay that runs 34-46 ft */
+    var entryAp = dr.appendages[0];
+    t.near(doors[0].offsetFt + doors[0].widthFt / 2, entryAp.offsetFt + entryAp.widthFt / 2, 1e-9,
+           "starter · the entry door centres on the 8 ft covered entry at 28 ft, as its note says");
+    t.near(garage[0].offsetFt + garage[0].widthFt / 2,
+           dr.garageAt.offsetFt + plan.geometry.garage.widthFt / 2, 1e-9,
+           "starter · and the garage door centres in the 12 ft garage bay at 40 ft");
+
+    /* the other twelve are honest about not being located */
     var placed = L.openings.filter(function (o) { return o.offsetBasis === "placeholder"; });
-    t.eq(placed.length, 14, "starter · every opening is flagged as a placeholder position");
+    t.eq(placed.length, 12, "starter · the other twelve are flagged as placeholder positions");
+    t.eq(placed.length + pinned.length, st.openings,
+         "starter · every opening is one or the other — none is silently unlabelled");
     var rows = cad.validate(m);
     t.eq(rows.filter(function (r) { return r.code === "opening-placeholder-offset"; }).length, 4,
          "starter · reported once per wall, not once per opening");
     t.eq(errs(rows).length, 0, "starter · and none of it blocks the gate");
 
-    /* the two things the plan sizes but does not locate */
+    /* ONE thing the plan sizes but this model cannot draw. The garage walls
+       used to be the second: the plan declared the garage's size and not its
+       position, and drawing it anywhere would have been an invention. It now
+       declares the position, so they are walls above rather than a hole here
+       — and the entry stays, because what is missing there is not a
+       dimension but an ELEMENT: this model has no beam or post (§Q.2). */
     var un = m.unresolved.map(function (u) { return u.what; }).join(" | ");
     t.truthy(un.indexOf("covered entry") !== -1,
              "starter · the 8 x 6 covered entry is named as unresolved, not drawn somewhere");
-    t.truthy(un.indexOf("garage walls") !== -1,
-             "starter · so are the garage walls, whose position the plan does not give");
-    t.eq(m.unresolved.length, 2, "starter · and nothing else is left hanging");
+    t.truthy(m.unresolved[0].why.indexOf("position IS declared") !== -1 &&
+             m.unresolved[0].why.indexOf("no beam, post or column entity") !== -1,
+             "starter · and the reason is the missing ELEMENT, not a missing dimension");
+    t.eq(un.indexOf("garage walls"), -1,
+         "starter · the garage walls are NOT unresolved any more — the plan locates them and they are drawn");
+    t.eq(m.unresolved.length, 1, "starter · and nothing else is left hanging");
   })();
 
   t.suite("cad · fromPlan · Townhome 1220, where the joist bays locate a bearing line");
   (function () {
+    var plan = FM.weights.planById("townhome-1220");
+    var dr = plan.geometry.drawn;
     var m = cad.fromPlan("townhome-1220");
     var L = m.levels[0];
     var st = cad.stats(m);
 
-    t.eq(st.walls, 5, "townhome · four envelope walls plus the interior bearing line");
+    /* TWO levels now: the plan declares its upper storey outline, so the
+       second floor is real geometry instead of an unresolved hole. The
+       convention the model keeps — and the reason the floor deck is on L2
+       and not L1 — is that a level owns the deck at its BASE, plus the roof
+       if it is the topmost. So L1 is a slab with walls and no framing, and
+       L2 owns the second-floor deck it stands on and the roof over it. */
+    t.eq(st.levels, 2, "townhome · two levels, because the plan declares the upper storey outline");
+    t.eq(L.framing.length, 0, "townhome · the first floor is a slab: no framing of its own");
+    var U = m.levels[1];
+    t.eq(U.id, "L2", "townhome · and the second level is the L2 the plan names");
+
+    t.eq(st.walls, 11, "townhome · six walls on the first floor and five on the second");
+    t.eq(L.walls.length, 6,
+         "townhome · four envelope walls, the interior bearing line and the garage rear wall");
+    t.eq(U.walls.length, 5, "townhome · and the second floor stacks four envelope walls plus BL1");
     t.near(st.areaSf, 720, 1e-6, "townhome · 20 x 36 = 720 sf, the plan's own grossSfPerFloor");
     var interior = L.walls[4];
+    t.eq(interior.id, "BL1", "townhome · the fifth wall is the bearing line the plan names BL1");
     t.eq(interior.exterior, false, "townhome · the fifth wall is interior");
     t.eq(interior.bearing, true, "townhome · and it bears");
     t.near(interior.x1, 11, 1e-9,
            "townhome · at 11 ft — FJ-1's 11 ft bay and FJ-2's 9 ft bay add to the 20 ft width");
     t.near(interior.x2, 11, 1e-9, "townhome · running front to back");
     t.near(interior.y2 - interior.y1, 36, 1e-9, "townhome · the full 36 ft depth");
+    /* the same line stacks, and on the second floor it carries nothing —
+       the trusses clear-span party wall to party wall over it */
+    t.eq(cad.wallById(U, "L2-BL1").bearing, false,
+         "townhome · BL1 stacks to the second floor and bears NOTHING there, as the plan declares");
 
-    t.eq(st.framing, 3, "townhome · the roof plus two floor bays");
-    t.eq(L.framing[0].kind, "roof", "townhome · the roof spans the 20 ft width party wall to party wall");
-    t.eq(L.framing[0].directionDeg, 0, "townhome · so the trusses run along +x");
-    t.eq(L.framing[0].bearsOn.join(","), "W4,W2", "townhome · onto the two 36 ft party walls");
-    t.eq(L.framing[1].kind, "floor", "townhome · the second bay is the 11 ft floor bay");
-    t.eq(L.framing[1].bearsOn.join(","), "W4,W5", "townhome · from the left party wall to the line");
-    t.eq(L.framing[2].bearsOn.join(","), "W5,W2", "townhome · and from the line to the right");
-    t.eq(L.framing[1].spacingIn, null,
-         "townhome · with no joist spacing, because the plan says the solver picks it");
+    /* FOUR regions, not three: the roof and THREE floor bays. FJ-2's 9 ft
+       bay and FJ-3's 9 ft bay share a span and are not the same region —
+       [11,0,20,10] is the tiled bath-and-laundry stretch over the garage and
+       [11,10,20,36] is the 26 ft behind it, and FJ-3 carries a wet-assembly
+       10 psf that FJ-2 does not. Folding them together would lose that. */
+    t.eq(st.framing, 4, "townhome · the roof plus THREE floor bays");
+    t.eq(U.framing.length, 4, "townhome · all four sit on L2 — the deck at its base and the roof over it");
+    t.eq(dr.framing.length, 4, "townhome · which is one region per geometry.drawn.framing entry");
+    function reg(id) {
+      var hit = null;
+      U.framing.forEach(function (f) { if (f.id === id) hit = f; });
+      return hit;
+    }
+    var roof = reg("L2-F-ROOF");
+    t.eq(roof.kind, "roof", "townhome · the roof spans the 20 ft width party wall to party wall");
+    t.eq(roof.directionDeg, 0, "townhome · so the trusses run along +x");
+    t.eq(roof.bearsOn.join(","), "L2-W4,L2-W2",
+         "townhome · onto the two 36 ft party walls OF THE SECOND FLOOR, which is what carries a roof");
+    t.eq(roof.spacingIn, 24, "townhome · at the 24 in o.c. the plan declares for its trusses");
+    t.eq(roof.system, "truss", "townhome · and it is a truss package, not a rafter");
 
-    t.eq(st.openings, 1, "townhome · only the garage door is a first-floor exterior opening");
-    t.eq(L.openings[0].wallId, "W1", "townhome · in the front wall, as its label says");
+    var flr1 = reg("L2-F-FLR-1");
+    t.eq(flr1.kind, "floor", "townhome · F-FLR-1 is FJ-1's 11 ft bay");
+    t.eq(flr1.bearsOn.join(","), "W4,BL1",
+         "townhome · from the left party wall to the line — and on the FIRST floor, which is what " +
+         "a second-floor deck bears on");
+    t.eq(reg("L2-F-FLR-3").bearsOn.join(","), "BL1,W2", "townhome · FJ-3's bay runs line to right party wall");
+    t.eq(reg("L2-F-FLR-2").bearsOn.join(","), "BL1,W2", "townhome · and so does FJ-2's");
+    t.eq(reg("L2-F-FLR-3").polygon.map(function (p) { return p.join(" "); }).join(","),
+         "11 0,20 0,20 10,11 10",
+         "townhome · FJ-3 is the front 10 ft of the 9 ft bay, over the garage");
+    t.eq(reg("L2-F-FLR-2").polygon.map(function (p) { return p.join(" "); }).join(","),
+         "11 10,20 10,20 36,11 36",
+         "townhome · and FJ-2 is the 26 ft behind it — 36 - 10, FJ-2's own declared run");
+
+    /* the spacing is DECLARED, and it is declared because it has to be: the
+       solver picks a section for a demand, and the spacing is an input to
+       the tributary that demand is computed from, so it can never be an
+       output. All three joist counts read back to it. */
+    t.eq(plan.geometry.floorSpacingIn, 16, "townhome · the plan declares 16 in o.c. floor spacing");
+    U.framing.forEach(function (f) {
+      if (f.kind !== "floor") return;
+      t.eq(f.spacingIn, plan.geometry.floorSpacingIn,
+           "townhome · " + f.id + " carries the plan's declared 16 in o.c., not a guess");
+    });
+    var fj1 = plan.marks.filter(function (mk) { return mk.id === "FJ-1"; })[0];
+    t.eq(Math.floor(fj1.runFt / (plan.geometry.floorSpacingIn / 12)) + 1, fj1.count,
+         "townhome · and FJ-1's count of 28 reads back as 36/(16/12) + 1, which is the check on it");
+
+    t.eq(st.openings, 2, "townhome · the garage door, and the break in the bearing line");
+    var gar = L.openings.filter(function (o) { return o.kind === "garage"; })[0];
+    t.eq(gar.wallId, "W1", "townhome · the garage door is in the front wall, as its label says");
+    t.eq(gar.offsetBasis, "placeholder",
+         "townhome · at a placeholder offset — HDR-GAR declares no `opening` block");
+    /* but a placeholder still may not contradict the plan: the garage runs
+       0-11 ft of the front face, so a door laid out across the whole 20 ft
+       wall would cross the bearing line at 11 ft and stand in the great room */
+    t.truthy(gar.offsetFt >= dr.garageAt.offsetFt &&
+             gar.offsetFt + gar.widthFt <= dr.garageAt.offsetFt + plan.geometry.garage.widthFt,
+             "townhome · and inside the 11 ft garage bay the plan declares, not across BL1 at 11 ft");
+    t.near(gar.offsetFt + gar.widthFt / 2,
+           dr.garageAt.offsetFt + plan.geometry.garage.widthFt / 2, 1e-9,
+           "townhome · laid out centred in that bay, which is the only placement that favours neither jamb");
+
+    /* GB-1's opening is the one this plan exists to pose: a 12 ft break in
+       an INTERIOR bearing line, carried by a flush girder. It is not a
+       window — a window is a hole in the envelope — and it used to be
+       classified as one, which is wrong on a plan set and in the DXF. */
+    var brk = L.openings.filter(function (o) { return o.wallId === "BL1"; })[0];
+    t.eq(brk.kind, "passage",
+         "townhome · the break in the bearing line is a PASSAGE, not a window — there is no outside here");
+    t.eq(brk.offsetBasis, "plan", "townhome · its offset is declared on GB-1, not a placeholder");
+    t.near(brk.offsetFt, 20, 1e-9, "townhome · 20 ft back, where the garage ends");
+    t.near(brk.widthFt, 12, 1e-9, "townhome · and 12 ft wide — GB-1's span, which has no bearing declared");
+    t.near(brk.offsetFt + brk.widthFt, 32, 1e-9,
+           "townhome · so the line is interrupted from 20 to 32 ft, which is what GB-1's note says");
+    t.truthy(brk.offsetFt + brk.widthFt < cad.wallLength(interior),
+             "townhome · and the bearing line continues past it to the rear wall");
 
     var un = m.unresolved.map(function (u) { return u.what; }).join(" | ");
-    t.truthy(un.indexOf("party wall") !== -1,
-             "townhome · which wall is the shared party wall is not declared, and is not guessed");
-    t.truthy(un.indexOf("upper storey") !== -1,
-             "townhome · the second storey is named as absent from this model");
+    t.eq(un.indexOf("party wall"), -1,
+         "townhome · which wall is the party wall is no longer a hole — the plan declares BOTH sides are");
+    t.eq(dr.partyWallSide, "both", "townhome · in geometry.drawn.partyWallSide");
+    t.eq(un.indexOf("upper storey"), -1,
+         "townhome · nor is the second storey — it is drawn above, from the plan's own outline");
     t.truthy(un.indexOf("covered patio") !== -1,
              "townhome · the 20 x 8 patio has no element here and says so");
     t.truthy(un.indexOf("HDR-ST") !== -1,
              "townhome · the stair header is not an opening in a wall and says why");
+    t.truthy(un.indexOf("HDR-GAR") !== -1,
+             "townhome · and the garage header is drawn but not sizeable — it carries a WALL");
+    t.eq(m.unresolved.length, 3, "townhome · three holes, and nothing else is left hanging");
     var trows = cad.validate(m);
-    t.eq(codes(errs(trows)).join(","), "framing-no-spacing,framing-no-spacing",
-         "townhome · the only errors are the two floor bays with no declared spacing");
-    t.truthy(row(trows, "framing-no-spacing").text.indexOf("consequence") !== -1,
-             "townhome · and the finding explains why the piece count cannot be read back as one");
-    t.truthy(row(trows, "framing-no-spacing").text.indexOf("16 in o.c.") !== -1,
-             "townhome · while still handing the reviewer what the counts are consistent with");
+    t.eq(codes(errs(trows)).join(","), "",
+         "townhome · and no errors at all — the two framing-no-spacing errors are gone because " +
+         "the plan declares geometry.floorSpacingIn, not because this stopped checking");
+    t.truthy(has(trows, "opening-no-head-height"),
+             "townhome · GB-1 declares no head height, and that is still reported as a warn");
   })();
 
   t.suite("cad · fromPlan · the plans whose geometry does not determine a layout");
   (function () {
     /* Two-Story 2450 declares no truss span, so nothing says which way
        anything runs. The model refuses to pick, and says so. */
+    var plan2450 = FM.weights.planById("two-story-2450");
     var m = cad.fromPlan("two-story-2450");
     var rows = cad.validate(m);
     t.eq(cad.stats(m).framing, 0,
@@ -699,21 +870,35 @@ module.exports = function (t, FM) {
     t.truthy(un.indexOf("roof span direction") !== -1,
              "two-story · the roof span direction is named as undetermined");
 
-    /* the centre bearing line IS located — a 13.5 ft FRONT bay starts at the
-       front wall, so the line behind it is fixed even though the bays do not
-       add up to the footprint depth */
-    var mid = m.levels[0].walls[4];
-    t.eq(m.levels[0].walls.length, 5, "two-story · the centre bearing line is drawn");
-    t.eq(mid.exterior, false, "two-story · as an interior wall");
-    t.eq(mid.bearing, true, "two-story · that bears");
-    t.near(mid.y1, 13.5, 1e-9, "two-story · 13.5 ft back from the front wall, FJ-1's front bay");
-    t.near(mid.y2, 13.5, 1e-9, "two-story · running side to side");
-    t.truthy(un.indexOf("floor bays") !== -1,
-             "two-story · but the bays themselves are unresolved — they do not span the 40 ft width");
-    t.truthy(m.unresolved.filter(function (u) {
-      return u.what.indexOf("floor bays") !== -1;
-    })[0].why.indexOf("13.5") !== -1,
+    /* The centre bearing line is NOT drawn, and this is the assertion that
+       has to stay hard. It is tempting to place it 13.5 ft back from the
+       front wall, because FJ-1's front bay is 13.5 ft — and that is exactly
+       the invention non-negotiable 2 forbids. A joist SPAN is the distance
+       between two supports; it is not an offset from a corner, nothing on
+       this plan says the front bay starts at the front wall, and the two
+       bays it does name (13.5 + 15.0 = 28.5 ft) do not reach the 38 ft
+       depth in the first place — the upper floor is 930 sf of a 1,520 sf
+       first floor, so they need not touch either wall. Four plans in this
+       build now declare geometry.drawn and get their interior lines drawn
+       from it. This one does not, and it stays a named hole until it does. */
+    t.eq(m.levels[0].walls.length, 4,
+         "two-story · four walls: the centre bearing line is NOT drawn, because nothing locates it");
+    t.eq(m.levels[0].walls.filter(function (w) { return !w.exterior; }).length, 0,
+         "two-story · and no interior wall is invented from the bay depths");
+    t.truthy(!plan2450.geometry.drawn,
+             "two-story · which is the honest reading: this plan declares no geometry.drawn at all");
+    var line = m.unresolved.filter(function (u) {
+      return u.what.indexOf("interior bearing line") !== -1;
+    })[0];
+    t.truthy(!!line, "two-story · the interior bearing line is named as unresolved instead");
+    t.truthy(line.why.indexOf("FJ-1 13.5 ft") !== -1 && line.why.indexOf("FJ-2 15.0 ft") !== -1,
              "two-story · and the finding shows the declared bay depths it could not place");
+    t.truthy(line.why.indexOf("not a distance from a named corner") !== -1,
+             "two-story · saying why a span is not an offset");
+    t.truthy(line.why.indexOf("930 sf of a 1520 sf") !== -1,
+             "two-story · and that the upper floor does not even cover the footprint");
+    t.truthy(line.need.indexOf("geometry.drawn.interiorWalls") !== -1,
+             "two-story · with what would have to be declared to close it");
 
     /* Coastal Duplex 1600: one of the bearing walls is a party wall and
        the plan does not say which, so no opening is placed in either. */
@@ -727,18 +912,55 @@ module.exports = function (t, FM) {
              "coastal · and the region says the spacing was derived, not declared");
     t.eq(errs(cad.validate(c)).length, 0, "coastal · no errors");
 
-    /* Sunbelt Ranch 1850 carries two marks for one garage opening and they
-       disagree about which wall it is in. */
+    /* Sunbelt Ranch 1850 used to carry TWO marks for one 16'-8" garage
+       opening — HDR-GAR-G reading it as a gable end at 2.0 ft of tributary
+       and HDR-GAR-B as a truss bearing line at 11.0 ft — and this model
+       refused to draw it, because two marks that disagree about which wall a
+       hole is in cannot both be drawn and neither can be picked.
+
+       weights.js settled it rather than carrying it: the garage door is in
+       the street face, the street face is one of the two 50 ft walls, and
+       bearingLines says those two walls ARE the bearing lines. The gable-end
+       reading describes a condition this plan does not have, so HDR-GAR-G is
+       deleted and HDR-GAR-B's tributary moved to 23.0 ft — half the 46 ft
+       clear span, the same figure every other opening in that wall takes.
+       So the opening is now drawn, at the offset the plan declares. */
+    var plan1850 = FM.weights.planById("sunbelt-ranch-1850");
     var s = cad.fromPlan("sunbelt-ranch-1850");
-    t.eq(cad.stats(s).openings, 15, "sunbelt · 14 windows and the rear slider are placed");
-    t.eq(s.levels[0].openings.filter(function (o) { return o.kind === "garage"; }).length, 0,
-         "sunbelt · the garage door is NOT placed");
-    var g = s.unresolved.filter(function (u) { return u.what.indexOf("16.7 ft opening") !== -1; })[0];
-    t.truthy(!!g, "sunbelt · and the reason is recorded against the opening");
-    t.truthy(g.why.indexOf("HDR-GAR-G") !== -1 && g.why.indexOf("HDR-GAR-B") !== -1,
-             "sunbelt · naming both marks that describe it");
-    t.truthy(g.why.indexOf("truss direction") !== -1,
-             "sunbelt · and the one fact that would settle it");
+    var sL = s.levels[0];
+    t.eq(plan1850.marks.filter(function (mk) { return mk.id === "HDR-GAR-G"; }).length, 0,
+         "sunbelt · the gable-end reading of the garage header is gone from the plan");
+    t.eq(plan1850.marks.filter(function (mk) {
+      return mk.role === "header" && Math.abs(mk.span - 16.67) < 1e-9;
+    }).length, 1, "sunbelt · exactly one mark now describes the 16'-8\" hole");
+    t.eq(cad.stats(s).openings, 15,
+         "sunbelt · 13 of the 14 typical windows, the rear slider and the garage door");
+    var sGar = sL.openings.filter(function (o) { return o.kind === "garage"; });
+    t.eq(sGar.length, 1, "sunbelt · the garage door IS placed now, because only one mark describes it");
+    t.eq(sGar[0].wallId, "W1", "sunbelt · in the front 50 ft wall, which is a truss bearing line");
+    t.eq(sGar[0].offsetBasis, "plan", "sunbelt · at a declared offset, not a placeholder");
+    t.near(sGar[0].offsetFt, 31.915, 1e-9,
+           "sunbelt · 31.915 ft, which is HDR-GAR-B's own `opening` block");
+    t.near(sGar[0].offsetFt + sGar[0].widthFt / 2,
+           plan1850.geometry.drawn.garageAt.offsetFt + plan1850.geometry.garage.widthFt / 2, 1e-9,
+           "sunbelt · centred in the 20 ft garage bay that runs 30-50 ft along that face");
+    t.eq(s.unresolved.filter(function (u) { return u.what.indexOf("16.7 ft opening") !== -1; }).length, 0,
+         "sunbelt · and the two-marks-one-hole finding is gone with the second mark");
+
+    /* what has NOT closed: the plan declares 14 typical windows and does not
+       say which face each is in. Thirteen fit the two bearing walls once the
+       garage door and the slider are in them; the fourteenth does not, and
+       it is named rather than crammed in or dropped. */
+    t.eq(sL.openings.filter(function (o) { return o.kind === "window"; }).length, 13,
+         "sunbelt · 13 of HDR-W's 14 windows are drawn");
+    var over = s.unresolved.filter(function (u) { return u.what.indexOf("HDR-W") !== -1; })[0];
+    t.truthy(!!over, "sunbelt · and the fourteenth is named as one the wall will not hold");
+    t.truthy(over.what.indexOf("W1") !== -1,
+             "sunbelt · against the wall it could not go in");
+    t.truthy(over.why.indexOf("jack and king studs") !== -1,
+             "sunbelt · with the reason it will not fit");
+    t.truthy(over.need.indexOf("opening: {level, face}") !== -1,
+             "sunbelt · and what the plan would have to say to place it");
     t.eq(errs(cad.validate(s)).length, 0, "sunbelt · no errors");
   })();
 

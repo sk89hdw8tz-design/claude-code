@@ -82,6 +82,12 @@
   function isArr(v) { return Object.prototype.toString.call(v) === "[object Array]"; }
   function own(o, k) { return Object.prototype.hasOwnProperty.call(o, k); }
   function fin(v) { return typeof v === "number" && isFinite(v); }
+
+  /* Not an engineering limit — a FORMAT limit. Past about 1e21 units,
+     JavaScript's toFixed switches to exponent notation, and several DXF
+     readers parse "1e+21" as 1. Anything beyond this is refused BY NAME
+     up in readLevel rather than throwing anonymously at write time. */
+  var MAX_COORD_FT = 1e12;
   function numOf(v) {
     if (v === null || v === undefined || v === "") return null;
     var n = Number(v);
@@ -207,7 +213,13 @@
        illegal-in-practice for several DXF readers */
     var s = v.toFixed(6);
     if (s.indexOf("e") !== -1 || s.indexOf("E") !== -1) {
-      throw DxfRefusal("dxf.js produced exponent notation for " + String(v) + " at " + where);
+      /* toFixed falls back to exponent form at 1e21 and above. Several DXF
+         readers parse "1e+21" as 1. A coordinate that large is not a
+         building, so this refuses rather than writing a number that will
+         be silently misread. */
+      throw DxfRefusal("dxf.js refused the coordinate " + String(v) + " at " +
+                       (where || "an unnamed coordinate") + ": it is too large to write in the " +
+                       "fixed notation DXF readers agree on.", { value: String(v), where: where || null });
     }
     /* trim trailing zeros but keep a decimal point — DXF reals are doubles */
     if (s.indexOf(".") !== -1) {
@@ -336,13 +348,19 @@
     this.ents.push(e);
     return e;
   };
-  Buf.prototype.line = function (layer, x1, y1, x2, y2, where) {
+  /* `look` is an optional {color, ltype} override, used ONLY by the legend
+     so a swatch can be drawn in a wall's colour without being a wall. A
+     swatch living on S-WALL-BRNG-EXTR would be counted as a bearing wall
+     by anything reading quantities off this file — a phantom wall in the
+     legend is still a phantom wall. */
+  Buf.prototype.line = function (layer, x1, y1, x2, y2, where, look) {
     if (!fin(x1) || !fin(y1) || !fin(x2) || !fin(y2)) {
       throw DxfRefusal("dxf.js refused a LINE with a non-finite endpoint on " + layer +
                        " at " + (where || "an unnamed line"), { where: where || null });
     }
     this.see(x1, y1); this.see(x2, y2);
-    return this.push({ t: "LINE", layer: layer, x1: x1, y1: y1, x2: x2, y2: y2 });
+    return this.push({ t: "LINE", layer: layer, x1: x1, y1: y1, x2: x2, y2: y2,
+                       color: look ? look.color : null, ltype: look ? look.ltype : null });
   };
   Buf.prototype.pline = function (layer, pts, closed, where) {
     var i;
@@ -399,6 +417,8 @@
     var i;
     if (e.t === "LINE") {
       W(L, 0, "LINE"); W(L, 8, e.layer);
+      if (e.ltype) W(L, 6, e.ltype);
+      if (e.color !== null && e.color !== undefined) W(L, 62, String(e.color));
       Wn(L, 10, e.x1, "LINE.10"); Wn(L, 20, e.y1, "LINE.20"); Wn(L, 30, 0, "LINE.30");
       Wn(L, 11, e.x2, "LINE.11"); Wn(L, 21, e.y2, "LINE.21"); Wn(L, 31, 0, "LINE.31");
       return;
@@ -643,6 +663,12 @@
       if (x1 === null || y1 === null || x2 === null || y2 === null) {
         refuse("wall " + id + " (level " + L.id + ")",
                "one or more endpoint coordinates are not finite numbers - nothing about this wall is drawn");
+      } else if (Math.max(Math.abs(x1), Math.abs(y1), Math.abs(x2), Math.abs(y2)) > MAX_COORD_FT) {
+        rec.x1 = rec.y1 = rec.x2 = rec.y2 = null;
+        refuse("wall " + id + " (level " + L.id + ")",
+               "a coordinate is beyond " + MAX_COORD_FT + " ft, which cannot be written in the fixed " +
+               "decimal notation DXF readers agree on - the wall is not drawn rather than written in a " +
+               "form a reader would parse as some other number");
       } else if (len2(x2 - x1, y2 - y1) <= 0) {
         refuse("wall " + id + " (level " + L.id + ")",
                "start and end are the same point, so the wall has zero length and no direction");
@@ -758,15 +784,25 @@
      lie a plan reviewer has no way to detect.
      ============================================================ */
 
+  /* `lead` is the direction a mark tag is nudged off its anchor so it does
+     not sit on top of the thing it labels, plus how far the wall itself
+     occupies. The ANCHOR is exact; only the tag moves, and a leader line
+     is drawn back to the anchor so the pairing stays unambiguous. */
   function buildIndex(levels) {
     var index = {}, order = [];
-    function put(id, at, levelIdx, on) {
+    function put(id, at, levelIdx, on, lead) {
       if (!at || own(index, " " + id)) return;
-      index[" " + id] = { at: at, level: levelIdx, on: on };
+      index[" " + id] = { at: at, level: levelIdx, on: on, lead: lead || null };
       order.push(id);
     }
     levels.forEach(function (L, li) {
-      L.openings.forEach(function (o) { if (o.drawable) put(o.id, o.at, li, "opening " + o.id); });
+      L.openings.forEach(function (o) {
+        if (!o.drawable) return;
+        var w = o.host;
+        put(o.id, o.at, li, "opening " + o.id,
+            { nx: w.nx, ny: w.ny,
+              clearFt: (w.thicknessIn !== null && w.thicknessIn > 0) ? (w.thicknessIn / 2) / 12 : 0 });
+      });
     });
     levels.forEach(function (L, li) {
       L.framing.forEach(function (f) { if (f.drawable) put(f.id, { x: f.at[0], y: f.at[1] }, li, "framing region " + f.id); });
@@ -774,7 +810,9 @@
     levels.forEach(function (L, li) {
       L.walls.forEach(function (w) {
         if (!w.drawable) return;
-        put(w.id, { x: (w.x1 + w.x2) / 2, y: (w.y1 + w.y2) / 2 }, li, "wall " + w.id);
+        put(w.id, { x: (w.x1 + w.x2) / 2, y: (w.y1 + w.y2) / 2 }, li, "wall " + w.id,
+            { nx: w.nx, ny: w.ny,
+              clearFt: (w.thicknessIn !== null && w.thicknessIn > 0) ? (w.thicknessIn / 2) / 12 : 0 });
       });
     });
     return { index: index, order: order };
@@ -829,7 +867,8 @@
         if (!hit) hit = tokenHit(idx.index, idx.order, str(d.how, ""));
         if (hit) how = str(d.field, "") + (d.field ? " " : "") + "from " + str(d.from, "the takeoff");
       }
-      if (hit) out.placed.push({ id: id, mark: m, x: hit.at.x, y: hit.at.y, level: hit.level, on: hit.on, how: how });
+      if (hit) out.placed.push({ id: id, mark: m, x: hit.at.x, y: hit.at.y, level: hit.level,
+                                 on: hit.on, how: how, lead: hit.lead });
       else out.unplaced.push({ id: id,
         why: "no takeoff derivation names a wall, opening or framing region for this mark, " +
              "so this drawing does not know where it belongs" });
@@ -869,7 +908,27 @@
      THE DRAWING
      ============================================================ */
 
+  /* A button in a browser must not be able to throw an unhandled error.
+     Every deliberate refusal inside buildInner is a DxfRefusal, and every
+     one of them comes back here as a stated `why` and a null file. A
+     genuine programming error is NOT swallowed — it rethrows, because a
+     bug in this exporter reported as "the model refused" would send
+     somebody looking at their geometry for a fault that is ours. */
   function build(model, opts) {
+    try { return buildInner(model, opts); }
+    catch (e) {
+      if (!e || !e.dxfRefusal) throw e;
+      return {
+        ok: false, why: e.message, dxf: null,
+        version: ACADVER, units: (opts && opts.units === "ft") ? "ft" : "in",
+        refusals: [{ what: "the export as a whole", why: e.message }],
+        notes: [], layers: layerScheme(), counts: {}, drawn: {},
+        extents: null, marks: null, filename: null
+      };
+    }
+  }
+
+  function buildInner(model, opts) {
     opts = opts || {};
 
     var unitKey = (opts.units === "ft") ? "ft" : "in";
@@ -1024,11 +1083,17 @@
 
         var wid = ftIn(o.widthFt);
         var label = o.id + " " + o.kind.toUpperCase() + " " + (wid === null ? "WIDTH UNDETERMINED" : wid);
-        if (o.offsetBasis && o.offsetBasis !== "plan") label += " (OFFSET " + o.offsetBasis.toUpperCase() + ")";
+        /* an offset the plan did not give is stated ON THE DRAWING, not only
+           in the notes: a framer reading a dimension off a placeholder is
+           the failure this word exists to prevent */
+        if (o.offsetBasis && o.offsetBasis !== "plan") label += " " + o.offsetBasis.toUpperCase();
         var rot = Math.atan2(ey - sy, ex - sx) * 180 / Math.PI;
         if (rot > 90) rot -= 180; else if (rot <= -90) rot += 180;
-        var perp = ((w.thicknessIn !== null && w.thicknessIn > 0) ? U((w.thicknessIn / 2) / 12) : 0) + H_TINY * 1.2;
-        B.text("S-OPNG-IDEN", (sx + ex) / 2 - w.ny * perp, (sy + ey) / 2 + w.nx * perp,
+        /* (nx, ny) is the wall normal. The label goes on the MINUS side and
+           the wall id and any member mark on the PLUS side, so the three
+           annotations around one wall do not land on each other. */
+        var perp = ((w.thicknessIn !== null && w.thicknessIn > 0) ? U((w.thicknessIn / 2) / 12) : 0) + H_TINY * 1.4;
+        B.text("S-OPNG-IDEN", (sx + ex) / 2 - w.nx * perp, (sy + ey) / 2 - w.ny * perp,
                H_TINY, label, 1, rot, "opening " + o.id + " label");
       });
     });
@@ -1099,13 +1164,27 @@
        ------------------------------------------------------------ */
     placement.placed.forEach(function (m) {
       var li = m.level;
-      var x = LX(li, m.x), y = LY(li, m.y);
+      var ax = LX(li, m.x), ay = LY(li, m.y);          /* the exact anchor */
       var member = members.has
         ? (own(members.byId, " " + m.id) ? members.byId[" " + m.id] : "NOT IN THE SUPPLIED CALCULATIONS")
         : "NO CALCULATIONS SUPPLIED";
       var l1 = m.id, l2 = member;
       var wch = Math.max(l1.length, l2.length);
       var bw = wch * H_TEXT * 0.62 + H_TEXT * 0.9, bh = H_TEXT * 3.2;
+
+      /* A tag drawn on top of the opening it labels hides the opening. It
+         is nudged clear along the wall normal and a leader runs back to the
+         anchor, so the mark is still unambiguously attached to ONE opening.
+         The nudge is a drafting offset; the anchor it comes off is exact. */
+      var x = ax, y = ay;
+      if (m.lead) {
+        var d = U(m.lead.clearFt) + bh / 2 + H_TEXT * 1.2;
+        x = ax + m.lead.nx * d;
+        y = ay + m.lead.ny * d;
+        B.line("S-ANNO-MARK", ax, ay, ax + m.lead.nx * (d - bh / 2), ay + m.lead.ny * (d - bh / 2),
+               "mark " + m.id + " leader");
+      }
+
       B.pline("S-ANNO-MARK", [[x - bw / 2, y - bh / 2], [x + bw / 2, y - bh / 2],
                               [x + bw / 2, y + bh / 2], [x - bw / 2, y + bh / 2]], true,
               "mark " + m.id + " box");
@@ -1208,10 +1287,18 @@
     })();
 
     /* ------------------------------------------------------------
-       LEGEND — each swatch on its real layer, so freezing a layer
-       takes its legend entry with it and the key cannot go stale.
+       LEGEND
+
+       Every swatch lives on S-ANNO-LEGN and borrows the COLOUR and
+       LINETYPE of the layer it describes, rather than living on that
+       layer. A swatch drawn on S-WALL-BRNG-EXTR looks identical and
+       is counted as a fifth bearing wall by anything that reads
+       quantities off this file. The layer name is printed beside each
+       row instead, which is more use to a recipient anyway.
        ------------------------------------------------------------ */
     (function () {
+      var byName = {};
+      LAYERS.forEach(function (l) { byName[l.name] = l; });
       var y = blockTop, x = blockLeft, sw = H_TEXT * 4, gap = H_TEXT * LINEGAP;
       B.text("S-ANNO-LEGN", x, y, H_HEAD, "LEGEND", 0, 0, "legend head");
       y -= gap * 1.4;
@@ -1229,7 +1316,10 @@
         ["S-GRID", "STRUCTURAL GRID - EMPTY, see note 6"]
       ];
       rows.forEach(function (r) {
-        B.line(r[0], x, y + H_TEXT * 0.35, x + sw, y + H_TEXT * 0.35, "legend swatch " + r[0]);
+        var src = byName[r[0]];
+        B.line("S-ANNO-LEGN", x, y + H_TEXT * 0.35, x + sw, y + H_TEXT * 0.35,
+               "legend swatch " + r[0],
+               src ? { color: src.color, ltype: src.lt } : null);
         B.text("S-ANNO-LEGN", x + sw + H_TEXT, y, H_TEXT, r[1] + "   [" + r[0] + "]", 0, 0, "legend row");
         y -= gap;
       });

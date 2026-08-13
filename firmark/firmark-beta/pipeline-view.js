@@ -139,6 +139,16 @@
           class: "btn btn-primary",
           text: row.status === "approved" ? "Re-approve" : "Approve",
           disabled: row.can ? null : "disabled",
+          /* A disabled control has to say why on the control itself. The
+             blockers are listed above and repeated beside the button, but
+             neither is tied to it — a screen reader that lands on a disabled
+             button reads "Approve, dimmed" and nothing else. The reason rides
+             on the button. */
+          title: row.can ? null
+               : "Cannot be approved yet — " + (row.blockedBy.length
+                   ? row.blockedBy.join("; ")
+                   : "this gate is closed"),
+          "aria-describedby": row.can ? null : "gate-block-" + st.id,
           onclick: function () {
             var r = FM.pipeline.approve(st.id, note.value);
             if (!r.ok) { FM.toast("Not approved — " + r.why.join("; ")); return; }
@@ -160,8 +170,11 @@
         })
       ]);
 
-      if (!row.can && row.blockedBy.length) {
-        actions.appendChild(el("span", { class: "clause", text: "blocked: " + row.blockedBy.join(" · ") }));
+      if (!row.can) {
+        actions.appendChild(el("span", {
+          class: "clause", id: "gate-block-" + st.id,
+          text: "blocked: " + (row.blockedBy.length ? row.blockedBy.join(" · ") : "this gate is closed")
+        }));
       }
       body.appendChild(actions);
 

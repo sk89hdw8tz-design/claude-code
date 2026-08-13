@@ -150,11 +150,32 @@
 
     var substituted = null;
 
+    /* The conditions block is computed against the SPECIES and the moisture
+       flags — whether the species is refractory decides the incising hint, and
+       wet-and-not-incised decides the "this reads about 25% high" warning.
+
+       recompute() redraws only the head and the results, so none of that ever
+       updated: switching a wet sheet from Southern Pine to Douglas Fir-Larch
+       left it with no incising warning at all, and ticking Wet service on a
+       DF-L sheet never produced the banner that names the unconservative
+       combination. You had to navigate away and come back. That is the worst
+       possible failure mode for a warning — it is present when you do not need
+       it and absent at the moment you do.
+
+       So a change that moves the conditions redraws them, and puts the caret
+       back on the control that was used. */
+    function redrawInputs(refocus) {
+      drawInputs();
+      recompute();
+      var back = refocus && inputPane.querySelector("[data-ctl='" + refocus + "']");
+      if (back && back.focus) back.focus();
+    }
+
     function drawInputs() {
       inputPane.innerHTML = "";
 
       /* member */
-      var speciesSel = el("select", {}, FM.engine.speciesList().map(function (s) {
+      var speciesSel = el("select", { "data-ctl": "species" }, FM.engine.speciesList().map(function (s) {
         return el("option", { value: s.species, text: s.species, selected: s.species === inp.species ? "selected" : null });
       }));
       var gradeSel = el("select");
@@ -184,7 +205,8 @@
           inp.grade = best;
         }
         fillGrades();
-        recompute();
+        /* the incising hint and the wet/refractory banner are species-dependent */
+        redrawInputs("species");
       });
       gradeSel.addEventListener("change", function () { inp.grade = this.value; substituted = null; recompute(); });
 
@@ -284,9 +306,15 @@
 
       /* conditions */
       function check(label, key, hint) {
-        var c = el("input", { type: "checkbox" });
+        var c = el("input", { type: "checkbox", "data-ctl": key });
         c.checked = !!inp[key];
-        c.addEventListener("change", function () { inp[key] = this.checked; recompute(); });
+        c.addEventListener("change", function () {
+          inp[key] = this.checked;
+          /* wet and incised move the conditions block itself — the banner that
+             names the unconservative combination is drawn from them */
+          if (key === "wet" || key === "incised") redrawInputs(key);
+          else recompute();
+        });
         var lab = el("label", {
           style: "display:flex;gap:8px;align-items:center;text-transform:none;letter-spacing:0;font-family:var(--sans);font-size:.85rem;color:var(--text);font-weight:500"
         }, [c, el("span", { text: label })]);
@@ -314,7 +342,7 @@
          the catalog cannot source — but it is now an explicit override that
          says so on screen. */
       var cfAuto = inp.CF === "auto";
-      var cfMode = el("select", {}, [
+      var cfMode = el("select", { "data-ctl": "cfmode" }, [
         el("option", { value: "auto", text: "From catalog (auto, tracks the depth)" }),
         el("option", { value: "typed", text: "Typed override — NDS-S Table 4A" })
       ]);
@@ -323,6 +351,7 @@
       var cfLast = (typeof inp.CF === "number" && isFinite(inp.CF)) ? inp.CF : 1.0;
       var cfInput = el("input", {
         type: "number", value: String(cfLast), step: "0.05", min: "0.5", max: "2",
+        "data-ctl": "cf", "aria-label": "C_F size factor",
         disabled: cfAuto ? "disabled" : null
       });
       cfInput.addEventListener("input", function () {
@@ -333,7 +362,12 @@
       });
       cfMode.addEventListener("change", function () {
         inp.CF = this.value === "auto" ? "auto" : cfLast;
-        recompute();
+        /* The number field's `disabled` and the Catalog/Typed-override badge
+           are both decided at draw time. Without a redraw, choosing "Typed
+           override" left the number input DISABLED — the override could be
+           selected and then not typed, and the badge went on saying "Catalog"
+           over a value the engine was no longer taking from the catalog. */
+        redrawInputs("cfmode");
       });
 
       var cfField = el("div", { class: "field" }, [
@@ -531,6 +565,24 @@
 
     function recompute() {
       var r = FM.engine.run(inp);
+      /* Write the working copy back to the record.
+
+         `inputsFor()` exists so "a list row and its sheet can never disagree" —
+         but they disagreed the moment anyone touched a control, because the
+         sheet edited a private copy and never returned it. Change the span to
+         20 ft and the Calculations list, the Output table and the exported calc
+         record all went on publishing the 14 ft answer, under the same mark,
+         with no sign that the two were different numbers. Editing a sheet now
+         edits the sheet.
+
+         Only the keys the record already owns are copied back: `inp` also
+         carries deflLive/deflTotal, which come from the project's design
+         profile and are not the sheet's to keep. `incised` is new to the
+         record when a sheet predates that control. */
+      Object.keys(sheet.inputs).forEach(function (k) {
+        if (inp[k] !== undefined) sheet.inputs[k] = inp[k];
+      });
+      if (inp.incised !== undefined) sheet.inputs.incised = inp.incised;
       drawHead(r);
       drawResults(r);
     }

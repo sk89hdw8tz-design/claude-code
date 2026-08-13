@@ -2897,8 +2897,40 @@
           } }),
           el("button", { class: "btn btn-primary", text: "Export package for PE review",
             onclick: function () {
-              download(pkg.text(), "firmark-planset-" + pkg.head.packageId.replace(/[^\w.-]+/g, "-") +
-                       "-for-PE-review.txt");
+              var name = "firmark-planset-" +
+                         pkg.head.packageId.replace(/[^\w.-]+/g, "-") + "-for-PE-review.txt";
+              /* THE RECORD PANEL, not a bare download.
+
+                 A page-initiated download is a REQUEST, not an outcome.
+                 This bundle is opened three ways — off disk over file://,
+                 off a local server, and as a hosted artefact whose sandbox
+                 blocks page-initiated downloads outright. In the third the
+                 anchor click does nothing whatsoever and nothing tells the
+                 page so.
+
+                 This button called download() directly, so wherever that
+                 was blocked it did VISIBLY NOTHING: no panel, no file, and
+                 the toast beneath it never ran either. A control audit
+                 across the built bundle flagged it dead in both the empty
+                 and the fully-approved run, and it was right to.
+
+                 shell.html states the rule for the whole product: an export
+                 puts the artefact ON SCREEN, always, and offers the file
+                 alongside it. */
+              if (FM.deliver) {
+                FM.deliver({
+                  title: "Plan set for PE review · " + safe(pkg.head.packageId, "package"),
+                  filename: name,
+                  text: pkg.text(),
+                  note: "The package in full. It is NOT a sealed set — the seal block on S0.0 " +
+                        "is empty and carries a “to be sealed by” line for the licensed engineer " +
+                        "who takes responsibility for it. “Save as file” asks your browser for a " +
+                        "copy; some hosted sandboxes block page-initiated downloads and this page " +
+                        "cannot tell when yours has, so copy the text if no file appears."
+                });
+                return;
+              }
+              download(pkg.text(), name);
               if (FM.toast) FM.toast("Package exported — prepared for PE review, not sealed.");
             } })
         ]));

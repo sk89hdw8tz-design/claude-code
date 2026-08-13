@@ -110,7 +110,11 @@ FM.cad.MODEL_VERSION       // integer, bump on any breaking shape change
       offsetFt: 4.0,             // from wall start (x1,y1) along the wall
       widthFt: 6.0,
       headHeightFt: 6.83,
-      kind: "window" | "door" | "garage" | "slider",
+      kind: "window" | "door" | "garage" | "slider" | "passage",
+                                 // "passage" is a cased opening with no leaf —
+                                 // the break a beam or girder spans. A hole in
+                                 // an INTERIOR bearing line is one of these and
+                                 // is never a window.
       note: ""
     }],
     framing: [{                  // a framed region: which way the joists run

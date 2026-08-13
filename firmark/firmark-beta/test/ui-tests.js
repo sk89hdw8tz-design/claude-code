@@ -255,7 +255,24 @@ const APP = 'file://' + path.join(__dirname, '..', 'firmark-app.html');
     if (!/C_F/.test(txt)) gaps.push('no C_F control on the sheet');
     if (!/Catalog|auto/i.test(txt)) gaps.push('C_F does not show it is on the catalog path');
 
-    /* switching to a refractory species with wet service must warn */
+    /* switching to a refractory species with wet service must warn.
+
+       This used to rely on R-12 still being Douglas Fir-Larch. It is not: the
+       species-switch check 80 lines above sets R-12 to Southern Pine, and a
+       sheet edit now STICKS — sheet.js writes the working copy back to the
+       record, because the list row, the Output table and the exported calc
+       record were otherwise still publishing the pre-edit member under the
+       same mark. Southern Pine is the one species here that takes treatment
+       WITHOUT incising, so the warning correctly did not appear and the
+       assertion was reading a real answer as a failure.
+
+       So the species is stated rather than assumed. A test about refractory
+       species has to name one. */
+    const spec = pane.querySelector('select');
+    if (spec) {
+      spec.value = 'Douglas Fir-Larch';
+      spec.dispatchEvent(new Event('change'));
+    }
     const boxes = [].slice.call(pane.querySelectorAll('input[type=checkbox]'));
     const wet = boxes.filter(b => /Wet service/i.test(b.parentNode.textContent))[0];
     const inc = boxes.filter(b => /Incised/i.test(b.parentNode.textContent))[0];
@@ -468,13 +485,354 @@ const APP = 'file://' + path.join(__dirname, '..', 'firmark-app.html');
   if (tabStack.after > tabStack.before)
     bad.push(`routing: three tab clicks added ${tabStack.after - tabStack.before} history entries — tabs should replace`);
 
+  /* ============================================================
+     EVERY CONTROL DOES SOMETHING
+
+     The defect this whole block exists for: a button that looks real, gets
+     clicked in front of a customer, and does nothing \u2014 or toasts an apology,
+     which is worse, because it is a promise the product cannot keep sitting in
+     a UI whose credibility rests on saying only what it can back up.
+
+     "No console error" is not evidence of working. So every enabled button in
+     every view is clicked and required to produce an OBSERVABLE effect: a
+     route change, a hash change, a change to what is rendered, a toast, a
+     change of aria state, or a dialog. A tab that sets a class and renders the
+     same content fails here, which is the point.
+
+     A disabled button is exempt from producing an effect and instead has to
+     say WHY it is disabled, on itself, where a screen reader will read it.
+     ============================================================ */
+
+  const VIEW_IDS = ['dashboard', 'projects', 'project', 'calculations', 'sheet', 'sizing',
+                    'cad', 'takeoff', 'jurisdiction', 'bom', 'planset', 'pipeline',
+                    'policies', 'materials', 'output', 'admin', 'settings', 'help'];
+
+  async function landOn(v) {
+    await p.evaluate(v2 => { FM.go(v2); }, v);
+    await p.waitForTimeout(220);
+    /* a click may have signed us out or opened a dialog \u2014 get back to a clean
+       shell before the next one, or every later control reads as dead */
+    const gated = await p.evaluate(() => !document.getElementById('gate').hasAttribute('hidden'));
+    if (gated) {
+      await p.evaluate(() => {
+        document.getElementById('gateUser').value = 'Demo';
+        document.getElementById('gatePass').value = 'Demo';
+        document.getElementById('gateForm').dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
+      });
+      await p.waitForTimeout(200);
+      await p.evaluate(v2 => { FM.go(v2); }, v);
+      await p.waitForTimeout(220);
+    }
+  }
+
+  /* window.print() is a real effect that headless Chromium performs silently,
+     so it is counted rather than read as a dead control */
+  const armPrint = () => p.evaluate(() => {
+    if (!window.__printCount) { window.__printCount = 0; const r = window.print;
+      window.print = function () { window.__printCount++; if (r) try { r.call(window); } catch (e) {} }; }
+  });
+
+  const snap = () => p.evaluate(() => {
+    const host = document.getElementById('view-' + FM.state.route);
+    const txt = host ? host.textContent : '';
+    /* the MARKUP, not just the text: a control whose only effect is on the
+       drawing canvas, on a class, or on an aria state changes no text at all,
+       and reading text alone would file it as dead */
+    const mk = host ? host.innerHTML : '';
+    let h = 0; for (let i = 0; i < mk.length; i++) h = (h * 31 + mk.charCodeAt(i)) | 0;
+    const t = document.getElementById('toast');
+    return {
+      route: FM.state.route, hash: location.hash, fp: h, len: txt.length,
+      toast: t.classList.contains('on') ? t.textContent : '',
+      theme: document.documentElement.getAttribute('data-theme') || 'system',
+      dialog: ['paletteScrim', 'recordScrim'].filter(id => {
+        const n = document.getElementById(id); return n && n.classList.contains('on');
+      }).join(','),
+      printed: window.__printCount || 0,
+      gate: !document.getElementById('gate').hasAttribute('hidden')
+    };
+  });
+
+  /* Controls that restore a state the view is ALREADY in, and so do nothing
+     from a cold render. Each one was driven by hand to prove it is idempotent
+     rather than dead — the reason and the evidence are recorded here, because
+     an unexplained exemption is how a dead control gets a permanent pass.
+
+       cad · "Fit to content"  — verified: wheel-zoom the canvas and the wall
+       coordinates move (x1 7.59 -> 15.56); click Fit and they return to 7.59.
+       It is a no-op only on a canvas that is already fitted, which is the
+       state every cold render leaves it in. */
+  const IDEMPOTENT = { 'cad · Fit to content': true };
+
+  await open();
+  let clicked = 0, dead = [], mute = [];
+  for (const v of VIEW_IDS) {
+    await landOn(v);
+    const n = await p.evaluate(v2 => {
+      const h = document.getElementById('view-' + v2);
+      return h ? h.querySelectorAll('button').length : 0;
+    }, v);
+    for (let i = 0; i < n; i++) {
+      await landOn(v);
+      const meta = await p.evaluate(([v2, i2]) => {
+        const el = document.getElementById('view-' + v2).querySelectorAll('button')[i2];
+        if (!el) return null;
+        const wrap = el.parentNode;
+        return {
+          label: (el.getAttribute('aria-label') || (el.textContent || '').trim() || '').replace(/\s+/g, ' ').slice(0, 46),
+          disabled: !!el.disabled,
+          /* a disabled control must carry its reason where it is read out */
+          reason: (el.title || '') + ' ' + (() => {
+            const d = el.getAttribute('aria-describedby');
+            const t = d && document.getElementById(d);
+            return t ? t.textContent : '';
+          })(),
+          pressed: el.getAttribute('aria-pressed'), sel: el.getAttribute('aria-selected'),
+          within: wrap ? (wrap.className || '') : ''
+        };
+      }, [v, i]);
+      if (!meta) continue;
+      if (meta.disabled) {
+        if (meta.reason.trim().length < 12) mute.push(`${v} \u00b7 "${meta.label}" is disabled and does not say why`);
+        continue;
+      }
+      /* A segmented option that is ALREADY the selected one is legitimately
+         idempotent \u2014 re-picking "Grid" while the grid is showing should do
+         nothing. So it is deselected first, by clicking a sibling, and then
+         asserted to work from the state where it has work to do. Without that
+         step the test cannot tell an idempotent control from a dead tab, which
+         is the distinction that matters. */
+      if (meta.pressed === 'true' || meta.sel === 'true') {
+        const flipped = await p.evaluate(([v2, i2]) => {
+          const btns = document.getElementById('view-' + v2).querySelectorAll('button');
+          const me = btns[i2], group = me.parentNode;
+          const sib = [].slice.call(group.querySelectorAll('button')).filter(b => b !== me &&
+            (b.getAttribute('aria-pressed') === 'false' || b.getAttribute('aria-selected') === 'false'))[0];
+          if (!sib) return false;
+          sib.click(); return true;
+        }, [v, i]);
+        await p.waitForTimeout(260);
+        if (!flipped) continue;   /* nothing to deselect it with \u2014 not a control's fault */
+      }
+      await armPrint();
+      const before = await snap();
+      await p.evaluate(([v2, i2]) => {
+        document.getElementById('view-' + v2).querySelectorAll('button')[i2].click();
+      }, [v, i]);
+      await p.waitForTimeout(280);
+      const after = await snap();
+      const state2 = await p.evaluate(([v2, i2]) => {
+        const el = document.getElementById('view-' + v2) &&
+                   document.getElementById('view-' + v2).querySelectorAll('button')[i2];
+        return el ? { pressed: el.getAttribute('aria-pressed'), sel: el.getAttribute('aria-selected') } : {};
+      }, [v, i]);
+      clicked++;
+      const moved = before.route !== after.route || before.hash !== after.hash ||
+                    before.fp !== after.fp || !!after.toast || before.theme !== after.theme ||
+                    before.dialog !== after.dialog || before.gate !== after.gate ||
+                    before.printed !== after.printed ||
+                    meta.pressed !== state2.pressed || meta.sel !== state2.sel;
+      if (!moved && !IDEMPOTENT[`${v} \u00b7 ${meta.label}`])
+        dead.push(`${v} \u00b7 "${meta.label}" does nothing when clicked`);
+      /* an apology is a dead control wearing a disclosure */
+      if (/isn.t wired|not wired up|coming soon|not implemented yet/i.test(after.toast))
+        dead.push(`${v} \u00b7 "${meta.label}" apologises instead of working: "${after.toast}"`);
+      if (after.dialog) {
+        await p.keyboard.press('Escape');
+        await p.waitForTimeout(120);
+      }
+    }
+  }
+  dead.forEach(d => bad.push('control: ' + d));
+  mute.forEach(d => bad.push('control: ' + d));
+
+  /* ---- the exports produce something wherever the bundle is opened ----
+     A download is a REQUEST. In the hosted build the sandbox blocks it and the
+     page cannot tell, so an export that only calls a.click() is silently inert
+     there. Every export must ALSO put the artefact on screen. */
+  await open(APP + '#/output');
+  await p.waitForTimeout(250);
+  const rec = await p.evaluate(async () => {
+    const wait = ms => new Promise(r => setTimeout(r, ms));
+    const btn = [].slice.call(document.querySelectorAll('#view-output button'))
+      .filter(b => /Calc record/.test(b.textContent))[0];
+    if (!btn) return { missing: true };
+    btn.click(); await wait(250);
+    const ta = document.getElementById('recordText');
+    return {
+      open: document.getElementById('recordScrim').classList.contains('on'),
+      chars: ta ? ta.value.length : 0,
+      named: (document.getElementById('recordName') || {}).textContent,
+      hasMarks: ta ? /MARK /.test(ta.value) : false,
+      /* it must never claim the file arrived */
+      claims: /downloaded|saved to|exported\./i.test(document.getElementById('recordNote').textContent)
+    };
+  });
+  if (rec.missing) bad.push('export: the Output view has no calc-record control');
+  else {
+    if (!rec.open) bad.push('export: the calc record produced nothing on screen \u2014 inert wherever downloads are blocked');
+    if (!rec.chars || !rec.hasMarks) bad.push('export: the calc record panel opened empty');
+    if (!/\.txt$/.test(rec.named || '')) bad.push('export: the calc record does not name the file it offers');
+    if (rec.claims) bad.push('export: the calc record claims a download it cannot verify');
+  }
+
+  /* the sizing schedule export, same rule */
+  await open(APP + '#/sizing');
+  await p.waitForTimeout(300);
+  const sched = await p.evaluate(async () => {
+    const wait = ms => new Promise(r => setTimeout(r, ms));
+    const btn = [].slice.call(document.querySelectorAll('#view-sizing button'))
+      .filter(b => /Export schedule/.test(b.textContent))[0];
+    if (!btn) return { missing: true };
+    btn.click(); await wait(300);
+    const ta = document.getElementById('recordText');
+    return { open: document.getElementById('recordScrim').classList.contains('on'),
+             chars: ta ? ta.value.length : 0 };
+  });
+  if (sched.missing) bad.push('export: Sizing has no schedule export');
+  else if (!sched.open || sched.chars < 400)
+    bad.push('export: the schedule export produced nothing on screen \u2014 inert wherever downloads are blocked');
+
+  /* ---- the DXF button exists only when the exporter does ----
+
+     The run has to start EMPTY for this, and the sweep above walked through
+     the Geometry view. FM.project.reset() alone is not enough: model() falls
+     through to FM.cad.currentModel(), which is the live canvas and lives in
+     cad.js's module state, not in the run. So the run is cleared and then the
+     page is reloaded, which is what a first visit actually looks like. */
+  await open(APP + '#/output');
+  await p.waitForTimeout(250);
+  await p.evaluate(() => { if (FM.project && FM.project.reset) FM.project.reset(); });
+  await open(APP + '#/output');
+  await p.waitForTimeout(300);
+  const dxf = await p.evaluate(async () => {
+    const wait = ms => new Promise(r => setTimeout(r, ms));
+    const find = () => [].slice.call(document.querySelectorAll('#view-output button'))
+      .filter(b => /DXF/.test(b.textContent))[0];
+    const have = !!(FM.dxf && typeof FM.dxf.fromModel === 'function');
+    const b0 = find();
+    if (!have) return { have: false, present: !!b0 };
+    /* with no geometry in the run it must be disabled AND say why */
+    const noGeom = { present: !!b0, disabled: b0 && b0.disabled, why: (b0 && b0.title) || '' };
+    FM.go('cad'); await wait(600);          /* the canvas builds a model */
+    FM.go('output'); await wait(300);
+    const b1 = find();
+    if (!b1 || b1.disabled) return { have: true, noGeom, stillDisabled: true };
+    b1.click(); await wait(500);
+    const ta = document.getElementById('recordText');
+    return { have: true, noGeom,
+             open: document.getElementById('recordScrim').classList.contains('on'),
+             acad: ta ? /AC1009/.test(ta.value) : false,
+             chars: ta ? ta.value.length : 0,
+             named: (document.getElementById('recordName') || {}).textContent };
+  });
+  if (!dxf.have) {
+    if (dxf.present) bad.push('dxf: the Plan set (DXF) button is rendered in a build with no FM.dxf');
+  } else {
+    if (!dxf.noGeom.present) bad.push('dxf: FM.dxf is in the build but the Output view offers no DXF export');
+    if (!dxf.noGeom.disabled) bad.push('dxf: the DXF button is live with no geometry to draw');
+    if ((dxf.noGeom.why || '').length < 20) bad.push('dxf: the DXF button is disabled without saying why');
+    if (dxf.stillDisabled) bad.push('dxf: the DXF button stayed disabled after geometry existed');
+    if (!dxf.open || !dxf.acad) bad.push('dxf: the export produced no AC1009 drawing on screen');
+    if (!/\.dxf$/.test(dxf.named || '')) bad.push('dxf: the export does not name a .dxf file');
+  }
+
+  /* ---- the stage rail: nothing that looks clickable is inert ---- */
+  for (const v of ['pipeline', 'takeoff', 'jurisdiction', 'bom']) {
+    await open(APP + '#/' + v);
+    await p.waitForTimeout(300);
+    const rail = await p.evaluate(async (v2) => {
+      const wait = ms => new Promise(r => setTimeout(r, ms));
+      const r = document.querySelector('#view-' + v2 + ' .stage-rail');
+      if (!r) return { missing: true };
+      const btns = [].slice.call(r.querySelectorAll('button'));
+      const cur = r.querySelector('[aria-current="step"]');
+      const curIsButton = !!(cur && cur.tagName === 'BUTTON');
+      const from = FM.state.route;
+      if (btns.length) { btns[0].click(); await wait(300); }
+      return { chips: r.children.length, buttons: btns.length, hasCurrent: !!cur,
+               curIsButton, from, to: FM.state.route };
+    }, v);
+    if (rail.missing) { bad.push(`stage rail: ${v} has none`); continue; }
+    if (rail.chips !== 6) bad.push(`stage rail on ${v}: ${rail.chips} chips, expected 6`);
+    if (rail.curIsButton) bad.push(`stage rail on ${v}: the current stage is a button that goes nowhere`);
+    if (rail.buttons && rail.from === rail.to)
+      bad.push(`stage rail on ${v}: clicking a stage chip did not move`);
+  }
+
+  /* ---- a navigation renders its view once ----
+     go() wrote the hash and the hashchange it caused came back and re-entered
+     go(), so every navigation rendered twice and any per-render side effect
+     ran twice. */
+  await open();
+  await p.waitForTimeout(200);
+  const renders = await p.evaluate(async () => {
+    const wait = ms => new Promise(r => setTimeout(r, ms));
+    let n = 0; const orig = FM.VIEWS.materials;
+    FM.VIEWS.materials = function (h) { n++; return orig(h); };
+    FM.go('materials'); await wait(350);
+    const viaGo = n; n = 0;
+    location.hash = '#/dashboard'; await wait(300);
+    location.hash = '#/materials'; await wait(350);
+    FM.VIEWS.materials = orig;
+    return { viaGo, viaHash: n };
+  });
+  if (renders.viaGo !== 1) bad.push(`routing: FM.go rendered the view ${renders.viaGo} times, expected 1`);
+  if (renders.viaHash !== 1) bad.push(`routing: a real hash change rendered the view ${renders.viaHash} times, expected 1`);
+
+  /* ---- Help advertises exactly the shortcuts that work ---- */
+  await open(APP + '#/help');
+  await p.waitForTimeout(250);
+  const keys = await p.evaluate(async () => {
+    const wait = ms => new Promise(r => setTimeout(r, ms));
+    const txt = document.getElementById('view-help').innerText;
+    const out = [];
+    for (const g of FM.GO_KEYS) {
+      if (!new RegExp('g ' + g.key + '(\\s|$)', 'm').test(txt)) { out.push(g.key + ' is not on the Help page'); continue; }
+      FM.go('dashboard'); await wait(120);
+      document.dispatchEvent(new KeyboardEvent('keydown', { key: 'g', bubbles: true }));
+      document.dispatchEvent(new KeyboardEvent('keydown', { key: g.key, bubbles: true }));
+      await wait(200);
+      if (FM.state.route !== g.route) out.push(`g ${g.key} is advertised but goes to ${FM.state.route}, not ${g.route}`);
+      FM.go('help'); await wait(120);
+    }
+    return out;
+  });
+  keys.forEach(k => bad.push('keyboard: ' + k));
+
+  /* ---- editing a sheet edits the sheet ----
+     The working copy was never written back, so the list row, the Output table
+     and the calc record went on publishing the pre-edit member under the same
+     mark. */
+  await open(APP + '#/sheet/FJ-1');
+  await p.waitForTimeout(300);
+  const persist = await p.evaluate(async () => {
+    const wait = ms => new Promise(r => setTimeout(r, ms));
+    const rec = FM.SHEETS.filter(s => s.id === 'FJ-1')[0];
+    const was = rec.inputs.span;
+    const num = document.querySelector('#view-sheet .input-pane input[type=number]');
+    num.value = String(was + 3);
+    num.dispatchEvent(new Event('input', { bubbles: true }));
+    await wait(250);
+    const stored = rec.inputs.span;
+    FM.go('output'); await wait(300);
+    const r = FM.engine.run(FM.inputsFor(rec));
+    const shown = document.getElementById('view-output').innerText;
+    return { was, stored, agrees: r.error || shown.indexOf(r.governing.dcr.toFixed(2)) !== -1 };
+  });
+  if (persist.stored === persist.was)
+    bad.push('sheet: an edit did not reach the record \u2014 the list and the sheet can disagree');
+  if (!persist.agrees)
+    bad.push('sheet: the Output table does not show the edited sheet\u2019s answer');
+
   const uniq = [...new Set(bad)];
   console.log(uniq.length
     ? 'FAIL\n  ' + uniq.slice(0, 12).join('\n  ')
     : '\u2713 clean across ' + (packs.length * plans.length) +
       ' pack/plan combinations, every mark detail, all three tabs, the sheet species\n' +
-      '  switch, routing (boot, Back, Forward, deep link, reload, unknown route), and\n' +
-      '  every rendered DCR checked against an independent engine run');
+      '  switch, routing (boot, Back, Forward, deep link, reload, unknown route),\n' +
+      '  every rendered DCR checked against an independent engine run, and ' + clicked + '\n' +
+      '  buttons across ' + VIEW_IDS.length + ' views each shown to do something observable');
   if (errs.length) console.log('page errors:', [...new Set(errs)].slice(0, 5));
   await b.close();
   process.exit(uniq.length || errs.length ? 1 : 0);

@@ -806,7 +806,25 @@
 
   function exportSchedule(plan, pack) {
     var text = scheduleText(plan, pack, { at: new Date().toISOString().slice(0, 16).replace("T", " ") + " UTC" });
-    download(text, "firmark-schedule-" + plan.id + "-" + pack.id + ".txt");
+    var name = "firmark-schedule-" + plan.id + "-" + pack.id + ".txt";
+    /* The record panel when there is one — see the note on the same fix in
+       planset.js. A bare download() is a request the page cannot verify,
+       and in a sandbox that blocks it this function did nothing visible at
+       all. The fallback stays for a build with no view layer loaded. */
+    if (FM.deliver) {
+      FM.deliver({
+        title: "Member schedule · " + plan.name + " / " + pack.name,
+        filename: name,
+        text: text,
+        note: "The schedule in full — it carries the escalations, the marks this engine will " +
+              "not size, the reactions, the load provenance and calc-spec §8. “Save as file” " +
+              "asks your browser for a copy; some hosted sandboxes block page-initiated " +
+              "downloads and this page cannot tell when yours has, so copy the text if no " +
+              "file appears."
+      });
+      return;
+    }
+    download(text, name);
     if (FM.toast) FM.toast("Schedule exported — carries calc-spec §8 in full.");
   }
 

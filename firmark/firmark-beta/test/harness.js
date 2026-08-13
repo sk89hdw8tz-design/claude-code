@@ -22,7 +22,7 @@ var path = require("path");
 /* the DOM-free set, in dependency order */
 var DEFAULT = [
   "scope.js", "engine.js", "weights.js", "solver.js",
-  "jurisdiction.js", "cad.js", "takeoff.js", "bom.js",
+  "jurisdiction.js", "cad.js", "dxf.js", "takeoff.js", "bom.js",
   "export.js", "planset.js",
   "auth.js", "pipeline.js", "project.js"
 ];

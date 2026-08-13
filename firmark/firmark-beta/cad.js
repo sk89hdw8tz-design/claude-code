@@ -59,7 +59,15 @@
   };
   function endClearFt() { return (RULES.jackStudIn + RULES.kingStudIn) / 12; }
 
-  var OPENING_KINDS = ["window", "door", "slider", "garage"];
+  /* "passage" is a cased opening with no leaf in it — the break a beam or a
+     girder spans. It is here because the alternative was calling one a
+     WINDOW: Townhome 1220's GB-1 is a 12 ft interruption of an interior
+     bearing line, and with only the four exterior kinds available it was
+     drawn, labelled and exported as a 12 ft window in a wall that has no
+     outside. A window is a hole in the ENVELOPE; a hole in an interior
+     bearing line is not one, and the two are not interchangeable on a plan
+     set, in the DXF or in a header schedule. */
+  var OPENING_KINDS = ["window", "door", "slider", "garage", "passage"];
   var FRAMING_KINDS = ["floor", "roof", "ceiling", "deck"];
   var STORE_KEY = "firmark.cad.models.v1";
 
@@ -899,11 +907,22 @@
     WALL_HINTS.forEach(function (h) { if (!out && h.re.test(label)) out = h.where; });
     return out;
   }
-  function openingKind(mark) {
+  /* The WALL matters as much as the label. "window" is the right fallback for
+     a hole in the envelope and the WRONG one for a hole in an interior
+     bearing line: what interrupts a bearing line is a cased opening spanned
+     by a beam or a girder, and that is a different thing to draw, to label
+     and to schedule. Townhome 1220's GB-1 — a 12 ft break in BL1 for the
+     great room, carried by a flush girder — came through here as a 12 ft
+     WINDOW in an interior wall, which is wrong on the sheet and wrong in the
+     DXF. The label rules still win when the plan names the leaf, because a
+     garage door is a garage door whether a header or a girder spans it. */
+  function openingKind(mark, wall) {
     var label = String(mark.label || "");
     if (/garage|carport/i.test(label)) return "garage";
     if (/slider|sliding/i.test(label)) return "slider";
     if (/\bdoor\b|entry/i.test(label)) return "door";
+    if (wall && wall.exterior !== true) return "passage";
+    if (mark.role === "beam" || /\bgirder\b/i.test(label)) return "passage";
     return "window";
   }
 
@@ -1433,9 +1452,33 @@
                            !/\bno (third bearing|interior|other bearing)/i.test(bl);
     var haveInterior = L.walls.filter(function (w) { return !w.exterior; }).length > 0;
     if (!haveInterior && declaresInterior) {
-      hole("The interior bearing line",
-           plan.name + " declares an interior bearing line in its bearingLines text and geometry.drawn " +
-           "does not locate it, so its position does not follow from any stated number.",
+      /* Name the bays that ALMOST locate it, because a reader who is not
+         handed them does the arithmetic anyway and lands on a number the
+         plan does not support. A joist span is the distance between two
+         supports; it is not a distance from a named corner, and nothing here
+         says which wall the first bay starts at. On a plan whose upper floor
+         is smaller than its footprint the bays need not reach either wall at
+         all — which is exactly the case that makes "the front bay starts at
+         the front wall" an invention rather than a reading. */
+      var bays = (plan.marks || []).filter(function (mk) {
+        return mk.role === "joist" && num(mk.span) !== null;
+      });
+      var why = plan.name + " declares an interior bearing line in its bearingLines text and " +
+                "geometry.drawn does not locate it, so its position does not follow from any " +
+                "stated number.";
+      if (bays.length) {
+        why += " The joist marks declare the bays it splits (" +
+               bays.map(function (mk) { return mk.id + " " + f1(num(mk.span)) + " ft"; }).join(", ") +
+               "), but a span is a distance between supports, not a distance from a named corner, " +
+               "and nothing states which wall a bay starts at.";
+      }
+      if (num(g.secondFloorSf) !== null && num(g.firstFloorSf) !== null &&
+          num(g.secondFloorSf) < num(g.firstFloorSf)) {
+        why += " The upper floor is " + g.secondFloorSf + " sf of a " + g.firstFloorSf +
+               " sf first floor, so the bays do not have to reach either wall and the offset " +
+               "cannot be recovered by subtraction either.";
+      }
+      hole("The interior bearing line", why,
            "Declare it in geometry.drawn.interiorWalls with its two endpoints.");
     }
     if (/party wall/i.test(bl) && !dr.partyWallSide) {
@@ -1490,12 +1533,25 @@
            "Declare geometry.drawn.garageAt with the face and the offset from a named corner.");
     }
 
+    /* Where the garage bay runs along its face, when the plan declares both
+       halves of it. A garage door is IN the garage, and a plan that says the
+       bay runs 0-11 ft of the front face has said which stretch of that wall
+       the door is in even when it has not said where in the stretch. */
+    var garageBay = null;
+    if (dr.garageAt && dr.garageAt.face && num(dr.garageAt.offsetFt) !== null &&
+        g.garage && num(g.garage.widthFt) !== null) {
+      garageBay = { face: dr.garageAt.face,
+                    lo: num(dr.garageAt.offsetFt),
+                    hi: num(dr.garageAt.offsetFt) + num(g.garage.widthFt) };
+    }
+
     /* ---- openings from the marks ---- */
     placeOpenings(plan, m, {
       levels: [L, upper],
       faces: faces,
       byDeclId: byDeclId,
       bearWalls: bearWalls, gableWalls: gableWalls,
+      garageBay: garageBay,
       partySide: dr.partyWallSide || null,
       partyWallUnknown: /party wall/i.test(bl) && !dr.partyWallSide
     }, hole);
@@ -1663,13 +1719,27 @@
       var i;
       for (i = 0; i < count; i++) {
         var w2 = targets[i % targets.length];
+        var kind = openingKind(mk, w2);
+        /* A garage door is IN the garage. Without this the placeholder is
+           laid out across the whole face and can land outside the bay the
+           plan declares — on Townhome 1220 the 8.9 ft door centred on the
+           20 ft front wall, which is 3.5 ft PAST the interior bearing line
+           at 11 ft and into the great room. The offset stays a placeholder,
+           because the plan does not say where in the bay the door sits; but
+           a placeholder outside the bay is not a position the plan is silent
+           about, it is one the plan contradicts. */
+        var bay = (kind === "garage" && ctx.garageBay && w2.face === ctx.garageBay.face)
+          ? ctx.garageBay : null;
         pending[w2.id] = pending[w2.id] || [];
         wallLevel[w2.id] = lv;
         pending[w2.id].push({
           widthFt: Math.round(roFt * 1000) / 1000,
-          kind: openingKind(mk),
+          kind: kind,
           headFt: headFt === null ? null : Math.round(headFt * 1000) / 1000,
-          note: basisText, markId: mk.id,
+          note: basisText + (bay ? " It is laid out inside the " + f1(bay.hi - bay.lo) +
+                " ft garage bay the plan declares, which runs " + f1(bay.lo) + "-" + f1(bay.hi) +
+                " ft along this face." : ""),
+          markId: mk.id, bay: bay,
           pin: pinned && i === 0 ? num(od.offsetFt) : null
         });
       }
@@ -1766,6 +1836,31 @@
         placedNow.push([p.pin, p.pin + p.widthFt]);
       });
 
+      /* then the ones the plan confines to a bay. They are placeholders like
+         any other — the offset inside the bay is not declared — but they are
+         laid out in the stretch the plan names rather than across the whole
+         face. A bay too short to hold the opening is NOT forced: the item
+         falls through to the wall-wide layout below and, failing that, to
+         the unplaced finding, which names it. */
+      list.forEach(function (p) {
+        if (p.pin !== null || !p.bay) return;
+        var best = null;
+        segs.forEach(function (s) {
+          var a = Math.max(s[0], p.bay.lo), b = Math.min(s[1], p.bay.hi);
+          if (b - a > 0 && (!best || (b - a) > (best[1] - best[0]))) best = [a, b];
+        });
+        if (!best) return;
+        var bo = layoutEqualGaps(best[1] - best[0], [p.widthFt]);
+        if (!bo) return;
+        var at = Math.round((best[0] + bo[0]) * 1000) / 1000;
+        lv.openings.push(newOpening(lv, wid, at, p.widthFt, {
+          id: (lv === L2 ? L2.id + "-" : "") + nextId(lv.openings, "O"),
+          headHeightFt: p.headFt, kind: p.kind, note: p.note, offsetBasis: "placeholder"
+        }));
+        p.inBay = true;
+        placedNow.push([at, at + p.widthFt]);
+      });
+
       /* what is left of the framed stretches once the pinned ones are out */
       var free = [];
       segs.forEach(function (s) {
@@ -1783,7 +1878,7 @@
       });
       free.sort(function (a, b) { return (b[1] - b[0]) - (a[1] - a[0]); });
 
-      var queue = list.filter(function (p) { return p.pin === null; });
+      var queue = list.filter(function (p) { return p.pin === null && !p.inBay; });
       var unplaced = [];
       free.forEach(function (seg) {
         if (!queue.length) return;

@@ -461,9 +461,26 @@
     host.appendChild(FM.pageHead("Sizing",
       "One plan, solved against a region. The engine decides what passes; the weights only rank what already did.", [
         el("button", { class: "btn", onclick: function () { FM.go("materials"); }, text: "Materials" }),
+        /* This called FM.exportSchedule, which asks the browser for a file and
+           then toasts "Schedule exported". In the hosted build that sentence is
+           false: the sandbox blocks page-initiated downloads, the anchor click
+           is swallowed with no error to catch, and the user is told the thing
+           happened. FM.deliver puts the schedule on screen and offers the file
+           beside it — both of which are true wherever the bundle is opened. */
         el("button", { class: "btn btn-primary", text: "Export schedule", onclick: function () {
           var pk = FM.weights.packById(state.packId), pl = FM.weights.planById(state.planId);
-          if (pk && pl) FM.exportSchedule(pl, pk);
+          if (!pk || !pl) { FM.toast("No plan and region are selected, so there is no schedule to export."); return; }
+          var at = new Date().toISOString().slice(0, 16).replace("T", " ") + " UTC";
+          FM.deliver({
+            title: "Member schedule · " + pl.name + " / " + pk.name,
+            filename: "firmark-schedule-" + pl.id + "-" + pk.id + ".txt",
+            text: FM.scheduleText(pl, pk, { at: at }),
+            note: "The schedule in full — it carries the escalations, the marks this engine will " +
+                  "not size, the reactions, the load provenance and calc-spec §8. “Save as file” " +
+                  "asks your browser for a copy; some hosted sandboxes block page-initiated " +
+                  "downloads and this page cannot tell when yours has, so copy the text if no " +
+                  "file appears."
+          });
         } })
       ]));
 

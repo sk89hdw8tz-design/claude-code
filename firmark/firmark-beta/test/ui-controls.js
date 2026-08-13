@@ -64,8 +64,13 @@ function viewsFromBundle() {
 const DESTRUCTIVE = /^(reset|clear|delete|remove|discard|sign out|reject|revoke|start over)\b/i;
 
 /* A toast that admits the control does nothing. These are the exact
-   words a half-built button uses. */
-const EXCUSE = /(not wired|not implemented|not yet|coming soon|todo|no-?op|unavailable in this build|placeholder)/i;
+   words a half-built button uses.
+
+   Deliberately NARROW. "Nothing to export yet." is an honest empty-state
+   message, not an unbuilt feature, and an earlier draft of this pattern
+   matched it on the bare words "not yet" — which would have condemned a
+   correct control. Only unambiguous admissions belong here. */
+const EXCUSE = /(not wired|isn'?t wired|not implemented|not built|coming soon|\btodo\b|\bno-?op\b)/i;
 
 (async () => {
   const views = viewsFromBundle();
@@ -79,6 +84,23 @@ const EXCUSE = /(not wired|not implemented|not yet|coming soon|todo|no-?op|unava
 
   let pageErrors = [];
   page.on('pageerror', e => pageErrors.push(e.message));
+
+  /* Re-find a control after a reload, by zone and index. Enumeration is
+     deterministic for a given view and run state, so the index is
+     stable — and the label is carried into every result, so an index
+     that drifts shows up as a renamed control rather than passing
+     unnoticed. Installed as an init script so it survives every reload. */
+  await page.addInitScript(() => {
+    window.__fmNodeAt = function (zone, i) {
+      const roots = zone === 'chrome'
+        ? [document.querySelector('.topbar'), document.querySelector('.rail')].filter(Boolean)
+        : [document.querySelector('.view.active')].filter(Boolean);
+      const nodes = [];
+      roots.forEach(r => [].slice.call(r.querySelectorAll('button, select, a[href]'))
+        .forEach(n => nodes.push(n)));
+      return nodes[i];
+    };
+  });
 
   /* ---------------- the page, in a known condition ---------------- */
 
@@ -136,15 +158,27 @@ const EXCUSE = /(not wired|not implemented|not yet|coming soon|todo|no-?op|unava
 
   /* ---------------- what the page looks like right now ---------------- */
 
-  const FINGERPRINT = () => {
+  /* `skip` is [zone, index] of the control being operated. Setting a
+     <select> necessarily changes its own value, so counting that as an
+     effect would mark EVERY select alive — including the broken picker
+     this whole file exists because of. The control under test is
+     excluded from the value signature; everything it moves is not. */
+  const FINGERPRINT = (skip) => {
     const active = document.querySelector('.view.active');
+    const self = skip ? window.__fmNodeAt(skip[0], skip[1]) : null;
+    /* The open class in this app is `on`, not `open`. Getting this wrong
+       is not a detail: the first run of this audit checked for `show` on
+       the toast, so it never detected a single toast, and reported a
+       whole column of working buttons as dead. The record panel and the
+       palette both use `on` too (`.palette-scrim.on { display: block }`),
+       and the toast is ALWAYS display-visible with only its opacity
+       animated — so for the toast the class is the only usable signal. */
     const openScrims = ['paletteScrim', 'recordScrim', 'gate']
       .filter(id => {
         const n = document.getElementById(id);
         if (!n) return false;
         if (n.hasAttribute('hidden')) return false;
-        return n.classList.contains('open') ||
-               getComputedStyle(n).display !== 'none';
+        return n.classList.contains('on') || getComputedStyle(n).display !== 'none';
       });
     const toast = document.getElementById('toast');
     const store = {};
@@ -152,12 +186,56 @@ const EXCUSE = /(not wired|not implemented|not yet|coming soon|todo|no-?op|unava
       const k = localStorage.key(i);
       store[k] = localStorage.getItem(k);
     }
+    /* The chrome is state too. Without this, the sidebar toggle and the
+       theme toggle change nothing the fingerprint can see and would be
+       reported as dead controls — a false accusation is as bad as a
+       missed one. */
+    const rail = document.getElementById('railToggle');
+    const shell = document.getElementById('shell');
+    const chrome = [
+      document.documentElement.getAttribute('data-theme') || '',
+      document.body.className || '',
+      shell ? shell.className : '',
+      rail ? rail.getAttribute('aria-expanded') : ''
+    ].join('|');
+    /* Three things a text-and-route fingerprint cannot see, each of which
+       produced a FALSE ACCUSATION of a dead control on the first run:
+
+         · a form control's value. A <textarea> filled by "Export into the
+           box" changes no innerText anywhere.
+         · which tab or tool is currently pressed. A segmented control
+           whose job is to switch modes changes a class, not prose.
+         · the canvas. "Fit to content" repaints pixels and touches
+           nothing else in the DOM at all.
+
+       Accusing a working button of being dead is exactly as damaging as
+       missing a dead one, so all three are measured. */
+    const scope = active || document.body;
+    const values = [].slice.call(scope.querySelectorAll('input, select, textarea'))
+      .filter(n => n !== self)
+      .map(n => (n.type === 'checkbox' || n.type === 'radio') ? (n.checked ? '1' : '0') : n.value)
+      .join('');
+    const pressed = [].slice.call(
+      scope.querySelectorAll('[aria-pressed], [aria-selected], [aria-current], .active, .is-active, .on, .sel'))
+      .map(n => (n.className || '') + '#' +
+                (n.getAttribute('aria-pressed') || '') +
+                (n.getAttribute('aria-selected') || '') +
+                (n.getAttribute('aria-current') || ''))
+      .join('|');
+    const canvases = [].slice.call(scope.querySelectorAll('canvas'))
+      .map(c => {
+        try { return c.width + 'x' + c.height + ':' + c.toDataURL().length; }
+        catch (e) { return 'unreadable'; }
+      }).join(',');
+
     return {
       view: active ? active.id : null,
       hash: location.hash,
       scrims: openScrims.join(','),
-      toast: (toast && toast.classList.contains('show')) ? (toast.textContent || '') : '',
+      chrome,
+      toast: (toast && toast.classList.contains('on')) ? (toast.textContent || '') : '',
       store: JSON.stringify(store),
+      values, pressed, canvases,
       text: active ? (active.innerText || '') : '',
       controls: active ? active.querySelectorAll('button,select,a[href],input,textarea').length : 0
     };
@@ -165,10 +243,18 @@ const EXCUSE = /(not wired|not implemented|not yet|coming soon|todo|no-?op|unava
 
   /* ---------------- enumerate, stably ---------------- */
 
-  const ENUMERATE = () => {
-    const active = document.querySelector('.view.active');
-    const scope = active || document.body;
-    const nodes = [].slice.call(scope.querySelectorAll('button, select, a[href]'));
+  /* Two zones. The view is what changes as you navigate; the chrome is
+     the topbar and the nav rail, which every page carries and which an
+     audit scoped to `.view.active` never touches at all — the theme
+     toggle, the sidebar toggle, the search button and every rail link
+     would go unexamined. */
+  const ENUMERATE = (zone) => {
+    const roots = zone === 'chrome'
+      ? [document.querySelector('.topbar'), document.querySelector('.rail')].filter(Boolean)
+      : [document.querySelector('.view.active')].filter(Boolean);
+    const nodes = [];
+    roots.forEach(r => [].slice.call(r.querySelectorAll('button, select, a[href]'))
+      .forEach(n => nodes.push(n)));
     return nodes.map((n, i) => {
       const tag = n.tagName.toLowerCase();
       let label = (n.textContent || '').trim().replace(/\s+/g, ' ').slice(0, 60);
@@ -192,7 +278,11 @@ const EXCUSE = /(not wired|not implemented|not yet|coming soon|todo|no-?op|unava
   function classify(before, after) {
     if (before.view !== after.view || before.hash !== after.hash) return 'navigated';
     if (before.scrims !== after.scrims) return 'dialog';
+    if (before.chrome !== after.chrome) return 'chrome';
     if (before.store !== after.store) return 'stored';
+    if (before.pressed !== after.pressed) return 'toggled';
+    if (before.values !== after.values) return 'filled';
+    if (before.canvases !== after.canvases) return 'drew';
     if (after.toast && after.toast !== before.toast) return 'toast';
     /* A repaint of the same view with the same text and the same control
        count is not an effect. This is the case that used to read as a
@@ -205,19 +295,19 @@ const EXCUSE = /(not wired|not implemented|not yet|coming soon|todo|no-?op|unava
 
   const results = [];
 
-  async function auditControl(view, warm, idx) {
+  async function auditControl(view, warm, zone, idx) {
     pageErrors = [];
     await open(view, warm);
 
-    const list = await page.evaluate(ENUMERATE);
+    const list = await page.evaluate(ENUMERATE, zone);
     const c = list[idx];
     if (!c) return null;
 
     if (c.disabled) {
-      return { view, warm, ...c, effect: 'disabled', errs: [] };
+      return { view, warm, zone, ...c, effect: 'disabled', errs: [] };
     }
 
-    const before = await page.evaluate(FINGERPRINT);
+    const before = await page.evaluate(FINGERPRINT, [zone, idx]);
 
     if (c.tag === 'select') {
       /* Clicking a select does nothing. The picker bug lived exactly
@@ -225,49 +315,56 @@ const EXCUSE = /(not wired|not implemented|not yet|coming soon|todo|no-?op|unava
          no state. Every option is chosen and each must move something. */
       const moved = [];
       for (const v of c.options) {
-        await page.evaluate(([i, val]) => {
-          const active = document.querySelector('.view.active');
-          const n = active.querySelectorAll('button, select, a[href]')[i];
+        await page.evaluate(([zone, i, val]) => {
+          const n = window.__fmNodeAt(zone, i);
           n.value = val;
           n.dispatchEvent(new Event('change', { bubbles: true }));
-        }, [idx, v]);
+        }, [zone, idx, v]);
         await page.waitForTimeout(200);
-        const after = await page.evaluate(FINGERPRINT);
+        const after = await page.evaluate(FINGERPRINT, [zone, idx]);
         moved.push({ value: v, effect: classify(before, after) });
         /* re-open so each option is judged from the same start */
         await open(view, warm);
       }
       const dead = moved.filter(m => m.effect === 'none' || m.effect === 'redrew');
       return {
-        view, warm, ...c,
+        view, warm, zone, ...c,
         effect: dead.length === moved.length && moved.length ? 'none' : 'stored',
         detail: moved.map(m => m.value + '=' + m.effect).join(' '),
         errs: pageErrors.slice()
       };
     }
 
-    await page.evaluate(i => {
-      const active = document.querySelector('.view.active');
-      const n = active.querySelectorAll('button, select, a[href]')[i];
-      n.click();
-    }, idx);
+    await page.evaluate(([zone, i]) => {
+      window.__fmNodeAt(zone, i).click();
+    }, [zone, idx]);
     await page.waitForTimeout(260);
 
-    const after = await page.evaluate(FINGERPRINT);
+    const after = await page.evaluate(FINGERPRINT, [zone, idx]);
     const effect = classify(before, after);
-    return { view, warm, ...c, effect, toast: after.toast, errs: pageErrors.slice() };
+    return { view, warm, zone, ...c, effect, toast: after.toast, errs: pageErrors.slice() };
   }
 
   for (const warm of [false, true]) {
+    /* The chrome is the same on every page, so it is walked once per
+       pass rather than eighteen times. */
+    await open('dashboard', warm);
+    const chromeList = await page.evaluate(ENUMERATE, 'chrome');
+    for (let i = 0; i < chromeList.length; i++) {
+      const r = await auditControl('dashboard', warm, 'chrome', i);
+      if (r) results.push(r);
+    }
+
     for (const view of views) {
       await open(view, warm);
-      const list = await page.evaluate(ENUMERATE);
+      const list = await page.evaluate(ENUMERATE, 'view');
       if (!list.length) {
-        results.push({ view, warm, tag: '-', label: '(no controls)', effect: 'empty', errs: [] });
+        results.push({ view, warm, zone: 'view', tag: '-', label: '(no controls)',
+                       effect: 'empty', errs: [] });
         continue;
       }
       for (let i = 0; i < list.length; i++) {
-        const r = await auditControl(view, warm, i);
+        const r = await auditControl(view, warm, 'view', i);
         if (r) results.push(r);
       }
     }
@@ -279,7 +376,8 @@ const EXCUSE = /(not wired|not implemented|not yet|coming soon|todo|no-?op|unava
 
   const bad = [];
   for (const r of results) {
-    const where = `${r.view}${r.warm ? ' (warm)' : ' (cold)'} · <${r.tag}> "${r.label}"`;
+    const where = `${r.zone === 'chrome' ? 'chrome' : r.view}` +
+                  `${r.warm ? ' (warm)' : ' (cold)'} · <${r.tag}> "${r.label}"`;
     if (r.effect === 'none') {
       bad.push(`DEAD    ${where} — clicked, and nothing changed: not the view, not the ` +
                `route, not storage, no dialog, no toast`);
@@ -311,7 +409,7 @@ const EXCUSE = /(not wired|not implemented|not yet|coming soon|todo|no-?op|unava
   const report = path.join(__dirname, '..', 'control-audit.txt');
   fs.writeFileSync(report,
     results.map(r => [
-      r.warm ? 'warm' : 'cold', r.view, r.tag, r.effect,
+      r.warm ? 'warm' : 'cold', r.zone === 'chrome' ? 'chrome' : r.view, r.tag, r.effect,
       JSON.stringify(r.label), r.detail || '', (r.errs || []).join(' | ')
     ].join('\t')).join('\n') + '\n');
   console.log('\n   full record: ' + report);

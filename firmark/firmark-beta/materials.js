@@ -118,14 +118,21 @@
       if (!provOpen) return;
       var meta = (MATDATA.meta || {});
       var rows = el("tbody");
+      /* The meta block holds two different kinds of thing: one entry per
+         dataset, and two loose strings describing the extraction as a whole.
+         Listing the loose ones as datasets would print two rows of em-dashes
+         and imply the catalog carries sources it does not. They go in the
+         footer, where they are true. */
       var keys = [], k;
-      for (k in meta) if (Object.prototype.hasOwnProperty.call(meta, k)) keys.push(k);
+      for (k in meta) if (Object.prototype.hasOwnProperty.call(meta, k)) {
+        if (meta[k] && typeof meta[k] === "object" && meta[k].source_file) keys.push(k);
+      }
       keys.sort();
       keys.forEach(function (key) {
         var m = meta[key] || {};
         rows.appendChild(el("tr", {}, [
           el("td", { class: "k", text: key }),
-          el("td", { text: m.source_file || "—" }),
+          el("td", { text: m.source_file }),
           el("td", { class: "n", text: m.dataset_version || "—" }),
           el("td", { text: m.governing_reference || m.title || "—" })
         ]));
@@ -155,8 +162,9 @@
               ])
             ])
           ]),
-          "This bundle carries no network. Nothing here is fetched, and nothing here can be — " +
-          "what is printed above is the whole of what the payload knows about itself.")
+          "Extracted from " + (meta.repo || "the material-databases repository") +
+          (meta.extracted ? " on " + meta.extracted : "") +
+          ". This bundle carries no network — nothing here is fetched, and nothing here can be.")
       ]));
     }
 
