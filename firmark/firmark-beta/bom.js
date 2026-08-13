@@ -1336,8 +1336,8 @@
     say("  " + pad("  of which, drop (offcut)", 34) + lpad(n2(w.dropBf, 2), 12) +
         "   = " + n2(w.dropPctOfPurchasedBf, 1) + "% of the buy");
     say("  " + pad("Drop, linear feet", 34) + lpad(n2(w.dropLf, 2), 12));
-    say("  " + pad("Identity check: " + w.dropCheck.identity, 34) +
-        lpad("residual " + n2(w.dropCheck.residualBf, 9) + " bf", 20));
+    say("  " + pad("Identity " + w.dropCheck.identity, 34) +
+        lpad("residual " + n2(w.dropCheck.residualBf, 9) + " bf", 26));
     say();
     say("  " + pad("dropHandling weight [market]", 34) +
         lpad(w.dropHandlingRate === null ? "—" : n2(w.dropHandlingRate, 3), 12));
@@ -1347,23 +1347,24 @@
     para("NESTING — NOT APPLIED. " + w.nesting.note);
     if (w.nesting.candidates.length) {
       say();
-      say("      " + pad("MARK", 10) + pad("SKU", 26) + pad("CUT", 8) +
-          pad("AS BOUGHT", 14) + pad("IF NESTED", 16) + "SAVES");
+      say("      " + pad("MARK", 10) + pad("CUT", 9) + pad("AS BOUGHT", 14) +
+          pad("IF NESTED", 22) + "SAVES");
       say("      " + rule("-").slice(0, 72));
       w.nesting.candidates.forEach(function (c) {
-        say("      " + pad(c.markId, 10) + pad(c.sku, 26) +
-            pad(n2(c.cutLengthFt, 2) + " ft", 8) +
+        say("      " + pad(c.markId, 10) +
+            pad(n2(c.cutLengthFt, 2) + " ft", 9) +
             pad(c.sticksAsBought + " @ " + c.asBoughtStockFt + " ft", 14) +
-            pad(c.sticksIfNested + " @ " + c.nestStockFt + " ft (" + c.perStick + "/stick)", 16) +
+            pad(c.sticksIfNested + " @ " + c.nestStockFt + " ft, " + c.perStick + "/stick", 22) +
             n2(c.lfSaved, 1) + " lf · " + usd(c.usdSaved));
+        say("      " + pad("", 10) + c.sku + " · " + c.treatment);
       });
       say("      " + rule("-").slice(0, 72));
-      say("      " + pad("TOTAL NOT TAKEN", 58) + n2(w.nesting.lfSaved, 1) + " lf · " +
+      say("      " + pad("TOTAL NOT TAKEN", 55) + n2(w.nesting.lfSaved, 1) + " lf · " +
           usd(w.nesting.usdSaved));
       say();
-      say("      Scan ceiling " + w.nesting.scanCeilingFt + " ft [market] — an assumption about");
-      say("      the longest stick a yard racks, bounding this REPORT only. No purchase");
-      say("      above was changed by it and no total above was reduced by it.");
+      say("      Scan ceiling " + w.nesting.scanCeilingFt + " ft [market] — an assumption");
+      say("      about the longest stick a yard racks, bounding this REPORT only. No");
+      say("      purchase above was changed by it and no total above was reduced by it.");
     }
     say();
     say("  ROUNDING RULES — stated, because a silent rounding changes a count:");
