@@ -1007,7 +1007,8 @@
       });
     });
     say();
-    say("  Every sheet in this set carries the same footer, and it is the point of the set:");
+    wrap("Every sheet in this set carries the same footer, and it is the point of the set:",
+         W - 4).forEach(function (x) { say("  " + x); });
     wrap(FOOTER, W - 6).forEach(function (x) { say("      " + x); });
 
     /* ---- what was not available ---- */
@@ -1101,11 +1102,13 @@
       say("  reference design values behind every member on S3.0 cannot be cited here.");
       say("  Do not accept a member until the catalog revision is stated.");
     } else {
-      say("  Reference design values : " + safe(meta.species_grades && meta.species_grades.source_file));
-      say("                            revision " + safe(meta.species_grades && meta.species_grades.dataset_version));
-      say("  Section properties      : " + safe(meta.sections && meta.sections.source_file));
-      say("                            revision " + safe(meta.sections && meta.sections.dataset_version));
-      say("  Southern Pine           : " + safe(meta.southern_pine && meta.southern_pine.source_file));
+      [["Reference design values", meta.species_grades],
+       ["Section properties", meta.sections],
+       ["Southern Pine", meta.southern_pine]].forEach(function (r) {
+        say("  " + r[0]);
+        say("      " + safe(r[1] && r[1].source_file));
+        say("      revision " + safe(r[1] && r[1].dataset_version));
+      });
     }
     say();
     wrap("Prices, availability, labor and SKU weights anywhere in this package are FIRM " +
