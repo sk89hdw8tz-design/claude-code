@@ -193,18 +193,30 @@ starting with the three states' plan sets you are supplying.
 
 ## 6. What must not change
 
-The four non-negotiables in `ARCHITECTURE.md` are what make this defensible
-rather than merely fast, and every one of them was earned by a defect found in
-this codebase:
+`ARCHITECTURE.md` carries **five** non-negotiables, and this section previously
+said four — quoting three of them correctly and substituting, as a fourth, a
+working rule that is not in that list at all. A peer reviewer caught it. Two
+governing documents disagreeing about what governs is a document-control
+finding, not a nit, so the list is now reproduced as it actually reads:
 
-1. **The software never seals.** It prepares a package a licensed PE reviews and
-   signs. The seal block on S0.0 is empty on purpose.
-2. **No invented values.** Refuse, or hold and flag. The townhome stopping at
-   takeoff is this rule working, not failing.
+1. **The software never stamps.** It produces a package a licensed PE reviews,
+   signs and seals. The seal block on S0.0 is empty on purpose.
+2. **No invented values.** If a number is not derived or sourced, it is refused
+   or held-and-flagged. The townhome stopping at takeoff is this rule working,
+   not failing.
 3. **No silent fallback.** Anything that could not be computed says so by name.
    Silence has stood in for agreement three times here already.
-4. **A control either works, or it is not there.** A button that toasts "not
-   wired up yet" is a promise the product cannot keep.
+4. **ES5 only.** No libraries, no network — one self-contained HTML file.
+5. **Everything is testable headlessly.** DOM-free logic in a module the node
+   harness can load; DOM in a view.
+
+A sixth rule was established during the interface audit and belongs in
+`ARCHITECTURE.md` rather than being quoted as though it were already there:
+**a control either works, or it is not there.** A button that toasts "not wired
+up yet" is a promise the product cannot keep.
+
+A production version that keeps the speed and drops these is a liability
+generator. The discipline is the product.
 
 A production version that keeps the speed and drops these is a liability
 generator. The discipline is the product.
