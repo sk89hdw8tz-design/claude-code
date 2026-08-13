@@ -757,3 +757,92 @@ tbody tr.clickable:focus-visible {
 
 /* m10: palette is a real dialog */
 .palette:focus { outline: none; }
+
+/* ============================================================
+   The sign-in gate (auth.js / shell.html).
+   Covers everything until FM.auth.require() is true.
+   ============================================================ */
+
+.gate {
+  position: fixed; inset: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: center;
+  padding: 24px; background: var(--ground);
+}
+.gate[hidden] { display: none; }
+
+.gate-card {
+  width: 100%; max-width: 380px;
+  display: grid; gap: 13px;
+  padding: 30px 28px 24px;
+  background: var(--surface);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-lg);
+}
+.gate-brand {
+  display: flex; align-items: center; gap: 9px;
+  font-family: var(--sans); font-weight: 700; font-size: 1.18rem;
+  letter-spacing: -.02em; color: var(--ink);
+}
+.gate-sub { font-size: .82rem; color: var(--muted); line-height: 1.55; margin: -4px 0 6px; }
+
+.gate-field { display: grid; gap: 5px; }
+.gate-field > span {
+  font-size: .68rem; text-transform: uppercase; letter-spacing: .07em;
+  color: var(--muted); font-weight: 600;
+}
+.gate-field input {
+  width: 100%; padding: 9px 11px; font-size: .9rem;
+  font-family: var(--sans); color: var(--ink);
+  background: var(--surface-2); border: 1px solid var(--line-strong);
+  border-radius: var(--r);
+}
+
+.gate-go { width: 100%; justify-content: center; margin-top: 4px; }
+
+.gate-err {
+  font-size: .8rem; color: var(--fail);
+  background: var(--fail-wash); border: 1px solid var(--fail);
+  border-radius: var(--r); padding: 8px 10px;
+}
+.gate-err[hidden] { display: none; }
+
+.gate-demo {
+  text-align: center; font-family: var(--mono); font-size: .78rem;
+  color: var(--ink); margin: 2px 0 0;
+}
+.gate-note {
+  font-size: .68rem; line-height: 1.6; color: var(--faint);
+  border-top: 1px solid var(--line); padding-top: 11px; margin: 4px 0 0;
+}
+
+/* the pipeline rail — stage state at a glance, on every stage view */
+.stage-rail { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+.stage-chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 5px 10px; border-radius: 999px;
+  font-size: .74rem; font-weight: 600;
+  border: 1px solid var(--line-strong); background: var(--surface);
+  color: var(--muted); cursor: pointer; font-family: var(--sans);
+}
+.stage-chip .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--faint); flex: none; }
+.stage-chip.is-approved { border-color: var(--pass); color: var(--pass); }
+.stage-chip.is-approved .dot { background: var(--pass); }
+.stage-chip.is-stale { border-color: var(--warn); color: var(--warn); }
+.stage-chip.is-stale .dot { background: var(--warn); }
+.stage-chip.is-rejected { border-color: var(--fail); color: var(--fail); }
+.stage-chip.is-rejected .dot { background: var(--fail); }
+.stage-chip.is-current { box-shadow: 0 0 0 2px var(--blue-wash); border-color: var(--blue); color: var(--ink); }
+.stage-chip .sep { color: var(--faint); font-weight: 400; }
+
+/* a gate's own card — the thing you click to approve */
+.gate-panel { border-left: 3px solid var(--line-strong); padding-left: 13px; }
+.gate-panel.is-open { border-left-color: var(--blue); }
+.gate-panel.is-approved { border-left-color: var(--pass); }
+.gate-panel.is-stale { border-left-color: var(--warn); }
+.gate-panel.is-blocked { border-left-color: var(--fail); }
+.gate-block-list { display: grid; gap: 5px; margin: 8px 0 0; }
+.gate-block-list li {
+  font-size: .8rem; color: var(--fail);
+  background: var(--fail-wash); border-radius: var(--r); padding: 6px 9px;
+}

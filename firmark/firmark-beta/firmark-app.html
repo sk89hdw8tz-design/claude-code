@@ -761,9 +761,135 @@ tbody tr.clickable:focus-visible {
 /* m10: palette is a real dialog */
 .palette:focus { outline: none; }
 
+/* ============================================================
+   The sign-in gate (auth.js / shell.html).
+   Covers everything until FM.auth.require() is true.
+   ============================================================ */
+
+.gate {
+  position: fixed; inset: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: center;
+  padding: 24px; background: var(--ground);
+}
+.gate[hidden] { display: none; }
+
+.gate-card {
+  width: 100%; max-width: 380px;
+  display: grid; gap: 13px;
+  padding: 30px 28px 24px;
+  background: var(--surface);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-lg);
+}
+.gate-brand {
+  display: flex; align-items: center; gap: 9px;
+  font-family: var(--sans); font-weight: 700; font-size: 1.18rem;
+  letter-spacing: -.02em; color: var(--ink);
+}
+.gate-sub { font-size: .82rem; color: var(--muted); line-height: 1.55; margin: -4px 0 6px; }
+
+.gate-field { display: grid; gap: 5px; }
+.gate-field > span {
+  font-size: .68rem; text-transform: uppercase; letter-spacing: .07em;
+  color: var(--muted); font-weight: 600;
+}
+.gate-field input {
+  width: 100%; padding: 9px 11px; font-size: .9rem;
+  font-family: var(--sans); color: var(--ink);
+  background: var(--surface-2); border: 1px solid var(--line-strong);
+  border-radius: var(--r);
+}
+
+.gate-go { width: 100%; justify-content: center; margin-top: 4px; }
+
+.gate-err {
+  font-size: .8rem; color: var(--fail);
+  background: var(--fail-wash); border: 1px solid var(--fail);
+  border-radius: var(--r); padding: 8px 10px;
+}
+.gate-err[hidden] { display: none; }
+
+.gate-demo {
+  text-align: center; font-family: var(--mono); font-size: .78rem;
+  color: var(--ink); margin: 2px 0 0;
+}
+.gate-note {
+  font-size: .68rem; line-height: 1.6; color: var(--faint);
+  border-top: 1px solid var(--line); padding-top: 11px; margin: 4px 0 0;
+}
+
+/* the pipeline rail — stage state at a glance, on every stage view */
+.stage-rail { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+.stage-chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 5px 10px; border-radius: 999px;
+  font-size: .74rem; font-weight: 600;
+  border: 1px solid var(--line-strong); background: var(--surface);
+  color: var(--muted); cursor: pointer; font-family: var(--sans);
+}
+.stage-chip .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--faint); flex: none; }
+.stage-chip.is-approved { border-color: var(--pass); color: var(--pass); }
+.stage-chip.is-approved .dot { background: var(--pass); }
+.stage-chip.is-stale { border-color: var(--warn); color: var(--warn); }
+.stage-chip.is-stale .dot { background: var(--warn); }
+.stage-chip.is-rejected { border-color: var(--fail); color: var(--fail); }
+.stage-chip.is-rejected .dot { background: var(--fail); }
+.stage-chip.is-current { box-shadow: 0 0 0 2px var(--blue-wash); border-color: var(--blue); color: var(--ink); }
+.stage-chip .sep { color: var(--faint); font-weight: 400; }
+
+/* a gate's own card — the thing you click to approve */
+.gate-panel { border-left: 3px solid var(--line-strong); padding-left: 13px; }
+.gate-panel.is-open { border-left-color: var(--blue); }
+.gate-panel.is-approved { border-left-color: var(--pass); }
+.gate-panel.is-stale { border-left-color: var(--warn); }
+.gate-panel.is-blocked { border-left-color: var(--fail); }
+.gate-block-list { display: grid; gap: 5px; margin: 8px 0 0; }
+.gate-block-list li {
+  font-size: .8rem; color: var(--fail);
+  background: var(--fail-wash); border-radius: var(--r); padding: 6px 9px;
+}
+
 </style>
 
 <a class="skip" href="#main">Skip to content</a>
+
+<!-- The closed gate. Nothing behind it renders until someone signs in, because
+     every artefact this product makes is attributable and an approval with no
+     name on it is not an approval. This is a DEMO gate, not security — the
+     screen itself says so. -->
+<div class="gate" id="gate" hidden>
+  <form class="gate-card" id="gateForm" autocomplete="off">
+    <div class="gate-brand">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <rect x="1.5" y="1.5" width="21" height="21" rx="2.5" stroke="#C79A2B" stroke-width="1.8"/>
+        <path d="M6 18V7.5h9" stroke="currentColor" stroke-width="2.2" stroke-linecap="square"/>
+        <path d="M6 12.6h6.4" stroke="currentColor" stroke-width="2.2" stroke-linecap="square"/>
+        <circle cx="17.4" cy="16.4" r="2.1" fill="#C79A2B"/>
+      </svg>
+      <span>Firmark</span>
+    </div>
+    <p class="gate-sub">Structural harness for repeatable residential work.<br>
+      Texas · Florida · North Carolina</p>
+
+    <label class="gate-field">
+      <span>Username</span>
+      <input type="text" id="gateUser" autocomplete="username" spellcheck="false" required>
+    </label>
+    <label class="gate-field">
+      <span>Password</span>
+      <input type="password" id="gatePass" autocomplete="current-password" required>
+    </label>
+
+    <div class="gate-err" id="gateErr" role="alert" hidden></div>
+    <button class="btn btn-primary gate-go" type="submit">Sign in</button>
+
+    <p class="gate-demo"><strong>Demo</strong> / <strong>Demo</strong></p>
+    <p class="gate-note">This is a demonstration sign-in, not access control. The
+      credentials are in the page source and the session is held in this browser.
+      It exists so that approvals carry a name — nothing here protects anything.</p>
+  </form>
+</div>
 
 <div class="shell" id="shell">
 
@@ -815,6 +941,12 @@ tbody tr.clickable:focus-visible {
       <div class="view" id="view-calculations"></div>
       <div class="view" id="view-sheet"></div>
       <div class="view" id="view-sizing"></div>
+      <div class="view" id="view-cad"></div>
+      <div class="view" id="view-takeoff"></div>
+      <div class="view" id="view-jurisdiction"></div>
+      <div class="view" id="view-bom"></div>
+      <div class="view" id="view-planset"></div>
+      <div class="view" id="view-pipeline"></div>
       <div class="view" id="view-policies"></div>
       <div class="view" id="view-materials"></div>
       <div class="view" id="view-output"></div>
@@ -992,10 +1124,22 @@ var FM = (function () {
 
   var NAV = [
     { group: "Navigation", items: [{ id: "dashboard", label: "Dashboard", ico: "grid" }] },
+    /* The pipeline, in the order it runs. A rail that lists the stages in
+       sequence is the cheapest possible statement of what this product is:
+       geometry, takeoff, loads, calcs, quantities, package. */
+    { group: "Pipeline", items: [
+      { id: "pipeline", label: "Run", ico: "shield" },
+      { id: "cad", label: "1 · Geometry", ico: "ruler" },
+      { id: "takeoff", label: "2 · Takeoff", ico: "calc" },
+      { id: "jurisdiction", label: "3 · Loads & code", ico: "shield" },
+      { id: "sizing", label: "4 · Calculations", ico: "ruler",
+        count: function () { return FM.weights ? FM.weights.PACKS.length : 0; } },
+      { id: "bom", label: "5 · Materials list", ico: "layers" },
+      { id: "planset", label: "6 · PE package", ico: "doc" }
+    ] },
     { group: "Manage", items: [
       { id: "projects", label: "Projects", ico: "folder", count: function () { return PROJECTS.length; } },
       { id: "calculations", label: "Calculations", ico: "calc", count: function () { return SHEETS.length; } },
-      { id: "sizing", label: "Sizing", ico: "ruler", count: function () { return FM.weights ? FM.weights.PACKS.length : 0; } },
       { id: "policies", label: "Policies", ico: "shield", count: function () { return PROFILES.length; } },
       { id: "materials", label: "Materials", ico: "layers" },
       { id: "output", label: "Output & Docs", ico: "doc" }
@@ -1932,6 +2076,96 @@ var FM = (function () {
 
   /* ---------------- boot ---------------- */
 
+  /* ---------------- the closed gate ----------------
+
+     Nothing behind this renders until someone is signed in. Not because the
+     data is sensitive — it is a demo — but because every artefact downstream
+     is attributable. An approval trail whose entries say "someone" is not a
+     trail, and the gates in pipeline.js are the reason the speed claim is
+     defensible at all. */
+
+  function showGate(show) {
+    var g = document.getElementById("gate");
+    var shell = document.getElementById("shell");
+    if (!g) return;
+    if (show) { g.removeAttribute("hidden"); shell.setAttribute("aria-hidden", "true"); }
+    else { g.setAttribute("hidden", ""); shell.removeAttribute("aria-hidden"); }
+  }
+
+  function wireGate() {
+    var form = document.getElementById("gateForm");
+    if (!form || !FM.auth) return;
+
+    function refresh() {
+      var signedIn = FM.auth.require();
+      showGate(!signedIn);
+      if (signedIn) {
+        var u = FM.auth.state().user;
+        var av = document.querySelector(".avatar");
+        if (av) { av.textContent = u.initials; av.title = u.name + " · " + u.roles.join(", "); }
+      }
+    }
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var err = document.getElementById("gateErr");
+      var r = FM.auth.login(document.getElementById("gateUser").value,
+                            document.getElementById("gatePass").value);
+      if (!r.ok) {
+        err.textContent = r.why;
+        err.removeAttribute("hidden");
+        document.getElementById("gatePass").value = "";
+        document.getElementById("gatePass").focus();
+        return;
+      }
+      err.setAttribute("hidden", "");
+      refresh();
+      toast("Signed in as " + r.user.name + ". Every approval from here carries this name.");
+      applyHash();
+    });
+
+    refresh();
+    if (!FM.auth.require()) {
+      var uf = document.getElementById("gateUser");
+      if (uf) uf.focus();
+    }
+    FM.signOut = function () {
+      FM.auth.logout();
+      if (FM.pipeline) { /* the trail survives; the session does not */ }
+      refresh();
+      toast("Signed out. The approval trail is kept — it is a record, not a session.");
+    };
+    FM.refreshGate = refresh;
+  }
+
+  /* The stage rail — the same chip row on every pipeline view, so a stage is
+     never looked at without its position in the run being visible. */
+  function stageRail(currentId) {
+    var wrap = el("div", { class: "stage-rail", role: "list", "aria-label": "Pipeline stages" });
+    if (!FM.pipeline) return wrap;
+    var snap = FM.pipeline.snapshot();
+    snap.stages.forEach(function (row, i) {
+      var cls = "stage-chip";
+      if (row.status === "approved") cls += " is-approved";
+      else if (row.status === "stale") cls += " is-stale";
+      else if (row.status === "rejected") cls += " is-rejected";
+      if (row.stage.id === currentId) cls += " is-current";
+      var label = row.status === "approved" ? "approved"
+                : row.status === "stale" ? "needs re-approval"
+                : row.status === "rejected" ? "rejected" : "not approved";
+      wrap.appendChild(el("button", {
+        class: cls, role: "listitem",
+        title: row.stage.label + " — " + label + ". " + row.stage.gate,
+        onclick: function () { go("pipeline"); }
+      }, [
+        el("span", { class: "dot" }),
+        el("span", { text: String(i + 1) + " · " + row.stage.label }),
+        el("span", { class: "sep", text: label })
+      ]));
+    });
+    return wrap;
+  }
+
   function boot() {
     try {
       var saved = localStorage.getItem("fm-theme");
@@ -2001,6 +2235,8 @@ var FM = (function () {
       }
     });
 
+    wireGate();
+
     window.addEventListener("hashchange", applyHash);
     /* open on whatever the URL says — a reload, a bookmark or a pasted link
        all land where they point; an empty hash lands on the dashboard */
@@ -2009,7 +2245,7 @@ var FM = (function () {
 
   return {
     boot: boot, go: go, el: el, esc: esc, fmt: fmt, comma: comma, toast: toast,
-    registerSubRoute: registerSubRoute, syncHash: syncHash,
+    registerSubRoute: registerSubRoute, syncHash: syncHash, stageRail: stageRail,
     dl: dl, card: card, pageHead: pageHead, betaStrip: betaStrip, statCard: statCard,
     dcrClass: dcrClass, dcrBadge: dcrBadge, gradeRank: gradeRank, effectiveTheme: effectiveTheme, getProfile: getProfile, exportCalcs: exportCalcs, inputsFor: inputsFor,
     VIEWS: VIEWS, state: state, SHEETS: SHEETS, PROJECTS: PROJECTS, PROFILES: PROFILES, ACTIVITY: ACTIVITY,
@@ -7354,6 +7590,476 @@ var FM = (function () {
 </script>
 <script>
 /* ============================================================
+   auth.js — the closed gate.
+
+   This product is closed: nothing renders until someone is signed
+   in, because every artefact it produces is attributable. An
+   approval with no name on it is not an approval, and a calculation
+   package whose approval trail says "someone" is not reviewable.
+
+   WHAT THIS IS NOT
+   ----------------
+   This is a DEMO GATE, not security. Credentials are Demo/Demo, they
+   are compared in this file, and the session lives in localStorage.
+   Anyone who opens the bundle in a text editor can read them. That is
+   fine for what this is and is stated on the login screen itself, so
+   nobody mistakes it for an access control.
+
+   A real deployment replaces this whole file with a server session.
+   The rest of the product only ever asks FM.auth for a user object,
+   so that swap touches nothing else.
+   ============================================================ */
+
+(function () {
+  "use strict";
+
+  var KEY = "fm-session";
+
+  /* Roles exist because the approval gates need them. A drafter may
+     approve that the geometry is right; only a PE may accept the
+     package for sealing. The pipeline enforces this — see pipeline.js. */
+  var ROLES = {
+    drafter:   { id: "drafter",   label: "Drafter",            rank: 1 },
+    estimator: { id: "estimator", label: "Estimator",          rank: 2 },
+    engineer:  { id: "engineer",  label: "Design engineer",    rank: 3 },
+    pe:        { id: "pe",        label: "Licensed PE",        rank: 4 }
+  };
+
+  /* The demo account carries every role, because one person is driving.
+     A real deployment has one role per account and the gates bite. */
+  var ACCOUNTS = [
+    {
+      user: "Demo", pass: "Demo",
+      profile: {
+        id: "demo", name: "Demo User", initials: "DU",
+        roles: ["drafter", "estimator", "engineer", "pe"],
+        licence: null,
+        note: "Demo account. Holds every role so one person can walk the whole " +
+              "pipeline. It carries NO professional licence — the PE gate records " +
+              "that the seal block was left for a licensed engineer."
+      }
+    }
+  ];
+
+  var session = null;
+
+  function now() { return new Date().toISOString(); }
+
+  function load() {
+    if (session) return session;
+    try {
+      var raw = localStorage.getItem(KEY);
+      if (raw) session = JSON.parse(raw);
+    } catch (e) { session = null; }
+    return session;
+  }
+
+  function save() {
+    try {
+      if (session) localStorage.setItem(KEY, JSON.stringify(session));
+      else localStorage.removeItem(KEY);
+    } catch (e) {}
+  }
+
+  function state() {
+    var s = load();
+    return { user: s ? s.user : null, at: s ? s.at : null };
+  }
+
+  function require_() { return !!(load() && load().user); }
+
+  function login(u, p) {
+    var hit = null;
+    for (var i = 0; i < ACCOUNTS.length; i++) {
+      if (ACCOUNTS[i].user === String(u) && ACCOUNTS[i].pass === String(p)) { hit = ACCOUNTS[i]; break; }
+    }
+    if (!hit) {
+      /* One message for both failures. Saying "no such user" tells an
+         attacker which half to keep trying — a habit worth keeping even
+         in a demo gate, because demo gates get copied. */
+      return { ok: false, why: "That username and password do not match an account." };
+    }
+    session = { user: hit.profile, at: now() };
+    save();
+    return { ok: true, user: hit.profile };
+  }
+
+  function logout() { session = null; save(); }
+
+  function has(roleId) {
+    var s = load();
+    if (!s || !s.user) return false;
+    for (var i = 0; i < s.user.roles.length; i++) if (s.user.roles[i] === roleId) return true;
+    return false;
+  }
+
+  FM.auth = {
+    ROLES: ROLES,
+    state: state,
+    login: login,
+    logout: logout,
+    require: require_,
+    has: has,
+    /* the demo credentials are printed on the login screen; keeping them
+       here means the screen and the check cannot drift apart */
+    DEMO: { user: "Demo", pass: "Demo" }
+  };
+})();
+
+</script>
+<script>
+/* ============================================================
+   pipeline.js — the stage machine and the approval gates.
+
+   The product's claim is "an architectural plan to a review package
+   in minutes, with human approval at every stage". The gates are the
+   half that makes the speed defensible: fast is only safe if a person
+   put their name on each step and the software can prove nothing
+   changed under them afterwards.
+
+   THE RULE THAT MAKES A GATE MEAN ANYTHING
+   ----------------------------------------
+   An approval is recorded against a FINGERPRINT of what was approved.
+   If an upstream stage changes after you approved a downstream one,
+   your approval is invalidated and says so by name.
+
+   Without that, the gates are theatre: approve the takeoff, then edit
+   the geometry, and the calculations carry an approval for a takeoff
+   that no longer exists. That is worse than having no gate at all,
+   because the audit trail then testifies to a review that did not
+   happen. Every serious version of this defect has the same shape —
+   evidence outliving the thing it was evidence for.
+
+   The trail is append-only. Rejections and invalidations stay in it;
+   a clean-looking history is not the goal, a true one is.
+   ============================================================ */
+
+(function () {
+  "use strict";
+
+  var KEY = "fm-pipeline";
+
+  /* `needs` is the role required to approve. `inputs` names the stages whose
+     fingerprints this stage's approval depends on — change any of them and
+     this approval dies. */
+  var STAGES = [
+    { id: "geometry", label: "Geometry", short: "Plan geometry",
+      gate: "The drawn plan is what the architectural set says.",
+      needs: "drafter", inputs: [],
+      detail: "Walls, bearing lines, openings and framing directions. Nothing " +
+              "downstream can be right if this is wrong, and nothing downstream " +
+              "can detect that it is wrong." },
+
+    { id: "takeoff", label: "Takeoff", short: "Spans and tributaries",
+      gate: "Every span, tributary width and bearing condition is what the plan means.",
+      needs: "engineer", inputs: ["geometry"],
+      detail: "This is the gate that matters most. A tributary width that is " +
+              "quietly wrong produces a confident, wrong member, and every check " +
+              "downstream will agree with it." },
+
+    { id: "loads", label: "Loads and code", short: "Design criteria",
+      gate: "The code edition, wind speed, snow and live loads are right for this site.",
+      needs: "engineer", inputs: ["geometry", "takeoff"],
+      detail: "Jurisdiction, adopted code, and the site hazard parameters. The " +
+              "defaults are planning values — a site is not designed off a default." },
+
+    { id: "calcs", label: "Calculations", short: "Member selection",
+      gate: "The selected members, the escalations, and what was not sized are accepted.",
+      needs: "engineer", inputs: ["geometry", "takeoff", "loads"],
+      detail: "Including the refusals. Accepting the calculations means accepting " +
+              "the list of marks this engine would not size." },
+
+    { id: "bom", label: "Bill of materials", short: "Quantities",
+      gate: "The quantities are right and the exclusions are understood.",
+      needs: "estimator", inputs: ["geometry", "takeoff", "loads", "calcs"],
+      detail: "Approving this means you have read what is NOT in it — connectors, " +
+              "sheathing, fasteners and anything escalated." },
+
+    { id: "package", label: "Package for PE", short: "Ready for review",
+      gate: "The package is complete enough to hand to a licensed engineer.",
+      needs: "pe", inputs: ["geometry", "takeoff", "loads", "calcs", "bom"],
+      detail: "This gate does NOT seal anything. It records that a licensed " +
+              "engineer received a package and found it reviewable. The seal is " +
+              "applied by that engineer, outside this system, under their licence." }
+  ];
+
+  function stageById(id) {
+    for (var i = 0; i < STAGES.length; i++) if (STAGES[i].id === id) return STAGES[i];
+    return null;
+  }
+  function indexOf(id) {
+    for (var i = 0; i < STAGES.length; i++) if (STAGES[i].id === id) return i;
+    return -1;
+  }
+
+  /* ---------------- fingerprints ----------------
+
+     A cheap, stable, order-insensitive digest of a stage's inputs. It does not
+     need to be cryptographic — it is not defending against an adversary, it is
+     detecting that the thing under an approval moved. It DOES need to be
+     stable across reloads, so it must not depend on object key order or on
+     anything with a timestamp in it. */
+
+  function digest(s) {
+    /* FNV-1a, 32-bit. Small, deterministic, no dependencies. */
+    var h = 0x811c9dc5;
+    for (var i = 0; i < s.length; i++) {
+      h ^= s.charCodeAt(i);
+      h = (h + ((h << 1) + (h << 4) + (h << 7) + (h << 8) + (h << 24))) >>> 0;
+    }
+    return ("0000000" + h.toString(16)).slice(-8);
+  }
+
+  /* Stable stringify: sorts keys, so a re-serialised model with the same
+     content fingerprints the same. Skips functions and undefined. */
+  function stable(v, depth) {
+    depth = depth || 0;
+    if (depth > 12) return '"…"';
+    if (v === null || v === undefined) return "null";
+    var t = typeof v;
+    if (t === "number") return isFinite(v) ? String(Math.round(v * 1e6) / 1e6) : "null";
+    if (t === "boolean" || t === "string") return JSON.stringify(v);
+    if (t === "function") return "null";
+    if (Object.prototype.toString.call(v) === "[object Array]") {
+      var a = [];
+      for (var i = 0; i < v.length; i++) a.push(stable(v[i], depth + 1));
+      return "[" + a.join(",") + "]";
+    }
+    var keys = [];
+    for (var k in v) if (Object.prototype.hasOwnProperty.call(v, k)) keys.push(k);
+    keys.sort();
+    var out = [];
+    for (var j = 0; j < keys.length; j++) {
+      var val = v[keys[j]];
+      if (typeof val === "function" || val === undefined) continue;
+      out.push(JSON.stringify(keys[j]) + ":" + stable(val, depth + 1));
+    }
+    return "{" + out.join(",") + "}";
+  }
+
+  function fingerprint(v) { return digest(stable(v)); }
+
+  /* ---------------- state ----------------
+
+     { stages: { id: {status, by, at, note, fp, sawFp} }, trail: [...] }
+       status : "pending" | "approved" | "rejected" | "stale"
+       fp     : the fingerprint of THIS stage's own content when approved
+       sawFp  : {inputStageId: fp} — what the approver was looking at upstream */
+
+  var state = null;
+
+  function blank() { return { stages: {}, trail: [] }; }
+
+  function load() {
+    if (state) return state;
+    try {
+      var raw = localStorage.getItem(KEY);
+      state = raw ? JSON.parse(raw) : blank();
+    } catch (e) { state = blank(); }
+    if (!state.stages) state.stages = {};
+    if (!state.trail) state.trail = [];
+    return state;
+  }
+  function save() {
+    try { localStorage.setItem(KEY, JSON.stringify(load())); } catch (e) {}
+  }
+
+  function now() { return new Date().toISOString(); }
+
+  function log(entry) {
+    var s = load();
+    entry.at = now();
+    var u = FM.auth && FM.auth.state().user;
+    entry.by = u ? u.name : "(not signed in)";
+    s.trail.push(entry);
+    /* append-only, but not unbounded — keep the most recent 400 */
+    if (s.trail.length > 400) s.trail = s.trail.slice(s.trail.length - 400);
+    save();
+  }
+
+  /* ---------------- content ----------------
+
+     The pipeline does not own the artefacts; it observes them. A provider is
+     registered per stage and returns whatever that stage's content currently
+     is. Modules register themselves so pipeline.js does not have to know how
+     to reach into any of them. */
+
+  var providers = {};
+  function provide(stageId, fn) { providers[stageId] = fn; }
+
+  function contentOf(stageId) {
+    if (!providers[stageId]) return null;
+    try { return providers[stageId](); } catch (e) { return null; }
+  }
+  function fpOf(stageId) {
+    var c = contentOf(stageId);
+    return c === null || c === undefined ? null : fingerprint(c);
+  }
+
+  /* ---------------- the rule ----------------
+
+     A stage is APPROVED only if it was approved AND nothing it depends on has
+     moved since — including itself. Anything else is stale, and stale says
+     exactly which input moved. */
+
+  function statusOf(stageId) {
+    var s = load();
+    var rec = s.stages[stageId];
+    if (!rec || rec.status !== "approved") {
+      return { status: rec ? rec.status : "pending", rec: rec || null, moved: [] };
+    }
+    var moved = [];
+    var mine = fpOf(stageId);
+    if (mine !== null && rec.fp && mine !== rec.fp) {
+      moved.push({ stage: stageId, label: stageById(stageId).label, self: true });
+    }
+    var st = stageById(stageId);
+    for (var i = 0; i < st.inputs.length; i++) {
+      var upId = st.inputs[i];
+      var upNow = fpOf(upId);
+      var upThen = rec.sawFp ? rec.sawFp[upId] : null;
+      if (upNow !== null && upThen && upNow !== upThen) {
+        moved.push({ stage: upId, label: stageById(upId).label, self: false });
+      }
+    }
+    return { status: moved.length ? "stale" : "approved", rec: rec, moved: moved };
+  }
+
+  /* Can this stage be approved right now? */
+  function can(stageId) {
+    var st = stageById(stageId);
+    if (!st) return { ok: false, blockedBy: ["no such stage"] };
+    var blocked = [];
+
+    if (!FM.auth || !FM.auth.require()) blocked.push("nobody is signed in");
+    else if (!FM.auth.has(st.needs)) {
+      blocked.push("this gate needs the " +
+        (FM.auth.ROLES[st.needs] ? FM.auth.ROLES[st.needs].label : st.needs) + " role");
+    }
+
+    for (var i = 0; i < st.inputs.length; i++) {
+      var up = statusOf(st.inputs[i]);
+      if (up.status !== "approved") {
+        blocked.push(stageById(st.inputs[i]).label + " is " + up.status + " — approve it first");
+      }
+    }
+
+    if (contentOf(stageId) === null) {
+      blocked.push("there is nothing to approve yet — " + st.label.toLowerCase() + " has produced no content");
+    }
+
+    /* a stage that declares blocking problems cannot be approved past them */
+    var b = blockers(stageId);
+    for (var j = 0; j < b.length; j++) blocked.push(b[j]);
+
+    return { ok: blocked.length === 0, blockedBy: blocked };
+  }
+
+  /* Stages may register hard blockers — a CAD model with validation errors, a
+     takeoff with unresolved items. These are not warnings; they stop the gate. */
+  var blockerFns = {};
+  function blocksOn(stageId, fn) { blockerFns[stageId] = fn; }
+  function blockers(stageId) {
+    if (!blockerFns[stageId]) return [];
+    try {
+      var r = blockerFns[stageId]();
+      return Object.prototype.toString.call(r) === "[object Array]" ? r : [];
+    } catch (e) { return ["could not check this stage: " + e.message]; }
+  }
+
+  function approve(stageId, note) {
+    var gate = can(stageId);
+    if (!gate.ok) return { ok: false, why: gate.blockedBy };
+
+    var st = stageById(stageId);
+    var u = FM.auth.state().user;
+    var saw = {};
+    for (var i = 0; i < st.inputs.length; i++) saw[st.inputs[i]] = fpOf(st.inputs[i]);
+
+    load().stages[stageId] = {
+      status: "approved",
+      by: u.name, byId: u.id, role: st.needs,
+      at: now(), note: note || "",
+      fp: fpOf(stageId), sawFp: saw
+    };
+    save();
+    log({ kind: "approve", stage: stageId, note: note || "", fp: load().stages[stageId].fp });
+    return { ok: true };
+  }
+
+  function reject(stageId, note) {
+    if (!FM.auth || !FM.auth.require()) return { ok: false, why: ["nobody is signed in"] };
+    load().stages[stageId] = {
+      status: "rejected",
+      by: FM.auth.state().user.name, at: now(), note: note || "", fp: null, sawFp: null
+    };
+    save();
+    log({ kind: "reject", stage: stageId, note: note || "" });
+    return { ok: true };
+  }
+
+  function clear(stageId) {
+    delete load().stages[stageId];
+    save();
+    log({ kind: "clear", stage: stageId });
+  }
+
+  function reset() {
+    state = blank();
+    save();
+    log({ kind: "reset", stage: null, note: "pipeline reset" });
+  }
+
+  /* The whole picture, for the view and for the package's approval trail. */
+  function snapshot() {
+    var out = { stages: [], current: null, complete: true, staleCount: 0 };
+    for (var i = 0; i < STAGES.length; i++) {
+      var st = STAGES[i];
+      var s = statusOf(st.id);
+      var gate = can(st.id);
+      var row = {
+        stage: st, status: s.status, rec: s.rec, moved: s.moved,
+        can: gate.ok, blockedBy: gate.blockedBy,
+        blockers: blockers(st.id),
+        hasContent: contentOf(st.id) !== null
+      };
+      if (s.status === "stale") out.staleCount++;
+      if (s.status !== "approved") {
+        out.complete = false;
+        if (!out.current) out.current = st.id;
+      }
+      out.stages.push(row);
+    }
+    if (!out.current) out.current = STAGES[STAGES.length - 1].id;
+    return out;
+  }
+
+  function audit() { return load().trail.slice(); }
+
+  FM.pipeline = {
+    STAGES: STAGES,
+    stageById: stageById,
+    indexOf: indexOf,
+    provide: provide,
+    blocksOn: blocksOn,
+    contentOf: contentOf,
+    fingerprint: fingerprint,
+    stableString: stable,
+    statusOf: statusOf,
+    can: can,
+    approve: approve,
+    reject: reject,
+    clear: clear,
+    reset: reset,
+    snapshot: snapshot,
+    audit: audit,
+    state: function () { return load(); }
+  };
+})();
+
+</script>
+<script>
+/* ============================================================
    Materials browser — reads the embedded MATDATA payload, which
    was extracted verbatim from the public material-databases repo.
    Every value shown here carries the seed file it came from.
@@ -9645,6 +10351,239 @@ var FM = (function () {
 
     draw();
   };
+})();
+
+</script>
+<script>
+/* ============================================================
+   pipeline-view.js — the run screen.
+
+   Six stages, six gates, one page. This is the view that makes the
+   product's claim legible: a plan becomes a review package quickly,
+   and a named person accepted each step on the way.
+
+   The design decision worth stating: a gate is rendered with its
+   BLOCKERS first and its approve button last. The reason is that the
+   button is the cheap part. What makes an approval worth anything is
+   that the person pressing it was shown, immediately above it, the
+   list of things this stage could not resolve.
+   ============================================================ */
+
+(function () {
+  "use strict";
+
+  var el = FM.el, card = FM.card, dl = FM.dl, esc = FM.esc;
+
+  function fmtWhen(iso) {
+    if (!iso) return "—";
+    return String(iso).slice(0, 16).replace("T", " ") + " UTC";
+  }
+
+  FM.VIEWS.pipeline = function (host) {
+    if (!FM.pipeline) {
+      host.appendChild(FM.pageHead("Run", "Pipeline"));
+      host.appendChild(el("div", { class: "empty", text: "The pipeline module failed to load." }));
+      return;
+    }
+
+    var snap = FM.pipeline.snapshot();
+    var user = FM.auth ? FM.auth.state().user : null;
+
+    host.appendChild(FM.pageHead(
+      "Run",
+      "An architectural plan to a package a licensed engineer can review — with a name on every step.",
+      [
+        el("button", {
+          class: "btn", text: "Sign out",
+          onclick: function () { if (FM.signOut) FM.signOut(); FM.go("pipeline"); }
+        }),
+        el("button", {
+          class: "btn", text: "Reset approvals",
+          onclick: function () {
+            /* deliberately not a confirm() — the trail keeps the reset, so the
+               action is reversible in the only sense that matters: visible */
+            FM.pipeline.reset();
+            FM.toast("Approvals cleared. The reset is in the audit trail.");
+            FM.go("pipeline");
+          }
+        })
+      ]));
+
+    host.appendChild(FM.stageRail("pipeline"));
+
+    /* ---- where the run stands ---- */
+    var done = 0, stale = 0;
+    snap.stages.forEach(function (r) {
+      if (r.status === "approved") done++;
+      if (r.status === "stale") stale++;
+    });
+
+    host.appendChild(el("div", { class: "grid g4", style: "margin-bottom:16px" }, [
+      FM.statCard(done + "/" + snap.stages.length, "Stages approved", done === snap.stages.length ? "pass" : ""),
+      FM.statCard(String(stale), "Need re-approval", stale ? "gold" : ""),
+      FM.statCard(user ? user.name : "—", "Signed in as"),
+      FM.statCard(snap.complete ? "Ready for PE" : FM.pipeline.stageById(snap.current).label, "Next")
+    ]));
+
+    if (stale) {
+      host.appendChild(el("div", { class: "banner banner-gold", style: "margin-bottom:14px" }, [
+        el("strong", { text: stale + " approval" + (stale === 1 ? "" : "s") + " went stale — " }),
+        el("span", { text: "something upstream changed after they were given. An approval that " +
+                           "survives a change to what was approved is worth nothing, so they are " +
+                           "withdrawn rather than carried. Re-approve after checking what moved." })
+      ]));
+    }
+
+    /* ---- the stages ---- */
+    snap.stages.forEach(function (row, i) {
+      var st = row.stage;
+      var cls = "gate-panel";
+      if (row.status === "approved") cls += " is-approved";
+      else if (row.status === "stale") cls += " is-stale";
+      else if (row.blockedBy.length) cls += " is-blocked";
+      else if (st.id === snap.current) cls += " is-open";
+
+      var body = el("div", { class: cls, style: "display:grid;gap:10px" });
+
+      body.appendChild(el("p", { style: "font-size:.85rem", text: st.detail }));
+      body.appendChild(el("p", { class: "clause", text: "GATE — " + st.gate }));
+
+      /* what this stage could not resolve. First, deliberately. */
+      if (row.blockers.length) {
+        var ul = el("ul", { class: "gate-block-list" });
+        row.blockers.forEach(function (b) { ul.appendChild(el("li", { text: b })); });
+        body.appendChild(el("div", {}, [
+          el("p", { style: "font-size:.8rem;font-weight:650", text: "This stage cannot be approved until these are resolved:" }),
+          ul
+        ]));
+      }
+
+      if (row.status === "stale" && row.moved.length) {
+        body.appendChild(el("div", { class: "banner banner-gold" }, [
+          el("strong", { text: "Withdrawn — " }),
+          el("span", { text: row.moved.map(function (m) {
+            return m.self ? "this stage's own content changed after approval"
+                          : m.label + " changed after this was approved";
+          }).join("; ") + "." })
+        ]));
+      }
+
+      if (row.rec && row.rec.status === "approved") {
+        body.appendChild(dl([
+          { k: "Approved by", v: esc(row.rec.by) + " <span class='clause'>as " +
+              esc(FM.auth && FM.auth.ROLES[row.rec.role] ? FM.auth.ROLES[row.rec.role].label : row.rec.role) + "</span>" },
+          { k: "When", v: fmtWhen(row.rec.at) },
+          { k: "Fingerprint", v: "<span class='mono'>" + esc(row.rec.fp || "—") + "</span> " +
+              "<span class='clause'>of what was in front of them</span>" },
+          row.rec.note ? { k: "Note", v: esc(row.rec.note) } : null
+        ].filter(Boolean)));
+      } else if (row.rec && row.rec.status === "rejected") {
+        body.appendChild(el("div", { class: "banner banner-warn" }, [
+          el("strong", { text: "Rejected by " + esc(row.rec.by) + " — " }),
+          el("span", { text: row.rec.note || "no reason given" })
+        ]));
+      }
+
+      /* the controls */
+      var note = el("input", {
+        type: "text", placeholder: "What did you check? (goes in the record)",
+        "aria-label": "Approval note for " + st.label, style: "flex:1;min-width:200px"
+      });
+
+      var actions = el("div", { style: "display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:2px" }, [
+        note,
+        el("button", {
+          class: "btn btn-primary",
+          text: row.status === "approved" ? "Re-approve" : "Approve",
+          disabled: row.can ? null : "disabled",
+          onclick: function () {
+            var r = FM.pipeline.approve(st.id, note.value);
+            if (!r.ok) { FM.toast("Not approved — " + r.why.join("; ")); return; }
+            FM.toast(st.label + " approved by " + FM.auth.state().user.name + ".");
+            FM.go("pipeline");
+          }
+        }),
+        el("button", {
+          class: "btn", text: "Reject",
+          onclick: function () {
+            FM.pipeline.reject(st.id, note.value || "no reason given");
+            FM.toast(st.label + " rejected. Downstream stages stay closed.");
+            FM.go("pipeline");
+          }
+        }),
+        el("button", {
+          class: "btn btn-sm", text: "Open stage",
+          onclick: function () { FM.go(VIEW_OF[st.id] || "pipeline"); }
+        })
+      ]);
+
+      if (!row.can && row.blockedBy.length) {
+        actions.appendChild(el("span", { class: "clause", text: "blocked: " + row.blockedBy.join(" · ") }));
+      }
+      body.appendChild(actions);
+
+      var badge = row.status === "approved"
+        ? el("span", { class: "badge b-pass", text: "Approved", style: "margin-left:auto" })
+        : row.status === "stale"
+          ? el("span", { class: "badge b-gold", text: "Needs re-approval", style: "margin-left:auto" })
+          : row.status === "rejected"
+            ? el("span", { class: "badge b-fail", text: "Rejected", style: "margin-left:auto" })
+            : el("span", { class: "badge b-mute", text: "Not approved", style: "margin-left:auto" });
+
+      host.appendChild(el("div", { style: "margin-bottom:12px" }, [
+        card(String(i + 1) + " · " + st.label, badge, body,
+             "Needs the " + (FM.auth && FM.auth.ROLES[st.needs] ? FM.auth.ROLES[st.needs].label : st.needs) +
+             " role" + (st.inputs.length ? " · depends on " + st.inputs.join(", ") : ""))
+      ]));
+    });
+
+    /* ---- the trail ---- */
+    var trail = FM.pipeline.audit().slice().reverse();
+    var tb = el("tbody");
+    if (!trail.length) {
+      tb.appendChild(el("tr", {}, [
+        el("td", { colspan: "4", class: "empty-cell" }, [
+          el("div", { class: "empty", style: "margin:0", text: "Nothing has been approved yet." })
+        ])
+      ]));
+    } else {
+      trail.slice(0, 40).forEach(function (e) {
+        tb.appendChild(el("tr", {}, [
+          el("td", { class: "k", text: fmtWhen(e.at) }),
+          el("td", { text: e.by }),
+          el("td", {}, [el("span", {
+            class: "badge " + (e.kind === "approve" ? "b-pass" : e.kind === "reject" ? "b-fail" : "b-mute"),
+            text: e.kind
+          }), el("span", { style: "margin-left:6px", text: e.stage || "—" })]),
+          el("td", { text: e.note || "" })
+        ]));
+      });
+    }
+    host.appendChild(el("div", { style: "margin-top:18px" }, [
+      card("Audit trail",
+        el("span", { class: "badge b-blue", text: "Append-only", style: "margin-left:auto" }),
+        el("div", { class: "tw", tabindex: "0", role: "region", "aria-label": "Audit trail" }, [
+          el("table", {}, [
+            el("thead", {}, [el("tr", {}, [
+              el("th", { text: "When" }), el("th", { text: "Who" }),
+              el("th", { text: "What" }), el("th", { text: "Note" })
+            ])]), tb
+          ])
+        ]),
+        "Rejections and resets stay in the record. A clean history is not the goal; a true one is.")
+    ]));
+  };
+
+  /* which view each stage opens */
+  var VIEW_OF = {
+    geometry: "cad",
+    takeoff: "takeoff",
+    loads: "jurisdiction",
+    calcs: "sizing",
+    bom: "bom",
+    "package": "planset"
+  };
+  FM.STAGE_VIEW = VIEW_OF;
 })();
 
 </script>

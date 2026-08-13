@@ -76,7 +76,7 @@ function sync(c) {
 module.exports = { measure: measure, stated: stated, sentence: sentence, sync: sync, LINE: LINE };
 
 if (require.main === module) {
-  var FM = require("./harness.js").load(["scope.js", "engine.js", "weights.js", "solver.js", "export.js"]);
+  var FM = require("./harness.js").load();
   var c = measure(FM);
   c.byPlan.forEach(function (r) {
     console.log("  " + r.id.padEnd(22) + r.solved + " sized · " + r.escalated +

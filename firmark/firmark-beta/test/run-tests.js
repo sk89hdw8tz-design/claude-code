@@ -13,7 +13,7 @@
 
 "use strict";
 
-var FM = require("./harness.js").load(["scope.js", "engine.js", "weights.js", "solver.js", "export.js"]);
+var FM = require("./harness.js").load();
 
 var pass = 0, fail = 0, current = "";
 var failures = [];
@@ -1405,6 +1405,49 @@ suite("demo · the runbook says what the build will actually do");
   var demoPlan = cov.byPlan.filter(function (r) { return r.id === demo.PLAN; })[0];
   truthy(demoPlan && demoPlan.solved === Math.max.apply(null, cov.byPlan.map(function (r) { return r.solved; })),
          "and the plan it opens on is still the strongest (" + demoPlan.solved + " sized)");
+})();
+
+/* ============================================================
+   Module suites.
+
+   Each new module ships its own `test/suite-<name>.js` exporting
+   `function (t, FM)`. They are loaded here rather than pasted in, so
+   several modules can be built in parallel without four authors
+   editing one file and colliding.
+
+   A suite that is PRESENT AND THROWS is a failure, not a skip — the
+   whole point of the harness is that a broken module cannot pass by
+   being unloadable.
+   ============================================================ */
+(function () {
+  var fsm = require("fs"), pm = require("path");
+  var t = { suite: suite, ok: ok, bad: bad, eq: eq, near: near, truthy: truthy };
+  var names = fsm.readdirSync(__dirname)
+    .filter(function (f) { return /^suite-.*\.js$/.test(f); })
+    .sort();
+  names.forEach(function (f) {
+    var mod;
+    try { mod = require(pm.join(__dirname, f)); }
+    catch (e) {
+      suite("module · " + f);
+      bad(f + " could not be loaded", e.message);
+      return;
+    }
+    if (typeof mod !== "function") {
+      suite("module · " + f);
+      bad(f + " does not export a function (t, FM)");
+      return;
+    }
+    try { mod(t, FM); }
+    catch (e) {
+      suite("module · " + f);
+      bad(f + " threw while running", e.stack ? e.stack.split("\n").slice(0, 3).join(" | ") : e.message);
+    }
+  });
+  if (!names.length) {
+    suite("module suites");
+    console.log("  (none present yet)");
+  }
 })();
 
 suite("register · the document's own numbers are measured, not remembered");

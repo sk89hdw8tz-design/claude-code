@@ -35,17 +35,35 @@ var NOSCRIPT =
   '<noscript><p style="padding:24px;font-family:system-ui">' +
   'The Firmark harness needs JavaScript to run the calculation engine.</p></noscript>\n';
 
+/* Order is dependency order: data and logic first, then views, which capture
+   FM helpers into locals at load time. See ARCHITECTURE.md. */
 var SCRIPTS = [
   "core.js",
   "scope.js",
   "engine.js",
   "weights.js",
   "solver.js",
+  "jurisdiction.js",
+  "cad.js",
+  "takeoff.js",
+  "bom.js",
   "export.js",
+  "planset.js",
+  "auth.js",
+  "pipeline.js",
   "materials.js",
   "sheet.js",
-  "sizing.js"
+  "sizing.js",
+  "pipeline-view.js"
 ];
+
+/* Modules under construction may not exist yet. A missing part is announced
+   loudly and skipped rather than crashing the build — but it is NEVER silent,
+   because a bundle quietly missing a module is exactly how this project
+   shipped a stale app once already. */
+var missing = [];
+
+function exists(f) { return fs.existsSync(path.join(DIR, f)); }
 
 function read(f) {
   return fs.readFileSync(path.join(DIR, f), "utf8").replace(/\n+$/, "");
@@ -62,7 +80,9 @@ function build() {
   var matdata = JSON.parse(fs.readFileSync(path.join(DIR, "matdata.json"), "utf8"));
   out += "<script>window.MATDATA = " + JSON.stringify(matdata) + ";</script>\n";
 
+  missing = [];
   SCRIPTS.forEach(function (f) {
+    if (!exists(f)) { missing.push(f); return; }
     out += "<script>\n" + read(f) + "\n\n</script>\n";
   });
   out += "<script>FM.boot();</script>\n";
@@ -89,8 +109,14 @@ function main() {
   fs.writeFileSync(OUT, built);
   console.log("wrote firmark-app.html — " + built.length + " bytes");
   SCRIPTS.forEach(function (f) {
-    console.log("  " + f.padEnd(14) + fs.statSync(path.join(DIR, f)).size + " bytes");
+    if (!exists(f)) return;
+    console.log("  " + f.padEnd(18) + fs.statSync(path.join(DIR, f)).size + " bytes");
   });
+  if (missing.length) {
+    console.log("\nNOT IN THE BUNDLE — these parts do not exist yet:");
+    missing.forEach(function (f) { console.log("  " + f); });
+    console.log("The bundle is INCOMPLETE. Anything depending on them will not work.");
+  }
 }
 
 main();

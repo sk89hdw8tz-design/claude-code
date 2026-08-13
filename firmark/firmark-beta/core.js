@@ -144,10 +144,22 @@ var FM = (function () {
 
   var NAV = [
     { group: "Navigation", items: [{ id: "dashboard", label: "Dashboard", ico: "grid" }] },
+    /* The pipeline, in the order it runs. A rail that lists the stages in
+       sequence is the cheapest possible statement of what this product is:
+       geometry, takeoff, loads, calcs, quantities, package. */
+    { group: "Pipeline", items: [
+      { id: "pipeline", label: "Run", ico: "shield" },
+      { id: "cad", label: "1 · Geometry", ico: "ruler" },
+      { id: "takeoff", label: "2 · Takeoff", ico: "calc" },
+      { id: "jurisdiction", label: "3 · Loads & code", ico: "shield" },
+      { id: "sizing", label: "4 · Calculations", ico: "ruler",
+        count: function () { return FM.weights ? FM.weights.PACKS.length : 0; } },
+      { id: "bom", label: "5 · Materials list", ico: "layers" },
+      { id: "planset", label: "6 · PE package", ico: "doc" }
+    ] },
     { group: "Manage", items: [
       { id: "projects", label: "Projects", ico: "folder", count: function () { return PROJECTS.length; } },
       { id: "calculations", label: "Calculations", ico: "calc", count: function () { return SHEETS.length; } },
-      { id: "sizing", label: "Sizing", ico: "ruler", count: function () { return FM.weights ? FM.weights.PACKS.length : 0; } },
       { id: "policies", label: "Policies", ico: "shield", count: function () { return PROFILES.length; } },
       { id: "materials", label: "Materials", ico: "layers" },
       { id: "output", label: "Output & Docs", ico: "doc" }
@@ -1084,6 +1096,96 @@ var FM = (function () {
 
   /* ---------------- boot ---------------- */
 
+  /* ---------------- the closed gate ----------------
+
+     Nothing behind this renders until someone is signed in. Not because the
+     data is sensitive — it is a demo — but because every artefact downstream
+     is attributable. An approval trail whose entries say "someone" is not a
+     trail, and the gates in pipeline.js are the reason the speed claim is
+     defensible at all. */
+
+  function showGate(show) {
+    var g = document.getElementById("gate");
+    var shell = document.getElementById("shell");
+    if (!g) return;
+    if (show) { g.removeAttribute("hidden"); shell.setAttribute("aria-hidden", "true"); }
+    else { g.setAttribute("hidden", ""); shell.removeAttribute("aria-hidden"); }
+  }
+
+  function wireGate() {
+    var form = document.getElementById("gateForm");
+    if (!form || !FM.auth) return;
+
+    function refresh() {
+      var signedIn = FM.auth.require();
+      showGate(!signedIn);
+      if (signedIn) {
+        var u = FM.auth.state().user;
+        var av = document.querySelector(".avatar");
+        if (av) { av.textContent = u.initials; av.title = u.name + " · " + u.roles.join(", "); }
+      }
+    }
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var err = document.getElementById("gateErr");
+      var r = FM.auth.login(document.getElementById("gateUser").value,
+                            document.getElementById("gatePass").value);
+      if (!r.ok) {
+        err.textContent = r.why;
+        err.removeAttribute("hidden");
+        document.getElementById("gatePass").value = "";
+        document.getElementById("gatePass").focus();
+        return;
+      }
+      err.setAttribute("hidden", "");
+      refresh();
+      toast("Signed in as " + r.user.name + ". Every approval from here carries this name.");
+      applyHash();
+    });
+
+    refresh();
+    if (!FM.auth.require()) {
+      var uf = document.getElementById("gateUser");
+      if (uf) uf.focus();
+    }
+    FM.signOut = function () {
+      FM.auth.logout();
+      if (FM.pipeline) { /* the trail survives; the session does not */ }
+      refresh();
+      toast("Signed out. The approval trail is kept — it is a record, not a session.");
+    };
+    FM.refreshGate = refresh;
+  }
+
+  /* The stage rail — the same chip row on every pipeline view, so a stage is
+     never looked at without its position in the run being visible. */
+  function stageRail(currentId) {
+    var wrap = el("div", { class: "stage-rail", role: "list", "aria-label": "Pipeline stages" });
+    if (!FM.pipeline) return wrap;
+    var snap = FM.pipeline.snapshot();
+    snap.stages.forEach(function (row, i) {
+      var cls = "stage-chip";
+      if (row.status === "approved") cls += " is-approved";
+      else if (row.status === "stale") cls += " is-stale";
+      else if (row.status === "rejected") cls += " is-rejected";
+      if (row.stage.id === currentId) cls += " is-current";
+      var label = row.status === "approved" ? "approved"
+                : row.status === "stale" ? "needs re-approval"
+                : row.status === "rejected" ? "rejected" : "not approved";
+      wrap.appendChild(el("button", {
+        class: cls, role: "listitem",
+        title: row.stage.label + " — " + label + ". " + row.stage.gate,
+        onclick: function () { go("pipeline"); }
+      }, [
+        el("span", { class: "dot" }),
+        el("span", { text: String(i + 1) + " · " + row.stage.label }),
+        el("span", { class: "sep", text: label })
+      ]));
+    });
+    return wrap;
+  }
+
   function boot() {
     try {
       var saved = localStorage.getItem("fm-theme");
@@ -1153,6 +1255,8 @@ var FM = (function () {
       }
     });
 
+    wireGate();
+
     window.addEventListener("hashchange", applyHash);
     /* open on whatever the URL says — a reload, a bookmark or a pasted link
        all land where they point; an empty hash lands on the dashboard */
@@ -1161,7 +1265,7 @@ var FM = (function () {
 
   return {
     boot: boot, go: go, el: el, esc: esc, fmt: fmt, comma: comma, toast: toast,
-    registerSubRoute: registerSubRoute, syncHash: syncHash,
+    registerSubRoute: registerSubRoute, syncHash: syncHash, stageRail: stageRail,
     dl: dl, card: card, pageHead: pageHead, betaStrip: betaStrip, statCard: statCard,
     dcrClass: dcrClass, dcrBadge: dcrBadge, gradeRank: gradeRank, effectiveTheme: effectiveTheme, getProfile: getProfile, exportCalcs: exportCalcs, inputsFor: inputsFor,
     VIEWS: VIEWS, state: state, SHEETS: SHEETS, PROJECTS: PROJECTS, PROFILES: PROFILES, ACTIVITY: ACTIVITY,

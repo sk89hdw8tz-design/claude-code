@@ -194,7 +194,7 @@ module.exports = { PLAN: PLAN, WALK: WALK, DEFAULT_PACK: DEFAULT_PACK,
                    skuSummary: skuSummary, variantDeltas: variantDeltas, DEMO: DEMO };
 
 if (require.main === module) {
-  var FM = require("./harness.js").load(["scope.js", "engine.js", "weights.js", "solver.js", "export.js"]);
+  var FM = require("./harness.js").load();
   if (process.argv.indexOf("--sync") !== -1) {
     var r = sync(FM);
     console.log("synced: " + r.done.join(", "));

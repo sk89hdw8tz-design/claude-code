@@ -1,5 +1,42 @@
 <a class="skip" href="#main">Skip to content</a>
 
+<!-- The closed gate. Nothing behind it renders until someone signs in, because
+     every artefact this product makes is attributable and an approval with no
+     name on it is not an approval. This is a DEMO gate, not security — the
+     screen itself says so. -->
+<div class="gate" id="gate" hidden>
+  <form class="gate-card" id="gateForm" autocomplete="off">
+    <div class="gate-brand">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <rect x="1.5" y="1.5" width="21" height="21" rx="2.5" stroke="#C79A2B" stroke-width="1.8"/>
+        <path d="M6 18V7.5h9" stroke="currentColor" stroke-width="2.2" stroke-linecap="square"/>
+        <path d="M6 12.6h6.4" stroke="currentColor" stroke-width="2.2" stroke-linecap="square"/>
+        <circle cx="17.4" cy="16.4" r="2.1" fill="#C79A2B"/>
+      </svg>
+      <span>Firmark</span>
+    </div>
+    <p class="gate-sub">Structural harness for repeatable residential work.<br>
+      Texas · Florida · North Carolina</p>
+
+    <label class="gate-field">
+      <span>Username</span>
+      <input type="text" id="gateUser" autocomplete="username" spellcheck="false" required>
+    </label>
+    <label class="gate-field">
+      <span>Password</span>
+      <input type="password" id="gatePass" autocomplete="current-password" required>
+    </label>
+
+    <div class="gate-err" id="gateErr" role="alert" hidden></div>
+    <button class="btn btn-primary gate-go" type="submit">Sign in</button>
+
+    <p class="gate-demo"><strong>Demo</strong> / <strong>Demo</strong></p>
+    <p class="gate-note">This is a demonstration sign-in, not access control. The
+      credentials are in the page source and the session is held in this browser.
+      It exists so that approvals carry a name — nothing here protects anything.</p>
+  </form>
+</div>
+
 <div class="shell" id="shell">
 
   <header class="topbar">
@@ -50,6 +87,12 @@
       <div class="view" id="view-calculations"></div>
       <div class="view" id="view-sheet"></div>
       <div class="view" id="view-sizing"></div>
+      <div class="view" id="view-cad"></div>
+      <div class="view" id="view-takeoff"></div>
+      <div class="view" id="view-jurisdiction"></div>
+      <div class="view" id="view-bom"></div>
+      <div class="view" id="view-planset"></div>
+      <div class="view" id="view-pipeline"></div>
       <div class="view" id="view-policies"></div>
       <div class="view" id="view-materials"></div>
       <div class="view" id="view-output"></div>
