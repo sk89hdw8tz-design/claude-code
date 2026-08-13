@@ -1331,8 +1331,9 @@
     say("  " + pad("Distinct SKUs", 32) + lpad(safe(r.skuCount), 6));
     say();
     if (r.complete === false) {
-      say("  ** THIS IS NOT A COMPLETE SCHEDULE — " +
-          String(safe(r.incompleteBecause, "reason not stated")).toUpperCase() + " **");
+      wrap("** THIS IS NOT A COMPLETE SCHEDULE — " +
+           String(safe(r.incompleteBecause, "reason not stated")).toUpperCase() + " **", W - 4)
+        .forEach(function (x) { say("  " + x); });
       say("  Do not read the members below as a finished design.");
       say();
     }
@@ -1369,12 +1370,13 @@
           pad(row.cand.spacing ? safe(row.cand.spacing) + "\" o.c." : "single", 10) +
           pad(qty, 5) + pad(safe(row.governing), 14) + lpad(n2(row.dcr, 3), 6) +
           (m.unifiedTo ? "  [unified]" : ""));
-      say("  " + pad("", 12) + safe(m.mark.label) + " · span " + n2(m.mark.span, 1) + " ft" +
-          (m.demand && m.demand.trib ? " · tributary " + n2(m.demand.trib, 2) + " ft" : "") +
-          (m.demand ? " · bearing " + n2(m.demand.bearing, 2) + " in" : "") +
-          (m.demand ? " · " + (m.demand.wet ? "wet service" : "dry") : "") +
-          (m.demand && m.demand.treated ? ", treated" : "") +
-          (m.demand ? (m.demand.braced ? ", braced" : ", UNBRACED") : ""));
+      wrap(safe(m.mark.label) + " · span " + n2(m.mark.span, 1) + " ft" +
+           (m.demand && m.demand.trib ? " · tributary " + n2(m.demand.trib, 2) + " ft" : "") +
+           (m.demand ? " · bearing " + n2(m.demand.bearing, 2) + " in" : "") +
+           (m.demand ? " · " + (m.demand.wet ? "wet service" : "dry") : "") +
+           (m.demand && m.demand.treated ? ", treated" : "") +
+           (m.demand ? (m.demand.braced ? ", braced" : ", UNBRACED") : ""), W - 16)
+        .forEach(function (x) { say("  " + pad("", 12) + x); });
     });
 
     /* ---- headers ---- */
