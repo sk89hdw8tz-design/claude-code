@@ -34,19 +34,50 @@
   var CI = { Fb: 0.80, Ft: 0.80, Fv: 0.80, Fc: 0.80, E: 0.95, Emin: 0.95, Fc_perp: 1.00 };
 
   /* ---- deflection limits, IBC Table 1604.3 ----
-     The "not supporting a ceiling" roof row is L/180 in BOTH columns;
-     L/240 belongs to the row supporting a non-plaster ceiling. */
+
+     READ THIS BEFORE "FIXING" THE NUMBERS BELOW. The comment that used to sit
+     here recited a two-column table and claimed the no-ceiling roof row was
+     L/180 in BOTH columns. That was wrong, and it was wrong directly above
+     correct code — a maintainer reconciling the comment to the code would have
+     broken the engine. The table as printed has THREE load columns:
+
+         Construction                        L        S or W     D + L
+         Roof, plaster/stucco ceiling        ℓ/360    ℓ/360      ℓ/240
+         Roof, nonplaster ceiling            ℓ/240    ℓ/240      ℓ/180
+         Roof, not supporting a ceiling      ℓ/180    ℓ/180      ℓ/120
+         Floor members                       ℓ/360    —          ℓ/240
+
+     `live` below is the variable-load column (L, or S or W — they are numerically
+     identical on every roof row, so one field carries both). `total` is the D + L
+     column. The two are NOT equal on any row; a table that shows them equal has
+     collapsed the first two columns and reprinted them under the third heading.
+
+     DELIBERATE DEVIATION — roof_no_ceiling.total is 180 where IBC allows 120.
+     That is a firm overlay, tighter than code, not a transcription of the table.
+     It is not a bug and it must not be "corrected" to 120 without a decision from
+     the firm. Everything else is the table as printed. See calc-spec §5.5.
+
+     Scope note: the IRC governs one- and two-family dwellings, and every region
+     pack in weights.js declares the IRC. IRC Table R301.7 has NO D + L column at
+     all — so the `total` row here is a firm overlay for IRC work in its entirety,
+     not an IRC requirement. Under the IBC it is a real code limit. */
   var DEFL = {
     floor:            { live: 360, total: 240, cite: "IBC T1604.3 · floor members" },
     roof_plaster:     { live: 360, total: 240, cite: "IBC T1604.3 · roof, plaster ceiling" },
     roof_nonplaster:  { live: 240, total: 180, cite: "IBC T1604.3 · roof, non-plaster ceiling" },
-    roof_no_ceiling:  { live: 180, total: 180, cite: "IBC T1604.3 · roof, no ceiling" }
+    /* totalCite is set only where the total-load limit is NOT the printed IBC value,
+       so the sheet cannot cite a code section that does not contain the number. */
+    roof_no_ceiling:  { live: 180, total: 180, cite: "IBC T1604.3 · roof, no ceiling",
+                        totalCite: "FIRM OVERLAY · L/180 where IBC T1604.3 allows L/120 — tighter than code by policy, not a code limit" }
   };
 
   var LIMITS = [
     "Simply-supported single span, uniformly loaded",
     "Sawn dimension lumber only — timbers, glulam, SCL, CLT and I-joists are out of scope",
     "Gravity combinations only — no wind, seismic, uplift or lateral",
+    "A snow load and a roof live load are carried separately; when both are supplied " +
+      "all six ASCE 7 §2.4.1 gravity combinations are enumerated, so D + Lr and D + S are " +
+      "both evaluated in the same run and may be governed by different limit states",
     "No cantilevers, continuous spans, notches, holes or camber",
     "No fire design, vibration, ponding or connection design",
     "ASD only — LRFD not implemented",
@@ -306,6 +337,45 @@
     return { CL: CL, RB: RB, FbE: FbE, le: le, ratio: ratio, note: null };
   }
 
+  /* §2.3, the rule implementers get wrong: C_D for a combination is the factor
+     of the SHORTEST-duration load PRESENT IN NONZERO MAGNITUDE, applied to the
+     whole combination. A zero term must not set it — testing membership instead
+     of magnitude gives the dead-only case C_D = 1.00 and an 11% overstatement.
+     max() is correct because C_D rises monotonically as duration shortens.
+
+     This lives at module scope and is EXPORTED because the sizing solver needs
+     the same envelope to compute its seed bounds. It used to be duplicated
+     there, guarded by a test that compared the two — and the moment this file
+     went from four combinations to six, that test caught the drift. One
+     implementation cannot drift from itself, which is better than catching it. */
+  function comboCD(terms) {
+    var pick = null;
+    terms.forEach(function (t) {
+      if (!(Math.abs(t.psf) > 0)) return;          /* zero magnitude → not present */
+      if (!pick || t.cd.v > pick.v) pick = t.cd;
+    });
+    return pick || CD.dead;   /* every term zero: permanent, the longest duration */
+  }
+  function mkCombo(id, label, terms) {
+    var psf = 0, live = 0;
+    terms.forEach(function (t) { psf += t.psf; if (t.cd !== CD.dead) live += t.psf; });
+    return { id: id, label: label, psf: psf, cd: comboCD(terms), live: live };
+  }
+  /* ASCE 7-22 §2.4.1, the six gravity-relevant basic ASD combinations. */
+  function buildCombos(D, L, qLr, qS) {
+    var tD = { psf: D, cd: CD.dead };
+    return [
+      mkCombo("D",            "D",                   [tD]),
+      mkCombo("D+L",          "D + L",               [tD, { psf: L,  cd: CD.live }]),
+      mkCombo("D+Lr",         "D + Lr",              [tD, { psf: qLr, cd: CD.roof_live }]),
+      mkCombo("D+S",          "D + S",               [tD, { psf: qS,  cd: CD.snow }]),
+      mkCombo("D+.75L+.75Lr", "D + 0.75L + 0.75Lr",  [tD, { psf: 0.75 * L,   cd: CD.live },
+                                                           { psf: 0.75 * qLr, cd: CD.roof_live }]),
+      mkCombo("D+.75L+.75S",  "D + 0.75L + 0.75S",   [tD, { psf: 0.75 * L,   cd: CD.live },
+                                                           { psf: 0.75 * qS,  cd: CD.snow }])
+    ];
+  }
+
   /* ---------- the check ---------- */
 
   function run(inp) {
@@ -313,26 +383,70 @@
 
     /* ---- input validation: never compute on garbage ---- */
     var span = Number(inp.span), spacing = Number(inp.spacing);
-    var D = Number(inp.dead), L = Number(inp.live), Lr = Number(inp.roofLoad);
+    var D = Number(inp.dead), L = Number(inp.live);
     if (!isFinite(D)) D = 0;
     if (!isFinite(L)) L = 0;
-    if (!isFinite(Lr)) Lr = 0;
 
     function bad(msg) {
       return { error: true, message: msg, checks: [], warnings: warnings,
                governing: { name: "—", dcr: NaN, combo: "—" }, basis: "—" };
     }
+    function given(x) { return x !== undefined && x !== null; }
+
+    /* ---- roof loads: q_Lr and q_S are SEPARATE inputs (calc-spec §2.1) ----
+       Snow and roof live are different durations (C_D 1.15 vs 1.25) and are NOT
+       alternatives to be picked between up front: between roughly 17 and 20 psf
+       roof snow, snow governs bending while roof live governs deflection, and
+       collapsing them to one number cannot produce both. Both are carried and
+       all six §2.1 combinations are enumerated.
+
+       Backward compatibility: the legacy `roofLoad` + `roofType` pair is the
+       single-load form of exactly this input. When neither new field is supplied
+       it is routed into its typed bucket and the run is identical to before.
+
+       Naming: `qLr` / `qS`, not `Lr` / `S`. Bare `S` in this function is the
+       SECTION MODULUS (S = sec.Sx_in3, below) — a snow load called `S` shadows it
+       and silently adds 21.39 psf to every snow combination on a 2x10. */
+    var splitGiven = given(inp.roofLive) || given(inp.snow);
+    var legacyType = inp.roofType === "roof_live" ? "roof_live" : "snow";
+    var qLr, qS;
+    if (splitGiven) {
+      qLr = Number(inp.roofLive); qS = Number(inp.snow);
+      if (!isFinite(qLr)) qLr = 0;
+      if (!isFinite(qS)) qS = 0;
+      /* A legacy roofLoad alongside the new fields is not dropped — dropping a
+         supplied load silently is the one failure this file exists to prevent.
+         It is added to its typed bucket and the doubling is announced. */
+      var legacyPsf = Number(inp.roofLoad);
+      if (isFinite(legacyPsf) && legacyPsf > 0) {
+        if (legacyType === "roof_live") qLr += legacyPsf; else qS += legacyPsf;
+        warnings.push("Both roofLoad (" + legacyPsf + " psf, " + legacyType +
+          ") and the separate roofLive/snow inputs were supplied — roofLoad was ADDED to the " +
+          (legacyType === "roof_live" ? "roof-live" : "snow") + " total, not ignored. " +
+          "Supply one form or the other.");
+      }
+    } else {
+      var one = Number(inp.roofLoad);
+      if (!isFinite(one)) one = 0;
+      qLr = legacyType === "roof_live" ? one : 0;
+      qS  = legacyType === "roof_live" ? 0 : one;
+    }
+
     if (!isFinite(span) || span <= 0) return bad("Span must be greater than zero.");
     if (!isFinite(spacing) || spacing <= 0) return bad("Spacing must be greater than zero.");
-    if (D < 0 || L < 0 || Lr < 0) return bad("Loads cannot be negative.");
+    if (D < 0 || L < 0 || qLr < 0 || qS < 0) return bad("Loads cannot be negative.");
     /* a load that arrived as NaN was coerced to 0 above — designing for no load
        is the one failure mode worse than refusing to design */
-    if (!isFinite(Number(inp.dead)) && inp.dead !== undefined && inp.dead !== null)
+    if (!isFinite(Number(inp.dead)) && given(inp.dead))
       return bad("Dead load is not a number.");
-    if (!isFinite(Number(inp.live)) && inp.live !== undefined && inp.live !== null)
+    if (!isFinite(Number(inp.live)) && given(inp.live))
       return bad("Floor live load is not a number.");
-    if (!isFinite(Number(inp.roofLoad)) && inp.roofLoad !== undefined && inp.roofLoad !== null)
+    if (!isFinite(Number(inp.roofLoad)) && given(inp.roofLoad))
       return bad("Roof load is not a number.");
+    if (!isFinite(Number(inp.roofLive)) && given(inp.roofLive))
+      return bad("Roof live load is not a number.");
+    if (!isFinite(Number(inp.snow)) && given(inp.snow))
+      return bad("Snow load is not a number.");
     if (!DEFL[inp.memberUse] && inp.memberUse !== undefined)
       warnings.push("Unknown deflection row \"" + inp.memberUse + "\" — IBC floor limits assumed.");
 
@@ -406,26 +520,14 @@
     var Eprime = v.E * CM.E * Ct * Ci.E;
     var EminPrime = v.Emin * CM.Emin * Ct * Ci.Emin;
 
-    /* ---- load combinations, ASCE 7 §2.4 ----
-       C_D is set by the shortest-duration load of NONZERO magnitude. */
-    var roofType = inp.roofType === "roof_live" ? "roof_live" : "snow";
-    var roofCD = roofType === "snow" ? CD.snow : CD.roof_live;
-    var roofName = roofType === "snow" ? "S" : "Lr";
+    /* ---- load combinations, ASCE 7-22 §2.4.1 (calc-spec §2.1) ----
+       All SIX gravity combinations are enumerated unconditionally. A combination
+       that reduces to a duplicate (D + L when q_L = 0 is numerically D alone) is
+       still evaluated: §2.3 gives it the right C_D and the envelope in §6 discards
+       it on its merits, not by a special case. Suppressing it instead is how
+       D + Lr and D + S stopped being evaluatable in the same run. */
 
-    var combos = [{ id: "D", label: "D", psf: D, cd: CD.dead, live: 0 }];
-
-    if (L > 0) combos.push({ id: "D+L", label: "D + L", psf: D + L, cd: CD.live, live: L });
-    if (Lr > 0) combos.push({ id: "D+R", label: "D + " + roofName, psf: D + Lr, cd: roofCD, live: Lr });
-    if (L > 0 && Lr > 0) {
-      /* combination 4 — the one that governs when both act */
-      combos.push({
-        id: "D+.75L+.75R",
-        label: "D + 0.75L + 0.75" + roofName,
-        psf: D + 0.75 * L + 0.75 * Lr,
-        cd: roofCD,                 /* shortest duration present */
-        live: 0.75 * L + 0.75 * Lr
-      });
-    }
+    var combos = buildCombos(D, L, qLr, qS);
 
     var checks = [];
     var strength = { name: "—", dcr: -Infinity, combo: "—" };
@@ -523,16 +625,35 @@
       ]
     }, "strength");
 
-    /* ---------- deflection (serviceability) ---------- */
+    /* ---------- deflection (serviceability) ----------
+       calc-spec §5.5 load sets. The variable-load column takes the ROOF SLOT as
+       max(q_Lr, q_S), never the sum: snow and roof live are alternative occupancies
+       of the same roof, so adding them designs for a load that cannot occur. Floor
+       live is a different tributary and DOES coexist with a roof load, so q_L adds
+       — that is the mixed roof+floor header (weights.js `carries: "roof+floor"`),
+       which §5.5's floor/roof branch does not name. On a pure floor member
+       (q_Lr = q_S = 0) and a pure roof member (q_L = 0) this is §5.5 exactly.
+
+       No C_D here: deflection uses E′, and C_D never touches E (§2.2). */
     var use = DEFL[inp.memberUse] || DEFL.floor;
     var L_in = span * 12;
-    var wLive = (L + Lr) * spacing / 12 / 12;          /* lb/in — variable load only */
-    var wTot = (D + L + Lr) * spacing / 12 / 12;
+    var qRoof = Math.max(qLr, qS);
+    var qVar = L + qRoof;                              /* psf — variable column */
+    var wLive = qVar * spacing / 12 / 12;              /* lb/in */
+    var wTot = (D + qVar) * spacing / 12 / 12;
+
+    /* name the load set that actually drives the check, per §6.3's per-limit-state
+       table ("Deflection (S) | S alone"), rather than the generic word "variable" */
+    var varNames = [];
+    if (L > 0) varNames.push("L");
+    if (qRoof > 0) varNames.push(qLr >= qS ? "Lr" : "S");
+    var varLabel = varNames.length ? varNames.join(" + ") + " alone" : "variable load";
+    var totLabel = varNames.length ? "D + " + varNames.join(" + ") : "D + variable";
     var dL = 5 * wLive * Math.pow(L_in, 4) / (384 * Eprime * I);
     var dT = 5 * wTot * Math.pow(L_in, 4) / (384 * Eprime * I);
     var aL = L_in / use.live, aT = L_in / use.total;
 
-    consider("Deflection (live)", dL / aL, "variable load", [
+    consider("Deflection (live)", dL / aL, varLabel, [
       "Δ_L = 5wL⁴/(384 E′I) = " + f(dL, 3) + " in",
       "allowable = L/" + use.live + " = " + f(aL, 3) + " in",
       "actual = L/" + f(L_in / dL, 0),
@@ -547,14 +668,14 @@
       ]
     }, "service");
 
-    consider("Deflection (total)", dT / aT, "D + variable", [
+    consider("Deflection (total)", dT / aT, totLabel, [
       "Δ_TL = " + f(dT, 3) + " in",
       "allowable = L/" + use.total + " = " + f(aT, 3) + " in",
       "DCR = " + f(dT / aT, 3)
     ], {
       factors: [
         { k: "Δ_TL", v: f(dT, 3) + " in" },
-        { k: "Allowable L/" + use.total, v: f(aT, 3) + " in", cite: use.cite },
+        { k: "Allowable L/" + use.total, v: f(aT, 3) + " in", cite: use.totalCite || use.cite },
         { k: "Creep K_cr", v: "not applied", cite: "§3.5.2 — see scope" }
       ]
     }, "service");
@@ -617,6 +738,7 @@
     run: run, LIMITS: LIMITS, DEFL: DEFL,
     speciesList: speciesList, sizeList: sizeList,
     findSection: findSection, findValues: findValues,
-    isSouthernPine: isSouthernPine, sizeFactor: sizeFactor, CD: CD
+    isSouthernPine: isSouthernPine, sizeFactor: sizeFactor, CD: CD,
+    buildCombos: buildCombos
   };
 })();

@@ -21,16 +21,46 @@ would break one of them, the change is wrong.
 > **Rule 2 — no weight can make a member pass.**
 > Feasibility is tested first, against the firm's DCR target, using only engine output. Scoring
 > happens afterward, on the survivors. A weight can change which passing member is recommended;
-> it cannot promote a failing one. Pinned by the regression test
-> *"weights cannot select an overstressed member"*, which drives every weight to an absurd value
-> and asserts the feasible set is unchanged.
+> it cannot promote a failing one.
+
+Rule 2 is pinned by **`solver · Rule 2: no weight can make a member pass`**. Read what it
+actually does, because the difference matters: it takes one demand, rewrites **every key in
+`policy.weights`** to 0 and then to 10⁶, and asserts the feasible set is the same string both
+times and that nothing above the DCR target entered it.
+
+It does **not** perturb the gates. `minAvailability` is a field on the *policy*, not a member of
+`policy.weights`, so the test never touches it — and raising that floor from 0.10 to 0.90
+collapses a feasible set from five members to one. Rule 2 as written is true and is narrower than
+it sounds:
+
+> **A market number cannot make a failing member pass. It can make a passing member vanish.**
+
+### 0.1 Where the scope boundary actually is
 
 `calc-spec.md` §8.23 says: *"This is a member check, not a design. It does not select sections,
 iterate, or optimize."* That sentence describes the **engine**, and it is still true of the
-engine. This document describes a layer built on top of it. The scope boundary has moved by
-exactly one step and no further: **the solver selects candidate sections and iterates; it does
-not design.** It has no opinion about framing layout, load path, lateral systems, connections,
-or anything else in §8. A licensed engineer still owns the result.
+engine. This document describes a layer built on top of it.
+
+An earlier printing of this section said the boundary had moved "by exactly one step and no
+further" and that the solver "has no opinion about framing layout or load path." Both claims were
+false as soon as they were read against the files. What is true:
+
+| The claim §8.23 makes about the engine | What this layer adds on top of it |
+|---|---|
+| Does not select sections | **The solver selects sections and iterates**, walking ladder × palette × spacing. |
+| — | **`weights.js` is a framing layout and a load path.** Every mark declares a span, a tributary or a run, what it carries, where it bears and how many jack studs are under it; `HDR-W`'s 23.0 ft tributary is a statement that the trusses bear on that wall, and `HDR-GAR-G` and `HDR-GAR-B` are the same opening under two different truss directions. Those are layout decisions. They are authored by hand, they are the largest single determinant of the answer, and PE-1 and PE-2 were both wrong-tributary defects, not solver defects. |
+| — | **Availability decides feasibility before the engine is called.** `eligibility()` runs inside `families()`, ahead of every engine call: a member under `minAvailability` is never checked at all. A market number is therefore in the feasibility path, not only in the ranking. |
+| — | **Unification changes the delivered member for economics.** `unify()` raises a mark onto a sibling's size when the modelled SKU saving beats the extra lumber. The raised member passed its own check first, so nothing is weakened — but the member on the schedule is not the member the search chose. |
+| — | **The firm's DCR target refuses members the code accepts.** `calc-spec.md` §6.2 passes at DCR ≤ 1.000. A pack target of 0.90 refuses a member at 0.95 that the code permits. That is the firm's envelope, not the code's, and the schedule says so. |
+
+So the honest statement of the boundary is not "one step":
+
+> The **engine** still checks one member against one demand and decides nothing else.
+> This layer **authors the demand**, **filters which members are offered on market grounds**,
+> **searches**, **ranks on the firm's money**, and **applies the firm's own acceptance
+> threshold**. Everything in `calc-spec.md` §8 that the engine does not do, this layer does not
+> do either — no lateral, no connections, no multi-ply, no engineered lumber, no layout it was
+> not handed. A licensed engineer owns the layout, the loads and the result.
 
 ---
 
@@ -117,9 +147,11 @@ responsibility for it.
 
 ## 4. The heuristics
 
-Seven of them. Each is stated with the argument for why it is *sound* — meaning it cannot
-change the answer, only the work done to reach it — or, where it is a genuine heuristic that
-only affects ordering, said so plainly.
+Seven heuristics, H1–H7. Each is stated with the argument for why it is *sound* — meaning it
+cannot change the answer, only the work done to reach it — or, where it is a genuine heuristic
+that only affects ordering, said so plainly. Three further subsections (§4.8–§4.10) describe
+machinery that is not a heuristic but belongs with the search: what comes back when nothing fits,
+the two inputs that have no default, and the pass that fills in the ladder for display.
 
 ### H1 — Admissible seed bounds (sound)
 
@@ -161,15 +193,36 @@ direction:
 Since every bound understates what is required, a candidate failing a bound fails the real
 check. The converse is not claimed and is not needed.
 
-**The proof is relative, not absolute.** The bounds are admissible with respect to
-`FM.engine.run()` — not with respect to the NDS. The engine does not implement `C_i`, so the
-bound inherits that omission, and it is the eligibility gate in §H1's companion, not the bound,
-that keeps an incised species away from the engine.
+**Bearing is not a section wall, and is not treated as one.** `passesBounds` still evaluates
+`b_req`, but a failure there returns `bearing: true` and is recorded as a bearing gate rather than
+a section shortfall. Every rung in a header ladder is the same breadth, so a bearing shortfall
+empties the whole ladder at once — and it was then reported as a stiffness problem, in a product
+whose own repair table says of bearing *"depth does nothing."* See §4.8.
 
-**This is a claim, so it is tested, not asserted.** The regression suite
-*"solver · pruning is admissible — exhaustive vs pruned"* runs an exhaustive search — every candidate in
-ladder × palette × spacing through the real engine — against the pruned search, across a battery
-of demands, and compares the winner, the score and the full feasible sets.
+**The proof is relative, not absolute.** The bounds are admissible with respect to
+`FM.engine.run()` — not with respect to the NDS. Where the engine is conservative or silent, the
+bound inherits that. `C_i` is no longer an example of it: the engine applies the incising factor,
+and `seedBounds()` applies the same 0.80 / 0.95 reductions when building `Fb_best`, `Fv_best` and
+`E_best`, taking the maximum across the palette so the bound stays optimistic. There is no longer
+an eligibility gate excluding refractory species; the containment became the calculation.
+
+**This is a claim, so it is tested — and the test is weaker than this document used to say.**
+The regression suite **`solver · pruning is admissible — exhaustive vs pruned`** builds an
+exhaustive reference — every candidate in ladder × palette × spacing through the real engine,
+subject to the same policy gates, ranked on the same per-unit objective — and compares it to the
+pruned search across a battery of **204 demands** (6 packs × 5 roles × spans × braced/unbraced).
+
+What it compares is **the winning candidate and its score**. It does **not** compare the full
+feasible sets, and it does not cross `wet`, `treated`, `trib`, `bearing` or `maxDCR`, and its
+battery contains no `deck` role. Two earlier printings of this paragraph claimed a full
+feasible-set comparison; that claim is what a review specialist was replaced for, and it was
+still here after the round that recorded it as corrected. It is written here as what the shipped
+test does.
+
+A larger battery has been run against this code by hand — 20,736 demands and 120,841 feasible
+rows compared candidate-for-candidate, with zero mismatches — and it is the strongest evidence
+the pruning is admissible. It is **not in the suite**, so it does not stop a regression, and it
+is not a pin. Two claims, kept separate on purpose.
 
 ### H2 — Dominance within a family (sound, conditionally)
 
@@ -193,14 +246,26 @@ in full. The check costs nothing: cost is engine-free.
 
 Families are ordered by their cheapest admissible rung — a *lower bound* on what that family
 could produce — and walked cheapest-first, keeping the best feasible candidate found so far as
-the incumbent. A family whose lower bound is at or above the incumbent's score is skipped
-entirely.
+the incumbent. A family whose lower bound is **strictly above** the incumbent's score is skipped
+entirely; a family that merely ties is walked, because a tie can still win on tie-break.
 
-Soundness: `score = cost + slack ≥ cost ≥ family lower bound`. If the family's lower bound
-already equals or exceeds the incumbent's score, every score it could produce does too.
+Soundness, in the units the code actually compares (§5): both the family bound and the incumbent
+score are **per unit of building**, so
+
+```
+score = (cost + slack) / unit  ≥  cost / unit  ≥  min over the family of (cost / unit)
+```
+
+`slack` is never negative, so no candidate in the family can score below the family's bound.
 
 Ordering cheapest-first is what makes this bite: the incumbent gets good on the first family, so
 the bound prunes hard immediately.
+
+The same bound is applied a second time *inside* a family, and that one is guarded: a candidate
+costing more than the incumbent ends the family only when `fam.monotone` is true, and otherwise
+is skipped while the walk continues. Breaking unguarded on a per-size price vector returned a
+member at 5.6× the correct cost. Pinned by
+**`solver · incumbent pruning survives a non-monotone price vector`**.
 
 ### H4 — Sensitivity-guided repair (ordering and explanation only)
 
@@ -222,8 +287,21 @@ reports "no solution" and stops has told the engineer nothing they did not alrea
 `calc-spec.md` §6.2 requires deterministic output. Scores are compared at full precision; ties
 break in a fixed order: **depth → thickness → palette order → wider spacing → nominal string.**
 No clock, no map iteration order, no randomness. Same inputs, same schedule, every run, on every
-machine. Pinned by a test that shuffles the palette and ladder order and asserts identical
-output.
+machine.
+
+Tie-break decides ties and **not losses** — reaching it on a strictly worse score let a more
+expensive candidate take the incumbency, so the incumbent update tests `score < incumbent − ε`
+first and only consults `tieBreak` inside `|Δscore| ≤ ε`.
+
+The recommendation is **the head of the ranked list**, not the search incumbent:
+`pick = feasible[0]`. Those were two different selections — one made in search order, one by
+tie-break — and on an exact score tie they disagreed, so the recommendation could contradict the
+table printed beside it. The search still asserts its own optimality afterwards
+(`stats.searchOptimal`), comparing incumbent to `feasible[0]` on score **and** tie-break.
+
+Pinned by **`solver · determinism, calc-spec §6.2`** — which re-runs one demand and then reverses
+both the palette and the ladder, asserting the same pick — and by
+**`solver · the pick is the head of the ranked list`**.
 
 ### H6 — Memoization (sound)
 
@@ -237,24 +315,182 @@ This is the one that matters for a plan built a hundred times.
 
 Per-mark optimisation produces a schedule where marks land one rung apart — a 2x8 here, a 2x10
 there. Each distinct size is a SKU: pallet space on a tight lot, a separate pick, another chance
-for a framer to grab the wrong one. `unify()` collapses a group of marks onto the deepest size
-in the group when the extra lumber costs less than the modelled cost of the extra SKU:
+for a framer to grab the wrong one.
+
+Marks are grouped by `skuGroup` (falling back to `role`), and a group of fewer than two marks, or
+one that already holds a single SKU, is left alone. **Every distinct size already picked inside
+the group is then enumerated as a candidate target** — not just the deepest one. That matters: a
+group of {2x8 ×10, 2x10 ×40, 2x12 ×1} should raise the 2x8s to 2x10 and leave the single 2x12
+alone. Considering only the deepest member made "collapse all 51 pieces onto 2x12" the only
+answer available. The target with the **minimum net cost** wins, and it is accepted only if that
+net is at or below zero:
 
 ```
-accept if   Σ (pieceScore_raised − pieceScore_own) × count
-              ≤   (SKUs_before − SKUs_after) × skuPenalty  +  bonus(group) if it collapsed to one size
+delta(target) = Σ over raised marks of (pieceScore_target − pieceScore_own) × pieceCount(mark)
+saved(target) = (SKUs_before − SKUs_after) × skuPenalty
+                 + UNIFY_BONUS(group)   only if SKUs_after == 1 AND the group had >1 size and now has 1
+
+target is a candidate only if saved > 0
+accept the best target if   delta − saved ≤ 0
 ```
 
-Two constraints make this safe:
+Four constraints make it safe:
 
-1. It never collapses **downward** — the target is never shallower than a mark's own pick. (It
-   does permit a lateral move to the same depth in a stronger grade; the system bonus is not paid
-   for that, because no band is created.)
-2. The raised member must itself appear in that mark's **own feasible set** — a member that
-   already passed its own check with its own loads and span. Unification never assumes a member
-   is adequate because a sibling mark's was.
+1. It never collapses **downward.** A mark whose pick is deeper than the target keeps its own
+   pick and contributes its own SKU to the after-count. (A lateral move to the same depth in a
+   stronger grade is permitted; the system bonus is not paid for it, because no band and no
+   single rim depth is created.)
+2. The raised member must appear in that mark's **own feasible set**, at that mark's **own
+   spacing** — a member that already passed its own check with its own loads and its own span.
+   If it is absent, the whole target is abandoned rather than assumed. Unification never infers
+   that a member is adequate because a sibling mark's was.
+3. `pieceCount` for a repetitive mark is derived from its `runFt` and the spacing the solver
+   chose, not read from a fixed count on the mark — otherwise the arithmetic prices a quantity
+   the solver is free to change.
+4. It compares **scores**, not raw costs. Raising a member always increases its slack, and
+   `slackPenalty` is inside the score; comparing raw costs mispriced every move systematically.
 
 So unification can waste lumber. It cannot weaken a member.
+
+Pinned by **`solver · SKU unification actually fires`** (a move is accepted somewhere across the
+18 pack × plan runs, so H7 is reachable rather than structurally dead) and
+**`solver · SKU unification only ever collapses upward`** (no raised mark is shallower than its
+own pick, none is above the DCR target, and none was raised onto a member absent from its own
+feasible set).
+
+`unify()` was once structurally dead: it looked for the raise target in `solution.feasible`, which
+held only what the optimiser had evaluated, and the dominance break stopped each family at its
+first feasible rung — so a sibling's deeper size was never in the list. The **explain pass**
+(§4.10) is what makes H7 reachable.
+
+### 4.8 — What comes back when nothing fits: one escalation classifier
+
+Escalation is a status, not a footnote. A plan carrying one is not a finished schedule and must
+not read like one.
+
+There is exactly **one classifier**, and it produces both the `status` and the `note`. Status and
+note were once decided independently, in two places, and disagreed: `escalate:strength` was set
+first on any evaluated candidate, so three of the four statuses then defined were unreachable
+while the note took a different branch in the same object.
+
+| Status | Set when | The note's move |
+|---|---|---|
+| `ok` | a member was picked | — |
+| `escalate:procurement` | a gated-out member was run through the engine **and passed** | name it, and its measured DCR: confirm the yard will supply it, or lower the floor deliberately |
+| `escalate:bearing` | the bearing bound emptied the ladder and nothing else was evaluated | lengthen the bearing — a second jack stud. Depth does nothing. |
+| `escalate:geometry` | a depth-budget gate emptied the ladder and nothing else was evaluated | raise the plate, drop the head height, or flush-frame it |
+| `escalate:strength` | everything else: no section reaches the requirement, or every candidate evaluated was overstressed | the shortfall wall, below |
+
+Order matters and is the point of the fix. Falling through to whichever gate happened to appear
+in the rejection list reported a member 4% short on section modulus as a procurement problem,
+with the advice *"lower the availability floor"* — which, followed, yields nothing.
+
+A sixth status, **`escalate:input`**, short-circuits ahead of all of them: a non-numeric `dead`,
+`live`, `roofLoad`, `span` or `bearing` refuses the **whole search** rather than proposing
+members for it. `Number(x) || 0` turns `NaN` into `0` and designs the member for no load; the
+engine refuses that, but the solver used to launder it before the engine ever saw it.
+
+**What fires today.** Across all 18 shipped pack × plan runs, three statuses occur: `ok`,
+`escalate:strength` and `escalate:procurement`. `escalate:bearing`, `escalate:geometry` and
+`escalate:input` are reachable — each has been produced from a hand-built demand — but **no
+shipped pack or plan produces them.** Their correctness rests on the code path and on those
+probes, not on the shipped configuration.
+
+**The shortfall wall.** When the status is `escalate:strength`, `boundWall()` names the section
+property that emptied the ladder and by how much:
+
+> *"the deepest section in the ladder gives 73.83 in³ of S_x and this member needs 252.84 — short
+> by 242% at the firm's DCR target of 0.90"*
+
+It ranks the three section properties by **dimensionless shortfall ratio** — `required ÷ what the
+deepest rung in the ladder offers` — and skips any property the ladder already satisfies. Ranking
+by raw magnitude compares in³ against in⁴ against in², which `I_x` wins essentially always: it
+was named in **17 of 17** reports, seven of them naming a property the ladder cleared by up to
+68%. Bearing is excluded from this wall entirely, because it is not a property of the section.
+Pinned by **`solver · the reported wall is the one that actually binds`**, which asserts across
+every pack × plan that no reported wall has `shortfall ≤ 1` or `required ≤ available`.
+
+**Nothing is named as passing unless the engine returned a DCR for it.** The procurement gate runs
+inside `eligibility()` *before any engine call*, so the note that read *"the member that passes …
+The member is adequate"* was an assertion about a member nobody had checked. Measured across 112
+escalations, **82% named only overstressed members**, one at DCR 2.025. Gated candidates are now
+each run through the engine; only those that actually pass are named, each with its measured DCR,
+and the note states how many others were checked and failed. Pinned by
+**`solver · nothing is named as passing unless the engine checked it`**, which walks every
+procurement note in every pack × plan and asserts that each member named carries a
+`checkedDcr` at or below that mark's target.
+
+The general rule, of which that is one instance:
+
+> **No member may be described as adequate unless `FM.engine.run()` returned a finite DCR for it
+> at this mark's own demand.** Not a sibling's, not a bound's, not a gate's.
+
+Bound-pruned candidates and gate-excluded candidates both enter the rejection record with their
+reason rather than being discarded, because *"we never checked a 4x14"* and *"a 4x14 failed"* are
+different statements and an engineer needs to know which.
+
+**`solver · the escalation status and its note come from one classifier`** asserts across every
+pack × plan that `ok` always carries a pick, that no escalation does, and that a procurement note
+appears **if and only if** the status is `escalate:procurement`.
+
+### 4.9 — The two inputs that have no default
+
+Both were defaults once. Both produced blockers. Both now throw.
+
+**`carries`.** A mark's `role` is a name; its `carries` is the structure. Deriving the load set,
+the duration factor and the deflection row from the role string checked `DK-2`, a treated deck
+beam, with 15 psf of insulated shingle-roof dead load, **zero** of the 40 psf deck live load,
+`C_D` 1.25 instead of 1.00 and ℓ/180 instead of ℓ/360 — and printed a 4x8 at DCR 0.594 for a
+member overstressed at 1.047 against the load it actually carries. `GB-1`, a floor girder, had the
+same defect.
+
+`CARRIES_DEFAULT` now covers `rafter`, `ceiling`, `joist` and `deck` only. **`header` and `beam`
+are deliberately absent**: a joist carries a floor by definition, but a beam carries whatever the
+plan puts on it, and guessing `roof` is precisely the defect above. A header or beam that does not
+declare `carries` throws, and so does an unrecognised `carries` name — silently returning
+`undefined` for a typo laundered into a dead load of zero.
+
+`carries: "roof+floor"` cannot be expressed with one tributary, and its two users meant opposite
+things by it. Such a mark must declare **`tribRoof` and `tribFloor`** separately; the two load
+paths are then converted into the engine's single-tributary vocabulary as a total line load
+`q_roof·t_roof + q_floor·t_floor` expressed as psf over the summed tributary. A mark declaring
+`roof+floor` without both throws.
+
+**`bearing`.** Moving headers from a 3.5 in default to a jack stud's 1.5 in was correct — and it
+promoted bearing from a benign assumption into a design input. It governs picks, it produced
+escalations, and **not one mark declared it.** A header must now declare its jack count as a
+bearing length; a header without one throws. Every shipped header declares one, asserted by
+**`weights · a header must declare its jack count`**.
+
+One caveat this document owes: `memberInputs()` still falls back to `bearing: 1.5` when a demand
+arrives without one. The no-default rule is enforced in `weights.js`, at `demandFor()`, so it
+binds every mark on every plan — but a demand assembled by hand in a test or a console still gets
+the fallback.
+
+**What pins the pair.** `weights · every mark is checked as the member it actually is` is a
+property test over every mark in every plan in every pack. Precisely, it asserts: a roof mark
+carries the pack's roof load and zero floor live; a floor or deck mark carries the right live load
+and the floor deflection row; an open-roof mark is on the no-ceiling row and a mark with a ceiling
+is not; a `roof+floor` mark's two **line** loads reproduce `tribRoof` and `tribFloor` and its
+tributary is their sum; and an exterior mark is treated. It does **not** assert the dead load or
+`C_D` directly — an earlier printing of this claim was broad enough that mutation testing showed
+the literal defect would have passed it.
+
+### 4.10 — The explain pass
+
+The search is an optimiser: it proves which candidate wins while evaluating as few as it can.
+That is right for a solver and wrong for a sheet an engineer has to sign, because it can return a
+single row with nothing to compare against.
+
+So once the winner is settled, the rest of the admissible ladder is evaluated for display. Those
+evaluations are counted separately (`stats.contextEvaluated`) — they are context, not search —
+and they are walked in a **fixed order that does not depend on the weights**, so the ladder an
+engineer sees is the same ladder whatever the prices are. The pass has a budget
+(`policy.explainBudget`, 40 by default) and reports `stats.ladderComplete` when it did not
+exhaust the ladder, rather than truncating silently.
+
+The explain pass is also what makes H7 reachable at all, and it is the reason `feasible` is a
+usable set rather than a record of what the optimiser happened to touch.
 
 ---
 
@@ -277,7 +513,7 @@ The objective is **dollars**, not an index. Two reasons, and the second is the i
 | `laborPerPiece` | $/piece | Cut, place, nail. **Role-keyed** — an interior header is not a floor joist and an exterior lanai beam is neither. |
 | `laborPerLb` | $/lb | Handling. A 4x12 is a two-man lift. |
 | `depthPerInchSf` | $/sf per inch | What structural depth costs downstream — plate height, siding, drywall, HVAC chase, brick coursing. **Role-keyed**: a floor joist's depth is building height, a rafter's mostly is not. |
-| `minAvailability` / `specialOrderBelow` | fraction | A hard floor below which a member cannot be the pick, and a softer threshold above it that only *labels* the pick a special order. Set the floor low: a floor of 0.35 against the dry-4x tier silently excluded every dry 4x in every pack and turned a market placeholder into what read as an engineering finding. |
+| `minAvailability` / `specialOrderBelow` | fraction | **Not a weight — a gate, and it is in the feasibility path.** `minAvailability` is consumed by `eligibility()` before any engine call, so a member below it is never checked at all; `specialOrderBelow` sits above it and only *labels* the pick a special order. Set the floor low: a floor of 0.35 against the dry-4x tier silently excluded every dry 4x in every pack and turned a market placeholder into what read as an engineering finding. It is listed here because it lives beside the weights, and it is the one number in this table that Rule 2 does not cover. |
 | `UNIFY_BONUS` | $/plan, per SKU group | The system effect of collapsing a group to ONE SIZE — one rim depth, one hanger SKU, one subfloor elevation. Paid only on a real size collapse, never on a same-size grade swap. |
 | `stockPenaltySf` | $/sf at zero availability | Prorated by availability. A member the yard does not rack is not free. |
 | `unsourcedCF` | $/member | Review time when `C_F` is held at 1.00 because the catalog is silent. Not lumber — engineering. |
@@ -288,7 +524,7 @@ Per candidate:
 
 ```
 area      = repetitive ? (spacing_ft × span)   : (trib × span)      [sf served by one piece]
-length    = next even 2 ft ≥ span + 0.5, clamped to [8, 24]         [ft]
+length    = next even 2 ft ≥ span + 0.5, floored at 8 — NO UPPER CLAMP     [ft]
 material  = boardFeet × $/bf × material × (1 + cullRate)
 labor     = laborPerPiece + laborPerLb × weight_lb
 drop      = offcut board-feet × $/bf × dropHandling
@@ -304,6 +540,13 @@ score     = (cost + slackPenalty(DCR)) / unit
 `slackPenalty` is applied **only after feasibility is established**, which is what makes Rule 2
 mechanical rather than a promise.
 
+**`length` has no upper clamp**, and the absence is deliberate. It was clamped at 24 ft, which
+billed a 46 ft member as a 24-footer and gave it a **negative** drop cost — `(len − span)` went
+negative. The longest stick a yard racks is a supply constraint, which belongs in availability;
+it is not a discount. Pinned by **`solver · policy inputs are bounded`**, which also asserts the
+DCR-target clamp: a policy may set a target tighter than 1.00 and never looser, because
+`calc-spec.md` §6.2 allows no tolerance band.
+
 **The ranking unit is not the piece.** A member at 16 in o.c. and the same member at 24 in o.c.
 do not do the same amount of work, so ranking two spacings on per-piece cost silently prefers
 the tighter one. That is how the solver came to recommend 16 in o.c. roofs to three markets that
@@ -311,12 +554,9 @@ sheathe everything at 24. Repetitive members are ranked **per square foot of fra
 single members per piece. SKU unification and the plan cost rollup stay per-piece, because those
 are per-piece questions — the two numbers are carried separately as `score` and `pieceScore`.
 
-**And the loads follow what a member carries, not what it is called.** A mark's `role` is a name;
-its `carries` is the structure. Deriving load case, duration factor and deflection row from the
-role string put a treated deck beam on roof dead load, roof live at `C_D` 1.25 and ℓ/180, and
-printed a passing 4x8 for a member overstressed at 1.05 against the 40 psf deck live load it
-actually supports. Every mark that is not obvious declares `carries`, and a property test asserts
-the derived demand agrees with it for every mark in every plan.
+**And the loads follow what a member carries, not what it is called.** See §4.9 — `carries` and
+`bearing` are the two inputs with no default, and what the property test that pins them does and
+does not assert is written out there rather than summarised here.
 
 ### 5.1 What the weights are and are not
 
@@ -382,6 +622,48 @@ the same everywhere, buy them in one order) and which are **regionally forced** 
 those, exactly which variable forced them: snow duration in the NC mountains, tile dead load in
 the HVHZ, species availability in Florida.
 
+### 7.1 Master sets and variants
+
+The repeat matrix answers *one plan across several markets*. A master set is the other axis:
+**one plan across several versions of itself.** A production plan is stamped once and built as
+three to five **elevations** and four to ten structural **options** — tile instead of shingle, a
+bonus room over the garage, an extended patio, a slider where a window was. Every lot in the
+subdivision is one combination of those, and the stamped set has to cover all of them.
+
+`weights.js` carries them as `plan.elevations` and `plan.options`, read through
+**`FM.weights.variantsFor(plan)`**. An elevation or an option is a set of **overrides on marks**;
+an option additionally carries a **`takeRate`**, the fraction of lots that buy it.
+
+**What the solver does with them: nothing yet.** The search optimises **one demand per mark**.
+Given a variant, it sizes that variant. It does not compute an envelope across the master set,
+and it does not use `takeRate` to weight anything. That is a real gap, and it is the expensive
+one — sizing the base elevation and letting an option move a bearing is how a revision gets
+manufactured, and a revision is the most expensive line item in the model.
+
+**What the product does do about it, and it is a documentation guarantee rather than a
+structural one:** `export.js` will not issue a schedule for a master set without saying which
+variant it covers. The exported record names the variant it was solved for, states in terms that
+**it is one variant and not an envelope**, lists the elevations and the options with their take
+rates, and partitions the plan's marks into
+
+- **marks that change across the set** — some elevation or option declares an override on them —
+  each with the variants that move it, and
+- **marks common to every variant** — no variant overrides them.
+
+That partition is a statement about **declared inputs**, not a re-check. Nothing is re-solved
+against every variant, so a mark listed as common is common in what the plan says about it; a
+shared input that moves — a plate height, a truss direction — still moves a mark nobody
+overrode. The export says exactly that, in those words, underneath the list.
+
+Where `variantsFor()` is absent from a build, none of this is inferred and the record is
+unchanged.
+
+**What would close the gap** is not a report but an objective change: solve each mark against the
+**worst demand across the variants it appears in**, and report per mark which variant governed
+it. `takeRate` then has a legitimate use — deciding whether a rare option is worth carrying in
+the base member or is better handled as its own mark — and it is a genuine economics question,
+which means it belongs in the weights and not in the feasibility path.
+
 ---
 
 ## 8. What the solver does not do
@@ -393,16 +675,28 @@ Everything in `calc-spec.md` §8 still applies, unchanged. On top of that, speci
    (§8.6). The ladders therefore offer solid 4x headers, which is not what most of these houses
    are actually built with. **This is the largest single gap between this tool and the work.**
 2. **No engineered lumber.** LVL, LSL, PSL, glulam headers, I-joists, open-web trusses (§8.19).
-   A 16 ft garage-door header in a production plan is an engineered header; the solver correctly
-   finds no solid-sawn solution and says so, and cannot propose the thing that would work.
+   A 16 ft garage-door header in a production plan is an engineered header, and the solver cannot
+   propose the thing that would work. It does say why: `HDR-GAR-B`, the 16'-8" opening under a
+   bearing truss line, escalates on strength with *"the deepest section in the ladder gives 73.83
+   in³ of S_x and this member needs 105.67 — short by 43%."* An earlier printing of this bullet
+   claimed the same thing about the **gable-end** version of that opening, and that claim was
+   false twice over: a placeholder availability floor was suppressing a 4x8 that passes at DCR
+   0.896, and the gable-end mark is now refused outright for a different reason — it carries a
+   triangular wall load, and there is no wall dead load anywhere in the model (§8.3, and gap S9).
+   The scope statement stands. Check the example before repeating it.
 3. **No trusses.** A production roof in Texas and Florida is usually a truss package designed by
    the truss supplier. The plans in `weights.js` are stick-framed on purpose and say so.
-4. **No layout.** The solver sizes the marks it is given. It does not decide spans, tributary
-   widths, bearing locations, or where a beam goes.
-5. **No connections, uplift, or lateral.** Including on the members it just sized.
-6. **No 14 in and wider sawn sections**, per §3.
-7. **The weights are placeholders.** Until a firm replaces them, the *ranking* among passing
-   members reflects assumed prices — the feasibility does not.
+4. **No layout — but `weights.js` contains one.** The *solver* sizes the marks it is given and
+   decides no spans, tributaries, bearing locations or beam positions. The **plans** in
+   `weights.js` decide all of them, by hand, and they are the largest single determinant of the
+   answer: the two blockers a structural PE found were both wrong tributaries, not solver
+   defects. See §0.1. Nobody should read "no layout" as "no layout was assumed."
+5. **No envelope across a master set.** One demand per mark, per variant. See §7.1.
+6. **No connections, uplift, or lateral.** Including on the members it just sized.
+7. **No 14 in and wider sawn sections**, per §3.
+8. **The weights are placeholders.** Until a firm replaces them, the *ranking* among passing
+   members reflects assumed prices. **Availability is the exception** — it is a gate, not a
+   weight, and it decides feasibility (§0.1, §5).
 
 ---
 
@@ -415,11 +709,16 @@ Continuing `calc-spec.md` §9. These are the gaps the solver introduced or expos
 | S1 | **Multi-ply built-up members** (2-2x10, 3-2x12) | Out of scope per §8.6; the dominant real-world header in all three states | Highest-value scope extension. Needs NDS 15.3 / load-sharing treatment, not a fudge factor. |
 | S2 | **Engineered lumber** for spans solid sawn cannot reach | Out of scope per §8.19 | Without it the solver cannot answer the garage-header question, which every tract plan asks. |
 | S3 | **IBC Table 1604.3 total-load deflection, roof rows** | **Adjudicated — see §9.1.** `engine.js` is correct on the two rows that matter; `calc-spec.md` §5.5 is in error and the fixture `ex1_defl_total = 0.375` is wrong. One cell (`roof_no_ceiling` total) remains open. | Correct §5.5, its fixture, and the `engine.js` comment block in one commit. Do NOT change the engine. |
-| S7 | **IRC vs IBC** | Repeatable one- and two-family homes are permitted under the **IRC**, whose deflection table R301.7 has no `D + L` column at all. The total-load row this tool reports for a rafter is an IBC-derived firm overlay, not an IRC requirement. | Region packs now carry `code.family`. The `DEFL` table still needs an IRC/IBC switch and its `cite` strings still say "IBC" unconditionally. |
-| S8 | **One roof load, one duration** | The engine carries a single `roofLoad` tagged either snow or roof-live, so `D + Lr` and `D + S` can never be evaluated in the same run. Between roughly 17 and 20 psf roof snow, snow governs strength while roof-live governs deflection — and no single setting produces both. That band is in the North Carolina market. | Carry `q_Lr` and `q_S` separately and enumerate all six §2.1 combinations. `combosFor()` must move in lockstep; the "solver combos match engine combos" test is what catches the drift. |
+| S7 | **IRC vs IBC** | Repeatable one- and two-family homes are permitted under the **IRC**, whose deflection table R301.7 has no `D + L` column at all. The total-load row this tool reports for a rafter is an IBC-derived firm overlay, not an IRC requirement. | Region packs carry `code.family`, and `export.js` now derives the deflection statement from it rather than printing "IBC Table 1604.3" flat: on an IRC pack the schedule says the total-load row is a **firm overlay** and prints the engine's rows with their citation strings labelled as the engine's, not as the code's. The `DEFL` table itself still needs an IRC/IBC switch and its `cite` strings still say "IBC" unconditionally — the export can label the problem, it cannot fix it. |
+| S8 | **One roof load, one duration** | The engine carries a single `roofLoad` tagged either snow or roof-live, so `D + Lr` and `D + S` can never be evaluated in the same run. Between roughly 17 and 20 psf roof snow, snow governs strength while roof-live governs deflection — and no single setting produces both. That band is in the North Carolina market. | Carry `q_Lr` and `q_S` separately and enumerate all six §2.1 combinations. `combosFor()` must move in lockstep; **`solver · load combinations match the engine`** is the test that catches the drift. (It was cited here, and in a comment in `solver.js`, as *"solver combos match engine combos"* — a name no test has ever had.) A runtime advisory now fires when the roof load lands in the crossover band, pinned by **`solver · the roof-load crossover is surfaced, not silent`**; it makes the exposure visible and does not remove it. |
 | S4 | **Region price and availability data** | Placeholders | Replace with the firm's purchasing data. Affects ranking only. |
 | S5 | **Ground snow, wind, exposure, seismic per site** | Planning defaults | Replace with ASCE 7 Hazard Tool / AHJ values. `nc-mountain` is the one where this changes the answer, because it changes `C_D`. |
 | S6 | **Dead-load takeoffs** (15 psf shingle, 22 psf tile, 12 psf floor, 10 psf ceiling, 10 psf open porch) | Market values, not code | Confirm against the actual assembly schedule per plan. Tile in particular varies widely by product. |
+| S9 | **No wall dead load exists anywhere in the model** | `ASSEMBLY{}` has zero wall entries | It is what made the gable-end garage header unrefusable rather than checkable (§8 item 2). Printed in `FM.engine.LIMITS`, and the schedule export renders that array rather than restating it, so an item added there reaches the output. The vocabulary is still missing. |
+| S10 | **Slope** | No plan declares a pitch, and the assembly psf mix on-slope and horizontal components with no published split | `calc-spec.md` §1.4 makes the horizontal-projection conversion the user's responsibility and the model gives them nothing to do it with. Also in `LIMITS`. |
+| S11 | **The admissibility pin is narrower than the claim it supports** | The shipped exhaustive-vs-pruned test compares the winner and the score over 204 demands; it does not compare feasible sets and does not cross `wet`, `treated`, `trib`, `bearing`, `maxDCR` or the `deck` role | Widen the battery and compare sets. Until then the set-level claim rests on a hand-run battery that is not in the suite (§4, H1). |
+| S12 | **Three of the six escalation statuses fire on no shipped configuration** | `escalate:bearing`, `escalate:geometry` and `escalate:input` are reachable from hand-built demands and are produced by no shipped pack × plan | Add fixtures that exercise them, or accept that their notes are unexercised in production. `escalate:geometry` in particular falls through to the generic note branch and advises *"widen the palette or the size ladder"* for a member that physically does not fit — the right move (`GATE_MOVE.geometry`) exists and the note does not use it. |
+| S13 | **No envelope across a master set** | `elevations` and `options` are carried and reported; the solver optimises one demand per mark, per variant | §7.1. The export refuses to leave the tool without naming its variant; that is a documentation guarantee, not a structural one. |
 
 ### 9.1 The deflection conflict, adjudicated
 

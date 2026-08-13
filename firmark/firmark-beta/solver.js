@@ -46,19 +46,21 @@
   }
 
   /* ---------- load combinations ----------
-     Mirrors the combination set engine.js builds, so the seed bounds in §H1 are
-     taken against the same envelope the check will use. Guarded by the test
-     "solver combos match engine combos" — if engine.js ever changes its
-     combination set, that test fails rather than the bound going quietly wrong. */
+     The seed bounds in §H1 must be taken against the SAME envelope the check
+     uses. This used to be a second implementation here, kept honest by a test
+     that compared the two — and it earned its keep: the moment engine.js went
+     from four combinations to six, that test caught the drift. The right fix is
+     not a better mirror but no mirror at all, so the engine now exports its
+     builder and this delegates. One implementation cannot drift from itself. */
 
-  function combosFor(D, L, Lr, roofType) {
-    var CD = FM.engine.CD;
-    var roofCD = roofType === "roof_live" ? CD.roof_live : CD.snow;
-    var out = [{ label: "D", psf: D, cd: CD.dead.v }];
-    if (L > 0) out.push({ label: "D + L", psf: D + L, cd: CD.live.v });
-    if (Lr > 0) out.push({ label: "D + R", psf: D + Lr, cd: roofCD.v });
-    if (L > 0 && Lr > 0) out.push({ label: "D + 0.75L + 0.75R", psf: D + 0.75 * L + 0.75 * Lr, cd: roofCD.v });
-    return out;
+  function combosFor(D, L, Lr, roofType, qS) {
+    var qLr, snow;
+    if (qS !== undefined) { qLr = Lr; snow = qS; }
+    else if (roofType === "roof_live") { qLr = Lr; snow = 0; }
+    else { qLr = 0; snow = Lr; }
+    return FM.engine.buildCombos(D, L, qLr, snow).map(function (c) {
+      return { label: c.label, psf: c.psf, cd: c.cd.v, id: c.id };
+    });
   }
 
   /* ---------- demand → engine inputs ----------
@@ -223,7 +225,7 @@
   function seedBounds(demand, policy) {
     var span = Number(demand.span), L_in = span * 12;
     var D = num(demand.dead, 0), L = num(demand.live, 0), Lr = num(demand.roofLoad, 0);
-    var combos = combosFor(D, L, Lr, demand.roofType);
+    var combos = combosFor(D, L, Lr, demand.roofType, demand.snow);
     var use = FM.engine.DEFL[demand.memberUse] || FM.engine.DEFL.floor;
 
     var best = { Fb: 0, Fv: 0, E: 0, Fcp: 0 };

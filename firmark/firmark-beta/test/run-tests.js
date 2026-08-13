@@ -166,39 +166,65 @@ function policy(role, packId) {
   return FM.weights.policyFor(FM.weights.packById(packId || "nc-piedmont"), null, role || "rafter");
 }
 
-suite("solver · load combinations match the engine");
+suite("engine · all six ASCE 7 §2.4.1 combinations, and C_D from nonzero terms only");
 (function () {
-  var cases = [
-    { D: 15, L: 0, Lr: 20, t: "roof_live" },
-    { D: 15, L: 0, Lr: 25, t: "snow" },
-    { D: 12, L: 40, Lr: 0, t: "snow" },
-    { D: 15, L: 40, Lr: 20, t: "roof_live" },
-    { D: 10, L: 0, Lr: 0, t: "snow" }
-  ];
-  var allMatch = true, detail = "";
-  cases.forEach(function (c) {
-    var mine = FM.solver.combosFor(c.D, c.L, c.Lr, c.t);
-    var r = FM.engine.run({
-      species: "Southern Pine", grade: "No.2", size: "2x10", span: 12, spacing: 16,
-      dead: c.D, live: c.L, roofLoad: c.Lr, roofType: c.t, repetitive: true,
-      wet: false, braced: true, bearing: 3, memberUse: "floor", CF: "auto"
-    });
-    if (r.error) { allMatch = false; detail += "engine errored on " + JSON.stringify(c) + "; "; return; }
-    if (mine.length !== r.combos.length) {
-      allMatch = false;
-      detail += JSON.stringify(c) + " count " + mine.length + " vs " + r.combos.length + "; ";
-      return;
-    }
-    mine.forEach(function (m, i) {
-      if (Math.abs(m.psf - r.combos[i].psf) > 1e-9 || Math.abs(m.cd - r.combos[i].cd) > 1e-9) {
-        allMatch = false;
-        detail += JSON.stringify(c) + " combo " + i + " " + m.psf + "/" + m.cd +
-                  " vs " + r.combos[i].psf + "/" + r.combos[i].cd + "; ";
-      }
-    });
+  /* The solver used to carry a second implementation of this, kept honest by a
+     test that compared the two. engine.js now exports its builder and the solver
+     delegates, so that comparison is tautological — this tests the contract in
+     calc-spec §2.1 instead, which is what the comparison was standing in for. */
+  var c = FM.engine.buildCombos(15, 40, 20, 25);
+  eq(c.length, 6, "six combinations are enumerated unconditionally");
+  eq(c.map(function (x) { return x.id; }).join(","),
+     "D,D+L,D+Lr,D+S,D+.75L+.75Lr,D+.75L+.75S", "and in the order §2.1 lists them");
+  near(c[2].psf, 35, 1e-9, "D + Lr = 35 psf");
+  near(c[3].psf, 40, 1e-9, "D + S  = 40 psf");
+  near(c[2].cd.v, 1.25, 1e-9, "D + Lr takes C_D 1.25, seven-day");
+  near(c[3].cd.v, 1.15, 1e-9, "D + S  takes C_D 1.15, two-month");
+  near(c[4].cd.v, 1.25, 1e-9, "D + 0.75L + 0.75Lr takes the shortest duration present");
+
+  /* §2.3 rule 1: a zero-magnitude term must not set C_D */
+  var z = FM.engine.buildCombos(15, 0, 0, 0);
+  z.forEach(function (x) {
+    near(x.cd.v, 0.90, 1e-9, x.id + " with every variable term zero is permanent, C_D 0.90");
+    near(x.psf, 15, 1e-9, x.id + " reduces to D alone");
   });
-  truthy(allMatch, "solver combosFor() reproduces engine combinations across " + cases.length + " load cases");
-  if (!allMatch) console.log("      " + detail);
+  var partial = FM.engine.buildCombos(15, 0, 20, 0);
+  near(partial[1].cd.v, 0.90, 1e-9, "D + L with L = 0 is C_D 0.90, not 1.00 — an 11% error if got wrong");
+  near(partial[3].cd.v, 0.90, 1e-9, "D + S with S = 0 likewise");
+
+  /* the solver sees exactly what the engine sees */
+  var sc = FM.solver.combosFor(15, 40, 20, "roof_live", 25);
+  eq(sc.length, 6, "the solver's view is the same six");
+  var drift = 0;
+  sc.forEach(function (x, i) {
+    if (Math.abs(x.psf - c[i].psf) > 1e-9 || Math.abs(x.cd - c[i].cd.v) > 1e-9) drift++;
+  });
+  eq(drift, 0, "and identical term for term — it delegates rather than duplicating");
+})();
+
+suite("engine · snow and roof live are evaluated in the same run");
+(function () {
+  /* Between roughly 17 and 20 psf roof snow, snow governs bending while roof
+     live governs deflection. Carrying one roof load meant no single setting
+     produced both, and the band sits in the North Carolina market. */
+  var base = {
+    species: "Southern Pine", grade: "No.2", size: "2x10", span: 14, spacing: 16,
+    dead: 15, live: 0, repetitive: true, wet: false, braced: true, bearing: 3,
+    memberUse: "roof_nonplaster", CF: "auto"
+  };
+  var both = copy(base, { roofLive: 20, snow: 19 });
+  var r = FM.engine.run(both);
+  truthy(!r.error, "a member carrying both a roof live and a snow load evaluates");
+  var bending = r.checks.filter(function (x) { return x.name === "Bending"; })[0];
+  var defl = r.checks.filter(function (x) { return x.name === "Deflection (live)"; })[0];
+  eq(bending.combo, "D + S", "snow governs bending at 19 psf — C_D 1.15 against a larger load");
+  truthy(r.combos.length === 6, "and all six combinations are reported");
+
+  /* the legacy input path must be bit-identical */
+  var legacy = FM.engine.run(copy(base, { roofLoad: 20, roofType: "roof_live" }));
+  var viaNew = FM.engine.run(copy(base, { roofLive: 20, snow: 0 }));
+  near(viaNew.governing.dcr, legacy.governing.dcr, 1e-12,
+       "roofLoad + roofType still produces exactly what it always did");
 })();
 
 suite("solver · self-weight equivalence, calc-spec §1.3(b)");

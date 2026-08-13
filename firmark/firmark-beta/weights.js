@@ -553,6 +553,30 @@
     "roof+floor": "floor"              /* the tighter of the two rows governs */
   };
 
+  /* HDR-1's refusal, kept verbatim. It is the ruling SE-3 wrote in round four —
+     "substituting 12.0 replaces one asserted tributary with another and closes
+     the finding without answering it" — and it is specific to THAT mark. It used
+     to be hard-coded inside applicability(), which meant the second
+     underdetermined mark on any plan would have inherited HDR-1's story and
+     reported a contradiction it does not have. Every underdetermined mark now
+     carries its own `underdeterminedNote`; the generic fallback below is what a
+     mark that forgets gets, and it says it forgot rather than borrowing a
+     reason from somewhere else. */
+  var UNDETERMINED_HDR1 =
+    "NOT SIZED — the tributary is not derivable. This mark's roof tributary (19.0 ft, half the " +
+    "first-floor depth) contradicts the sibling header in the same wall one storey up (12.0 ft), " +
+    "and the plan declares no roof mark, no second-floor outline and no truss direction. Three " +
+    "values are in play (12.0, 16.32, 19.0) and none follows from the plan. Substituting one for " +
+    "another closes the finding without answering it. Declare the second-floor outline and the " +
+    "truss direction, then derive both headers from it.";
+
+  var UNDETERMINED_GENERIC =
+    "NOT SIZED — this mark is declared underdetermined and its tributary is not derivable from " +
+    "the plan's stated geometry. It carries no asserted number, because asserting one would " +
+    "close the finding without answering it. The mark states no reason of its own; add " +
+    "`underdeterminedNote` saying which quantity is missing and what must be declared to " +
+    "recover it.";
+
   /* ---------------- repeatable tract-home plans ----------------
      Built around the marks that are REAL in these three states.
 
@@ -619,6 +643,82 @@
             "the continuous load path and both the base and cap connections are out of scope " +
             "(§8.11, §8.17). Slenderness is not a formality: for a typical 8 ft 4x4, C_P runs 0.25 to " +
             "0.35, so a check that omits it overstates axial capacity roughly threefold." }
+      ],
+      geometry: {
+        footprintFt: [50, 46],
+        underRoofSf: 1860,
+        trussSpanFt: 46,
+        trussSpacingIn: 24,
+        bearingLines: "the two 50 ft walls. The 46 ft clear span is the product feature — it is what " +
+                      "makes the partitions movable between elevations.",
+        lanaiDepthFt: 14,
+        note: "Stated design geometry, not a weight. The 14 ft lanai depth is what HDR-W's 23.0 ft " +
+              "and BM-LAN's 7.0 ft tributaries already imply — half the truss span and half the " +
+              "lanai depth respectively. It is written down here so an elevation can move it."
+      },
+      elevations: [
+        { id: "a", kind: "elevation", label: "Elevation A · gable, 14 ft lanai", base: true,
+          takeRate: 0.40,
+          note: "The stamped base case. What the marks above are." },
+        { id: "b", kind: "elevation", label: "Elevation B · hip", takeRate: 0.35,
+          movesNoMember: true,
+          note: "The most-built elevation in most of these subdivisions and it moves no member this " +
+                "engine sizes. The common trusses still clear-span 46 ft onto the same two 50 ft " +
+                "walls, so every header tributary is unchanged. What a hip actually changes is the " +
+                "TRUSS PACKAGE — hip girders, step-downs and jacks — which is the supplier's " +
+                "deferred sealed submittal (T-1), and the girder-truss corner reactions, which land " +
+                "on posts §8.20 does not check. Declared as no-move rather than asserted as " +
+                "no-change: the members this engine sizes do not move, and the two things that do " +
+                "are both already out of scope." },
+        { id: "c", kind: "elevation", label: "Elevation C · extended covered patio", takeRate: 0.25,
+          note: "The lanai goes from 14 ft to 18 ft deep. The posts do not move, so neither span " +
+                "changes and both tributaries do — 18/2 = 9.0 ft against 14/2 = 7.0. This is the " +
+                "cleanest demonstration in the book that an elevation is a structural document: one " +
+                "dimension on a sales sheet, two members resized, and the revision is manufactured " +
+                "after permit if nobody sized the envelope.",
+          overrides: {
+            "BM-LAN": { trib: 9.0,
+              note: "Elevation C lanai is 18 ft deep; the beam takes half of it. Same 12 ft span — " +
+                    "the post bays did not move." },
+            "BM-LAN-W": { trib: 9.0,
+              note: "Elevation C lanai is 18 ft deep; the beam takes half of it. Same 16 ft wide " +
+                    "bay." },
+            "PST-LAN": { componentNote: "AXIAL MEMBER — NOT CHECKED HERE (calc-spec §4.10 specifies " +
+              "C_P, §8.20 evaluates no interaction equation). Elevation C loads these posts harder " +
+              "than Elevation A: both lanai beams carry 9.0 ft of tributary instead of 7.0, about " +
+              "29% more reaction. Take the design load from the reactions this tool computes for " +
+              "BM-LAN and BM-LAN-W in THIS variant — the Elevation A figures on the base mark are " +
+              "not the envelope. Uplift, the continuous load path and both the base and cap " +
+              "connections stay out of scope (§8.11, §8.17), and for a typical 8 ft 4x4 C_P runs " +
+              "0.25 to 0.35." }
+          } }
+      ],
+      options: [
+        { id: "opt-tile", kind: "option", label: "Concrete tile roof", takeRate: 0.20,
+          roofAssemblyKey: "roof_tile",
+          note: "The pack note on fl-hvhz already says it: concrete tile at 22 psf against 15 for " +
+                "shingle takes a 12 ft lanai beam from a 4x10 to a 4x12 on its own, so tile must be " +
+                "a plan VARIANT and not an afterthought. This is that variant. It is a no-op in the " +
+                "HVHZ pack, which already ships tile, and it is the single largest gravity change " +
+                "available anywhere else. [market] take rate." },
+        { id: "opt-8ft", kind: "option", label: "8 ft tall doors and windows, first floor",
+          takeRate: 0.30,
+          note: "An 8 ft head height in the 9'-1-1/8\" precut wall leaves 9.625 in for the header, " +
+                "less a double top plate and a shim — so nothing deeper than a 4x10 fits. It changes " +
+                "no load whatsoever and it is still a member change, because a header that does not " +
+                "fit is not a cheaper header, it is a plate-height change and a revision. Take it " +
+                "together with the tile option to see the case that produces one: tile drives the " +
+                "member deeper at the same moment this option caps how deep it may be.",
+          overrides: {
+            "HDR-W": { headHeightIn: 96 },
+            "HDR-SLD": { headHeightIn: 96 }
+          } },
+        { id: "opt-bed4", kind: "option", label: "4th bedroom in lieu of the study", takeRate: 0.50,
+          movesNoMember: true,
+          note: "Half the lots take it and it moves nothing. Under a 46 ft clear-span truss every " +
+                "interior partition is non-bearing, which is exactly what the plan note claims — " +
+                "this option is the claim being exercised rather than asserted. Declared rather than " +
+                "omitted: an option missing from the master set reads as an option nobody checked." }
       ]
     },
     {
@@ -641,6 +741,7 @@
                 "no steel method, so this engine cannot design either answer." },
         { id: "HDR-1", label: "1st-floor opening header", role: "header", span: 5.0, count: 10,
           carries: "roof+floor", tribRoof: 19.0, tribFloor: 6.75, underdetermined: true,
+          underdeterminedNote: UNDETERMINED_HDR1,
           bearing: 3.0, skuGroup: "header", headHeightIn: 80, wallPosition: "exterior-first-floor" },
         { id: "HDR-2", label: "2nd-floor window header", role: "header", span: 4.0, trib: 12.0, count: 12,
           carries: "roof", bearing: 1.5, skuGroup: "header", headHeightIn: 80,
@@ -679,6 +780,85 @@
             "load path (§8.11, §8.17) and both the base and cap connections (§8.17). Slenderness is " +
             "not a formality — for a typical 8 ft 4x4, C_P runs 0.25 to 0.35, so a check that omits " +
             "it overstates axial capacity roughly threefold." }
+      ],
+      geometry: {
+        footprintFt: [40, 38],
+        firstFloorSf: 1520,
+        secondFloorSf: 930,
+        storeys: 2,
+        bearingLines: "the exterior walls plus a centre bearing line on the first floor; the second " +
+                      "floor splits into a 13.5 ft front bay and a 15.0 ft rear bay across it.",
+        garageDepthFt: 22,
+        deckFt: [20, 12],
+        note: "Stated design geometry, not a weight. The 12 ft deck depth is what DK-1's 12.0 ft " +
+              "joist span and DK-2's 6.0 ft tributary already imply; the 22 ft garage depth is what " +
+              "HDR-GAR-2S derives its 11.0 ft roof tributary from."
+      },
+      elevations: [
+        { id: "a", kind: "elevation", label: "Elevation A · as stamped", base: true, takeRate: 0.55,
+          note: "The stamped base case. What the marks above are." },
+        { id: "b", kind: "elevation", label: "Elevation B · covered front porch", takeRate: 0.45,
+          geometry: { porchFt: [20, 8], posts: 3, eaveOverhangFt: 1.0,
+                      note: "Geometry this elevation adds, from which its added marks derive." },
+          note: "A covered porch across 20 ft of the 40 ft front face, 8 ft deep, on three posts. It " +
+                "adds a member rather than resizing one — which is the case a master set is most " +
+                "likely to lose, because a mark that does not exist on the base sheet has nobody " +
+                "checking it.",
+          add: [
+            { id: "BM-POR", label: "Front porch beam · treated", role: "beam",
+              span: 10.0, trib: 5.0, count: 2, carries: "roof",
+              exposure: "exterior", braced: false, skuGroup: "porch", roofAssembly: "open",
+              note: "Elevation B only. Porch is 20 ft wide by 8 ft deep on three posts, so the beam " +
+                    "is two 10.0 ft bays, and the tributary is half the 8 ft depth plus the 1 ft " +
+                    "eave overhang = 5.0 ft. Open roof: no ceiling, no insulation, no-ceiling " +
+                    "deflection row." },
+            { id: "PST-POR-B", label: "Front porch beam posts · BM-POR", role: "post",
+              count: 3, component: true,
+              componentNote: "AXIAL MEMBER — NOT CHECKED HERE (calc-spec §4.10 specifies C_P, §8.20 " +
+                "evaluates no interaction equation). Elevation B only. Take the design load from the " +
+                "end reaction this tool computes for BM-POR in this variant; the CENTRE post takes " +
+                "two bearings, so double it. Uplift, the continuous load path and both the base and " +
+                "cap connections are out of scope (§8.11, §8.17). For a typical 9 ft 4x4, C_P runs " +
+                "0.25 to 0.35." }
+          ] }
+      ],
+      options: [
+        { id: "opt-bonus", kind: "option", label: "Bonus room over the garage", takeRate: 0.35,
+          movesNoMember: true,
+          note: "This option moves no member, and the reason is the entire argument for master-set " +
+                "sizing. HDR-GAR-2S was ALREADY sized to it: register D11 and §K.4 ruled that the " +
+                "base sheet carries the bonus-room case (tribRoof 11.0 + tribFloor 5.5) rather than " +
+                "the roof-only case, precisely so that taking the option does not manufacture a " +
+                "revision after permit. The cost of that decision is visible on every lot that does " +
+                "NOT take the bonus room and buys the header anyway; the cost of the other decision " +
+                "is a stamped revision on 35% of them. Both are real, the firm chose, and the choice " +
+                "is written down here instead of being invisible." },
+        { id: "opt-deck-ext", kind: "option", label: "Extended rear deck · 26 ft × 14 ft",
+          takeRate: 0.25,
+          note: "The deck grows from 20 ft × 12 ft to 26 ft × 14 ft. Both deck members move and they " +
+                "move in different directions, which is the point: the joist gets longer, and the " +
+                "beam gets SHORTER because the wider deck buys a fourth post. Neither variant of the " +
+                "beam dominates the other, so the envelope for that mark cannot be collapsed to one " +
+                "demand — see envelopeFor().",
+          overrides: {
+            "DK-1": { span: 14.0, runFt: 26,
+              note: "Extended deck is 14 ft deep, so the joists span 14.0 ft, over a 26 ft run. " +
+                    "IRC R507, 40 psf live — and see register L10 on the 60 psf reading." },
+            "DK-2": { span: 8.67, trib: 7.0, count: 3,
+              note: "26 ft of beam on four posts = three 8.67 ft bays, and the tributary is half the " +
+                    "14 ft deck depth = 7.0 ft. Shorter span, heavier load: it is the pair that " +
+                    "makes the envelope a genuine question rather than a maximum." },
+            "PST-DK": { count: 4, componentNote: "AXIAL MEMBER — NOT CHECKED HERE (calc-spec §4.10, " +
+              "§8.20). The extended deck stands on FOUR posts, not two, and each carries 7.0 ft of " +
+              "tributary instead of 6.0. Take the design load from the reaction this tool computes " +
+              "for DK-2 in THIS variant — the 1,231 lb on the base mark is the 20 ft deck. Uplift " +
+              "and both connections remain out of scope (§8.11, §8.17), and C_P is not evaluated." }
+          } },
+        { id: "opt-tile", kind: "option", label: "Concrete tile roof", takeRate: 0.15,
+          roofAssemblyKey: "roof_tile",
+          note: "22 psf against 15 reaches every roof-carrying mark on the plan at once — HDR-2 " +
+                "here, and Elevation B's porch beam where that elevation is built. A no-op in the " +
+                "HVHZ pack, which already ships tile. [market] take rate." }
       ]
     },
     {
@@ -733,6 +913,397 @@
             "computes: BM-POR 931 to 1,149 lb per post across the packs; DK-C2 1,548 lb. In a " +
             "wind-governed market UPLIFT on this post and its base and cap connections (§8.11, " +
             "§8.17) govern, and none of that is checked here." }
+      ],
+      geometry: {
+        footprintFt: [26, 32],
+        storeys: 2,
+        sfPerUnit: 1600,
+        trussSpanFt: 26,
+        bearingLines: "the party wall and the two end walls, plus one interior line on the second " +
+                      "floor 15.5 ft off the exterior wall — FJ-1's bay — leaving a 10.5 ft " +
+                      "party-wall bay that carries no joist mark.",
+        porchFt: [20, 12],
+        posts: 3,
+        note: "Stated design geometry, not a weight. The 12 ft porch depth is what BM-POR's 6.0 ft " +
+              "tributary and DK-C1's 12.0 ft joist span already imply, and the 20 ft porch width is " +
+              "DK-C1's stated run — two 10 ft bays on three posts."
+      },
+      elevations: [
+        { id: "a", kind: "elevation", label: "Elevation A · gable, 12 ft covered porch", base: true,
+          takeRate: 0.60,
+          note: "The stamped base case. What the marks above are." },
+        { id: "b", kind: "elevation", label: "Elevation B · deep screened lanai", takeRate: 0.40,
+          note: "The porch goes from 12 ft to 14 ft deep and the wider load buys a fourth post, so " +
+                "the 20 ft run becomes three 6.67 ft bays instead of two 10.0 ft ones. Both porch " +
+                "members therefore get MORE tributary and LESS span at the same time, and neither " +
+                "variant dominates the other. This is the case the envelope logic exists for: there " +
+                "is no single conservative demand, and the honest answer is to size both and take " +
+                "the deeper pick, not to compose a maximum no lot is built to.",
+          overrides: {
+            "BM-POR": { span: 6.67, trib: 7.0, count: 3,
+              note: "Elevation B: 20 ft of beam on four posts = three 6.67 ft bays; tributary is " +
+                    "half the 14 ft porch depth = 7.0 ft." },
+            "DK-C1": { span: 14.0,
+              note: "Elevation B porch depth is 14 ft, so the deck joists span it. Run is still " +
+                    "BM-POR's 20 ft. OPEN: IRC R507 gives 40 psf where ASCE 7-22 Table 4.3-1 gives " +
+                    "60 psf for an exterior balcony (register L10) — at 14 ft that gap is wider, " +
+                    "not narrower." },
+            "DK-C2": { span: 6.67, trib: 7.0, count: 3,
+              note: "Shares the same four posts as BM-POR in this elevation: three 6.67 ft bays, " +
+                    "tributary half the 14 ft depth = 7.0 ft." },
+            "PST-POR": { count: 5, componentNote: "AXIAL MEMBER — NOT CHECKED HERE (calc-spec " +
+              "§4.10, §8.20: C_P is specified and no interaction equation is evaluated). Elevation B " +
+              "stands on FOUR posts per porch, not three, and each carries 7.0 ft of tributary " +
+              "instead of 6.0 — and each still takes BOTH the porch-roof beam and the deck beam. " +
+              "Take the design loads from the reactions this tool computes for BM-POR and DK-C2 in " +
+              "THIS variant; the figures on the base mark are Elevation A. In a wind-governed market " +
+              "UPLIFT on this post and its base and cap connections (§8.11, §8.17) govern, and none " +
+              "of that is checked here." }
+          } }
+      ],
+      options: [
+        { id: "opt-tile", kind: "option", label: "Concrete tile roof", takeRate: 0.45,
+          roofAssemblyKey: "roof_tile",
+          note: "Nearly half the lots in this market, and it is a no-op in the HVHZ pack because " +
+                "that pack already ships tile — which is worth showing, because it is the same " +
+                "option costing nothing in one market and moving the porch beam in the other five. " +
+                "[market] take rate." },
+        { id: "opt-3bed-down", kind: "option", label: "3rd bedroom down in lieu of the study",
+          takeRate: 0.35, movesNoMember: true,
+          note: "Moves nothing. The trusses clear-span the 26 ft width party wall to party wall, so " +
+                "no first-floor partition is bearing for the roof, and the second-floor bearing line " +
+                "BM-BRG serves is set by FJ-1's 15.5 ft bay, which this option does not touch. " +
+                "Declared rather than omitted: an option missing from the master set reads as an " +
+                "option nobody checked." }
+      ]
+    },
+
+    /* ---------------- the small end of the market ----------------
+       The three plans above are 1,600–2,450 sf. The product that is actually
+       repeated two hundred times in one subdivision is smaller than any of
+       them, and it frames differently: a slab-on-grade starter has NO floor
+       framing at all, and an attached unit's party walls carry everything so
+       its street-facing walls carry almost nothing. Both facts change what this
+       engine has to say, and both are stated on the marks rather than implied. */
+
+    {
+      id: "starter-1210",
+      name: "Starter 1210",
+      summary: "1,208 sf conditioned + 264 sf one-car garage, single-story slab-on-grade, 46 ft × 32 ft, simple gable, trusses at 24 in o.c.",
+      lots: 220,
+      geometry: {
+        footprintFt: [46, 32],
+        underRoofSf: 1472,
+        conditionedSf: 1208,
+        garage: { widthFt: 12, depthFt: 22, sf: 264, cars: 1 },
+        roofForm: "simple gable, ridge parallel to the 46 ft street face",
+        trussSpanFt: 32,
+        trussSpacingIn: 24,
+        bearingLines: "the two 46 ft walls, front and rear. The two 32 ft walls are gable ends and " +
+                      "bear nothing. There is no third bearing line and no floor framing.",
+        coveredEntryFt: [8, 6],
+        eaveOverhangFt: 1.0,
+        note: "Stated design geometry, not a weight. Every span, tributary and count on this plan " +
+              "is derived from these seven numbers and the derivation is written on the mark."
+      },
+      note: "The genuinely small end of this market — the 3/2 entry product built two hundred times " +
+            "in one subdivision. One decision sets the whole frame: the common trusses clear-span the " +
+            "32 ft depth onto the two 46 ft walls, so those two walls are the only bearing lines in " +
+            "the house, every interior partition is non-bearing, and every opening in a 46 ft wall " +
+            "takes the same 16.0 ft. It is a slab, so there is no floor framing to size. The engine's " +
+            "entire answer on this plan is four headers and one entry beam — and in the two " +
+            "concrete-block Florida packs it is one entry beam, because first-floor exterior " +
+            "openings there are concrete lintels. That is the truth about the product, not a gap " +
+            "in the tool.",
+      marks: [
+        { id: "T-1", label: "Common roof truss · 32 ft clear span", role: "rafter",
+          span: 32, runFt: 46, count: 24, carries: "roof", component: true,
+          componentNote: "Truss package, deferred sealed submittal by the truss supplier. Out of " +
+            "scope: this engine designs simple-span solid-sawn members only (calc-spec §8.6, §8.19). " +
+            "Count is the 46 ft ridge run at 24 in o.c. plus one." },
+
+        { id: "HDR-W", label: "Window header · typical, bearing wall", role: "header",
+          span: 4.5, trib: 16.0, count: 8, carries: "roof", bearing: 3.0,
+          skuGroup: "header", headHeightIn: 80, wallPosition: "exterior-first-floor",
+          note: "4'-0\" window: rough opening 4'-0-1/2\" plus 3 in of bearing at each end = 4.5 ft. " +
+                "Tributary is half the 32 ft truss clear span, because both 46 ft walls are bearing " +
+                "lines and they are the only ones on the plan. Two jacks." },
+
+        { id: "HDR-ENT", label: "Front entry door header", role: "header",
+          span: 3.67, trib: 16.0, count: 1, carries: "roof", bearing: 3.0,
+          skuGroup: "header", headHeightIn: 80, wallPosition: "exterior-first-floor",
+          note: "3'-0\" door: rough opening 3'-2\" plus 3 in of bearing at each end = 3'-8\" = 3.67 ft. " +
+                "Same 16.0 ft as HDR-W — it is in the same bearing wall, and that is the point of a " +
+                "clear-span truss plan: the tributary is a property of the wall, not of the opening." },
+
+        { id: "HDR-SLD", label: "Rear slider header", role: "header",
+          span: 6.5, trib: 16.0, count: 1, carries: "roof", bearing: 3.0,
+          skuGroup: "header", headHeightIn: 80, wallPosition: "exterior-first-floor",
+          note: "6'-0\" sliding glass door: rough opening 6'-1\" plus 3 in of bearing at each end " +
+                "= 6.5 ft. Tributary is half the 32 ft truss span." },
+
+        { id: "HDR-GAR", label: "One-car garage door header · trusses bearing", role: "header",
+          span: 9.67, trib: 16.0, count: 1, carries: "roof", bearing: 4.5,
+          skuGroup: "header", headHeightIn: 84, wallPosition: "exterior-first-floor",
+          note: "9'-0\" single garage door: rough opening 9'-2\" plus 3 in of bearing at each end = " +
+                "9'-8\" = 9.67 ft. The garage door is in the FRONT 46 ft wall, which is a truss " +
+                "bearing line, so it takes the same 16.0 ft every other opening in that wall takes. " +
+                "Three jacks: §K3 found five rows needing more than one and this is the largest " +
+                "reaction on the plan. This is the mark that decides whether the smallest house in " +
+                "the book needs an engineered header at all." },
+
+        { id: "HDR-GBL", label: "Gable-end window header", role: "header",
+          span: 4.5, count: 3, carries: "roof", bearing: 3.0,
+          skuGroup: "header", headHeightIn: 80, wallPosition: "exterior-first-floor",
+          component: true,
+          componentNote: "OUT OF SCOPE — NOT CHECKED, for the same reason HDR-GAR-G on the Sunbelt " +
+            "Ranch is not: a header in a gable end carries the gable wall standing on it, ASSEMBLY{} " +
+            "has no wall dead load of any kind (register §L6), and the load is TRIANGULAR, which " +
+            "calc-spec §8.3 excludes outright. The 32 ft walls are not truss bearing lines, so there " +
+            "is no roof strip to substitute either — the honest tributary here is a wall weight and " +
+            "the model cannot express it. Re-admit only once the plan declares roof pitch, gable " +
+            "width, wall weight and opening offset, with a stated moment-equivalent uniform." },
+
+        { id: "BM-ENT", label: "Covered entry beam · treated", role: "beam",
+          span: 8.0, trib: 4.0, count: 1, carries: "roof",
+          exposure: "exterior", braced: false, skuGroup: "porch", roofAssembly: "open",
+          note: "The entry stoop is 8 ft wide by 6 ft deep. The beam is at the outer edge on two " +
+                "posts, so the span is the 8 ft width and the tributary is half the 6 ft depth plus " +
+                "the 1 ft eave overhang = 4.0 ft. Open roof: no ceiling, no insulation, so it is on " +
+                "the no-ceiling deflection row and the 10 psf open-roof assembly, not the 15 psf " +
+                "enclosed one. This is the only mark on the plan that survives in a block market." },
+
+        { id: "PST-ENT", label: "Covered entry beam posts · BM-ENT", role: "post",
+          count: 2, component: true,
+          componentNote: "AXIAL MEMBER — NOT CHECKED HERE (calc-spec §4.10 specifies C_P, §8.20 " +
+            "states no interaction equation is evaluated, and engine.js implements neither). Design " +
+            "load from the end reaction this tool DOES compute for BM-ENT: 483 lb per post " +
+            "(560 lb nc-mountain, 591 lb fl-hvhz). Small numbers, and they are still not the design: " +
+            "on a covered entry in a wind-governed market UPLIFT and the base and cap connections " +
+            "govern, and all three are out of scope (§8.11, §8.17). For a typical 8 ft 4x4, C_P runs " +
+            "0.25 to 0.35, so a check that omits it overstates axial capacity roughly threefold." }
+      ],
+      elevations: [
+        { id: "a", kind: "elevation", label: "Elevation A · gable, one-car garage", base: true,
+          takeRate: 0.45,
+          note: "The stamped base case: simple gable, 12 ft x 22 ft one-car garage, 8 ft x 6 ft " +
+                "covered entry. What the marks above are." },
+        { id: "b", kind: "elevation", label: "Elevation B · gable, deeper covered entry",
+          takeRate: 0.30,
+          note: "The same roof and the same garage; the entry stoop grows to 12 ft wide by 8 ft " +
+                "deep for a front-porch look. The beam span and tributary both move, so this is a " +
+                "different member on the same stamped plan.",
+          overrides: {
+            "BM-ENT": { span: 12.0, trib: 5.0,
+              note: "Elevation B stoop: 12 ft wide by 8 ft deep. Span is the 12 ft width on two " +
+                    "posts; tributary is half the 8 ft depth plus the 1 ft eave = 5.0 ft." },
+            "PST-ENT": { componentNote: "AXIAL MEMBER — NOT CHECKED HERE (calc-spec §4.10, §8.20). " +
+              "Elevation B loads this post harder than Elevation A: BM-ENT grows to a 12 ft span at " +
+              "5.0 ft of tributary. Take the design load from the reaction this tool computes for " +
+              "BM-ENT in THIS variant, not from the Elevation A figure. Uplift and both connections " +
+              "remain out of scope (§8.11, §8.17), and C_P is not evaluated." }
+          } },
+        { id: "c", kind: "elevation", label: "Elevation C · carport in lieu of the garage",
+          takeRate: 0.25,
+          note: "The entry-level elevation in the value series and a real one in Texas and Florida: " +
+                "the 12 ft x 22 ft garage becomes an open carport on posts. The garage door header " +
+                "does not exist on these lots — the opening is the full 12 ft bay and it is spanned " +
+                "by a treated beam, not a header in a wall. This is the variant that shows why an " +
+                "elevation is not a finish selection: it deletes a member and adds a different one.",
+          remove: ["HDR-GAR"],
+          add: [
+            { id: "BM-CAR", label: "Carport beam · treated", role: "beam",
+              span: 12.0, trib: 11.0, count: 1, carries: "roof",
+              exposure: "exterior", braced: false, skuGroup: "porch",
+              note: "Elevation C only. The carport is the same 12 ft x 22 ft opening the garage " +
+                    "occupied, and it sits under the main roof, so the beam spans the 12 ft width " +
+                    "and carries half the 22 ft carport depth = 11.0 ft. It carries the ENCLOSED " +
+                    "roof assembly and sits on the gypsum-ceiling deflection row, because the main " +
+                    "roof runs over it — this is not an open porch soffit, which is why " +
+                    "`roofAssembly: \"open\"` is deliberately absent." },
+            { id: "PST-CAR", label: "Carport beam posts · BM-CAR", role: "post",
+              count: 2, component: true,
+              componentNote: "AXIAL MEMBER — NOT CHECKED HERE (calc-spec §4.10 specifies C_P, §8.20 " +
+                "evaluates no interaction equation). Elevation C only. Take the design load from the " +
+                "end reaction this tool computes for BM-CAR in this variant. These are the tallest " +
+                "and hardest-worked posts on the plan and they stand in the open: uplift, the " +
+                "continuous load path and both the base and cap connections are out of scope " +
+                "(§8.11, §8.17), and in a wind-governed market they are the design." }
+          ] }
+      ],
+      options: [
+        { id: "opt-tile", kind: "option", label: "Concrete tile roof", takeRate: 0.20,
+          roofAssemblyKey: "roof_tile",
+          note: "Sold as an elevation upgrade in Florida and Texas; standard in the HVHZ pack, where " +
+                "taking it changes nothing because the pack already ships tile. Everywhere else it " +
+                "is the largest gravity change available on this plan — 22 psf against 15 for the " +
+                "enclosed roof, 17 against 10 for the open entry — and it moves every roof-carrying " +
+                "mark at once. [market] take rate." },
+        { id: "opt-8ft", kind: "option", label: "8 ft tall entry and slider", takeRate: 0.25,
+          note: "An 8 ft head height in a 9'-1-1/8\" precut wall leaves 9.625 in of depth for the " +
+                "header, less a double top plate and a shim. It changes no load at all and it can " +
+                "still force a revision, because a member that does not fit is not a cheaper member. " +
+                "Pair it with the tile option to see the case that actually produces one.",
+          overrides: {
+            "HDR-ENT": { headHeightIn: 96 },
+            "HDR-SLD": { headHeightIn: 96 }
+          } },
+        { id: "opt-bed3-flex", kind: "option", label: "3rd bedroom in lieu of the flex room",
+          takeRate: 0.55, movesNoMember: true,
+          note: "The most-taken option in the series and it moves nothing structural, which is the " +
+                "product feature: the trusses clear-span 32 ft onto the two 46 ft walls, so every " +
+                "interior partition on this plan is non-bearing and a wall can be added, moved or " +
+                "deleted without a member changing. Declared here rather than omitted, because an " +
+                "option missing from the master set reads as an option nobody checked." }
+      ]
+    },
+
+    {
+      id: "townhome-1220",
+      name: "Townhome 1220",
+      summary: "1,220 sf conditioned + 220 sf one-car garage, two-story attached interior unit, 20 ft × 36 ft, party-wall bearing",
+      lots: 96,
+      geometry: {
+        footprintFt: [20, 36],
+        storeys: 2,
+        grossSfPerFloor: 720,
+        conditionedSf: 1220,
+        garage: { widthFt: 11, depthFt: 20, sf: 220, cars: 1 },
+        roofForm: "low gable, ridge front to back, common trusses party wall to party wall",
+        trussSpanFt: 20,
+        trussSpacingIn: 24,
+        bearingLines: "the two party walls, plus one interior line running front to back 11.0 ft off " +
+                      "the left party wall — it is the garage's inboard side wall, stacked, and it " +
+                      "splits the 20 ft width into an 11.0 ft bay and a 9.0 ft bay.",
+        coveredPatioFt: [20, 8],
+        eaveOverhangFt: 1.0,
+        note: "Stated design geometry, not a weight. This is an INTERIOR unit of an attached row: " +
+              "both party walls are bearing and both are shared. An end unit is a different plan."
+      },
+      note: "Attached for-sale townhomes are a genuinely cookie-cutter product in DFW, Austin, " +
+            "Charlotte, Raleigh, Orlando and Tampa, and this is the small front-load unit. The frame " +
+            "follows from the attachment: both the roof trusses and the second-floor joists span the " +
+            "20 ft width party wall to party wall, so the party walls carry the building and the " +
+            "front and rear walls carry almost nothing. That is why the most conspicuous opening on " +
+            "the elevation — the garage door — is the one mark on this plan the engine refuses. What " +
+            "it carries is two storeys of wall, and this model has no wall dead load (register §L6). " +
+            "Every other opening in the front and rear walls is the same wall-load-only condition; " +
+            "the garage door is carried as the representative case rather than repeating the same " +
+            "refusal eight times.",
+      marks: [
+        { id: "T-1", label: "Common roof truss · 20 ft clear span", role: "rafter",
+          span: 20, runFt: 36, count: 19, carries: "roof", component: true,
+          componentNote: "Truss package, deferred sealed submittal by the truss supplier. Out of " +
+            "scope (calc-spec §8.6, §8.19). Count is the 36 ft depth at 24 in o.c. plus one. On an " +
+            "attached unit the truss bears on the two party walls, which is what makes the front and " +
+            "rear walls non-bearing." },
+
+        { id: "FJ-1", label: "2nd floor joist · 11 ft bay, garage side", role: "joist",
+          span: 11.0, runFt: 36, count: 28, skuGroup: "floor",
+          note: "The interior bearing line sits 11.0 ft off the left party wall because that is the " +
+                "garage's inboard side wall, stacked and continuous to the rear of the unit. The bay " +
+                "runs the full 36 ft depth. Piece count follows the spacing the solver picks." },
+
+        { id: "FJ-2", label: "2nd floor joist · 9 ft bay", role: "joist",
+          span: 9.0, runFt: 26, count: 21, skuGroup: "floor",
+          note: "20 ft unit width less the 11.0 ft bay = 9.0 ft. Run is the 36 ft depth less the " +
+                "10 ft bath and laundry stretch carried by FJ-3. The two bays landing one rung apart " +
+                "is the whole reason a floor-depth unification decision exists on this plan." },
+
+        { id: "FJ-3", label: "2nd floor joist · bath and laundry", role: "joist",
+          span: 9.0, runFt: 10, count: 9, skuGroup: "floor", floorAssembly: "floor_wet",
+          note: "Same 9.0 ft bay as FJ-2, but tiled: ceramic on backer with thinset is +10 psf and a " +
+                "bay carrying the plain residential assembly here is checked 31% light. It is also " +
+                "the bay a single floor depth is decided on." },
+
+        { id: "GB-1", label: "Flush girder · great-room opening in the bearing line", role: "beam",
+          span: 12.0, trib: 10.0, count: 1, carries: "floor", braced: true,
+          skuGroup: "girder", escalateExpected: true,
+          note: "The interior bearing line is interrupted behind the garage for the great room. The " +
+                "line takes half of each adjacent bay: 11.0/2 + 9.0/2 = 10.0 ft. 12.0 ft is the " +
+                "opening. In the market this is a multi-ply LVL or a steel W-shape; the catalog " +
+                "carries 48 W-shapes and calc-spec has no steel method, so this engine can design " +
+                "neither answer and says so rather than printing a sawn member nobody would build." },
+
+        { id: "HDR-ST", label: "Stair opening header · 2nd floor", role: "header",
+          span: 12.5, trib: 2.75, count: 1, carries: "floor", braced: true, bearing: 3.0,
+          skuGroup: "header",
+          note: "12'-6\" clear opening = 15 treads at 10 in, derived from this pack's own 109.125 in " +
+                "plate (16R at 7.6 in per IRC R311.7.1) — the same derivation the Two-Story 2450 " +
+                "uses. The stair runs front to back against the left party wall, PERPENDICULAR to " +
+                "the joists, so the header runs with the stair and catches the cut joists: the " +
+                "opening is 3'-6\" wide, leaving tail joists spanning 9.0 - 3.5 = 5.5 ft to the " +
+                "bearing line, t = 2.75 ft. NOT CHECKED HERE, and neither is anything else in this " +
+                "assembly: the two double TRIMMERS take this header's end reaction as a " +
+                "CONCENTRATED load (calc-spec §8.3 admits a uniform full-span load only), the upper " +
+                "stringer lands on it as a second point load, and the joist-to-header connection is " +
+                "a face-mount hanger (§8.17)." },
+
+        { id: "HDR-GAR", label: "One-car garage door header · front wall", role: "header",
+          span: 9.67, count: 1, carries: "roof", bearing: 4.5,
+          skuGroup: "header", headHeightIn: 84, wallPosition: "exterior-first-floor",
+          underdetermined: true,
+          underdeterminedNote:
+            "NOT SIZED — what this header carries is a WALL, and this model has no wall dead load. " +
+            "In an interior attached unit the roof trusses and the second-floor joists both span " +
+            "party wall to party wall, so the front wall is a bearing line for NEITHER. This header " +
+            "takes the second-floor rim joist, two storeys of wall standing on it, and the eave — " +
+            "and ASSEMBLY{} has no wall entry of any kind (register §L6, still open). There is no " +
+            "roof strip and no floor strip to substitute: a 16.0 ft tributary would be borrowed from " +
+            "a detached plan, and a 0.7 ft one would be the rim alone with the wall silently " +
+            "dropped. Both are inventions. Declare a wall dead load and the rim condition, then " +
+            "derive it. Sizing it on a roof strip is precisely the defect §K5 refused on the garage " +
+            "gable header, and the answer there was refusal too. `carries` and `bearing` are " +
+            "declared so the mark is complete the day the wall load exists." },
+
+        { id: "BM-PAT", label: "Rear covered patio beam · treated", role: "beam",
+          span: 10.0, trib: 5.0, count: 2, carries: "roof",
+          exposure: "exterior", braced: false, skuGroup: "porch", roofAssembly: "open",
+          note: "The rear covered patio is the full 20 ft unit width by 8 ft deep. The beam is at " +
+                "the outer edge on three posts, so it is two 10.0 ft bays, and the tributary is half " +
+                "the 8 ft depth plus the 1 ft eave overhang = 5.0 ft. Open roof: no ceiling, no " +
+                "insulation, no-ceiling deflection row. Treated Southern Pine in all six markets — " +
+                "this and the joists are what this engine is genuinely the right tool for here." },
+
+        { id: "PST-PAT", label: "Rear patio beam posts · BM-PAT", role: "post",
+          count: 3, component: true,
+          componentNote: "AXIAL MEMBER — NOT CHECKED HERE (calc-spec §4.10 specifies C_P, §8.20 " +
+            "states no interaction equation is evaluated, and engine.js implements neither). Design " +
+            "load from the end reaction this tool DOES compute for BM-PAT: 754 lb per bearing " +
+            "(875 lb nc-mountain, 923 lb fl-hvhz). The CENTRE post takes two bearings, so double it. " +
+            "Uplift, the continuous load path and both the base and cap connections are out of scope " +
+            "(§8.11, §8.17). For a typical 9 ft 4x4, C_P runs 0.25 to 0.35, so a check that omits it " +
+            "overstates axial capacity roughly threefold." }
+      ],
+      elevations: [
+        { id: "a", kind: "elevation", label: "Elevation A · interior unit, 8 ft covered patio",
+          base: true, takeRate: 0.70,
+          note: "The stamped base case and the great majority of the row: an interior unit with " +
+                "both party walls shared." },
+        { id: "b", kind: "elevation", label: "Elevation B · interior unit, 12 ft covered patio",
+          takeRate: 0.30,
+          note: "The rear patio grows from 8 ft to 12 ft deep on the lots that back to open space. " +
+                "The beam run does not change, so the span does not either — only the tributary " +
+                "moves. It is the cleanest single-driver variant in the book and the one to show " +
+                "first: same member, same span, more roof on it.",
+          overrides: {
+            "BM-PAT": { trib: 7.0,
+              note: "Elevation B patio: 20 ft wide by 12 ft deep, same three posts, so still two " +
+                    "10.0 ft bays. Tributary is half the 12 ft depth plus the 1 ft eave = 7.0 ft." }
+          } }
+      ],
+      options: [
+        { id: "opt-tile", kind: "option", label: "Concrete tile roof", takeRate: 0.15,
+          roofAssemblyKey: "roof_tile",
+          note: "Rare on attached product outside Florida and a no-op in the HVHZ pack, which " +
+                "already ships tile. Carried because the tile decision is made once for the whole " +
+                "row and it reaches the patio beam. [market] take rate." },
+        { id: "opt-loft", kind: "option", label: "Loft in lieu of the 3rd bedroom", takeRate: 0.40,
+          movesNoMember: true,
+          note: "Deletes a partition on the second floor. The trusses clear-span 20 ft party wall to " +
+                "party wall, so no second-floor partition on this plan is bearing and no member " +
+                "moves. Declared rather than omitted: an option missing from the master set reads as " +
+                "an option nobody checked." }
       ]
     }
   ];
@@ -792,7 +1363,21 @@
     };
   }
 
-  function demandFor(mark, plan, pack) {
+  function demandFor(mark, plan, pack, variantId) {
+    /* A master set is one plan built many ways. Passing `variantId` resolves the
+       mark against that elevation/option set FIRST and then sizes what the
+       builder will actually build on that lot. Omitting it sizes the stamped
+       base case, which is what the solver does today — the fourth argument is
+       additive and every existing three-argument call is unchanged. */
+    if (variantId && plan) {
+      var rv = markFor(plan, mark.id, variantId);
+      if (!rv) {
+        throw new Error("mark " + mark.id + " is not built in variant \"" + variantId +
+                        "\" of plan " + plan.id + " — it is removed by that elevation or option, " +
+                        "so it has no demand there");
+      }
+      mark = rv;
+    }
     var role = mark.role;
     var L = pack.loads;
     function assembly(name) {
@@ -803,7 +1388,15 @@
       }
       return ASSEMBLY[name].psf;
     }
-    var roofDead = assembly(L.roofAssembly);
+    /* The roof covering is the one assembly a plan OPTION changes — tile over
+       shingle is the single largest gravity difference in this product, and the
+       fl-hvhz pack already says so. A mark (or the variant that resolved it)
+       may therefore name its own roof assembly; absent that, the pack's. Note
+       that `mark.roofAssembly === "open"` is a different field with a different
+       job — it says there is no ceiling under this member, not which covering
+       is on top of it. */
+    var roofKey = mark.roofAssemblyKey || L.roofAssembly;
+    var roofDead = assembly(roofKey);
     var floorDead = assembly(mark.floorAssembly || L.floorAssembly);
     var ceilingDead = assembly(L.ceilingAssembly);
 
@@ -827,9 +1420,8 @@
     };
 
     if (mark.underdetermined) {
-      throw new Error("mark " + mark.id + " has an underdetermined tributary and must not be sized: " +
-                      "its roof tributary contradicts a sibling mark on the same wall, and the plan " +
-                      "declares no roof mark, no upper-storey outline and no truss direction");
+      throw new Error("mark " + mark.id + " is underdetermined and must not be sized: " +
+                      (mark.underdeterminedNote || UNDETERMINED_GENERIC));
     }
     if (role === "header" && !mark.bearing) {
       throw new Error("header " + mark.id + " must declare `bearing` (jack studs x 1.5 in) — " +
@@ -860,10 +1452,14 @@
       d.maxDepthIn = pack.plateHeightIn - mark.headHeightIn - 3.0 - 0.5;
     }
 
-    /* a porch or lanai beam carries an OPEN roof — no ceiling, no insulation */
+    /* a porch or lanai beam carries an OPEN roof — no ceiling, no insulation.
+       Which covering is on it still matters: tile over an open lanai is 17 psf
+       against shingle's 10. Keyed off the EFFECTIVE roof assembly so a tile
+       OPTION reaches the lanai beam, not just the pack that ships tile. */
     if (mark.roofAssembly === "open") {
-      roofDead = assembly(L.roofAssembly === "roof_tile" ? "roof_open_tile" : "roof_open");
+      roofDead = assembly(roofKey === "roof_tile" ? "roof_open_tile" : "roof_open");
     }
+    d.roofAssemblyKey = roofKey;
 
     if (carries === "roof" || carries === "roof-open") {
       d.dead = roofDead; d.live = 0; d.roofLoad = L.roofLoad;
@@ -898,15 +1494,20 @@
 
   /* a mark can be structurally irrelevant in a region — a wood exterior header
      in a concrete-block market is not a member anybody will build */
-  function applicability(mark, pack) {
+  function applicability(mark, pack, plan, variantId) {
+    if (variantId && plan) {
+      var rv = markFor(plan, mark.id, variantId);
+      if (!rv) {
+        return { applicable: false, reason: "not-in-variant", note:
+          "NOT BUILT IN THIS VARIANT — the elevation or option set \"" + variantId + "\" removes " +
+          "this mark. It is not a failure and not out of scope; those lots simply do not have this " +
+          "member. It stays on the master set because other lots do." };
+      }
+      mark = rv;
+    }
     if (mark.underdetermined) {
-      return { applicable: false, reason: "underdetermined", note:
-        "NOT SIZED — the tributary is not derivable. This mark's roof tributary (19.0 ft, half the " +
-        "first-floor depth) contradicts the sibling header in the same wall one storey up (12.0 ft), " +
-        "and the plan declares no roof mark, no second-floor outline and no truss direction. Three " +
-        "values are in play (12.0, 16.32, 19.0) and none follows from the plan. Substituting one for " +
-        "another closes the finding without answering it. Declare the second-floor outline and the " +
-        "truss direction, then derive both headers from it." };
+      return { applicable: false, reason: "underdetermined",
+               note: mark.underdeterminedNote || UNDETERMINED_GENERIC };
     }
     if (mark.component && mark.role === "post") {
       return { applicable: false, reason: "out-of-scope", note: mark.componentNote };

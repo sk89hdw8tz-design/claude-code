@@ -815,40 +815,84 @@ bearing on a member's mid-length. `[REPO GAP #8]`
 > ratio, it carries no load-duration factor, and it does not participate in the strength
 > envelope described in §2.4. Report it in its own row and label it *serviceability*.
 
-**Allowable deflections — IBC Table 1604.3.** The table has two columns:
-column 1 is **`L`, `S`, or `W_r`** (the variable load acting alone); column 2 is **`D + L`**
-(the total). `ℓ` is the span.
+**Allowable deflections — IBC Table 1604.3.** The table has **three** load columns:
+**`L`** (live load alone), **`S or W`** (snow or wind alone), and **`D + L`** (the total).
+`ℓ` is the span. The first two columns are numerically identical on every row this app uses,
+which is exactly why they are so often collapsed into one — but the third column is **not**
+equal to them on any row, and collapsing the first two and then reprinting them under the
+`D + L` heading drops the real total-load column entirely.
 
-| Construction (IBC Table 1604.3 row) | Col 1: `L`, `S` or `W_r` | Col 2: `D + L` |
-|---|---|---|
-| Roof members supporting **plaster or stucco** ceiling | `ℓ/360` | `ℓ/360` |
-| Roof members supporting **nonplaster** ceiling | `ℓ/240` | `ℓ/240` |
-| Roof members **not supporting** a ceiling | `ℓ/180` | `ℓ/180` |
-| **Floor members** | `ℓ/360` | `ℓ/240` |
+| Construction (IBC Table 1604.3 row) | `L` | `S or W` | `D + L` |
+|---|---|---|---|
+| Roof members supporting **plaster or stucco** ceiling | `ℓ/360` | `ℓ/360` | `ℓ/240` |
+| Roof members supporting **nonplaster** ceiling | `ℓ/240` | `ℓ/240` | `ℓ/180` |
+| Roof members **not supporting** a ceiling | `ℓ/180` | `ℓ/180` | `ℓ/120` |
+| **Floor members** | `ℓ/360` | — | `ℓ/240` |
+
+The floor row has no `S or W` entry: snow and wind do not act on a floor.
 
 **The exact rows this app relies on:**
-- **Floor joist / floor beam / floor header:** *"Floor members"* — **`ℓ/360` live, `ℓ/240`
-  total.**
+- **Floor joist / floor beam / floor header:** *"Floor members"* — **`ℓ/360` for `L` alone,
+  `ℓ/240` for `D + L`.**
 - **Rafter / roof beam / ridge beam with a gypsum (nonplaster) ceiling attached:**
-  *"Roof members supporting nonplaster ceiling"* — **`ℓ/240` for `S` or `Lr` alone, `ℓ/240` for
+  *"Roof members supporting nonplaster ceiling"* — **`ℓ/240` for `S` or `Lr` alone, `ℓ/180` for
   `D + S`.**
 - **Rafter with no ceiling (e.g., open porch, exposed rafters):**
-  *"Roof members not supporting ceiling"* — **`ℓ/180` and `ℓ/180`.**
+  *"Roof members not supporting ceiling"* — **`ℓ/180` for `S` or `Lr` alone; IBC allows
+  `ℓ/120` for `D + S`, but this app uses `ℓ/180` — see the firm overlay below.**
 
-> **Correction to a commonly repeated shorthand.** The phrasing *"`ℓ/180` total and `ℓ/240`
-> live for roof members without a ceiling"* is **not** what IBC Table 1604.3 says. The
-> *not-supporting-ceiling* row is `ℓ/180` in **both** columns; the `ℓ/240` pair belongs to the
-> *supporting-nonplaster-ceiling* row. The app must implement the table as printed. Flagging
-> this rather than silently reproducing the shorthand is the point of the product.
+> **Correction to a commonly repeated shorthand.** The shorthand is *"IBC Table 1604.3 has two
+> columns, variable and total."* It does not. It has three — `L`, `S or W`, and `D + L` — and
+> the error this shorthand produces is always the same one: the two identical variable columns
+> get merged, and the merged pair is then reprinted under the `D + L` heading, so the real
+> total-load column silently disappears and every total-load limit comes out one step **too
+> tight**. On the nonplaster-ceiling row that turns `ℓ/180` into `ℓ/240`; on the
+> not-supporting-ceiling row it turns `ℓ/120` into `ℓ/180`.
+>
+> Tightening a limit is not a safe error. It is still a wrong answer, it fails members that the
+> code passes, and — because it looks conservative — nobody checks it. The app must implement
+> the table as printed, and state separately and by name any place the firm chooses to be
+> tighter. That separation is the point of the product: a number that is conservative by
+> **policy** is defensible, and the same number arriving by **transcription error** is not.
+
+> **Firm overlay — `roof_no_ceiling` total load.** The app checks the not-supporting-ceiling
+> row at **`ℓ/180`** for `D + S`, where IBC Table 1604.3 permits `ℓ/120`. This is a deliberate
+> firm standard, tighter than code, applied because an open-porch or exposed-rafter roof at
+> `ℓ/120` is visibly sagging and generates callbacks. It is **not** a transcription of the
+> table and must not be "corrected" to `ℓ/120` without a decision from the firm. Every other
+> cell in `engine.js`'s `DEFL` map is the table as printed.
+>
+> **IRC scope note.** The IRC — not the IBC — governs one- and two-family dwellings, and every
+> region pack in `weights.js` declares the IRC. **IRC Table R301.7 has no `D + L` column at
+> all**: it publishes only the live/snow-alone limits (`ℓ/360` floors, `ℓ/240` and `ℓ/180`
+> rafters). So for IRC work the app's entire total-load check — not just the
+> `roof_no_ceiling` value — is a firm overlay, not a code requirement. It should be labelled
+> that way on the sheet rather than cited to a code section that does not contain it.
 
 **Load sets for the deflection check** (`w_defl` in the §3.5 formula):
 
 ```
 Δ_variable  from  w_defl = w_L         (floor)
-                  w_defl = max(w_Lr, w_S)   (roof)      -> compare to column 1 limit
+                  w_defl = max(w_Lr, w_S)   (roof)      -> compare to the L / S-or-W limit
 Δ_total     from  w_defl = w_D + w_L                    (floor)
-                  w_defl = w_D + max(w_Lr, w_S)         (roof)  -> compare to column 2 limit
+                  w_defl = w_D + max(w_Lr, w_S)         (roof)  -> compare to the D + L limit
 ```
+
+The roof slot is `max(w_Lr, w_S)`, **never the sum**: snow and roof live are alternative
+occupancies of the same roof, and adding them designs for a load that cannot occur.
+
+**Members that carry a roof AND a floor** (`weights.js` `carries: "roof+floor"` — a header under
+an upper storey, for example) are not named by the floor/roof branch above. Floor live is a
+different tributary and *does* coexist with a roof load, so it adds:
+
+```
+w_variable = w_L + max(w_Lr, w_S)          general form; reduces to the two branches above
+w_total    = w_D + w_L + max(w_Lr, w_S)    when q_L = 0 (roof) or q_Lr = q_S = 0 (floor)
+```
+
+This general form is what the engine implements. Taking a blanket `max(w_L, w_Lr, w_S)` instead
+would cut the deflection demand on a mixed roof+floor header by about a third — unconservative,
+and silently so.
 
 Both are checked; the larger `DCR_defl` is reported.
 
@@ -1131,24 +1175,26 @@ E'·I = 158,290,625.6  lb-in²
 Δ    = 22.5 · w · 13.0⁴ / (E'·I) = 22.5 · w · 28,561 / 158,290,625.6
 ```
 
-IBC Table 1604.3, row **"Roof members supporting nonplaster ceiling"** → `ℓ/240` in both
-columns. `ℓ = 156 in`, so `Δ_allow = 156/240 = 0.650 in` for both the variable-load and the
-total-load check.
+IBC Table 1604.3, row **"Roof members supporting nonplaster ceiling"** → `ℓ/240` in the
+`L` and `S or W` columns, **`ℓ/180` in the `D + L` column** (§5.5). `ℓ = 156 in`, so
+`Δ_allow = 156/240 = 0.650 in` for the variable-load check and
+**`Δ_allow = 156/180 = 0.866667 in`** for the total-load check.
 
 | Check | `w_defl` (plf) | `Δ` (in) | `Δ_allow` (in) | `DCR_defl` |
 |---|---|---|---|---|
 | Dead alone (reference) | 20.0000 | 0.081195 | — | — |
 | `Lr` alone | 26.6667 | 0.108260 | 0.650 | 0.167 |
-| **`S` alone (col 1)** | **40.0000** | **0.162391** | **0.650** | **0.250** |
-| `D + Lr` | 46.6667 | 0.189456 | 0.650 | 0.291 |
-| **`D + S` (col 2)** | **60.0000** | **0.243586** | **0.650** | **0.375** |
+| **`S` alone (`S or W` col)** | **40.0000** | **0.162391** | **0.650** | **0.250** |
+| `D + Lr` | 46.6667 | 0.189456 | 0.866667 | 0.219 |
+| **`D + S` (`D + L` col)** | **60.0000** | **0.243586** | **0.866667** | **0.281** |
 
-**Governing deflection: `D + S` total, `DCR_defl = 0.375`** (full precision 0.374747).
+**Governing deflection: `D + S` total, `DCR_defl = 0.281`** (full precision 0.281061).
+The variable-load check at 0.250 is the closer of the two, but the total still governs.
 
 Longhand: `Δ = 22.5 × 60.0000 × 28,561 / 158,290,625.6 = 38,557,350 / 158,290,625.6 = 0.243586 in`.
 
-*Optional IBC creep footnote enabled:* `Δ = 0.5(0.081195) + 0.162391 = 0.202988 in`,
-`DCR = 0.312` (0.312289). Default OFF.
+*Optional IBC creep footnote enabled:* `Δ = 0.5(0.081195) + 0.162391 = 0.202988 in`, against
+the `D + L` allowable `0.866667 in` → `DCR = 0.234` (0.234217). Default OFF.
 
 #### 7.1.11 Result
 
@@ -1157,8 +1203,8 @@ Longhand: `Δ = 22.5 × 60.0000 × 28,561 / 158,290,625.6 = 38,557,350 / 158,290
 | **Bending** | `D + S` = 60.0 plf | 1.15 | `f_b` = 711.06 psi | `F_b'` = 1309.28 psi | **0.543** | PASS |
 | Shear | `D + S` = 60.0 plf | 1.15 | `f_v` = 37.162 psi | `F_v'` = 207.00 psi | 0.180 | PASS |
 | Bearing | `D + S` = 60.0 plf | n/a | `f_c⊥` = 74.286 psi | `F_c⊥'` = 625.00 psi | 0.119 | PASS |
-| Deflection (`S`) | `S` alone | n/a | Δ = 0.16239 in | 0.650 in | 0.250 | PASS |
-| Deflection (total) | `D + S` | n/a | Δ = 0.24359 in | 0.650 in | 0.375 | PASS |
+| Deflection (`S`) | `S` alone | n/a | Δ = 0.16239 in | 0.650 in (`ℓ/240`) | 0.250 | PASS |
+| Deflection (total) | `D + S` | n/a | Δ = 0.24359 in | 0.86667 in (`ℓ/180`) | 0.281 | PASS |
 
 > **GOVERNING: Bending, load combination `D + S` (ASCE 7-22 §2.4.1 comb. 3),
 > `C_D = 1.15` (snow, two-month duration). DCR = 0.543. PASS.**
@@ -1238,7 +1284,7 @@ DCR_b     = 711.056 / 568.038                       = 1.251780  ->  1.252
 | Orientation | Stamped **TOP** up, positive moment → use `F_bx+` |
 | Bearing | End bearing on a post cap, `l_b = 5.25 in`, full 5.25 in width |
 | §3.4.3.1 `d`-reduction | Enabled (bottom-bearing on post cap, top-loaded, uniform, unnotched) |
-| Ceiling | Gypsum (nonplaster) ceiling attached → IBC `ℓ/240` / `ℓ/240` |
+| Ceiling | Gypsum (nonplaster) ceiling attached → IBC `ℓ/240` variable / `ℓ/180` total (§5.5) |
 
 #### 7.2.2 Section properties (computed — see §7.2.0)
 
@@ -1410,23 +1456,40 @@ E'·I = 1,318,716,431   lb-in²
 Δ    = 22.5 · w · 16.0⁴ / (E'·I) = 22.5 · w · 65,536 / 1,318,716,431
 ```
 
-IBC Table 1604.3, row **"Roof members supporting nonplaster ceiling"** → `ℓ/240` both columns.
-`ℓ = 192 in`, `Δ_allow = 192/240 = 0.800 in`.
+IBC Table 1604.3, row **"Roof members supporting nonplaster ceiling"** → `ℓ/240` in the `L` and
+`S or W` columns, **`ℓ/180` in the `D + L` column** (§5.5). `ℓ = 192 in`, so
+`Δ_allow = 192/240 = 0.800 in` variable and **`192/180 = 1.066667 in`** total.
 
 | Check | `w_defl` (plf) | `Δ` (in) | `Δ_allow` (in) | `DCR_defl` |
 |---|---|---|---|---|
 | Dead alone (reference) | 210.153 | 0.234989 | — | — |
 | `Lr` alone | 260.000 | 0.290726 | 0.800 | 0.363 |
-| **`S` alone (col 1)** | **390.000** | **0.436090** | **0.800** | **0.545** |
-| `D + Lr` | 470.153 | 0.525715 | 0.800 | 0.657 |
-| **`D + S` (col 2)** | **600.153** | **0.671078** | **0.800** | **0.839** |
-
-**Governing deflection: `D + S` total, `DCR_defl = 0.839`** (full precision 0.838848).
+| **`S` alone (`S or W` col)** | **390.000** | **0.436090** | **0.800** | **0.545** |
+| `D + Lr` | 470.153 | 0.525715 | 1.066667 | 0.493 |
+| **`D + S` (`D + L` col)** | **600.153** | **0.671078** | **1.066667** | **0.629** |
 
 Longhand: `Δ = 22.5 × 600.152995 × 65,536 / 1,318,716,431 = 884,961,600 / 1,318,716,431 = 0.671078 in`.
 
-*Optional IBC creep footnote enabled:* `Δ = 0.5(0.234989) + 0.436090 = 0.553584 in`,
-`DCR = 0.692` (0.691980). Default OFF.
+*Optional IBC creep footnote enabled:* `Δ = 0.5(0.234989) + 0.436090 = 0.553584 in`, against
+the `D + L` allowable `1.066667 in` → `DCR = 0.519` (0.518985). Default OFF.
+
+> **⚠ THIS EXAMPLE NO LONGER DEMONSTRATES WHAT IT WAS WRITTEN TO DEMONSTRATE — DO NOT
+> RE-BASELINE IT.**
+>
+> The old numbers checked the **total-load** deflection against the **variable-load** limit
+> (`ℓ/240` in both columns), which is the §5.5 error. At the correct `ℓ/180` the governing
+> deflection DCR is **0.629**, not 0.839 — and 0.629 is **below** this example's bending DCR of
+> **0.678**. Example 2 is therefore **bending-governed** as written, and its stated purpose
+> (§7.2.11) as the deflection-governed regression case is gone.
+>
+> `ex2_glulam_defl_total` and `ex2_overall` are **open fixtures**, not fixtures with new values.
+> Writing 0.629 into them turns the suite green while silently deleting the only coverage of
+> "the governing limit state is not always bending". **An engineer must supply a new §7.2 load
+> case** — longer span, lighter section, or heavier snow — in which deflection genuinely governs
+> at `ℓ/180`. That load case is deliberately not invented here. Gap register #18.
+>
+> The `ex2` **bending (0.678)**, **shear (0.332)** and **bearing (0.268)** fixtures are
+> unaffected by the §5.5 correction and remain valid.
 
 #### 7.2.11 Result
 
@@ -1435,15 +1498,22 @@ Longhand: `Δ = 22.5 × 600.152995 × 65,536 / 1,318,716,431 = 884,961,600 / 1,3
 | Bending | `D + S` = 600.15 plf | 1.15 | `f_b` = 1867.75 psi | `F_b'` = 2754.51 psi | 0.678 | PASS |
 | Shear | `D + S` = 600.15 plf | 1.15 | `f_v` = 101.229 psi | `F_v'` = 304.75 psi | 0.332 | PASS |
 | Bearing | `D + S` = 600.15 plf | n/a | `f_c⊥` = 174.194 psi | `F_c⊥'` = 650.00 psi | 0.268 | PASS |
-| Deflection (`S`) | `S` alone | n/a | Δ = 0.43609 in | 0.800 in | 0.545 | PASS |
-| **Deflection (total)** | **`D + S`** | n/a | **Δ = 0.67108 in** | **0.800 in** | **0.839** | PASS |
+| Deflection (`S`) | `S` alone | n/a | Δ = 0.43609 in | 0.800 in (`ℓ/240`) | 0.545 | PASS |
+| Deflection (total) | `D + S` | n/a | Δ = 0.67108 in | 1.06667 in (`ℓ/180`) | 0.629 | PASS |
 
-> **GOVERNING: Deflection (total load), load combination `D + S`, `DCR = 0.839`.
-> Governing STRENGTH limit state: bending, `D + S`, `C_D = 1.15`, `DCR = 0.678`. PASS.**
+> **GOVERNING (as currently written): Bending, load combination `D + S`, `C_D = 1.15`,
+> `DCR = 0.678`. PASS.** Governing serviceability case: deflection (total), `D + S`,
+> `DCR = 0.629`.
 
-This example is deliberately deflection-governed. It is the required regression test for the
-rule that the governing limit state is **not** always bending, and that the app must report the
-governing serviceability case separately from the governing strength case.
+This example **was** deliberately deflection-governed, and that is the only reason it exists:
+it is the required regression test for the rule that the governing limit state is **not** always
+bending, and that the app must report the governing serviceability case separately from the
+governing strength case.
+
+Correcting IBC Table 1604.3's `D + L` column (§5.5) moved its deflection DCR from 0.839 to
+0.629, under the 0.678 bending DCR, so **as written it no longer exercises that rule.** The
+example needs a new load case in which deflection genuinely governs at `ℓ/180`; see §7.2.10 and
+gap register #18. The coverage is open — it has not been re-baselined away.
 
 ---
 
@@ -1458,14 +1528,41 @@ governing serviceability case separately from the governing strength case.
 | `ex1_shear_with_d_reduction` | Shear, `D + S` | **0.180** | §3.4.3.1 enabled |
 | `ex1_shear_no_d_reduction` | Shear, `D + S` | **0.204** | §3.4.3.1 disabled |
 | `ex1_bearing` | Bearing, `D + S` | **0.119** | `C_b` = 1.0 end-bearing branch, no `C_D` |
-| `ex1_defl_live` | Deflection `S` alone | **0.250** | IBC col 1, `ℓ/240` |
-| `ex1_defl_total` | Deflection `D + S` | **0.375** | IBC col 2 |
+| `ex1_defl_live` | Deflection `S` alone | **0.250** | IBC `S or W` column, `ℓ/240` |
+| `ex1_defl_total` | Deflection `D + S` | **0.281** | IBC `D + L` column, `ℓ/180` |
 | `ex1b_unbraced` | Bending, `D + S` | **1.252** (FAIL) | full `C_L` derivation, `l_u/d > 14.3` band |
 | `ex2_glulam_bending` | Bending, `D + S` | **0.678** | Table 5A lookup, `C_V`, `C_L` via `E_y,min` |
 | `ex2_glulam_shear` | Shear, `D + S` | **0.332** | `F_vx`, `d`-reduction on a deep member |
 | `ex2_glulam_bearing` | Bearing, `D + S` | **0.268** | `F_c⊥x` |
-| `ex2_glulam_defl_total` | **Deflection, `D + S`** | **0.839** | `E_x,app` (not `E_x,true`), deflection-governed outcome |
-| `ex2_overall` | Deflection (total) | **0.839** | limit-state selection across strength + serviceability |
+| `ex2_glulam_defl_total` | **Deflection, `D + S`** | ~~0.839~~ **BROKEN — see note** | `E_x,app` (not `E_x,true`), deflection-governed outcome |
+| `ex2_overall` | Deflection (total) | ~~0.839~~ **BROKEN — see note** | limit-state selection across strength + serviceability |
+
+> **Fixture note — `ex1_defl_total` corrected, `ex2_*` total-load fixtures blocked.**
+>
+> Both were computed against the collapsed two-column table corrected in §5.5, which checked
+> the total-load deflection at the *variable-load* limit. Both used a nonplaster-ceiling roof,
+> whose real `D + L` limit is `ℓ/180`, not `ℓ/240`.
+>
+> **`ex1_defl_total`: 0.375 → 0.281.** `Δ = 0.243586 in` is unchanged; only the allowable moves,
+> from `ℓ/240 = 156/240 = 0.650 in` to `ℓ/180 = 156/180 = 0.866667 in`. `0.243586 / 0.866667 =
+> 0.281061 → 0.281`. Example 1 stays bending-governed at 0.543, so its stated purpose survives
+> and the fixture is simply corrected. `engine.js` already implements `ℓ/180` here and returns
+> 0.281 today; the spec was the side that was wrong.
+>
+> **`ex2_glulam_defl_total` / `ex2_overall`: no corrected value is given here on purpose.**
+> The same arithmetic gives `Δ = 0.671078 in` against `ℓ/180 = 192/180 = 1.066667 in`, i.e.
+> **0.629**, not 0.839. But 0.629 is **below** Example 2's bending DCR of 0.678, so at the
+> correct limit Example 2 is **no longer deflection-governed** — and being the deflection-
+> governed regression case is the entire reason Example 2 exists (§7.2.11: *"This example is
+> deliberately deflection-governed… the required regression test for the rule that the
+> governing limit state is not always bending"*). Re-baselining `ex2_overall` to 0.629 would
+> quietly delete that coverage while leaving the test green.
+>
+> **This needs a new load case for Example 2 — a longer span, a lighter section, or a heavier
+> snow load chosen so that deflection genuinely governs at `ℓ/180`. That load case is not
+> invented here.** Until an engineer sets it, treat `ex2_glulam_defl_total` and `ex2_overall`
+> as open: the `ex2` bending / shear / bearing fixtures (0.678 / 0.332 / 0.268) are unaffected
+> and still hold. Tracked as gap register #18 (§9).
 
 Additional negative tests the implementation must carry:
 - `R_B > 50` → hard error, no `C_L` returned.
@@ -1573,6 +1670,7 @@ Everything the implementation needs that the repo at
 | 15 | **`E_x,min` vs `E_y,min` selection rule for glulam `C_L`** | **Data present** (both published in Table 5A); **rule is NDS narrative text**, not data | Hard-code the rule; clause number to verify |
 | 16 | **Timber `C_F = (12/d)^(1/9)` formula** (§4.3.6) | **Data present** (`wood_sawn_timbers_nds2024_table_4d.json`, 239 records, `size_factor_applied: false`); **formula absent** | Hard-code formula |
 | 17 | **5-1/4 × 11-7/8 glulam at 24F-1.8E** | **Absent, and probably correctly so.** Repo has 11.875-deep glulam only at `b` = 3.5 and 5.5 (Rosboro X-Beam, 24F-V4-2.0E TRUE); Anthony Power Beam (the 5-1/4 in product line) publishes 28F-E1/SP, 28F-E2/SP, 30F-E1/SP with `"no discrete stock-size schedule"` | Treat §7.2 as a user-declared section; require supplier confirmation of a 24F-1.8E layup at that net size |
+| 18 | **A deflection-governed load case for Example 2** | **Not a repo gap — an open engineering decision.** Correcting IBC Table 1604.3's `D + L` column (§5.5) moves Example 2's total-load deflection DCR from 0.839 to 0.629, below its bending DCR of 0.678, so §7.2 no longer demonstrates the deflection-governed outcome it was written to demonstrate | An engineer must set a new §7.2 load case — longer span, lighter section, or heavier snow — in which deflection genuinely governs at `ℓ/180`. **Do not re-baseline `ex2_overall` to 0.629**: that leaves the test green and the coverage gone. See the fixture note in §7.3 |
 
 ### 9.1 Clause numbers flagged for verification against the printed NDS 2024
 
