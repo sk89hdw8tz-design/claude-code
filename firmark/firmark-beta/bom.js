@@ -1295,23 +1295,36 @@
     function para(t, width, indent) {
       wrap(t, width || 74).forEach(function (x) { say((indent === undefined ? "  " : indent) + x); });
     }
+    /* A labelled header field with a hanging indent under the TEXT. The plan
+       line ran to 155 columns on `starter-1210` — the plan summary is a full
+       sentence — in a document whose own rules are 78 wide, so the header of
+       the materials export was the widest thing in it. Wrap the value, then
+       lay the label alongside it (export.js learned this the same way). */
+    function field(label, value) {
+      var head = pad(label, 14) + ": ";
+      var body = pad("", head.length);
+      var lines = wrap(value === undefined || value === null || value === "" ? "—" : String(value),
+                       78 - head.length);
+      say(head + lines[0]);
+      lines.slice(1).forEach(function (x) { say(body + x); });
+    }
 
     var t = bom.totals, p = bom.pack || {}, pl = bom.plan || {};
 
     /* ---- header ---- */
     say("FIRMARK — BILL OF MATERIALS (beta)");
     say(rule("="));
-    say("Plan          : " + (pl.name || pl.id || "—") + (pl.summary ? " — " + pl.summary : ""));
-    say("Region pack   : " + (p.name || p.id || "—") + (p.markets ? " · " + p.markets : ""));
+    field("Plan", (pl.name || pl.id || "—") + (pl.summary ? " — " + pl.summary : ""));
+    field("Region pack", (p.name || p.id || "—") + (p.markets ? " · " + p.markets : ""));
     if (pl.variant) {
-      say("Variant       : " + (pl.variant.label || pl.variant.id) +
+      field("Variant", (pl.variant.label || pl.variant.id) +
           (pl.variant.isBase ? "   [the declared base case]" : "") +
           (isFinite(pl.variant.takeRate) ? "   take " + n2(pl.variant.takeRate * 100, 1) + "% [market]" : ""));
     } else if (pl.ofPlan) {
-      say("Variant       : a variant of " + pl.ofPlan + ", descriptor not carried");
+      field("Variant", "a variant of " + pl.ofPlan + ", descriptor not carried");
     }
-    say("Scope         : simple-span solid-sawn members from the member schedule, ONLY");
-    if (bom.at || opts.at) say("Generated     : " + (opts.at || bom.at));
+    field("Scope", "simple-span solid-sawn members from the member schedule, ONLY");
+    if (bom.at || opts.at) field("Generated", (opts.at || bom.at));
     say();
     say("NOT SEALED ENGINEERING AND NOT A PURCHASE ORDER. This is a quantity takeoff");
     say("of a member schedule a licensed engineer must still review. Prices are");
@@ -1365,8 +1378,14 @@
     say("  " + rule("-").slice(0, 76));
     t.byStockLengthOrder.forEach(function (Lft) {
       var b = t.byStockLength[String(Lft)];
-      say("  " + pad(Lft + " ft", 10) + lpad(comma(b.pieces), 8) + lpad(n2(b.bf, 2), 12) +
-          lpad(usd(b.usd), 13) + "  " + b.skus.join(", "));
+      /* the SKU list is free text of unbounded length — two 4x sizes on one
+         stock length ran this row to 93 columns inside a 78-column rule, so
+         the last column wraps under itself rather than off the page */
+      var lead = "  " + pad(Lft + " ft", 10) + lpad(comma(b.pieces), 8) + lpad(n2(b.bf, 2), 12) +
+                 lpad(usd(b.usd), 13) + "  ";
+      wrap(b.skus.join(", "), 78 - lead.length).forEach(function (x, i) {
+        say(i ? pad("", lead.length) + x : lead + x);
+      });
     });
     say("  " + rule("-").slice(0, 76));
     say("  " + pad("TOTAL", 10) + lpad(comma(t.pieces), 8) + lpad(n2(t.bf, 2), 12) +
@@ -1387,10 +1406,13 @@
       say("  " + pad(g.size, 7) + pad(g.species + " " + g.grade, 28) +
           pad(g.treatment, 9) + pad(g.stockLengthFt + " ft", 7) +
           lpad(comma(g.piecesPerHouse), 5) + lpad(n2(g.bf, 2), 10) + lpad(usd(g.extUSD), 11));
-      say("  " + pad("", 7) + "serves " + g.marksLabel +
-          "   · cut " + n2(g.lengthFt, 2) + " ft · " + g.service +
-          " · " + usd(g.unitUSD) + "/pc [market]" +
-          (g.unified ? " · " + g.unified + " mark(s) RAISED BY UNIFICATION" : ""));
+      /* the marks a line serves is free text: HDR-W + HDR-ENT with a
+         unification note ran to 117 columns inside a 78-column rule */
+      wrap("serves " + g.marksLabel +
+           "   · cut " + n2(g.lengthFt, 2) + " ft · " + g.service +
+           " · " + usd(g.unitUSD) + "/pc [market]" +
+           (g.unified ? " · " + g.unified + " mark(s) RAISED BY UNIFICATION" : ""), 69)
+        .forEach(function (x, i) { say("  " + pad("", 7) + (i ? "  " : "") + x); });
       para(g.basis, 70, "        ");
       say();
     });
@@ -1422,18 +1444,21 @@
            "rule assumes. The 2 ft rounding usually absorbs it; where it does not, the stick " +
            "is short and this document says so at the top and refuses to be issued.");
       say();
-      say("  " + pad("MARK", 10) + pad("BEARING/END", 13) + pad("RULE CUT", 11) +
-          pad("TRUE CUT", 11) + pad("BOUGHT", 9) + "NEEDS");
+      say("  " + pad("MARK", 10) + pad("BRG/END", 9) + pad("RULE CUT", 9) +
+          pad("TRUE CUT", 9) + pad("BOUGHT", 8) + pad("NEEDS", 8) + "VERDICT");
       say("  " + rule("-").slice(0, 76));
       tight.forEach(function (c) {
-        say("  " + pad(c.markId, 10) + pad(n2(c.bearingPerEndIn, 2) + " in", 13) +
-            pad(n2(c.cutLengthFt, 2) + " ft", 11) +
-            pad(n2(c.cutWithDeclaredBearingFt, 2) + " ft", 11) +
+        /* the verdict is the column that matters, so it gets its own name in
+           the header rather than trailing off the end of the row: this ran to
+           95 columns and "** SHORT **" was the part that fell off */
+        say("  " + pad(c.markId, 10) + pad(n2(c.bearingPerEndIn, 2) + " in", 9) +
+            pad(n2(c.cutLengthFt, 2) + " ft", 9) +
+            pad(n2(c.cutWithDeclaredBearingFt, 2) + " ft", 9) +
             pad(bom.lines.filter(function (g) {
               return g.cuts.indexOf(c) !== -1;
-            })[0].stockLengthFt + " ft", 9) +
-            c.stockIfDeclaredBearingFt + " ft" +
-            (c.stockAbsorbsIt ? "   (absorbed by the 2 ft rounding)" : "   ** SHORT **"));
+            })[0].stockLengthFt + " ft", 8) +
+            pad(c.stockIfDeclaredBearingFt + " ft", 8) +
+            (c.stockAbsorbsIt ? "absorbed by rounding" : "** SHORT **"));
       });
       say();
       say("  This is reported, not corrected: the stick length rule lives in solver.js and");

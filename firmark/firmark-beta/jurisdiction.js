@@ -228,7 +228,20 @@
      `retrieved` records HOW it was obtained, because "I read the
      ordinance" and "a search engine summarised a page about the
      ordinance" are not the same evidence and must not print the
-     same way.
+     same way. Three values are in use:
+
+       search-summary              one search route said so
+       search-summary-corroborated two or more INDEPENDENT search
+                                   routes said so, and at least one
+                                   named the ordinance, rule or
+                                   agency report by number or title
+       not-fetched                 named as the authority to consult;
+                                   nothing was read from it at all
+
+     Note what is NOT in that list: anything meaning "read". No
+     primary document was opened for any entry — see RESEARCH.
+     `search-summary-corroborated` is the ceiling this environment
+     allows, and it is still not a permit-grade citation.
      ------------------------------------------------------------ */
 
   var SOURCES = [

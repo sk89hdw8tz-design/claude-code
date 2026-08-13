@@ -515,6 +515,25 @@
 
   /* ---------------- validate ---------------- */
 
+  /* Every coordinate a span could be measured off. A NaN or an Infinity in
+     any of them is a GEOMETRY error and belongs here, at gate 1 — not one
+     stage later as "the takeoff produced no marks", which is what used to
+     happen: setting walls[0].x2 = NaN returned zero findings from validate()
+     and the defect surfaced as an empty schedule with no named cause.
+     `num()` maps a non-finite value to null, so a null here means the field
+     was either absent or unusable and both need naming. */
+  function finiteFields(o, keys) {
+    var bad = [];
+    keys.forEach(function (k) {
+      var raw = own(o, k);
+      if (raw === undefined || raw === null) return;      /* absent is a different finding */
+      if (typeof raw === "number" ? !isFinite(raw) : num(raw) === null) {
+        bad.push(k + " = " + String(raw));
+      }
+    });
+    return bad;
+  }
+
   function validate(model) {
     var rows = [];
     function add(level, id, severity, code, text) {
@@ -528,6 +547,42 @@
 
     var anyWall = false, anyBearing = false;
 
+    /* Wall ids are resolved MODEL-WIDE, not per level: framing on level 2
+       bears on walls on level 1 (that is the whole point of a second storey)
+       and takeoff.js indexes walls across every level. A per-level lookup
+       reported every upper-floor region as bearing on a missing wall. The
+       price of a global index is that a duplicated id is ambiguous, which
+       the takeoff refuses outright — so it is an error here, at gate 1. */
+    var byIdAll = {}, dupIds = [];
+    model.levels.forEach(function (L) {
+      (L.walls || []).forEach(function (w) {
+        if (!w || !w.id) return;
+        if (own(byIdAll, w.id)) { if (dupIds.indexOf(w.id) === -1) dupIds.push(w.id); return; }
+        byIdAll[w.id] = { wall: w, level: L };
+      });
+    });
+    /* Which walls anything anywhere bears on. A first floor whose only
+       framing region lives on the level above is fully determined — the
+       region names its walls — so "this level has no framing region" is a
+       finding about a level nothing bears on, not about where the region
+       happens to be filed. */
+    var borneAnywhere = {};
+    model.levels.forEach(function (L) {
+      (L.framing || []).forEach(function (f) {
+        (isArr(f.bearsOn) ? f.bearsOn : []).forEach(function (id) { borneAnywhere[id] = 1; });
+      });
+    });
+
+    if (dupIds.length) {
+      add(null, "walls", "error", "wall-id-duplicated",
+          "Wall id" + (dupIds.length === 1 ? " " : "s ") + dupIds.join(", ") +
+          " appear" + (dupIds.length === 1 ? "s" : "") + " on more than one level. A framing region's " +
+          "bearsOn list and an opening's wallId name a wall id and nothing else, so with the same id " +
+          "on two levels there is no way to say which wall is meant — and picking one would silently " +
+          "assign a load path. The takeoff refuses the whole model for this. Prefix the upper-level " +
+          "ids with the level id.");
+    }
+
     model.levels.forEach(function (L) {
       var lid = L.id;
       var walls = L.walls || [], openings = L.openings || [], framing = L.framing || [];
@@ -536,11 +591,25 @@
          and reported once. Fourteen identical warnings bury the one finding
          that is not identical. */
       var noThick = [], assumedThick = [], placeholders = {};
+      /* a wall whose coordinates are not numbers is named once; every check
+         downstream of it would only restate the same defect in NaN */
+      var unreadable = {};
 
       if (walls.length) anyWall = true;
 
       /* ---- walls ---- */
       walls.forEach(function (w) {
+        var nan = finiteFields(w, ["x1", "y1", "x2", "y2", "heightFt", "thicknessIn"]);
+        if (nan.length) {
+          add(lid, w.id, "error", "wall-not-finite",
+              w.id + " carries a value that is not a finite number: " + nan.join(", ") +
+              ". Every span, tributary and member count downstream is measured off these " +
+              "coordinates, and arithmetic on NaN or Infinity produces no error and no member — it " +
+              "produces an empty schedule with nothing named. Retype the endpoint, or delete the " +
+              "wall and draw it again.");
+          unreadable[w.id] = 1;
+          return;                       /* nothing else about this wall is measurable */
+        }
         var len = wallLength(w);
         if (w.bearing) anyBearing = true;
 
@@ -586,6 +655,7 @@
       /* ---- walls that cross without a node ---- */
       for (i = 0; i < walls.length; i++) {
         for (j = i + 1; j < walls.length; j++) {
+          if (own(unreadable, walls[i].id) || own(unreadable, walls[j].id)) continue;
           if (wallLength(walls[i]) < 1e-6 || wallLength(walls[j]) < 1e-6) continue;
           var hit = segCross(walls[i], walls[j]);
           if (hit) {
@@ -599,6 +669,14 @@
 
       /* ---- openings ---- */
       openings.forEach(function (o) {
+        var onan = finiteFields(o, ["offsetFt", "widthFt", "headHeightFt"]);
+        if (onan.length) {
+          add(lid, o.id, "error", "opening-not-finite",
+              o.id + " carries a value that is not a finite number: " + onan.join(", ") +
+              ". The header span IS the clear opening, so a non-finite width or offset produces a " +
+              "header sized off nothing at all. Retype it.");
+          return;
+        }
         var w = wallById(L, o.wallId);
         if (!w) {
           add(lid, o.id, "error", "opening-orphan",
@@ -655,6 +733,20 @@
 
       /* ---- framing ---- */
       framing.forEach(function (f) {
+        var fnan = finiteFields(f, ["directionDeg", "spacingIn"]);
+        (isArr(f.polygon) ? f.polygon : []).forEach(function (p, pi) {
+          if (!isArr(p)) return;
+          if (!isFinite(Number(p[0])) || !isFinite(Number(p[1]))) {
+            fnan.push("polygon corner " + (pi + 1) + " = (" + String(p[0]) + ", " + String(p[1]) + ")");
+          }
+        });
+        if (fnan.length) {
+          add(lid, f.id, "error", "framing-not-finite",
+              f.id + " carries a value that is not a finite number: " + fnan.join(", ") +
+              ". The span, the run and the piece count are all measured off this region; none of " +
+              "them can be. Redraw the region or retype the field.");
+          return;
+        }
         var poly = f.polygon;
         if (!isArr(poly) || poly.length < 3) {
           add(lid, f.id, "error", "framing-not-a-region",
@@ -670,13 +762,15 @@
         var bearsOn = isArr(f.bearsOn) ? f.bearsOn : [];
         var known = [], missing = [];
         bearsOn.forEach(function (id) {
-          var w = wallById(L, id);
-          if (w) known.push(w); else missing.push(id);
+          /* model-wide, not level-local: a second-floor region bears on
+             first-floor walls */
+          var e = own(byIdAll, id);
+          if (e) known.push(e.wall); else missing.push(id);
         });
         missing.forEach(function (id) {
           add(lid, f.id, "error", "framing-bears-on-missing-wall",
-              f.id + " says it bears on \"" + id + "\", which is not a wall in this level. Pick the " +
-              "walls again in the framing panel.");
+              f.id + " says it bears on \"" + id + "\", which is not a wall anywhere in this model. " +
+              "Pick the walls again in the framing panel.");
         });
         if (known.length < 2) {
           add(lid, f.id, "error", "framing-bears-on-too-few",
@@ -687,6 +781,7 @@
               "element for that, so record it as an open item instead.");
         }
         known.forEach(function (w) {
+          if (own(unreadable, w.id)) return;      /* already named as unreadable */
           if (!touchesRegion(poly, w)) {
             add(lid, f.id, "error", "framing-not-touching-wall",
                 f.id + " claims to bear on " + w.id + ", but " + w.id + " does not run along or under " +
@@ -715,11 +810,13 @@
         }
       });
 
-      if (walls.length && !framing.length) {
+      var carried = walls.filter(function (w) { return own(borneAnywhere, w.id); }).length;
+      if (walls.length && !framing.length && !carried) {
         add(lid, "framing", "warn", "level-no-framing",
-            "Level " + lid + " has " + walls.length + " walls and no framing region. Nothing says " +
-            "which way anything spans, so the takeoff can derive no span from this level. Draw the " +
-            "roof or floor region and tick the walls it bears on.");
+            "Level " + lid + " has " + walls.length + " walls, no framing region of its own, and " +
+            "nothing on any other level bears on any of them. Nothing says which way anything spans, " +
+            "so the takeoff can derive no span from this level. Draw the roof or floor region and " +
+            "tick the walls it bears on.");
       }
       if (walls.length && footprintAreaSf(L) === null) {
         add(lid, "footprint", "warn", "exterior-not-closed",
@@ -880,6 +977,95 @@
      LONGER clear span between faces, so nothing downstream is under-sized by
      it. validate() reports every wall carrying this value as assumed. */
   var ASSUMED_STUD_IN = 3.5;
+
+  /* ============================================================
+     geometry.drawn — the plan's own DRAWN declaration
+
+     The five shipped plans were written as load-and-mark records:
+     every span, tributary and count is stated, and where any of it
+     SITS was not. That is why fromPlan() used to refuse so much —
+     the refusals were correct and the plans were incomplete.
+
+     `geometry.drawn` is the missing half, written the way a framing
+     plan states it: an exterior outline, the interior bearing lines
+     with their offsets, the upper storey's outline, and one entry
+     per framed region giving the rectangle it covers, which way its
+     members run and at what spacing. Nothing here is inferred and
+     nothing here is optional-with-a-default: a plan that declares no
+     `drawn` block falls through to the derivation below exactly as
+     before, and says what it could not determine.
+
+     Two things are deliberately NOT in the declaration:
+
+       · bearsOn. A region's supports are the walls lying under its
+         two span-end edges, found from the drawing. Naming them by
+         hand lets a region and a wall drift apart in the data; this
+         way a moved wall moves the load path with it.
+       · any position for a member this model has no element for. A
+         porch beam on posts is still a hole (register §Q.2) even
+         when the porch's own position is declared, and it says so.
+     ============================================================ */
+
+  var SPAN_DIRS = { "front-to-back": 90, "left-to-right": 0 };
+
+  function bboxOfSegs(segs) {
+    var bb = { x0: Infinity, y0: Infinity, x1: -Infinity, y1: -Infinity };
+    segs.forEach(function (s) {
+      [[s.fromFt[0], s.fromFt[1]], [s.toFt[0], s.toFt[1]]].forEach(function (p) {
+        if (p[0] < bb.x0) bb.x0 = p[0];
+        if (p[0] > bb.x1) bb.x1 = p[0];
+        if (p[1] < bb.y0) bb.y0 = p[1];
+        if (p[1] > bb.y1) bb.y1 = p[1];
+      });
+    });
+    return bb;
+  }
+
+  /* front / rear / left / right from the wall's own position in the
+     outline's bounding box. The drawing convention (front is the wall at
+     y = 0) is the whole basis; a wall that is not on the bounding box —
+     the jog where a garage wing meets the house — gets no face name and
+     must be addressed by its declared id instead. */
+  function faceOfSeg(x1, y1, x2, y2, bb) {
+    var horiz = near(y1, y2, 1e-6), vert = near(x1, x2, 1e-6);
+    if (horiz && near(y1, bb.y0, 1e-6)) return "front";
+    if (horiz && near(y1, bb.y1, 1e-6)) return "rear";
+    if (vert && near(x1, bb.x0, 1e-6)) return "left";
+    if (vert && near(x1, bb.x1, 1e-6)) return "right";
+    return "";
+  }
+
+  function overlapLen(a0, a1, b0, b1) {
+    var lo = Math.max(Math.min(a0, a1), Math.min(b0, b1));
+    var hi = Math.min(Math.max(a0, a1), Math.max(b0, b1));
+    return hi > lo ? hi - lo : 0;
+  }
+
+  /* Every wall in the model that lies along this edge and runs with it.
+     Model-wide on purpose: a second-floor region bears on first-floor
+     walls, which is the only way a two-storey model can work. */
+  function wallsAlongEdge(model, ax, ay, bx, by) {
+    var out = [];
+    var ex = bx - ax, ey = by - ay, eL = Math.sqrt(ex * ex + ey * ey);
+    if (eL < 1e-9) return out;
+    var ux = ex / eL, uy = ey / eL, nx = -uy, ny = ux;
+    (model.levels || []).forEach(function (L) {
+      (L.walls || []).forEach(function (w) {
+        var wl = wallLength(w);
+        if (wl < 1e-9) return;
+        var wux = (w.x2 - w.x1) / wl, wuy = (w.y2 - w.y1) / wl;
+        if (Math.abs(wux * nx + wuy * ny) > 0.02) return;                 /* not parallel */
+        var d1 = Math.abs((w.x1 - ax) * nx + (w.y1 - ay) * ny);
+        var d2 = Math.abs((w.x2 - ax) * nx + (w.y2 - ay) * ny);
+        if (d1 > RULES.touchTolFt || d2 > RULES.touchTolFt) return;       /* not on the line */
+        var t1 = (w.x1 - ax) * ux + (w.y1 - ay) * uy;
+        var t2 = (w.x2 - ax) * ux + (w.y2 - ay) * uy;
+        if (overlapLen(t1, t2, 0, eL) < RULES.touchMinFt) return;         /* only clips a corner */
+        out.push(w);
+      });
+    });
+    return out;
+  }
 
   function fromPlan(planId, variantId) {
     var W = FM.weights;

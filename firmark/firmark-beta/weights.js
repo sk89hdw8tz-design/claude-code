@@ -404,8 +404,24 @@
         note: "As nc-piedmont. Above roughly 3,000 ft the ASCE 7 ground snow map hands off to case-study (CS) zones " +
               "where NO mapped value exists and a site-specific study is required — a pack cannot supply that number." },
       climate: {
-        groundSnow:  { v: 30,  cls: "site", note: "Planning default at valley elevation. Elevation-dependent and county-tabulated; " +
-                                                  "CS zones above ~3,000 ft require a site study." },
+        /* RECONCILED with FM.juris. This pack carried 30 psf and the
+           jurisdiction module carries 25 psf for Buncombe on a 15–35 psf
+           band; both are planning defaults at valley elevation, neither is
+           retrievable from the NCRC county table, and the product was
+           stating two different numbers for the same place. That is a defect
+           whichever number is right. The jurisdiction record is the one that
+           carries the band, the citation and the confirmation state, so this
+           pack moves to it rather than the other way round. It changes no
+           member: the design value is loads.roofLoad = 25 psf roof snow, and
+           this figure is provenance, not demand — see roofLoadBasis. */
+        groundSnow:  { v: 25,  cls: "site", note: "Planning default at Asheville valley elevation, on a 15–35 psf band — the same " +
+                                                  "value and band FM.juris carries for Buncombe County, reconciled so the two " +
+                                                  "files do not state different numbers for one place. Neither is a county " +
+                                                  "lookup: the NCRC tabulates ground snow by county and that table was not " +
+                                                  "retrievable. Elevation, not county, decides it — above roughly 3,000 ft the " +
+                                                  "ASCE 7 map hands off to case-study (CS) zones where NO mapped value exists " +
+                                                  "and a site study is required, and Boone, in this pack's own market list, is " +
+                                                  "above that line. Confirm p_g per site before anything is sealed." },
         roofLive:    { v: 20,  cls: "code", note: LIVE.roof_live.cite },
         windMph:     { v: 115, cls: "site", note: "Topographic speed-up K_zt on ridges and escarpments, ASCE 7 §26.8 — not a regional constant." },
         exposure:    { v: "C", cls: "site" },

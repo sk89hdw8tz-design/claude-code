@@ -306,12 +306,29 @@
     this.steps = 0;
     this.path = [];       /* objects on the current path, for cycle detection */
     this.keys = [];       /* the key names alongside them, so a cut can say WHERE */
+    this.reading = null;  /* the key being fetched, so a throwing getter can be named */
     this.why = [];        /* named reasons the walk did not cover everything */
     this.cutDepth = false;
     this.cutSteps = false;
   }
+  /* A readable path to the place the walk stopped. Elided in the middle,
+     because the interesting case is 512 levels deep and a message nobody can
+     read on a screen is the same as no message. */
   Walk.prototype.where = function () {
-    return this.keys.length ? this.keys.join(".") : "the value itself";
+    var k = this.keys;
+    if (this.reading !== null) k = k.concat([this.reading]);
+    if (!k.length) return "the value itself";
+    if (k.length <= 8) return k.join(".");
+    return k.slice(0, 4).join(".") + " … (" + (k.length - 8) + " more) … " +
+           k.slice(k.length - 4).join(".");
+  };
+  Walk.prototype.cutBySteps = function (s) {
+    if (!this.cutSteps) {
+      this.cutSteps = true;
+      this.why.push("this content needed more than " + MAX_STEPS + " steps to read in full, so " +
+                    "the fingerprint covers only part of it — reached at " + this.where());
+    }
+    s.word(T_CUT_STEPS);
   };
   Walk.prototype.number = function (v) {
     var s = this.sink;
@@ -335,20 +352,18 @@
   Walk.prototype.value = function (v, depth) {
     var s = this.sink, t;
 
-    if (++this.steps > MAX_STEPS) {
-      if (!this.cutSteps) {
-        this.cutSteps = true;
-        this.why.push("this content needed more than " + MAX_STEPS + " steps to read in full, " +
-                      "so the fingerprint covers only part of it — reached at " + this.where());
-      }
-      s.word(T_CUT_STEPS);
-      return;
-    }
+    if (++this.steps > MAX_STEPS) { this.cutBySteps(s); return; }
 
     if (v === null) { s.word(T_NULL); return; }
     t = typeof v;
     if (t === "number") { this.number(v); return; }
-    if (t === "string") { s.word(T_STR); s.text(v); this.steps += (v.length >>> 3); return; }
+    /* A string is charged for its length BEFORE it is written, so one
+       enormous string cannot walk past the budget on its own. */
+    if (t === "string") {
+      this.steps += (v.length >>> 3);
+      if (this.steps > MAX_STEPS) { this.cutBySteps(s); return; }
+      s.word(T_STR); s.text(v); return;
+    }
     if (t === "boolean") { s.word(v ? T_TRUE : T_FALSE); return; }
     if (t === "undefined") { s.word(T_UNDEF); return; }
     /* A rebuilt closure is not a content change. As an OBJECT PROPERTY a
@@ -451,7 +466,9 @@
        written, so the stream stays unambiguous. */
     for (k in v) {
       if (!Object.prototype.hasOwnProperty.call(v, k)) continue;
+      this.reading = k;                 /* so a getter that throws is named */
       var probe = v[k];
+      this.reading = null;
       if (typeof probe === "function" || probe === undefined) continue;
       keys.push(k);
     }

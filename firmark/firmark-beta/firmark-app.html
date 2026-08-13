@@ -7121,7 +7121,20 @@ var FM = (function () {
      `retrieved` records HOW it was obtained, because "I read the
      ordinance" and "a search engine summarised a page about the
      ordinance" are not the same evidence and must not print the
-     same way.
+     same way. Three values are in use:
+
+       search-summary              one search route said so
+       search-summary-corroborated two or more INDEPENDENT search
+                                   routes said so, and at least one
+                                   named the ordinance, rule or
+                                   agency report by number or title
+       not-fetched                 named as the authority to consult;
+                                   nothing was read from it at all
+
+     Note what is NOT in that list: anything meaning "read". No
+     primary document was opened for any entry — see RESEARCH.
+     `search-summary-corroborated` is the ceiling this environment
+     allows, and it is still not a permit-grade citation.
      ------------------------------------------------------------ */
 
   var SOURCES = [
@@ -10309,6 +10322,25 @@ var FM = (function () {
 
   /* ---------------- validate ---------------- */
 
+  /* Every coordinate a span could be measured off. A NaN or an Infinity in
+     any of them is a GEOMETRY error and belongs here, at gate 1 — not one
+     stage later as "the takeoff produced no marks", which is what used to
+     happen: setting walls[0].x2 = NaN returned zero findings from validate()
+     and the defect surfaced as an empty schedule with no named cause.
+     `num()` maps a non-finite value to null, so a null here means the field
+     was either absent or unusable and both need naming. */
+  function finiteFields(o, keys) {
+    var bad = [];
+    keys.forEach(function (k) {
+      var raw = own(o, k);
+      if (raw === undefined || raw === null) return;      /* absent is a different finding */
+      if (typeof raw === "number" ? !isFinite(raw) : num(raw) === null) {
+        bad.push(k + " = " + String(raw));
+      }
+    });
+    return bad;
+  }
+
   function validate(model) {
     var rows = [];
     function add(level, id, severity, code, text) {
@@ -10322,6 +10354,42 @@ var FM = (function () {
 
     var anyWall = false, anyBearing = false;
 
+    /* Wall ids are resolved MODEL-WIDE, not per level: framing on level 2
+       bears on walls on level 1 (that is the whole point of a second storey)
+       and takeoff.js indexes walls across every level. A per-level lookup
+       reported every upper-floor region as bearing on a missing wall. The
+       price of a global index is that a duplicated id is ambiguous, which
+       the takeoff refuses outright — so it is an error here, at gate 1. */
+    var byIdAll = {}, dupIds = [];
+    model.levels.forEach(function (L) {
+      (L.walls || []).forEach(function (w) {
+        if (!w || !w.id) return;
+        if (own(byIdAll, w.id)) { if (dupIds.indexOf(w.id) === -1) dupIds.push(w.id); return; }
+        byIdAll[w.id] = { wall: w, level: L };
+      });
+    });
+    /* Which walls anything anywhere bears on. A first floor whose only
+       framing region lives on the level above is fully determined — the
+       region names its walls — so "this level has no framing region" is a
+       finding about a level nothing bears on, not about where the region
+       happens to be filed. */
+    var borneAnywhere = {};
+    model.levels.forEach(function (L) {
+      (L.framing || []).forEach(function (f) {
+        (isArr(f.bearsOn) ? f.bearsOn : []).forEach(function (id) { borneAnywhere[id] = 1; });
+      });
+    });
+
+    if (dupIds.length) {
+      add(null, "walls", "error", "wall-id-duplicated",
+          "Wall id" + (dupIds.length === 1 ? " " : "s ") + dupIds.join(", ") +
+          " appear" + (dupIds.length === 1 ? "s" : "") + " on more than one level. A framing region's " +
+          "bearsOn list and an opening's wallId name a wall id and nothing else, so with the same id " +
+          "on two levels there is no way to say which wall is meant — and picking one would silently " +
+          "assign a load path. The takeoff refuses the whole model for this. Prefix the upper-level " +
+          "ids with the level id.");
+    }
+
     model.levels.forEach(function (L) {
       var lid = L.id;
       var walls = L.walls || [], openings = L.openings || [], framing = L.framing || [];
@@ -10330,11 +10398,25 @@ var FM = (function () {
          and reported once. Fourteen identical warnings bury the one finding
          that is not identical. */
       var noThick = [], assumedThick = [], placeholders = {};
+      /* a wall whose coordinates are not numbers is named once; every check
+         downstream of it would only restate the same defect in NaN */
+      var unreadable = {};
 
       if (walls.length) anyWall = true;
 
       /* ---- walls ---- */
       walls.forEach(function (w) {
+        var nan = finiteFields(w, ["x1", "y1", "x2", "y2", "heightFt", "thicknessIn"]);
+        if (nan.length) {
+          add(lid, w.id, "error", "wall-not-finite",
+              w.id + " carries a value that is not a finite number: " + nan.join(", ") +
+              ". Every span, tributary and member count downstream is measured off these " +
+              "coordinates, and arithmetic on NaN or Infinity produces no error and no member — it " +
+              "produces an empty schedule with nothing named. Retype the endpoint, or delete the " +
+              "wall and draw it again.");
+          unreadable[w.id] = 1;
+          return;                       /* nothing else about this wall is measurable */
+        }
         var len = wallLength(w);
         if (w.bearing) anyBearing = true;
 
@@ -10380,6 +10462,7 @@ var FM = (function () {
       /* ---- walls that cross without a node ---- */
       for (i = 0; i < walls.length; i++) {
         for (j = i + 1; j < walls.length; j++) {
+          if (own(unreadable, walls[i].id) || own(unreadable, walls[j].id)) continue;
           if (wallLength(walls[i]) < 1e-6 || wallLength(walls[j]) < 1e-6) continue;
           var hit = segCross(walls[i], walls[j]);
           if (hit) {
@@ -10393,6 +10476,14 @@ var FM = (function () {
 
       /* ---- openings ---- */
       openings.forEach(function (o) {
+        var onan = finiteFields(o, ["offsetFt", "widthFt", "headHeightFt"]);
+        if (onan.length) {
+          add(lid, o.id, "error", "opening-not-finite",
+              o.id + " carries a value that is not a finite number: " + onan.join(", ") +
+              ". The header span IS the clear opening, so a non-finite width or offset produces a " +
+              "header sized off nothing at all. Retype it.");
+          return;
+        }
         var w = wallById(L, o.wallId);
         if (!w) {
           add(lid, o.id, "error", "opening-orphan",
@@ -10449,6 +10540,20 @@ var FM = (function () {
 
       /* ---- framing ---- */
       framing.forEach(function (f) {
+        var fnan = finiteFields(f, ["directionDeg", "spacingIn"]);
+        (isArr(f.polygon) ? f.polygon : []).forEach(function (p, pi) {
+          if (!isArr(p)) return;
+          if (!isFinite(Number(p[0])) || !isFinite(Number(p[1]))) {
+            fnan.push("polygon corner " + (pi + 1) + " = (" + String(p[0]) + ", " + String(p[1]) + ")");
+          }
+        });
+        if (fnan.length) {
+          add(lid, f.id, "error", "framing-not-finite",
+              f.id + " carries a value that is not a finite number: " + fnan.join(", ") +
+              ". The span, the run and the piece count are all measured off this region; none of " +
+              "them can be. Redraw the region or retype the field.");
+          return;
+        }
         var poly = f.polygon;
         if (!isArr(poly) || poly.length < 3) {
           add(lid, f.id, "error", "framing-not-a-region",
@@ -10464,13 +10569,15 @@ var FM = (function () {
         var bearsOn = isArr(f.bearsOn) ? f.bearsOn : [];
         var known = [], missing = [];
         bearsOn.forEach(function (id) {
-          var w = wallById(L, id);
-          if (w) known.push(w); else missing.push(id);
+          /* model-wide, not level-local: a second-floor region bears on
+             first-floor walls */
+          var e = own(byIdAll, id);
+          if (e) known.push(e.wall); else missing.push(id);
         });
         missing.forEach(function (id) {
           add(lid, f.id, "error", "framing-bears-on-missing-wall",
-              f.id + " says it bears on \"" + id + "\", which is not a wall in this level. Pick the " +
-              "walls again in the framing panel.");
+              f.id + " says it bears on \"" + id + "\", which is not a wall anywhere in this model. " +
+              "Pick the walls again in the framing panel.");
         });
         if (known.length < 2) {
           add(lid, f.id, "error", "framing-bears-on-too-few",
@@ -10481,6 +10588,7 @@ var FM = (function () {
               "element for that, so record it as an open item instead.");
         }
         known.forEach(function (w) {
+          if (own(unreadable, w.id)) return;      /* already named as unreadable */
           if (!touchesRegion(poly, w)) {
             add(lid, f.id, "error", "framing-not-touching-wall",
                 f.id + " claims to bear on " + w.id + ", but " + w.id + " does not run along or under " +
@@ -10509,11 +10617,13 @@ var FM = (function () {
         }
       });
 
-      if (walls.length && !framing.length) {
+      var carried = walls.filter(function (w) { return own(borneAnywhere, w.id); }).length;
+      if (walls.length && !framing.length && !carried) {
         add(lid, "framing", "warn", "level-no-framing",
-            "Level " + lid + " has " + walls.length + " walls and no framing region. Nothing says " +
-            "which way anything spans, so the takeoff can derive no span from this level. Draw the " +
-            "roof or floor region and tick the walls it bears on.");
+            "Level " + lid + " has " + walls.length + " walls, no framing region of its own, and " +
+            "nothing on any other level bears on any of them. Nothing says which way anything spans, " +
+            "so the takeoff can derive no span from this level. Draw the roof or floor region and " +
+            "tick the walls it bears on.");
       }
       if (walls.length && footprintAreaSf(L) === null) {
         add(lid, "footprint", "warn", "exterior-not-closed",
@@ -10674,6 +10784,95 @@ var FM = (function () {
      LONGER clear span between faces, so nothing downstream is under-sized by
      it. validate() reports every wall carrying this value as assumed. */
   var ASSUMED_STUD_IN = 3.5;
+
+  /* ============================================================
+     geometry.drawn — the plan's own DRAWN declaration
+
+     The five shipped plans were written as load-and-mark records:
+     every span, tributary and count is stated, and where any of it
+     SITS was not. That is why fromPlan() used to refuse so much —
+     the refusals were correct and the plans were incomplete.
+
+     `geometry.drawn` is the missing half, written the way a framing
+     plan states it: an exterior outline, the interior bearing lines
+     with their offsets, the upper storey's outline, and one entry
+     per framed region giving the rectangle it covers, which way its
+     members run and at what spacing. Nothing here is inferred and
+     nothing here is optional-with-a-default: a plan that declares no
+     `drawn` block falls through to the derivation below exactly as
+     before, and says what it could not determine.
+
+     Two things are deliberately NOT in the declaration:
+
+       · bearsOn. A region's supports are the walls lying under its
+         two span-end edges, found from the drawing. Naming them by
+         hand lets a region and a wall drift apart in the data; this
+         way a moved wall moves the load path with it.
+       · any position for a member this model has no element for. A
+         porch beam on posts is still a hole (register §Q.2) even
+         when the porch's own position is declared, and it says so.
+     ============================================================ */
+
+  var SPAN_DIRS = { "front-to-back": 90, "left-to-right": 0 };
+
+  function bboxOfSegs(segs) {
+    var bb = { x0: Infinity, y0: Infinity, x1: -Infinity, y1: -Infinity };
+    segs.forEach(function (s) {
+      [[s.fromFt[0], s.fromFt[1]], [s.toFt[0], s.toFt[1]]].forEach(function (p) {
+        if (p[0] < bb.x0) bb.x0 = p[0];
+        if (p[0] > bb.x1) bb.x1 = p[0];
+        if (p[1] < bb.y0) bb.y0 = p[1];
+        if (p[1] > bb.y1) bb.y1 = p[1];
+      });
+    });
+    return bb;
+  }
+
+  /* front / rear / left / right from the wall's own position in the
+     outline's bounding box. The drawing convention (front is the wall at
+     y = 0) is the whole basis; a wall that is not on the bounding box —
+     the jog where a garage wing meets the house — gets no face name and
+     must be addressed by its declared id instead. */
+  function faceOfSeg(x1, y1, x2, y2, bb) {
+    var horiz = near(y1, y2, 1e-6), vert = near(x1, x2, 1e-6);
+    if (horiz && near(y1, bb.y0, 1e-6)) return "front";
+    if (horiz && near(y1, bb.y1, 1e-6)) return "rear";
+    if (vert && near(x1, bb.x0, 1e-6)) return "left";
+    if (vert && near(x1, bb.x1, 1e-6)) return "right";
+    return "";
+  }
+
+  function overlapLen(a0, a1, b0, b1) {
+    var lo = Math.max(Math.min(a0, a1), Math.min(b0, b1));
+    var hi = Math.min(Math.max(a0, a1), Math.max(b0, b1));
+    return hi > lo ? hi - lo : 0;
+  }
+
+  /* Every wall in the model that lies along this edge and runs with it.
+     Model-wide on purpose: a second-floor region bears on first-floor
+     walls, which is the only way a two-storey model can work. */
+  function wallsAlongEdge(model, ax, ay, bx, by) {
+    var out = [];
+    var ex = bx - ax, ey = by - ay, eL = Math.sqrt(ex * ex + ey * ey);
+    if (eL < 1e-9) return out;
+    var ux = ex / eL, uy = ey / eL, nx = -uy, ny = ux;
+    (model.levels || []).forEach(function (L) {
+      (L.walls || []).forEach(function (w) {
+        var wl = wallLength(w);
+        if (wl < 1e-9) return;
+        var wux = (w.x2 - w.x1) / wl, wuy = (w.y2 - w.y1) / wl;
+        if (Math.abs(wux * nx + wuy * ny) > 0.02) return;                 /* not parallel */
+        var d1 = Math.abs((w.x1 - ax) * nx + (w.y1 - ay) * ny);
+        var d2 = Math.abs((w.x2 - ax) * nx + (w.y2 - ay) * ny);
+        if (d1 > RULES.touchTolFt || d2 > RULES.touchTolFt) return;       /* not on the line */
+        var t1 = (w.x1 - ax) * ux + (w.y1 - ay) * uy;
+        var t2 = (w.x2 - ax) * ux + (w.y2 - ay) * uy;
+        if (overlapLen(t1, t2, 0, eL) < RULES.touchMinFt) return;         /* only clips a corner */
+        out.push(w);
+      });
+    });
+    return out;
+  }
 
   function fromPlan(planId, variantId) {
     var W = FM.weights;
@@ -15802,23 +16001,36 @@ var FM = (function () {
     function para(t, width, indent) {
       wrap(t, width || 74).forEach(function (x) { say((indent === undefined ? "  " : indent) + x); });
     }
+    /* A labelled header field with a hanging indent under the TEXT. The plan
+       line ran to 155 columns on `starter-1210` — the plan summary is a full
+       sentence — in a document whose own rules are 78 wide, so the header of
+       the materials export was the widest thing in it. Wrap the value, then
+       lay the label alongside it (export.js learned this the same way). */
+    function field(label, value) {
+      var head = pad(label, 14) + ": ";
+      var body = pad("", head.length);
+      var lines = wrap(value === undefined || value === null || value === "" ? "—" : String(value),
+                       78 - head.length);
+      say(head + lines[0]);
+      lines.slice(1).forEach(function (x) { say(body + x); });
+    }
 
     var t = bom.totals, p = bom.pack || {}, pl = bom.plan || {};
 
     /* ---- header ---- */
     say("FIRMARK — BILL OF MATERIALS (beta)");
     say(rule("="));
-    say("Plan          : " + (pl.name || pl.id || "—") + (pl.summary ? " — " + pl.summary : ""));
-    say("Region pack   : " + (p.name || p.id || "—") + (p.markets ? " · " + p.markets : ""));
+    field("Plan", (pl.name || pl.id || "—") + (pl.summary ? " — " + pl.summary : ""));
+    field("Region pack", (p.name || p.id || "—") + (p.markets ? " · " + p.markets : ""));
     if (pl.variant) {
-      say("Variant       : " + (pl.variant.label || pl.variant.id) +
+      field("Variant", (pl.variant.label || pl.variant.id) +
           (pl.variant.isBase ? "   [the declared base case]" : "") +
           (isFinite(pl.variant.takeRate) ? "   take " + n2(pl.variant.takeRate * 100, 1) + "% [market]" : ""));
     } else if (pl.ofPlan) {
-      say("Variant       : a variant of " + pl.ofPlan + ", descriptor not carried");
+      field("Variant", "a variant of " + pl.ofPlan + ", descriptor not carried");
     }
-    say("Scope         : simple-span solid-sawn members from the member schedule, ONLY");
-    if (bom.at || opts.at) say("Generated     : " + (opts.at || bom.at));
+    field("Scope", "simple-span solid-sawn members from the member schedule, ONLY");
+    if (bom.at || opts.at) field("Generated", (opts.at || bom.at));
     say();
     say("NOT SEALED ENGINEERING AND NOT A PURCHASE ORDER. This is a quantity takeoff");
     say("of a member schedule a licensed engineer must still review. Prices are");
@@ -15872,8 +16084,14 @@ var FM = (function () {
     say("  " + rule("-").slice(0, 76));
     t.byStockLengthOrder.forEach(function (Lft) {
       var b = t.byStockLength[String(Lft)];
-      say("  " + pad(Lft + " ft", 10) + lpad(comma(b.pieces), 8) + lpad(n2(b.bf, 2), 12) +
-          lpad(usd(b.usd), 13) + "  " + b.skus.join(", "));
+      /* the SKU list is free text of unbounded length — two 4x sizes on one
+         stock length ran this row to 93 columns inside a 78-column rule, so
+         the last column wraps under itself rather than off the page */
+      var lead = "  " + pad(Lft + " ft", 10) + lpad(comma(b.pieces), 8) + lpad(n2(b.bf, 2), 12) +
+                 lpad(usd(b.usd), 13) + "  ";
+      wrap(b.skus.join(", "), 78 - lead.length).forEach(function (x, i) {
+        say(i ? pad("", lead.length) + x : lead + x);
+      });
     });
     say("  " + rule("-").slice(0, 76));
     say("  " + pad("TOTAL", 10) + lpad(comma(t.pieces), 8) + lpad(n2(t.bf, 2), 12) +
@@ -15894,10 +16112,13 @@ var FM = (function () {
       say("  " + pad(g.size, 7) + pad(g.species + " " + g.grade, 28) +
           pad(g.treatment, 9) + pad(g.stockLengthFt + " ft", 7) +
           lpad(comma(g.piecesPerHouse), 5) + lpad(n2(g.bf, 2), 10) + lpad(usd(g.extUSD), 11));
-      say("  " + pad("", 7) + "serves " + g.marksLabel +
-          "   · cut " + n2(g.lengthFt, 2) + " ft · " + g.service +
-          " · " + usd(g.unitUSD) + "/pc [market]" +
-          (g.unified ? " · " + g.unified + " mark(s) RAISED BY UNIFICATION" : ""));
+      /* the marks a line serves is free text: HDR-W + HDR-ENT with a
+         unification note ran to 117 columns inside a 78-column rule */
+      wrap("serves " + g.marksLabel +
+           "   · cut " + n2(g.lengthFt, 2) + " ft · " + g.service +
+           " · " + usd(g.unitUSD) + "/pc [market]" +
+           (g.unified ? " · " + g.unified + " mark(s) RAISED BY UNIFICATION" : ""), 69)
+        .forEach(function (x, i) { say("  " + pad("", 7) + (i ? "  " : "") + x); });
       para(g.basis, 70, "        ");
       say();
     });
@@ -15929,18 +16150,21 @@ var FM = (function () {
            "rule assumes. The 2 ft rounding usually absorbs it; where it does not, the stick " +
            "is short and this document says so at the top and refuses to be issued.");
       say();
-      say("  " + pad("MARK", 10) + pad("BEARING/END", 13) + pad("RULE CUT", 11) +
-          pad("TRUE CUT", 11) + pad("BOUGHT", 9) + "NEEDS");
+      say("  " + pad("MARK", 10) + pad("BRG/END", 9) + pad("RULE CUT", 9) +
+          pad("TRUE CUT", 9) + pad("BOUGHT", 8) + pad("NEEDS", 8) + "VERDICT");
       say("  " + rule("-").slice(0, 76));
       tight.forEach(function (c) {
-        say("  " + pad(c.markId, 10) + pad(n2(c.bearingPerEndIn, 2) + " in", 13) +
-            pad(n2(c.cutLengthFt, 2) + " ft", 11) +
-            pad(n2(c.cutWithDeclaredBearingFt, 2) + " ft", 11) +
+        /* the verdict is the column that matters, so it gets its own name in
+           the header rather than trailing off the end of the row: this ran to
+           95 columns and "** SHORT **" was the part that fell off */
+        say("  " + pad(c.markId, 10) + pad(n2(c.bearingPerEndIn, 2) + " in", 9) +
+            pad(n2(c.cutLengthFt, 2) + " ft", 9) +
+            pad(n2(c.cutWithDeclaredBearingFt, 2) + " ft", 9) +
             pad(bom.lines.filter(function (g) {
               return g.cuts.indexOf(c) !== -1;
-            })[0].stockLengthFt + " ft", 9) +
-            c.stockIfDeclaredBearingFt + " ft" +
-            (c.stockAbsorbsIt ? "   (absorbed by the 2 ft rounding)" : "   ** SHORT **"));
+            })[0].stockLengthFt + " ft", 8) +
+            pad(c.stockIfDeclaredBearingFt + " ft", 8) +
+            (c.stockAbsorbsIt ? "absorbed by rounding" : "** SHORT **"));
       });
       say();
       say("  This is reported, not corrected: the stick length rule lives in solver.js and");
@@ -20488,12 +20712,29 @@ var FM = (function () {
     this.steps = 0;
     this.path = [];       /* objects on the current path, for cycle detection */
     this.keys = [];       /* the key names alongside them, so a cut can say WHERE */
+    this.reading = null;  /* the key being fetched, so a throwing getter can be named */
     this.why = [];        /* named reasons the walk did not cover everything */
     this.cutDepth = false;
     this.cutSteps = false;
   }
+  /* A readable path to the place the walk stopped. Elided in the middle,
+     because the interesting case is 512 levels deep and a message nobody can
+     read on a screen is the same as no message. */
   Walk.prototype.where = function () {
-    return this.keys.length ? this.keys.join(".") : "the value itself";
+    var k = this.keys;
+    if (this.reading !== null) k = k.concat([this.reading]);
+    if (!k.length) return "the value itself";
+    if (k.length <= 8) return k.join(".");
+    return k.slice(0, 4).join(".") + " … (" + (k.length - 8) + " more) … " +
+           k.slice(k.length - 4).join(".");
+  };
+  Walk.prototype.cutBySteps = function (s) {
+    if (!this.cutSteps) {
+      this.cutSteps = true;
+      this.why.push("this content needed more than " + MAX_STEPS + " steps to read in full, so " +
+                    "the fingerprint covers only part of it — reached at " + this.where());
+    }
+    s.word(T_CUT_STEPS);
   };
   Walk.prototype.number = function (v) {
     var s = this.sink;
@@ -20517,20 +20758,18 @@ var FM = (function () {
   Walk.prototype.value = function (v, depth) {
     var s = this.sink, t;
 
-    if (++this.steps > MAX_STEPS) {
-      if (!this.cutSteps) {
-        this.cutSteps = true;
-        this.why.push("this content needed more than " + MAX_STEPS + " steps to read in full, " +
-                      "so the fingerprint covers only part of it — reached at " + this.where());
-      }
-      s.word(T_CUT_STEPS);
-      return;
-    }
+    if (++this.steps > MAX_STEPS) { this.cutBySteps(s); return; }
 
     if (v === null) { s.word(T_NULL); return; }
     t = typeof v;
     if (t === "number") { this.number(v); return; }
-    if (t === "string") { s.word(T_STR); s.text(v); this.steps += (v.length >>> 3); return; }
+    /* A string is charged for its length BEFORE it is written, so one
+       enormous string cannot walk past the budget on its own. */
+    if (t === "string") {
+      this.steps += (v.length >>> 3);
+      if (this.steps > MAX_STEPS) { this.cutBySteps(s); return; }
+      s.word(T_STR); s.text(v); return;
+    }
     if (t === "boolean") { s.word(v ? T_TRUE : T_FALSE); return; }
     if (t === "undefined") { s.word(T_UNDEF); return; }
     /* A rebuilt closure is not a content change. As an OBJECT PROPERTY a
@@ -20633,7 +20872,9 @@ var FM = (function () {
        written, so the stream stays unambiguous. */
     for (k in v) {
       if (!Object.prototype.hasOwnProperty.call(v, k)) continue;
+      this.reading = k;                 /* so a getter that throws is named */
       var probe = v[k];
+      this.reading = null;
       if (typeof probe === "function" || probe === undefined) continue;
       keys.push(k);
     }
