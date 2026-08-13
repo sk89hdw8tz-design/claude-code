@@ -30,10 +30,20 @@
    dialogs, storage, toast — and a bare repaint of the same view counts
    as NOTHING.
 
-   The page is reloaded before every single control. It is slower and it
-   is the only way one control's effect cannot be another's. A Reset
-   button halfway down a view must not decide what the buttons after it
-   appear to do.
+   The page is reloaded before every single control, AND localStorage is
+   cleared on every load. It is slower and it is the only way one
+   control's effect cannot be another's. A Reset button halfway down a
+   view must not decide what the buttons after it appear to do.
+
+   The storage clear is not belt-and-braces: without it the reload does
+   almost nothing, because localStorage survives one. That gap made the
+   audit report cad's "Delete" as dead when Delete is not rendered at all
+   unless something is selected — a selection had leaked in from an
+   earlier click, several controls back.
+
+   The drawing surface is SVG, not canvas. Both are fingerprinted: an
+   earlier version measured only canvas and so could not see "Fit to
+   content" or "Reload source" do their work, and called both dead.
    ============================================================ */
 
 var pwPath;
@@ -91,6 +101,20 @@ const EXCUSE = /(not wired|isn'?t wired|not implemented|not built|coming soon|\b
      that drifts shows up as a renamed control rather than passing
      unnoticed. Installed as an init script so it survives every reload. */
   await page.addInitScript(() => {
+    /* ISOLATION, for real this time.
+
+       The header above claims that reloading before every control means
+       one control's effect cannot be mistaken for another's. That was
+       not true: localStorage SURVIVES a reload, so a control that saved
+       a model, made a selection or approved a stage carried into every
+       control audited after it.
+
+       It showed up as a phantom: the audit reported cad's "Delete" as a
+       dead button, and Delete is not even rendered unless something is
+       selected — the selection had leaked in from an earlier click. An
+       audit whose whole premise is isolation has to actually have it. */
+    try { localStorage.clear(); } catch (e) {}
+
     window.__fmNodeAt = function (zone, i) {
       const roots = zone === 'chrome'
         ? [document.querySelector('.topbar'), document.querySelector('.rail')].filter(Boolean)
@@ -227,6 +251,14 @@ const EXCUSE = /(not wired|isn'?t wired|not implemented|not built|coming soon|\b
         try { return c.width + 'x' + c.height + ':' + c.toDataURL().length; }
         catch (e) { return 'unreadable'; }
       }).join(',');
+    /* The CAD view draws in SVG, and there is no <canvas> in this app at
+       all. Measuring only canvas is why "Fit to content" and "Reload
+       source" were both reported dead: zooming changes the drawing's
+       markup length 24,235 -> 18,910 and Fit puts it back exactly, and
+       none of that is text, a route, storage or a toast. */
+    const svgs = [].slice.call(scope.querySelectorAll('svg'))
+      .map(s => (s.getAttribute('viewBox') || '') + ':' +
+                s.childElementCount + ':' + s.outerHTML.length).join(',');
 
     return {
       view: active ? active.id : null,
@@ -235,7 +267,7 @@ const EXCUSE = /(not wired|isn'?t wired|not implemented|not built|coming soon|\b
       chrome,
       toast: (toast && toast.classList.contains('on')) ? (toast.textContent || '') : '',
       store: JSON.stringify(store),
-      values, pressed, canvases,
+      values, pressed, canvases, svgs,
       text: active ? (active.innerText || '') : '',
       controls: active ? active.querySelectorAll('button,select,a[href],input,textarea').length : 0
     };
@@ -295,7 +327,7 @@ const EXCUSE = /(not wired|isn'?t wired|not implemented|not built|coming soon|\b
     if (before.store !== after.store) return 'stored';
     if (before.pressed !== after.pressed) return 'toggled';
     if (before.values !== after.values) return 'filled';
-    if (before.canvases !== after.canvases) return 'drew';
+    if (before.canvases !== after.canvases || before.svgs !== after.svgs) return 'drew';
     if (after.toast && after.toast !== before.toast) return 'toast';
     /* A repaint of the same view with the same text and the same control
        count is not an effect. This is the case that used to read as a
