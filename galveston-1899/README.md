@@ -100,6 +100,33 @@ below that, so the script raises the ceiling deliberately.
 - Mosaic tiles take their pixel boundaries from the rounded cell edges, so
   neighbours share a boundary exactly and no white hairlines appear between
   sheets on grids that do not divide the canvas evenly.
+
+### Part-sheets (shoreline sheets that are mostly water)
+
+A sheet at the water's edge may carry map content over only part of its area,
+and some are physically half-size scans. Stretching such a sheet to fill a
+mosaic cell spreads its built-up part across ground it does not cover.
+
+`--coverage` (also printed by `--probe`) measures the ink bounding box of every
+sheet and flags any that carry much less than the rest, with the direction the
+content leans:
+
+```
+  sheet-06.jpg   90.9% wide x  46.4% tall  area  42.2%  <-- only 51% of the typical sheet, leans s
+```
+
+`--mosaic-scale uniform` (the default) then draws every sheet at one common
+scale and anchors it in its cell, so a part-sheet occupies only the ground it
+covers. `--mosaic-scale cell` restores the old fill-the-cell behaviour, which
+is correct only when every sheet covers equal ground.
+
+Pin a flagged sheet with a third element in its layout entry:
+
+```json
+{ "sheet-06": [0, 2, "s"] }
+```
+
+Anchors: `n s e w nw ne sw se c`.
 - The grid is chosen automatically by maximising coverage for the measured
   sheet aspect; override with `--cols`/`--rows`. A partial final row is centred
   rather than left ragged.
@@ -178,3 +205,8 @@ A 24-agent adversarial review raised 20 candidate defects; 14 were refuted and
 | Cache keyed on label alone reused another group's file | refetching group 1 over group 2 reports "stale", refetches |
 | README's step-by-step omitted `--exclude`, printing the Key | command corrected |
 | Layout validator crashed on any non-`sheet-NN` key | validates a layout containing `00-index`/`keymap` |
+
+Part-sheet handling is pinned by two tests that must both hold: a 2×7 mosaic of
+identical sheets has no white row or column inside the block, and a set where
+two sheets are half-height scans renders every reference square within 1.02×
+of the others (it was 2.18× when each sheet was stretched to its cell).

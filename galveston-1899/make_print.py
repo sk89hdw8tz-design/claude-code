@@ -43,6 +43,11 @@ from PIL import Image, ImageDraw, ImageFont
 # We are the ones creating the big image, so raise the ceiling deliberately.
 Image.MAX_IMAGE_PIXELS = 500_000_000
 
+# A uniform-scale tile within this many pixels of its cell is snapped to the cell
+# so neighbours share an exact boundary. Comfortably above per-cell rounding
+# (<=1 px) and far below any real part-sheet shortfall.
+SNAP_PX = 3
+
 SHEET_RE = re.compile(r"sheet-(\d+)", re.I)
 FRONT_ORDER = ["key", "legend", "title", "index"]
 
@@ -172,6 +177,53 @@ def crop_to_neatline(im: Image.Image, dark: int = 110, min_frac: float = 0.55,
     return im.crop((left, top, right, bottom)), True
 
 
+def content_extent(im: Image.Image, white: int = 244) -> dict:
+    """Measure how much of a sheet actually carries map content.
+
+    A shoreline sheet is mostly open water, so its ink occupies a fraction of
+    the paper. Forcing such a sheet to fill a whole mosaic cell stretches its
+    built-up part across ground it does not cover. This measures the ink
+    bounding box so those sheets can be found and anchored instead of guessed
+    at.
+
+    Returns fractions of the sheet covered by the ink bbox, plus where that box
+    sits (n/s/e/w) so the sheet can be pinned to the right edge of its cell.
+    """
+    gray = im.convert("L")
+    mask = gray.point(lambda v, t=white: 255 if v < t else 0)
+    bbox = mask.getbbox()
+    w, h = gray.size
+    if not bbox:
+        return {"w_frac": 0.0, "h_frac": 0.0, "area_frac": 0.0, "anchor": "c", "bbox": None}
+
+    x0, y0, x1, y1 = bbox
+    w_frac, h_frac = (x1 - x0) / w, (y1 - y0) / h
+
+    # Which way the content leans. Slack ABOVE the ink means the content sits
+    # low on the sheet, i.e. to the south -- so the sheet is pinned south.
+    v = "s" if y0 > (h - y1) else ("n" if (h - y1) > y0 else "")
+    hor = "e" if x0 > (w - x1) else ("w" if (w - x1) > x0 else "")
+    # Only call it a lean when the sheet is genuinely lopsided.
+    if h_frac > 0.9:
+        v = ""
+    if w_frac > 0.9:
+        hor = ""
+    anchor = (v + hor) or "c"
+    return {
+        "w_frac": w_frac,
+        "h_frac": h_frac,
+        "area_frac": w_frac * h_frac,
+        "anchor": anchor,
+        "bbox": bbox,
+    }
+
+
+ANCHORS = {
+    "c": (0.5, 0.5), "n": (0.5, 0.0), "s": (0.5, 1.0), "w": (0.0, 0.5), "e": (1.0, 0.5),
+    "nw": (0.0, 0.0), "ne": (1.0, 0.0), "sw": (0.0, 1.0), "se": (1.0, 1.0),
+}
+
+
 def choose_grid(n: int, canvas_w: float, canvas_h: float, sheet_aspect: float,
                 margin: float, gutter: float) -> tuple[int, int, float]:
     """Pick cols x rows that wastes the least canvas.
@@ -231,6 +283,13 @@ def main() -> int:
     ap.add_argument("--exclude", default="",
                     help="comma-separated substrings; matching files are left out of the "
                          "print entirely (e.g. --exclude key)")
+    ap.add_argument("--mosaic-scale", choices=["uniform", "cell"], default="uniform",
+                    help="uniform: every sheet drawn at one common scale and anchored in "
+                         "its cell, so a part-sheet (e.g. mostly open water) occupies only "
+                         "the ground it covers (default). cell: stretch each sheet to fill "
+                         "its cell -- only correct when every sheet covers equal ground.")
+    ap.add_argument("--coverage", action="store_true",
+                    help="report how much map content each sheet carries and flag part-sheets")
     ap.add_argument("--labels", action="store_true", help="draw the sheet label under each cell")
     ap.add_argument("--bg", default="#ffffff", help="canvas background colour")
     ap.add_argument("--proof", default=None, help="also write a downsampled JPEG proof here")
@@ -283,12 +342,24 @@ def main() -> int:
         with open(args.layout) as fh:
             raw = json.load(fh)
         layout = {k: v for k, v in raw.items() if not k.startswith("_")}
-        bad = [k for k, v in layout.items()
-               if not (isinstance(v, (list, tuple)) and len(v) == 2
-                       and all(isinstance(i, int) and i >= 0 for i in v))]
+        # [row, col] or [row, col, anchor]; the anchor pins a part-sheet to the
+        # edge of its cell where its content actually belongs.
+        anchors: dict[str, str] = {}
+        bad = []
+        for k, v in list(layout.items()):
+            ok = (isinstance(v, (list, tuple)) and len(v) in (2, 3)
+                  and all(isinstance(i, int) and i >= 0 for i in v[:2])
+                  and (len(v) == 2 or (isinstance(v[2], str) and v[2].lower() in ANCHORS)))
+            if not ok:
+                bad.append(k)
+                continue
+            if len(v) == 3:
+                anchors[k] = v[2].lower()
+            layout[k] = (v[0], v[1])
         if bad:
-            print(f"error: layout entries must be [row, col] with non-negative ints; "
-                  f"bad: {', '.join(sorted(bad))}", file=sys.stderr)
+            print(f"error: layout entries must be [row, col] or [row, col, anchor] with "
+                  f"anchor in {sorted(ANCHORS)}; bad: {', '.join(sorted(bad))}",
+                  file=sys.stderr)
             return 2
         seen: dict[tuple[int, int], str] = {}
         for k, (r, c) in layout.items():
@@ -387,6 +458,40 @@ def main() -> int:
         print("  ! Below 150 ppi -- expect visible softness at arm's length. "
               "Consider fewer sheets per print or a larger canvas.")
 
+    if args.coverage or args.probe:
+        print("\nContent coverage (ink bounding box as a fraction of the sheet):")
+        cov = []
+        for p in paths:
+            with Image.open(p) as im:
+                im = im.convert("RGB")
+                if args.trim:
+                    im = autocrop_border(im, tol=args.trim_tol)
+                    if args.neatline:
+                        im, _ = crop_to_neatline(im)
+                cov.append((os.path.basename(p), content_extent(im)))
+        areas = sorted(c["area_frac"] for _, c in cov)
+        med = areas[len(areas) // 2] if areas else 0.0
+        for name, c in cov:
+            rel = (c["area_frac"] / med) if med else 1.0
+            flag = ""
+            if rel < 0.7:
+                flag = f"  <-- only {rel * 100:.0f}% of the typical sheet, leans {c['anchor']}"
+            print(f"  {name:<28} {c['w_frac'] * 100:5.1f}% wide x {c['h_frac'] * 100:5.1f}% tall"
+                  f"  area {c['area_frac'] * 100:5.1f}%{flag}")
+        light = [(n, c) for n, c in cov if med and c["area_frac"] / med < 0.7]
+        if light:
+            print(f"\n  ! {len(light)} sheet(s) carry much less content than the rest — "
+                  f"typical of a shoreline sheet that is mostly open water.")
+            print("    In a mosaic these must NOT be stretched to fill a cell. Either give")
+            print("    them an anchor in the layout, e.g.")
+            for n, c in light[:2]:
+                lbl = os.path.splitext(n)[0]
+                print(f"        \"{lbl}\": [row, col, \"{c['anchor']}\"]")
+            print("    or keep --mosaic-scale uniform (the default), which places every")
+            print("    sheet at one common scale rather than filling each cell.")
+        else:
+            print("\n  All sheets carry comparable content; none looks like a part-sheet.")
+
     if args.probe:
         print("\n--probe: stopping before render.")
         return 0
@@ -408,6 +513,25 @@ def main() -> int:
     def cell_origin(r: int, c: int) -> tuple[float, float]:
         return (off_x + row_indent[r] + c * (cell_w_in + gutter),
                 off_y + r * (cell_h_in + gutter))
+
+    # For a uniform-scale mosaic every sheet is drawn at the same source-pixels-
+    # per-printed-inch, so they must be measured after trimming before any are
+    # placed. The median sheet is the one that fills a cell exactly.
+    uniform_ppi = None
+    if args.mode == "mosaic" and args.mosaic_scale == "uniform":
+        widths = []
+        for p in paths:
+            with Image.open(p) as im:
+                im = im.convert("RGB")
+                if args.trim:
+                    im = autocrop_border(im, tol=args.trim_tol)
+                    if args.neatline:
+                        im, _ = crop_to_neatline(im)
+                widths.append(im.width)
+        widths.sort()
+        uniform_ppi = widths[len(widths) // 2] / cell_w_in
+        print(f"Uniform mosaic scale: {uniform_ppi:.0f} source px per printed inch "
+              f"(median sheet fills a {cell_w_in:.2f}\" cell)")
 
     placed = 0
     neatline_misses: list[str] = []
@@ -453,8 +577,33 @@ def main() -> int:
                 x1 = int(round((ox_in + cell_w_in) * args.dpi))
                 y0 = int(round(oy_in * args.dpi))
                 y1 = int(round((oy_in + img_h_in) * args.dpi))
-                im = im.resize((max(1, x1 - x0), max(1, y1 - y0)), Image.LANCZOS)
-                ox, oy = x0, y0
+                cw_px, ch_px = max(1, x1 - x0), max(1, y1 - y0)
+
+                if args.mosaic_scale == "cell":
+                    im = im.resize((cw_px, ch_px), Image.LANCZOS)
+                    ox, oy = x0, y0
+                else:
+                    # One scale for the whole map: a sheet covering less ground
+                    # takes less space rather than being stretched to fill a cell.
+                    sw = max(1, int(round(im.width * (args.dpi / uniform_ppi))))
+                    sh = max(1, int(round(im.height * (args.dpi / uniform_ppi))))
+                    if sw > cw_px or sh > ch_px:
+                        k = min(cw_px / sw, ch_px / sh)
+                        sw, sh = max(1, int(sw * k)), max(1, int(sh * k))
+                    # A sheet that covers the whole cell must land on the cell
+                    # boundary exactly; otherwise the same sub-pixel rounding that
+                    # caused the earlier hairlines reappears here, since the cell
+                    # box varies by a pixel across the grid while this size does
+                    # not. Genuine part-sheets fall well short of the tolerance
+                    # and keep their true, smaller size.
+                    if abs(sw - cw_px) <= SNAP_PX:
+                        sw = cw_px
+                    if abs(sh - ch_px) <= SNAP_PX:
+                        sh = ch_px
+                    im = im.resize((sw, sh), Image.LANCZOS)
+                    ax, ay = ANCHORS[anchors.get(label, "c")]
+                    ox = x0 + int(round((cw_px - sw) * ax))
+                    oy = y0 + int(round((ch_px - sh) * ay))
             else:
                 a = im.width / im.height
                 if cell_w_in / img_h_in > a:
