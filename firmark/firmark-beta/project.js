@@ -145,9 +145,47 @@
      yet". The CAD view is stage 1 — what is on its canvas IS the geometry the
      run is about — so the run reads it rather than waiting to be told. */
 
+  /* WHAT COUNTS AS "THE CANVAS HAS GEOMETRY".
+
+     A BLANK MODEL IS NOT GEOMETRY. It is the absence of a statement, and it
+     must not outrank a plan the user selected.
+
+     This was wrong and it silently disabled the whole product: the precedence
+     is pinned model -> canvas -> plan id, and a blank model is a truthy
+     object with zero walls, so simply OPENING the Geometry stage on an empty
+     canvas shadowed the selected plan. `project.model()` returned the 0-wall
+     blank instead of starter-1210's four walls, the takeoff produced nothing,
+     and the materials list said "Nothing to export yet" while a plan sat
+     selected in the picker. Every stage downstream went quiet with no
+     explanation — exactly the silent-fallback failure this codebase forbids
+     everywhere else.
+
+     Found by clicking all 148 controls in the built app, not by any test:
+     none of the 1,221 assertions covered "the user opens the CAD view before
+     the run has geometry", because they all set state directly. */
+  function hasGeometry(m) {
+    if (!m || !m.levels || !m.levels.length) return false;
+    for (var i = 0; i < m.levels.length; i++) {
+      var lv = m.levels[i];
+      if (lv && lv.walls && lv.walls.length) return true;
+    }
+    return false;
+  }
+
   function canvasModel() {
     if (!FM.cad || typeof FM.cad.currentModel !== "function") return null;
-    try { return FM.cad.currentModel(); } catch (e) { return null; }
+    var m;
+    try { m = FM.cad.currentModel(); } catch (e) { return null; }
+    return hasGeometry(m) ? m : null;
+  }
+
+  /* cad.js's currentSource() reads view state that does not exist until that
+     view has rendered once, and it THROWS rather than returning null. Any call
+     to modelKey() before the user has visited the CAD view would take the whole
+     run down with it, so it is guarded here rather than assumed. */
+  function canvasSource() {
+    if (!FM.cad || typeof FM.cad.currentSource !== "function") return null;
+    try { return FM.cad.currentSource(); } catch (e) { return null; }
   }
 
   function modelKey() {
@@ -158,7 +196,7 @@
        different plan that happens to produce identical geometry still reads as
        a different thing to approve. */
     if (c) {
-      var src = FM.cad.currentSource ? FM.cad.currentSource() : { kind: "?", id: "?" };
+      var src = canvasSource() || { kind: "?", id: "?" };
       return "canvas:" + src.kind + "/" + src.id + "/" + fp(c);
     }
     if (s.planId) return "plan:" + s.planId + "/" + (s.variantId || "base");
