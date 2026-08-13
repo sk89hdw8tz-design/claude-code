@@ -618,6 +618,13 @@
       na.forEach(function (m) {
         say("  " + m.mark.id + " — " + m.mark.label + "   [" + m.notApplicable.reason + "]");
         wrap(m.notApplicable.note, 72, "    ").forEach(function (x) { say("    " + x); });
+        /* the design load this mark borrows, from THIS run — never from prose */
+        (m.notApplicable.reactions || []).forEach(function (rx) {
+          say("      design load from " + rx.id + ": " +
+              (rx.perBearingLb === null
+                 ? "no reaction published — " + (rx.why || "not computed")
+                 : comma(rx.perBearingLb) + " lb per bearing" + (rx.combo ? "  (" + rx.combo + ")" : "")));
+        });
         say();
       });
     }

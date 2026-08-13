@@ -351,9 +351,18 @@
     if (policy.minAvailability !== undefined && policy.priceOf) {
       var pr = policy.priceOf(cand, demand);
       if (pr && isFinite(pr.availability) && pr.availability < policy.minAvailability) {
+        /* Printed to enough places to stay TRUE. At two it produced
+           "availability 0.10 is below the firm floor of 0.10" — a sentence
+           that refutes itself on screen, on the one card the demo dwells on.
+           Availability is a product of stock and size factors and lands on
+           values like 0.0995; the comparison is exact, so the display has to
+           be too. Trailing zeros are trimmed so the common cases stay short. */
+        var trim = function (v) {
+          return Number(v).toFixed(3).replace(/0+$/, "").replace(/\.$/, "");
+        };
         return { ok: false, kind: "procurement",
-                 why: "availability " + pr.availability.toFixed(2) + " is below the firm floor of " +
-                      Number(policy.minAvailability).toFixed(2) + " — special order, and the field will substitute" };
+                 why: "availability " + trim(pr.availability) + " is below the firm floor of " +
+                      trim(policy.minAvailability) + " — special order, and the field will substitute" };
       }
     }
 
@@ -454,7 +463,8 @@
       policy = shallow(policy);
       policy.maxDCR = Math.min(1, Math.max(0.01, Number(policy.maxDCR) || 0.9));
     }
-    var cache = {}, stats = { evaluated: 0, contextEvaluated: 0, cacheHits: 0, prunedByBound: 0, prunedByDominance: 0, prunedByIncumbent: 0, families: 0 };
+    var cache = {}, stats = { evaluated: 0, contextEvaluated: 0, cacheHits: 0, prunedByBound: 0,
+                              prunedByDominance: 0, prunedByIncumbent: 0, prunedByGate: 0, families: 0 };
 
     /* calc-spec §2.1 wants six combinations built from separate q_Lr and q_S; the
        engine carries ONE roof load tagged either snow or roof-live, so D + Lr and
@@ -546,6 +556,7 @@
        They belong in the record: "we did not check a 4x14" is a different
        statement from "a 4x14 failed", and an engineer needs to know which. */
     (fams.excluded || []).forEach(function (x) {
+      stats.prunedByGate++;
       rejected.push({ cand: x.cand, dcr: null, governing: null, gate: x.kind,
                       reason: x.why, next: GATE_MOVE[x.kind] || null });
     });
@@ -770,7 +781,25 @@
       rejected: rejected,
       bounds: bounds,
       stats: stats,
-      searchSpace: fams.reduce(function (n, f) { return n + f.rungs.length; }, 0),
+      /* `evaluated` is every engine run, which includes the explain pass — and
+         the explain pass re-runs candidates the search had already pruned by
+         dominance or incumbent, so it double-counts them against the space.
+         The trace needs the SEARCH's own evaluations to make its arithmetic
+         close, so name that number rather than making each reader derive it. */
+      searchEvaluated: Math.max(0, (stats.evaluated || 0) - (stats.contextEvaluated || 0)),
+      /* The WHOLE candidate population, gate-excluded ones included.
+
+         It used to count only the rungs that survived eligibility, so the
+         trace card printed "search space 14 · cut by seed bounds 14 · engine
+         evaluations 2 · rejected 10 of 16" — 14 + 2 = 16 out of a space of 14,
+         under a footer reading "every cut is exact, no candidate was dropped
+         on a guess." The cuts WERE exact; the denominator was two candidates
+         short, because a gate removes a candidate before the family that would
+         have counted it is built. A trace whose own arithmetic does not close
+         is worth less than no trace, so the space is now everything that was
+         ever a candidate and `prunedByGate` is its own line. */
+      searchSpace: fams.reduce(function (n, f) { return n + f.rungs.length; }, 0) +
+                   ((fams.excluded || []).length),
       note: feasible.length ? null
         : noFeasibleNote(demand, policy, rejected, blocked, status, gatedPassing, gatedFailing),
     };
@@ -928,6 +957,41 @@
     });
     var out = { plan: plan, pack: pack, marks: marks, policy: policy };
     out.unified = opts.unify === false ? null : unify(out);
+
+    /* ---- borrowed reactions, resolved LIVE ----
+
+       A mark this engine will not size — a post — still has a design load, and
+       it is the end reaction of the beam above it, which this engine does
+       compute. Those numbers used to be written into the mark's prose by hand:
+       "1,231 lb per post, flat across all six packs."
+
+       Every one of them was correct when it was typed. Then the deck live load
+       moved from 40 to 60 psf and that sentence became 1,231 against a reaction
+       schedule printing 1,718 in the same document — two different reactions
+       for one bearing, on one page, with nothing failing. Three of the seven
+       such figures in the plan set were stale by the time anyone looked.
+
+       So a mark declares `reactionFrom: ["DK-2"]` and the number is resolved
+       here, from this run, for this pack and this variant. A named mark that
+       escalates publishes nothing and gets `null` — the note says no reaction
+       is published for it, and none is invented. */
+    marks.forEach(function (m) {
+      var from = m.mark && m.mark.reactionFrom;
+      if (!from || !from.length || !m.notApplicable) return;
+      m.notApplicable.reactions = from.map(function (id) {
+        var src = marks.filter(function (x) { return x.mark.id === id; })[0];
+        var rx = src && src.solution && src.solution.reactions;
+        return {
+          id: id,
+          perBearingLb: (rx && isFinite(rx.perBearingLb)) ? rx.perBearingLb : null,
+          combo: (rx && rx.combo) || null,
+          why: src ? (src.notApplicable ? "not this engine's member"
+                    : (src.solution && !src.solution.pick ? "escalates — no member, so no reaction" : null))
+                   : "not on this plan"
+        };
+      });
+    });
+
     out.rollup = rollup(out);
     return out;
   }

@@ -259,11 +259,81 @@ const APP = 'file://' + path.join(__dirname, '..', 'firmark-app.html');
   if (again.route !== 'sizing' || again.plan !== 'two-story-2450')
     bad.push(`routing: reload dropped the view (route=${again.route} plan=${again.plan})`);
 
-  /* a stale or mistyped link must degrade, not throw */
+  /* a stale or mistyped link must degrade, not throw — AND SAY SO.
+     An unknown view toasted; an unknown plan, region, variant, sheet or
+     project did not. That is the dangerous half: you send a colleague a link,
+     the plan id changed, and they open a schedule that renders perfectly and
+     is not the one you sent — a wrong answer wearing the shape of a right one. */
+  const staleCases = [
+    { hash: '#/no-such-view/whatever',                           what: 'unknown view' },
+    { hash: '#/sizing/gone-plan/nc-piedmont/schedule',           what: 'unknown plan' },
+    { hash: '#/sizing/two-story-2450/gone-pack/schedule',        what: 'unknown region' },
+    { hash: '#/sizing/two-story-2450/nc-piedmont/schedule/gone', what: 'unknown variant' },
+    { hash: '#/sheet/S-999',                                     what: 'unknown sheet' },
+    { hash: '#/project/nope',                                    what: 'unknown project' }
+  ];
+  for (const c of staleCases) {
+    await p.goto(APP + c.hash);
+    await p.waitForTimeout(350);
+    const r = await p.evaluate(() => ({
+      route: FM.state.route,
+      hash: location.hash,
+      toast: document.body.innerText.indexOf('which this build does not have') !== -1 ||
+             document.body.innerText.indexOf('No such view') !== -1
+    }));
+    if (!r.toast) bad.push(`routing: ${c.what} (${c.hash}) fell back SILENTLY — no notice on screen`);
+    /* the address bar must not keep naming something that is not on screen */
+    if (r.hash === c.hash) bad.push(`routing: ${c.what} left the stale hash in the address bar`);
+  }
   await p.goto(APP + '#/no-such-view/whatever');
   await p.waitForTimeout(250);
   const junk = await p.evaluate(() => FM.state.route);
   if (junk !== 'dashboard') bad.push(`routing: an unknown route landed on ${junk} instead of falling back`);
+
+  /* Back must undo a step the user would call a step.
+     Every sub-state change used to `replace`, so switching Texas -> Florida
+     and pressing Back landed on the dashboard: the two regions had never been
+     two entries. Region, plan and variant are steps; the tab is a lens. */
+  await p.goto(APP);
+  await p.waitForTimeout(300);
+  const nav = await p.evaluate(async () => {
+    const wait = ms => new Promise(r => setTimeout(r, ms));
+    FM.go('sizing'); await wait(150);
+    const s = FM.state.sizing;
+    const startPack = s.packId;
+    const sel = document.querySelectorAll('#view-sizing select');
+    const packSel = sel[0];
+    const other = [].slice.call(packSel.options).filter(o => o.value !== startPack)[0];
+    if (!other) return { skip: 'only one region' };
+    packSel.value = other.value; packSel.dispatchEvent(new Event('change'));
+    await wait(200);
+    return { startPack: startPack, movedTo: FM.state.sizing.packId, hash: location.hash };
+  });
+  if (!nav.skip) {
+    if (nav.movedTo === nav.startPack) bad.push('routing: region change did not take');
+    await p.goBack();
+    await p.waitForTimeout(300);
+    const backTo = await p.evaluate(() => ({ route: FM.state.route, pack: FM.state.sizing.packId }));
+    if (backTo.route !== 'sizing')
+      bad.push(`routing: Back after a region change left Sizing entirely (landed on ${backTo.route})`);
+    if (backTo.pack !== nav.startPack)
+      bad.push(`routing: Back after a region change did not restore ${nav.startPack} (got ${backTo.pack})`);
+  }
+
+  /* a tab change is NOT a step — it must not stack history */
+  await p.goto(APP + '#/sizing/two-story-2450/nc-piedmont/schedule');
+  await p.waitForTimeout(300);
+  const tabStack = await p.evaluate(async () => {
+    const wait = ms => new Promise(r => setTimeout(r, ms));
+    const before = history.length;
+    for (const t of ['region', 'matrix', 'schedule']) {
+      const b = document.querySelector('#view-sizing [data-tab="' + t + '"]');
+      if (b) { b.click(); await wait(120); }
+    }
+    return { before: before, after: history.length, hash: location.hash };
+  });
+  if (tabStack.after > tabStack.before)
+    bad.push(`routing: three tab clicks added ${tabStack.after - tabStack.before} history entries — tabs should replace`);
 
   const uniq = [...new Set(bad)];
   console.log(uniq.length

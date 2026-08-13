@@ -281,16 +281,45 @@
      dominates every other on every driver at once — otherwise it returns
      split and says the set has to be sized variant by variant. Both answers
      are reported here; neither is summarised away. */
+  /* The envelope answers "can I size this mark once for the whole master set?"
+     — so it has to be asked about every mark the master set contains, not
+     every mark the BASE plan contains.
+
+     It iterated `plan.marks`, which is the base. On two-story-2450 that meant
+     BM-POR and PST-POR-B — the two marks Elevation B adds, 27 of the 60 lots —
+     were absent from a card headed "THE ENVELOPE · 8 BUILDABLE COMBINATIONS",
+     while the delta table directly above announced them as added. A card that
+     names its scope as every combination and then silently covers only one of
+     them is the same defect as a green badge over an empty cell. */
   function envelope(plan, pack) {
     if (typeof FM.weights.envelopeFor !== "function") return null;
-    var rows = [];
-    plan.marks.forEach(function (mk) {
+    var rows = [], seen = {}, added = [];
+
+    function consider(mk, isAdded) {
+      if (own(seen, key(mk.id))) return;
+      seen[key(mk.id)] = true;
       var e;
       try { e = FM.weights.envelopeFor(plan, mk.id, pack); } catch (err) { return; }
       if (!e) return;
-      rows.push({ mark: mk, env: e });
+      rows.push({ mark: mk, env: e, addedByVariant: isAdded || null });
+    }
+
+    plan.marks.forEach(function (mk) { consider(mk, null); });
+
+    /* then everything any variant introduces */
+    var v = variantSet(plan);
+    (v && v.combinations || []).forEach(function (c) {
+      var vp;
+      try { vp = FM.weights.planForVariant(plan, c.id); } catch (err) { return; }
+      (vp && vp.marks || []).forEach(function (mk) {
+        if (own(seen, key(mk.id))) return;
+        added.push(mk.id);
+        consider(mk, c.label);
+      });
     });
-    return rows.length ? rows : null;
+    if (!rows.length) return null;
+    rows.addedByVariant = added;
+    return rows;
   }
 
   function masterSet(plan, pack) {
@@ -368,21 +397,50 @@
         if (s.combo) out.push(s.combo);      /* last, so it can simply be absent */
         return out;
       },
+      /* A segment this build does not recognise used to be discarded in
+         silence, which is the worst possible handling for the case the URL
+         exists to serve. You send a colleague a link, the plan id changes, and
+         they open a schedule that renders perfectly and is NOT the one you
+         sent — a wrong answer wearing the shape of a right one. An unknown
+         VIEW toasted; an unknown plan, region or variant did not.
+
+         So every segment is reported. The state still falls back, because a
+         blank screen helps nobody, but it falls back out loud. */
       write: function (args) {
         var s = sizingState();
         args = args || [];
-        if (args[0] && FM.weights && FM.weights.planById(args[0])) {
-          if (s.planId !== args[0]) s.combo = null;
-          s.planId = args[0];
+        var lost = [];
+
+        if (args[0]) {
+          if (FM.weights && FM.weights.planById(args[0])) {
+            if (s.planId !== args[0]) s.combo = null;
+            s.planId = args[0];
+          } else lost.push("plan “" + args[0] + "”");
         }
-        if (args[1] && FM.weights && FM.weights.packById(args[1])) s.packId = args[1];
-        if (args[2] && own(TABS, args[2])) s.tab = args[2];
+        if (args[1]) {
+          if (FM.weights && FM.weights.packById(args[1])) s.packId = args[1];
+          else lost.push("region “" + args[1] + "”");
+        }
+        if (args[2]) {
+          if (own(TABS, args[2])) s.tab = args[2];
+          else lost.push("tab “" + args[2] + "”");
+        }
         if (args[3]) {
           /* a combination id only means anything against its own plan */
           var v = variantSet(FM.weights.planById(s.planId));
-          s.combo = (v && comboById(v, args[3])) ? args[3] : null;
+          if (v && comboById(v, args[3])) s.combo = args[3];
+          else { s.combo = null; lost.push("variant “" + args[3] + "”"); }
         }
         s.open = null;
+
+        if (lost.length && FM.toast) {
+          FM.toast("This link names " + lost.join(" and ") + ", which this build does not have. " +
+                   "Showing " + (FM.weights.planById(s.planId) || {}).name + " in " +
+                   ((FM.weights.packById(s.packId) || {}).name || s.packId) + " instead — " +
+                   "check the link before using this schedule.");
+        }
+        /* and correct the address bar, so what it says is what is on screen */
+        if (lost.length && FM.syncHash) setTimeout(function () { FM.syncHash(true); }, 0);
       }
     });
   }
@@ -437,13 +495,24 @@
     var body = el("div");
     host.appendChild(body);
 
-    /* A pack or plan change is sub-state, not a route change: it REPLACES the
-       address so flipping through six regions does not bury the Back button. */
-    function redraw() { draw(); if (FM.syncHash) FM.syncHash(true); }
+    /* Every sub-state change used to REPLACE the address, on the reasoning
+       that flipping through six regions should not bury the Back button.
+       Driving it proved that wrong: switching Texas → Florida and pressing
+       Back landed on the dashboard, because the two regions had never been
+       two entries. "Take me back to Texas" is the single most natural thing to
+       try during this demo and it threw you out of the walk.
 
-    packSel.addEventListener("change", function () { state.packId = this.value; state.open = null; redraw(); });
+       So the line is drawn at what the user would call a step. Changing the
+       PLAN, the REGION or the VARIANT is a step — it re-solves the schedule
+       and produces a different answer, and Back should undo it. Changing the
+       TAB is a lens on the same answer; it refines the address in place. */
+    function redraw(step) { draw(); if (FM.syncHash) FM.syncHash(!step); }
+
+    packSel.addEventListener("change", function () {
+      state.packId = this.value; state.open = null; redraw(true);
+    });
     planSel.addEventListener("change", function () {
-      state.planId = this.value; state.open = null; state.combo = null; redraw();
+      state.planId = this.value; state.open = null; state.combo = null; redraw(true);
     });
     Array.prototype.forEach.call(tabs.querySelectorAll("button"), function (b) {
       b.addEventListener("click", function () { state.tab = b.getAttribute("data-tab"); redraw(); });
@@ -687,8 +756,23 @@
             el("span", { style: "font-weight:650", text: m.mark.label }),
             el("span", { class: "clause", text: na.t })
           ]);
+          var accBody = [el("p", { style: "font-size:.84rem", text: note })];
+          /* The design load this mark borrows from a beam above it, resolved
+             from THIS run rather than restated in the note. A hand-written
+             "1,231 lb per post" went stale the moment the deck live load
+             moved and sat next to a reaction schedule saying 1,718. */
+          (m.notApplicable.reactions || []).forEach(function (rx) {
+            accBody.push(el("div", { class: "dl-row", style: "font-size:.84rem" }, [
+              el("span", { class: "clause", text: "Design load from " + rx.id }),
+              rx.perBearingLb === null
+                ? el("span", { class: "badge b-mute", text: "no reaction published — " + (rx.why || "not computed") })
+                : el("span", { style: "font-weight:650",
+                               text: FM.comma(Math.round(rx.perBearingLb)) + " lb per bearing" +
+                                     (rx.combo ? "  ·  " + rx.combo : "") })
+            ]));
+          });
           nBody.appendChild(el("details", { class: "acc" }, [
-            head, el("div", { class: "acc-body" }, [el("p", { style: "font-size:.84rem", text: note })])
+            head, el("div", { class: "acc-body" }, accBody)
           ]));
         });
         body.appendChild(el("div", { style: "margin-top:16px" }, [
@@ -737,7 +821,7 @@
           text: e.label + (isFinite(e.takeRate) ? " · " + Math.round(e.takeRate * 100) + "%" : ""),
           "aria-pressed": elevId === e.id ? "true" : "false",
           title: e.note || e.label,
-          onclick: function () { state.combo = plain ? plain.id : null; state.open = null; redraw(); }
+          onclick: function () { state.combo = plain ? plain.id : null; state.open = null; redraw(true); }
         }));
       });
 
@@ -749,7 +833,7 @@
           text: optionLabel(v, c) + (c.lotsExpected ? " · " + c.lotsExpected + " lots" : ""),
           "aria-pressed": sel && sel.id === c.id ? "true" : "false",
           title: c.label,
-          onclick: function () { state.combo = c.id; state.open = null; redraw(); }
+          onclick: function () { state.combo = c.id; state.open = null; redraw(true); }
         }));
       });
 
@@ -835,7 +919,9 @@
                as covered because its envelope resolved. */
             var stuck = own(escIds || {}, key(e.mark.id));
             return {
-              k: esc(e.mark.id) + " <span class='clause'>" + esc(e.mark.label) + "</span>",
+              k: esc(e.mark.id) + " <span class='clause'>" + esc(e.mark.label) +
+                 (e.addedByVariant
+                    ? " · not on the base sheet — added by " + esc(e.addedByVariant) : "") + "</span>",
               v: (stuck ? "no member on the current selection <span class='clause'>governing demand: "
                         : "size it for <strong>") +
                  esc(g ? g.label : e.env.governedBy) + (stuck ? "</span>" : "</strong>"),
@@ -965,14 +1051,24 @@
               "computed against the best material in the palette, C_L = 1, C_M = 1, self-weight omitted — so a section " +
               "below a bound cannot pass for any material offered"
             }),
+            /* These have to ADD UP, and for a while they did not: the space
+               counted only what survived the gates, so gate + bound + evaluated
+               came to more than the space it was drawn from. The gate line is
+               explicit now and the footer states the identity, so a reader can
+               check the arithmetic instead of trusting the footer's word. */
             dl([
               { k: "Search space", v: sol.searchSpace + " candidates in " + (st.families || 0) + " families" },
+              { k: "Cut by a gate", v: String(st.prunedByGate || 0) + " <span class='clause'>geometry or procurement · never reached the engine</span>" },
               { k: "Cut by seed bounds", v: String(st.prunedByBound || 0) + " <span class='clause'>H1 · admissible</span>" },
               { k: "Cut by cost dominance", v: String(st.prunedByDominance || 0) + " <span class='clause'>H2 · deeper rung of a family already beaten</span>" },
               { k: "Cut by incumbent", v: String(st.prunedByIncumbent || 0) + " <span class='clause'>H3 · branch and bound</span>" },
-              { k: "Engine evaluations", v: String(st.evaluated || 0) + (st.cacheHits ? " (+" + st.cacheHits + " cached)" : ""), total: true }
+              { k: "Engine evaluations", v: String(sol.searchEvaluated || 0) +
+                   (st.contextEvaluated ? " <span class='clause'>+" + st.contextEvaluated +
+                    " more evaluated afterwards, to fill in the ladder below</span>" : "") +
+                   (st.cacheHits ? " (+" + st.cacheHits + " cached)" : ""), total: true }
             ])
-          ]), "Every cut is exact — no candidate was dropped on a guess"));
+          ]), "gate + bounds + dominance + incumbent + evaluations = the search space. " +
+              "Every cut is exact — no candidate was dropped on a guess"));
       }
 
       /* the feasible ladder */

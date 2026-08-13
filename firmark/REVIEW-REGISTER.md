@@ -7,7 +7,7 @@ allowed to be closed silently.
 Panel: structural PE (A&E), QA/QC, production-build & estimating, building code
 & regulatory (TX/NC/FL), software integration & test.
 
-Test suite: `node firmark-beta/test/run-tests.js` — **271 assertions, 0 failing**.
+Test suite: `node firmark-beta/test/run-tests.js` — **281 assertions, 0 failing**.
 UI sweep: `node firmark-beta/test/ui-tests.js` — renders the built bundle across every
 pack × plan, opens every mark's detail, fails on any NaN / undefined / empty numeric slot.
 Bundle freshness gate: `node firmark-beta/build.js --check`.
@@ -648,3 +648,51 @@ fire on nothing shipped.
 **The seal answer is unchanged: do not seal.** Nothing in this round was a calculation defect —
 every finding was about whether an output said what the product already knew. That is a good round
 to have late and a bad one to have first.
+
+---
+
+## P. Seventh round — the runbook driven against the app
+
+`DEMO.md` tells a presenter what they will see. An adversary drove every prose claim in it
+against the built bundle at two widths, the evening before. **Twenty-two deltas.** Six were
+product defects; the rest were the runbook overclaiming. The generated tables did not drift —
+the mechanism in §O.4 held — which is precisely why the deltas are all in the sentences.
+
+### P.1 Product defects the runbook exposed
+
+| # | Severity | Finding | Disposition |
+|---|---|---|---|
+| P1 | **BLOCKER** | **A stale link rendered the wrong schedule in silence.** An unknown *view* toasted; an unknown plan, region, variant, sheet or project did not — `registerSubRoute.write` discarded what it did not recognise and the view rendered its default. Measured: `#/sizing/gone-plan/...` rendered `two-story-2450`, `#/sheet/S-999` rendered `R-12`, `#/project/nope` rendered Hilltop, all with the stale hash still in the address bar and nothing on screen. This is the exact case the URL feature exists for — you send a colleague a link, the plan id changed — and it produced **a wrong answer wearing the shape of a right one**. | Fixed. Every segment is validated and every failure is named: *"This link names plan “gone-plan”, which this build does not have. Showing Two-Story 2450 in North Carolina · Piedmont instead — check the link before using this schedule."* The address bar is rewritten to what is actually on screen, unknown views included. Six stale-link cases asserted in a real browser. |
+| P2 | **MAJOR** | **My own regression, one round old.** Seven reaction figures were written into mark prose by hand — "1,231 lb per post, flat across all six packs". Every one was correct when typed. Then §O's deck live load moved 40 → 60 psf, and that sentence read **1,231 against a REACTION SCHEDULE printing 1,718 in the same document**. Two reactions for one bearing, one page, nothing failing. Three of the seven were stale by the time anyone looked; one named a reaction for a mark that escalates and publishes none. | Fixed as a class. A mark declares `reactionFrom: ["DK-2"]` and the number resolves from **this run**, this pack, this variant. A named mark that escalates publishes nothing and says so — *"no reaction published — escalates — no member, so no reaction"* — rather than carrying a trial figure. A test forbids any pounds figure in a weights.js string, and asserts every borrowed reaction equals the one the reaction schedule prints. The old assertion here required the number to be **in the prose**, which is what made them hand-typed; it now requires the declaration instead. |
+| P3 | **MAJOR** | **Back skipped the entire demo.** Every Sizing sub-state change called `syncHash(true)` → `location.replace`, so switching Texas → Florida and pressing Back landed on the dashboard: the two regions had never been two entries. "Take me back to Texas" is the most natural thing to try during this walk. | Fixed by drawing the line at what a user would call a step. Plan, region and variant **push** — they re-solve the schedule and produce a different answer, so Back should undo them. The tab **replaces** — it is a lens on the same answer. Both directions asserted: Back after a region change restores the region, and three tab clicks add zero history entries. |
+| P4 | **MAJOR** | **The envelope card silently dropped the marks a variant adds.** `envelope()` iterated `plan.marks` — the base. On `two-story-2450` that meant BM-POR and PST-POR-B, the two marks Elevation B adds across 27 of 60 lots, were absent from a card headed "THE ENVELOPE · 8 BUILDABLE COMBINATIONS" *while the delta table directly above announced them as added*. Ask "can I size the porch beam once?" and the card had no row for it. | Fixed. The envelope walks every mark any combination introduces, and a variant-added mark is labelled as such on its row. Same defect class as D1's green badge: a card that names its scope as everything and covers one part of it. |
+| P5 | **MAJOR** | **The search trace's own arithmetic did not close.** GB-1 read "search space 14 · cut by seed bounds 14 · engine evaluations 2 · rejected 10 of 16", under a footer reading *"every cut is exact — no candidate was dropped on a guess."* The cuts were exact; the **denominator** was two short, because a gate removes a candidate before the family that would have counted it is built — and `evaluated` also counted the explain pass, which re-runs candidates the search had already pruned. A trace whose arithmetic fails invites the one reader who checks to distrust the rest. | Fixed. `searchSpace` is the whole candidate population, `prunedByGate` is its own line, and `searchEvaluated` separates the search's evaluations from the explain pass's. The card states the identity so a reader can check it rather than trust the footer. Asserted on **174 mark-slots**: gate + bounds + dominance + incumbent + evaluations = the search space, everywhere. |
+| P6 | **MINOR** | **"availability 0.10 is below the firm floor of 0.10"** — a sentence that refutes itself, on the card §3.3 tells the presenter to dwell on. `toFixed(2)` rounded 0.0995 up to the floor it was being compared against. | Fixed with enough precision to stay true, trailing zeros trimmed. Asserted across every procurement rejection in the product that none states a value below a floor equal to itself. |
+
+### P.2 The runbook, corrected
+
+Fourteen wording deltas, the substantive ones being: it claimed **two** wind-governed packs when
+there are **three**; it cited **Table 4D**, which appears nowhere in the Materials view; it pointed
+a technical reviewer at **§L8** for a deflection question, and L8 is closed and was never about
+deflection (the open one is **L1/H3**); it placed the wall-dead-load boundary in "the printed 24"
+when it is item 13 of the 13 **engine limits**, a different list the export explicitly says is not
+a substitute for the 24; it said the app "lands on" the Sizing view when it cold-opens on a
+Dashboard of sample data; it promised the row detail shows "the net cost of the move" when that
+lives in a different card; and its Lots column summed to 72 on a 60-lot plan because attach rates
+nest inside elevations rather than partitioning them.
+
+Three UI traps the adversary found that no wording could remove were added to §5 instead of being
+papered over: the green **Pick** badge sits on a member the schedule does not carry whenever
+unification has fired, "About this data" is a toast rather than a link in an offline bundle, and
+the Dashboard is sample data with a card labelled LRFD in an ASD-only product.
+
+### P.3 What this round says about the previous one
+
+P2 is the finding that matters, because it is **mine and it is one round old**. §O closed L10 by
+moving a load, and moving that load silently falsified a sentence in a different file that no test
+covered — the same failure mode as the coverage headline, in a place nobody had thought to
+mechanise. The fix is the same one: stop writing computed numbers into prose, and add the guard
+that makes writing them again fail.
+
+The seal answer is unchanged: **do not seal.** L1, L2, L3, L5, L6, L7 and L9 remain open, and so do
+the three items §N could not close.

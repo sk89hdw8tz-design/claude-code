@@ -1141,13 +1141,17 @@ var FM = (function () {
     if (host) { host.setAttribute("tabindex", "-1"); host.focus({ preventScroll: true }); }
     closeRailDrawer();
 
-    if (!opts.fromHash) {
+    /* Normally a hash-driven navigation does not write the hash back — it came
+       from there. The exception is a CORRECTION: we landed here because the
+       link named something this build does not have, so the address bar is
+       lying and has to be rewritten to what is actually on screen. */
+    if (!opts.fromHash || opts.replace) {
       var sub = subRoute[route] && subRoute[route].read ? subRoute[route].read() : null;
       var want = hashFor(route, { projectId: opts.projectId, sheetId: opts.sheetId, sub: sub });
       if (location.hash !== want) {
         applyingHash = true;
-        /* replace, not push, when the route did not change — a view updating
-           its own sub-state should not fill the Back stack with itself */
+        /* replace, not push, when the view is only correcting or refining
+           itself — that should not fill the Back stack */
         if (opts.replace) location.replace(location.href.split("#")[0] + want);
         else location.hash = want;
         applyingHash = false;
@@ -1179,12 +1183,27 @@ var FM = (function () {
     /* an unknown route is a typo or a stale link, not a crash */
     if (!VIEWS[h.route] && !document.getElementById("view-" + h.route)) {
       toast("No such view: " + h.route);
-      go("dashboard", { fromHash: true });
+      /* replace so the address bar stops naming a view that does not exist */
+      go("dashboard", { fromHash: true, replace: true });
       return;
     }
     var opts = { fromHash: true };
     var key = ROUTE_PARAM[h.route];
-    if (key && h.args.length) opts[key] = h.args[0];
+    if (key && h.args.length) {
+      /* Validate the id rather than handing an unknown one to a view that
+         will quietly render its first row. A link naming a sheet or project
+         that no longer exists must say so — a stale link that renders the
+         WRONG record perfectly is worse than one that renders nothing. */
+      var pool = h.route === "sheet" ? SHEETS : PROJECTS;
+      var found = pool.filter(function (x) { return x.id === h.args[0]; })[0];
+      if (found) opts[key] = h.args[0];
+      else {
+        toast("This link names " + h.route + " “" + h.args[0] + "”, which this build does not have. " +
+              "Showing " + (pool[0] && pool[0].id) + " instead.");
+        opts[key] = pool[0] && pool[0].id;
+        opts.replace = true;
+      }
+    }
     /* hand the view its own segments BEFORE it renders, so it draws the
        right thing once rather than drawing the default and then correcting */
     var sr = subRoute[h.route];
@@ -3635,12 +3654,11 @@ var FM = (function () {
           note: "Tributary is half the 46 ft truss span. This is why exterior openings in production single-stories " +
                 "are almost always engineered." },
         { id: "PST-LAN", label: "Lanai beam posts · BM-LAN / BM-LAN-W", role: "post",
-          count: 6, component: true,
+          count: 6, component: true, reactionFrom: ["BM-LAN", "BM-LAN-W"],
           componentNote: "AXIAL MEMBER — NOT CHECKED HERE (calc-spec §4.10 specifies C_P, §8.20 " +
-            "states no interaction equation is evaluated, and engine.js implements neither). Design " +
-            "loads from the end reactions this tool DOES compute: BM-LAN 1,317 lb per post " +
-            "(1,527 nc-mountain, 1,611 fl-hvhz); BM-LAN-W 1,757 lb (2,037 nc-mountain, 2,149 fl-hvhz, " +
-            "on a trial 4x12 — that mark escalates, so the tool publishes no reaction for it). Uplift, " +
+            "states no interaction equation is evaluated, and engine.js implements neither). The " +
+            "design load is the end reaction of the beam above, printed live below for this region. " +
+            "BM-LAN-W escalates, so no reaction is published for it and none is invented. Uplift, " +
             "the continuous load path and both the base and cap connections are out of scope " +
             "(§8.11, §8.17). Slenderness is not a formality: for a typical 8 ft 4x4, C_P runs 0.25 to " +
             "0.35, so a check that omits it overstates axial capacity roughly threefold." }
@@ -3774,10 +3792,11 @@ var FM = (function () {
                 "t_floor = 11.0/2 = 5.5. This is the envelope mark D11 asks for: sizing the base " +
                 "elevation and letting an option move the bearing is how a revision gets manufactured." },
         { id: "PST-DK", label: "Deck beam posts · DK-2", role: "post", count: 2, component: true,
+          reactionFrom: ["DK-2"],
           componentNote: "AXIAL MEMBER — NOT CHECKED HERE. calc-spec §4.10 specifies C_P (NDS §3.7.1) " +
             "and §8.20 states no interaction equation is evaluated; engine.js implements neither. " +
-            "Design load, from the end reaction this tool DOES compute for DK-2: 1,231 lb per post, " +
-            "flat across all six packs. Also out of scope on this member: uplift and the continuous " +
+            "The design load is DK-2's end reaction, which this tool does compute and prints live " +
+            "below. Also out of scope on this member: uplift and the continuous " +
             "load path (§8.11, §8.17) and both the base and cap connections (§8.17). Slenderness is " +
             "not a formality — for a typical 8 ft 4x4, C_P runs 0.25 to 0.35, so a check that omits " +
             "it overstates axial capacity roughly threefold." }
@@ -3851,10 +3870,11 @@ var FM = (function () {
               note: "26 ft of beam on four posts = three 8.67 ft bays, and the tributary is half the " +
                     "14 ft deck depth = 7.0 ft. Shorter span, heavier load: it is the pair that " +
                     "makes the envelope a genuine question rather than a maximum." },
-            "PST-DK": { count: 4, componentNote: "AXIAL MEMBER — NOT CHECKED HERE (calc-spec §4.10, " +
+            "PST-DK": { count: 4, reactionFrom: ["DK-2"],
+              componentNote: "AXIAL MEMBER — NOT CHECKED HERE (calc-spec §4.10, " +
               "§8.20). The extended deck stands on FOUR posts, not two, and each carries 7.0 ft of " +
-              "tributary instead of 6.0. Take the design load from the reaction this tool computes " +
-              "for DK-2 in THIS variant — the 1,231 lb on the base mark is the 20 ft deck. Uplift " +
+              "tributary instead of 6.0. The design load is DK-2's reaction IN THIS VARIANT, printed " +
+              "live below — the base mark's reaction is the 20 ft deck and is a different number. Uplift " +
               "and both connections remain out of scope (§8.11, §8.17), and C_P is not evaluated." }
           } },
         { id: "opt-tile", kind: "option", label: "Concrete tile roof", takeRate: 0.15,
@@ -3910,10 +3930,10 @@ var FM = (function () {
                 "beam's. A deck without its beam is the same silent omission this mark set exists " +
                 "to remove." },
         { id: "PST-POR", label: "Porch and deck beam posts · BM-POR / DK-C2", role: "post",
-          count: 4, component: true,
+          count: 4, component: true, reactionFrom: ["BM-POR", "DK-C2"],
           componentNote: "AXIAL MEMBER — NOT CHECKED HERE (calc-spec §4.10, §8.20: C_P is specified " +
-            "and no interaction equation is evaluated). Design loads from the reactions this tool " +
-            "computes: BM-POR 931 to 1,149 lb per post across the packs; DK-C2 1,548 lb. In a " +
+            "and no interaction equation is evaluated). The design loads are the end reactions of " +
+            "the two beams above, printed live below for this region. In a " +
             "wind-governed market UPLIFT on this post and its base and cap connections (§8.11, " +
             "§8.17) govern, and none of that is checked here." }
       ],
@@ -4080,11 +4100,11 @@ var FM = (function () {
                 "enclosed one. This is the only mark on the plan that survives in a block market." },
 
         { id: "PST-ENT", label: "Covered entry beam posts · BM-ENT", role: "post",
-          count: 2, component: true,
+          count: 2, component: true, reactionFrom: ["BM-ENT"],
           componentNote: "AXIAL MEMBER — NOT CHECKED HERE (calc-spec §4.10 specifies C_P, §8.20 " +
-            "states no interaction equation is evaluated, and engine.js implements neither). Design " +
-            "load from the end reaction this tool DOES compute for BM-ENT: 499 lb per post " +
-            "(579 lb nc-mountain, 611 lb fl-hvhz). Small numbers, and they are still not the design: " +
+            "states no interaction equation is evaluated, and engine.js implements neither). The " +
+            "design load is BM-ENT's end reaction, printed live below for this region. " +
+            "The numbers are small, and they are still not the design: " +
             "on a covered entry in a wind-governed market UPLIFT and the base and cap connections " +
             "govern, and all three are out of scope (§8.11, §8.17). For a typical 8 ft 4x4, C_P runs " +
             "0.25 to 0.35, so a check that omits it overstates axial capacity roughly threefold." }
@@ -4280,13 +4300,13 @@ var FM = (function () {
                 "this and the joists are what this engine is genuinely the right tool for here." },
 
         { id: "PST-PAT", label: "Rear patio beam posts · BM-PAT", role: "post",
-          count: 3, component: true,
+          count: 3, component: true, reactionFrom: ["BM-PAT"],
           componentNote: "AXIAL MEMBER — NOT CHECKED HERE (calc-spec §4.10 specifies C_P, §8.20 " +
-            "states no interaction equation is evaluated, and engine.js implements neither). Design " +
-            "load from the end reaction this tool DOES compute for BM-PAT: 781 lb per bearing " +
-            "(906 lb nc-mountain, 956 lb fl-hvhz), on Elevation A. The CENTRE post takes two " +
-            "bearings, so double it. Elevation B deepens the patio and raises all of these — read " +
-            "that variant's own reaction, not this line. Uplift, the continuous load path and both " +
+            "states no interaction equation is evaluated, and engine.js implements neither). The " +
+            "design load is BM-PAT's end reaction, printed live below for this region and this " +
+            "variant. The CENTRE post takes two " +
+            "bearings, so double it. Elevation B deepens the patio and raises all of these, and the " +
+            "reaction printed below is the one for the variant on screen. Uplift, the continuous load path and both " +
             "the base and cap connections are out of scope (§8.11, §8.17). For a typical 9 ft 4x4, " +
             "C_P runs 0.25 to 0.35, so a check that omits it overstates axial capacity roughly " +
             "threefold." }
@@ -5618,9 +5638,18 @@ var FM = (function () {
     if (policy.minAvailability !== undefined && policy.priceOf) {
       var pr = policy.priceOf(cand, demand);
       if (pr && isFinite(pr.availability) && pr.availability < policy.minAvailability) {
+        /* Printed to enough places to stay TRUE. At two it produced
+           "availability 0.10 is below the firm floor of 0.10" — a sentence
+           that refutes itself on screen, on the one card the demo dwells on.
+           Availability is a product of stock and size factors and lands on
+           values like 0.0995; the comparison is exact, so the display has to
+           be too. Trailing zeros are trimmed so the common cases stay short. */
+        var trim = function (v) {
+          return Number(v).toFixed(3).replace(/0+$/, "").replace(/\.$/, "");
+        };
         return { ok: false, kind: "procurement",
-                 why: "availability " + pr.availability.toFixed(2) + " is below the firm floor of " +
-                      Number(policy.minAvailability).toFixed(2) + " — special order, and the field will substitute" };
+                 why: "availability " + trim(pr.availability) + " is below the firm floor of " +
+                      trim(policy.minAvailability) + " — special order, and the field will substitute" };
       }
     }
 
@@ -5721,7 +5750,8 @@ var FM = (function () {
       policy = shallow(policy);
       policy.maxDCR = Math.min(1, Math.max(0.01, Number(policy.maxDCR) || 0.9));
     }
-    var cache = {}, stats = { evaluated: 0, contextEvaluated: 0, cacheHits: 0, prunedByBound: 0, prunedByDominance: 0, prunedByIncumbent: 0, families: 0 };
+    var cache = {}, stats = { evaluated: 0, contextEvaluated: 0, cacheHits: 0, prunedByBound: 0,
+                              prunedByDominance: 0, prunedByIncumbent: 0, prunedByGate: 0, families: 0 };
 
     /* calc-spec §2.1 wants six combinations built from separate q_Lr and q_S; the
        engine carries ONE roof load tagged either snow or roof-live, so D + Lr and
@@ -5813,6 +5843,7 @@ var FM = (function () {
        They belong in the record: "we did not check a 4x14" is a different
        statement from "a 4x14 failed", and an engineer needs to know which. */
     (fams.excluded || []).forEach(function (x) {
+      stats.prunedByGate++;
       rejected.push({ cand: x.cand, dcr: null, governing: null, gate: x.kind,
                       reason: x.why, next: GATE_MOVE[x.kind] || null });
     });
@@ -6037,7 +6068,25 @@ var FM = (function () {
       rejected: rejected,
       bounds: bounds,
       stats: stats,
-      searchSpace: fams.reduce(function (n, f) { return n + f.rungs.length; }, 0),
+      /* `evaluated` is every engine run, which includes the explain pass — and
+         the explain pass re-runs candidates the search had already pruned by
+         dominance or incumbent, so it double-counts them against the space.
+         The trace needs the SEARCH's own evaluations to make its arithmetic
+         close, so name that number rather than making each reader derive it. */
+      searchEvaluated: Math.max(0, (stats.evaluated || 0) - (stats.contextEvaluated || 0)),
+      /* The WHOLE candidate population, gate-excluded ones included.
+
+         It used to count only the rungs that survived eligibility, so the
+         trace card printed "search space 14 · cut by seed bounds 14 · engine
+         evaluations 2 · rejected 10 of 16" — 14 + 2 = 16 out of a space of 14,
+         under a footer reading "every cut is exact, no candidate was dropped
+         on a guess." The cuts WERE exact; the denominator was two candidates
+         short, because a gate removes a candidate before the family that would
+         have counted it is built. A trace whose own arithmetic does not close
+         is worth less than no trace, so the space is now everything that was
+         ever a candidate and `prunedByGate` is its own line. */
+      searchSpace: fams.reduce(function (n, f) { return n + f.rungs.length; }, 0) +
+                   ((fams.excluded || []).length),
       note: feasible.length ? null
         : noFeasibleNote(demand, policy, rejected, blocked, status, gatedPassing, gatedFailing),
     };
@@ -6195,6 +6244,41 @@ var FM = (function () {
     });
     var out = { plan: plan, pack: pack, marks: marks, policy: policy };
     out.unified = opts.unify === false ? null : unify(out);
+
+    /* ---- borrowed reactions, resolved LIVE ----
+
+       A mark this engine will not size — a post — still has a design load, and
+       it is the end reaction of the beam above it, which this engine does
+       compute. Those numbers used to be written into the mark's prose by hand:
+       "1,231 lb per post, flat across all six packs."
+
+       Every one of them was correct when it was typed. Then the deck live load
+       moved from 40 to 60 psf and that sentence became 1,231 against a reaction
+       schedule printing 1,718 in the same document — two different reactions
+       for one bearing, on one page, with nothing failing. Three of the seven
+       such figures in the plan set were stale by the time anyone looked.
+
+       So a mark declares `reactionFrom: ["DK-2"]` and the number is resolved
+       here, from this run, for this pack and this variant. A named mark that
+       escalates publishes nothing and gets `null` — the note says no reaction
+       is published for it, and none is invented. */
+    marks.forEach(function (m) {
+      var from = m.mark && m.mark.reactionFrom;
+      if (!from || !from.length || !m.notApplicable) return;
+      m.notApplicable.reactions = from.map(function (id) {
+        var src = marks.filter(function (x) { return x.mark.id === id; })[0];
+        var rx = src && src.solution && src.solution.reactions;
+        return {
+          id: id,
+          perBearingLb: (rx && isFinite(rx.perBearingLb)) ? rx.perBearingLb : null,
+          combo: (rx && rx.combo) || null,
+          why: src ? (src.notApplicable ? "not this engine's member"
+                    : (src.solution && !src.solution.pick ? "escalates — no member, so no reaction" : null))
+                   : "not on this plan"
+        };
+      });
+    });
+
     out.rollup = rollup(out);
     return out;
   }
@@ -7071,6 +7155,13 @@ var FM = (function () {
       na.forEach(function (m) {
         say("  " + m.mark.id + " — " + m.mark.label + "   [" + m.notApplicable.reason + "]");
         wrap(m.notApplicable.note, 72, "    ").forEach(function (x) { say("    " + x); });
+        /* the design load this mark borrows, from THIS run — never from prose */
+        (m.notApplicable.reactions || []).forEach(function (rx) {
+          say("      design load from " + rx.id + ": " +
+              (rx.perBearingLb === null
+                 ? "no reaction published — " + (rx.why || "not computed")
+                 : comma(rx.perBearingLb) + " lb per bearing" + (rx.combo ? "  (" + rx.combo + ")" : "")));
+        });
         say();
       });
     }
@@ -8321,16 +8412,45 @@ var FM = (function () {
      dominates every other on every driver at once — otherwise it returns
      split and says the set has to be sized variant by variant. Both answers
      are reported here; neither is summarised away. */
+  /* The envelope answers "can I size this mark once for the whole master set?"
+     — so it has to be asked about every mark the master set contains, not
+     every mark the BASE plan contains.
+
+     It iterated `plan.marks`, which is the base. On two-story-2450 that meant
+     BM-POR and PST-POR-B — the two marks Elevation B adds, 27 of the 60 lots —
+     were absent from a card headed "THE ENVELOPE · 8 BUILDABLE COMBINATIONS",
+     while the delta table directly above announced them as added. A card that
+     names its scope as every combination and then silently covers only one of
+     them is the same defect as a green badge over an empty cell. */
   function envelope(plan, pack) {
     if (typeof FM.weights.envelopeFor !== "function") return null;
-    var rows = [];
-    plan.marks.forEach(function (mk) {
+    var rows = [], seen = {}, added = [];
+
+    function consider(mk, isAdded) {
+      if (own(seen, key(mk.id))) return;
+      seen[key(mk.id)] = true;
       var e;
       try { e = FM.weights.envelopeFor(plan, mk.id, pack); } catch (err) { return; }
       if (!e) return;
-      rows.push({ mark: mk, env: e });
+      rows.push({ mark: mk, env: e, addedByVariant: isAdded || null });
+    }
+
+    plan.marks.forEach(function (mk) { consider(mk, null); });
+
+    /* then everything any variant introduces */
+    var v = variantSet(plan);
+    (v && v.combinations || []).forEach(function (c) {
+      var vp;
+      try { vp = FM.weights.planForVariant(plan, c.id); } catch (err) { return; }
+      (vp && vp.marks || []).forEach(function (mk) {
+        if (own(seen, key(mk.id))) return;
+        added.push(mk.id);
+        consider(mk, c.label);
+      });
     });
-    return rows.length ? rows : null;
+    if (!rows.length) return null;
+    rows.addedByVariant = added;
+    return rows;
   }
 
   function masterSet(plan, pack) {
@@ -8408,21 +8528,50 @@ var FM = (function () {
         if (s.combo) out.push(s.combo);      /* last, so it can simply be absent */
         return out;
       },
+      /* A segment this build does not recognise used to be discarded in
+         silence, which is the worst possible handling for the case the URL
+         exists to serve. You send a colleague a link, the plan id changes, and
+         they open a schedule that renders perfectly and is NOT the one you
+         sent — a wrong answer wearing the shape of a right one. An unknown
+         VIEW toasted; an unknown plan, region or variant did not.
+
+         So every segment is reported. The state still falls back, because a
+         blank screen helps nobody, but it falls back out loud. */
       write: function (args) {
         var s = sizingState();
         args = args || [];
-        if (args[0] && FM.weights && FM.weights.planById(args[0])) {
-          if (s.planId !== args[0]) s.combo = null;
-          s.planId = args[0];
+        var lost = [];
+
+        if (args[0]) {
+          if (FM.weights && FM.weights.planById(args[0])) {
+            if (s.planId !== args[0]) s.combo = null;
+            s.planId = args[0];
+          } else lost.push("plan “" + args[0] + "”");
         }
-        if (args[1] && FM.weights && FM.weights.packById(args[1])) s.packId = args[1];
-        if (args[2] && own(TABS, args[2])) s.tab = args[2];
+        if (args[1]) {
+          if (FM.weights && FM.weights.packById(args[1])) s.packId = args[1];
+          else lost.push("region “" + args[1] + "”");
+        }
+        if (args[2]) {
+          if (own(TABS, args[2])) s.tab = args[2];
+          else lost.push("tab “" + args[2] + "”");
+        }
         if (args[3]) {
           /* a combination id only means anything against its own plan */
           var v = variantSet(FM.weights.planById(s.planId));
-          s.combo = (v && comboById(v, args[3])) ? args[3] : null;
+          if (v && comboById(v, args[3])) s.combo = args[3];
+          else { s.combo = null; lost.push("variant “" + args[3] + "”"); }
         }
         s.open = null;
+
+        if (lost.length && FM.toast) {
+          FM.toast("This link names " + lost.join(" and ") + ", which this build does not have. " +
+                   "Showing " + (FM.weights.planById(s.planId) || {}).name + " in " +
+                   ((FM.weights.packById(s.packId) || {}).name || s.packId) + " instead — " +
+                   "check the link before using this schedule.");
+        }
+        /* and correct the address bar, so what it says is what is on screen */
+        if (lost.length && FM.syncHash) setTimeout(function () { FM.syncHash(true); }, 0);
       }
     });
   }
@@ -8477,13 +8626,24 @@ var FM = (function () {
     var body = el("div");
     host.appendChild(body);
 
-    /* A pack or plan change is sub-state, not a route change: it REPLACES the
-       address so flipping through six regions does not bury the Back button. */
-    function redraw() { draw(); if (FM.syncHash) FM.syncHash(true); }
+    /* Every sub-state change used to REPLACE the address, on the reasoning
+       that flipping through six regions should not bury the Back button.
+       Driving it proved that wrong: switching Texas → Florida and pressing
+       Back landed on the dashboard, because the two regions had never been
+       two entries. "Take me back to Texas" is the single most natural thing to
+       try during this demo and it threw you out of the walk.
 
-    packSel.addEventListener("change", function () { state.packId = this.value; state.open = null; redraw(); });
+       So the line is drawn at what the user would call a step. Changing the
+       PLAN, the REGION or the VARIANT is a step — it re-solves the schedule
+       and produces a different answer, and Back should undo it. Changing the
+       TAB is a lens on the same answer; it refines the address in place. */
+    function redraw(step) { draw(); if (FM.syncHash) FM.syncHash(!step); }
+
+    packSel.addEventListener("change", function () {
+      state.packId = this.value; state.open = null; redraw(true);
+    });
     planSel.addEventListener("change", function () {
-      state.planId = this.value; state.open = null; state.combo = null; redraw();
+      state.planId = this.value; state.open = null; state.combo = null; redraw(true);
     });
     Array.prototype.forEach.call(tabs.querySelectorAll("button"), function (b) {
       b.addEventListener("click", function () { state.tab = b.getAttribute("data-tab"); redraw(); });
@@ -8727,8 +8887,23 @@ var FM = (function () {
             el("span", { style: "font-weight:650", text: m.mark.label }),
             el("span", { class: "clause", text: na.t })
           ]);
+          var accBody = [el("p", { style: "font-size:.84rem", text: note })];
+          /* The design load this mark borrows from a beam above it, resolved
+             from THIS run rather than restated in the note. A hand-written
+             "1,231 lb per post" went stale the moment the deck live load
+             moved and sat next to a reaction schedule saying 1,718. */
+          (m.notApplicable.reactions || []).forEach(function (rx) {
+            accBody.push(el("div", { class: "dl-row", style: "font-size:.84rem" }, [
+              el("span", { class: "clause", text: "Design load from " + rx.id }),
+              rx.perBearingLb === null
+                ? el("span", { class: "badge b-mute", text: "no reaction published — " + (rx.why || "not computed") })
+                : el("span", { style: "font-weight:650",
+                               text: FM.comma(Math.round(rx.perBearingLb)) + " lb per bearing" +
+                                     (rx.combo ? "  ·  " + rx.combo : "") })
+            ]));
+          });
           nBody.appendChild(el("details", { class: "acc" }, [
-            head, el("div", { class: "acc-body" }, [el("p", { style: "font-size:.84rem", text: note })])
+            head, el("div", { class: "acc-body" }, accBody)
           ]));
         });
         body.appendChild(el("div", { style: "margin-top:16px" }, [
@@ -8777,7 +8952,7 @@ var FM = (function () {
           text: e.label + (isFinite(e.takeRate) ? " · " + Math.round(e.takeRate * 100) + "%" : ""),
           "aria-pressed": elevId === e.id ? "true" : "false",
           title: e.note || e.label,
-          onclick: function () { state.combo = plain ? plain.id : null; state.open = null; redraw(); }
+          onclick: function () { state.combo = plain ? plain.id : null; state.open = null; redraw(true); }
         }));
       });
 
@@ -8789,7 +8964,7 @@ var FM = (function () {
           text: optionLabel(v, c) + (c.lotsExpected ? " · " + c.lotsExpected + " lots" : ""),
           "aria-pressed": sel && sel.id === c.id ? "true" : "false",
           title: c.label,
-          onclick: function () { state.combo = c.id; state.open = null; redraw(); }
+          onclick: function () { state.combo = c.id; state.open = null; redraw(true); }
         }));
       });
 
@@ -8875,7 +9050,9 @@ var FM = (function () {
                as covered because its envelope resolved. */
             var stuck = own(escIds || {}, key(e.mark.id));
             return {
-              k: esc(e.mark.id) + " <span class='clause'>" + esc(e.mark.label) + "</span>",
+              k: esc(e.mark.id) + " <span class='clause'>" + esc(e.mark.label) +
+                 (e.addedByVariant
+                    ? " · not on the base sheet — added by " + esc(e.addedByVariant) : "") + "</span>",
               v: (stuck ? "no member on the current selection <span class='clause'>governing demand: "
                         : "size it for <strong>") +
                  esc(g ? g.label : e.env.governedBy) + (stuck ? "</span>" : "</strong>"),
@@ -9005,14 +9182,24 @@ var FM = (function () {
               "computed against the best material in the palette, C_L = 1, C_M = 1, self-weight omitted — so a section " +
               "below a bound cannot pass for any material offered"
             }),
+            /* These have to ADD UP, and for a while they did not: the space
+               counted only what survived the gates, so gate + bound + evaluated
+               came to more than the space it was drawn from. The gate line is
+               explicit now and the footer states the identity, so a reader can
+               check the arithmetic instead of trusting the footer's word. */
             dl([
               { k: "Search space", v: sol.searchSpace + " candidates in " + (st.families || 0) + " families" },
+              { k: "Cut by a gate", v: String(st.prunedByGate || 0) + " <span class='clause'>geometry or procurement · never reached the engine</span>" },
               { k: "Cut by seed bounds", v: String(st.prunedByBound || 0) + " <span class='clause'>H1 · admissible</span>" },
               { k: "Cut by cost dominance", v: String(st.prunedByDominance || 0) + " <span class='clause'>H2 · deeper rung of a family already beaten</span>" },
               { k: "Cut by incumbent", v: String(st.prunedByIncumbent || 0) + " <span class='clause'>H3 · branch and bound</span>" },
-              { k: "Engine evaluations", v: String(st.evaluated || 0) + (st.cacheHits ? " (+" + st.cacheHits + " cached)" : ""), total: true }
+              { k: "Engine evaluations", v: String(sol.searchEvaluated || 0) +
+                   (st.contextEvaluated ? " <span class='clause'>+" + st.contextEvaluated +
+                    " more evaluated afterwards, to fill in the ladder below</span>" : "") +
+                   (st.cacheHits ? " (+" + st.cacheHits + " cached)" : ""), total: true }
             ])
-          ]), "Every cut is exact — no candidate was dropped on a guess"));
+          ]), "gate + bounds + dominance + incumbent + evaluations = the search space. " +
+              "Every cut is exact — no candidate was dropped on a guess"));
       }
 
       /* the feasible ladder */

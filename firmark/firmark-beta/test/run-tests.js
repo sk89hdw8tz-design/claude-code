@@ -884,7 +884,13 @@ suite("weights · the six missing marks are carried");
       eq(ap.applicable, false, m.id + " is not sized — it is an axial member and there is no C_P");
       eq(ap.reason, "out-of-scope", "and it is labelled out-of-scope, not a manufactured component");
       truthy(/§8\.20/.test(ap.note), "and cites the clause that excludes it");
-      truthy(/\d,?\d* lb/.test(ap.note), "and publishes the reaction the tool does compute");
+      /* This used to require a pounds figure IN THE NOTE, which is what made
+         seven of them hand-typed and three of them stale. The requirement was
+         right — a post that is not sized must still publish its design load —
+         so it now asks for the DECLARATION that resolves live, not for prose
+         that restates a computed number. */
+      truthy(m.reactionFrom && m.reactionFrom.length,
+             m.id + " declares which mark's reaction is its design load");
     });
   });
 })();
@@ -1121,6 +1127,123 @@ suite("weights · packs are internally coherent");
     });
     truthy(wide.length === 0, "the " + role + " ladder offers nothing the engine must refuse for C_F");
   });
+})();
+
+suite("solver · the search trace's own arithmetic closes");
+(function () {
+  /* The trace card is the transparency claim — "every cut is exact, no
+     candidate was dropped on a guess" — and its numbers did not add up. On
+     GB-1 it read: search space 14, cut by seed bounds 14, engine evaluations
+     2, rejected 10 of 16. The cuts were exact; the DENOMINATOR was two short,
+     because a gate removes a candidate before the family that would have
+     counted it exists. A trace whose own arithmetic fails is worth less than
+     no trace, because it invites the one reader who checks to distrust the
+     rest. Now checked on every mark of every plan in every region. */
+  var broken = [], selfRefuting = [], checked = 0;
+  FM.weights.PLANS.forEach(function (pl) {
+    FM.weights.PACKS.forEach(function (pk) {
+      FM.solver.solvePlan(pl, pk).marks.forEach(function (m) {
+        var s = m.solution;
+        if (!s || !s.stats || s.searchSpace === undefined) return;
+        checked++;
+        var st = s.stats;
+        var accounted = (st.prunedByGate || 0) + (st.prunedByBound || 0) +
+                        (st.prunedByDominance || 0) + (st.prunedByIncumbent || 0) +
+                        (s.searchEvaluated || 0);
+        if (accounted !== s.searchSpace) {
+          broken.push(pl.id + "/" + pk.id + "/" + m.mark.id + ": " + accounted +
+                      " accounted vs searchSpace " + s.searchSpace);
+        }
+        /* and the rejected list cannot exceed what was searched */
+        if (s.rejected.length + s.feasible.length > s.searchSpace) {
+          broken.push(pl.id + "/" + pk.id + "/" + m.mark.id + ": rejected+feasible " +
+                      (s.rejected.length + s.feasible.length) + " > searchSpace " + s.searchSpace);
+        }
+        /* a rejection reason must not refute itself on screen */
+        s.rejected.forEach(function (r) {
+          var mm = /availability ([\d.]+) is below the firm floor of ([\d.]+)/.exec(r.reason || "");
+          if (mm && mm[1] === mm[2]) selfRefuting.push(m.mark.id + ": " + r.reason);
+        });
+      });
+    });
+  });
+  truthy(checked > 100, "the trace is checked on " + checked + " mark-slots");
+  eq(broken.length, 0, "gate + bounds + dominance + incumbent + evaluations = the search space, everywhere" +
+     (broken.length ? "\n      " + broken.slice(0, 4).join("\n      ") : ""));
+  eq(selfRefuting.length, 0, "no rejection says a value is below a floor equal to itself" +
+     (selfRefuting.length ? "\n      " + selfRefuting.slice(0, 3).join("\n      ") : ""));
+
+  /* the specific mark the runbook sends the audience to */
+  var gb = FM.solver.solvePlan(FM.weights.planById("two-story-2450"), FM.weights.packById("tx-i35"))
+             .marks.filter(function (m) { return m.mark.id === "GB-1"; })[0];
+  eq(gb.solution.rejected.length, gb.solution.searchSpace,
+     "GB-1 rejects its entire search space, and the two numbers agree (" + gb.solution.searchSpace + ")");
+})();
+
+suite("weights · no prose restates a number the engine computes");
+(function () {
+  /* A mark this engine will not size — a post — still has a design load, and
+     it is the end reaction of the beam above it. Those numbers were written
+     into the marks' prose by hand: "1,231 lb per post, flat across all six
+     packs." Every one was correct when typed. Then the deck live load moved
+     40 → 60 psf and that sentence read 1,231 against a REACTION SCHEDULE
+     printing 1,718 in the same export — two reactions for one bearing, one
+     document, nothing failing. Three of seven such figures were stale.
+
+     The numbers are resolved live from `reactionFrom` now. This is the guard
+     that stops them coming back: no note in weights.js may contain a pounds
+     figure, because a pounds figure in prose is a number the engine computes
+     and a human retyped. */
+  var fs4 = require("fs"), path4 = require("path");
+  var w = fs4.readFileSync(path4.join(__dirname, "..", "weights.js"), "utf8");
+  var offenders = [];
+  /* string literals only, so a comment explaining the rule does not trip it */
+  (w.match(/"[^"\\]*(?:\\.[^"\\]*)*"/g) || []).forEach(function (lit) {
+    var m = lit.match(/\b\d{1,3}(,\d{3})+\s*lb\b|\b\d+\s*lb\s+per\b/);
+    if (m) offenders.push(m[0] + "  in  " + lit.slice(0, 60) + "…");
+  });
+  eq(offenders.length, 0, "no weights.js string states a reaction in pounds — those come from the run" +
+     (offenders.length ? "\n      " + offenders.slice(0, 4).join("\n      ") : ""));
+
+  /* and the mechanism that replaced them actually produces numbers */
+  var declared = 0, resolved = 0, published = 0, mismatched = [];
+  FM.weights.PLANS.forEach(function (pl) {
+    FM.weights.PACKS.forEach(function (pk) {
+      var res = FM.solver.solvePlan(pl, pk);
+      res.marks.forEach(function (m) {
+        if (!m.mark.reactionFrom) return;
+        declared++;
+        var rxs = m.notApplicable && m.notApplicable.reactions;
+        if (!rxs) { mismatched.push(pl.id + "/" + pk.id + "/" + m.mark.id + " declared reactionFrom but got none"); return; }
+        resolved++;
+        rxs.forEach(function (rx) {
+          if (rx.perBearingLb === null) {
+            if (!rx.why) mismatched.push(m.mark.id + " publishes no reaction for " + rx.id + " and does not say why");
+            return;
+          }
+          published++;
+          /* it must be the SAME number the reaction schedule prints */
+          var src = res.marks.filter(function (x) { return x.mark.id === rx.id; })[0];
+          var live = src && src.solution && src.solution.reactions;
+          if (!live || Math.abs(live.perBearingLb - rx.perBearingLb) > 1e-9) {
+            mismatched.push(pl.id + "/" + pk.id + ": " + m.mark.id + " borrows " + rx.id +
+                            " at " + rx.perBearingLb + " but the schedule prints " +
+                            (live ? live.perBearingLb : "nothing"));
+          }
+        });
+      });
+    });
+  });
+  truthy(declared > 0, "marks declare where their design load comes from (" + declared + " mark-slots)");
+  eq(mismatched.length, 0, "and every borrowed reaction equals the one the reaction schedule prints" +
+     (mismatched.length ? "\n      " + mismatched.slice(0, 4).join("\n      ") : ""));
+  truthy(published > 0, "with real numbers on " + published + " of them, not just placeholders");
+
+  /* the export carries it, so paper and screen agree */
+  var txt = FM.scheduleText(FM.weights.planById("two-story-2450"), FM.weights.packById("tx-i35"));
+  truthy(/design load from DK-2: 1,718 lb per bearing/.test(txt),
+         "the export prints PST-DK's borrowed reaction as the live 1,718 lb");
+  truthy(!/1,231 lb/.test(txt), "and the stale 1,231 lb is gone from it");
 })();
 
 suite("sheet · the checking path is not more permissive than the search (§L8)");

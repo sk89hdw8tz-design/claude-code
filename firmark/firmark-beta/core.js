@@ -293,13 +293,17 @@ var FM = (function () {
     if (host) { host.setAttribute("tabindex", "-1"); host.focus({ preventScroll: true }); }
     closeRailDrawer();
 
-    if (!opts.fromHash) {
+    /* Normally a hash-driven navigation does not write the hash back — it came
+       from there. The exception is a CORRECTION: we landed here because the
+       link named something this build does not have, so the address bar is
+       lying and has to be rewritten to what is actually on screen. */
+    if (!opts.fromHash || opts.replace) {
       var sub = subRoute[route] && subRoute[route].read ? subRoute[route].read() : null;
       var want = hashFor(route, { projectId: opts.projectId, sheetId: opts.sheetId, sub: sub });
       if (location.hash !== want) {
         applyingHash = true;
-        /* replace, not push, when the route did not change — a view updating
-           its own sub-state should not fill the Back stack with itself */
+        /* replace, not push, when the view is only correcting or refining
+           itself — that should not fill the Back stack */
         if (opts.replace) location.replace(location.href.split("#")[0] + want);
         else location.hash = want;
         applyingHash = false;
@@ -331,12 +335,27 @@ var FM = (function () {
     /* an unknown route is a typo or a stale link, not a crash */
     if (!VIEWS[h.route] && !document.getElementById("view-" + h.route)) {
       toast("No such view: " + h.route);
-      go("dashboard", { fromHash: true });
+      /* replace so the address bar stops naming a view that does not exist */
+      go("dashboard", { fromHash: true, replace: true });
       return;
     }
     var opts = { fromHash: true };
     var key = ROUTE_PARAM[h.route];
-    if (key && h.args.length) opts[key] = h.args[0];
+    if (key && h.args.length) {
+      /* Validate the id rather than handing an unknown one to a view that
+         will quietly render its first row. A link naming a sheet or project
+         that no longer exists must say so — a stale link that renders the
+         WRONG record perfectly is worse than one that renders nothing. */
+      var pool = h.route === "sheet" ? SHEETS : PROJECTS;
+      var found = pool.filter(function (x) { return x.id === h.args[0]; })[0];
+      if (found) opts[key] = h.args[0];
+      else {
+        toast("This link names " + h.route + " “" + h.args[0] + "”, which this build does not have. " +
+              "Showing " + (pool[0] && pool[0].id) + " instead.");
+        opts[key] = pool[0] && pool[0].id;
+        opts.replace = true;
+      }
+    }
     /* hand the view its own segments BEFORE it renders, so it draws the
        right thing once rather than drawing the default and then correcting */
     var sr = subRoute[h.route];

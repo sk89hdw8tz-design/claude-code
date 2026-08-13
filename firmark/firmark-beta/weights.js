@@ -673,12 +673,11 @@
           note: "Tributary is half the 46 ft truss span. This is why exterior openings in production single-stories " +
                 "are almost always engineered." },
         { id: "PST-LAN", label: "Lanai beam posts · BM-LAN / BM-LAN-W", role: "post",
-          count: 6, component: true,
+          count: 6, component: true, reactionFrom: ["BM-LAN", "BM-LAN-W"],
           componentNote: "AXIAL MEMBER — NOT CHECKED HERE (calc-spec §4.10 specifies C_P, §8.20 " +
-            "states no interaction equation is evaluated, and engine.js implements neither). Design " +
-            "loads from the end reactions this tool DOES compute: BM-LAN 1,317 lb per post " +
-            "(1,527 nc-mountain, 1,611 fl-hvhz); BM-LAN-W 1,757 lb (2,037 nc-mountain, 2,149 fl-hvhz, " +
-            "on a trial 4x12 — that mark escalates, so the tool publishes no reaction for it). Uplift, " +
+            "states no interaction equation is evaluated, and engine.js implements neither). The " +
+            "design load is the end reaction of the beam above, printed live below for this region. " +
+            "BM-LAN-W escalates, so no reaction is published for it and none is invented. Uplift, " +
             "the continuous load path and both the base and cap connections are out of scope " +
             "(§8.11, §8.17). Slenderness is not a formality: for a typical 8 ft 4x4, C_P runs 0.25 to " +
             "0.35, so a check that omits it overstates axial capacity roughly threefold." }
@@ -812,10 +811,11 @@
                 "t_floor = 11.0/2 = 5.5. This is the envelope mark D11 asks for: sizing the base " +
                 "elevation and letting an option move the bearing is how a revision gets manufactured." },
         { id: "PST-DK", label: "Deck beam posts · DK-2", role: "post", count: 2, component: true,
+          reactionFrom: ["DK-2"],
           componentNote: "AXIAL MEMBER — NOT CHECKED HERE. calc-spec §4.10 specifies C_P (NDS §3.7.1) " +
             "and §8.20 states no interaction equation is evaluated; engine.js implements neither. " +
-            "Design load, from the end reaction this tool DOES compute for DK-2: 1,231 lb per post, " +
-            "flat across all six packs. Also out of scope on this member: uplift and the continuous " +
+            "The design load is DK-2's end reaction, which this tool does compute and prints live " +
+            "below. Also out of scope on this member: uplift and the continuous " +
             "load path (§8.11, §8.17) and both the base and cap connections (§8.17). Slenderness is " +
             "not a formality — for a typical 8 ft 4x4, C_P runs 0.25 to 0.35, so a check that omits " +
             "it overstates axial capacity roughly threefold." }
@@ -889,10 +889,11 @@
               note: "26 ft of beam on four posts = three 8.67 ft bays, and the tributary is half the " +
                     "14 ft deck depth = 7.0 ft. Shorter span, heavier load: it is the pair that " +
                     "makes the envelope a genuine question rather than a maximum." },
-            "PST-DK": { count: 4, componentNote: "AXIAL MEMBER — NOT CHECKED HERE (calc-spec §4.10, " +
+            "PST-DK": { count: 4, reactionFrom: ["DK-2"],
+              componentNote: "AXIAL MEMBER — NOT CHECKED HERE (calc-spec §4.10, " +
               "§8.20). The extended deck stands on FOUR posts, not two, and each carries 7.0 ft of " +
-              "tributary instead of 6.0. Take the design load from the reaction this tool computes " +
-              "for DK-2 in THIS variant — the 1,231 lb on the base mark is the 20 ft deck. Uplift " +
+              "tributary instead of 6.0. The design load is DK-2's reaction IN THIS VARIANT, printed " +
+              "live below — the base mark's reaction is the 20 ft deck and is a different number. Uplift " +
               "and both connections remain out of scope (§8.11, §8.17), and C_P is not evaluated." }
           } },
         { id: "opt-tile", kind: "option", label: "Concrete tile roof", takeRate: 0.15,
@@ -948,10 +949,10 @@
                 "beam's. A deck without its beam is the same silent omission this mark set exists " +
                 "to remove." },
         { id: "PST-POR", label: "Porch and deck beam posts · BM-POR / DK-C2", role: "post",
-          count: 4, component: true,
+          count: 4, component: true, reactionFrom: ["BM-POR", "DK-C2"],
           componentNote: "AXIAL MEMBER — NOT CHECKED HERE (calc-spec §4.10, §8.20: C_P is specified " +
-            "and no interaction equation is evaluated). Design loads from the reactions this tool " +
-            "computes: BM-POR 931 to 1,149 lb per post across the packs; DK-C2 1,548 lb. In a " +
+            "and no interaction equation is evaluated). The design loads are the end reactions of " +
+            "the two beams above, printed live below for this region. In a " +
             "wind-governed market UPLIFT on this post and its base and cap connections (§8.11, " +
             "§8.17) govern, and none of that is checked here." }
       ],
@@ -1118,11 +1119,11 @@
                 "enclosed one. This is the only mark on the plan that survives in a block market." },
 
         { id: "PST-ENT", label: "Covered entry beam posts · BM-ENT", role: "post",
-          count: 2, component: true,
+          count: 2, component: true, reactionFrom: ["BM-ENT"],
           componentNote: "AXIAL MEMBER — NOT CHECKED HERE (calc-spec §4.10 specifies C_P, §8.20 " +
-            "states no interaction equation is evaluated, and engine.js implements neither). Design " +
-            "load from the end reaction this tool DOES compute for BM-ENT: 499 lb per post " +
-            "(579 lb nc-mountain, 611 lb fl-hvhz). Small numbers, and they are still not the design: " +
+            "states no interaction equation is evaluated, and engine.js implements neither). The " +
+            "design load is BM-ENT's end reaction, printed live below for this region. " +
+            "The numbers are small, and they are still not the design: " +
             "on a covered entry in a wind-governed market UPLIFT and the base and cap connections " +
             "govern, and all three are out of scope (§8.11, §8.17). For a typical 8 ft 4x4, C_P runs " +
             "0.25 to 0.35, so a check that omits it overstates axial capacity roughly threefold." }
@@ -1318,13 +1319,13 @@
                 "this and the joists are what this engine is genuinely the right tool for here." },
 
         { id: "PST-PAT", label: "Rear patio beam posts · BM-PAT", role: "post",
-          count: 3, component: true,
+          count: 3, component: true, reactionFrom: ["BM-PAT"],
           componentNote: "AXIAL MEMBER — NOT CHECKED HERE (calc-spec §4.10 specifies C_P, §8.20 " +
-            "states no interaction equation is evaluated, and engine.js implements neither). Design " +
-            "load from the end reaction this tool DOES compute for BM-PAT: 781 lb per bearing " +
-            "(906 lb nc-mountain, 956 lb fl-hvhz), on Elevation A. The CENTRE post takes two " +
-            "bearings, so double it. Elevation B deepens the patio and raises all of these — read " +
-            "that variant's own reaction, not this line. Uplift, the continuous load path and both " +
+            "states no interaction equation is evaluated, and engine.js implements neither). The " +
+            "design load is BM-PAT's end reaction, printed live below for this region and this " +
+            "variant. The CENTRE post takes two " +
+            "bearings, so double it. Elevation B deepens the patio and raises all of these, and the " +
+            "reaction printed below is the one for the variant on screen. Uplift, the continuous load path and both " +
             "the base and cap connections are out of scope (§8.11, §8.17). For a typical 9 ft 4x4, " +
             "C_P runs 0.25 to 0.35, so a check that omits it overstates axial capacity roughly " +
             "threefold." }

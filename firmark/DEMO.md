@@ -60,8 +60,9 @@ Say this out loud early, because someone will ask:
 
 - It **checks and selects members**. It does not produce sealed engineering. A
   licensed PE reviews and stamps every package.
-- It is **gravity only**. No wind, seismic, uplift, or lateral. Two of the six
-  region packs are wind-governed and say so on screen in their own words — the
+- It is **gravity only**. No wind, seismic, uplift, or lateral. Three of the six
+  region packs — `tx-gulf`, `fl-central`, `fl-hvhz` — are wind-governed and say so
+  on screen in their own words — the
   point of that banner is that the thing governing those regions is outside this
   engine.
 - It is **simply-supported single spans, sawn dimension lumber**. No continuous
@@ -78,7 +79,14 @@ value is that it tells you, in writing, everything it did not do.*
 
 ### 3.1 Open on the Sizing view
 
-The demo lands on **`two-story-2450`** in **North Carolina · Piedmont** — a
+**It opens on the Dashboard, not on Sizing.** That screen is sample project data
+— nine projects, one deliberately marked FAILED, and one labelled *LRFD* even
+though this engine is ASD only. None of it is calculated. Either click **Sizing**
+in the rail immediately, or open the file with `#/sizing/two-story-2450/nc-piedmont/schedule`
+on the end of the URL so you land in the product. The second is better: the
+dashboard invites questions you do not want to spend the first minute on.
+
+Sizing defaults to **`two-story-2450`** in **North Carolina · Piedmont** — a
 2,450 sf two-storey plan. Both defaults are deliberate: this is the plan with
 the most marks the engine can actually size, so the first screen is full rather
 than mostly caveats.
@@ -87,11 +95,14 @@ Across all six regions this plan is 41 sized, 11 escalated, 14 not-sized of 66
 slots. Do not open `sunbelt-ranch-1850` cold in front of an audience — it is
 10 / 14 / 24, and the first thing on screen would be refusals.
 
-Read the incompleteness banner out loud before anything else. It names what the
-schedule does *not* cover — escalated marks, marks that are not this engine's
-member, and whether wind governs in this market — and it names them by mark, not
-as a count. **The tool says what it did not do before it says what it did.** If
-you say that sentence once during the demo, say it here.
+Read the incompleteness banner out loud before anything else. On this screen it
+says: *"Not a complete schedule — 2 marks escalated (GB-1, HDR-GAR-2S); 2 marks
+are not this engine's member. Do not read the sized marks as a finished design."*
+The escalations are named by mark id; the not-this-engine marks are a count here
+and are named individually in the card further down. There is no wind clause on
+this screen — `nc-piedmont` is gravity-governed, and that clause only appears in
+the three wind markets. **The tool says what it did not do before it says what it
+did.** If you say that sentence once during the demo, say it here.
 
 ### 3.2 The schedule, in Texas
 
@@ -116,14 +127,24 @@ Switch the region to **Texas · I-35 corridor**.
 Three things to point at, in this order:
 
 1. **FJ-3 is at DCR 0.410.** That is not the solver being wasteful. Its own pick
-   was a 2x8; it was *unified* onto the 2x12 that FJ-2 needs. Click the row —
-   the detail shows the member it chose, the member it moved to, and the net
-   cost of the move. **One SKU instead of three is worth more on a tract plan
-   than the lumber saved on the short joist**, and that trade is the product.
+   was a 2x8; it was *unified* onto the 2x12 that FJ-2 needs. Click the row: the
+   Result card shows the member the schedule carries and *"Raised by SKU
+   unification: yes"*, and in the ranked list below it the 2x8 carries a green
+   **Pick** badge — say out loud that Pick is the search's own first choice
+   *before* unification raised it, or the two members on one screen will read as
+   a contradiction. The net cost of the move is not in the row; it is in the
+   **SKU unification** card at the foot of the page — extra lumber against SKU
+   saving, for the whole group. **One SKU instead of three is worth more on a
+   tract plan than the lumber saved on the short joist**, and that trade is the
+   product.
 2. **GB-1 escalates.** The centre floor girder wants more section modulus than
-   the deepest sawn member in the ladder has. The escalation says by how much,
-   and says that a span like this in a tract plan is normally an engineered
-   header — which this engine does not select. It refuses instead of guessing.
+   the deepest sawn member in the ladder has, and the card says by how much —
+   *"the deepest section gives 73.83 in³ of S_x and this member needs 131.73 —
+   short by 78%."* Press **Show the search record** for the rest: that a span
+   like this in a tract plan is normally an engineered header, which this engine
+   does not select. It refuses instead of guessing. The trace on that record is
+   also worth a beat — search space, what each heuristic cut, and evaluations,
+   and the five numbers add up to the space they came from.
 3. **HDR-1 is not sized, PST-DK is not sized.** Different reason: those are
    carried deliberately rather than dropped. A schedule that omits a mark reads
    as if the mark were fine.
@@ -191,7 +212,9 @@ plan is portable and the *loads* are not.
 
 The tab that answers the question a production builder actually has: *which
 marks can I buy once for the whole region set, and which have to be decided per
-region?*
+region?* The tab itself is a mark × region board with four group headings. The
+table below is **measured from the build, not read off that tab** — the SKU and
+escalation counts live on the Schedule tab's stat cards, one region at a time.
 
 <!-- fm:skus -->
 | Region | Distinct SKUs | Marks unified | Escalations |
@@ -210,7 +233,12 @@ contradict.
 
 ### 3.6 The master set — the part a production builder came to see
 
-Back to **North Carolina · Piedmont**, and open the **Built with** picker.
+Back to **North Carolina · Piedmont**. There are two chip rows — **Elevation**
+first, then **Built with**. Beat 4 below is in the Elevation row, the rest are in
+Built with. Note the picker offers one option at a time: there is no "bonus room
+*and* tile" chip, because that combination is not declared. If someone asks for
+it, the honest answer is that the picker only offers combinations the master set
+actually declares and never composes one by hand.
 
 One stamped plan, reused across lots. Elevations are mutually exclusive and
 their take rates sum to 1.00; options attach independently. The picker only
@@ -219,7 +247,12 @@ id by hand — and selecting one **re-solves the whole schedule**. What you are
 looking at is that variant, end to end: its stats, its escalations, its
 unification, its cost. Not the base plan with annotations.
 
-Here is what each one does, measured, on the 60 lots of this plan:
+Here is what each one does, measured, on the 60 lots of this plan. **The Lots
+column is expected attach rates, not a partition** — the 12 bonus-room lots sit
+*inside* the 33 Elevation A lots, so the column sums to more than 60 on purpose.
+The partition is the two elevations: 33 + 27 = 60. Say that before anyone adds
+it up. (The stat line on screen reads "33 lots" because it is describing the
+selected elevation, not the plan.)
 
 <!-- fm:variants -->
 | Built with | Lots | What it does to the schedule |
@@ -244,18 +277,21 @@ Drive it in this order, because it builds:
    member holds** — which is a stronger result than a change, because it is the
    one nobody can confirm from memory.
 3. **Extended rear deck, 26 × 14.** Now members move: both deck marks go from
-   Southern Pine No.2 to **No.1**. Same sizes, different grade — so it is a
-   purchasing change, not a framing change, and it is the same change in all six
-   regions. Notice the deck grows onto four posts instead of two and the posts
-   come back **not sized** with their reactions published: this engine does not
-   select posts, and it hands you the load rather than pretending the question
-   isn't there.
+   Southern Pine No.2 to **No.1**. Same sizes, different grade — the *member*
+   change is a purchasing change rather than a re-framing, and it is the same
+   change in all six regions. Do not say "not a framing change" flatly: the deck
+   itself grew, and the delta column says so (`span 12.0 → 14.0 ft`).
+   Then open the **PST-DK** accordion under *Not this engine's member*. The deck
+   now stands on four posts instead of two, each carrying 7.0 ft of tributary
+   instead of 6.0, and the post's design load is printed there as DK-2's live
+   end reaction **for this variant** — this engine does not select posts, and it
+   hands you the load rather than pretending the question isn't there.
 4. **Elevation B.** Two marks appear that the base plan does not have — a porch
    beam, sized, and a porch post, not sized. A variant that *adds* marks is the
    case a naive member-list diff drops entirely.
 
-Then open the **envelope card**. It answers the question the whole feature
-exists for: *can I size this mark once for the whole master set?* It names a
+Then scroll to the **envelope card** — it is always on screen, nothing to open.
+It answers the question the whole feature exists for: *can I size this mark once for the whole master set?* It names a
 variant only where that variant dominates on **every** driver at once — span,
 tributary, load, depth budget — and where no single variant dominates it says
 so and prints the marks that have to be sized variant by variant. On
@@ -271,15 +307,25 @@ Copy the address bar and paste it into a second tab. Something like:
 ```
 
 Same plan, same market, same elevation-and-option, cold, in a fresh tab. **That
-is what you send the truss supplier.** Back and Forward work, reload lands where
-you were, and a stale link falls back to the dashboard with a toast rather than
-a blank screen.
+is what you send the truss supplier.**
+
+Three things about it worth being precise on, because someone will test them:
+
+- **Back and Forward step between the things you would call steps** — a view, a
+  region, a plan, a variant. Changing the *tab* refines the address in place and
+  does not stack, so Back will not walk you back through Schedule → Region →
+  Matrix.
+- **Reload lands where you were**, variant and all.
+- **A link naming something this build does not have says so.** An unknown view,
+  plan, region, variant, sheet or project all fall back *and* toast *and* correct
+  the address bar. That matters more than it sounds: a link that silently
+  rendered a different plan would be a wrong answer in the shape of a right one.
 
 ### 3.8 Export the schedule
 
 Hit the export. Show the text file. The things to scroll to:
 
-- the wind note **first**, banner-ruled, on the two wind-governed packs
+- the wind note, banner-ruled and high in the file, on the three wind-governed packs
 - **THIS IS NOT A COMPLETE SCHEDULE** near the top
 - the reaction schedule (the marks that are out of scope still publish their
   reactions — you cannot size the post here but you can hand someone the load)
@@ -312,17 +358,22 @@ they are placeholders until someone puts the real ground snow and the real
 exposure in. Do not let this one slide past; it is an open item, not a feature.
 
 **"Is the material data real?"**
-Yes — NDS Supplement Tables 1B, 4A, 4B, 4D and 5A, plus AISC shapes, in the
-Materials view with citations. The one gap is deliberate and stated on that
+Yes — NDS Supplement Tables 1B, 4A, 4B and 5A, plus the AISC Shapes Database
+v16.0, in the Materials view, each tab carrying its own citation. The one gap is deliberate and stated on that
 page: the size-factor (`C_F`) table is not in the catalog, so `C_F` is a typed
 input and every member that uses an unsourced one is flagged on the schedule
-line, not in a footnote.
+line, not in a footnote. **If you want to show it, switch to `townhome-1220` in
+`tx-i35`** — the demo plan happens to have no unsourced-`C_F` member in any
+region, so exporting it will not demonstrate the claim.
 
 **"What happens on a bad link / refresh?"**
 Routing is in the URL hash. `#/sizing/two-story-2450/fl-hvhz` opens that plan in
-that region from cold, Back and Forward work, reload lands where you were, and
-an unknown route falls back to the dashboard with a toast. Feel free to
-demonstrate this — it is tested.
+that region from cold. Back and Forward step between views, regions, plans and
+variants; a tab change refines the address rather than stacking it. Reload lands
+where you were. A link naming a view, plan, region, variant, sheet or project
+this build does not have falls back, says which part it could not find, and
+rewrites the address bar to match what is on screen. Feel free to demonstrate
+any of it — all of it is tested in a real browser.
 
 ---
 
@@ -332,9 +383,12 @@ demonstrate this — it is tested.
 |---|---|---|
 | `sunbelt-ranch-1850` | 10 sized, 14 escalated, 24 not-sized of 48 | Do not open it cold. If asked, it is a real result about a plan with a lot of long-span and wall-system marks, not a failure to run. |
 | Site loads | Ground snow, exposure and wind speed are planning defaults | Say it before they find it. They are labelled everywhere they are used. |
-| Deflection on the sheet vs the schedule | The sheet is the optimistic path | Open items §L8 in the review register. |
-| No wall dead load | A header under a gable end or an upper storey needs that load added by hand | It is boundary item in the printed 24, so it is already in the export. |
+| Total-load deflection | `calc-spec` §5.5 disagrees with the engine, and the engine is right | Open item **§L1 (H3)** in the review register — confirmed still in place by three reviewers. Do not cite §L8 for this; L8 was the sheet-vs-solver `C_F` inversion and it is closed. |
+| No wall dead load | A header under a gable end or an upper storey needs that load added by hand | It is item 13 of the 13 **engine limits** in the export — a different list from the 24 calc-spec §8 boundaries, and the export says so itself. |
 | Attic bottom-chord live, slope/pitch | Not modelled | Spans are horizontal projections; converting a sloped assembly is the user's job, and the export says so. |
+| The **Pick** badge in a search record | On a unified mark it sits on a member the schedule does not carry | Name it when you open the row: Pick is the search's own first choice, before unification raised it. See §3.2 beat 1. |
+| "About this data" on Materials | It is a toast, not a link — no network in a `file://` bundle | If someone wants the catalogs, write the URL down; the button will not open anything. |
+| The Dashboard | Sample data, one card marked FAILED, one labelled LRFD | Do not linger. §3.1 tells you how to skip it. |
 
 The full list of open release conditions is `REVIEW-REGISTER.md` §L. If someone
 technical is in the room, that document is the better thing to hand them than
