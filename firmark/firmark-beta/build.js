@@ -29,6 +29,13 @@ var OUT = path.join(DIR, "firmark-app.html");
 
 var HEAD =
   '<title>Firmark Structural Harness</title>\n' +
+  /* Without this, iOS lays the page out at its default 980px and scales the
+     result down to fit the screen — the whole app renders correct and
+     unreadable, and every control becomes a pinch-and-aim target. Measured
+     at a 393px iPhone viewport: document width 980, viewport 980.
+     This bundle is opened off OneDrive on a phone, so it matters. */
+  '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n' +
+  '<meta name="color-scheme" content="light dark">\n' +
   '<meta name="description" content="Firmark beta — structural calcs prepared for PE review, every value traced to its clause.">\n';
 
 var NOSCRIPT =

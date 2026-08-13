@@ -1435,7 +1435,22 @@
              solver as a solid-sawn rafter. */
           system: "truss",
           note: "Common trusses, " + span + " ft clear span",
-          basis: "Region is the footprint. Direction from geometry.trussSpanFt = " + span + " ft. " + sp.basis
+          /* On a plan whose upper storey is not drawn this region sits on the
+             FIRST-floor level, because that is the only level there is — and
+             it marks first-floor walls bearing for a roof that, on the real
+             building, stands on the walls of the storey above them. That is a
+             consequence of the missing level, not a reading of the plan, and
+             it says so here rather than reading as a load path somebody
+             chose. The missing level is already an unresolved item. */
+          basis: "Region is the footprint. Direction from geometry.trussSpanFt = " + span + " ft. " +
+                 sp.basis +
+                 (num(g.storeys) > 1 && m.levels.length === 1
+                   ? " NOTE this plan is " + g.storeys + " storeys and no upper storey is drawn " +
+                     "(see unresolved), so this roof is drawn on the first-floor level and the walls " +
+                     "it is shown bearing on are first-floor walls. On the building it bears on the " +
+                     "walls of the storey above. Draw the upper storey before reading a load path " +
+                     "off this region."
+                   : "")
         }));
         if (sp.inches === null) {
           hole("Roof member spacing",

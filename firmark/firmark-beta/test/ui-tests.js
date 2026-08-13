@@ -703,6 +703,10 @@ const APP = 'file://' + path.join(__dirname, '..', 'firmark-app.html');
   await open(APP + '#/output');
   await p.waitForTimeout(250);
   await p.evaluate(() => { if (FM.project && FM.project.reset) FM.project.reset(); });
+  /* goto() with the URL it is already on is a same-document navigation and does
+     NOT reload — which would leave cad.js's module state, and the model in it,
+     exactly where it was. Leave the document first. */
+  await p.goto('about:blank');
   await open(APP + '#/output');
   await p.waitForTimeout(300);
   const dxf = await p.evaluate(async () => {

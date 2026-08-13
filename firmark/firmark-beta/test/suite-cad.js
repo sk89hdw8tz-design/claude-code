@@ -910,6 +910,18 @@ module.exports = function (t, FM) {
          "coastal · the roof spacing is recovered from T-1's count: 32 ft of run across 17 trusses");
     t.truthy(c.levels[0].framing[0].basis.indexOf("DERIVED") !== -1,
              "coastal · and the region says the spacing was derived, not declared");
+
+    /* This plan is two storeys and its upper storey is not drawn, so the roof
+       region has nowhere to sit but the FIRST-floor level — which shows it
+       bearing on first-floor walls, when on the building it stands on the
+       walls above them. That is a consequence of the missing level and it has
+       to be said on the region, or the load path reads as one somebody chose. */
+    t.eq(c.levels.length, 1, "coastal · the model carries one level, though the plan is two storeys");
+    t.truthy(c.unresolved.filter(function (u) {
+      return u.what.indexOf("upper storey") !== -1;
+    }).length === 1, "coastal · the missing upper storey is a named hole");
+    t.truthy(c.levels[0].framing[0].basis.indexOf("bears on the walls of the storey above") !== -1,
+             "coastal · and the roof region says out loud that the walls under it are the wrong ones");
     t.eq(errs(cad.validate(c)).length, 0, "coastal · no errors");
 
     /* Sunbelt Ranch 1850 used to carry TWO marks for one 16'-8" garage
@@ -968,9 +980,16 @@ module.exports = function (t, FM) {
   (function () {
     var base1 = cad.fromPlan("starter-1210");
     var carport = cad.fromPlan("starter-1210", "c");
+    function garageCount(m) {
+      return m.levels[0].openings.filter(function (o) { return o.kind === "garage"; }).length;
+    }
     t.eq(cad.stats(base1).openings, 14, "variant · the base elevation has 14 openings");
+    t.eq(garageCount(base1), 1, "variant · one of them the garage door");
     t.eq(cad.stats(carport).openings, 13,
          "variant · Elevation C deletes the garage header, so the opening goes with it");
+    /* the count alone would pass if ANY opening had gone missing — it is the
+       garage door specifically, because a carport has no door */
+    t.eq(garageCount(carport), 0, "variant · and it is the garage door that is gone, not some other hole");
     t.eq(carport.source.variantId, "c", "variant · the model records which variant it was built from");
     t.eq(errs(cad.validate(carport)).length, 0, "variant · and it still validates clean");
 
