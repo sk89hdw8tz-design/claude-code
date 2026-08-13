@@ -51,6 +51,14 @@
   /* author-supplied ids never touch a bare object key */
   function key(s) { return "k:" + String(s); }
   function isArr(x) { return Object.prototype.toString.call(x) === "[object Array]"; }
+  /* a .clause dropped onto its own line — two short lines beat one wide cell
+     when six regions have to fit on one board */
+  var BLOCK = "display:block;margin:2px 0 0;padding-left:0;border-left:0;";
+  /* six regions do not fit a narrow container, so the board scrolls and the
+     mark it belongs to stays on screen */
+  var STICKY   = "position:sticky;left:0;z-index:1;background:var(--surface);" +
+                 "max-width:250px;min-width:170px;white-space:normal;";
+  var STICKY_H = "position:sticky;left:0;z-index:4;background:var(--surface-2);min-width:170px;";
 
   /* every number in a pack says what kind of number it is */
   var CLASSES = {
@@ -87,19 +95,13 @@
     return (st ? st + " " : "") + region;
   }
 
-  /* the four first-class escalation statuses, each named for what a
-     reader has to DO about it */
-  var ESC = {
-    "escalate:strength":    { t: "No section reaches it", b: "strength" },
-    "escalate:bearing":     { t: "Bearing — a detailing fix, not a bigger member", b: "bearing" },
-    "escalate:geometry":    { t: "Will not fit the depth budget", b: "geometry" },
-    "escalate:procurement": { t: "Procurement, not engineering", b: "procurement" },
-    "escalate:scope":       { t: "Beyond solid sawn", b: "scope" },
-    "escalate:input":       { t: "Nothing was checked — the demand is not numeric", b: "input" }
-  };
+  /* Escalation labels come from FM.solver.escalationOf() — the export prints
+     from the same source, and a screen that disagrees with the paper about
+     what an escalation means is the defect, not the wording. */
   function escInfo(status) {
-    return own(ESC, status) ||
-      { t: "Beyond solid sawn", b: String(status || "escalate").replace("escalate:", "") };
+    var e = FM.solver.escalationOf ? FM.solver.escalationOf(status) : null;
+    return e || { badge: String(status || "escalate").replace("escalate:", ""),
+                  tag: "ESCALATED", short: "no member was selected" };
   }
 
   var NA = {
@@ -135,90 +137,174 @@
 
   /* ============================================================
      Master set — elevations and options
+
+     Consumed from weights.js, every entry point optional and every
+     call guarded, so a build without master sets renders exactly
+     what it rendered before:
+
+       variantsFor(plan)   -> { elevations[], options[], combinations[],
+                                lots, note, declaresVariants }
+         combinations[] is the BUILDABLE list — each one an elevation
+         with a compatible set of options — carrying id, label,
+         elevationId, optionIds[], isBase, takeRate, lotsExpected,
+         touches[] and movesNoMember.
+       planForVariant(plan, id) -> a plain plan with the overrides
+         applied, the removals gone and the additions in. It goes
+         straight to FM.solver.solvePlan(); the solver never learns
+         that variants exist, so every number on a variant schedule
+         is produced by the same path as the base one.
+       envelopeFor(plan, markId, pack) -> whether ONE variant governs
+         the mark across the whole set, or whether the set is split
+         and each variant has to be sized.
+
+     This view never composes a variant id by hand: a combination the
+     builder cannot build is not on the picker.
      ============================================================ */
 
-  var MAX_VARIANTS = 8;      /* an envelope, not a combinatorial explosion */
-  var MCACHE = {};           /* plan+pack -> computed envelope; the data is static */
+  var MCACHE = {};   /* plan+pack -> master-set report; the inputs are static */
 
-  function normVariant(v, kind) {
-    if (v === null || v === undefined) return null;
-    if (typeof v === "string") {
-      return { id: v, label: v, kind: kind, takeRate: null, note: null, marks: null };
-    }
-    if (typeof v !== "object") return null;
-    var id = v.id || v.key || v.code || v.name;
-    if (!id) return null;
-    var tr = Number(v.takeRate);
-    if (!isFinite(tr)) tr = null; else if (tr > 1) tr = tr / 100;
-    var marks = null, mv = v.marks || v.overrides || v.markOverrides;
-    if (mv && typeof mv === "object") {
-      marks = isArr(mv)
-        ? mv.map(function (x) { return typeof x === "string" ? x : (x && (x.id || x.mark)); })
-        : Object.keys(mv);
-      marks = marks.filter(Boolean);
-    }
-    return {
-      id: String(id),
-      label: String(v.label || v.name || v.title || id),
-      kind: kind,
-      takeRate: tr,
-      note: v.note || v.description || null,
-      marks: marks && marks.length ? marks : null
-    };
+  function variantSet(plan) {
+    var W = FM.weights;
+    if (!W || typeof W.variantsFor !== "function" || typeof W.planForVariant !== "function") return null;
+    var v;
+    try { v = W.variantsFor(plan); } catch (e) { return null; }
+    if (!v || !isArr(v.combinations) || v.combinations.length < 2) return null;
+    if (v.declaresVariants === false) return null;
+    return v;
   }
 
-  function variantGroups(plan) {
-    if (!FM.weights || typeof FM.weights.variantsFor !== "function") return null;
-    var raw;
-    try { raw = FM.weights.variantsFor(plan); } catch (e) { return null; }
-    if (!raw) return null;
-
-    var groups = [];
-    function add(kind, label, list) {
-      if (!isArr(list)) return;
-      var items = [];
-      list.forEach(function (v) { var n = normVariant(v, kind); if (n) items.push(n); });
-      if (items.length) groups.push({ kind: kind, label: label, items: items });
+  function comboById(v, id) {
+    var out = null;
+    v.combinations.forEach(function (c) { if (c.id === id) out = c; });
+    return out;
+  }
+  function baseCombo(v) {
+    var out = null;
+    v.combinations.forEach(function (c) { if (!out && c.isBase) out = c; });
+    return out || v.combinations[0];
+  }
+  /* an option set, named the way a sales sheet names it */
+  function optionLabel(v, combo) {
+    if (!combo.optionIds || !combo.optionIds.length) {
+      return combo.isBase ? "As stamped" : "Elevation only";
     }
-    if (isArr(raw)) {
-      var elev = [], opts = [], other = [];
-      raw.forEach(function (v) {
-        var k = (v && (v.kind || v.type)) || "";
-        if (k === "elevation") elev.push(v);
-        else if (k === "option") opts.push(v);
-        else other.push(v);
-      });
-      add("elevation", "Elevation", elev);
-      add("option", "Option", opts);
-      add("variant", "Variant", other);
-    } else if (typeof raw === "object") {
-      add("elevation", "Elevation", raw.elevations);
-      add("option", "Option", raw.options);
-      add("variant", "Variant", raw.variants);
-    }
-    return groups.length ? groups : null;
+    return combo.optionIds.map(function (id) {
+      var hit = null;
+      v.options.forEach(function (o) { if (o.id === id) hit = o; });
+      return hit ? hit.label : id;
+    }).join(" + ");
+  }
+  function elevationOf(v, id) {
+    var hit = null;
+    v.elevations.forEach(function (e) { if (e.id === id) hit = e; });
+    return hit;
   }
 
-  /* Compared on a fixed field list rather than on object identity, so a
-     re-ordered demand object is not reported as a change. */
-  var DFIELDS = [
-    ["span", "span", " ft", 1], ["trib", "tributary", " ft", 1],
-    ["tribRoof", "roof tributary", " ft", 1], ["tribFloor", "floor tributary", " ft", 1],
-    ["dead", "dead", " psf", 1], ["live", "floor live", " psf", 0],
-    ["roofLoad", "roof load", " psf", 0], ["bearing", "bearing", " in", 2],
-    ["maxDepthIn", "depth budget", " in", 2]
-  ];
-  var DFLAGS = [["carries", "carries"], ["memberUse", "deflection row"], ["roofType", "roof case"],
-                ["wet", "wet service"], ["treated", "treated"], ["braced", "braced"],
-                ["repetitive", "repetitive"]];
-
-  function demandSig(d) {
-    if (!d) return "";
-    var out = [], i;
-    for (i = 0; i < DFIELDS.length; i++) out.push(String(d[DFIELDS[i][0]]));
-    for (i = 0; i < DFLAGS.length; i++) out.push(String(d[DFLAGS[i][0]]));
-    return out.join("|");
+  function solveVariant(plan, pack, comboId) {
+    try {
+      var vp = FM.weights.planForVariant(plan, comboId);
+      return { plan: vp, res: FM.solver.solvePlan(vp, pack) };
+    } catch (e) { return null; }
   }
+
+  function pickOf(m) {
+    if (!m || m.notApplicable) return null;
+    var row = m.unifiedTo || (m.solution && m.solution.pick);
+    return row || null;
+  }
+
+  /* base schedule vs the selected combination, mark for mark — including the
+     marks a variant adds and the ones it deletes, which are the two cases a
+     diff of two member lists is most likely to drop on the floor */
+  function scheduleDelta(baseRes, varRes) {
+    var byId = {}, rows = [], counts = { moves: 0, escalates: 0, recovers: 0, added: 0, removed: 0 };
+    baseRes.marks.forEach(function (m) { byId[key(m.mark.id)] = m; });
+    var seen = {};
+
+    varRes.marks.forEach(function (vm) {
+      var id = vm.mark.baseMarkId || vm.mark.id;
+      seen[key(id)] = 1;
+      var bm = own(byId, key(id));
+      var vp = pickOf(vm), bp = bm ? pickOf(bm) : null;
+      if (!bm) {
+        rows.push({ id: vm.mark.id, label: vm.mark.label, state: "added",
+                    was: null, now: vp ? skuText(vp.cand) : null,
+                    nowSpacing: vp ? vp.cand.spacing : null,
+                    nowDcr: vp ? vp.dcr : null,
+                    why: vm.notApplicable ? "not this engine's member" : (vp ? "" : "escalates") });
+        counts.added++;
+        return;
+      }
+      if (bm.notApplicable && vm.notApplicable) return;
+      var why = demandDelta(bm.demand, vm.demand);
+      if (bp && !vp) {
+        rows.push({ id: id, label: vm.mark.label, state: "escalates", was: skuText(bp.cand), now: null,
+                    wasSpacing: bp.cand.spacing, why: why.join(" · ") ||
+                    (vm.solution && vm.solution.note ? vm.solution.note.wall : "") });
+        counts.escalates++;
+      } else if (!bp && vp) {
+        rows.push({ id: id, label: vm.mark.label, state: "recovers", was: null, now: skuText(vp.cand),
+                    nowSpacing: vp.cand.spacing, nowDcr: vp.dcr, why: why.join(" · ") });
+        counts.recovers++;
+      } else if (bp && vp && (skuText(bp.cand) !== skuText(vp.cand) ||
+                 (bp.cand.spacing || 0) !== (vp.cand.spacing || 0))) {
+        rows.push({ id: id, label: vm.mark.label, state: "moves",
+                    was: skuText(bp.cand), wasSpacing: bp.cand.spacing,
+                    now: skuText(vp.cand), nowSpacing: vp.cand.spacing, nowDcr: vp.dcr,
+                    why: why.join(" · ") });
+        counts.moves++;
+      } else if (why.length) {
+        rows.push({ id: id, label: vm.mark.label, state: bp ? "holds" : "stuck",
+                    was: bp ? skuText(bp.cand) : null, wasSpacing: bp ? bp.cand.spacing : null,
+                    now: vp ? skuText(vp.cand) : null, nowSpacing: vp ? vp.cand.spacing : null,
+                    nowDcr: vp ? vp.dcr : null, why: why.join(" · ") });
+      }
+    });
+
+    baseRes.marks.forEach(function (m) {
+      if (own(seen, key(m.mark.id))) return;
+      var bp = pickOf(m);
+      rows.push({ id: m.mark.id, label: m.mark.label, state: "removed",
+                  was: bp ? skuText(bp.cand) : (m.notApplicable ? "not this engine's member" : "escalated"),
+                  wasSpacing: bp ? bp.cand.spacing : null, now: null,
+                  why: "this variant does not build it" });
+      counts.removed++;
+    });
+
+    var order = { escalates: 0, added: 1, removed: 2, moves: 3, recovers: 4, holds: 5, stuck: 6 };
+    rows.sort(function (a, b) { return order[a.state] - order[b.state]; });
+    return { rows: rows, counts: counts,
+             changed: counts.moves + counts.escalates + counts.recovers + counts.added + counts.removed };
+  }
+
+  /* Per-mark envelope. weights.js will only name a governing variant when one
+     dominates every other on every driver at once — otherwise it returns
+     split and says the set has to be sized variant by variant. Both answers
+     are reported here; neither is summarised away. */
+  function envelope(plan, pack) {
+    if (typeof FM.weights.envelopeFor !== "function") return null;
+    var rows = [];
+    plan.marks.forEach(function (mk) {
+      var e;
+      try { e = FM.weights.envelopeFor(plan, mk.id, pack); } catch (err) { return; }
+      if (!e) return;
+      rows.push({ mark: mk, env: e });
+    });
+    return rows.length ? rows : null;
+  }
+
+  function masterSet(plan, pack) {
+    var ck = key(plan.id + "|" + pack.id);
+    var hit = own(MCACHE, ck);
+    if (hit) return hit;
+    var v = variantSet(plan);
+    if (!v) return null;
+    var out = { v: v, base: baseCombo(v), envelope: envelope(plan, pack) };
+    MCACHE[ck] = out;
+    return out;
+  }
+
+  /* which demand fields moved, for the "what changed" column */
   function demandDelta(a, b) {
     var out = [];
     if (!a || !b) return out;
@@ -236,157 +322,69 @@
     return out;
   }
 
-  function safeDemand(mark, plan, pack, vid) {
-    try {
-      return vid === null || vid === undefined
-        ? FM.weights.demandFor(mark, plan, pack)
-        : FM.weights.demandFor(mark, plan, pack, vid);
-    } catch (e) { return null; }
+  var DFIELDS = [
+    ["span", "span", " ft", 1], ["trib", "tributary", " ft", 1],
+    ["tribRoof", "roof tributary", " ft", 1], ["tribFloor", "floor tributary", " ft", 1],
+    ["dead", "dead", " psf", 1], ["live", "floor live", " psf", 0],
+    ["roofLoad", "roof load", " psf", 0], ["bearing", "bearing", " in", 2],
+    ["maxDepthIn", "depth budget", " in", 2]
+  ];
+  var DFLAGS = [["carries", "carries"], ["memberUse", "deflection row"], ["roofType", "roof case"],
+                ["wet", "wet service"], ["treated", "treated"], ["braced", "braced"],
+                ["repetitive", "repetitive"]];
+
+  function safeDemand(mark, plan, pack) {
+    try { return FM.weights.demandFor(mark, plan, pack); } catch (e) { return null; }
   }
 
-  /* Solve one mark under one variant, mirroring solvePlan's own order:
-     applicability first, then demand, then the search. */
-  function solveOne(mark, plan, pack, vid) {
-    var appl = FM.weights.applicability
-      ? FM.weights.applicability(mark, pack) : { applicable: true };
-    if (!appl.applicable) return { na: appl.reason };
-    var d = safeDemand(mark, plan, pack, vid);
-    if (!d) return { error: true };
-    var sol;
-    try { sol = FM.solver.size(d, FM.weights.policyFor(pack, plan, mark.role)); }
-    catch (e) { return { error: true, demand: d }; }
-    return { demand: d, sol: sol, pick: sol && sol.pick ? sol.pick : null };
-  }
 
-  /* Does this build accept an elevation AND an option in one call? If a
-     single id moves a demand but the pair does not, it does not — and the
-     picker becomes one-at-a-time rather than quietly reporting "nothing
-     moves" for a combination it never actually asked about. */
-  function comboHonoured(plan, pack, groups) {
-    if (groups.length < 2) return false;
-    function mover(items) {
-      var i, j, m, base, alt;
-      for (i = 0; i < items.length; i++) {
-        for (j = 0; j < plan.marks.length; j++) {
-          m = plan.marks[j];
-          base = safeDemand(m, plan, pack, null);
-          if (!base) continue;
-          alt = safeDemand(m, plan, pack, items[i].id);
-          if (alt && demandSig(alt) !== demandSig(base)) return { v: items[i], mark: m, base: base };
-        }
-      }
-      return null;
+  /* ============================================================
+     State and the address bar
+
+     The view's state lives on FM.state.sizing so a link can carry it:
+       #/sizing/<planId>/<packId>/<tab>/<combinationId>
+     Everything after the plan is optional and every segment is validated —
+     a stale link degrades to the default rather than to a blank view.
+     ============================================================ */
+
+  var TABS = { schedule: 1, region: 1, matrix: 1 };
+
+  function sizingState() {
+    var s = FM.state.sizing;
+    if (!s) {
+      s = FM.state.sizing = {
+        packId: "nc-piedmont", planId: "two-story-2450",
+        open: null, tab: "schedule", combo: null
+      };
     }
-    var a = mover(groups[0].items), b = mover(groups[1].items);
-    if (!a || !b) return false;
-    var pair = safeDemand(a.mark, plan, pack, [a.v.id, b.v.id]);
-    return !!(pair && demandSig(pair) !== demandSig(a.base));
+    return s;
   }
 
-  /* one variant (or one combination) against the base case */
-  function deltaFor(plan, pack, vid, base) {
-    var rows = [], moved = 0, escalated = 0, recovered = 0, demandOnly = 0, stuck = 0;
-    plan.marks.forEach(function (mk) {
-      var b = own(base, key(mk.id));
-      if (!b || b.na) return;                       /* not this engine's member either way */
-      var r = solveOne(mk, plan, pack, vid);
-      if (r.na || r.error) return;
-      var was = b.pick ? skuText(b.pick.cand) : null;
-      var now = r.pick ? skuText(r.pick.cand) : null;
-      var why = demandDelta(b.demand, r.demand);
-      var state = null;
-      if (was && !now) { state = "escalates"; escalated++; }
-      else if (!was && now) { state = "recovers"; recovered++; }
-      else if (was && now && (was !== now ||
-               (b.pick.cand.spacing || 0) !== (r.pick.cand.spacing || 0))) { state = "moves"; moved++; }
-      /* a mark with no member either way did not "hold" anything */
-      else if (!was && !now && why.length) { state = "stuck"; stuck++; }
-      else if (why.length) { state = "holds"; demandOnly++; }
-      if (!state) return;
-      rows.push({
-        mark: mk, state: state, was: was, now: now,
-        wasSpacing: b.pick ? b.pick.cand.spacing : null,
-        nowSpacing: r.pick ? r.pick.cand.spacing : null,
-        wasDcr: b.pick ? b.pick.dcr : null, nowDcr: r.pick ? r.pick.dcr : null,
-        why: why, note: r.sol && r.sol.note ? r.sol.note : null
-      });
-    });
-    var order = { escalates: 0, moves: 1, recovers: 2, holds: 3, stuck: 4 };
-    rows.sort(function (x, y) { return order[x.state] - order[y.state]; });
-    return { rows: rows, moved: moved, escalated: escalated,
-             recovered: recovered, demandOnly: demandOnly, stuck: stuck };
-  }
-
-  /* The envelope: every variant on record, solved, cached per plan+pack. */
-  function masterSet(plan, pack, groups) {
-    var ck = key(plan.id + "|" + pack.id);
-    var hit = own(MCACHE, ck);
-    if (hit) return hit;
-
-    var flat = [];
-    groups.forEach(function (g) {
-      g.items.forEach(function (it) { if (flat.length < MAX_VARIANTS) flat.push(it); });
-    });
-    var truncated = 0;
-    groups.forEach(function (g) { truncated += g.items.length; });
-    truncated = truncated - flat.length;
-
-    var base = {};
-    plan.marks.forEach(function (mk) {
-      var r = solveOne(mk, plan, pack, null);
-      base[key(mk.id)] = { na: r.na || null, pick: r.pick || null, demand: r.demand || null };
-    });
-
-    var perVariant = flat.map(function (v) {
-      return { variant: v, delta: deltaFor(plan, pack, v.id, base) };
-    });
-
-    /* union across the whole master set — the envelope a builder buys to */
-    var envelope = {}, holds = {}, nHolds = 0;
-    perVariant.forEach(function (pv) {
-      pv.delta.rows.forEach(function (r) {
-        var k = key(r.mark.id);
-        /* neither a member that held nor one that never existed is a move */
-        if (r.state === "stuck") return;
-        if (r.state === "holds") {
-          if (!own(holds, k)) { holds[k] = 1; nHolds++; }
-          return;
+  if (typeof FM.registerSubRoute === "function") {
+    FM.registerSubRoute("sizing", {
+      read: function () {
+        var s = sizingState();
+        var out = [s.planId, s.packId, s.tab];
+        if (s.combo) out.push(s.combo);      /* last, so it can simply be absent */
+        return out;
+      },
+      write: function (args) {
+        var s = sizingState();
+        args = args || [];
+        if (args[0] && FM.weights && FM.weights.planById(args[0])) {
+          if (s.planId !== args[0]) s.combo = null;
+          s.planId = args[0];
         }
-        if (!own(envelope, k)) envelope[k] = { mark: r.mark, hits: [] };
-        envelope[k].hits.push({ variant: pv.variant, state: r.state, now: r.now,
-                                nowSpacing: r.nowSpacing, why: r.why });
-      });
-    });
-    var envRows = [];
-    plan.marks.forEach(function (mk) {
-      var e = own(envelope, key(mk.id));
-      if (e) envRows.push(e);
-    });
-
-    var out = { base: base, groups: groups, variants: flat, perVariant: perVariant,
-                envRows: envRows, envHolds: nHolds, truncated: truncated,
-                combo: comboHonoured(plan, pack, groups) };
-    MCACHE[ck] = out;
-    return out;
-  }
-
-  /* Is the variant argument actually wired through? If demandFor does not
-     take it and no probe moves a demand, this whole surface stays dark
-     rather than reporting a master set nobody solved. */
-  function masterAvailable(plan, pack, groups) {
-    if (!groups || !FM.weights || typeof FM.weights.demandFor !== "function") return false;
-    if (FM.weights.demandFor.length >= 4) return true;
-    var i, j, base, alt;
-    for (i = 0; i < groups.length; i++) {
-      for (j = 0; j < groups[i].items.length; j++) {
-        var m = plan.marks[0];
-        if (!m) return false;
-        base = safeDemand(m, plan, pack, null);
-        alt = safeDemand(m, plan, pack, groups[i].items[j].id);
-        if (base && alt && demandSig(base) !== demandSig(alt)) return true;
+        if (args[1] && FM.weights && FM.weights.packById(args[1])) s.packId = args[1];
+        if (args[2] && own(TABS, args[2])) s.tab = args[2];
+        if (args[3]) {
+          /* a combination id only means anything against its own plan */
+          var v = variantSet(FM.weights.planById(s.planId));
+          s.combo = (v && comboById(v, args[3])) ? args[3] : null;
+        }
+        s.open = null;
       }
-    }
-    return false;
+    });
   }
 
   /* ============================================================
@@ -400,10 +398,7 @@
       return;
     }
 
-    var state = FM.state.sizing || (FM.state.sizing = {
-      packId: "nc-piedmont", planId: "sunbelt-ranch-1850", open: null, tab: "schedule", sel: {}
-    });
-    if (!state.sel) state.sel = {};
+    var state = sizingState();
 
     host.appendChild(FM.pageHead("Sizing",
       "One plan, solved against a region. The engine decides what passes; the weights only rank what already did.", [
@@ -442,12 +437,16 @@
     var body = el("div");
     host.appendChild(body);
 
-    packSel.addEventListener("change", function () { state.packId = this.value; state.open = null; draw(); });
+    /* A pack or plan change is sub-state, not a route change: it REPLACES the
+       address so flipping through six regions does not bury the Back button. */
+    function redraw() { draw(); if (FM.syncHash) FM.syncHash(true); }
+
+    packSel.addEventListener("change", function () { state.packId = this.value; state.open = null; redraw(); });
     planSel.addEventListener("change", function () {
-      state.planId = this.value; state.open = null; state.sel = {}; draw();
+      state.planId = this.value; state.open = null; state.combo = null; redraw();
     });
     Array.prototype.forEach.call(tabs.querySelectorAll("button"), function (b) {
-      b.addEventListener("click", function () { state.tab = b.getAttribute("data-tab"); draw(); });
+      b.addEventListener("click", function () { state.tab = b.getAttribute("data-tab"); redraw(); });
     });
 
     /* a table row that opens a detail is a disclosure, and announces as one */
@@ -473,7 +472,7 @@
 
     /* ---------- schedule ---------- */
 
-    function drawSchedule(res, pack, plan) {
+    function drawSchedule(res, pack, plan, ms, sel, baseRes) {
       /* The wind note leads. It is the largest single thing this engine does
          not do in three of the six markets, and it does not get to be a
          footnote under a table of members. */
@@ -525,19 +524,21 @@
         FM.statCard(usd0(r.lumberUSD), "Lumber $ / house")
       ]));
 
+      var lots = sel && sel.lotsExpected ? sel.lotsExpected : plan.lots;
       body.appendChild(line(
-        plural(plan.marks.length, "mark", "marks") + " on this plan" +
-        (plan.lots ? ", built on " + plural(plan.lots, "lot", "lots") : "") + ". " +
+        plural(plan.marks.length, "mark", "marks") + " on " +
+        (sel && !sel.isBase ? "this variant" : "this plan") +
+        (lots ? ", built on " + plural(lots, "lot", "lots") : "") + ". " +
         r.solved + " sized, " + r.escalated + " escalated, " + r.notApplicable +
         " not this engine's member. " + plural(r.skuCount, "distinct SKU", "distinct SKUs") +
         " across the sized marks.",
         "lumber $ is placeholder-priced and covers the sized marks only"));
 
       /* ---- master set: what an elevation or an option does to this schedule ---- */
-      var groups = variantGroups(plan);
-      var ms = groups && masterAvailable(plan, pack, groups)
-        ? masterSet(plan, pack, groups) : null;
-      var current = ms ? drawMasterSet(ms, plan, pack) : null;
+      var delta = (ms && baseRes) ? scheduleDelta(baseRes, res) : null;
+      var escIds = {};
+      escMarks.forEach(function (m) { escIds[key(m.mark.baseMarkId || m.mark.id)] = 1; });
+      var current = ms ? drawMasterSet(ms, sel, delta, plan, escIds) : null;
 
       var tb = el("tbody");
       res.marks.forEach(function (m) {
@@ -560,7 +561,30 @@
           return;
         }
 
-        var mv = current ? own(current.byMark, key(m.mark.id)) : null;
+        /* this row is the SELECTED variant's member; the badge says how it
+           departs from the stamped base */
+        var mv = current ? own(current.byMark, key(m.mark.baseMarkId || m.mark.id)) : null;
+        function deltaBadge() {
+          if (!mv) return null;
+          if (mv.state === "moves") {
+            return el("span", { class: "badge b-gold", style: "margin-left:6px",
+                                text: "base: " + shortSku(mv.was) });
+          }
+          if (mv.state === "added") {
+            return el("span", { class: "badge b-gold", style: "margin-left:6px", text: "added by this variant" });
+          }
+          if (mv.state === "recovers") {
+            return el("span", { class: "badge b-pass", style: "margin-left:6px", text: "escalates on the base" });
+          }
+          if (mv.state === "escalates") {
+            return el("span", { class: "badge b-fail", style: "margin-left:6px",
+                                text: "the base sizes it — " + shortSku(mv.was) });
+          }
+          if (mv.state === "holds") {
+            return el("span", { class: "badge b-mute", style: "margin-left:6px", text: "same member, different load" });
+          }
+          return null;
+        }
 
         if (!row) {
           var info = escInfo(m.solution.status);
@@ -568,11 +592,9 @@
             el("td", { class: "k", text: m.mark.id }),
             el("td", { text: m.mark.label }),
             el("td", { colspan: "4" }, [
-              el("span", { class: "badge b-fail", text: "Escalate · " + info.b }),
-              mv && mv.state === "recovers"
-                ? el("span", { class: "badge b-pass", style: "margin-left:6px",
-                               text: "solves on " + current.label + " as " + shortSku(mv.now) }) : null,
-              el("span", { class: "clause", text: m.solution.note ? m.solution.note.move : info.t })
+              el("span", { class: "badge b-fail", text: "Escalate · " + info.badge }),
+              deltaBadge(),
+              el("span", { class: "clause", text: m.solution.note ? m.solution.note.move : info.short })
             ]),
             el("td", { class: "n", text: "—" })
           ];
@@ -581,23 +603,16 @@
           return;
         }
 
-        var MVB = { escalates: "b-fail", moves: "b-gold", recovers: "b-pass", holds: "b-mute" };
-        var sel = el("td", {}, [
+        var selCell = el("td", {}, [
           el("span", { text: skuText(row.cand) }),
           m.unifiedTo ? el("span", { class: "badge b-blue", style: "margin-left:6px", text: "Unified" }) : null,
-          mv ? el("span", {
-            class: "badge " + (own(MVB, mv.state) || "b-mute"),
-            style: "margin-left:6px",
-            text: mv.state === "escalates" ? "no member on " + current.label
-                : (mv.state === "moves" ? "→ " + shortSku(mv.now) + " on " + current.label
-                : "same member, different load")
-          }) : null
+          deltaBadge()
         ]);
 
         cells = [
           el("td", { class: "k", text: m.mark.id }),
           el("td", { text: m.mark.label }),
-          sel,
+          selCell,
           el("td", { class: "n", text: spacingText(row.cand) }),
           el("td", {}, [el("span", { class: "util " + utilClass(row.dcr) }, [
             el("span", { class: "util-k", text: row.governing }),
@@ -639,7 +654,7 @@
             el("div", {}, [
               el("span", { class: "badge b-fail", text: m.mark.id }),
               el("span", { style: "margin-left:8px;font-weight:650", text: m.mark.label }),
-              el("span", { class: "clause", text: info.t })
+              el("span", { class: "clause", text: info.short })
             ]),
             el("p", { style: "font-size:.86rem" }, [
               el("strong", { text: "Next move: " }),
@@ -703,183 +718,174 @@
       }
     }
 
-    /* ---------- master set: the option envelope ---------- */
 
-    function drawMasterSet(ms, plan, pack) {
-      var wrap = el("div", { style: "display:grid;gap:12px" });
+    /* ---------- master set: elevations, options, and the envelope ---------- */
 
-      /* the picker */
-      var picks = el("div", { style: "display:grid;gap:8px" });
-      ms.groups.forEach(function (g) {
-        var seg = el("div", { class: "seg", role: "group", "aria-label": g.label });
-        var chosen = own(state.sel, key(g.kind)) || null;
-        seg.appendChild(el("button", {
-          text: "Base", "aria-pressed": chosen ? "false" : "true",
-          onclick: function () { state.sel[key(g.kind)] = null; draw(); }
+    function drawMasterSet(ms, sel, delta, basePlan, escIds) {
+      var v = ms.v, wrap = el("div", { style: "display:grid;gap:12px" });
+      var elevId = sel ? sel.elevationId : null;
+
+      /* Elevation — mutually exclusive, and the take rates are the lot mix */
+      var eSeg = el("div", { class: "seg", role: "group", "aria-label": "Elevation" });
+      v.elevations.forEach(function (e) {
+        /* selecting an elevation lands on that elevation with no options */
+        var plain = null;
+        v.combinations.forEach(function (c) {
+          if (!plain && c.elevationId === e.id && (!c.optionIds || !c.optionIds.length)) plain = c;
+        });
+        eSeg.appendChild(el("button", {
+          text: e.label + (isFinite(e.takeRate) ? " · " + Math.round(e.takeRate * 100) + "%" : ""),
+          "aria-pressed": elevId === e.id ? "true" : "false",
+          title: e.note || e.label,
+          onclick: function () { state.combo = plain ? plain.id : null; state.open = null; redraw(); }
         }));
-        g.items.forEach(function (it) {
-          seg.appendChild(el("button", {
-            text: it.label + (it.takeRate !== null ? " · " + Math.round(it.takeRate * 100) + "%" : ""),
-            "aria-pressed": chosen === it.id ? "true" : "false",
-            title: it.note || (it.takeRate !== null ? "Take rate " + Math.round(it.takeRate * 100) + "% of lots" : it.label),
-            onclick: function () {
-              if (!ms.combo) {
-                /* one variant per solve in this build — do not imply otherwise */
-                ms.groups.forEach(function (o) { state.sel[key(o.kind)] = null; });
-              }
-              state.sel[key(g.kind)] = chosen === it.id ? null : it.id;
-              draw();
-            }
-          }));
-        });
-        picks.appendChild(el("div", { style: "display:flex;flex-wrap:wrap;gap:8px;align-items:center" }, [
-          el("span", { class: "badge b-mute", text: g.label }), seg
-        ]));
-      });
-      wrap.appendChild(picks);
-
-      /* what is selected, and what it does */
-      var selIds = [], selLabels = [];
-      ms.groups.forEach(function (g) {
-        var id = own(state.sel, key(g.kind));
-        if (!id) return;
-        var it = g.items.filter(function (x) { return x.id === id; })[0];
-        if (!it) return;
-        selIds.push(it.id); selLabels.push(it.label);
       });
 
-      var label = selLabels.join(" + ");
-      var delta = null, byMark = {};
-      if (selIds.length === 1) {
-        var pv = ms.perVariant.filter(function (p) { return p.variant.id === selIds[0]; })[0];
-        delta = pv ? pv.delta : deltaFor(plan, pack, selIds[0], ms.base);
-      } else if (selIds.length > 1) {
-        delta = deltaFor(plan, pack, selIds, ms.base);
-      }
-      if (delta) {
-        delta.rows.forEach(function (row) {
-          byMark[key(row.mark.id)] = { state: row.state, now: row.now };
-        });
-      }
+      /* Built with — only combinations the builder can actually build */
+      var mine = v.combinations.filter(function (c) { return c.elevationId === elevId; });
+      var oSeg = el("div", { class: "seg", role: "group", "aria-label": "Options" });
+      mine.forEach(function (c) {
+        oSeg.appendChild(el("button", {
+          text: optionLabel(v, c) + (c.lotsExpected ? " · " + c.lotsExpected + " lots" : ""),
+          "aria-pressed": sel && sel.id === c.id ? "true" : "false",
+          title: c.label,
+          onclick: function () { state.combo = c.id; state.open = null; redraw(); }
+        }));
+      });
 
-      var sizeable = plan.marks.filter(function (mk) {
-        var b = own(ms.base, key(mk.id));
-        return b && !b.na;
-      }).length;
+      wrap.appendChild(el("div", { style: "display:flex;flex-wrap:wrap;gap:8px;align-items:center" },
+        [el("span", { class: "badge b-mute", text: "Elevation" }), eSeg]));
+      wrap.appendChild(el("div", { style: "display:flex;flex-wrap:wrap;gap:8px;align-items:center" },
+        [el("span", { class: "badge b-mute", text: "Built with" }), oSeg]));
 
-      if (!selIds.length) {
+      /* what the selection does to the schedule below */
+      if (!sel || sel.isBase) {
         wrap.appendChild(el("p", { style: "font-size:.86rem" }, [
-          el("strong", { text: "Base case. " }),
-          el("span", { text: "Pick an elevation or an option above to see what it does to the schedule below. " +
-            "Across the " + plural(ms.variants.length, "variant", "variants") + " on record, " +
-            (ms.envRows.length
-              ? plural(ms.envRows.length, "mark moves", "marks move") + " at least once"
-              : "no mark moves off the base member") +
-            (ms.envHolds ? ", and " + plural(ms.envHolds, "mark carries", "marks carry") +
-                           " a different load and holds its member" : "") + "." })
+          el("strong", { text: "The stamped base case. " }),
+          el("span", { text: "The schedule below is this combination, solved end to end — not the base with a " +
+            "note attached. Pick another elevation or an option and every number below re-solves. " +
+            plural(v.combinations.length, "combination is", "combinations are") + " buildable off this master set." })
         ]));
-      } else {
-        var moved = delta ? (delta.moved + delta.escalated + delta.recovered) : 0;
-        var holdsTxt = delta && delta.demandOnly
-          ? plural(delta.demandOnly, "mark", "marks") +
-            (delta.demandOnly === 1 ? " carries a different load and holds its member"
-                                    : " carry a different load and hold theirs")
-          : "";
+      } else if (delta) {
+        var c = delta.counts;
+        var bits = [];
+        if (c.moves) bits.push(plural(c.moves, "mark moves", "marks move") + " to a different member");
+        if (c.escalates) bits.push(plural(c.escalates, "mark", "marks") + " NO LONGER SOLVES");
+        if (c.recovers) bits.push(plural(c.recovers, "mark", "marks") + " solves here but not on the base");
+        if (c.added) bits.push(plural(c.added, "mark is", "marks are") + " added");
+        if (c.removed) bits.push(plural(c.removed, "mark is", "marks are") + " deleted");
         wrap.appendChild(el("p", { style: "font-size:.86rem" }, [
-          el("strong", { text: label + " — " }),
-          el("span", { text: (moved
-            ? moved + " of " + sizeable + " sizeable marks change member" +
-              (delta.escalated ? ", and " + plural(delta.escalated, "mark", "marks") + " no longer solve at all" : "")
-            : "no mark changes member") +
-            (holdsTxt ? ". " + holdsTxt.charAt(0).toUpperCase() + holdsTxt.slice(1) : "") + "." +
-            (moved ? "" : " This combination is buildable off the base schedule.") })
+          el("strong", { text: sel.label + " — " }),
+          el("span", { text: (bits.length ? bits.join(", ") + "." : "nothing moves off the stamped base.") +
+            (sel.lotsExpected ? " Expected on " + plural(sel.lotsExpected, "lot", "lots") + " of " +
+              (v.lots || basePlan.lots) + "." : "") }),
+          el("span", { class: "clause", text: "the schedule below IS this variant" })
         ]));
       }
 
       /* the delta table */
       if (delta && delta.rows.length) {
+        var BADGE = {
+          escalates: ["b-fail", "loses its member"], moves: ["b-gold", "moves"],
+          recovers: ["b-pass", "now solves"], added: ["b-gold", "added"],
+          removed: ["b-blue", "not built"], holds: ["b-mute", "member holds"],
+          stuck: ["b-fail", "no member either way"]
+        };
         var dtb = el("tbody");
         delta.rows.forEach(function (row) {
-          var badge = row.state === "escalates"
-            ? el("span", { class: "badge b-fail", text: "loses its member" })
-            : (row.state === "moves" ? el("span", { class: "badge b-gold", text: "moves" })
-            : (row.state === "recovers" ? el("span", { class: "badge b-pass", text: "now solves" })
-            : (row.state === "stuck" ? el("span", { class: "badge b-fail", text: "no member either way" })
-            : el("span", { class: "badge b-mute", text: "member holds" }))));
+          var b = own(BADGE, row.state) || ["b-mute", row.state];
           dtb.appendChild(el("tr", {}, [
-            el("td", { class: "k" }, [el("span", { text: row.mark.id }),
-              el("span", { class: "clause", text: row.mark.label })]),
-            el("td", {}, [badge]),
-            el("td", { text: row.was ? shortSku(row.was) + (row.wasSpacing ? " @ " + row.wasSpacing + "″" : "") : "escalated" }),
+            el("td", { class: "k" }, [el("span", { text: row.id }),
+              el("span", { class: "clause", style: BLOCK, text: row.label })]),
+            el("td", {}, [el("span", { class: "badge " + b[0], text: b[1] })]),
+            el("td", { text: row.was ? shortSku(row.was) + (row.wasSpacing ? " @ " + row.wasSpacing + "″" : "")
+                                     : (row.state === "added" ? "not on the base plan" : "no member on the base") }),
             el("td", {}, [
-              el("span", { text: row.now ? shortSku(row.now) + (row.nowSpacing ? " @ " + row.nowSpacing + "″" : "") : "—" }),
-              row.now && row.nowDcr !== null ? el("span", { class: "clause", text: "DCR " + fmt(row.nowDcr, 2) }) : null
+              el("span", { text: row.now ? shortSku(row.now) + (row.nowSpacing ? " @ " + row.nowSpacing + "″" : "")
+                                         : "—" }),
+              row.now && isFinite(row.nowDcr)
+                ? el("span", { class: "clause", style: BLOCK, text: "DCR " + fmt(row.nowDcr, 2) }) : null
             ]),
-            el("td", { text: row.why.length ? row.why.join(" · ")
-                             : (row.note ? row.note.wall : "the same demand ranks differently") })
+            el("td", { text: row.why || "—" })
           ]));
         });
         wrap.appendChild(el("div", { class: "tw", tabindex: "0", role: "region", "aria-label": "Variant deltas" }, [
           el("table", {}, [
             el("thead", {}, [el("tr", {}, [
-              el("th", { text: "Mark" }), el("th", { text: "Change" }), el("th", { text: "Base" }),
-              el("th", { text: label || "Variant" }), el("th", { text: "What changed in the demand" })
+              el("th", { text: "Mark" }), el("th", { text: "Change" }), el("th", { text: "Stamped base" }),
+              el("th", { text: "This variant" }), el("th", { text: "What changed in the demand" })
             ])]), dtb
           ])
         ]));
       }
 
-      /* the envelope across the whole master set */
-      if (ms.envRows.length) {
-        wrap.appendChild(el("p", { style: "font-size:.86rem;margin-top:4px" }, [
-          el("strong", { text: "The envelope — " }),
-          el("span", { text: plural(ms.envRows.length, "mark", "marks") + " of " + sizeable +
-            " move on at least one variant of this master set. Size for the envelope and no option is a revision." })
-        ]));
-        wrap.appendChild(dl(ms.envRows.map(function (e) {
-          var names = {}, out = [];
-          e.hits.forEach(function (h) {
-            var t = h.state === "escalates" ? "no member" : shortSku(h.now || "");
-            if (!own(names, key(t))) { names[key(t)] = 1; out.push(t); }
-          });
-          var b = own(ms.base, key(e.mark.id));
-          return {
-            k: esc(e.mark.id) + " <span class='clause'>" + esc(e.mark.label) + "</span>",
-            v: (b && b.pick ? esc(shortSku(skuText(b.pick.cand))) : "escalated") +
-               " → " + esc(out.join(" / ")) +
-               " <span class='clause'>" + esc(e.hits.map(function (h) { return h.variant.label; }).join(", ")) + "</span>",
-            cls: e.hits.filter(function (h) { return h.state === "escalates"; }).length ? "fail" : "gold"
-          };
-        })));
+      /* the envelope: does one variant cover the whole master set, per mark */
+      if (ms.envelope) {
+        var gov = [], split = [], none = [];
+        ms.envelope.forEach(function (e) {
+          if (!e.env.sizedOn) { none.push(e); return; }
+          if (e.env.split || !e.env.governedBy) split.push(e); else gov.push(e);
+        });
+        var eBody = el("div", { style: "display:grid;gap:10px" });
+        if (gov.length) {
+          eBody.appendChild(dl(gov.map(function (e) {
+            var g = e.env.governing;
+            /* the governing variant says which DEMAND covers the set. It does
+               not say a member exists — a mark that escalates must never read
+               as covered because its envelope resolved. */
+            var stuck = own(escIds || {}, key(e.mark.id));
+            return {
+              k: esc(e.mark.id) + " <span class='clause'>" + esc(e.mark.label) + "</span>",
+              v: (stuck ? "no member on the current selection <span class='clause'>governing demand: "
+                        : "size it for <strong>") +
+                 esc(g ? g.label : e.env.governedBy) + (stuck ? "</span>" : "</strong>"),
+              cls: stuck ? "fail" : "gold"
+            };
+          })));
+        }
+        if (split.length) {
+          eBody.appendChild(el("p", { style: "font-size:.86rem" }, [
+            el("strong", { text: "No single variant covers " +
+              split.map(function (e) { return e.mark.id; }).join(", ") + ". " }),
+            el("span", { text: "One variant is worse on one driver and better on another, so there is no member " +
+              "that provably passes them all — these have to be sized variant by variant, which is what the " +
+              "picker above is for." })
+          ]));
+        }
+        if (none.length) {
+          eBody.appendChild(el("p", { class: "src-note", text:
+            none.map(function (e) { return e.mark.id; }).join(", ") +
+            " — not sized on any variant, so there is nothing to envelope. They are listed below with the reason." }));
+        }
+        var anyStuck = gov.filter(function (e) { return own(escIds || {}, key(e.mark.id)); }).length;
+        wrap.appendChild(card("The envelope · " + plural(v.combinations.length, "buildable combination", "buildable combinations"),
+          el("span", { class: "badge " + (split.length ? "b-warn" : (anyStuck ? "b-fail" : "b-gold")),
+                       text: split.length ? "Split" : (anyStuck ? "Escalations remain" : "Covered"),
+                       style: "margin-left:auto" }),
+          eBody,
+          "A governing variant is named only where it is at least as severe as every other on span, tributary, " +
+          "dead, live and roof load at once, gives away no bearing and no depth budget, and is the same kind of " +
+          "member. Under those conditions a member that passes it passes all of them — the envelope is proved, " +
+          "not assembled out of the worst number in each column."));
       }
 
-      if (ms.envRows.length) {
-        wrap.appendChild(el("p", { class: "src-note", text:
-          "The envelope is the union over each variant taken ALONE. A buyer who takes two of them can move a mark " +
-          "further than either does on its own — select the combination above to solve it." }));
-      }
-      if (!ms.combo && ms.groups.length > 1) {
-        wrap.appendChild(el("p", { class: "src-note", text:
-          "One variant at a time: this build of the weights model takes a single variant per solve, so an elevation " +
-          "and an option cannot be stacked here." }));
-      }
-      if (ms.truncated > 0) {
-        wrap.appendChild(el("p", { class: "src-note", text:
-          ms.truncated + " further variant(s) on this plan are not shown — this view solves the first " +
-          MAX_VARIANTS + "." }));
-      }
+      if (v.note) wrap.appendChild(el("p", { class: "src-note", text: v.note }));
 
       body.appendChild(el("div", { style: "margin-bottom:16px" }, [
-        card("Master set · elevations and options",
-          el("span", { class: "badge b-gold", text: plural(ms.variants.length, "variant", "variants"), style: "margin-left:auto" }),
+        card("Master set · " + plural(v.elevations.length, "elevation", "elevations") + ", " +
+             plural(v.options.length, "option", "options"),
+          el("span", { class: "badge b-gold", text: plural(v.combinations.length, "combination", "combinations"), style: "margin-left:auto" }),
           wrap,
-          "Each variant is an independent solve against its own demand — no cell is inferred from the base case. " +
-          "Sizing the base and letting an option move a bearing is how a post-permit revision gets manufactured; " +
-          "this is where you find it first.")
+          "Every variant is solved by the same path as the base — the plan is resolved first and handed to the " +
+          "solver, which does not know variants exist. Sizing the base and letting an option move a bearing is " +
+          "how a post-permit revision gets manufactured; this is where you find it first.")
       ]));
 
-      return { byMark: byMark, label: label, ids: selIds };
+      var byMark = {};
+      if (delta) delta.rows.forEach(function (row) { byMark[key(row.id)] = row; });
+      return { byMark: byMark, label: sel ? sel.label : "" };
     }
+
 
     /* ---------- the search record for one mark ---------- */
 
@@ -904,8 +910,8 @@
           "The engine decided the DCR. The weights only chose between members that had already passed."));
       } else if (sol.note) {
         var info = escInfo(sol.status);
-        wrap.appendChild(card("Escalated · " + m.mark.id + " — " + info.t,
-          el("span", { class: "badge b-fail", text: info.b, style: "margin-left:auto" }),
+        wrap.appendChild(card("Escalated · " + m.mark.id + " — " + info.tag,
+          el("span", { class: "badge b-fail", text: info.badge, style: "margin-left:auto" }),
           el("div", { style: "display:grid;gap:9px;font-size:.86rem" }, [
             el("p", {}, [el("strong", { text: "Next move: " }), el("span", { text: sol.note.move })]),
             el("p", {}, [el("strong", { text: "Wall: " }), el("span", { text: sol.note.wall })]),
@@ -931,7 +937,12 @@
         { k: "Floor live", v: fmt(m.demand.live, 0) + " psf" },
         { k: "Roof load", v: fmt(m.demand.roofLoad, 0) + " psf <span class='clause'>" + (m.demand.roofType === "snow" ? "snow · C_D 1.15" : "roof live · C_D 1.25") + "</span>" },
         { k: "Bearing length", v: fmt(m.demand.bearing, 2) + " in <span class='clause'>" + (m.demand.role === "header" ? "jack studs × 1.5 in — declared, never defaulted" : "on a post cap") + "</span>" },
-        b && b.deflection ? { k: "Deflection row", v: esc(b.deflection.row) + " <span class='clause'>L/" + b.deflection.live + " variable, L/" + b.deflection.total + " total</span>" } : null,
+        b && b.deflection ? { k: "Deflection row <span class='clause'>" + esc(b.deflection.cite || b.deflection.row) + "</span>",
+          v: "L/" + b.deflection.live + " variable · L/" + b.deflection.total + " total" +
+             /* keyed on the number, not on the row name, so it disappears by itself
+                if the engine ever relaxes the cell */
+             (b.deflection.row === "roof_no_ceiling" && b.deflection.total === 180
+               ? " <span class='clause'>total is a FIRM OVERLAY — the table allows L/120</span>" : "") } : null,
         { k: "Service", v: m.demand.wet ? "Wet · MC &gt; 19%" : "Dry" },
         { k: "Treatment", v: m.demand.treated ? "Treated <span class='clause'>C_i applies · NDS T4.3.8</span>" : "Untreated" },
         { k: "Compression edge", v: m.demand.braced ? "Continuously braced — C_L = 1.0" : "Unbraced — C_L computed from R_B" },
@@ -1160,28 +1171,31 @@
 
     /* ---------- repeat matrix ---------- */
 
-    /* Descriptive, never causal: these are the fields on which two packs
-       differ. The pack is what forced the member; this says how it differs. */
-    function packDelta(a, b) {
+    /* Descriptive, never causal — and scoped to what could actually reach THIS
+       mark. Listing every field on which two packs differ puts the tile roof
+       next to a floor joist, and the eye draws the inference the caption
+       disclaims. So: diff the two DEMANDS the engine was handed, then add the
+       two policy inputs that never appear in a demand. */
+    function markDelta(mark, plan, a, b) {
       var out = [];
       if (!a || !b) return out;
-      if (a.loads.roofAssembly !== b.loads.roofAssembly) {
-        out.push(FM.weights.ASSEMBLY[b.loads.roofAssembly].label.toLowerCase() + " " +
-                 FM.weights.ASSEMBLY[b.loads.roofAssembly].psf + " psf vs " +
-                 FM.weights.ASSEMBLY[a.loads.roofAssembly].psf + " psf");
+      var da = safeDemand(mark, plan, a, null), db = safeDemand(mark, plan, b, null);
+      if (da && db) out = demandDelta(da, db);
+      if (a.maxDCR !== b.maxDCR) {
+        out.push("firm DCR target " + fmt(a.maxDCR, 2) + " → " + fmt(b.maxDCR, 2));
       }
-      if (a.loads.roofType !== b.loads.roofType) {
-        out.push("roof case " + b.loads.roofType.replace("_", " ") +
-                 " · C_D " + (b.loads.roofType === "snow" ? "1.15" : "1.25"));
-      }
-      if (a.loads.roofLoad !== b.loads.roofLoad) out.push("roof load " + b.loads.roofLoad + " psf vs " + a.loads.roofLoad);
-      if (a.loads.floorLive !== b.loads.floorLive) out.push("floor live " + b.loads.floorLive + " psf vs " + a.loads.floorLive);
-      if (a.maxDCR !== b.maxDCR) out.push("DCR target " + fmt(b.maxDCR, 2) + " vs " + fmt(a.maxDCR, 2));
-      if (a.service.exteriorWet !== b.service.exteriorWet) out.push(b.service.exteriorWet ? "exterior wet service" : "exterior dry service");
-      var pa = a.palette.map(function (p) { return p.species + " " + p.grade; }).join(", ");
-      var pb = b.palette.map(function (p) { return p.species + " " + p.grade; }).join(", ");
-      if (pa !== pb) out.push("a different species palette");
-      if (a.exteriorWall !== b.exteriorWall) out.push("exterior wall " + b.exteriorWall);
+      var seen = {}, added = [], dropped = [];
+      a.palette.forEach(function (p) { seen[key(p.species + " " + p.grade)] = 1; });
+      b.palette.forEach(function (p) {
+        var k = key(p.species + " " + p.grade);
+        if (!own(seen, k)) added.push(shortSku(p.species + " " + p.grade));
+        else seen[k] = 2;
+      });
+      Object.keys(seen).forEach(function (k) {
+        if (seen[k] === 1) dropped.push(shortSku(k.replace("k:", "")));
+      });
+      if (added.length) out.push("palette adds " + added.join(", "));
+      if (dropped.length) out.push("palette drops " + dropped.join(", "));
       return out;
     }
 
@@ -1189,16 +1203,14 @@
       var packs = FM.weights.PACKS;
       var cmp = FM.solver.compare(plan, packs);
 
-      /* A mark that is not this engine's member in every region is not
-         "unanswered" — nobody asked this engine the question. Splitting the
-         two keeps a truss out of the same bucket as a girder the solver
-         could not size, without ever letting either read as Common. */
+      /* common / varies / partial / unanswered come from solver.compare(), and
+         the badge and its sentence come from solver.portability() — the screen
+         and the exported record must not be able to disagree about whether a
+         mark is portable. */
       var rows = cmp.rows.map(function (row) {
-        var na = 0, none = 0, answered = 0, sizes = {}, mats = {}, spacings = {};
+        var sizes = {}, mats = {}, spacings = {};
         row.cells.forEach(function (c) {
-          if (c.notApplicable) { na++; return; }
-          if (!c.sku) { none++; return; }
-          answered++;
+          if (c.notApplicable || !c.sku) return;
           sizes[key(c.sku.split(" ")[0])] = 1;
           mats[key(c.sku.split(" ").slice(1).join(" "))] = 1;
           spacings[key(String(c.spacing || 0))] = 1;
@@ -1207,10 +1219,7 @@
         if (Object.keys(sizes).length > 1) axes.push("size");
         if (Object.keys(mats).length > 1) axes.push("grade");
         if (Object.keys(spacings).length > 1) axes.push("spacing");
-        var group = row.varies ? "varies"
-          : (row.common ? "common"
-          : (na === row.cells.length ? "na" : "none"));
-        /* the member every region agrees on, so a deviating cell can be marked */
+        /* the member most regions agree on, so a deviating cell can be marked */
         var tally = {}, modal = null;
         row.cells.forEach(function (c) {
           if (!c.sku) return;
@@ -1218,20 +1227,16 @@
           tally[k] = (own(tally, k) || 0) + 1;
           if (!modal || tally[k] > tally[modal]) modal = k;
         });
-        return { row: row, na: na, none: none, answered: answered,
-                 axes: axes, group: group, modal: modal };
+        var port = FM.solver.portability(row);
+        return { row: row, axes: axes, modal: modal, port: port, group: port.key,
+                 silent: (row.silentPacks || []).length, na: (row.naPacks || []).length };
       });
 
-      var nCommon = rows.filter(function (r) { return r.group === "common"; }).length;
-      var nVaries = rows.filter(function (r) { return r.group === "varies"; }).length;
-      var nNone   = rows.filter(function (r) { return r.group === "none"; }).length;
-      var nNa     = rows.filter(function (r) { return r.group === "na"; }).length;
-
       body.appendChild(el("div", { class: "grid g5", style: "margin-bottom:6px" }, [
-        FM.statCard(String(nCommon), "Same member everywhere", nCommon ? "pass" : ""),
-        FM.statCard(String(nVaries), "Regionally forced", nVaries ? "gold" : ""),
-        FM.statCard(String(nNone), "No member anywhere", nNone ? "fail" : ""),
-        FM.statCard(String(nNa), "Not this engine, anywhere", "blue"),
+        FM.statCard(String(cmp.commonMarks), "One member everywhere", cmp.commonMarks ? "pass" : ""),
+        FM.statCard(String(cmp.varyingMarks), "Regionally forced", cmp.varyingMarks ? "gold" : ""),
+        FM.statCard(String(cmp.partialMarks), "Answered in some regions", cmp.partialMarks ? "gold" : ""),
+        FM.statCard(String(cmp.unansweredMarks), "Unanswered anywhere", cmp.unansweredMarks ? "fail" : ""),
         FM.statCard(String(cmp.solvedMarks) + "/" + plan.marks.length, "Marks with an answer")
       ]));
 
@@ -1243,17 +1248,18 @@
       });
       body.appendChild(line(
         "One master set, solved independently in " + plural(packs.length, "region pack", "region packs") +
-        " across " + plural(nStates, "state", "states") + ". " + nCommon + " marks are the same member in every region " +
-        "where they apply — buy those in one order. " + nVaries + " are regionally forced. " +
-        (nNone + nNa) + " have no member on this board: " + nNone + " nobody could size and " + nNa +
-        " are not this engine's member anywhere.",
+        " across " + plural(nStates, "state", "states") + ". " +
+        plural(cmp.commonMarks, "mark is", "marks are") + " one member in every region — buy those in a " +
+        "single order. " + plural(cmp.varyingMarks, "is", "are") + " regionally forced, " +
+        cmp.partialMarks + " answered in some regions and silent in others, and " +
+        cmp.unansweredMarks + " with no member anywhere on this board.",
         "each cell is an independent solve — no cell is inferred from another"));
 
       var GROUPS = [
-        { id: "varies", t: "Regionally forced — the member changes with the market", c: "b-gold" },
-        { id: "common", t: "The same member in every region where it applies", c: "b-pass" },
-        { id: "none",   t: "No member in any region — unanswered, not portable", c: "b-fail" },
-        { id: "na",     t: "Not this engine's member in any region", c: "b-blue" }
+        { id: "varies", t: "Regionally forced — the member changes with the market" },
+        { id: "common", t: "One member in every region — the whole point of a master set" },
+        { id: "partial", t: "Answered in some regions, silent in others — not portable as it stands" },
+        { id: "unanswered", t: "No member anywhere on this board" }
       ];
 
       var tb = el("tbody");
@@ -1263,23 +1269,20 @@
         if (!mine.length) return;
         tb.appendChild(el("tr", {}, [
           el("td", { colspan: String(nCols), style: "background:var(--surface-2)" }, [
-            el("span", { class: "badge " + g.c, text: String(mine.length) }),
+            el("span", { class: "badge " + mine[0].port.tone, text: String(mine.length) }),
             el("span", { class: "clause", text: g.t })
           ])
         ]));
         mine.forEach(function (r) {
           var row = r.row;
-          var badge;
-          if (g.id === "varies") badge = el("span", { class: "badge b-gold", style: "margin-left:6px", text: "varies · " + (r.axes.join(" + ") || "member") });
-          else if (g.id === "common") badge = el("span", { class: "badge b-pass", style: "margin-left:6px", text: "common" });
-          else if (g.id === "none") badge = el("span", { class: "badge b-fail", style: "margin-left:6px", text: "no member" });
-          else badge = el("span", { class: "badge b-blue", style: "margin-left:6px", text: "not this engine" });
-
-          var cells = [el("td", { class: "k" }, [
+          var cells = [el("td", { class: "k", style: STICKY }, [
             el("span", { text: row.mark.id }),
-            badge,
-            r.none && r.answered ? el("span", { class: "badge b-fail", style: "margin-left:6px", text: r.none + " unsolved" }) : null,
-            el("span", { class: "clause", text: row.mark.label })
+            el("span", { class: "badge " + r.port.tone, style: "margin-left:6px",
+                         title: r.port.text,
+                         text: r.port.badge + (g.id === "varies" && r.axes.length ? " · " + r.axes.join(" + ") : "") }),
+            /* the sentence, not just the colour — it has to survive being read on paper */
+            el("span", { class: "clause", style: BLOCK, text: r.port.text }),
+            el("span", { class: "clause", style: BLOCK, text: row.mark.label })
           ])];
           row.cells.forEach(function (c) {
             if (c.notApplicable) {
@@ -1291,10 +1294,10 @@
               return;
             }
             var deviates = r.group === "varies" && r.modal && key(c.sku + "@" + (c.spacing || 0)) !== r.modal;
-            cells.push(el("td", {}, [
+            cells.push(el("td", { style: "vertical-align:top" }, [
               deviates ? el("span", { class: "badge b-gold", style: "margin-right:6px", text: "Δ" }) : null,
               el("span", { style: "white-space:nowrap", text: shortSku(c.sku) }),
-              el("span", { class: "clause", style: "white-space:nowrap",
+              el("span", { class: "clause", style: BLOCK + "white-space:nowrap;",
                            text: (c.spacing ? c.spacing + "″ · " : "") + "DCR " + fmt(c.dcr, 2) })
             ]));
           });
@@ -1304,7 +1307,7 @@
 
       body.appendChild(el("div", { class: "tw", tabindex: "0", role: "region", "aria-label": "Cross-region member matrix" }, [
         el("table", {}, [
-          el("thead", {}, [el("tr", {}, [el("th", { text: "Mark" })].concat(
+          el("thead", {}, [el("tr", {}, [el("th", { text: "Mark", style: STICKY_H })].concat(
             packs.map(function (p) {
               return el("th", {}, [
                 el("span", { text: shortPack(p) }),
@@ -1316,8 +1319,9 @@
         ])
       ]));
       body.appendChild(el("p", { class: "src-note", style: "margin-top:8px", text:
-        "Δ marks the region that departs from what the other packs agree on. A pack badged wind governs on uplift, " +
-        "which this engine does not check — a member in that column is a gravity floor, not a design." }));
+        "Six regions: the board scrolls sideways and the Mark column stays put. Δ marks the region that departs " +
+        "from what the other packs agree on. A pack badged wind governs on uplift, which this engine does not " +
+        "check — a member in that column is a gravity floor, not a design." }));
 
       /* which pack departed, and how that pack differs */
       var forced = rows.filter(function (r) { return r.group === "varies"; });
@@ -1332,34 +1336,43 @@
           });
           var ref = modalPacks[0];
           oddPacks.forEach(function (o) {
-            var diff = packDelta(ref, o.pack);
+            var diff = markDelta(r.row.mark, plan, ref, o.pack);
             fRows.push({
-              k: esc(r.row.mark.id) + " <span class='clause'>" + esc(shortPack(o.pack)) + "</span>",
+              k: esc(r.row.mark.id) + " <span class='clause'>" + esc(shortPack(o.pack)) +
+                 " vs " + esc(shortPack(ref)) + "</span>",
               v: esc(shortSku(o.sku)) + " <span class='clause'>where the others take " +
                  esc(shortSku(r.modal ? r.modal.replace("k:", "").split("@")[0] : "—")) + "</span>",
               cls: "gold"
             });
             fRows.push({
-              k: "<span class='clause'>that pack differs in</span>",
-              v: diff.length ? esc(diff.join(" · ")) : "no modelled difference — the ranking broke a near-tie"
+              k: "<span class='clause'>what this mark saw differently</span>",
+              v: diff.length ? esc(diff.join(" · "))
+                             : "nothing — same demand, same policy; the ranking broke a near-tie"
             });
           });
         });
         body.appendChild(el("div", { style: "margin-top:16px" }, [
           card("What forced the change", el("span", { class: "badge b-gold", text: "Regional", style: "margin-left:auto" }),
             dl(fRows),
-            "These are the fields on which the packs differ, read off the packs themselves — the attribution is " +
-            "descriptive, not a sensitivity study. Run the mark in both packs to see which field carries it.")
+            "The demand this mark was handed in each pack, diffed, plus the two policy inputs that never appear in " +
+            "a demand. It is what the two solves saw differently — not a sensitivity study proving which one carried it.")
         ]));
       }
 
-      var mGroups = variantGroups(plan);
+      var mSet = variantSet(plan);
       body.appendChild(el("div", { style: "margin-top:16px" }, [
         card("Reading this", null, el("div", { style: "display:grid;gap:9px;font-size:.86rem" }, [
           el("p", { text: "A mark with no member in any region is not portable and it is not common — it is unanswered. Counting it as common would turn silence into evidence for this product's central claim." }),
           el("p", { text: "A mark marked common is the same member in every region on this board — build it the same everywhere and buy it in one order. A mark marked varies is regionally forced, and the badge names the axis: size, grade or spacing." }),
-          el("p", { text: "The three forcings that actually move members across these six packs are: snow duration in the Carolina mountains, which drops C_D from 1.25 to 1.15; concrete tile dead load in the HVHZ, which is 22 psf against 15 for shingle; and species availability, which decides what the yard can hand the framer." }),
-          mGroups ? el("p", { text: "This board is the base case of the master set. What an elevation or an option does to it is on the Schedule tab." }) : null,
+          /* read off ASSEMBLY rather than quoted, so a change to the makeup
+             cannot leave a stale number on the screen */
+          el("p", { text: "The three forcings that actually move members across these six packs are: snow duration " +
+            "in the Carolina mountains, which drops C_D from 1.25 to 1.15; concrete tile dead load in the HVHZ, " +
+            "which is " + FM.weights.ASSEMBLY.roof_tile.psf + " psf against " +
+            FM.weights.ASSEMBLY.roof_shingle.psf + " for shingle; and species availability, which decides what " +
+            "the yard can hand the framer." }),
+          mSet ? el("p", { text: "This board is the STAMPED BASE of the master set — the elevation the plan.marks are. " +
+            mSet.combinations.length + " combinations of elevation and option are buildable off it, and what each one does to the schedule is on the Schedule tab." }) : null,
           el("p", { class: "src-note", text: "Every cell is an independent solve against that region's palette, ladder, loads and DCR target. No cell is inferred from another." })
         ].filter(Boolean)), null)
       ]));
@@ -1383,8 +1396,24 @@
       if (state.tab === "region") { drawRegion(pack); return; }
       if (state.tab === "matrix") { drawMatrix(plan); return; }
 
-      var res = FM.solver.solvePlan(plan, pack);
-      drawSchedule(res, pack, plan);
+      /* A variant schedule is a full solve of a resolved plan, not the base
+         schedule with annotations bolted on — so every stat, banner and
+         escalation below belongs to the combination that is selected. */
+      var ms = masterSet(plan, pack);
+      var sel = ms ? (comboById(ms.v, state.combo) || ms.base) : null;
+      var shown = plan, res = null, baseRes = null;
+      if (sel && !sel.isBase) {
+        var sv = solveVariant(plan, pack, sel.id);
+        if (sv) {
+          shown = sv.plan; res = sv.res;
+          baseRes = FM.solver.solvePlan(plan, pack);
+        } else {
+          sel = ms.base;      /* the variant would not resolve — fall back, visibly */
+          FM.toast("That variant could not be resolved — showing the stamped base.");
+        }
+      }
+      if (!res) res = FM.solver.solvePlan(plan, pack);
+      drawSchedule(res, pack, shown, ms, sel, baseRes);
     }
 
     draw();

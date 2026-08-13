@@ -60,19 +60,19 @@ var FM = (function () {
     { id: "R-12",  project: "lot-17", role: "Rafter", label: "Roof rafter",
       inputs: { species: "Douglas Fir-Larch", grade: "No. 2", size: "2x10", span: 14.0, spacing: 16,
                 dead: 15, live: 0, roofLoad: 20, roofType: "roof_live", repetitive: true, wet: false,
-                braced: true, bearing: 3.0, memberUse: "roof_nonplaster", CF: 1.1 } },
+                braced: true, bearing: 3.0, memberUse: "roof_nonplaster", CF: "auto" } },
     { id: "FJ-1",  project: "lot-17", role: "Floor joist", label: "Floor joist · great room",
       inputs: { species: "Douglas Fir-Larch", grade: "No. 2", size: "2x10", span: 14.0, spacing: 16,
                 dead: 15, live: 40, roofLoad: 0, roofType: "snow", repetitive: true, wet: false,
-                braced: true, bearing: 3.0, memberUse: "floor", CF: 1.1 } },
+                braced: true, bearing: 3.0, memberUse: "floor", CF: "auto" } },
     { id: "HDR-2", project: "lot-17", role: "Header", label: "Window header · south wall",
       inputs: { species: "Douglas Fir-Larch", grade: "No. 2", size: "4x10", span: 6.0, spacing: 96,
                 dead: 12, live: 0, roofLoad: 30, roofType: "snow", repetitive: false, wet: false,
-                braced: true, bearing: 3.0, memberUse: "roof_nonplaster", CF: 1.1 } },
+                braced: true, bearing: 3.0, memberUse: "roof_nonplaster", CF: "auto" } },
     { id: "R-08",  project: "riverside", role: "Rafter", label: "Roof rafter · main span",
       inputs: { species: "Hem-Fir", grade: "No. 2", size: "2x12", span: 16.0, spacing: 24,
                 dead: 15, live: 0, roofLoad: 30, roofType: "snow", repetitive: true, wet: false,
-                braced: true, bearing: 3.0, memberUse: "roof_nonplaster", CF: 1.0 } }
+                braced: true, bearing: 3.0, memberUse: "roof_nonplaster", CF: "auto" } }
   ];
 
   var LOG = [
@@ -323,7 +323,11 @@ var FM = (function () {
   function applyHash() {
     if (applyingHash) return;
     var h = parseHash();
-    if (!h) { go("dashboard", { fromHash: true }); return; }
+    /* No hash at all — a cold open. Go to the dashboard and WRITE the hash, so
+       the address bar describes the app from the first paint and the first
+       navigation has something to come back to. `replace` so the empty-hash
+       entry is not left behind as a Back target that lands nowhere. */
+    if (!h) { go("dashboard", { replace: true }); return; }
     /* an unknown route is a typo or a stale link, not a crash */
     if (!VIEWS[h.route] && !document.getElementById("view-" + h.route)) {
       toast("No such view: " + h.route);

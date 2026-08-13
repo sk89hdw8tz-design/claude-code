@@ -25,6 +25,8 @@ var DEMO = path.join(__dirname, "..", "..", "DEMO.md");
 /* The three regions the runbook walks, on the plan it opens on. */
 var PLAN = "two-story-2450";
 var WALK = ["tx-i35", "fl-hvhz", "nc-mountain"];
+/* the region the app lands on, which is not the first one the walk visits */
+var DEFAULT_PACK = "nc-piedmont";
 
 /* Each table is fenced by an HTML comment pair so the prose around it
    stays free text and only the rows are managed. */
@@ -79,6 +81,48 @@ function table(head, rows) {
   return L.join("\n");
 }
 
+/* ---- master set: what each variant actually does to the schedule ----
+   The demo's most persuasive moment is the master-set picker, and it is the
+   easiest one to overclaim. "Switch to the tile roof and the header moves" is
+   a sentence that sounds right and is false: on this plan the tile roof shifts
+   HDR-2 from 0.462 to 0.553 and the member holds in every region. The option
+   that genuinely moves members is the extended deck. So the runbook prints the
+   measured delta rather than a remembered one, and the suite pins it. */
+function variantDeltas(FM, packId) {
+  var pl = FM.weights.planById(PLAN), pk = FM.weights.packById(packId);
+  function snap(variantId) {
+    var res = FM.solver.solvePlan(FM.weights.planForVariant(pl, variantId), pk);
+    var o = {};
+    res.marks.forEach(function (m) {
+      var row = m.unifiedTo || (m.solution && m.solution.pick);
+      o[m.mark.id] = row
+        ? { sku: FM.solver.skuOf(row.cand), dcr: row.dcr }
+        : { sku: m.notApplicable ? "(not sized)" : "(escalates)", dcr: null };
+    });
+    return o;
+  }
+  var combos = (FM.weights.variantsFor(pl).combinations || []);
+  var baseId = (combos.filter(function (c) { return c.isBase; })[0] || combos[0]).id;
+  var base = snap(baseId);
+  return combos.filter(function (c) { return c.id !== baseId; }).map(function (c) {
+    var v = snap(c.id), moves = [], adds = [], drops = [], shifts = [];
+    Object.keys(v).forEach(function (k) {
+      if (!base[k]) {
+        /* sku is already parenthesised for the non-member cases */
+        adds.push(k + (v[k].sku.charAt(0) === "(" ? " " + v[k].sku : " (" + v[k].sku + ")"));
+        return;
+      }
+      if (base[k].sku !== v[k].sku) moves.push(k + ": " + base[k].sku + " → " + v[k].sku);
+      else if (base[k].dcr !== null && v[k].dcr !== null &&
+               Math.abs(base[k].dcr - v[k].dcr) > 0.001) {
+        shifts.push(k + " " + base[k].dcr.toFixed(3) + " → " + v[k].dcr.toFixed(3));
+      }
+    });
+    Object.keys(base).forEach(function (k) { if (!(k in v)) drops.push(k); });
+    return { combo: c, moves: moves, adds: adds, drops: drops, shifts: shifts };
+  });
+}
+
 function blocks(FM) {
   var out = {};
   WALK.forEach(function (id) {
@@ -92,6 +136,18 @@ function blocks(FM) {
       var s = skuSummary(FM, id);
       return [s.pack.name + " (`" + id + "`)", String(s.skus.length),
               String(s.unified), String(s.escalated)];
+    }));
+
+  out["variants"] = table(
+    ["Built with", "Lots", "What it does to the schedule"],
+    variantDeltas(FM, DEFAULT_PACK).map(function (d) {
+      var what = [];
+      if (d.adds.length) what.push("**adds** " + d.adds.join(", "));
+      if (d.drops.length) what.push("**drops** " + d.drops.join(", "));
+      if (d.moves.length) what.push("**moves** " + d.moves.join("; "));
+      if (d.shifts.length) what.push("same members, DCR shifts: " + d.shifts.join("; "));
+      if (!what.length) what.push("nothing — every member holds");
+      return [d.combo.label, String(d.combo.lotsExpected), what.join("<br>")];
     }));
   return out;
 }
@@ -133,8 +189,9 @@ function sync(FM) {
   return { done: done, absent: absent };
 }
 
-module.exports = { PLAN: PLAN, WALK: WALK, blocks: blocks, check: check,
-                   sync: sync, skuSummary: skuSummary, DEMO: DEMO };
+module.exports = { PLAN: PLAN, WALK: WALK, DEFAULT_PACK: DEFAULT_PACK,
+                   blocks: blocks, check: check, sync: sync,
+                   skuSummary: skuSummary, variantDeltas: variantDeltas, DEMO: DEMO };
 
 if (require.main === module) {
   var FM = require("./harness.js").load(["scope.js", "engine.js", "weights.js", "solver.js", "export.js"]);

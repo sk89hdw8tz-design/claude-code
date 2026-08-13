@@ -7,7 +7,7 @@ allowed to be closed silently.
 Panel: structural PE (A&E), QA/QC, production-build & estimating, building code
 & regulatory (TX/NC/FL), software integration & test.
 
-Test suite: `node firmark-beta/test/run-tests.js` — **249 assertions, 0 failing**.
+Test suite: `node firmark-beta/test/run-tests.js` — **271 assertions, 0 failing**.
 UI sweep: `node firmark-beta/test/ui-tests.js` — renders the built bundle across every
 pack × plan, opens every mark's detail, fails on any NaN / undefined / empty numeric slot.
 Bundle freshness gate: `node firmark-beta/build.js --check`.
@@ -428,7 +428,7 @@ finding without answering it."*
 
 ## L. Conditions on release — current
 
-**Closed:** H1, H2, D4, and all of §K.1.
+**Closed:** H1, H2, D4, L4, L8, L10, L11, and all of §K.1.
 
 **Still open:**
 
@@ -441,10 +441,10 @@ finding without answering it."*
 | L5 | **The attic / bottom-chord live load question** — `ceilingLive` is wired into all six packs and read by no mark, and the spec is silent on whether a truss-bearing header receives it. A sentence in `calc-spec`, then code if the answer is yes. |
 | L6 | **No wall dead load exists anywhere in the model.** Now printed in `LIMITS`; the vocabulary is still missing, and it is what made K5 unrefusable rather than checkable. |
 | L7 | **Slope.** No plan declares a pitch, and the assembly psf mix on-slope and horizontal components with no published split — so the user cannot perform the conversion §1.4 makes them responsible for. At 6:12 the garage header already exceeds target; at 9:12 the typical window header does. |
-| L8 | **The sheet is the optimistic path and the solver the conservative one**, which inverts the relationship — the sheet is what a PE reaches for to check the solver. It has no way to declare a member incised (24.5% unconservative on refractory species) and its typed `C_F` bypasses `sizeFactor()` entirely, so a 2x14 checks clean there while the solver refuses it. |
+| ~~L8~~ | **CLOSED — the inversion is fixed at both named defects.** `C_F` on the sheet now defaults to **`"auto"`**, resolving from the catalog for the depth actually selected, so the sheet refuses exactly what the search refuses — a 2x14 is refused in both. The typed value survives as an explicit override, badged **Typed override** on screen, because checking a size the catalog cannot source is a real need; it is no longer the default, which is what let it through. All four shipped sheets moved to `"auto"` (HDR-2 goes 1.10 → 1.00, i.e. more conservative; the others were already at the catalog value). Incising is now a checkbox, using the same `INCISED_WHEN_TREATED` list the solver uses rather than a second copy, and a wet member in a refractory species with the box unticked gets a banner saying the sheet is reading ~25% high against the same member on a schedule. Measured at 25.0%, which is 1/0.80 as Table 4.3.8 requires. |
 | L9 | **A treated sill on slab** — `C_M(F_c⊥) = 0.67` with `C_b = 1.25` gives 1.24 against the plate. Unmodelled in either direction. |
-| L10 | **PE-6** — IRC R507's 40 psf against ASCE 7-22 Table 4.3-1's 60 psf for a deck. At 60 both delivered deck members are overstressed (1.024, 1.040). Answer it; do not carry it. |
-| L11 | **J8** — no numeric-correctness assertion exists in the DOM layers. A wrong-but-finite number renders clean. |
+| ~~L10~~ | **CLOSED — answered at 60 psf.** The two codes genuinely differ: IBC Table 1607.1 and ASCE 7-22 Table 4.3-1 both give 1.5 × the served occupancy (40 → **60**) for a balcony or deck; IRC Table R301.5 / R507's prescriptive path uses 40. The defect was never that 40 is indefensible — it is that this engine is on the IBC/ASCE path in every other respect (§2.4.1 combinations, IBC T1604.3 deflection) and was reaching across to the IRC for one load. A calculation assembled from two code paths is not conservative or unconservative, it is **uncheckable**, because no single code reproduces it. `LIVE.deck` is 60 and cited; `LIVE.deck_irc` carries 40 marked `used: false` so the fork is visible rather than silently decided. Consequence, as predicted: the previously-delivered deck members go overstressed and the search resizes them — DK-1 2x10 → 2x12 (0.739), DK-2 4x10 → 4x12 (0.755). The deck load also now appears in the export's load-provenance block, which it never did while the schedule above it was sizing deck members. |
+| ~~L11~~ | **CLOSED — J8.** `test/ui-tests.js` now recomputes in the page and requires the rendered text to carry the engine's own answer: every mark's DCR and selected size across all 30 pack/plan combinations, and on the sheet every individual check's DCR plus the governing check's name — compared as text, so a front-end rewrite cannot quietly disable it by moving a cell. A wrong-but-finite number no longer renders clean. |
 
 ### Panel, final
 
@@ -557,3 +557,94 @@ on 4 of 30 combinations.
 - `escalate:bearing`, `escalate:geometry` and `escalate:input` are reachable by construction and
   fire on no shipped pack × plan. Live distribution across 30 combinations: `ok` 136,
   `escalate:strength` 37, `escalate:procurement` 1.
+
+---
+
+## O. Sixth round — adversarial demo pass, then the open conditions
+
+An adversary drove the built bundle the way an audience would: 12 routes × 2 themes × 3 widths,
+30 exports, deliberate abuse. **Nothing threw.** Every finding was about the shop window rather
+than the engineering, which is the right shape for a round this late — but three of them would
+have been visible from the back of the room.
+
+### O.1 What the adversary found, and what was done
+
+| # | Severity | Finding | Disposition |
+|---|---|---|---|
+| B1 | **DEMO-BLOCKING** | The repeat matrix rendered 1,807px of table in a 996px container with no scroll affordance, `sticky top` but no `sticky left`. At 1280×800 two of six regions were reachable, and scrolling right lost the Mark column — six member sizes with no way to tell which mark they belonged to. | Fixed. Mark cells and the Mark header are `position:sticky; left:0`; the container scrolls and is keyboard-focusable; cells are two short lines rather than one wide one, which is what actually fits six regions. `ui-tests.js` checks it at **1440, 1280 and 1100px** and also asserts the page itself never scrolls sideways at any of them. |
+| B2 | **DEMO-BLOCKING** | The demo opened on `sunbelt-ranch-1850` — 10 sized / 14 escalated / 24 not-sized of 48, the weakest plan in the product — with the first member row below the fold at 800px. It was chosen by list order, not because it shows anything. | Fixed. Default is `two-story-2450` (41/11/14 of 66), and the suite asserts the landing plan is still the strongest and the warned-about plan still the weakest, so this cannot silently invert. |
+| D1 | **DAMAGING** | A green **Common** badge sat next to a `NONE` cell. `compare()` set `common: n === 1` over *distinct non-null SKUs*, so a mark sized identically in five regions and escalated in the sixth still claimed portability. This is F9's class — silence counted as agreement — surviving at **partial** silence after the first fix caught total silence. | Fixed at the flag, not the badge. `common` requires an answer in every cell; `partial` is a new state carrying `silentPacks` / `naPacks` / `answeredIn`. `FM.solver.portability()` gives one badge, one tone and one **sentence** to the screen and the paper. Live on `two-story-2450` (HDR-ST, silent in `fl-hvhz`) and on 4 marks of `starter-1210`, so it renders in the demo rather than being a theoretical branch. |
+| D2 | **MAJOR** | The export printed a flat `— ESCALATED —` over five different findings. "No section is strong enough" and "a member passes but your availability floor excludes it" are opposite conclusions — one needs a bigger section, the other a phone call — and the export erased the distinction the escalation exists to make. | Fixed. `FM.solver.ESCALATION` is one vocabulary for both surfaces; escalations group and count by category; the reason rides on the member line. A mixed schedule says outright that the categories differ, and a single-category one does not lecture about a distinction it has no instance of. The field wrapper also stopped eating its own label padding (`wall   :` was coming out `wall :` with continuations hanging off a column that no longer existed). |
+| D3 | **MAJOR** | `exportCalcs()` in `core.js` carried a 13-item paraphrase of `engine.LIMITS` on one 1,177-character line — **missing 12 of the 24 §8 boundaries, including item 17**, which is the one saying the bearing check that record publishes is bearing stress and not a connection design. §8 says the list prints verbatim on *every* output; §M closed L4 in the schedule only. | Fixed by removing the duplication rather than fixing the copy. `FM.scope.render()` is the one implementation; both outputs call it; a test asserts **no shipping part walks `FM.scope.items` to print its own copy**. The schedule export is byte-identical across all 30 pack/plan combinations after the refactor, verified by diff. |
+| D4 | **MINOR** | Filtering the Materials table to nothing rendered headers over an empty body while the stat cards above still read 86. An empty catalog and an over-narrow filter looked identical. | Fixed. Row counts travel with the table, and an empty result says what was searched and what it searched against. |
+| D5 | **MAJOR** | No URL. Back left the app, Reload dropped you on the dashboard, and a schedule worth showing a colleague had no address to send. | Fixed with hash routing — deliberately not the History API, because this ships as a `file://` bundle. Views register their own segments; `#/sizing/two-story-2450/fl-hvhz` opens cold. Boot, Back, Forward, deep link, reload and an unknown route are all asserted in a real browser. |
+
+### O.2 Open conditions closed in the same round
+
+**L8 — the sheet was the optimistic path.** This one was the most serious thing left open, because
+the sheet is what a PE reaches for to *check* the solver, and it was more permissive than the thing
+it checks. Both named defects are closed: `C_F` defaults to `"auto"` and resolves from the catalog
+for the depth actually selected, so the sheet refuses exactly what the search refuses — a 2x14 is
+refused in both, where before it checked clean here and was refused there. The typed value survives
+as an explicit override badged **Typed override**, because checking a size the catalog cannot source
+is a real need; it is no longer the *default*, which is what let it through. All four shipped sheets
+moved to `"auto"`. Incising is now a checkbox using the solver's own `INCISED_WHEN_TREATED` list
+rather than a second copy, and a wet member in a refractory species with the box unticked gets a
+banner saying the sheet is reading high against the same member on a schedule — measured at
+**25.0%**, which is 1/0.80 exactly as Table 4.3.8 requires.
+
+**L10 — the deck live load, answered rather than carried.** IBC Table 1607.1 and ASCE 7-22 Table
+4.3-1 both give 1.5 × the served occupancy for a balcony or deck (40 → **60**); IRC Table R301.5 and
+the R507 prescriptive tables use 40. The defect was never that 40 is indefensible — it is that this
+engine is on the IBC/ASCE path in every other respect and was reaching across to the IRC for one
+load. **A calculation assembled from two code paths is neither conservative nor unconservative; it
+is uncheckable, because no single code reproduces it.** `LIVE.deck` is 60 and cited; `LIVE.deck_irc`
+carries 40 marked `used: false` so the fork is visible rather than silently decided. The consequence
+showed, as predicted: DK-1 2x10 → 2x12 (0.739), DK-2 4x10 → 4x12 (0.755). The deck load now also
+appears in the export's load-provenance block, which it never did while the schedule above it was
+sizing deck members.
+
+**L11 / J8 — numeric correctness in the DOM.** Everything the UI sweep did before was a smoke test:
+it failed on NaN, undefined and Infinity, so a wrong-but-finite number rendered clean. It now
+recomputes in the page and requires the rendered text to carry the engine's own answer — every
+mark's DCR and selected size across all 30 combinations, and on the sheet every individual check's
+DCR plus the governing check's name. Compared as text, so a front-end rewrite cannot quietly disable
+it by moving a cell.
+
+### O.3 The register's own headline, for the fourth and last time
+
+It was wrong again: **85/162 over "6 packs × 3 plans"** when the product had five plans and measured
+136/270. Three earlier printings were wrong the same way. Every correction had been another
+hand-typed number with the same shelf life, so the fifth correction is a mechanism instead:
+`test/coverage.js` measures it, `--sync` rewrites the sentence in this file, and the suite parses the
+sentence back out and fails on disagreement. The assertion count above self-heals through
+`run-tests.js --sync-register`. **A register whose headline can rot is decoration, not evidence.**
+
+### O.4 `DEMO.md` — and why its numbers are generated too
+
+The demo runs in a browser tomorrow, so the round produced a runbook: how to open it, what to click
+in what order, what each screen proves, the questions that will be asked, and the weak spots to own
+rather than be caught by. Its tables are generated by `test/demo-values.js` and asserted by the
+suite, for the same reason the register's are — a runbook that tells someone what they will see is a
+promise, and a stale promise diverges from the screen in front of an audience.
+
+That mechanism immediately earned itself. The draft demo script claimed *"switch to the concrete
+tile roof and HDR-2 moves."* It does not. The tile roof takes the dead load 15.0 → 22.0 psf and
+shifts HDR-2 from **0.462 to 0.553** — and the member **holds, in every region**. The option that
+genuinely moves members is the extended rear deck, which takes both deck marks from Southern Pine
+No.2 to **No.1**: same sizes, different grade, so a purchasing change rather than a framing change,
+identically in all six regions. Both beats are now pinned, along with "the bonus room changes
+nothing" and "Elevation B adds marks the base plan does not have" — the latter being the case a
+naive member-list diff drops entirely.
+
+### O.5 Still open
+
+L1, L2, L3, L5, L6, L7, L9 are unchanged, and so are the three items §N could not close: the demo
+plan is still sized one variant at a time while `envelopeFor()` only *names* the governing
+combination; D3/S8 remains closed in the engine and unexercised by any shipped pack; and
+`escalate:bearing`, `escalate:geometry` and `escalate:input` are still reachable by construction and
+fire on nothing shipped.
+
+**The seal answer is unchanged: do not seal.** Nothing in this round was a calculation defect —
+every finding was about whether an output said what the product already knew. That is a good round
+to have late and a bad one to have first.

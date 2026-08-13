@@ -78,17 +78,24 @@ value is that it tells you, in writing, everything it did not do.*
 
 ### 3.1 Open on the Sizing view
 
-The demo lands on **`two-story-2450`** — a 2,450 sf two-storey plan. Pick this
-one deliberately: it is the plan with the most marks the engine can actually
-size, so the first screen is full rather than mostly caveats.
+The demo lands on **`two-story-2450`** in **North Carolina · Piedmont** — a
+2,450 sf two-storey plan. Both defaults are deliberate: this is the plan with
+the most marks the engine can actually size, so the first screen is full rather
+than mostly caveats.
 
 Across all six regions this plan is 41 sized, 11 escalated, 14 not-sized of 66
 slots. Do not open `sunbelt-ranch-1850` cold in front of an audience — it is
 10 / 14 / 24, and the first thing on screen would be refusals.
 
+Read the incompleteness banner out loud before anything else. It names what the
+schedule does *not* cover — escalated marks, marks that are not this engine's
+member, and whether wind governs in this market — and it names them by mark, not
+as a count. **The tool says what it did not do before it says what it did.** If
+you say that sentence once during the demo, say it here.
+
 ### 3.2 The schedule, in Texas
 
-Region: **Texas · I-35 corridor**.
+Switch the region to **Texas · I-35 corridor**.
 
 <!-- fm:schedule-tx-i35 -->
 | Mark | Member | Spacing | Governs | DCR | Note |
@@ -99,8 +106,8 @@ Region: **Texas · I-35 corridor**.
 | GB-1 | **escalates** | — | — | — | no section strong enough |
 | HDR-1 | _not sized_ | — | — | — | underdetermined |
 | HDR-2 | `4x6 Southern Pine No.2` | single | Bending | 0.462 |  |
-| DK-1 | `2x10 Southern Pine No.2` | 16″ | Bending | 0.732 |  |
-| DK-2 | `4x10 Southern Pine No.2` | single | Bending | 0.748 |  |
+| DK-1 | `2x12 Southern Pine No.2` | 16″ | Bending | 0.739 |  |
+| DK-2 | `4x12 Southern Pine No.2` | single | Bending | 0.755 |  |
 | HDR-ST | `4x12 Southern Pine No.1` | single | Bending | 0.856 |  |
 | HDR-GAR-2S | **escalates** | — | — | — | no section strong enough |
 | PST-DK | _not sized_ | — | — | — | out-of-scope |
@@ -134,8 +141,8 @@ Same plan, same spans, same loads. Change only the region.
 | GB-1 | **escalates** | — | — | — | no section strong enough |
 | HDR-1 | _not sized_ | — | — | — | underdetermined |
 | HDR-2 | `4x6 Southern Pine No.2` | single | Bending | 0.553 |  |
-| DK-1 | `2x10 Southern Pine No.2` | 16″ | Bending | 0.732 |  |
-| DK-2 | `4x10 Southern Pine No.2` | single | Bending | 0.749 |  |
+| DK-1 | `2x12 Southern Pine No.2` | 16″ | Bending | 0.739 |  |
+| DK-2 | `4x12 Southern Pine No.2` | single | Bending | 0.756 |  |
 | HDR-ST | **escalates** | — | — | — | excluded by availability |
 | HDR-GAR-2S | _not sized_ | — | — | — | wall-system |
 | PST-DK | _not sized_ | — | — | — | out-of-scope |
@@ -169,8 +176,8 @@ regions — the mark's applicability is regional.
 | GB-1 | **escalates** | — | — | — | no section strong enough |
 | HDR-1 | _not sized_ | — | — | — | underdetermined |
 | HDR-2 | `4x6 Southern Pine No.2` | single | Bending | 0.573 |  |
-| DK-1 | `2x10 Southern Pine No.2` | 16″ | Bending | 0.732 |  |
-| DK-2 | `4x10 Southern Pine No.2` | single | Bending | 0.749 |  |
+| DK-1 | `2x12 Southern Pine No.2` | 16″ | Bending | 0.739 |  |
+| DK-2 | `4x12 Southern Pine No.2` | single | Bending | 0.756 |  |
 | HDR-ST | `4x12 Southern Pine No.1` | single | Bending | 0.856 |  |
 | HDR-GAR-2S | **escalates** | — | — | — | no section strong enough |
 | PST-DK | _not sized_ | — | — | — | out-of-scope |
@@ -189,9 +196,9 @@ region?*
 <!-- fm:skus -->
 | Region | Distinct SKUs | Marks unified | Escalations |
 |---|---|---|---|
-| Texas · I-35 corridor (`tx-i35`) | 5 | 2 | 2 |
+| Texas · I-35 corridor (`tx-i35`) | 4 | 2 | 2 |
 | Florida · High-Velocity Hurricane Zone (`fl-hvhz`) | 6 | 0 | 2 |
-| North Carolina · Mountains (`nc-mountain`) | 5 | 2 | 2 |
+| North Carolina · Mountains (`nc-mountain`) | 4 | 2 | 2 |
 <!-- /fm:skus -->
 
 Watch the badges. A mark is **Common** only when *every* region produced a
@@ -201,7 +208,74 @@ is `HDR-ST`, silent in `fl-hvhz`. That is deliberate and it is worth calling
 out: the badge is not allowed to make a portability claim the row's own cells
 contradict.
 
-### 3.6 Export the schedule
+### 3.6 The master set — the part a production builder came to see
+
+Back to **North Carolina · Piedmont**, and open the **Built with** picker.
+
+One stamped plan, reused across lots. Elevations are mutually exclusive and
+their take rates sum to 1.00; options attach independently. The picker only
+offers combinations that are actually buildable — it never composes a variant
+id by hand — and selecting one **re-solves the whole schedule**. What you are
+looking at is that variant, end to end: its stats, its escalations, its
+unification, its cost. Not the base plan with annotations.
+
+Here is what each one does, measured, on the 60 lots of this plan:
+
+<!-- fm:variants -->
+| Built with | Lots | What it does to the schedule |
+|---|---|---|
+| Elevation A · as stamped + Bonus room over the garage | 12 | nothing — every member holds |
+| Elevation A · as stamped + Extended rear deck · 26 ft × 14 ft | 8 | **moves** DK-1: 2x12 Southern Pine No.2 → 2x12 Southern Pine No.1; DK-2: 4x12 Southern Pine No.2 → 4x12 Southern Pine No.1 |
+| Elevation A · as stamped + Concrete tile roof | 5 | same members, DCR shifts: HDR-2 0.462 → 0.553 |
+| Elevation B · covered front porch | 27 | **adds** BM-POR (4x8 Southern Pine No.2), PST-POR-B (not sized) |
+| Elevation B · covered front porch + Bonus room over the garage | 9 | **adds** BM-POR (4x8 Southern Pine No.2), PST-POR-B (not sized) |
+| Elevation B · covered front porch + Extended rear deck · 26 ft × 14 ft | 7 | **adds** BM-POR (4x8 Southern Pine No.2), PST-POR-B (not sized)<br>**moves** DK-1: 2x12 Southern Pine No.2 → 2x12 Southern Pine No.1; DK-2: 4x12 Southern Pine No.2 → 4x12 Southern Pine No.1 |
+| Elevation B · covered front porch + Concrete tile roof | 4 | **adds** BM-POR (4x8 Southern Pine No.2), PST-POR-B (not sized)<br>same members, DCR shifts: HDR-2 0.462 → 0.553 |
+<!-- /fm:variants -->
+
+Drive it in this order, because it builds:
+
+1. **Bonus room over the garage.** Nothing changes. That is the answer to "can
+   we offer this?" — yes, no re-engineering, and here is the evidence rather
+   than someone's recollection.
+2. **Concrete tile roof.** Still no member changes, but the numbers move: the
+   dead load goes 15.0 → 22.0 psf and the window header goes from 0.462 to
+   0.553. The delta column says *why* it moved, not just that it did. **The
+   member holds** — which is a stronger result than a change, because it is the
+   one nobody can confirm from memory.
+3. **Extended rear deck, 26 × 14.** Now members move: both deck marks go from
+   Southern Pine No.2 to **No.1**. Same sizes, different grade — so it is a
+   purchasing change, not a framing change, and it is the same change in all six
+   regions. Notice the deck grows onto four posts instead of two and the posts
+   come back **not sized** with their reactions published: this engine does not
+   select posts, and it hands you the load rather than pretending the question
+   isn't there.
+4. **Elevation B.** Two marks appear that the base plan does not have — a porch
+   beam, sized, and a porch post, not sized. A variant that *adds* marks is the
+   case a naive member-list diff drops entirely.
+
+Then open the **envelope card**. It answers the question the whole feature
+exists for: *can I size this mark once for the whole master set?* It names a
+variant only where that variant dominates on **every** driver at once — span,
+tributary, load, depth budget — and where no single variant dominates it says
+so and prints the marks that have to be sized variant by variant. On
+`coastal-duplex-1600` in `fl-hvhz` it comes back **Split**. That is the honesty
+slide: the feature refuses to compose a maximum out of parts.
+
+### 3.7 The URL is the deliverable
+
+Copy the address bar and paste it into a second tab. Something like:
+
+```
+#/sizing/two-story-2450/nc-piedmont/schedule/b+opt-tile
+```
+
+Same plan, same market, same elevation-and-option, cold, in a fresh tab. **That
+is what you send the truss supplier.** Back and Forward work, reload lands where
+you were, and a stale link falls back to the dashboard with a toast rather than
+a blank screen.
+
+### 3.8 Export the schedule
 
 Hit the export. Show the text file. The things to scroll to:
 

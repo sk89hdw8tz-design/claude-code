@@ -31,7 +31,11 @@
     Object.keys(sheet.inputs).forEach(function (k) { inp[k] = sheet.inputs[k]; });
     inp.deflLive = prof.deflLive;
     inp.deflTotal = prof.deflTotal;
-    if (inp.CF === undefined) inp.CF = 1.0;
+    /* "auto", not 1.00. The old default silently held the size factor at unity
+       for any sheet that did not declare one, which is unconservative wherever
+       Table 4A publishes a factor below 1.00 — and it bypassed the refusal
+       sizeFactor() exists to make. See the C_F block below. */
+    if (inp.CF === undefined) inp.CF = "auto";
 
     document.title = "Firmark · " + sheet.id + " — " + sheet.label;
 
@@ -242,26 +246,98 @@
         return w;
       }
 
-      var cfInput = el("input", { type: "number", value: String(inp.CF), step: "0.05", min: "0.5", max: "2" });
+      /* ---- C_F: catalog first, typed as a deliberate override ----
+
+         The sheet used to take C_F as a typed number, always, defaulting to
+         1.00, and pass it straight through — which bypassed sizeFactor()
+         entirely. So a 2x14 checked clean here while the solver refused it,
+         and the refusal is the correct behaviour: Table 4A publishes a factor
+         below 1.00 at 14 in and wider and the catalog does not carry it.
+
+         That made the sheet the OPTIMISTIC path and the solver the
+         conservative one, which is backwards — the sheet is what a PE reaches
+         for to check the solver. A checking tool that is more permissive than
+         the thing it checks is worse than no checking tool.
+
+         "auto" is now the default and resolves from the catalog for the depth
+         actually selected, so the sheet refuses exactly what the solver
+         refuses. Typing a value is still allowed — it is how you check a size
+         the catalog cannot source — but it is now an explicit override that
+         says so on screen. */
+      var cfAuto = inp.CF === "auto";
+      var cfMode = el("select", {}, [
+        el("option", { value: "auto", text: "From catalog (auto, tracks the depth)" }),
+        el("option", { value: "typed", text: "Typed override — NDS-S Table 4A" })
+      ]);
+      cfMode.value = cfAuto ? "auto" : "typed";
+
+      var cfLast = (typeof inp.CF === "number" && isFinite(inp.CF)) ? inp.CF : 1.0;
+      var cfInput = el("input", {
+        type: "number", value: String(cfLast), step: "0.05", min: "0.5", max: "2",
+        disabled: cfAuto ? "disabled" : null
+      });
       cfInput.addEventListener("input", function () {
         var val = parseFloat(this.value);
-        inp.CF = isNaN(val) ? 1 : val;
+        cfLast = isNaN(val) ? 1 : val;
+        inp.CF = cfLast;
+        recompute();
+      });
+      cfMode.addEventListener("change", function () {
+        inp.CF = this.value === "auto" ? "auto" : cfLast;
         recompute();
       });
 
-      inputPane.appendChild(card("Conditions", null, el("div", { style: "display:grid;gap:11px" }, [
+      var cfField = el("div", { class: "field" }, [
+        el("label", {}, [
+          el("span", { text: "C_F size factor" }),
+          el("span", {
+            class: "badge " + (cfAuto ? "b-blue" : "b-warn"),
+            style: "margin-left:6px",
+            text: cfAuto ? "Catalog" : "Typed override"
+          })
+        ]),
+        cfMode,
+        cfInput,
+        el("span", { class: "field-hint", text: cfAuto
+          ? "Resolved from the catalog for this depth, the same way the sizing search resolves it. A size the catalog cannot source is refused, not held at 1.00."
+          : "Overriding the catalog. This is the path that lets a size through which the search would refuse — use it to check a member the catalog cannot source, and say so on the sheet." })
+      ]);
+
+      /* ---- incising ----
+         The sheet had no way to declare a member incised at all, while the
+         solver computes it. A refractory species must be incised to take
+         preservative, and C_i takes 20% off F_b and F_v — so a treated DF-L,
+         Hem-Fir or SPF member checked here without it read 24.5% high against
+         the same member checked by the search. */
+      var refractory = !!FM.weights &&
+        !!FM.weights.INCISED_WHEN_TREATED[inp.species];
+      var incHint = refractory
+        ? inp.species + " is refractory — it must be incised to take preservative, so a treated or wet member in it is normally incised. C_i = 0.80 on F_b, F_t, F_v, F_c and 0.95 on E, E_min (Table 4.3.8)."
+        : inp.species + " takes treatment without incising, which is why it is the exterior species of the Southeast. Leave this unchecked unless the member is actually incised.";
+
+      var conditions = el("div", { style: "display:grid;gap:11px" }, [
         check("Repetitive member (C_r = 1.15)", "repetitive", "3+ members, ≤24″ o.c., load-distributing element · NDS §4.3.9"),
         check("Compression edge continuously braced", "braced", "Unchecked computes C_L from R_B per §3.3.3"),
         check("Wet service (MC > 19%)", "wet", "Applies the Table 4A C_M multipliers"),
-        el("div", { class: "field" }, [
-          el("label", {}, [
-            el("span", { text: "C_F size factor" }),
-            el("span", { class: "badge b-warn", style: "margin-left:6px", text: "Typed" })
-          ]),
-          cfInput,
-          el("span", { class: "field-hint", text: "Not carried in the material catalog — enter per NDS Supplement Table 4A." })
-        ])
-      ]), null));
+        check("Incised (C_i, Table 4.3.8)", "incised", incHint),
+        cfField
+      ]);
+
+      /* The unconservative combination, named where the user can act on it.
+         The sheet carries no separate `treated` flag — wet service is its only
+         moisture condition — so this keys on wet and the hint above says that
+         treatment forces incising too. */
+      if (refractory && inp.wet && !inp.incised) {
+        conditions.appendChild(el("div", { class: "banner banner-gold" }, [
+          el("strong", { text: "Check this — " }),
+          el("span", { text: "a wet or treated " + inp.species + " member is normally incised, and " +
+                             "this sheet is not applying C_i. The sizing search applies it for the " +
+                             "same conditions, so this check is reading about 25% high against the " +
+                             "same member on a schedule." })
+        ]));
+      }
+
+      inputPane.appendChild(card("Conditions", null, conditions, null));
     }
 
     /* ---------- results ---------- */

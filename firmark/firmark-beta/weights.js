@@ -176,7 +176,46 @@
     floor_sleeping:    { psf: 30, cls: "code", cite: "IRC Table R301.5 — sleeping rooms" },
     attic_no_storage:  { psf: 10, cls: "code", cite: "IRC Table R301.5 — uninhabitable attics without storage" },
     attic_storage:     { psf: 20, cls: "code", cite: "IRC Table R301.5 — uninhabitable attics with limited storage" },
-    deck:              { psf: 40, cls: "code", cite: "IRC Table R301.5 / R507 — exterior decks and balconies" },
+    /* ---- the deck live load: 60, not 40 ----------------------------------
+       This carried 40 psf, cited to IRC R507, and the review left it open as
+       "answer it; do not carry it." Answered.
+
+       The two codes do not agree, and the disagreement is real:
+
+         IBC Table 1607.1 and ASCE 7-22 Table 4.3-1 both say a balcony or deck
+         takes 1.5 × the live load of the occupancy served, not required to
+         exceed 100 psf. A dwelling area is 40, so a residential deck is 60.
+
+         IRC Table R301.5 lists decks at 40 and the R507 prescriptive span
+         tables are built on 40 live + 10 dead.
+
+       The defect was never that 40 is an indefensible number. It is that this
+       engine is on the IBC/ASCE path in every other respect — ASCE 7-22 §2.4.1
+       for the combinations, IBC Table 1604.3 for deflection — and was reaching
+       across to the IRC for one load. Mixing code paths inside a single
+       calculation is not a conservative choice or an unconservative one; it is
+       an uncheckable one, because no single code produces the result.
+
+       So the engine uses 60 and says which code it came from. The IRC number
+       is kept below, unused, so a project actually permitted under the IRC's
+       prescriptive deck provisions can see the number it would use and see
+       that this engine did not use it.
+
+       This is not free: at 60 psf the deck members that used to print clean go
+       overstressed, so the search resizes them, and where it cannot it
+       escalates. That is the honest consequence of the answer and it is
+       supposed to show. */
+    deck:              { psf: 60, cls: "code",
+                         cite: "IBC Table 1607.1 / ASCE 7-22 Table 4.3-1 — balconies and decks, " +
+                               "1.5 × the 40 psf of the dwelling area served",
+                         note: "The IRC's prescriptive deck provisions (Table R301.5, R507) use " +
+                               "40 psf. This engine is on the IBC/ASCE path throughout, so it uses " +
+                               "60 psf; a project permitted under the IRC prescriptive path should " +
+                               "be checked against that path in full, not by substituting one load." },
+    deck_irc:          { psf: 40, cls: "code", used: false,
+                         cite: "IRC Table R301.5 / R507 — exterior decks and balconies, prescriptive path",
+                         note: "NOT USED by this engine. Carried so the difference from the IBC/ASCE " +
+                               "value above is visible rather than buried in a choice nobody recorded." },
     roof_live:         { psf: 20, cls: "code", cite: "ASCE 7-22 §4.8.2 — minimum roof live load, unreduced (calc-spec §8.13 takes no reduction)" }
   };
 

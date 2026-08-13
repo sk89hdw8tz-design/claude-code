@@ -732,7 +732,23 @@ suite("weights · every mark is checked as the member it actually is");
   var dk2 = FM.weights.PLANS.filter(function (p) { return p.id === "two-story-2450"; })[0]
               .marks.filter(function (m) { return m.id === "DK-2"; })[0];
   var d2 = FM.weights.demandFor(dk2, null, pk2);
-  eq(d2.live, 40, "DK-2, a deck beam, carries 40 psf of deck live load");
+  /* 60, not 40 — see the LIVE.deck comment in weights.js. The point of this
+     assertion was never the number; it was that DK-2 gets the DECK load and
+     not the roof load it was checked against when it shipped wrong. It pins
+     the answer to L10 as well now: one code path, stated. */
+  eq(d2.live, 60, "DK-2, a deck beam, carries the deck live load (60 psf, IBC/ASCE path)");
+  eq(FM.weights.LIVE.deck.psf, 60, "and the deck live load is the IBC 1607.1 / ASCE 7-22 value");
+  truthy(/1\.5/.test(FM.weights.LIVE.deck.cite),
+         "cited as 1.5 × the served occupancy, which is where 60 comes from");
+  truthy(FM.weights.LIVE.deck_irc && FM.weights.LIVE.deck_irc.psf === 40 &&
+         FM.weights.LIVE.deck_irc.used === false,
+         "the IRC prescriptive 40 psf is carried, marked unused, so the divergence is visible");
+  var deckUsers = [];
+  FM.weights.PACKS.forEach(function (p) {
+    if (p.loads.deckLive !== 60) deckUsers.push(p.id + " uses " + p.loads.deckLive);
+  });
+  eq(deckUsers.length, 0, "every region pack is on the same deck load — no pack quietly on the other code path" +
+     (deckUsers.length ? " — " + deckUsers.join(", ") : ""));
   eq(d2.roofLoad, 0, "and no roof load");
   eq(d2.memberUse, "floor", "and is checked against the floor deflection row");
 })();
@@ -1107,6 +1123,83 @@ suite("weights · packs are internally coherent");
   });
 })();
 
+suite("sheet · the checking path is not more permissive than the search (§L8)");
+(function () {
+  /* The sheet is what a PE reaches for to check the solver, and it was the
+     OPTIMISTIC path: a typed C_F defaulting to 1.00 that bypassed sizeFactor()
+     entirely, and no way to declare a member incised at all. So a 2x14 checked
+     clean on the sheet while the solver refused it, and a wet refractory member
+     read ~25% high. A checking tool more permissive than the thing it checks is
+     worse than no checking tool.
+
+     These assert the engine-side contract the sheet now uses. The DOM side —
+     that the sheet actually offers both controls — is in ui-tests.js. */
+
+  /* C_F "auto" refuses exactly what the search refuses */
+  var refused = [], allowed = [];
+  ["2x14", "2x16"].forEach(function (sz) {
+    var sf = FM.engine.sizeFactor("Douglas Fir-Larch", "No. 2", sz);
+    if (!sf.refuse) allowed.push(sz);
+    var r = FM.engine.run({
+      species: "Douglas Fir-Larch", grade: "No. 2", size: sz, span: 14, spacing: 16,
+      dead: 15, live: 40, roofLoad: 0, roofType: "snow", repetitive: true, wet: false,
+      braced: true, bearing: 3.0, memberUse: "floor", CF: "auto"
+    });
+    if (!r.error) refused.push(sz + " evaluated instead of being refused");
+  });
+  eq(allowed.length, 0, "sizeFactor refuses 14in and wider — the catalog carries no C_F there");
+  eq(refused.length, 0, "and a run with CF:\"auto\" refuses the same sizes" +
+     (refused.length ? " — " + refused.join(", ") : ""));
+
+  /* the old default is what let it through */
+  var typed = FM.engine.run({
+    species: "Douglas Fir-Larch", grade: "No. 2", size: "2x14", span: 14, spacing: 16,
+    dead: 15, live: 40, roofLoad: 0, roofType: "snow", repetitive: true, wet: false,
+    braced: true, bearing: 3.0, memberUse: "floor", CF: 1.0
+  });
+  truthy(!typed.error,
+         "a TYPED C_F still evaluates that size — the override path exists on purpose, " +
+         "which is exactly why it must not be the default");
+
+  /* every stored demo sheet is on the catalog path, not the typed one */
+  var typedSheets = FM.__coreSheets ? [] : null;   /* core.js is DOM-bound; read the source */
+  var fs3 = require("fs"), path3 = require("path");
+  var coreSrc = fs3.readFileSync(path3.join(__dirname, "..", "core.js"), "utf8");
+  var cfDecls = coreSrc.match(/CF:\s*("auto"|[0-9.]+)/g) || [];
+  var nonAuto = cfDecls.filter(function (d) { return d.indexOf('"auto"') === -1; });
+  truthy(cfDecls.length > 0, "the demo sheets declare a C_F basis (" + cfDecls.length + " of them)");
+  eq(nonAuto.length, 0, "and every one is \"auto\", so no shipped sheet is on the override path" +
+     (nonAuto.length ? " — " + nonAuto.join(", ") : ""));
+
+  /* incising: the sheet can now say it, and saying it costs what NDS says */
+  var base = {
+    species: "Douglas Fir-Larch", grade: "No. 2", size: "2x10", span: 12, spacing: 16,
+    dead: 15, live: 40, roofLoad: 0, roofType: "snow", repetitive: true, wet: true,
+    braced: true, bearing: 3.0, memberUse: "floor", CF: "auto"
+  };
+  var plain = FM.engine.run(base);
+  var inc = FM.engine.run(Object.keys(base).reduce(function (o, k) {
+    o[k] = base[k]; return o;
+  }, { incised: true }));
+  truthy(!plain.error && !inc.error, "both the incised and un-incised runs evaluate");
+  if (!plain.error && !inc.error) {
+    var pb = plain.checks.filter(function (c) { return c.name === "Bending"; })[0];
+    var ib = inc.checks.filter(function (c) { return c.name === "Bending"; })[0];
+    truthy(ib.dcr > pb.dcr, "declaring a member incised makes it work harder, not less");
+    near(ib.dcr / pb.dcr, 1 / 0.80, 0.02,
+         "and by the Table 4.3.8 factor — 0.80 on F_b, so DCR rises ~25% (" +
+         (100 * (ib.dcr / pb.dcr - 1)).toFixed(1) + "%)");
+  }
+
+  /* the species list the sheet warns on is the solver's, not a second copy */
+  truthy(FM.weights.INCISED_WHEN_TREATED["Douglas Fir-Larch"] === true &&
+         FM.weights.INCISED_WHEN_TREATED["Hem-Fir"] === true &&
+         FM.weights.INCISED_WHEN_TREATED["Spruce-Pine-Fir"] === true,
+         "the refractory species are declared once, in weights, for both paths");
+  truthy(!FM.weights.INCISED_WHEN_TREATED["Southern Pine"],
+         "and Southern Pine is not among them — it takes treatment without incising");
+})();
+
 suite("demo · the runbook says what the build will actually do");
 (function () {
   /* DEMO.md tells someone what they will see on screen tomorrow. That is a
@@ -1144,6 +1237,42 @@ suite("demo · the runbook says what the build will actually do");
   var gb = flRes.marks.filter(function (m) { return m.mark.id === "GB-1"; })[0];
   truthy(gb && gb.solution && gb.solution.status === "escalate:strength",
          "GB-1 still escalates on STRENGTH, so the two kinds are both on screen in one region");
+
+  /* ---- the master-set beats, which are the easiest to overclaim ----
+     "Switch to the tile roof and the header moves" is a sentence that sounds
+     right and is false: the tile roof shifts HDR-2 from 0.462 to 0.553 and the
+     member holds in every region. The option that genuinely moves members is
+     the extended deck. A presenter who says the wrong one gets contradicted by
+     the screen, so the runbook prints what was measured and this pins it. */
+  var deltas = demo.variantDeltas(FM, demo.DEFAULT_PACK);
+  truthy(deltas.length >= 4, "the demo plan still offers the variants the walk uses (" + deltas.length + ")");
+  function delta(id) { return deltas.filter(function (d) { return d.combo.id === id; })[0]; }
+
+  var tile = delta("a+opt-tile");
+  truthy(tile && tile.moves.length === 0,
+         "the concrete tile roof still moves NO member — the runbook says the member holds");
+  truthy(tile && tile.shifts.some(function (s) { return /^HDR-2 /.test(s); }),
+         "and still shifts HDR-2's DCR, which is the thing the delta column explains");
+
+  var deckExt = delta("a+opt-deck-ext");
+  truthy(deckExt && deckExt.moves.length === 2,
+         "the extended deck still moves exactly the two deck marks");
+  truthy(deckExt && deckExt.moves.every(function (m) { return /No\.2 → .*No\.1/.test(m); }),
+         "and moves them by GRADE, not size — a purchasing change, not a framing change");
+  var everywhere = FM.weights.PACKS.every(function (pk) {
+    var d = demo.variantDeltas(FM, pk.id).filter(function (x) { return x.combo.id === "a+opt-deck-ext"; })[0];
+    return d && d.moves.length === 2;
+  });
+  truthy(everywhere, "in all six regions, so the presenter can say 'the same change everywhere'");
+
+  var bonus = delta("a+opt-bonus");
+  truthy(bonus && !bonus.moves.length && !bonus.adds.length && !bonus.drops.length && !bonus.shifts.length,
+         "the bonus room still changes nothing at all — the 'yes, no re-engineering' beat");
+
+  var elevB = delta("b");
+  truthy(elevB && elevB.adds.length >= 2,
+         "Elevation B still ADDS marks the base plan does not have (" +
+         (elevB ? elevB.adds.length : 0) + ") — the case a member-list diff drops");
 
   /* the runbook tells the presenter not to open the weak plan cold */
   var cov = require("./coverage.js").measure(FM);

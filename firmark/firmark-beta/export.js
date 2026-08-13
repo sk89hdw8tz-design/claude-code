@@ -668,6 +668,23 @@
     say("  Floor live       : " + pack.loads.floorLive + " psf  [code — " + FM.weights.LIVE.floor_residential.cite + "]");
     say("  Design roof load : " + pack.loads.roofLoad + " psf · " +
         (pack.loads.roofType === "snow" ? "snow, C_D 1.15" : "roof live, C_D 1.25"));
+
+    /* The deck load was absent from this block entirely while the schedule
+       above it sized deck members. It also sits on a code fork that a reader
+       has a right to see resolved rather than assumed, so both numbers print
+       and the unused one says it is unused. */
+    if (pack.loads.deckLive !== undefined) {
+      var dk = FM.weights.LIVE.deck, dkI = FM.weights.LIVE.deck_irc;
+      say("  Deck live        : " + pack.loads.deckLive + " psf  [" + dk.cls + " — " + dk.cite + "]");
+      if (dkI) {
+        say("      IRC prescriptive path uses " + dkI.psf + " psf (" + dkI.cite + ").");
+        say("      NOT USED HERE. This engine is on the IBC/ASCE path throughout —");
+        say("      ASCE 7-22 §2.4.1 combinations, IBC Table 1604.3 deflection — and taking");
+        say("      one load from the other code would make the result reproducible under");
+        say("      neither. A project permitted under the IRC prescriptive deck provisions");
+        say("      must be checked against that path in full.");
+      }
+    }
     say();
     wrap("ROOF LOAD BASIS — " + pack.loads.roofLoadBasis, 74, "    ").forEach(function (x) { say("  " + x); });
     say();
