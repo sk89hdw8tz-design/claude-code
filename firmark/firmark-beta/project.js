@@ -340,7 +340,10 @@
       return FM.planset.build({
         project: load(), model: model(), takeoff: takeoff(),
         planResult: calcs(), bom: bom(), juris: site(),
-        pipeline: FM.pipeline ? FM.pipeline.snapshot() : null
+        /* omit: "package" — the cover prints the approval trail, and
+           evaluating the package stage means building this very plan set.
+           See the cycle written out at snapshot() in pipeline.js. */
+        pipeline: FM.pipeline ? FM.pipeline.snapshot({ omit: "package" }) : null
       });
     });
   }

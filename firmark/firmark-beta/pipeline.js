@@ -1006,13 +1006,65 @@
 
   /* The whole picture, for the view and for the package's approval trail.
      One read scope for the entire snapshot, so every row describes the same
-     instant rather than six successive ones. */
-  function snapshot() {
+     instant rather than six successive ones.
+
+     `opts.omit` names a stage to describe from its RECORD ALONE, without
+     asking for its content. It exists because of a real cycle, and the
+     cycle is worth stating plainly:
+
+         planset()  ->  FM.pipeline.snapshot()      (the cover prints the trail)
+                    ->  canInner("package")
+                    ->  readStage("package")
+                    ->  the package provider
+                    ->  planset()  ...
+
+     The plan set IS the package, so evaluating the package stage means
+     building the plan set, which needs the trail, which evaluates the
+     package stage. That recursed ~1000 deep and came back as
+     "could not check this stage: Maximum call stack size exceeded" — the
+     final gate, the PE's plan set, unreachable and reported as an
+     incomprehensible internal error rather than as a defect.
+
+     A package does not attest to its own approval. It attests to the five
+     stages BEHIND it and is then handed to a PE, whose seal is the thing
+     it is missing. So the omitted row carries what is on record — pending,
+     or approved by whom and when — and makes no claim about a gate it did
+     not evaluate. Staleness is still computed for every other stage, which
+     is the part that carries safety: a cover that says "approved" over
+     geometry that has since moved is exactly the lie this file exists to
+     prevent. */
+  function snapshot(opts) {
+    var omit = (opts && opts.omit) || null;
     begin();
     try {
       var out = { stages: [], current: null, complete: true, staleCount: 0, notFingerprintable: 0 };
       for (var i = 0; i < STAGES.length; i++) {
         var st = STAGES[i];
+
+        if (omit && st.id === omit) {
+          var orec = load().stages[st.id];
+          if (orec && (typeof orec !== "object" || isArr(orec))) orec = null;
+          out.stages.push({
+            stage: st,
+            status: (orec && orec.status) ? orec.status : "pending",
+            rec: orec || null,
+            moved: [],
+            can: null, blockedBy: [], blockers: [],
+            hasContent: null, threw: null,
+            fpNow: null, fpComplete: null, fpWhy: [],
+            /* said out loud, so an empty blockedBy on this row is never
+               read as "nothing is stopping it" */
+            notEvaluated: "This row is the record only. " + st.label +
+                          " was not gate-checked here, because the thing " +
+                          "being assembled is its own content."
+          });
+          if (!orec || orec.status !== "approved") {
+            out.complete = false;
+            if (!out.current) out.current = st.id;
+          }
+          continue;
+        }
+
         var s = statusOfInner(st.id);
         var gate = canInner(st.id);
         var read = readStage(st.id);
