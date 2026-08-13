@@ -54,12 +54,18 @@
 
     host.appendChild(FM.pageHead("Sizing",
       "One plan, solved against a region. The engine decides what passes; the weights only rank what already did.", [
-        el("button", { class: "btn", onclick: function () { FM.go("materials"); }, text: "Materials" })
+        el("button", { class: "btn", onclick: function () { FM.go("materials"); }, text: "Materials" }),
+        el("button", { class: "btn btn-primary", text: "Export schedule", onclick: function () {
+          var pk = FM.weights.packById(state.packId), pl = FM.weights.planById(state.planId);
+          if (pk && pl) FM.exportSchedule(pl, pk);
+        } })
       ]));
 
     host.appendChild(FM.betaStrip(
       "The solver proposes members and shows its work. Prices, availability and site loads in the region packs are " +
-      "placeholders — replace them with your own before reading any dollar figure as real. Nothing here is stamped."));
+      "placeholders — replace them with your own before reading any dollar figure as real. Nothing here is stamped. " +
+      "Export carries the escalations, the marks this engine will not size, the reactions, the load provenance and " +
+      "calc-spec §8 in full — nothing that qualifies a member should stay in this tab."));
 
     /* ---------- controls ---------- */
 

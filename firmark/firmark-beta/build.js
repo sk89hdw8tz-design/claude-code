@@ -37,9 +37,11 @@ var NOSCRIPT =
 
 var SCRIPTS = [
   "core.js",
+  "scope.js",
   "engine.js",
   "weights.js",
   "solver.js",
+  "export.js",
   "materials.js",
   "sheet.js",
   "sizing.js"

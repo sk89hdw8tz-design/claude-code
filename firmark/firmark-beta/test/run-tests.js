@@ -13,7 +13,7 @@
 
 "use strict";
 
-var FM = require("./harness.js").load(["engine.js", "weights.js", "solver.js"]);
+var FM = require("./harness.js").load(["scope.js", "engine.js", "weights.js", "solver.js", "export.js"]);
 
 var pass = 0, fail = 0, current = "";
 var failures = [];
@@ -817,6 +817,66 @@ suite("weights · the six missing marks are carried");
       truthy(/\d,?\d* lb/.test(ap.note), "and publishes the reaction the tool does compute");
     });
   });
+})();
+
+suite("export · the schedule carries what calc-spec §8 says it must");
+(function () {
+  /* §8: "The app must print this list, verbatim and unabridged, on every output.
+     A calculation that does not state its boundaries is not an engineering
+     deliverable." What shipped was a ten-item paraphrase on a different view. */
+  var live = require("./extract-scope.js");
+  eq(FM.scope.items.length, 24, "all 24 scope boundaries are carried");
+  var drift = [];
+  live.items.forEach(function (it, i) {
+    var got = FM.scope.items[i];
+    if (!got || got.n !== it.n || got.text !== it.text || got.group !== it.group) drift.push(it.n);
+  });
+  eq(drift.length, 0, "scope.js still matches calc-spec.md §8 verbatim" +
+     (drift.length ? " — drifted at item(s) " + drift.join(", ") : ""));
+
+  var pk = FM.weights.packById("fl-hvhz"), pl = FM.weights.planById("coastal-duplex-1600");
+  var txt = FM.scheduleText(pl, pk);
+
+  /* every one of the 24, in full */
+  var missing = FM.scope.items.filter(function (it) {
+    return txt.replace(/\s+/g, " ").indexOf(it.text.slice(0, 60)) === -1;
+  });
+  eq(missing.length, 0, "every boundary appears in the exported text" +
+     (missing.length ? " — missing " + missing.map(function (x) { return x.n; }).join(", ") : ""));
+
+  /* and the things the reviews said die at the browser window */
+  truthy(/GRAVITY ONLY — WIND GOVERNS/.test(txt), "a wind-governed pack leads with its wind note");
+  truthy(txt.indexOf(pk.governsNote.slice(0, 60)) !== -1, "and carries it in full");
+  truthy(/REACTION SCHEDULE/.test(txt) && /lb/.test(txt), "reactions travel with the schedule");
+  truthy(/NOT SIZED —/.test(txt), "marks this engine will not size are listed, not omitted");
+  truthy(/ROOF LOAD BASIS/.test(txt), "the roof load explains where it came from");
+  truthy(/PLANNING DEFAULTS, NOT SITE VALUES/.test(txt), "site loads are labelled as planning defaults");
+  truthy(/NOT SEALED ENGINEERING/.test(txt), "and it says plainly that it is not sealed");
+  truthy(/THIS IS NOT A COMPLETE SCHEDULE/.test(txt),
+         "an incomplete schedule says so in the export, not just on screen");
+
+  /* an escalated mark must carry its reason out of the tab */
+  var esc = FM.solver.solvePlan(pl, pk).marks.filter(function (m) {
+    return !m.notApplicable && m.solution && !m.solution.pick; })[0];
+  if (esc) truthy(txt.indexOf(esc.solution.note.wall.slice(0, 40)) !== -1,
+                  "an escalation's wall text is in the export");
+
+  /* no NaN or undefined reaches the page */
+  truthy(!/undefined|NaN/.test(txt), "no undefined or NaN in the exported record");
+
+  /* it must work for every pack and plan, not just the demo one */
+  var problems = [];
+  FM.weights.PACKS.forEach(function (p) {
+    FM.weights.PLANS.forEach(function (l) {
+      try {
+        var t2 = FM.scheduleText(l, p);
+        if (/undefined|NaN/.test(t2)) problems.push(p.id + "/" + l.id + " has undefined/NaN");
+        if (t2.indexOf("SCOPE BOUNDARIES") === -1) problems.push(p.id + "/" + l.id + " has no scope block");
+      } catch (e) { problems.push(p.id + "/" + l.id + " threw: " + e.message); }
+    });
+  });
+  eq(problems.length, 0, "all 18 pack/plan schedules export cleanly");
+  problems.slice(0, 5).forEach(function (p) { console.log("      " + p); });
 })();
 
 suite("weights · packs are internally coherent");

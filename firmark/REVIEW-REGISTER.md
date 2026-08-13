@@ -7,7 +7,7 @@ allowed to be closed silently.
 Panel: structural PE (A&E), QA/QC, production-build & estimating, building code
 & regulatory (TX/NC/FL), software integration & test.
 
-Test suite: `node firmark-beta/test/run-tests.js` — **157 assertions, 0 failing**.
+Test suite: `node firmark-beta/test/run-tests.js` — **171 assertions, 0 failing**.
 UI sweep: `node firmark-beta/test/ui-tests.js` — renders the built bundle across every
 pack × plan, opens every mark's detail, fails on any NaN / undefined / empty numeric slot.
 Bundle freshness gate: `node firmark-beta/build.js --check`.
@@ -413,7 +413,7 @@ finding without answering it."*
 | L1 | **H3** — correct `calc-spec` §5.5, the `ex1_defl_total` / `ex2_*` fixtures, and the comment above `DEFL` in `engine.js`. Confirmed still in place by three independent reviewers now. |
 | L2 | **H4 / D3** — split `q_Lr` and `q_S`. SE-1 measured the exposure as **nil on all six shipped packs today**, going live at 17.2 ≤ p_s ≤ 20 psf — a band `nc-mountain`'s own p_g of 30 reaches once p_s is actually computed. The advisory makes it visible; it does not remove it. |
 | L3 | **H5** — replace the market placeholders and the site loads. |
-| L4 | **H6 / M-1** — the schedule export. `calc-spec` §8 says its 24 boundaries "must be printed, verbatim and unabridged, on every output"; what ships is a 10-item paraphrase on the sheet only, and the schedule view has no export at all. Every honesty mechanism in the product currently dies at the browser window. |
+| ~~L4~~ | **CLOSED — the schedule export ships.** See §M. |
 | L5 | **The attic / bottom-chord live load question** — `ceilingLive` is wired into all six packs and read by no mark, and the spec is silent on whether a truss-bearing header receives it. A sentence in `calc-spec`, then code if the answer is yes. |
 | L6 | **No wall dead load exists anywhere in the model.** Now printed in `LIMITS`; the vocabulary is still missing, and it is what made K5 unrefusable rather than checkable. |
 | L7 | **Slope.** No plan declares a pitch, and the assembly psf mix on-slope and horizontal components with no published split — so the user cannot perform the conversion §1.4 makes them responsible for. At 6:12 the garage header already exceeds target; at 9:12 the typical window header does. |
@@ -432,3 +432,52 @@ examination. That is the behaviour the structure was built to get.
 
 The seal answer is unchanged and was never expected to change in this round: **do not seal.** The
 remaining conditions are in §L, and L4 is the one that decides whether any of the rest travels.
+
+
+---
+
+## M. L4 closed — the schedule export
+
+`calc-spec` §8 opens: *"The app must print this list, verbatim and unabridged, on every output.
+A calculation that does not state its boundaries is not an engineering deliverable."* What
+shipped was a ten-item paraphrase, on a different view, and the sizing schedule had no export at
+all — so every honesty mechanism the panel built died at the browser window. SE-3 called this the
+condition that decides whether any of the others travel.
+
+**`scope.js`** carries all 24 boundaries verbatim. It is **generated from `calc-spec.md` by
+`test/extract-scope.js`, and the suite re-runs that extractor and diffs the result** — so an edit
+to the spec's boundary list cannot silently fail to reach the output the spec says must carry it.
+The generated file and the test consume the same extractor, so they cannot drift from each other
+either.
+
+**`export.js`** produces the record. A schedule leaves the tool carrying:
+
+- the wind note first and in full, banner-ruled, in any market where wind governs;
+- the plan note and the wall-system note;
+- **an explicit "THIS IS NOT A COMPLETE SCHEDULE" line** with the reason, whenever anything
+  escalated, anything was removed as not this engine's member, or wind governs;
+- the members, each with its span, tributary, bearing, service condition and bracing assumption
+  on the line beneath it — so a checker can see what was assumed, not just what was picked;
+- **the reaction schedule**, with the statement that the §3.4.3.1 reduction never applies to a
+  reaction and that no connection is designed;
+- **every escalation**, with its status, the wall that actually stopped it, the next move, and the
+  out-of-scope statement;
+- **every mark the engine will not size**, carried deliberately — *"a schedule that omits them
+  reads as if they were fine"*;
+- the advisories, including the roof-load crossover the engine cannot evaluate;
+- the SKU unification moves, so a reader knows a member was raised for economics and that it
+  passed its own check first;
+- the SKU list;
+- the load provenance — assembly makeups, the `roofLoadBasis` in full, and the site values
+  **labelled as planning defaults with their class markers**;
+- the material provenance and the `C_F` basis caveat;
+- and the 24 boundaries, verbatim, grouped as §8 groups them, with the source named.
+
+Fourteen assertions pin it. They check the extraction against the live spec, that **every one of
+the 24 appears in the exported text**, that a wind pack leads with its note, that reactions and
+not-sized marks and incompleteness all travel, that no `undefined` or `NaN` reaches the page, and
+that **all 18 pack/plan combinations export cleanly** — not just the demo one.
+
+Sample: `nc-mountain / two-story-2450` produces a 293-line record. The HVHZ coastal duplex —
+the plan whose own note says the engine has the least to say about it — leads with the wind
+banner and says it is not a complete schedule before it lists a single member.
