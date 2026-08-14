@@ -285,7 +285,8 @@ def fit_regular(lines, tol=60.0, min_spacing=250.0, expected=None):
 
 
 def refine_band(img, approx_offset, horizontal=True, window=170, segments=9,
-                work_width=1700, along_frac=0.06, trim=0.10, min_segments=4):
+                work_width=1700, along_frac=0.06, trim=0.10, min_segments=4,
+                bounds=None):
     """Locate ONE street/avenue centreline precisely, given a rough position.
 
     Global grid detection on a Sanborn sheet is unreliable -- railways, parks,
@@ -310,6 +311,15 @@ def refine_band(img, approx_offset, horizontal=True, window=170, segments=9,
 
     off_s = approx_offset * scale
     win_s = window * scale
+    # Clip the search to the drawn map area. A boundary street sits close to the
+    # sheet edge, so an unclipped window reaches the blank collar between the map
+    # and the paper edge -- which is just as ink-free as a street and wins. These
+    # boundary streets are precisely the ones shared with the neighbouring sheet,
+    # so losing them costs the tie points that matter most.
+    lo_lim, hi_lim = 0.0, float(sh if horizontal else sw)
+    if bounds is not None:
+        lo_lim = max(lo_lim, bounds[0] * scale)
+        hi_lim = min(hi_lim, bounds[1] * scale)
     span = sw if horizontal else sh
     seg_len = span / segments
     smooth = max(3, int(span * along_frac)) | 1
@@ -319,8 +329,8 @@ def refine_band(img, approx_offset, horizontal=True, window=170, segments=9,
         a0, a1 = int(s * seg_len), int((s + 1) * seg_len)
         if a1 - a0 < 8:
             continue
-        lo = int(max(0, off_s - win_s))
-        hi = int(min(sh if horizontal else sw, off_s + win_s))
+        lo = int(max(lo_lim, off_s - win_s))
+        hi = int(min(hi_lim, off_s + win_s))
         if hi - lo < 8:
             continue
         block = ink[lo:hi, a0:a1] if horizontal else ink[a0:a1, lo:hi]
@@ -359,12 +369,34 @@ def refine_band(img, approx_offset, horizontal=True, window=170, segments=9,
     if good.sum() >= min_segments:
         sol, *_ = np.linalg.lstsq(A[good], m[good, 1], rcond=None)
         resid = m[good, 1] - A[good] @ sol
+    off_small = float(sol[0]) + float(sol[1]) * (span / 2.0)
+
+    # A street has DEVELOPED BLOCKS ON BOTH SIDES. The blank paper collar at the
+    # edge of the sheet is just as ink-free as a street and just as long, so a
+    # band search whose window reaches the margin will happily lock onto it --
+    # and report a suspiciously perfect fit, because blank paper is perfectly
+    # flat. Requiring ink on both flanks is what tells a street from the edge of
+    # the page.
+    half = max(6, int(np.median(m[:, 2]) * 0.75))
+    def flank(sign):
+        lo = int(off_small + sign * half)
+        hi = int(off_small + sign * (half + 3 * half))
+        lo, hi = (lo, hi) if lo < hi else (hi, lo)
+        lo = max(0, lo); hi = min(sh if horizontal else sw, hi)
+        if hi - lo < 3:
+            return 0.0
+        blk = ink[lo:hi, :] if horizontal else ink[:, lo:hi]
+        return float(blk.mean())
+
     return {"offset": float(sol[0]) / scale, "slope": float(sol[1]),
             "rms": float(np.sqrt(np.mean(resid ** 2))) / scale,
-            "segments": int(good.sum()), "width_px": float(np.median(m[:, 2]) / scale)}
+            "segments": int(good.sum()), "width_px": float(np.median(m[:, 2]) / scale),
+            "flank_min": float(min(flank(+1), flank(-1))),
+            "flank_max": float(max(flank(+1), flank(-1)))}
 
 
-def refine_grid(img, approx_streets, approx_avenues, window=170, **kw):
+def refine_grid(img, approx_streets, approx_avenues, window=170,
+                street_bounds=None, avenue_bounds=None, **kw):
     """Refine a whole sheet's grid, forcing ONE rotation for the sheet.
 
     A scan has a single rotation. Measuring each street's slope independently
@@ -382,18 +414,18 @@ def refine_grid(img, approx_streets, approx_avenues, window=170, **kw):
     `approx_streets` / `approx_avenues` map a label to a rough pixel position,
     normally read off the printed street names.
     """
-    def measure(approx, horizontal):
+    def measure(approx, horizontal, bounds):
         out = {}
         for label, a in approx.items():
-            r = refine_band(img, a, horizontal, window=window, **kw)
+            r = refine_band(img, a, horizontal, window=window, bounds=bounds, **kw)
             if r:
                 r["approx"] = float(a)
                 r["moved"] = abs(r["offset"] - float(a))
                 out[label] = r
         return out
 
-    H = measure(approx_streets, True)
-    V = measure(approx_avenues, False)
+    H = measure(approx_streets, True, street_bounds)
+    V = measure(approx_avenues, False, avenue_bounds)
 
     def pooled(bands, horizontal):
         if not bands:

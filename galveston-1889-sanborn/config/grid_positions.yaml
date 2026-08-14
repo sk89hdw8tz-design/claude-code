@@ -1,0 +1,102 @@
+# Generated from readings of the printed sheets (see README).
+note: Approximate street/avenue centreline positions read from the printed labels on each sheet. Identity
+  comes from here; 06b measures precision.
+sheets:
+  '1':
+    file: txu-sanborn-galveston-1889-Sheet 1.jpg
+    region: S1_main
+    streets:
+      22nd: 90
+      23rd: 1185
+      24th: 2358
+      25th: 3537
+    avenues:
+      A: 3030
+  '2':
+    file: txu-sanborn-galveston-1889-Sheet 2.jpg
+    region: S2
+    streets:
+      19th: 50
+      20th: 1220
+      21st: 2390
+      22nd: 3563
+    avenues:
+      A: 3057
+  '7':
+    file: txu-sanborn-galveston-1889-Sheet 7.jpg
+    region: S7
+    streets:
+      19th: 279
+      20th: 1422
+      21st: 2576
+      22nd: 3751
+    avenues:
+      A: 204
+      B: 1236
+      C: 2221
+      D: 3214
+  '8':
+    file: txu-sanborn-galveston-1889-Sheet 8.jpg
+    region: S8
+    streets:
+      19th: 220
+      20th: 1394
+      21st: 2561
+      22nd: 3734
+    avenues:
+      D: 178
+      E: 1174
+      F: 2194
+      G: 3190
+  '9':
+    file: txu-sanborn-galveston-1889-Sheet 9.jpg
+    region: S9
+    streets:
+      22nd: 280
+      23rd: 1466
+      24th: 2622
+      25th: 3790
+    avenues:
+      A: 215
+      B: 1221
+      C: 2209
+      D: 3215
+  '10':
+    file: txu-sanborn-galveston-1889-Sheet 10.jpg
+    region: S10
+    streets:
+      22nd: 203
+      23rd: 1379
+      24th: 2544
+      25th: 3721
+    avenues:
+      D: 178
+      E: 1173
+      F: 2203
+      G: 3198
+  '27':
+    file: txu-sanborn-galveston-1889-Sheet 27.jpg
+    region: S27
+    streets:
+      22nd: 251
+      23rd: 1407
+      24th: 2577
+      25th: 3794
+    avenues:
+      G: 126
+      H: 1113
+      I: 2118
+      J: 3123
+  '29':
+    file: txu-sanborn-galveston-1889-Sheet 29.jpg
+    region: S29
+    streets:
+      19th: 215
+      20th: 1403
+      21st: 2563
+      22nd: 3744
+    avenues:
+      G: 161
+      H: 1163
+      I: 2176
+      J: 3178

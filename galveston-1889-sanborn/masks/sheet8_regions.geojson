@@ -1,0 +1,54 @@
+{
+  "type": "FeatureCollection",
+  "name": "sheet8_regions",
+  "pixel_crs": "Coordinates are source-image pixels (x right, y DOWN) of the original unmodified scan named in properties.source_image. NOT a geographic CRS.",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              130.4673414898565,
+              6.0
+            ],
+            [
+              3202.1047877896804,
+              6.0
+            ],
+            [
+              3229.471869229231,
+              3754.399893841522
+            ],
+            [
+              157.66862666532964,
+              3731.6911990894473
+            ],
+            [
+              130.4673414898565,
+              6.0
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "sheet": "8",
+        "region": "S8",
+        "keep": true,
+        "role": "map_region",
+        "source_image": "txu-sanborn-galveston-1889-Sheet 8.jpg",
+        "pixel_crs": "Coordinates are source-image pixels (x right, y DOWN) of the original unmodified scan named in properties.source_image. NOT a geographic CRS.",
+        "note": "Butt joint on shared centrelines; free edges run to the mapped-area bound.",
+        "confidence": "high",
+        "defined_by": "cut at boundary street/avenue centrelines where a neighbour exists"
+      }
+    }
+  ],
+  "source_image": "txu-sanborn-galveston-1889-Sheet 8.jpg",
+  "sheet": "8",
+  "image_size": [
+    3400,
+    4090
+  ]
+}

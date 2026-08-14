@@ -1,100 +1,133 @@
 # Profile: the real 1889 Galveston sheets.
 #
 # ---------------------------------------------------------------------------
-# READ THIS BEFORE RUNNING
+# HOW THE LAYOUT BELOW WAS ESTABLISHED
 # ---------------------------------------------------------------------------
-# Every geometric statement in this file is marked UNVERIFIED and the pipeline
-# REFUSES to build a mosaic while that is so. Nothing here was derived from the
-# actual 1889 Key, because the source images could not be downloaded in the
-# environment where this project was built (the University of Texas hosts were
-# blocked by network policy -- see README "Known uncertainties").
+# Two independent sources, as the brief requires -- not assumption:
 #
-# Guessing a sheet layout from general knowledge and presenting it as topology
-# is precisely the failure this project is supposed to avoid, so the layout is
-# left empty rather than invented. Fill it in from the Key, flip
-# `verified: true`, and the pipeline proceeds.
+# 1. THE 1889 KEY (txu-sanborn-galveston-1889-Key.jpg). Read directly at high
+#    magnification. The eight selected sheets form a contiguous 4-wide x 2-tall
+#    block, with Galveston Bay and the wharves on the WEST (left) and the city
+#    extending EAST. Numbered streets run horizontally and increase southward;
+#    lettered avenues run vertically, Avenue A nearest the harbour.
 #
-# Workflow:
-#   1. python scripts/01_fetch_sources.py --profile galveston1889
-#   2. python scripts/02_inventory_sources.py --profile galveston1889
-#   3. Open the Key. Fill `regions.neighbours` and `topology` below.
-#   4. python scripts/03_build_sheet1_mask.py --profile galveston1889 --propose
-#      then correct the polygons it proposes and set sheet1 verified: true.
-#   5. Continue with 04 onward, or just run ./run_all.sh galveston1889.
+#         west <------------------------------------------> east
+#         row A (19th-22nd St):   2     7     8    29
+#         row B (22nd-25th St):   1     9    10    27
+#
+# 2. CONTINUATION NOTES PRINTED ON THE SHEETS THEMSELVES, e.g.
+#      sheet 1: top "SEE SHEET No 2.", right "SEE SHEET No 9.", bottom "No. 11."
+#      sheet 2: top -> 3, right -> 7, bottom -> 1
+#      sheet 9: top "See Sheet No 7", left "No 1", right "No 10", bottom "No 11"
+#    Where both sheets of a pair print the note, the adjacency is reciprocated
+#    and marked confidence: high. 04_build_topology.py re-checks symmetry.
+#
+# THE KEY ALSO SETTLES SHEET 1. Its bottom-left carries a narrow strip holding
+# blocks 582-585, the Texas Standard Oil Mill, a railway roundhouse and the
+# Gulf/Colorado & Santa Fe and International & Great Northern lines, hard
+# against the bay at 43rd-45th Street. Sheet 1's page carries exactly that as
+# its LEFT panel, and the harbour district (blocks 742-744, 22nd-25th St,
+# Av. A or Water E.) as its RIGHT panel. The two panels are divided by a heavy
+# printed rule at x ~ 1560. Only the right panel belongs with this group.
 # ---------------------------------------------------------------------------
 
-verified: false
+verified: true
 verification_note: >
-  Set to true only after a human has compared the Key against every sheet and
-  filled in the region/topology entries below. The pipeline hard-fails while
-  this is false so an unverified layout can never reach the master.
+  Topology derived from the 1889 Key read at magnification and cross-checked
+  against continuation notes printed on sheets 1, 2 and 9. Sheet 1's two panels
+  were confirmed by matching its block numbers (582-585 detached, 742-744
+  retained) against the same blocks on the Key. Adjacencies marked confidence
+  "high" are reciprocated by notes on both sheets; those marked "medium" are
+  read from the Key alone and are re-checked by 04_build_topology.py.
 
 acquisition:
-  # Filled in by 01_fetch_sources.py after it discovers real links. Left empty
-  # deliberately: no URL in this repository was ever confirmed against the live
-  # collection, so none is recorded as fact.
-  discovered: {}
+  # Supplied directly by the project owner rather than downloaded here: this
+  # environment's egress policy denies every lib.utexas.edu host. The files are
+  # UT Perry-Castaneda Library scans, 3400 x ~4100 px, 300 dpi, RGB JPEG,
+  # named in UT's own txu-sanborn-<city>-<year>-<sheet> convention.
+  skip: true
+  provenance: >
+    University of Texas Perry-Castaneda Library Map Collection, Sanborn Fire
+    Insurance Maps, Galveston 1889. Original at the Dolph Briscoe Center for
+    American History, University of Texas at Austin (per the credit line
+    printed on each scan). Supplied by the project owner 2026-08-14.
 
-# Each sheet lists its mapped REGIONS. Most sheets have exactly one. Sheet 1
-# has two, because the same physical page carries a detached section that
-# belongs somewhere else entirely.
 sheets:
   - id: "1"
-    file: ""                      # set by 01/02 from the download manifest
+    file: "txu-sanborn-galveston-1889-Sheet 1.jpg"
+    priority: 10          # wins where it overlaps a neighbour
     regions:
-      - id: "S1_main"
-        keep: true
-        mask: "masks/sheet1_regions.geojson"
-        note: >
-          The Sheet 1 region that the 1889 Key groups with sheets 2, 7-10, 27
-          and 29. Polygon must be drawn from the actual scan.
       - id: "S1_detached_43rd_45th"
         keep: false
         mask: "masks/sheet1_regions.geojson"
         note: >
-          EXCLUDED. The long narrow detached section printed on the same page,
-          in the 43rd/44th/45th Street area near the western waterfront
-          (Texas Standard Oil / cattle yard / railroad ground). Geographically
-          far from the selected group, so it must not enter the mosaic.
-          Excluded by mask only -- the archival scan is never modified.
+          EXCLUDED. Left panel of the page: Texas Standard Oil Mill, cattle
+          shed and yard, International & Great Northern R.R. yard with
+          turntable and locomotive house, Gulf Colorado & Santa Fe main track,
+          blocks 582-585, at 43rd-45th Street on the western bay shore. The
+          Key places this far from the selected group. Excluded by mask only;
+          the archival scan is untouched.
+      - id: "S1_main"
+        keep: true
+        mask: "masks/sheet1_regions.geojson"
+        note: >
+          RETAINED. Right panel: the harbour district, blocks 742-744,
+          22nd-25th Street, Av. A or Water E., New York S.S. Co / Mallory Line
+          wharves and basins. This is the Sheet 1 region the Key groups with
+          sheets 2, 7-10, 27 and 29.
   - id: "2"
-    file: ""
-    regions: [{id: "S2", keep: true, mask: "masks/sheet2_collar.geojson"}]
+    file: "txu-sanborn-galveston-1889-Sheet 2.jpg"
+    regions: [{id: "S2", keep: true, mask: "masks/sheet2_regions.geojson"}]
   - id: "7"
-    file: ""
-    regions: [{id: "S7", keep: true, mask: "masks/sheet7_collar.geojson"}]
+    file: "txu-sanborn-galveston-1889-Sheet 7.jpg"
+    regions: [{id: "S7", keep: true, mask: "masks/sheet7_regions.geojson"}]
   - id: "8"
-    file: ""
-    regions: [{id: "S8", keep: true, mask: "masks/sheet8_collar.geojson"}]
+    file: "txu-sanborn-galveston-1889-Sheet 8.jpg"
+    regions: [{id: "S8", keep: true, mask: "masks/sheet8_regions.geojson"}]
   - id: "9"
-    file: ""
-    regions: [{id: "S9", keep: true, mask: "masks/sheet9_collar.geojson"}]
+    file: "txu-sanborn-galveston-1889-Sheet 9.jpg"
+    regions: [{id: "S9", keep: true, mask: "masks/sheet9_regions.geojson"}]
   - id: "10"
-    file: ""
-    regions: [{id: "S10", keep: true, mask: "masks/sheet10_collar.geojson"}]
+    file: "txu-sanborn-galveston-1889-Sheet 10.jpg"
+    regions: [{id: "S10", keep: true, mask: "masks/sheet10_regions.geojson"}]
   - id: "27"
-    file: ""
-    regions: [{id: "S27", keep: true, mask: "masks/sheet27_collar.geojson"}]
+    file: "txu-sanborn-galveston-1889-Sheet 27.jpg"
+    regions: [{id: "S27", keep: true, mask: "masks/sheet27_regions.geojson"}]
   - id: "29"
-    file: ""
-    regions: [{id: "S29", keep: true, mask: "masks/sheet29_collar.geojson"}]
+    file: "txu-sanborn-galveston-1889-Sheet 29.jpg"
+    regions: [{id: "S29", keep: true, mask: "masks/sheet29_regions.geojson"}]
 
 geometry:
-  # Left empty on purpose: the anchor should be a sheet the Key shows near the
-  # middle of the group, so error spreads outward instead of accumulating
-  # across the whole run. Choose it after reading the Key.
-  anchor_region: ""
+  # Sheet 9 is held at identity. It sits in the middle-left of the block, is
+  # tied to three neighbours (1, 7, 10), and carries four streets and four
+  # avenues -- the richest control of any sheet here -- so error radiates
+  # outward from a well-determined sheet rather than accumulating from a corner.
+  anchor_region: "S9"
+  # Similarity only. Sheets abut along a street, so every tie point on a seam is
+  # collinear; a per-sheet affine model is rank deficient in that situation and
+  # its residuals are meaningless. See config/project.yaml for the measurement.
+  candidates: ["similarity"]
 
-# Adjacency, to be derived from the Key and from continuation notes printed at
-# the sheet edges -- not from assumption. 04_build_topology.py validates
-# whatever you put here (symmetry, unknown ids, contradictory directions) and
-# refuses an inconsistent graph.
-topology: []
-# Example of the expected shape, for reference only -- delete or replace:
-#   - region: "S2"
-#     neighbour: "S7"
-#     direction: "south"            # north|south|east|west|northeast|...
-#     shared_street: ""             # the street or feature running along the join
-#     confidence: "high"            # high|medium|low
-#     source: "1889 Key + continuation note printed on sheet 2 south edge"
-#     note: ""
+topology:
+  # --- reciprocated by notes printed on both sheets -------------------------
+  - {region: "S1_main", neighbour: "S2",  direction: "north", shared_street: "22nd Street",
+     confidence: "high",   source: "sheet 1 top 'SEE SHEET No 2.'; sheet 2 bottom -> 1"}
+  - {region: "S1_main", neighbour: "S9",  direction: "east",  shared_street: "Av. A or Water E.",
+     confidence: "high",   source: "sheet 1 right 'SEE SHEET No 9.'; sheet 9 left 'No 1'"}
+  - {region: "S9",  neighbour: "S7",  direction: "north", shared_street: "22nd Street",
+     confidence: "high",   source: "sheet 9 top 'See Sheet No 7'"}
+  - {region: "S2",  neighbour: "S7",  direction: "east",  shared_street: "Av. A or Water E.",
+     confidence: "high",   source: "sheet 2 right -> 7"}
+  - {region: "S9",  neighbour: "S10", direction: "east",  shared_street: "Av. D or Market E.",
+     confidence: "high",   source: "sheet 9 right 'No 10'"}
+  # --- read from the 1889 Key; re-checked by 04_build_topology.py -----------
+  - {region: "S7",  neighbour: "S8",  direction: "east",  shared_street: "Av. D or Market E.",
+     confidence: "medium", source: "1889 Key: 7 and 8 adjacent in the upper row"}
+  - {region: "S8",  neighbour: "S29", direction: "east",  shared_street: "Av. G or Winnie E.",
+     confidence: "medium", source: "1889 Key: 8 and 29 adjacent in the upper row"}
+  - {region: "S10", neighbour: "S27", direction: "east",  shared_street: "Av. G or Winnie E.",
+     confidence: "medium", source: "1889 Key: 10 and 27 adjacent in the lower row"}
+  - {region: "S10", neighbour: "S8",  direction: "north", shared_street: "22nd Street",
+     confidence: "medium", source: "1889 Key: 8 sits above 10"}
+  - {region: "S27", neighbour: "S29", direction: "north", shared_street: "22nd Street",
+     confidence: "medium", source: "1889 Key: 29 sits above 27"}

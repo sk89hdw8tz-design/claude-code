@@ -1,0 +1,95 @@
+{
+  "type": "FeatureCollection",
+  "name": "sheet1_regions",
+  "pixel_crs": "Coordinates are source-image pixels (x right, y DOWN) of the original unmodified scan named in properties.source_image. NOT a geographic CRS.",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              51.0,
+              6.0
+            ],
+            [
+              1552.0,
+              6.0
+            ],
+            [
+              1552.0,
+              3992.0
+            ],
+            [
+              51.0,
+              3992.0
+            ],
+            [
+              51.0,
+              6.0
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "sheet": "1",
+        "region": "S1_detached_43rd_45th",
+        "keep": false,
+        "role": "excluded_region",
+        "source_image": "txu-sanborn-galveston-1889-Sheet 1.jpg",
+        "pixel_crs": "Coordinates are source-image pixels (x right, y DOWN) of the original unmodified scan named in properties.source_image. NOT a geographic CRS.",
+        "note": "Texas Standard Oil Mill / cattle yards / I&GN railroad yard, blocks 582-585, 43rd-45th St. EXCLUDED.",
+        "confidence": "high",
+        "defined_by": "left panel, divider rule at x~1560, verified against the 1889 Key"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              1568.0,
+              106.58875518309324
+            ],
+            [
+              3081.265273774204,
+              113.57962091153057
+            ],
+            [
+              2937.930734971677,
+              3992.0
+            ],
+            [
+              1568.0,
+              3992.0
+            ],
+            [
+              1568.0,
+              106.58875518309324
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "sheet": "1",
+        "region": "S1_main",
+        "keep": true,
+        "role": "map_region",
+        "source_image": "txu-sanborn-galveston-1889-Sheet 1.jpg",
+        "pixel_crs": "Coordinates are source-image pixels (x right, y DOWN) of the original unmodified scan named in properties.source_image. NOT a geographic CRS.",
+        "note": "Butt joint on shared centrelines; free edges run to the mapped-area bound.",
+        "confidence": "high",
+        "defined_by": "cut at boundary street/avenue centrelines where a neighbour exists"
+      }
+    }
+  ],
+  "source_image": "txu-sanborn-galveston-1889-Sheet 1.jpg",
+  "sheet": "1",
+  "image_size": [
+    3400,
+    4118
+  ]
+}
