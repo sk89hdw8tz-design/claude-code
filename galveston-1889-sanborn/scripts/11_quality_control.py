@@ -278,10 +278,11 @@ def main():
                   f"{cvs['rms']:.2f} | {cvs['p90']:.2f} | {cvs['max']:.2f} |")
     md += ["", f"Target: median <= {good:.0f} px, nothing unexplained above {gross:.0f} px.",
            "", "## Seams", "",
-           "| sheet A | sheet B | n | median px | max px | bias | scatter | reading |",
-           "|---|---|---|---|---|---|---|---|"]
+           "| sheet A | sheet B | contact | n | median px | max px | bias | scatter | reading |",
+           "|---|---|---|---|---|---|---|---|---|"]
     for s in seam_rows:
-        md.append(f"| {s['pair'][0]} | {s['pair'][1]} | {s['n']} | {s['median']:.2f} | "
+        md.append(f"| {s['pair'][0]} | {s['pair'][1]} | {s.get('contact','?')} | "
+                  f"{s['n']} | {s['median']:.2f} | "
                   f"{s['max']:.2f} | {(s['bias'] or 0):.2f} | {(s['scatter'] or 0):.2f} | "
                   f"{s['verdict']} |")
     md += ["", "`bias` is the mean displacement of the whole seam (a systematic "
