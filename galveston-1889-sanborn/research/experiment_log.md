@@ -170,3 +170,55 @@ mapped-area bound so nothing real is trimmed.
 The cut positions and the control points must come from the **same** centreline
 refinement run. Computed from different runs they disagree by tens of pixels and
 the seams reopen.
+
+---
+
+## 10. "Collinear control is the root cause" — WRONG, retracted
+
+Claimed sheets 1/2 failed because their control lies along Avenue A only. The
+project's own rank test already contradicted this: per-sheet **similarity has
+nullity 0 with collinear ties**; affine has nullity 4. Two separated points
+determine a similarity. Collinearity is fatal to affine, not to similarity.
+
+Do not re-raise collinearity as an explanation for a similarity fit.
+
+## 11. Boundary-street recovery — implemented, partially effective
+
+Two seams (S1_main|S2, S27|S29) had **zero** shared control because a sheet's
+boundary street sits at the paper edge where the band search is least reliable
+and the quality gates discarded it. Recovery predicts the position from the
+sheet's own regular pitch and then MEASURES there in a tight window; a
+prediction that cannot be measured is refused rather than recorded as an
+observation. Re-running with different gate parameters produced a *worse*
+control set overall (83 vs 95 observations), so the 06b set was retained.
+
+## 12. Street-direction constraints — implemented; they expose an evidence conflict
+
+A street drawn on two sheets must run the same way on both. Encoded as a
+synthetic correspondence at a 2500 px lever arm from a genuine shared
+intersection, pooled over 3–4 streets per sheet.
+
+| solution | real-tie median | direction disagreement | scale spread |
+|---|---|---|---|
+| intersections only | 5.60 px | — | 4.62% |
+| + direction (high) | 14.96 px | 0.189° | 0.83% |
+| + direction (low) | 7.18 px | 1.152° | 4.29% |
+
+The classes are mutually inconsistent — directions agree to 0.19°, positions to
+5.6 px, and both cannot hold. Residuals must be reported **per class**: a small
+angular error becomes a large displacement at a long lever arm, so a combined
+median is meaningless.
+
+## 13. Grid-pitch scale check — THE decisive measurement
+
+Pixels per one numbered-street step, on eight sheets of one edition at one
+nominal scale scanned to near-identical dimensions, should agree to a fraction
+of a percent. Measured spread: **8.24%** (1102–1193 px), larger than either
+transform solution's scale spread.
+
+**Therefore the binding constraint is control-point measurement precision** —
+several percent, consistent with per-band fit rms of 20–110 px — not the
+transform model, not topology, not collinearity. This explains why adding more
+automatic correspondences made things worse rather than better, and it means no
+amount of further automatic matching of the same kind will fix the failing
+seams.

@@ -1,0 +1,67 @@
+note: Shared lines used to build direction constraints. These encode that a street drawn on two sheets
+  is the same street and must run the same way on both.
+constraints:
+- pair:
+  - S1_main
+  - S9
+  kind: street
+  shared:
+  - 23rd
+  - 24th
+  - 25th
+  anchor_point: 24th|A
+  dir_a:
+  - 0.9999965911552173
+  - 0.0026110683532237625
+  dir_b:
+  - 0.9999886737328272
+  - -0.004759454386956356
+  lever_px: 2500.0
+- pair:
+  - S9
+  - S10
+  kind: street
+  shared:
+  - 23rd
+  - 24th
+  - 25th
+  anchor_point: 24th|D
+  dir_a:
+  - 0.9999886737328272
+  - -0.004759454386956356
+  dir_b:
+  - 0.9999990042654628
+  - -0.0014111938501981283
+  lever_px: 2500.0
+- pair:
+  - S8
+  - S29
+  kind: street
+  shared:
+  - 19th
+  - 20th
+  - 21st
+  anchor_point: 20th|G
+  dir_a:
+  - 0.9999378239337743
+  - 0.011151155392529852
+  dir_b:
+  - 0.9999833162155498
+  - 0.00577644272468354
+  lever_px: 2500.0
+- pair:
+  - S10
+  - S27
+  kind: street
+  shared:
+  - 23rd
+  - 24th
+  - 25th
+  anchor_point: 24th|G
+  dir_a:
+  - 0.9999990042654628
+  - -0.0014111938501981283
+  dir_b:
+  - 0.9999661939171823
+  - 0.008222592218044625
+  lever_px: 2500.0
