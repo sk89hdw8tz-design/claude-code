@@ -462,12 +462,30 @@ module.exports = function (t, FM) {
   (function () {
     var packIds = FM.weights.PACKS.map(function (p) { return p.id; });
 
-    var unresolved = ALL.filter(function (j) { return !FM.juris.packFor(j.id).resolved; });
+    /* A REFUSED jurisdiction is not an unresolved one. Coastal North
+       Carolina has no region pack, and running it against the Piedmont
+       pack — 115 mph against a 140 mph county, ~1.5x out on velocity
+       pressure — was ruled worse than refusing. So these are asserted to
+       refuse, by name, and everything below is checked over the
+       jurisdictions that are meant to resolve. */
+    var REFUSED = ["nc-newhanover", "nc-brunswick"];
+    REFUSED.forEach(function (id) {
+      var pf = FM.juris.packFor(id);
+      t.eq(pf.refused, true, "juris · " + id + " is refused, not substituted");
+      t.eq(pf.packId, null, "juris · " + id + " resolves to no pack at all");
+      t.truthy(pf.why && pf.why.indexOf("coastal North Carolina") !== -1,
+               "juris · " + id + " says why, and names the missing pack");
+    });
+    var ROUTABLE = ALL.filter(function (j) { return REFUSED.indexOf(j.id) === -1; });
+    t.eq(ROUTABLE.length, ALL.length - REFUSED.length,
+         "every other jurisdiction is expected to route to a pack");
+
+    var unresolved = ROUTABLE.filter(function (j) { return !FM.juris.packFor(j.id).resolved; });
     t.eq(unresolved.length, 0,
-         "packFor() resolves for every jurisdiction" +
+         "packFor() resolves for every jurisdiction it does not refuse" +
          (unresolved.length ? " — failed on " + unresolved.map(function (j) { return j.id; }).join(", ") : ""));
 
-    var bogus = ALL.filter(function (j) {
+    var bogus = ROUTABLE.filter(function (j) {
       return packIds.indexOf(FM.juris.packFor(j.id).packId) === -1;
     });
     t.eq(bogus.length, 0,
@@ -475,13 +493,13 @@ module.exports = function (t, FM) {
 
     /* the mapping must also be declared on the lightweight listing,
        so a caller does not have to build a full site record to route */
-    var listedMatch = ALL.every(function (j) {
+    var listedMatch = ROUTABLE.every(function (j) {
       return j.packId === FM.juris.packFor(j.id).packId;
     });
     t.truthy(listedMatch, "jurisdictions() and packFor() agree on the pack id");
 
     /* every pack must have a reason, not just an id */
-    var reasoned = ALL.every(function (j) {
+    var reasoned = ROUTABLE.every(function (j) {
       var pf = FM.juris.packFor(j.id);
       return pf.basis && pf.basis.length > 10 && pf.verdict;
     });
@@ -495,11 +513,17 @@ module.exports = function (t, FM) {
              "and says by name what went wrong");
   })();
 
+  /* Jurisdictions the product REFUSES carry no pack and therefore no
+     difference report — there is nothing to compare against. Every suite
+     below compares a jurisdiction to its pack, so they run over the
+     routable set. The refusals themselves are asserted above, by name. */
+  var ROUTES = ALL.filter(function (j) { return !FM.juris.packFor(j.id).refused; });
+
   t.suite("juris · every reported pack difference is a real difference");
   (function () {
     var fake = [], missed = [], wrongDelta = [];
 
-    ALL.forEach(function (j) {
+    ROUTES.forEach(function (j) {
       var pf = FM.juris.packFor(j.id);
       var pack = packById(pf.packId);
       var site = FM.juris.forSite(j.id);
@@ -555,7 +579,7 @@ module.exports = function (t, FM) {
     /* the agreements must be real too, or the badge lies in the
        other direction — the same defect O.1/D1 found in compare() */
     var badAgree = [];
-    ALL.forEach(function (j) {
+    ROUTES.forEach(function (j) {
       var pf = FM.juris.packFor(j.id);
       var pack = packById(pf.packId);
       var site = FM.juris.forSite(j.id);
@@ -587,20 +611,30 @@ module.exports = function (t, FM) {
 
   t.suite("juris · the packs are approximations and the module says how far off");
   (function () {
-    /* coastal North Carolina has no pack of its own */
+    /* Coastal North Carolina has no pack of its own, and is now REFUSED
+       rather than reported-against-a-substitute.
+
+       This block used to assert that packFor() described how far wrong the
+       Piedmont pack was for Wilmington: gravity-governed pack against a
+       wind-governed county, 115 mph against 140. Those assertions passed
+       and the product still resolved the substitution, printed a Piedmont
+       code basis, and disclosed the gap only inside a function nobody
+       opens. A review panel ruled that disclosure without a control, and
+       the refusal replaced it — so what is asserted now is that no pack
+       comes back at all, and that the reason names the missing one. */
     ["nc-newhanover", "nc-brunswick"].forEach(function (id) {
       var pf = FM.juris.packFor(id);
-      var pack = packById(pf.packId);
       var site = FM.juris.forSite(id);
 
-      var g = pf.differences.filter(function (d) { return d.field === "governs"; })[0];
-      t.truthy(g && site.governs === "wind" && pack.governs === "gravity",
-               id + " is wind-governed and its nearest pack is gravity-governed — reported, not hidden");
-
-      var w = pf.differences.filter(function (d) { return d.field === "wind.vMph"; })[0];
-      t.truthy(w && w.jurisValue > w.packValue,
-               id + " carries a higher wind speed than its pack (" + (w ? w.jurisValue : "?") +
-               " vs " + (w ? w.packValue : "?") + " mph) and the pack understates it");
+      t.eq(pf.refused, true, id + " is refused rather than mapped to a substitute pack");
+      t.eq(pf.packId, null, id + " comes back with no pack id at all");
+      t.eq(pf.differences, null,
+           id + " reports no difference list, because there is no pack to differ from");
+      t.eq(site.governs, "wind", id + " is wind-governed, which is why the gravity pack was refused");
+      t.truthy(pf.why && pf.why.indexOf("140 mph") !== -1 && pf.why.indexOf("115 mph") !== -1,
+               id + " states both speeds in its refusal, so the size of the gap is on the record");
+      t.truthy(pf.why && /REFUSED/.test(pf.why),
+               id + " says the word, rather than leaving a caller to infer it from a null");
     });
 
     /* south-west and south-east Florida against the central pack */
@@ -615,7 +649,7 @@ module.exports = function (t, FM) {
     });
 
     /* the coastal Texas windstorm regime the packs cannot express */
-    var cat = ALL.filter(function (j) { return j.catastropheArea; });
+    var cat = ROUTES.filter(function (j) { return j.catastropheArea; });
     t.truthy(cat.length >= 3,
              "the TDI designated catastrophe area covers more than one jurisdiction here (" +
              cat.length + ")");
@@ -630,7 +664,7 @@ module.exports = function (t, FM) {
 
     /* no pack states an edition, so the module must say so rather
        than letting a reader assume the pack agrees with it */
-    var everyEdition = ALL.every(function (j) {
+    var everyEdition = ROUTES.every(function (j) {
       return FM.juris.packFor(j.id).differences.some(function (d) {
         return d.field === "code.edition" && d.packValue === null;
       });
@@ -720,7 +754,7 @@ module.exports = function (t, FM) {
 
   t.suite("juris · the checklist names what this package is not");
   (function () {
-    var everySeal = ALL.every(function (j) {
+    var everySeal = ROUTES.every(function (j) {
       return FM.juris.checklist(j.id).some(function (c) {
         return c.id === "seal" && c.item.indexOf("does not seal") !== -1;
       });
@@ -728,14 +762,14 @@ module.exports = function (t, FM) {
     t.truthy(everySeal,
              "every checklist states that the software does not seal — ARCHITECTURE non-negotiable 1");
 
-    var everyConn = ALL.every(function (j) {
+    var everyConn = ROUTES.every(function (j) {
       return FM.juris.checklist(j.id).some(function (c) { return c.id === "connections"; });
     });
     t.truthy(everyConn,
              "and that uplift, the load path and every connection are designed by others " +
              "(calc-spec §8.11, §8.17)");
 
-    var noneSatisfied = ALL.every(function (j) {
+    var noneSatisfied = ROUTES.every(function (j) {
       return FM.juris.checklist(j.id).every(function (c) { return c.satisfiedByThisTool === false; });
     });
     t.truthy(noneSatisfied,

@@ -123,12 +123,21 @@ module.exports = function (t, FM) {
        TOTAL              = 233.3333 bf
      in the members (cut length = span + 0.5):
        HDR-W    2.0000 x 5.00  x 8 = 80.0000
-       HDR-ENT  2.0000 x 4.17  x 1 =  8.3400   (mark span 3.67 exactly)
-       BM-ENT   2.0000 x 8.50  x 1 = 17.0000
-       HDR-SLD  2.6667 x 7.00  x 1 = 18.6667
-       HDR-GAR  4.0000 x 10.17 x 1 = 40.6800
-       TOTAL                       = 164.6867
-     drop = 233.3333 - 164.6867 = 68.6467 bf  → 29.42% of the buy.
+       HDR-ENT  2.0000 x 4.1667 x 1 =  8.3334   (mark span 3.6667 exactly)
+       BM-ENT   2.0000 x 8.5000 x 1 = 17.0000
+       HDR-SLD  2.6667 x 7.0000 x 1 = 18.6667
+       HDR-GAR  4.0000 x 10.2500 x 1 = 41.0000
+       TOTAL                        = 165.0001
+     drop = 233.3333 - 165.0001 = 68.3332 bf  → 29.29% of the buy.
+
+     HDR-GAR moved 40.68 -> 41.00 bf and HDR-ENT 8.34 -> 8.3334 because their
+     SPANS moved: the rough opening became the declared architectural fact
+     and the span its consequence. HDR-GAR is a 9'-0" sectional door framed
+     at its nominal size, so 9.0 + 4.5 in each end = 9.75 ft, cut 10.25.
+     It previously declared 9.67 ft, derived by applying the pre-hung
+     SWING-door +2 in allowance to a sectional door and then adding 3 in of
+     bearing that contradicted the 4.5 in the mark itself declares. The
+     drawn opening came out 8'-11" for a 9'-0" door.
 
      MATERIAL [market] — bf x $/bf x material(1.00) x (1 + cullRate):
        tx-i35 palette: SYP No.2 $0.70/bf cull 0.03; SYP No.1 $0.86/bf cull 0.03
@@ -174,8 +183,8 @@ module.exports = function (t, FM) {
     near(L3.bf, 64 / 3, 1e-9, "L3 bf = 2.6667 x 8 x 1 = 21.3333");
     near(L4.bf, 48.0, 1e-9, "L4 bf = 4.0000 x 12 x 1 = 48.0000");
     near(b.totals.bf, 233.33333333, 1e-6, "purchased bf = 233.3333 (hand-summed)");
-    near(b.totals.cutBf, 164.6867, 1e-4, "bf in the members = 164.6867 (hand-summed)");
-    near(b.totals.dropBf, 68.6466, 1e-4, "drop bf = 233.3333 - 164.6867 = 68.6466");
+    near(b.totals.cutBf, 165.0001, 1e-4, "bf in the members = 165.0001 (hand-summed)");
+    near(b.totals.dropBf, 68.3332, 1e-4, "drop bf = 233.3333 - 165.0001 = 68.3332");
 
     /* money, per the hand arithmetic, [market] */
     near(L1.extUSD, 103.824, 1e-6, "L1 $ = 144.0 x 0.70 x 1.03 = $103.824 [market]");
@@ -715,8 +724,8 @@ module.exports = function (t, FM) {
     near(gar.bearingPerEndIn, 4.5, 1e-9, "HDR-GAR declares 4.5 in of bearing at each end");
     near(gar.bearingNeedFt, 0.75, 1e-9, "which is 0.75 ft of the piece, not the flat 0.50");
     eq(gar.bearingTight, true, "so the line records that the flat rule is thinner than the mark");
-    near(gar.cutWithDeclaredBearingFt, 10.42, 1e-9,
-         "the true cut is 9.67 + 0.75 = 10.42 ft, longer than the 10.17 the rule computes");
+    near(gar.cutWithDeclaredBearingFt, 10.5, 1e-9,
+         "the true cut is 9.75 + 0.75 = 10.5 ft, longer than the 10.25 the rule computes");
     eq(gar.stockIfDeclaredBearingFt, 12, "and still lands on a 12 ft stick");
     eq(gar.stockAbsorbsIt, true, "— absorbed by the 2 ft rounding, which is luck, not a rule");
 

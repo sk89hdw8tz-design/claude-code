@@ -731,7 +731,47 @@
        each bearing — not the member size — and the engine already computes it.
        Publishing it is nearly free and is the most useful thing this output can
        hand a production builder. */
-    var reactions = pick ? endReactions(demand, pick, policy) : null;
+    /* PUBLISHED FOR EVERY MARK, not only the ones that got a member.
+
+       The reaction is a property of the DEMAND: (combination psf ×
+       tributary) × span / 2. No term in it comes from the section, so
+       gating it on `pick` was never a correctness requirement — and it
+       meant the marks that ESCALATE published nothing, which is exactly
+       backwards. An escalating mark is one whose demand outran the sawn
+       ladder; its reaction is among the largest on the plan and the most
+       likely to decide a jack count, a hanger or a post below.
+
+       A ten-person review panel was asked whether three garage headers
+       needed two jacks or three. Nine of ten answered "undeterminable —
+       publish the governing reaction per mark", because the plan data
+       justified three jacks with the words "the largest reaction on the
+       plan", which establishes nothing about bearing, and nothing in the
+       output let a reviewer check it. The engine had the number the whole
+       time.
+
+       `considered` carries the inputs of every candidate evaluated, and
+       every one of them shares the same demand — so any row will do when
+       nothing was picked. */
+    var reactionSrc = pick || considered[0] || null;
+    var reactions;
+    if (reactionSrc) {
+      reactions = endReactions(demand, reactionSrc.inputs, policy, null);
+    } else {
+      /* Nothing was evaluated at all — every candidate was rejected at the
+         PROCUREMENT gate before an engine call, which is how the largest
+         headers on a plan (the ones that escalate straight to an LVL or a
+         girder truss) end up with no evaluated row. Those are precisely the
+         marks whose reaction a truss supplier and a connector designer need,
+         so the demand alone is resolved. Self-weight is the only term that
+         needed a section, and its absence is stated rather than absorbed. */
+      reactions = endReactions(demand, {
+        dead: num(demand.dead, 0),
+        live: num(demand.live, 0),
+        roofLoad: num(demand.roofLoad, 0),
+        roofType: demand.roofType || "snow",
+        spacing: demand.repetitive ? 0 : Number(demand.trib || 0) * 12
+      }, policy, { noSelfWeight: true });
+    }
 
     /* Escalation is a status, not a footnote. A plan with an escalation is not
        a finished schedule and must not read like one. */
@@ -819,11 +859,17 @@
   /* R = w·L/2 per bearing, at the governing combination — calc-spec §3.2.
      Reported unreduced: the §3.4.3.1 d-reduction is a shear allowance and must
      never be applied to a bearing reaction. */
-  function endReactions(demand, row, policy) {
-    var D = Number(row.inputs.dead || 0), L = Number(row.inputs.live || 0),
-        Lr = Number(row.inputs.roofLoad || 0);
-    var combos = combosFor(D, L, Lr, row.inputs.roofType);
-    var t = row.inputs.spacing / 12;
+  function endReactions(demand, inputs, policy, opts) {
+    var noSW = !!(opts && opts.noSelfWeight);
+    var D = Number(inputs.dead || 0), L = Number(inputs.live || 0),
+        Lr = Number(inputs.roofLoad || 0);
+    var combos = combosFor(D, L, Lr, inputs.roofType);
+    var t = Number(inputs.spacing || 0) / 12;
+    if (!(t > 0)) {
+      return { perBearingLb: null, combo: null, excludesSelfWeight: noSW,
+               note: "No reaction: the tributary this member carries is not determined, so " +
+                     "there is no load to resolve at a bearing." };
+    }
     var worst = null;
     combos.forEach(function (c) {
       var R = (c.psf * t) * demand.span / 2;
@@ -832,8 +878,15 @@
     return {
       perBearingLb: worst ? worst.lb : null,
       combo: worst ? worst.combo : null,
+      excludesSelfWeight: noSW,
       note: "Unreduced support reaction at each bearing, governing gravity combination. " +
-            "Hand this to the truss, EWP or connector designer — the connection is not designed here."
+            "Hand this to the truss, EWP or connector designer — the connection is not designed here." +
+            (noSW
+              ? " EXCLUDES MEMBER SELF-WEIGHT: no member was selected for this mark, so there is " +
+                "no section to weigh. The demand's own dead load is included. Expect the true " +
+                "reaction to be a little higher — for a sawn header this term is normally a low " +
+                "single-digit percentage, and it is named here rather than folded in silently."
+              : "")
     };
   }
 

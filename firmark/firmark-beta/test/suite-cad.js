@@ -647,8 +647,14 @@ module.exports = function (t, FM) {
     var garage = L.openings.filter(function (o) { return o.kind === "garage"; });
     t.eq(garage.length, 1, "starter · one garage door");
     t.eq(garage[0].wallId, "W1", "starter · in the front wall, which the mark says is a bearing line");
-    t.near(garage[0].widthFt, 9.67 - 2 * 4.5 / 12, 1e-9,
-           "starter · its rough opening is the 9.67 ft header span less 4.5 in of bearing each end");
+    /* The rough opening is DECLARED now, not derived. This assertion used to
+       read "the 9.67 ft header span less 4.5 in of bearing each end" and
+       expected 8.92 ft — an 8'-11" hole for the 9'-0" door the mark's own
+       note named. That is the defect the schema change removed: the opening
+       is the architectural fact and the span follows it. */
+    t.near(garage[0].widthFt, 9.0, 1e-9,
+           "starter · its rough opening is the 9'-0\" the plan declares — a sectional " +
+           "door is framed at its nominal size");
     t.near(garage[0].headHeightFt, 7, 1e-9, "starter · at the 84 in head height the mark declares");
     var slider = L.openings.filter(function (o) { return o.kind === "slider"; });
     t.eq(slider[0].wallId, "W3", "starter · the REAR slider is in the rear wall");
@@ -675,7 +681,11 @@ module.exports = function (t, FM) {
     t.eq(pinned.length, 2, "starter · and both are drawn at the offset the plan gives, not a placeholder");
     pins.forEach(function (mk) {
       var hit = L.openings.filter(function (o) { return o.note.indexOf("From mark " + mk.id + ":") === 0; })[0];
-      t.near(hit.offsetFt, mk.opening.offsetFt, 1e-9,
+      /* 1e-3 ft = 0.012 in. cad.js rounds a laid-out offset to three
+         decimals, so a 4-decimal declared offset (26.4167) is drawn at
+         26.417 and an exact comparison fails on the rounding rather than on
+         a defect. */
+      t.near(hit.offsetFt, mk.opening.offsetFt, 1e-3,
              "starter · " + mk.id + " sits at the " + mk.opening.offsetFt +
              " ft its own `opening` block declares");
       t.eq(hit.offsetBasis, "plan", "starter · and " + mk.id + " is marked as read from the plan");
@@ -684,7 +694,7 @@ module.exports = function (t, FM) {
        centred on: the door on the 8 ft stoop that runs 24-32 ft, the garage
        door in the 12 ft bay that runs 34-46 ft */
     var entryAp = dr.appendages[0];
-    t.near(doors[0].offsetFt + doors[0].widthFt / 2, entryAp.offsetFt + entryAp.widthFt / 2, 1e-9,
+    t.near(doors[0].offsetFt + doors[0].widthFt / 2, entryAp.offsetFt + entryAp.widthFt / 2, 1e-3,
            "starter · the entry door centres on the 8 ft covered entry at 28 ft, as its note says");
     t.near(garage[0].offsetFt + garage[0].widthFt / 2,
            dr.garageAt.offsetFt + plan.geometry.garage.widthFt / 2, 1e-9,
@@ -943,16 +953,17 @@ module.exports = function (t, FM) {
     t.eq(plan1850.marks.filter(function (mk) { return mk.id === "HDR-GAR-G"; }).length, 0,
          "sunbelt · the gable-end reading of the garage header is gone from the plan");
     t.eq(plan1850.marks.filter(function (mk) {
-      return mk.role === "header" && Math.abs(mk.span - 16.67) < 1e-9;
-    }).length, 1, "sunbelt · exactly one mark now describes the 16'-8\" hole");
+      return mk.role === "header" && Math.abs(mk.span - 16.5) < 1e-9;
+    }).length, 1, "sunbelt · exactly one mark now describes the 16'-0\" door");
     t.eq(cad.stats(s).openings, 15,
          "sunbelt · 13 of the 14 typical windows, the rear slider and the garage door");
     var sGar = sL.openings.filter(function (o) { return o.kind === "garage"; });
     t.eq(sGar.length, 1, "sunbelt · the garage door IS placed now, because only one mark describes it");
     t.eq(sGar[0].wallId, "W1", "sunbelt · in the front 50 ft wall, which is a truss bearing line");
     t.eq(sGar[0].offsetBasis, "plan", "sunbelt · at a declared offset, not a placeholder");
-    t.near(sGar[0].offsetFt, 31.915, 1e-9,
-           "sunbelt · 31.915 ft, which is HDR-GAR-B's own `opening` block");
+    t.near(sGar[0].offsetFt, 32.0, 1e-9,
+           "sunbelt · 32.0 ft, which is HDR-GAR-B's own `opening` block — it moved from " +
+           "31.915 when the opening became the 16'-0\" nominal door rather than 16'-2\"");
     t.near(sGar[0].offsetFt + sGar[0].widthFt / 2,
            plan1850.geometry.drawn.garageAt.offsetFt + plan1850.geometry.garage.widthFt / 2, 1e-9,
            "sunbelt · centred in the 20 ft garage bay that runs 30-50 ft along that face");

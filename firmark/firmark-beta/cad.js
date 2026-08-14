@@ -353,7 +353,20 @@
           offsetFt: num(o.offsetFt) || 0, widthFt: num(o.widthFt) || 0,
           headHeightFt: num(o.headHeightFt),
           kind: OPENING_KINDS.indexOf(o.kind) === -1 ? "window" : o.kind,
-          note: o.note || "", offsetBasis: o.offsetBasis || "user"
+          note: o.note || "", offsetBasis: o.offsetBasis || "user",
+          /* WHITELISTED, and this list is the whole reason to be careful:
+             anything not named here is silently dropped on every save and
+             reload. `system` on a framing region and `face` on a wall have
+             each already vanished this way, taking a truss classification
+             and a wall orientation with them.
+
+             markId is what ties a drawn hole back to the mark that sized
+             it. fromPlan() has always set it and the normaliser has always
+             thrown it away, so nothing downstream — not the plan set, not
+             the DXF, not a test — could ask "is this opening the size its
+             own mark declares?" That question is now asked in
+             test/suite-marks.js, and it needs this field to ask it. */
+          markId: o.markId ? String(o.markId) : null
         });
       });
       (L.framing || []).forEach(function (f) {
@@ -1720,11 +1733,32 @@
       /* rough opening = the header span less its bearing at each end */
       var spanFt = num(mk.span);
       var bearingIn = num(mk.bearing);
-      var roFt = bearingIn === null ? spanFt : spanFt - 2 * bearingIn / 12;
+      /* THE ROUGH OPENING IS DECLARED, NOT DERIVED — when the plan says so.
+
+         Deriving it as span − 2 × bearing made the hole a function of the
+         jack count, so an engineer changing bearing on a reaction check
+         silently moved the customer's door. That is exactly how three
+         garage doors came to be drawn 3 in short of the door their own
+         note named, and it reached the framing plan and the DXF.
+
+         A rough opening is a purchased product's fixed dimension and it
+         belongs to the architectural door schedule. So `opening.roFt`, or
+         `mark.roFt`, is read straight through when present, and the span
+         is the consequence. The derivation survives only for marks that
+         declare no rough opening, and says so in its own basis text. */
+      var declaredRO = num(od && od.roFt);
+      if (declaredRO === null) declaredRO = num(mk.roFt);
+      var derivedRO = bearingIn === null ? spanFt : spanFt - 2 * bearingIn / 12;
+      var roFt = declaredRO === null ? derivedRO : declaredRO;
       var headFt = num(mk.headHeightIn) === null ? null : num(mk.headHeightIn) / 12;
       var pinned = od && num(od.offsetFt) !== null;
-      var basisText = "From mark " + mk.id + ": rough opening = span " + f2(spanFt) + " ft less " +
-                      (bearingIn === null ? "no declared bearing" : f1(bearingIn) + " in of bearing at each end") +
+      var basisText = "From mark " + mk.id + ": rough opening " +
+                      (declaredRO === null
+                        ? "= span " + f2(spanFt) + " ft less " +
+                          (bearingIn === null ? "no declared bearing"
+                                              : f1(bearingIn) + " in of bearing at each end") +
+                          ", because the mark declares no rough opening of its own"
+                        : f2(declaredRO) + " ft is DECLARED on the mark, and the span follows it") +
                       ". " + (pinned
                         ? "Offset " + f2(num(od.offsetFt)) + " ft along the wall is DECLARED on the plan" +
                           (od.note ? ": " + od.note : ".")
@@ -1846,7 +1880,8 @@
         if (p.pin === null) return;
         lv.openings.push(newOpening(lv, wid, Math.round(p.pin * 1000) / 1000, p.widthFt, {
           id: (lv === L2 ? L2.id + "-" : "") + nextId(lv.openings, "O"),
-          headHeightFt: p.headFt, kind: p.kind, note: p.note, offsetBasis: "plan"
+          headHeightFt: p.headFt, kind: p.kind, note: p.note, offsetBasis: "plan",
+          markId: p.markId
         }));
         placedNow.push([p.pin, p.pin + p.widthFt]);
       });
@@ -1870,7 +1905,8 @@
         var at = Math.round((best[0] + bo[0]) * 1000) / 1000;
         lv.openings.push(newOpening(lv, wid, at, p.widthFt, {
           id: (lv === L2 ? L2.id + "-" : "") + nextId(lv.openings, "O"),
-          headHeightFt: p.headFt, kind: p.kind, note: p.note, offsetBasis: "placeholder"
+          headHeightFt: p.headFt, kind: p.kind, note: p.note, offsetBasis: "placeholder",
+          markId: p.markId
         }));
         p.inBay = true;
         placedNow.push([at, at + p.widthFt]);
@@ -1906,7 +1942,8 @@
               lv.openings.push(newOpening(lv, wid, Math.round((seg[0] + offs[i]) * 1000) / 1000,
                 p.widthFt, {
                   id: (lv === L2 ? L2.id + "-" : "") + nextId(lv.openings, "O"),
-                  headHeightFt: p.headFt, kind: p.kind, note: p.note, offsetBasis: "placeholder"
+                  headHeightFt: p.headFt, kind: p.kind, note: p.note, offsetBasis: "placeholder",
+                  markId: p.markId
                 }));
             });
             queue = queue.slice(take);

@@ -2051,6 +2051,10 @@
       id: "nc-newhanover", name: "Wilmington / New Hanover County", county: "New Hanover",
       state: "NC", kind: "county",
       packId: "nc-piedmont",
+      noPack: "There is no coastal North Carolina region pack. New Hanover is a 140 mph " +
+              "wind-governed county and nc-piedmont is a 115 mph pack — roughly 1.5x out on " +
+              "velocity pressure, and it carries the wrong decay and termite class with it. " +
+              "Substituting it would put a Piedmont code basis on a Wilmington cover sheet.",
       packWhy: "THE PRODUCT HAS NO COASTAL NORTH CAROLINA PACK. This is the least-bad of six wrong " +
                "answers and packFor() reports how wrong it is.",
       governs: "wind",
@@ -2106,6 +2110,9 @@
     {
       id: "nc-brunswick", name: "Brunswick County", county: "Brunswick", state: "NC", kind: "county",
       packId: "nc-piedmont",
+      noPack: "There is no coastal North Carolina region pack. Brunswick is a 140 mph " +
+              "wind-governed county and nc-piedmont is a 115 mph pack — roughly 1.5x out on " +
+              "velocity pressure, and it carries the wrong decay and termite class with it.",
       packWhy: "THE PRODUCT HAS NO COASTAL NORTH CAROLINA PACK. See packFor() for the size of the gap.",
       governs: "wind",
       codes: [codeRec({ name: "NC State Building Code: Residential Code", edition: "2018 NCRC",
@@ -2766,6 +2773,29 @@
         why: "FM.weights is not loaded, so the pack's real values could not be read and no " +
              "difference could be computed. The pack id is reported unchecked. Load weights.js " +
              "before jurisdiction.js — build.js already orders it that way.",
+        differences: null, agreements: null,
+        mustVerify: verifyFor(j), checked: CHECKED
+      };
+    }
+
+    /* REFUSED, not substituted.
+
+       A ten-person review panel voted 4-1 (engineers, whose question this
+       was) to refuse these jurisdictions rather than run them under a
+       banner. The reasoning that carried: a user cannot supply a region
+       pack, so a warning gives them nothing to act on; banners get clipped
+       off exports and sit on freezable layers; and the cover sheet would
+       state a Piedmont code basis for a 140 mph coastal county, which is a
+       false statement on a permit document.
+
+       This is non-negotiable 2 — a value that is not sourced is refused,
+       not approximated. `packWhy` disclosing the substitution inside a
+       function nobody opens was disclosure without a control. */
+    if (j.noPack) {
+      return {
+        jurisId: jurisId, packId: null, resolved: false, refused: true,
+        why: j.noPack + " This jurisdiction is REFUSED rather than run against a substituted " +
+             "pack. Build a coastal pack, or size this job outside the tool.",
         differences: null, agreements: null,
         mustVerify: verifyFor(j), checked: CHECKED
       };

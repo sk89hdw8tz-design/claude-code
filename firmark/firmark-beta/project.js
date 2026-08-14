@@ -386,7 +386,23 @@
     FM.pipeline.blocksOn("loads", function () {
       var s = load(), out = [];
       if (!s.jurisId) out.push("no jurisdiction chosen — the code edition and site loads depend on it");
-      if (!pack()) out.push("no load basis — a region pack must be selected or derived");
+      if (!pack()) {
+        /* Say WHICH failure this is. A jurisdiction the product REFUSES —
+           coastal North Carolina, where there is no region pack and the
+           Piedmont one is 1.5x out on velocity pressure — is a different
+           fact from "you have not picked one yet", and reporting both as
+           "no load basis" tells the user nothing they can act on. */
+        var refusal = null;
+        if (s.jurisId && FM.juris && typeof FM.juris.packFor === "function") {
+          try {
+            var pf = FM.juris.packFor(s.jurisId, FM.weights && FM.weights.PACKS);
+            if (pf && pf.refused) refusal = pf.why;
+          } catch (e) { refusal = null; }
+        }
+        out.push(refusal
+          ? "this jurisdiction is refused: " + refusal
+          : "no load basis — a region pack must be selected or derived");
+      }
       return out;
     });
 

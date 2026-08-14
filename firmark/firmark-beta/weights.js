@@ -751,11 +751,17 @@
            ft HDR-W and HDR-SLD take in the same walls. A tributary is a
            property of the wall, not of the opening, which is the principle
            Starter 1210 states outright. */
-        { id: "HDR-GAR-B", label: "Garage header · trusses bearing", role: "header", span: 16.67, trib: 23.0, count: 1,
+        { id: "HDR-GAR-B", label: "Garage header · trusses bearing", role: "header", span: 16.5, trib: 23.0, count: 1,
           carries: "roof", bearing: 3.0, skuGroup: "header", headHeightIn: 84, wallPosition: "exterior-first-floor", escalateExpected: true,
-          opening: { level: 1, face: "front", offsetFt: 31.915,
+          opening: { level: 1, face: "front", offsetFt: 32.0, roFt: 16.0,
             note: "16'-0\" door centred in the 20 ft garage bay, which runs 30-50 ft along the front face" },
-          note: "The 16'-8\" opening is in the front 50 ft wall, which is a truss bearing line, so it " +
+          note: "16'-0\" SECTIONAL garage door. Rough opening 16'-0\" — a sectional door is framed at " +
+                "its NOMINAL size, with track and jambs mounted INSIDE the opening. Span is " +
+                "16.0 + 3.0 in each end = 16.5 ft. " +
+                "This mark previously declared span 16.67 ft and was cited as the correct control " +
+                "case against three others; it was not. It carried the pre-hung SWING-door " +
+                "allowance of door + 2 in, which drew a 16'-2\" opening — two inches too WIDE. " +
+                "The opening is in the front 50 ft wall, which is a truss bearing line, so it " +
                 "takes half the 46 ft clear span like every other opening in that wall. Under a " +
                 "bearing truss line at this tributary it is a 3-ply LVL or a girder truss in every " +
                 "one of these markets, and it escalates here rather than printing a sawn member " +
@@ -782,6 +788,21 @@
            two-car garage is inside the rectangle, so 2,300 - 440 = 1,860 and
            the field was carrying the wrong one of the two. Starter 1210
            declares both under the same names and closes the same way. */
+        /* WHAT EACH AREA MEASURES, stated. A plan that declares a square
+           footage and not the standard it was measured under cannot be
+           reconciled or reviewed: gross framed area and ANSI Z765 finished
+           area are different measurements of the same house, and a field
+           carrying one under a name that suggests the other is how a
+           64 sf discrepancy sat unexplained on this catalogue. Declared
+           per FIELD, because one plan can legitimately carry both. */
+        areaBasis: {
+          underRoofSf: "GROSS FRAMED AREA — the 50 x 46 rectangle to the outside face of the " +
+                       "exterior framing, garage included.",
+          conditionedSf: "FINISHED/HEATED AREA — gross less the 440 sf garage. Measured the way " +
+                         "ANSI Z765 measures, but NOT certified against it: Z765's stair and " +
+                         "open-to-below rules have not been applied to this plan because it is " +
+                         "single-storey and has neither."
+        },
         underRoofSf: 2300,
         conditionedSf: 1860,
         trussSpanFt: 46,
@@ -934,10 +955,13 @@
                 "full-span load only), the upper stringer lands on it as a second point load, and the " +
                 "joist-to-header connection is a face-mount hanger (§8.17)." },
         { id: "HDR-GAR-2S", label: "Garage door header · bonus room over", role: "header",
-          span: 16.67, count: 1, carries: "roof+floor", tribRoof: 11.0, tribFloor: 5.5,
+          span: 16.75, count: 1, carries: "roof+floor", tribRoof: 11.0, tribFloor: 5.5,
           bearing: 4.5, skuGroup: "header", headHeightIn: 84, wallPosition: "exterior-first-floor",
-          escalateExpected: true,
-          note: "16'-0\" door. The roof spans the 22 ft garage depth onto this wall, t_roof = 11.0 — the " +
+          escalateExpected: true, roFt: 16.0,
+          note: "16'-0\" SECTIONAL door: rough opening 16'-0\" at nominal size, plus 4.5 in of bearing " +
+                "at each end = 16.75 ft. Was 16.67 ft, derived on the pre-hung swing-door +2 in " +
+                "allowance with 3 in of bearing, contradicting the 4.5 in declared here. " +
+                "The roof spans the 22 ft garage depth onto this wall, t_roof = 11.0 — the " +
                 "same derivation HDR-GAR-B uses. The BONUS-ROOM elevation (register D11) puts a floor " +
                 "over the garage; 22 ft is beyond sawn range so it needs a mid girder, giving " +
                 "t_floor = 11.0/2 = 5.5. This is the envelope mark D11 asks for: sizing the base " +
@@ -1091,6 +1115,24 @@
       geometry: {
         footprintFt: [26, 32],
         storeys: 2,
+        /* WHAT EACH AREA MEASURES, stated. A plan that declares a square
+           footage and not the standard it was measured under cannot be
+           reconciled or reviewed: gross framed area and ANSI Z765 finished
+           area are different measurements of the same house, and a field
+           carrying one under a name that suggests the other is how a
+           64 sf discrepancy sat unexplained on this catalogue. Declared
+           per FIELD, because one plan can legitimately carry both. */
+        areaBasis: {
+          sfPerUnit: "STANDARD NOT DECLARED, and this is the one plan of five that does not " +
+                     "reconcile. 26 x 32 x 2 storeys = 1,664 sf of gross framed area against a " +
+                     "declared 1,600 — 64 sf unaccounted for. No garage is declared and no " +
+                     "stair is declared, so nothing in this plan explains the difference. " +
+                     "The two figures MAY both be right under different standards — ANSI Z765 " +
+                     "deducts an upper-floor stair opening, and 64 sf is a plausible stair " +
+                     "well — but nothing here states that, and inventing the deduction to make " +
+                     "the arithmetic close is precisely the invention non-negotiable 2 forbids. " +
+                     "Held open until the real plan set settles it."
+        },
         sfPerUnit: 1600,
         trussSpanFt: 26,
         bearingLines: "the party wall and the two end walls, plus one interior line on the second " +
@@ -1167,6 +1209,20 @@
       lots: 220,
       geometry: {
         footprintFt: [46, 32],
+        /* WHAT EACH AREA MEASURES, stated. A plan that declares a square
+           footage and not the standard it was measured under cannot be
+           reconciled or reviewed: gross framed area and ANSI Z765 finished
+           area are different measurements of the same house, and a field
+           carrying one under a name that suggests the other is how a
+           64 sf discrepancy sat unexplained on this catalogue. Declared
+           per FIELD, because one plan can legitimately carry both. */
+        areaBasis: {
+          underRoofSf: "GROSS FRAMED AREA — the 46 x 32 rectangle to the outside face of the " +
+                       "exterior framing, garage included.",
+          conditionedSf: "FINISHED/HEATED AREA — gross less the 264 sf garage. Measured the way " +
+                         "ANSI Z765 measures, but NOT certified against it; single-storey, so " +
+                         "the stair rule does not arise."
+        },
         underRoofSf: 1472,
         conditionedSf: 1208,
         garage: { widthFt: 12, depthFt: 22, sf: 264, cars: 1 },
@@ -1234,11 +1290,14 @@
                 "lines and they are the only ones on the plan. Two jacks." },
 
         { id: "HDR-ENT", label: "Front entry door header", role: "header",
-          span: 3.67, trib: 16.0, count: 1, carries: "roof", bearing: 3.0,
+          span: 3.6667, trib: 16.0, count: 1, carries: "roof", bearing: 3.0,
           skuGroup: "header", headHeightIn: 80, wallPosition: "exterior-first-floor",
-          opening: { level: 1, face: "front", offsetFt: 26.415,
+          opening: { level: 1, face: "front", offsetFt: 26.4167, roFt: 3.1667,
             note: "centred on the 8 ft covered entry, which runs 24-32 ft along the front face" },
-          note: "3'-0\" door: rough opening 3'-2\" plus 3 in of bearing at each end = 3'-8\" = 3.67 ft. " +
+          note: "3'-0\" PRE-HUNG SWING door: rough opening 3'-2\" — door plus 2 in, which is the " +
+                "correct allowance for a pre-hung swing door and is why this mark is unchanged " +
+                "while the sectional garage doors were not. Plus 3 in of bearing at each end " +
+                "= 3'-8\" = 3.67 ft. " +
                 "Same 16.0 ft as HDR-W — it is in the same bearing wall, and that is the point of a " +
                 "clear-span truss plan: the tributary is a property of the wall, not of the opening." },
 
@@ -1249,12 +1308,20 @@
                 "= 6.5 ft. Tributary is half the 32 ft truss span." },
 
         { id: "HDR-GAR", label: "One-car garage door header · trusses bearing", role: "header",
-          span: 9.67, trib: 16.0, count: 1, carries: "roof", bearing: 4.5,
+          span: 9.75, trib: 16.0, count: 1, carries: "roof", bearing: 4.5,
           skuGroup: "header", headHeightIn: 84, wallPosition: "exterior-first-floor",
-          opening: { level: 1, face: "front", offsetFt: 35.54,
+          opening: { level: 1, face: "front", offsetFt: 35.5, roFt: 9.0,
             note: "centred in the 12 ft garage bay, which runs 34-46 ft along the front face" },
-          note: "9'-0\" single garage door: rough opening 9'-2\" plus 3 in of bearing at each end = " +
-                "9'-8\" = 9.67 ft. The garage door is in the FRONT 46 ft wall, which is a truss " +
+          note: "9'-0\" SECTIONAL garage door: rough opening 9'-0\" — a sectional door is framed at " +
+                "its NOMINAL size, with track and jambs mounted INSIDE the opening. Plus 4.5 in of " +
+                "bearing at each end = 9.75 ft. " +
+                "This previously read \"rough opening 9'-2\\\" plus 3 in of bearing at each end = " +
+                "9'-8\\\" = 9.67 ft\", which was wrong twice: it applied the pre-hung SWING-door " +
+                "+2 in allowance to a sectional door, and the 3 in it added contradicted the 4.5 in " +
+                "this mark declares. The drawn opening came out 8'-11\" — a 9'-0\" door will not " +
+                "enter it. The offset moves 35.54 -> 35.4167 to keep the door centred in the " +
+                "34-46 ft bay now that it is 9'-0\" rather than 8'-11\". " +
+                "The garage door is in the FRONT 46 ft wall, which is a truss " +
                 "bearing line, so it takes the same 16.0 ft every other opening in that wall takes. " +
                 "Three jacks: §K3 found five rows needing more than one and this is the largest " +
                 "reaction on the plan. This is the mark that decides whether the smallest house in " +
@@ -1377,6 +1444,21 @@
       geometry: {
         footprintFt: [20, 36],
         storeys: 2,
+        /* WHAT EACH AREA MEASURES, stated. A plan that declares a square
+           footage and not the standard it was measured under cannot be
+           reconciled or reviewed: gross framed area and ANSI Z765 finished
+           area are different measurements of the same house, and a field
+           carrying one under a name that suggests the other is how a
+           64 sf discrepancy sat unexplained on this catalogue. Declared
+           per FIELD, because one plan can legitimately carry both. */
+        areaBasis: {
+          grossSfPerFloor: "GROSS FRAMED AREA PER FLOOR — the 20 x 36 rectangle to the outside " +
+                           "face of the exterior framing.",
+          conditionedSf: "FINISHED/HEATED AREA — 2 x 720 gross less the 220 sf garage = 1,220. " +
+                         "NOT certified against ANSI Z765: this is a two-storey plan and Z765 " +
+                         "deducts the upper-floor stair opening, which this plan does not " +
+                         "declare. Expect the Z765 figure to be lower than 1,220."
+        },
         grossSfPerFloor: 720,
         conditionedSf: 1220,
         garage: { widthFt: 11, depthFt: 20, sf: 220, cars: 1 },
@@ -1552,7 +1634,7 @@
                 "a face-mount hanger (§8.17)." },
 
         { id: "HDR-GAR", label: "One-car garage door header · front wall", role: "header",
-          span: 9.67, count: 1, bearing: 4.5,
+          span: 9.75, count: 1, bearing: 4.5, roFt: 9.0,
           skuGroup: "header", headHeightIn: 84, wallPosition: "exterior-first-floor",
           underdetermined: true,
           underdeterminedNote:
