@@ -1,0 +1,95 @@
+{
+  "type": "FeatureCollection",
+  "name": "synthetic_S1_regions",
+  "pixel_crs": "Coordinates are source-image pixels (x right, y DOWN) of the original unmodified scan named in properties.source_image. NOT a geographic CRS.",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              116.0,
+              116.0
+            ],
+            [
+              2284.0,
+              116.0
+            ],
+            [
+              2284.0,
+              2291.0
+            ],
+            [
+              116.0,
+              2291.0
+            ],
+            [
+              116.0,
+              116.0
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "sheet": "S1",
+        "region": "S1_main",
+        "keep": true,
+        "role": "map_region",
+        "source_image": "synthetic_S1.jpg",
+        "pixel_crs": "Coordinates are source-image pixels (x right, y DOWN) of the original unmodified scan named in properties.source_image. NOT a geographic CRS.",
+        "note": "Mapped region retained in the mosaic.",
+        "confidence": "high",
+        "defined_by": "fixture generator (stands in for human inspection)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              116.0,
+              2343.0
+            ],
+            [
+              2284.0,
+              2343.0
+            ],
+            [
+              2284.0,
+              2571.0
+            ],
+            [
+              116.0,
+              2571.0
+            ],
+            [
+              116.0,
+              2343.0
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "sheet": "S1",
+        "region": "S1_detached",
+        "keep": false,
+        "role": "excluded_region",
+        "source_image": "synthetic_S1.jpg",
+        "pixel_crs": "Coordinates are source-image pixels (x right, y DOWN) of the original unmodified scan named in properties.source_image. NOT a geographic CRS.",
+        "note": "Detached section analogue -- excluded from the mosaic.",
+        "confidence": "high",
+        "defined_by": "fixture generator (stands in for human inspection)"
+      }
+    }
+  ],
+  "note": "SYNTHETIC FIXTURE MASK - not historical data",
+  "source_image": "synthetic_S1.jpg",
+  "image_size": [
+    2400,
+    2687
+  ]
+}

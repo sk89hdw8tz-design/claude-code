@@ -1,0 +1,51 @@
+# ---------------------------------------------------------------------------
+# PRIVACY GUARD -- READ BEFORE EDITING
+#
+# This project is private. The historical scans and every mosaic derived from
+# them must never be published, and committing them to a repository is
+# publishing. The rules below keep imagery out of version control while letting
+# the CODE, CONFIGURATION, MASK POLYGONS and CONTROL POINTS -- everything
+# needed to reproduce the result -- be tracked normally.
+#
+# The reproducibility contract is: clone the repo, run 01_fetch_sources.py to
+# obtain the scans from UT yourself, and re-run. Nothing of UT's imagery is
+# redistributed by this repository.
+# ---------------------------------------------------------------------------
+
+# Archival scans and every image derived from them
+data/original/*
+!data/original/.gitkeep
+!data/original/MANIFEST.json
+!data/original/INVENTORY.json
+data/proxies/
+working/
+georeferenced/
+tests/fixture/
+
+# Rendered products (imagery). Text/JSON QC reports ARE tracked -- see below.
+output/**
+!output/qc/
+!output/qc/**
+output/qc/seam_report/*
+!output/qc/seam_report/.gitkeep
+
+# ...but never any image, wherever it lands
+*.tif
+*.tiff
+*.jpg
+*.jpeg
+*.png
+*.jp2
+*.sid
+*.vrt
+
+# Reference data downloaded from OSM (not UT imagery, but bulky and regenerable)
+data/reference/*.geojson
+
+# Ordinary noise
+logs/
+__pycache__/
+*.pyc
+.venv/
+.ipynb_checkpoints/
+.DS_Store

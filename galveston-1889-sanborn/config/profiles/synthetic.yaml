@@ -1,0 +1,87 @@
+# Profile: SYNTHETIC SELF-TEST. Not historical data.
+#
+# Drives the whole pipeline over the procedurally generated fixture in
+# tests/fixture, whose true sheet geometry is known exactly. That makes the
+# pipeline's accuracy measurable rather than merely asserted, and it is how
+# this code was validated in an environment where the real scans were
+# unreachable.
+#
+# Build the fixture first:
+#   python scripts/make_synthetic_fixture.py
+# then:
+#   ./run_all.sh synthetic
+#
+# The layout below mirrors the real problem: eight mapped sheets in a block,
+# one of which (S1) carries a second, geographically detached region on the
+# same page that must be masked out.
+
+verified: true
+verification_note: >
+  Verified by construction: the fixture generator wrote both the imagery and
+  this layout from the same ground truth, so the topology is known, not guessed.
+
+paths:
+  original_dir: "tests/fixture/original"
+  truth_file: "tests/fixture/truth.json"
+
+acquisition:
+  skip: true                      # nothing to download; the fixture is local
+
+sheets:
+  - id: "1"
+    file: "synthetic_S1.jpg"
+    priority: 10
+    regions:
+      - id: "S1_main"
+        keep: true
+        mask: "masks/synthetic_S1_regions.geojson"
+        note: "The region belonging with the group."
+      - id: "S1_detached"
+        keep: false
+        mask: "masks/synthetic_S1_regions.geojson"
+        note: "Stand-in for the 43rd-45th Street detached section. Excluded."
+  - id: "2"
+    file: "synthetic_S2.jpg"
+    regions: [{id: "S2", keep: true, mask: "masks/synthetic_S2_regions.geojson"}]
+  - id: "7"
+    file: "synthetic_S7.jpg"
+    regions: [{id: "S7", keep: true, mask: "masks/synthetic_S7_regions.geojson"}]
+  - id: "8"
+    file: "synthetic_S8.jpg"
+    regions: [{id: "S8", keep: true, mask: "masks/synthetic_S8_regions.geojson"}]
+  - id: "9"
+    file: "synthetic_S9.jpg"
+    regions: [{id: "S9", keep: true, mask: "masks/synthetic_S9_regions.geojson"}]
+  - id: "10"
+    file: "synthetic_S10.jpg"
+    regions: [{id: "S10", keep: true, mask: "masks/synthetic_S10_regions.geojson"}]
+  - id: "27"
+    file: "synthetic_S27.jpg"
+    regions: [{id: "S27", keep: true, mask: "masks/synthetic_S27_regions.geojson"}]
+  - id: "29"
+    file: "synthetic_S29.jpg"
+    regions: [{id: "S29", keep: true, mask: "masks/synthetic_S29_regions.geojson"}]
+
+geometry:
+  # A middle sheet, so error radiates outward rather than accumulating along a
+  # chain from one corner.
+  anchor_region: "S2"
+  candidates: ["similarity", "affine", "projective"]
+  conformal_weight: 200.0
+
+topology:
+  - {region: "S1_main", neighbour: "S2",  direction: "east",  shared_street: "5TH ST",  confidence: "high", source: "fixture ground truth"}
+  - {region: "S2",  neighbour: "S7",  direction: "east",  shared_street: "9TH ST",  confidence: "high", source: "fixture ground truth"}
+  - {region: "S7",  neighbour: "S8",  direction: "east",  shared_street: "13TH ST", confidence: "high", source: "fixture ground truth"}
+  - {region: "S1_main", neighbour: "S9",  direction: "south", shared_street: "AVENUE E", confidence: "high", source: "fixture ground truth"}
+  - {region: "S2",  neighbour: "S10", direction: "south", shared_street: "AVENUE E", confidence: "high", source: "fixture ground truth"}
+  - {region: "S7",  neighbour: "S27", direction: "south", shared_street: "AVENUE E", confidence: "high", source: "fixture ground truth"}
+  - {region: "S8",  neighbour: "S29", direction: "south", shared_street: "AVENUE E", confidence: "high", source: "fixture ground truth"}
+  - {region: "S9",  neighbour: "S10", direction: "east",  shared_street: "5TH ST",  confidence: "high", source: "fixture ground truth"}
+  - {region: "S10", neighbour: "S27", direction: "east",  shared_street: "9TH ST",  confidence: "high", source: "fixture ground truth"}
+  - {region: "S27", neighbour: "S29", direction: "east",  shared_street: "13TH ST", confidence: "high", source: "fixture ground truth"}
+
+georeference:
+  # The fixture has no real-world coordinates, so the modern-georeferencing
+  # stage is exercised separately in tests, not here.
+  enabled: false

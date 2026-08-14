@@ -1,0 +1,95 @@
+# Galveston 1889 Sanborn selected-sheet mosaic -- base configuration.
+#
+# Values here are defaults shared by every profile. A profile in
+# config/profiles/<name>.yaml overlays these and is what you normally edit.
+#
+# PRIVACY: this project is private. Nothing here may point at a public
+# publishing destination. Source imagery is downloaded once and stays local.
+
+project:
+  name: "Galveston 1889 Sanborn -- selected sheets"
+  privacy: "PRIVATE. Do not upload imagery or derived mosaics to any hosted service."
+
+acquisition:
+  # The official collection landing page. 01_fetch_sources.py DISCOVERS links
+  # from this page rather than guessing file paths, so it keeps working if UT
+  # reorganises the collection.
+  collection_url: "https://maps.lib.utexas.edu/maps/sanborn/g.html"
+  city: "galveston"
+  year: 1889
+  # Sheet numbers to acquire, plus the key and index which are not "sheets".
+  sheets: [1, 2, 7, 8, 9, 10, 27, 29]
+  extra_pages: ["key", "index"]
+  # Try, in order, for something better than the linked JPG. Each is PROBED,
+  # never assumed. See docs in 01_fetch_sources.py.
+  prefer_higher_resolution: true
+  probe_iiif: true
+  probe_extensions: [".tif", ".tiff", ".jp2", ".sid", ".png"]
+  user_agent: "galveston-1889-sanborn-private-research/1.0"
+  timeout_seconds: 60
+  retries: 4
+
+geometry:
+  # Which transform families the adjustment may consider, least deformable
+  # first. A richer model is only accepted if it improves HELD-OUT error AND
+  # survives the physical-plausibility gate.
+  #
+  # WHY THIS DEFAULTS TO SIMILARITY ONLY
+  # Measured on the synthetic fixture, where the true answer is known:
+  #
+  #   model        fit median   held-out median   ERROR vs GROUND TRUTH
+  #   similarity      2.43 px        3.08 px            3.81 px
+  #   affine          2.09 px        3.07 px           66.11 px   (max 412 px)
+  #
+  # Affine won on every residual measure, including cross-validated held-out
+  # error, and was seventeen times worse against the truth. The extra freedom
+  # went into a slow anisotropic squeeze and shear that accumulates along the
+  # chain of sheets: neighbours still agree locally, so tie-point residuals
+  # never see it, while the far corner of the mosaic walks 400 px out of place.
+  #
+  # Residuals cannot detect this. Only absolute control can. So affine and
+  # projective stay out of the default list unless you have real-world GCPs
+  # spread across the group; add them here deliberately if you do, and check
+  # the plausibility flags in output/qc/transform_report.md before believing
+  # the result.
+  candidates: ["similarity"]
+  # Fractional improvement in cross-validated median error required before a
+  # richer model is preferred (0.9 = must be >10% better).
+  improvement_tolerance: 0.9
+  # Penalty pulling affine linear parts toward a similarity. This is what keeps
+  # the adjustment from shearing 1889 survey geometry to absorb tie noise.
+  conformal_weight: 200.0
+  # Huber threshold in reconstruction pixels: beyond this a tie point is
+  # progressively down-weighted rather than allowed to drag the network.
+  huber_delta: 6.0
+  robust: true
+  crossval_folds: 5
+  # Held at identity so the reconstruction plane is one real sheet's own pixel
+  # grid, which makes every residual readable as "original scan pixels".
+  anchor_region: ""
+
+output:
+  pixels_per_unit: 1.0        # 1.0 keeps the master at anchor-sheet scan scale
+  padding: 40
+  interpolation: "lanczos"    # one resampling only, straight from the original
+  tile: 1024
+  preview_max_dim: 6000
+  master_name: "Galveston_1889_SelectedSheets_MASTER.tif"
+  preview_name: "Galveston_1889_SelectedSheets_preview.png"
+  georef_name: "Galveston_1889_SelectedSheets_GEOREF.tif"
+
+qc:
+  good_residual_px: 5.0       # target median seam mismatch
+  gross_residual_px: 15.0     # anything above this needs an explanation
+  seam_samples_per_pair: 5
+  seam_crop_size: 520
+  seam_zoom: 2
+
+georeference:
+  # The modern-coordinate product is derived by ONE global transform applied to
+  # the finished reconstruction, never per sheet. That is what keeps modern
+  # geography from distorting the historical assembly.
+  enabled: true
+  crs: "EPSG:4326"
+  transform_kind: "similarity"
+  min_control_points: 4

@@ -1,0 +1,100 @@
+# Profile: the real 1889 Galveston sheets.
+#
+# ---------------------------------------------------------------------------
+# READ THIS BEFORE RUNNING
+# ---------------------------------------------------------------------------
+# Every geometric statement in this file is marked UNVERIFIED and the pipeline
+# REFUSES to build a mosaic while that is so. Nothing here was derived from the
+# actual 1889 Key, because the source images could not be downloaded in the
+# environment where this project was built (the University of Texas hosts were
+# blocked by network policy -- see README "Known uncertainties").
+#
+# Guessing a sheet layout from general knowledge and presenting it as topology
+# is precisely the failure this project is supposed to avoid, so the layout is
+# left empty rather than invented. Fill it in from the Key, flip
+# `verified: true`, and the pipeline proceeds.
+#
+# Workflow:
+#   1. python scripts/01_fetch_sources.py --profile galveston1889
+#   2. python scripts/02_inventory_sources.py --profile galveston1889
+#   3. Open the Key. Fill `regions.neighbours` and `topology` below.
+#   4. python scripts/03_build_sheet1_mask.py --profile galveston1889 --propose
+#      then correct the polygons it proposes and set sheet1 verified: true.
+#   5. Continue with 04 onward, or just run ./run_all.sh galveston1889.
+# ---------------------------------------------------------------------------
+
+verified: false
+verification_note: >
+  Set to true only after a human has compared the Key against every sheet and
+  filled in the region/topology entries below. The pipeline hard-fails while
+  this is false so an unverified layout can never reach the master.
+
+acquisition:
+  # Filled in by 01_fetch_sources.py after it discovers real links. Left empty
+  # deliberately: no URL in this repository was ever confirmed against the live
+  # collection, so none is recorded as fact.
+  discovered: {}
+
+# Each sheet lists its mapped REGIONS. Most sheets have exactly one. Sheet 1
+# has two, because the same physical page carries a detached section that
+# belongs somewhere else entirely.
+sheets:
+  - id: "1"
+    file: ""                      # set by 01/02 from the download manifest
+    regions:
+      - id: "S1_main"
+        keep: true
+        mask: "masks/sheet1_regions.geojson"
+        note: >
+          The Sheet 1 region that the 1889 Key groups with sheets 2, 7-10, 27
+          and 29. Polygon must be drawn from the actual scan.
+      - id: "S1_detached_43rd_45th"
+        keep: false
+        mask: "masks/sheet1_regions.geojson"
+        note: >
+          EXCLUDED. The long narrow detached section printed on the same page,
+          in the 43rd/44th/45th Street area near the western waterfront
+          (Texas Standard Oil / cattle yard / railroad ground). Geographically
+          far from the selected group, so it must not enter the mosaic.
+          Excluded by mask only -- the archival scan is never modified.
+  - id: "2"
+    file: ""
+    regions: [{id: "S2", keep: true, mask: "masks/sheet2_collar.geojson"}]
+  - id: "7"
+    file: ""
+    regions: [{id: "S7", keep: true, mask: "masks/sheet7_collar.geojson"}]
+  - id: "8"
+    file: ""
+    regions: [{id: "S8", keep: true, mask: "masks/sheet8_collar.geojson"}]
+  - id: "9"
+    file: ""
+    regions: [{id: "S9", keep: true, mask: "masks/sheet9_collar.geojson"}]
+  - id: "10"
+    file: ""
+    regions: [{id: "S10", keep: true, mask: "masks/sheet10_collar.geojson"}]
+  - id: "27"
+    file: ""
+    regions: [{id: "S27", keep: true, mask: "masks/sheet27_collar.geojson"}]
+  - id: "29"
+    file: ""
+    regions: [{id: "S29", keep: true, mask: "masks/sheet29_collar.geojson"}]
+
+geometry:
+  # Left empty on purpose: the anchor should be a sheet the Key shows near the
+  # middle of the group, so error spreads outward instead of accumulating
+  # across the whole run. Choose it after reading the Key.
+  anchor_region: ""
+
+# Adjacency, to be derived from the Key and from continuation notes printed at
+# the sheet edges -- not from assumption. 04_build_topology.py validates
+# whatever you put here (symmetry, unknown ids, contradictory directions) and
+# refuses an inconsistent graph.
+topology: []
+# Example of the expected shape, for reference only -- delete or replace:
+#   - region: "S2"
+#     neighbour: "S7"
+#     direction: "south"            # north|south|east|west|northeast|...
+#     shared_street: ""             # the street or feature running along the join
+#     confidence: "high"            # high|medium|low
+#     source: "1889 Key + continuation note printed on sheet 2 south edge"
+#     note: ""

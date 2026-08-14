@@ -1,0 +1,72 @@
+# Historical street-name normalisation table.
+#
+# PURPOSE
+#   Matching an 1889 printed street label to a modern reference dataset (OSM)
+#   needs a translation layer: spelling, abbreviation and outright renaming all
+#   differ. This table supplies it.
+#
+# WHAT THIS TABLE MUST NEVER DO
+#   It does not relabel the historical map. Nothing in the mosaic is redrawn or
+#   renamed. The alias is used only to decide that an 1889 label and a modern
+#   record refer to the same physical street when building control points.
+#
+# STATUS: EMPTY BY DESIGN
+#   Galveston's grid is known to mix numbered streets with lettered avenues
+#   that also carry proper names, and several of those pairings are easy to get
+#   wrong. Recording an unchecked pairing here would silently corrupt every
+#   control point that used it, so no pairing is asserted that was not read off
+#   the sheets themselves. The source images were unreachable in the build
+#   environment (see README), so this table ships empty with a worked example.
+#
+# HOW TO FILL IT IN
+#   1. Open a sheet at full resolution and read the printed label exactly as
+#      drawn, including abbreviation and punctuation -> `printed_1889`.
+#   2. Give the normalised historical form -> `historical`.
+#   3. Only if you can confirm it (a modern map, a city street-renaming
+#      record, or the Key itself) give `modern`. Otherwise leave it empty.
+#   4. Record where the pairing came from in `source`, and be honest in
+#      `confidence`. Anything below `high` is treated as advisory and its
+#      control points are down-weighted.
+#   5. 06_detect_or_define_gcps.py reports which aliases it actually used, so
+#      a wrong entry is traceable from the GCP file back to this line.
+
+aliases: []
+
+# Worked example of the expected shape -- illustrative only, NOT an assertion
+# about Galveston. Delete before use.
+#
+# aliases:
+#   - printed_1889: "AVE. B"
+#     historical: "AVENUE B"
+#     modern: ""                # leave empty until confirmed
+#     confidence: "high"        # high | medium | low
+#     source: "read from sheet 7, north edge, 400% zoom"
+#     note: "Printed with the period; OCR often drops it."
+#
+#   - printed_1889: "25TH ST"
+#     historical: "25TH STREET"
+#     modern: "25th St"
+#     confidence: "medium"
+#     source: "matched against OSM centreline; not yet checked on the Key"
+#     note: >
+#       Numbered streets are the safest matches, but verify the numbering
+#       direction before trusting any of them.
+
+# Normalisation applied before comparison, independent of the table above.
+# These are lexical only and cannot invent a renaming.
+normalisation:
+  uppercase: true
+  strip_punctuation: true
+  collapse_whitespace: true
+  expand:
+    "ST": "STREET"
+    "AVE": "AVENUE"
+    "AV": "AVENUE"
+    "BLVD": "BOULEVARD"
+    "RD": "ROAD"
+    "N": "NORTH"
+    "S": "SOUTH"
+    "E": "EAST"
+    "W": "WEST"
+  # Ordinal suffixes vary in print (25TH / 25th / 25 TH). Compare on the digits.
+  ordinal_digits_only: true

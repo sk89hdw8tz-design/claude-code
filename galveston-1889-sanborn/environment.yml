@@ -1,0 +1,34 @@
+# Conda/Mamba environment -- the more robust route on Windows, and the one to
+# use if you also want the optional OSMnx step (whose transitive geo stack is
+# markedly easier to install from conda-forge than from pip).
+#
+#   mamba env create -f environment.yml     # or: conda env create -f environment.yml
+#   conda activate galveston-1889-sanborn
+#
+# Note this pipeline does NOT require the GDAL command-line tools or the
+# `osgeo` bindings; rasterio's bundled GDAL is sufficient. gdal is listed only
+# because having the CLI available is convenient for ad-hoc inspection.
+name: galveston-1889-sanborn
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - numpy
+  - pillow
+  - opencv
+  - rasterio>=1.4
+  - affine
+  - shapely>=2.0
+  - pyproj
+  - scipy
+  - pyyaml
+  - requests
+  - beautifulsoup4
+  - lxml
+  - geopandas
+  - scikit-image
+  - matplotlib-base
+  - tqdm
+  - gdal            # optional: CLI only, the pipeline does not call it
+  - osmnx           # optional: step 05, for the GEOREF derivative only
+  - pip

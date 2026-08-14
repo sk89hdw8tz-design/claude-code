@@ -1,0 +1,54 @@
+{
+  "type": "FeatureCollection",
+  "name": "synthetic_S27_regions",
+  "pixel_crs": "Coordinates are source-image pixels (x right, y DOWN) of the original unmodified scan named in properties.source_image. NOT a geographic CRS.",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              116.0,
+              116.0
+            ],
+            [
+              2284.0,
+              116.0
+            ],
+            [
+              2284.0,
+              2571.0
+            ],
+            [
+              116.0,
+              2571.0
+            ],
+            [
+              116.0,
+              116.0
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "sheet": "S27",
+        "region": "S27",
+        "keep": true,
+        "role": "map_region",
+        "source_image": "synthetic_S27.jpg",
+        "pixel_crs": "Coordinates are source-image pixels (x right, y DOWN) of the original unmodified scan named in properties.source_image. NOT a geographic CRS.",
+        "note": "Mapped region retained in the mosaic.",
+        "confidence": "high",
+        "defined_by": "fixture generator (stands in for human inspection)"
+      }
+    }
+  ],
+  "note": "SYNTHETIC FIXTURE MASK - not historical data",
+  "source_image": "synthetic_S27.jpg",
+  "image_size": [
+    2400,
+    2687
+  ]
+}
