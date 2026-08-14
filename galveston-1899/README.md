@@ -230,3 +230,43 @@ Part-sheet handling is pinned by two tests that must both hold: a 2×7 mosaic of
 identical sheets has no white row or column inside the block, and a set where
 two sheets are half-height scans renders every reference square within 1.02×
 of the others (it was 2.18× when each sheet was stretched to its cell).
+
+### There is no neatline — what `--inset` is really doing
+
+An independent calibration pass established that **these sheets carry no printed
+border rule**. The map bleeds to the paper edge, the sheet's coverage boundary
+is a *street*, and the neighbouring-sheet numbers are printed inside the map
+area. That is why frame detection kept failing: there was nothing to find.
+
+So `--inset` is not trimming a margin. Adjacent sheets **overlap** — each
+repeats a strip of the neighbour — and the inset chooses how much of that
+repeat to discard. Getting it wrong is not cosmetic:
+
+| total L+R inset | result |
+| --- | --- |
+| 16.5% | Avenue D and Avenue G **deleted**; addresses jump 322 \| 402 |
+| 8% | complete, but the avenue label prints twice (sheets still overlap) |
+| **10% (5% a side)** | **correct: avenue appears once at full width** |
+| 13% | avenue visibly pinched |
+
+Verified by reading printed addresses and street names across the seam, not by
+correlation — see the caution below.
+
+### Measuring alignment on this map
+
+The street grid is near-periodic at about 820 print px per block, and three
+separate automated methods were defeated by it:
+
+- cross-correlation with a search window under one block reported "aligned" at
+  multiples of the block pitch, calling a 1663 px error 18 px;
+- overlap detection by column profile returned answers one avenue pitch apart
+  (~200-300 px and ~830-890 px) with weak correlation either way;
+- avenue detection by colour density found different features on different
+  sheets (pitch 512 vs 1022), making the ratios meaningless.
+
+Block-number differences are also not proof: a **uniformly** displaced column
+keeps a constant difference, so agreement across rows shows the error is
+uniform, not that it is absent.
+
+What does work: read the printed **street numbers and addresses** across a
+seam. 16TH/17TH/18TH facing 18TH/19TH/20TH is a two-block error, unambiguously.
