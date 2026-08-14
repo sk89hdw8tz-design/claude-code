@@ -16,17 +16,16 @@ Both print versions are produced: a plate montage and a geographic mosaic.
 
 ## Status
 
-The download step has **not been run**. This environment's egress proxy
-allowlist does not include `maps.lib.utexas.edu`; the gateway answers `403` to
-the CONNECT, as it does for every general-web host (`lib.utexas.edu`,
-`loc.gov`, `archive.org`, even `example.com`). Only package registries and
-GitHub are reachable. Nothing here routes around that — the scripts are ready
-to run wherever the host is reachable.
+Complete. All 13 sheets plus the Key, the Index and 4 skeleton variants were
+supplied as two hand-saved zips and ingested; both prints render at 27×40 in at
+300 dpi (8100×12000 px).
 
-To unblock in a web session, add the host to the environment's network policy
-(see https://code.claude.com/docs/en/claude-code-on-the-web) — the environment
-generally has to be restarted before a policy change takes effect. Or just run
-these scripts locally; they need only Python 3 and Pillow.
+The download step itself was never run here: this environment's egress
+allowlist does not include `maps.lib.utexas.edu`, and the gateway answers `403`
+to the CONNECT, as it does for every general-web host. `fetch_maps.py` is
+written and tested against a mock index but has not been exercised against the
+live site — run it somewhere the host is reachable, or keep using `ingest.py`
+with hand-saved files.
 
 ## Usage
 
@@ -56,9 +55,6 @@ the plain sheets, so leaving them in would put sheets 11–14 on the print twice
 `run_all.sh` excludes them. They are worth keeping on disk, because the
 outline-only versions are often the clearest thing to read block layout from
 when checking the alignment against the index map.
-
-That lists the groups, downloads group 2 with the Key, zips it, then renders
-both the montage and the mosaic with JPEG proofs.
 
 Step by step:
 
@@ -152,10 +148,10 @@ Anchors: `n s e w nw ne sw se c`.
   rather than left ragged.
 - `--trim` removes the uniform white scan margin, refusing to cut more than 15%
   of either dimension so a genuinely pale sheet is never gutted.
-- `--neatline` goes further and crops just inside the printed border rule, so
-  sheets butt at the *map* edge instead of drawing a black grid through the
-  finished mosaic. Recommended with `--mode mosaic`. A sheet with no detectable
-  rule is left untouched and reported rather than mangled.
+- `--neatline` crops just inside a printed border rule where one exists. **These
+  Galveston sheets have none** (see below), so it is a no-op here and `--inset`
+  is used instead. A sheet with no detectable rule is left untouched and
+  reported rather than mangled.
 - `--exclude key,index` leaves matching files out of the print while they stay
   in the zip.
 - `--probe` reports sizes, the chosen grid, cell size and the worst-case
