@@ -1,0 +1,32 @@
+{
+  "S1_main|S2": {
+    "candidates": 15,
+    "kept": 0,
+    "rejected_reason": "disagrees with prior by 5.43 deg / 3.92%"
+  },
+  "S1_main|S9": {
+    "candidates": 5,
+    "kept": 0,
+    "rejected_reason": "disagrees with prior by 3.40 deg / 47.70%"
+  },
+  "S9|S7": {
+    "candidates": 76,
+    "kept": 32,
+    "overlap_mpx": 2.1204908016695794
+  },
+  "S2|S7": {
+    "candidates": 33,
+    "kept": 0,
+    "rejected_reason": "disagrees with prior by 2.34 deg / 8.43%"
+  },
+  "S10|S8": {
+    "candidates": 47,
+    "kept": 21,
+    "overlap_mpx": 1.7700040529486343
+  },
+  "S27|S29": {
+    "candidates": 36,
+    "kept": 0,
+    "rejected_reason": "disagrees with prior by 2.40 deg / 0.17%"
+  }
+}

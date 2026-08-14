@@ -1,0 +1,103 @@
+{
+  "type": "FeatureCollection",
+  "space": "source pixels of sheet A",
+  "pair": [
+    "S9",
+    "S10"
+  ],
+  "direction": "east",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3111.431548693555,
+          221.5447969818214
+        ]
+      },
+      "properties": {
+        "point_id": "OVL_S9_S10_000",
+        "sheet_a": "S9",
+        "sheet_b": "S10",
+        "a_x": 3111.431548693555,
+        "a_y": 221.5447969818214,
+        "b_x": 158.32771614544845,
+        "b_y": 141.56010906921463,
+        "ncc": 0.4511899948120117,
+        "crosses_boundary": true,
+        "feature_type": "image detail",
+        "confidence": "HIST_SHARED_MEDIUM"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3191.022534781111,
+          221.5447969818214
+        ]
+      },
+      "properties": {
+        "point_id": "OVL_S9_S10_001",
+        "sheet_a": "S9",
+        "sheet_b": "S10",
+        "a_x": 3191.022534781111,
+        "a_y": 221.5447969818214,
+        "b_x": 214.01789239721037,
+        "b_y": 141.55774616193384,
+        "ncc": 0.7034041285514832,
+        "crosses_boundary": true,
+        "feature_type": "image detail",
+        "confidence": "HIST_SHARED_HIGH"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3217.5528634769626,
+          221.5447969818214
+        ]
+      },
+      "properties": {
+        "point_id": "OVL_S9_S10_002",
+        "sheet_a": "S9",
+        "sheet_b": "S10",
+        "a_x": 3217.5528634769626,
+        "a_y": 221.5447969818214,
+        "b_x": 218.0489710160532,
+        "b_y": 141.62205952154167,
+        "ncc": 0.6581997275352478,
+        "crosses_boundary": true,
+        "feature_type": "image detail",
+        "confidence": "HIST_SHARED_HIGH"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3244.0831921728145,
+          221.5447969818214
+        ]
+      },
+      "properties": {
+        "point_id": "OVL_S9_S10_003",
+        "sheet_a": "S9",
+        "sheet_b": "S10",
+        "a_x": 3244.0831921728145,
+        "a_y": 221.5447969818214,
+        "b_x": 244.8986296547855,
+        "b_y": 141.56627225508572,
+        "ncc": 0.5656290054321289,
+        "crosses_boundary": true,
+        "feature_type": "image detail",
+        "confidence": "HIST_SHARED_MEDIUM"
+      }
+    }
+  ]
+}

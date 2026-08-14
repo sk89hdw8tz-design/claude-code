@@ -1,0 +1,126 @@
+{
+  "type": "FeatureCollection",
+  "space": "source pixels of sheet A",
+  "pair": [
+    "S10",
+    "S27"
+  ],
+  "direction": "east",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3168.058271940835,
+          150.8268668247582
+        ]
+      },
+      "properties": {
+        "point_id": "OVL_S10_S27_000",
+        "sheet_a": "S10",
+        "sheet_b": "S27",
+        "a_x": 3168.058271940835,
+        "a_y": 150.8268668247582,
+        "b_x": 162.54393933487847,
+        "b_y": 121.12029003056811,
+        "ncc": 0.6034447550773621,
+        "crosses_boundary": true,
+        "feature_type": "image detail",
+        "confidence": "HIST_SHARED_MEDIUM"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3195.202586063074,
+          150.88952676942858
+        ]
+      },
+      "properties": {
+        "point_id": "OVL_S10_S27_001",
+        "sheet_a": "S10",
+        "sheet_b": "S27",
+        "a_x": 3195.202586063074,
+        "a_y": 150.88952676942858,
+        "b_x": 191.34243364593294,
+        "b_y": 120.9299174747342,
+        "ncc": 0.6724364161491394,
+        "crosses_boundary": true,
+        "feature_type": "image detail",
+        "confidence": "HIST_SHARED_HIGH"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3222.3469001853127,
+          150.952186714099
+        ]
+      },
+      "properties": {
+        "point_id": "OVL_S10_S27_002",
+        "sheet_a": "S10",
+        "sheet_b": "S27",
+        "a_x": 3222.3469001853127,
+        "a_y": 150.952186714099,
+        "b_x": 219.66209796761498,
+        "b_y": 119.59773012627521,
+        "ncc": 0.6978375315666199,
+        "crosses_boundary": true,
+        "feature_type": "image detail",
+        "confidence": "HIST_SHARED_HIGH"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3249.4912143075517,
+          151.01484665876944
+        ]
+      },
+      "properties": {
+        "point_id": "OVL_S10_S27_003",
+        "sheet_a": "S10",
+        "sheet_b": "S27",
+        "a_x": 3249.4912143075517,
+        "a_y": 151.01484665876944,
+        "b_x": 245.8923414735256,
+        "b_y": 119.59192902305637,
+        "ncc": 0.6763271689414978,
+        "crosses_boundary": true,
+        "feature_type": "image detail",
+        "confidence": "HIST_SHARED_HIGH"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3276.6355284297906,
+          151.07750660343987
+        ]
+      },
+      "properties": {
+        "point_id": "OVL_S10_S27_004",
+        "sheet_a": "S10",
+        "sheet_b": "S27",
+        "a_x": 3276.6355284297906,
+        "a_y": 151.07750660343987,
+        "b_x": 259.1189602260605,
+        "b_y": 120.75336636896655,
+        "ncc": 0.5445714592933655,
+        "crosses_boundary": true,
+        "feature_type": "image detail",
+        "confidence": "HIST_SHARED_MEDIUM"
+      }
+    }
+  ]
+}

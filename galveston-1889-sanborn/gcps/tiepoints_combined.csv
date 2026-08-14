@@ -1,0 +1,202 @@
+point_id,sheet,region,role,src_x,src_y,ref_x,ref_y,ref_lon,ref_lat,street_a,street_b,feature,method,confidence,selected_by,residual_px,accepted,note
+23rd|A,1,S1_main,tie,2963.43,1200.62,,,,,23rd,A,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",medium,06b_grid_control_points.py,,True,band rms 94.5px
+24th|A,1,S1_main,tie,2983.9,2329.26,,,,,24th,A,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",medium,06b_grid_control_points.py,,True,band rms 108.3px
+25th|A,1,S1_main,tie,3006.72,3587.12,,,,,25th,A,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",medium,06b_grid_control_points.py,,True,band rms 62.0px
+19th|A,2,S2,tie,2911.59,146.05,,,,,19th,A,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",high,06b_grid_control_points.py,,True,band rms 27.4px
+20th|A,2,S2,tie,2927.97,1204.19,,,,,20th,A,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",medium,06b_grid_control_points.py,,True,band rms 87.4px
+21st|A,2,S2,tie,2946.9,2427.35,,,,,21st,A,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",medium,06b_grid_control_points.py,,True,band rms 91.4px
+22nd|A,2,S2,tie,2963.25,3483.6,,,,,22nd,A,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",high,06b_grid_control_points.py,,True,band rms 34.5px
+19th|A,7,S7,tie,202.41,227.38,,,,,19th,A,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",medium,06b_grid_control_points.py,,True,band rms 70.8px
+19th|B,7,S7,tie,1238.55,234.2,,,,,19th,B,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",medium,06b_grid_control_points.py,,True,band rms 70.8px
+19th|C,7,S7,tie,2230.13,240.72,,,,,19th,C,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",medium,06b_grid_control_points.py,,True,band rms 70.8px
+19th|D,7,S7,tie,3188.92,247.03,,,,,19th,D,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",medium,06b_grid_control_points.py,,True,band rms 70.8px
+20th|A,7,S7,tie,202.75,1367.49,,,,,20th,A,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",high,06b_grid_control_points.py,,True,band rms 48.7px
+20th|B,7,S7,tie,1238.89,1374.31,,,,,20th,B,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",high,06b_grid_control_points.py,,True,band rms 35.6px
+20th|C,7,S7,tie,2230.46,1380.84,,,,,20th,C,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",high,06b_grid_control_points.py,,True,band rms 34.5px
+20th|D,7,S7,tie,3189.26,1387.15,,,,,20th,D,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",high,06b_grid_control_points.py,,True,band rms 11.6px
+21st|A,7,S7,tie,203.11,2567.97,,,,,21st,A,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",high,06b_grid_control_points.py,,True,band rms 48.7px
+21st|B,7,S7,tie,1239.24,2574.79,,,,,21st,B,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",high,06b_grid_control_points.py,,True,band rms 44.4px
+21st|C,7,S7,tie,2230.82,2581.31,,,,,21st,C,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",high,06b_grid_control_points.py,,True,band rms 44.4px
+21st|D,7,S7,tie,3189.62,2587.62,,,,,21st,D,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",high,06b_grid_control_points.py,,True,band rms 44.4px
+22nd|A,7,S7,tie,203.43,3663.18,,,,,22nd,A,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",high,06b_grid_control_points.py,,True,band rms 48.7px
+22nd|B,7,S7,tie,1239.57,3670.0,,,,,22nd,B,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",high,06b_grid_control_points.py,,True,band rms 35.6px
+22nd|C,7,S7,tie,2231.15,3676.52,,,,,22nd,C,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",high,06b_grid_control_points.py,,True,band rms 34.5px
+22nd|D,7,S7,tie,3189.94,3682.83,,,,,22nd,D,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",high,06b_grid_control_points.py,,True,band rms 18.5px
+19th|D,8,S8,tie,210.01,226.71,,,,,19th,D,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",high,06b_grid_control_points.py,,True,band rms 41.1px
+19th|E,8,S8,tie,1171.59,233.35,,,,,19th,E,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",high,06b_grid_control_points.py,,True,band rms 41.1px
+19th|F,8,S8,tie,2160.51,240.17,,,,,19th,F,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",high,06b_grid_control_points.py,,True,band rms 41.1px
+19th|G,8,S8,tie,3138.52,246.92,,,,,19th,G,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",high,06b_grid_control_points.py,,True,band rms 41.1px
+20th|D,8,S8,tie,212.78,1370.26,,,,,20th,D,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",high,06b_grid_control_points.py,,True,band rms 48.0px
+20th|E,8,S8,tie,1174.36,1376.9,,,,,20th,E,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",high,06b_grid_control_points.py,,True,band rms 48.0px
+20th|F,8,S8,tie,2163.29,1383.73,,,,,20th,F,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",high,06b_grid_control_points.py,,True,band rms 48.0px
+20th|G,8,S8,tie,3141.3,1390.48,,,,,20th,G,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",high,06b_grid_control_points.py,,True,band rms 48.0px
+21st|D,8,S8,tie,215.67,2560.5,,,,,21st,D,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",high,06b_grid_control_points.py,,True,band rms 39.1px
+21st|E,8,S8,tie,1177.25,2567.13,,,,,21st,E,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",high,06b_grid_control_points.py,,True,band rms 39.1px
+21st|F,8,S8,tie,2166.18,2573.96,,,,,21st,F,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",high,06b_grid_control_points.py,,True,band rms 39.1px
+21st|G,8,S8,tie,3144.19,2580.71,,,,,21st,G,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",high,06b_grid_control_points.py,,True,band rms 39.1px
+22nd|D,8,S8,tie,218.37,3669.26,,,,,22nd,D,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",high,06b_grid_control_points.py,,True,band rms 14.5px
+22nd|E,8,S8,tie,1179.95,3675.9,,,,,22nd,E,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",high,06b_grid_control_points.py,,True,band rms 32.6px
+22nd|F,8,S8,tie,2168.87,3682.73,,,,,22nd,F,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",high,06b_grid_control_points.py,,True,band rms 34.4px
+22nd|G,8,S8,tie,3146.88,3689.48,,,,,22nd,G,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",high,06b_grid_control_points.py,,True,band rms 14.5px
+22nd|A,9,S9,tie,242.37,339.31,,,,,22nd,A,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",high,06b_grid_control_points.py,,True,band rms 48.2px
+22nd|B,9,S9,tie,1227.39,335.84,,,,,22nd,B,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",high,06b_grid_control_points.py,,True,band rms 37.4px
+22nd|C,9,S9,tie,2198.92,332.41,,,,,22nd,C,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",high,06b_grid_control_points.py,,True,band rms 47.2px
+22nd|D,9,S9,tie,3189.65,328.91,,,,,22nd,D,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",high,06b_grid_control_points.py,,True,band rms 11.0px
+23rd|A,9,S9,tie,233.19,1445.99,,,,,23rd,A,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",high,06b_grid_control_points.py,,True,band rms 48.2px
+23rd|B,9,S9,tie,1218.21,1442.52,,,,,23rd,B,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",high,06b_grid_control_points.py,,True,band rms 37.4px
+23rd|C,9,S9,tie,2189.74,1439.09,,,,,23rd,C,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",high,06b_grid_control_points.py,,True,band rms 47.2px
+23rd|D,9,S9,tie,3180.47,1435.59,,,,,23rd,D,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",high,06b_grid_control_points.py,,True,band rms 21.8px
+24th|A,9,S9,tie,223.37,2628.9,,,,,24th,A,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",high,06b_grid_control_points.py,,True,band rms 48.2px
+24th|B,9,S9,tie,1208.4,2625.43,,,,,24th,B,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",high,06b_grid_control_points.py,,True,band rms 37.4px
+24th|C,9,S9,tie,2179.93,2622.0,,,,,24th,C,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",high,06b_grid_control_points.py,,True,band rms 47.2px
+24th|D,9,S9,tie,3170.65,2618.5,,,,,24th,D,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",high,06b_grid_control_points.py,,True,band rms 34.2px
+25th|A,9,S9,tie,213.41,3830.27,,,,,25th,A,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",medium,06b_grid_control_points.py,,True,band rms 78.9px
+25th|B,9,S9,tie,1198.43,3826.79,,,,,25th,B,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",medium,06b_grid_control_points.py,,True,band rms 78.9px
+25th|C,9,S9,tie,2169.96,3823.36,,,,,25th,C,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",medium,06b_grid_control_points.py,,True,band rms 78.9px
+25th|D,9,S9,tie,3160.69,3819.87,,,,,25th,D,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",medium,06b_grid_control_points.py,,True,band rms 78.9px
+22nd|D,10,S10,tie,220.04,261.11,,,,,22nd,D,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",high,06b_grid_control_points.py,,True,band rms 18.9px
+22nd|E,10,S10,tie,1182.04,266.45,,,,,22nd,E,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",high,06b_grid_control_points.py,,True,band rms 30.9px
+22nd|F,10,S10,tie,2230.42,272.28,,,,,22nd,F,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",high,06b_grid_control_points.py,,True,band rms 50.6px
+22nd|G,10,S10,tie,3173.52,277.51,,,,,22nd,G,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",high,06b_grid_control_points.py,,True,band rms 18.9px
+23rd|D,10,S10,tie,216.49,1390.6,,,,,23rd,D,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",high,06b_grid_control_points.py,,True,band rms 29.2px
+23rd|E,10,S10,tie,1178.49,1395.94,,,,,23rd,E,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",high,06b_grid_control_points.py,,True,band rms 30.9px
+23rd|F,10,S10,tie,2226.87,1401.77,,,,,23rd,F,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",high,06b_grid_control_points.py,,True,band rms 50.6px
+23rd|G,10,S10,tie,3169.97,1407.0,,,,,23rd,G,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",high,06b_grid_control_points.py,,True,band rms 29.2px
+24th|D,10,S10,tie,212.96,2513.26,,,,,24th,D,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",high,06b_grid_control_points.py,,True,band rms 40.6px
+24th|E,10,S10,tie,1174.96,2518.61,,,,,24th,E,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",high,06b_grid_control_points.py,,True,band rms 40.6px
+24th|F,10,S10,tie,2223.35,2524.43,,,,,24th,F,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",high,06b_grid_control_points.py,,True,band rms 50.6px
+24th|G,10,S10,tie,3166.45,2529.67,,,,,24th,G,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",high,06b_grid_control_points.py,,True,band rms 40.6px
+25th|D,10,S10,tie,209.12,3736.09,,,,,25th,D,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",medium,06b_grid_control_points.py,,True,band rms 62.7px
+25th|E,10,S10,tie,1171.12,3741.44,,,,,25th,E,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",medium,06b_grid_control_points.py,,True,band rms 62.7px
+25th|F,10,S10,tie,2219.5,3747.26,,,,,25th,F,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",medium,06b_grid_control_points.py,,True,band rms 62.7px
+25th|G,10,S10,tie,3162.61,3752.5,,,,,25th,G,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",medium,06b_grid_control_points.py,,True,band rms 62.7px
+22nd|G,27,S27,tie,141.75,280.53,,,,,22nd,G,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",high,06b_grid_control_points.py,,True,band rms 36.4px
+22nd|H,27,S27,tie,1075.5,291.58,,,,,22nd,H,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",high,06b_grid_control_points.py,,True,band rms 36.4px
+22nd|I,27,S27,tie,2103.33,303.74,,,,,22nd,I,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",high,06b_grid_control_points.py,,True,band rms 47.3px
+22nd|J,27,S27,tie,3126.58,315.85,,,,,22nd,J,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",high,06b_grid_control_points.py,,True,band rms 41.9px
+23rd|G,27,S27,tie,159.5,1385.28,,,,,23rd,G,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",high,06b_grid_control_points.py,,True,band rms 51.1px
+23rd|H,27,S27,tie,1093.25,1396.33,,,,,23rd,H,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",high,06b_grid_control_points.py,,True,band rms 51.1px
+23rd|I,27,S27,tie,2121.07,1408.49,,,,,23rd,I,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",high,06b_grid_control_points.py,,True,band rms 51.1px
+23rd|J,27,S27,tie,3144.32,1420.6,,,,,23rd,J,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",high,06b_grid_control_points.py,,True,band rms 51.1px
+24th|G,27,S27,tie,178.37,2559.53,,,,,24th,G,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",high,06b_grid_control_points.py,,True,band rms 59.9px
+24th|H,27,S27,tie,1112.11,2570.57,,,,,24th,H,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",high,06b_grid_control_points.py,,True,band rms 59.9px
+24th|I,27,S27,tie,2139.94,2582.74,,,,,24th,I,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",high,06b_grid_control_points.py,,True,band rms 59.9px
+24th|J,27,S27,tie,3163.19,2594.84,,,,,24th,J,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",high,06b_grid_control_points.py,,True,band rms 59.9px
+25th|G,27,S27,tie,197.86,3772.8,,,,,25th,G,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",medium,06b_grid_control_points.py,,True,band rms 67.1px
+25th|H,27,S27,tie,1131.6,3783.85,,,,,25th,H,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",medium,06b_grid_control_points.py,,True,band rms 67.1px
+25th|I,27,S27,tie,2159.43,3796.01,,,,,25th,I,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",medium,06b_grid_control_points.py,,True,band rms 67.1px
+25th|J,27,S27,tie,3182.68,3808.12,,,,,25th,J,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",medium,06b_grid_control_points.py,,True,band rms 67.1px
+19th|G,29,S29,tie,242.66,172.57,,,,,19th,G,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",medium,06b_grid_control_points.py,,True,band rms 68.1px
+19th|H,29,S29,tie,1146.78,183.31,,,,,19th,H,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",medium,06b_grid_control_points.py,,True,band rms 69.0px
+19th|I,29,S29,tie,2199.6,195.81,,,,,19th,I,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",medium,06b_grid_control_points.py,,True,band rms 68.1px
+19th|J,29,S29,tie,3227.55,208.02,,,,,19th,J,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",medium,06b_grid_control_points.py,,True,band rms 68.1px
+21st|G,29,S29,tie,232.17,2550.13,,,,,21st,G,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",medium,06b_grid_control_points.py,,True,band rms 69.0px
+21st|H,29,S29,tie,1136.28,2560.87,,,,,21st,H,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",medium,06b_grid_control_points.py,,True,band rms 69.0px
+21st|I,29,S29,tie,2189.1,2573.37,,,,,21st,I,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",medium,06b_grid_control_points.py,,True,band rms 69.0px
+21st|J,29,S29,tie,3217.05,2585.58,,,,,21st,J,street centreline intersection,"windowed low-ink band fit, shared sheet rotation",medium,06b_grid_control_points.py,,True,band rms 69.0px
+OVL_S9_S7_000,S9,S9,tie,1815.62,245.03,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.391
+OVL_S9_S7_000,S7,S7,tie,1832.38,3692.83,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.391
+OVL_S9_S7_001,S9,S9,tie,2000.84,245.03,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.593
+OVL_S9_S7_001,S7,S7,tie,2013.64,3696.69,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.593
+OVL_S9_S7_002,S9,S9,tie,2000.84,281.19,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.678
+OVL_S9_S7_002,S7,S7,tie,2013.73,3735.61,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.678
+OVL_S9_S7_003,S9,S9,tie,704.3,317.35,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.386
+OVL_S9_S7_003,S7,S7,tie,732.13,3763.91,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.386
+OVL_S9_S7_004,S9,S9,tie,2000.84,317.35,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.645
+OVL_S9_S7_004,S7,S7,tie,2013.64,3772.01,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.645
+OVL_S9_S7_005,S9,S9,tie,519.08,353.5,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.571
+OVL_S9_S7_005,S7,S7,tie,543.58,3788.65,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.571
+OVL_S9_S7_006,S9,S9,tie,704.3,353.5,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.405
+OVL_S9_S7_006,S7,S7,tie,732.03,3790.87,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.405
+OVL_S9_S7_007,S9,S9,tie,1259.96,353.5,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.519
+OVL_S9_S7_007,S7,S7,tie,1276.19,3803.1,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.519
+OVL_S9_S7_008,S9,S9,tie,1630.4,353.5,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.401
+OVL_S9_S7_008,S7,S7,tie,1654.47,3801.24,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.401
+OVL_S9_S7_009,S9,S9,tie,1815.62,353.5,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.455
+OVL_S9_S7_009,S7,S7,tie,1830.09,3803.52,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.455
+OVL_S9_S7_010,S9,S9,tie,2000.84,353.5,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.537
+OVL_S9_S7_010,S7,S7,tie,2013.48,3806.94,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.537
+OVL_S9_S7_011,S9,S9,tie,519.08,389.66,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.883
+OVL_S9_S7_011,S7,S7,tie,556.9,3825.09,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.883
+OVL_S9_S7_012,S9,S9,tie,704.3,389.66,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.471
+OVL_S9_S7_012,S7,S7,tie,731.36,3827.13,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.471
+OVL_S9_S7_013,S9,S9,tie,1074.74,389.66,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.526
+OVL_S9_S7_013,S7,S7,tie,1094.5,3831.13,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.526
+OVL_S9_S7_014,S9,S9,tie,1259.96,389.66,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.569
+OVL_S9_S7_014,S7,S7,tie,1275.59,3833.66,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.569
+OVL_S9_S7_015,S9,S9,tie,1815.62,389.66,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.470
+OVL_S9_S7_015,S7,S7,tie,1829.6,3839.87,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.470
+OVL_S9_S7_016,S9,S9,tie,2186.06,389.66,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.417
+OVL_S9_S7_016,S7,S7,tie,2194.14,3843.03,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.417
+OVL_S9_S7_017,S9,S9,tie,3112.17,389.66,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.506
+OVL_S9_S7_017,S7,S7,tie,3103.6,3849.24,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.506
+OVL_S9_S7_018,S9,S9,tie,333.85,425.82,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.538
+OVL_S9_S7_018,S7,S7,tie,359.83,3859.37,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.538
+OVL_S9_S7_019,S9,S9,tie,519.08,425.82,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.896
+OVL_S9_S7_019,S7,S7,tie,535.46,3861.43,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.896
+OVL_S9_S7_020,S9,S9,tie,704.3,425.82,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.442
+OVL_S9_S7_020,S7,S7,tie,728.68,3863.5,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.442
+OVL_S9_S7_021,S9,S9,tie,1074.74,425.82,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.490
+OVL_S9_S7_021,S7,S7,tie,1094.22,3867.53,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.490
+OVL_S9_S7_022,S9,S9,tie,1259.96,425.82,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.566
+OVL_S9_S7_022,S7,S7,tie,1275.34,3869.03,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.566
+OVL_S9_S7_023,S9,S9,tie,1815.62,425.82,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.427
+OVL_S9_S7_023,S7,S7,tie,1829.27,3876.22,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.427
+OVL_S9_S7_024,S9,S9,tie,2186.06,425.82,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.391
+OVL_S9_S7_024,S7,S7,tie,2193.8,3878.15,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.391
+OVL_S9_S7_025,S9,S9,tie,3112.17,425.82,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.412
+OVL_S9_S7_025,S7,S7,tie,3103.33,3885.49,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.412
+OVL_S9_S7_026,S9,S9,tie,333.85,461.98,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.433
+OVL_S9_S7_026,S7,S7,tie,359.51,3895.74,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.433
+OVL_S9_S7_027,S9,S9,tie,519.08,461.98,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.785
+OVL_S9_S7_027,S7,S7,tie,536.39,3897.77,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.785
+OVL_S9_S7_028,S9,S9,tie,1074.74,461.98,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.439
+OVL_S9_S7_028,S7,S7,tie,1093.91,3903.83,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.439
+OVL_S9_S7_029,S9,S9,tie,2371.28,461.98,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.407
+OVL_S9_S7_029,S7,S7,tie,2372.83,3918.47,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.407
+OVL_S9_S7_030,S9,S9,tie,333.85,498.14,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.412
+OVL_S9_S7_030,S7,S7,tie,359.37,3932.06,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.412
+OVL_S9_S7_031,S9,S9,tie,519.08,498.14,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.692
+OVL_S9_S7_031,S7,S7,tie,536.35,3934.13,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.692
+OVL_S10_S8_000,S10,S10,tie,1072.36,267.13,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.414
+OVL_S10_S8_000,S8,S8,tie,1064.65,3781.57,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.414
+OVL_S10_S8_001,S10,S10,tie,1443.28,267.99,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.523
+OVL_S10_S8_001,S8,S8,tie,1422.83,3779.4,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.523
+OVL_S10_S8_002,S10,S10,tie,1628.75,268.41,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.500
+OVL_S10_S8_002,S8,S8,tie,1611.97,3780.74,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.500
+OVL_S10_S8_003,S10,S10,tie,1814.21,268.84,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.423
+OVL_S10_S8_003,S8,S8,tie,1800.22,3782.23,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.423
+OVL_S10_S8_004,S10,S10,tie,330.44,296.3,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.422
+OVL_S10_S8_004,S8,S8,tie,327.42,3804.62,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.422
+OVL_S10_S8_005,S10,S10,tie,701.36,297.15,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.387
+OVL_S10_S8_005,S8,S8,tie,695.48,3808.44,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.387
+OVL_S10_S8_006,S10,S10,tie,1072.29,298.01,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.458
+OVL_S10_S8_006,S8,S8,tie,1064.01,3812.21,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.458
+OVL_S10_S8_007,S10,S10,tie,1443.21,298.87,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.486
+OVL_S10_S8_007,S8,S8,tie,1421.92,3810.16,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.486
+OVL_S10_S8_008,S10,S10,tie,1628.67,299.29,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.407
+OVL_S10_S8_008,S8,S8,tie,1620.0,3811.74,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.407
+OVL_S10_S8_009,S10,S10,tie,1814.14,299.72,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.401
+OVL_S10_S8_009,S8,S8,tie,1800.06,3812.82,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.401
+OVL_S10_S8_010,S10,S10,tie,330.37,327.18,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.588
+OVL_S10_S8_010,S8,S8,tie,327.31,3835.3,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.588
+OVL_S10_S8_011,S10,S10,tie,701.29,328.03,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.458
+OVL_S10_S8_011,S8,S8,tie,695.19,3839.01,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.458
+OVL_S10_S8_012,S10,S10,tie,1072.22,328.89,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.563
+OVL_S10_S8_012,S8,S8,tie,1063.44,3842.9,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.563
+OVL_S10_S8_013,S10,S10,tie,1257.68,329.32,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.456
+OVL_S10_S8_013,S8,S8,tie,1247.08,3840.96,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.456
+OVL_S10_S8_014,S10,S10,tie,1628.6,330.17,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.423
+OVL_S10_S8_014,S8,S8,tie,1619.86,3842.71,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.423
+OVL_S10_S8_015,S10,S10,tie,1999.53,331.03,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.774
+OVL_S10_S8_015,S8,S8,tie,1974.97,3845.15,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.774
+OVL_S10_S8_016,S10,S10,tie,330.29,358.06,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.407
+OVL_S10_S8_016,S8,S8,tie,327.25,3865.89,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.407
+OVL_S10_S8_017,S10,S10,tie,1072.14,359.77,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.438
+OVL_S10_S8_017,S8,S8,tie,1063.21,3873.49,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.438
+OVL_S10_S8_018,S10,S10,tie,2370.38,362.77,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.542
+OVL_S10_S8_018,S8,S8,tie,2349.89,3878.38,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.542
+OVL_S10_S8_019,S10,S10,tie,1072.07,390.65,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.402
+OVL_S10_S8_019,S8,S8,tie,1063.04,3904.11,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.402
+OVL_S10_S8_020,S10,S10,tie,2370.31,393.65,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.467
+OVL_S10_S8_020,S8,S8,tie,2349.78,3908.99,,,,,,,shared detail in sheet overlap,predictive NCC + RANSAC similarity,medium,06c_overlap_correspondences.py,,True,ncc=0.467
