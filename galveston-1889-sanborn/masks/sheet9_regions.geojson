@@ -10,24 +10,24 @@
         "coordinates": [
           [
             [
-              103.45319034026267,
-              252.48707423591725
+              242.36557730230805,
+              339.30173619237354
             ],
             [
-              3189.3033232908533,
-              269.1291044584973
+              3189.645341400284,
+              328.9027504873607
             ],
             [
-              3241.096179429179,
+              3159.1513859562738,
               4005.0
             ],
             [
-              155.47676598182272,
+              211.9578835062432,
               4005.0
             ],
             [
-              103.45319034026267,
-              252.48707423591725
+              242.36557730230805,
+              339.30173619237354
             ]
           ]
         ]
@@ -39,9 +39,9 @@
         "role": "map_region",
         "source_image": "txu-sanborn-galveston-1889-Sheet 9.jpg",
         "pixel_crs": "Coordinates are source-image pixels (x right, y DOWN) of the original unmodified scan named in properties.source_image. NOT a geographic CRS.",
-        "note": "Butt joint on shared centrelines; free edges run to the mapped-area bound.",
+        "note": "Butt joint on shared centrelines; edges with no neighbour run out to the mapped-area bound so nothing is trimmed.",
         "confidence": "high",
-        "defined_by": "cut at boundary street/avenue centrelines where a neighbour exists"
+        "defined_by": "cut at the street/avenue centrelines shared with each neighbour"
       }
     }
   ],

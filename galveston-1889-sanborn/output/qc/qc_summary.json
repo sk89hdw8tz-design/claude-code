@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-08-14T19:17:00+00:00",
+  "generated_utc": "2026-08-14T19:41:38+00:00",
   "profile": "galveston1889",
   "model": "similarity",
   "anchor_region": "S9",
@@ -8,22 +8,22 @@
     "gross_px": 15.0
   },
   "residuals_overall": {
-    "n": 37,
-    "median": 8.835241142374207,
-    "mean": 19.787269844665747,
-    "rms": 27.351737513585906,
-    "p90": 48.31272042307997,
-    "max": 66.19592576134696,
-    "over_good": 25,
-    "over_gross": 17
+    "n": 32,
+    "median": 4.867812241329868,
+    "mean": 13.961361492897801,
+    "rms": 22.634362029866146,
+    "p90": 42.86968710403866,
+    "max": 63.79144460640092,
+    "over_good": 15,
+    "over_gross": 9
   },
   "held_out": {
-    "n": 37,
-    "median": 31.12395764231845,
-    "mean": 144.54678870764664,
-    "rms": 490.66560828572204,
-    "p90": 88.02229221564545,
-    "max": 2635.740101259187
+    "n": 32,
+    "median": 36.22741417341558,
+    "mean": 1942.0808663752014,
+    "rms": 9457.467125884166,
+    "p90": 770.2054466770609,
+    "max": 53113.59496451408
   },
   "seams": [
     {
@@ -31,28 +31,14 @@
         "S10",
         "S27"
       ],
-      "n": 3,
-      "median": 26.984553852168016,
-      "max": 66.19592576134696,
+      "n": 4,
+      "median": 8.42448840452866,
+      "max": 31.009383189002456,
       "verdict": "SCATTERED -- consistent with drafting/survey disagreement between the two 1889 sheets rather than processing error",
-      "bias": 14.668366123764292,
-      "scatter": 38.33172652101299,
+      "bias": 5.5301846563077,
+      "scatter": 12.023797296930159,
       "contact": "edge",
-      "extent_ratio": 0.2765646618853787
-    },
-    {
-      "pair": [
-        "S10",
-        "S29"
-      ],
-      "n": 1,
-      "median": 27.065603785655547,
-      "max": 27.065603785655547,
-      "verdict": "too few points to classify",
-      "bias": null,
-      "scatter": null,
-      "contact": "none",
-      "extent_ratio": 0.0
+      "extent_ratio": 0.7775159937540811
     },
     {
       "pair": [
@@ -60,8 +46,8 @@
         "S7"
       ],
       "n": 1,
-      "median": 3.718954112495716,
-      "max": 3.718954112495716,
+      "median": 3.1300079485304315,
+      "max": 3.1300079485304315,
       "verdict": "too few points to classify",
       "bias": null,
       "scatter": null,
@@ -74,83 +60,69 @@
         "S8"
       ],
       "n": 4,
-      "median": 11.711159844161047,
-      "max": 56.2013197346062,
+      "median": 5.951964227874253,
+      "max": 43.56220763634372,
       "verdict": "mixed",
-      "bias": 15.164212345291203,
-      "scatter": 18.642662390550583,
+      "bias": 8.864703759424415,
+      "scatter": 14.20027282081277,
       "contact": "edge",
-      "extent_ratio": 0.6408133184149903
+      "extent_ratio": 0.4836166511150423
     },
     {
       "pair": [
         "S10",
         "S9"
       ],
-      "n": 3,
-      "median": 33.60367003903007,
-      "max": 59.381161760502685,
+      "n": 4,
+      "median": 36.04561495223088,
+      "max": 63.79144460640092,
       "verdict": "mixed",
-      "bias": 18.081125660107592,
-      "scatter": 34.14388167839908,
-      "contact": "edge",
-      "extent_ratio": 0.9465803647724775
-    },
-    {
-      "pair": [
-        "S1_main",
-        "S7"
-      ],
-      "n": 1,
-      "median": 0.9429477593866201,
-      "max": 0.9429477593866201,
-      "verdict": "too few points to classify",
-      "bias": null,
-      "scatter": null,
-      "contact": "none",
-      "extent_ratio": 0.0
+      "bias": 27.764057751389384,
+      "scatter": 34.27569184423558,
+      "contact": "corner",
+      "extent_ratio": 0.1266819066892911
     },
     {
       "pair": [
         "S1_main",
         "S9"
       ],
-      "n": 4,
-      "median": 37.363180704734205,
-      "max": 57.61846015573586,
-      "verdict": "SCATTERED -- consistent with drafting/survey disagreement between the two 1889 sheets rather than processing error",
-      "bias": 15.884110603348397,
-      "scatter": 34.452403806936694,
+      "n": 2,
+      "median": 1.5404976809584986e-10,
+      "max": 1.7471696558402616e-10,
+      "verdict": "too few points to classify",
+      "bias": null,
+      "scatter": null,
       "contact": "edge",
-      "extent_ratio": 0.7858934309470433
+      "extent_ratio": 0.3121265326120707
     },
     {
       "pair": [
         "S2",
         "S7"
       ],
-      "n": 3,
-      "median": 3.217031920829774,
-      "max": 38.54936856732598,
+      "n": 4,
+      "median": 7.127849216508379,
+      "max": 48.84198329153846,
       "verdict": "mixed",
-      "bias": 10.849793217115824,
-      "scatter": 14.066825137935862,
+      "bias": 9.55132963440481,
+      "scatter": 15.068880138794647,
       "contact": "edge",
-      "extent_ratio": 0.7803540617477094
+      "extent_ratio": 0.8323656102567223
     },
     {
       "pair": [
-        "S27",
-        "S29"
+        "S2",
+        "S9"
       ],
-      "n": 4,
-      "median": 11.193574794344697,
-      "max": 27.01769756515782,
-      "verdict": "mixed",
-      "bias": 7.943292929862307,
-      "scatter": 12.641822449174567,
-      "contact": "edge",
-      "extent_ratio": 0.24758798733452986
+      "n": 1,
+      "median": 18.75312355151143,
+      "max": 18.75312355151143,
+      "verdict": "too few points to classify",
+      "bias": null,
+      "scatter": null,
+      "contact": "none",
+      "extent_ratio": 0.0
     },
     {
       "pair": [
@@ -158,27 +130,27 @@
         "S8"
       ],
       "n": 1,
-      "median": 37.77259505689089,
-      "max": 37.77259505689089,
+      "median": 2.2035063512260593,
+      "max": 2.2035063512260593,
       "verdict": "too few points to classify",
       "bias": null,
       "scatter": null,
-      "contact": "corner",
-      "extent_ratio": 0.00808970031517817
+      "contact": "none",
+      "extent_ratio": 0.0
     },
     {
       "pair": [
         "S29",
         "S8"
       ],
-      "n": 4,
-      "median": 27.58466088864992,
-      "max": 33.654070584122856,
-      "verdict": "SCATTERED -- consistent with drafting/survey disagreement between the two 1889 sheets rather than processing error",
-      "bias": 7.755813174864185,
-      "scatter": 24.10804886829726,
+      "n": 2,
+      "median": 1.1610009185596761e-08,
+      "max": 2.2286874037031492e-08,
+      "verdict": "too few points to classify",
+      "bias": null,
+      "scatter": null,
       "contact": "edge",
-      "extent_ratio": 0.5885134944931228
+      "extent_ratio": 0.5545910239664723
     },
     {
       "pair": [
@@ -186,27 +158,27 @@
         "S8"
       ],
       "n": 4,
-      "median": 5.222413922228565,
-      "max": 23.93868212689487,
+      "median": 4.970311110636967,
+      "max": 9.980944857041719,
       "verdict": "mixed",
-      "bias": 5.856838454632406,
-      "scatter": 9.127353563307146,
+      "bias": 3.000841452446077,
+      "scatter": 4.968727090425106,
       "contact": "edge",
-      "extent_ratio": 0.7057380206014116
+      "extent_ratio": 0.1710858385074711
     },
     {
       "pair": [
         "S7",
         "S9"
       ],
-      "n": 3,
-      "median": 4.674671691945141,
-      "max": 5.78930676018922,
+      "n": 4,
+      "median": 22.986456945741047,
+      "max": 36.63700231329297,
       "verdict": "SCATTERED -- consistent with drafting/survey disagreement between the two 1889 sheets rather than processing error",
-      "bias": 0.8006703999690193,
-      "scatter": 4.942567527249549,
-      "contact": "edge",
-      "extent_ratio": 0.5149765131200394
+      "bias": 9.007286367037622,
+      "scatter": 20.675971642376876,
+      "contact": "corner",
+      "extent_ratio": 0.05902070892477419
     },
     {
       "pair": [
@@ -214,16 +186,16 @@
         "S9"
       ],
       "n": 1,
-      "median": 7.634214766649904,
-      "max": 7.634214766649904,
+      "median": 4.839099902405807,
+      "max": 4.839099902405807,
       "verdict": "too few points to classify",
       "bias": null,
       "scatter": null,
-      "contact": "none",
-      "extent_ratio": 0.0
+      "contact": "corner",
+      "extent_ratio": 0.0012540828999197651
     }
   ],
-  "seam_panels": 27,
+  "seam_panels": 25,
   "seam_steps": [
     {
       "pair": [
@@ -232,10 +204,10 @@
       ],
       "sample": 1,
       "contact": "edge",
-      "across_seam": 13.575346946716309,
-      "typical_adjacent": 0.9864944219589233,
-      "tone_offset": 12.128311157226562,
-      "ratio": 13.761199905985452
+      "across_seam": 10.951482772827148,
+      "typical_adjacent": 9.37756061553955,
+      "tone_offset": 10.993499755859375,
+      "ratio": 1.1678391878032175
     },
     {
       "pair": [
@@ -244,34 +216,10 @@
       ],
       "sample": 2,
       "contact": "edge",
-      "across_seam": 9.6328125,
-      "typical_adjacent": 1.0,
-      "tone_offset": 10.0,
-      "ratio": 9.6328125
-    },
-    {
-      "pair": [
-        "S10",
-        "S29"
-      ],
-      "sample": 1,
-      "contact": "none",
-      "across_seam": 12.261646270751953,
-      "typical_adjacent": 2.0538783073425293,
-      "tone_offset": 12.169937133789062,
-      "ratio": 5.9699964827113075
-    },
-    {
-      "pair": [
-        "S10",
-        "S29"
-      ],
-      "sample": 2,
-      "contact": "none",
-      "across_seam": 4.6953125,
-      "typical_adjacent": 3.09375,
-      "tone_offset": 4.0,
-      "ratio": 1.5176767676767677
+      "across_seam": 13.21875,
+      "typical_adjacent": 4.390625,
+      "tone_offset": 13.0,
+      "ratio": 3.0106761565836297
     },
     {
       "pair": [
@@ -280,10 +228,10 @@
       ],
       "sample": 1,
       "contact": "none",
-      "across_seam": 11.685506820678711,
-      "typical_adjacent": 7.474485874176025,
-      "tone_offset": 4.7974700927734375,
-      "ratio": 1.5633860331519993
+      "across_seam": 9.363489151000977,
+      "typical_adjacent": 2.4438610076904297,
+      "tone_offset": 3.2479248046875,
+      "ratio": 3.8314327703317055
     },
     {
       "pair": [
@@ -292,10 +240,46 @@
       ],
       "sample": 2,
       "contact": "none",
-      "across_seam": 33.9609375,
-      "typical_adjacent": 2.1171875,
-      "tone_offset": 8.0,
-      "ratio": 16.04059040590406
+      "across_seam": 14.0078125,
+      "typical_adjacent": 3.65625,
+      "tone_offset": 14.0,
+      "ratio": 3.8311965811965814
+    },
+    {
+      "pair": [
+        "S10",
+        "S8"
+      ],
+      "sample": 1,
+      "contact": "edge",
+      "across_seam": 15.987977981567383,
+      "typical_adjacent": 4.204812049865723,
+      "tone_offset": -15.950149536132812,
+      "ratio": 3.802305023854264
+    },
+    {
+      "pair": [
+        "S10",
+        "S8"
+      ],
+      "sample": 2,
+      "contact": "edge",
+      "across_seam": 4.012337684631348,
+      "typical_adjacent": 2.863633632659912,
+      "tone_offset": -4.075897216796875,
+      "ratio": 1.401135130859757
+    },
+    {
+      "pair": [
+        "S10",
+        "S8"
+      ],
+      "sample": 3,
+      "contact": "edge",
+      "across_seam": 14.0078125,
+      "typical_adjacent": 3.65625,
+      "tone_offset": 14.0,
+      "ratio": 3.8311965811965814
     },
     {
       "pair": [
@@ -303,11 +287,11 @@
         "S9"
       ],
       "sample": 1,
-      "contact": "edge",
-      "across_seam": 24.64377212524414,
-      "typical_adjacent": 1.0070549249649048,
-      "tone_offset": -24.623504638671875,
-      "ratio": 24.47113013831193
+      "contact": "corner",
+      "across_seam": 12.009906768798828,
+      "typical_adjacent": 3.219663143157959,
+      "tone_offset": 12.591278076171875,
+      "ratio": 3.7301749390525023
     },
     {
       "pair": [
@@ -315,35 +299,23 @@
         "S9"
       ],
       "sample": 2,
-      "contact": "edge",
-      "across_seam": 24.2421875,
-      "typical_adjacent": 1.0390625,
-      "tone_offset": 24.0,
-      "ratio": 23.330827067669173
+      "contact": "corner",
+      "across_seam": 5.816444396972656,
+      "typical_adjacent": 2.7646236419677734,
+      "tone_offset": -9.347122192382812,
+      "ratio": 2.1038828969981216
     },
     {
       "pair": [
-        "S1_main",
-        "S7"
+        "S10",
+        "S9"
       ],
-      "sample": 1,
-      "contact": "none",
-      "across_seam": 10.606032371520996,
-      "typical_adjacent": 3.1904189586639404,
-      "tone_offset": 8.502532958984375,
-      "ratio": 3.3243384360913244
-    },
-    {
-      "pair": [
-        "S1_main",
-        "S7"
-      ],
-      "sample": 2,
-      "contact": "none",
-      "across_seam": 36.5078125,
-      "typical_adjacent": 1.2890625,
-      "tone_offset": 2.0,
-      "ratio": 28.32121212121212
+      "sample": 3,
+      "contact": "corner",
+      "across_seam": 15.8984375,
+      "typical_adjacent": 1.9921875,
+      "tone_offset": 16.0,
+      "ratio": 7.980392156862745
     },
     {
       "pair": [
@@ -352,10 +324,10 @@
       ],
       "sample": 1,
       "contact": "edge",
-      "across_seam": 21.342679977416992,
-      "typical_adjacent": 1.1194595098495483,
-      "tone_offset": 3.2098388671875,
-      "ratio": 19.065164742122185
+      "across_seam": 11.114233016967773,
+      "typical_adjacent": 0.8730250597000122,
+      "tone_offset": -11.334686279296875,
+      "ratio": 12.730714764117804
     },
     {
       "pair": [
@@ -364,10 +336,22 @@
       ],
       "sample": 2,
       "contact": "edge",
-      "across_seam": 72.9921875,
-      "typical_adjacent": 4.484375,
-      "tone_offset": -7.0,
-      "ratio": 16.277003484320556
+      "across_seam": 10.515625,
+      "typical_adjacent": 10.046875,
+      "tone_offset": -11.0,
+      "ratio": 1.046656298600311
+    },
+    {
+      "pair": [
+        "S2",
+        "S7"
+      ],
+      "sample": 1,
+      "contact": "edge",
+      "across_seam": 4.846585273742676,
+      "typical_adjacent": 0.857620120048523,
+      "tone_offset": -5.0,
+      "ratio": 5.651202858287027
     },
     {
       "pair": [
@@ -376,82 +360,34 @@
       ],
       "sample": 2,
       "contact": "edge",
-      "across_seam": 27.1171875,
-      "typical_adjacent": 1.3046875,
-      "tone_offset": -2.0,
-      "ratio": 20.78443113772455
+      "across_seam": 13.09375,
+      "typical_adjacent": 4.09375,
+      "tone_offset": 13.0,
+      "ratio": 3.198473282442748
     },
     {
       "pair": [
-        "S27",
-        "S29"
+        "S29",
+        "S8"
       ],
-      "sample": 1,
+      "sample": 2,
       "contact": "edge",
-      "across_seam": 6.375567436218262,
-      "typical_adjacent": 1.707843542098999,
-      "tone_offset": 7.509979248046875,
-      "ratio": 3.733109783805177
+      "across_seam": 4.913686752319336,
+      "typical_adjacent": 0.9922218322753906,
+      "tone_offset": -16.361480712890625,
+      "ratio": 4.952205839949252
     },
     {
       "pair": [
-        "S27",
-        "S29"
+        "S29",
+        "S8"
       ],
       "sample": 3,
       "contact": "edge",
-      "across_seam": 6.9375,
-      "typical_adjacent": 2.8515625,
-      "tone_offset": 2.0,
-      "ratio": 2.4328767123287673
-    },
-    {
-      "pair": [
-        "S27",
-        "S8"
-      ],
-      "sample": 1,
-      "contact": "corner",
-      "across_seam": 6.082425594329834,
-      "typical_adjacent": 4.107476234436035,
-      "tone_offset": -2.035186767578125,
-      "ratio": 1.480818207379102
-    },
-    {
-      "pair": [
-        "S27",
-        "S8"
-      ],
-      "sample": 2,
-      "contact": "corner",
-      "across_seam": 6.875,
-      "typical_adjacent": 3.0625,
-      "tone_offset": 2.0,
-      "ratio": 2.2448979591836733
-    },
-    {
-      "pair": [
-        "S29",
-        "S8"
-      ],
-      "sample": 1,
-      "contact": "edge",
-      "across_seam": 17.912185668945312,
-      "typical_adjacent": 0.7152074575424194,
-      "tone_offset": -17.854782104492188,
-      "ratio": 25.04474118669677
-    },
-    {
-      "pair": [
-        "S29",
-        "S8"
-      ],
-      "sample": 2,
-      "contact": "edge",
-      "across_seam": 24.8046875,
-      "typical_adjacent": 7.4140625,
-      "tone_offset": 25.0,
-      "ratio": 3.3456269757639623
+      "across_seam": 18.71875,
+      "typical_adjacent": 3.6796875,
+      "tone_offset": 19.0,
+      "ratio": 5.087048832271762
     },
     {
       "pair": [
@@ -460,10 +396,10 @@
       ],
       "sample": 1,
       "contact": "edge",
-      "across_seam": 24.448200225830078,
-      "typical_adjacent": 0.843673825263977,
-      "tone_offset": 22.964111328125,
-      "ratio": 28.97826090335383
+      "across_seam": 25.487829208374023,
+      "typical_adjacent": 2.6646018028259277,
+      "tone_offset": 26.7562255859375,
+      "ratio": 9.565342626933246
     },
     {
       "pair": [
@@ -472,90 +408,102 @@
       ],
       "sample": 2,
       "contact": "edge",
-      "across_seam": 12.9140625,
-      "typical_adjacent": 0.8671875,
+      "across_seam": 10.296875,
+      "typical_adjacent": 2.921875,
+      "tone_offset": 10.0,
+      "ratio": 3.5240641711229945
+    },
+    {
+      "pair": [
+        "S7",
+        "S9"
+      ],
+      "sample": 1,
+      "contact": "corner",
+      "across_seam": 6.480518341064453,
+      "typical_adjacent": 5.172389030456543,
+      "tone_offset": 6.232879638671875,
+      "ratio": 1.2529062108254545
+    },
+    {
+      "pair": [
+        "S7",
+        "S9"
+      ],
+      "sample": 2,
+      "contact": "corner",
+      "across_seam": 33.890625,
+      "typical_adjacent": 5.5,
+      "tone_offset": -10.0,
+      "ratio": 6.161931818181818
+    },
+    {
+      "pair": [
+        "S8",
+        "S9"
+      ],
+      "sample": 1,
+      "contact": "corner",
+      "across_seam": 9.987451553344727,
+      "typical_adjacent": 3.4228665828704834,
+      "tone_offset": -10.20660400390625,
+      "ratio": 2.9178617721550375
+    },
+    {
+      "pair": [
+        "S8",
+        "S9"
+      ],
+      "sample": 2,
+      "contact": "corner",
+      "across_seam": 12.7265625,
+      "typical_adjacent": 3.375,
       "tone_offset": 13.0,
-      "ratio": 14.891891891891891
-    },
-    {
-      "pair": [
-        "S7",
-        "S9"
-      ],
-      "sample": 1,
-      "contact": "edge",
-      "across_seam": 3.9712159633636475,
-      "typical_adjacent": 3.369253158569336,
-      "tone_offset": 3.564117431640625,
-      "ratio": 1.1786635721519718
-    },
-    {
-      "pair": [
-        "S7",
-        "S9"
-      ],
-      "sample": 2,
-      "contact": "edge",
-      "across_seam": 2.625,
-      "typical_adjacent": 1.7890625,
-      "tone_offset": -1.0,
-      "ratio": 1.4672489082969433
+      "ratio": 3.7708333333333335
     }
   ],
   "seam_steps_skipped": [
     {
       "pair": [
-        "S10",
+        "S27",
         "S8"
       ],
       "sample": 1,
-      "across_seam": 0.9430686235427856,
-      "typical_adjacent": 0.8266117572784424,
-      "tone_offset": -0.4322967529296875,
+      "across_seam": null,
+      "typical_adjacent": null,
       "ratio": null,
-      "skipped": "uninformative sample: structural step 0.94 grey levels against local variation 0.83 (tone offset -0.4) -- too little content here to judge"
-    },
-    {
-      "pair": [
-        "S10",
-        "S8"
-      ],
-      "sample": 2,
-      "across_seam": 1.4765625,
-      "typical_adjacent": 4.8203125,
-      "tone_offset": -1.0,
-      "ratio": null,
-      "skipped": "uninformative sample: structural step 1.48 grey levels against local variation 4.82 (tone offset -1.0) -- too little content here to judge"
-    },
-    {
-      "pair": [
-        "S2",
-        "S7"
-      ],
-      "sample": 1,
-      "across_seam": 1.0843886137008667,
-      "typical_adjacent": 0.8086820840835571,
-      "tone_offset": -1.4631805419921875,
-      "ratio": null,
-      "skipped": "uninformative sample: structural step 1.08 grey levels against local variation 0.81 (tone offset -1.5) -- too little content here to judge"
+      "skipped": "sample touches the mosaic edge (transparent area)",
+      "transparent_fraction": 0.134552001953125
     },
     {
       "pair": [
         "S27",
-        "S29"
+        "S8"
       ],
       "sample": 2,
-      "across_seam": 3.171074628829956,
-      "typical_adjacent": 0.42784249782562256,
-      "tone_offset": -4.1893157958984375,
+      "across_seam": null,
+      "typical_adjacent": null,
       "ratio": null,
-      "skipped": "uninformative sample: structural step 3.17 grey levels against local variation 0.43 (tone offset -4.2) -- too little content here to judge"
+      "skipped": "sample touches the mosaic edge (transparent area)",
+      "transparent_fraction": 0.132415771484375
+    },
+    {
+      "pair": [
+        "S29",
+        "S8"
+      ],
+      "sample": 1,
+      "across_seam": null,
+      "typical_adjacent": null,
+      "ratio": null,
+      "skipped": "sample touches the mosaic edge (transparent area)",
+      "transparent_fraction": 0.31060791015625
     }
   ],
-  "coverage_fraction": 0.8739193535549501,
+  "coverage_fraction": 0.8670576063868747,
   "implausible_regions": [],
   "verdict": [
-    "median 8.84 px EXCEEDS the 5 px target",
-    "17 point(s) exceed 15 px"
+    "median 4.87 px meets the <= 5 px target",
+    "9 point(s) exceed 15 px"
   ]
 }

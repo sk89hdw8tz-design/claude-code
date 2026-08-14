@@ -1,1 +1,24 @@
-[]
+[
+  {
+    "reason": "outside region mask",
+    "point_id": "25th|A",
+    "sheet": "1",
+    "region": "S1_main",
+    "role": "tie",
+    "src_x": 3006.72,
+    "src_y": 3587.12,
+    "ref_x": "",
+    "ref_y": "",
+    "ref_lon": "",
+    "ref_lat": "",
+    "street_a": "25th",
+    "street_b": "A",
+    "feature": "street centreline intersection",
+    "method": "windowed low-ink band fit, shared sheet rotation",
+    "confidence": "medium",
+    "selected_by": "06b_grid_control_points.py",
+    "residual_px": "",
+    "accepted": true,
+    "note": "band rms 62.0px"
+  }
+]

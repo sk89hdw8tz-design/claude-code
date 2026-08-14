@@ -1,102 +1,102 @@
-# Generated from readings of the printed sheets (see README).
-note: Approximate street/avenue centreline positions read from the printed labels on each sheet. Identity
-  comes from here; 06b measures precision.
+# Generated from the sheet-reading agents' measurements (see config/sheet_readings.yaml).
+note: Approximate centreline positions read from the printed labels by the sheet-reading agents, with
+  block-edge cross-checks where they gave them. Identity comes from here; 06b measures precision.
 sheets:
   '1':
     file: txu-sanborn-galveston-1889-Sheet 1.jpg
     region: S1_main
     streets:
-      22nd: 90
-      23rd: 1185
-      24th: 2358
-      25th: 3537
+      22nd: 15.0
+      23rd: 1180.0
+      24th: 2350.0
+      25th: 3500.0
     avenues:
-      A: 3030
+      A: 3075.0
   '2':
     file: txu-sanborn-galveston-1889-Sheet 2.jpg
     region: S2
     streets:
-      19th: 50
-      20th: 1220
-      21st: 2390
-      22nd: 3563
+      19th: 50.0
+      20th: 1220.0
+      21st: 2390.0
+      22nd: 3563.0
     avenues:
-      A: 3057
+      A: 3057.0
   '7':
     file: txu-sanborn-galveston-1889-Sheet 7.jpg
     region: S7
     streets:
-      19th: 279
-      20th: 1422
-      21st: 2576
-      22nd: 3751
+      19th: 265.0
+      20th: 1510.0
+      21st: 2590.0
+      22nd: 3740.0
     avenues:
-      A: 204
-      B: 1236
-      C: 2221
-      D: 3214
+      A: 240.0
+      B: 1243.0
+      C: 2236.0
+      D: 3230.0
   '8':
     file: txu-sanborn-galveston-1889-Sheet 8.jpg
     region: S8
     streets:
-      19th: 220
-      20th: 1394
-      21st: 2561
-      22nd: 3734
+      19th: 220.0
+      20th: 1393.0
+      21st: 2570.0
+      22nd: 3765.0
     avenues:
-      D: 178
-      E: 1174
-      F: 2194
-      G: 3190
+      D: 187.0
+      E: 1196.0
+      F: 2201.0
+      G: 3205.0
   '9':
     file: txu-sanborn-galveston-1889-Sheet 9.jpg
     region: S9
     streets:
-      22nd: 280
-      23rd: 1466
-      24th: 2622
-      25th: 3790
+      22nd: 290.0
+      23rd: 1476.0
+      24th: 2637.0
+      25th: 3880.0
     avenues:
-      A: 215
-      B: 1221
-      C: 2209
-      D: 3215
+      A: 218.0
+      B: 1217.0
+      C: 2220.0
+      D: 3220.0
   '10':
     file: txu-sanborn-galveston-1889-Sheet 10.jpg
     region: S10
     streets:
-      22nd: 203
-      23rd: 1379
-      24th: 2544
-      25th: 3721
+      22nd: 220.0
+      23rd: 1389.0
+      24th: 2557.0
+      25th: 3728.0
     avenues:
-      D: 178
-      E: 1173
-      F: 2203
-      G: 3198
+      D: 191.0
+      E: 1202.0
+      F: 2212.0
+      G: 3218.0
   '27':
     file: txu-sanborn-galveston-1889-Sheet 27.jpg
     region: S27
     streets:
-      22nd: 251
-      23rd: 1407
-      24th: 2577
-      25th: 3794
+      22nd: 240.0
+      23rd: 1419.0
+      24th: 2596.0
+      25th: 3833.0
     avenues:
-      G: 126
-      H: 1113
-      I: 2118
-      J: 3123
+      G: 115.0
+      H: 1126.0
+      I: 2134.0
+      J: 3264.0
   '29':
     file: txu-sanborn-galveston-1889-Sheet 29.jpg
     region: S29
     streets:
-      19th: 215
-      20th: 1403
-      21st: 2563
-      22nd: 3744
+      19th: 240.0
+      20th: 1412.0
+      21st: 2582.0
+      22nd: 3750.0
     avenues:
-      G: 161
-      H: 1163
-      I: 2176
-      J: 3178
+      G: 180.0
+      H: 1180.0
+      I: 2190.0
+      J: 3320.0

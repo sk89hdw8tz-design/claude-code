@@ -7,39 +7,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          3081.27,
-          113.56
-        ]
-      },
-      "properties": {
-        "point_id": "22nd|A",
-        "sheet": "1",
-        "region": "S1_main",
-        "role": "tie",
-        "src_x": 3081.27,
-        "src_y": 113.56,
-        "ref_x": "",
-        "ref_y": "",
-        "ref_lon": "",
-        "ref_lat": "",
-        "street_a": "22nd",
-        "street_b": "A",
-        "feature": "street centreline intersection",
-        "method": "windowed low-ink band fit, shared sheet rotation",
-        "confidence": "medium",
-        "selected_by": "06b_grid_control_points.py",
-        "residual_px": "",
-        "accepted": true,
-        "note": "band rms 94.2px"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          3040.89,
-          1206.16
+          2963.43,
+          1200.62
         ]
       },
       "properties": {
@@ -47,8 +16,8 @@
         "sheet": "1",
         "region": "S1_main",
         "role": "tie",
-        "src_x": 3040.89,
-        "src_y": 1206.16,
+        "src_x": 2963.43,
+        "src_y": 1200.62,
         "ref_x": "",
         "ref_y": "",
         "ref_lon": "",
@@ -61,7 +30,7 @@
         "selected_by": "06b_grid_control_points.py",
         "residual_px": "",
         "accepted": true,
-        "note": "band rms 94.4px"
+        "note": "band rms 94.5px"
       }
     },
     {
@@ -69,8 +38,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          2999.18,
-          2334.63
+          2983.9,
+          2329.26
         ]
       },
       "properties": {
@@ -78,8 +47,8 @@
         "sheet": "1",
         "region": "S1_main",
         "role": "tie",
-        "src_x": 2999.18,
-        "src_y": 2334.63,
+        "src_x": 2983.9,
+        "src_y": 2329.26,
         "ref_x": "",
         "ref_y": "",
         "ref_lon": "",
@@ -92,7 +61,7 @@
         "selected_by": "06b_grid_control_points.py",
         "residual_px": "",
         "accepted": true,
-        "note": "band rms 109.2px"
+        "note": "band rms 108.3px"
       }
     },
     {
@@ -100,39 +69,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          2953.24,
-          3577.73
-        ]
-      },
-      "properties": {
-        "point_id": "25th|A",
-        "sheet": "1",
-        "region": "S1_main",
-        "role": "tie",
-        "src_x": 2953.24,
-        "src_y": 3577.73,
-        "ref_x": "",
-        "ref_y": "",
-        "ref_lon": "",
-        "ref_lat": "",
-        "street_a": "25th",
-        "street_b": "A",
-        "feature": "street centreline intersection",
-        "method": "windowed low-ink band fit, shared sheet rotation",
-        "confidence": "medium",
-        "selected_by": "06b_grid_control_points.py",
-        "residual_px": "",
-        "accepted": true,
-        "note": "band rms 94.2px"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          3031.06,
-          149.55
+          2911.59,
+          146.05
         ]
       },
       "properties": {
@@ -140,8 +78,8 @@
         "sheet": "2",
         "region": "S2",
         "role": "tie",
-        "src_x": 3031.06,
-        "src_y": 149.55,
+        "src_x": 2911.59,
+        "src_y": 146.05,
         "ref_x": "",
         "ref_y": "",
         "ref_lon": "",
@@ -154,7 +92,7 @@
         "selected_by": "06b_grid_control_points.py",
         "residual_px": "",
         "accepted": true,
-        "note": "band rms 56.5px"
+        "note": "band rms 27.4px"
       }
     },
     {
@@ -162,8 +100,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          3020.37,
-          1207.66
+          2927.97,
+          1204.19
         ]
       },
       "properties": {
@@ -171,8 +109,8 @@
         "sheet": "2",
         "region": "S2",
         "role": "tie",
-        "src_x": 3020.37,
-        "src_y": 1207.66,
+        "src_x": 2927.97,
+        "src_y": 1204.19,
         "ref_x": "",
         "ref_y": "",
         "ref_lon": "",
@@ -193,8 +131,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          3008.02,
-          2430.81
+          2946.9,
+          2427.35
         ]
       },
       "properties": {
@@ -202,8 +140,8 @@
         "sheet": "2",
         "region": "S2",
         "role": "tie",
-        "src_x": 3008.02,
-        "src_y": 2430.81,
+        "src_x": 2946.9,
+        "src_y": 2427.35,
         "ref_x": "",
         "ref_y": "",
         "ref_lon": "",
@@ -224,8 +162,39 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          113.82,
-          255.12
+          2963.25,
+          3483.6
+        ]
+      },
+      "properties": {
+        "point_id": "22nd|A",
+        "sheet": "2",
+        "region": "S2",
+        "role": "tie",
+        "src_x": 2963.25,
+        "src_y": 3483.6,
+        "ref_x": "",
+        "ref_y": "",
+        "ref_lon": "",
+        "ref_lat": "",
+        "street_a": "22nd",
+        "street_b": "A",
+        "feature": "street centreline intersection",
+        "method": "windowed low-ink band fit, shared sheet rotation",
+        "confidence": "high",
+        "selected_by": "06b_grid_control_points.py",
+        "residual_px": "",
+        "accepted": true,
+        "note": "band rms 34.5px"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          202.41,
+          227.38
         ]
       },
       "properties": {
@@ -233,8 +202,8 @@
         "sheet": "7",
         "region": "S7",
         "role": "tie",
-        "src_x": 113.82,
-        "src_y": 255.12,
+        "src_x": 202.41,
+        "src_y": 227.38,
         "ref_x": "",
         "ref_y": "",
         "ref_lon": "",
@@ -247,7 +216,7 @@
         "selected_by": "06b_grid_control_points.py",
         "residual_px": "",
         "accepted": true,
-        "note": "band rms 65.7px"
+        "note": "band rms 70.8px"
       }
     },
     {
@@ -255,8 +224,39 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          2212.73,
-          262.45
+          1238.55,
+          234.2
+        ]
+      },
+      "properties": {
+        "point_id": "19th|B",
+        "sheet": "7",
+        "region": "S7",
+        "role": "tie",
+        "src_x": 1238.55,
+        "src_y": 234.2,
+        "ref_x": "",
+        "ref_y": "",
+        "ref_lon": "",
+        "ref_lat": "",
+        "street_a": "19th",
+        "street_b": "B",
+        "feature": "street centreline intersection",
+        "method": "windowed low-ink band fit, shared sheet rotation",
+        "confidence": "medium",
+        "selected_by": "06b_grid_control_points.py",
+        "residual_px": "",
+        "accepted": true,
+        "note": "band rms 70.8px"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2230.13,
+          240.72
         ]
       },
       "properties": {
@@ -264,8 +264,8 @@
         "sheet": "7",
         "region": "S7",
         "role": "tie",
-        "src_x": 2212.73,
-        "src_y": 262.45,
+        "src_x": 2230.13,
+        "src_y": 240.72,
         "ref_x": "",
         "ref_y": "",
         "ref_lon": "",
@@ -278,7 +278,7 @@
         "selected_by": "06b_grid_control_points.py",
         "residual_px": "",
         "accepted": true,
-        "note": "band rms 65.7px"
+        "note": "band rms 70.8px"
       }
     },
     {
@@ -286,8 +286,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          3228.67,
-          266.0
+          3188.92,
+          247.03
         ]
       },
       "properties": {
@@ -295,8 +295,8 @@
         "sheet": "7",
         "region": "S7",
         "role": "tie",
-        "src_x": 3228.67,
-        "src_y": 266.0,
+        "src_x": 3188.92,
+        "src_y": 247.03,
         "ref_x": "",
         "ref_y": "",
         "ref_lon": "",
@@ -309,7 +309,7 @@
         "selected_by": "06b_grid_control_points.py",
         "residual_px": "",
         "accepted": true,
-        "note": "band rms 65.7px"
+        "note": "band rms 70.8px"
       }
     },
     {
@@ -317,8 +317,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          124.96,
-          1371.84
+          202.75,
+          1367.49
         ]
       },
       "properties": {
@@ -326,8 +326,8 @@
         "sheet": "7",
         "region": "S7",
         "role": "tie",
-        "src_x": 124.96,
-        "src_y": 1371.84,
+        "src_x": 202.75,
+        "src_y": 1367.49,
         "ref_x": "",
         "ref_y": "",
         "ref_lon": "",
@@ -340,7 +340,7 @@
         "selected_by": "06b_grid_control_points.py",
         "residual_px": "",
         "accepted": true,
-        "note": "band rms 24.7px"
+        "note": "band rms 48.7px"
       }
     },
     {
@@ -348,8 +348,39 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          2223.87,
-          1379.18
+          1238.89,
+          1374.31
+        ]
+      },
+      "properties": {
+        "point_id": "20th|B",
+        "sheet": "7",
+        "region": "S7",
+        "role": "tie",
+        "src_x": 1238.89,
+        "src_y": 1374.31,
+        "ref_x": "",
+        "ref_y": "",
+        "ref_lon": "",
+        "ref_lat": "",
+        "street_a": "20th",
+        "street_b": "B",
+        "feature": "street centreline intersection",
+        "method": "windowed low-ink band fit, shared sheet rotation",
+        "confidence": "high",
+        "selected_by": "06b_grid_control_points.py",
+        "residual_px": "",
+        "accepted": true,
+        "note": "band rms 35.6px"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2230.46,
+          1380.84
         ]
       },
       "properties": {
@@ -357,8 +388,8 @@
         "sheet": "7",
         "region": "S7",
         "role": "tie",
-        "src_x": 2223.87,
-        "src_y": 1379.18,
+        "src_x": 2230.46,
+        "src_y": 1380.84,
         "ref_x": "",
         "ref_y": "",
         "ref_lon": "",
@@ -379,8 +410,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          3239.81,
-          1382.73
+          3189.26,
+          1387.15
         ]
       },
       "properties": {
@@ -388,8 +419,8 @@
         "sheet": "7",
         "region": "S7",
         "role": "tie",
-        "src_x": 3239.81,
-        "src_y": 1382.73,
+        "src_x": 3189.26,
+        "src_y": 1387.15,
         "ref_x": "",
         "ref_y": "",
         "ref_lon": "",
@@ -402,7 +433,7 @@
         "selected_by": "06b_grid_control_points.py",
         "residual_px": "",
         "accepted": true,
-        "note": "band rms 32.0px"
+        "note": "band rms 11.6px"
       }
     },
     {
@@ -410,8 +441,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          136.93,
-          2572.36
+          203.11,
+          2567.97
         ]
       },
       "properties": {
@@ -419,14 +450,45 @@
         "sheet": "7",
         "region": "S7",
         "role": "tie",
-        "src_x": 136.93,
-        "src_y": 2572.36,
+        "src_x": 203.11,
+        "src_y": 2567.97,
         "ref_x": "",
         "ref_y": "",
         "ref_lon": "",
         "ref_lat": "",
         "street_a": "21st",
         "street_b": "A",
+        "feature": "street centreline intersection",
+        "method": "windowed low-ink band fit, shared sheet rotation",
+        "confidence": "high",
+        "selected_by": "06b_grid_control_points.py",
+        "residual_px": "",
+        "accepted": true,
+        "note": "band rms 48.7px"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1239.24,
+          2574.79
+        ]
+      },
+      "properties": {
+        "point_id": "21st|B",
+        "sheet": "7",
+        "region": "S7",
+        "role": "tie",
+        "src_x": 1239.24,
+        "src_y": 2574.79,
+        "ref_x": "",
+        "ref_y": "",
+        "ref_lon": "",
+        "ref_lat": "",
+        "street_a": "21st",
+        "street_b": "B",
         "feature": "street centreline intersection",
         "method": "windowed low-ink band fit, shared sheet rotation",
         "confidence": "high",
@@ -441,8 +503,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          2235.85,
-          2579.69
+          2230.82,
+          2581.31
         ]
       },
       "properties": {
@@ -450,8 +512,8 @@
         "sheet": "7",
         "region": "S7",
         "role": "tie",
-        "src_x": 2235.85,
-        "src_y": 2579.69,
+        "src_x": 2230.82,
+        "src_y": 2581.31,
         "ref_x": "",
         "ref_y": "",
         "ref_lon": "",
@@ -472,8 +534,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          3251.79,
-          2583.24
+          3189.62,
+          2587.62
         ]
       },
       "properties": {
@@ -481,8 +543,8 @@
         "sheet": "7",
         "region": "S7",
         "role": "tie",
-        "src_x": 3251.79,
-        "src_y": 2583.24,
+        "src_x": 3189.62,
+        "src_y": 2587.62,
         "ref_x": "",
         "ref_y": "",
         "ref_lon": "",
@@ -503,8 +565,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          148.62,
-          3743.62
+          203.43,
+          3663.18
         ]
       },
       "properties": {
@@ -512,8 +574,8 @@
         "sheet": "7",
         "region": "S7",
         "role": "tie",
-        "src_x": 148.62,
-        "src_y": 3743.62,
+        "src_x": 203.43,
+        "src_y": 3663.18,
         "ref_x": "",
         "ref_y": "",
         "ref_lon": "",
@@ -526,7 +588,7 @@
         "selected_by": "06b_grid_control_points.py",
         "residual_px": "",
         "accepted": true,
-        "note": "band rms 54.3px"
+        "note": "band rms 48.7px"
       }
     },
     {
@@ -534,606 +596,17 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          2247.53,
-          3750.96
-        ]
-      },
-      "properties": {
-        "point_id": "22nd|C",
-        "sheet": "7",
-        "region": "S7",
-        "role": "tie",
-        "src_x": 2247.53,
-        "src_y": 3750.96,
-        "ref_x": "",
-        "ref_y": "",
-        "ref_lon": "",
-        "ref_lat": "",
-        "street_a": "22nd",
-        "street_b": "C",
-        "feature": "street centreline intersection",
-        "method": "windowed low-ink band fit, shared sheet rotation",
-        "confidence": "high",
-        "selected_by": "06b_grid_control_points.py",
-        "residual_px": "",
-        "accepted": true,
-        "note": "band rms 54.3px"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          3263.47,
-          3754.51
-        ]
-      },
-      "properties": {
-        "point_id": "22nd|D",
-        "sheet": "7",
-        "region": "S7",
-        "role": "tie",
-        "src_x": 3263.47,
-        "src_y": 3754.51,
-        "ref_x": "",
-        "ref_y": "",
-        "ref_lon": "",
-        "ref_lat": "",
-        "street_a": "22nd",
-        "street_b": "D",
-        "feature": "street centreline intersection",
-        "method": "windowed low-ink band fit, shared sheet rotation",
-        "confidence": "high",
-        "selected_by": "06b_grid_control_points.py",
-        "residual_px": "",
-        "accepted": true,
-        "note": "band rms 54.3px"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          132.07,
-          225.4
-        ]
-      },
-      "properties": {
-        "point_id": "19th|D",
-        "sheet": "8",
-        "region": "S8",
-        "role": "tie",
-        "src_x": 132.07,
-        "src_y": 225.4,
-        "ref_x": "",
-        "ref_y": "",
-        "ref_lon": "",
-        "ref_lat": "",
-        "street_a": "19th",
-        "street_b": "D",
-        "feature": "street centreline intersection",
-        "method": "windowed low-ink band fit, shared sheet rotation",
-        "confidence": "high",
-        "selected_by": "06b_grid_control_points.py",
-        "residual_px": "",
-        "accepted": true,
-        "note": "band rms 41.1px"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          1162.76,
-          233.02
-        ]
-      },
-      "properties": {
-        "point_id": "19th|E",
-        "sheet": "8",
-        "region": "S8",
-        "role": "tie",
-        "src_x": 1162.76,
-        "src_y": 233.02,
-        "ref_x": "",
-        "ref_y": "",
-        "ref_lon": "",
-        "ref_lat": "",
-        "street_a": "19th",
-        "street_b": "E",
-        "feature": "street centreline intersection",
-        "method": "windowed low-ink band fit, shared sheet rotation",
-        "confidence": "high",
-        "selected_by": "06b_grid_control_points.py",
-        "residual_px": "",
-        "accepted": true,
-        "note": "band rms 41.1px"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2151.72,
-          240.33
-        ]
-      },
-      "properties": {
-        "point_id": "19th|F",
-        "sheet": "8",
-        "region": "S8",
-        "role": "tie",
-        "src_x": 2151.72,
-        "src_y": 240.33,
-        "ref_x": "",
-        "ref_y": "",
-        "ref_lon": "",
-        "ref_lat": "",
-        "street_a": "19th",
-        "street_b": "F",
-        "feature": "street centreline intersection",
-        "method": "windowed low-ink band fit, shared sheet rotation",
-        "confidence": "high",
-        "selected_by": "06b_grid_control_points.py",
-        "residual_px": "",
-        "accepted": true,
-        "note": "band rms 41.1px"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          3203.87,
-          248.11
-        ]
-      },
-      "properties": {
-        "point_id": "19th|G",
-        "sheet": "8",
-        "region": "S8",
-        "role": "tie",
-        "src_x": 3203.87,
-        "src_y": 248.11,
-        "ref_x": "",
-        "ref_y": "",
-        "ref_lon": "",
-        "ref_lat": "",
-        "street_a": "19th",
-        "street_b": "G",
-        "feature": "street centreline intersection",
-        "method": "windowed low-ink band fit, shared sheet rotation",
-        "confidence": "high",
-        "selected_by": "06b_grid_control_points.py",
-        "residual_px": "",
-        "accepted": true,
-        "note": "band rms 58.9px"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          140.42,
-          1369.0
-        ]
-      },
-      "properties": {
-        "point_id": "20th|D",
-        "sheet": "8",
-        "region": "S8",
-        "role": "tie",
-        "src_x": 140.42,
-        "src_y": 1369.0,
-        "ref_x": "",
-        "ref_y": "",
-        "ref_lon": "",
-        "ref_lat": "",
-        "street_a": "20th",
-        "street_b": "D",
-        "feature": "street centreline intersection",
-        "method": "windowed low-ink band fit, shared sheet rotation",
-        "confidence": "high",
-        "selected_by": "06b_grid_control_points.py",
-        "residual_px": "",
-        "accepted": true,
-        "note": "band rms 48.0px"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          1171.1,
-          1376.62
-        ]
-      },
-      "properties": {
-        "point_id": "20th|E",
-        "sheet": "8",
-        "region": "S8",
-        "role": "tie",
-        "src_x": 1171.1,
-        "src_y": 1376.62,
-        "ref_x": "",
-        "ref_y": "",
-        "ref_lon": "",
-        "ref_lat": "",
-        "street_a": "20th",
-        "street_b": "E",
-        "feature": "street centreline intersection",
-        "method": "windowed low-ink band fit, shared sheet rotation",
-        "confidence": "high",
-        "selected_by": "06b_grid_control_points.py",
-        "residual_px": "",
-        "accepted": true,
-        "note": "band rms 48.0px"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2160.07,
-          1383.93
-        ]
-      },
-      "properties": {
-        "point_id": "20th|F",
-        "sheet": "8",
-        "region": "S8",
-        "role": "tie",
-        "src_x": 2160.07,
-        "src_y": 1383.93,
-        "ref_x": "",
-        "ref_y": "",
-        "ref_lon": "",
-        "ref_lat": "",
-        "street_a": "20th",
-        "street_b": "F",
-        "feature": "street centreline intersection",
-        "method": "windowed low-ink band fit, shared sheet rotation",
-        "confidence": "high",
-        "selected_by": "06b_grid_control_points.py",
-        "residual_px": "",
-        "accepted": true,
-        "note": "band rms 48.0px"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          3212.22,
-          1391.71
-        ]
-      },
-      "properties": {
-        "point_id": "20th|G",
-        "sheet": "8",
-        "region": "S8",
-        "role": "tie",
-        "src_x": 3212.22,
-        "src_y": 1391.71,
-        "ref_x": "",
-        "ref_y": "",
-        "ref_lon": "",
-        "ref_lat": "",
-        "street_a": "20th",
-        "street_b": "G",
-        "feature": "street centreline intersection",
-        "method": "windowed low-ink band fit, shared sheet rotation",
-        "confidence": "high",
-        "selected_by": "06b_grid_control_points.py",
-        "residual_px": "",
-        "accepted": true,
-        "note": "band rms 58.9px"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          149.11,
-          2559.28
-        ]
-      },
-      "properties": {
-        "point_id": "21st|D",
-        "sheet": "8",
-        "region": "S8",
-        "role": "tie",
-        "src_x": 149.11,
-        "src_y": 2559.28,
-        "ref_x": "",
-        "ref_y": "",
-        "ref_lon": "",
-        "ref_lat": "",
-        "street_a": "21st",
-        "street_b": "D",
-        "feature": "street centreline intersection",
-        "method": "windowed low-ink band fit, shared sheet rotation",
-        "confidence": "high",
-        "selected_by": "06b_grid_control_points.py",
-        "residual_px": "",
-        "accepted": true,
-        "note": "band rms 39.1px"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          1179.8,
-          2566.9
-        ]
-      },
-      "properties": {
-        "point_id": "21st|E",
-        "sheet": "8",
-        "region": "S8",
-        "role": "tie",
-        "src_x": 1179.8,
-        "src_y": 2566.9,
-        "ref_x": "",
-        "ref_y": "",
-        "ref_lon": "",
-        "ref_lat": "",
-        "street_a": "21st",
-        "street_b": "E",
-        "feature": "street centreline intersection",
-        "method": "windowed low-ink band fit, shared sheet rotation",
-        "confidence": "high",
-        "selected_by": "06b_grid_control_points.py",
-        "residual_px": "",
-        "accepted": true,
-        "note": "band rms 39.1px"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2168.76,
-          2574.21
-        ]
-      },
-      "properties": {
-        "point_id": "21st|F",
-        "sheet": "8",
-        "region": "S8",
-        "role": "tie",
-        "src_x": 2168.76,
-        "src_y": 2574.21,
-        "ref_x": "",
-        "ref_y": "",
-        "ref_lon": "",
-        "ref_lat": "",
-        "street_a": "21st",
-        "street_b": "F",
-        "feature": "street centreline intersection",
-        "method": "windowed low-ink band fit, shared sheet rotation",
-        "confidence": "high",
-        "selected_by": "06b_grid_control_points.py",
-        "residual_px": "",
-        "accepted": true,
-        "note": "band rms 39.1px"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          3220.91,
-          2581.99
-        ]
-      },
-      "properties": {
-        "point_id": "21st|G",
-        "sheet": "8",
-        "region": "S8",
-        "role": "tie",
-        "src_x": 3220.91,
-        "src_y": 2581.99,
-        "ref_x": "",
-        "ref_y": "",
-        "ref_lon": "",
-        "ref_lat": "",
-        "street_a": "21st",
-        "street_b": "G",
-        "feature": "street centreline intersection",
-        "method": "windowed low-ink band fit, shared sheet rotation",
-        "confidence": "high",
-        "selected_by": "06b_grid_control_points.py",
-        "residual_px": "",
-        "accepted": true,
-        "note": "band rms 58.9px"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          157.67,
-          3731.89
-        ]
-      },
-      "properties": {
-        "point_id": "22nd|D",
-        "sheet": "8",
-        "region": "S8",
-        "role": "tie",
-        "src_x": 157.67,
-        "src_y": 3731.89,
-        "ref_x": "",
-        "ref_y": "",
-        "ref_lon": "",
-        "ref_lat": "",
-        "street_a": "22nd",
-        "street_b": "D",
-        "feature": "street centreline intersection",
-        "method": "windowed low-ink band fit, shared sheet rotation",
-        "confidence": "high",
-        "selected_by": "06b_grid_control_points.py",
-        "residual_px": "",
-        "accepted": true,
-        "note": "band rms 55.1px"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          1188.36,
-          3739.51
-        ]
-      },
-      "properties": {
-        "point_id": "22nd|E",
-        "sheet": "8",
-        "region": "S8",
-        "role": "tie",
-        "src_x": 1188.36,
-        "src_y": 3739.51,
-        "ref_x": "",
-        "ref_y": "",
-        "ref_lon": "",
-        "ref_lat": "",
-        "street_a": "22nd",
-        "street_b": "E",
-        "feature": "street centreline intersection",
-        "method": "windowed low-ink band fit, shared sheet rotation",
-        "confidence": "high",
-        "selected_by": "06b_grid_control_points.py",
-        "residual_px": "",
-        "accepted": true,
-        "note": "band rms 55.1px"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2177.32,
-          3746.82
-        ]
-      },
-      "properties": {
-        "point_id": "22nd|F",
-        "sheet": "8",
-        "region": "S8",
-        "role": "tie",
-        "src_x": 2177.32,
-        "src_y": 3746.82,
-        "ref_x": "",
-        "ref_y": "",
-        "ref_lon": "",
-        "ref_lat": "",
-        "street_a": "22nd",
-        "street_b": "F",
-        "feature": "street centreline intersection",
-        "method": "windowed low-ink band fit, shared sheet rotation",
-        "confidence": "high",
-        "selected_by": "06b_grid_control_points.py",
-        "residual_px": "",
-        "accepted": true,
-        "note": "band rms 55.1px"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          3229.47,
-          3754.6
-        ]
-      },
-      "properties": {
-        "point_id": "22nd|G",
-        "sheet": "8",
-        "region": "S8",
-        "role": "tie",
-        "src_x": 3229.47,
-        "src_y": 3754.6,
-        "ref_x": "",
-        "ref_y": "",
-        "ref_lon": "",
-        "ref_lat": "",
-        "street_a": "22nd",
-        "street_b": "G",
-        "feature": "street centreline intersection",
-        "method": "windowed low-ink band fit, shared sheet rotation",
-        "confidence": "high",
-        "selected_by": "06b_grid_control_points.py",
-        "residual_px": "",
-        "accepted": true,
-        "note": "band rms 58.9px"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          103.45,
-          252.51
-        ]
-      },
-      "properties": {
-        "point_id": "22nd|A",
-        "sheet": "9",
-        "region": "S9",
-        "role": "tie",
-        "src_x": 103.45,
-        "src_y": 252.51,
-        "ref_x": "",
-        "ref_y": "",
-        "ref_lon": "",
-        "ref_lat": "",
-        "street_a": "22nd",
-        "street_b": "A",
-        "feature": "street centreline intersection",
-        "method": "windowed low-ink band fit, shared sheet rotation",
-        "confidence": "high",
-        "selected_by": "06b_grid_control_points.py",
-        "residual_px": "",
-        "accepted": true,
-        "note": "band rms 43.1px"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          1187.99,
-          258.36
+          1239.57,
+          3670.0
         ]
       },
       "properties": {
         "point_id": "22nd|B",
-        "sheet": "9",
-        "region": "S9",
+        "sheet": "7",
+        "region": "S7",
         "role": "tie",
-        "src_x": 1187.99,
-        "src_y": 258.36,
+        "src_x": 1239.57,
+        "src_y": 3670.0,
         "ref_x": "",
         "ref_y": "",
         "ref_lon": "",
@@ -1146,7 +619,7 @@
         "selected_by": "06b_grid_control_points.py",
         "residual_px": "",
         "accepted": true,
-        "note": "band rms 43.1px"
+        "note": "band rms 35.6px"
       }
     },
     {
@@ -1154,17 +627,17 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          2191.03,
-          263.77
+          2231.15,
+          3676.52
         ]
       },
       "properties": {
         "point_id": "22nd|C",
-        "sheet": "9",
-        "region": "S9",
+        "sheet": "7",
+        "region": "S7",
         "role": "tie",
-        "src_x": 2191.03,
-        "src_y": 263.77,
+        "src_x": 2231.15,
+        "src_y": 3676.52,
         "ref_x": "",
         "ref_y": "",
         "ref_lon": "",
@@ -1177,7 +650,7 @@
         "selected_by": "06b_grid_control_points.py",
         "residual_px": "",
         "accepted": true,
-        "note": "band rms 44.2px"
+        "note": "band rms 34.5px"
       }
     },
     {
@@ -1185,17 +658,17 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          3189.3,
-          269.15
+          3189.94,
+          3682.83
         ]
       },
       "properties": {
         "point_id": "22nd|D",
-        "sheet": "9",
-        "region": "S9",
+        "sheet": "7",
+        "region": "S7",
         "role": "tie",
-        "src_x": 3189.3,
-        "src_y": 269.15,
+        "src_x": 3189.94,
+        "src_y": 3682.83,
         "ref_x": "",
         "ref_y": "",
         "ref_lon": "",
@@ -1208,7 +681,7 @@
         "selected_by": "06b_grid_control_points.py",
         "residual_px": "",
         "accepted": true,
-        "note": "band rms 43.1px"
+        "note": "band rms 18.5px"
       }
     },
     {
@@ -1216,8 +689,628 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          119.81,
-          1432.29
+          210.01,
+          226.71
+        ]
+      },
+      "properties": {
+        "point_id": "19th|D",
+        "sheet": "8",
+        "region": "S8",
+        "role": "tie",
+        "src_x": 210.01,
+        "src_y": 226.71,
+        "ref_x": "",
+        "ref_y": "",
+        "ref_lon": "",
+        "ref_lat": "",
+        "street_a": "19th",
+        "street_b": "D",
+        "feature": "street centreline intersection",
+        "method": "windowed low-ink band fit, shared sheet rotation",
+        "confidence": "high",
+        "selected_by": "06b_grid_control_points.py",
+        "residual_px": "",
+        "accepted": true,
+        "note": "band rms 41.1px"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1171.59,
+          233.35
+        ]
+      },
+      "properties": {
+        "point_id": "19th|E",
+        "sheet": "8",
+        "region": "S8",
+        "role": "tie",
+        "src_x": 1171.59,
+        "src_y": 233.35,
+        "ref_x": "",
+        "ref_y": "",
+        "ref_lon": "",
+        "ref_lat": "",
+        "street_a": "19th",
+        "street_b": "E",
+        "feature": "street centreline intersection",
+        "method": "windowed low-ink band fit, shared sheet rotation",
+        "confidence": "high",
+        "selected_by": "06b_grid_control_points.py",
+        "residual_px": "",
+        "accepted": true,
+        "note": "band rms 41.1px"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2160.51,
+          240.17
+        ]
+      },
+      "properties": {
+        "point_id": "19th|F",
+        "sheet": "8",
+        "region": "S8",
+        "role": "tie",
+        "src_x": 2160.51,
+        "src_y": 240.17,
+        "ref_x": "",
+        "ref_y": "",
+        "ref_lon": "",
+        "ref_lat": "",
+        "street_a": "19th",
+        "street_b": "F",
+        "feature": "street centreline intersection",
+        "method": "windowed low-ink band fit, shared sheet rotation",
+        "confidence": "high",
+        "selected_by": "06b_grid_control_points.py",
+        "residual_px": "",
+        "accepted": true,
+        "note": "band rms 41.1px"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3138.52,
+          246.92
+        ]
+      },
+      "properties": {
+        "point_id": "19th|G",
+        "sheet": "8",
+        "region": "S8",
+        "role": "tie",
+        "src_x": 3138.52,
+        "src_y": 246.92,
+        "ref_x": "",
+        "ref_y": "",
+        "ref_lon": "",
+        "ref_lat": "",
+        "street_a": "19th",
+        "street_b": "G",
+        "feature": "street centreline intersection",
+        "method": "windowed low-ink band fit, shared sheet rotation",
+        "confidence": "high",
+        "selected_by": "06b_grid_control_points.py",
+        "residual_px": "",
+        "accepted": true,
+        "note": "band rms 41.1px"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          212.78,
+          1370.26
+        ]
+      },
+      "properties": {
+        "point_id": "20th|D",
+        "sheet": "8",
+        "region": "S8",
+        "role": "tie",
+        "src_x": 212.78,
+        "src_y": 1370.26,
+        "ref_x": "",
+        "ref_y": "",
+        "ref_lon": "",
+        "ref_lat": "",
+        "street_a": "20th",
+        "street_b": "D",
+        "feature": "street centreline intersection",
+        "method": "windowed low-ink band fit, shared sheet rotation",
+        "confidence": "high",
+        "selected_by": "06b_grid_control_points.py",
+        "residual_px": "",
+        "accepted": true,
+        "note": "band rms 48.0px"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1174.36,
+          1376.9
+        ]
+      },
+      "properties": {
+        "point_id": "20th|E",
+        "sheet": "8",
+        "region": "S8",
+        "role": "tie",
+        "src_x": 1174.36,
+        "src_y": 1376.9,
+        "ref_x": "",
+        "ref_y": "",
+        "ref_lon": "",
+        "ref_lat": "",
+        "street_a": "20th",
+        "street_b": "E",
+        "feature": "street centreline intersection",
+        "method": "windowed low-ink band fit, shared sheet rotation",
+        "confidence": "high",
+        "selected_by": "06b_grid_control_points.py",
+        "residual_px": "",
+        "accepted": true,
+        "note": "band rms 48.0px"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2163.29,
+          1383.73
+        ]
+      },
+      "properties": {
+        "point_id": "20th|F",
+        "sheet": "8",
+        "region": "S8",
+        "role": "tie",
+        "src_x": 2163.29,
+        "src_y": 1383.73,
+        "ref_x": "",
+        "ref_y": "",
+        "ref_lon": "",
+        "ref_lat": "",
+        "street_a": "20th",
+        "street_b": "F",
+        "feature": "street centreline intersection",
+        "method": "windowed low-ink band fit, shared sheet rotation",
+        "confidence": "high",
+        "selected_by": "06b_grid_control_points.py",
+        "residual_px": "",
+        "accepted": true,
+        "note": "band rms 48.0px"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3141.3,
+          1390.48
+        ]
+      },
+      "properties": {
+        "point_id": "20th|G",
+        "sheet": "8",
+        "region": "S8",
+        "role": "tie",
+        "src_x": 3141.3,
+        "src_y": 1390.48,
+        "ref_x": "",
+        "ref_y": "",
+        "ref_lon": "",
+        "ref_lat": "",
+        "street_a": "20th",
+        "street_b": "G",
+        "feature": "street centreline intersection",
+        "method": "windowed low-ink band fit, shared sheet rotation",
+        "confidence": "high",
+        "selected_by": "06b_grid_control_points.py",
+        "residual_px": "",
+        "accepted": true,
+        "note": "band rms 48.0px"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          215.67,
+          2560.5
+        ]
+      },
+      "properties": {
+        "point_id": "21st|D",
+        "sheet": "8",
+        "region": "S8",
+        "role": "tie",
+        "src_x": 215.67,
+        "src_y": 2560.5,
+        "ref_x": "",
+        "ref_y": "",
+        "ref_lon": "",
+        "ref_lat": "",
+        "street_a": "21st",
+        "street_b": "D",
+        "feature": "street centreline intersection",
+        "method": "windowed low-ink band fit, shared sheet rotation",
+        "confidence": "high",
+        "selected_by": "06b_grid_control_points.py",
+        "residual_px": "",
+        "accepted": true,
+        "note": "band rms 39.1px"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1177.25,
+          2567.13
+        ]
+      },
+      "properties": {
+        "point_id": "21st|E",
+        "sheet": "8",
+        "region": "S8",
+        "role": "tie",
+        "src_x": 1177.25,
+        "src_y": 2567.13,
+        "ref_x": "",
+        "ref_y": "",
+        "ref_lon": "",
+        "ref_lat": "",
+        "street_a": "21st",
+        "street_b": "E",
+        "feature": "street centreline intersection",
+        "method": "windowed low-ink band fit, shared sheet rotation",
+        "confidence": "high",
+        "selected_by": "06b_grid_control_points.py",
+        "residual_px": "",
+        "accepted": true,
+        "note": "band rms 39.1px"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2166.18,
+          2573.96
+        ]
+      },
+      "properties": {
+        "point_id": "21st|F",
+        "sheet": "8",
+        "region": "S8",
+        "role": "tie",
+        "src_x": 2166.18,
+        "src_y": 2573.96,
+        "ref_x": "",
+        "ref_y": "",
+        "ref_lon": "",
+        "ref_lat": "",
+        "street_a": "21st",
+        "street_b": "F",
+        "feature": "street centreline intersection",
+        "method": "windowed low-ink band fit, shared sheet rotation",
+        "confidence": "high",
+        "selected_by": "06b_grid_control_points.py",
+        "residual_px": "",
+        "accepted": true,
+        "note": "band rms 39.1px"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3144.19,
+          2580.71
+        ]
+      },
+      "properties": {
+        "point_id": "21st|G",
+        "sheet": "8",
+        "region": "S8",
+        "role": "tie",
+        "src_x": 3144.19,
+        "src_y": 2580.71,
+        "ref_x": "",
+        "ref_y": "",
+        "ref_lon": "",
+        "ref_lat": "",
+        "street_a": "21st",
+        "street_b": "G",
+        "feature": "street centreline intersection",
+        "method": "windowed low-ink band fit, shared sheet rotation",
+        "confidence": "high",
+        "selected_by": "06b_grid_control_points.py",
+        "residual_px": "",
+        "accepted": true,
+        "note": "band rms 39.1px"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          218.37,
+          3669.26
+        ]
+      },
+      "properties": {
+        "point_id": "22nd|D",
+        "sheet": "8",
+        "region": "S8",
+        "role": "tie",
+        "src_x": 218.37,
+        "src_y": 3669.26,
+        "ref_x": "",
+        "ref_y": "",
+        "ref_lon": "",
+        "ref_lat": "",
+        "street_a": "22nd",
+        "street_b": "D",
+        "feature": "street centreline intersection",
+        "method": "windowed low-ink band fit, shared sheet rotation",
+        "confidence": "high",
+        "selected_by": "06b_grid_control_points.py",
+        "residual_px": "",
+        "accepted": true,
+        "note": "band rms 14.5px"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1179.95,
+          3675.9
+        ]
+      },
+      "properties": {
+        "point_id": "22nd|E",
+        "sheet": "8",
+        "region": "S8",
+        "role": "tie",
+        "src_x": 1179.95,
+        "src_y": 3675.9,
+        "ref_x": "",
+        "ref_y": "",
+        "ref_lon": "",
+        "ref_lat": "",
+        "street_a": "22nd",
+        "street_b": "E",
+        "feature": "street centreline intersection",
+        "method": "windowed low-ink band fit, shared sheet rotation",
+        "confidence": "high",
+        "selected_by": "06b_grid_control_points.py",
+        "residual_px": "",
+        "accepted": true,
+        "note": "band rms 32.6px"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2168.87,
+          3682.73
+        ]
+      },
+      "properties": {
+        "point_id": "22nd|F",
+        "sheet": "8",
+        "region": "S8",
+        "role": "tie",
+        "src_x": 2168.87,
+        "src_y": 3682.73,
+        "ref_x": "",
+        "ref_y": "",
+        "ref_lon": "",
+        "ref_lat": "",
+        "street_a": "22nd",
+        "street_b": "F",
+        "feature": "street centreline intersection",
+        "method": "windowed low-ink band fit, shared sheet rotation",
+        "confidence": "high",
+        "selected_by": "06b_grid_control_points.py",
+        "residual_px": "",
+        "accepted": true,
+        "note": "band rms 34.4px"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3146.88,
+          3689.48
+        ]
+      },
+      "properties": {
+        "point_id": "22nd|G",
+        "sheet": "8",
+        "region": "S8",
+        "role": "tie",
+        "src_x": 3146.88,
+        "src_y": 3689.48,
+        "ref_x": "",
+        "ref_y": "",
+        "ref_lon": "",
+        "ref_lat": "",
+        "street_a": "22nd",
+        "street_b": "G",
+        "feature": "street centreline intersection",
+        "method": "windowed low-ink band fit, shared sheet rotation",
+        "confidence": "high",
+        "selected_by": "06b_grid_control_points.py",
+        "residual_px": "",
+        "accepted": true,
+        "note": "band rms 14.5px"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          242.37,
+          339.31
+        ]
+      },
+      "properties": {
+        "point_id": "22nd|A",
+        "sheet": "9",
+        "region": "S9",
+        "role": "tie",
+        "src_x": 242.37,
+        "src_y": 339.31,
+        "ref_x": "",
+        "ref_y": "",
+        "ref_lon": "",
+        "ref_lat": "",
+        "street_a": "22nd",
+        "street_b": "A",
+        "feature": "street centreline intersection",
+        "method": "windowed low-ink band fit, shared sheet rotation",
+        "confidence": "high",
+        "selected_by": "06b_grid_control_points.py",
+        "residual_px": "",
+        "accepted": true,
+        "note": "band rms 48.2px"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1227.39,
+          335.84
+        ]
+      },
+      "properties": {
+        "point_id": "22nd|B",
+        "sheet": "9",
+        "region": "S9",
+        "role": "tie",
+        "src_x": 1227.39,
+        "src_y": 335.84,
+        "ref_x": "",
+        "ref_y": "",
+        "ref_lon": "",
+        "ref_lat": "",
+        "street_a": "22nd",
+        "street_b": "B",
+        "feature": "street centreline intersection",
+        "method": "windowed low-ink band fit, shared sheet rotation",
+        "confidence": "high",
+        "selected_by": "06b_grid_control_points.py",
+        "residual_px": "",
+        "accepted": true,
+        "note": "band rms 37.4px"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2198.92,
+          332.41
+        ]
+      },
+      "properties": {
+        "point_id": "22nd|C",
+        "sheet": "9",
+        "region": "S9",
+        "role": "tie",
+        "src_x": 2198.92,
+        "src_y": 332.41,
+        "ref_x": "",
+        "ref_y": "",
+        "ref_lon": "",
+        "ref_lat": "",
+        "street_a": "22nd",
+        "street_b": "C",
+        "feature": "street centreline intersection",
+        "method": "windowed low-ink band fit, shared sheet rotation",
+        "confidence": "high",
+        "selected_by": "06b_grid_control_points.py",
+        "residual_px": "",
+        "accepted": true,
+        "note": "band rms 47.2px"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3189.65,
+          328.91
+        ]
+      },
+      "properties": {
+        "point_id": "22nd|D",
+        "sheet": "9",
+        "region": "S9",
+        "role": "tie",
+        "src_x": 3189.65,
+        "src_y": 328.91,
+        "ref_x": "",
+        "ref_y": "",
+        "ref_lon": "",
+        "ref_lat": "",
+        "street_a": "22nd",
+        "street_b": "D",
+        "feature": "street centreline intersection",
+        "method": "windowed low-ink band fit, shared sheet rotation",
+        "confidence": "high",
+        "selected_by": "06b_grid_control_points.py",
+        "residual_px": "",
+        "accepted": true,
+        "note": "band rms 11.0px"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          233.19,
+          1445.99
         ]
       },
       "properties": {
@@ -1225,8 +1318,8 @@
         "sheet": "9",
         "region": "S9",
         "role": "tie",
-        "src_x": 119.81,
-        "src_y": 1432.29,
+        "src_x": 233.19,
+        "src_y": 1445.99,
         "ref_x": "",
         "ref_y": "",
         "ref_lon": "",
@@ -1239,7 +1332,7 @@
         "selected_by": "06b_grid_control_points.py",
         "residual_px": "",
         "accepted": true,
-        "note": "band rms 32.1px"
+        "note": "band rms 48.2px"
       }
     },
     {
@@ -1247,8 +1340,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          1204.35,
-          1438.14
+          1218.21,
+          1442.52
         ]
       },
       "properties": {
@@ -1256,8 +1349,8 @@
         "sheet": "9",
         "region": "S9",
         "role": "tie",
-        "src_x": 1204.35,
-        "src_y": 1438.14,
+        "src_x": 1218.21,
+        "src_y": 1442.52,
         "ref_x": "",
         "ref_y": "",
         "ref_lon": "",
@@ -1278,8 +1371,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          2207.38,
-          1443.55
+          2189.74,
+          1439.09
         ]
       },
       "properties": {
@@ -1287,8 +1380,8 @@
         "sheet": "9",
         "region": "S9",
         "role": "tie",
-        "src_x": 2207.38,
-        "src_y": 1443.55,
+        "src_x": 2189.74,
+        "src_y": 1439.09,
         "ref_x": "",
         "ref_y": "",
         "ref_lon": "",
@@ -1301,7 +1394,7 @@
         "selected_by": "06b_grid_control_points.py",
         "residual_px": "",
         "accepted": true,
-        "note": "band rms 44.2px"
+        "note": "band rms 47.2px"
       }
     },
     {
@@ -1309,8 +1402,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          3205.66,
-          1448.94
+          3180.47,
+          1435.59
         ]
       },
       "properties": {
@@ -1318,8 +1411,8 @@
         "sheet": "9",
         "region": "S9",
         "role": "tie",
-        "src_x": 3205.66,
-        "src_y": 1448.94,
+        "src_x": 3180.47,
+        "src_y": 1435.59,
         "ref_x": "",
         "ref_y": "",
         "ref_lon": "",
@@ -1332,7 +1425,7 @@
         "selected_by": "06b_grid_control_points.py",
         "residual_px": "",
         "accepted": true,
-        "note": "band rms 36.6px"
+        "note": "band rms 21.8px"
       }
     },
     {
@@ -1340,8 +1433,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          136.21,
-          2615.26
+          223.37,
+          2628.9
         ]
       },
       "properties": {
@@ -1349,14 +1442,107 @@
         "sheet": "9",
         "region": "S9",
         "role": "tie",
-        "src_x": 136.21,
-        "src_y": 2615.26,
+        "src_x": 223.37,
+        "src_y": 2628.9,
         "ref_x": "",
         "ref_y": "",
         "ref_lon": "",
         "ref_lat": "",
         "street_a": "24th",
         "street_b": "A",
+        "feature": "street centreline intersection",
+        "method": "windowed low-ink band fit, shared sheet rotation",
+        "confidence": "high",
+        "selected_by": "06b_grid_control_points.py",
+        "residual_px": "",
+        "accepted": true,
+        "note": "band rms 48.2px"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1208.4,
+          2625.43
+        ]
+      },
+      "properties": {
+        "point_id": "24th|B",
+        "sheet": "9",
+        "region": "S9",
+        "role": "tie",
+        "src_x": 1208.4,
+        "src_y": 2625.43,
+        "ref_x": "",
+        "ref_y": "",
+        "ref_lon": "",
+        "ref_lat": "",
+        "street_a": "24th",
+        "street_b": "B",
+        "feature": "street centreline intersection",
+        "method": "windowed low-ink band fit, shared sheet rotation",
+        "confidence": "high",
+        "selected_by": "06b_grid_control_points.py",
+        "residual_px": "",
+        "accepted": true,
+        "note": "band rms 37.4px"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2179.93,
+          2622.0
+        ]
+      },
+      "properties": {
+        "point_id": "24th|C",
+        "sheet": "9",
+        "region": "S9",
+        "role": "tie",
+        "src_x": 2179.93,
+        "src_y": 2622.0,
+        "ref_x": "",
+        "ref_y": "",
+        "ref_lon": "",
+        "ref_lat": "",
+        "street_a": "24th",
+        "street_b": "C",
+        "feature": "street centreline intersection",
+        "method": "windowed low-ink band fit, shared sheet rotation",
+        "confidence": "high",
+        "selected_by": "06b_grid_control_points.py",
+        "residual_px": "",
+        "accepted": true,
+        "note": "band rms 47.2px"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3170.65,
+          2618.5
+        ]
+      },
+      "properties": {
+        "point_id": "24th|D",
+        "sheet": "9",
+        "region": "S9",
+        "role": "tie",
+        "src_x": 3170.65,
+        "src_y": 2618.5,
+        "ref_x": "",
+        "ref_y": "",
+        "ref_lon": "",
+        "ref_lat": "",
+        "street_a": "24th",
+        "street_b": "D",
         "feature": "street centreline intersection",
         "method": "windowed low-ink band fit, shared sheet rotation",
         "confidence": "high",
@@ -1371,101 +1557,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          1220.75,
-          2621.11
-        ]
-      },
-      "properties": {
-        "point_id": "24th|B",
-        "sheet": "9",
-        "region": "S9",
-        "role": "tie",
-        "src_x": 1220.75,
-        "src_y": 2621.11,
-        "ref_x": "",
-        "ref_y": "",
-        "ref_lon": "",
-        "ref_lat": "",
-        "street_a": "24th",
-        "street_b": "B",
-        "feature": "street centreline intersection",
-        "method": "windowed low-ink band fit, shared sheet rotation",
-        "confidence": "high",
-        "selected_by": "06b_grid_control_points.py",
-        "residual_px": "",
-        "accepted": true,
-        "note": "band rms 37.4px"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2223.78,
-          2626.52
-        ]
-      },
-      "properties": {
-        "point_id": "24th|C",
-        "sheet": "9",
-        "region": "S9",
-        "role": "tie",
-        "src_x": 2223.78,
-        "src_y": 2626.52,
-        "ref_x": "",
-        "ref_y": "",
-        "ref_lon": "",
-        "ref_lat": "",
-        "street_a": "24th",
-        "street_b": "C",
-        "feature": "street centreline intersection",
-        "method": "windowed low-ink band fit, shared sheet rotation",
-        "confidence": "high",
-        "selected_by": "06b_grid_control_points.py",
-        "residual_px": "",
-        "accepted": true,
-        "note": "band rms 44.2px"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          3222.06,
-          2631.9
-        ]
-      },
-      "properties": {
-        "point_id": "24th|D",
-        "sheet": "9",
-        "region": "S9",
-        "role": "tie",
-        "src_x": 3222.06,
-        "src_y": 2631.9,
-        "ref_x": "",
-        "ref_y": "",
-        "ref_lon": "",
-        "ref_lat": "",
-        "street_a": "24th",
-        "street_b": "D",
-        "feature": "street centreline intersection",
-        "method": "windowed low-ink band fit, shared sheet rotation",
-        "confidence": "high",
-        "selected_by": "06b_grid_control_points.py",
-        "residual_px": "",
-        "accepted": true,
-        "note": "band rms 36.6px"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          152.82,
-          3813.07
+          213.41,
+          3830.27
         ]
       },
       "properties": {
@@ -1473,8 +1566,8 @@
         "sheet": "9",
         "region": "S9",
         "role": "tie",
-        "src_x": 152.82,
-        "src_y": 3813.07,
+        "src_x": 213.41,
+        "src_y": 3830.27,
         "ref_x": "",
         "ref_y": "",
         "ref_lon": "",
@@ -1487,7 +1580,7 @@
         "selected_by": "06b_grid_control_points.py",
         "residual_px": "",
         "accepted": true,
-        "note": "band rms 81.2px"
+        "note": "band rms 78.9px"
       }
     },
     {
@@ -1495,8 +1588,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          1237.35,
-          3818.92
+          1198.43,
+          3826.79
         ]
       },
       "properties": {
@@ -1504,8 +1597,8 @@
         "sheet": "9",
         "region": "S9",
         "role": "tie",
-        "src_x": 1237.35,
-        "src_y": 3818.92,
+        "src_x": 1198.43,
+        "src_y": 3826.79,
         "ref_x": "",
         "ref_y": "",
         "ref_lon": "",
@@ -1518,7 +1611,7 @@
         "selected_by": "06b_grid_control_points.py",
         "residual_px": "",
         "accepted": true,
-        "note": "band rms 81.2px"
+        "note": "band rms 78.9px"
       }
     },
     {
@@ -1526,8 +1619,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          2240.39,
-          3824.33
+          2169.96,
+          3823.36
         ]
       },
       "properties": {
@@ -1535,8 +1628,8 @@
         "sheet": "9",
         "region": "S9",
         "role": "tie",
-        "src_x": 2240.39,
-        "src_y": 3824.33,
+        "src_x": 2169.96,
+        "src_y": 3823.36,
         "ref_x": "",
         "ref_y": "",
         "ref_lon": "",
@@ -1549,7 +1642,7 @@
         "selected_by": "06b_grid_control_points.py",
         "residual_px": "",
         "accepted": true,
-        "note": "band rms 81.2px"
+        "note": "band rms 78.9px"
       }
     },
     {
@@ -1557,8 +1650,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          3238.67,
-          3829.71
+          3160.69,
+          3819.87
         ]
       },
       "properties": {
@@ -1566,8 +1659,8 @@
         "sheet": "9",
         "region": "S9",
         "role": "tie",
-        "src_x": 3238.67,
-        "src_y": 3829.71,
+        "src_x": 3160.69,
+        "src_y": 3819.87,
         "ref_x": "",
         "ref_y": "",
         "ref_lon": "",
@@ -1580,7 +1673,7 @@
         "selected_by": "06b_grid_control_points.py",
         "residual_px": "",
         "accepted": true,
-        "note": "band rms 81.2px"
+        "note": "band rms 78.9px"
       }
     },
     {
@@ -1588,8 +1681,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          142.56,
-          183.85
+          220.04,
+          261.11
         ]
       },
       "properties": {
@@ -1597,8 +1690,8 @@
         "sheet": "10",
         "region": "S10",
         "role": "tie",
-        "src_x": 142.56,
-        "src_y": 183.85,
+        "src_x": 220.04,
+        "src_y": 261.11,
         "ref_x": "",
         "ref_y": "",
         "ref_lon": "",
@@ -1611,7 +1704,7 @@
         "selected_by": "06b_grid_control_points.py",
         "residual_px": "",
         "accepted": true,
-        "note": "band rms 58.3px"
+        "note": "band rms 18.9px"
       }
     },
     {
@@ -1619,8 +1712,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          1184.73,
-          178.33
+          1182.04,
+          266.45
         ]
       },
       "properties": {
@@ -1628,8 +1721,8 @@
         "sheet": "10",
         "region": "S10",
         "role": "tie",
-        "src_x": 1184.73,
-        "src_y": 178.33,
+        "src_x": 1182.04,
+        "src_y": 266.45,
         "ref_x": "",
         "ref_y": "",
         "ref_lon": "",
@@ -1642,7 +1735,7 @@
         "selected_by": "06b_grid_control_points.py",
         "residual_px": "",
         "accepted": true,
-        "note": "band rms 58.3px"
+        "note": "band rms 30.9px"
       }
     },
     {
@@ -1650,8 +1743,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          2233.15,
-          172.77
+          2230.42,
+          272.28
         ]
       },
       "properties": {
@@ -1659,8 +1752,8 @@
         "sheet": "10",
         "region": "S10",
         "role": "tie",
-        "src_x": 2233.15,
-        "src_y": 172.77,
+        "src_x": 2230.42,
+        "src_y": 272.28,
         "ref_x": "",
         "ref_y": "",
         "ref_lon": "",
@@ -1673,7 +1766,7 @@
         "selected_by": "06b_grid_control_points.py",
         "residual_px": "",
         "accepted": true,
-        "note": "band rms 58.3px"
+        "note": "band rms 50.6px"
       }
     },
     {
@@ -1681,8 +1774,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          3236.39,
-          167.46
+          3173.52,
+          277.51
         ]
       },
       "properties": {
@@ -1690,8 +1783,8 @@
         "sheet": "10",
         "region": "S10",
         "role": "tie",
-        "src_x": 3236.39,
-        "src_y": 167.46,
+        "src_x": 3173.52,
+        "src_y": 277.51,
         "ref_x": "",
         "ref_y": "",
         "ref_lon": "",
@@ -1704,7 +1797,7 @@
         "selected_by": "06b_grid_control_points.py",
         "residual_px": "",
         "accepted": true,
-        "note": "band rms 58.3px"
+        "note": "band rms 18.9px"
       }
     },
     {
@@ -1712,8 +1805,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          137.14,
-          1407.12
+          216.49,
+          1390.6
         ]
       },
       "properties": {
@@ -1721,8 +1814,8 @@
         "sheet": "10",
         "region": "S10",
         "role": "tie",
-        "src_x": 137.14,
-        "src_y": 1407.12,
+        "src_x": 216.49,
+        "src_y": 1390.6,
         "ref_x": "",
         "ref_y": "",
         "ref_lon": "",
@@ -1735,7 +1828,7 @@
         "selected_by": "06b_grid_control_points.py",
         "residual_px": "",
         "accepted": true,
-        "note": "band rms 38.7px"
+        "note": "band rms 29.2px"
       }
     },
     {
@@ -1743,8 +1836,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          1179.3,
-          1401.6
+          1178.49,
+          1395.94
         ]
       },
       "properties": {
@@ -1752,8 +1845,8 @@
         "sheet": "10",
         "region": "S10",
         "role": "tie",
-        "src_x": 1179.3,
-        "src_y": 1401.6,
+        "src_x": 1178.49,
+        "src_y": 1395.94,
         "ref_x": "",
         "ref_y": "",
         "ref_lon": "",
@@ -1774,8 +1867,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          2227.72,
-          1396.04
+          2226.87,
+          1401.77
         ]
       },
       "properties": {
@@ -1783,8 +1876,8 @@
         "sheet": "10",
         "region": "S10",
         "role": "tie",
-        "src_x": 2227.72,
-        "src_y": 1396.04,
+        "src_x": 2226.87,
+        "src_y": 1401.77,
         "ref_x": "",
         "ref_y": "",
         "ref_lon": "",
@@ -1805,8 +1898,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          3230.96,
-          1390.73
+          3169.97,
+          1407.0
         ]
       },
       "properties": {
@@ -1814,8 +1907,8 @@
         "sheet": "10",
         "region": "S10",
         "role": "tie",
-        "src_x": 3230.96,
-        "src_y": 1390.73,
+        "src_x": 3169.97,
+        "src_y": 1407.0,
         "ref_x": "",
         "ref_y": "",
         "ref_lon": "",
@@ -1828,7 +1921,7 @@
         "selected_by": "06b_grid_control_points.py",
         "residual_px": "",
         "accepted": true,
-        "note": "band rms 54.6px"
+        "note": "band rms 29.2px"
       }
     },
     {
@@ -1836,8 +1929,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          132.16,
-          2529.83
+          212.96,
+          2513.26
         ]
       },
       "properties": {
@@ -1845,8 +1938,8 @@
         "sheet": "10",
         "region": "S10",
         "role": "tie",
-        "src_x": 132.16,
-        "src_y": 2529.83,
+        "src_x": 212.96,
+        "src_y": 2513.26,
         "ref_x": "",
         "ref_y": "",
         "ref_lon": "",
@@ -1867,8 +1960,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          1174.32,
-          2524.31
+          1174.96,
+          2518.61
         ]
       },
       "properties": {
@@ -1876,8 +1969,8 @@
         "sheet": "10",
         "region": "S10",
         "role": "tie",
-        "src_x": 1174.32,
-        "src_y": 2524.31,
+        "src_x": 1174.96,
+        "src_y": 2518.61,
         "ref_x": "",
         "ref_y": "",
         "ref_lon": "",
@@ -1898,8 +1991,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          2222.74,
-          2518.75
+          2223.35,
+          2524.43
         ]
       },
       "properties": {
@@ -1907,8 +2000,8 @@
         "sheet": "10",
         "region": "S10",
         "role": "tie",
-        "src_x": 2222.74,
-        "src_y": 2518.75,
+        "src_x": 2223.35,
+        "src_y": 2524.43,
         "ref_x": "",
         "ref_y": "",
         "ref_lon": "",
@@ -1929,8 +2022,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          3225.98,
-          2513.44
+          3166.45,
+          2529.67
         ]
       },
       "properties": {
@@ -1938,8 +2031,8 @@
         "sheet": "10",
         "region": "S10",
         "role": "tie",
-        "src_x": 3225.98,
-        "src_y": 2513.44,
+        "src_x": 3166.45,
+        "src_y": 2529.67,
         "ref_x": "",
         "ref_y": "",
         "ref_lon": "",
@@ -1952,7 +2045,7 @@
         "selected_by": "06b_grid_control_points.py",
         "residual_px": "",
         "accepted": true,
-        "note": "band rms 54.6px"
+        "note": "band rms 40.6px"
       }
     },
     {
@@ -1960,30 +2053,30 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          97.98,
-          163.99
+          209.12,
+          3736.09
         ]
       },
       "properties": {
-        "point_id": "22nd|G",
-        "sheet": "27",
-        "region": "S27",
+        "point_id": "25th|D",
+        "sheet": "10",
+        "region": "S10",
         "role": "tie",
-        "src_x": 97.98,
-        "src_y": 163.99,
+        "src_x": 209.12,
+        "src_y": 3736.09,
         "ref_x": "",
         "ref_y": "",
         "ref_lon": "",
         "ref_lat": "",
-        "street_a": "22nd",
-        "street_b": "G",
+        "street_a": "25th",
+        "street_b": "D",
         "feature": "street centreline intersection",
         "method": "windowed low-ink band fit, shared sheet rotation",
         "confidence": "medium",
         "selected_by": "06b_grid_control_points.py",
         "residual_px": "",
         "accepted": true,
-        "note": "band rms 73.0px"
+        "note": "band rms 62.7px"
       }
     },
     {
@@ -1991,30 +2084,30 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          1068.48,
-          175.47
+          1171.12,
+          3741.44
         ]
       },
       "properties": {
-        "point_id": "22nd|H",
-        "sheet": "27",
-        "region": "S27",
+        "point_id": "25th|E",
+        "sheet": "10",
+        "region": "S10",
         "role": "tie",
-        "src_x": 1068.48,
-        "src_y": 175.47,
+        "src_x": 1171.12,
+        "src_y": 3741.44,
         "ref_x": "",
         "ref_y": "",
         "ref_lon": "",
         "ref_lat": "",
-        "street_a": "22nd",
-        "street_b": "H",
+        "street_a": "25th",
+        "street_b": "E",
         "feature": "street centreline intersection",
         "method": "windowed low-ink band fit, shared sheet rotation",
         "confidence": "medium",
         "selected_by": "06b_grid_control_points.py",
         "residual_px": "",
         "accepted": true,
-        "note": "band rms 73.0px"
+        "note": "band rms 62.7px"
       }
     },
     {
@@ -2022,30 +2115,30 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          2096.4,
-          187.63
+          2219.5,
+          3747.26
         ]
       },
       "properties": {
-        "point_id": "22nd|I",
-        "sheet": "27",
-        "region": "S27",
+        "point_id": "25th|F",
+        "sheet": "10",
+        "region": "S10",
         "role": "tie",
-        "src_x": 2096.4,
-        "src_y": 187.63,
+        "src_x": 2219.5,
+        "src_y": 3747.26,
         "ref_x": "",
         "ref_y": "",
         "ref_lon": "",
         "ref_lat": "",
-        "street_a": "22nd",
-        "street_b": "I",
+        "street_a": "25th",
+        "street_b": "F",
         "feature": "street centreline intersection",
         "method": "windowed low-ink band fit, shared sheet rotation",
         "confidence": "medium",
         "selected_by": "06b_grid_control_points.py",
         "residual_px": "",
         "accepted": true,
-        "note": "band rms 73.0px"
+        "note": "band rms 62.7px"
       }
     },
     {
@@ -2053,296 +2146,17 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          3085.94,
-          199.34
-        ]
-      },
-      "properties": {
-        "point_id": "22nd|J",
-        "sheet": "27",
-        "region": "S27",
-        "role": "tie",
-        "src_x": 3085.94,
-        "src_y": 199.34,
-        "ref_x": "",
-        "ref_y": "",
-        "ref_lon": "",
-        "ref_lat": "",
-        "street_a": "22nd",
-        "street_b": "J",
-        "feature": "street centreline intersection",
-        "method": "windowed low-ink band fit, shared sheet rotation",
-        "confidence": "medium",
-        "selected_by": "06b_grid_control_points.py",
-        "residual_px": "",
-        "accepted": true,
-        "note": "band rms 73.0px"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          120.92,
-          1384.82
-        ]
-      },
-      "properties": {
-        "point_id": "23rd|G",
-        "sheet": "27",
-        "region": "S27",
-        "role": "tie",
-        "src_x": 120.92,
-        "src_y": 1384.82,
-        "ref_x": "",
-        "ref_y": "",
-        "ref_lon": "",
-        "ref_lat": "",
-        "street_a": "23rd",
-        "street_b": "G",
-        "feature": "street centreline intersection",
-        "method": "windowed low-ink band fit, shared sheet rotation",
-        "confidence": "high",
-        "selected_by": "06b_grid_control_points.py",
-        "residual_px": "",
-        "accepted": true,
-        "note": "band rms 51.1px"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          1091.43,
-          1396.31
-        ]
-      },
-      "properties": {
-        "point_id": "23rd|H",
-        "sheet": "27",
-        "region": "S27",
-        "role": "tie",
-        "src_x": 1091.43,
-        "src_y": 1396.31,
-        "ref_x": "",
-        "ref_y": "",
-        "ref_lon": "",
-        "ref_lat": "",
-        "street_a": "23rd",
-        "street_b": "H",
-        "feature": "street centreline intersection",
-        "method": "windowed low-ink band fit, shared sheet rotation",
-        "confidence": "high",
-        "selected_by": "06b_grid_control_points.py",
-        "residual_px": "",
-        "accepted": true,
-        "note": "band rms 51.1px"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2119.34,
-          1408.47
-        ]
-      },
-      "properties": {
-        "point_id": "23rd|I",
-        "sheet": "27",
-        "region": "S27",
-        "role": "tie",
-        "src_x": 2119.34,
-        "src_y": 1408.47,
-        "ref_x": "",
-        "ref_y": "",
-        "ref_lon": "",
-        "ref_lat": "",
-        "street_a": "23rd",
-        "street_b": "I",
-        "feature": "street centreline intersection",
-        "method": "windowed low-ink band fit, shared sheet rotation",
-        "confidence": "high",
-        "selected_by": "06b_grid_control_points.py",
-        "residual_px": "",
-        "accepted": true,
-        "note": "band rms 51.1px"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          3108.89,
-          1420.18
-        ]
-      },
-      "properties": {
-        "point_id": "23rd|J",
-        "sheet": "27",
-        "region": "S27",
-        "role": "tie",
-        "src_x": 3108.89,
-        "src_y": 1420.18,
-        "ref_x": "",
-        "ref_y": "",
-        "ref_lon": "",
-        "ref_lat": "",
-        "street_a": "23rd",
-        "street_b": "J",
-        "feature": "street centreline intersection",
-        "method": "windowed low-ink band fit, shared sheet rotation",
-        "confidence": "medium",
-        "selected_by": "06b_grid_control_points.py",
-        "residual_px": "",
-        "accepted": true,
-        "note": "band rms 63.2px"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          142.99,
-          2559.11
-        ]
-      },
-      "properties": {
-        "point_id": "24th|G",
-        "sheet": "27",
-        "region": "S27",
-        "role": "tie",
-        "src_x": 142.99,
-        "src_y": 2559.11,
-        "ref_x": "",
-        "ref_y": "",
-        "ref_lon": "",
-        "ref_lat": "",
-        "street_a": "24th",
-        "street_b": "G",
-        "feature": "street centreline intersection",
-        "method": "windowed low-ink band fit, shared sheet rotation",
-        "confidence": "high",
-        "selected_by": "06b_grid_control_points.py",
-        "residual_px": "",
-        "accepted": true,
-        "note": "band rms 59.9px"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          1113.49,
-          2570.59
-        ]
-      },
-      "properties": {
-        "point_id": "24th|H",
-        "sheet": "27",
-        "region": "S27",
-        "role": "tie",
-        "src_x": 1113.49,
-        "src_y": 2570.59,
-        "ref_x": "",
-        "ref_y": "",
-        "ref_lon": "",
-        "ref_lat": "",
-        "street_a": "24th",
-        "street_b": "H",
-        "feature": "street centreline intersection",
-        "method": "windowed low-ink band fit, shared sheet rotation",
-        "confidence": "high",
-        "selected_by": "06b_grid_control_points.py",
-        "residual_px": "",
-        "accepted": true,
-        "note": "band rms 59.9px"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2141.41,
-          2582.75
-        ]
-      },
-      "properties": {
-        "point_id": "24th|I",
-        "sheet": "27",
-        "region": "S27",
-        "role": "tie",
-        "src_x": 2141.41,
-        "src_y": 2582.75,
-        "ref_x": "",
-        "ref_y": "",
-        "ref_lon": "",
-        "ref_lat": "",
-        "street_a": "24th",
-        "street_b": "I",
-        "feature": "street centreline intersection",
-        "method": "windowed low-ink band fit, shared sheet rotation",
-        "confidence": "high",
-        "selected_by": "06b_grid_control_points.py",
-        "residual_px": "",
-        "accepted": true,
-        "note": "band rms 59.9px"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          3130.95,
-          2594.46
-        ]
-      },
-      "properties": {
-        "point_id": "24th|J",
-        "sheet": "27",
-        "region": "S27",
-        "role": "tie",
-        "src_x": 3130.95,
-        "src_y": 2594.46,
-        "ref_x": "",
-        "ref_y": "",
-        "ref_lon": "",
-        "ref_lat": "",
-        "street_a": "24th",
-        "street_b": "J",
-        "feature": "street centreline intersection",
-        "method": "windowed low-ink band fit, shared sheet rotation",
-        "confidence": "medium",
-        "selected_by": "06b_grid_control_points.py",
-        "residual_px": "",
-        "accepted": true,
-        "note": "band rms 63.2px"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          165.78,
-          3771.7
+          3162.61,
+          3752.5
         ]
       },
       "properties": {
         "point_id": "25th|G",
-        "sheet": "27",
-        "region": "S27",
+        "sheet": "10",
+        "region": "S10",
         "role": "tie",
-        "src_x": 165.78,
-        "src_y": 3771.7,
+        "src_x": 3162.61,
+        "src_y": 3752.5,
         "ref_x": "",
         "ref_y": "",
         "ref_lon": "",
@@ -2355,7 +2169,658 @@
         "selected_by": "06b_grid_control_points.py",
         "residual_px": "",
         "accepted": true,
-        "note": "band rms 67.8px"
+        "note": "band rms 62.7px"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          141.75,
+          280.53
+        ]
+      },
+      "properties": {
+        "point_id": "22nd|G",
+        "sheet": "27",
+        "region": "S27",
+        "role": "tie",
+        "src_x": 141.75,
+        "src_y": 280.53,
+        "ref_x": "",
+        "ref_y": "",
+        "ref_lon": "",
+        "ref_lat": "",
+        "street_a": "22nd",
+        "street_b": "G",
+        "feature": "street centreline intersection",
+        "method": "windowed low-ink band fit, shared sheet rotation",
+        "confidence": "high",
+        "selected_by": "06b_grid_control_points.py",
+        "residual_px": "",
+        "accepted": true,
+        "note": "band rms 36.4px"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1075.5,
+          291.58
+        ]
+      },
+      "properties": {
+        "point_id": "22nd|H",
+        "sheet": "27",
+        "region": "S27",
+        "role": "tie",
+        "src_x": 1075.5,
+        "src_y": 291.58,
+        "ref_x": "",
+        "ref_y": "",
+        "ref_lon": "",
+        "ref_lat": "",
+        "street_a": "22nd",
+        "street_b": "H",
+        "feature": "street centreline intersection",
+        "method": "windowed low-ink band fit, shared sheet rotation",
+        "confidence": "high",
+        "selected_by": "06b_grid_control_points.py",
+        "residual_px": "",
+        "accepted": true,
+        "note": "band rms 36.4px"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2103.33,
+          303.74
+        ]
+      },
+      "properties": {
+        "point_id": "22nd|I",
+        "sheet": "27",
+        "region": "S27",
+        "role": "tie",
+        "src_x": 2103.33,
+        "src_y": 303.74,
+        "ref_x": "",
+        "ref_y": "",
+        "ref_lon": "",
+        "ref_lat": "",
+        "street_a": "22nd",
+        "street_b": "I",
+        "feature": "street centreline intersection",
+        "method": "windowed low-ink band fit, shared sheet rotation",
+        "confidence": "high",
+        "selected_by": "06b_grid_control_points.py",
+        "residual_px": "",
+        "accepted": true,
+        "note": "band rms 47.3px"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3126.58,
+          315.85
+        ]
+      },
+      "properties": {
+        "point_id": "22nd|J",
+        "sheet": "27",
+        "region": "S27",
+        "role": "tie",
+        "src_x": 3126.58,
+        "src_y": 315.85,
+        "ref_x": "",
+        "ref_y": "",
+        "ref_lon": "",
+        "ref_lat": "",
+        "street_a": "22nd",
+        "street_b": "J",
+        "feature": "street centreline intersection",
+        "method": "windowed low-ink band fit, shared sheet rotation",
+        "confidence": "high",
+        "selected_by": "06b_grid_control_points.py",
+        "residual_px": "",
+        "accepted": true,
+        "note": "band rms 41.9px"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          159.5,
+          1385.28
+        ]
+      },
+      "properties": {
+        "point_id": "23rd|G",
+        "sheet": "27",
+        "region": "S27",
+        "role": "tie",
+        "src_x": 159.5,
+        "src_y": 1385.28,
+        "ref_x": "",
+        "ref_y": "",
+        "ref_lon": "",
+        "ref_lat": "",
+        "street_a": "23rd",
+        "street_b": "G",
+        "feature": "street centreline intersection",
+        "method": "windowed low-ink band fit, shared sheet rotation",
+        "confidence": "high",
+        "selected_by": "06b_grid_control_points.py",
+        "residual_px": "",
+        "accepted": true,
+        "note": "band rms 51.1px"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1093.25,
+          1396.33
+        ]
+      },
+      "properties": {
+        "point_id": "23rd|H",
+        "sheet": "27",
+        "region": "S27",
+        "role": "tie",
+        "src_x": 1093.25,
+        "src_y": 1396.33,
+        "ref_x": "",
+        "ref_y": "",
+        "ref_lon": "",
+        "ref_lat": "",
+        "street_a": "23rd",
+        "street_b": "H",
+        "feature": "street centreline intersection",
+        "method": "windowed low-ink band fit, shared sheet rotation",
+        "confidence": "high",
+        "selected_by": "06b_grid_control_points.py",
+        "residual_px": "",
+        "accepted": true,
+        "note": "band rms 51.1px"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2121.07,
+          1408.49
+        ]
+      },
+      "properties": {
+        "point_id": "23rd|I",
+        "sheet": "27",
+        "region": "S27",
+        "role": "tie",
+        "src_x": 2121.07,
+        "src_y": 1408.49,
+        "ref_x": "",
+        "ref_y": "",
+        "ref_lon": "",
+        "ref_lat": "",
+        "street_a": "23rd",
+        "street_b": "I",
+        "feature": "street centreline intersection",
+        "method": "windowed low-ink band fit, shared sheet rotation",
+        "confidence": "high",
+        "selected_by": "06b_grid_control_points.py",
+        "residual_px": "",
+        "accepted": true,
+        "note": "band rms 51.1px"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3144.32,
+          1420.6
+        ]
+      },
+      "properties": {
+        "point_id": "23rd|J",
+        "sheet": "27",
+        "region": "S27",
+        "role": "tie",
+        "src_x": 3144.32,
+        "src_y": 1420.6,
+        "ref_x": "",
+        "ref_y": "",
+        "ref_lon": "",
+        "ref_lat": "",
+        "street_a": "23rd",
+        "street_b": "J",
+        "feature": "street centreline intersection",
+        "method": "windowed low-ink band fit, shared sheet rotation",
+        "confidence": "high",
+        "selected_by": "06b_grid_control_points.py",
+        "residual_px": "",
+        "accepted": true,
+        "note": "band rms 51.1px"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          178.37,
+          2559.53
+        ]
+      },
+      "properties": {
+        "point_id": "24th|G",
+        "sheet": "27",
+        "region": "S27",
+        "role": "tie",
+        "src_x": 178.37,
+        "src_y": 2559.53,
+        "ref_x": "",
+        "ref_y": "",
+        "ref_lon": "",
+        "ref_lat": "",
+        "street_a": "24th",
+        "street_b": "G",
+        "feature": "street centreline intersection",
+        "method": "windowed low-ink band fit, shared sheet rotation",
+        "confidence": "high",
+        "selected_by": "06b_grid_control_points.py",
+        "residual_px": "",
+        "accepted": true,
+        "note": "band rms 59.9px"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1112.11,
+          2570.57
+        ]
+      },
+      "properties": {
+        "point_id": "24th|H",
+        "sheet": "27",
+        "region": "S27",
+        "role": "tie",
+        "src_x": 1112.11,
+        "src_y": 2570.57,
+        "ref_x": "",
+        "ref_y": "",
+        "ref_lon": "",
+        "ref_lat": "",
+        "street_a": "24th",
+        "street_b": "H",
+        "feature": "street centreline intersection",
+        "method": "windowed low-ink band fit, shared sheet rotation",
+        "confidence": "high",
+        "selected_by": "06b_grid_control_points.py",
+        "residual_px": "",
+        "accepted": true,
+        "note": "band rms 59.9px"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2139.94,
+          2582.74
+        ]
+      },
+      "properties": {
+        "point_id": "24th|I",
+        "sheet": "27",
+        "region": "S27",
+        "role": "tie",
+        "src_x": 2139.94,
+        "src_y": 2582.74,
+        "ref_x": "",
+        "ref_y": "",
+        "ref_lon": "",
+        "ref_lat": "",
+        "street_a": "24th",
+        "street_b": "I",
+        "feature": "street centreline intersection",
+        "method": "windowed low-ink band fit, shared sheet rotation",
+        "confidence": "high",
+        "selected_by": "06b_grid_control_points.py",
+        "residual_px": "",
+        "accepted": true,
+        "note": "band rms 59.9px"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3163.19,
+          2594.84
+        ]
+      },
+      "properties": {
+        "point_id": "24th|J",
+        "sheet": "27",
+        "region": "S27",
+        "role": "tie",
+        "src_x": 3163.19,
+        "src_y": 2594.84,
+        "ref_x": "",
+        "ref_y": "",
+        "ref_lon": "",
+        "ref_lat": "",
+        "street_a": "24th",
+        "street_b": "J",
+        "feature": "street centreline intersection",
+        "method": "windowed low-ink band fit, shared sheet rotation",
+        "confidence": "high",
+        "selected_by": "06b_grid_control_points.py",
+        "residual_px": "",
+        "accepted": true,
+        "note": "band rms 59.9px"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          197.86,
+          3772.8
+        ]
+      },
+      "properties": {
+        "point_id": "25th|G",
+        "sheet": "27",
+        "region": "S27",
+        "role": "tie",
+        "src_x": 197.86,
+        "src_y": 3772.8,
+        "ref_x": "",
+        "ref_y": "",
+        "ref_lon": "",
+        "ref_lat": "",
+        "street_a": "25th",
+        "street_b": "G",
+        "feature": "street centreline intersection",
+        "method": "windowed low-ink band fit, shared sheet rotation",
+        "confidence": "medium",
+        "selected_by": "06b_grid_control_points.py",
+        "residual_px": "",
+        "accepted": true,
+        "note": "band rms 67.1px"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1131.6,
+          3783.85
+        ]
+      },
+      "properties": {
+        "point_id": "25th|H",
+        "sheet": "27",
+        "region": "S27",
+        "role": "tie",
+        "src_x": 1131.6,
+        "src_y": 3783.85,
+        "ref_x": "",
+        "ref_y": "",
+        "ref_lon": "",
+        "ref_lat": "",
+        "street_a": "25th",
+        "street_b": "H",
+        "feature": "street centreline intersection",
+        "method": "windowed low-ink band fit, shared sheet rotation",
+        "confidence": "medium",
+        "selected_by": "06b_grid_control_points.py",
+        "residual_px": "",
+        "accepted": true,
+        "note": "band rms 67.1px"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2159.43,
+          3796.01
+        ]
+      },
+      "properties": {
+        "point_id": "25th|I",
+        "sheet": "27",
+        "region": "S27",
+        "role": "tie",
+        "src_x": 2159.43,
+        "src_y": 3796.01,
+        "ref_x": "",
+        "ref_y": "",
+        "ref_lon": "",
+        "ref_lat": "",
+        "street_a": "25th",
+        "street_b": "I",
+        "feature": "street centreline intersection",
+        "method": "windowed low-ink band fit, shared sheet rotation",
+        "confidence": "medium",
+        "selected_by": "06b_grid_control_points.py",
+        "residual_px": "",
+        "accepted": true,
+        "note": "band rms 67.1px"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3182.68,
+          3808.12
+        ]
+      },
+      "properties": {
+        "point_id": "25th|J",
+        "sheet": "27",
+        "region": "S27",
+        "role": "tie",
+        "src_x": 3182.68,
+        "src_y": 3808.12,
+        "ref_x": "",
+        "ref_y": "",
+        "ref_lon": "",
+        "ref_lat": "",
+        "street_a": "25th",
+        "street_b": "J",
+        "feature": "street centreline intersection",
+        "method": "windowed low-ink band fit, shared sheet rotation",
+        "confidence": "medium",
+        "selected_by": "06b_grid_control_points.py",
+        "residual_px": "",
+        "accepted": true,
+        "note": "band rms 67.1px"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          242.66,
+          172.57
+        ]
+      },
+      "properties": {
+        "point_id": "19th|G",
+        "sheet": "29",
+        "region": "S29",
+        "role": "tie",
+        "src_x": 242.66,
+        "src_y": 172.57,
+        "ref_x": "",
+        "ref_y": "",
+        "ref_lon": "",
+        "ref_lat": "",
+        "street_a": "19th",
+        "street_b": "G",
+        "feature": "street centreline intersection",
+        "method": "windowed low-ink band fit, shared sheet rotation",
+        "confidence": "medium",
+        "selected_by": "06b_grid_control_points.py",
+        "residual_px": "",
+        "accepted": true,
+        "note": "band rms 68.1px"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1146.78,
+          183.31
+        ]
+      },
+      "properties": {
+        "point_id": "19th|H",
+        "sheet": "29",
+        "region": "S29",
+        "role": "tie",
+        "src_x": 1146.78,
+        "src_y": 183.31,
+        "ref_x": "",
+        "ref_y": "",
+        "ref_lon": "",
+        "ref_lat": "",
+        "street_a": "19th",
+        "street_b": "H",
+        "feature": "street centreline intersection",
+        "method": "windowed low-ink band fit, shared sheet rotation",
+        "confidence": "medium",
+        "selected_by": "06b_grid_control_points.py",
+        "residual_px": "",
+        "accepted": true,
+        "note": "band rms 69.0px"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2199.6,
+          195.81
+        ]
+      },
+      "properties": {
+        "point_id": "19th|I",
+        "sheet": "29",
+        "region": "S29",
+        "role": "tie",
+        "src_x": 2199.6,
+        "src_y": 195.81,
+        "ref_x": "",
+        "ref_y": "",
+        "ref_lon": "",
+        "ref_lat": "",
+        "street_a": "19th",
+        "street_b": "I",
+        "feature": "street centreline intersection",
+        "method": "windowed low-ink band fit, shared sheet rotation",
+        "confidence": "medium",
+        "selected_by": "06b_grid_control_points.py",
+        "residual_px": "",
+        "accepted": true,
+        "note": "band rms 68.1px"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3227.55,
+          208.02
+        ]
+      },
+      "properties": {
+        "point_id": "19th|J",
+        "sheet": "29",
+        "region": "S29",
+        "role": "tie",
+        "src_x": 3227.55,
+        "src_y": 208.02,
+        "ref_x": "",
+        "ref_y": "",
+        "ref_lon": "",
+        "ref_lat": "",
+        "street_a": "19th",
+        "street_b": "J",
+        "feature": "street centreline intersection",
+        "method": "windowed low-ink band fit, shared sheet rotation",
+        "confidence": "medium",
+        "selected_by": "06b_grid_control_points.py",
+        "residual_px": "",
+        "accepted": true,
+        "note": "band rms 68.1px"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          232.17,
+          2550.13
+        ]
+      },
+      "properties": {
+        "point_id": "21st|G",
+        "sheet": "29",
+        "region": "S29",
+        "role": "tie",
+        "src_x": 232.17,
+        "src_y": 2550.13,
+        "ref_x": "",
+        "ref_y": "",
+        "ref_lon": "",
+        "ref_lat": "",
+        "street_a": "21st",
+        "street_b": "G",
+        "feature": "street centreline intersection",
+        "method": "windowed low-ink band fit, shared sheet rotation",
+        "confidence": "medium",
+        "selected_by": "06b_grid_control_points.py",
+        "residual_px": "",
+        "accepted": true,
+        "note": "band rms 69.0px"
       }
     },
     {
@@ -2364,379 +2829,7 @@
         "type": "Point",
         "coordinates": [
           1136.28,
-          3783.19
-        ]
-      },
-      "properties": {
-        "point_id": "25th|H",
-        "sheet": "27",
-        "region": "S27",
-        "role": "tie",
-        "src_x": 1136.28,
-        "src_y": 3783.19,
-        "ref_x": "",
-        "ref_y": "",
-        "ref_lon": "",
-        "ref_lat": "",
-        "street_a": "25th",
-        "street_b": "H",
-        "feature": "street centreline intersection",
-        "method": "windowed low-ink band fit, shared sheet rotation",
-        "confidence": "medium",
-        "selected_by": "06b_grid_control_points.py",
-        "residual_px": "",
-        "accepted": true,
-        "note": "band rms 67.8px"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2164.2,
-          3795.35
-        ]
-      },
-      "properties": {
-        "point_id": "25th|I",
-        "sheet": "27",
-        "region": "S27",
-        "role": "tie",
-        "src_x": 2164.2,
-        "src_y": 3795.35,
-        "ref_x": "",
-        "ref_y": "",
-        "ref_lon": "",
-        "ref_lat": "",
-        "street_a": "25th",
-        "street_b": "I",
-        "feature": "street centreline intersection",
-        "method": "windowed low-ink band fit, shared sheet rotation",
-        "confidence": "medium",
-        "selected_by": "06b_grid_control_points.py",
-        "residual_px": "",
-        "accepted": true,
-        "note": "band rms 67.8px"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          3153.74,
-          3807.06
-        ]
-      },
-      "properties": {
-        "point_id": "25th|J",
-        "sheet": "27",
-        "region": "S27",
-        "role": "tie",
-        "src_x": 3153.74,
-        "src_y": 3807.06,
-        "ref_x": "",
-        "ref_y": "",
-        "ref_lon": "",
-        "ref_lat": "",
-        "street_a": "25th",
-        "street_b": "J",
-        "feature": "street centreline intersection",
-        "method": "windowed low-ink band fit, shared sheet rotation",
-        "confidence": "medium",
-        "selected_by": "06b_grid_control_points.py",
-        "residual_px": "",
-        "accepted": true,
-        "note": "band rms 67.8px"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          144.58,
-          195.68
-        ]
-      },
-      "properties": {
-        "point_id": "19th|G",
-        "sheet": "29",
-        "region": "S29",
-        "role": "tie",
-        "src_x": 144.58,
-        "src_y": 195.68,
-        "ref_x": "",
-        "ref_y": "",
-        "ref_lon": "",
-        "ref_lat": "",
-        "street_a": "19th",
-        "street_b": "G",
-        "feature": "street centreline intersection",
-        "method": "windowed low-ink band fit, shared sheet rotation",
-        "confidence": "medium",
-        "selected_by": "06b_grid_control_points.py",
-        "residual_px": "",
-        "accepted": true,
-        "note": "band rms 64.7px"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          1129.99,
-          195.42
-        ]
-      },
-      "properties": {
-        "point_id": "19th|H",
-        "sheet": "29",
-        "region": "S29",
-        "role": "tie",
-        "src_x": 1129.99,
-        "src_y": 195.42,
-        "ref_x": "",
-        "ref_y": "",
-        "ref_lon": "",
-        "ref_lat": "",
-        "street_a": "19th",
-        "street_b": "H",
-        "feature": "street centreline intersection",
-        "method": "windowed low-ink band fit, shared sheet rotation",
-        "confidence": "medium",
-        "selected_by": "06b_grid_control_points.py",
-        "residual_px": "",
-        "accepted": true,
-        "note": "band rms 69.9px"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2183.47,
-          195.14
-        ]
-      },
-      "properties": {
-        "point_id": "19th|I",
-        "sheet": "29",
-        "region": "S29",
-        "role": "tie",
-        "src_x": 2183.47,
-        "src_y": 195.14,
-        "ref_x": "",
-        "ref_y": "",
-        "ref_lon": "",
-        "ref_lat": "",
-        "street_a": "19th",
-        "street_b": "I",
-        "feature": "street centreline intersection",
-        "method": "windowed low-ink band fit, shared sheet rotation",
-        "confidence": "medium",
-        "selected_by": "06b_grid_control_points.py",
-        "residual_px": "",
-        "accepted": true,
-        "note": "band rms 64.7px"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          3197.15,
-          194.88
-        ]
-      },
-      "properties": {
-        "point_id": "19th|J",
-        "sheet": "29",
-        "region": "S29",
-        "role": "tie",
-        "src_x": 3197.15,
-        "src_y": 194.88,
-        "ref_x": "",
-        "ref_y": "",
-        "ref_lon": "",
-        "ref_lat": "",
-        "street_a": "19th",
-        "street_b": "J",
-        "feature": "street centreline intersection",
-        "method": "windowed low-ink band fit, shared sheet rotation",
-        "confidence": "medium",
-        "selected_by": "06b_grid_control_points.py",
-        "residual_px": "",
-        "accepted": true,
-        "note": "band rms 64.7px"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          149.41,
-          1333.24
-        ]
-      },
-      "properties": {
-        "point_id": "20th|G",
-        "sheet": "29",
-        "region": "S29",
-        "role": "tie",
-        "src_x": 149.41,
-        "src_y": 1333.24,
-        "ref_x": "",
-        "ref_y": "",
-        "ref_lon": "",
-        "ref_lat": "",
-        "street_a": "20th",
-        "street_b": "G",
-        "feature": "street centreline intersection",
-        "method": "windowed low-ink band fit, shared sheet rotation",
-        "confidence": "high",
-        "selected_by": "06b_grid_control_points.py",
-        "residual_px": "",
-        "accepted": true,
-        "note": "band rms 49.4px"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          1134.82,
-          1332.98
-        ]
-      },
-      "properties": {
-        "point_id": "20th|H",
-        "sheet": "29",
-        "region": "S29",
-        "role": "tie",
-        "src_x": 1134.82,
-        "src_y": 1332.98,
-        "ref_x": "",
-        "ref_y": "",
-        "ref_lon": "",
-        "ref_lat": "",
-        "street_a": "20th",
-        "street_b": "H",
-        "feature": "street centreline intersection",
-        "method": "windowed low-ink band fit, shared sheet rotation",
-        "confidence": "medium",
-        "selected_by": "06b_grid_control_points.py",
-        "residual_px": "",
-        "accepted": true,
-        "note": "band rms 69.9px"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2188.3,
-          1332.7
-        ]
-      },
-      "properties": {
-        "point_id": "20th|I",
-        "sheet": "29",
-        "region": "S29",
-        "role": "tie",
-        "src_x": 2188.3,
-        "src_y": 1332.7,
-        "ref_x": "",
-        "ref_y": "",
-        "ref_lon": "",
-        "ref_lat": "",
-        "street_a": "20th",
-        "street_b": "I",
-        "feature": "street centreline intersection",
-        "method": "windowed low-ink band fit, shared sheet rotation",
-        "confidence": "high",
-        "selected_by": "06b_grid_control_points.py",
-        "residual_px": "",
-        "accepted": true,
-        "note": "band rms 49.4px"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          3201.98,
-          1332.43
-        ]
-      },
-      "properties": {
-        "point_id": "20th|J",
-        "sheet": "29",
-        "region": "S29",
-        "role": "tie",
-        "src_x": 3201.98,
-        "src_y": 1332.43,
-        "ref_x": "",
-        "ref_y": "",
-        "ref_lon": "",
-        "ref_lat": "",
-        "street_a": "20th",
-        "street_b": "J",
-        "feature": "street centreline intersection",
-        "method": "windowed low-ink band fit, shared sheet rotation",
-        "confidence": "high",
-        "selected_by": "06b_grid_control_points.py",
-        "residual_px": "",
-        "accepted": true,
-        "note": "band rms 49.4px"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          154.65,
-          2566.86
-        ]
-      },
-      "properties": {
-        "point_id": "21st|G",
-        "sheet": "29",
-        "region": "S29",
-        "role": "tie",
-        "src_x": 154.65,
-        "src_y": 2566.86,
-        "ref_x": "",
-        "ref_y": "",
-        "ref_lon": "",
-        "ref_lat": "",
-        "street_a": "21st",
-        "street_b": "G",
-        "feature": "street centreline intersection",
-        "method": "windowed low-ink band fit, shared sheet rotation",
-        "confidence": "medium",
-        "selected_by": "06b_grid_control_points.py",
-        "residual_px": "",
-        "accepted": true,
-        "note": "band rms 70.8px"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          1140.06,
-          2566.6
+          2560.87
         ]
       },
       "properties": {
@@ -2744,8 +2837,8 @@
         "sheet": "29",
         "region": "S29",
         "role": "tie",
-        "src_x": 1140.06,
-        "src_y": 2566.6,
+        "src_x": 1136.28,
+        "src_y": 2560.87,
         "ref_x": "",
         "ref_y": "",
         "ref_lon": "",
@@ -2758,7 +2851,7 @@
         "selected_by": "06b_grid_control_points.py",
         "residual_px": "",
         "accepted": true,
-        "note": "band rms 70.8px"
+        "note": "band rms 69.0px"
       }
     },
     {
@@ -2766,8 +2859,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          2193.54,
-          2566.32
+          2189.1,
+          2573.37
         ]
       },
       "properties": {
@@ -2775,8 +2868,8 @@
         "sheet": "29",
         "region": "S29",
         "role": "tie",
-        "src_x": 2193.54,
-        "src_y": 2566.32,
+        "src_x": 2189.1,
+        "src_y": 2573.37,
         "ref_x": "",
         "ref_y": "",
         "ref_lon": "",
@@ -2789,7 +2882,7 @@
         "selected_by": "06b_grid_control_points.py",
         "residual_px": "",
         "accepted": true,
-        "note": "band rms 70.8px"
+        "note": "band rms 69.0px"
       }
     },
     {
@@ -2797,8 +2890,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          3207.22,
-          2566.06
+          3217.05,
+          2585.58
         ]
       },
       "properties": {
@@ -2806,8 +2899,8 @@
         "sheet": "29",
         "region": "S29",
         "role": "tie",
-        "src_x": 3207.22,
-        "src_y": 2566.06,
+        "src_x": 3217.05,
+        "src_y": 2585.58,
         "ref_x": "",
         "ref_y": "",
         "ref_lon": "",
@@ -2820,131 +2913,7 @@
         "selected_by": "06b_grid_control_points.py",
         "residual_px": "",
         "accepted": true,
-        "note": "band rms 70.8px"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          159.45,
-          3697.8
-        ]
-      },
-      "properties": {
-        "point_id": "22nd|G",
-        "sheet": "29",
-        "region": "S29",
-        "role": "tie",
-        "src_x": 159.45,
-        "src_y": 3697.8,
-        "ref_x": "",
-        "ref_y": "",
-        "ref_lon": "",
-        "ref_lat": "",
-        "street_a": "22nd",
-        "street_b": "G",
-        "feature": "street centreline intersection",
-        "method": "windowed low-ink band fit, shared sheet rotation",
-        "confidence": "medium",
-        "selected_by": "06b_grid_control_points.py",
-        "residual_px": "",
-        "accepted": true,
-        "note": "band rms 62.1px"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          1144.86,
-          3697.54
-        ]
-      },
-      "properties": {
-        "point_id": "22nd|H",
-        "sheet": "29",
-        "region": "S29",
-        "role": "tie",
-        "src_x": 1144.86,
-        "src_y": 3697.54,
-        "ref_x": "",
-        "ref_y": "",
-        "ref_lon": "",
-        "ref_lat": "",
-        "street_a": "22nd",
-        "street_b": "H",
-        "feature": "street centreline intersection",
-        "method": "windowed low-ink band fit, shared sheet rotation",
-        "confidence": "medium",
-        "selected_by": "06b_grid_control_points.py",
-        "residual_px": "",
-        "accepted": true,
-        "note": "band rms 69.9px"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2198.34,
-          3697.27
-        ]
-      },
-      "properties": {
-        "point_id": "22nd|I",
-        "sheet": "29",
-        "region": "S29",
-        "role": "tie",
-        "src_x": 2198.34,
-        "src_y": 3697.27,
-        "ref_x": "",
-        "ref_y": "",
-        "ref_lon": "",
-        "ref_lat": "",
-        "street_a": "22nd",
-        "street_b": "I",
-        "feature": "street centreline intersection",
-        "method": "windowed low-ink band fit, shared sheet rotation",
-        "confidence": "medium",
-        "selected_by": "06b_grid_control_points.py",
-        "residual_px": "",
-        "accepted": true,
-        "note": "band rms 62.1px"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          3212.02,
-          3697.0
-        ]
-      },
-      "properties": {
-        "point_id": "22nd|J",
-        "sheet": "29",
-        "region": "S29",
-        "role": "tie",
-        "src_x": 3212.02,
-        "src_y": 3697.0,
-        "ref_x": "",
-        "ref_y": "",
-        "ref_lon": "",
-        "ref_lat": "",
-        "street_a": "22nd",
-        "street_b": "J",
-        "feature": "street centreline intersection",
-        "method": "windowed low-ink band fit, shared sheet rotation",
-        "confidence": "medium",
-        "selected_by": "06b_grid_control_points.py",
-        "residual_px": "",
-        "accepted": true,
-        "note": "band rms 62.1px"
+        "note": "band rms 69.0px"
       }
     }
   ]
