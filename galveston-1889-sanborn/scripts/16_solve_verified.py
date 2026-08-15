@@ -145,6 +145,74 @@ def seam_table(residuals, meta):
     return out
 
 
+def parameter_covariance(regions, ties, anchor, kind, T, residuals):
+    """1-sigma formal errors on each free region's scale and rotation.
+
+    Rebuilds the weighted design matrix of the converged solution, inverts the
+    normal matrix, scales it by the unit-weight variance (weighted SSR over
+    redundancy), then propagates from the parameterisation (a, b, tx, ty) to
+    the quantities a reader cares about:
+
+        s     = hypot(a, b)          ds/da =  a/s     ds/db =  b/s
+        theta = atan2(b, a)          dth/da = -b/s^2  dth/db =  a/s^2
+
+    Returns {} for anything but a similarity, where that algebra applies.
+    """
+    if kind != "similarity":
+        return {}
+    free = [r for r in regions if r != anchor]
+    if not free:
+        return {}
+    idx = {r: i * 4 for i, r in enumerate(free)}
+    ncol = 4 * len(free)
+
+    def block(pt, sign):
+        x, y = pt
+        return sign * np.array([[x, -y, 1.0, 0.0], [y, x, 0.0, 1.0]])
+
+    rows, wts = [], []
+    for t in ties:
+        row = np.zeros((2, ncol))
+        if t.a in idx:
+            row[:, idx[t.a]:idx[t.a] + 4] += block(t.pa, +1)
+        if t.b in idx:
+            row[:, idx[t.b]:idx[t.b] + 4] += block(t.pb, -1)
+        rows.append(row)
+        wts.append(t.weight)
+    if not rows:
+        return {}
+    A = np.vstack(rows)
+    sw = np.sqrt(np.repeat(np.asarray(wts, float), 2))
+    Aw = A * sw[:, None]
+    N = Aw.T @ Aw
+    try:
+        Ninv = np.linalg.inv(N)
+    except np.linalg.LinAlgError:
+        return {}
+
+    ssr = sum(r["normalized"] ** 2 for r in residuals if r["kind"] == "tie")
+    redundancy = max(1, 2 * len(ties) - ncol)
+    sigma0_sq = ssr / redundancy
+
+    out = {}
+    for r in regions:
+        if r == anchor:
+            out[r] = {"sigma_scale": 0.0, "sigma_rotation_deg": 0.0}
+            continue
+        o = idx[r]
+        C = sigma0_sq * Ninv[o:o + 2, o:o + 2]       # covariance of (a, b)
+        a, b = T[r][0, 0], T[r][1, 0]
+        s2 = a * a + b * b
+        s = math.sqrt(s2)
+        Js = np.array([a / s, b / s])
+        Jt = np.array([-b / s2, a / s2])
+        out[r] = {
+            "sigma_scale": float(math.sqrt(max(0.0, Js @ C @ Js))),
+            "sigma_rotation_deg": float(math.degrees(math.sqrt(max(0.0, Jt @ C @ Jt)))),
+        }
+    return out
+
+
 def grade(raw_median, raw_max, norm_median):
     """Acceptance grade. Both the absolute and the normalised view must agree."""
     if raw_median <= 3.0 and raw_max <= 12.0 and norm_median <= 1.5:
@@ -235,14 +303,30 @@ def main() -> int:
     for s in seams:
         s["verdict"], s["why"] = grade(s["raw_median"], s["raw_max"], s["norm_median"])
 
+    # ---- how well is each parameter actually DETERMINED? ----------------
+    # Residuals say how well the solution fits. They do not say whether the
+    # data could have pinned the parameter down at all. Seams where two sheets
+    # abut along one street give collinear control, and a single such seam
+    # constrains rotation only through the spread of points ALONG the line --
+    # on S8|S29 the along-line family says -0.81 deg and the crossing street
+    # lines say -0.29 deg. What rescues it is the joint solve: a region in
+    # three seams facing different directions is determined even where no one
+    # seam determines it. This block measures that, rather than asserting it.
+    cov = parameter_covariance(regions, ties, anchor, args.kind, T, fit["residuals"])
+
     # ---- per-region geometry, and is it physically possible -------------
     summary = []
     for r in sorted(T):
         d = G.decompose_affine(T[r])
         flags = G.plausibility_flags(T[r])
+        c = cov.get(r, {})
         summary.append({"region": r, "anchor": r == anchor,
                         "scale": round(d["scale_x"], 5),
+                        "sigma_scale_pct": ("" if c.get("sigma_scale") is None
+                                            else round(100.0 * c["sigma_scale"], 4)),
                         "rotation_deg": round(d["rotation_deg"], 4),
+                        "sigma_rotation_deg": ("" if c.get("sigma_rotation_deg") is None
+                                               else round(c["sigma_rotation_deg"], 4)),
                         "shear_deg": round(d["shear_deg"], 4),
                         "anisotropy": round(d["anisotropy"], 5),
                         "tx": round(float(T[r][0, 2]), 2),
@@ -353,10 +437,16 @@ def main() -> int:
         print(f"  {s['region_a'] + ' | ' + s['region_b']:<20} {s['n']:>3} "
               f"{s['raw_median']:>6.2f}p {s['raw_max']:>6.2f}p "
               f"{s['norm_median']:>5.2f}s  {s['verdict']}" + tail)
-    print(f"\n  {'region':<10} {'scale':>9} {'rot deg':>9} {'plausibility':>14}")
+    print(f"\n  {'region':<10} {'scale':>9} {'+/-%':>7} {'rot deg':>9} {'+/-deg':>8} "
+          f"{'plausible':>10}")
     for s in summary:
-        print(f"  {s['region']:<10} {s['scale']:>9.5f} {s['rotation_deg']:>9.4f} "
-              f"{s['plausibility']:>14}" + ("   [anchor]" if s["anchor"] else ""))
+        ss = f"{s['sigma_scale_pct']:>7.3f}" if s["sigma_scale_pct"] != "" else f"{'-':>7}"
+        sr = f"{s['sigma_rotation_deg']:>8.3f}" if s["sigma_rotation_deg"] != "" else f"{'-':>8}"
+        print(f"  {s['region']:<10} {s['scale']:>9.5f} {ss} {s['rotation_deg']:>9.4f} "
+              f"{sr} {s['plausibility']:>10}" + ("   [anchor]" if s["anchor"] else ""))
+    print("  (+/- are 1-sigma formal errors from the normal equations, scaled by "
+          "the unit-weight variance; they say whether the DATA could pin the "
+          "parameter down, which residuals cannot)")
     return 0
 
 

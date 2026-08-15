@@ -1,6 +1,6 @@
-region,anchor,scale,rotation_deg,shear_deg,anisotropy,tx,ty,plausibility
-S10,False,0.99591,-0.0482,-0.0,0.0,3017.55,62.65,ok
-S1_main,False,0.99882,-0.3922,-0.0,0.0,-2882.36,314.16,ok
-S2,False,1.00228,-0.7575,-0.0,0.0,-2884.94,-3223.74,ok
-S7,False,1.01437,-0.3678,-0.0,0.0,-65.68,-3490.06,ok
-S9,True,1.0,0.0,0.0,0.0,0.0,0.0,ok
+region,anchor,scale,sigma_scale_pct,rotation_deg,sigma_rotation_deg,shear_deg,anisotropy,tx,ty,plausibility
+S10,False,0.99591,0.2533,-0.0482,0.1457,-0.0,0.0,3017.55,62.65,ok
+S1_main,False,0.99882,1.8059,-0.3922,1.0359,-0.0,0.0,-2882.36,314.16,ok
+S2,False,1.00228,0.2215,-0.7575,0.1266,-0.0,0.0,-2884.94,-3223.74,ok
+S7,False,1.01437,0.1843,-0.3678,0.1041,-0.0,0.0,-65.68,-3490.06,ok
+S9,True,1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,ok
