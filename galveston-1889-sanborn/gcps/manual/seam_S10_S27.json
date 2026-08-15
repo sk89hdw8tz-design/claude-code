@@ -1,0 +1,135 @@
+{
+ "seam": "S10|S27",
+ "sheet_a": "10",
+ "sheet_b": "27",
+ "relation": "sheet 10 lies WEST of sheet 27; shared street Av. G or Winnie E.",
+ "overlap_exists": "partial",
+ "overlap_description": "Ground overlap exists but contains no duplicated map detail. Sheet 10's paper runs east to x=3324-3353 (curved edge) but it draws nothing east of the Av. G WEST property line, which its own frontage line fixes at x = 3111.34 - 0.00086*(y-2000) (fit rms 1.7 px over 2236 rows); east of it sheet 10 shows only Winnie E. house numbers, the '70'' width label, the 'AV. G OR WINNIE E.' street label and the 'SEE SHEET No. 27' caption. Sheet 27's paper starts at x=40-50 but it draws nothing west of the Av. G EAST property line at x = 220.40 - 0.00227*(y-2000) (rms 1.5 px over 2590 rows); west of it there is only '70'', 'AV. G OR WINNIE E.' and 'SEE SHEET No 10.'. The common ground band is therefore about 55-60 ft of empty Av. G roadway (from ~12 ft east of the west property line to the east property line). The ONLY real ground objects drawn inside it by both sheets are the 22nd St 16-in. and 25th St 12-in. water mains, and both were rejected as control after measurement (see rejected_candidates). No building, lot, block, hydrant or gallery is drawn twice. All control below is therefore constructed: each sheet's own drawn frontage line of Av. G, transferred to the avenue centreline through the 70 ft width printed on BOTH sheets, intersected with the seven cross-street property lines that both sheets draw.",
+ "correspondences": [
+  {
+   "feature": "Av. G (Winnie E.) centreline x NORTH property line of 22nd St",
+   "why_unambiguous": "Both sheets draw a short stub of the block boundary NORTH of 22nd St where it meets Av. G: on sheet 10 a heavy continuous line runs WEST from the Av. G west property line and turns north (SE corner of the sheet-8 block); on sheet 27 the mirrored corner runs EAST from the Av. G east property line and turns north (SW corner of the sheet-29 block). It is the only heavy line in that corner of either sheet, it is 80 ft (the printed width of 22nd St) north of the next line down, and 22nd ST is printed in the roadway between them on both sheets. Cannot be one block off: the next street north is on sheets 8/29 and the next south is 23rd or Tremont, both named in print. Correspondence point is the mathematical intersection of this street property line with the Av. G CENTRELINE, obtained by offsetting each sheet's own drawn Av. G frontage line by half the width printed on both sheets (70'): +35 ft east on sheet 10 (drawn corner 3112.98,98.77), -35 ft west on sheet 27 (drawn corner 224.69,112.16).",
+   "a_x": 3219.62,
+   "a_y": 98.92,
+   "b_x": 117.17,
+   "b_y": 111.78,
+   "confidence": "medium",
+   "uncertainty_px": 4.5,
+   "category": "property line intersection"
+  },
+  {
+   "feature": "Av. G centreline x SOUTH property line of 22nd St (= N frontage of blk 382 / blk 322)",
+   "why_unambiguous": "North end of the long continuous Av. G frontage line on each sheet: on sheet 10 the NE corner of block 382 (block number read at full resolution), on sheet 27 the NW corner of block 322, the block containing TRINITY CHURCH (EPISCOPAL) and EATON MEMORIAL CHAPEL. Street named 22ND ST. in print on both sheets, and the corner is exactly 80 ft (printed) south of the 22nd St north property line. No repeating grid element resembles the terminal end of a block frontage line. Correspondence point is the mathematical intersection of this street property line with the Av. G CENTRELINE, obtained by offsetting each sheet's own drawn Av. G frontage line by half the width printed on both sheets (70'): +35 ft east on sheet 10 (drawn corner 3112.76,343.52), -35 ft west on sheet 27 (drawn corner 224.12,362.63).",
+   "a_x": 3219.41,
+   "a_y": 343.67,
+   "b_x": 116.6,
+   "b_y": 362.25,
+   "confidence": "high",
+   "uncertainty_px": 3.0,
+   "category": "property line intersection"
+  },
+  {
+   "feature": "Av. G centreline x NORTH property line of 23rd (Tremont) St (= S frontage of blk 382 / blk 322)",
+   "why_unambiguous": "South end of the block 382 / block 322 Av. G frontage line. The street is named 23RD OR TREMONT in print on both sheets. On sheet 10 the corner lot is the BAKERY at 608 Winnie with a FIRE ALM BOX; on sheet 27 the corner lots are numbered 305/308 on 23rd. The heavy continuous frontage line, not the dashed gallery edge ~6 ft into the roadway, was measured. Correspondence point is the mathematical intersection of this street property line with the Av. G CENTRELINE, obtained by offsetting each sheet's own drawn Av. G frontage line by half the width printed on both sheets (70'): +35 ft east on sheet 10 (drawn corner 3111.97,1270.12), -35 ft west on sheet 27 (drawn corner 222.01,1292.83).",
+   "a_x": 3218.61,
+   "a_y": 1270.27,
+   "b_x": 114.49,
+   "b_y": 1292.45,
+   "confidence": "high",
+   "uncertainty_px": 3.0,
+   "category": "property line intersection"
+  },
+  {
+   "feature": "Av. G centreline x SOUTH property line of 23rd (Tremont) St (= N frontage of blk 383 / blk 323)",
+   "why_unambiguous": "North end of the block 383 / block 323 Av. G frontage line, 80 ft (printed) south of L2 on both sheets. Sheet 10 corner building is the mattress factory block; sheet 27 corner is the saloon at 301/307 23rd St. Both sheets show a dashed gallery edge ~13-15 ft north of this line inside the roadway; the heavy continuous line was measured, not the gallery. Correspondence point is the mathematical intersection of this street property line with the Av. G CENTRELINE, obtained by offsetting each sheet's own drawn Av. G frontage line by half the width printed on both sheets (70'): +35 ft east on sheet 10 (drawn corner 3111.76,1514.33), -35 ft west on sheet 27 (drawn corner 221.44,1539.79).",
+   "a_x": 3218.4,
+   "a_y": 1514.49,
+   "b_x": 113.92,
+   "b_y": 1539.41,
+   "confidence": "high",
+   "uncertainty_px": 3.0,
+   "category": "property line intersection"
+  },
+  {
+   "feature": "Av. G centreline x NORTH property line of 24th St (= S frontage of blk 383 / blk 323)",
+   "why_unambiguous": "South end of the block 383 / block 323 Av. G frontage line; 24TH ST. named in print on both sheets. On sheet 10 the same heavy line was traced continuously west across the whole block past the mid-block alley to confirm it is the property line and not the building wall 22 px north of it. On sheet 27 the corner is a clean unobstructed L with no gallery. Correspondence point is the mathematical intersection of this street property line with the Av. G CENTRELINE, obtained by offsetting each sheet's own drawn Av. G frontage line by half the width printed on both sheets (70'): +35 ft east on sheet 10 (drawn corner 3110.96,2439.92), -35 ft west on sheet 27 (drawn corner 219.35,2462.43).",
+   "a_x": 3217.61,
+   "a_y": 2440.07,
+   "b_x": 111.83,
+   "b_y": 2462.05,
+   "confidence": "high",
+   "uncertainty_px": 3.0,
+   "category": "property line intersection"
+  },
+  {
+   "feature": "Av. G centreline x SOUTH property line of 24th St (= N frontage of blk 384 / blk 324)",
+   "why_unambiguous": "North end of the block 384 / block 324 Av. G frontage line, 80 ft (printed) south of L4. Sheet 27's block 324 is the GERMAN LUTHERAN CHURCH / GERMAN LUTHERAN SCHOOL block, named in print, so the block identity is fixed independently of counting. The line is a single dark row band at the seam; a second parallel line (the church-block building wall) lies 8 px south and was explicitly excluded. Correspondence point is the mathematical intersection of this street property line with the Av. G CENTRELINE, obtained by offsetting each sheet's own drawn Av. G frontage line by half the width printed on both sheets (70'): +35 ft east on sheet 10 (drawn corner 3110.75,2684.14), -35 ft west on sheet 27 (drawn corner 218.79,2708.56).",
+   "a_x": 3217.4,
+   "a_y": 2684.29,
+   "b_x": 111.27,
+   "b_y": 2708.18,
+   "confidence": "high",
+   "uncertainty_px": 3.0,
+   "category": "property line intersection"
+  },
+  {
+   "feature": "Av. G centreline x NORTH property line of 25th St (Bath Av.) (= S frontage of blk 384 / blk 324)",
+   "why_unambiguous": "South end of the Av. G frontage line on both sheets and the last street drawn: 25TH ST. OR BATH AV. is printed on both, with its 120' width labelled on both. Sheet 10's corner lot carries address 607; sheet 27's is 5301 with a 14 ft gallery (dashed) west of the wall, which was excluded. Terminal end of the drawn block column, so it cannot be one block off. Correspondence point is the mathematical intersection of this street property line with the Av. G CENTRELINE, obtained by offsetting each sheet's own drawn Av. G frontage line by half the width printed on both sheets (70'): +35 ft east on sheet 10 (drawn corner 3109.96,3609.18), -35 ft west on sheet 27 (drawn corner 216.68,3636.86).",
+   "a_x": 3216.6,
+   "a_y": 3609.33,
+   "b_x": 109.16,
+   "b_y": 3636.48,
+   "confidence": "high",
+   "uncertainty_px": 3.5,
+   "category": "property line intersection"
+  }
+ ],
+ "self_check_similarity": {
+  "scale": 1.002654,
+  "rotation_deg": 0.081,
+  "tx": -3110.861,
+  "ty": 12.947,
+  "rms_px": 2.447,
+  "max_px": 4.91,
+  "outliers": []
+ },
+ "rejected_candidates": [
+  {
+   "feature": "22nd St 16-in. water main (dashed) where it crosses Av. G - drawn on BOTH sheets inside the overlap band",
+   "reason": "The only shared drawn line at the north end, but its placement is by eye. Measured at the Av. G centreline it sits 99.7 px (32.7 ft) south of the 22nd St north property line on sheet 10 and 69.6 px (22.7 ft) south of the same line on sheet 27 - a 10 ft disagreement. Residual against the property-line solution 33.2 px. Unusable as control."
+  },
+  {
+   "feature": "25th St 12-in. water main (dashed) where it crosses Av. G - drawn on BOTH sheets inside the overlap band",
+   "reason": "Same class. Measured at the centreline: sheet 10 (3216.6, 3784.60), sheet 27 (109.2, 3805.20); residual against the property-line solution 7.1 px. Better than the 22nd St main but still by-eye pipe placement, and retaining it only because it happens to agree would be selection on the answer. Recorded here as an independent check, not used as control."
+  },
+  {
+   "feature": "'AV. G OR WINNIE E.' street label, printed vertically in the roadway on BOTH sheets",
+   "reason": "Cartographic lettering, positioned independently by each draftsman; not a ground feature."
+  },
+  {
+   "feature": "'SEE SHEET No. 27' / 'SEE SHEET No 10.' marginal captions and the '70'' avenue-width labels",
+   "reason": "Annotation, no located ground referent."
+  },
+  {
+   "feature": "Dashed gallery/awning edges projecting ~14 ft west into Av. G from blocks 322 and 324 on sheet 27",
+   "reason": "Real ground objects, and they fall inside sheet 10's paper extent, but sheet 10 leaves the Av. G roadway blank, so they are not drawn twice. Also, per project guidance, the dashed awning line is not the property line and was excluded everywhere from the frontage measurements."
+  },
+  {
+   "feature": "The existing automatic overlap tiepoints in gcps/shared_edges/S10__S27.geojson (OVL_S10_S27_000...)",
+   "reason": "They place matches at y~120-150 across the seam, i.e. inside blank avenue roadway and paper texture where no shared detail exists. Confident matches on nothing; not used."
+  },
+  {
+   "feature": "25th St SOUTH property line / 22nd St as a second latitude pair beyond L0 and L6",
+   "reason": "Off the paper on both sheets - the sheet-10 and sheet-27 paper ends at y~3940 and ~3990 respectively, above the 25th St south property line at y~3975/4006. What the row profile finds there is the Briscoe Center caption text, not map line work."
+  },
+  {
+   "feature": "Mid-block alley mouths on Av. G",
+   "reason": "None exist. The alleys in blocks 382-384 and 322-324 run north-south, parallel to Av. G, and open onto the numbered streets, not onto the seam."
+  },
+  {
+   "feature": "Hydrant symbols",
+   "reason": "No hydrant is drawn inside the seam band on either sheet."
+  }
+ ],
+ "notes": "METHOD. Every feature was identified semantically first (printed street names 22ND ST., 23RD OR TREMONT, 24TH ST., 25TH ST. OR BATH AV., AV. G OR WINNIE E.; block numbers 382/383/384 on sheet 10 and 322/323/324 on sheet 27; named buildings TRINITY CHURCH (EPISCOPAL), EATON MEMORIAL CHAPEL, GERMAN LUTHERAN CHURCH + SCHOOL, E.E. SEIXAS CARRIAGE FACTORY on sheet 27, and the BAKERY/FIRE ALM BOX corner on sheet 10) and only then measured. No template matching, NCC or feature matching was used anywhere. Crops with a 1-source-pixel grid at known source coordinates are in output/qc/manual_crops/ (OV_*, A_*, B*_*, C1*, D_*, P0/P2/P3/P7_*, Q2-Q6_*, R_*).\n\nMEASUREMENT. The two Av. G frontage lines were fitted over 2236 / 2590 rows (rms 1.72 / 1.51 px). The seven cross-street property lines were located from darkness-weighted column centroids in a 96 px window immediately adjacent to the seam, with the line bearing fixed at the sheet-pooled value obtained by tracking each property line right across the sheet (+0.082 deg on sheet 10, +0.204 deg on sheet 27; per-line scatter 0.05 / 0.03 deg). Repeating the intercept with three different windows changes it by <=0.20 px and the along-line rms is 0.09-0.25 px, so the raw measurement precision is far better than the stated uncertainties.\n\nWHAT LIMITS THE UNCERTAINTY is not the measurement. It is (a) the 70 ft transfer to the centreline - a purely systematic x-shift common to all seven points, worth ~3 px if the platted 70 ft is off by 1 ft, which biases tx but almost nothing else; and (b) real paper distortion at the outer edges of both sheets. The sheet-10 right paper edge is visibly curved (x 3353 at y=300 falling to 3324 at y=3600) and the sheet-27 left edge likewise. Points L0 and L6 sit closest to the paper corners and carry the larger stated uncertainties.\n\nTWO THINGS THAT SURPRISED ME AND MATTER TO THE PROJECT. (1) The along-seam scale ratio implied by these seven property lines is 1.00265, but the ratio of the two printed scale bars is 3.0713/3.0456 = 1.00844. That is a 0.58 % disagreement, ~20 px over the 3510 px seam, between the sheet centres (where the scale bars are printed) and the sheet edges (where this seam is). A single global scale per sheet cannot satisfy both; the CHECKPOINT's common-scale prior from the scale bars should be understood as a centre-of-sheet quantity. (2) The independently measured street and block pitches at the seam disagree between the sheets by up to 2.5 % on individual intervals (22nd St reads 80.3 ft on sheet 10 and 81.6 ft on sheet 27 at the seam) while agreeing to 0.3 % on others - a distortion field, not a scale error.\n\nGEOMETRIC CAVEAT FOR THE SOLVER. All seven points lie on the Av. G centreline, so they are collinear to within 3 px (sheet 10) and 8 px (sheet 27). This is fine for a similarity (nullity 0) and the 3510 px baseline determines the relative rotation well, but the across-seam (x) direction carries almost no independent information: the self-check dx residuals are all <0.02 px because the 4-parameter model absorbs them exactly. Do not read the low rms as evidence that the across-seam offset is verified - it is not, and it rests entirely on the printed 70 ft avenue width. There is no way to do better on this seam: neither sheet draws a single building, lot or block belonging to the other.\n\nSelf-check similarity is sheet 10 -> sheet 27, weights 1/uncertainty^2, no point rejected; residuals are essentially pure dy: -4.91, +0.16, +1.30, +3.40, -2.00, -0.73, +0.07 px from L0 to L6."
+}

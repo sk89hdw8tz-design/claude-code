@@ -109,6 +109,31 @@
    }
   },
   {
+   "seam": "S1_main|S9",
+   "file": "seam_S1main_S9.json",
+   "regions": [
+    "S1_main",
+    "S9"
+   ],
+   "overlap": "partial",
+   "n_correspondences": 7,
+   "n_boundary_points": 0,
+   "by_confidence": {
+    "high": 5,
+    "medium": 1,
+    "low": 1
+   },
+   "self_check": {
+    "scale": 0.990986,
+    "rotation_deg": -0.7579,
+    "tx": -2850.226,
+    "ty": 337.401,
+    "rms_px": 5.54,
+    "max_px": 13.21,
+    "outliers": []
+   }
+  },
+  {
    "seam": "S2|S7",
    "file": "seam_S2_S7.json",
    "regions": [
@@ -266,6 +291,10 @@
    "geometric": 3,
    "symbol": 0
   },
+  "S1_main|S9": {
+   "geometric": 7,
+   "symbol": 0
+  },
   "S2|S7": {
    "geometric": 7,
    "symbol": 0
@@ -284,9 +313,9 @@
   }
  },
  "control_classes": {
-  "geometric": 50,
+  "geometric": 57,
   "symbol": 5
  },
- "total_correspondences": 55,
- "total_rows": 110
+ "total_correspondences": 62,
+ "total_rows": 124
 }
