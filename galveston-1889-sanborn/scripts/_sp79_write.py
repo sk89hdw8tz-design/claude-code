@@ -1,0 +1,309 @@
+#!/usr/bin/env python3
+import json, os
+ROOT='/home/user/claude-code/galveston-1889-sanborn'
+C=[]
+def add(f,w,ax,ay,bx,by,conf,unc,cat):
+    C.append(dict(feature=f, why_unambiguous=w, a_x=ax, a_y=ay, b_x=bx, b_y=by,
+                  confidence=conf, uncertainty_px=unc, category=cat))
+
+AV_ID = ("Both plates letter the avenues in full (\"AV. A or WATER E.\", \"AV. B or STRAND E.\", "
+         "\"AV. C or MECHANIC E.\", \"AV. D or MARKET E.\") and both letter \"22ND ST.\" with a "
+         "vertical 80' width call-out in the roadway. The corridors are also self-identifying by "
+         "width: Strand measures 237.5 px on sheet 7 / 239.6 px on sheet 9 (80 ft drawn ~3% narrow) "
+         "while Mechanic measures 206.2 / 211.8 px (70 ft), so no corner can be slipped one block. "
+         "Block numbers confirm the row: sheet 7's bottom row is 681 / 621 / 561 and sheet 9's top "
+         "row is 682 / 622 / 562, with no block repeated.")
+NLINE = ("The NORTH property line of 22nd St is a real block face on sheet 7 (fitted over 6 x 30-px "
+         "windows inside the block, rms <=0.2 px) and on sheet 9 it is the bottom rule of the "
+         "\"SEE SHEET No.7\" continuation box for the same block, which terminates in a drawn corner "
+         "on the block-edge vertical.")
+SLINE = ("The SOUTH property line of 22nd St is a real block face on sheet 9 and on sheet 7 it is the "
+         "top rule of the \"SEE SHEET No.9\" continuation box for the same block, which terminates in "
+         "a drawn corner on the block-edge vertical (verified visually at Av. D, where the box corner "
+         "sits 0.3 px from the extrapolated block-edge intersection).")
+ALLEY = ("The 20-ft mid-block alley is labelled \"20'\" in its mouth on both plates and is the only "
+         "N-S opening in that block; its two property lines are single clean strokes 59-63 px apart "
+         "on both plates. Alley POSITION within the block is drafting-dependent, hence the larger sigma.")
+
+# --- NORTH line of 22nd St: sheet 7 real corner  <->  sheet 9 box rule ---
+add("Av. A (Water E.) east property line x 22nd St NORTH property line = NW corner of block 681 / "
+    "the same ground corner north of block 682", AV_ID+" "+NLINE+" Block 681 measures 774.5 px wide "
+    "on sheet 7 and block 682 773.8 px on sheet 9 from this line to the Strand line, which is how "
+    "this line is distinguished from the dashed line 38 px further west on sheet 7 (that one would "
+    "make the block 265 ft instead of 254 ft).",
+    343.71,3619.69, 320.04,181.89, "high", 2.0, "block corner")
+add("Mid-block alley (block 681/682) WEST property line x 22nd St NORTH property line",
+    ALLEY+" "+NLINE, 703.17,3619.14, 674.61,179.39, "medium", 3.5, "block corner")
+add("Mid-block alley (block 681/682) EAST property line x 22nd St NORTH property line",
+    ALLEY+" "+NLINE, 762.57,3619.75, 737.50,179.12, "medium", 3.5, "block corner")
+add("Av. B (Strand E.) WEST property line x 22nd St NORTH property line = SE corner of block 681",
+    AV_ID+" "+NLINE, 1118.18,3620.63, 1093.82,177.75, "high", 2.0, "block corner")
+add("Av. B (Strand E.) EAST property line x 22nd St NORTH property line = SW corner of block 621",
+    AV_ID+" "+NLINE, 1355.64,3621.91, 1333.41,179.31, "high", 2.0, "block corner")
+add("Mid-block alley (block 621/622) WEST property line x 22nd St NORTH property line",
+    ALLEY+" "+NLINE, 1709.84,3623.53, 1690.73,175.82, "medium", 3.5, "block corner")
+add("Mid-block alley (block 621/622) EAST property line x 22nd St NORTH property line",
+    ALLEY+" "+NLINE, 1769.03,3622.39, 1750.24,175.59, "medium", 3.5, "block corner")
+add("Av. C (Mechanic E.) WEST property line x 22nd St NORTH property line = SE corner of block 621",
+    AV_ID+" "+NLINE, 2118.36,3623.31, 2107.20,170.67, "high", 2.0, "block corner")
+add("Av. C (Mechanic E.) EAST property line x 22nd St NORTH property line = SW corner of block 561",
+    AV_ID+" "+NLINE+" NOTE: on sheet 9 the continuation-box rule is buried under the compass rose "
+    "and the \"22ND ST.\" lettering between x=2100 and x=2460, so b_y here is a 160-px extrapolation "
+    "of the clean part of that rule (x 2460-2660, fitted rms 0.07 px). Hence the enlarged sigma.",
+    2324.58,3623.23, 2319.01,165.80, "medium", 3.5, "block corner")
+add("Av. D (Market E.) WEST property line x 22nd St NORTH property line = SE corner of block 561",
+    AV_ID+" "+NLINE, 3093.96,3617.10, 3101.96,157.15, "high", 2.0, "block corner")
+
+# --- SOUTH line of 22nd St: sheet 9 real corner  <->  sheet 7 box rule ---
+add("Av. A (Water E.) east property line x 22nd St SOUTH property line = NW corner of block 682",
+    AV_ID+" "+SLINE+" Sheet 9 draws this as a textbook L-corner (vertical from y=434 downward, "
+    "horizontal to the east, both single 3-px strokes). This is the one station where the two plates "
+    "disagree most on the drawn street width (247.7 px on sheet 7 vs 252.2 px on sheet 9), so the "
+    "sigma is raised.",
+    342.39,3867.37, 320.71,434.09, "high", 2.5, "block corner")
+add("Mid-block alley (block 681/682) WEST property line x 22nd St SOUTH property line",
+    ALLEY+" "+SLINE, 701.86,3866.08, 675.27,428.76, "medium", 3.5, "block corner")
+add("Mid-block alley (block 681/682) EAST property line x 22nd St SOUTH property line",
+    ALLEY+" "+SLINE, 761.26,3866.78, 738.17,428.32, "medium", 3.5, "block corner")
+add("Av. B (Strand E.) WEST property line x 22nd St SOUTH property line = NE corner of block 682",
+    AV_ID+" "+SLINE, 1116.87,3866.78, 1094.48,424.50, "high", 2.0, "block corner")
+add("Av. B (Strand E.) EAST property line x 22nd St SOUTH property line = NW corner of block 622",
+    AV_ID+" "+SLINE, 1354.34,3867.52, 1334.07,424.54, "high", 2.0, "block corner")
+add("Mid-block alley (block 621/622) WEST property line x 22nd St SOUTH property line",
+    ALLEY+" "+SLINE, 1708.53,3868.62, 1691.38,419.98, "medium", 3.5, "block corner")
+add("Mid-block alley (block 621/622) EAST property line x 22nd St SOUTH property line",
+    ALLEY+" "+SLINE, 1767.72,3868.94, 1750.89,419.50, "medium", 3.5, "block corner")
+add("Av. C (Mechanic E.) WEST property line x 22nd St SOUTH property line = NE corner of block 622",
+    AV_ID+" "+SLINE+" The two plates draw the local street width 2.6 px apart here (246.1 px on "
+    "sheet 7, 243.5 px on sheet 9), which is why this point carries the largest dy residual (-4.6 px) "
+    "in the self-check; sigma raised accordingly.",
+    2117.06,3869.38, 2107.85,414.18, "high", 2.5, "block corner")
+add("Av. C (Mechanic E.) EAST property line x 22nd St SOUTH property line = NW corner of block 562",
+    AV_ID+" "+SLINE, 2323.28,3868.38, 2319.67,412.91, "high", 2.0, "block corner")
+add("Av. D (Market E.) WEST property line x 22nd St SOUTH property line = NE corner of block 562",
+    AV_ID+" "+SLINE+" On sheet 7 this box corner is directly visible as a drawn L at (3092.7, 3861.3) "
+    "and agrees with the intersection of the extrapolated block-edge vertical to 0.3 px.",
+    3092.66,3861.30, 3102.62,402.05, "high", 2.0, "block corner")
+
+# --- water-main tees (kept only so the merge can pair them; NOT geometric control) ---
+TEE=("Tee where the 22nd St main crosses the N-S main in the mid-block alley. Identified by block, "
+     "not by pixel: only three N-S mains cross 22nd St in the mapped width and they are ~1000 px "
+     "apart, so the alley is unambiguous. The CROSSING POINT is not: on this seam the main sits "
+     "7.0 px west of the drawn alley centre on sheet 7 and 9.0 px west of it on sheet 9 (block 681), "
+     "+0.8 / -6.6 px (block 621), +6.1 / -1.6 px (block 561), and its y sits 3-9 px north of the "
+     "drawn street centreline by differing amounts on the two plates. Schematic, not geometric.")
+add("Water-main tee, mid-block alley of block 681/682 (10\" W.P. on 22nd St)", TEE,
+    725.88,3741.03, 697.67,294.91, "low", 9.0, "water-main tee")
+add("Water-main tee, mid-block alley of block 621/622 (the 10\"->12\" size change on 22nd St)", TEE,
+    1740.27,3739.26, 1714.57,288.09, "low", 9.0, "water-main tee")
+add("Water-main tee, mid-block alley of block 561/562 (6\" alley main)", TEE,
+    2713.79,3736.91, 2714.55,279.73, "low", 9.0, "water-main tee")
+
+out = {
+ "seam":"S7|S9","sheet_a":"7","sheet_b":"9",
+ "relation":"sheet 7 lies NORTH of sheet 9; shared street 22nd Street",
+ "overlap_exists":"yes",
+ "overlap_description":(
+   "Both plates draw the FULL 80-ft width of 22nd Street, so the seam is a genuine ~246-px-tall "
+   "overlap band spanning the whole mapped width (x ~ 340 to ~3105). On sheet 7 the NORTH property "
+   "line is the real block face of blocks 681 / 621 / 561 (measured y = 3619.7 at x=344, 3620.6 at "
+   "x=1118, 3623.3 at x=2118, 3617.1 at x=3094 - it is NOT straight, it bows by 6 px) and the SOUTH "
+   "property line is the top rule of the three \"SEE SHEET No.9\" continuation boxes (3867.4 / 3866.8 "
+   "/ 3869.4 / 3861.3 at the same x). On sheet 9 the NORTH property line is the bottom rule of the "
+   "\"SEE SHEET No.7\" boxes (181.9 / 177.8 / 170.7 / 157.2) and the SOUTH property line is the real "
+   "block face of blocks 682 / 622 / 562 (434.1 / 424.5 / 414.2 / 402.1). Drawn street width: "
+   "244.2-247.7 px on sheet 7 (mean 245.9) and 243.5-252.2 px on sheet 9 (mean 246.7); 80 ft is "
+   "244.5 px at sheet 7's printed scale bar and 242.5 px at sheet 9's, so both plates draw the "
+   "roadway to within about 1.5% of its printed width. The overlap contains only roadway furniture - "
+   "the 10\"/12\" 22nd St main, three alley-main tees, several fire plugs and the street-name "
+   "lettering. NO building, block or lot is drawn twice and no block number is repeated (sheet 7 "
+   "bottom row 681/621/561, sheet 9 top row 682/622/562). Both plates span exactly the same lettered "
+   "avenues, Av. A (Water E.) through Av. D (Market E.)."),
+ "both_plates_draw_full_roadway":"yes",
+ "evidence_for_that":(
+   "1) CONVENTION FIRST, on streets internal to a single sheet. 21st St (Center) on sheet 7 measures "
+   "2464.0 -> 2707.4 = 243.3 px at x=1390 and 2457.7 -> 2699.6 = 241.9 px at x=2990 between the "
+   "outermost continuous heavy line on each side, i.e. 79.2-79.6 ft = 80 ft. 24th St on sheet 9 "
+   "measures 244.5 / 244.0 / 242.1 / 244.9 px at x = 1390 / 2390 / 2590 / 2990 by the same rule = "
+   "80.0-80.4 ft. Both streets also show the two documented traps: a dashed AWNING edge 40-49 px "
+   "inside the roadway (21st St: 2464.0 frontage, 2507.5 dashed edge) which is NOT the property "
+   "line, and a second heavy line 4.7 px street-ward of the frontage at some stations (21st St at "
+   "x1300-1480: 2464.03 and 2469.00) - using the street-ward member gives 76-78 ft, using the "
+   "block-ward member gives 80 ft, so the block-ward member is the property line. That convention "
+   "is what is used everywhere below.\n"
+   "2) APPLYING IT TO 22nd ST. Sheet 7 north frontage to sheet 7 box rule: 247.7 / 247.1 / 246.3 / "
+   "245.4 / 246.4 / 245.1 / 245.0 / 244.0 px at x = 360 / 680 / 1080 / 1360 / 2000 / 2320 / 2800 / "
+   "3000. Sheet 9 box rule to sheet 9 south frontage: 252.7 / 249.9 / 247.1 / 245.2 / 243.6 / 246.1 "
+   "/ 246.9 / 245.2 px at the same stations. Both series sit on 80 ft, so each plate really does "
+   "draw the far kerb as well as its own.\n"
+   "3) THE BOX RULE IS A PROPERTY LINE, NOT JUST A BOX. The continuation boxes break exactly at the "
+   "avenues and at the alleys (sheet 7: box rule present x 340-1130, absent 1140-1300, present "
+   "1340-2135, absent 2140-2290, present 2300-3100), i.e. one box per block face, and each box "
+   "terminates in a drawn L-corner on the block-edge vertical. Two of those corners were read "
+   "directly off 8x crops: sheet 9 block 682 NE box corner sits at (1094.5, 177.5) against my "
+   "line-intersection value (1093.82, 177.75); sheet 7 block 561 SE box corner sits at (3092.7, "
+   "3861.3) against (3092.66, 3861.30). So the far-side points are drawn corners, not extrapolations "
+   "into blank paper.\n"
+   "4) This doubles the usable control from 10 near-side corners to 20."),
+ "correspondences": C,
+ "self_check_similarity": {
+   "scale":1.012077, "rotation_deg":-0.5344, "tx":-69.813, "ty":-3477.142,
+   "rms_px":4.53, "max_px":7.90, "median_px":3.97,
+   "outliers":[
+     "tee_alley621 (water-main tee, block 621/622): 12.40 px (dx -12.12, dy -2.59) - kept only for "
+     "merge pairing, sigma 9.0, category water-main tee",
+     "tee_alley681 (water-main tee, block 681/682): 7.55 px (dx -2.44, dy -7.14) - as above",
+     "AvA_E_N / AvA_E_S (7.90 / 7.53 px, both dx-only): NOT a measurement outlier. Both endpoints "
+     "are crisp drawn corners; the residual is the west end of the systematic x-bow described in "
+     "notes.",
+     "AvD_W_N (7.06 px): the east end of the same bow."
+   ],
+   "fit_basis":("unweighted similarity over the 20 block-corner correspondences only "
+                "(the 3 water-main tees are excluded from the fit and reported above)"),
+   "variants":{
+     "10 north-line corners only":"scale 1.01232, rot -0.5066 deg, rms 4.59, max 6.61",
+     "10 south-line corners only":"scale 1.01233, rot -0.5687 deg, rms 4.59, max 6.55",
+     "12 avenue corners only (no alleys)":"scale 1.01216, rot -0.5362 deg, rms 4.75, med 4.66, max 6.49",
+     "20 corners (delivered)":"scale 1.01208, rot -0.5344 deg, rms 4.53, med 3.97, max 7.90",
+     "24 corners (adding the block 561/562 alley)":"rms 5.40, med 4.93, max 9.38 - rejected, see rejected_candidates"
+   }
+ },
+ "rejected_candidates":[
+  {"feature":"Mid-block alley of block 561/562 (Av. C - Av. D), both property lines, both 22nd St lines (4 candidate points)",
+   "reason":("Correctly identified on both plates - the two lines are clean single strokes and the "
+             "drawn alley width agrees (60.0 px on sheet 7 at x 2677.7/2737.7, 61.5 px on sheet 9 at "
+             "x 2685.5/2746.9) - but the alley is drafted in a different PLACE relative to its own "
+             "block: it sits at fraction 0.4590 of the block width on sheet 7 and 0.4671 on sheet 9, "
+             "a 6.4 px shift. Under the delivered 20-corner similarity these 4 points residual at "
+             "10.48 / 10.31 / 11.27 / 11.12 px, and adding them moves the fit from rms 4.53 / med "
+             "3.97 to rms 5.40 / med 4.93. The same test on the other two alleys gives shifts of "
+             "-4.6 px (block 681/682) and -2.1 px (block 621/622), which is why those eight ARE "
+             "delivered, at sigma 3.5.")},
+  {"feature":"Fire plug on 22nd St at the west end, and fire plug east of the block-561 alley main (the two plugs the first pass carried)",
+   "reason":("Re-measured but not delivered as control. Symbol placement is by eye: the west plug's "
+             "measured centres happen to agree, but the east plug is drawn 2740.4 vs 2752.3 in x - "
+             "11.9 px apart before any transform, i.e. 4 ft of ground. Under the delivered similarity "
+             "the plugs would carry double-digit residuals with no way to tell drafting from "
+             "measurement. Nothing is gained over the tee in the same alley, which is already "
+             "delivered at sigma 9.")},
+  {"feature":"The dashed line 38 px west of the Av. A east property line on sheet 7 (x ~ 306)",
+   "reason":("Tempting as the Av. A property line because it is a survey-style dashed line, but "
+             "sheet 9 has no counterpart at that offset, and using it would make block 681 811 px "
+             "(265.4 ft) wide against block 682's 773.8 px (255.3 ft). Using the heavy line at "
+             "x=343.7 gives 774.5 px (253.3 ft), matching sheet 9 to 0.7 px. Rejected.")},
+  {"feature":"The vertical double-dashed lines that cross the roadway at x ~ 726 / 1740 / 2714 on sheet 7 and 698 / 1715 / 2715 on sheet 9, as x-control",
+   "reason":("These are the alley water mains, not alley property lines - 4-5 px double-dash, the "
+             "same rendering as the 22nd St main. Fitting a 2-point similarity to the outer pair "
+             "predicts the middle one 12.4 px away from where it is drawn. Delivered only as "
+             "'water-main tee' at sigma 9.")},
+  {"feature":"The vertical edges of the SEE SHEET continuation boxes, as x-control",
+   "reason":("They are drawn inset from the block edge by a few px and by differing amounts: sheet 7 "
+             "block-681 box spans x 347 -> 1112 against block edges 343.7 -> 1118.2, i.e. 3.3 px and "
+             "6.1 px inside. Used only to confirm that the box RULES are property lines (see "
+             "evidence_for_that), never as x.")},
+  {"feature":"The dashed awning edge 40-49 px inside the roadway on both plates",
+   "reason":("Documented trap. On 22nd St it runs at y ~ 3665-3671 on sheet 7, i.e. 46-49 px south of "
+             "the 3620 property line. Using it would shrink the street to 64 ft. Not used.")},
+  {"feature":"Calibrating the seam x-scale from a printed avenue width figure",
+   "reason":("Confirmed on this seam that avenues are drawn narrow: Strand is lettered 80' but "
+             "measures 237.5 px on sheet 7 (77.7 ft) and 239.6 px on sheet 9 (79.0 ft); Mechanic is "
+             "a 70-ft avenue and measures 206.2 / 211.8 px. Street widths, by contrast, come out "
+             "true (21st 242.5 px, 24th 244.0 px, 22nd 245.9 / 246.7 px). Only street widths were "
+             "used for the convention check.")}
+ ],
+ "comparison_with_first_pass":{
+  "n_first_pass_correspondences":12,
+  "n_paired_within_25px":10,
+  "per_point_disagreement_px":{
+    "tee_alley561_block561_622":{"sheet7":1.31,"sheet9":1.36,"first_pass":[2715.1,3737.0,2715.3,278.6],"second_pass":[2713.79,3736.91,2714.55,279.73]},
+    "tee_alley621_block621_622":{"sheet7":2.14,"sheet9":1.55,"first_pass":[1740.3,3741.4,1716.0,288.7],"second_pass":[1740.27,3739.26,1714.57,288.09]},
+    "tee_alley681_block681_682":{"sheet7":2.13,"sheet9":1.74,"first_pass":[726.9,3742.9,698.1,296.6],"second_pass":[725.88,3741.03,697.67,294.91]},
+    "AvB_W_x_22nd_north":{"sheet7":3.46,"sheet9":2.18,"first_pass":[1121.5,3621.6,1096.0,177.7],"second_pass":[1118.18,3620.63,1093.82,177.75]},
+    "AvB_E_x_22nd_north":{"sheet7":0.43,"sheet9":3.02,"first_pass":[1355.5,3621.5,1332.3,176.5],"second_pass":[1355.64,3621.91,1333.41,179.31]},
+    "AvB_W_x_22nd_south":{"sheet7":3.55,"sheet9":1.93,"first_pass":[1120.4,3867.2,1096.4,424.7],"second_pass":[1116.87,3866.78,1094.48,424.50]},
+    "AvC_W_x_22nd_north":{"sheet7":3.98,"sheet9":1.99,"first_pass":[2121.8,3621.3,2106.7,172.6],"second_pass":[2118.36,3623.31,2107.20,170.67]},
+    "AvC_E_x_22nd_north":{"sheet7":4.95,"sheet9":6.21,"first_pass":[2329.1,3621.2,2316.8,171.6],"second_pass":[2324.58,3623.23,2319.01,165.80]},
+    "AvD_W_x_22nd_north":{"sheet7":4.94,"sheet9":10.81,"first_pass":[3097.0,3621.0,3104.3,167.7],"second_pass":[3093.96,3617.10,3101.96,157.15]},
+    "AvD_W_x_22nd_south":{"sheet7":5.38,"sheet9":3.53,"first_pass":[3095.9,3865.6,3104.4,405.1],"second_pass":[3092.66,3861.30,3102.62,402.05]}
+  },
+  "summary_disagreement":{"median_max_endpoint_px":3.51,"mean_px":4.20,"max_px":10.81},
+  "verdict":(
+    "INDEPENDENT AGREEMENT ON THE PHYSICS, PARTIAL DISAGREEMENT ON THE NUMBERS. The two passes "
+    "identify the same features and reach the same structural conclusion - both plates draw the full "
+    "80-ft roadway, the plates differ by roughly 1.2-1.5% in x plus about half a degree of relative "
+    "rotation, and the ~4-5 px residual floor is real drafting disagreement rather than measurement "
+    "error. The three water-main tees agree to 1.3-2.1 px on both plates, which is better than either "
+    "pass claims for them, so the merged tee sigma should still be held at ~9 px on the physical "
+    "grounds given above rather than tightened to the agreement.\n"
+    "The systematic disagreement is on the SHEET 9 continuation-box rule and, to a lesser extent, on "
+    "the sheet 9 block face. The first pass fitted ONE straight line to each across the full 3100-px "
+    "sheet width (north line y = -0.004977x + 183.13). That rule is not straight and its true slope "
+    "is about -0.0088: measured directly it runs 181.2 at x=360, 179.0 at x=760, 177.9 at x=1080, "
+    "175.5 at x=1680, 172.9 at x=1960, 163.9 at x=2480, 157.4 at x=3080. The first pass's global fit "
+    "is therefore ~0.3 px out at the west end but 10.5 px out at Av. D, which is exactly the pattern "
+    "of the disagreement (0.4-4 px on the Strand and Mechanic points, 10.8 px on AvD_W_N). The same "
+    "effect, smaller, appears on the sheet 9 south line (their -0.009757x + 435.38 against a directly "
+    "measured -0.01153x + 437.86), giving the 3.5 px on AvD_W_S. Every point in this pass is a local "
+    "line intersection: the horizontal is fitted only over six 30-px windows within ~150 px of the "
+    "corner, so the bow cannot leak in.\n"
+    "The 3-4 px disagreements on the sheet 7 x-values (AvB_W 3.46, AvC_W 3.98, AvC_E 4.95) come from "
+    "the 4.7-px companion-line pair. This pass resolved each pair from raw per-row pixel profiles "
+    "with an asymmetric window that excludes the companion (documented per line), and cross-checked "
+    "the choice against block widths: 681 = 774.5 px vs 682 = 773.8 px, and against the printed 80 ft "
+    "convention validated on 21st and 24th Streets. An earlier symmetric-window fit in this same pass "
+    "was biased by up to 1.7 px by the companion, which is the size of the effect the first pass is "
+    "likely still carrying.\n"
+    "Where the two passes are independent and both clean - AvB_E on sheet 7 - they agree to 0.43 px, "
+    "which is the honest floor of this kind of measurement."),
+  "notes":(
+    "The first pass's 13-point similarity gave rms 4.9 / max 8.21; this pass's 20-corner similarity "
+    "gives rms 4.53 / max 7.90 / median 3.97. The improvement is modest because the limit is not "
+    "measurement. Two independent measurements of the same corners now exist for 10 of the 23 "
+    "delivered correspondences, so the merge can down-weight where they disagree and keep a genuinely "
+    "small sigma where they do not.")
+ },
+ "notes":(
+   "WHY THIS SEAM WILL NOT GO TO ZERO, WITH NUMBERS. The residuals are almost pure dx and follow a "
+   "smooth bow: with the 12 avenue corners alone the dx residual runs +6.4 at x=344, -3.7 at x=1118, "
+   "-4.4 at x=1355, -2.6 at x=2118, +0.5 at x=2325, +4.8 at x=3094. The cause is measurable directly "
+   "and does not involve any transform: the westmost block is drawn the SAME width on both plates "
+   "(block 681 = 774.47 px, block 682 = 773.79 px, ratio 0.9991) while the two eastern blocks are "
+   "drawn ~1.5-1.8% WIDER on sheet 9 (block 621 = 762.73 vs block 622 = 773.81, ratio 1.0145; block "
+   "561 = 769.34 vs block 562 = 782.98, ratio 1.0177). The avenue corridors do the same thing: Strand "
+   "237.5 vs 239.6 px (ratio 1.0089), Mechanic 206.2 vs 211.8 px (ratio 1.0272). No single scale can "
+   "satisfy a plate whose local scale ratio ranges from 0.999 to 1.028, so a similarity must leave "
+   "about +/-5 px. An affine cannot absorb it either: the pattern is quadratic in x, not linear.\n"
+   "The plates are also skewed relative to each other, not merely rotated. On sheet 7 the block-edge "
+   "verticals have dx/dy = -0.0059 while the 21st St horizontal has dy/dx = -0.004; on sheet 9 the "
+   "verticals have dx/dy = +0.0020 while the 22nd St south frontage has dy/dx = -0.0115. A rigid "
+   "rotation requires those two numbers to be equal and opposite; they are not, on either plate.\n"
+   "METHOD. No template matching, NCC or feature matching was used. Every feature was identified from "
+   "printed evidence (lettered avenue names, block numbers, the 20' alley call-outs, the 80' street "
+   "call-out, corridor widths) before anything was measured. Verticals: per-row centroids in an "
+   "asymmetric window chosen from the raw pixel profile so the 4.7-px companion line is excluded, "
+   "then a least-squares fit with ONE slope shared by all twelve verticals on a sheet (they are "
+   "parallel by construction), iterated with 2.5-sigma rejection, over 400-500 rows. Each fit was run "
+   "over four different y-windows; the value reported is the mean and the window-to-window spread was "
+   "0.11-0.79 px on sheet 7 and 0.18-0.77 px on sheet 9, with per-row rms 0.26-1.18 px. Horizontals: "
+   "segment centroids of the row-darkness profile in six 30-px x-windows within 150 px of the corner, "
+   "picking the block-ward peak of any pair, then a robust line fit; typical rms 0.02-0.2 px. Corners "
+   "are line intersections, never eyeballed pixels. All crops are 8x nearest-neighbour with a 1-source-"
+   "pixel grid drawn at known source coordinates, in "
+   "output/qc/manual_crops/secondpass_S7_S9/ (70 files, including a corner_*.png for each of the 48 "
+   "line intersections).\n"
+   "SIGMA POLICY. 2.0 px on a clean avenue corner: about 0.5 px of x-fit scatter on each plate, about "
+   "0.3 px of y on the real block face, and about 1.8 px for the continuation-box rule at the other "
+   "end of the pair - the box rules are hand-drawn per block and the two plates disagree on the local "
+   "street width by up to 4.5 px (247.7 vs 252.2 at Av. A). 2.5 px where that width disagreement is "
+   "largest (AvA_E_S, AvC_W_S). 3.5 px on alley corners (alley placement within its block differs by "
+   "2-5 px between plates) and on AvC_E_N (sheet 9 box rule extrapolated 160 px under the compass "
+   "rose). 9.0 px on the tees, from their measured 7-9 px offset from the alley centreline and 3-9 px "
+   "offset from the street centreline, differing per plate. Two of my own independent fits of the "
+   "same corner agree to better than 0.4 px in x on sheet 9 and better than 0.8 px on sheet 7, so the "
+   "measurement component of the sigma is genuinely sub-pixel; the rest is drafting.\n"
+   "PRIVACY: all work local, no network, no uploads, nothing committed."),
+ "crops_dir": os.path.join(ROOT,"output/qc/manual_crops/secondpass_S7_S9")
+}
+p=os.path.join(ROOT,'gcps/manual/seam_S7_S9_secondpass.json')
+json.dump(out, open(p,'w'), indent=2)
+print('wrote', p, len(C), 'correspondences')

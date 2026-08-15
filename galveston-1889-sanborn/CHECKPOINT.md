@@ -13,39 +13,45 @@ per-axis uncertainties.
 
 | | |
 |---|---|
-| correspondences | 92 (87 graded, 5 ungraded) |
-| overall median residual | **2.82 px** |
-| held-out (5-fold) median | 3.89 px |
-| seam matrix | **9 PASS, 1 REVIEW, 0 FAIL** |
+| correspondences | 105 (99 graded, 6 ungraded) |
+| overall median residual | **2.63 px** |
+| held-out (5-fold) median | 3.44 px |
+| seam matrix | **10 PASS, 0 REVIEW, 0 FAIL** |
 | coverage | 88.2% of the output grid |
 | plausibility | every region within limits; no mirroring, shear or gross scale |
 
 | seam | n | median | max | n/σ | verdict |
 |---|---|---|---|---|---|
-| S10 \| S27 | 7 | 1.50 | 5.57 | 0.50 | PASS |
-| S10 \| S8 | 15 | 2.02 | 8.25 | 0.67 | PASS |
-| S27 \| S29 | 16 | 2.17 | 5.09 | 0.54 | PASS |
-| S1_main \| S9 | 7 | 2.39 | 13.35 | 0.90 | PASS |
-| S1_main \| S2 | 3 | 2.57 | 4.44 | 0.67 | PASS |
-| S7 \| S8 | 7 | 3.32 | 5.41 | 0.67 | PASS |
-| S29 \| S8 | 8 | 3.15 | 8.88 | 0.68 | PASS |
-| S2 \| S7 | 7 | 3.37 | 7.16 | 0.96 | PASS |
-| S10 \| S9 | 6 | 4.28 | 8.66 | 0.44 | PASS |
-| **S7 \| S9** | 10 | **5.29** | 10.92 | 1.09 | **REVIEW** |
+| S10 \| S27 | 7 | 1.50 | 5.58 | 0.50 | PASS |
+| S27 \| S29 | 16 | 2.15 | 5.07 | 0.54 | PASS |
+| S10 \| S8 | 15 | 2.08 | 8.19 | 0.68 | PASS |
+| S1_main \| S9 | 7 | 2.45 | 13.31 | 0.93 | PASS |
+| S1_main \| S2 | 3 | 2.83 | 3.96 | 0.59 | PASS |
+| S29 \| S8 | 8 | 3.09 | 8.83 | 0.67 | PASS |
+| S10 \| S9 | 6 | 3.20 | 8.03 | 0.36 | PASS |
+| S7 \| S8 | 7 | 3.30 | 5.32 | 0.66 | PASS |
+| S2 \| S7 | 7 | 3.29 | 7.05 | 0.94 | PASS |
+| S7 \| S9 | 23 | 4.94 | 12.87 | 1.51 | PASS |
 
 Per-region geometry, with 1σ formal errors from the normal equations — these
 say whether the DATA could pin a parameter down, which residuals cannot:
 
 | region | scale | ±% | rotation | ±deg |
 |---|---|---|---|---|
-| S1_main | 0.99146 | 0.084 | −0.783° | 0.049 |
-| S2 | 1.00053 | 0.135 | −0.856° | 0.077 |
-| S7 | 1.01250 | 0.113 | −0.416° | 0.064 |
-| S8 | 1.00268 | 0.194 | −0.238° | 0.111 |
+| S1_main | 0.99133 | 0.087 | −0.792° | 0.050 |
+| S2 | 0.99993 | 0.099 | −0.989° | 0.057 |
+| S7 | 1.01220 | 0.052 | −0.545° | 0.030 |
+| S8 | 1.00564 | 0.081 | −0.186° | 0.054 |
 | S9 | 1.00000 | — | 0.000° | — (anchor) |
-| S10 | 0.99574 | 0.184 | −0.048° | 0.106 |
-| S27 | 0.99372 | 0.194 | −0.149° | 0.112 |
-| S29 | 0.99325 | 0.195 | +0.564° | 0.113 |
+| S10 | 0.99839 | 0.086 | −0.003° | 0.060 |
+| S27 | 0.99648 | 0.105 | −0.099° | 0.092 |
+| S29 | 0.99596 | 0.103 | +0.619° | 0.091 |
+
+Leave-one-seam-out — remove a seam entirely and predict it from the rest of
+the network — gives observed-over-predicted misclosure ratios of 0.26 to 2.31.
+Only S7 | S9 exceeds 2, and it does so because 23 correspondences now pin both
+its plates so tightly that the network predicts them to 3.2 px, against
+genuine local drafting variation on that seam of 0.999–1.028 in scale.
 
 ---
 
@@ -67,10 +73,10 @@ Against the same seams under the old automatic control:
 
 | seam | old | new |
 |---|---|---|
-| S7 \| S9 | 22.99 px FAIL | 5.29 px |
-| S10 \| S9 | 36.05 px FAIL | 4.28 px |
-| S27 \| S29 | no shared points at all | 2.17 px, 16 points |
-| S1_main \| S2 | no shared points at all | 2.57 px, 3 points |
+| S7 \| S9 | 22.99 px FAIL | 4.94 px, 23 points |
+| S10 \| S9 | 36.05 px FAIL | 3.20 px |
+| S27 \| S29 | no shared points at all | 2.15 px, 16 points |
+| S1_main \| S2 | no shared points at all | 2.83 px, 3 points |
 
 The point count barely rose. Their *identification* went from searched to
 argued.
@@ -119,27 +125,42 @@ no scale-bar prior; the per-sheet scale stays free.**
 
 ---
 
-## 5. Isotropy — the finding that saved the model
+## 5. Isotropy, and a calibration error of my own
 
 S7|S8 reported sheet 7 as ~4% anisotropic, which would have forced abandoning
-the similarity. It is an artifact of calibrating x against printed avenue
-widths.
+the similarity. It does not survive, but neither did my first rebuttal of it.
 
-Testing with **grid pitch**, which needs no printed width at all — the
-Galveston plat fixes avenue pitch at 260+70 = 330 ft and street pitch at
-300+80 = 380 ft — sheet 9 gives 3.0429 px/ft in x and 3.0651 in y:
-**isotropic to 0.73%**. Against that scale:
+**My error (retracted).** I calibrated x from the grid pitch, taking
+Av. B → Av. C *west frontage to west frontage* as 330 ft. That step crosses
+Av. B, the 80 ft Strand, so it is **340 ft**. Reading 340 as 330 inflated
+px/ft in x by 1.5% and made every avenue convert too narrow — hence a
+short-lived claim that "avenues are drawn 3% narrow, streets true". A
+scale-free test (drawn width ÷ drawn 330 ft pitch, against 70/330, using no
+px/ft at all) puts ten 70 ft avenues at **69.4–70.3 ft** and the Strand at
+79.8/80.8. **Avenues and streets alike are drawn true.**
 
-| feature | measured | printed | |
+**The anisotropy claim (also rejected).** Measured with correct east-to-east
+intervals, the sheets appear anisotropic by 0.6–3.5%, and a correction to
+sheet 7's x scale was recommended. Applying it would have distorted the
+mosaic. A per-plate anisotropy is a property of the plate; a wrong block
+dimension is a property of the ground — and the sheets come in vertically
+adjacent pairs covering the same avenues, so the predictions separate:
+
+| column | sheets | anisotropy | implied E–W block |
 |---|---|---|---|
-| 22nd St (horizontal) | 80.5 ft | 80 ft | +0.6% |
-| Av. B | 77.2 ft | 80 ft | −3.5% |
-| Av. C / Av. D | 68.0 ft | 70 ft | −2.8% |
+| Av. A–D | 7, 9 | 2.84% | **269.5 ft** |
+| Av. D–G | 8, 10 | 0.75% | 262.5 ft |
+| Av. G–J | 27, 29 | 1.01% | 263.4 ft |
 
-**Streets are drawn true; avenues are drawn ~3% narrow.** Similarity stands.
-Affine remains refused: it is rank deficient on seam-line-only ties (nullity 4
-vs 0) and on the synthetic fixture beat similarity on every residual measure
-while being 17× worse against truth.
+Spread within a column 0.63%, between column means 2.09%. It tracks the
+geographic column, not the plate: the harbour blocks are about 7 ft wider
+east–west than the assumed 260 ft. The seams say the same more bluntly —
+S2 | S7 spans 3512 px with a 7.05 px maximum residual, where a 3.6% x-scale
+error would put roughly 126 px.
+
+**Similarity stands.** Affine remains refused: rank deficient on
+seam-line-only ties (nullity 4 vs 0), and on the synthetic fixture it beat
+similarity on every residual measure while being 17× worse against truth.
 
 ---
 
@@ -202,21 +223,25 @@ opt-in diagnostic, never a gate.
 
 ## 9. What is still open
 
-1. **S7 | S9 at 5.29 px** is the last REVIEW seam. An independent second pass
-   is running, aimed at the doubling that worked on S8|S10 (both plates draw
-   the full 80-ft roadway — own kerb as block frontage, far kerb as the outer
-   rule of the continuation boxes — which yields 14 corners instead of 7).
-2. **Seven seams have no independent width verification** (§7). The drawn
-   avenue widths are being measured on every sheet so the three
-   printed-width constructions can be rebuilt from measurement.
-3. **The 129 native-resolution panels are generated but only spot-inspected.**
-   A systematic pass over all of them has not been done.
-4. **No modern georeferencing has been attempted.** The historical
+1. **Seven of ten seams have no independent width verification** (§7). They
+   share no inked ground, so their across-seam placement rests on the printed
+   width. Measuring the drawn avenue widths showed the printed figure is right
+   to within 0.13–0.18 px in the relative sense, so no correction is warranted
+   — but that is a bound on one mechanism, not a verification of the placement.
+2. **The 129 native-resolution panels are generated but only spot-inspected.**
+   Five have been examined. A systematic pass over all of them has not been
+   done, and it is the one acceptance criterion in the brief that remains
+   substantially unmet.
+3. **No modern georeferencing has been attempted.** The historical
    reconstruction is the primary product and is deliberately finished first.
-5. **`tests/validate_against_truth.py` has no profile guard** — it reads
-   `working/transforms.json` blindly and will happily compare Galveston
-   transforms against synthetic truth. Every other script uses
-   `require_profile`; this one should too.
+4. **S7 | S9 misclosure is 2.31× predicted** — the only seam above 2. Its
+   cause is identified (local drafting scale varying 0.999–1.028 within the
+   seam, which no similarity can absorb) but not itself independently
+   confirmed.
+5. **The 260 × 300 ft plat block is an assumption**, inherited rather than
+   measured from an external source. §5 shows the east–west figure is wrong
+   for the harbour column; the north–south 300 ft is better supported (every
+   sheet returns 3.05–3.10 px/ft in y) but rests on the same source.
 
 ---
 

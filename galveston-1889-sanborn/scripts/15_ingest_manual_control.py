@@ -186,6 +186,25 @@ def load_seams() -> list[dict]:
     return seams
 
 
+# Seams where a later pass DIAGNOSED a specific, mechanical error in an
+# earlier one, rather than merely differing from it. Averaging is right when
+# two passes disagree for no identified reason -- neither is known to be
+# better, so the mean is the best estimate and the spread is the honest
+# uncertainty. It is wrong once the disagreement has a named cause, because
+# then one reading is known to be biased and the mean inherits half the bias.
+SUPERSEDES = {
+    "S7|S9": ("seam_S7_S9_secondpass.json",
+              "the first pass fitted ONE straight line to sheet 9's "
+              "continuation-box rule across the whole plate; that rule is not "
+              "straight (true slope about -0.0088 against the fitted "
+              "-0.004977), so its error grows from 0.3 px at the west end to "
+              "10.5 px at Av. D -- exactly the observed disagreement pattern. "
+              "The second pass intersects lines fitted LOCALLY, within about "
+              "150 px of each corner, which is immune to that. Where both "
+              "passes are clean and independent they agree to 0.43 px."),
+}
+
+
 def merge_passes(seams, log_skips):
     """Fold independent re-measurements of the same seam into one control set.
 
@@ -211,9 +230,17 @@ def merge_passes(seams, log_skips):
         if len(entries) == 1:
             merged.append(entries[0])
             continue
-        entries.sort(key=lambda e: len(e["doc"].get("correspondences") or []),
-                     reverse=True)
-        base, others = entries[0], entries[1:]
+        sup = SUPERSEDES.get(seam)
+        if sup and any(e["path"].name == sup[0] for e in entries):
+            base = next(e for e in entries if e["path"].name == sup[0])
+            others = [e for e in entries if e is not base]
+            log_skips.append(f"{seam}: {sup[0]} SUPERSEDES the earlier pass "
+                             f"where they share a point -- {sup[1]}")
+        else:
+            entries.sort(key=lambda e: len(e["doc"].get("correspondences") or []),
+                         reverse=True)
+            base, others = entries[0], entries[1:]
+            sup = None
         corr = [dict(c) for c in (base["doc"].get("correspondences") or [])]
         used = 0
         for other in others:
@@ -227,6 +254,18 @@ def merge_passes(seams, log_skips):
                         break
                 if hit is None:
                     corr.append(dict(c2))
+                    continue
+                if sup:
+                    # Superseded: keep the trusted pass's coordinate and its
+                    # own sigma untouched. Disagreement with a reading known to
+                    # be biased says nothing about this one's precision, so it
+                    # must not inflate it either.
+                    dd = max(abs(hit[k] - c2[k])
+                             for k in ("a_x", "a_y", "b_x", "b_y"))
+                    hit["_merged"] = (f"supersedes {other['path'].name} here "
+                                      f"(they differ by {dd:.2f} px); "
+                                      f"coordinate and sigma are this pass's")
+                    used += 1
                     continue
                 s1 = float(hit.get("uncertainty_px", 8.0)) or 8.0
                 s2 = float(c2.get("uncertainty_px", 8.0)) or 8.0
