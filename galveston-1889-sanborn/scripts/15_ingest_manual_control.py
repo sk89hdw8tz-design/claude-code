@@ -176,6 +176,7 @@ def main() -> int:
     rows: list[dict] = []
     summary: list[dict] = []
     recon_log: list[dict] = []
+    log_skips: list[str] = []
 
     for entry in seams:
         doc, path = entry["doc"], entry["path"]
@@ -221,6 +222,47 @@ def main() -> int:
                     "accepted": "true",
                     "note": note,
                 })
+
+        # ---- named boundary-line stations ---------------------------------
+        # A sampled boundary line is only a set of CORRESPONDENCES when each
+        # station was independently identified; a line sampled at "equal
+        # fractions along" is interpolation dressed as measurement, and is
+        # refused here. Stations are also skipped where the seam already has
+        # plenty of point control, so the same feature is not counted twice.
+        bl = doc.get("boundary_line") or {}
+        names = bl.get("station_names") or []
+        apts, bpts = bl.get("a_points") or [], bl.get("b_points") or []
+        geo_so_far = sum(1 for c in corr
+                         if control_class(c.get("category", ""), c.get("feature", ""))
+                         == "geometric")
+        if names and len(names) == len(apts) == len(bpts) and geo_so_far < 6:
+            for j, (nm, pa_, pb_) in enumerate(zip(names, apts, bpts)):
+                pid = f"MV_{ra}_{rb}_L{j:02d}"
+                n_by_conf["medium"] = n_by_conf.get("medium", 0) + 1
+                for sheet, region, pt in ((sa, ra, pa_), (sb, rb, pb_)):
+                    rows.append({
+                        "point_id": pid, "sheet": sheet, "region": region,
+                        "role": "tie", "src_x": round(float(pt[0]), 2),
+                        "src_y": round(float(pt[1]), 2),
+                        "ref_x": "", "ref_y": "", "ref_lon": "", "ref_lat": "",
+                        "street_a": "", "street_b": "",
+                        "feature": f"{bl.get('name', 'shared boundary')} at {nm}"[:220],
+                        "category": "boundary station",
+                        "control_class": "geometric",
+                        "method": "named station on the shared street line, "
+                                  "sampled on both sheets",
+                        "confidence": "medium", "selected_by": path.name,
+                        "uncertainty_px": 6.0, "residual_px": "",
+                        "accepted": "true",
+                        "note": "boundary-line station (independently named, "
+                                "not interpolated)",
+                    })
+        elif names and geo_so_far >= 6:
+            log_skips.append(f"{seam}: boundary_line stations skipped -- "
+                             f"{geo_so_far} point correspondences already cover it")
+        elif apts and not names:
+            log_skips.append(f"{seam}: boundary_line has no station_names, so its "
+                             "points are interpolated, not identified -- refused")
 
         # ---- S10|S9: no duplicated point features exist across Av. D. -----
         # The only shared geometry is the avenue itself.  Each sheet draws the
@@ -282,6 +324,7 @@ def main() -> int:
             c[cls[pid]] += 1
 
     results = {"seams": summary, "reconciliations": recon_log,
+               "refused_or_skipped": log_skips,
                "verified_points_per_seam": {"|".join(k): v
                                             for k, v in sorted(seam_counts.items())},
                "control_classes": {"geometric": sum(1 for v in cls.values() if v == "geometric"),
@@ -296,6 +339,8 @@ def main() -> int:
     for k, v in sorted(seam_counts.items(), key=lambda kv: -sum(kv[1].values())):
         print(f"   {k[0]:>8} | {k[1]:<8} {v['geometric']:3d} geometric"
               + (f" + {v['symbol']} symbol" if v["symbol"] else ""))
+    for msg in log_skips:
+        print(f"  note: {msg}")
     if recon_log:
         worst = max(recon_log, key=lambda r: r["max_disagreement_px"])
         print(f"  reconciled {len(recon_log)} points against the independent "

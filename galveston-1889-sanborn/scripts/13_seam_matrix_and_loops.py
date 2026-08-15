@@ -197,9 +197,19 @@ def main():
 
     # ---- seam matrix -------------------------------------------------------
     by_pair = defaultdict(list)
+    # Seams are graded on GEOMETRIC control only. Symbol control (fire plugs,
+    # valve discs) was placed by eye by the 1889 draughtsman and differs by up
+    # to 46 px between plates of one edition -- see research/experiment_log.md
+    # entry 17. It is reported separately as drafting scatter, never graded.
+    by_pair_symbol = defaultdict(list)
     for r in rdoc["residuals"]:
-        if r["kind"] == "tie":
-            by_pair[tuple(sorted([r["sheet_a"], r["sheet_b"]]))].append(r)
+        if r["kind"] != "tie":
+            continue
+        key = tuple(sorted([r["sheet_a"], r["sheet_b"]]))
+        if r.get("control_class", "geometric") == "symbol":
+            by_pair_symbol[key].append(r)
+        else:
+            by_pair[key].append(r)
 
     rings = {}
     for sh in cfg.get("sheets", []):
@@ -252,6 +262,7 @@ def main():
         p95 = float(np.percentile(vals, 95)) if vals.size else None
         rmse = float(np.sqrt((vals ** 2).mean())) if vals.size else None
         mx = float(vals.max()) if vals.size else None
+        sym = np.array([r["residual"] for r in by_pair_symbol.get(pair, [])])
         wdisc = float(np.median(widths)) if widths else None
         adisc = float(np.median(angles)) if angles else None
 
@@ -267,10 +278,14 @@ def main():
             status, note = "FAIL", "median above 10 px"
         if vals.size and mx > gross:
             note += f"; max {mx:.0f}px exceeds {gross:.0f}px"
+        # INFORMATIONAL ONLY -- never a gate. This metric measures whichever
+        # structure dominates each crop, so a value near 90 deg means "different
+        # structure on the two sides", not a discontinuity. Using it as a gate
+        # is what flooded the previous matrix with REVIEW verdicts.
         if adisc is not None and adisc > 3.0:
-            note += f"; line bearing differs {adisc:.1f} deg across the seam"
-            if status == "PASS":
-                status = "REVIEW"
+            note += (f"; line bearing differs {adisc:.1f} deg across the seam "
+                     "(informational: this metric reads the dominant structure "
+                     "in each crop, not a join)")
         if vals.size and vals.size < 3:
             note += f"; only {vals.size} correspondence(s) -- weakly constrained"
             if status == "PASS":
@@ -278,11 +293,14 @@ def main():
 
         rows.append({
             "sheet_a": a, "sheet_b": b, "edge_a": edge_a, "edge_b": edge_b,
-            "shared_feature_count": int(vals.size),
+            "geometric_control_count": int(vals.size),
             "median_error_px": "" if med is None else f"{med:.2f}",
             "rmse_px": "" if rmse is None else f"{rmse:.2f}",
             "p95_error_px": "" if p95 is None else f"{p95:.2f}",
             "max_error_px": "" if mx is None else f"{mx:.2f}",
+            "symbol_control_count": int(sym.size),
+            "symbol_scatter_median_px": "" if not sym.size else f"{np.median(sym):.2f}",
+            "symbol_scatter_max_px": "" if not sym.size else f"{sym.max():.2f}",
             "street_width_discrepancy": "" if wdisc is None else f"{wdisc:.3f}",
             "line_bearing_diff_deg": "" if adisc is None else f"{adisc:.2f}",
             "visual_status": "see output/qc/seam_report/",
@@ -299,7 +317,7 @@ def main():
     log.info("seam matrix: %d adjacency row(s)", len(rows))
     for r in rows:
         log.info("   %-9s %-9s n=%2s med=%-7s bearing=%-6s  %s -- %s",
-                 r["sheet_a"], r["sheet_b"], r["shared_feature_count"],
+                 r["sheet_a"], r["sheet_b"], r["geometric_control_count"],
                  r["median_error_px"] or "-", r["line_bearing_diff_deg"] or "-",
                  r["final_status"], r["notes"])
     counts = defaultdict(int)

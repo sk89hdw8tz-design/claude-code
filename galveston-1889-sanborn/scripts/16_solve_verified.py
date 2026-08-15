@@ -172,6 +172,10 @@ def main() -> int:
                     help="Huber delta in NORMALISED units (sigmas)")
     ap.add_argument("--allow-partial", action="store_true",
                     help="solve the largest connected component instead of failing")
+    ap.add_argument("--publish", action="store_true",
+                    help="also write working/transforms.json and gcps/residuals.json, "
+                         "i.e. ACCEPT this solve as the one the rest of the "
+                         "pipeline (warp, mosaic, seam matrix) will use")
     args = ap.parse_args()
 
     cfg = load_config(args.profile)
@@ -302,6 +306,26 @@ def main() -> int:
          "rank": rank, "crossval": cv, "transforms_summary": summary,
          "seams": [{k: v for k, v in s.items() if k != "points"} for s in seams]},
         indent=1, default=str))
+
+    if args.publish:
+        if len(comps) > 1:
+            log.error("refusing to publish a partial solve: %d disconnected "
+                      "components", len(comps))
+            return 5
+        (p.working / "transforms.json").write_text(json.dumps({
+            "profile": args.profile, "kind": args.kind, "anchor_region": anchor,
+            "generated": utcnow(),
+            "source": "gcps/tiepoints_verified.csv (semantic identification, "
+                      "uncertainty-weighted)",
+            "transforms": {r: T[r].tolist() for r in sorted(T)}}, indent=1))
+        (p.gcps / "residuals.json").write_text(json.dumps({
+            "generated": utcnow(), "kind": args.kind, "anchor": anchor,
+            "source": "16_solve_verified.py",
+            "residuals": [dict(r, control_class=meta.get(r["label"], {})
+                               .get("control_class", "geometric"),
+                               sigma=meta.get(r["label"], {}).get("sigma"))
+                          for r in fit["residuals"]]}, indent=1))
+        log.info("published working/transforms.json and gcps/residuals.json")
 
     # ---- report ---------------------------------------------------------
     n_sym = sum(1 for t in ties

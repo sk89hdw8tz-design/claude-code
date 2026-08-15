@@ -202,6 +202,11 @@
    "sigma_after": 4.07
   }
  ],
+ "refused_or_skipped": [
+  "S1_main|S2: boundary_line has no station_names, so its points are interpolated, not identified -- refused",
+  "S27|S29: boundary_line has no station_names, so its points are interpolated, not identified -- refused",
+  "S7|S9: boundary_line stations skipped -- 7 point correspondences already cover it"
+ ],
  "verified_points_per_seam": {
   "S10|S9": {
    "geometric": 6,
