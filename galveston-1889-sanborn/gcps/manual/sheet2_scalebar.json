@@ -1,0 +1,54 @@
+{
+  "label": "sheet2_scalebar",
+  "sheet": "2",
+  "file": "data/original/txu-sanborn-galveston-1889-Sheet 2.jpg",
+  "image_size_px": [
+    3400,
+    4089
+  ],
+  "scale_bar_present": "yes",
+  "printed_scale_statement": "Scale of Feet.",
+  "tick_labels_verbatim": [
+    "50",
+    "40",
+    "30",
+    "20",
+    "10",
+    "0",
+    "50",
+    "100",
+    "150"
+  ],
+  "tick_centroids_x_src": {
+    "-50": 605.56,
+    "-40": 635.04,
+    "-30": 665.5,
+    "-20": 697.1,
+    "-10": 728.36,
+    "0": 757.62,
+    "50": 911.1,
+    "100": 1065.32,
+    "150": 1216.41
+  },
+  "bar_y_src_band": [
+    3655,
+    3672
+  ],
+  "primary_measurement": {
+    "from_tick": "0",
+    "to_tick": "150",
+    "ground_ft": 150,
+    "x1": 757.62,
+    "y1": 3663.0,
+    "x2": 1216.41,
+    "y2": 3664.0,
+    "pixel_length": 458.79,
+    "pixels_per_foot": 3.0586,
+    "uncertainty_px_per_endpoint": 1.0
+  },
+  "cross_checks": {
+    "lsq_fit_over_0_50_100_150_px_per_ft": 3.0612,
+    "minus50_to_150_span_200ft_px_per_ft": 3.0543,
+    "implied_ft_per_inch_at_300dpi": 98.08
+  }
+}

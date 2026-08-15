@@ -222,3 +222,54 @@ transform model, not topology, not collinearity. This explains why adding more
 automatic correspondences made things worse rather than better, and it means no
 amount of further automatic matching of the same kind will fix the failing
 seams.
+
+---
+
+## 14. Printed scale bars — MEASURED, and they settle the scale question
+
+The previous entry claimed an 8.24% grid-pitch spread was "physically
+impossible" for sheets of one edition. **That claim was wrong and is retracted.**
+It conflated the printed map with the digital file: UT's eight JPEGs may have
+been independently scanned, cropped, deskewed or resized, so equal nominal
+printed scale does NOT imply equal pixels per block. Scale had to be *measured*,
+not assumed.
+
+Measured directly off the printed "Scale of Feet" bars at 3x zoom, reading the
+0/50/100/150 ft ticks and converting back to source pixels:
+
+| sheet | px per foot | vs nominal (1 in = 100 ft at 300 dpi = 3.000) |
+|---|---|---|
+| 1 | 3.050 | +1.7% |
+| 2 | 3.071 | +2.4% |
+| 9 | 3.052 | +1.7% |
+
+**Spread across the measured sheets: 0.68%.** Each sheet is internally
+consistent too — sheet 9's 0–100 span gives 3.045 and its 0–150 span 3.052;
+sheet 2 gives 3.077 and 3.071.
+
+Independent corroboration: 3.05 px/ft at 300 dpi is 1 inch ≈ 98 ft, i.e. the
+standard Sanborn 1 inch = 100 feet, +2% for paper and scanning. These are
+ordinary 100 ft/inch sheets scanned at 300 dpi.
+
+Now convert the disputed grid pitch through the measured scale:
+
+| sheet | pitch px | ÷ px/ft | ft per street step | vs expected 380 ft |
+|---|---|---|---|---|
+| 9 | 1150 | 3.052 | 377.0 | −0.8% |
+| 1 | 1193 | 3.050 | 391.2 | +3.0% |
+| 2 | 1102 | 3.071 | 359.0 | **−5.5%** |
+
+Expected is a 300 ft block plus an 80 ft street = 380 ft. Sheet 9 lands within
+1%; sheet 2 is 5.5% short.
+
+**Conclusion, on measured evidence rather than assumption: the digital scans
+DO share a common scale to better than 1%, so the 8.24% pitch spread is error in
+the street-band detector — not genuine per-sheet digital resizing.** A
+common-scale prior is therefore justified, but it is justified by the scale
+bars, not by belonging to the same edition.
+
+This also explains the direction-constraint conflict in entry 12: the
+direction-constrained solution collapsed the scale spread to 0.83%, which is
+almost exactly the 0.68% the scale bars independently show. The direction
+evidence was pulling toward the truth; the intersection positions were pulling
+away from it.

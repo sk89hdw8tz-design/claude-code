@@ -52,8 +52,10 @@ agree to a fraction of a percent. Measured:
 | S27 | 1153.61 | 0.9928 |
 | S29 | 1188.84 | 1.0231 |
 
-**Spread: 8.24%.** That is physically impossible for these sheets, and it is
-larger than the scale spread of either transform solution. It follows that the
+**Spread: 8.24%.** — SUPERSEDED, see section 6. Calling this "physically
+impossible" was wrong: it assumed the digital files share a scale, which had to
+be measured rather than assumed. It has since been measured, and the conclusion
+survives for a better reason. It follows that the
 street-band positions carry systematic errors of several percent — consistent
 with the per-band fit rms of 20–110 px already logged.
 
@@ -151,3 +153,33 @@ attempted so far. The `manual` control path already exists: add rows to
 step 06.
 
 Until then the geometry has not passed and the master should not be regenerated.
+
+
+---
+
+## 6. Printed scale bars — measured, and they settle it (supersedes section 1)
+
+Measured off the printed "Scale of Feet" bars at 3x zoom:
+
+| sheet | px/ft | vs nominal 3.000 (1 in = 100 ft at 300 dpi) |
+|---|---|---|
+| 1 | 3.050 | +1.7% |
+| 2 | 3.071 | +2.4% |
+| 9 | 3.052 | +1.7% |
+
+**Spread 0.68%.** The scans share a digital scale to better than 1%, and all sit
+~2% above the standard Sanborn 100 ft/inch — ordinary sheets, ordinary scanning.
+
+Converting the disputed grid pitch through the measured scale gives feet per
+numbered-street step, against an expected 380 ft (300 ft block + 80 ft street):
+sheet 9 → 377.0 ft (−0.8%), sheet 1 → 391.2 ft (+3.0%), sheet 2 → 359.0 ft
+(−5.5%).
+
+**So the 8.24% pitch spread is street-band detector error, established on
+measured evidence rather than on an assumption about editions.** A common-scale
+prior is justified — by the scale bars.
+
+Corollary: the direction-constrained solution's 0.83% scale spread closely
+matches the 0.68% the scale bars show independently. The direction constraints
+were pulling toward the truth and the intersection positions away from it, which
+inverts the earlier reading of that experiment.

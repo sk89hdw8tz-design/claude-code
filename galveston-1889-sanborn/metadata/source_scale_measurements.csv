@@ -1,0 +1,4 @@
+sheet,scale_bar_present,map_distance_ft,pixel_x1,pixel_y1,pixel_x2,pixel_y2,pixel_length,pixels_per_foot,measurement_uncertainty_px,reviewer_1,reviewer_2,status
+9,yes,150,573.2,3835,1031.0,3835,457.8,3.052,4.0,coordinator (0-150 tick span),coordinator (0-100 span: 3.045),measured
+2,yes,150,758.9,3653,1219.5,3653,460.6,3.070666666666667,4.0,coordinator (0-150 tick span),coordinator (0-100 span: 3.077),measured
+1,yes,100,-1,-1,-1,-1,305.0,3.05,6.0,sheet-reading agent (0-100 ft = approx 305 px),,measured (endpoints not re-recorded)
