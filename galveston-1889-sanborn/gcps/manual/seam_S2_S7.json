@@ -1,0 +1,127 @@
+{
+  "seam": "S2|S7",
+  "sheet_a": "2",
+  "sheet_b": "7",
+  "relation": "sheet 2 lies WEST of sheet 7; shared street Av. A or Water E.",
+  "overlap_exists": "partial",
+  "overlap_description": "The two plates share the Avenue A (Water E.) carriageway and nothing else. Sheet 2 draws Av. A complete - west property line at x~2958 (block 739/740/741 faces), the 70-ft corridor with its railroad fan and the vertical legends 'TEXAS STAR FLOUR MILLS AND ELEVATOR' and 'AV. A or WATER E.', the east property line at x~3185 falling to x~3139 at the foot of the sheet, and ~120 px of 'SEE SHEET No. 7' continuation stubs east of that line. Sheet 7 draws the same avenue from the opposite side: blank paper and continuation lettering ('SEE SHEET No. 2') west of x~150, the same railroad fan, and the SAME east property line at x~367 falling to x~346, where blocks 679, 680 and 681 begin. The shared drawn zone is therefore roughly sheet-2 x 2960-3290 <-> sheet-7 x 150-480, about 330 px (108 ft) wide. NO BUILDING IS DRAWN ON BOTH SHEETS - every structure on sheet 2 lies west of Av. A and every structure on sheet 7 lies east of it - so all usable control is the intersection of the seven numbered-street property lines with the single Av. A east property line. The control is consequently near-collinear (all seven points lie within 46 px of one straight line) but spans 3512 px of sheet 2, which is a long enough baseline to fix a similarity firmly.",
+  "correspondences": [
+    {
+      "feature": "South property line of 19th St meets the EAST property line of Av. A or Water E. On sheet 7 this is the north-west corner of block 679 (house numbers 520, 521 lettered in 19th St immediately east of it); on sheet 2 it is the north-west corner of the 'SEE SHEET No. 7' continuation box that reproduces that same block corner.",
+      "why_unambiguous": "19th St is the northernmost street drawn on either plate and is named on both ('19TH ST.'); Av. A is named vertically on both ('AV. A or WATER E.') and is the only 70-ft avenue here (measured 213 px = 69.7 ft between its two property lines on sheet 2, matching the printed 70'). There is no street north of 19th on these plates and no avenue west of Av. A, so this corner cannot be one block off in either axis.",
+      "a_x": 3184.8,
+      "a_y": 173.1,
+      "b_x": 367.1,
+      "b_y": 393.3,
+      "confidence": "high",
+      "uncertainty_px": 3.0,
+      "category": "block corner"
+    },
+    {
+      "feature": "North property line of 20th St meets the EAST property line of Av. A. Sheet 7: south-west corner of block 679, with house numbers 501-506 lettered in 20th St just south of the line and the block-679 cotton platform projecting over it. Sheet 2: south-west corner of the 'No. 7' continuation box.",
+      "why_unambiguous": "20th St is lettered '20TH ST.' on both plates and is the first street south of 19th; the corner is identified by the named street plus the named avenue, and confirmed on sheet 2 by the matching block-739 south-east corner on the WEST side of the same avenue at y=1097.7 (0.4 px agreement across the 213-px Av. A corridor).",
+      "a_x": 3170.8,
+      "a_y": 1097.3,
+      "b_x": 362.9,
+      "b_y": 1310.6,
+      "confidence": "high",
+      "uncertainty_px": 3.5,
+      "category": "block corner"
+    },
+    {
+      "feature": "South property line of 20th St meets the EAST property line of Av. A: north-west corner of block 680 (Texas Ice & Cold Storage Co. / Beer Vault & Cold Storage), house numbers 511, 512 lettered in 20th St just north of the line. Sheet 2 draws the same corner as the top-left of its second 'SEE SHEET No. 7' continuation box.",
+      "why_unambiguous": "Pairs with 20thN across the same named 80-ft street (measured 246.4 px on sheet 2, 239.1 px on sheet 7 = 80.5 / 78.2 ft). Downgraded to medium because on sheet 7 a small frame shed and a fence symbol overrun the corner and two candidate verticals 6 px apart are present; the heavier one that actually meets the street line was used.",
+      "a_x": 3167.9,
+      "a_y": 1343.7,
+      "b_x": 356.9,
+      "b_y": 1549.7,
+      "confidence": "medium",
+      "uncertainty_px": 4.5,
+      "category": "block corner"
+    },
+    {
+      "feature": "North property line of 21st St (21st or Center) meets the EAST property line of Av. A: south-west corner of block 680, with house number 501 and the note 'THE TEXAS STAR FLOUR MILL / NOT IN OPERATION' lettered in 21st St below it.",
+      "why_unambiguous": "21st St is uniquely named on both plates as '21ST or CENTER' - the only lettered-alias numbered street on this seam - so the block cannot be mistaken for 20th or 22nd. Measured at 24x.",
+      "a_x": 3156.4,
+      "a_y": 2266.4,
+      "b_x": 347.2,
+      "b_y": 2461.9,
+      "confidence": "high",
+      "uncertainty_px": 4.0,
+      "category": "block corner"
+    },
+    {
+      "feature": "South property line of 21st St (21st or Center) meets the EAST property line of Av. A: north-west corner of block 681. Sheet 2 draws it as the top-left corner of its third continuation box.",
+      "why_unambiguous": "Pairs with 21stN across the named '21ST or CENTER' corridor; the two plates reproduce that corridor as 247.5 px (sheet 2) and 246.2 px (sheet 7), a 1.3-px agreement that confirms both corners belong to the same street.",
+      "a_x": 3151.8,
+      "a_y": 2513.9,
+      "b_x": 348.3,
+      "b_y": 2708.1,
+      "confidence": "high",
+      "uncertainty_px": 3.5,
+      "category": "block corner"
+    },
+    {
+      "feature": "North property line of 22nd St meets the EAST property line of Av. A: south-west corner of block 681. Sheet 2 draws it as the bottom-left corner of its 'No. 1' continuation box, with a fire plug 29 px south-east of it.",
+      "why_unambiguous": "22nd St is lettered '22ND ST.' on both plates and is the southernmost street on both; nothing lies further south to confuse it with. Downgraded to medium because on sheet 7 the Sanborn fence symbol (cross-hatching) runs along the street line straight through the corner, thickening it.",
+      "a_x": 3138.3,
+      "a_y": 3441.3,
+      "b_x": 345.8,
+      "b_y": 3618.9,
+      "confidence": "medium",
+      "uncertainty_px": 4.5,
+      "category": "block corner"
+    },
+    {
+      "feature": "South property line of 22nd St meets the EAST property line of Av. A. Both plates draw this as a continuation-box corner: sheet 2's box is lettered 'No. 1.' and sheet 7's 'SEE SHEET No. 9.', because the block itself belongs to row B.",
+      "why_unambiguous": "Unambiguous because it is the bottom-most ruled corner on both plates and its street is named 22ND ST. on both; the pair also reproduces the 80-ft width of 22nd St (243.9 px on sheet 2, 248.8 px on sheet 7). Medium confidence because NEITHER side is a surveyed block corner - both are schematic continuation-box corners - so a small common bias cannot be ruled out.",
+      "a_x": 3139.1,
+      "a_y": 3685.2,
+      "b_x": 347.5,
+      "b_y": 3867.7,
+      "confidence": "medium",
+      "uncertainty_px": 4.0,
+      "category": "property line intersection"
+    }
+  ],
+  "self_check_similarity": {
+    "scale": 0.987885,
+    "rotation_deg": -0.4043,
+    "tx": -2780.889,
+    "ty": 245.668,
+    "rms_px": 3.92,
+    "max_px": 5.83,
+    "outliers": []
+  },
+  "rejected_candidates": [
+    {
+      "feature": "6-inch water main in 20th Street where it crosses Av. A (dashed double line lettered 6\" W.P. on both plates)",
+      "reason": "Measured at sheet 2 y=1257.5 and sheet 7 y=1399.1. Under the fitted similarity that is a 67 px residual. The two draftsmen simply drew the main at different fractions of the street: 65% of the way south across 20th St on sheet 2, 33% on sheet 7. Mains are placed by eye and are unusable here."
+    },
+    {
+      "feature": "Fire plug (blue disc) at the Av. A / 22nd St corner",
+      "reason": "Sheet 2 puts it at (3144.0, 3470.4), 5 px east of the avenue line and 29 px south of the street line; sheet 7 puts it at (312.5, 3692.5), 33 px WEST of the avenue line and 73 px south of the street line. 54 px residual - almost certainly the same plug, drawn by eye. Rejected rather than carried with a 25-px sigma."
+    },
+    {
+      "feature": "Railroad track fan in Avenue A",
+      "reason": "Freehand curves; the two plates do not even show the same number of rails in the same place, and there is no crossing point that can be pinned to better than 20-30 px. Excluded on principle."
+    },
+    {
+      "feature": "8-inch private pipe from the bay",
+      "reason": "Sheet 7 letters '8\" PRIVATE PIPE FROM BAY' running east-west across Av. A at y~2290. Sheet 2 does not draw that crossing at all - it shows the mill's private pipes as a north-south dashed run against the block face at x~2971. Not the same drawn object; no correspondence available."
+    },
+    {
+      "feature": "Texas Star Flour Mill / elevator buildings, named on BOTH plates",
+      "reason": "Tempting but wrong. Sheet 2's complex is in block 740 WEST of Av. A ('Grain Elev. Cap. 400,000 Bus.'); sheet 7's is in block 680 EAST of Av. A ('ELEVATOR CAP. 40,000 BU.', 'MILL BUILD'G'). Same company, two different plants on opposite sides of the avenue, ten times apart in elevator capacity. Matching a corner of one to a corner of the other would put the seam ~2,800 px wrong."
+    },
+    {
+      "feature": "East edges of sheet 2's continuation boxes (x~3290)",
+      "reason": "A drawing convention (the boxes are all cut off ~120 px east of the avenue line), not ground geometry. Sheet 7 has nothing there."
+    },
+    {
+      "feature": "Any point taken along the shared street lines east of the avenue line",
+      "reason": "Both plates draw the same 20th/21st/22nd St property lines over the shared x-band, but there is no lettered or drawn feature on those lines that fixes position ALONG them, so such a point would carry only the across-line component and its along-line coordinate would have to be invented from the transform being solved. Excluded as circular."
+    }
+  ],
+  "notes": "METHOD. Every feature was identified semantically first (printed street and avenue names, block numbers 739/740/741 on sheet 2 and 679/680/681 on sheet 7, house numbers lettered in the streets, the printed 70' and 80' width labels) and only then measured. Measurement was done by cropping the JPEG with PIL, upscaling 10-24x nearest-neighbour and overlaying a 1-source-pixel red grid labelled in SOURCE coordinates, so every coordinate below was read directly off the grid with no back-conversion. Crops are in output/qc/manual_crops/ (S2_c19b, S7_c19b, S2_c20N3, S7_c20N_z, S2_c20S3, S7_b680nw, S2_c21N, S7_c21N_z, S2_c21S, S7_c21S, S2_c22N, S7_c22N, S2_c22S, S7_c22S and survey strips). No template matching, NCC or feature matching was used at any stage.\n\nVALIDATION THAT SHEET 2'S CONTINUATION-BOX CORNERS ARE REAL GEOMETRY. This mattered, because on the sheet-2 side five of the seven points are corners of 'SEE SHEET No. 7' boxes rather than corners of drawn blocks. At 20th St north, sheet 2's own block-739 south-east corner (the WEST side of Av. A) measures y=1097.7 while the box corner on the EAST side measures y=1097.3 - 0.4 px across a 213-px avenue. The boxes are therefore ruled on the true street lines, not sketched. Independent check: 3170.8 - 2957.7 = 213.1 px = 69.7 ft against the printed '70'' on sheet 2.\n\nGEOMETRIC CONSISTENCY. Street widths measured independently on the two plates: 20th 246.4 (S2) / 239.1 (S7); 21st 247.5 / 246.2; 22nd 243.9 / 248.8 px - all near the printed 80 ft (245 px at 3.06 px/ft). Block depths: 924.2, 922.7, 927.4 (S2) against 917.3, 912.2, 910.8 (S7), a consistent ~1.2% shortfall on sheet 7 that matches the fitted scale 0.9879. The full-height span from the 19th St line to the 22nd St line is 3512.1 px on sheet 2 and 3474.4 px on sheet 7 (ratio 0.98927).\n\nSURPRISE 1 - THE PRINTED SCALE BARS DO NOT PREDICT THE SEAM SCALE. The bars measured earlier in this project give 3.0586 px/ft on sheet 2 and 3.0567 px/ft on sheet 7, i.e. the plates should agree to 0.06%. The seam says sheet 7 is drawn 1.19% smaller. The discrepancy is 20x the scale-bar disagreement and is confirmed independently by the block-depth measurements above, so it is a real plate-to-plate difference (paper/plate stretch), not measurement error. The same effect, same sign and similar size, was reported on the S7|S9 seam.\n\nSURPRISE 2 - THE WATER MAINS ARE FAR WORSE THAN 'POOR'. The 6\" main in 20th Street is drawn 67 px (22 ft) apart by the two draftsmen, and the Av. A / 22nd St fire plug 54 px (18 ft) apart. On seams where mains and plugs are the only shared marks (this project has used them elsewhere) they will inject tens of pixels of error. Rejected here.\n\nRELATIVE ROTATION. The fitted -0.40 deg is well determined: it comes from a 3512-px baseline, and it is visible directly in the raw measurements - sheet 2's Av. A east property line runs from x=3184.8 at y=173 to x=3139.1 at y=3685 (slope -0.0130, a ruled straight line to within 1 px over the whole sheet), while sheet 7's runs from x=367.1 to x=347.5 over the same span (slope -0.0056). The 0.0074 slope difference IS the relative rotation.\n\nWEAKNESS TO CARRY INTO THE SOLVE. All seven points lie on one straight line to within 46 px, because that line is the entire overlap. A similarity is fully determined by them (2 separated points suffice), but an AFFINE fit on this seam alone would be rank-deficient, and the across-seam scale (x-scale) is constrained only through the assumption of isotropy. The x residuals also scatter +/-6 px because sheet 7's three block faces are ruled block-by-block (x = 362.9, 356.9, 347.2 at successive corners) while sheet 2's counterpart is one continuous ruled line; that scatter is drafting, not measurement, and is what the stated uncertainties encode.\n\nA weighted (1/sigma) similarity gives scale 0.988111, rotation -0.3860 deg, rms 3.97 px, max 5.94 px - indistinguishable from the unweighted solution reported above."
+}

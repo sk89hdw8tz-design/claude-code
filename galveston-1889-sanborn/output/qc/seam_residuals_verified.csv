@@ -1,3 +1,5 @@
 region_a,region_b,n_geometric,raw_median_px,raw_rms_px,raw_p95_px,raw_max_px,norm_median,norm_max,verdict,why,worst_point,worst_feature,n_symbol,symbol_scatter_median_px,symbol_scatter_max_px
 S10,S9,6,2.97,3.03,4.25,4.49,0.5,0.75,PASS,"median <=3px (excellent), max <=12px, within stated uncertainty",MV_S10_S9_B01,north property line of 23rd (Tremont) St (= S frontage of 562 / 502),0,,
-S7,S9,7,4.72,4.69,7.13,7.34,1.03,1.63,PASS,"median <=5px (good), max <=15px, within stated uncertainty",MV_S7_S9_08,North-west corner of the Market(Av.D)/22nd St intersection: north property line ,5,9.39,46.38
+S1_main,S2,3,1.83,3.62,5.55,5.97,0.35,0.5,PASS,"median <=3px (excellent), max <=12px, within stated uncertainty",MV_S1_main_S2_02,West property line of the block east of Av. A meeting the SOUTH right-of-way lin,0,,
+S2,S7,7,3.61,4.0,5.88,5.94,0.9,1.49,PASS,"median <=5px (good), max <=15px, within stated uncertainty",MV_S2_S7_03,North property line of 21st St (21st or Center) meets the EAST property line of ,0,,
+S7,S9,10,4.93,5.29,8.47,9.39,0.87,2.35,PASS,"median <=5px (good), max <=15px, within stated uncertainty",MV_S7_S9_01,Water-main tee in the 20-ft alley between Av. B (Strand E.) and Av. C (Mechanic ,2,41.83,46.38

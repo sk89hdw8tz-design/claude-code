@@ -1,0 +1,134 @@
+{
+  "seam": "S8|S29",
+  "sheet_a": "8",
+  "sheet_b": "29",
+  "relation": "sheet 8 lies WEST of sheet 29; shared street Av. G or Winnie E.",
+  "overlap_exists": "no",
+  "overlap_description": "There is NO two-dimensional drawn overlap. Sheet 8's map content stops dead on the WEST property line of Av. G (fitted x = 3087-3102 depending on y); everything east of it on sheet 8 is blank paper carrying only the rotated legends 'AV. G OR WINNIE E.', 'SEE SHEET No 29.', the avenue width label 70', and Av.-G house numbers. Sheet 29's map content starts on the EAST property line of Av. G (fitted x = 257-290); everything west of it is blank paper carrying 'AV. G OR WINNIE E.', 'SEE SHEET No 8.', 70', and house numbers. The 70-ft roadway itself is drawn in full by NEITHER sheet: the west line of Av. G would fall at x~45-78 on sheet 29, i.e. under the torn/tilted paper edge, and the east line would fall at x~3300-3315 on sheet 8, which is blank. What the two sheets DO share is the eight EAST-WEST street property lines that cross the avenue: each of the four numbered streets in this row has its north and south property line drawn on both sheets, sheet 8 from x~1728-3100 and sheet 29 from x~257-1085. Those eight shared lines, plus the printed and independently measured 70-ft avenue width, are the entire basis of the correspondences below. Every correspondence therefore lies on one straight line (the avenue centreline) - this seam is intrinsically ONE-DIMENSIONAL. See notes.",
+  "correspondences": [
+    {
+      "feature": "Av. G centreline x NORTH property line of the northernmost street on the row (sheet 8's top coverage limit; the line 80 ft north of the NE corner of block 379 / NW corner of block 319)",
+      "why_unambiguous": "This is the topmost heavy E-W property line drawn on either sheet at the seam: on sheet 8 it runs x 1849-3104 at y=115.3, on sheet 29 x 258-1404 at y=112.5, and there is nothing drawn north of it on either sheet (sheet 8's top continuation note is 'SEE SHEET No 6.'). Its spacing from the next line down is 246.2 px (sheet 8) and 247.8 px (sheet 29) = the printed 80-ft street width, so it cannot be confused with a block line. Both sheets draw it right up to the Av. G frontage, so the same physical line is observed on both.",
+      "a_x": 3208.96,
+      "a_y": 115.58,
+      "b_x": 146.91,
+      "b_y": 113.12,
+      "confidence": "medium",
+      "uncertainty_px": 5.5,
+      "category": "property line intersection"
+    },
+    {
+      "feature": "Av. G centreline x SOUTH property line of that street = the line through the NE corner of block 379 (sheet 8) and the NW corner of block 319 (sheet 29, Jail / Court House block)",
+      "why_unambiguous": "Real drawn block corners on both sheets, verified at 12x with a 1-source-pixel grid. On sheet 8 it is the NE corner of block 379 (the First Presbyterian Church 1873 block); on sheet 29 it is the NW corner of block 319, the block that carries 'JAIL', 'FEMALE PRISON' and 'COURT HOUSE'. The Av.-G frontage house numbers printed either side of the avenue in this row are 1501-1504 (sheet 8) and 1510-1511 (sheet 29) - the same 1500 block of Avenue G, which fixes the row identity independently of the grid.",
+      "a_x": 3207.73,
+      "a_y": 361.57,
+      "b_x": 149.58,
+      "b_y": 360.65,
+      "confidence": "high",
+      "uncertainty_px": 3.5,
+      "category": "block corner"
+    },
+    {
+      "feature": "Av. G centreline x the line through the SE corner of block 379 (sheet 8) and the SW corner of block 319 (sheet 29) - north property line of the second street",
+      "why_unambiguous": "Drawn block corners on both sheets. Block 379 is bounded on the west by a printed 70-ft avenue and contains the First Presbyterian Church '1873'; block 319 contains the Jail and Court House and is bounded on the east by Av. H East. The line lies 923.3 px (sheet 8) / 930.8 px (sheet 29) south of the previous one, matching the ~300-ft block depth, and 244.5 / 244.2 px north of the next, matching the printed 80-ft street.",
+      "a_x": 3203.08,
+      "a_y": 1284.48,
+      "b_x": 160.34,
+      "b_y": 1291.94,
+      "confidence": "high",
+      "uncertainty_px": 3.5,
+      "category": "block corner"
+    },
+    {
+      "feature": "Av. G centreline x the line through the NE corner of block 380 (sheet 8) and the NW corner of block 320 (sheet 29, CENTRAL PARK)",
+      "why_unambiguous": "Block 320 is Central Park - a named, walk-patterned, building-free block, the single most unmistakable feature on sheet 29's west edge; its NW corner is an isolated clean right angle with no buildings within 200 px, fitted to rms 0.37 px. Opposite it on sheet 8 is the NE corner of block 380, which carries 'WINNIE HO.', 'S. H. FLEMING LIVERY' and 'MERCHANTS RAILWAY'. No other pairing of these two sheets puts a park block opposite the Winnie House block.",
+      "a_x": 3205.07,
+      "a_y": 1529.06,
+      "b_x": 163.06,
+      "b_y": 1535.57,
+      "confidence": "high",
+      "uncertainty_px": 3.5,
+      "category": "block corner"
+    },
+    {
+      "feature": "Av. G centreline x the line through the SE corner of block 380 (sheet 8) and the SW corner of block 320 / CENTRAL PARK (sheet 29)",
+      "why_unambiguous": "Same two blocks as the previous point, at their opposite ends. On sheet 29 the south line of Central Park is a single unbroken 802-px heavy line with no buildings on it (fit rms 0.40 px over x 300-1050), so its position is exceptionally well defined. On sheet 8 the corner is the SE corner of block 380 at the mouth of Av. G.",
+      "a_x": 3196.81,
+      "a_y": 2448.42,
+      "b_x": 170.32,
+      "b_y": 2466.58,
+      "confidence": "high",
+      "uncertainty_px": 3.5,
+      "category": "block corner"
+    },
+    {
+      "feature": "Av. G centreline x the line through the NE corner of block 381 (sheet 8) and the NW corner of block 321 (sheet 29, BALL HIGH SCHOOL)",
+      "why_unambiguous": "Block 321 is the Ball High School block ('BALL HIGH SCHOOL / HEATED BY HOT AIR FURNACES / LIGHTED GAS & ELECTRIC'), already used as an anchor on the S27|S29 seam; block 381 opposite it on sheet 8 carries 'CASINO HALL'. Both corners are drawn right angles at the avenue mouth. The named buildings make a one-block error impossible.",
+      "a_x": 3193.44,
+      "a_y": 2693.86,
+      "b_x": 174.61,
+      "b_y": 2711.07,
+      "confidence": "high",
+      "uncertainty_px": 3.5,
+      "category": "block corner"
+    },
+    {
+      "feature": "Av. G centreline x the line through the SE corner of block 381 (sheet 8) and the SW corner of block 321 / BALL HIGH SCHOOL (sheet 29) - north property line of the boundary street between map row A and map row B",
+      "why_unambiguous": "This is the north property line of the street that separates this sheet row from the row below; sheet 8's bottom continuation note reads 'SEE SHEET No 10.' and sheet 29's reads 'SEE SHEET No 27.' (both read at full resolution), and both sheets 10 and 27 are in row B - so the two sheets' bottom-most street is provably the same street. The S27|S29 manual GCP file independently places sheet 29's north line of this street at y=3635.2 at x=1084; my fit of the same line gives y=3637.1 at x=1084, a 1.9 px agreement from a completely separate measurement.",
+      "a_x": 3193.99,
+      "a_y": 3618.25,
+      "b_x": 180.77,
+      "b_y": 3640.78,
+      "confidence": "high",
+      "uncertainty_px": 3.5,
+      "category": "block corner"
+    },
+    {
+      "feature": "Av. G centreline x SOUTH property line of that boundary street (sheet 8's and sheet 29's bottom coverage limit)",
+      "why_unambiguous": "The southernmost heavy E-W property line drawn on either sheet: sheet 8 x 2298-3093 at y=3864.8, sheet 29 x 291-1087 at y=3886.9. It stands 247.0 px (sheet 8) and 246.5 px (sheet 29) south of the previous line = the printed 80-ft street width, and the printed 'Scale of Feet' bar of each sheet is drawn inside this same street on both sheets. The S27|S29 file places sheet 29's south line of this street at y=3877.5-3878.2 at x=1670-1730; my fit gives y=3879.4 at x=1700.",
+      "a_x": 3194.14,
+      "a_y": 3865.40,
+      "b_x": 182.41,
+      "b_y": 3887.87,
+      "confidence": "medium",
+      "uncertainty_px": 5.5,
+      "category": "property line intersection"
+    }
+  ],
+  "self_check_similarity": {
+    "scale": 1.007282,
+    "rotation_deg": -0.8068,
+    "tx": -3085.17,
+    "ty": 42.71,
+    "rms_px": 3.22,
+    "max_px": 5.21,
+    "outliers": []
+  },
+  "rejected_candidates": [
+    {
+      "feature": "Water-main centrelines (the dashed E-W pipes drawn in each numbered street, which DO cross Av. G and are drawn by both sheets over ~40 ft of common ground)",
+      "reason": "Measured and quantitatively rejected. Expressed as a fraction of the street width between the two property lines, the same pipe sits at 0.424 (sheet 8) vs 0.617 (sheet 29) in the top street, 0.448 vs 0.577 in the second, and 0.607 vs 0.481 in the bottom street - disagreements of 48, 32 and 31 px. This is the largest genuinely shared drawn feature on the seam and it is useless as control: the draftsman placed the main by eye. The third street's main could not even be measured reliably on sheet 29 (peak strength 9 of 255)."
+    },
+    {
+      "feature": "Hydrant / cistern symbols and the 6-in. and 10-in. W.P. pipe-size annotations near the seam",
+      "reason": "None of them fall inside the shared ground strip - all lie well inside one sheet's own coverage - and they inherit the same by-eye placement error as the mains."
+    },
+    {
+      "feature": "The dashed awning edge along sheet 8's east frontage of blocks 379/380/381",
+      "reason": "Measured at x=3139.9 for block 380, i.e. 46.9 px (15.5 ft) east of the property line at x=3093. It is the trap the brief warns about: taking it for the frontage would move sheet 8's seam 47 px east. Sheet 29 draws its own awnings on its own frontage, so the two awning lines are 70 ft apart in ground and are not a correspondence. Only the heavy continuous frontage line was used."
+    },
+    {
+      "feature": "Direct pairing of sheet 8's WEST-side block corners with sheet 29's EAST-side block corners (i.e. treating the two frontages of Av. G as the same line)",
+      "reason": "That is the obvious-looking but wrong correspondence: the two frontages are 70 ft = ~213 px apart in ground, so the pairing would place the sheets 70 ft too close and make the mosaic overlap by a whole avenue. Rejected in favour of the avenue-centreline construction described in notes."
+    },
+    {
+      "feature": "A one-block (two-street-line) vertical shift of the pairing",
+      "reason": "Excluded on four independent grounds: (1) both sheets draw exactly eight E-W property lines in the alternating 246 / 923 / 245 / 919 / 246 / 923 / 247 px pattern (80 ft street, ~300 ft block) between their top and bottom coverage limits, with none to spare; (2) both bottom continuation notes point into row B (No 10 on sheet 8, No 27 on sheet 29), so the bottom lines are the same street; (3) the Av.-G frontage house numbers facing each other across the avenue in the top row are both in the 1500 block (1501-1504 on sheet 8, 1510-1511 on sheet 29); (4) the named blocks - Central Park and Ball High School on sheet 29, Winnie House/Fleming Livery and Casino Hall on sheet 8 - line up row for row."
+    },
+    {
+      "feature": "Blind template matching / NCC across the seam",
+      "reason": "Not attempted, per the brief - and in any case impossible here, because there is no drawn overlap at all for a template to match."
+    }
+  ],
+  "notes": "METHOD. Every feature was identified semantically first (printed avenue name, printed street widths, block numbers, named buildings, house numbers, reciprocal continuation notes) and only then measured. Measurement was by intensity-weighted centroid of the ink of the heavy continuous property line, with the horizontal street line fitted robustly over 340 px (sheet 8, x 2745-3085) or 750 px (sheet 29, x 300-1050) and the vertical Av.-G frontage line fitted over each block's full 900 px height; the corner is the intersection of the two fitted centrelines, solved iteratively. Per-line fit rms was 0.08-0.66 px. Four corners were additionally verified by eye at 12-14x magnification with a 1-source-pixel grid overlay (crops in output/qc/manual_crops/).\n\nTHE 70-FT CONSTRUCTION - read this before using the points. Because neither sheet draws the far side of Av. G, no ground point is drawn on both sheets. Each correspondence is therefore the intersection of a shared E-W street property line with the CENTRELINE of Av. G, constructed as: a_x = (sheet-8 west frontage x) + W8/2, b_x = (sheet-29 east frontage x) - W29/2, with a_y/b_y taken from the fitted street line at that x. W8 = 213.09 px and W29 = 214.75 px are the widths of a printed 70-ft avenue MEASURED ON THE SAME SHEET (sheet 8: the 70-ft avenue bounding block 379 on the west, three measurements 213.46/213.97/211.84; sheet 29: Av. H East, three measurements 214.64/214.68/214.94). Both correspond to 70.4 and 70.7 ft at each sheet's own scale-bar ppf, confirming the printed 70' in Av. G on both sheets. Consequence: a_x and b_x are constructions, NOT drawn ink - do not expect to see a feature there. The raw drawn frontage points, if you prefer them, are (sheet 8 -> sheet 29): (3102.41,115.31)->(254.29,112.50), (3101.19,361.54)->(256.95,360.27), (3096.53,1284.79)->(267.71,1291.04), (3098.52,1529.31)->(270.44,1535.28), (3090.27,2448.29)->(277.69,2465.65), (3086.90,2694.15)->(281.98,2710.43), (3087.45,3617.81)->(288.15,3640.34), (3087.60,3864.84)->(289.78,3886.87); these are 70 ft apart in ground and must not be paired directly.\n\nERROR BUDGET. The avenue-width assumption is almost entirely SYSTEMATIC and is absorbed by tx: re-solving with W8/W29 = 211.82/212.67 (nominal 70 ft x each sheet's scale-bar ppf) or with 210.0/216.0 changes tx by less than 1.7 px and leaves scale, rotation and rms unchanged to 6 significant figures. If Av. G is really, say, 68 ft rather than 70 ft on both sheets, tx moves by ~6 px and nothing else moves. The per-point RANDOM error is dominated by the drafting wobble of the two frontage lines (sheet 8's frontage x wanders 3086.9-3102.4 down the sheet, sheet 29's 254.3-289.8 monotonically), which is why 3.5 px is stated for the six drawn corners rather than the ~0.7 px the fits alone would suggest. L0 and L7 have no drawn corner at the seam - the frontage line had to be extrapolated ~250 px beyond the last block - hence 5.5 px.\n\nSELF-CHECK. The similarity maps sheet 8 -> sheet 29 as b = s*R(theta)*a + t with R = [[cos,-sin],[sin,cos]] in image coordinates (x right, y DOWN); theta = -0.8068 deg therefore means sheet 8's content must be turned 0.81 deg anticlockwise on screen to match sheet 29. Weighted by 1/uncertainty^2. Residuals per point (L0..L7): 1.63, 1.37, 1.54, 2.31, 3.35, 5.21, 2.46, 5.10 px. Largest residual/uncertainty ratio is 1.49, so no point is an outlier by the 3x rule. The fitted scale 1.00728 sits 0.33% above the ratio of the two measured scale bars (3.0382/3.026 = 1.00403); the sheets' own drawn content agrees with the fit rather than with the bars - sheet 29's blocks measure 802 px wide and 930 px deep against sheet 8's 790 x 923, a content ratio of 1.008-1.015.\n\nTHE IMPORTANT CAVEAT - THIS SEAM CANNOT SETTLE THE ROTATION. All eight correspondences are collinear (they lie on the Av. G centreline), which is unavoidable: there is no drawn overlap anywhere off that line. A similarity is still determined (nullity 0), but its rotation is fixed entirely by the ALONG-seam direction, i.e. by the N-S line family. The E-W family tells a different story. Mean bearing of the vertical (avenue) family: +0.226 deg on sheet 8, -0.539 deg on sheet 29 -> relative rotation -0.765 deg. Mean bearing of the horizontal (street) family, from the eight fitted street lines: -0.025 deg on sheet 8, -0.317 deg on sheet 29 -> relative rotation -0.292 deg. Each sheet's own drawn grid is thus non-orthogonal by about 0.25 deg (sheet 8 +0.251, sheet 29 -0.222), in opposite senses, and the two families disagree about the S8|S29 relative rotation by ~0.47 deg. My -0.807 deg is the N-S answer because that is the only direction my collinear control can see; a solve that also uses the shared E-W street lines as direction constraints will and should pull it toward -0.5 deg. I recommend adding the eight shared E-W street property lines of this seam to config/line_constraints.yaml as a direction family; they are the only evidence on this seam about the other axis. Do NOT read the 3.22 px rms as meaning the seam is solved to 3 px in all respects - it is 3 px ALONG and ACROSS the avenue centreline, and comparatively uninformative about rotation.\n\nMEASURED REFERENCE DATA (source pixels). Sheet 8 E-W property lines at x~3020: 115.05, 361.53, 1284.99, 1529.51, 2448.16, 2694.37, 3617.47, 3864.32. Sheet 29 same lines at x~355: 111.75, 359.86, 1290.35, 1535.47, 2464.41, 2709.53, 3639.73, 3885.97. Sheet 8 block extents along the y=1529.5 line: 1728-2094 (block), 2094-2304 (70-ft avenue), 2304-2683 and 2731-3100 (block 380 either side of a ~20-ft alley), then Av. G. Sheet 29 along y=1535.5: 270-1072 (block 320, Central Park, no alley - it is a park), 1072-1284 (Av. H East, 70 ft), then eastward. Sheet 8's east continuation note verified as 'SEE SHEET No 29.' at (3255, 800-1010); sheet 29's west note as 'SEE SHEET No 8.' at (75, 780-960); sheet 8 bottom 'SEE SHEET No 10.', sheet 29 bottom 'SEE SHEET No 27.'.\n\nPRIVACY. All work local. No imagery left the machine, no external API was called, no URL was created, nothing was committed or pushed. Originals were opened read-only; crops written only to output/qc/manual_crops/."
+}

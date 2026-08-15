@@ -56,11 +56,26 @@ FIELDS = ["point_id", "sheet", "region", "role", "src_x", "src_y",
 #              EXCLUDED from seam grading -- grading a seam on them would
 #              condemn a correct reconstruction.  They are reported separately
 #              as drafting scatter.
-SYMBOL_WORDS = ("fire plug", "hydrant", "plug ", "valve")
+SYMBOL_WORDS = ("fire plug", "hydrant", "valve", "plug")
 
 
 def control_class(category: str, feature: str) -> str:
-    hay = f"{category} {feature}".lower()
+    """Classify by the STRUCTURED category, never by an incidental mention.
+
+    Observers routinely use a nearby plug to argue that a corner is the right
+    corner ("...with a fire plug 29 px south-east of it").  Scanning the free
+    text for symbol words demotes exactly those well-argued corners, so the
+    category field decides whenever it is populated, and the text is consulted
+    only when it is not.
+    """
+    cat = (category or "").strip().lower()
+    if cat:
+        return "symbol" if any(w in cat for w in SYMBOL_WORDS) else "geometric"
+    # No category recorded: scan the whole description. Safe here precisely
+    # because a file that names its features carefully enough to mention a
+    # nearby plug as a landmark also fills in `category`, so it never lands in
+    # this branch.
+    hay = (feature or "").lower()
     return "symbol" if any(w in hay for w in SYMBOL_WORDS) else "geometric"
 
 # --------------------------------------------------------------------------

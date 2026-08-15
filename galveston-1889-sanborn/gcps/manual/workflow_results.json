@@ -107,6 +107,56 @@
     },
     "verdict": "The ~23 px disagreement is NOT bad centreline measurement. It is a genuine plate-to-plate scale/rotation difference: sheet 7 is drawn ~1.5% SMALLER in x and ~0.9% larger in y than sheet 9, plus 0.35 deg relative rotation. A similarity/affine fit drops the residual from 13.2 px RMS to 4.2-4.9 px RMS. The remaining ~4 px is real independent drafting of alleys and pipes on the two plates."
    }
+  },
+  {
+   "seam": "S2|S7",
+   "file": "seam_S2_S7.json",
+   "regions": [
+    "S2",
+    "S7"
+   ],
+   "overlap": "partial",
+   "n_correspondences": 7,
+   "n_boundary_points": 0,
+   "by_confidence": {
+    "high": 4,
+    "medium": 3,
+    "low": 0
+   },
+   "self_check": {
+    "scale": 0.987885,
+    "rotation_deg": -0.4043,
+    "tx": -2780.889,
+    "ty": 245.668,
+    "rms_px": 3.92,
+    "max_px": 5.83,
+    "outliers": []
+   }
+  },
+  {
+   "seam": "S8|S29",
+   "file": "seam_S8_S29.json",
+   "regions": [
+    "S8",
+    "S29"
+   ],
+   "overlap": "no",
+   "n_correspondences": 8,
+   "n_boundary_points": 0,
+   "by_confidence": {
+    "high": 6,
+    "medium": 2,
+    "low": 0
+   },
+   "self_check": {
+    "scale": 1.007282,
+    "rotation_deg": -0.8068,
+    "tx": -3085.17,
+    "ty": 42.71,
+    "rms_px": 3.22,
+    "max_px": 5.21,
+    "outliers": []
+   }
   }
  ],
  "reconciliations": [
@@ -205,7 +255,7 @@
  "refused_or_skipped": [
   "S1_main|S2: boundary_line has no station_names, so its points are interpolated, not identified -- refused",
   "S27|S29: boundary_line has no station_names, so its points are interpolated, not identified -- refused",
-  "S7|S9: boundary_line stations skipped -- 7 point correspondences already cover it"
+  "S7|S9: boundary_line stations skipped -- 10 point correspondences already cover it"
  ],
  "verified_points_per_seam": {
   "S10|S9": {
@@ -216,19 +266,27 @@
    "geometric": 3,
    "symbol": 0
   },
+  "S2|S7": {
+   "geometric": 7,
+   "symbol": 0
+  },
   "S27|S29": {
    "geometric": 16,
    "symbol": 3
   },
+  "S29|S8": {
+   "geometric": 8,
+   "symbol": 0
+  },
   "S7|S9": {
-   "geometric": 7,
-   "symbol": 5
+   "geometric": 10,
+   "symbol": 2
   }
  },
  "control_classes": {
-  "geometric": 32,
-  "symbol": 8
+  "geometric": 50,
+  "symbol": 5
  },
- "total_correspondences": 40,
- "total_rows": 80
+ "total_correspondences": 55,
+ "total_rows": 110
 }
