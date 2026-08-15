@@ -186,6 +186,72 @@ def load_seams() -> list[dict]:
     return seams
 
 
+def merge_passes(seams, log_skips):
+    """Fold independent re-measurements of the same seam into one control set.
+
+    Where two observers worked the same seam without seeing each other's
+    numbers, the pair of readings is worth more than either alone: the
+    coordinate becomes their inverse-variance weighted mean, and the
+    uncertainty becomes the combination of the two -- but never tighter than
+    1.5x the disagreement they actually showed. Two passes that agree to
+    0.3 px have earned a small sigma; two that differ by 4 px have not,
+    whatever either one claims.
+
+    Correspondences are paired only when BOTH endpoints land within 25 px on
+    both plates, which on this material is unambiguous (the passes agree to
+    about a pixel) while being far too tight to pair up neighbouring corners.
+    Anything unpaired is carried through untouched.
+    """
+    by_seam = {}
+    for entry in seams:
+        by_seam.setdefault(entry["doc"]["seam"], []).append(entry)
+
+    merged = []
+    for seam, entries in by_seam.items():
+        if len(entries) == 1:
+            merged.append(entries[0])
+            continue
+        entries.sort(key=lambda e: len(e["doc"].get("correspondences") or []),
+                     reverse=True)
+        base, others = entries[0], entries[1:]
+        corr = [dict(c) for c in (base["doc"].get("correspondences") or [])]
+        used = 0
+        for other in others:
+            for c2 in other["doc"].get("correspondences") or []:
+                hit = None
+                for c1 in corr:
+                    if (abs(c1["a_x"] - c2["a_x"]) <= 25 and abs(c1["a_y"] - c2["a_y"]) <= 25
+                            and abs(c1["b_x"] - c2["b_x"]) <= 25
+                            and abs(c1["b_y"] - c2["b_y"]) <= 25):
+                        hit = c1
+                        break
+                if hit is None:
+                    corr.append(dict(c2))
+                    continue
+                s1 = float(hit.get("uncertainty_px", 8.0)) or 8.0
+                s2 = float(c2.get("uncertainty_px", 8.0)) or 8.0
+                w1, w2 = 1.0 / (s1 * s1), 1.0 / (s2 * s2)
+                disagree = 0.0
+                for k in ("a_x", "a_y", "b_x", "b_y"):
+                    disagree = max(disagree, abs(hit[k] - c2[k]))
+                    hit[k] = (w1 * hit[k] + w2 * c2[k]) / (w1 + w2)
+                combined = (1.0 / (w1 + w2)) ** 0.5
+                hit["uncertainty_px"] = round(max(combined, 1.5 * disagree), 2)
+                hit["_merged"] = (f"merged with an independent pass "
+                                  f"({other['path'].name}): the two readings "
+                                  f"differ by at most {disagree:.2f} px, "
+                                  f"sigma {s1:.1f}/{s2:.1f} -> "
+                                  f"{hit['uncertainty_px']:.2f}")
+                used += 1
+        doc = dict(base["doc"])
+        doc["correspondences"] = corr
+        merged.append({"path": base["path"], "doc": doc})
+        log_skips.append(f"{seam}: merged {len(entries)} independent passes, "
+                         f"{used} correspondence(s) paired and averaged, "
+                         f"{len(corr)} total")
+    return merged
+
+
 def sheet_ids(doc: dict) -> tuple[str, str]:
     """The two sheet numbers of a seam, whatever spelling the file used."""
     a = doc.get("sheet_a")
@@ -234,6 +300,7 @@ def main() -> int:
     summary: list[dict] = []
     recon_log: list[dict] = []
     log_skips: list[str] = []
+    seams = merge_passes(seams, log_skips)
 
     for entry in seams:
         doc, path = entry["doc"], entry["path"]
@@ -260,6 +327,8 @@ def main() -> int:
             if not replaced:
                 pa, pb, sigma, note = reconcile(seam, feature, pa, pb,
                                                 sigma, recon_log)
+            if c.get("_merged"):
+                note = f"{note}; {c['_merged']}".strip("; ")
 
             n_by_conf[conf] = n_by_conf.get(conf, 0) + 1
             sx, sy, axis_note = axis_sigmas(ra, rb, sigma)

@@ -273,16 +273,16 @@
   {
    "seam": "S1_main|S2",
    "feature": "North-west corner of block 742 (J. M. Heiskell's wood yard): the west ",
-   "max_disagreement_px": 1.0,
-   "sigma_before": 5.0,
-   "sigma_after": 5.0
+   "max_disagreement_px": 1.36,
+   "sigma_before": 1.44,
+   "sigma_after": 2.04
   },
   {
    "seam": "S1_main|S2",
    "feature": "North-east corner of block 742: block 742's east property line (west l",
-   "max_disagreement_px": 3.5,
-   "sigma_before": 5.0,
-   "sigma_after": 5.25
+   "max_disagreement_px": 3.44,
+   "sigma_before": 1.44,
+   "sigma_after": 5.15
   },
   {
    "seam": "S27|S29",
@@ -363,6 +363,7 @@
   }
  ],
  "refused_or_skipped": [
+  "S1_main|S2: merged 2 independent passes, 3 correspondence(s) paired and averaged, 3 total",
   "S1_main|S2: boundary_line has no station_names, so its points are interpolated, not identified -- refused",
   "S27|S29: boundary_line has no station_names, so its points are interpolated, not identified -- refused",
   "S7|S9: boundary_line stations skipped -- 10 point correspondences already cover it",

@@ -1,11 +1,11 @@
 region_a,region_b,n_geometric,raw_median_px,raw_rms_px,raw_p95_px,raw_max_px,norm_median,norm_max,verdict,why,worst_point,worst_feature,n_symbol,symbol_scatter_median_px,symbol_scatter_max_px
-S10,S27,7,1.49,2.77,5.05,5.6,0.5,1.25,PASS,"median <=3px (excellent), max <=12px, within stated uncertainty",MV_S10_S27_03,Av. G centreline x SOUTH property line of 23rd (Tremont) St (= N frontage of blk,0,,
-S10,S8,15,2.0,3.15,6.01,8.26,0.66,1.68,PASS,"median <=3px (excellent), max <=12px, within stated uncertainty",MV_S8_S10_10,"West property line of the 20-ft mid-block alley between Av. F and Av. G, at the ",1,45.77,45.77
-S10,S9,6,4.06,5.14,8.24,9.25,0.44,1.2,PASS,"median <=5px (good), max <=15px, within stated uncertainty",MV_S10_S9_B05,north property line of 25th (Bath Av.) St (= S frontage of 564 / 504),0,,
-S1_main,S2,3,5.11,5.15,7.08,7.29,0.61,1.02,REVIEW,median 5.1px in the 5-10px review band,MV_S1_main_S2_00,North-west corner of block 742 (J. M. Heiskell's wood yard): the west property l,0,,
-S1_main,S9,7,2.32,5.55,10.55,13.23,0.93,1.47,PASS,"median <=5px (good), max <=15px, within stated uncertainty",MV_S1_main_S9_05,South wall of the P.J. Willis & Bro. wholesale building where it meets the east ,0,,
-S2,S7,7,2.94,4.08,6.27,6.76,0.83,1.69,PASS,"median <=3px (excellent), max <=12px, within stated uncertainty",MV_S2_S7_03,North property line of 21st St (21st or Center) meets the EAST property line of ,0,,
-S27,S29,16,2.18,2.76,4.28,5.1,0.54,1.02,PASS,"median <=3px (excellent), max <=12px, within stated uncertainty",MV_S27_S29_11,East corner of the same alley line on the SOUTH line of 22nd Street,3,17.46,18.14
-S29,S8,8,3.17,4.79,7.89,8.94,0.69,1.62,PASS,"median <=5px (good), max <=15px, within stated uncertainty",MV_S8_S29_06,Av. G centreline x the line through the SE corner of block 381 (sheet 8) and the,0,,
-S7,S8,7,3.62,4.07,5.33,5.43,0.74,1.09,PASS,"median <=5px (good), max <=15px, within stated uncertainty",MV_S7_S8_02,SE corner of block 559 (S7) / SW corner of block 499 (S8) - 20th St north proper,0,,
-S7,S9,10,5.31,6.26,10.2,10.56,1.02,2.64,REVIEW,median 5.3px in the 5-10px review band,MV_S7_S9_01,Water-main tee in the 20-ft alley between Av. B (Strand E.) and Av. C (Mechanic ,2,39.14,45.08
+S10,S27,7,1.5,2.75,5.03,5.57,0.5,1.26,PASS,"median <=3px (excellent), max <=12px, within stated uncertainty",MV_S10_S27_03,Av. G centreline x SOUTH property line of 23rd (Tremont) St (= N frontage of blk,0,,
+S10,S8,15,2.02,3.15,6.04,8.25,0.67,1.7,PASS,"median <=3px (excellent), max <=12px, within stated uncertainty",MV_S8_S10_10,"West property line of the 20-ft mid-block alley between Av. F and Av. G, at the ",1,45.73,45.73
+S10,S9,6,4.28,5.03,7.79,8.66,0.44,1.11,PASS,"median <=5px (good), max <=15px, within stated uncertainty",MV_S10_S9_B05,north property line of 25th (Bath Av.) St (= S frontage of 564 / 504),0,,
+S1_main,S2,3,2.57,3.12,4.25,4.44,0.67,0.84,PASS,"median <=3px (excellent), max <=12px, within stated uncertainty",MV_S1_main_S2_00,North-west corner of block 742 (J. M. Heiskell's wood yard): the west property l,0,,
+S1_main,S9,7,2.39,5.65,10.73,13.35,0.9,1.48,PASS,"median <=5px (good), max <=15px, within stated uncertainty",MV_S1_main_S9_05,South wall of the P.J. Willis & Bro. wholesale building where it meets the east ,0,,
+S2,S7,7,3.37,4.23,6.52,7.16,0.96,1.79,PASS,"median <=5px (good), max <=15px, within stated uncertainty",MV_S2_S7_03,North property line of 21st St (21st or Center) meets the EAST property line of ,0,,
+S27,S29,16,2.17,2.75,4.28,5.09,0.54,1.02,PASS,"median <=3px (excellent), max <=12px, within stated uncertainty",MV_S27_S29_11,East corner of the same alley line on the SOUTH line of 22nd Street,3,17.44,18.13
+S29,S8,8,3.15,4.78,7.86,8.88,0.68,1.61,PASS,"median <=5px (good), max <=15px, within stated uncertainty",MV_S8_S29_06,Av. G centreline x the line through the SE corner of block 381 (sheet 8) and the,0,,
+S7,S8,7,3.32,3.95,5.23,5.41,0.67,1.08,PASS,"median <=5px (good), max <=15px, within stated uncertainty",MV_S7_S8_02,SE corner of block 559 (S7) / SW corner of block 499 (S8) - 20th St north proper,0,,
+S7,S9,10,5.29,6.57,10.58,10.92,1.09,2.73,REVIEW,median 5.3px in the 5-10px review band,MV_S7_S9_01,Water-main tee in the 20-ft alley between Av. B (Strand E.) and Av. C (Mechanic ,2,38.62,45.08

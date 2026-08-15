@@ -1,0 +1,120 @@
+{
+  "seam": "S1_main|S2",
+  "sheet_a": "1",
+  "sheet_b": "2",
+  "relation": "sheet 1 (right panel) lies SOUTH of sheet 2; shared street 22nd Street",
+  "overlap_exists": "partial",
+  "overlap_description": "Independent second pass. All coordinates below are MY OWN measurements, made by darkness-weighted centroid line-fitting on 8-30x nearest-neighbour crops with a 1-source-pixel grid overlay (crops in output/qc/manual_crops/secondpass/); no template/NCC/feature matching was used anywhere. GEOMETRY OF THE BAND: sheet 2 draws the whole of 22nd Street - its NORTH right-of-way line fits at y=3440.7 and its SOUTH right-of-way line at y=3685.1..3686.0, a separation of 244.8 px which at sheet 2's 3.0586 px/ft is 80.05 ft, exactly the printed '80'' (label bbox x 2890-2921, y 3540-3586, inside the corridor). Sheet 2 then continues 239.9 px (78.4 ft) south of that south line to its content edge at y~3925, drawing there ONLY block-outline stubs, the railroad fan, the wharf edge and the lettering 'SEE SHEET No 1.' plus the draughtsman's signature 'G.H.G. 3.27.89'. Sheet 1's paper/content begins at y~40 and its 22nd Street SOUTH right-of-way line fits at y=139.95 (x=2606) falling to 137.90 (x=2976), so sheet 1 shows only 99.9 px (32.9 ft) of the 22nd St roadway north of that line and NO part of the north right-of-way line (which would fall at sheet 1 y~-105, off the paper). COMMON GROUND is therefore sheet 1 y 40-378 <-> sheet 2 y 3586-3925, a band 340 px = 112 ft deep, straddling the south right-of-way line of 22nd Street. This confirms the first pass's ~105 ft / ~320 px estimate to within ~7 ft. Within that band the ONLY horizontal ground line drawn on both plates is that single south right-of-way line, so every usable correspondence is an intersection of that one line with a vertical, and the control is unavoidably near-collinear (594 px of x-spread against 2.8 px of y-spread). Sheet 1 additionally draws, inside the band, a corrugated-iron WARE HOUSE (outer NW corner ~(2402,225.5), east edge ~x2594) and a 10-inch water main with a fire plug; sheet 2 draws none of those. Sheet 2 additionally draws the south right-of-way line east of Av. A (x 3137-3288); sheet 1 draws nothing at all east of x=3200 in the band - bare paper out to the deckle edge at x~3345. Self-check transform quoted below maps sheet 2 (b) into the sheet 1 (a) pixel frame.",
+  "correspondences": [
+    {
+      "feature": "North-WEST corner of block 742 (J. M. Heiskell's wood yard): the west property line of block 742 meeting the SOUTH right-of-way line of 22nd Street. Sheet 1: vertical fitted over y 145-300 (slope -0.0065 dx/dy, fit rms 0.16 px) crossed with the right-of-way line fitted over x 2645-2760 (slope -0.0039, rms 0.24). Sheet 2: vertical fitted over y 3690-3760 and 3700-3850 (rms 0.07-0.08) crossed with the right-of-way line fitted over x 2598-2690 (slope +0.0041, rms 0.07).",
+      "why_unambiguous": "It is a true L-corner on BOTH plates: on each sheet the horizontal right-of-way line terminates here and the vertical property line begins here and runs south. It is the westernmost block corner drawn on either plate at this seam - west of it both plates show only wharf/water content with no block corner for over 300 px. The street is named on both plates ('22ND STREET.' on sheet 1 at y 102-126; '22ND ST.' with '80'' on sheet 2) and each plate prints the reciprocal continuation note across the seam ('SEE SHEET No. 2.' on sheet 1 at y 73-94; 'SEE SHEET No 1.' on sheet 2 at y 3705-3729). A one-block error is impossible: the next corner south on sheet 1 is 23rd or Tremont St, ~900 px away and not drawn on sheet 2, and the next corner north on sheet 2 is the north side of 22nd St at y=3440.7, which is off sheet 1's paper. Independent corroboration: after fixing the transform on this corner and the next one, sheet 2's west property line of block 742 maps onto sheet 1's own west property line to within 0.13-0.17 px over the full 200 px height of the band.",
+      "a_x": 2606.18,
+      "a_y": 139.95,
+      "b_x": 2552.39,
+      "b_y": 3685.06,
+      "confidence": "high",
+      "uncertainty_px": 1.5,
+      "category": "block corner"
+    },
+    {
+      "feature": "North-EAST corner of block 742: block 742's east property line, which is the WEST right-of-way line of Av. A or Water E., meeting the SOUTH right-of-way line of 22nd Street. Sheet 1: vertical fitted over y 145-190 and y 190-360 (rms 0.12) crossed with the right-of-way line fitted over x 2880-2965 (slope -0.0040, rms 0.23). Sheet 2: vertical fitted over y 3690-3706 and y 3740-3870 (rms 0.07-0.08) crossed with the right-of-way line fitted over x 2875-2918 (rms 0.10).",
+      "why_unambiguous": "Again a true L-corner on both plates - the drawn right-of-way line stops dead here and the property line turns south. The block frontage from the previous point measures 369.9 px on sheet 1 and 370.9 px on sheet 2, agreeing to 0.27 percent, which is inside the difference between the two printed scale bars (3.0336 vs 3.0586 px/ft, 0.82 percent). Immediately east of this corner both plates open a corridor and both letter it '70'' (sheet 1 label bbox x 3090-3132 y 140-179; sheet 2 label bbox x 3040-3083 y 3660-3719), and sheet 1 letters the corridor itself 'AV. A OR WATER E.' vertically at x~3060-3090 further south. Sheet 2's corridor measures 215.4 px = 70.4 ft against that printed 70', so the identification is confirmed by the printed figure, not just by pattern.",
+      "a_x": 2976.07,
+      "a_y": 137.90,
+      "b_x": 2923.32,
+      "b_y": 3685.93,
+      "confidence": "high",
+      "uncertainty_px": 1.5,
+      "category": "block corner"
+    },
+    {
+      "feature": "EAST right-of-way line of Av. A or Water E. at the SOUTH right-of-way line of 22nd Street. Sheet 2: a true drawn L-corner (vertical fitted y 3690-3760 / 3700-3850, x 3137.5-3139.0; horizontal fitted x 3145-3280, rms 0.09-0.11) - this is the north-west corner of the block east of Av. A, south of 22nd St. Sheet 1: the same avenue line IS drawn (near-vertical, fit rms 0.10-0.15, x=3200.58 at y=136.6) but the 22nd St right-of-way line is NOT drawn east of block 742, so the a_y given here is that line's own fitted slope extrapolated 224 px east of its last dash. The physical mark on sheet 1 is the line's top terminus, whose ink starts at y=133.5, a draughting overrun of 3.6 px north of the extrapolated right-of-way.",
+      "why_unambiguous": "It is the only structural vertical east of block 742 on either plate at this seam (verified by a full column census at the seam line on both plates: sheet 1 has nothing between x=3080 and the deckle edge at x~3345 except this line and the '70'' glyphs; sheet 2 has nothing between x=3023 and x=3288 except this line and the '70''/'No 1.' glyphs). Both plates bracket it identically - '70'' to its west, the 10-inch water main and its plug to its north. LOW CONFIDENCE, retained at low weight: the two plates disagree about where it belongs. Sheet 1 draws Av. A 224.4 px wide (73.97 ft at 3.0336 px/ft) whereas sheet 2 draws it 215.4 px wide (70.4 ft at 3.0586); the printed '70'' on BOTH plates says sheet 2 is right and sheet 1 has drawn the avenue about 4 ft too wide. The point therefore carries a ~9 px x-residual that is a real cartographic disagreement, not a measurement error.",
+      "a_x": 3200.58,
+      "a_y": 137.10,
+      "b_x": 3138.70,
+      "b_y": 3685.30,
+      "confidence": "low",
+      "uncertainty_px": 8.0,
+      "category": "property line intersection"
+    }
+  ],
+  "self_check_similarity": {
+    "direction": "maps sheet 2 (b) into the sheet 1 (a) pixel frame: a = s*R(theta)*b + (tx,ty)",
+    "scale": 0.99902,
+    "rotation_deg": -0.4348,
+    "tx": 28.24,
+    "ty": -3522.08,
+    "rms_px": 5.19,
+    "max_px": 8.97,
+    "outliers": [
+      "Av. A east right-of-way line at 22nd St: residual (+8.86, +1.38) px = 8.97 px. Retained deliberately at uncertainty_px 8.0 rather than deleted, because the residual is a genuine plate disagreement about the width of Av. A (sheet 1 draws 73.97 ft, sheet 2 draws 70.4 ft, printed figure on both is 70') and not a mis-identification. It carries about 3.5 percent of the total weight, so it barely moves the solution but does give the seam a non-degenerate residual."
+    ],
+    "per_point_residual_px": {
+      "NW corner block 742": 0.18,
+      "NE corner block 742": 0.50,
+      "Av A east ROW x 22nd St S ROW": 8.97
+    },
+    "notes": "The weighted 3-point solve is quoted above. The 2-corner-only solve (which is exactly determined) gives scale 0.99721, rotation -0.4519 deg, tx 32.01, ty -3514.63 and leaves the Av. A point at 9.86 px. An EQUAL-weight 3-point solve is untrustworthy here - it returns scale 1.01199, which is 2 percent away from the scale-bar ratio 0.99183 - because the three points are effectively collinear (594 px of x-spread, 2.8 px of y-spread) so the bad point's along-line error is absorbed almost entirely into scale. This is the single most important caveat on this seam. The rotation is also weakly determined: it rests on a 2.05 px y-difference over a 369.9 px baseline, so with 1.5 px corner uncertainty the rotation is only good to about +/-0.33 deg, which is +/-5.8 px at 1000 px from the seam. Independent corroboration that the POSITION (not the rotation) is sound: after the 2-corner fit, sheet 2's west property line of block 742 falls on sheet 1's own west property line to within 0.13-0.17 px over the whole 200 px depth of the band; the east property line agrees to 0.36 px at the seam but drifts to 2.75 px at the band's south edge (freehand wobble in one or both plates)."
+  },
+  "rejected_candidates": [
+    {
+      "feature": "Fire plug / 10-inch water-pipe valve (blue disc) in 22nd Street, and the '10\" W. PIPE' dashed main",
+      "reason": "NOT a correspondence at all - the two plates' plugs are not even mutually visible. Sheet 1's disc outline centres at (3178.5, 77.0), i.e. 63 px (21 ft) north of the south right-of-way line, in the SOUTH half of the 80-ft street. Sheet 2's disc outline centres at (3144, 3470), i.e. 29 px (9.5 ft) south of the NORTH right-of-way line, in the NORTH half. Mapping sheet 2's disc through the two-corner similarity puts it at sheet 1 (3194.4, -79.2) - 79 px ABOVE sheet 1's paper edge, off the sheet. Residual against sheet 1's own disc would be 157 px (51.8 ft), almost all in y. The dashed main behaves the same way: sheet 1 draws it at y~91/96 (mapping to sheet 2 y~3637/3642) while sheet 2 draws it at y~3500/3504 (mapping to sheet 1 y~-45). A blue-disc scan of the whole band on both plates found exactly one disc on sheet 1 and none at all on sheet 2 within the shared band. Recorded here for the record with category 'fire plug'; pairing them would inject a 157 px blunder.",
+      "category": "fire plug"
+    },
+    {
+      "feature": "Wharf / bulkhead front - the solid black line at the east edge of the blue water wash",
+      "reason": "Same feature semantically, but 55.8 px (18.4 ft) apart. Measured at the shared right-of-way line: sheet 1 x=2292.93, sheet 2 x=2182.81; sheet 2's line maps to sheet 1 x=2237.2, leaving +55.8 px. Cross-checks confirm the plates simply drew the harbour edge differently rather than that I mismatched lines: the blue water wash is 48 px wide on sheet 1 and 28 px on sheet 2, and the pattern of the three lines in this zone does not correspond either - in the sheet 1 frame sheet 1 has lines at 2292.9 / 2297.8 / 2378.9 (spacings 4.9 and 81.1) while sheet 2's map to 2237.2 / 2255.0 / 2352 (spacings 17.8 and 97). Rejected."
+    },
+    {
+      "feature": "Dashed platform / wood-unloaded edge lines flanking the wharf",
+      "reason": "The dashed line immediately east of the bulkhead: sheet 1 x=2297.76, sheet 2 x=2200.69 mapping to sheet 1 x=2255.0, residual 42.7 px (14 ft). The next dashed line east: sheet 1 x=2378.9 versus sheet 2's ~2298 mapping to ~2352, residual ~27 px. Sheet 1 has a further dashed line at x=2700.1 INSIDE block 742 which sheet 2 does not draw at all (sheet 2's column census over x 2600-2900 in the band finds only lettering). Rejected. Note also that no dashed AWNING line exists on this seam to be confused with a property line - a row census of both plates through the whole band found no horizontal line other than the single right-of-way line; this is an industrial wharf block with no verandahs."
+    },
+    {
+      "feature": "Railroad tracks crossing 22nd Street (the yard fan)",
+      "reason": "Measured all four near-vertical rails at the shared right-of-way line and mapped sheet 2 into sheet 1's frame: rail a sheet 1 2620.81 vs sheet 2 mapped 2628.06 (-7.25 px); rail b 2635.95 vs 2640.36 (-4.41); rail c 3063.56 vs 3062.68 (+0.88); rail d 3079.71 vs 3075.18 (+4.53). Spread 11.8 px on features whose corners register to 0.5 px. The steeply-slanted turnout tracks are worse still - the two plates' fans are offset by roughly 30-40 px where they cross the band, and sheet 1 shows steep rails crossing the right-of-way line at x~2803/2822/2919/2933 that sheet 2 does not reproduce in the corresponding places. No two tracks cross each other within the shared band on both plates (the near-vertical pairs diverge by only 0.001 dx/dy, so their crossings lie tens of thousands of pixels away). Rejected: freehand, divergent, and exactly the repetitive parallel content that produces confident one-track-off matches."
+    },
+    {
+      "feature": "Line termini - the ends of the drawn 22nd St south right-of-way line",
+      "reason": "Not matched marks, because the two draughtsmen finished the line differently. Sheet 1 overruns its corners: the line's ink starts at x=2602 against a corner at 2606.18 (4.2 px west) and ends at x~2981 against a corner at 2976.07 (about 5 px east; the further ink at 2985-2990 is a slanted track, verified at 16x). Sheet 2 does not overrun: its line starts at x=2551 against a corner at 2552.39 and ends at x=2925 against a corner at 2923.32. Using termini instead of fitted corners would therefore introduce a systematic 4-5 px bias. Sheet 2's far-east terminus at x=3288 has no counterpart at all - it maps to sheet 1 x~3341, where sheet 1 is bare paper (the deckle edge is at x~3345), so it is a neat-line cut, not a ground feature. Sheet 1's Av. A east line top terminus at y=133.5 is a 3.6 px overrun north of the projected right-of-way and is described inside correspondence 3 rather than used as a separate point."
+    },
+    {
+      "feature": "Corners of named company premises - J. M. Heiskell's wood yard, R. J. Willis & Bro.",
+      "reason": "Checked and none is usable. J. M. Heiskell IS lettered on both plates, but for DIFFERENT blocks: sheet 2 letters 'J.M. HEISKELL WOOD YARD.' in block 741 at y~3070-3140, which is NORTH of 22nd Street and maps to sheet 1 y~-540, far off the paper; sheet 1 letters 'J. M. HEISKELL. YARD.' in block 742 at y~400-720, which maps to sheet 2 y~3945-4265, past sheet 2's content edge at 3925. The yard's premises boundary in block 741 is bounded on the south by the NORTH right-of-way line of 22nd St, which is not on sheet 1 at all. R. J. Willis & Bro. is not in the band on either plate: on sheet 1 the '...BRO.' lettering sits at about y~2540, some 2400 px (790 ft) south of the seam line. The strip east of Av. A on sheet 1 within and below the band is a bare rectangle running from y=134 to y~1075 lettered only 'No. 9.' at y~900-1000 - there is no Willis lettering east of Av. A on sheet 1, contrary to the first pass's description of that column."
+    },
+    {
+      "feature": "Building corners on the north frontage of block 742 and east of Av. A",
+      "reason": "There are none in the band. Sheet 1's block 742 is empty wood-pile yard for its first ~380 px south of the right-of-way line (the '1 Off.' and '1 Gro. Feed' sheds are at y~520-620, past the band and in any case not drawn on sheet 2), and a row census of sheet 2 over x 2600-2920, y 3690-3925 returns nothing but the 'SEE SHEET' lettering. East of Av. A, sheet 1 draws no building in the band and sheet 2 draws only the right-of-way stub."
+    },
+    {
+      "feature": "The corrugated-iron WARE HOUSE on posts, sheet 1",
+      "reason": "Its outer north-west corner is a crisp, well-defined mark on sheet 1 at about (2402, 225.5) and it lies INSIDE the shared band - it maps to sheet 2 (2348, 3771), well within sheet 2's drawn area (which reaches y~3925). But sheet 2 simply does not draw it: a column census of sheet 2 over x 2310-2545 through the whole band returns zero ink, confirmed visually at 3x. Sheet 2 truncates its drawing at the 22nd Street right-of-way and hands everything south of it to sheet 1. Rejected for absence, not for ambiguity."
+    },
+    {
+      "feature": "The near-vertical line at sheet 1 x~3348 in the band",
+      "reason": "Looked like a structural line in the column census (45-47 ink rows out of 50) but is the paper deckle edge / scan shadow at sheet 1's right margin, verified at 8x. Not a map feature."
+    },
+    {
+      "feature": "A second point taken further down a property line already used (e.g. block 742's west line at the band's south edge)",
+      "reason": "Deliberately not fabricated. A point on a line is only constrained perpendicular to that line; placing a second station along it requires the transform one is trying to solve, so it would add apparent redundancy while injecting an along-line error. The lines are not straight enough to justify it either: block 742's east line changes fitted slope from +0.016 to -0.011 dx/dy between spans on sheet 1 and from -0.005 to +0.012 on sheet 2, about 0.7-1.2 degrees of freehand wobble each."
+    }
+  ],
+  "comparison_with_first_pass": {
+    "per_point_disagreement_px": {
+      "P1 NW corner block 742 - sheet 1": 0.19,
+      "P1 NW corner block 742 - sheet 2": 0.46,
+      "P2 NE corner block 742 - sheet 1": 0.12,
+      "P2 NE corner block 742 - sheet 2": 0.36,
+      "P3 Av A east ROW - sheet 1": 1.24,
+      "P3 Av A east ROW - sheet 2": 0.99,
+      "mean_over_all_six_readings": 0.56,
+      "max_over_all_six_readings": 1.24
+    },
+    "verdict": "CONFIRMED, independently. Working from the imagery without reading the first pass, I arrived at the same three features, in the same order, with the same semantics, and my six coordinate readings differ from the first pass's by 0.12-1.24 px (mean 0.56 px). Both corners agree to under half a pixel on both plates. I also independently reproduced the first pass's two headline diagnostics: sheet 1 draws Av. A about 9 px too wide (I measure 224.4 px vs sheet 2's 215.4 px, printed '70'' on both), and the fire plug is displaced by about 150 px (I measure 157 px). This seam's control is real and correctly identified.",
+    "notes": "Where I differ from the first pass. (1) UNCERTAINTIES: the first pass gave both corners uncertainty_px 5.0; I give 1.5. The corners are demonstrably better than 5 px - my fitted intersections repeat to 0.3-0.5 px across independent fit spans, the two passes agree to under 0.5 px, and after the two-corner fit sheet 2's west property line of block 742 lands on sheet 1's own to within 0.17 px along the whole 200 px depth of the band. Down-weighting these to 5 px throws away real precision on a seam that has almost nothing else. (2) I widen the Av. A point's declared confidence to 'low' but tighten its sigma from 12 to 8, because the 9 px offset is a repeatable, explainable plate error (Av. A drawn 4 ft too wide on sheet 1, contradicted by the printed 70' on sheet 1 itself) rather than a random measurement error. (3) The first pass's boundary_line block interpolates five stations along block 742's frontage 'matched by fractional distance'. Those are not independent observations - they are the same two corners re-expressed - and I have not reproduced them; they would inflate the apparent redundancy of the solve. (4) Factual correction: the first pass describes sheet 1's column east of Av. A as the 'SEE SHEET No 1 / R.J. Willis & Bro.' column. Sheet 1 letters no such name there; that strip is a bare rectangle from y=134 to y~1075 lettered 'No. 9.', and the Willis lettering is ~2400 px further south. This does not change any coordinate. (5) The first pass quotes ~3.07 px/ft for both sheets; the plates' own scale bars differ measurably (3.0336 on sheet 1, 3.0586 on sheet 2, a 0.82 percent difference), which matters because the 0.27 percent block-frontage agreement I measure sits inside that, and because an equal-weight three-point solve on this collinear control returns a 1.2 percent scale error. (6) The first pass reports sheet 1 showing ~90 px of roadway north of the line; I measure 99.9 px from content edge y~40, and the common band 340 px / 112 ft rather than 320 px / 105 ft."
+  },
+  "is_this_all_the_control_that_exists": "yes",
+  "evidence_for_that": "Three points is genuinely all this seam offers, and the reason is structural rather than a failure of searching. I ran an exhaustive census rather than spot checks: (a) a row census of both plates across the whole common band found exactly ONE horizontal ground line drawn on both - the 22nd Street south right-of-way line. Sheet 1 has no other horizontal in y 40-395 anywhere in the right panel except the warehouse's north edge at y=225.5, which sheet 2 does not draw; sheet 2 has no other horizontal in y 3586-3925 except lettering and the draughtsman's signature. (b) A column census of both plates at the seam line, repeated in a second lettering-free band 100 px away, found the SAME seven structural verticals on each plate and no others: block 742's west line, two rails, block 742's east line, two rails, Av. A's east line. Three of those seven are the property lines I used; the other four are railroad rails that disagree by up to 7.3 px. (c) Every intersection of a vertical with the one shared horizontal has therefore been enumerated and either used or rejected with numbers. (d) The band contains no shared building: sheet 2 stops drawing at the 22nd Street right-of-way and shows only block-outline stubs, rails, the wharf edge and 'SEE SHEET No 1.' lettering below it, so the warehouse, the sheds, the depot and the wood-yard interior are all one-sided. (e) The two candidate feature classes that DO appear on both plates - the harbour edge and the water main with its plug - disagree by 55.8 px and 157 px respectively, and in the plug's case sheet 2's symbol does not even fall on sheet 1's paper. (f) West of x~2150 on sheet 2 the band is completely blank ink-free paper, and east of x~3200 on sheet 1 the same; there is no content out there to find. The practical consequence: this seam can be measured better than 5 px in POSITION - I would put the two block corners at 1.5 px, and the two independent passes agreeing to 0.5 px supports that - but it cannot be measured better than about 0.3 degrees in ROTATION, because the entire usable control is collinear along one street line with only 2.8 px of perpendicular spread. Any downstream solve should weight these two corners heavily for translation and scale, treat the rotation as loosely constrained, and not expect the REVIEW grade to be lifted by finding more points here, because there are none."
+}
