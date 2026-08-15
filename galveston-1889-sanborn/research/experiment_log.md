@@ -273,3 +273,126 @@ direction-constrained solution collapsed the scale spread to 0.83%, which is
 almost exactly the 0.68% the scale bars independently show. The direction
 evidence was pulling toward the truth; the intersection positions were pulling
 away from it.
+
+---
+
+## 15. All eight scale bars, measured twice — and why the result does NOT do what entry 14 hoped
+
+Entry 14 measured the printed "Scale of Feet" bar on three sheets and concluded
+that a common-scale prior on the sheet bodies was justified. All eight sheets
+have now been measured, twice, by two independent procedures:
+
+* **pass A** — one examiner per sheet, reading tick centres by eye at 16–30×
+  zoom on a 1-source-pixel grid overlay;
+* **pass B** — one reviewer over all eight sheets with a single automated
+  method (morphological location of the bar, robust line fit to its top edge to
+  absorb tilt, ink integration in an 8-row band above that edge so the numerals
+  and bar body are excluded, background-subtracted intensity centroid per tick).
+
+The two passes agree to **0.10 % or better on every sheet**. The bar itself is
+measured about as well as this material allows.
+
+| sheet | 1 | 2 | 7 | 8 | 9 | 10 | 27 | 29 |
+|---|---|---|---|---|---|---|---|---|
+| adopted px/ft | 3.0297 | 3.0576 | 3.0570 | 3.0269 | 3.0295 | 3.0487 | 3.0735 | 3.0397 |
+
+Mean 3.0453 px/ft, spread **1.53 %**, every sheet ~1–2.5 % above the nominal
+3.000 px/ft of a 1 in = 100 ft plate scanned at 300 dpi. (Entry 14's three
+numbers were 0.5–0.7 % high against these; the coarser method, not new sheets.)
+
+**The bar is one engraving, reused.** Normalising each sheet's four 50-ft
+interval lengths by their own mean gives the *same* irregular pattern on all
+eight sheets to ±0.3 %: ≈ [0.999, 1.002, 1.008, 0.991]. That is a shared
+engraving defect reproduced on every plate, not per-sheet measurement noise. So
+differences in measured px/ft between sheets are real differences in how the
+*page* was reproduced and scanned.
+
+**And that is exactly why it cannot be used as a prior on the map body.**
+Compare the bar against a long baseline measured in the drawing itself:
+
+| pair | body scale ratio | scale-bar ratio | contradiction |
+|---|---|---|---|
+| S9 / S7 | 1.0161 (Av. B → Av. D, 1976 px) | 0.991 | **2.65 %** |
+| S29 / S27 | 1.00075 (6 curb/jamb x, rms 2.4 px) | 0.989 | **1.24 %** |
+
+The bar and the body disagree, and they disagree in *opposite directions* on
+S7/S9. The bar measures page reproduction; the body measures what the
+draughtsman drew. These plates were drawn by hand, and a block laid out as
+"300 ft" is not 300.0 ft on every plate.
+
+**Adopted:** the per-sheet similarity scale stays FREE, determined by verified
+correspondences. No common-scale prior, no scale-bar prior. Entry 14's
+corollary — that the direction-constrained solution's 0.83 % scale spread
+"matched" the bars — is withdrawn: it matched a quantity that turns out to
+measure something else, on three sheets out of eight.
+
+**Retained from entry 14:** the scans are ordinary, and nothing about them is
+physically impossible. That much the bars do establish.
+
+---
+
+## 16. Semantic identification, then measurement — the approach that finally worked
+
+Every automatic correspondence method tried on this material failed the same
+way (entries 5, 11, 12): on a repeating street grid, a matcher that searches
+finds a confident wrong answer, and adding more of its output makes the fit
+worse. The replacement is the opposite order of operations:
+
+1. **identify** the feature from printed evidence — a lettered avenue name, a
+   block number, a water-main diameter and the exact point where the main
+   changes size, a named building, the terminal end of the drawn area, a
+   corridor width that is 70 ft where its neighbours are 20 ft;
+2. **argue** why it cannot be one block off, in writing, per point;
+3. **measure** it sub-pixel on a 1-source-pixel grid overlay;
+4. **state an honest σ** for that measurement.
+
+Result on the seams re-measured this way, against the same seams under the old
+automatic control:
+
+| seam | old median | new median (geometric control) |
+|---|---|---|
+| S7 \| S9 | 22.99 px FAIL | **4.72 px** |
+| S10 \| S9 | 36.05 px FAIL | **2.97 px** |
+| S27 \| S29 | no shared points at all | 16 correspondences at ±4 px |
+| S1_main \| S2 | no shared points at all | 3 correspondences at ±5 px |
+
+The number of points did not go up much. Their *identification* went from
+searched to argued.
+
+---
+
+## 17. Two classes of control, and grading a seam on the wrong one condemns a correct map
+
+Fire plugs looked like ideal tie points: small, discrete, unambiguous symbols
+printed on both plates of a seam. They are not. Measured on S7 | S9:
+
+| point | σ stated | residual |
+|---|---|---|
+| block corner, Strand × 22nd, SW | 3.5 px | 0.77 px |
+| block corner, Strand × 22nd, NE | 3.0 px | 1.97 px |
+| water-main tee, 6-in. alley main | 5.0 px | 2.35 px |
+| **fire plug, west end of 22nd St** | 10 px | **37.31 px** |
+| **fire plug, east of the 6-in. main** | 14 px | **46.38 px** |
+
+The Sanborn draughtsman placed a hydrant symbol by eye *somewhere in the
+street*; he did not survey it. The same plug is drawn up to 46 px — about
+15 ft — apart on two plates of one edition. No transform can remove that, and
+it is not a defect in the reconstruction.
+
+Including these in the seam grade turned a genuinely good seam into a FAIL
+(median 5.39 px, max 46.38 px). Control is therefore split:
+
+* **geometric** — corners, property lines, pipe junctions, termini: places
+  where two drawn *lines* meet. Both draughtsmen were copying one survey, so
+  these must agree. Seams are graded on these alone.
+* **symbol** — plugs, hydrants, valve discs. Kept in the solve at their honest
+  (large) σ, where 1/σ² makes them nearly weightless, and reported separately
+  as *drafting scatter*. Never graded.
+
+With the split, the same S7 | S9 solve reads median 4.72 px / max 7.34 px on
+7 geometric points, with the 5 symbols reported alongside as 9/46 px scatter.
+The mosaic cuts at the shared street centreline, so only one plate's hydrant
+survives and the scatter is never visible in the output.
+
+This is the same lesson as entries 6 and 12 in a third form: **the residual is
+only as meaningful as the observation it is computed from.**

@@ -1,0 +1,309 @@
+{
+ "seam": "S27|S29",
+ "overlap_exists": "yes",
+ "correspondences": [
+  {
+   "feature": "West corner of the 20-ft alley mouth where it meets the NORTH (sheet-29 side) line of 22nd Street - the alley carrying the 20-in. water main",
+   "why_unambiguous": "The 20-ft mid-block alley between Av. H East and Av. I East is the ONLY place on either sheet where a 20-inch water main runs north-south, and the 22nd St main changes diameter from 16 in. (west) to 12 in. (east) at exactly this junction, with a hydrant beside it. Both sheets print all four annotations. One block west is a 70-ft named avenue (Av. H East); one block east is Av. I East. No other alley crossing looks like this.",
+   "sheet_a": "27",
+   "a_x": 1606.45,
+   "a_y": 116.73,
+   "sheet_b": "29",
+   "b_x": 1669.67,
+   "b_y": 3629.85,
+   "confidence": "high",
+   "uncertainty_px": 4
+  },
+  {
+   "feature": "East corner of the same 20-ft alley mouth on the NORTH line of 22nd Street",
+   "why_unambiguous": "The 20-ft mid-block alley between Av. H East and Av. I East is the ONLY place on either sheet where a 20-inch water main runs north-south, and the 22nd St main changes diameter from 16 in. (west) to 12 in. (east) at exactly this junction, with a hydrant beside it. Both sheets print all four annotations. One block west is a 70-ft named avenue (Av. H East); one block east is Av. I East. No other alley crossing looks like this.",
+   "sheet_a": "27",
+   "a_x": 1662.02,
+   "a_y": 116.93,
+   "sheet_b": "29",
+   "b_x": 1728.63,
+   "b_y": 3629.31,
+   "confidence": "high",
+   "uncertainty_px": 4
+  },
+  {
+   "feature": "West corner of the same alley line where it meets the SOUTH (sheet-27 side) line of 22nd Street",
+   "why_unambiguous": "The 20-ft mid-block alley between Av. H East and Av. I East is the ONLY place on either sheet where a 20-inch water main runs north-south, and the 22nd St main changes diameter from 16 in. (west) to 12 in. (east) at exactly this junction, with a hydrant beside it. Both sheets print all four annotations. One block west is a 70-ft named avenue (Av. H East); one block east is Av. I East. No other alley crossing looks like this.",
+   "sheet_a": "27",
+   "a_x": 1602.48,
+   "a_y": 365.55,
+   "sheet_b": "29",
+   "b_x": 1671.4,
+   "b_y": 3878.16,
+   "confidence": "high",
+   "uncertainty_px": 4
+  },
+  {
+   "feature": "East corner of the same alley line on the SOUTH line of 22nd Street",
+   "why_unambiguous": "The 20-ft mid-block alley between Av. H East and Av. I East is the ONLY place on either sheet where a 20-inch water main runs north-south, and the 22nd St main changes diameter from 16 in. (west) to 12 in. (east) at exactly this junction, with a hydrant beside it. Both sheets print all four annotations. One block west is a 70-ft named avenue (Av. H East); one block east is Av. I East. No other alley crossing looks like this.",
+   "sheet_a": "27",
+   "a_x": 1659.78,
+   "a_y": 365.73,
+   "sheet_b": "29",
+   "b_x": 1731.75,
+   "b_y": 3877.51,
+   "confidence": "high",
+   "uncertainty_px": 4
+  },
+  {
+   "feature": "North-west corner of the Av. H East / 22nd St intersection = south-east corner of the Ball High School block (Block 321)",
+   "why_unambiguous": "Av. H East is a named, labelled 70-ft avenue (both sheets print '70'' in its mouth) - five times wider than the 20-ft alleys, so it cannot be confused with an alley. It is the FIRST of only two interior avenue crossings along the shared seam; one block east is Av. I East, 1050 px away. The block on the up-page/north-west side of this corner is the Ball High School block (321) and the block north-east is the Synagogue block (261) - both unmistakable.",
+   "sheet_a": "27",
+   "a_x": 1020.25,
+   "a_y": 114.63,
+   "sheet_b": "29",
+   "b_x": 1084.03,
+   "b_y": 3635.24,
+   "confidence": "high",
+   "uncertainty_px": 4
+  },
+  {
+   "feature": "North-east corner of the Av. H East / 22nd St intersection = south-west corner of the Synagogue block (Block 261)",
+   "why_unambiguous": "Av. H East is a named, labelled 70-ft avenue (both sheets print '70'' in its mouth) - five times wider than the 20-ft alleys, so it cannot be confused with an alley. It is the FIRST of only two interior avenue crossings along the shared seam; one block east is Av. I East, 1050 px away. The block on the up-page/north-west side of this corner is the Ball High School block (321) and the block north-east is the Synagogue block (261) - both unmistakable.",
+   "sheet_a": "27",
+   "a_x": 1226.59,
+   "a_y": 115.37,
+   "sheet_b": "29",
+   "b_x": 1297.51,
+   "b_y": 3633.27,
+   "confidence": "high",
+   "uncertainty_px": 6
+  },
+  {
+   "feature": "South-west corner of the Av. H East / 22nd St intersection = north-east corner of Block 322 (German Lutheran Church block)",
+   "why_unambiguous": "Av. H East is a named, labelled 70-ft avenue (both sheets print '70'' in its mouth) - five times wider than the 20-ft alleys, so it cannot be confused with an alley. It is the FIRST of only two interior avenue crossings along the shared seam; one block east is Av. I East, 1050 px away. The block on the up-page/north-west side of this corner is the Ball High School block (321) and the block north-east is the Synagogue block (261) - both unmistakable.",
+   "sheet_a": "27",
+   "a_x": 1018.51,
+   "a_y": 363.77,
+   "sheet_b": "29",
+   "b_x": 1087.33,
+   "b_y": 3884.49,
+   "confidence": "high",
+   "uncertainty_px": 4
+  },
+  {
+   "feature": "South-east corner of the Av. H East / 22nd St intersection = north-west corner of Block 262",
+   "why_unambiguous": "Av. H East is a named, labelled 70-ft avenue (both sheets print '70'' in its mouth) - five times wider than the 20-ft alleys, so it cannot be confused with an alley. It is the FIRST of only two interior avenue crossings along the shared seam; one block east is Av. I East, 1050 px away. The block on the up-page/north-west side of this corner is the Ball High School block (321) and the block north-east is the Synagogue block (261) - both unmistakable.",
+   "sheet_a": "27",
+   "a_x": 1231.84,
+   "a_y": 364.42,
+   "sheet_b": "29",
+   "b_x": 1298.72,
+   "b_y": 3882.2,
+   "confidence": "high",
+   "uncertainty_px": 4
+  },
+  {
+   "feature": "West corner of the 20-ft alley mouth east of Av. I East, on the NORTH line of 22nd Street",
+   "why_unambiguous": "The only alley between Av. I East and Av. J (E. Broadway); it carries a 6-in. main, not the 20-in. main of the middle alley, and it is the last alley before the drawn street ends at Av. J. On sheet 27 the 'No 29.' continuation legend sits directly above this alley mouth; on sheet 29 the west wall of the Artillery Hall building and house number 622 sit beside it.",
+   "sheet_a": "27",
+   "a_x": 2612.69,
+   "a_y": 120.33,
+   "sheet_b": "29",
+   "b_x": 2680.56,
+   "b_y": 3620.55,
+   "confidence": "high",
+   "uncertainty_px": 4
+  },
+  {
+   "feature": "East corner of the same alley mouth on the NORTH line of 22nd Street",
+   "why_unambiguous": "The only alley between Av. I East and Av. J (E. Broadway); it carries a 6-in. main, not the 20-in. main of the middle alley, and it is the last alley before the drawn street ends at Av. J. On sheet 27 the 'No 29.' continuation legend sits directly above this alley mouth; on sheet 29 the west wall of the Artillery Hall building and house number 622 sit beside it.",
+   "sheet_a": "27",
+   "a_x": 2670.56,
+   "a_y": 120.54,
+   "sheet_b": "29",
+   "b_x": 2740.2,
+   "b_y": 3620.0,
+   "confidence": "high",
+   "uncertainty_px": 4
+  },
+  {
+   "feature": "West corner of the same alley line on the SOUTH line of 22nd Street",
+   "why_unambiguous": "The only alley between Av. I East and Av. J (E. Broadway); it carries a 6-in. main, not the 20-in. main of the middle alley, and it is the last alley before the drawn street ends at Av. J. On sheet 27 the 'No 29.' continuation legend sits directly above this alley mouth; on sheet 29 the west wall of the Artillery Hall building and house number 622 sit beside it.",
+   "sheet_a": "27",
+   "a_x": 2611.26,
+   "a_y": 368.63,
+   "sheet_b": "29",
+   "b_x": 2685.54,
+   "b_y": 3867.17,
+   "confidence": "high",
+   "uncertainty_px": 4
+  },
+  {
+   "feature": "East corner of the same alley line on the SOUTH line of 22nd Street",
+   "why_unambiguous": "The only alley between Av. I East and Av. J (E. Broadway); it carries a 6-in. main, not the 20-in. main of the middle alley, and it is the last alley before the drawn street ends at Av. J. On sheet 27 the 'No 29.' continuation legend sits directly above this alley mouth; on sheet 29 the west wall of the Artillery Hall building and house number 622 sit beside it.",
+   "sheet_a": "27",
+   "a_x": 2668.23,
+   "a_y": 368.81,
+   "sheet_b": "29",
+   "b_x": 2744.1,
+   "b_y": 3866.53,
+   "confidence": "high",
+   "uncertainty_px": 5
+  },
+  {
+   "feature": "North-west terminus of the drawn 22nd St: corner of the east line of Av. G (Winnie E.) with the NORTH line of 22nd St",
+   "why_unambiguous": "Terminal point: the west end of the drawn portion of 22nd St on BOTH sheets. There is no block further west, so it cannot be one block off.",
+   "sheet_a": "27",
+   "a_x": 221.9,
+   "a_y": 111.77,
+   "sheet_b": "29",
+   "b_x": 288.3,
+   "b_y": 3642.56,
+   "confidence": "high",
+   "uncertainty_px": 4
+  },
+  {
+   "feature": "South-west terminus: corner of the east line of Av. G (Winnie E.) with the SOUTH line of 22nd St",
+   "why_unambiguous": "Terminal point: the west end of the drawn portion of 22nd St on BOTH sheets. There is no block further west, so it cannot be one block off.",
+   "sheet_a": "27",
+   "a_x": 223.29,
+   "a_y": 361.34,
+   "sheet_b": "29",
+   "b_x": 291.5,
+   "b_y": 3893.12,
+   "confidence": "high",
+   "uncertainty_px": 4
+  },
+  {
+   "feature": "North-east terminus: corner of the west line of Av. J (E. Broadway) with the NORTH line of 22nd St",
+   "why_unambiguous": "Terminal point: the east end of the drawn portion of 22nd St on BOTH sheets ('80'' street-width label sits beside it on both). There is no block further east, so it cannot be one block off.",
+   "sheet_a": "27",
+   "a_x": 3039.52,
+   "a_y": 121.86,
+   "sheet_b": "29",
+   "b_x": 3109.96,
+   "b_y": 3616.6,
+   "confidence": "high",
+   "uncertainty_px": 4
+  },
+  {
+   "feature": "South-east terminus: corner of the west line of Av. J (E. Broadway) with the SOUTH line of 22nd St",
+   "why_unambiguous": "Terminal point: the east end of the drawn portion of 22nd St on BOTH sheets ('80'' street-width label sits beside it on both). There is no block further east, so it cannot be one block off.",
+   "sheet_a": "27",
+   "a_x": 3039.18,
+   "a_y": 369.94,
+   "sheet_b": "29",
+   "b_x": 3112.13,
+   "b_y": 3862.54,
+   "confidence": "high",
+   "uncertainty_px": 4
+  },
+  {
+   "feature": "Hydrant on the north side of 22nd St at the mid-block alley, beside the 20-in./16-in./12-in. water-main junction",
+   "why_unambiguous": "Exactly three hydrants are drawn along 22nd St on each sheet, in the same left-to-right pattern, each sitting just east of an alley water-pipe line on the north side of the street. NOTE: the hydrant SYMBOL is placed by eye and its position differs between the two sheets by up to 17 px - the corner points are far better. This particular one is pinned by the unique 20-in. main junction.",
+   "sheet_a": "27",
+   "a_x": 1664.7,
+   "a_y": 155.9,
+   "sheet_b": "29",
+   "b_x": 1749.4,
+   "b_y": 3674.4,
+   "confidence": "medium",
+   "uncertainty_px": 20
+  },
+  {
+   "feature": "Westernmost of the three hydrants on 22nd St, beside the 6-in. pipe line between Av. G and Av. H East",
+   "why_unambiguous": "Exactly three hydrants are drawn along 22nd St on each sheet, in the same left-to-right pattern, each sitting just east of an alley water-pipe line on the north side of the street. NOTE: the hydrant SYMBOL is placed by eye and its position differs between the two sheets by up to 17 px - the corner points are far better. Identified by ordinal position: it is the westernmost of exactly three, on both sheets.",
+   "sheet_a": "27",
+   "a_x": 661.6,
+   "a_y": 163.6,
+   "sheet_b": "29",
+   "b_x": 725.1,
+   "b_y": 3695.4,
+   "confidence": "medium",
+   "uncertainty_px": 20
+  },
+  {
+   "feature": "Easternmost of the three hydrants on 22nd St, beside the 6-in. alley main east of Av. I East",
+   "why_unambiguous": "Exactly three hydrants are drawn along 22nd St on each sheet, in the same left-to-right pattern, each sitting just east of an alley water-pipe line on the north side of the street. NOTE: the hydrant SYMBOL is placed by eye and its position differs between the two sheets by up to 17 px - the corner points are far better. Identified by ordinal position: it is the easternmost of exactly three, on both sheets.",
+   "sheet_a": "27",
+   "a_x": 2671.3,
+   "a_y": 163.1,
+   "sheet_b": "29",
+   "b_x": 2757.2,
+   "b_y": 3662.3,
+   "confidence": "medium",
+   "uncertainty_px": 20
+  }
+ ],
+ "boundary_line": {
+  "name": "22nd Street (shared edge; sheet 29 up-page/north of sheet 27) - centreline sampled midway between the two drawn street lines",
+  "visible_on_both": "yes",
+  "a_points": [
+   [
+    222.6,
+    236.6
+   ],
+   [
+    1019.4,
+    239.2
+   ],
+   [
+    1229.2,
+    239.9
+   ],
+   [
+    1632.7,
+    241.2
+   ],
+   [
+    2640.7,
+    244.6
+   ],
+   [
+    3039.3,
+    245.9
+   ]
+  ],
+  "b_points": [
+   [
+    289.9,
+    3767.8
+   ],
+   [
+    1085.7,
+    3759.9
+   ],
+   [
+    1298.1,
+    3757.7
+   ],
+   [
+    1700.4,
+    3753.7
+   ],
+   [
+    2712.6,
+    3743.6
+   ],
+   [
+    3111.0,
+    3739.6
+   ]
+  ]
+ },
+ "similarity_check": {
+  "M": [
+   [
+    1.001996724617418,
+    0.01338880816438683
+   ],
+   [
+    -0.01338880816438683,
+    1.001996724617418
+   ]
+  ],
+  "t": [
+   62.42982296631226,
+   3533.8406425220937
+  ],
+  "scale": 1.0020861721070182,
+  "rotation_deg": -0.7655479613097959
+ },
+ "crops_dir": "/home/user/claude-code/galveston-1889-sanborn/output/qc/manual_crops/"
+}

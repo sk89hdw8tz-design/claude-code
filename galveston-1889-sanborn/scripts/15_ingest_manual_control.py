@@ -1,0 +1,308 @@
+#!/usr/bin/env python3
+"""Ingest the semantically-identified, hand-measured seam control into one CSV.
+
+Every row here is a physical feature that a human-level reader IDENTIFIED on
+both sheets by its printed evidence -- lettered avenue names, block numbers,
+water-main diameters and the exact point where a main changes size, named
+buildings, terminal ends of the drawn area -- and only then measured.  Nothing
+in this file came from blind template matching, NCC or RANSAC; those were tried
+three ways on this material and are documented in research/experiment_log.md as
+producing confident *wrong* matches on the repeating street grid.
+
+Each row carries `uncertainty_px`, the observer's honest standard error for
+that point.  The adjustment weights by 1/sigma^2, so a hydrant symbol placed by
+eye at +/-20 px cannot outvote a lettered block corner at +/-3 px.
+
+Where a second, independent reviewer re-measured a point, the two measurements
+are AVERAGED and the uncertainty is inflated to at least 1.5x their
+disagreement, so a quiet difference of convention shows up as honest error
+rather than as false precision.
+
+Writes gcps/tiepoints_verified.csv and gcps/manual/workflow_results.json.
+"""
+from __future__ import annotations
+
+import csv
+import json
+import math
+import pathlib
+import sys
+
+ROOT = pathlib.Path(__file__).resolve().parent.parent
+MANUAL = ROOT / "gcps" / "manual"
+
+# sheet id as printed  ->  region id used throughout the pipeline
+REGION = {"1": "S1_main", "2": "S2", "7": "S7", "8": "S8",
+          "9": "S9", "10": "S10", "27": "S27", "29": "S29"}
+
+FIELDS = ["point_id", "sheet", "region", "role", "src_x", "src_y",
+          "ref_x", "ref_y", "ref_lon", "ref_lat", "street_a", "street_b",
+          "feature", "category", "control_class", "method", "confidence",
+          "selected_by", "uncertainty_px", "residual_px", "accepted", "note"]
+
+# Two classes of control, and they are NOT interchangeable.
+#
+#   geometric  a corner, a property line, a pipe junction -- a place where two
+#              drawn LINES meet.  Both draftsmen were copying the same survey,
+#              so these must agree, and a disagreement here is a real defect
+#              in the reconstruction.
+#
+#   symbol     a fire plug, hydrant or valve disc.  Sanborn draftsmen placed
+#              these by eye somewhere in the street, not by survey; the same
+#              plug is drawn up to ~45 px (15 ft) apart on two plates of one
+#              edition.  That is a fact about the 1889 source and no transform
+#              can remove it.  Symbol points stay in the solve at their honest
+#              (large) sigma, where they carry almost no weight, but they are
+#              EXCLUDED from seam grading -- grading a seam on them would
+#              condemn a correct reconstruction.  They are reported separately
+#              as drafting scatter.
+SYMBOL_WORDS = ("fire plug", "hydrant", "plug ", "valve")
+
+
+def control_class(category: str, feature: str) -> str:
+    hay = f"{category} {feature}".lower()
+    return "symbol" if any(w in hay for w in SYMBOL_WORDS) else "geometric"
+
+# --------------------------------------------------------------------------
+# Independent re-measurements from the reviewer audit, keyed by the substring
+# that identifies the correspondence in its own seam file.  Value is
+# (sheet_a_xy, sheet_b_xy) or None for a coordinate the reviewer did not read.
+# --------------------------------------------------------------------------
+RECONCILE = [
+    # seam, feature-substring, reviewer a (x,y), reviewer b (x,y), note
+    ("S1_main|S2", "North-west corner of block 742",
+     (2606.3, 140.3), (2551.0, 3686.3), ""),
+    ("S1_main|S2", "North-east corner of block 742",
+     (2979.5, 138.27), (2925.5, 3685.84),
+     "reviewer x ~3px right on BOTH sheets (threshold-crossing vs "
+     "last-solid-pixel convention); the differential agrees to 1px"),
+    ("S27|S29", "West corner of the 20-ft alley mouth where it meets the NORTH",
+     (1606.31, None), (1669.89, None), ""),
+    ("S27|S29", "East corner of the same 20-ft alley mouth on the NORTH",
+     (1662.20, None), (1729.64, None), ""),
+    ("S27|S29", "West corner of the 20-ft alley mouth east of Av. I East",
+     (2612.20, None), (2680.50, None), ""),
+    ("S27|S29", "East corner of the same alley mouth on the NORTH",
+     (2670.90, None), (2740.30, None), ""),
+    ("S27|S29", "North-west corner of the Av. H East",
+     (1020.50, None), (1084.50, None), ""),
+    ("S27|S29", "North-east corner of the Av. H East",
+     (1226.50, None), (1297.50, None), ""),
+    ("S27|S29", "North-west terminus of the drawn 22nd St",
+     (222.50, None), (288.50, None), ""),
+    ("S27|S29", "North-east terminus",
+     (3040.50, None), (3108.50, None), ""),
+    ("S7|S9", "North-west corner of the Strand(Av.B)/22nd St",
+     (1118.83, None), (1093.16, None),
+     "sheet 7 draws two parallel lines ~6px apart at every avenue face "
+     "(wall + awning edge); the choice cancels in the differential"),
+    ("S7|S9", "North-east corner of the Strand(Av.B)/22nd St",
+     (1355.41, None), (1332.48, None), ""),
+    ("S7|S9", "North-west corner of the Market(Av.D)/22nd St",
+     (3095.36, None), (3101.59, None), ""),
+]
+
+# The 6-inch tee on S7|S9 is NOT averaged: the reviewer showed the two passes
+# picked different lines of the same double-dashed pipe, a 3.5 px systematic
+# offset in dy.  The reviewer's pass is internally consistent (same convention
+# on both sheets), so it REPLACES the original and the uncertainty is raised.
+REPLACE = [
+    ("S7|S9", "Water-main tee where the 22nd St main crosses the 6-inch",
+     (2714.0, 3738.2), (2713.0, 282.2), 5.0,
+     "reviewer replacement: original took the crossing centre on S7 but the "
+     "upper dashed line on S9, a 3.5px systematic dy"),
+]
+
+
+def load_seams() -> list[dict]:
+    """Normalise every seam JSON in gcps/manual/ to one shape."""
+    seams = []
+    for path in sorted(MANUAL.glob("*.json")):
+        name = path.name
+        if name.startswith("REVIEW") or "scalebar" in name.lower() \
+                or name == "workflow_results.json":
+            continue
+        doc = json.loads(path.read_text())
+        if "seam" not in doc:
+            continue
+        seams.append({"path": path, "doc": doc})
+    return seams
+
+
+def sheet_ids(doc: dict) -> tuple[str, str]:
+    """The two sheet numbers of a seam, whatever spelling the file used."""
+    a = doc.get("sheet_a")
+    b = doc.get("sheet_b")
+    if isinstance(a, dict):
+        a = a.get("id")
+    if isinstance(b, dict):
+        b = b.get("id")
+    if a is None or b is None:
+        left, right = doc["seam"].split("|")
+        inv = {v: k for k, v in REGION.items()}
+        a, b = inv[left.strip()], inv[right.strip()]
+    return str(a), str(b)
+
+
+def reconcile(seam: str, feature: str, a: list, b: list, sigma: float,
+              log: list) -> tuple[list, list, float, str]:
+    """Average in a second independent reading of the same point."""
+    for s, sub, ra, rb, note in RECONCILE:
+        if s != seam or sub.lower() not in feature.lower():
+            continue
+        disagree = 0.0
+        for pt, rv in ((a, ra), (b, rb)):
+            for i in (0, 1):
+                if rv[i] is None:
+                    continue
+                disagree = max(disagree, abs(pt[i] - rv[i]))
+                pt[i] = 0.5 * (pt[i] + rv[i])
+        new_sigma = max(sigma, 1.5 * disagree)
+        log.append({"seam": s, "feature": feature[:70],
+                    "max_disagreement_px": round(disagree, 2),
+                    "sigma_before": sigma, "sigma_after": round(new_sigma, 2)})
+        extra = "; reconciled with independent reviewer " \
+                f"(max disagreement {disagree:.2f}px)"
+        return a, b, new_sigma, (note + extra if note else extra.lstrip("; "))
+    return a, b, sigma, ""
+
+
+def main() -> int:
+    seams = load_seams()
+    if not seams:
+        print("no seam JSON found in gcps/manual/", file=sys.stderr)
+        return 2
+
+    rows: list[dict] = []
+    summary: list[dict] = []
+    recon_log: list[dict] = []
+
+    for entry in seams:
+        doc, path = entry["doc"], entry["path"]
+        seam = doc["seam"]
+        sa, sb = sheet_ids(doc)
+        ra, rb = REGION[sa], REGION[sb]
+        n_by_conf = {"high": 0, "medium": 0, "low": 0}
+
+        corr = doc.get("correspondences") or []
+        for i, c in enumerate(corr):
+            feature = c.get("feature", "")
+            pa = [float(c["a_x"]), float(c["a_y"])]
+            pb = [float(c["b_x"]), float(c["b_y"])]
+            sigma = float(c.get("uncertainty_px", 8.0))
+            conf = c.get("confidence", "medium")
+            note = ""
+
+            replaced = False
+            for s, sub, na, nb, nsig, nnote in REPLACE:
+                if s == seam and sub.lower() in feature.lower():
+                    pa, pb, sigma, note = list(na), list(nb), nsig, nnote
+                    replaced = True
+                    break
+            if not replaced:
+                pa, pb, sigma, note = reconcile(seam, feature, pa, pb,
+                                                sigma, recon_log)
+
+            n_by_conf[conf] = n_by_conf.get(conf, 0) + 1
+            pid = f"MV_{ra}_{rb}_{i:02d}"
+            for sheet, region, p in ((sa, ra, pa), (sb, rb, pb)):
+                rows.append({
+                    "point_id": pid, "sheet": sheet, "region": region,
+                    "role": "tie", "src_x": round(p[0], 2), "src_y": round(p[1], 2),
+                    "ref_x": "", "ref_y": "", "ref_lon": "", "ref_lat": "",
+                    "street_a": "", "street_b": "",
+                    "feature": feature.replace("\n", " ")[:220],
+                    "category": c.get("category", ""),
+                    "control_class": control_class(c.get("category", ""), feature),
+                    "method": "semantic identification from printed evidence, "
+                              "then sub-pixel measurement on a 1-src-px grid overlay",
+                    "confidence": conf, "selected_by": path.name,
+                    "uncertainty_px": round(sigma, 2), "residual_px": "",
+                    "accepted": "true",
+                    "note": note,
+                })
+
+        # ---- S10|S9: no duplicated point features exist across Av. D. -----
+        # The only shared geometry is the avenue itself.  Each sheet draws the
+        # frontage line of its OWN side; the common line is Av. D's centreline,
+        # reached by stepping half the printed 70 ft width inward using that
+        # sheet's own measured scale bar.  Recorded with a deliberately loose
+        # sigma because any error in the printed width biases the seam.
+        for j, bp in enumerate(doc.get("boundary_points") or []):
+            ax, ay = bp.get(f"s{sa}_centreline_x"), bp.get(f"s{sa}_y")
+            bx, by = bp.get(f"s{sb}_centreline_x"), bp.get(f"s{sb}_y")
+            if None in (ax, ay, bx, by):
+                continue
+            pid = f"MV_{ra}_{rb}_B{j:02d}"
+            n_by_conf["medium"] = n_by_conf.get("medium", 0) + 1
+            for sheet, region, p in ((sa, ra, (ax, ay)), (sb, rb, (bx, by))):
+                rows.append({
+                    "point_id": pid, "sheet": sheet, "region": region,
+                    "role": "tie", "src_x": round(float(p[0]), 2),
+                    "src_y": round(float(p[1]), 2),
+                    "ref_x": "", "ref_y": "", "ref_lon": "", "ref_lat": "",
+                    "street_a": "", "street_b": "",
+                    "feature": bp.get("latitude", "")[:220],
+                    "category": "property line intersection",
+                    "control_class": "geometric",
+                    "method": "block frontage line crossing a street property "
+                              "line, stepped to the shared avenue centreline "
+                              "using the sheet's own measured scale bar",
+                    "confidence": "medium", "selected_by": path.name,
+                    "uncertainty_px": 6.0, "residual_px": "", "accepted": "true",
+                    "note": "constructed centreline: no duplicated point "
+                            "feature exists across this seam",
+                })
+
+        summary.append({"seam": seam, "file": path.name,
+                        "regions": [ra, rb],
+                        "overlap": doc.get("overlap_exists") or doc.get("overlap", ""),
+                        "n_correspondences": len(corr),
+                        "n_boundary_points": len(doc.get("boundary_points") or []),
+                        "by_confidence": n_by_conf,
+                        "self_check": doc.get("self_check_similarity")
+                                      or doc.get("similarity_check")
+                                      or doc.get("transform_analysis")})
+
+    out = ROOT / "gcps" / "tiepoints_verified.csv"
+    with out.open("w", newline="") as fh:
+        w = csv.DictWriter(fh, fieldnames=FIELDS)
+        w.writeheader()
+        w.writerows(rows)
+
+    pairs, cls = {}, {}
+    for r in rows:
+        pairs.setdefault(r["point_id"], []).append(r["region"])
+        cls[r["point_id"]] = r["control_class"]
+    seam_counts: dict[tuple, dict] = {}
+    for pid, regs in pairs.items():
+        if len(regs) == 2:
+            k = tuple(sorted(regs))
+            c = seam_counts.setdefault(k, {"geometric": 0, "symbol": 0})
+            c[cls[pid]] += 1
+
+    results = {"seams": summary, "reconciliations": recon_log,
+               "verified_points_per_seam": {"|".join(k): v
+                                            for k, v in sorted(seam_counts.items())},
+               "control_classes": {"geometric": sum(1 for v in cls.values() if v == "geometric"),
+                                   "symbol": sum(1 for v in cls.values() if v == "symbol")},
+               "total_correspondences": len(pairs),
+               "total_rows": len(rows)}
+    (MANUAL / "workflow_results.json").write_text(json.dumps(results, indent=1))
+
+    print(f"wrote {out.relative_to(ROOT)}: "
+          f"{len(pairs)} correspondences over {len(seam_counts)} seams "
+          f"({len(rows)} rows)")
+    for k, v in sorted(seam_counts.items(), key=lambda kv: -sum(kv[1].values())):
+        print(f"   {k[0]:>8} | {k[1]:<8} {v['geometric']:3d} geometric"
+              + (f" + {v['symbol']} symbol" if v["symbol"] else ""))
+    if recon_log:
+        worst = max(recon_log, key=lambda r: r["max_disagreement_px"])
+        print(f"  reconciled {len(recon_log)} points against the independent "
+              f"reviewer; worst disagreement {worst['max_disagreement_px']} px "
+              f"({worst['feature'][:50]})")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

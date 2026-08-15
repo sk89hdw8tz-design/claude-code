@@ -1,0 +1,132 @@
+{
+  "seam": "S1_main|S2",
+  "sheet_a": {
+    "id": "1",
+    "file": "data/original/txu-sanborn-galveston-1889-Sheet 1.jpg",
+    "note": "RIGHT panel only (x>1568); left panel (Texas Standard Oil Mill, blocks 582-585) excluded"
+  },
+  "sheet_b": {
+    "id": "2",
+    "file": "data/original/txu-sanborn-galveston-1889-Sheet 2.jpg"
+  },
+  "relation": "sheet 2 lies NORTH of sheet 1; shared street = 22nd Street",
+  "overlap_exists": "partial",
+  "overlap_band_description": "Sheet 1 map content begins at y~50 and its 22nd St south right-of-way line is at y~139, so sheet 1 shows ~90 px (~29 ft) of 22nd St roadway north of that line. Sheet 2 draws all of 22nd St (north curb y~3440, south curb y~3686, width 246 px = 80 ft as labelled) and continues ~234 px (~76 ft) south of the south curb to its content edge at y~3920. Common ground = a ~105 ft (~320 px) band straddling the south right-of-way line of 22nd Street.",
+  "scale": "~3.07 px/ft on both sheets (22nd St measures 246 px on sheet 2 against its printed '80'', Av. A measures 215 px on sheet 2 against its printed '70''); i.e. 1 in = 100 ft at 300 dpi",
+  "correspondences": [
+    {
+      "id": "P1",
+      "feature": "North-west corner of block 742 (J. M. Heiskell's wood yard): the west property line of the wood-yard block meeting the SOUTH right-of-way line of 22nd Street",
+      "sheet_a": "1",
+      "a_x": 2606.0,
+      "a_y": 139.9,
+      "sheet_b": "2",
+      "b_x": 2552.0,
+      "b_y": 3685.3,
+      "confidence": "high",
+      "uncertainty_px": 5.0,
+      "why_unambiguous": "Only block corner drawn on sheet 1's top edge west of Av. A, and only one on sheet 2's bottom edge west of Av. A. Both sheets name the street ('22ND STREET' / '22ND ST. 80\\'') and print reciprocal continuation notes across it ('SEE SHEET No 2.' / 'SEE SHEET No 1.'). The same single track pair sits immediately east of the corner on both sheets. The frontage from here to P2 measures 370 px on sheet 1 and 371 px on sheet 2 (identical to 0.3%). The next block corner either way (23rd/Tremont, 780 px south on sheet 1; 21st/Center, ~1050 px north on sheet 2) is not drawn on the other sheet at all, and the inter-sheet offset is only ~54 px."
+    },
+    {
+      "id": "P2",
+      "feature": "North-east corner of block 742: block 742's east property line (west line of Av. A or Water E.) meeting the SOUTH right-of-way line of 22nd Street",
+      "sheet_a": "1",
+      "a_x": 2976.0,
+      "a_y": 138.0,
+      "sheet_b": "2",
+      "b_x": 2923.0,
+      "b_y": 3686.1,
+      "confidence": "high",
+      "uncertainty_px": 5.0,
+      "why_unambiguous": "It is the corner where the drawn 22nd St south line terminates against Av. A; both sheets print '70'' for Av. A immediately east of it, and the '10\" W. Pipe' annotation just beyond that. Locked to P1 by the identical 370/371 px block frontage. A one-block error would land on 23rd St (sheet 1 only) or 21st/Center (sheet 2 only)."
+    },
+    {
+      "id": "P3",
+      "feature": "West property line of the block east of Av. A meeting the SOUTH right-of-way line of 22nd Street (block 741/739 column on sheet 2; the 'SEE SHEET No 1 / R.J. Willis & Bro.' column on sheet 1)",
+      "sheet_a": "1",
+      "a_x": 3200.0,
+      "a_y": 136.0,
+      "sheet_b": "2",
+      "b_x": 3138.0,
+      "b_y": 3686.0,
+      "confidence": "medium",
+      "uncertainty_px": 12.0,
+      "why_unambiguous": "Only line-end / block corner east of Av. A at the seam on either sheet; bracketed identically on both by the printed '70'' (Av. A width) to its west and the '10\" W. Pipe' dashed main with its blue valve circle to its north. CAVEAT: sheet 1 draws only a free line terminus here (no curb line east of Av. A), and sheet 1 draws Av. A 224 px wide against sheet 2's 215 px, so this point carries a ~9 px x-residual relative to P1/P2."
+    }
+  ],
+  "boundary_line": {
+    "name": "22nd Street - SOUTH right-of-way (curb) line, along the north frontage of block 742",
+    "visible_on_both": "partial",
+    "a_points": [
+      [
+        2606.0,
+        139.9
+      ],
+      [
+        2704.0,
+        139.6
+      ],
+      [
+        2814.0,
+        138.9
+      ],
+      [
+        2944.0,
+        138.0
+      ],
+      [
+        2976.0,
+        138.0
+      ]
+    ],
+    "b_points": [
+      [
+        2552.0,
+        3685.3
+      ],
+      [
+        2650.0,
+        3685.5
+      ],
+      [
+        2760.0,
+        3685.8
+      ],
+      [
+        2890.0,
+        3686.1
+      ],
+      [
+        2923.0,
+        3686.1
+      ]
+    ],
+    "notes": "Stations matched by fractional distance along block 742's north frontage. Sheet 1 draws this line solid; sheet 2 draws it as the standard dashed continuation line with solid corner returns at each end. Sheet 1 y falls 139.9->138.0 (slope -0.0051); sheet 2 y rises 3685.3->3686.1 (slope +0.0022): relative rotation ~0.42 deg. Only the 370 px block-742 frontage is drawn on BOTH sheets. Sheet 2 additionally draws the line east of Av. A (x 3138-3291, y~3685.6); sheet 1 does not. Neither sheet draws it west of block 742's west line (the wharf apron there is bounded only by dashed platform edges). 22nd Street's CENTRELINE cannot be sampled on sheet 1 - its north curb (sheet 2 y~3440) would fall at sheet 1 y~-107, off the page."
+  },
+  "rejected_candidates": [
+    {
+      "feature": "10\" water-pipe valve (blue filled circle) in 22nd St just east of Av. A",
+      "a": [
+        3177.3,
+        73.5
+      ],
+      "b": [
+        3141.9,
+        3468.6
+      ],
+      "reason": "Same physical annotation on both sheets (identical '10\" W. PIPE' / '10\" W.P.' label and dashed main), but the sheets place the circle at very different offsets within the 80-ft street: 67 px north of the south line on sheet 1 vs 217 px north on sheet 2. Residual against the P1/P2 fit is ~151 px (~49 ft), almost all in y. Excellent SEMANTIC confirmation of the seam, useless as a positional control."
+    },
+    {
+      "feature": "East face of the slip / wharf line (edge of the blue water wash) west of the wood yard",
+      "a": "x~2291 at y=200",
+      "b": "x~2180 at y=3700",
+      "reason": "Almost certainly the same slip, but after applying the P1/P2 offset the sheet-1 face sits ~58 px (~19 ft) east of the sheet-2 face. Hand-drawn water edge; not survey-grade. Excluded."
+    },
+    {
+      "feature": "Railroad tracks crossing 22nd Street",
+      "reason": "The westernmost track pair agrees to ~6 px but the rest of the yard fan does not: at the south line sheet 1 shows rails at x 2622/2636, 2810/2824, 2921, 2942, 2966/2983 while sheet 2 (+54) predicts 2629/2642, 2771/2785, 2844/2860, 2879/2893, 2918/2932. Freehand, divergent, and exactly the kind of repetitive parallel content that produces confident one-track/one-block-off matches. Excluded."
+    }
+  ],
+  "derived_check": "S1 ~= S2 + (dx, dy) with dx = +54.0 (P1), +53.0 (P2), +62.0 (P3); dy = -3545.4 (P1), -3548.1 (P2), -3550.0 (P3). P1/P2 agree to 1 px; P3 is the outlier discussed above.",
+  "crops_dir": "output/qc/manual_crops/"
+}

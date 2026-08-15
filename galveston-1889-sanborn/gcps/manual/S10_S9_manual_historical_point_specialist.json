@@ -1,0 +1,169 @@
+{
+ "seam": "S10|S9",
+ "sheet_a": 10,
+ "sheet_b": 9,
+ "relation": "sheet 10 lies EAST of sheet 9; they abut on Av. D (Market E.)",
+ "analyst": "manual historical point specialist",
+ "sources": {
+  "9": "data/original/txu-sanborn-galveston-1889-Sheet 9.jpg",
+  "10": "data/original/txu-sanborn-galveston-1889-Sheet 10.jpg"
+ },
+ "px_per_ft": {
+  "9": 3.031,
+  "10": 3.046
+ },
+ "printed_avD_width_ft": 70,
+ "overlap": "partial - only the empty middle of the Av. D roadway; NO duplicated buildings/blocks/wharves",
+ "s9_east_drawing_limit_px": {
+  "at 22nd St main": 3298,
+  "at 25th St main": 3232
+ },
+ "s10_west_drawing_limit_px": {
+  "at 22nd St main": 112.5,
+  "at 25th St main": 112.5
+ },
+ "avD_frontage_line_fits": {
+  "sheet9": {
+   "blk562": {
+    "x0": 3100.75,
+    "y0": 410,
+    "slope_px_per_row": 0.007,
+    "valid_y": [
+     410,
+     1320
+    ]
+   },
+   "blk563": {
+    "x0": 3102.25,
+    "y0": 1575,
+    "slope_px_per_row": 0.00575,
+    "valid_y": [
+     1575,
+     2480
+    ]
+   },
+   "blk564": {
+    "x0": 3102.5,
+    "y0": 2740,
+    "slope_px_per_row": 0.0085,
+    "valid_y": [
+     2740,
+     3640
+    ]
+   }
+  },
+  "sheet10": {
+   "blk502": {
+    "x0": 294.75,
+    "y0": 350,
+    "slope_px_per_row": 0.00975,
+    "valid_y": [
+     350,
+     1260
+    ]
+   },
+   "blk503": {
+    "x0": 297.0,
+    "y0": 1520,
+    "slope_px_per_row": 0.0035,
+    "valid_y": [
+     1520,
+     2428
+    ]
+   },
+   "blk504": {
+    "x0": 299.0,
+    "y0": 2686,
+    "slope_px_per_row": 0.0025,
+    "valid_y": [
+     2686,
+     3596
+    ]
+   }
+  }
+ },
+ "boundary_points": [
+  {
+   "latitude": "south property line of 22nd St (= N frontage line of blks 562 / 502)",
+   "s9_frontage_x": 3100.7,
+   "s9_y": 402.5,
+   "s9_centreline_x": 3206.8,
+   "s10_frontage_x": 294.7,
+   "s10_y": 344.0,
+   "s10_centreline_x": 188.1
+  },
+  {
+   "latitude": "north property line of 23rd (Tremont) St (= S frontage of 562 / 502)",
+   "s9_frontage_x": 3107.2,
+   "s9_y": 1327.0,
+   "s9_centreline_x": 3213.3,
+   "s10_frontage_x": 303.7,
+   "s10_y": 1265.5,
+   "s10_centreline_x": 197.1
+  },
+  {
+   "latitude": "south property line of 23rd (Tremont) St (= N frontage of 563 / 503)",
+   "s9_frontage_x": 3102.2,
+   "s9_y": 1567.0,
+   "s9_centreline_x": 3208.3,
+   "s10_frontage_x": 297.0,
+   "s10_y": 1512.5,
+   "s10_centreline_x": 190.4
+  },
+  {
+   "latitude": "north property line of 24th St (= S frontage of 563 / 503)",
+   "s9_frontage_x": 3107.5,
+   "s9_y": 2487.0,
+   "s9_centreline_x": 3213.6,
+   "s10_frontage_x": 300.2,
+   "s10_y": 2434.0,
+   "s10_centreline_x": 193.6
+  },
+  {
+   "latitude": "south property line of 24th St (= N frontage of 564 / 504)",
+   "s9_frontage_x": 3102.4,
+   "s9_y": 2732.0,
+   "s9_centreline_x": 3208.5,
+   "s10_frontage_x": 299.0,
+   "s10_y": 2678.5,
+   "s10_centreline_x": 192.4
+  },
+  {
+   "latitude": "north property line of 25th (Bath Av.) St (= S frontage of 564 / 504)",
+   "s9_frontage_x": 3110.2,
+   "s9_y": 3648.5,
+   "s9_centreline_x": 3216.3,
+   "s10_frontage_x": 301.3,
+   "s10_y": 3603.0,
+   "s10_centreline_x": 194.7
+  }
+ ],
+ "rejected_water_main_checks": [
+  {
+   "feature": "12in water main in 22nd St",
+   "s9": [
+    null,
+    275.8
+   ],
+   "s10": [
+    null,
+    197.0
+   ],
+   "note": "same pipe drawn on both sheets across Av. D, but its y disagrees with the block-line solution by ~20 px"
+  },
+  {
+   "feature": "12in water main in 25th St",
+   "s9": [
+    null,
+    3866.8
+   ],
+   "s10": [
+    null,
+    3770.2
+   ],
+   "note": "same pipe on both sheets; y disagrees by ~52 px - mains are drawn schematically, unusable as control"
+  }
+ ],
+ "caution": "Do NOT use the awning-edge dashed line (s9 x~3153, s10 x~260) as the street line; it is the outer edge of the wooden awnings, ~15 ft inside the roadway. The property line is the heavy continuous frontage line (s9 x~3105, s10 x~300). Verified: 23rd/24th St measured 240/245 px (S9) and 246/244 px (S10) between frontage lines = 79-81 ft, matching the printed 80'.",
+ "crops": "/home/user/claude-code/galveston-1889-sanborn/output/qc/manual_crops/S10S9_*"
+}

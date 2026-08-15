@@ -1,0 +1,56 @@
+{
+  "sheet": "29",
+  "source_image": "/home/user/claude-code/galveston-1889-sanborn/data/original/txu-sanborn-galveston-1889-Sheet 29.jpg",
+  "image_size_px": [
+    3400,
+    4116
+  ],
+  "scale_bar_present": "yes",
+  "printed_scale_statement": "Scale of Feet.",
+  "tick_labels_verbatim": [
+    "50",
+    "40",
+    "30",
+    "20",
+    "10",
+    "0",
+    "50",
+    "100",
+    "150"
+  ],
+  "tick_x_source_px": {
+    "-50": 389.94,
+    "0": 541.87,
+    "50": 693.74,
+    "100": 846.5,
+    "150": 997.5
+  },
+  "bar_top_y_at_ticks": {
+    "-50": 3831.26,
+    "0": 3828.05,
+    "50": 3825.06,
+    "100": 3823.49,
+    "150": 3822.03
+  },
+  "primary_span": {
+    "from_ft": -50,
+    "to_ft": 150,
+    "map_distance_ft": 200,
+    "x1": 389.94,
+    "y1": 3831.26,
+    "x2": 997.5,
+    "y2": 3822.03,
+    "dx": 607.56,
+    "dy": -9.23,
+    "pixel_length": 607.63,
+    "pixels_per_foot": 3.0382
+  },
+  "interval_check_px_per_50ft": [
+    151.93,
+    151.87,
+    152.76,
+    151.0
+  ],
+  "uncertainty_px_per_endpoint": 0.8,
+  "measured_by": "source-scalebar-examiner-sheet29"
+}

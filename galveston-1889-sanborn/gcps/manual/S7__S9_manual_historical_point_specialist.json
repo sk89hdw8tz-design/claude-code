@@ -1,0 +1,262 @@
+{
+  "seam": "S7|S9",
+  "sheet_a": 7,
+  "sheet_b": 9,
+  "relation": "sheet 7 lies NORTH of sheet 9; they abut along 22nd Street",
+  "overlap_exists": "partial",
+  "shared_street": "22ND ST. (80 ft wide, drawn 245 px wide on BOTH plates)",
+  "boundary_line": {
+    "name": "22nd Street centreline (midpoint of the two drawn property lines of 22nd St)",
+    "visible_on_both": "yes",
+    "fit_sheet7": "y = -0.000537*x + 3744.99  (north line y=-0.000290x+3621.91, south line y=-0.000784x+3868.07)",
+    "fit_sheet9": "y = -0.007367*x + 309.26   (north line y=-0.004977x+183.13, south line y=-0.009757x+435.38)",
+    "a_points": [
+      [
+        726.9,
+        3744.6
+      ],
+      [
+        1120.9,
+        3744.4
+      ],
+      [
+        1740.3,
+        3744.1
+      ],
+      [
+        2120.9,
+        3743.8
+      ],
+      [
+        2715.1,
+        3743.5
+      ],
+      [
+        3096.4,
+        3743.3
+      ]
+    ],
+    "b_points": [
+      [
+        698.1,
+        304.1
+      ],
+      [
+        1096.2,
+        301.2
+      ],
+      [
+        1716.0,
+        296.6
+      ],
+      [
+        2107.3,
+        293.7
+      ],
+      [
+        2715.3,
+        289.3
+      ],
+      [
+        3104.3,
+        286.4
+      ]
+    ],
+    "station_names": [
+      "alley water-main tee, Av.A-Av.B block",
+      "Av.B (Strand E.) west property line",
+      "alley water-main tee 10in->12in, Av.B-Av.C block",
+      "Av.C (Mechanic E.) west property line",
+      "alley water-main tee (6in), Av.C-Av.D block",
+      "Av.D (Market E.) west property line"
+    ]
+  },
+  "transform_analysis": {
+    "n_pairs": 13,
+    "translation_only": {
+      "dx": 13.9,
+      "dy": 3450.05,
+      "rms_px": 13.19,
+      "max_px": 24.75,
+      "median_px": 10.74
+    },
+    "similarity": {
+      "scale": 0.98515,
+      "rot_deg": 0.355,
+      "rms_px": 4.9,
+      "max_px": 8.21
+    },
+    "affine": {
+      "x_scale": 0.98464,
+      "y_scale": 1.00919,
+      "rms_px": 4.15,
+      "max_px": 8.18,
+      "matrix": "x7 = 0.98464*x9 - 0.00823*y9 + 45.91 ;  y7 = 0.00623*x9 + 1.00919*y9 + 3435.36"
+    },
+    "verdict": "The ~23 px disagreement is NOT bad centreline measurement. It is a genuine plate-to-plate scale/rotation difference: sheet 7 is drawn ~1.5% SMALLER in x and ~0.9% larger in y than sheet 9, plus 0.35 deg relative rotation. A similarity/affine fit drops the residual from 13.2 px RMS to 4.2-4.9 px RMS. The remaining ~4 px is real independent drafting of alleys and pipes on the two plates."
+  },
+  "scalebars": {
+    "sheet7_px_per_ft": 3.0567,
+    "sheet9_px_per_ft": 3.031,
+    "note": "The two printed scale bars disagree by 0.85% in the OPPOSITE sense to the measured x-scale difference (they say sheet 7 is larger). The bars sit in different corners of their plates (S7 at x2378-2989 y3795, S9 at x422-1028 y3847) and are therefore sampling different local paper stretch. Both plates draw 22nd St 245 px wide = 3.06 px/ft, so the y-scale at the seam is effectively identical."
+  },
+  "correspondences": [
+    {
+      "feature": "Water-main tee where the 22nd St main crosses the 6-inch north-south main in the 20-ft mid-block alley between Av. C (Mechanic E.) and Av. D (Market E.); a fire plug sits ~35 px east of it on both sheets.",
+      "why_unambiguous": "Only three N-S mains cross 22nd St in the mapped width, and this is the only one sheet 9 labels \"6\" W.P.\"; it is also the only one east of Av. C. Its neighbours are 1000 px away and carry different labels (unlabelled at the Av.A-Av.B alley, 10\"->12\" size change at the Av.B-Av.C alley), so a one-block slip would land on a differently-annotated tee.",
+      "sheet_a": "7",
+      "a_x": 2715.1,
+      "a_y": 3737.0,
+      "sheet_b": "9",
+      "b_x": 2715.3,
+      "b_y": 278.6,
+      "confidence": "high",
+      "uncertainty_px": 3.0,
+      "category": "water-main tee"
+    },
+    {
+      "feature": "Water-main tee in the 20-ft alley between Av. B (Strand E.) and Av. C (Mechanic E.), at the exact point where the 22nd St main changes from 10-inch to 12-inch. Sheet 7 draws a star/valve symbol on the crossing; sheet 9 letters \"10\" W.P.\" immediately west and \"12\" W.P.\" immediately east of it.",
+      "why_unambiguous": "The 10\"->12\" size change happens at exactly ONE place along 22nd Street and both sheets letter it. No other tee on this street has a size change or a valve star, so it cannot be confused with the tee one block east or west.",
+      "sheet_a": "7",
+      "a_x": 1740.3,
+      "a_y": 3741.4,
+      "sheet_b": "9",
+      "b_x": 1716.0,
+      "b_y": 288.7,
+      "confidence": "high",
+      "uncertainty_px": 4.0,
+      "category": "water-main tee"
+    },
+    {
+      "feature": "Water-main tee in the 20-ft alley between Av. A (Water E.) and Av. B (Strand E.); fire plug ~30 px east on both sheets; main lettered 10\" W.P. on both sides on both sheets.",
+      "why_unambiguous": "Westernmost of the three tees, only ~400 px east of the railroad/harbour edge of the mapped area; the next tee east is 1018 px away and carries the 10\"->12\" change. Position along the street is unmistakable, but each draftsman aligned the crossing with his OWN block alley, so the x is drafting-dependent (hence the larger uncertainty).",
+      "sheet_a": "7",
+      "a_x": 726.9,
+      "a_y": 3742.9,
+      "sheet_b": "9",
+      "b_x": 698.1,
+      "b_y": 296.6,
+      "confidence": "medium",
+      "uncertainty_px": 8.0,
+      "category": "water-main tee"
+    },
+    {
+      "feature": "North-west corner of the Strand(Av.B)/22nd St intersection: block corner where the NORTH property line of 22nd St meets the WEST property line of Av. B or Strand E. (south-east corner of block 621).",
+      "why_unambiguous": "Both lines are lettered on both sheets (\"22ND ST.\" with 80' width, \"AV. B or STRAND E.\" with 80' width). Av. B is the only avenue on either sheet whose corridor measures 235 px (80 ft) - Av. C and Av. D corridors are ~207 px (70 ft) - so the intersection cannot be confused with the one a block east or west.",
+      "sheet_a": "7",
+      "a_x": 1121.5,
+      "a_y": 3621.6,
+      "sheet_b": "9",
+      "b_x": 1096.0,
+      "b_y": 177.7,
+      "confidence": "high",
+      "uncertainty_px": 3.0,
+      "category": "block corner"
+    },
+    {
+      "feature": "North-east corner of the Strand(Av.B)/22nd St intersection: north property line of 22nd St meets the EAST property line of Av. B or Strand E. (south-west corner of block 561, the 1st Natl Bank block).",
+      "why_unambiguous": "Same 80-ft Strand corridor argument as above; this is its other side, and sheet 9 physically terminates its \"SEE SHEET No.7\" continuation box exactly on this corner, so both sheets draw the corner itself.",
+      "sheet_a": "7",
+      "a_x": 1355.5,
+      "a_y": 3621.5,
+      "sheet_b": "9",
+      "b_x": 1332.3,
+      "b_y": 176.5,
+      "confidence": "high",
+      "uncertainty_px": 3.0,
+      "category": "block corner"
+    },
+    {
+      "feature": "South-west corner of the Strand(Av.B)/22nd St intersection: SOUTH property line of 22nd St meets the west property line of Av. B (north-east corner of block 682).",
+      "why_unambiguous": "Same corridor identification; the south line of 22nd St is drawn on sheet 9 as a real block face and on sheet 7 as the edge of its \"SEE SHEET No.9\" continuation boxes, and the two agree with the north line to 0.5 px in separation (245 px = 80 ft on both sheets).",
+      "sheet_a": "7",
+      "a_x": 1120.4,
+      "a_y": 3867.2,
+      "sheet_b": "9",
+      "b_x": 1096.4,
+      "b_y": 424.7,
+      "confidence": "high",
+      "uncertainty_px": 3.5,
+      "category": "block corner"
+    },
+    {
+      "feature": "North-west corner of the Mechanic(Av.C)/22nd St intersection: north property line of 22nd St meets the west property line of Av. C or Mechanic E. (south-east corner of block 561).",
+      "why_unambiguous": "Av. C is lettered \"AV. C or MECHANIC E.\" on both sheets and is the only 70-ft avenue with a 207-px corridor lying between the 80-ft Strand and Av. D/Market. The lettered avenue names remove any block ambiguity.",
+      "sheet_a": "7",
+      "a_x": 2121.8,
+      "a_y": 3621.3,
+      "sheet_b": "9",
+      "b_x": 2106.7,
+      "b_y": 172.6,
+      "confidence": "high",
+      "uncertainty_px": 4.0,
+      "category": "block corner"
+    },
+    {
+      "feature": "North-east corner of the Mechanic(Av.C)/22nd St intersection (south-west corner of block 559/560 column).",
+      "why_unambiguous": "Paired with the previous corner across the same lettered avenue corridor; the pair reproduces the 207-px Mechanic width on both sheets.",
+      "sheet_a": "7",
+      "a_x": 2329.1,
+      "a_y": 3621.2,
+      "sheet_b": "9",
+      "b_x": 2316.8,
+      "b_y": 171.6,
+      "confidence": "medium",
+      "uncertainty_px": 5.0,
+      "category": "block corner"
+    },
+    {
+      "feature": "North-west corner of the Market(Av.D)/22nd St intersection: north property line of 22nd St meets the WEST property line of Av. D or Market E. (south-east corner of block 561, adjoining sheets 8/10).",
+      "why_unambiguous": "Av. D is lettered \"AV. D or MARKET E.\" on both sheets, and on both it is the last avenue before the dashed sheet-limit line (x~3150) with \"No.8\"/\"No.10\" beyond. It is the easternmost avenue on either plate, so nothing lies one block further east to confuse it with.",
+      "sheet_a": "7",
+      "a_x": 3097.0,
+      "a_y": 3621.0,
+      "sheet_b": "9",
+      "b_x": 3104.3,
+      "b_y": 167.7,
+      "confidence": "high",
+      "uncertainty_px": 4.0,
+      "category": "block corner"
+    },
+    {
+      "feature": "South-west corner of the Market(Av.D)/22nd St intersection (north-east corner of block 562/564 column).",
+      "why_unambiguous": "Same lettered-avenue and sheet-limit argument as above, on the south line of 22nd St.",
+      "sheet_a": "7",
+      "a_x": 3095.9,
+      "a_y": 3865.6,
+      "sheet_b": "9",
+      "b_x": 3104.4,
+      "b_y": 405.1,
+      "confidence": "medium",
+      "uncertainty_px": 5.0,
+      "category": "block corner"
+    },
+    {
+      "feature": "Fire plug (blue disc) on the north side of 22nd Street at the extreme west end of the mapped area, just east of the multi-track railroad on Av. A or Water E.",
+      "why_unambiguous": "It is the westernmost hydrant on 22nd St on both plates, ~400 px east of the railroad, with no other hydrant within 420 px. Measured centres agree to 0.0 px in x. Symbol placement on Sanborn sheets is by eye, so treat the coordinate as soft.",
+      "sheet_a": "7",
+      "a_x": 313.4,
+      "a_y": 3694.9,
+      "sheet_b": "9",
+      "b_x": 313.4,
+      "b_y": 252.5,
+      "confidence": "medium",
+      "uncertainty_px": 10.0,
+      "category": "fire plug"
+    },
+    {
+      "feature": "Fire plug on 22nd Street immediately east of the 6-inch alley main between Av. C (Mechanic) and Av. D (Market).",
+      "why_unambiguous": "Anchored to tee #1 above: it is the only hydrant within 900 px of that lettered 6\" alley main, and it sits east of it on both sheets. Hydrant symbols are placed by eye, so the 12-px inter-sheet scatter here is drafting, not measurement.",
+      "sheet_a": "7",
+      "a_x": 2740.4,
+      "a_y": 3698.3,
+      "sheet_b": "9",
+      "b_x": 2752.3,
+      "b_y": 199.3,
+      "confidence": "low",
+      "uncertainty_px": 14.0,
+      "category": "fire plug"
+    }
+  ],
+  "crops_dir": "/home/user/claude-code/galveston-1889-sanborn/output/qc/manual_crops/"
+}

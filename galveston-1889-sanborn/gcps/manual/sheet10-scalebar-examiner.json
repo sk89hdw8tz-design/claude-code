@@ -1,0 +1,52 @@
+{
+  "sheet": "10",
+  "source_file": "/home/user/claude-code/galveston-1889-sanborn/data/original/txu-sanborn-galveston-1889-Sheet 10.jpg",
+  "image_size_px": [
+    3400,
+    4086
+  ],
+  "scale_bar_present": "yes",
+  "printed_scale_statement": "Scale of Feet.",
+  "tick_labels_verbatim": [
+    "50",
+    "40",
+    "30",
+    "20",
+    "10",
+    "0",
+    "50",
+    "100",
+    "150"
+  ],
+  "tick_centroids_source_px": {
+    "-50": 839.53,
+    "0": 991.6,
+    "50": 1144.1,
+    "100": 1297.68,
+    "150": 1448.65
+  },
+  "tick_row_band_used": [
+    3843,
+    3855
+  ],
+  "primary_measurement": {
+    "from_tick": "50 (left end)",
+    "to_tick": "150 (right end)",
+    "map_distance_ft": 200.0,
+    "pixel_x1": 839.53,
+    "pixel_y1": 3851.0,
+    "pixel_x2": 1448.65,
+    "pixel_y2": 3849.0,
+    "pixel_length": 609.12,
+    "pixels_per_foot": 3.0456,
+    "uncertainty_px": 1.0
+  },
+  "lsq_all_five_ticks_pixels_per_foot": 3.0486,
+  "interval_50ft_px": [
+    152.07,
+    152.5,
+    153.58,
+    150.97
+  ],
+  "crops_dir": "/home/user/claude-code/galveston-1889-sanborn/output/qc/manual_crops/"
+}

@@ -1,0 +1,135 @@
+{
+ "generated": "2026-08-15T01:37:00+00:00",
+ "kind": "similarity",
+ "anchor": "S9",
+ "regions": [
+  "S10",
+  "S7",
+  "S9"
+ ],
+ "overall": {
+  "n": 13,
+  "raw_median": 3.0523621368410967,
+  "raw_rms": 4.009640297271547,
+  "raw_p95": 6.924658814245937,
+  "raw_max": 7.339583720088472,
+  "norm_median": 0.5853488061880627,
+  "norm_max": 1.6334256045088242
+ },
+ "spread": {
+  "scale_spread_pct": 1.841676909278139,
+  "rotation_spread_deg": 0.3678
+ },
+ "rank": {
+  "kind": "similarity",
+  "ncol": 8,
+  "rank": 8,
+  "nullity": 0,
+  "condition": 19809.81414782096,
+  "ok": true,
+  "note": ""
+ },
+ "crossval": {
+  "folds": 5,
+  "n": 18,
+  "held_out": {
+   "n": 18,
+   "median": 5.643770647905073,
+   "mean": 10.290594013496518,
+   "rms": 15.863965042501137,
+   "p90": 20.16386287118665,
+   "max": 46.58168127596359
+  },
+  "held_out_normalised": {
+   "median": 1.0944987456630129,
+   "max": 4.0151150114095495
+  }
+ },
+ "transforms_summary": [
+  {
+   "region": "S10",
+   "anchor": false,
+   "scale": 0.99591,
+   "rotation_deg": -0.0482,
+   "shear_deg": 0.0,
+   "anisotropy": 0.0,
+   "tx": 3017.55,
+   "ty": 62.65,
+   "plausibility": "ok"
+  },
+  {
+   "region": "S7",
+   "anchor": false,
+   "scale": 1.01439,
+   "rotation_deg": -0.3678,
+   "shear_deg": -0.0,
+   "anisotropy": 0.0,
+   "tx": -65.72,
+   "ty": -3490.14,
+   "plausibility": "ok"
+  },
+  {
+   "region": "S9",
+   "anchor": true,
+   "scale": 1.0,
+   "rotation_deg": 0.0,
+   "shear_deg": 0.0,
+   "anisotropy": 0.0,
+   "tx": 0.0,
+   "ty": 0.0,
+   "plausibility": "ok"
+  }
+ ],
+ "seams": [
+  {
+   "region_a": "S10",
+   "region_b": "S9",
+   "n": 6,
+   "n_symbol": 0,
+   "raw_median": 2.9748810266473598,
+   "raw_rms": 3.0316604311036293,
+   "raw_p95": 4.246415405701901,
+   "raw_max": 4.491189595226409,
+   "norm_median": 0.4958135044412266,
+   "norm_max": 0.7485315992044015,
+   "worst_point": {
+    "label": "MV_S10_S9_B01",
+    "raw": 4.491189595226409,
+    "norm": 0.7485315992044015,
+    "sigma": 6.0,
+    "confidence": "medium",
+    "feature": "north property line of 23rd (Tremont) St (= S frontage of 562 / 502)",
+    "category": "property line intersection",
+    "control_class": "geometric"
+   },
+   "verdict": "PASS",
+   "why": "median <=3px (excellent), max <=12px, within stated uncertainty"
+  },
+  {
+   "region_a": "S7",
+   "region_b": "S9",
+   "n": 7,
+   "n_symbol": 5,
+   "raw_median": 4.718077084661861,
+   "raw_rms": 4.688252937752789,
+   "raw_p95": 7.1321212671672045,
+   "raw_max": 7.339583720088472,
+   "norm_median": 1.0320765720105716,
+   "norm_max": 1.6334256045088242,
+   "worst_point": {
+    "label": "MV_S7_S9_08",
+    "raw": 6.648042210350916,
+    "norm": 1.6334256045088242,
+    "sigma": 4.07,
+    "confidence": "high",
+    "feature": "North-west corner of the Market(Av.D)/22nd St intersection: north property line of 22nd St meets the WEST property line of Av. D or Market E. (south-east corner of block 561, adjoining sheets 8/10).",
+    "category": "block corner",
+    "control_class": "geometric"
+   },
+   "symbol_scatter_median_px": 9.387385976286367,
+   "symbol_scatter_max_px": 46.3752052514599,
+   "verdict": "PASS",
+   "why": "median <=5px (good), max <=15px, within stated uncertainty"
+  }
+ ]
+}

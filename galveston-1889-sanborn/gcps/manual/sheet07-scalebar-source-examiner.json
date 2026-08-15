@@ -1,0 +1,51 @@
+{
+  "sheet": "7",
+  "source_file": "/home/user/claude-code/galveston-1889-sanborn/data/original/txu-sanborn-galveston-1889-Sheet 7.jpg",
+  "image_size_px": [
+    3400,
+    4120
+  ],
+  "scale_bar_present": "yes",
+  "printed_scale_statement": "Scale of Feet.",
+  "tick_labels_verbatim": [
+    "50",
+    "40",
+    "30",
+    "20",
+    "10",
+    "0",
+    "50",
+    "i00",
+    "150"
+  ],
+  "tick_centers_source_px": {
+    "-50": 2378.0,
+    "0": 2530.7,
+    "50": 2683.6,
+    "100": 2837.4,
+    "150": 2989.2
+  },
+  "tick_row_y_px": 3795,
+  "measured_span": {
+    "from_ft": 0,
+    "to_ft": 150,
+    "x1": 2530.7,
+    "y1": 3795.0,
+    "x2": 2989.2,
+    "y2": 3795.0,
+    "pixel_length": 458.5,
+    "map_distance_ft": 150.0,
+    "pixels_per_foot": 3.0567
+  },
+  "lsq_fit_all_four_ticks_px_per_ft": 3.0586,
+  "full_bar_check": {
+    "span_ft": 200,
+    "x_left": 2378.0,
+    "x_right": 2989.2,
+    "pixel_length": 611.2,
+    "pixels_per_foot": 3.056
+  },
+  "uncertainty_px_per_endpoint": 1.0,
+  "how_measured": "Coarse 1/4-scale whole-sheet view located 'Scale of Feet' near the bottom-right of the mapped area. Crop (x0=2350,y0=3740) upscaled 4x read the labelling. Each tick then re-cropped at 16x and 30x with a 1-source-pixel red grid overlay drawn at known source x, so tick centres were read directly in source coordinates with no back-conversion needed. Example back-conversion for the 4x survey crop: a feature at u=715 in the PNG is at x = 2350 + 715/4 = 2528.8. Tick strokes are 1-2 px wide; darkest columns were 2530/2531 (0 ft), 2683/2684 (50), 2837 (100), 2989 (150).",
+  "notes": "Bar runs from a subdivided -50 ft extension (labelled 50 40 30 20 10) through 0, 50, i00, 150. Tick spacing 152.9 / 153.8 / 151.8 px per 50 ft; left terminus predicted at 2377.8 and observed at ~2378.0, confirming linearity over the whole 200 ft bar."
+}

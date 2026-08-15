@@ -337,7 +337,12 @@ def adjust(
 
         residuals = _residuals(transforms, ties, anchors)
         if robust and residuals:
-            rn = np.array([r["residual"] for r in residuals])
+            # Huber on the WEIGHT-NORMALISED residual (r/sigma), not the raw one.
+            # With heterogeneous uncertainties, judging outliers on raw pixels
+            # would down-weight exactly the loose-but-honest observations and
+            # leave a tight-but-wrong one untouched. Identical to the old
+            # behaviour when every weight is 1.
+            rn = np.array([r["normalized"] for r in residuals])
             w_iter = _huber_weights(rn, huber_delta)
         result = {"transforms": transforms, "residuals": residuals, "kind": kind,
                   "free_sheets": free, "stats": _stats(residuals)}
@@ -410,7 +415,12 @@ def _adjust_projective(sheets, ties, anchors, anchor_sheet, seed, robust,
         transforms = {s: params_to_matrix("projective", P[s]) for s in sheets}
         residuals = _residuals(transforms, ties, anchors)
         if robust and residuals:
-            rn = np.array([r["residual"] for r in residuals])
+            # Huber on the WEIGHT-NORMALISED residual (r/sigma), not the raw one.
+            # With heterogeneous uncertainties, judging outliers on raw pixels
+            # would down-weight exactly the loose-but-honest observations and
+            # leave a tight-but-wrong one untouched. Identical to the old
+            # behaviour when every weight is 1.
+            rn = np.array([r["normalized"] for r in residuals])
             w_iter = _huber_weights(rn, huber_delta)
         result = {"transforms": transforms, "residuals": residuals,
                   "kind": "projective", "free_sheets": free,
@@ -430,6 +440,7 @@ def _residuals(transforms, ties, anchors):
             "kind": "tie", "label": t.label, "sheet_a": t.a, "sheet_b": t.b,
             "dx": float(d[0]), "dy": float(d[1]),
             "residual": float(np.hypot(*d)), "weight": t.weight,
+            "normalized": float(np.hypot(*d) * np.sqrt(t.weight)),
         })
     for a in anchors:
         p = apply(transforms[a.s], [a.p])[0]
@@ -438,6 +449,7 @@ def _residuals(transforms, ties, anchors):
             "kind": "anchor", "label": a.label, "sheet_a": a.s, "sheet_b": None,
             "dx": float(d[0]), "dy": float(d[1]),
             "residual": float(np.hypot(*d)), "weight": a.weight,
+            "normalized": float(np.hypot(*d) * np.sqrt(a.weight)),
         })
     return out
 

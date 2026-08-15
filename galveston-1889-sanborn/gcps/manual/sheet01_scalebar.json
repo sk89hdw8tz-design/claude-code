@@ -1,0 +1,44 @@
+{
+  "sheet": "Sheet 1",
+  "source_file": "/home/user/claude-code/galveston-1889-sanborn/data/original/txu-sanborn-galveston-1889-Sheet 1.jpg",
+  "image_size_px": [
+    3400,
+    4118
+  ],
+  "scale_bar_present": "yes",
+  "printed_scale_statement": "Scale of Feet.",
+  "tick_labels_verbatim": [
+    "50",
+    "40",
+    "30",
+    "20",
+    "10",
+    "0",
+    "50",
+    "100",
+    "150"
+  ],
+  "tick_centroids_px": {
+    "-50": 522.97,
+    "-40": 552.04,
+    "-30": 582.14,
+    "-20": 613.78,
+    "-10": 644.34,
+    "0": 673.84,
+    "50": 825.61,
+    "100": 978.18,
+    "150": 1128.56
+  },
+  "endpoints": {
+    "x1": 522.97,
+    "y1": 3830.0,
+    "x2": 1128.56,
+    "y2": 3840.0
+  },
+  "map_distance_ft": 200.0,
+  "pixel_length": 605.67,
+  "pixels_per_foot_pairwise": 3.0284,
+  "pixels_per_foot_lsq_9ticks": 3.0336,
+  "uncertainty_px": 0.8,
+  "location_note": "Scale bar lies in the sheet's lower-left, x 523-1129 (LEFT panel side of the divider at x~1560-1568). It is the ONLY scale bar printed on the page; the right panel (blocks 742-744) has none, so this bar governs both panels."
+}

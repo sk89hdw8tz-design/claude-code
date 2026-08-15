@@ -1,0 +1,381 @@
+{
+ "reviewer": "independent-pixel-coordinate-reviewer",
+ "date": "2026-08-15",
+ "method": "Uniform automated method on all 8 sheets: (1) locate bar by horizontal morphological opening in bottom 1000 rows; (2) find bar top edge per column as topmost start of a >=6-row dark run, robust-fit a line to it (handles tilt); (3) integrate ink in the 8-row band immediately above the fitted bar top = tick stems only, clear of bar body and numerals; (4) per tick, local-background-subtracted intensity centroid over argmax+/-1. No hand placement anywhere.",
+ "scale": {
+  "1": {
+   "my_ticks_m50_0_50_100_150": [
+    522.84,
+    673.92,
+    825.59,
+    978.17,
+    1128.15
+   ],
+   "my_ppf_0to150": 3.0282,
+   "my_ppf_m50to150": 3.0265,
+   "my_ppf_lsq_5tick": 3.0297,
+   "my_intervals_px": [
+    151.08,
+    151.67,
+    152.58,
+    149.97
+   ],
+   "reported_ppf": 3.028,
+   "diff_pct": 0.056
+  },
+  "2": {
+   "my_ticks_m50_0_50_100_150": [
+    605.61,
+    757.73,
+    911.12,
+    1065.14,
+    1216.31
+   ],
+   "my_ppf_0to150": 3.0572,
+   "my_ppf_m50to150": 3.0535,
+   "my_ppf_lsq_5tick": 3.0576,
+   "my_intervals_px": [
+    152.12,
+    153.39,
+    154.02,
+    151.17
+   ],
+   "reported_ppf": 3.0586,
+   "diff_pct": -0.033
+  },
+  "7": {
+   "my_ticks_m50_0_50_100_150": [
+    2378.12,
+    2530.49,
+    2683.52,
+    2837.3,
+    2988.96
+   ],
+   "my_ppf_0to150": 3.0565,
+   "my_ppf_m50to150": 3.0542,
+   "my_ppf_lsq_5tick": 3.057,
+   "my_intervals_px": [
+    152.37,
+    153.04,
+    153.78,
+    151.66
+   ],
+   "reported_ppf": 3.0567,
+   "diff_pct": 0.01
+  },
+  "8": {
+   "my_ticks_m50_0_50_100_150": [
+    2249.66,
+    2400.66,
+    2552.14,
+    2704.7,
+    2854.37
+   ],
+   "my_ppf_0to150": 3.0247,
+   "my_ppf_m50to150": 3.0235,
+   "my_ppf_lsq_5tick": 3.0269,
+   "my_intervals_px": [
+    151.0,
+    151.47,
+    152.56,
+    149.67
+   ],
+   "reported_ppf": 3.026,
+   "diff_pct": 0.03
+  },
+  "9": {
+   "my_ticks_m50_0_50_100_150": [
+    421.79,
+    573.28,
+    724.72,
+    877.42,
+    1027.1
+   ],
+   "my_ppf_0to150": 3.0254,
+   "my_ppf_m50to150": 3.0265,
+   "my_ppf_lsq_5tick": 3.0295,
+   "my_intervals_px": [
+    151.49,
+    151.44,
+    152.7,
+    149.67
+   ],
+   "reported_ppf": 3.031,
+   "diff_pct": -0.049
+  },
+  "10": {
+   "my_ticks_m50_0_50_100_150": [
+    839.54,
+    991.61,
+    1144.08,
+    1297.73,
+    1448.66
+   ],
+   "my_ppf_0to150": 3.047,
+   "my_ppf_m50to150": 3.0456,
+   "my_ppf_lsq_5tick": 3.0487,
+   "my_intervals_px": [
+    152.07,
+    152.47,
+    153.64,
+    150.93
+   ],
+   "reported_ppf": 3.0456,
+   "diff_pct": 0.102
+  },
+  "27": {
+   "my_ticks_m50_0_50_100_150": [
+    1868.45,
+    2021.88,
+    2175.57,
+    2330.29,
+    2482.62
+   ],
+   "my_ppf_0to150": 3.0716,
+   "my_ppf_m50to150": 3.0708,
+   "my_ppf_lsq_5tick": 3.0735,
+   "my_intervals_px": [
+    153.43,
+    153.69,
+    154.71,
+    152.34
+   ],
+   "reported_ppf": 3.0713,
+   "diff_pct": 0.072
+  },
+  "29": {
+   "my_ticks_m50_0_50_100_150": [
+    389.92,
+    541.96,
+    693.68,
+    846.55,
+    997.54
+   ],
+   "my_ppf_0to150": 3.0372,
+   "my_ppf_m50to150": 3.0381,
+   "my_ppf_lsq_5tick": 3.0397,
+   "my_intervals_px": [
+    152.04,
+    151.72,
+    152.88,
+    150.99
+   ],
+   "reported_ppf": 3.0382,
+   "diff_pct": 0.049
+  }
+ },
+ "scale_bar_is_the_same_engraving_on_all_8_sheets": {
+  "evidence": "The four 50-ft interval lengths, normalised by their own mean, are identical on all eight sheets to +/-0.3%: pattern ~[0.999,1.002,1.008,0.991]. A shared engraving irregularity, not per-sheet measurement noise.",
+  "normalised_intervals": {
+   "1": [
+    0.9984,
+    1.0023,
+    1.0083,
+    0.991
+   ],
+   "2": [
+    0.9964,
+    1.0047,
+    1.0088,
+    0.9901
+   ],
+   "7": [
+    0.9978,
+    1.0021,
+    1.007,
+    0.9931
+   ],
+   "8": [
+    0.9988,
+    1.002,
+    1.0092,
+    0.99
+   ],
+   "9": [
+    1.0011,
+    1.0008,
+    1.0091,
+    0.9891
+   ],
+   "10": [
+    0.9986,
+    1.0013,
+    1.0089,
+    0.9912
+   ],
+   "27": [
+    0.9993,
+    1.001,
+    1.0076,
+    0.9922
+   ],
+   "29": [
+    1.0009,
+    0.9988,
+    1.0064,
+    0.994
+   ]
+  }
+ },
+ "my_independent_seam_measurements": {
+  "S1_S2_P1_corner": {
+   "s1": [
+    2606.3,
+    140.3
+   ],
+   "s2": [
+    2551.0,
+    3686.3
+   ],
+   "reported": [
+    [
+     2606,
+     139.9
+    ],
+    [
+     2552,
+     3685.3
+    ]
+   ]
+  },
+  "S1_S2_P2_curb_terminus": {
+   "s1": [
+    2979.5,
+    138.27
+   ],
+   "s2": [
+    2925.5,
+    3685.84
+   ],
+   "reported": [
+    [
+     2976,
+     138.0
+    ],
+    [
+     2923,
+     3686.1
+    ]
+   ],
+   "note": "my x is ~3px right of theirs on BOTH sheets (threshold-crossing vs last-solid-pixel convention); the differential dx=54.0 matches their 53.0 to 1px"
+  },
+  "S27_S29_midalley_jambs": {
+   "s27": [
+    1606.31,
+    1662.2
+   ],
+   "s29": [
+    1669.89,
+    1729.64
+   ],
+   "reported_s27": [
+    1606.45,
+    1662.02
+   ],
+   "reported_s29": [
+    1669.67,
+    1728.63
+   ]
+  },
+  "S27_S29_Ealley_jambs": {
+   "s27": [
+    2612.2,
+    2670.9
+   ],
+   "s29": [
+    2680.5,
+    2740.3
+   ],
+   "reported_s27": [
+    2612.69,
+    2670.56
+   ],
+   "reported_s29": [
+    2680.56,
+    2740.2
+   ]
+  },
+  "S27_S29_AvH_jambs": {
+   "s27": [
+    1020.5,
+    1226.5
+   ],
+   "s29": [
+    1084.5,
+    1297.5
+   ],
+   "reported_s27": [
+    1020.25,
+    1226.59
+   ],
+   "reported_s29": [
+    1084.03,
+    1297.51
+   ]
+  },
+  "S27_S29_AvG_AvJ_termini": {
+   "s27": [
+    222.5,
+    3040.5
+   ],
+   "s29": [
+    288.5,
+    3108.5
+   ],
+   "reported_s27": [
+    221.9,
+    3039.52
+   ],
+   "reported_s29": [
+    288.3,
+    3109.96
+   ]
+  },
+  "S7_S9_avenue_lines_vertical_centroid": {
+   "S7_AvB_W": 1118.83,
+   "S7_AvB_E": 1355.41,
+   "S7_AvD_W": 3095.36,
+   "S9_AvB_W": 1093.16,
+   "S9_AvB_E": 1332.48,
+   "S9_AvD_W": 3101.59,
+   "note": "sheet 7 draws TWO parallel lines ~6px apart at every avenue face (wall + awning edge); the choice cancels in differences"
+  },
+  "S7_S9_6in_tee": {
+   "s7": [
+    2714.0,
+    3738.2
+   ],
+   "s9": [
+    2713.0,
+    282.2
+   ],
+   "reported": [
+    [
+     2715.1,
+     3737
+    ],
+    [
+     2715.3,
+     278.6
+    ]
+   ],
+   "note": "pipe is a DOUBLE dashed line on both sheets; they took the crossing centre on S7 but the upper line on S9 -> ~3.5px systematic dy"
+  }
+ },
+ "map_body_vs_scalebar_scale": {
+  "S7_S9": {
+   "body_ratio_S9_over_S7": 1.0161,
+   "baseline_px": 1976.5,
+   "from": "AvB west line -> AvD west line, vertical-line centroids, both sheets",
+   "scalebar_ratio_S9_over_S7": 0.991,
+   "contradiction_pct": 2.65
+  },
+  "S27_S29": {
+   "body_ratio_S29_over_S27": 1.00075,
+   "baseline_px": 2818,
+   "from": "least squares on 6 independently measured curb/jamb x-positions, RMS 2.4px",
+   "scalebar_ratio_S29_over_S27": 0.989,
+   "contradiction_pct": 1.24
+  }
+ }
+}

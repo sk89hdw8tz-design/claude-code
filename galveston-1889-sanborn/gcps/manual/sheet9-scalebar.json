@@ -1,0 +1,50 @@
+{
+  "sheet": "9",
+  "file": "/home/user/claude-code/galveston-1889-sanborn/data/original/txu-sanborn-galveston-1889-Sheet 9.jpg",
+  "image_size_px": [
+    3400,
+    4131
+  ],
+  "scale_bar_present": "yes",
+  "printed_scale_statement": "Scale of Feet.",
+  "printed_tick_labels_left_to_right": [
+    "50",
+    "40",
+    "30",
+    "20",
+    "10",
+    "0",
+    "50",
+    "100",
+    "150"
+  ],
+  "tick_centroids_source_px": {
+    "-50": 421.84,
+    "0": 573.47,
+    "50": 724.81,
+    "100": 877.58,
+    "150": 1028.06
+  },
+  "interval_px_per_50ft": [
+    151.63,
+    151.34,
+    152.77,
+    150.48
+  ],
+  "primary_measurement": {
+    "from_tick": "50 (left end, = -50 ft)",
+    "to_tick": "150 (right end)",
+    "ground_distance_ft": 200,
+    "x1": 421.84,
+    "y1": 3851.4,
+    "x2": 1028.06,
+    "y2": 3843.5,
+    "pixel_length_euclidean": 606.27,
+    "pixel_length_horizontal": 606.22,
+    "pixels_per_foot": 3.031,
+    "uncertainty_px_per_endpoint": 0.8
+  },
+  "bar_tilt": "bar centre y 3851.3 at x=430 to 3843.6 at x=1020 -> about -0.75 deg (rises to the right); along-bar vs horizontal length differ by 0.05 px",
+  "nominal_comparison": "300 dpi scan of a 1 in = 100 ft Sanborn plate would be 3.000 px/ft; measured 3.031 px/ft is ~1.0% larger than nominal",
+  "crops": "/home/user/claude-code/galveston-1889-sanborn/output/qc/manual_crops/"
+}
