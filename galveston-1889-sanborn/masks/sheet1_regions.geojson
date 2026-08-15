@@ -52,14 +52,14 @@
           [
             [
               1568.0,
-              164.77303647448863
+              144.0
             ],
             [
-              2944.6587366848707,
-              166.01111755129548
+              3199.88,
+              136.92
             ],
             [
-              3014.05952796824,
+              3151.46,
               3992.0
             ],
             [
@@ -68,7 +68,7 @@
             ],
             [
               1568.0,
-              164.77303647448863
+              144.0
             ]
           ]
         ]
@@ -80,16 +80,10 @@
         "role": "map_region",
         "source_image": "txu-sanborn-galveston-1889-Sheet 1.jpg",
         "pixel_crs": "Coordinates are source-image pixels (x right, y DOWN) of the original unmodified scan named in properties.source_image. NOT a geographic CRS.",
-        "note": "Butt joint on shared centrelines; edges with no neighbour run out to the mapped-area bound so nothing is trimmed.",
+        "note": "Butt joint: both sheets of a seam are cut on the SAME plane line, so they meet with no overlap and no gap. Edges with no neighbour keep the mapped-area bound.",
         "confidence": "high",
-        "defined_by": "cut at the street/avenue centrelines shared with each neighbour"
+        "defined_by": "cut at shared street centrelines fitted to the verified control, in the reconstruction plane"
       }
     }
-  ],
-  "source_image": "txu-sanborn-galveston-1889-Sheet 1.jpg",
-  "sheet": "1",
-  "image_size": [
-    3400,
-    4118
   ]
 }

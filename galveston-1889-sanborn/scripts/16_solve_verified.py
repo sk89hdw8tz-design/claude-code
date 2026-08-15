@@ -52,6 +52,11 @@ from sanborn.config import load_config, paths, setup_logging, utcnow
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 
+# An observation whose own declared sigma exceeds the seam max gate (15 px)
+# cannot inform that gate. Graded control must be at least as precise as the
+# threshold it is being judged against.
+LOOSE_SIGMA_PX = 15.0
+
 
 def load_verified(path: pathlib.Path):
     """Pair the two rows of every point_id into a TiePoint."""
@@ -71,12 +76,16 @@ def load_verified(path: pathlib.Path):
         sigma = max(float(a["uncertainty_px"] or 8.0),
                     float(b["uncertainty_px"] or 8.0))
         sigma = max(sigma, 0.5)                     # no observation is perfect
+        sx = max(float(a.get("sigma_x_px") or sigma), 0.5)
+        sy = max(float(a.get("sigma_y_px") or sigma), 0.5)
         ties.append(G.TiePoint(
             a=a["region"], pa=(float(a["src_x"]), float(a["src_y"])),
             b=b["region"], pb=(float(b["src_x"]), float(b["src_y"])),
-            weight=1.0 / (sigma * sigma), label=pid))
+            weight=1.0 / (sigma * sigma), label=pid,
+            weight_xy=(1.0 / (sx * sx), 1.0 / (sy * sy))))
         # TiePoint uses __slots__, so per-point provenance rides alongside.
-        meta[pid] = {"sigma": sigma, "feature": a.get("feature", ""),
+        meta[pid] = {"sigma": sigma, "sigma_x": sx, "sigma_y": sy,
+                     "feature": a.get("feature", ""),
                      "confidence": a.get("confidence", ""),
                      "category": a.get("category", ""),
                      "control_class": a.get("control_class", "geometric")}
@@ -119,11 +128,27 @@ def seam_table(residuals, meta):
         })
     out = []
     for key, items in sorted(per.items()):
-        # Grade on GEOMETRIC control only. Symbols (fire plugs, valve discs)
-        # were placed by eye by the draftsman and differ between plates of the
-        # same edition by up to 45 px; they are reported, never graded.
-        geo = [i for i in items if i["control_class"] == "geometric"]
-        sym = [i for i in items if i["control_class"] == "symbol"]
+        # Grade on PRECISE GEOMETRIC control only.
+        #
+        # Two kinds of observation are reported but never graded:
+        #
+        #   symbol  fire plugs, hydrants, valve discs -- placed by eye by the
+        #           draughtsman, and the same plug is drawn up to 46 px apart
+        #           on two plates of one edition;
+        #   loose   anything, of any category, whose observer declared a sigma
+        #           larger than the grading gate itself. A water-main tee
+        #           offered at +/-45 px because sheet 8 runs the 22nd St main
+        #           143 px south of the kerb where sheet 10 runs it 99 px is a
+        #           semantic confirmation of WHICH crossing it is, not a claim
+        #           about position. Letting it decide a 15 px max gate would be
+        #           grading a measurement against a precision it never asserted.
+        #
+        # Both stay in the solve at their honest sigma, where 1/sigma^2 makes
+        # them nearly weightless.
+        geo = [i for i in items
+               if i["control_class"] == "geometric" and i["sigma"] <= LOOSE_SIGMA_PX]
+        sym = [i for i in items
+               if i["control_class"] == "symbol" or i["sigma"] > LOOSE_SIGMA_PX]
         if not geo:
             continue
         raw = np.array([i["raw"] for i in geo])
@@ -145,6 +170,139 @@ def seam_table(residuals, meta):
     return out
 
 
+def _sim_block(pt, sign):
+    x, y = pt
+    return sign * np.array([[x, -y, 1.0, 0.0], [y, x, 0.0, 1.0]])
+
+
+def normal_matrix(regions, ties, anchor, kind, residuals):
+    """Inverse normal matrix and unit-weight variance of a similarity solve.
+
+    Shared by the per-region formal errors and by the leave-one-seam-out test,
+    which needs the FULL inverse rather than per-region blocks: the two sheets
+    of a predicted seam are strongly correlated through the rest of the
+    network, and ignoring that cross-covariance would overstate the predicted
+    uncertainty considerably.
+    """
+    if kind != "similarity":
+        return None
+    free = [r for r in regions if r != anchor]
+    if not free:
+        return None
+    idx = {r: i * 4 for i, r in enumerate(free)}
+    ncol = 4 * len(free)
+    rows, wts = [], []
+    for t in ties:
+        row = np.zeros((2, ncol))
+        if t.a in idx:
+            row[:, idx[t.a]:idx[t.a] + 4] += _sim_block(t.pa, +1)
+        if t.b in idx:
+            row[:, idx[t.b]:idx[t.b] + 4] += _sim_block(t.pb, -1)
+        rows.append(row)
+        wts.append((t.wx, t.wy))
+    if not rows:
+        return None
+    A = np.vstack(rows)
+    sw = np.sqrt(np.asarray(wts, float).reshape(-1))
+    Aw = A * sw[:, None]
+    try:
+        Ninv = np.linalg.inv(Aw.T @ Aw)
+    except np.linalg.LinAlgError:
+        return None
+    ssr = sum(r["normalized"] ** 2 for r in residuals if r["kind"] == "tie")
+    redundancy = max(1, 2 * len(ties) - ncol)
+    return {"Ninv": Ninv, "idx": idx, "ncol": ncol,
+            "sigma0_sq": ssr / redundancy}
+
+
+def predicted_sigma(nm, region_a, pa, region_b, pb):
+    """1-sigma radial uncertainty of T_a(pa) - T_b(pb) under a given solve.
+
+    A similarity is linear in its parameters, so the displacement is M.theta
+    and its covariance is M.Cov(theta).M^T exactly -- no linearisation error.
+    """
+    if nm is None:
+        return None
+    idx, ncol = nm["idx"], nm["ncol"]
+    M = np.zeros((2, ncol))
+    if region_a in idx:
+        M[:, idx[region_a]:idx[region_a] + 4] += _sim_block(pa, +1)
+    if region_b in idx:
+        M[:, idx[region_b]:idx[region_b] + 4] += _sim_block(pb, -1)
+    C = nm["sigma0_sq"] * (M @ nm["Ninv"] @ M.T)
+    return float(np.sqrt(max(0.0, np.trace(C))))
+
+
+def leave_one_seam_out(regions, ties, anchor, kind, huber, meta):
+    """Drop a whole seam's control, re-solve, and see where that seam lands.
+
+    K-fold over individual POINTS is nearly useless here: with 6-16 points on
+    a seam, removing a fifth of them leaves the seam itself fully constrained,
+    so the held-out points are predicted by their own neighbours rather than
+    by the rest of the network.
+
+    Dropping an ENTIRE seam is the real test.  That seam's geometry then has
+    to be predicted by going the long way round the network, so the number it
+    produces is a genuine loop closure -- unlike composing transforms around a
+    cycle of a global solve, which returns 0.000 px by construction because
+    every sheet has exactly one absolute transform.
+
+    It also probes the one systematic this control set cannot see from the
+    inside.  Sheets abutting along an avenue share NO inked ground point: each
+    draws only its own frontage, and the tie is constructed by stepping half
+    the printed 70 ft width inward.  A wrong width biases that seam's
+    across-seam offset by width_error x px_per_ft, identically for every point
+    on it, so it cannot show up in that seam's own residuals.  Predicting the
+    seam from elsewhere is what exposes it.
+    """
+    seams = sorted({tuple(sorted((t.a, t.b))) for t in ties})
+    out = []
+    for a, b in seams:
+        kept = [t for t in ties if tuple(sorted((t.a, t.b))) != (a, b)]
+        held = [t for t in ties if tuple(sorted((t.a, t.b))) == (a, b)
+                and meta.get(t.label, {}).get("control_class") != "symbol"]
+        if not held:
+            continue
+        reach = connected_components(regions, kept)
+        if len(reach) > 1:
+            out.append({"seam": f"{a}|{b}", "n_held": len(held),
+                        "status": "DISCONNECTS",
+                        "note": "the network falls apart without this seam -- "
+                                "it is a bridge, and nothing independent "
+                                "predicts it"})
+            continue
+        try:
+            res = G.adjust(regions, kept, None, kind=kind, anchor_sheet=anchor,
+                           robust=True, huber_delta=huber, iterations=30)
+        except Exception as exc:
+            out.append({"seam": f"{a}|{b}", "n_held": len(held),
+                        "status": "ERROR", "note": str(exc)})
+            continue
+        T2 = res["transforms"]
+        nm2 = normal_matrix(regions, kept, anchor, kind, res["residuals"])
+        sig = [predicted_sigma(nm2, t.a, t.pa, t.b, t.pb) for t in held]
+        sig = [v for v in sig if v is not None]
+        d = np.array([G.apply(T2[t.a], [t.pa])[0] - G.apply(T2[t.b], [t.pb])[0]
+                      for t in held])
+        r = np.hypot(d[:, 0], d[:, 1])
+        # Split the prediction error into the part shared by every point on
+        # the seam (a rigid offset, which is what a bad avenue width looks
+        # like) and the part that varies point to point.
+        bias = d.mean(axis=0)
+        scatter = d - bias
+        out.append({
+            "seam": f"{a}|{b}", "n_held": len(held), "status": "predicted",
+            "median_px": float(np.median(r)), "max_px": float(r.max()),
+            "systematic_offset_px": float(np.hypot(*bias)),
+            "systematic_dx_px": float(bias[0]), "systematic_dy_px": float(bias[1]),
+            "residual_scatter_px": float(np.sqrt((scatter ** 2).sum(axis=1).mean())),
+            "predicted_sigma_px": float(np.mean(sig)) if sig else None,
+            "sigma_ratio": (float(np.median(r) / np.mean(sig))
+                            if sig and np.mean(sig) > 0 else None),
+        })
+    return out
+
+
 def parameter_covariance(regions, ties, anchor, kind, T, residuals):
     """1-sigma formal errors on each free region's scale and rotation.
 
@@ -158,41 +316,10 @@ def parameter_covariance(regions, ties, anchor, kind, T, residuals):
 
     Returns {} for anything but a similarity, where that algebra applies.
     """
-    if kind != "similarity":
+    nm = normal_matrix(regions, ties, anchor, kind, residuals)
+    if nm is None:
         return {}
-    free = [r for r in regions if r != anchor]
-    if not free:
-        return {}
-    idx = {r: i * 4 for i, r in enumerate(free)}
-    ncol = 4 * len(free)
-
-    def block(pt, sign):
-        x, y = pt
-        return sign * np.array([[x, -y, 1.0, 0.0], [y, x, 0.0, 1.0]])
-
-    rows, wts = [], []
-    for t in ties:
-        row = np.zeros((2, ncol))
-        if t.a in idx:
-            row[:, idx[t.a]:idx[t.a] + 4] += block(t.pa, +1)
-        if t.b in idx:
-            row[:, idx[t.b]:idx[t.b] + 4] += block(t.pb, -1)
-        rows.append(row)
-        wts.append(t.weight)
-    if not rows:
-        return {}
-    A = np.vstack(rows)
-    sw = np.sqrt(np.repeat(np.asarray(wts, float), 2))
-    Aw = A * sw[:, None]
-    N = Aw.T @ Aw
-    try:
-        Ninv = np.linalg.inv(N)
-    except np.linalg.LinAlgError:
-        return {}
-
-    ssr = sum(r["normalized"] ** 2 for r in residuals if r["kind"] == "tie")
-    redundancy = max(1, 2 * len(ties) - ncol)
-    sigma0_sq = ssr / redundancy
+    Ninv, idx, sigma0_sq = nm["Ninv"], nm["idx"], nm["sigma0_sq"]
 
     out = {}
     for r in regions:
@@ -240,6 +367,8 @@ def main() -> int:
                     help="Huber delta in NORMALISED units (sigmas)")
     ap.add_argument("--allow-partial", action="store_true",
                     help="solve the largest connected component instead of failing")
+    ap.add_argument("--loso", action="store_true",
+                    help="leave-one-seam-out prediction test (the honest loop closure)")
     ap.add_argument("--publish", action="store_true",
                     help="also write working/transforms.json and gcps/residuals.json, "
                          "i.e. ACCEPT this solve as the one the rest of the "
@@ -346,6 +475,9 @@ def main() -> int:
                                      "max": float(nrm.max())}
         cv.pop("detail")
 
+    loso = leave_one_seam_out(regions, ties, anchor, args.kind, args.huber,
+                              meta) if args.loso else []
+
     # ---- write ----------------------------------------------------------
     (p.working / "transforms_verified.json").write_text(json.dumps({
         "profile": args.profile, "kind": args.kind, "anchor_region": anchor,
@@ -377,7 +509,8 @@ def main() -> int:
         w.writerows(summary)
 
     keep = [r for r in fit["residuals"]
-            if meta.get(r["label"], {}).get("control_class", "geometric") == "geometric"]
+            if meta.get(r["label"], {}).get("control_class", "geometric") == "geometric"
+            and (meta.get(r["label"], {}).get("sigma") or 99) <= LOOSE_SIGMA_PX]
     raw = np.array([r["residual"] for r in keep])
     nrm = np.array([r["normalized"] for r in keep])
     overall = {"n": len(raw), "raw_median": float(np.median(raw)),
@@ -387,7 +520,8 @@ def main() -> int:
     (qcdir / "solve_verified.json").write_text(json.dumps(
         {"generated": utcnow(), "kind": args.kind, "anchor": anchor,
          "regions": sorted(T), "overall": overall, "spread": spread,
-         "rank": rank, "crossval": cv, "transforms_summary": summary,
+         "rank": rank, "crossval": cv, "leave_one_seam_out": loso,
+         "transforms_summary": summary,
          "seams": [{k: v for k, v in s.items() if k != "points"} for s in seams]},
         indent=1, default=str))
 
@@ -413,11 +547,13 @@ def main() -> int:
 
     # ---- report ---------------------------------------------------------
     n_sym = sum(1 for t in ties
-                if meta[t.label]["control_class"] == "symbol")
+                if meta[t.label]["control_class"] == "symbol"
+                or meta[t.label]["sigma"] > LOOSE_SIGMA_PX)
     print(f"\n{args.kind} solve, anchor {anchor}, {len(ties)} verified "
-          f"correspondences ({len(ties) - n_sym} geometric + {n_sym} symbol), "
+          f"correspondences ({len(ties) - n_sym} graded + {n_sym} ungraded), "
           f"{len(regions)} regions")
-    print("  (graded on geometric control only; symbols are drafting scatter)")
+    print(f"  (graded on geometric control with sigma <= {LOOSE_SIGMA_PX:.0f} px; "
+          "symbols and loose points are reported as scatter)")
     print(f"  overall raw   median {overall['raw_median']:6.2f}px  "
           f"p95 {overall['raw_p95']:6.2f}px  max {overall['raw_max']:6.2f}px")
     print(f"  overall norm  median {overall['norm_median']:6.2f}s   "
@@ -431,12 +567,37 @@ def main() -> int:
     for s in seams:
         tail = f"  ({s['why']})" if s["verdict"] != "PASS" else ""
         if s["n_symbol"]:
-            tail += (f"   [+{s['n_symbol']} symbol, scatter "
+            tail += (f"   [+{s['n_symbol']} ungraded, scatter "
                      f"{s['symbol_scatter_median_px']:.0f}/"
                      f"{s['symbol_scatter_max_px']:.0f}px]")
         print(f"  {s['region_a'] + ' | ' + s['region_b']:<20} {s['n']:>3} "
               f"{s['raw_median']:>6.2f}p {s['raw_max']:>6.2f}p "
               f"{s['norm_median']:>5.2f}s  {s['verdict']}" + tail)
+    if loso:
+        print(f"\n  leave-one-seam-out prediction (the seam is removed entirely and "
+              f"predicted\n  by the rest of the network -- a real loop closure):")
+        print(f"  {'seam':<20} {'n':>3} {'med':>8} {'max':>8} {'bias':>8} "
+              f"{'scatter':>8} {'pred 1sig':>10} {'obs/pred':>9}")
+        for e in loso:
+            if e["status"] != "predicted":
+                print(f"  {e['seam']:<20} {e['n_held']:>3} {e['status']:>8}"
+                      f"   {e.get('note', '')[:60]}")
+                continue
+            ps = (f"{e['predicted_sigma_px']:>9.2f}p"
+                  if e.get("predicted_sigma_px") else f"{'-':>10}")
+            rt = (f"{e['sigma_ratio']:>9.2f}" if e.get("sigma_ratio")
+                  else f"{'-':>9}")
+            print(f"  {e['seam']:<20} {e['n_held']:>3} {e['median_px']:>7.2f}p "
+                  f"{e['max_px']:>7.2f}p {e['systematic_offset_px']:>7.2f}p "
+                  f"{e['residual_scatter_px']:>7.2f}p {ps} {rt}")
+        print("  bias    = offset shared by every point on the seam -- what a wrong "
+              "printed\n            avenue width would look like")
+        print("  scatter = the part that varies point to point")
+        print("  obs/pred= misclosure over what the REDUCED network could predict. "
+              "Around 1\n            means the network is self-consistent and merely "
+              "thin; well above 2\n            means a systematic the control cannot "
+              "see from the inside.")
+
     print(f"\n  {'region':<10} {'scale':>9} {'+/-%':>7} {'rot deg':>9} {'+/-deg':>8} "
           f"{'plausible':>10}")
     for s in summary:

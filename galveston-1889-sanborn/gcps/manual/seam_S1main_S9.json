@@ -7,55 +7,90 @@
   "overlap_description": "The two plates share the Av. A or Water E. corridor and nothing else. Av. A is lettered 'AV. A or WATER E.' vertically on BOTH plates (sheet 1 at x~3060-3120, y~1600-2320; sheet 9 at x~200-260, y~1500-2450), and on sheet 1 it is additionally labelled 70' in the roadway at (3085-3132, 145-165). Sheet 1 draws Av. A's WEST property line (east line of blocks 742/743/744, e.g. x=2977 at 22nd St) and the whole roadway; sheet 9 does NOT draw that west line at all - west of the Av. A east line sheet 9 shows only the G.C.&S.F. and M.P. R.R. tracks on trestle, the basin and blank paper out to its left paper edge at x~50 (which maps to about x=2915 on sheet 1, i.e. ~60 px past Av. A's west line). Conversely sheet 1 stops ~110-140 px east of Av. A's EAST property line at its torn right edge (x~3300-3320, mapping to sheet 9 x~450-470), showing only the corner returns of blocks 682/683/684 and the west end of the P.J. Willis & Bro. building. The ONE line drawn as a real, identically-defined boundary on both plates is therefore Av. A's EAST property line = the west property line of blocks 682, 683 and 684. Every correspondence below sits on that line. Vertically the common band runs from the south right-of-way line of 22nd Street (sheet 1 y~136, sheet 9 y~434) to the north line of 25th or Bath Av. (sheet 1 y~3421, sheet 9 y~3688); sheet 9's paper ends at y~3930 (= sheet 1 y~3665) so 25th St, the wooden bridge, the 8-inch main and block 685 (Waters Pierce Oil Co.) exist on sheet 1 only. Streets crossing the seam are lettered on BOTH plates: '22ND ST.', '23RD or TREMONT', '24TH ST.' - and both plates letter each of them 80'. Block numbers 742/743/744 (sheet 1, west of Av. A) and 682/683/684 (sheet 9, east of Av. A) fix the row unambiguously, and P.J. Willis & Bro. is named on both.",
   "correspondences": [
     {
-      "feature": "North-west corner of block 682: the SOUTH right-of-way line of 22nd Street meets the EAST property line of Av. A or Water E. On sheet 9 this is a drawn right-angle corner (lots 520/521/522 lettered in the street just north of it). On sheet 1 the corner is the intersection of the drawn 22nd St south line (drawn continuously from x<2400 to its end at block 742's north-east corner, x=2977) with the drawn Av. A east line, whose printed top terminus lies at y=133.5.",
+      "feature": "North-west corner of block 682: the SOUTH right-of-way line of 22nd Street meets the EAST property line of Av. A or Water E. On sheet 9 this is a drawn right-angle corner (lots 520/521/522 lettered in the street just north of it). On sheet 1 the corner is the intersection of the drawn 22nd St south line (drawn continuously from x<2400 to its end at block 742's north-east corner, x=2977) with the drawn Av. A east line, whose printed top terminus lies at y=133.5 (2.9 px above the extrapolated street line, which is the reason for the 4 px uncertainty).",
       "why_unambiguous": "22nd Street is lettered '22ND ST.' on sheet 9 and '22ND STREET' with 'SEE SHEET No. 2' on sheet 1, and it is the FIRST street on either plate - there is no street north of it in this row, so a one-block slip is impossible. The avenue is lettered 'AV. A or WATER E.' on both. Block 682's identity is confirmed by its printed number and by the lot numbers 520-522 on its north frontage.",
-      "a_x": 3200.21, "a_y": 136.39, "b_x": 320.18, "b_y": 434.29,
-      "confidence": "medium", "uncertainty_px": 4.0, "category": "block corner"
+      "a_x": 3199.46,
+      "a_y": 136.4,
+      "b_x": 321.15,
+      "b_y": 434.27,
+      "confidence": "medium",
+      "uncertainty_px": 4.0,
+      "category": "block corner"
     },
     {
       "feature": "South-west corner of block 682: the NORTH right-of-way line of 23rd or Tremont Street meets the east property line of Av. A. Drawn as a right-angle corner on both plates (sheet 1: line turns east and runs to x~3310; sheet 9: line turns east along the block frontage with lots 501/502/503 lettered just south of it).",
       "why_unambiguous": "'23RD or TREMONT' is printed in the roadway on BOTH plates (sheet 1 at y~1190, sheet 9 at x~1500-2100, y~1470), and both plates letter the street 80'. It is the only Tremont crossing on either plate. The corner is the south end of block 682's west line, whose north end is the 22nd St corner above.",
-      "a_x": 3188.05, "a_y": 1068.17, "b_x": 324.82, "b_y": 1353.87,
-      "confidence": "high", "uncertainty_px": 2.5, "category": "block corner"
+      "a_x": 3188.01,
+      "a_y": 1068.17,
+      "b_x": 324.73,
+      "b_y": 1353.87,
+      "confidence": "high",
+      "uncertainty_px": 2.5,
+      "category": "block corner"
     },
     {
       "feature": "North-west corner of block 683: the SOUTH right-of-way line of 23rd or Tremont Street meets the east property line of Av. A. Right-angle corner drawn on both plates.",
       "why_unambiguous": "Paired with the corner above across the same named 80-ft Tremont corridor; the pair reproduces the street width (247.3 px on sheet 1, 243.4 px on sheet 9, both against a printed 80'). Block 683 is numbered on sheet 9 and its north frontage lots 512/513/514 are lettered in the street.",
-      "a_x": 3185.47, "a_y": 1315.46, "b_x": 323.30, "b_y": 1597.31,
-      "confidence": "high", "uncertainty_px": 3.0, "category": "block corner"
+      "a_x": 3185.09,
+      "a_y": 1315.46,
+      "b_x": 325.15,
+      "b_y": 1597.29,
+      "confidence": "high",
+      "uncertainty_px": 3.0,
+      "category": "block corner"
     },
     {
       "feature": "South-west corner of block 683: the NORTH right-of-way line of 24th Street meets the east property line of Av. A. Right-angle corner on both plates (sheet 9 letters lots 501/502/503 of block 684's neighbour just south, sheet 1 turns east to the paper edge).",
       "why_unambiguous": "'24TH ST.' is printed in the roadway on BOTH plates (sheet 1 at y~2400, sheet 9 at x~1600-2200, y~2620) and both letter it 80'. It is the only 24th Street crossing on either plate, and it lies between the named Tremont crossing above and the P.J. Willis & Bro. block below.",
-      "a_x": 3173.02, "a_y": 2243.62, "b_x": 321.54, "b_y": 2519.40,
-      "confidence": "high", "uncertainty_px": 3.0, "category": "block corner"
+      "a_x": 3173.36,
+      "a_y": 2243.61,
+      "b_x": 323.37,
+      "b_y": 2519.39,
+      "confidence": "high",
+      "uncertainty_px": 3.0,
+      "category": "block corner"
     },
     {
       "feature": "North-west corner of block 684: the SOUTH right-of-way line of 24th Street meets the east property line of Av. A. This is also the north-west corner of the P.J. Willis & Bro. wholesale building, which fills the block and is drawn in brick pink on both plates.",
       "why_unambiguous": "Named building on both plates ('P.J. WILLIS & BRO.' lettered vertically on sheet 1 at x~3130-3160, 'P.J. WILLIS and BRO. WHOLESALE' lettered across the block on sheet 9) on the south side of the named 24th Street. Note the sheet-9 corner is the SOLID wall/property line at y=2759.6, not the dashed awning edge 48 px north of it at y~2712; using the dashed line instead would break the 80-ft street width, which is how the choice was checked.",
-      "a_x": 3170.15, "a_y": 2488.52, "b_x": 323.83, "b_y": 2759.57,
-      "confidence": "high", "uncertainty_px": 3.0, "category": "named building corner"
+      "a_x": 3169.17,
+      "a_y": 2488.52,
+      "b_x": 325.24,
+      "b_y": 2759.57,
+      "confidence": "high",
+      "uncertainty_px": 3.0,
+      "category": "named building corner"
     },
     {
       "feature": "South wall of the P.J. Willis & Bro. wholesale building where it meets the east property line of Av. A (south-west corner of the building, roughly two thirds of the way down block 684; hatched steps drawn west of it on both plates).",
       "why_unambiguous": "It is the only wall inside blocks 682-684 that sheet 1 draws at all - a scan of every horizontal abutting the Av. A east line on sheet 1 returns exactly six, five of which are the street corners above and this is the sixth. Semantically it can only be the Willis building's south wall, which is drawn on sheet 9 in the same place in the block. GEOMETRICALLY POOR: the two draftsmen place it 13 px (4.3 ft) apart relative to the block corners either side of it, so it is carried with a large uncertainty and contributes almost nothing to the solve.",
-      "a_x": 3164.90, "a_y": 2898.24, "b_x": 326.20, "b_y": 3154.78,
-      "confidence": "low", "uncertainty_px": 9.0, "category": "named building corner"
+      "a_x": 3163.7,
+      "a_y": 2898.0,
+      "b_x": 326.3,
+      "b_y": 3154.78,
+      "confidence": "low",
+      "uncertainty_px": 9.0,
+      "category": "named building corner"
     },
     {
       "feature": "South-west corner of block 684: the NORTH right-of-way line of 25th or Bath Av. meets the east property line of Av. A. Right-angle corner drawn on both plates; it is the southern terminus of the shared boundary line.",
       "why_unambiguous": "'25TH or BATH AV.' is printed on sheet 1 immediately below this corner (y~3450); sheet 9's mapped area ends 240 px further south so this corner is the last block corner it draws. It is the south end of block 684's west line and cannot be confused with anything else - there is no further block corner on either plate along this line.",
-      "a_x": 3159.27, "a_y": 3421.24, "b_x": 325.19, "b_y": 3688.35,
-      "confidence": "high", "uncertainty_px": 2.5, "category": "block corner"
+      "a_x": 3159.33,
+      "a_y": 3421.23,
+      "b_x": 325.11,
+      "b_y": 3688.35,
+      "confidence": "high",
+      "uncertainty_px": 2.5,
+      "category": "block corner"
     }
   ],
   "self_check_similarity": {
-    "scale": 0.990986,
-    "rotation_deg": -0.7579,
-    "tx": -2850.226,
-    "ty": 337.401,
-    "rms_px": 5.54,
-    "max_px": 13.21,
+    "scale": 0.991,
+    "rotation_deg": -0.7439,
+    "tx": -2848.749,
+    "ty": 336.601,
+    "rms_px": 5.47,
+    "max_px": 13.09,
     "outliers": []
   },
   "rejected_candidates": [
@@ -88,5 +123,5 @@
       "reason": "Sheet 1 does not draw the awnings, the hatched steps or the hydrants in this strip at all, so there is nothing to pair them with; Sanborn hydrant symbols are placed by eye in any case."
     }
   ],
-  "notes": "METHOD: no template matching, NCC or feature matching. Every feature was first identified by reading the printed lettering at 4-8x (street names, street-width figures, block numbers, lot numbers, the avenue name, the building name), then measured numerically: the two lines forming each corner were fitted by intensity-weighted centroid with robust re-weighting over 250-300 rows / 90-300 columns each, and the corner taken as their intersection. Line-fit rms was 0.1-0.5 px on sheet 1 and 0.2-1.4 px on sheet 9 (sheet 9's boundary lines are drawn ~4 px thick and carry hatch marks and street numbers, hence the larger figure). Crops with a 1-source-pixel labelled grid are in output/qc/manual_crops/ (prefix s1s9_).\n\nWHAT SURPRISED ME, AND THE MAIN CAVEAT: ALL SEVEN CORRESPONDENCES ARE COLLINEAR. They lie on the single line that both plates draw identically - Av. A's east property line. A scan for horizontals abutting that line on sheet 1 returns exactly six over its whole 3300 px length; sheet 9 returns nineteen, of which only those six coincide. There is therefore NO transverse control on this seam at all: the relative x-scale is inferred from the relative rotation, not measured. A similarity is still full-rank on collinear ties (the project's own rank test: nullity 0, versus nullity 4 for affine), so this seam is solvable, but it must NOT be given an affine or higher transform, and its residuals will look optimistically small in the along-line direction.\n\nRELATIVE GEOMETRY: sheet 9 is rotated -0.76 deg with respect to sheet 1 here and drawn 0.9% smaller. The rotation is well determined: sheet 1's Av. A east line runs from (3200.2, 136.4) to (3159.3, 3421.2), i.e. -0.714 deg off vertical, while sheet 9's runs from (320.2, 434.3) to (325.2, 3688.4), i.e. +0.088 deg, over a 3285 px baseline measured to 0.4 px rms. Independent ground checks on the two plates agree: 80-ft streets measure 247.3 / 244.9 px on sheet 1 and 243.4 / 240.2 px on sheet 9; 300-ft blocks measure 931.8 / 928.2 / 932.7 px on sheet 1 and 919.6 / 922.1 / 928.8 px on sheet 9. That is 3.10 px/ft on sheet 1 and 3.08 px/ft on sheet 9 in the along-seam direction - both about 1.5% ABOVE the 3.050 / 3.052 px/ft the printed scale bars give for these same two sheets, which is worth knowing before the scale-bar figures are used as a hard prior.\n\nA DIRECTION CONFLICT THE SOLVER SHOULD KNOW ABOUT: the -0.76 deg rotation comes from the near-vertical shared line. The cross-street directions do not confirm it. Sheet 1 draws 22nd Street's south line cleanly over 665 px at -0.375 deg (fit rms 0.19 px); sheet 9's block 682 north line fits -0.87 deg over the 275 px nearest the corner but only -0.27 deg over 600 px and +0.03 deg over 3000 px, with fit rms rising to 5.4 px because east of the corner that 'line' is really a chain of separately drawn brick walls and awnings rather than one drafted property line. The horizontal direction on sheet 9 is therefore not measurable to better than ~0.5 deg here and should not be used to contradict the vertical baseline. This is the same intersection-versus-direction tension recorded in CHECKPOINT section 2; on this seam the vertical evidence is by far the stronger.\n\nSELF-CHECK DETAIL: the reported fit is the 1/sigma-weighted similarity over all seven points (rms 5.54 px, max 13.21 px). No residual exceeds 3x its stated uncertainty, so the outlier list is empty; the single large residual is the P.J. Willis south wall, which is carried at 9 px uncertainty precisely because the two draftsmen disagree about it by 13 px. Dropping that one point gives scale 0.991185, rotation -0.7558 deg, tx -2850.834, ty 337.131, rms 2.61 px, max 4.56 px - which is the figure to compare against other seams that contain only block corners.\n\nPRIVACY: all work local; no imagery left the machine, no external API was called, nothing was committed."
+  "notes": "METHOD: no template matching, NCC or feature matching. Every feature was first identified by reading the printed lettering at 4-8x (street names, street-width figures, block numbers, lot numbers, the avenue name, the building name), then measured numerically: the two lines forming each corner were fitted independently and the corner taken as their intersection. The near-vertical shared line was measured as the MIDPOINT OF THE TWO HALF-MAXIMUM INK CROSSINGS on each row (an intensity-weighted centroid was tried first and biased the thick sheet-9 line 1-2 px to the left, which showed up as visibly off-centre crosshairs in the QC tiles); the cross-street lines were fitted by weighted centroid over 90-300 columns. Robust re-weighting, 250-300 rows per vertical fit. Resulting line-fit rms: 0.15-0.56 px on sheet 1 and 0.12-0.30 px on sheet 9 for the verticals, 0.11-0.95 px for the horizontals. Crops with a 1-source-pixel labelled grid are in output/qc/manual_crops/ (prefix s1s9_).\n\nWHAT SURPRISED ME, AND THE MAIN CAVEAT: ALL SEVEN CORRESPONDENCES ARE COLLINEAR. They lie on the single line that both plates draw identically - Av. A's east property line. A scan for horizontals abutting that line on sheet 1 returns exactly six over its whole 3300 px length; sheet 9 returns nineteen, of which only those six coincide. There is therefore NO transverse control on this seam at all: the relative x-scale is inferred from the relative rotation, not measured. A similarity is still full-rank on collinear ties (the project's own rank test: nullity 0, versus nullity 4 for affine), so this seam is solvable, but it must NOT be given an affine or higher transform, and its residuals will look optimistically small in the along-line direction.\n\nRELATIVE GEOMETRY: sheet 9 is rotated -0.74 deg with respect to sheet 1 here and drawn 0.9% smaller. The rotation is well determined: sheet 1's Av. A east line runs from (3199.5, 136.4) to (3159.3, 3421.2), i.e. -0.700 deg off vertical, while sheet 9's runs from (321.2, 434.3) to (325.1, 3688.4), i.e. +0.070 deg, over a 3285 px baseline whose individual row measurements scatter by only 0.2-0.5 px. Independent ground checks on the two plates agree: 80-ft streets measure 247.3 / 244.9 px on sheet 1 and 243.4 / 240.2 px on sheet 9; 300-ft blocks measure 931.8 / 928.2 / 932.7 px on sheet 1 and 919.6 / 922.1 / 928.8 px on sheet 9. That is 3.10 px/ft on sheet 1 and 3.08 px/ft on sheet 9 in the along-seam direction - both about 1.5% ABOVE the 3.050 / 3.052 px/ft the printed scale bars give for these same two sheets, which is worth knowing before the scale-bar figures are used as a hard prior.\n\nA DIRECTION CONFLICT THE SOLVER SHOULD KNOW ABOUT: the -0.76 deg rotation comes from the near-vertical shared line. The cross-street directions do not confirm it. Sheet 1 draws 22nd Street's south line cleanly over 665 px at -0.375 deg (fit rms 0.19 px); sheet 9's block 682 north line fits -0.87 deg over the 275 px nearest the corner but only -0.27 deg over 600 px and +0.03 deg over 3000 px, with fit rms rising to 5.4 px because east of the corner that 'line' is really a chain of separately drawn brick walls and awnings rather than one drafted property line. The horizontal direction on sheet 9 is therefore not measurable to better than ~0.5 deg here and should not be used to contradict the vertical baseline. This is the same intersection-versus-direction tension recorded in CHECKPOINT section 2; on this seam the vertical evidence is by far the stronger.\n\nSELF-CHECK DETAIL: the reported fit is the 1/sigma-weighted similarity over all seven points (rms 5.47 px, max 13.09 px). No residual exceeds 3x its stated uncertainty, so the outlier list is empty; the single large residual is the P.J. Willis south wall, which is carried at 9 px uncertainty precisely because the two draftsmen disagree about it by 13 px. Dropping that one point gives scale 0.991196, rotation -0.7415 deg, tx -2849.341, ty 336.312, rms 2.54 px, max 4.44 px - which is the figure to compare against other seams that contain only block corners.\n\nPRIVACY: all work local; no imagery left the machine, no external API was called, nothing was committed."
 }

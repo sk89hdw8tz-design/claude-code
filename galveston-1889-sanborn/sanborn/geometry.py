@@ -182,12 +182,24 @@ class TiePoint:
     requirement that the two sheets meet on the ground.
     """
 
-    __slots__ = ("a", "pa", "b", "pb", "weight", "label", "kind")
+    __slots__ = ("a", "pa", "b", "pb", "weight", "label", "kind", "wx", "wy")
 
-    def __init__(self, a, pa, b, pb, weight=1.0, label="", kind="tie"):
+    def __init__(self, a, pa, b, pb, weight=1.0, label="", kind="tie",
+                 weight_xy=None):
         self.a, self.pa = a, (float(pa[0]), float(pa[1]))
         self.b, self.pb = b, (float(pb[0]), float(pb[1]))
         self.weight, self.label, self.kind = float(weight), label, kind
+        # Per-axis weights. Sheets that abut along an avenue share no inked
+        # ground point -- each draws only its own frontage -- so the tie's
+        # ACROSS-seam coordinate is constructed by stepping half the printed
+        # street width inward, while its ALONG-seam coordinate is measured
+        # directly. Those deserve different sigmas: the plates are observed to
+        # disagree about an avenue's drawn width by up to 9 px. Defaults to
+        # isotropic, so existing callers are unaffected.
+        if weight_xy is None:
+            self.wx = self.wy = float(weight)
+        else:
+            self.wx, self.wy = float(weight_xy[0]), float(weight_xy[1])
 
 
 class Anchor:
@@ -303,7 +315,7 @@ def adjust(
                 r += const(t.pb, fixed[t.b])
             rows.append(row)
             rhs.append(r)
-            wts.append(t.weight * w_iter[k])
+            wts.append((t.wx * w_iter[k], t.wy * w_iter[k]))
         for j, a in enumerate(anchors):
             row = np.zeros((2, ncol))
             r = np.array(a.target, dtype=float)
@@ -313,7 +325,7 @@ def adjust(
                 r -= const(a.p, fixed[a.s])
             rows.append(row)
             rhs.append(r)
-            wts.append(a.weight * w_iter[len(ties) + j])
+            wts.append((a.weight * w_iter[len(ties) + j],) * 2)
 
         if conformal_weight > 0 and kind == "affine":
             # Two soft equations per free sheet: (a - d) = 0 and (b + c) = 0.
@@ -324,11 +336,11 @@ def adjust(
                 row[1, o + 1], row[1, o + 3] = 1.0, 1.0    # b + c
                 rows.append(row)
                 rhs.append(np.zeros(2))
-                wts.append(conformal_weight)
+                wts.append((conformal_weight, conformal_weight))
 
         A = np.vstack(rows)
         b = np.concatenate(rhs)
-        sw = np.sqrt(np.repeat(np.asarray(wts, dtype=float), 2))
+        sw = np.sqrt(np.asarray(wts, dtype=float).reshape(-1))
         sol, *_ = np.linalg.lstsq(A * sw[:, None], b * sw, rcond=None)
 
         transforms = {s: params_to_matrix(kind, fixed[s]) for s in fixed}
@@ -440,7 +452,7 @@ def _residuals(transforms, ties, anchors):
             "kind": "tie", "label": t.label, "sheet_a": t.a, "sheet_b": t.b,
             "dx": float(d[0]), "dy": float(d[1]),
             "residual": float(np.hypot(*d)), "weight": t.weight,
-            "normalized": float(np.hypot(*d) * np.sqrt(t.weight)),
+            "normalized": float(np.sqrt(t.wx * d[0] ** 2 + t.wy * d[1] ** 2)),
         })
     for a in anchors:
         p = apply(transforms[a.s], [a.p])[0]

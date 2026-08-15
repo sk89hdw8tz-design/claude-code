@@ -38,7 +38,49 @@ REGION = {"1": "S1_main", "2": "S2", "7": "S7", "8": "S8",
 FIELDS = ["point_id", "sheet", "region", "role", "src_x", "src_y",
           "ref_x", "ref_y", "ref_lon", "ref_lat", "street_a", "street_b",
           "feature", "category", "control_class", "method", "confidence",
-          "selected_by", "uncertainty_px", "residual_px", "accepted", "note"]
+          "selected_by", "uncertainty_px", "sigma_x_px", "sigma_y_px",
+          "residual_px", "accepted", "note"]
+
+# --------------------------------------------------------------------------
+# Which seams share INKED ground, and which construct their tie.
+#
+# Sheets that abut along a numbered street overlap: both plates draw the whole
+# roadway (each its own kerb as block frontage, the far kerb as the outer rule
+# of its continuation boxes), so a corner is genuinely inked on both and the
+# tie is measured in both axes.
+#
+# Sheets that abut along a lettered AVENUE frequently share nothing at all.
+# Sheet 8 stops on the west line of Av. G and sheet 29 begins on the east
+# line; the 70-ft roadway between is drawn by neither. The tie is then built
+# by stepping half the PRINTED width inward from each plate's own frontage.
+# That construction is sound along the seam, where real crossing lines fix the
+# station, but across the seam it rests entirely on the printed figure -- and
+# the plates are observed to disagree about a drawn avenue width by up to 9 px
+# (sheet 1 draws Av. A 224 px wide where sheet 2 draws it 215 px).
+#
+# So those ties get an inflated sigma on the ACROSS-seam axis only. Every one
+# of these seams runs vertically down the page, so across = x.
+CONSTRUCTED_ACROSS_SIGMA_PX = 10.0
+CONSTRUCTED_SEAMS = {
+    ("S10", "S9"):  ("x", "Av. D: no duplicated feature; each plate draws only "
+                          "its own frontage, centreline stepped from printed 70 ft"),
+    ("S29", "S8"):  ("x", "Av. G: overlap_exists=no; the roadway is drawn by "
+                          "neither plate"),
+    ("S10", "S27"): ("x", "Av. G: no duplicated map detail; ~55-60 ft of empty "
+                          "roadway between the two drawn limits"),
+}
+
+
+def axis_sigmas(region_a: str, region_b: str, sigma: float) -> tuple[float, float, str]:
+    """(sigma_x, sigma_y, note) for one tie."""
+    entry = CONSTRUCTED_SEAMS.get(tuple(sorted((region_a, region_b))))
+    if not entry:
+        return sigma, sigma, ""
+    axis, why = entry
+    loose = max(sigma, CONSTRUCTED_ACROSS_SIGMA_PX)
+    if axis == "x":
+        return loose, sigma, f"across-seam sigma inflated to {loose:.0f}px -- {why}"
+    return sigma, loose, f"across-seam sigma inflated to {loose:.0f}px -- {why}"
 
 # Two classes of control, and they are NOT interchangeable.
 #
@@ -220,6 +262,9 @@ def main() -> int:
                                                 sigma, recon_log)
 
             n_by_conf[conf] = n_by_conf.get(conf, 0) + 1
+            sx, sy, axis_note = axis_sigmas(ra, rb, sigma)
+            if axis_note:
+                note = f"{note}; {axis_note}".strip("; ")
             pid = f"MV_{ra}_{rb}_{i:02d}"
             for sheet, region, p in ((sa, ra, pa), (sb, rb, pb)):
                 rows.append({
@@ -233,8 +278,9 @@ def main() -> int:
                     "method": "semantic identification from printed evidence, "
                               "then sub-pixel measurement on a 1-src-px grid overlay",
                     "confidence": conf, "selected_by": path.name,
-                    "uncertainty_px": round(sigma, 2), "residual_px": "",
-                    "accepted": "true",
+                    "uncertainty_px": round(sigma, 2),
+                    "sigma_x_px": round(sx, 2), "sigma_y_px": round(sy, 2),
+                    "residual_px": "", "accepted": "true",
                     "note": note,
                 })
 
@@ -267,8 +313,10 @@ def main() -> int:
                         "method": "named station on the shared street line, "
                                   "sampled on both sheets",
                         "confidence": "medium", "selected_by": path.name,
-                        "uncertainty_px": 6.0, "residual_px": "",
-                        "accepted": "true",
+                        "uncertainty_px": 6.0,
+                        "sigma_x_px": round(axis_sigmas(ra, rb, 6.0)[0], 2),
+                        "sigma_y_px": round(axis_sigmas(ra, rb, 6.0)[1], 2),
+                        "residual_px": "", "accepted": "true",
                         "note": "boundary-line station (independently named, "
                                 "not interpolated)",
                     })
@@ -306,7 +354,10 @@ def main() -> int:
                               "line, stepped to the shared avenue centreline "
                               "using the sheet's own measured scale bar",
                     "confidence": "medium", "selected_by": path.name,
-                    "uncertainty_px": 6.0, "residual_px": "", "accepted": "true",
+                    "uncertainty_px": 6.0,
+                    "sigma_x_px": round(axis_sigmas(ra, rb, 6.0)[0], 2),
+                    "sigma_y_px": round(axis_sigmas(ra, rb, 6.0)[1], 2),
+                    "residual_px": "", "accepted": "true",
                     "note": "constructed centreline: no duplicated point "
                             "feature exists across this seam",
                 })

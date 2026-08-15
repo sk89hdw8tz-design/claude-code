@@ -1,0 +1,254 @@
+{
+  "seam": "S8|S10",
+  "sheet_a": "8",
+  "sheet_b": "10",
+  "relation": "sheet 8 lies NORTH of sheet 10; shared street 22nd Street",
+  "overlap_exists": "yes",
+  "overlap_description": "Both plates draw the FULL 80-ft width of 22nd Street, so the seam is a genuine ~245-px-tall overlap band running the whole sheet width. Each plate draws the NEAR property line as real block frontage and the FAR property line as the outer rule of its own continuation boxes ('SEE SHEET No.10' along the bottom of sheet 8, 'SEE SHEET No.8' along the top of sheet 10). Measured: sheet 8 north property line y=3610.0+0.00171x, south property line y=3849.6+0.00449x (241.0 px apart at x=500, 247.7 px at x=2900); sheet 10 north property line y=96.70-0.00033x, south property line y=342.96+0.00031x (246.6 px at x=500, 248.1 px at x=2900). Nominal 80 ft = 242.1 px on sheet 8 and 243.7 px on sheet 10, so both plates draw the street within about 1.5% of its printed width. The overlap contains only roadway furniture - the 22nd St water main, three fire plugs, the street-name lettering and the three alley-main tees. NO building, block or lot is drawn twice, and no block number is repeated: sheet 8's bottom block row is 501 / 441 / 381 and sheet 10's top row is 502 / 442 / 382. The two plates span exactly the same lettered avenues, Av. D (Market E.) on the west through Av. G (Winnie E.) on the east, which is what makes the seam so well controlled in x.",
+  "correspondences": [
+    {
+      "feature": "South-west corner of block 501 (sheet 8) = north-west corner of block 502 (sheet 10) column: intersection of the EAST property line of Av. D or Market E. with the NORTH property line of 22nd St.",
+      "why_unambiguous": "Av. D is lettered vertically 'AV. D or MARKET E.' on BOTH plates and is the westernmost avenue drawn on either; nothing lies one corridor further west (the drawn area stops ~150 px beyond it), so the corner cannot slip west. Slipping east would land on a 20-ft alley (60 px corridor) rather than a 70-ft avenue, and the printed block numbers 501/502 label the blocks immediately east of it on the two plates. The avenue line itself is the block frontage measured over 800 px of block depth on each plate (fit residual 0.13 px on sheet 8, 0.38 px on sheet 10).",
+      "a_x": 292.1,
+      "a_y": 3610.54,
+      "b_x": 294.14,
+      "b_y": 96.6,
+      "confidence": "high",
+      "uncertainty_px": 3.5,
+      "category": "block corner"
+    },
+    {
+      "feature": "North-west corner of block 502 (sheet 10) = the same Av. D east property line taken to the SOUTH property line of 22nd St.",
+      "why_unambiguous": "Same lettered-avenue identification as the point above, on the other kerb of the same street; on sheet 10 this is a drawn brick-building corner, on sheet 8 it is the intersection with the top rule of the 'SEE SHEET No.10' continuation boxes. The pair reproduces the printed 80-ft street width on both plates.",
+      "a_x": 291.44,
+      "a_y": 3850.95,
+      "b_x": 296.18,
+      "b_y": 343.05,
+      "confidence": "high",
+      "uncertainty_px": 3.5,
+      "category": "block corner"
+    },
+    {
+      "feature": "West property line of the 20-ft mid-block alley between Av. D and Av. E, at the NORTH property line of 22nd St.",
+      "why_unambiguous": "This alley is the only one between Av. D and Av. E, its width is printed '20' on both plates and measures 60.4 px on sheet 8 and 60.1 px on sheet 10 (19.9 ft / 19.7 ft), which cannot be confused with a 70-ft avenue corridor (213-216 px). It sits 367 px (121 ft) east of the Av. D frontage on both plates - the standard 120-ft lot depth - so a one-lot slip is excluded by the printed dimension. It is also the alley carrying the 12in-to-16in change in the 22nd St main, lettered on both sheets.",
+      "a_x": 659.05,
+      "a_y": 3611.16,
+      "b_x": 665.41,
+      "b_y": 96.48,
+      "confidence": "high",
+      "uncertainty_px": 3.0,
+      "category": "property line intersection"
+    },
+    {
+      "feature": "East property line of the same Av. D - Av. E alley, at the SOUTH property line of 22nd St.",
+      "why_unambiguous": "Paired with the point above across the same printed 20-ft alley; the pair reproduces the 20-ft width on both plates, and the alley is identified by the lettered 12in/16in water-pipe change immediately at its mouth on both sheets.",
+      "a_x": 719.24,
+      "a_y": 3852.87,
+      "b_x": 725.46,
+      "b_y": 343.18,
+      "confidence": "high",
+      "uncertainty_px": 3.0,
+      "category": "property line intersection"
+    },
+    {
+      "feature": "South-east corner of block 501 (sheet 8): intersection of the WEST property line of Av. E or Post Office E. with the NORTH property line of 22nd St.",
+      "why_unambiguous": "Av. E is lettered 'AV. E or POST OFFICE E.' on both plates. Its corridor measures 213.1 px on sheet 8 and 215.5 px on sheet 10 (70.4 ft / 70.7 ft) against the printed 70', so it is an avenue and not one of the 20-ft alleys either side of it. Block 501 is numbered on sheet 8 and block 502 on sheet 10 immediately west of this line.",
+      "a_x": 1085.33,
+      "a_y": 3611.89,
+      "b_x": 1090.89,
+      "b_y": 96.34,
+      "confidence": "high",
+      "uncertainty_px": 3.0,
+      "category": "block corner"
+    },
+    {
+      "feature": "North-west corner of block 442 (sheet 10): intersection of the EAST property line of Av. E or Post Office E. with the SOUTH property line of 22nd St.",
+      "why_unambiguous": "The other side of the same lettered 70-ft avenue corridor; block 441 (sheet 8) and block 442 (sheet 10) are numbered immediately east of it. On sheet 10 this is a drawn block corner, on sheet 8 the intersection with the continuation-box rule.",
+      "a_x": 1298.34,
+      "a_y": 3855.47,
+      "b_x": 1307.58,
+      "b_y": 343.36,
+      "confidence": "high",
+      "uncertainty_px": 3.0,
+      "category": "block corner"
+    },
+    {
+      "feature": "West property line of the 20-ft mid-block alley between Av. E and Av. F, at the NORTH property line of 22nd St.",
+      "why_unambiguous": "Only one alley divides block 441/442; printed 20', measured 62.4 px on sheet 8 and 61.1 px on sheet 10, and it lies 364 px (120 ft) east of the Av. E east frontage on both plates. Its own north-south water main is drawn down the alley centre on both sheets.",
+      "a_x": 1662.16,
+      "a_y": 3612.88,
+      "b_x": 1676.47,
+      "b_y": 96.15,
+      "confidence": "high",
+      "uncertainty_px": 3.0,
+      "category": "property line intersection"
+    },
+    {
+      "feature": "East property line of the same Av. E - Av. F alley, at the SOUTH property line of 22nd St.",
+      "why_unambiguous": "Paired with the point above across the same printed 20-ft alley, reproducing its width on both plates.",
+      "a_x": 1724.78,
+      "a_y": 3857.38,
+      "b_x": 1737.54,
+      "b_y": 343.49,
+      "confidence": "high",
+      "uncertainty_px": 3.0,
+      "category": "property line intersection"
+    },
+    {
+      "feature": "South-east corner of block 441 (sheet 8): intersection of the WEST property line of Av. F or Church E. with the NORTH property line of 22nd St.",
+      "why_unambiguous": "Av. F is lettered 'AV. F or CHURCH E.' on both plates; corridor 214.6 px on sheet 8 and 216.2 px on sheet 10 against the printed 70'. It is the third of the four lettered avenues present, with block 441/442 west of it and block 381/382 east of it, all four numbers printed.",
+      "a_x": 2085.83,
+      "a_y": 3613.6,
+      "b_x": 2104.14,
+      "b_y": 96.01,
+      "confidence": "high",
+      "uncertainty_px": 3.0,
+      "category": "block corner"
+    },
+    {
+      "feature": "North-west corner of block 382 (sheet 10): intersection of the EAST property line of Av. F or Church E. with the SOUTH property line of 22nd St.",
+      "why_unambiguous": "The other side of the same lettered 70-ft corridor; block 381 (sheet 8) / 382 (sheet 10) are numbered immediately east of it.",
+      "a_x": 2300.8,
+      "a_y": 3859.96,
+      "b_x": 2320.35,
+      "b_y": 343.67,
+      "confidence": "high",
+      "uncertainty_px": 3.0,
+      "category": "property line intersection"
+    },
+    {
+      "feature": "West property line of the 20-ft mid-block alley between Av. F and Av. G, at the NORTH property line of 22nd St.",
+      "why_unambiguous": "The easternmost alley on either plate; printed 20' (lettered beside the alley mouth on sheet 10), measured 61.0 px on sheet 8 and 56.8 px on sheet 10, lying 363 px (120 ft) east of the Av. F east frontage on both plates. Its north-south main is drawn down the alley centre on both sheets.",
+      "a_x": 2662.63,
+      "a_y": 3614.58,
+      "b_x": 2687.81,
+      "b_y": 95.81,
+      "confidence": "high",
+      "uncertainty_px": 3.0,
+      "category": "property line intersection"
+    },
+    {
+      "feature": "East property line of the same Av. F - Av. G alley, at the SOUTH property line of 22nd St.",
+      "why_unambiguous": "Paired with the point above across the same printed 20-ft alley.",
+      "a_x": 2723.61,
+      "a_y": 3861.86,
+      "b_x": 2744.38,
+      "b_y": 343.8,
+      "confidence": "high",
+      "uncertainty_px": 3.0,
+      "category": "property line intersection"
+    },
+    {
+      "feature": "South-east corner of block 381 (sheet 8): intersection of the WEST property line of Av. G or Winnie E. with the NORTH property line of 22nd St.",
+      "why_unambiguous": "Av. G is lettered 'AV. G or WINNIE E.' on both plates and is the easternmost avenue drawn; beyond it each plate carries its edge continuation note ('No. 29' on sheet 8, 'No. 27' on sheet 10), so nothing lies one corridor further east to confuse it with. It anchors the east end of the seam, 2795 px from the Av. D corner - the long baseline that fixes the relative rotation.",
+      "a_x": 3087.1,
+      "a_y": 3615.3,
+      "b_x": 3108.14,
+      "b_y": 95.68,
+      "confidence": "high",
+      "uncertainty_px": 3.5,
+      "category": "block corner"
+    },
+    {
+      "feature": "North-east corner of block 382 (sheet 10): the same Av. G west property line taken to the SOUTH property line of 22nd St.",
+      "why_unambiguous": "Same lettered-avenue identification as the point above, on the other kerb of 22nd Street; on sheet 10 a drawn block corner, on sheet 8 the intersection with the continuation-box rule.",
+      "a_x": 3087.11,
+      "a_y": 3863.49,
+      "b_x": 3109.52,
+      "b_y": 343.91,
+      "confidence": "high",
+      "uncertainty_px": 3.5,
+      "category": "block corner"
+    },
+    {
+      "feature": "Water-main tee where the 22nd St main crosses the north-south main in the 20-ft alley between Av. D (Market E.) and Av. E (Post Office E.) - the exact point where the 22nd St main changes size. Both plates letter '12\" W.P.' immediately west of the crossing and '16\" W.P.' immediately east of it.",
+      "why_unambiguous": "The 12in-to-16in change happens at exactly ONE place along 22nd Street and both sheets letter it identically; the other two tees on this street carry no size change. Identification is certain. The COORDINATE, however, is not: the x agrees to 1.3 px but the two draftsmen ran the 22nd St main at different distances from the north kerb (sheet 8 places it 143 px / 47 ft south of the north property line, sheet 10 only 99 px / 33 ft south), so the y disagrees by 45.6 px. The stated uncertainty is that measured disagreement, which makes this point effectively inert in a weighted solve - it is listed for identification value, not for geometric strength.",
+      "a_x": 688.68,
+      "a_y": 3754.21,
+      "b_x": 695.66,
+      "b_y": 196.09,
+      "confidence": "low",
+      "uncertainty_px": 45.0,
+      "category": "water-main tee"
+    },
+    {
+      "feature": "Fire plug (disc symbol) in 22nd Street immediately east of the alley main between Av. E (Post Office E.) and Av. F (Church E.).",
+      "why_unambiguous": "Exactly three fire plugs are drawn in 22nd Street on each plate, one just east of each of the three alley mains, so the three-to-three pairing is forced; this is the middle one, ~950 px from either neighbour. Symbol placement on Sanborn sheets is by eye, hence the large uncertainty: the measured disagreement against the block-corner solution is 8.3 px, and the west and east plugs of the same triple disagree by 33 px and 17 px.",
+      "a_x": 1728.7,
+      "a_y": 3662.0,
+      "b_x": 1746.8,
+      "b_y": 138.9,
+      "confidence": "low",
+      "uncertainty_px": 12.0,
+      "category": "other"
+    }
+  ],
+  "boundary_line": {
+    "name": "22nd Street centreline",
+    "visible_on_both": "yes",
+    "a_points": [
+      [291.77, 3730.74],
+      [686.82, 3731.97],
+      [1085.25, 3733.2],
+      [1661.84, 3734.99],
+      [2085.34, 3736.3],
+      [3087.11, 3739.4]
+    ],
+    "b_points": [
+      [295.16, 219.82],
+      [690.73, 219.82],
+      [1091.5, 219.82],
+      [1676.43, 219.81],
+      [2104.14, 219.8],
+      [3108.83, 219.79]
+    ],
+    "station_names": [
+      "Av. D (Market E.) east property line",
+      "alley D-E water-main tee (12in -> 16in size change)",
+      "Av. E (Post Office E.) west property line",
+      "alley E-F west property line",
+      "Av. F (Church E.) west property line",
+      "Av. G (Winnie E.) west property line"
+    ]
+  },
+  "self_check_similarity": {
+    "scale": 0.99232,
+    "rotation_deg": 0.1702,
+    "tx": 0.19,
+    "ty": 3512.03,
+    "rms_px": 11.79,
+    "max_px": 45.56,
+    "outliers": []
+  },
+  "rejected_candidates": [
+    {
+      "feature": "The dashed line running along both kerbs of every street (sheet 8 north side of 22nd St at y~3652, sheet 10 south side at y~296-301)",
+      "reason": "It is the AWNING/canopy edge, not the property line. Measured on 21st (Center) St, fully drawn inside sheet 8, the two dashed lines are 162.6 px apart on a street printed 80' (242 px), i.e. each sits 39.7 px (13.1 ft) INSIDE the roadway. Using it as the street line would shift the seam by ~40 px and inflate every block by ~26 ft. Flagged in the brief and confirmed here by direct measurement."
+    },
+    {
+      "feature": "The inner of the two parallel heavy lines along sheet 8's 22nd St frontage (y~3606-3608, versus the outer at y~3612-3617)",
+      "reason": "The inner line is the front wall of the brick buildings, set ~5.7 px (1.9 ft) back from the street line. Resolved non-circularly by measuring 20th Street inside sheet 8: the outer-line convention gives 241.5 px for the printed 80' (79.8 ft), the inner-line convention gives 244.5-247 px. The outer line was therefore used, and it reproduces the 80-ft width of 22nd St against the continuation-box rule to 1 px in the west."
+    },
+    {
+      "feature": "Water-main tees at the Av. E - Av. F alley (S8 x=1696.4, S10 x=1704.8) and the Av. F - Av. G alley (S8 x=2697.8, S10 x=2714.1)",
+      "reason": "Semantically certain but geometrically weak on this seam. Their x disagrees by 4.9-5.0 px against the block-corner solution (the alley main is drawn freehand down the alley centre by each draftsman, whereas the alley's own property lines agree to 1-2 px), and their y carries the same ~45 px systematic as the D-E tee. The alley property lines already control the same station far better, so these two add nothing. Only the D-E tee is retained, for its unique printed 12in->16in label, at its honest 45 px uncertainty."
+    },
+    {
+      "feature": "Fire plugs at the Av. D - Av. E alley (S8 727.1,3683.8 / S10 743.6,138.8) and at the Av. F - Av. G alley (S8 2738.0,3662.0 / S10 2744.2,135.5)",
+      "reason": "Placed by eye. Residuals against the block-corner solution are 32.9 px and 16.9 px respectively - far worse than the 8.3 px of the retained middle plug - and their errors are correlated with the same kerb-offset systematic that spoils the water main. Excluded rather than carried at 30+ px uncertainty."
+    },
+    {
+      "feature": "Named buildings printed near the seam",
+      "reason": "None is shared. Sheet 8's named structures nearest 22nd St are Harmony Hall and Masonic Temple (block 441, wholly north of the street); sheet 10's are Tremont Opera Ho. and J. Levy & Bros Livery (blocks 502/442, wholly south of it). No building, wharf or yard straddles 22nd Street, so no named-building corner correspondence exists on this seam."
+    },
+    {
+      "feature": "The '22ND ST.' street-name lettering, drawn on both plates in the roadway",
+      "reason": "Hand-lettered display type; the glyph centres land within ~15 px of each other but there is no defined point on a letterform. Used only as a sanity check that the same street is being matched, not as control."
+    },
+    {
+      "feature": "Blind template / NCC matching across the seam",
+      "reason": "Not attempted, per the project brief - the overlap band is bare roadway with a repeating alley/avenue rhythm at 120-ft and 260-ft pitch, exactly the structure that produced confident wrong matches three times before on this project. Every feature here was read semantically first (printed avenue names, block numbers, pipe diameters, street and alley width labels) and only then measured."
+    }
+  ],
+  "notes": "METHOD. Every feature was identified from printed lettering first - the four vertical avenue names AV. D or MARKET E. / AV. E or POST OFFICE E. / AV. F or CHURCH E. / AV. G or WINNIE E., the block numbers 501/441/381 (sheet 8) and 502/442/382 (sheet 10), the width labels 80' on 22nd St, 70' on each avenue and 20' on each alley, and the 12\" W.P. / 16\" W.P. pipe labels - and only then measured. Measurement was done on darkness profiles of the untouched JPEGs with sub-pixel centroids, cross-checked against 8x-22x nearest-neighbour crops carrying a 1-source-pixel grid overlay drawn at known source coordinates (crops in output/qc/manual_crops/). Scripts: scripts/manual_crop_s8_s10.py, scripts/manual_profile_s8_s10.py, scripts/manual_vline_s8_s10.py, scripts/manual_seam_S8_S10_solve.py.\n\nWHAT WAS SURPRISING. (1) Both plates draw the whole 80-ft roadway, not half of it. Each draws the far kerb as the outer rule of its own continuation boxes, and that rule sits within 1-2 px of where the printed 80' width puts the property line. That gives real control on BOTH kerbs from BOTH sheets, which is what makes the 14 corner points possible. (2) The dashed kerb line is the awning edge, 39.7 px (13.1 ft) inside the roadway - measured directly off 21st Street inside sheet 8, where both awning lines are drawn on a street printed 80'. Taking it for the property line would have moved the seam 40 px. (3) The S7|S9 playbook's water-main tees do NOT transfer to this seam in y. The tee identification is certain (the 12in-to-16in change is lettered at the same alley on both plates), but sheet 8 runs the 22nd St main 143 px south of the north kerb and sheet 10 runs it only 99 px south - a 45 px systematic that appears identically at all three tees. The tee x is still good to 1-5 px. (4) The block frontage and alley/avenue property lines are far better than expected: fitted over 800 px of block depth their residuals are 0.06-0.9 px, so the x half of every correspondence is essentially exact.\n\nSCALE AND ROTATION, INDEPENDENTLY CONFIRMED. The raw x separations between matched vertical lines grow smoothly from +4.3 px at x~293 to +23.1 px at x~3090, implying sheet 10 is drawn 0.67% larger in x than sheet 8. The weighted similarity gives scale 0.99232 (sheet 10 -> sheet 8), i.e. 0.77% . The printed scale bars give 3.026 px/ft on sheet 8 and 3.046 px/ft on sheet 10, ratio 0.99343 - agreement to 0.11%. The rotation, +0.170 deg, is confirmed twice more: the mean slope of the twelve vertical block-face lines differs by 0.0037 rad (0.21 deg) between the plates, and the mean slope of the horizontal seam lines by 0.0031 rad (0.18 deg).\n\nHOW TO READ THE RESIDUALS. rms_px 11.79 and max_px 45.56 are dominated by the single deliberately-downweighted water-main tee. Over the 14 block-corner and property-line-intersection points the fit is rms 2.37 px, max 4.45 px; adding the retained fire plug it is rms 2.85 px. No point exceeds 3x its stated uncertainty. Worst corner is the Av. F - Av. G alley west line at the north kerb, 4.45 px against a stated 3.0.\n\nHONEST CAVEAT ON THE Y COORDINATES. The x of each correspondence is an independent measurement of a distinct printed line (13 distinct vertical lines). The y coordinates are NOT independent: they come from four straight-line fits to the two 22nd St property lines on each plate, sampled in 120-px windows across the full width (n = 20, 21, 21, 21; fit rms 2.04, 1.18, 1.45, 1.10 px). Straight lines were used deliberately, because the local +-2 to 3 px jogs in a block frontage are one draftsman's building line and are NOT shared with the other plate's continuation-box rule, so smoothing them out is more accurate than honouring them. The consequence is that the y information in this set carries roughly four degrees of freedom, not sixteen, and the seam therefore constrains relative y-scale much more weakly than relative x-scale. Sheet 8's two kerb lines are not quite parallel (slopes +0.00171 and +0.00449), so its drawn street width grows from 241.0 px at x=500 to 247.7 px at x=2900; sheet 10 is steadier at 246.6 to 248.1 px. That ~6 px divergence is the main reason the corner residuals sit near 2-3 px rather than below 1 px, and it is real drafting, not measurement error.\n\nPRIVACY. All work local. No imagery left the machine, no external image API was called, no URL was created, nothing was committed or pushed."
+}
