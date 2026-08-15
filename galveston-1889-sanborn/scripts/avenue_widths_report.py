@@ -80,7 +80,11 @@ out['method'] = (
     "not 330, and are EXCLUDED rather than mislabelled -- this is the single point on "
     "which the earlier 3%-narrow finding turns. In y every consecutive same-side "
     "street-frontage interval is 300+80 = 380 ft. Lines are used for scale only if "
-    "n>=8 bands, span>=1500 rows, rms<=2.5 px and the pair's slopes agree to 0.004."
+    "n>=8 bands, span>=1500 rows and rms<=2.5 px (6 bands / 250 px on the two "
+    "harbour plates, whose streets are inked over a short tier of blocks only). A "
+    "WIDTH is additionally required to come from a pair whose slopes agree to "
+    "0.004 px/row, since one avenue's two frontages must be parallel; that test is "
+    "deliberately NOT applied to a pitch interval between two different avenues."
 )
 
 out['what_is_measurable'] = {
@@ -109,29 +113,56 @@ for n in ['1', '2', '7', '8', '9', '10', '27', '29']:
     av = sorted(SPEC[n]['avenues'].items(), key=lambda kv: kv[1])
     st = sorted(SPEC[n]['streets'].items(), key=lambda kv: kv[1])
     xint, yint = [], []
-    for (k1, _), (k2, _) in zip(av[:-1], av[1:]):
-        if k1 in EXCLUDE_AV or k2 in EXCLUDE_AV:
-            continue
-        a, b = R['avenues'][k1], R['avenues'][k2]
-        for side, gov in (('west', k1), ('east', k2)):
-            fa, fb = a['lines'].get(side), b['lines'].get(side)
-            if CLASS_FT[gov] != 70 or not pair_ok(fa, fb, n):
-                continue
-            d = val(fb, YREF) - val(fa, YREF)
-            xint.append({'interval': f'{k1}->{k2} {side} frontages',
-                         'plat_ft': 330, 'px': round(d, 2),
-                         'px_per_ft': round(d / 330.0, 4)})
-    for (k1, _), (k2, _) in zip(st[:-1], st[1:]):
-        a, b = R['streets'][k1], R['streets'][k2]
-        for side in ('north', 'south'):
-            fa, fb = a['lines'].get(side), b['lines'].get(side)
-            if not pair_ok(fa, fb, n):
-                continue
-            xr = XREF_SHEET.get(n, XREF)
-            d = val(fb, xr) - val(fa, xr)
-            yint.append({'interval': f'{k1}->{k2} {side} frontages',
-                         'plat_ft': 380, 'px': round(d, 2),
-                         'px_per_ft': round(d / 380.0, 4)})
+    # ---- x: same-side avenue frontage spacings.
+    # A single step west_k->west_k+1 spans (block depth + width of avenue k);
+    # east_k->east_k+1 spans (block depth + width of avenue k+1).  Only steps
+    # whose governing avenue is a 70 ft one are used, so the plat length is
+    # unambiguously 260+70 = 330 ft.  Multi-step spans made only of such steps
+    # are used too, for the longer baseline.
+    # No slope-agreement test here: two different avenues may be drawn with
+    # slightly different tilt on a distorted plate; that is a property of the
+    # plate, not a reason to distrust the spacing of their frontage lines at a
+    # fixed latitude.
+    for side in ('west', 'east'):
+        for i in range(len(av)):
+            for j in range(i + 1, len(av)):
+                k1, k2 = av[i][0], av[j][0]
+                if any(av[m][0] in EXCLUDE_AV for m in range(i, j + 1)):
+                    continue
+                gov = [av[m][0] if side == 'west' else av[m + 1][0]
+                       for m in range(i, j)]
+                if any(CLASS_FT[g] != 70 for g in gov):
+                    continue
+                fa = R['avenues'][k1]['lines'].get(side)
+                fb = R['avenues'][k2]['lines'].get(side)
+                if not (line_ok(fa, n) and line_ok(fb, n)):
+                    continue
+                d = val(fb, YREF) - val(fa, YREF)
+                ft = 330.0 * (j - i)
+                xint.append({'interval': f'{k1}->{k2} {side} frontages',
+                             'steps': j - i, 'plat_ft': ft, 'px': round(d, 2),
+                             'px_per_ft': round(d / ft, 4)})
+    # ---- y: same-side street frontage spacings, 380 ft per step.
+    # Both endpoint streets must have a COMPLETE gate-passing north/south pair,
+    # which is what proves the two lines were identified as north and south
+    # correctly; a lone line near a clipped sheet edge is not admitted.
+    complete = [k for k, _ in st
+                if pair_ok(R['streets'][k]['lines'].get('north'),
+                           R['streets'][k]['lines'].get('south'), n)]
+    idx = {k: i for i, (k, _) in enumerate(st)}
+    for a_ in range(len(complete)):
+        for b_ in range(a_ + 1, len(complete)):
+            k1, k2 = complete[a_], complete[b_]
+            steps = idx[k2] - idx[k1]
+            ft = 380.0 * steps
+            for side in ('north', 'south'):
+                fa = R['streets'][k1]['lines'][side]
+                fb = R['streets'][k2]['lines'][side]
+                xr = XREF_SHEET.get(n, XREF)
+                d = val(fb, xr) - val(fa, xr)
+                yint.append({'interval': f'{k1}->{k2} {side} frontages',
+                             'steps': steps, 'plat_ft': ft, 'px': round(d, 2),
+                             'px_per_ft': round(d / ft, 4)})
     sx = float(np.mean([i['px_per_ft'] for i in xint])) if xint else None
     sy = float(np.mean([i['px_per_ft'] for i in yint])) if yint else None
     S['px_per_ft_from_grid_x'] = round(sx, 4) if sx else None
@@ -178,7 +209,7 @@ for n in ['1', '2', '7', '8', '9', '10', '27', '29']:
                     100.0 * (a['mean_width_px'] / sx - PRINTED[name]) / PRINTED[name], 2)
             # scale-free check: width / grid pitch should equal printed/330
             if xint:
-                pitch = float(np.mean([i['px'] for i in xint]))
+                pitch = float(np.mean([i['px'] / i['steps'] for i in xint]))
                 r = a['mean_width_px'] / pitch
                 e['scale_free_width_over_330ft_pitch'] = round(r, 5)
                 e['scale_free_plat_ratio'] = round(PRINTED[name] / 330.0, 5)
@@ -216,7 +247,7 @@ for n in ['1', '2', '7', '8', '9', '10', '27', '29']:
                 e['implied_vs_printed_pct'] = round(
                     100.0 * (s_['mean_width_px'] / sy - 80) / 80, 2)
             if yint:
-                pitch = float(np.mean([i['px'] for i in yint]))
+                pitch = float(np.mean([i['px'] / i['steps'] for i in yint]))
                 r = s_['mean_width_px'] / pitch
                 e['scale_free_width_over_380ft_pitch'] = round(r, 5)
                 e['scale_free_plat_ratio'] = round(80.0 / 380.0, 5)
@@ -384,3 +415,12 @@ for n, S in sheets.items():
     print(f"   half width for centreline: {S['measured_70ft_half_width_px']} px")
 print()
 print(json.dumps(out['seam_impact'], indent=1))
+
+
+# Narrative conclusion, per-sheet status and headline block are applied by
+# scripts/avenue_widths_finalise.py so the wording lives in one place.
+import subprocess
+subprocess.run([sys.executable,
+                os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                             'avenue_widths_finalise.py')],
+               cwd=ROOT, check=True)

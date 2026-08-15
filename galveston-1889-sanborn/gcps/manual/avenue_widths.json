@@ -1,5 +1,5 @@
 {
- "method": "Local measurement on data/original at full resolution (PIL, Image.MAX_IMAGE_PIXELS=None); nothing uploaded, no external image API. A frontage line's position is the HALF-MAX-CROSSING MIDPOINT of the baseline-subtracted mean-darkness profile taken across the line over a row band ~150 rows tall; half-max midpoint rather than centroid because a thin lot line or a column of address numerals a few px to one side drags a centroid but not a half-max midpoint. Each avenue was searched in a window +/-200 px about the centre of its PRINTED lettering, in a profile that is the MEDIAN over many separated bands (which suppresses block detail, party walls and lettering while keeping anything that runs the full height). The accepted frontage is the strongest such peak on each side that is also CONTINUOUS: >=85% of rows have a pixel darker than 120 within +/-4 px. The dashed awning/gallery edge, which sits ~40 px (13-15 ft) inside the roadway, scores 0.35-0.70 on that test and is rejected -- it was seen explicitly in the profiles and in the crops, and never selected. Each line was then tracked through 16-24 mid-block bands spanning 2200-3000 rows and robust-fitted (2.5 sigma clip) to x = a + b*(y-2000); fit rms and band count are reported. Every accepted line was confirmed visually on 3x-12x NEAREST crops carrying a 1-source-pixel grid, in output/qc/manual_crops/ (QC_S<sheet>_Av<letter>.png marks the two accepted lines red=west, blue=east). SCALE: px/ft is derived only from the plat's fixed grid pitch and never from a printed width. In x the interval between the SAME-SIDE frontage lines of consecutive avenues is (block depth + the width of one avenue): west_k->west_k+1 carries avenue k's width, east_k->east_k+1 carries avenue k+1's width, so the interval is exactly 260+70 = 330 ft whenever the avenue whose width enters it is a 70 ft one. Intervals governed by Av. B (Strand, printed 80 ft) span 340 ft, not 330, and are EXCLUDED rather than mislabelled -- this is the single point on which the earlier 3%-narrow finding turns. In y every consecutive same-side street-frontage interval is 300+80 = 380 ft. Lines are used for scale only if n>=8 bands, span>=1500 rows, rms<=2.5 px and the pair's slopes agree to 0.004.",
+ "method": "Local measurement on data/original at full resolution (PIL, Image.MAX_IMAGE_PIXELS=None); nothing uploaded, no external image API. A frontage line's position is the HALF-MAX-CROSSING MIDPOINT of the baseline-subtracted mean-darkness profile taken across the line over a row band ~150 rows tall; half-max midpoint rather than centroid because a thin lot line or a column of address numerals a few px to one side drags a centroid but not a half-max midpoint. Each avenue was searched in a window +/-200 px about the centre of its PRINTED lettering, in a profile that is the MEDIAN over many separated bands (which suppresses block detail, party walls and lettering while keeping anything that runs the full height). The accepted frontage is the strongest such peak on each side that is also CONTINUOUS: >=85% of rows have a pixel darker than 120 within +/-4 px. The dashed awning/gallery edge, which sits ~40 px (13-15 ft) inside the roadway, scores 0.35-0.70 on that test and is rejected -- it was seen explicitly in the profiles and in the crops, and never selected. Each line was then tracked through 16-24 mid-block bands spanning 2200-3000 rows and robust-fitted (2.5 sigma clip) to x = a + b*(y-2000); fit rms and band count are reported. Every accepted line was confirmed visually on 3x-12x NEAREST crops carrying a 1-source-pixel grid, in output/qc/manual_crops/ (QC_S<sheet>_Av<letter>.png marks the two accepted lines red=west, blue=east). SCALE: px/ft is derived only from the plat's fixed grid pitch and never from a printed width. In x the interval between the SAME-SIDE frontage lines of consecutive avenues is (block depth + the width of one avenue): west_k->west_k+1 carries avenue k's width, east_k->east_k+1 carries avenue k+1's width, so the interval is exactly 260+70 = 330 ft whenever the avenue whose width enters it is a 70 ft one. Intervals governed by Av. B (Strand, printed 80 ft) span 340 ft, not 330, and are EXCLUDED rather than mislabelled -- this is the single point on which the earlier 3%-narrow finding turns. In y every consecutive same-side street-frontage interval is 300+80 = 380 ft. Lines are used for scale only if n>=8 bands, span>=1500 rows and rms<=2.5 px (6 bands / 250 px on the two harbour plates, whose streets are inked over a short tier of blocks only). A WIDTH is additionally required to come from a pair whose slopes agree to 0.004 px/row, since one avenue's two frontages must be parallel; that test is deliberately NOT applied to a pitch interval between two different avenues.",
  "what_is_measurable": {
   "finding": "Every lettered avenue that lies on a sheet boundary is drawn with ONE frontage line only -- the sheet inks its own side and stops; the roadway and the far frontage are blank paper carrying only the avenue lettering, the printed width figure and the SEE SHEET caption. Verified on crops for Av. D on sheets 9 and 10 and Av. G on sheets 10 and 27, and confirmed by profile for every other edge avenue. Consequently Av. A, D, G and J are NOT measurable on any of the eight sheets, because each of them is a sheet boundary everywhere in this set. Their drawn width has to be taken from the 70-ft avenues that ARE fully inked on the same sheet.",
   "measurable": {
@@ -58,8 +58,8 @@
    "street": "21st St",
    "printed_ft": 80,
    "measured_px": 248.486,
-   "implied_ft": 80.66,
-   "scale_free_pct_vs_plat": 0.82,
+   "implied_ft": 80.68,
+   "scale_free_pct_vs_plat": 0.86,
    "fit_rms_px": 0.22,
    "note": "Measured with the identical convention used for the avenues (heavy continuous frontage line, half-max midpoint). Streets are drawn true, so this calibrates the convention: it returns 80 ft to within ~1%."
   },
@@ -67,8 +67,8 @@
    "street": "19th St",
    "printed_ft": 80,
    "measured_px": 245.359,
-   "implied_ft": 80.39,
-   "scale_free_pct_vs_plat": 0.49,
+   "implied_ft": 80.42,
+   "scale_free_pct_vs_plat": 0.52,
    "fit_rms_px": 0.47,
    "note": "Measured with the identical convention used for the avenues (heavy continuous frontage line, half-max midpoint). Streets are drawn true, so this calibrates the convention: it returns 80 ft to within ~1%."
   },
@@ -76,8 +76,8 @@
    "street": "20th St",
    "printed_ft": 80,
    "measured_px": 243.567,
-   "implied_ft": 79.28,
-   "scale_free_pct_vs_plat": -0.9,
+   "implied_ft": 79.3,
+   "scale_free_pct_vs_plat": -0.88,
    "fit_rms_px": 0.87,
    "note": "Measured with the identical convention used for the avenues (heavy continuous frontage line, half-max midpoint). Streets are drawn true, so this calibrates the convention: it returns 80 ft to within ~1%."
   },
@@ -94,8 +94,8 @@
    "street": "24th St",
    "printed_ft": 80,
    "measured_px": 246.214,
-   "implied_ft": 80.03,
-   "scale_free_pct_vs_plat": 0.04,
+   "implied_ft": 80.06,
+   "scale_free_pct_vs_plat": 0.07,
    "fit_rms_px": 0.99,
    "note": "Measured with the identical convention used for the avenues (heavy continuous frontage line, half-max midpoint). Streets are drawn true, so this calibrates the convention: it returns 80 ft to within ~1%."
   },
@@ -103,8 +103,8 @@
    "street": "23rd St",
    "printed_ft": 80,
    "measured_px": 245.401,
-   "implied_ft": 79.26,
-   "scale_free_pct_vs_plat": -0.93,
+   "implied_ft": 79.28,
+   "scale_free_pct_vs_plat": -0.9,
    "fit_rms_px": 0.64,
    "note": "Measured with the identical convention used for the avenues (heavy continuous frontage line, half-max midpoint). Streets are drawn true, so this calibrates the convention: it returns 80 ft to within ~1%."
   },
@@ -112,8 +112,8 @@
    "street": "21st St",
    "printed_ft": 80,
    "measured_px": 247.249,
-   "implied_ft": 79.98,
-   "scale_free_pct_vs_plat": -0.03,
+   "implied_ft": 79.99,
+   "scale_free_pct_vs_plat": -0.01,
    "fit_rms_px": 0.65,
    "note": "Measured with the identical convention used for the avenues (heavy continuous frontage line, half-max midpoint). Streets are drawn true, so this calibrates the convention: it returns 80 ft to within ~1%."
   }
@@ -178,7 +178,8 @@
    ],
    "measured_70ft_avenue_width_px": null,
    "measured_70ft_half_width_px": null,
-   "half_width_basis": "no fully inked avenue on this sheet"
+   "half_width_basis": "no fully inked avenue on this sheet",
+   "status": "no avenue is fully inked on this sheet and no numbered street has a complete, gate-passing frontage pair; nothing measurable"
   },
   "2": {
    "size_px": [
@@ -186,35 +187,25 @@
     4089
    ],
    "px_per_ft_from_grid_x": null,
-   "px_per_ft_from_grid_y": 3.0807,
+   "px_per_ft_from_grid_y": 3.0797,
    "px_per_ft_x_sd": null,
-   "px_per_ft_y_sd": 0.0039,
+   "px_per_ft_y_sd": 0.0052,
    "anisotropy_pct": null,
    "grid_intervals_x": [],
    "grid_intervals_y": [
     {
-     "interval": "19th->20th south frontages",
-     "plat_ft": 380,
-     "px": 1171.37,
-     "px_per_ft": 3.0825
-    },
-    {
      "interval": "20th->21st north frontages",
-     "plat_ft": 380,
+     "steps": 1,
+     "plat_ft": 380.0,
      "px": 1168.29,
      "px_per_ft": 3.0745
     },
     {
      "interval": "20th->21st south frontages",
-     "plat_ft": 380,
+     "steps": 1,
+     "plat_ft": 380.0,
      "px": 1172.3,
      "px_per_ft": 3.085
-    },
-    {
-     "interval": "21st->22nd south frontages",
-     "plat_ft": 380,
-     "px": 1170.73,
-     "px_per_ft": 3.0809
     }
    ],
    "printed_scalebar_px_per_ft": 3.0576,
@@ -253,11 +244,11 @@
       "2880": 244.399
      },
      "fit_rms_px": 0.22,
-     "implied_ft": 79.36,
-     "implied_vs_printed_pct": -0.8,
-     "scale_free_width_over_380ft_pitch": 0.20884,
+     "implied_ft": 79.38,
+     "implied_vs_printed_pct": -0.77,
+     "scale_free_width_over_380ft_pitch": 0.20891,
      "scale_free_plat_ratio": 0.21053,
-     "scale_free_pct_vs_plat": -0.8
+     "scale_free_pct_vs_plat": -0.77
     },
     {
      "name": "21st",
@@ -269,11 +260,11 @@
       "2880": 248.529
      },
      "fit_rms_px": 0.22,
-     "implied_ft": 80.66,
-     "implied_vs_printed_pct": 0.82,
-     "scale_free_width_over_380ft_pitch": 0.21226,
+     "implied_ft": 80.68,
+     "implied_vs_printed_pct": 0.85,
+     "scale_free_width_over_380ft_pitch": 0.21233,
      "scale_free_plat_ratio": 0.21053,
-     "scale_free_pct_vs_plat": 0.82
+     "scale_free_pct_vs_plat": 0.86
     },
     {
      "name": "22nd",
@@ -284,48 +275,75 @@
    ],
    "measured_70ft_avenue_width_px": null,
    "measured_70ft_half_width_px": null,
-   "half_width_basis": "no fully inked avenue on this sheet"
+   "half_width_basis": "no fully inked avenue on this sheet",
+   "status": "no avenue is fully inked on this sheet, so no drawn avenue width and no x grid pitch; y grid pitch measured"
   },
   "7": {
    "size_px": [
     3400,
     4120
    ],
-   "px_per_ft_from_grid_x": 2.9401,
-   "px_per_ft_from_grid_y": 3.052,
-   "px_per_ft_x_sd": null,
-   "px_per_ft_y_sd": 0.0068,
-   "anisotropy_pct": 3.73,
+   "px_per_ft_from_grid_x": 2.9458,
+   "px_per_ft_from_grid_y": 3.0511,
+   "px_per_ft_x_sd": 0.0057,
+   "px_per_ft_y_sd": 0.0026,
+   "anisotropy_pct": 3.51,
    "grid_intervals_x": [
     {
      "interval": "C->D west frontages",
-     "plat_ft": 330,
+     "steps": 1,
+     "plat_ft": 330.0,
      "px": 970.23,
      "px_per_ft": 2.9401
+    },
+    {
+     "interval": "B->C east frontages",
+     "steps": 1,
+     "plat_ft": 330.0,
+     "px": 974.0,
+     "px_per_ft": 2.9515
     }
    ],
    "grid_intervals_y": [
     {
-     "interval": "19th->20th north frontages",
-     "plat_ft": 380,
-     "px": 1162.71,
-     "px_per_ft": 3.0598
+     "interval": "19th->21st north frontages",
+     "steps": 2,
+     "plat_ft": 760.0,
+     "px": 2318.79,
+     "px_per_ft": 3.051
     },
     {
-     "interval": "20th->21st north frontages",
-     "plat_ft": 380,
-     "px": 1156.08,
-     "px_per_ft": 3.0423
+     "interval": "19th->21st south frontages",
+     "steps": 2,
+     "plat_ft": 760.0,
+     "px": 2316.69,
+     "px_per_ft": 3.0483
+    },
+    {
+     "interval": "19th->22nd north frontages",
+     "steps": 3,
+     "plat_ft": 1140.0,
+     "px": 3477.51,
+     "px_per_ft": 3.0504
+    },
+    {
+     "interval": "19th->22nd south frontages",
+     "steps": 3,
+     "plat_ft": 1140.0,
+     "px": 3478.2,
+     "px_per_ft": 3.0511
     },
     {
      "interval": "21st->22nd north frontages",
-     "plat_ft": 380,
+     "steps": 1,
+     "plat_ft": 380.0,
      "px": 1158.72,
      "px_per_ft": 3.0493
     },
     {
      "interval": "21st->22nd south frontages",
-     "plat_ft": 380,
+     "steps": 1,
+     "plat_ft": 380.0,
      "px": 1161.51,
      "px_per_ft": 3.0566
     }
@@ -376,11 +394,11 @@
      "width_variation_px_over_sheet": 1.95,
      "per_band_width_sd_px": 1.633,
      "fit_rms_px": 1.22,
-     "implied_ft": 80.99,
-     "implied_vs_printed_pct": 1.24,
-     "scale_free_width_over_330ft_pitch": 0.24542,
+     "implied_ft": 80.83,
+     "implied_vs_printed_pct": 1.04,
+     "scale_free_width_over_330ft_pitch": 0.24495,
      "scale_free_plat_ratio": 0.24242,
-     "scale_free_pct_vs_plat": 1.24,
+     "scale_free_pct_vs_plat": 1.04,
      "confidence": "medium"
     },
     {
@@ -411,11 +429,11 @@
      "width_variation_px_over_sheet": 0.2,
      "per_band_width_sd_px": 0.226,
      "fit_rms_px": 0.55,
-     "implied_ft": 70.01,
-     "implied_vs_printed_pct": 0.01,
-     "scale_free_width_over_330ft_pitch": 0.21214,
+     "implied_ft": 69.87,
+     "implied_vs_printed_pct": -0.18,
+     "scale_free_width_over_330ft_pitch": 0.21173,
      "scale_free_plat_ratio": 0.21212,
-     "scale_free_pct_vs_plat": 0.01,
+     "scale_free_pct_vs_plat": -0.18,
      "confidence": "medium"
     },
     {
@@ -446,11 +464,11 @@
       "2800": 246.212
      },
      "fit_rms_px": 0.47,
-     "implied_ft": 80.39,
-     "implied_vs_printed_pct": 0.49,
-     "scale_free_width_over_380ft_pitch": 0.21156,
+     "implied_ft": 80.42,
+     "implied_vs_printed_pct": 0.52,
+     "scale_free_width_over_380ft_pitch": 0.21162,
      "scale_free_plat_ratio": 0.21053,
-     "scale_free_pct_vs_plat": 0.49
+     "scale_free_pct_vs_plat": 0.52
     },
     {
      "name": "20th",
@@ -468,11 +486,11 @@
       "2800": 241.171
      },
      "fit_rms_px": 1.48,
-     "implied_ft": 79.7,
-     "implied_vs_printed_pct": -0.37,
-     "scale_free_width_over_380ft_pitch": 0.20975,
+     "implied_ft": 79.73,
+     "implied_vs_printed_pct": -0.34,
+     "scale_free_width_over_380ft_pitch": 0.20981,
      "scale_free_plat_ratio": 0.21053,
-     "scale_free_pct_vs_plat": -0.37
+     "scale_free_pct_vs_plat": -0.34
     },
     {
      "name": "22nd",
@@ -484,16 +502,17 @@
       "2800": 244.915
      },
      "fit_rms_px": 1.49,
-     "implied_ft": 80.62,
-     "implied_vs_printed_pct": 0.77,
-     "scale_free_width_over_380ft_pitch": 0.21216,
+     "implied_ft": 80.64,
+     "implied_vs_printed_pct": 0.8,
+     "scale_free_width_over_380ft_pitch": 0.21222,
      "scale_free_plat_ratio": 0.21053,
-     "scale_free_pct_vs_plat": 0.77
+     "scale_free_pct_vs_plat": 0.8
     }
    ],
    "measured_70ft_avenue_width_px": 205.83,
    "measured_70ft_half_width_px": 102.91,
-   "half_width_basis": "mean of this sheet's fully inked 70 ft avenues: C"
+   "half_width_basis": "mean of this sheet's fully inked 70 ft avenues: C",
+   "status": "measured"
   },
   "8": {
    "size_px": [
@@ -501,70 +520,136 @@
     4090
    ],
    "px_per_ft_from_grid_x": 3.044,
-   "px_per_ft_from_grid_y": 3.0721,
-   "px_per_ft_x_sd": 0.0045,
-   "px_per_ft_y_sd": 0.0063,
-   "anisotropy_pct": 0.92,
+   "px_per_ft_from_grid_y": 3.0716,
+   "px_per_ft_x_sd": 0.0041,
+   "px_per_ft_y_sd": 0.0048,
+   "anisotropy_pct": 0.9,
    "grid_intervals_x": [
     {
-     "interval": "D->E east frontages",
-     "plat_ft": 330,
-     "px": 1005.85,
-     "px_per_ft": 3.048
-    },
-    {
      "interval": "E->F west frontages",
-     "plat_ft": 330,
+     "steps": 1,
+     "plat_ft": 330.0,
      "px": 1004.94,
      "px_per_ft": 3.0453
     },
     {
-     "interval": "E->F east frontages",
-     "plat_ft": 330,
-     "px": 1005.33,
-     "px_per_ft": 3.0464
+     "interval": "E->G west frontages",
+     "steps": 2,
+     "plat_ft": 660.0,
+     "px": 2006.95,
+     "px_per_ft": 3.0408
     },
     {
      "interval": "F->G west frontages",
-     "plat_ft": 330,
+     "steps": 1,
+     "plat_ft": 330.0,
      "px": 1002.01,
      "px_per_ft": 3.0364
+    },
+    {
+     "interval": "D->E east frontages",
+     "steps": 1,
+     "plat_ft": 330.0,
+     "px": 1005.85,
+     "px_per_ft": 3.048
+    },
+    {
+     "interval": "D->F east frontages",
+     "steps": 2,
+     "plat_ft": 660.0,
+     "px": 2011.18,
+     "px_per_ft": 3.0472
+    },
+    {
+     "interval": "E->F east frontages",
+     "steps": 1,
+     "plat_ft": 330.0,
+     "px": 1005.33,
+     "px_per_ft": 3.0464
     }
    ],
    "grid_intervals_y": [
     {
      "interval": "19th->20th north frontages",
-     "plat_ft": 380,
+     "steps": 1,
+     "plat_ft": 380.0,
      "px": 1171.84,
      "px_per_ft": 3.0838
     },
     {
      "interval": "19th->20th south frontages",
-     "plat_ft": 380,
+     "steps": 1,
+     "plat_ft": 380.0,
      "px": 1168.35,
      "px_per_ft": 3.0746
     },
     {
+     "interval": "19th->21st north frontages",
+     "steps": 2,
+     "plat_ft": 760.0,
+     "px": 2335.72,
+     "px_per_ft": 3.0733
+    },
+    {
+     "interval": "19th->21st south frontages",
+     "steps": 2,
+     "plat_ft": 760.0,
+     "px": 2334.56,
+     "px_per_ft": 3.0718
+    },
+    {
+     "interval": "19th->22nd north frontages",
+     "steps": 3,
+     "plat_ft": 1140.0,
+     "px": 3502.63,
+     "px_per_ft": 3.0725
+    },
+    {
+     "interval": "19th->22nd south frontages",
+     "steps": 3,
+     "plat_ft": 1140.0,
+     "px": 3501.78,
+     "px_per_ft": 3.0717
+    },
+    {
      "interval": "20th->21st north frontages",
-     "plat_ft": 380,
+     "steps": 1,
+     "plat_ft": 380.0,
      "px": 1163.88,
      "px_per_ft": 3.0628
     },
     {
      "interval": "20th->21st south frontages",
-     "plat_ft": 380,
+     "steps": 1,
+     "plat_ft": 380.0,
      "px": 1166.21,
      "px_per_ft": 3.069
     },
     {
+     "interval": "20th->22nd north frontages",
+     "steps": 2,
+     "plat_ft": 760.0,
+     "px": 2330.8,
+     "px_per_ft": 3.0668
+    },
+    {
+     "interval": "20th->22nd south frontages",
+     "steps": 2,
+     "plat_ft": 760.0,
+     "px": 2333.43,
+     "px_per_ft": 3.0703
+    },
+    {
      "interval": "21st->22nd north frontages",
-     "plat_ft": 380,
+     "steps": 1,
+     "plat_ft": 380.0,
      "px": 1166.91,
      "px_per_ft": 3.0708
     },
     {
      "interval": "21st->22nd south frontages",
-     "plat_ft": 380,
+     "steps": 1,
+     "plat_ft": 380.0,
      "px": 1167.22,
      "px_per_ft": 3.0716
     }
@@ -685,11 +770,11 @@
       "2800": 246.502
      },
      "fit_rms_px": 0.88,
-     "implied_ft": 80.42,
-     "implied_vs_printed_pct": 0.52,
-     "scale_free_width_over_380ft_pitch": 0.21163,
+     "implied_ft": 80.43,
+     "implied_vs_printed_pct": 0.54,
+     "scale_free_width_over_380ft_pitch": 0.21166,
      "scale_free_plat_ratio": 0.21053,
-     "scale_free_pct_vs_plat": 0.52
+     "scale_free_pct_vs_plat": 0.54
     },
     {
      "name": "20th",
@@ -701,11 +786,11 @@
       "2800": 243.988
      },
      "fit_rms_px": 0.87,
-     "implied_ft": 79.28,
-     "implied_vs_printed_pct": -0.9,
-     "scale_free_width_over_380ft_pitch": 0.20864,
+     "implied_ft": 79.3,
+     "implied_vs_printed_pct": -0.88,
+     "scale_free_width_over_380ft_pitch": 0.20868,
      "scale_free_plat_ratio": 0.21053,
-     "scale_free_pct_vs_plat": -0.9
+     "scale_free_pct_vs_plat": -0.88
     },
     {
      "name": "21st",
@@ -717,11 +802,11 @@
       "2800": 245.98
      },
      "fit_rms_px": 0.93,
-     "implied_ft": 80.04,
-     "implied_vs_printed_pct": 0.05,
-     "scale_free_width_over_380ft_pitch": 0.21063,
+     "implied_ft": 80.05,
+     "implied_vs_printed_pct": 0.07,
+     "scale_free_width_over_380ft_pitch": 0.21067,
      "scale_free_plat_ratio": 0.21053,
-     "scale_free_pct_vs_plat": 0.05
+     "scale_free_pct_vs_plat": 0.07
     },
     {
      "name": "22nd",
@@ -733,31 +818,40 @@
       "2800": 246.808
      },
      "fit_rms_px": 1.19,
-     "implied_ft": 80.14,
-     "implied_vs_printed_pct": 0.17,
-     "scale_free_width_over_380ft_pitch": 0.21089,
+     "implied_ft": 80.15,
+     "implied_vs_printed_pct": 0.19,
+     "scale_free_width_over_380ft_pitch": 0.21093,
      "scale_free_plat_ratio": 0.21053,
-     "scale_free_pct_vs_plat": 0.17
+     "scale_free_pct_vs_plat": 0.19
     }
    ],
    "measured_70ft_avenue_width_px": 213.02,
    "measured_70ft_half_width_px": 106.51,
-   "half_width_basis": "mean of this sheet's fully inked 70 ft avenues: E, F"
+   "half_width_basis": "mean of this sheet's fully inked 70 ft avenues: E, F",
+   "status": "measured"
   },
   "9": {
    "size_px": [
     3400,
     4131
    ],
-   "px_per_ft_from_grid_x": 2.9967,
+   "px_per_ft_from_grid_x": 2.9985,
    "px_per_ft_from_grid_y": 3.0642,
-   "px_per_ft_x_sd": null,
+   "px_per_ft_x_sd": 0.0017,
    "px_per_ft_y_sd": 0.0007,
-   "anisotropy_pct": 2.23,
+   "anisotropy_pct": 2.17,
    "grid_intervals_x": [
     {
+     "interval": "C->D west frontages",
+     "steps": 1,
+     "plat_ft": 330.0,
+     "px": 990.06,
+     "px_per_ft": 3.0002
+    },
+    {
      "interval": "B->C east frontages",
-     "plat_ft": 330,
+     "steps": 1,
+     "plat_ft": 330.0,
      "px": 988.89,
      "px_per_ft": 2.9967
     }
@@ -765,13 +859,15 @@
    "grid_intervals_y": [
     {
      "interval": "23rd->24th north frontages",
-     "plat_ft": 380,
+     "steps": 1,
+     "plat_ft": 380.0,
      "px": 1164.66,
      "px_per_ft": 3.0649
     },
     {
      "interval": "23rd->24th south frontages",
-     "plat_ft": 380,
+     "steps": 1,
+     "plat_ft": 380.0,
      "px": 1164.15,
      "px_per_ft": 3.0635
     }
@@ -822,11 +918,11 @@
      "width_variation_px_over_sheet": 1.21,
      "per_band_width_sd_px": 0.94,
      "fit_rms_px": 0.77,
-     "implied_ft": 79.86,
-     "implied_vs_printed_pct": -0.17,
-     "scale_free_width_over_330ft_pitch": 0.24201,
+     "implied_ft": 79.81,
+     "implied_vs_printed_pct": -0.23,
+     "scale_free_width_over_330ft_pitch": 0.24186,
      "scale_free_plat_ratio": 0.24242,
-     "scale_free_pct_vs_plat": -0.17,
+     "scale_free_pct_vs_plat": -0.23,
      "confidence": "high"
     },
     {
@@ -857,11 +953,11 @@
      "width_variation_px_over_sheet": 0.08,
      "per_band_width_sd_px": 0.651,
      "fit_rms_px": 0.84,
-     "implied_ft": 70.36,
-     "implied_vs_printed_pct": 0.51,
-     "scale_free_width_over_330ft_pitch": 0.21321,
+     "implied_ft": 70.32,
+     "implied_vs_printed_pct": 0.45,
+     "scale_free_width_over_330ft_pitch": 0.21308,
      "scale_free_plat_ratio": 0.21212,
-     "scale_free_pct_vs_plat": 0.51,
+     "scale_free_pct_vs_plat": 0.45,
      "confidence": "high"
     },
     {
@@ -929,74 +1025,105 @@
    ],
    "measured_70ft_avenue_width_px": 210.84,
    "measured_70ft_half_width_px": 105.42,
-   "half_width_basis": "mean of this sheet's fully inked 70 ft avenues: C"
+   "half_width_basis": "mean of this sheet's fully inked 70 ft avenues: C",
+   "status": "measured"
   },
   "10": {
    "size_px": [
     3400,
     4086
    ],
-   "px_per_ft_from_grid_x": 3.057,
-   "px_per_ft_from_grid_y": 3.0766,
-   "px_per_ft_x_sd": 0.0046,
-   "px_per_ft_y_sd": 0.0028,
-   "anisotropy_pct": 0.64,
+   "px_per_ft_from_grid_x": 3.0571,
+   "px_per_ft_from_grid_y": 3.0755,
+   "px_per_ft_x_sd": 0.0039,
+   "px_per_ft_y_sd": 0.0016,
+   "anisotropy_pct": 0.6,
    "grid_intervals_x": [
     {
-     "interval": "D->E east frontages",
-     "plat_ft": 330,
-     "px": 1008.83,
-     "px_per_ft": 3.0571
-    },
-    {
      "interval": "E->F west frontages",
-     "plat_ft": 330,
+     "steps": 1,
+     "plat_ft": 330.0,
      "px": 1010.27,
      "px_per_ft": 3.0614
     },
     {
-     "interval": "E->F east frontages",
-     "plat_ft": 330,
-     "px": 1009.88,
-     "px_per_ft": 3.0602
+     "interval": "E->G west frontages",
+     "steps": 2,
+     "plat_ft": 660.0,
+     "px": 2016.62,
+     "px_per_ft": 3.0555
     },
     {
      "interval": "F->G west frontages",
-     "plat_ft": 330,
+     "steps": 1,
+     "plat_ft": 330.0,
      "px": 1006.34,
      "px_per_ft": 3.0495
+    },
+    {
+     "interval": "D->E east frontages",
+     "steps": 1,
+     "plat_ft": 330.0,
+     "px": 1008.83,
+     "px_per_ft": 3.0571
+    },
+    {
+     "interval": "D->F east frontages",
+     "steps": 2,
+     "plat_ft": 660.0,
+     "px": 2018.71,
+     "px_per_ft": 3.0586
+    },
+    {
+     "interval": "E->F east frontages",
+     "steps": 1,
+     "plat_ft": 330.0,
+     "px": 1009.88,
+     "px_per_ft": 3.0602
     }
    ],
    "grid_intervals_y": [
     {
      "interval": "22nd->23rd north frontages",
-     "plat_ft": 380,
+     "steps": 1,
+     "plat_ft": 380.0,
      "px": 1169.47,
      "px_per_ft": 3.0775
     },
     {
      "interval": "22nd->23rd south frontages",
-     "plat_ft": 380,
+     "steps": 1,
+     "plat_ft": 380.0,
      "px": 1169.31,
      "px_per_ft": 3.0771
     },
     {
+     "interval": "22nd->24th north frontages",
+     "steps": 2,
+     "plat_ft": 760.0,
+     "px": 2337.87,
+     "px_per_ft": 3.0761
+    },
+    {
+     "interval": "22nd->24th south frontages",
+     "steps": 2,
+     "plat_ft": 760.0,
+     "px": 2336.92,
+     "px_per_ft": 3.0749
+    },
+    {
      "interval": "23rd->24th north frontages",
-     "plat_ft": 380,
+     "steps": 1,
+     "plat_ft": 380.0,
      "px": 1168.4,
      "px_per_ft": 3.0747
     },
     {
      "interval": "23rd->24th south frontages",
-     "plat_ft": 380,
+     "steps": 1,
+     "plat_ft": 380.0,
      "px": 1167.61,
      "px_per_ft": 3.0726
-    },
-    {
-     "interval": "24th->25th north frontages",
-     "plat_ft": 380,
-     "px": 1170.74,
-     "px_per_ft": 3.0809
     }
    ],
    "printed_scalebar_px_per_ft": 3.0487,
@@ -1115,11 +1242,11 @@
       "2800": 248.036
      },
      "fit_rms_px": 1.24,
-     "implied_ft": 80.34,
-     "implied_vs_printed_pct": 0.42,
-     "scale_free_width_over_380ft_pitch": 0.21141,
+     "implied_ft": 80.37,
+     "implied_vs_printed_pct": 0.46,
+     "scale_free_width_over_380ft_pitch": 0.21149,
      "scale_free_plat_ratio": 0.21053,
-     "scale_free_pct_vs_plat": 0.42
+     "scale_free_pct_vs_plat": 0.46
     },
     {
      "name": "23rd",
@@ -1131,11 +1258,11 @@
       "2800": 246.513
      },
      "fit_rms_px": 1.79,
-     "implied_ft": 80.29,
-     "implied_vs_printed_pct": 0.36,
-     "scale_free_width_over_380ft_pitch": 0.21128,
+     "implied_ft": 80.32,
+     "implied_vs_printed_pct": 0.39,
+     "scale_free_width_over_380ft_pitch": 0.21135,
      "scale_free_plat_ratio": 0.21053,
-     "scale_free_pct_vs_plat": 0.36
+     "scale_free_pct_vs_plat": 0.39
     },
     {
      "name": "24th",
@@ -1147,11 +1274,11 @@
       "2800": 247.607
      },
      "fit_rms_px": 0.99,
-     "implied_ft": 80.03,
-     "implied_vs_printed_pct": 0.04,
-     "scale_free_width_over_380ft_pitch": 0.2106,
+     "implied_ft": 80.06,
+     "implied_vs_printed_pct": 0.07,
+     "scale_free_width_over_380ft_pitch": 0.21067,
      "scale_free_plat_ratio": 0.21053,
-     "scale_free_pct_vs_plat": 0.04
+     "scale_free_pct_vs_plat": 0.07
     },
     {
      "name": "25th",
@@ -1162,7 +1289,8 @@
    ],
    "measured_70ft_avenue_width_px": 214.36,
    "measured_70ft_half_width_px": 107.18,
-   "half_width_basis": "mean of this sheet's fully inked 70 ft avenues: E, F"
+   "half_width_basis": "mean of this sheet's fully inked 70 ft avenues: E, F",
+   "status": "measured"
   },
   "27": {
    "size_px": [
@@ -1170,66 +1298,96 @@
     4127
    ],
    "px_per_ft_from_grid_x": 3.0603,
-   "px_per_ft_from_grid_y": 3.0963,
-   "px_per_ft_x_sd": 0.0022,
-   "px_per_ft_y_sd": 0.0064,
-   "anisotropy_pct": 1.17,
+   "px_per_ft_from_grid_y": 3.0955,
+   "px_per_ft_x_sd": 0.0019,
+   "px_per_ft_y_sd": 0.0057,
+   "anisotropy_pct": 1.14,
    "grid_intervals_x": [
     {
-     "interval": "G->H east frontages",
-     "plat_ft": 330,
-     "px": 1009.19,
-     "px_per_ft": 3.0582
-    },
-    {
      "interval": "H->I west frontages",
-     "plat_ft": 330,
+     "steps": 1,
+     "plat_ft": 330.0,
      "px": 1009.81,
      "px_per_ft": 3.06
     },
     {
-     "interval": "H->I east frontages",
-     "plat_ft": 330,
-     "px": 1011.11,
-     "px_per_ft": 3.064
+     "interval": "H->J west frontages",
+     "steps": 2,
+     "plat_ft": 660.0,
+     "px": 2019.29,
+     "px_per_ft": 3.0595
     },
     {
      "interval": "I->J west frontages",
-     "plat_ft": 330,
+     "steps": 1,
+     "plat_ft": 330.0,
      "px": 1009.49,
      "px_per_ft": 3.0591
+    },
+    {
+     "interval": "G->H east frontages",
+     "steps": 1,
+     "plat_ft": 330.0,
+     "px": 1009.19,
+     "px_per_ft": 3.0582
+    },
+    {
+     "interval": "G->I east frontages",
+     "steps": 2,
+     "plat_ft": 660.0,
+     "px": 2020.3,
+     "px_per_ft": 3.0611
+    },
+    {
+     "interval": "H->I east frontages",
+     "steps": 1,
+     "plat_ft": 330.0,
+     "px": 1011.11,
+     "px_per_ft": 3.064
     }
    ],
    "grid_intervals_y": [
     {
      "interval": "22nd->23rd north frontages",
-     "plat_ft": 380,
+     "steps": 1,
+     "plat_ft": 380.0,
      "px": 1180.3,
      "px_per_ft": 3.106
     },
     {
      "interval": "22nd->23rd south frontages",
-     "plat_ft": 380,
+     "steps": 1,
+     "plat_ft": 380.0,
      "px": 1177.02,
      "px_per_ft": 3.0974
     },
     {
+     "interval": "22nd->24th north frontages",
+     "steps": 2,
+     "plat_ft": 760.0,
+     "px": 2353.68,
+     "px_per_ft": 3.0969
+    },
+    {
+     "interval": "22nd->24th south frontages",
+     "steps": 2,
+     "plat_ft": 760.0,
+     "px": 2351.51,
+     "px_per_ft": 3.0941
+    },
+    {
      "interval": "23rd->24th north frontages",
-     "plat_ft": 380,
+     "steps": 1,
+     "plat_ft": 380.0,
      "px": 1173.39,
      "px_per_ft": 3.0879
     },
     {
      "interval": "23rd->24th south frontages",
-     "plat_ft": 380,
+     "steps": 1,
+     "plat_ft": 380.0,
      "px": 1174.49,
      "px_per_ft": 3.0908
-    },
-    {
-     "interval": "24th->25th north frontages",
-     "plat_ft": 380,
-     "px": 1177.83,
-     "px_per_ft": 3.0995
     }
    ],
    "printed_scalebar_px_per_ft": 3.0735,
@@ -1348,11 +1506,11 @@
       "2800": 247.694
      },
      "fit_rms_px": 0.85,
-     "implied_ft": 80.31,
-     "implied_vs_printed_pct": 0.39,
-     "scale_free_width_over_380ft_pitch": 0.21135,
+     "implied_ft": 80.33,
+     "implied_vs_printed_pct": 0.42,
+     "scale_free_width_over_380ft_pitch": 0.2114,
      "scale_free_plat_ratio": 0.21053,
-     "scale_free_pct_vs_plat": 0.39
+     "scale_free_pct_vs_plat": 0.42
     },
     {
      "name": "23rd",
@@ -1364,11 +1522,11 @@
       "2800": 245.463
      },
      "fit_rms_px": 0.64,
-     "implied_ft": 79.26,
-     "implied_vs_printed_pct": -0.93,
-     "scale_free_width_over_380ft_pitch": 0.20857,
+     "implied_ft": 79.28,
+     "implied_vs_printed_pct": -0.9,
+     "scale_free_width_over_380ft_pitch": 0.20862,
      "scale_free_plat_ratio": 0.21053,
-     "scale_free_pct_vs_plat": -0.93
+     "scale_free_pct_vs_plat": -0.9
     },
     {
      "name": "24th",
@@ -1380,11 +1538,11 @@
       "2800": 246.466
      },
      "fit_rms_px": 1.37,
-     "implied_ft": 79.61,
-     "implied_vs_printed_pct": -0.48,
-     "scale_free_width_over_380ft_pitch": 0.20951,
+     "implied_ft": 79.63,
+     "implied_vs_printed_pct": -0.46,
+     "scale_free_width_over_380ft_pitch": 0.20956,
      "scale_free_plat_ratio": 0.21053,
-     "scale_free_pct_vs_plat": -0.49
+     "scale_free_pct_vs_plat": -0.46
     },
     {
      "name": "25th",
@@ -1395,68 +1553,91 @@
    ],
    "measured_70ft_avenue_width_px": 213.81,
    "measured_70ft_half_width_px": 106.91,
-   "half_width_basis": "mean of this sheet's fully inked 70 ft avenues: H, I"
+   "half_width_basis": "mean of this sheet's fully inked 70 ft avenues: H, I",
+   "status": "measured"
   },
   "29": {
    "size_px": [
     3400,
     4116
    ],
-   "px_per_ft_from_grid_x": 3.0634,
-   "px_per_ft_from_grid_y": 3.0915,
-   "px_per_ft_x_sd": 0.0025,
-   "px_per_ft_y_sd": 0.0041,
-   "anisotropy_pct": 0.91,
+   "px_per_ft_from_grid_x": 3.0637,
+   "px_per_ft_from_grid_y": 3.0909,
+   "px_per_ft_x_sd": 0.0022,
+   "px_per_ft_y_sd": 0.0036,
+   "anisotropy_pct": 0.88,
    "grid_intervals_x": [
     {
      "interval": "H->I west frontages",
-     "plat_ft": 330,
+     "steps": 1,
+     "plat_ft": 330.0,
      "px": 1012.04,
      "px_per_ft": 3.0668
     },
     {
-     "interval": "H->I east frontages",
-     "plat_ft": 330,
-     "px": 1010.07,
-     "px_per_ft": 3.0608
+     "interval": "H->J west frontages",
+     "steps": 2,
+     "plat_ft": 660.0,
+     "px": 2022.71,
+     "px_per_ft": 3.0647
     },
     {
      "interval": "I->J west frontages",
-     "plat_ft": 330,
+     "steps": 1,
+     "plat_ft": 330.0,
      "px": 1010.67,
      "px_per_ft": 3.0626
+    },
+    {
+     "interval": "H->I east frontages",
+     "steps": 1,
+     "plat_ft": 330.0,
+     "px": 1010.07,
+     "px_per_ft": 3.0608
     }
    ],
    "grid_intervals_y": [
     {
      "interval": "19th->20th north frontages",
-     "plat_ft": 380,
+     "steps": 1,
+     "plat_ft": 380.0,
      "px": 1177.09,
      "px_per_ft": 3.0976
     },
     {
      "interval": "19th->20th south frontages",
-     "plat_ft": 380,
+     "steps": 1,
+     "plat_ft": 380.0,
      "px": 1174.75,
      "px_per_ft": 3.0914
     },
     {
+     "interval": "19th->21st north frontages",
+     "steps": 2,
+     "plat_ft": 760.0,
+     "px": 2349.61,
+     "px_per_ft": 3.0916
+    },
+    {
+     "interval": "19th->21st south frontages",
+     "steps": 2,
+     "plat_ft": 760.0,
+     "px": 2348.53,
+     "px_per_ft": 3.0902
+    },
+    {
      "interval": "20th->21st north frontages",
-     "plat_ft": 380,
+     "steps": 1,
+     "plat_ft": 380.0,
      "px": 1172.53,
      "px_per_ft": 3.0856
     },
     {
      "interval": "20th->21st south frontages",
-     "plat_ft": 380,
+     "steps": 1,
+     "plat_ft": 380.0,
      "px": 1173.78,
      "px_per_ft": 3.0889
-    },
-    {
-     "interval": "21st->22nd north frontages",
-     "plat_ft": 380,
-     "px": 1175.7,
-     "px_per_ft": 3.0939
     }
    ],
    "printed_scalebar_px_per_ft": 3.0397,
@@ -1506,10 +1687,10 @@
      "per_band_width_sd_px": 0.496,
      "fit_rms_px": 0.45,
      "implied_ft": 70.08,
-     "implied_vs_printed_pct": 0.12,
-     "scale_free_width_over_330ft_pitch": 0.21237,
+     "implied_vs_printed_pct": 0.11,
+     "scale_free_width_over_330ft_pitch": 0.21235,
      "scale_free_plat_ratio": 0.21212,
-     "scale_free_pct_vs_plat": 0.12,
+     "scale_free_pct_vs_plat": 0.11,
      "confidence": "high"
     },
     {
@@ -1540,11 +1721,11 @@
      "width_variation_px_over_sheet": 0.16,
      "per_band_width_sd_px": 0.406,
      "fit_rms_px": 0.4,
-     "implied_ft": 69.44,
-     "implied_vs_printed_pct": -0.8,
-     "scale_free_width_over_330ft_pitch": 0.21042,
+     "implied_ft": 69.43,
+     "implied_vs_printed_pct": -0.81,
+     "scale_free_width_over_330ft_pitch": 0.2104,
      "scale_free_plat_ratio": 0.21212,
-     "scale_free_pct_vs_plat": -0.8,
+     "scale_free_pct_vs_plat": -0.81,
      "confidence": "medium"
     },
     {
@@ -1575,11 +1756,11 @@
       "2800": 248.419
      },
      "fit_rms_px": 0.9,
-     "implied_ft": 80.33,
-     "implied_vs_printed_pct": 0.41,
-     "scale_free_width_over_380ft_pitch": 0.21139,
+     "implied_ft": 80.34,
+     "implied_vs_printed_pct": 0.43,
+     "scale_free_width_over_380ft_pitch": 0.21143,
      "scale_free_plat_ratio": 0.21053,
-     "scale_free_pct_vs_plat": 0.41
+     "scale_free_pct_vs_plat": 0.43
     },
     {
      "name": "20th",
@@ -1591,11 +1772,11 @@
       "2800": 245.652
      },
      "fit_rms_px": 1.27,
-     "implied_ft": 79.57,
-     "implied_vs_printed_pct": -0.54,
-     "scale_free_width_over_380ft_pitch": 0.2094,
+     "implied_ft": 79.59,
+     "implied_vs_printed_pct": -0.52,
+     "scale_free_width_over_380ft_pitch": 0.20944,
      "scale_free_plat_ratio": 0.21053,
-     "scale_free_pct_vs_plat": -0.54
+     "scale_free_pct_vs_plat": -0.52
     },
     {
      "name": "21st",
@@ -1607,11 +1788,11 @@
       "2800": 247.502
      },
      "fit_rms_px": 0.65,
-     "implied_ft": 79.98,
-     "implied_vs_printed_pct": -0.03,
-     "scale_free_width_over_380ft_pitch": 0.21047,
+     "implied_ft": 79.99,
+     "implied_vs_printed_pct": -0.01,
+     "scale_free_width_over_380ft_pitch": 0.21051,
      "scale_free_plat_ratio": 0.21053,
-     "scale_free_pct_vs_plat": -0.03
+     "scale_free_pct_vs_plat": -0.01
     },
     {
      "name": "22nd",
@@ -1622,7 +1803,8 @@
    ],
    "measured_70ft_avenue_width_px": 213.71,
    "measured_70ft_half_width_px": 106.85,
-   "half_width_basis": "mean of this sheet's fully inked 70 ft avenues: H, I"
+   "half_width_basis": "mean of this sheet's fully inked 70 ft avenues: H, I",
+   "status": "measured"
   }
  },
  "half_width_px_for_centreline_construction": {
@@ -1777,5 +1959,95 @@
    "note": "Each sheet's constructed centreline moves by the per-sheet figure. Because both sheets' tie points move the SAME way and by nearly the same amount, the part that a seam solve can actually see -- the difference between the two -- is what matters, and it is given as relative_change_across_the_seam_px."
   }
  },
- "conclusion": "The premise that the draughtsmen drew the avenues about 3% narrow is NOT supported by the drawn ink. Measured against each sheet's own grid pitch -- which needs no printed width -- the fully inked lettered avenues come out at 69.0-70.3 ft against a printed 70 ft, and Av. B (Strand) at 79.8-80.3 ft against a printed 80 ft. The scale-free form of the same test is even more direct: drawn avenue width divided by the drawn 330 ft grid pitch is 0.2092-0.2129 against the plat's 70/330 = 0.2121, i.e. the avenues are drawn at their printed width to within -1.4%..+0.4%, and drawn street width over the drawn 380 ft street pitch is 0.2096-0.2117 against 80/380 = 0.2105. Avenues and streets are drawn to the same standard; neither is 3% out. The earlier -2.8%/-3.5% arose from the x scale, not from the widths. Sheet 9's px/ft in x was obtained from the Av. B -> Av. C centreline pitch taken as 330 ft. That pitch is 335 ft, not 330: the Strand is printed 80 ft, so the centre-to-centre step from Av. B to Av. C is 260 + 80/2 + 70/2 = 335 ft. Reading 1003 px as 330 ft instead of 335 ft inflates px/ft_x by 1.5%, and every avenue width then converts ~1.5% too narrow -- which, on top of a real ~1% effect, is the reported 2.8-3.5%. Using only intervals whose plat length is unambiguously 330 ft gives sheet 9 px/ft_x = 2.998, not 3.043. Isotropy: on this reading the sheets are NOT isotropic to 0.7%. Sheets 8, 10, 27 and 29 run 0.6-1.2% (y larger than x); sheet 9 runs 2.2% and sheet 7 runs 3.6%. Sheet 7's avenue grid is genuinely compressed in x relative to its own printed scale bar (grid x 2.94 vs bar 3.06) while its street grid in y matches the bar; sheet 7 should not be given an isotropic similarity without allowing for that. Practical consequence for the seams: rebuilding the Av. D and Av. G centrelines from measurement instead of the printed 70 ft moves each sheet's tie points by only 0.5-0.7 px, and -- because both sheets of a seam move the same way -- the relative change a seam solve can see is 0.02-0.03 px. The systematic seam bias being chased is not in the avenue width. It is not worth re-cutting the centrelines for; the honest gain is to record that the printed-width construction was already right to well under a pixel. Sheet 7 is the one place where the printed construction is materially off (5.5 px per side on Av. D), because sheet 7's x scale is not its scale-bar scale."
+ "conclusion": "The premise that the draughtsmen drew the lettered avenues about 3% narrow is NOT supported by the drawn ink.\n\n1. WHAT CAN BE MEASURED. Every lettered avenue in this eight-sheet set lies on a sheet boundary somewhere, and a boundary avenue is inked on one side only: the plate draws its own frontage line and stops, leaving the roadway and the far frontage as blank paper carrying just the avenue lettering, the printed width figure and the SEE SHEET caption. Av. A, D, G and J are therefore not measurable anywhere in this set. The drawn widths come from the twelve fully inked avenues: B and C on sheets 7 and 9, E and F on sheets 8 and 10, H and I on sheets 27 and 29. Sheets 1 and 2 have no fully inked avenue at all. Av. A is additionally unusable because its roadway is the harbour front and carries continuous railroad track pairs that pass every heavy-continuous-line test.\n\n2. THE WIDTHS. Measured against each sheet's own grid pitch -- which needs no printed width -- the ten fully inked 70 ft avenues come out at 69.43-70.32 ft against a printed 70 ft, and the two Av. B (Strand) measurements at 79.81 and 80.83 ft against a printed 80 ft. The scale-free form of the same test is more direct still, because it cancels px/ft entirely: drawn avenue width divided by the drawn 330 ft grid pitch is -0.81% to +1.04% off the plat's 70/330, and drawn street width over the drawn 380 ft street pitch is -0.90% to +0.86% off 80/380. Avenues and streets are drawn to the same standard and neither is 3% out. The convention check confirms it independently: the identical detector and identical half-max convention, applied to a numbered street printed 80 ft, returns 79.28-80.68 ft.\n\n3. WHERE THE -2.8%/-3.5% CAME FROM. It came from the x scale, not from the widths. Sheet 9's px/ft in x was obtained from the Av. B -> Av. C centreline pitch read as 330 ft. That pitch is 335 ft, not 330: the Strand is printed 80 ft, so the centre-to-centre step from Av. B to Av. C is 260 + 80/2 + 70/2 = 335 ft. Reading the measured ~1003 px as 330 ft rather than 335 ft inflates px/ft_x by 1.5%, and every avenue width then converts about 1.5% too narrow -- which, on top of a real sub-percent effect, is the reported 2.8-3.5%. Using only intervals whose plat length is unambiguously 330 ft gives sheet 9 px/ft_x = 2.9985, not 3.0429.\n\n4. ISOTROPY. On this reading the sheets are not isotropic to 0.7%. Sheets 10, 29, 8 and 27 run 0.60%, 0.88%, 0.90% and 1.14%, with y larger than x throughout; sheet 9 runs 2.17% and sheet 7 runs 3.51%. Sheet 7 is the real outlier: its avenue grid in x measures 2.9458 px/ft against its own printed scale bar's 3.0570, while its street grid in y (3.0511) matches that bar. Sheet 7 should not be given an isotropic similarity without allowing for this. Sheets 1 and 2 carry only one avenue each, so no x pitch exists on them; sheet 1 has no numbered street with a complete frontage pair either, so it yields no y pitch.\n\n5. WHAT IT MEANS FOR THE SEAMS. Rebuilding the Av. D and Av. G centrelines from measurement instead of the printed 70 ft moves each plate's constructed tie points by only 0.48-0.66 px, and because both plates of a seam move the same way, the relative change a seam solve can actually see is 0.13 px on S9|S10 and 0.18 px on S10|S27. The systematic seam bias being chased is not in the avenue width: a 3 px per side / 6 px across the seam correction does not exist. The gain here is negative evidence -- the printed-width construction already used in gcps/manual/seam_S10_S27.json and its siblings was right to well under a pixel, and this line of attack can be closed rather than re-cut.\n\n6. THE ONE PLACE IT DOES MATTER: SHEET 7. Its measured 70 ft half-width is 102.91 px against 107.00 px from the printed figure at the sheet's scale-bar scale -- 4.09 px per side. That is not a drafting error in the avenue (sheet 7's Av. C is -0.18% on the scale-free test, i.e. drawn true); it is sheet 7's x scale sitting 3.6% below its own scale bar. Any sheet 7 construction that converts feet to pixels through the scale bar -- which includes its Av. A and Av. D seam centrelines -- inherits that error, and sheet 7 is exactly the plate whose seams have been failing. If one thing is to be changed on the strength of this work, it is sheet 7's px/ft in x, not the avenue widths.",
+ "qc_images": "output/qc/manual_crops/ -- QC_S<sheet>_Av<letter>.png shows each accepted pair of frontage lines drawn over the source at 3x (red = west line, blue = east line); S<sheet>_*_z<zoom>.png are the raw upscaled crops with a 1-source-pixel grid used to identify the heavy continuous frontage line and to rule out the dashed awning edge.",
+ "headline_numbers": {
+  "drawn_width_of_the_70ft_avenues_ft": {
+   "range": [
+    69.43,
+    70.32
+   ],
+   "values": {
+    "S7 Av.C": 69.87,
+    "S8 Av.E": 69.91,
+    "S8 Av.F": 70.04,
+    "S9 Av.C": 70.32,
+    "S10 Av.E": 70.18,
+    "S10 Av.F": 70.06,
+    "S27 Av.H": 69.65,
+    "S27 Av.I": 70.08,
+    "S29 Av.H": 70.08,
+    "S29 Av.I": 69.43
+   },
+   "note": "against a printed 70 ft; converted through each sheet's own grid-x px/ft"
+  },
+  "drawn_width_of_Av_B_Strand_ft": {
+   "S7": 80.83,
+   "S9": 79.81,
+   "note": "against a printed 80 ft"
+  },
+  "scale_free_pct_off_plat": {
+   "avenues": [
+    -0.81,
+    1.04
+   ],
+   "streets": [
+    -0.9,
+    0.86
+   ],
+   "note": "drawn width / drawn grid pitch compared with 70/330 and 80/380. This form uses no px/ft at all and is the decisive test."
+  },
+  "px_per_ft_from_grid": {
+   "1": {
+    "x": null,
+    "y": null
+   },
+   "2": {
+    "x": null,
+    "y": 3.0797
+   },
+   "7": {
+    "x": 2.9458,
+    "y": 3.0511
+   },
+   "8": {
+    "x": 3.044,
+    "y": 3.0716
+   },
+   "9": {
+    "x": 2.9985,
+    "y": 3.0642
+   },
+   "10": {
+    "x": 3.0571,
+    "y": 3.0755
+   },
+   "27": {
+    "x": 3.0603,
+    "y": 3.0955
+   },
+   "29": {
+    "x": 3.0637,
+    "y": 3.0909
+   }
+  },
+  "anisotropy_pct_y_over_x": {
+   "7": 3.51,
+   "8": 0.9,
+   "9": 2.17,
+   "10": 0.6,
+   "27": 1.14,
+   "29": 0.88
+  },
+  "half_width_px_to_step_in_from_a_drawn_frontage": {
+   "7": 102.91,
+   "8": 106.51,
+   "9": 105.42,
+   "10": 107.18,
+   "27": 106.91,
+   "29": 106.85,
+   "1": null,
+   "2": null
+  }
+ }
 }

@@ -41,6 +41,19 @@ def main():
     truth = json.loads((Path(p.root) / "tests" / "fixture" / "truth.json")
                        .read_text(encoding="utf-8"))
     tdoc = read_json(p.working / "transforms.json")
+    # This validator compares against the SYNTHETIC fixture's ground truth.
+    # working/transforms.json is whatever the last solve published, so without
+    # this guard it will silently score the real Galveston solve against
+    # synthetic truth and report a ~2900 px "error" that means nothing. Every
+    # other script in this project guards its profile; so does this one.
+    if tdoc.get("profile") not in (None, "synthetic"):
+        print(f"REFUSING: working/transforms.json was produced for profile "
+              f"{tdoc.get('profile')!r}, but this validator only means "
+              f"anything against the synthetic fixture, whose truth is known.\n"
+              f"Run the synthetic profile end-to-end first "
+              f"(scripts/make_synthetic_fixture.py, then 06-10 with "
+              f"--profile synthetic).", file=sys.stderr)
+        return 6
     solved = {k: np.asarray(v, float) for k, v in tdoc["transforms"].items()}
     anchor = tdoc["anchor_region"]
 
