@@ -39,12 +39,12 @@ TWO WAYS TO MEASURE IT, AND ONLY ONE OF THEM WORKS
     verified.
 
 REFERENCE WIDTHS
-    Numbered streets are drawn true: 80 ft measures 80.5 ft against a scale
-    derived from grid pitch.  Lettered avenues are drawn about 3% narrow: a
-    printed 70 ft measures 68.0 ft, a printed 80 ft (Av. B) measures 77.2.
-    Both figures come from sheet 9's own grid pitch, which needs no printed
-    width at all -- the plat fixes avenue pitch at 260+70 = 330 ft and street
-    pitch at 300+80 = 380 ft. See research/experiment_log.md entry 15.
+    Both are drawn true: ten 70 ft avenues measure 69.4-70.3 ft and numbered
+    streets 79.3-80.7 ft, by a scale-free test that divides each drawn width
+    by the drawn grid pitch and so needs no px/ft at all.
+    Streets and avenues are both drawn true to their printed figure; see
+    research/experiment_log.md entry 18 for the measurement and for the
+    calibration error that briefly suggested otherwise.
 
 Outputs
     output/qc/shared_street_width.csv
@@ -67,8 +67,18 @@ from sanborn import geometry as G
 from sanborn.config import load_config, paths, read_json, setup_logging
 from sanborn.render import OutputGrid
 
-# Drawn width in feet of each shared street, from grid-pitch calibration.
-DRAWN_FT = {"street": 80.5, "avenue70": 68.0, "avenue80": 77.2}
+# Drawn width in feet of each shared street.
+#
+# CORRECTED. An earlier version of this file carried 68.0 ft for a printed
+# 70 ft avenue, on the strength of a grid-pitch calibration that took the
+# Av. B -> Av. C west-frontage step as 330 ft. West frontage to west frontage
+# crosses Av. B, which is the 80 ft Strand, so that step is 340 ft; reading it
+# as 330 inflated px/ft in x by about 1.5% and made every avenue convert too
+# narrow. A scale-free measurement -- drawn width divided by the drawn 330 ft
+# pitch, against 70/330, using no px/ft at all -- puts the ten 70 ft avenues
+# at 69.4-70.3 ft and the two Strand measurements at 79.8 and 80.8 ft.
+# Avenues and streets alike are drawn true.
+DRAWN_FT = {"street": 80.0, "avenue70": 70.0, "avenue80": 80.0}
 
 
 def classify(shared: str) -> str:
@@ -157,7 +167,14 @@ def main() -> int:
          for k, v in read_json(p.working / "transforms.json")["transforms"].items()}
     grid = OutputGrid.from_dict(read_json(p.working / "grid.json")["grid"])
     master = p.output / cfg["output"]["master_name"]
-    px_per_ft = 3.0429           # anchor sheet's own scale, from grid pitch
+    # Anchor sheet's scale, from its STREET pitch (300 ft block + 80 ft street
+    # = 380 ft). The street pitch is used rather than the avenue pitch because
+    # the north-south block depth of 300 ft holds across the whole set -- every
+    # sheet returns 3.05-3.10 px/ft in y -- whereas the east-west pitch implies
+    # a block of 269.5 ft in the Av. A-D column against 262-263 ft further
+    # east. The plane is isotropic by construction (similarity), so one figure
+    # serves both axes.
+    px_per_ft = 3.0642
 
     by_id = defaultdict(list)
     with (p.gcps / "tiepoints_verified.csv").open(newline="") as fh:

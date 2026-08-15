@@ -396,3 +396,101 @@ survives and the scatter is never visible in the output.
 
 This is the same lesson as entries 6 and 12 in a third form: **the residual is
 only as meaningful as the observation it is computed from.**
+
+---
+
+## 18. "Avenues are drawn 3% narrow" — MY error, retracted; and "the plates are anisotropic" — also not supported
+
+Two claims collided here, one of mine and one from an independent measurement
+pass, and neither survived. Both were about the same quantity: pixels per foot
+in the **x** direction.
+
+### 18a. The calibration error (mine)
+
+Entry 15 established that the printed scale bar measures page reproduction and
+cannot govern the drawing. To get a scale that owes nothing to any printed
+figure I used the **grid pitch**, taking the Galveston plat as 260 × 300 ft
+blocks with 70 ft avenues and 80 ft streets, so avenue pitch = 330 ft and
+street pitch = 380 ft. On sheet 9 that gave 3.0429 px/ft in x against
+3.0651 in y — isotropic to 0.73% — and, converting the drawn avenue widths
+through it, avenues 2.8–3.5% narrower than their printed figure.
+
+**The x figure was wrong.** I measured Av. B → Av. C *west frontage to west
+frontage*. That step crosses Av. B, which is the 80 ft Strand, so it is
+**340 ft, not 330**. Reading 340 as 330 inflates px/ft in x by 1.5%, and every
+width then converts that much too narrow. The 3% "narrow avenue" was my
+arithmetic, not the draughtsman's.
+
+An independent pass settled it without any px/ft at all: divide each drawn
+avenue width by the drawn 330 ft pitch on the same sheet and compare with
+70/330. That is scale-free. Result: the ten fully inked 70 ft avenues measure
+**69.4–70.3 ft**, the two Strand measurements **79.8 and 80.8 ft**, and
+numbered streets by the same detector **79.3–80.7 ft**.
+
+**Avenues and streets alike are drawn true.** Script 18's reference widths are
+corrected from 68.0/80.5 to 70.0/80.0.
+
+### 18b. The anisotropy claim (not mine, also not supported)
+
+That same pass, using correct east-to-east intervals that skip the Strand,
+reported the plates as anisotropic — sheet 7 by 3.51%, sheet 9 by 2.17%, the
+rest by 0.6–1.14% — and recommended lowering sheet 7's px/ft in x by 3.6% on
+that basis. **Acting on that would have distorted the mosaic.**
+
+A per-plate drawing anisotropy is a property of the *plate*. A wrong block
+dimension is a property of the *ground*. They make different predictions, and
+the sheets come in vertically adjacent pairs covering the same avenues, so the
+prediction is testable:
+
+| column | sheets | anisotropy | implied E-W block |
+|---|---|---|---|
+| Av. A–D | 7, 9 | 2.84% | **269.5 ft** |
+| Av. D–G | 8, 10 | 0.75% | 262.5 ft |
+| Av. G–J | 27, 29 | 1.01% | 263.4 ft |
+
+Mean spread **within** a column: 0.63%. Spread **between** column means:
+2.09%. The effect tracks the geographic column, not the plate — which is the
+signature of the ground, not the drawing. The harbour/Strand blocks are about
+7 ft wider east-west than the blocks further east, and the uniform 260 ft
+assumption is what produced the apparent anisotropy.
+
+The seam residuals say the same thing independently and more bluntly. S2 | S7
+has a **3512 px** baseline and a maximum residual of **7.16 px**. A 3.6%
+x-scale error on sheet 7 would put roughly **126 px** of disagreement into
+that seam. It is not there.
+
+**Similarity stands — for the third time, and now for the right reason.** No
+correction is applied to sheet 7.
+
+### 18c. What the exercise did settle
+
+The point of measuring drawn avenue widths was to correct the three seams
+whose centrelines were constructed by stepping half the *printed* 70 ft
+inward. Measured half-widths against printed:
+
+| seam | plate | measured | printed 70 ft | difference |
+|---|---|---|---|---|
+| Av. D, S9 \| S10 | 9 | 105.42 px | 106.03 px | −0.61 |
+| Av. D, S9 \| S10 | 10 | 107.18 px | 106.70 px | +0.48 |
+| Av. G, S10 \| S27 | 10 | 107.18 px | 106.70 px | +0.48 |
+| Av. G, S10 \| S27 | 27 | 106.91 px | 107.57 px | −0.66 |
+
+Both plates of a seam move the same way, so the **relative** change — the only
+part a seam can see — is **0.13 px** on S9 | S10 and **0.18 px** on S10 | S27.
+
+**No correction is warranted.** The printed figure was a good approximation
+all along, and the across-seam systematic that motivated the per-axis sigma
+inflation is not caused by the width construction. The inflated across-seam
+sigma stays, because it is still true that those seams share no inked ground
+and their placement is unverified — but the specific mechanism suspected in
+entry 17b is ruled out at the 0.2 px level.
+
+### 18d. The standing lesson
+
+Three times now the same shape of error: a residual, a scale bar, a grid pitch
+each looked like independent evidence and each carried a hidden assumption —
+that the model was right, that the bar governed the drawing, that the block
+was 260 ft. **Every calibration in this project must state what it assumes and
+be checked against something that does not share the assumption.** The
+scale-free ratio test in 18a and the column-versus-plate test in 18b are both
+of that kind, and both overturned a conclusion that had looked solid.
