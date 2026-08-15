@@ -38,7 +38,8 @@ from PIL import Image, ImageDraw
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from av_measure import gray, shape, CROPS, ROOT, find_line_halfmax, continuity
 from measure_avenue_widths import (SPEC, FULLNAME, PRINTED, PRINTED_STREET,
-                                   block_bands, group_bands, _cands_in, track, val)
+                                   block_bands, group_bands, _cands_in, track, val,
+                                   scan, fit_pts)
 
 # printed-width class of each avenue: the plat step that a same-side interval
 # spans is 260 + (width of the governing avenue)
@@ -68,6 +69,25 @@ SEED = {
 }
 
 YREF, XREF = 2000.0, 1700.0
+# Reference abscissa for the street fits.  On the harbour plates the streets are
+# only inked over a ~370 px wide tier of blocks, so their fits are evaluated at
+# the centre of their own support instead of being extrapolated to x=1700.
+XREF_SHEET = {'1': 2800.0, '2': 2780.0}
+XEVAL_SHEET = {'1': (2700, 2800, 2900), '2': (2680, 2780, 2880)}
+
+
+# Sheets 1 and 2 are harbour plates: the numbered streets are inked only in the
+# single tier of blocks against Av. A, everything west of that is wharf, slip and
+# open water.  Column bands for their street measurement are pinned to that tier.
+COLBAND = {'1': (2660, 3050), '2': (2575, 2980)}
+
+# Continuity threshold for accepting a heavy line.  0.85 everywhere except the
+# two harbour plates, whose block outlines are printed lighter and are read at
+# 0.60-0.70 by the same test.  Lowering it there is safe because sheets 1 and 2
+# carry no drawn awning/gallery edges at all -- the only dashed work on them is
+# wharf planking and platform outlines, none of it parallel to a street line
+# inside a roadway.  Both sheets were checked on crops before relaxing this.
+CONTMIN = {'1': 0.55, '2': 0.55}
 
 
 def all_bands(n, axis):
@@ -75,6 +95,10 @@ def all_bands(n, axis):
     h, w = shape(n)
     if axis == 'v':
         return block_bands(sorted(sp['streets'].values()), h, nper=6, half_road=150)
+    if n in COLBAND:
+        a, b = COLBAND[n]
+        step = (b - a) / 10.0
+        return [(int(a + i * step), int(a + (i + 1) * step)) for i in range(10)]
     b = block_bands(sorted(sp['avenues'].values()), w, nper=6, half_road=150)
     return [x for x in b if x[0] >= sp.get('xmin', 0) + 20]
 
@@ -90,9 +114,12 @@ def locate(n, key, nominal, axis, halfwin, sides_wanted):
         ps = _cands_in(n, nominal, halfwin, grp, axis)
         for side, sel in ((lo_name, lambda p: p['x'] < nominal - 25),
                           (hi_name, lambda p: p['x'] > nominal + 25)):
-            c = [p for p in ps if sel(p) and p['cont'] >= 0.85 and p['v'] >= 75]
+            cm = CONTMIN.get(n, 0.85)
+            c = [p for p in ps if sel(p) and p['cont'] >= cm and p['v'] >= 75]
             if c:
                 votes[side].append(max(c, key=lambda p: p['v']))
+    ref = YREF if axis == 'v' else XREF_SHEET.get(n, XREF)
+    raw = {}
     for side in sides_wanted:
         s = SEED.get((n, key, side))
         if s is None:
@@ -100,11 +127,24 @@ def locate(n, key, nominal, axis, halfwin, sides_wanted):
                 continue
             # the frontage is the candidate the bands agree on; take the median
             s = float(np.median([p['x'] for p in votes[side]]))
-        f = track(n, s, bands, axis=axis, ref=(YREF if axis == 'v' else XREF),
-                  half=10, minpeak=40.0)
+        pts = scan(n, s, bands, axis=axis, half=10)
+        if len(pts) >= 3:
+            raw[side] = pts
+            chosen[side] = round(s, 1)
+    # When both sides are present, fit them over the SAME bands, so that a width
+    # read at any latitude is a difference of two lines supported by the same
+    # evidence rather than by two different subsets of the sheet.
+    if len(raw) == 2:
+        a, b = list(raw)
+        ta = {p[0] for p in raw[a]}; tb = {p[0] for p in raw[b]}
+        common = ta & tb
+        if len(common) >= 8:
+            raw[a] = [p for p in raw[a] if p[0] in common]
+            raw[b] = [p for p in raw[b] if p[0] in common]
+    for side, pts in raw.items():
+        f = fit_pts(pts, ref)
         if f:
             out[side] = f
-            chosen[side] = s
     return out, chosen
 
 
@@ -143,12 +183,13 @@ def measure(n):
 
     for name, y0 in sorted(sp['streets'].items(), key=lambda kv: kv[1]):
         fits, seeds = locate(n, name, y0, 'h', 200, ['north', 'south'])
+        xev = XEVAL_SHEET.get(n, (600, 1700, 2800))
         e = {'printed_ft': PRINTED_STREET, 'lines': {}, 'seeds': seeds}
         for s, f in fits.items():
             e['lines'][s] = f
         if 'north' in fits and 'south' in fits:
             wpx = {}
-            for x in (600, 1700, 2800):
+            for x in xev:
                 wpx[str(x)] = round(val(fits['south'], x) - val(fits['north'], x), 3)
             e['width_px_at_x'] = wpx
             e['mean_width_px'] = round(float(np.mean(list(wpx.values()))), 3)
@@ -177,7 +218,8 @@ def scales(R):
         a, b = R['streets'][k1], R['streets'][k2]
         for side in ('north', 'south'):
             if side in a['lines'] and side in b['lines']:
-                d = val(b['lines'][side], XREF) - val(a['lines'][side], XREF)
+                xr = XREF_SHEET.get(n, XREF)
+                d = val(b['lines'][side], xr) - val(a['lines'][side], xr)
                 yint.append({'from': k1, 'to': k2, 'side': side, 'px': round(d, 3),
                              'plat_ft': 380, 'px_per_ft': round(d / 380.0, 5)})
     sx = float(np.mean([i['px_per_ft'] for i in xint])) if xint else None

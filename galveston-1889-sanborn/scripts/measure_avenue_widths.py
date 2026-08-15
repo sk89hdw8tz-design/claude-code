@@ -145,17 +145,16 @@ def pick_frontages(n, centre, halfwin, bands, axis='v', vmin=90.0, contmin=0.85,
     return best[1], best[2], best[3]
 
 
-def track(n, x0, bands, axis='v', ref=2000.0, half=10, minpeak=40.0):
-    """Follow one heavy line through the bands with the half-max detector,
-    predicting each band's position from the fit so far, then robust-fit
-    centre = a + b*(t - ref)."""
-    pts = []
-    pred = x0
+def scan(n, x0, bands, axis='v', half=10, minpeak=70.0, maxfwhm=6.0):
+    """Detect the line in every band. Weak (peak<minpeak) or smeared
+    (fwhm>maxfwhm) detections are dropped: those are places where the line runs
+    behind lettering or fades at a block end, and they were the single largest
+    source of slope error in an earlier pass."""
+    pts, pred = [], x0
     for (t0, t1) in bands:
         r = find_line_halfmax(n, pred, t0, t1, half=half, axis=axis)
-        if r is None or r['peak'] < minpeak or r['fwhm'] > 14:
+        if r is None:
             continue
-        pts.append([0.5 * (t0 + t1), r['c'], r['peak'], r['fwhm']])
         if len(pts) >= 3:
             ts = np.array([p[0] for p in pts[-6:]])
             cs = np.array([p[1] for p in pts[-6:]])
@@ -164,30 +163,46 @@ def track(n, x0, bands, axis='v', ref=2000.0, half=10, minpeak=40.0):
             pred = nxt if abs(nxt - r['c']) < 40 else r['c']
         else:
             pred = r['c']
+        if r['peak'] < minpeak or r['fwhm'] > maxfwhm:
+            continue
+        pts.append([0.5 * (t0 + t1), r['c'], r['peak'], r['fwhm']])
+    return pts
+
+
+def _theil_sen(ts, cs):
+    sl = [(cs[j] - cs[i]) / (ts[j] - ts[i])
+          for i in range(len(ts)) for j in range(i + 1, len(ts))
+          if ts[j] != ts[i]]
+    return float(np.median(sl)) if sl else 0.0
+
+
+def fit_pts(pts, ref):
+    """Theil-Sen start, MAD clip, then least squares. Robust to the handful of
+    bands where the detector locks onto a neighbouring line."""
     if len(pts) < 3:
         return None
-
-    def solve(P):
-        ts = np.array([p[0] for p in P]); cs = np.array([p[1] for p in P])
-        A = np.vstack([np.ones(len(ts)), ts - ref]).T
-        sol, *_ = np.linalg.lstsq(A, cs, rcond=None)
-        return sol, cs - A @ sol
-    sol, r = solve(pts)
-    for _ in range(3):
-        if len(pts) <= 5:
-            break
-        s = max(r.std(), 0.15)
-        keep = [p for p, rr in zip(pts, r) if abs(rr) <= 2.5 * s]
-        if len(keep) == len(pts) or len(keep) < 5:
-            break
-        pts = keep
-        sol, r = solve(pts)
+    ts = np.array([p[0] for p in pts]); cs = np.array([p[1] for p in pts])
+    b0 = _theil_sen(ts, cs)
+    r0 = cs - (b0 * (ts - ref) + np.median(cs - b0 * (ts - ref)))
+    mad = max(1.4826 * np.median(np.abs(r0 - np.median(r0))), 0.4)
+    keep = np.abs(r0 - np.median(r0)) <= 3.0 * mad
+    if keep.sum() < 3:
+        keep = np.ones(len(pts), bool)
+    P = [p for p, k in zip(pts, keep) if k]
+    ts = np.array([p[0] for p in P]); cs = np.array([p[1] for p in P])
+    A = np.vstack([np.ones(len(ts)), ts - ref]).T
+    sol, *_ = np.linalg.lstsq(A, cs, rcond=None)
+    r = cs - A @ sol
     return {'a': float(sol[0]), 'b': float(sol[1]), 'ref': float(ref),
-            'rms': float(np.sqrt((r ** 2).mean())), 'n': len(pts),
-            'tmin': float(min(p[0] for p in pts)), 'tmax': float(max(p[0] for p in pts)),
-            'mean_peak': float(np.mean([p[2] for p in pts])),
-            'mean_fwhm': float(np.mean([p[3] for p in pts])),
-            'pts': [[round(p[0], 1), round(p[1], 3), round(p[2], 1), round(p[3], 2)] for p in pts]}
+            'rms': float(np.sqrt((r ** 2).mean())), 'n': len(P),
+            'tmin': float(ts.min()), 'tmax': float(ts.max()),
+            'mean_peak': float(np.mean([p[2] for p in P])),
+            'mean_fwhm': float(np.mean([p[3] for p in P])),
+            'pts': [[round(p[0], 1), round(p[1], 3), round(p[2], 1), round(p[3], 2)] for p in P]}
+
+
+def track(n, x0, bands, axis='v', ref=2000.0, half=10, minpeak=70.0):
+    return fit_pts(scan(n, x0, bands, axis=axis, half=half, minpeak=minpeak), ref)
 
 
 def val(f, t):

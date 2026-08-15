@@ -236,15 +236,24 @@ def shared_boundary_points(ring_a, ring_b, samples=5, tol=3.0):
 
 
 def read_crop(path, col, row, size):
-    """Read a `size` square centred on (col,row); returns RGBA or None."""
+    """Read a `size` square centred on (col,row); returns RGBA or None.
+
+    The read is BOUNDLESS and pads with zeros (transparent) outside the
+    raster.  It must never slide the window back inside instead.  Each warped
+    region is stored windowed to its own footprint, so a crop centred on a
+    seam always overruns the edge of at least one contributor -- that is what
+    a seam IS.  Clamping the window to fit silently returned a view up to half
+    a crop away from the requested point, so the "A only", "B only" and
+    "merged" tiles of a seam panel showed three different places while looking
+    like an aligned comparison.  Padding shows the truth: the contributor
+    stops here, and its absence is visible as blank rather than disguised as
+    content.
+    """
     half = size // 2
     with rasterio.open(path) as ds:
         c0, r0 = int(col) - half, int(row) - half
-        c0 = max(0, min(c0, ds.width - size))
-        r0 = max(0, min(r0, ds.height - size))
-        if ds.width < size or ds.height < size:
-            return None
-        arr = ds.read(window=Window(c0, r0, size, size))
+        arr = ds.read(window=Window(c0, r0, size, size),
+                      boundless=True, fill_value=0)
     return np.transpose(arr, (1, 2, 0))
 
 

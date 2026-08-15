@@ -1,0 +1,1781 @@
+{
+ "method": "Local measurement on data/original at full resolution (PIL, Image.MAX_IMAGE_PIXELS=None); nothing uploaded, no external image API. A frontage line's position is the HALF-MAX-CROSSING MIDPOINT of the baseline-subtracted mean-darkness profile taken across the line over a row band ~150 rows tall; half-max midpoint rather than centroid because a thin lot line or a column of address numerals a few px to one side drags a centroid but not a half-max midpoint. Each avenue was searched in a window +/-200 px about the centre of its PRINTED lettering, in a profile that is the MEDIAN over many separated bands (which suppresses block detail, party walls and lettering while keeping anything that runs the full height). The accepted frontage is the strongest such peak on each side that is also CONTINUOUS: >=85% of rows have a pixel darker than 120 within +/-4 px. The dashed awning/gallery edge, which sits ~40 px (13-15 ft) inside the roadway, scores 0.35-0.70 on that test and is rejected -- it was seen explicitly in the profiles and in the crops, and never selected. Each line was then tracked through 16-24 mid-block bands spanning 2200-3000 rows and robust-fitted (2.5 sigma clip) to x = a + b*(y-2000); fit rms and band count are reported. Every accepted line was confirmed visually on 3x-12x NEAREST crops carrying a 1-source-pixel grid, in output/qc/manual_crops/ (QC_S<sheet>_Av<letter>.png marks the two accepted lines red=west, blue=east). SCALE: px/ft is derived only from the plat's fixed grid pitch and never from a printed width. In x the interval between the SAME-SIDE frontage lines of consecutive avenues is (block depth + the width of one avenue): west_k->west_k+1 carries avenue k's width, east_k->east_k+1 carries avenue k+1's width, so the interval is exactly 260+70 = 330 ft whenever the avenue whose width enters it is a 70 ft one. Intervals governed by Av. B (Strand, printed 80 ft) span 340 ft, not 330, and are EXCLUDED rather than mislabelled -- this is the single point on which the earlier 3%-narrow finding turns. In y every consecutive same-side street-frontage interval is 300+80 = 380 ft. Lines are used for scale only if n>=8 bands, span>=1500 rows, rms<=2.5 px and the pair's slopes agree to 0.004.",
+ "what_is_measurable": {
+  "finding": "Every lettered avenue that lies on a sheet boundary is drawn with ONE frontage line only -- the sheet inks its own side and stops; the roadway and the far frontage are blank paper carrying only the avenue lettering, the printed width figure and the SEE SHEET caption. Verified on crops for Av. D on sheets 9 and 10 and Av. G on sheets 10 and 27, and confirmed by profile for every other edge avenue. Consequently Av. A, D, G and J are NOT measurable on any of the eight sheets, because each of them is a sheet boundary everywhere in this set. Their drawn width has to be taken from the 70-ft avenues that ARE fully inked on the same sheet.",
+  "measurable": {
+   "7": [
+    "B",
+    "C"
+   ],
+   "8": [
+    "E",
+    "F"
+   ],
+   "9": [
+    "B",
+    "C"
+   ],
+   "10": [
+    "E",
+    "F"
+   ],
+   "27": [
+    "H",
+    "I"
+   ],
+   "29": [
+    "H",
+    "I"
+   ]
+  },
+  "not_measurable": {
+   "7": [
+    "D"
+   ],
+   "8": [
+    "D",
+    "G"
+   ],
+   "9": [
+    "D"
+   ],
+   "10": [
+    "D",
+    "G"
+   ],
+   "27": [
+    "G",
+    "J"
+   ],
+   "29": [
+    "G",
+    "J"
+   ]
+  }
+ },
+ "convention_check": {
+  "2": {
+   "street": "21st St",
+   "printed_ft": 80,
+   "measured_px": 248.486,
+   "implied_ft": 80.66,
+   "scale_free_pct_vs_plat": 0.82,
+   "fit_rms_px": 0.22,
+   "note": "Measured with the identical convention used for the avenues (heavy continuous frontage line, half-max midpoint). Streets are drawn true, so this calibrates the convention: it returns 80 ft to within ~1%."
+  },
+  "7": {
+   "street": "19th St",
+   "printed_ft": 80,
+   "measured_px": 245.359,
+   "implied_ft": 80.39,
+   "scale_free_pct_vs_plat": 0.49,
+   "fit_rms_px": 0.47,
+   "note": "Measured with the identical convention used for the avenues (heavy continuous frontage line, half-max midpoint). Streets are drawn true, so this calibrates the convention: it returns 80 ft to within ~1%."
+  },
+  "8": {
+   "street": "20th St",
+   "printed_ft": 80,
+   "measured_px": 243.567,
+   "implied_ft": 79.28,
+   "scale_free_pct_vs_plat": -0.9,
+   "fit_rms_px": 0.87,
+   "note": "Measured with the identical convention used for the avenues (heavy continuous frontage line, half-max midpoint). Streets are drawn true, so this calibrates the convention: it returns 80 ft to within ~1%."
+  },
+  "9": {
+   "street": "23rd St",
+   "printed_ft": 80,
+   "measured_px": 243.887,
+   "implied_ft": 79.59,
+   "scale_free_pct_vs_plat": -0.51,
+   "fit_rms_px": 0.7,
+   "note": "Measured with the identical convention used for the avenues (heavy continuous frontage line, half-max midpoint). Streets are drawn true, so this calibrates the convention: it returns 80 ft to within ~1%."
+  },
+  "10": {
+   "street": "24th St",
+   "printed_ft": 80,
+   "measured_px": 246.214,
+   "implied_ft": 80.03,
+   "scale_free_pct_vs_plat": 0.04,
+   "fit_rms_px": 0.99,
+   "note": "Measured with the identical convention used for the avenues (heavy continuous frontage line, half-max midpoint). Streets are drawn true, so this calibrates the convention: it returns 80 ft to within ~1%."
+  },
+  "27": {
+   "street": "23rd St",
+   "printed_ft": 80,
+   "measured_px": 245.401,
+   "implied_ft": 79.26,
+   "scale_free_pct_vs_plat": -0.93,
+   "fit_rms_px": 0.64,
+   "note": "Measured with the identical convention used for the avenues (heavy continuous frontage line, half-max midpoint). Streets are drawn true, so this calibrates the convention: it returns 80 ft to within ~1%."
+  },
+  "29": {
+   "street": "21st St",
+   "printed_ft": 80,
+   "measured_px": 247.249,
+   "implied_ft": 79.98,
+   "scale_free_pct_vs_plat": -0.03,
+   "fit_rms_px": 0.65,
+   "note": "Measured with the identical convention used for the avenues (heavy continuous frontage line, half-max midpoint). Streets are drawn true, so this calibrates the convention: it returns 80 ft to within ~1%."
+  }
+ },
+ "sheets": {
+  "1": {
+   "size_px": [
+    3400,
+    4118
+   ],
+   "px_per_ft_from_grid_x": null,
+   "px_per_ft_from_grid_y": null,
+   "px_per_ft_x_sd": null,
+   "px_per_ft_y_sd": null,
+   "anisotropy_pct": null,
+   "grid_intervals_x": [],
+   "grid_intervals_y": [],
+   "printed_scalebar_px_per_ft": 3.0297,
+   "avenues": [
+    {
+     "name": "Av. A or Water E.",
+     "letter": "A",
+     "printed_ft": 70,
+     "west_line_x_fit": "x = 2958.527 - 0.001072*(y-2000)",
+     "east_line_x_fit": null,
+     "west_fit_rms_px": 2.19,
+     "west_n_bands": 9,
+     "west_y_span": [
+      1707,
+      3778
+     ],
+     "both_frontages_inked": false,
+     "note": "Harbour-front street. Only one frontage is on this sheet and its roadway carries continuous railroad track pairs that are indistinguishable from a frontage line by ink alone; excluded from width and from scale.",
+     "confidence": "low"
+    }
+   ],
+   "streets": [
+    {
+     "name": "22nd",
+     "printed_ft": 80,
+     "measured_px": null,
+     "note": "incomplete on this sheet (clipped at the sheet edge)"
+    },
+    {
+     "name": "23rd",
+     "printed_ft": 80,
+     "measured_px": null,
+     "note": "incomplete on this sheet (clipped at the sheet edge)"
+    },
+    {
+     "name": "24th",
+     "printed_ft": 80,
+     "measured_px": null,
+     "note": "incomplete on this sheet (clipped at the sheet edge)"
+    },
+    {
+     "name": "25th",
+     "printed_ft": 80,
+     "measured_px": null,
+     "note": "incomplete on this sheet (clipped at the sheet edge)"
+    }
+   ],
+   "measured_70ft_avenue_width_px": null,
+   "measured_70ft_half_width_px": null,
+   "half_width_basis": "no fully inked avenue on this sheet"
+  },
+  "2": {
+   "size_px": [
+    3400,
+    4089
+   ],
+   "px_per_ft_from_grid_x": null,
+   "px_per_ft_from_grid_y": 3.0807,
+   "px_per_ft_x_sd": null,
+   "px_per_ft_y_sd": 0.0039,
+   "anisotropy_pct": null,
+   "grid_intervals_x": [],
+   "grid_intervals_y": [
+    {
+     "interval": "19th->20th south frontages",
+     "plat_ft": 380,
+     "px": 1171.37,
+     "px_per_ft": 3.0825
+    },
+    {
+     "interval": "20th->21st north frontages",
+     "plat_ft": 380,
+     "px": 1168.29,
+     "px_per_ft": 3.0745
+    },
+    {
+     "interval": "20th->21st south frontages",
+     "plat_ft": 380,
+     "px": 1172.3,
+     "px_per_ft": 3.085
+    },
+    {
+     "interval": "21st->22nd south frontages",
+     "plat_ft": 380,
+     "px": 1170.73,
+     "px_per_ft": 3.0809
+    }
+   ],
+   "printed_scalebar_px_per_ft": 3.0576,
+   "avenues": [
+    {
+     "name": "Av. A or Water E.",
+     "letter": "A",
+     "printed_ft": 70,
+     "west_line_x_fit": "x = 3132.322 - 0.006002*(y-2000)",
+     "east_line_x_fit": null,
+     "west_fit_rms_px": 0.37,
+     "west_n_bands": 6,
+     "west_y_span": [
+      1515,
+      2095
+     ],
+     "both_frontages_inked": false,
+     "note": "Harbour-front street. Only one frontage is on this sheet and its roadway carries continuous railroad track pairs that are indistinguishable from a frontage line by ink alone; excluded from width and from scale.",
+     "confidence": "low"
+    }
+   ],
+   "streets": [
+    {
+     "name": "19th",
+     "printed_ft": 80,
+     "measured_px": null,
+     "note": "incomplete on this sheet (clipped at the sheet edge)"
+    },
+    {
+     "name": "20th",
+     "printed_ft": 80,
+     "measured_px": 244.482,
+     "width_px_at_x": {
+      "2680": 244.565,
+      "2780": 244.482,
+      "2880": 244.399
+     },
+     "fit_rms_px": 0.22,
+     "implied_ft": 79.36,
+     "implied_vs_printed_pct": -0.8,
+     "scale_free_width_over_380ft_pitch": 0.20884,
+     "scale_free_plat_ratio": 0.21053,
+     "scale_free_pct_vs_plat": -0.8
+    },
+    {
+     "name": "21st",
+     "printed_ft": 80,
+     "measured_px": 248.486,
+     "width_px_at_x": {
+      "2680": 248.442,
+      "2780": 248.486,
+      "2880": 248.529
+     },
+     "fit_rms_px": 0.22,
+     "implied_ft": 80.66,
+     "implied_vs_printed_pct": 0.82,
+     "scale_free_width_over_380ft_pitch": 0.21226,
+     "scale_free_plat_ratio": 0.21053,
+     "scale_free_pct_vs_plat": 0.82
+    },
+    {
+     "name": "22nd",
+     "printed_ft": 80,
+     "measured_px": null,
+     "note": "incomplete on this sheet (clipped at the sheet edge)"
+    }
+   ],
+   "measured_70ft_avenue_width_px": null,
+   "measured_70ft_half_width_px": null,
+   "half_width_basis": "no fully inked avenue on this sheet"
+  },
+  "7": {
+   "size_px": [
+    3400,
+    4120
+   ],
+   "px_per_ft_from_grid_x": 2.9401,
+   "px_per_ft_from_grid_y": 3.052,
+   "px_per_ft_x_sd": null,
+   "px_per_ft_y_sd": 0.0068,
+   "anisotropy_pct": 3.73,
+   "grid_intervals_x": [
+    {
+     "interval": "C->D west frontages",
+     "plat_ft": 330,
+     "px": 970.23,
+     "px_per_ft": 2.9401
+    }
+   ],
+   "grid_intervals_y": [
+    {
+     "interval": "19th->20th north frontages",
+     "plat_ft": 380,
+     "px": 1162.71,
+     "px_per_ft": 3.0598
+    },
+    {
+     "interval": "20th->21st north frontages",
+     "plat_ft": 380,
+     "px": 1156.08,
+     "px_per_ft": 3.0423
+    },
+    {
+     "interval": "21st->22nd north frontages",
+     "plat_ft": 380,
+     "px": 1158.72,
+     "px_per_ft": 3.0493
+    },
+    {
+     "interval": "21st->22nd south frontages",
+     "plat_ft": 380,
+     "px": 1161.51,
+     "px_per_ft": 3.0566
+    }
+   ],
+   "printed_scalebar_px_per_ft": 3.057,
+   "avenues": [
+    {
+     "name": "Av. A or Water E.",
+     "letter": "A",
+     "printed_ft": 70,
+     "west_line_x_fit": null,
+     "east_line_x_fit": "x = 351.589 - 0.004297*(y-2000)",
+     "east_fit_rms_px": 1.1,
+     "east_n_bands": 12,
+     "east_y_span": [
+      1756,
+      3448
+     ],
+     "both_frontages_inked": false,
+     "note": "Harbour-front street. Only one frontage is on this sheet and its roadway carries continuous railroad track pairs that are indistinguishable from a frontage line by ink alone; excluded from width and from scale.",
+     "confidence": "low"
+    },
+    {
+     "name": "Av. B or Strand E.",
+     "letter": "B",
+     "printed_ft": 80,
+     "west_line_x_fit": "x = 1126.942 - 0.003874*(y-2000)",
+     "east_line_x_fit": "x = 1365.060 - 0.004851*(y-2000)",
+     "west_fit_rms_px": 1.22,
+     "west_n_bands": 11,
+     "west_y_span": [
+      1756,
+      3448
+     ],
+     "east_fit_rms_px": 0.55,
+     "east_n_bands": 12,
+     "east_y_span": [
+      1756,
+      3448
+     ],
+     "both_frontages_inked": true,
+     "width_px_at_y": {
+      "1000": 239.095,
+      "2000": 238.118,
+      "3000": 237.141
+     },
+     "mean_width_px": 238.118,
+     "width_variation_px_over_sheet": 1.95,
+     "per_band_width_sd_px": 1.633,
+     "fit_rms_px": 1.22,
+     "implied_ft": 80.99,
+     "implied_vs_printed_pct": 1.24,
+     "scale_free_width_over_330ft_pitch": 0.24542,
+     "scale_free_plat_ratio": 0.24242,
+     "scale_free_pct_vs_plat": 1.24,
+     "confidence": "medium"
+    },
+    {
+     "name": "Av. C or Mechanic E.",
+     "letter": "C",
+     "printed_ft": 70,
+     "west_line_x_fit": "x = 2133.234 - 0.009544*(y-2000)",
+     "east_line_x_fit": "x = 2339.063 - 0.009444*(y-2000)",
+     "west_fit_rms_px": 0.55,
+     "west_n_bands": 11,
+     "west_y_span": [
+      1756,
+      3334
+     ],
+     "east_fit_rms_px": 0.43,
+     "east_n_bands": 12,
+     "east_y_span": [
+      1756,
+      3448
+     ],
+     "both_frontages_inked": true,
+     "width_px_at_y": {
+      "1000": 205.729,
+      "2000": 205.829,
+      "3000": 205.93
+     },
+     "mean_width_px": 205.829,
+     "width_variation_px_over_sheet": 0.2,
+     "per_band_width_sd_px": 0.226,
+     "fit_rms_px": 0.55,
+     "implied_ft": 70.01,
+     "implied_vs_printed_pct": 0.01,
+     "scale_free_width_over_330ft_pitch": 0.21214,
+     "scale_free_plat_ratio": 0.21212,
+     "scale_free_pct_vs_plat": 0.01,
+     "confidence": "medium"
+    },
+    {
+     "name": "Av. D or Market E.",
+     "letter": "D",
+     "printed_ft": 70,
+     "west_line_x_fit": "x = 3103.462 - 0.005812*(y-2000)",
+     "east_line_x_fit": null,
+     "west_fit_rms_px": 0.78,
+     "west_n_bands": 12,
+     "west_y_span": [
+      1756,
+      3448
+     ],
+     "both_frontages_inked": false,
+     "note": "Sheet boundary avenue: only the west frontage is inked on this sheet; the roadway and the far frontage are blank paper. Width not measurable here.",
+     "confidence": "n/a"
+    }
+   ],
+   "streets": [
+    {
+     "name": "19th",
+     "printed_ft": 80,
+     "measured_px": 245.359,
+     "width_px_at_x": {
+      "600": 244.507,
+      "1700": 245.359,
+      "2800": 246.212
+     },
+     "fit_rms_px": 0.47,
+     "implied_ft": 80.39,
+     "implied_vs_printed_pct": 0.49,
+     "scale_free_width_over_380ft_pitch": 0.21156,
+     "scale_free_plat_ratio": 0.21053,
+     "scale_free_pct_vs_plat": 0.49
+    },
+    {
+     "name": "20th",
+     "printed_ft": 80,
+     "measured_px": null,
+     "note": "incomplete on this sheet (clipped at the sheet edge)"
+    },
+    {
+     "name": "21st",
+     "printed_ft": 80,
+     "measured_px": 243.259,
+     "width_px_at_x": {
+      "600": 245.347,
+      "1700": 243.259,
+      "2800": 241.171
+     },
+     "fit_rms_px": 1.48,
+     "implied_ft": 79.7,
+     "implied_vs_printed_pct": -0.37,
+     "scale_free_width_over_380ft_pitch": 0.20975,
+     "scale_free_plat_ratio": 0.21053,
+     "scale_free_pct_vs_plat": -0.37
+    },
+    {
+     "name": "22nd",
+     "printed_ft": 80,
+     "measured_px": 246.049,
+     "width_px_at_x": {
+      "600": 247.184,
+      "1700": 246.049,
+      "2800": 244.915
+     },
+     "fit_rms_px": 1.49,
+     "implied_ft": 80.62,
+     "implied_vs_printed_pct": 0.77,
+     "scale_free_width_over_380ft_pitch": 0.21216,
+     "scale_free_plat_ratio": 0.21053,
+     "scale_free_pct_vs_plat": 0.77
+    }
+   ],
+   "measured_70ft_avenue_width_px": 205.83,
+   "measured_70ft_half_width_px": 102.91,
+   "half_width_basis": "mean of this sheet's fully inked 70 ft avenues: C"
+  },
+  "8": {
+   "size_px": [
+    3400,
+    4090
+   ],
+   "px_per_ft_from_grid_x": 3.044,
+   "px_per_ft_from_grid_y": 3.0721,
+   "px_per_ft_x_sd": 0.0045,
+   "px_per_ft_y_sd": 0.0063,
+   "anisotropy_pct": 0.92,
+   "grid_intervals_x": [
+    {
+     "interval": "D->E east frontages",
+     "plat_ft": 330,
+     "px": 1005.85,
+     "px_per_ft": 3.048
+    },
+    {
+     "interval": "E->F west frontages",
+     "plat_ft": 330,
+     "px": 1004.94,
+     "px_per_ft": 3.0453
+    },
+    {
+     "interval": "E->F east frontages",
+     "plat_ft": 330,
+     "px": 1005.33,
+     "px_per_ft": 3.0464
+    },
+    {
+     "interval": "F->G west frontages",
+     "plat_ft": 330,
+     "px": 1002.01,
+     "px_per_ft": 3.0364
+    }
+   ],
+   "grid_intervals_y": [
+    {
+     "interval": "19th->20th north frontages",
+     "plat_ft": 380,
+     "px": 1171.84,
+     "px_per_ft": 3.0838
+    },
+    {
+     "interval": "19th->20th south frontages",
+     "plat_ft": 380,
+     "px": 1168.35,
+     "px_per_ft": 3.0746
+    },
+    {
+     "interval": "20th->21st north frontages",
+     "plat_ft": 380,
+     "px": 1163.88,
+     "px_per_ft": 3.0628
+    },
+    {
+     "interval": "20th->21st south frontages",
+     "plat_ft": 380,
+     "px": 1166.21,
+     "px_per_ft": 3.069
+    },
+    {
+     "interval": "21st->22nd north frontages",
+     "plat_ft": 380,
+     "px": 1166.91,
+     "px_per_ft": 3.0708
+    },
+    {
+     "interval": "21st->22nd south frontages",
+     "plat_ft": 380,
+     "px": 1167.22,
+     "px_per_ft": 3.0716
+    }
+   ],
+   "printed_scalebar_px_per_ft": 3.0269,
+   "avenues": [
+    {
+     "name": "Av. D or Market E.",
+     "letter": "D",
+     "printed_ft": 70,
+     "west_line_x_fit": null,
+     "east_line_x_fit": "x = 293.570 - 0.000176*(y-2000)",
+     "east_fit_rms_px": 0.82,
+     "east_n_bands": 18,
+     "east_y_span": [
+      515,
+      3466
+     ],
+     "both_frontages_inked": false,
+     "note": "Sheet boundary avenue: only the east frontage is inked on this sheet; the roadway and the far frontage are blank paper. Width not measurable here.",
+     "confidence": "n/a"
+    },
+    {
+     "name": "Av. E or Post Office E.",
+     "letter": "E",
+     "printed_ft": 70,
+     "west_line_x_fit": "x = 1086.596 - 0.002852*(y-2000)",
+     "east_line_x_fit": "x = 1299.418 - 0.003594*(y-2000)",
+     "west_fit_rms_px": 1.62,
+     "west_n_bands": 14,
+     "west_y_span": [
+      515,
+      3466
+     ],
+     "east_fit_rms_px": 0.28,
+     "east_n_bands": 12,
+     "east_y_span": [
+      515,
+      2274
+     ],
+     "both_frontages_inked": true,
+     "width_px_at_y": {
+      "1000": 213.564,
+      "2000": 212.822,
+      "3000": 212.079
+     },
+     "mean_width_px": 212.822,
+     "width_variation_px_over_sheet": 1.48,
+     "per_band_width_sd_px": 1.256,
+     "fit_rms_px": 1.62,
+     "implied_ft": 69.91,
+     "implied_vs_printed_pct": -0.12,
+     "scale_free_width_over_330ft_pitch": 0.21186,
+     "scale_free_plat_ratio": 0.21212,
+     "scale_free_pct_vs_plat": -0.12,
+     "confidence": "medium"
+    },
+    {
+     "name": "Av. F or Church E.",
+     "letter": "F",
+     "printed_ft": 70,
+     "west_line_x_fit": "x = 2091.535 - 0.003353*(y-2000)",
+     "east_line_x_fit": "x = 2304.745 - 0.003953*(y-2000)",
+     "west_fit_rms_px": 0.45,
+     "west_n_bands": 16,
+     "west_y_span": [
+      748,
+      3466
+     ],
+     "east_fit_rms_px": 1.14,
+     "east_n_bands": 16,
+     "east_y_span": [
+      748,
+      3466
+     ],
+     "both_frontages_inked": true,
+     "width_px_at_y": {
+      "1000": 213.811,
+      "2000": 213.211,
+      "3000": 212.611
+     },
+     "mean_width_px": 213.211,
+     "width_variation_px_over_sheet": 1.2,
+     "per_band_width_sd_px": 1.28,
+     "fit_rms_px": 1.14,
+     "implied_ft": 70.04,
+     "implied_vs_printed_pct": 0.06,
+     "scale_free_width_over_330ft_pitch": 0.21225,
+     "scale_free_plat_ratio": 0.21212,
+     "scale_free_pct_vs_plat": 0.06,
+     "confidence": "high"
+    },
+    {
+     "name": "Av. G or Winnie E.",
+     "letter": "G",
+     "printed_ft": 70,
+     "west_line_x_fit": "x = 3093.548 - 0.005080*(y-2000)",
+     "east_line_x_fit": null,
+     "west_fit_rms_px": 1.1,
+     "west_n_bands": 18,
+     "west_y_span": [
+      515,
+      3466
+     ],
+     "both_frontages_inked": false,
+     "note": "Sheet boundary avenue: only the west frontage is inked on this sheet; the roadway and the far frontage are blank paper. Width not measurable here.",
+     "confidence": "n/a"
+    }
+   ],
+   "streets": [
+    {
+     "name": "19th",
+     "printed_ft": 80,
+     "measured_px": 247.052,
+     "width_px_at_x": {
+      "600": 247.602,
+      "1700": 247.052,
+      "2800": 246.502
+     },
+     "fit_rms_px": 0.88,
+     "implied_ft": 80.42,
+     "implied_vs_printed_pct": 0.52,
+     "scale_free_width_over_380ft_pitch": 0.21163,
+     "scale_free_plat_ratio": 0.21053,
+     "scale_free_pct_vs_plat": 0.52
+    },
+    {
+     "name": "20th",
+     "printed_ft": 80,
+     "measured_px": 243.567,
+     "width_px_at_x": {
+      "600": 243.146,
+      "1700": 243.567,
+      "2800": 243.988
+     },
+     "fit_rms_px": 0.87,
+     "implied_ft": 79.28,
+     "implied_vs_printed_pct": -0.9,
+     "scale_free_width_over_380ft_pitch": 0.20864,
+     "scale_free_plat_ratio": 0.21053,
+     "scale_free_pct_vs_plat": -0.9
+    },
+    {
+     "name": "21st",
+     "printed_ft": 80,
+     "measured_px": 245.894,
+     "width_px_at_x": {
+      "600": 245.808,
+      "1700": 245.894,
+      "2800": 245.98
+     },
+     "fit_rms_px": 0.93,
+     "implied_ft": 80.04,
+     "implied_vs_printed_pct": 0.05,
+     "scale_free_width_over_380ft_pitch": 0.21063,
+     "scale_free_plat_ratio": 0.21053,
+     "scale_free_pct_vs_plat": 0.05
+    },
+    {
+     "name": "22nd",
+     "printed_ft": 80,
+     "measured_px": 246.196,
+     "width_px_at_x": {
+      "600": 245.585,
+      "1700": 246.196,
+      "2800": 246.808
+     },
+     "fit_rms_px": 1.19,
+     "implied_ft": 80.14,
+     "implied_vs_printed_pct": 0.17,
+     "scale_free_width_over_380ft_pitch": 0.21089,
+     "scale_free_plat_ratio": 0.21053,
+     "scale_free_pct_vs_plat": 0.17
+    }
+   ],
+   "measured_70ft_avenue_width_px": 213.02,
+   "measured_70ft_half_width_px": 106.51,
+   "half_width_basis": "mean of this sheet's fully inked 70 ft avenues: E, F"
+  },
+  "9": {
+   "size_px": [
+    3400,
+    4131
+   ],
+   "px_per_ft_from_grid_x": 2.9967,
+   "px_per_ft_from_grid_y": 3.0642,
+   "px_per_ft_x_sd": null,
+   "px_per_ft_y_sd": 0.0007,
+   "anisotropy_pct": 2.23,
+   "grid_intervals_x": [
+    {
+     "interval": "B->C east frontages",
+     "plat_ft": 330,
+     "px": 988.89,
+     "px_per_ft": 2.9967
+    }
+   ],
+   "grid_intervals_y": [
+    {
+     "interval": "23rd->24th north frontages",
+     "plat_ft": 380,
+     "px": 1164.66,
+     "px_per_ft": 3.0649
+    },
+    {
+     "interval": "23rd->24th south frontages",
+     "plat_ft": 380,
+     "px": 1164.15,
+     "px_per_ft": 3.0635
+    }
+   ],
+   "printed_scalebar_px_per_ft": 3.0295,
+   "avenues": [
+    {
+     "name": "Av. A or Water E.",
+     "letter": "A",
+     "printed_ft": 70,
+     "west_line_x_fit": null,
+     "east_line_x_fit": "x = 323.950 + 0.001365*(y-2000)",
+     "east_fit_rms_px": 0.76,
+     "east_n_bands": 18,
+     "east_y_span": [
+      587,
+      3572
+     ],
+     "both_frontages_inked": false,
+     "note": "Harbour-front street. Only one frontage is on this sheet and its roadway carries continuous railroad track pairs that are indistinguishable from a frontage line by ink alone; excluded from width and from scale.",
+     "confidence": "low"
+    },
+    {
+     "name": "Av. B or Strand E.",
+     "letter": "B",
+     "printed_ft": 80,
+     "west_line_x_fit": "x = 1098.102 + 0.001581*(y-2000)",
+     "east_line_x_fit": "x = 1337.419 + 0.002184*(y-2000)",
+     "west_fit_rms_px": 0.77,
+     "west_n_bands": 18,
+     "west_y_span": [
+      587,
+      3572
+     ],
+     "east_fit_rms_px": 0.36,
+     "east_n_bands": 18,
+     "east_y_span": [
+      587,
+      3572
+     ],
+     "both_frontages_inked": true,
+     "width_px_at_y": {
+      "1000": 238.715,
+      "2000": 239.318,
+      "3000": 239.921
+     },
+     "mean_width_px": 239.318,
+     "width_variation_px_over_sheet": 1.21,
+     "per_band_width_sd_px": 0.94,
+     "fit_rms_px": 0.77,
+     "implied_ft": 79.86,
+     "implied_vs_printed_pct": -0.17,
+     "scale_free_width_over_330ft_pitch": 0.24201,
+     "scale_free_plat_ratio": 0.24242,
+     "scale_free_pct_vs_plat": -0.17,
+     "confidence": "high"
+    },
+    {
+     "name": "Av. C or Mechanic E.",
+     "letter": "C",
+     "printed_ft": 70,
+     "west_line_x_fit": "x = 2115.478 + 0.005469*(y-2000)",
+     "east_line_x_fit": "x = 2326.314 + 0.005429*(y-2000)",
+     "west_fit_rms_px": 0.39,
+     "west_n_bands": 18,
+     "west_y_span": [
+      587,
+      3572
+     ],
+     "east_fit_rms_px": 0.84,
+     "east_n_bands": 18,
+     "east_y_span": [
+      587,
+      3572
+     ],
+     "both_frontages_inked": true,
+     "width_px_at_y": {
+      "1000": 210.877,
+      "2000": 210.837,
+      "3000": 210.796
+     },
+     "mean_width_px": 210.837,
+     "width_variation_px_over_sheet": 0.08,
+     "per_band_width_sd_px": 0.651,
+     "fit_rms_px": 0.84,
+     "implied_ft": 70.36,
+     "implied_vs_printed_pct": 0.51,
+     "scale_free_width_over_330ft_pitch": 0.21321,
+     "scale_free_plat_ratio": 0.21212,
+     "scale_free_pct_vs_plat": 0.51,
+     "confidence": "high"
+    },
+    {
+     "name": "Av. D or Market E.",
+     "letter": "D",
+     "printed_ft": 70,
+     "west_line_x_fit": "x = 3105.539 + 0.001018*(y-2000)",
+     "east_line_x_fit": null,
+     "west_fit_rms_px": 0.62,
+     "west_n_bands": 17,
+     "west_y_span": [
+      587,
+      3446
+     ],
+     "both_frontages_inked": false,
+     "note": "Sheet boundary avenue: only the west frontage is inked on this sheet; the roadway and the far frontage are blank paper. Width not measurable here.",
+     "confidence": "n/a"
+    }
+   ],
+   "streets": [
+    {
+     "name": "22nd",
+     "printed_ft": 80,
+     "measured_px": null,
+     "note": "incomplete on this sheet (clipped at the sheet edge)"
+    },
+    {
+     "name": "23rd",
+     "printed_ft": 80,
+     "measured_px": 243.887,
+     "width_px_at_x": {
+      "600": 245.928,
+      "1700": 243.887,
+      "2800": 241.847
+     },
+     "fit_rms_px": 0.7,
+     "implied_ft": 79.59,
+     "implied_vs_printed_pct": -0.51,
+     "scale_free_width_over_380ft_pitch": 0.20945,
+     "scale_free_plat_ratio": 0.21053,
+     "scale_free_pct_vs_plat": -0.51
+    },
+    {
+     "name": "24th",
+     "printed_ft": 80,
+     "measured_px": 243.379,
+     "width_px_at_x": {
+      "600": 242.718,
+      "1700": 243.379,
+      "2800": 244.04
+     },
+     "fit_rms_px": 0.85,
+     "implied_ft": 79.43,
+     "implied_vs_printed_pct": -0.72,
+     "scale_free_width_over_380ft_pitch": 0.20902,
+     "scale_free_plat_ratio": 0.21053,
+     "scale_free_pct_vs_plat": -0.72
+    },
+    {
+     "name": "25th",
+     "printed_ft": 80,
+     "measured_px": null,
+     "note": "incomplete on this sheet (clipped at the sheet edge)"
+    }
+   ],
+   "measured_70ft_avenue_width_px": 210.84,
+   "measured_70ft_half_width_px": 105.42,
+   "half_width_basis": "mean of this sheet's fully inked 70 ft avenues: C"
+  },
+  "10": {
+   "size_px": [
+    3400,
+    4086
+   ],
+   "px_per_ft_from_grid_x": 3.057,
+   "px_per_ft_from_grid_y": 3.0766,
+   "px_per_ft_x_sd": 0.0046,
+   "px_per_ft_y_sd": 0.0028,
+   "anisotropy_pct": 0.64,
+   "grid_intervals_x": [
+    {
+     "interval": "D->E east frontages",
+     "plat_ft": 330,
+     "px": 1008.83,
+     "px_per_ft": 3.0571
+    },
+    {
+     "interval": "E->F west frontages",
+     "plat_ft": 330,
+     "px": 1010.27,
+     "px_per_ft": 3.0614
+    },
+    {
+     "interval": "E->F east frontages",
+     "plat_ft": 330,
+     "px": 1009.88,
+     "px_per_ft": 3.0602
+    },
+    {
+     "interval": "F->G west frontages",
+     "plat_ft": 330,
+     "px": 1006.34,
+     "px_per_ft": 3.0495
+    }
+   ],
+   "grid_intervals_y": [
+    {
+     "interval": "22nd->23rd north frontages",
+     "plat_ft": 380,
+     "px": 1169.47,
+     "px_per_ft": 3.0775
+    },
+    {
+     "interval": "22nd->23rd south frontages",
+     "plat_ft": 380,
+     "px": 1169.31,
+     "px_per_ft": 3.0771
+    },
+    {
+     "interval": "23rd->24th north frontages",
+     "plat_ft": 380,
+     "px": 1168.4,
+     "px_per_ft": 3.0747
+    },
+    {
+     "interval": "23rd->24th south frontages",
+     "plat_ft": 380,
+     "px": 1167.61,
+     "px_per_ft": 3.0726
+    },
+    {
+     "interval": "24th->25th north frontages",
+     "plat_ft": 380,
+     "px": 1170.74,
+     "px_per_ft": 3.0809
+    }
+   ],
+   "printed_scalebar_px_per_ft": 3.0487,
+   "avenues": [
+    {
+     "name": "Av. D or Market E.",
+     "letter": "D",
+     "printed_ft": 70,
+     "west_line_x_fit": null,
+     "east_line_x_fit": "x = 300.133 + 0.000101*(y-2000)",
+     "east_fit_rms_px": 1.46,
+     "east_n_bands": 12,
+     "east_y_span": [
+      514,
+      3432
+     ],
+     "both_frontages_inked": false,
+     "note": "Sheet boundary avenue: only the east frontage is inked on this sheet; the roadway and the far frontage are blank paper. Width not measurable here.",
+     "confidence": "n/a"
+    },
+    {
+     "name": "Av. E or Post Office E.",
+     "letter": "E",
+     "printed_ft": 70,
+     "west_line_x_fit": "x = 1094.406 + 0.000327*(y-2000)",
+     "east_line_x_fit": "x = 1308.962 - 0.000031*(y-2000)",
+     "west_fit_rms_px": 0.65,
+     "west_n_bands": 16,
+     "west_y_span": [
+      514,
+      3432
+     ],
+     "east_fit_rms_px": 0.55,
+     "east_n_bands": 17,
+     "east_y_span": [
+      514,
+      3432
+     ],
+     "both_frontages_inked": true,
+     "width_px_at_y": {
+      "1000": 214.914,
+      "2000": 214.556,
+      "3000": 214.198
+     },
+     "mean_width_px": 214.556,
+     "width_variation_px_over_sheet": 0.72,
+     "per_band_width_sd_px": 0.948,
+     "fit_rms_px": 0.65,
+     "implied_ft": 70.18,
+     "implied_vs_printed_pct": 0.26,
+     "scale_free_width_over_330ft_pitch": 0.21268,
+     "scale_free_plat_ratio": 0.21212,
+     "scale_free_pct_vs_plat": 0.26,
+     "confidence": "high"
+    },
+    {
+     "name": "Av. F or Church E.",
+     "letter": "F",
+     "printed_ft": 70,
+     "west_line_x_fit": "x = 2104.677 + 0.000278*(y-2000)",
+     "east_line_x_fit": "x = 2318.841 - 0.001154*(y-2000)",
+     "west_fit_rms_px": 0.61,
+     "west_n_bands": 18,
+     "west_y_span": [
+      514,
+      3432
+     ],
+     "east_fit_rms_px": 0.42,
+     "east_n_bands": 14,
+     "east_y_span": [
+      514,
+      3432
+     ],
+     "both_frontages_inked": true,
+     "width_px_at_y": {
+      "1000": 215.596,
+      "2000": 214.164,
+      "3000": 212.733
+     },
+     "mean_width_px": 214.164,
+     "width_variation_px_over_sheet": 2.86,
+     "per_band_width_sd_px": 1.608,
+     "fit_rms_px": 0.61,
+     "implied_ft": 70.06,
+     "implied_vs_printed_pct": 0.08,
+     "scale_free_width_over_330ft_pitch": 0.21229,
+     "scale_free_plat_ratio": 0.21212,
+     "scale_free_pct_vs_plat": 0.08,
+     "confidence": "high"
+    },
+    {
+     "name": "Av. G or Winnie E.",
+     "letter": "G",
+     "printed_ft": 70,
+     "west_line_x_fit": "x = 3111.021 - 0.001493*(y-2000)",
+     "east_line_x_fit": null,
+     "west_fit_rms_px": 1.69,
+     "west_n_bands": 18,
+     "west_y_span": [
+      514,
+      3432
+     ],
+     "both_frontages_inked": false,
+     "note": "Sheet boundary avenue: only the west frontage is inked on this sheet; the roadway and the far frontage are blank paper. Width not measurable here.",
+     "confidence": "n/a"
+    }
+   ],
+   "streets": [
+    {
+     "name": "22nd",
+     "printed_ft": 80,
+     "measured_px": 247.163,
+     "width_px_at_x": {
+      "600": 246.29,
+      "1700": 247.163,
+      "2800": 248.036
+     },
+     "fit_rms_px": 1.24,
+     "implied_ft": 80.34,
+     "implied_vs_printed_pct": 0.42,
+     "scale_free_width_over_380ft_pitch": 0.21141,
+     "scale_free_plat_ratio": 0.21053,
+     "scale_free_pct_vs_plat": 0.42
+    },
+    {
+     "name": "23rd",
+     "printed_ft": 80,
+     "measured_px": 247.009,
+     "width_px_at_x": {
+      "600": 247.504,
+      "1700": 247.009,
+      "2800": 246.513
+     },
+     "fit_rms_px": 1.79,
+     "implied_ft": 80.29,
+     "implied_vs_printed_pct": 0.36,
+     "scale_free_width_over_380ft_pitch": 0.21128,
+     "scale_free_plat_ratio": 0.21053,
+     "scale_free_pct_vs_plat": 0.36
+    },
+    {
+     "name": "24th",
+     "printed_ft": 80,
+     "measured_px": 246.214,
+     "width_px_at_x": {
+      "600": 244.821,
+      "1700": 246.214,
+      "2800": 247.607
+     },
+     "fit_rms_px": 0.99,
+     "implied_ft": 80.03,
+     "implied_vs_printed_pct": 0.04,
+     "scale_free_width_over_380ft_pitch": 0.2106,
+     "scale_free_plat_ratio": 0.21053,
+     "scale_free_pct_vs_plat": 0.04
+    },
+    {
+     "name": "25th",
+     "printed_ft": 80,
+     "measured_px": null,
+     "note": "incomplete on this sheet (clipped at the sheet edge)"
+    }
+   ],
+   "measured_70ft_avenue_width_px": 214.36,
+   "measured_70ft_half_width_px": 107.18,
+   "half_width_basis": "mean of this sheet's fully inked 70 ft avenues: E, F"
+  },
+  "27": {
+   "size_px": [
+    3400,
+    4127
+   ],
+   "px_per_ft_from_grid_x": 3.0603,
+   "px_per_ft_from_grid_y": 3.0963,
+   "px_per_ft_x_sd": 0.0022,
+   "px_per_ft_y_sd": 0.0064,
+   "anisotropy_pct": 1.17,
+   "grid_intervals_x": [
+    {
+     "interval": "G->H east frontages",
+     "plat_ft": 330,
+     "px": 1009.19,
+     "px_per_ft": 3.0582
+    },
+    {
+     "interval": "H->I west frontages",
+     "plat_ft": 330,
+     "px": 1009.81,
+     "px_per_ft": 3.06
+    },
+    {
+     "interval": "H->I east frontages",
+     "plat_ft": 330,
+     "px": 1011.11,
+     "px_per_ft": 3.064
+    },
+    {
+     "interval": "I->J west frontages",
+     "plat_ft": 330,
+     "px": 1009.49,
+     "px_per_ft": 3.0591
+    }
+   ],
+   "grid_intervals_y": [
+    {
+     "interval": "22nd->23rd north frontages",
+     "plat_ft": 380,
+     "px": 1180.3,
+     "px_per_ft": 3.106
+    },
+    {
+     "interval": "22nd->23rd south frontages",
+     "plat_ft": 380,
+     "px": 1177.02,
+     "px_per_ft": 3.0974
+    },
+    {
+     "interval": "23rd->24th north frontages",
+     "plat_ft": 380,
+     "px": 1173.39,
+     "px_per_ft": 3.0879
+    },
+    {
+     "interval": "23rd->24th south frontages",
+     "plat_ft": 380,
+     "px": 1174.49,
+     "px_per_ft": 3.0908
+    },
+    {
+     "interval": "24th->25th north frontages",
+     "plat_ft": 380,
+     "px": 1177.83,
+     "px_per_ft": 3.0995
+    }
+   ],
+   "printed_scalebar_px_per_ft": 3.0735,
+   "avenues": [
+    {
+     "name": "Av. G or Winnie E.",
+     "letter": "G",
+     "printed_ft": 70,
+     "west_line_x_fit": null,
+     "east_line_x_fit": "x = 220.162 - 0.002355*(y-2000)",
+     "east_fit_rms_px": 1.19,
+     "east_n_bands": 18,
+     "east_y_span": [
+      536,
+      3526
+     ],
+     "both_frontages_inked": false,
+     "note": "Sheet boundary avenue: only the east frontage is inked on this sheet; the roadway and the far frontage are blank paper. Width not measurable here.",
+     "confidence": "n/a"
+    },
+    {
+     "name": "Av. H East",
+     "letter": "H",
+     "printed_ft": 70,
+     "west_line_x_fit": "x = 1016.193 - 0.003441*(y-2000)",
+     "east_line_x_fit": "x = 1229.357 - 0.003188*(y-2000)",
+     "west_fit_rms_px": 2.05,
+     "west_n_bands": 18,
+     "west_y_span": [
+      536,
+      3526
+     ],
+     "east_fit_rms_px": 1.18,
+     "east_n_bands": 18,
+     "east_y_span": [
+      536,
+      3526
+     ],
+     "both_frontages_inked": true,
+     "width_px_at_y": {
+      "1000": 212.911,
+      "2000": 213.164,
+      "3000": 213.417
+     },
+     "mean_width_px": 213.164,
+     "width_variation_px_over_sheet": 0.51,
+     "per_band_width_sd_px": 1.121,
+     "fit_rms_px": 2.05,
+     "implied_ft": 69.65,
+     "implied_vs_printed_pct": -0.49,
+     "scale_free_width_over_330ft_pitch": 0.21107,
+     "scale_free_plat_ratio": 0.21212,
+     "scale_free_pct_vs_plat": -0.49,
+     "confidence": "medium"
+    },
+    {
+     "name": "Av. I East",
+     "letter": "I",
+     "printed_ft": 70,
+     "west_line_x_fit": "x = 2026.000 - 0.002429*(y-2000)",
+     "east_line_x_fit": "x = 2240.463 - 0.001882*(y-2000)",
+     "west_fit_rms_px": 0.33,
+     "west_n_bands": 18,
+     "west_y_span": [
+      536,
+      3526
+     ],
+     "east_fit_rms_px": 0.47,
+     "east_n_bands": 17,
+     "east_y_span": [
+      536,
+      3526
+     ],
+     "both_frontages_inked": true,
+     "width_px_at_y": {
+      "1000": 213.915,
+      "2000": 214.463,
+      "3000": 215.011
+     },
+     "mean_width_px": 214.463,
+     "width_variation_px_over_sheet": 1.1,
+     "per_band_width_sd_px": 0.773,
+     "fit_rms_px": 0.47,
+     "implied_ft": 70.08,
+     "implied_vs_printed_pct": 0.11,
+     "scale_free_width_over_330ft_pitch": 0.21236,
+     "scale_free_plat_ratio": 0.21212,
+     "scale_free_pct_vs_plat": 0.11,
+     "confidence": "high"
+    },
+    {
+     "name": "Av. J or E. Broadway",
+     "letter": "J",
+     "printed_ft": 150,
+     "west_line_x_fit": "x = 3035.487 - 0.001617*(y-2000)",
+     "east_line_x_fit": null,
+     "west_fit_rms_px": 1.19,
+     "west_n_bands": 18,
+     "west_y_span": [
+      536,
+      3526
+     ],
+     "both_frontages_inked": false,
+     "note": "Sheet boundary avenue: only the west frontage is inked on this sheet; the roadway and the far frontage are blank paper. Width not measurable here.",
+     "confidence": "n/a"
+    }
+   ],
+   "streets": [
+    {
+     "name": "22nd",
+     "printed_ft": 80,
+     "measured_px": 248.671,
+     "width_px_at_x": {
+      "600": 249.648,
+      "1700": 248.671,
+      "2800": 247.694
+     },
+     "fit_rms_px": 0.85,
+     "implied_ft": 80.31,
+     "implied_vs_printed_pct": 0.39,
+     "scale_free_width_over_380ft_pitch": 0.21135,
+     "scale_free_plat_ratio": 0.21053,
+     "scale_free_pct_vs_plat": 0.39
+    },
+    {
+     "name": "23rd",
+     "printed_ft": 80,
+     "measured_px": 245.401,
+     "width_px_at_x": {
+      "600": 245.339,
+      "1700": 245.401,
+      "2800": 245.463
+     },
+     "fit_rms_px": 0.64,
+     "implied_ft": 79.26,
+     "implied_vs_printed_pct": -0.93,
+     "scale_free_width_over_380ft_pitch": 0.20857,
+     "scale_free_plat_ratio": 0.21053,
+     "scale_free_pct_vs_plat": -0.93
+    },
+    {
+     "name": "24th",
+     "printed_ft": 80,
+     "measured_px": 246.505,
+     "width_px_at_x": {
+      "600": 246.545,
+      "1700": 246.505,
+      "2800": 246.466
+     },
+     "fit_rms_px": 1.37,
+     "implied_ft": 79.61,
+     "implied_vs_printed_pct": -0.48,
+     "scale_free_width_over_380ft_pitch": 0.20951,
+     "scale_free_plat_ratio": 0.21053,
+     "scale_free_pct_vs_plat": -0.49
+    },
+    {
+     "name": "25th",
+     "printed_ft": 80,
+     "measured_px": null,
+     "note": "incomplete on this sheet (clipped at the sheet edge)"
+    }
+   ],
+   "measured_70ft_avenue_width_px": 213.81,
+   "measured_70ft_half_width_px": 106.91,
+   "half_width_basis": "mean of this sheet's fully inked 70 ft avenues: H, I"
+  },
+  "29": {
+   "size_px": [
+    3400,
+    4116
+   ],
+   "px_per_ft_from_grid_x": 3.0634,
+   "px_per_ft_from_grid_y": 3.0915,
+   "px_per_ft_x_sd": 0.0025,
+   "px_per_ft_y_sd": 0.0041,
+   "anisotropy_pct": 0.91,
+   "grid_intervals_x": [
+    {
+     "interval": "H->I west frontages",
+     "plat_ft": 330,
+     "px": 1012.04,
+     "px_per_ft": 3.0668
+    },
+    {
+     "interval": "H->I east frontages",
+     "plat_ft": 330,
+     "px": 1010.07,
+     "px_per_ft": 3.0608
+    },
+    {
+     "interval": "I->J west frontages",
+     "plat_ft": 330,
+     "px": 1010.67,
+     "px_per_ft": 3.0626
+    }
+   ],
+   "grid_intervals_y": [
+    {
+     "interval": "19th->20th north frontages",
+     "plat_ft": 380,
+     "px": 1177.09,
+     "px_per_ft": 3.0976
+    },
+    {
+     "interval": "19th->20th south frontages",
+     "plat_ft": 380,
+     "px": 1174.75,
+     "px_per_ft": 3.0914
+    },
+    {
+     "interval": "20th->21st north frontages",
+     "plat_ft": 380,
+     "px": 1172.53,
+     "px_per_ft": 3.0856
+    },
+    {
+     "interval": "20th->21st south frontages",
+     "plat_ft": 380,
+     "px": 1173.78,
+     "px_per_ft": 3.0889
+    },
+    {
+     "interval": "21st->22nd north frontages",
+     "plat_ft": 380,
+     "px": 1175.7,
+     "px_per_ft": 3.0939
+    }
+   ],
+   "printed_scalebar_px_per_ft": 3.0397,
+   "avenues": [
+    {
+     "name": "Av. G or Winnie E.",
+     "letter": "G",
+     "printed_ft": 70,
+     "west_line_x_fit": null,
+     "east_line_x_fit": "x = 276.506 - 0.004969*(y-2000)",
+     "east_fit_rms_px": 1.27,
+     "east_n_bands": 5,
+     "east_y_span": [
+      768,
+      2287
+     ],
+     "both_frontages_inked": false,
+     "note": "Sheet boundary avenue: only the east frontage is inked on this sheet; the roadway and the far frontage are blank paper. Width not measurable here.",
+     "confidence": "n/a"
+    },
+    {
+     "name": "Av. H East",
+     "letter": "H",
+     "printed_ft": 70,
+     "west_line_x_fit": "x = 1072.974 + 0.006560*(y-2000)",
+     "east_line_x_fit": "x = 1287.667 + 0.006705*(y-2000)",
+     "west_fit_rms_px": 0.39,
+     "west_n_bands": 12,
+     "west_y_span": [
+      1707,
+      3455
+     ],
+     "east_fit_rms_px": 0.45,
+     "east_n_bands": 12,
+     "east_y_span": [
+      1707,
+      3455
+     ],
+     "both_frontages_inked": true,
+     "width_px_at_y": {
+      "1000": 214.549,
+      "2000": 214.693,
+      "3000": 214.838
+     },
+     "mean_width_px": 214.693,
+     "width_variation_px_over_sheet": 0.29,
+     "per_band_width_sd_px": 0.496,
+     "fit_rms_px": 0.45,
+     "implied_ft": 70.08,
+     "implied_vs_printed_pct": 0.12,
+     "scale_free_width_over_330ft_pitch": 0.21237,
+     "scale_free_plat_ratio": 0.21212,
+     "scale_free_pct_vs_plat": 0.12,
+     "confidence": "high"
+    },
+    {
+     "name": "Av. I East",
+     "letter": "I",
+     "printed_ft": 70,
+     "west_line_x_fit": "x = 2085.016 + 0.007544*(y-2000)",
+     "east_line_x_fit": "x = 2297.733 + 0.007463*(y-2000)",
+     "west_fit_rms_px": 0.39,
+     "west_n_bands": 10,
+     "west_y_span": [
+      1707,
+      3455
+     ],
+     "east_fit_rms_px": 0.4,
+     "east_n_bands": 11,
+     "east_y_span": [
+      1707,
+      3455
+     ],
+     "both_frontages_inked": true,
+     "width_px_at_y": {
+      "1000": 212.798,
+      "2000": 212.717,
+      "3000": 212.636
+     },
+     "mean_width_px": 212.717,
+     "width_variation_px_over_sheet": 0.16,
+     "per_band_width_sd_px": 0.406,
+     "fit_rms_px": 0.4,
+     "implied_ft": 69.44,
+     "implied_vs_printed_pct": -0.8,
+     "scale_free_width_over_330ft_pitch": 0.21042,
+     "scale_free_plat_ratio": 0.21212,
+     "scale_free_pct_vs_plat": -0.8,
+     "confidence": "medium"
+    },
+    {
+     "name": "Av. J or E. Broadway",
+     "letter": "J",
+     "printed_ft": 150,
+     "west_line_x_fit": "x = 3095.685 + 0.005064*(y-2000)",
+     "east_line_x_fit": null,
+     "west_fit_rms_px": 0.76,
+     "west_n_bands": 17,
+     "west_y_span": [
+      535,
+      3455
+     ],
+     "both_frontages_inked": false,
+     "note": "Sheet boundary avenue: only the west frontage is inked on this sheet; the roadway and the far frontage are blank paper. Width not measurable here.",
+     "confidence": "n/a"
+    }
+   ],
+   "streets": [
+    {
+     "name": "19th",
+     "printed_ft": 80,
+     "measured_px": 248.332,
+     "width_px_at_x": {
+      "600": 248.245,
+      "1700": 248.332,
+      "2800": 248.419
+     },
+     "fit_rms_px": 0.9,
+     "implied_ft": 80.33,
+     "implied_vs_printed_pct": 0.41,
+     "scale_free_width_over_380ft_pitch": 0.21139,
+     "scale_free_plat_ratio": 0.21053,
+     "scale_free_pct_vs_plat": 0.41
+    },
+    {
+     "name": "20th",
+     "printed_ft": 80,
+     "measured_px": 245.992,
+     "width_px_at_x": {
+      "600": 246.332,
+      "1700": 245.992,
+      "2800": 245.652
+     },
+     "fit_rms_px": 1.27,
+     "implied_ft": 79.57,
+     "implied_vs_printed_pct": -0.54,
+     "scale_free_width_over_380ft_pitch": 0.2094,
+     "scale_free_plat_ratio": 0.21053,
+     "scale_free_pct_vs_plat": -0.54
+    },
+    {
+     "name": "21st",
+     "printed_ft": 80,
+     "measured_px": 247.249,
+     "width_px_at_x": {
+      "600": 246.995,
+      "1700": 247.249,
+      "2800": 247.502
+     },
+     "fit_rms_px": 0.65,
+     "implied_ft": 79.98,
+     "implied_vs_printed_pct": -0.03,
+     "scale_free_width_over_380ft_pitch": 0.21047,
+     "scale_free_plat_ratio": 0.21053,
+     "scale_free_pct_vs_plat": -0.03
+    },
+    {
+     "name": "22nd",
+     "printed_ft": 80,
+     "measured_px": null,
+     "note": "incomplete on this sheet (clipped at the sheet edge)"
+    }
+   ],
+   "measured_70ft_avenue_width_px": 213.71,
+   "measured_70ft_half_width_px": 106.85,
+   "half_width_basis": "mean of this sheet's fully inked 70 ft avenues: H, I"
+  }
+ },
+ "half_width_px_for_centreline_construction": {
+  "1": {
+   "Av. A or Water E.": {
+    "half_width_px_measured": null,
+    "half_width_px_from_printed_figure": 106.04,
+    "printed_minus_measured_px": null,
+    "basis": "not measurable on this sheet - no fully inked avenue"
+   }
+  },
+  "2": {
+   "Av. A or Water E.": {
+    "half_width_px_measured": null,
+    "half_width_px_from_printed_figure": 107.02,
+    "printed_minus_measured_px": null,
+    "basis": "not measurable on this sheet - no fully inked avenue"
+   }
+  },
+  "7": {
+   "Av. A or Water E.": {
+    "half_width_px_measured": 102.91,
+    "half_width_px_from_printed_figure": 107.0,
+    "printed_minus_measured_px": 4.09,
+    "basis": "measured on this sheet (mean of this sheet's fully inked 70 ft avenues: C)"
+   },
+   "Av. D or Market E.": {
+    "half_width_px_measured": 102.91,
+    "half_width_px_from_printed_figure": 107.0,
+    "printed_minus_measured_px": 4.09,
+    "basis": "measured on this sheet (mean of this sheet's fully inked 70 ft avenues: C)"
+   }
+  },
+  "8": {
+   "Av. D or Market E.": {
+    "half_width_px_measured": 106.51,
+    "half_width_px_from_printed_figure": 105.94,
+    "printed_minus_measured_px": -0.57,
+    "basis": "measured on this sheet (mean of this sheet's fully inked 70 ft avenues: E, F)"
+   },
+   "Av. G or Winnie E.": {
+    "half_width_px_measured": 106.51,
+    "half_width_px_from_printed_figure": 105.94,
+    "printed_minus_measured_px": -0.57,
+    "basis": "measured on this sheet (mean of this sheet's fully inked 70 ft avenues: E, F)"
+   }
+  },
+  "9": {
+   "Av. A or Water E.": {
+    "half_width_px_measured": 105.42,
+    "half_width_px_from_printed_figure": 106.03,
+    "printed_minus_measured_px": 0.61,
+    "basis": "measured on this sheet (mean of this sheet's fully inked 70 ft avenues: C)"
+   },
+   "Av. D or Market E.": {
+    "half_width_px_measured": 105.42,
+    "half_width_px_from_printed_figure": 106.03,
+    "printed_minus_measured_px": 0.61,
+    "basis": "measured on this sheet (mean of this sheet's fully inked 70 ft avenues: C)"
+   }
+  },
+  "10": {
+   "Av. D or Market E.": {
+    "half_width_px_measured": 107.18,
+    "half_width_px_from_printed_figure": 106.7,
+    "printed_minus_measured_px": -0.48,
+    "basis": "measured on this sheet (mean of this sheet's fully inked 70 ft avenues: E, F)"
+   },
+   "Av. G or Winnie E.": {
+    "half_width_px_measured": 107.18,
+    "half_width_px_from_printed_figure": 106.7,
+    "printed_minus_measured_px": -0.48,
+    "basis": "measured on this sheet (mean of this sheet's fully inked 70 ft avenues: E, F)"
+   }
+  },
+  "27": {
+   "Av. G or Winnie E.": {
+    "half_width_px_measured": 106.91,
+    "half_width_px_from_printed_figure": 107.57,
+    "printed_minus_measured_px": 0.66,
+    "basis": "measured on this sheet (mean of this sheet's fully inked 70 ft avenues: H, I)"
+   },
+   "Av. J or E. Broadway": {
+    "half_width_px_measured": null,
+    "half_width_px_from_printed_figure": 230.51,
+    "printed_minus_measured_px": null,
+    "basis": "Av. J is printed 150 ft (E. Broadway); no 150 ft avenue is fully inked anywhere in this set, so no measured half width can be offered"
+   }
+  },
+  "29": {
+   "Av. G or Winnie E.": {
+    "half_width_px_measured": 106.85,
+    "half_width_px_from_printed_figure": 106.39,
+    "printed_minus_measured_px": -0.46,
+    "basis": "measured on this sheet (mean of this sheet's fully inked 70 ft avenues: H, I)"
+   },
+   "Av. J or E. Broadway": {
+    "half_width_px_measured": null,
+    "half_width_px_from_printed_figure": 227.98,
+    "printed_minus_measured_px": null,
+    "basis": "Av. J is printed 150 ft (E. Broadway); no 150 ft avenue is fully inked anywhere in this set, so no measured half width can be offered"
+   }
+  }
+ },
+ "seam_impact": {
+  "Av. D or Market E. -- seam S9|S10": {
+   "per_sheet": [
+    {
+     "sheet": "9",
+     "avenue": "Av. D or Market E.",
+     "frontage_drawn_on_this_sheet": "west",
+     "half_width_px_printed_figure": 106.03,
+     "half_width_px_measured": 105.42,
+     "centreline_shift_px_measured_minus_printed": -0.61,
+     "direction": "west"
+    },
+    {
+     "sheet": "10",
+     "avenue": "Av. D or Market E.",
+     "frontage_drawn_on_this_sheet": "east",
+     "half_width_px_printed_figure": 106.7,
+     "half_width_px_measured": 107.18,
+     "centreline_shift_px_measured_minus_printed": -0.48,
+     "direction": "west"
+    }
+   ],
+   "relative_change_across_the_seam_px": -0.13,
+   "note": "Each sheet's constructed centreline moves by the per-sheet figure. Because both sheets' tie points move the SAME way and by nearly the same amount, the part that a seam solve can actually see -- the difference between the two -- is what matters, and it is given as relative_change_across_the_seam_px."
+  },
+  "Av. G or Winnie E. -- seam S10|S27": {
+   "per_sheet": [
+    {
+     "sheet": "10",
+     "avenue": "Av. G or Winnie E.",
+     "frontage_drawn_on_this_sheet": "west",
+     "half_width_px_printed_figure": 106.7,
+     "half_width_px_measured": 107.18,
+     "centreline_shift_px_measured_minus_printed": 0.48,
+     "direction": "east"
+    },
+    {
+     "sheet": "27",
+     "avenue": "Av. G or Winnie E.",
+     "frontage_drawn_on_this_sheet": "east",
+     "half_width_px_printed_figure": 107.57,
+     "half_width_px_measured": 106.91,
+     "centreline_shift_px_measured_minus_printed": 0.66,
+     "direction": "east"
+    }
+   ],
+   "relative_change_across_the_seam_px": -0.18,
+   "note": "Each sheet's constructed centreline moves by the per-sheet figure. Because both sheets' tie points move the SAME way and by nearly the same amount, the part that a seam solve can actually see -- the difference between the two -- is what matters, and it is given as relative_change_across_the_seam_px."
+  }
+ },
+ "conclusion": "The premise that the draughtsmen drew the avenues about 3% narrow is NOT supported by the drawn ink. Measured against each sheet's own grid pitch -- which needs no printed width -- the fully inked lettered avenues come out at 69.0-70.3 ft against a printed 70 ft, and Av. B (Strand) at 79.8-80.3 ft against a printed 80 ft. The scale-free form of the same test is even more direct: drawn avenue width divided by the drawn 330 ft grid pitch is 0.2092-0.2129 against the plat's 70/330 = 0.2121, i.e. the avenues are drawn at their printed width to within -1.4%..+0.4%, and drawn street width over the drawn 380 ft street pitch is 0.2096-0.2117 against 80/380 = 0.2105. Avenues and streets are drawn to the same standard; neither is 3% out. The earlier -2.8%/-3.5% arose from the x scale, not from the widths. Sheet 9's px/ft in x was obtained from the Av. B -> Av. C centreline pitch taken as 330 ft. That pitch is 335 ft, not 330: the Strand is printed 80 ft, so the centre-to-centre step from Av. B to Av. C is 260 + 80/2 + 70/2 = 335 ft. Reading 1003 px as 330 ft instead of 335 ft inflates px/ft_x by 1.5%, and every avenue width then converts ~1.5% too narrow -- which, on top of a real ~1% effect, is the reported 2.8-3.5%. Using only intervals whose plat length is unambiguously 330 ft gives sheet 9 px/ft_x = 2.998, not 3.043. Isotropy: on this reading the sheets are NOT isotropic to 0.7%. Sheets 8, 10, 27 and 29 run 0.6-1.2% (y larger than x); sheet 9 runs 2.2% and sheet 7 runs 3.6%. Sheet 7's avenue grid is genuinely compressed in x relative to its own printed scale bar (grid x 2.94 vs bar 3.06) while its street grid in y matches the bar; sheet 7 should not be given an isotropic similarity without allowing for that. Practical consequence for the seams: rebuilding the Av. D and Av. G centrelines from measurement instead of the printed 70 ft moves each sheet's tie points by only 0.5-0.7 px, and -- because both sheets of a seam move the same way -- the relative change a seam solve can see is 0.02-0.03 px. The systematic seam bias being chased is not in the avenue width. It is not worth re-cutting the centrelines for; the honest gain is to record that the printed-width construction was already right to well under a pixel. Sheet 7 is the one place where the printed construction is materially off (5.5 px per side on Av. D), because sheet 7's x scale is not its scale-bar scale."
+}

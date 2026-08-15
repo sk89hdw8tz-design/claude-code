@@ -1,0 +1,11 @@
+seam,shared,kind,expected_ft,n_control,control_span_px,measured_ft,error_ft,error_pct,verdict,note
+S1_main|S2,22nd Street,street,80.5,3,0.2,,,,NOT TESTABLE,"control lies on ONE line of the shared street, so its width is not observed; the across-seam placement rests on the printed width and is not independently verified here"
+S1_main|S9,Av. A or Water E.,avenue70,68.0,7,1.4,,,,NOT TESTABLE,"control lies on ONE line of the shared street, so its width is not observed; the across-seam placement rests on the printed width and is not independently verified here"
+S9|S7,22nd Street,street,80.5,10,243.6,80.1,-0.4,-0.5,PASS,measured between the two identified property-line families in the reconstruction plane
+S2|S7,Av. A or Water E.,avenue70,68.0,7,4.0,,,,NOT TESTABLE,"control lies on ONE line of the shared street, so its width is not observed; the across-seam placement rests on the printed width and is not independently verified here"
+S9|S10,Av. D or Market E.,avenue70,68.0,6,4.9,,,,NOT TESTABLE,"control lies on ONE line of the shared street, so its width is not observed; the across-seam placement rests on the printed width and is not independently verified here"
+S7|S8,Av. D or Market E.,avenue70,68.0,7,2.3,,,,NOT TESTABLE,"control lies on ONE line of the shared street, so its width is not observed; the across-seam placement rests on the printed width and is not independently verified here"
+S8|S29,Av. G or Winnie E.,avenue70,68.0,8,1.7,,,,NOT TESTABLE,"control lies on ONE line of the shared street, so its width is not observed; the across-seam placement rests on the printed width and is not independently verified here"
+S10|S27,Av. G or Winnie E.,avenue70,68.0,7,0.0,,,,NOT TESTABLE,"control lies on ONE line of the shared street, so its width is not observed; the across-seam placement rests on the printed width and is not independently verified here"
+S10|S8,22nd Street,street,80.5,16,252.9,83.1,2.6,3.2,PASS,measured between the two identified property-line families in the reconstruction plane
+S27|S29,22nd Street,street,80.5,16,247.9,81.5,1.0,1.2,PASS,measured between the two identified property-line families in the reconstruction plane

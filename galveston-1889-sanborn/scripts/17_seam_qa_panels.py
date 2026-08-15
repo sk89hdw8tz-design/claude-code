@@ -130,6 +130,11 @@ def main() -> int:
             continue
         seamdir = outdir / f"{a}__{b}"
         seamdir.mkdir(exist_ok=True)
+        # Clear panels from any earlier solve. A directory holding a mix of
+        # old and new joins is worse than no panels at all: the reviewer
+        # cannot tell which image shows the geometry actually published.
+        for stale in seamdir.glob("panel_*.png"):
+            stale.unlink()
         stations = stations_for_seam(a, b, rings, ties_plane,
                                      args.interval_panels, args.control_panels)
         if not stations:
