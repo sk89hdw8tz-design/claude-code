@@ -1,8 +1,8 @@
 {
- "generated_utc": "2026-08-16T23:37:45.913130+00:00",
+ "generated_utc": "2026-08-16T23:47:57.896360+00:00",
  "source": "Library of Congress Sanborn collection, public domain",
  "item_group": "sanborn08539",
- "count": 111,
+ "count": 115,
  "items": [
   {
    "file": "sanborn08539_004_img000_full.jpg",
@@ -1002,6 +1002,42 @@
    "bytes": 266551,
    "sha256": "f6e63572d4c466aaebfe80de72d6fca040cc8823dcbf16b89e9e5ea4a7d85888",
    "downloaded_utc": "2026-08-16T23:37:43.912938+00:00"
+  },
+  {
+   "file": "sanborn08539_004_img001_archival.jp2",
+   "kind": "front-matter-archival",
+   "image_index": 1,
+   "source_url": "https://tile.loc.gov/storage-services/service/gmd/gmd403m/g4034m/g4034gm/g4034gm_g085391912/08539_1912-ind1.jp2",
+   "bytes": 11876707,
+   "sha256": "994708545ee725f4226993fa58caac192d29b8d1028cac3915b5e5f4b9d24d0e",
+   "downloaded_utc": "2026-08-16T23:47:38.738572+00:00"
+  },
+  {
+   "file": "sanborn08539_004_img002_archival.jp2",
+   "kind": "front-matter-archival",
+   "image_index": 2,
+   "source_url": "https://tile.loc.gov/storage-services/service/gmd/gmd403m/g4034m/g4034gm/g4034gm_g085391912/08539_1912-cbd1.jp2",
+   "bytes": 9312418,
+   "sha256": "316c9c813c3f1f23bc7640697d950417719698f36a7647a6341effeecedd9e40",
+   "downloaded_utc": "2026-08-16T23:47:43.207255+00:00"
+  },
+  {
+   "file": "sanborn08539_004_img003_archival.jp2",
+   "kind": "front-matter-archival",
+   "image_index": 3,
+   "source_url": "https://tile.loc.gov/storage-services/service/gmd/gmd403m/g4034m/g4034gm/g4034gm_g085391912/08539_1912-cbd2.jp2",
+   "bytes": 6233971,
+   "sha256": "4b06bf9e0ece57656698717f1bd4ba2c5223f1f6eff4877e2ef4db90b622836c",
+   "downloaded_utc": "2026-08-16T23:47:47.305313+00:00"
+  },
+  {
+   "file": "sanborn08539_004_img004_archival.jp2",
+   "kind": "front-matter-archival",
+   "image_index": 4,
+   "source_url": "https://tile.loc.gov/storage-services/service/gmd/gmd403m/g4034m/g4034gm/g4034gm_g085391912/08539_1912-0000.jp2",
+   "bytes": 14191636,
+   "sha256": "ad0b5e06a16e44644c35b56622bab6bcf83f8e86ad00edc8a7732cf2b6b97e78",
+   "downloaded_utc": "2026-08-16T23:47:54.895916+00:00"
   }
  ]
 }
