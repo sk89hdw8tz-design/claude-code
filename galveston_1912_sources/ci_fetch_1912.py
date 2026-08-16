@@ -93,6 +93,34 @@ def pick_jpeg(group: list[dict], target_width: int | None) -> dict | None:
     return min(jpegs, key=lambda f: abs(f["_w"] - target_width))
 
 
+def pick_jp2(group: list[dict]) -> dict | None:
+    """The JP2 service derivative is the archival-resolution image (~6653x7795)."""
+    cands = [f for f in group if f.get("mimetype") == "image/jp2" and f.get("url")]
+    if not cands:
+        return None
+    return max(cands, key=lambda f: int(f.get("width") or 0))
+
+
+def save_jp2(url: str, dest: Path, inventory: list[dict], kind: str, index: int) -> None:
+    data = fetch(url)
+    # JP2 signature box, or raw codestream
+    if not (data[:12].endswith(b"ftypjp2 ") or data[:4] == b"\xff\x4f\xff\x51" or b"jP" in data[:12]):
+        raise RuntimeError(f"not a JP2 ({len(data)} bytes, head={data[:12]!r}): {url}")
+    dest.write_bytes(data)
+    inventory.append(
+        {
+            "file": dest.name,
+            "kind": kind,
+            "image_index": index,
+            "source_url": url,
+            "bytes": len(data),
+            "sha256": hashlib.sha256(data).hexdigest(),
+            "downloaded_utc": datetime.now(timezone.utc).isoformat(),
+        }
+    )
+    log(f"ok [{kind}] {dest.name} {len(data)} bytes")
+
+
 def save(url: str, dest: Path, inventory: list[dict], kind: str, index: int) -> None:
     data = fetch(url)
     if not data.startswith(b"\xff\xd8"):
@@ -199,9 +227,10 @@ def main() -> int:
         log("Phase A complete")
         return 0
 
-    # ---- Phase B ----
+    # ---- Phase B ---- (also used for front matter; "indices" drives everything)
     item_id = fetch_list["item_id"]
     indices = list(fetch_list["indices"])
+    kind = fetch_list.get("kind", "phaseB-full-sheet")
     log(f"Phase B start {datetime.now(timezone.utc).isoformat()}: {item_id} x{len(indices)}")
     meta_path = OUT_DIR / f"{item_id}_metadata.json"
     j = (
@@ -212,18 +241,19 @@ def main() -> int:
     groups = image_groups(j)
     have = {i["file"] for i in inventory}
     for idx in indices:
-        name = f"{item_id}_img{idx:03d}_full.jpg"
+        name = f"{item_id}_img{idx:03d}_archival.jp2"
         if name in have:
             log(f"skip {name}: already present")
             continue
         if idx >= len(groups):
             log(f"ERROR index {idx} out of range ({len(groups)} images)")
             return 1
-        full = pick_jpeg(groups[idx], None)
-        if not full:
-            log(f"ERROR image {idx}: no jpeg format found")
+        jp2 = pick_jp2(groups[idx])
+        if not jp2:
+            log(f"ERROR image {idx}: no jp2 derivative found")
             return 1
-        save(full["url"], OUT_DIR / name, inventory, "phaseB-full-sheet", idx)
+        log(f"image {idx}: jp2 {jp2.get('width')}x{jp2.get('height')} {jp2.get('size')} bytes")
+        save_jp2(jp2["url"], OUT_DIR / name, inventory, kind, idx)
         time.sleep(DELAY_FULL_S)
     write_inventory(inventory)
     log("Phase B complete")
