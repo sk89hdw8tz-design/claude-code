@@ -1,6 +1,50 @@
 {
-  "item_id": "sanborn08539_004",
-  "kind": "front-matter-archival",
-  "indices": [1, 2, 3, 4],
-  "note": "Front matter at archival resolution (JP2 6653x7795): 1=street/specials index, 2-3=congested business district, 4=key map to edition. Read offline to select the downtown/wharf sheet set before fetching any sheets."
+ "item_id": "sanborn08539_004",
+ "kind": "sheet-archival",
+ "indices": [
+  9,
+  11,
+  13,
+  15,
+  17,
+  19,
+  21,
+  49,
+  50,
+  53,
+  54,
+  59,
+  60
+ ],
+ "sheets": [
+  5,
+  7,
+  8,
+  9,
+  10,
+  11,
+  12,
+  39,
+  40,
+  43,
+  44,
+  49,
+  50
+ ],
+ "sheet_to_image_index": {
+  "5": 9,
+  "7": 11,
+  "8": 13,
+  "9": 15,
+  "10": 17,
+  "11": 19,
+  "12": 21,
+  "39": 49,
+  "40": 50,
+  "43": 53,
+  "44": 54,
+  "49": 59,
+  "50": 60
+ },
+ "note": "Downtown/wharf sheets for the 1912 mosaic: 19th-25th St, Avenue A (Water) to Avenue I (Sealy), Piers 19-25. Selected from the 1912 key map and independently confirmed against the 1912 street index."
 }
