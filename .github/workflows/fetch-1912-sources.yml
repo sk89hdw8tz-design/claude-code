@@ -1,0 +1,36 @@
+name: Fetch Galveston 1912 Sanborn sources
+
+# Runs on the source-data branch only, and only when this workflow file or the
+# fetch script changes -- the data commit it pushes back touches only image
+# files and inventory, so it cannot retrigger itself. The Claude Code session
+# environments cannot reach maps.lib.utexas.edu, so the download runs here.
+on:
+  push:
+    branches:
+      - claude/galveston-1912-source-data
+    paths:
+      - ".github/workflows/fetch-1912-sources.yml"
+      - "galveston_1912_sources/ci_fetch_1912.py"
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: claude/galveston-1912-source-data
+
+      - name: Download 1912 Galveston Sanborn set from UT PCL
+        run: python3 galveston_1912_sources/ci_fetch_1912.py
+
+      - name: Commit and push archival files
+        run: |
+          git config user.name "sanborn-fetch-ci"
+          git config user.email "actions@users.noreply.github.com"
+          git add galveston_1912_sources/
+          git commit -m "Add Galveston 1912 Sanborn archival sources from UT PCL [skip ci]"
+          git push origin claude/galveston-1912-source-data
