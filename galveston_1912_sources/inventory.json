@@ -1,8 +1,8 @@
 {
- "generated_utc": "2026-08-16T23:47:57.896360+00:00",
+ "generated_utc": "2026-08-16T23:55:42.226803+00:00",
  "source": "Library of Congress Sanborn collection, public domain",
  "item_group": "sanborn08539",
- "count": 115,
+ "count": 128,
  "items": [
   {
    "file": "sanborn08539_004_img000_full.jpg",
@@ -1038,6 +1038,123 @@
    "bytes": 14191636,
    "sha256": "ad0b5e06a16e44644c35b56622bab6bcf83f8e86ad00edc8a7732cf2b6b97e78",
    "downloaded_utc": "2026-08-16T23:47:54.895916+00:00"
+  },
+  {
+   "file": "sanborn08539_004_img009_archival.jp2",
+   "kind": "sheet-archival",
+   "image_index": 9,
+   "source_url": "https://tile.loc.gov/storage-services/service/gmd/gmd403m/g4034m/g4034gm/g4034gm_g085391912/08539_1912-0005.jp2",
+   "bytes": 7388980,
+   "sha256": "1b4dc8be49f5c9bf43a77247fc6ce155f368b0c2b804ecc2caec2a8be88a68de",
+   "downloaded_utc": "2026-08-16T23:54:50.404162+00:00"
+  },
+  {
+   "file": "sanborn08539_004_img011_archival.jp2",
+   "kind": "sheet-archival",
+   "image_index": 11,
+   "source_url": "https://tile.loc.gov/storage-services/service/gmd/gmd403m/g4034m/g4034gm/g4034gm_g085391912/08539_1912-0007.jp2",
+   "bytes": 9873595,
+   "sha256": "a0c42dde9c8e6f0d3148de82915b2e563d5763c7a4da6f81aaeb508bb1db0e62",
+   "downloaded_utc": "2026-08-16T23:54:55.150996+00:00"
+  },
+  {
+   "file": "sanborn08539_004_img013_archival.jp2",
+   "kind": "sheet-archival",
+   "image_index": 13,
+   "source_url": "https://tile.loc.gov/storage-services/service/gmd/gmd403m/g4034m/g4034gm/g4034gm_g085391912/08539_1912-0008.jp2",
+   "bytes": 9315533,
+   "sha256": "557220abd08263fa3f6e4ae83397b9f095c48158c8fbc8f2c679f14e377f98fe",
+   "downloaded_utc": "2026-08-16T23:55:00.602691+00:00"
+  },
+  {
+   "file": "sanborn08539_004_img015_archival.jp2",
+   "kind": "sheet-archival",
+   "image_index": 15,
+   "source_url": "https://tile.loc.gov/storage-services/service/gmd/gmd403m/g4034m/g4034gm/g4034gm_g085391912/08539_1912-0009.jp2",
+   "bytes": 9575760,
+   "sha256": "224dc450319645549d20110ca62813b8519ad60b997067623aae8647a1451249",
+   "downloaded_utc": "2026-08-16T23:55:04.611621+00:00"
+  },
+  {
+   "file": "sanborn08539_004_img017_archival.jp2",
+   "kind": "sheet-archival",
+   "image_index": 17,
+   "source_url": "https://tile.loc.gov/storage-services/service/gmd/gmd403m/g4034m/g4034gm/g4034gm_g085391912/08539_1912-0010.jp2",
+   "bytes": 11863846,
+   "sha256": "29ee9408cb043ec973b8d8d7bb3a542f40258142440eee182caf6eace04acd95",
+   "downloaded_utc": "2026-08-16T23:55:09.058920+00:00"
+  },
+  {
+   "file": "sanborn08539_004_img019_archival.jp2",
+   "kind": "sheet-archival",
+   "image_index": 19,
+   "source_url": "https://tile.loc.gov/storage-services/service/gmd/gmd403m/g4034m/g4034gm/g4034gm_g085391912/08539_1912-0011.jp2",
+   "bytes": 9892872,
+   "sha256": "e7b2ff1b6b70c5d7124a4879e5feca478d95681224d97b88855de7bade1591df",
+   "downloaded_utc": "2026-08-16T23:55:13.144910+00:00"
+  },
+  {
+   "file": "sanborn08539_004_img021_archival.jp2",
+   "kind": "sheet-archival",
+   "image_index": 21,
+   "source_url": "https://tile.loc.gov/storage-services/service/gmd/gmd403m/g4034m/g4034gm/g4034gm_g085391912/08539_1912-0012.jp2",
+   "bytes": 8739563,
+   "sha256": "d2ab9e8aa706bfc1bd41732dbc85f3a23d8097732f92ebc13852276f7843a82f",
+   "downloaded_utc": "2026-08-16T23:55:16.997675+00:00"
+  },
+  {
+   "file": "sanborn08539_004_img049_archival.jp2",
+   "kind": "sheet-archival",
+   "image_index": 49,
+   "source_url": "https://tile.loc.gov/storage-services/service/gmd/gmd403m/g4034m/g4034gm/g4034gm_g085391912/08539_1912-0039.jp2",
+   "bytes": 9175096,
+   "sha256": "ed732111ccd0586a02829c236c38306550fa5b544c287c58d017e40a16a6a0ee",
+   "downloaded_utc": "2026-08-16T23:55:20.434781+00:00"
+  },
+  {
+   "file": "sanborn08539_004_img050_archival.jp2",
+   "kind": "sheet-archival",
+   "image_index": 50,
+   "source_url": "https://tile.loc.gov/storage-services/service/gmd/gmd403m/g4034m/g4034gm/g4034gm_g085391912/08539_1912-0040.jp2",
+   "bytes": 9066259,
+   "sha256": "12a04ff5411de391d2a1941dd414e37ee68103da84c34cff1e7c4428a5b37b7f",
+   "downloaded_utc": "2026-08-16T23:55:24.576782+00:00"
+  },
+  {
+   "file": "sanborn08539_004_img053_archival.jp2",
+   "kind": "sheet-archival",
+   "image_index": 53,
+   "source_url": "https://tile.loc.gov/storage-services/service/gmd/gmd403m/g4034m/g4034gm/g4034gm_g085391912/08539_1912-0043.jp2",
+   "bytes": 8549683,
+   "sha256": "af7d25e4a6f44a9a9fc6e0c04a4a11b8c12ceb886c8e56b6a2657b6b8b0ecf7a",
+   "downloaded_utc": "2026-08-16T23:55:28.680929+00:00"
+  },
+  {
+   "file": "sanborn08539_004_img054_archival.jp2",
+   "kind": "sheet-archival",
+   "image_index": 54,
+   "source_url": "https://tile.loc.gov/storage-services/service/gmd/gmd403m/g4034m/g4034gm/g4034gm_g085391912/08539_1912-0044.jp2",
+   "bytes": 8440484,
+   "sha256": "47621807b513de7e8809b9b547c2cd7ded1e3b09e4d861b723c1225e4d4ffea6",
+   "downloaded_utc": "2026-08-16T23:55:32.113619+00:00"
+  },
+  {
+   "file": "sanborn08539_004_img059_archival.jp2",
+   "kind": "sheet-archival",
+   "image_index": 59,
+   "source_url": "https://tile.loc.gov/storage-services/service/gmd/gmd403m/g4034m/g4034gm/g4034gm_g085391912/08539_1912-0049.jp2",
+   "bytes": 8495634,
+   "sha256": "ce9382f5fdedea88527e7a4f38a3ce77c3c83f305b48ebb9366f84bf2151e55b",
+   "downloaded_utc": "2026-08-16T23:55:35.556691+00:00"
+  },
+  {
+   "file": "sanborn08539_004_img060_archival.jp2",
+   "kind": "sheet-archival",
+   "image_index": 60,
+   "source_url": "https://tile.loc.gov/storage-services/service/gmd/gmd403m/g4034m/g4034gm/g4034gm_g085391912/08539_1912-0050.jp2",
+   "bytes": 7758456,
+   "sha256": "51ff18dfbe0b22e404b80b4c630b8b95e33ab6df101af7b87ad349f71754fde2",
+   "downloaded_utc": "2026-08-16T23:55:39.226599+00:00"
   }
  ]
 }
