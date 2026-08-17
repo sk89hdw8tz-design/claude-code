@@ -126,3 +126,25 @@ Prior-project branches contain 1889/1899 controls, seams, and tooling. Per the b
 user's "build fresh" instruction: 1912 sheet identity, topology, controls, and geometry are
 solved independently from the 1912 Key and plates. Prior branches are used only as (a) process
 precedent and (b) presentation benchmark. No geometric data is transferred between editions.
+
+## D-008 — Sheet-5 attachment measurements adopted; canon updates (2026-08-17)
+
+ctrl-S5's attachment set accepted (9 ACCEPTED anchors, 2 CONTEXT_ONLY, 6 cross-panel
+point pairs, 42 evidence crops). Canon updates it established:
+
+1. **Sheet 13 is outside the target footprint** (mapped ground starts at 27th St, two
+   blocks west of the Rosenberg limit). It remains context-only; the 5-13 topology
+   check is closed. RESOLVED: the last REQUIRES SOURCE RECHECK item.
+2. **The 5-7 attachment has genuine two-sided overlap** — sheet 7 duplicates the
+   bay-side strip (Texas Star Flour Mills area). This is the second known exception to
+   "no duplicated ground" (after sheet 5's own cross-panel Pier 22), and applies to a
+   wharf attachment, not to any of the 17 ordinary block seams. Source-ownership for
+   that strip will be decided at mask time (block plate is 2x finer scale).
+3. **Scale structure:** block plates are drafted at 50 ft/in, sheet 5 at 100 ft/in —
+   per-sheet free scale in the solver is mandatory, as designed.
+4. **Cross-panel consistency:** 22nd-St street-corner pairs agree to 5-10 px; the
+   duplicated pier ground itself disagrees ~55 ft between panels (drawn at different
+   angle/offset relative to 22nd St). The street corners are the primary cross-panel
+   constraint; the pier disagreement is preserved as original drafting disagreement.
+5. **Orientation:** all plates in these attachments (5, 7, 9, 11, 13) are drafted
+   bay-page-left (rotated from north-up); along-frontage is page-y everywhere here.

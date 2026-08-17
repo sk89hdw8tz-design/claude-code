@@ -1,0 +1,85 @@
+{
+  "pair": ["5A", "7"],
+  "axis": "wharf-frontage seam; Ave A runs along page-y on BOTH plates (sheet 7 is drafted in the same rotated orientation as sheet 5: bay to page-left, numbered streets as horizontal bands). Along-frontage = page-y; anchors are crossing numbered streets read as y-face pairs.",
+  "boundary": "Ave. A or Water (sheet 5 panel A landward edge / sheet 7 bay-side edge)",
+  "observer": "ctrl-S5",
+  "plate_scales": {
+    "5A": "100 ft to one inch (~309 px/100 ft, per scale bar at (735-1660, y~7260))",
+    "7": "50 ft to one inch (~618 px/100 ft); drafted widths on sheet 7 are ~2x sheet 5's in px"
+  },
+  "landward_side_verification": "Panel A landward side = page-RIGHT: vertical 'AVE. A' + 'OR' label letters read at x~3470-3540 between the bay-side strip and the landward block fronts, with the panel divider rule beyond at x~3790-3866. Verified in-crop (sheet5A_19th_sheet5.jpg, sheet5A_aveA_landward_verify.jpg).",
+  "controls": [
+    {
+      "anchor": "19th St",
+      "status": "ACCEPTED",
+      "class": "observed",
+      "why_not_one_block_off": "Sheet 5 prints '19TH ST.' inside the measured band (x3100-3300, y3700-3770) with the Pier 19 sequence adjacent; sheet 7 carries the 19th St 100-block address runs 102-112 (even, north side) and 101-111 (odd, south side) starting at the Ave A corner, flanked by italic Ave A runs 1825/1827 (north of 19th) and 1901 (south of 19th) - one block off would show 1700/2000-series Ave A numbers.",
+      "anchor_evidence": "Sheet 5: printed '19TH ST.', 'OR'/'AVE. A' vertical label at x~3470-3540, terminal-track corridor. Sheet 7: address runs 102-112 / 101-111, italic Ave A addresses 1825, 1827, 1901; dashed wooden gallery at 102-106 projecting into the street (excluded from face read).",
+      "A": {
+        "sheet": "5A",
+        "face1_seg": [[3622, 3596], [3785, 3594]],
+        "face2_seg": [[3627, 3853], [3785, 3855]],
+        "measured_at": "landward (east-of-Ave-A) outline block fronts, x 3622-3785, first ~55 ft east of Ave A",
+        "sigma_along_px": 3.5,
+        "sigma_basis": "clean single outline rule, line width ~7 px; face1 and face2 both unobstructed",
+        "source_sha256": "1b4dc8be49f5c9bf43a77247fc6ce155f368b0c2b804ecc2caec2a8be88a68de"
+      },
+      "B": {
+        "sheet": 7,
+        "face1_seg": [[2455, 2450], [3200, 2449]],
+        "face2_seg": [[2508, 2948], [2945, 2951]],
+        "measured_at": "block faces at the Ave A corner (west end of the 100-block), x 2455-3200; gallery 102-106 (dashed, y2450-2530) excluded",
+        "sigma_along_px": 4.0,
+        "sigma_basis": "clean single rules; face1 has dashed gallery immediately street-side but the solid face is unambiguous",
+        "source_sha256": "a0c42dde9c8e6f0d3148de82915b2e563d5763c7a4da6f81aaeb508bb1db0e62"
+      },
+      "drafted_width_px": {"A": 259, "B": 498, "annotation": "no printed width seen at this crossing; B/A ratio 1.92 vs nominal 2.00 (scale difference) - ~3 ft drafted disagreement, recorded not reconciled"},
+      "evidence_crops": [
+        "70_qa/control_evidence/sheet5A_19th_sheet5.jpg",
+        "70_qa/control_evidence/sheet5A_19th_sheet5_zoom.jpg",
+        "70_qa/control_evidence/sheet5A_19th_sheet7.jpg",
+        "70_qa/control_evidence/sheet5A_19th_sheet7_zoom.jpg",
+        "70_qa/control_evidence/sheet5A_19th_sheet7_southface.jpg"
+      ],
+      "remeasured_by": "ctrl-S5 (second-pass zoom re-read at 1.6x)",
+      "remeasure_delta_px": 4,
+      "notes": "Sheet 7 duplicates part of sheet 5's bay-side ground (Texas Star Flour Mills / GWC terminal tracks strip west of Ave A) - this seam has genuine two-sided overlap, unlike the block-interior seams. Faces measured on the LANDWARD side of Ave A on both plates (sheet 5 draws them as outline block fronts, sheet 7 in full detail)."
+    },
+    {
+      "anchor": "20th St",
+      "status": "ACCEPTED",
+      "class": "observed",
+      "why_not_one_block_off": "Sheet 5 prints '20TH ST.' inside the measured band; sheet 7 carries the 20th St runs 102-112 / 101-111 at the Ave A corner with italic Ave A runs 1927 (north of 20th) and 2001/2003 (south of 20th), plus the named premises 'AMERICAN BREWG. CO.' on the south face - one block off would show 1800- or 2100-series Ave A numbers and lose the brewery.",
+      "anchor_evidence": "Sheet 5: printed '20TH ST.', 6\" W. PIPE dashed line mid-street (excluded), Ave A track corridor. Sheet 7: runs 102-112 / 101-111, italics 1927, 2001, 2003, 'American Brewg. Co. Bottle Beer' block on the SW corner, '20'' annotation in 110-112 building.",
+      "A": {
+        "sheet": "5A",
+        "face1_seg": [[3651, 4757], [3785, 4760]],
+        "face2_seg": [[3648, 5006], [3785, 5002]],
+        "measured_at": "landward outline block fronts east of Ave A, x 3648-3785",
+        "sigma_along_px": 4.5,
+        "sigma_basis": "face1 clean single rule; face2 clean but compass-needle ornament flourishes ~40 px below the line",
+        "source_sha256": "1b4dc8be49f5c9bf43a77247fc6ce155f368b0c2b804ecc2caec2a8be88a68de"
+      },
+      "B": {
+        "sheet": 7,
+        "face1_seg": [[2503, 4768], [2955, 4771]],
+        "face2_seg": [[2515, 5262], [2955, 5266]],
+        "measured_at": "block faces at the Ave A corner, x 2503-2955",
+        "sigma_along_px": 4.0,
+        "sigma_basis": "clean single rules both faces; address text in street clear of the lines",
+        "source_sha256": "a0c42dde9c8e6f0d3148de82915b2e563d5763c7a4da6f81aaeb508bb1db0e62"
+      },
+      "drafted_width_px": {"A": 249, "B": 494, "annotation": "no printed width at this crossing; B/A ratio 1.98 - agreement within 1 px at common scale"},
+      "evidence_crops": [
+        "70_qa/control_evidence/sheet5A_20th_sheet5.jpg",
+        "70_qa/control_evidence/sheet5A_20th_sheet5_zoom.jpg",
+        "70_qa/control_evidence/sheet5A_20th_sheet7.jpg",
+        "70_qa/control_evidence/sheet5A_20th_sheet7_northface.jpg",
+        "70_qa/control_evidence/sheet5A_20th_sheet7_southface.jpg"
+      ],
+      "remeasured_by": "ctrl-S5 (second-pass zoom re-read at 1.6x)",
+      "remeasure_delta_px": 6,
+      "notes": "First coarse 1:1 read put sheet 5 face1 at y~4735; 1.6x zoom re-read gives 4757 (delta 22 px on the coarse pass only - coarse read had picked the notch line of the stepped block outline; zoom read is authoritative and both flanking faces were re-verified at zoom). Recorded per amendment 3."
+    }
+  ]
+}
