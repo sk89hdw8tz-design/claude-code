@@ -1,0 +1,19 @@
+{
+ "_doc": "Owner-verified local cut deviations, applied by build_cuts.py. See loader docstring.",
+ "deviations": [
+  {
+   "street_match": "21st",
+   "t_range_mosaic": [
+    -8232.0,
+    -6580.0
+   ],
+   "offset_px": -18.0,
+   "ramp_px": 150.0,
+   "reason": "Sheet 7's 'Scale of Feet' bar occupies 21st St street space at the cut; default midline clips its label edge. Deviating the cut north gives the whole bar area to sheet 9, which authentically maps that ground as blank street with the continuous 10-inch pipe line - the brief-preferred source-ownership removal of interior furniture. Archival scans untouched.",
+   "verified_by": "controller (Fable), from 1:1 sheet-7 crop and solved transforms",
+   "date": "2026-08-17",
+   "_note_frame": "t is the street line's along-parameter relative to line_fit.p0 (for 21st: t = mosaic_x - 3184.96); offset along line_fit.normal (+y), so -18 px moves the cut north, clearing the scale bar's top edge (mosaic y -3431) by ~25 px"
+  }
+ ],
+ "version": 1
+}

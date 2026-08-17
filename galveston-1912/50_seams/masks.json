@@ -1,0 +1,1236 @@
+{
+ "convention": {
+  "mosaic": {
+   "axes": "raster pixels, origin top-left, x right, y down",
+   "center": [
+    3326.0,
+    3898.0
+   ],
+   "centered": "p_mosaic = [[a,-b],[b,a]] @ (p_sheet - center) + (tx, ty)",
+   "gauge": "sheet 10 fixed to identity; mosaic frame = sheet 10 centered pixel frame",
+   "raw": "p_mosaic = [[a,-b],[b,a]] @ p_sheet + (raw.tx, raw.ty)  (same rotation/scale; translation composed with the recentring -- use THIS for raw sheet-pixel coordinates)"
+  },
+  "polygon_sheet_px": "SHEET raster pixels (origin top-left) of the archival scan; ownership region = page quad clipped by bounding cut half-planes, minus manual exclusions"
+ },
+ "generated_by": "50_seams/build_masks.py",
+ "inputs": {
+  "adjacency_json": {
+   "sha256": "0cc828411316cfd8e18e312fc48780da7d2f0e42e191d954a0bf3e11997455cf"
+  },
+  "cuts_json": {
+   "sha256": "3a235509a94ec8591323e715d1564c39b06c982f4aa35718c80daa68750a3d2d"
+  },
+  "manual_exclusions_json": {
+   "sha256": "061dad42b9b89b947d72ba201e8a20d578554fe0cedec32c591fc748def01ce1"
+  },
+  "plate_structure_json": {
+   "sha256": "93423f3e11cee0ca6f23f8e87e0cd9304a412e5eda7821b4b40c93cad298f8ca"
+  },
+  "transforms_json": {
+   "sha256": "a57f3dcb8614c9939f1ab82322f8091167e98ba3122ebed634ff1c8b4f0bf11b"
+  }
+ },
+ "regions": [
+  {
+   "area_mosaic_px2": 46010784.651,
+   "bounding_cuts": [
+    {
+     "sheet_edge": "bottom",
+     "side_sign": -1.0,
+     "street_id": "21st_or_center_st"
+    },
+    {
+     "sheet_edge": "right",
+     "side_sign": 1.0,
+     "street_id": "ave_c_or_mechanic"
+    }
+   ],
+   "exclusions_applied": [],
+   "polygon_mosaic": {
+    "exterior": [
+     [
+      -9180.121,
+      -10727.81
+     ],
+     [
+      -9253.337,
+      -3450.507
+     ],
+     [
+      -5197.038,
+      -3446.451
+     ],
+     [
+      -5047.02,
+      -3464.301
+     ],
+     [
+      -3395.02,
+      -3462.649
+     ],
+     [
+      -3245.038,
+      -3444.499
+     ],
+     [
+      -2875.814,
+      -3444.13
+     ],
+     [
+      -2854.154,
+      -10664.121
+     ],
+     [
+      -9180.121,
+      -10727.81
+     ]
+    ],
+    "interiors": []
+   },
+   "polygon_sheet_px": {
+    "exterior": [
+     [
+      56.5,
+      39.7
+     ],
+     [
+      43.09,
+      7315.127
+     ],
+     [
+      4098.042,
+      7285.86
+     ],
+     [
+      4247.862,
+      7266.784
+     ],
+     [
+      5899.313,
+      7254.865
+     ],
+     [
+      6049.393,
+      7271.776
+     ],
+     [
+      6418.495,
+      7269.112
+     ],
+     [
+      6380.837,
+      51.401
+     ],
+     [
+      56.5,
+      39.7
+     ]
+    ],
+    "interiors": []
+   },
+   "region_id": "s07_r0",
+   "sheet": 7
+  },
+  {
+   "area_mosaic_px2": 43896204.084,
+   "bounding_cuts": [
+    {
+     "sheet_edge": "bottom",
+     "side_sign": -1.0,
+     "street_id": "21st_or_center_st"
+    },
+    {
+     "sheet_edge": "left",
+     "side_sign": -1.0,
+     "street_id": "ave_c_or_mechanic"
+    },
+    {
+     "sheet_edge": "right",
+     "side_sign": 1.0,
+     "street_id": "ave_f_or_church"
+    }
+   ],
+   "exclusions_applied": [],
+   "polygon_mosaic": {
+    "exterior": [
+     [
+      -2875.814,
+      -3444.13
+     ],
+     [
+      3169.778,
+      -3438.084
+     ],
+     [
+      3191.545,
+      -10693.773
+     ],
+     [
+      -2854.016,
+      -10710.12
+     ],
+     [
+      -2875.814,
+      -3444.13
+     ]
+    ],
+    "interiors": []
+   },
+   "polygon_sheet_px": {
+    "exterior": [
+     [
+      378.746,
+      7314.791
+     ],
+     [
+      6418.315,
+      7304.499
+     ],
+     [
+      6420.46,
+      56.0
+     ],
+     [
+      380.895,
+      56.0
+     ],
+     [
+      378.746,
+      7314.791
+     ]
+    ],
+    "interiors": []
+   },
+   "region_id": "s08_r0",
+   "sheet": 8
+  },
+  {
+   "area_mosaic_px2": 43950486.136,
+   "bounding_cuts": [
+    {
+     "sheet_edge": "top",
+     "side_sign": 1.0,
+     "street_id": "21st_or_center_st"
+    },
+    {
+     "sheet_edge": "bottom",
+     "side_sign": -1.0,
+     "street_id": "24th_st"
+    },
+    {
+     "sheet_edge": "right",
+     "side_sign": 1.0,
+     "street_id": "ave_c_or_mechanic"
+    }
+   ],
+   "exclusions_applied": [],
+   "polygon_mosaic": {
+    "exterior": [
+     [
+      -3245.038,
+      -3444.499
+     ],
+     [
+      -3395.02,
+      -3462.649
+     ],
+     [
+      -5047.02,
+      -3464.301
+     ],
+     [
+      -5197.038,
+      -3446.451
+     ],
+     [
+      -9264.775,
+      -3450.519
+     ],
+     [
+      -9272.803,
+      3430.318
+     ],
+     [
+      -2896.456,
+      3436.694
+     ],
+     [
+      -2875.814,
+      -3444.13
+     ],
+     [
+      -3245.038,
+      -3444.499
+     ]
+    ],
+    "interiors": []
+   },
+   "polygon_sheet_px": {
+    "exterior": [
+     [
+      6116.165,
+      434.632
+     ],
+     [
+      5965.154,
+      416.537
+     ],
+     [
+      4302.06,
+      416.814
+     ],
+     [
+      4151.055,
+      434.96
+     ],
+     [
+      56.0,
+      435.643
+     ],
+     [
+      56.0,
+      7362.693
+     ],
+     [
+      6475.17,
+      7361.622
+     ],
+     [
+      6487.868,
+      434.57
+     ],
+     [
+      6116.165,
+      434.632
+     ]
+    ],
+    "interiors": []
+   },
+   "region_id": "s09_r0",
+   "sheet": 9
+  },
+  {
+   "area_mosaic_px2": 41598779.882,
+   "bounding_cuts": [
+    {
+     "sheet_edge": "top",
+     "side_sign": 1.0,
+     "street_id": "21st_or_center_st"
+    },
+    {
+     "sheet_edge": "bottom",
+     "side_sign": -1.0,
+     "street_id": "24th_st"
+    },
+    {
+     "sheet_edge": "left",
+     "side_sign": -1.0,
+     "street_id": "ave_c_or_mechanic"
+    },
+    {
+     "sheet_edge": "right",
+     "side_sign": 1.0,
+     "street_id": "ave_f_or_church"
+    }
+   ],
+   "exclusions_applied": [],
+   "polygon_mosaic": {
+    "exterior": [
+     [
+      -2896.456,
+      3436.694
+     ],
+     [
+      3149.136,
+      3442.74
+     ],
+     [
+      3169.778,
+      -3438.084
+     ],
+     [
+      -2875.814,
+      -3444.13
+     ],
+     [
+      -2896.456,
+      3436.694
+     ]
+    ],
+    "interiors": []
+   },
+   "polygon_sheet_px": {
+    "exterior": [
+     [
+      429.544,
+      7334.694
+     ],
+     [
+      6475.136,
+      7340.74
+     ],
+     [
+      6495.778,
+      459.916
+     ],
+     [
+      450.186,
+      453.87
+     ],
+     [
+      429.544,
+      7334.694
+     ]
+    ],
+    "interiors": []
+   },
+   "region_id": "s10_r0",
+   "sheet": 10
+  },
+  {
+   "area_mosaic_px2": 46786451.55,
+   "bounding_cuts": [
+    {
+     "sheet_edge": "top",
+     "side_sign": 1.0,
+     "street_id": "24th_st"
+    },
+    {
+     "sheet_edge": "right",
+     "side_sign": 1.0,
+     "street_id": "ave_c_or_mechanic"
+    }
+   ],
+   "exclusions_applied": [],
+   "polygon_mosaic": {
+    "exterior": [
+     [
+      -2918.7,
+      10851.193
+     ],
+     [
+      -2896.456,
+      3436.694
+     ],
+     [
+      -9214.838,
+      3430.376
+     ],
+     [
+      -9216.108,
+      10850.115
+     ],
+     [
+      -2918.7,
+      10851.193
+     ]
+    ],
+    "interiors": []
+   },
+   "polygon_sheet_px": {
+    "exterior": [
+     [
+      6365.017,
+      7784.0
+     ],
+     [
+      6386.03,
+      355.829
+     ],
+     [
+      56.0,
+      350.583
+     ],
+     [
+      56.0,
+      7784.0
+     ],
+     [
+      6365.017,
+      7784.0
+     ]
+    ],
+    "interiors": []
+   },
+   "region_id": "s11_r0",
+   "sheet": 11
+  },
+  {
+   "area_mosaic_px2": 44653096.113,
+   "bounding_cuts": [
+    {
+     "sheet_edge": "top",
+     "side_sign": 1.0,
+     "street_id": "24th_st"
+    },
+    {
+     "sheet_edge": "left",
+     "side_sign": -1.0,
+     "street_id": "ave_c_or_mechanic"
+    },
+    {
+     "sheet_edge": "right",
+     "side_sign": 1.0,
+     "street_id": "ave_f_or_church"
+    }
+   ],
+   "exclusions_applied": [],
+   "polygon_mosaic": {
+    "exterior": [
+     [
+      -2896.456,
+      3436.694
+     ],
+     [
+      -2918.616,
+      10823.163
+     ],
+     [
+      3126.979,
+      10828.344
+     ],
+     [
+      3149.136,
+      3442.74
+     ],
+     [
+      -2896.456,
+      3436.694
+     ]
+    ],
+    "interiors": []
+   },
+   "polygon_sheet_px": {
+    "exterior": [
+     [
+      406.02,
+      348.32
+     ],
+     [
+      390.171,
+      7744.0
+     ],
+     [
+      6443.294,
+      7744.0
+     ],
+     [
+      6459.141,
+      349.185
+     ],
+     [
+      406.02,
+      348.32
+     ]
+    ],
+    "interiors": []
+   },
+   "region_id": "s12_r0",
+   "sheet": 12
+  },
+  {
+   "area_mosaic_px2": 44156558.634,
+   "bounding_cuts": [
+    {
+     "sheet_edge": "bottom",
+     "side_sign": -1.0,
+     "street_id": "21st_or_center_st"
+    },
+    {
+     "sheet_edge": "left",
+     "side_sign": -1.0,
+     "street_id": "ave_f_or_church"
+    },
+    {
+     "sheet_edge": "right",
+     "side_sign": 1.0,
+     "street_id": "ave_i_or_sealy"
+    }
+   ],
+   "exclusions_applied": [],
+   "polygon_mosaic": {
+    "exterior": [
+     [
+      3169.778,
+      -3438.084
+     ],
+     [
+      9222.888,
+      -3432.031
+     ],
+     [
+      9244.782,
+      -10730.077
+     ],
+     [
+      3191.653,
+      -10729.705
+     ],
+     [
+      3169.778,
+      -3438.084
+     ]
+    ],
+    "interiors": []
+   },
+   "polygon_sheet_px": {
+    "exterior": [
+     [
+      314.645,
+      7350.243
+     ],
+     [
+      6350.008,
+      7356.648
+     ],
+     [
+      6372.285,
+      80.0
+     ],
+     [
+      336.902,
+      80.0
+     ],
+     [
+      314.645,
+      7350.243
+     ]
+    ],
+    "interiors": []
+   },
+   "region_id": "s39_r0",
+   "sheet": 39
+  },
+  {
+   "area_mosaic_px2": 46106544.942,
+   "bounding_cuts": [
+    {
+     "sheet_edge": "bottom",
+     "side_sign": -1.0,
+     "street_id": "21st_or_center_st"
+    },
+    {
+     "sheet_edge": "left",
+     "side_sign": -1.0,
+     "street_id": "ave_i_or_sealy"
+    }
+   ],
+   "exclusions_applied": [],
+   "polygon_mosaic": {
+    "exterior": [
+     [
+      9244.709,
+      -10705.861
+     ],
+     [
+      9222.888,
+      -3432.031
+     ],
+     [
+      15568.722,
+      -3425.685
+     ],
+     [
+      15576.893,
+      -10698.748
+     ],
+     [
+      9244.709,
+      -10705.861
+     ]
+    ],
+    "interiors": []
+   },
+   "polygon_sheet_px": {
+    "exterior": [
+     [
+      258.344,
+      80.0
+     ],
+     [
+      244.743,
+      7327.967
+     ],
+     [
+      6568.0,
+      7327.186
+     ],
+     [
+      6568.0,
+      80.0
+     ],
+     [
+      258.344,
+      80.0
+     ]
+    ],
+    "interiors": []
+   },
+   "region_id": "s40_r0",
+   "sheet": 40
+  },
+  {
+   "area_mosaic_px2": 41650507.62,
+   "bounding_cuts": [
+    {
+     "sheet_edge": "top",
+     "side_sign": 1.0,
+     "street_id": "21st_or_center_st"
+    },
+    {
+     "sheet_edge": "bottom",
+     "side_sign": -1.0,
+     "street_id": "24th_st"
+    },
+    {
+     "sheet_edge": "left",
+     "side_sign": -1.0,
+     "street_id": "ave_f_or_church"
+    },
+    {
+     "sheet_edge": "right",
+     "side_sign": 1.0,
+     "street_id": "ave_i_or_sealy"
+    }
+   ],
+   "exclusions_applied": [],
+   "polygon_mosaic": {
+    "exterior": [
+     [
+      3149.136,
+      3442.74
+     ],
+     [
+      9202.245,
+      3448.793
+     ],
+     [
+      9222.888,
+      -3432.031
+     ],
+     [
+      3169.778,
+      -3438.084
+     ],
+     [
+      3149.136,
+      3442.74
+     ]
+    ],
+    "interiors": []
+   },
+   "polygon_sheet_px": {
+    "exterior": [
+     [
+      242.035,
+      7324.515
+     ],
+     [
+      6281.865,
+      7308.71
+     ],
+     [
+      6277.63,
+      442.932
+     ],
+     [
+      237.8,
+      458.737
+     ],
+     [
+      242.035,
+      7324.515
+     ]
+    ],
+    "interiors": []
+   },
+   "region_id": "s43_r0",
+   "sheet": 43
+  },
+  {
+   "area_mosaic_px2": 43638665.023,
+   "bounding_cuts": [
+    {
+     "sheet_edge": "top",
+     "side_sign": 1.0,
+     "street_id": "21st_or_center_st"
+    },
+    {
+     "sheet_edge": "bottom",
+     "side_sign": -1.0,
+     "street_id": "24th_st"
+    },
+    {
+     "sheet_edge": "left",
+     "side_sign": -1.0,
+     "street_id": "ave_i_or_sealy"
+    }
+   ],
+   "exclusions_applied": [],
+   "polygon_mosaic": {
+    "exterior": [
+     [
+      9222.888,
+      -3432.031
+     ],
+     [
+      9202.245,
+      3448.793
+     ],
+     [
+      15558.899,
+      3455.15
+     ],
+     [
+      15550.335,
+      -3425.704
+     ],
+     [
+      9222.888,
+      -3432.031
+     ]
+    ],
+    "interiors": []
+   },
+   "polygon_sheet_px": {
+    "exterior": [
+     [
+      261.027,
+      469.392
+     ],
+     [
+      243.757,
+      7324.789
+     ],
+     [
+      6576.915,
+      7328.077
+     ],
+     [
+      6565.087,
+      472.665
+     ],
+     [
+      261.027,
+      469.392
+     ]
+    ],
+    "interiors": []
+   },
+   "region_id": "s44_r0",
+   "sheet": 44
+  },
+  {
+   "area_mosaic_px2": 44713388.342,
+   "bounding_cuts": [
+    {
+     "sheet_edge": "top",
+     "side_sign": 1.0,
+     "street_id": "24th_st"
+    },
+    {
+     "sheet_edge": "left",
+     "side_sign": -1.0,
+     "street_id": "ave_f_or_church"
+    },
+    {
+     "sheet_edge": "right",
+     "side_sign": 1.0,
+     "street_id": "ave_i_or_sealy"
+    }
+   ],
+   "exclusions_applied": [],
+   "polygon_mosaic": {
+    "exterior": [
+     [
+      3149.136,
+      3442.74
+     ],
+     [
+      3126.976,
+      10829.146
+     ],
+     [
+      9180.084,
+      10836.034
+     ],
+     [
+      9202.245,
+      3448.793
+     ],
+     [
+      3149.136,
+      3442.74
+     ]
+    ],
+    "interiors": []
+   },
+   "polygon_sheet_px": {
+    "exterior": [
+     [
+      307.205,
+      376.014
+     ],
+     [
+      293.516,
+      7728.0
+     ],
+     [
+      6318.403,
+      7728.0
+     ],
+     [
+      6332.094,
+      375.183
+     ],
+     [
+      307.205,
+      376.014
+     ]
+    ],
+    "interiors": []
+   },
+   "region_id": "s49_r0",
+   "sheet": 49
+  },
+  {
+   "area_mosaic_px2": 46910482.377,
+   "bounding_cuts": [
+    {
+     "sheet_edge": "top",
+     "side_sign": 1.0,
+     "street_id": "24th_st"
+    },
+    {
+     "sheet_edge": "left",
+     "side_sign": -1.0,
+     "street_id": "ave_i_or_sealy"
+    }
+   ],
+   "exclusions_applied": [],
+   "polygon_mosaic": {
+    "exterior": [
+     [
+      15525.679,
+      10852.227
+     ],
+     [
+      15559.605,
+      3455.15
+     ],
+     [
+      9202.245,
+      3448.793
+     ],
+     [
+      9180.122,
+      10823.123
+     ],
+     [
+      15525.679,
+      10852.227
+     ]
+    ],
+    "interiors": []
+   },
+   "polygon_sheet_px": {
+    "exterior": [
+     [
+      6568.0,
+      7720.0
+     ],
+     [
+      6568.0,
+      346.772
+     ],
+     [
+      231.241,
+      369.498
+     ],
+     [
+      242.902,
+      7720.0
+     ],
+     [
+      6568.0,
+      7720.0
+     ]
+    ],
+    "interiors": []
+   },
+   "region_id": "s50_r0",
+   "sheet": 50
+  }
+ ],
+ "reserved": {
+  "note": "sheet-5 panels not masked/rendered at this stage (D-006/D-008); band kept empty by the render canvas",
+  "sheet5_bay_band": {
+   "mosaic_rect": [
+    -16734,
+    -8279,
+    -9274,
+    6210
+   ],
+   "panels": [
+    {
+     "region_id": "A",
+     "width_sheet5_px": 3866.0
+    },
+    {
+     "region_id": "B",
+     "width_sheet5_px": 2864.0
+    }
+   ],
+   "sheet5_scale_px_per_ft": 3.09,
+   "status": "reserved-empty: sheet-5 attachments out of scope for this stage",
+   "width_px": 7460
+  }
+ },
+ "seam_gaps": [],
+ "stats": [
+  {
+   "area_mosaic_px2": 46010784.651,
+   "cut_coverage_margins_px": [
+    {
+     "margin_px": 488.106,
+     "street_id": "21st_or_center_st"
+    },
+    {
+     "margin_px": 215.726,
+     "street_id": "ave_c_or_mechanic"
+    }
+   ],
+   "n_regions": 1,
+   "owned_fraction_of_page": 0.913,
+   "page_area_mosaic_px2": 50415517.471,
+   "sheet": 7
+  },
+  {
+   "area_mosaic_px2": 43896204.084,
+   "cut_coverage_margins_px": [
+    {
+     "margin_px": 480.261,
+     "street_id": "21st_or_center_st"
+    },
+    {
+     "margin_px": 325.22,
+     "street_id": "ave_c_or_mechanic"
+    },
+    {
+     "margin_px": 165.993,
+     "street_id": "ave_f_or_church"
+    }
+   ],
+   "n_regions": 1,
+   "owned_fraction_of_page": 0.868,
+   "page_area_mosaic_px2": 50548959.081,
+   "sheet": 8
+  },
+  {
+   "area_mosaic_px2": 43950486.136,
+   "cut_coverage_margins_px": [
+    {
+     "margin_px": 353.271,
+     "street_id": "21st_or_center_st"
+    },
+    {
+     "margin_px": 419.579,
+     "street_id": "24th_st"
+    },
+    {
+     "margin_px": 108.873,
+     "street_id": "ave_c_or_mechanic"
+    }
+   ],
+   "n_regions": 1,
+   "owned_fraction_of_page": 0.886,
+   "page_area_mosaic_px2": 49622994.733,
+   "sheet": 9
+  },
+  {
+   "area_mosaic_px2": 41598779.882,
+   "cut_coverage_margins_px": [
+    {
+     "margin_px": 388.004,
+     "street_id": "21st_or_center_st"
+    },
+    {
+     "margin_px": 409.671,
+     "street_id": "24th_st"
+    },
+    {
+     "margin_px": 387.332,
+     "street_id": "ave_c_or_mechanic"
+    },
+    {
+     "margin_px": 110.074,
+     "street_id": "ave_f_or_church"
+    }
+   ],
+   "n_regions": 1,
+   "owned_fraction_of_page": 0.832,
+   "page_area_mosaic_px2": 50021440.0,
+   "sheet": 10
+  },
+  {
+   "area_mosaic_px2": 46786451.55,
+   "cut_coverage_margins_px": [
+    {
+     "margin_px": 275.479,
+     "street_id": "24th_st"
+    },
+    {
+     "margin_px": 210.595,
+     "street_id": "ave_c_or_mechanic"
+    }
+   ],
+   "n_regions": 1,
+   "owned_fraction_of_page": 0.935,
+   "page_area_mosaic_px2": 50045399.055,
+   "sheet": 11
+  },
+  {
+   "area_mosaic_px2": 44653096.113,
+   "cut_coverage_margins_px": [
+    {
+     "margin_px": 284.849,
+     "street_id": "24th_st"
+    },
+    {
+     "margin_px": 350.194,
+     "street_id": "ave_c_or_mechanic"
+    },
+    {
+     "margin_px": 140.531,
+     "street_id": "ave_f_or_church"
+    }
+   ],
+   "n_regions": 1,
+   "owned_fraction_of_page": 0.893,
+   "page_area_mosaic_px2": 50010449.441,
+   "sheet": 12
+  },
+  {
+   "area_mosaic_px2": 44156558.634,
+   "cut_coverage_margins_px": [
+    {
+     "margin_px": 379.135,
+     "street_id": "21st_or_center_st"
+    },
+    {
+     "margin_px": 273.704,
+     "street_id": "ave_f_or_church"
+    },
+    {
+     "margin_px": 219.773,
+     "street_id": "ave_i_or_sealy"
+    }
+   ],
+   "n_regions": 1,
+   "owned_fraction_of_page": 0.883,
+   "page_area_mosaic_px2": 50035544.704,
+   "sheet": 39
+  },
+  {
+   "area_mosaic_px2": 46106544.942,
+   "cut_coverage_margins_px": [
+    {
+     "margin_px": 402.245,
+     "street_id": "21st_or_center_st"
+    },
+    {
+     "margin_px": 187.01,
+     "street_id": "ave_i_or_sealy"
+    }
+   ],
+   "n_regions": 1,
+   "owned_fraction_of_page": 0.921,
+   "page_area_mosaic_px2": 50036875.326,
+   "sheet": 40
+  },
+  {
+   "area_mosaic_px2": 41650507.62,
+   "cut_coverage_margins_px": [
+    {
+     "margin_px": 372.006,
+     "street_id": "21st_or_center_st"
+    },
+    {
+     "margin_px": 428.977,
+     "street_id": "24th_st"
+    },
+    {
+     "margin_px": 178.681,
+     "street_id": "ave_f_or_church"
+    },
+    {
+     "margin_px": 291.228,
+     "street_id": "ave_i_or_sealy"
+    }
+   ],
+   "n_regions": 1,
+   "owned_fraction_of_page": 0.834,
+   "page_area_mosaic_px2": 49961276.234,
+   "sheet": 43
+  },
+  {
+   "area_mosaic_px2": 43638665.023,
+   "cut_coverage_margins_px": [
+    {
+     "margin_px": 399.542,
+     "street_id": "21st_or_center_st"
+    },
+    {
+     "margin_px": 413.224,
+     "street_id": "24th_st"
+    },
+    {
+     "margin_px": 197.424,
+     "street_id": "ave_i_or_sealy"
+    }
+   ],
+   "n_regions": 1,
+   "owned_fraction_of_page": 0.871,
+   "page_area_mosaic_px2": 50091822.017,
+   "sheet": 44
+  },
+  {
+   "area_mosaic_px2": 44713388.342,
+   "cut_coverage_margins_px": [
+    {
+     "margin_px": 289.397,
+     "street_id": "24th_st"
+    },
+    {
+     "margin_px": 244.884,
+     "street_id": "ave_f_or_church"
+    },
+    {
+     "margin_px": 242.729,
+     "street_id": "ave_i_or_sealy"
+    }
+   ],
+   "n_regions": 1,
+   "owned_fraction_of_page": 0.893,
+   "page_area_mosaic_px2": 50095508.505,
+   "sheet": 49
+  },
+  {
+   "area_mosaic_px2": 46910482.377,
+   "cut_coverage_margins_px": [
+    {
+     "margin_px": 282.983,
+     "street_id": "24th_st"
+    },
+    {
+     "margin_px": 171.457,
+     "street_id": "ave_i_or_sealy"
+    }
+   ],
+   "n_regions": 1,
+   "owned_fraction_of_page": 0.94,
+   "page_area_mosaic_px2": 49899752.527,
+   "sheet": 50
+  }
+ ]
+}

@@ -170,3 +170,16 @@ Adopted responses (both pre-planned in FABLE_DETERMINABILITY_NOTES recommendatio
 3. Straight-street collinearity promoted from diagnostic to constraint (per-face lines,
    free direction parameters, only straightness assumed — the streets are platted
    straight and each plate drafts them straight individually).
+
+## D-010 — Transform freeze (2026-08-17)
+
+Geometry frozen per FREEZE_MANIFEST.json (SHA-256 over sources, controls, transforms,
+cuts, masks, scripts). Acceptance rationale: rotation determinability is source-limited
+at 1.3-3.1 mrad (plate drafting scatter, not observation design); composited previews
+show no frontage doubling; the Ave I kink is 1.1-1.6 px on the long-baseline lines.
+Presentation changes (crop, composition, ownership patches) may proceed; geometry refits
+require QA proof the geometry is wrong. The 21st St cut carries one owner-verified manual
+deviation giving the sheet-7 scale-bar area to sheet 9's authentic blank street (the
+brief-preferred furniture removal by source ownership; nothing altered in any scan).
+Rosenberg x Ave C composites as a preserved plate disagreement (54-ft drafted frontage
+separation), documented rather than reconciled.

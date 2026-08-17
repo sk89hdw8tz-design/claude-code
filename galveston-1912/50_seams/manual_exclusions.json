@@ -1,0 +1,5 @@
+{
+ "_doc": "Manually verified ownership exclusions, applied by build_masks.py as polygon subtractions from the named sheet's region. Coordinates are SHEET pixels (raster, origin top-left). Entries survive mask regeneration because this file is an input, never rewritten by the pipeline. Schema per entry: {exclusion_id, sheet, polygon_sheet_px [[x,y],...], reason, verified_by, date}.",
+ "exclusions": [],
+ "version": 1
+}

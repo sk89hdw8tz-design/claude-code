@@ -1,0 +1,874 @@
+{
+ "convention": {
+  "centered": "p_mosaic = [[a,-b],[b,a]] @ (p_sheet5_raw - center_panel) + (tx, ty)",
+  "raw": "p_mosaic = [[a,-b],[b,a]] @ p_sheet5_raw + (raw.tx, raw.ty) -- use THIS for raw scan pixels",
+  "centers": {
+   "5A": [
+    1913.8145438711083,
+    3910.568038319181
+   ],
+   "5B": [
+    5240.162567097269,
+    3879.7976759275643
+   ]
+  },
+  "center_definition": "area centroid of the panel polygon (regions A/B of the candidate-regions GeoJSON)",
+  "axes": "raster pixels of the sheet 5 scan (6653x7795), origin top-left, x right, y down",
+  "frame": "mosaic frame of the frozen block transforms.json (sheet 10 centered pixel frame)",
+  "panel_divider": "x = 3789 + 0.0099*y (drafted BREAK_RULE centerline)"
+ },
+ "block_source": {
+  "path": "/home/user/claude-code/galveston-1912/40_solve/output/transforms.json",
+  "sha256": "a57f3dcb8614c9939f1ab82322f8091167e98ba3122ebed634ff1c8b4f0bf11b",
+  "kappa_px_per_ft": 5.796657754477792,
+  "kappa_prior_dominated": true,
+  "sheets_available": [
+   7,
+   8,
+   9,
+   10,
+   11,
+   12,
+   39,
+   40,
+   43,
+   44,
+   49,
+   50
+  ]
+ },
+ "panels": {
+  "5A": {
+   "a": 1.978412936167317,
+   "b": -0.042928740938011245,
+   "tx": -10180.248919317557,
+   "ty": -7597.320298670725,
+   "s": 1.978878627605217,
+   "s_std": 0.006340670197461224,
+   "theta_deg": -1.2430416915060303,
+   "theta_std_mrad": 6.18686643822291,
+   "center": [
+    1913.8145438711083,
+    3910.568038319181
+   ],
+   "raw": {
+    "a": 1.978412936167317,
+    "b": -0.042928740938011245,
+    "tx": -14134.440132574782,
+    "ty": -15251.881044686601
+   },
+   "covariance": [
+    [
+     4.001399832732814e-05,
+     -3.1883742005193797e-06,
+     -0.07171192738306131,
+     -0.04387260087675158
+    ],
+    [
+     -3.188374200519396e-06,
+     0.0001500825636982111,
+     0.1495971326847044,
+     -0.256405799918951
+    ],
+    [
+     -0.07171192738306133,
+     0.1495971326847044,
+     512.7645810619198,
+     -170.03795930873466
+    ],
+    [
+     -0.04387260087675155,
+     -0.256405799918951,
+     -170.0379593087347,
+     580.0162040523438
+    ]
+   ],
+   "param_order": [
+    "a",
+    "b",
+    "tx",
+    "ty"
+   ],
+   "param_std": {
+    "a": 0.0063256618884768205,
+    "b": 0.012250818899086342,
+    "tx": 22.64430570942549,
+    "ty": 24.083525573560525
+   },
+   "n_obs": 14,
+   "dof": 10,
+   "rank": 4,
+   "s0_sq": 6.4776783360961385,
+   "rows": [
+    {
+     "seam": "5A-7",
+     "anchor": "19th St",
+     "face": 1,
+     "type": "pp_along",
+     "target": -8240.972523519955,
+     "sigma_panel_native": 3.5,
+     "sigma_block_native": 4.0,
+     "s_block": 1.0003067555240257,
+     "floor": false,
+     "sigma_mosaic": 7.99877086254899,
+     "residual_px": 4.251588454177181,
+     "normalized": 0.5315302222349593,
+     "huber_weight": 1.0
+    },
+    {
+     "seam": "5A-7",
+     "anchor": "19th St",
+     "face": 1,
+     "type": "pp_across",
+     "target": -6868.729153131227,
+     "sigma_panel_native": 3.5,
+     "sigma_block_native": 4.0,
+     "s_block": 1.0003067555240257,
+     "floor": true,
+     "sigma_mosaic": 12.0,
+     "residual_px": -13.443907952938389,
+     "normalized": -1.1203256627448657,
+     "huber_weight": 1.0
+    },
+    {
+     "seam": "5A-7",
+     "anchor": "19th St",
+     "face": 2,
+     "type": "pp_along",
+     "target": -7742.819759268991,
+     "sigma_panel_native": 3.5,
+     "sigma_block_native": 4.0,
+     "s_block": 1.0003067555240257,
+     "floor": false,
+     "sigma_mosaic": 7.99877086254899,
+     "residual_px": 14.147199611446013,
+     "normalized": 1.7686716940079574,
+     "huber_weight": 1.0
+    },
+    {
+     "seam": "5A-7",
+     "anchor": "19th St",
+     "face": 2,
+     "type": "pp_across",
+     "target": -6815.712895088452,
+     "sigma_panel_native": 3.5,
+     "sigma_block_native": 4.0,
+     "s_block": 1.0003067555240257,
+     "floor": true,
+     "sigma_mosaic": 12.0,
+     "residual_px": -41.359758918129046,
+     "normalized": -3.4466465765107537,
+     "huber_weight": 0.7253427192209825
+    },
+    {
+     "seam": "5A-7",
+     "anchor": "20th St",
+     "face": 1,
+     "type": "pp_along",
+     "target": -5922.261464215264,
+     "sigma_panel_native": 4.5,
+     "sigma_block_native": 4.0,
+     "s_block": 1.0003067555240257,
+     "floor": false,
+     "sigma_mosaic": 9.762582665150875,
+     "residual_px": -19.72551115755323,
+     "normalized": -2.020521805973192,
+     "huber_weight": 1.0
+    },
+    {
+     "seam": "5A-7",
+     "anchor": "20th St",
+     "face": 1,
+     "type": "pp_across",
+     "target": -6820.714428866074,
+     "sigma_panel_native": 4.5,
+     "sigma_block_native": 4.0,
+     "s_block": 1.0003067555240257,
+     "floor": true,
+     "sigma_mosaic": 12.0,
+     "residual_px": 64.61648725836494,
+     "normalized": 5.384707271530411,
+     "huber_weight": 0.4642777915185469
+    },
+    {
+     "seam": "5A-7",
+     "anchor": "20th St",
+     "face": 2,
+     "type": "pp_along",
+     "target": -5428.109926986395,
+     "sigma_panel_native": 4.5,
+     "sigma_block_native": 4.0,
+     "s_block": 1.0003067555240257,
+     "floor": false,
+     "sigma_mosaic": 9.762582665150875,
+     "residual_px": -21.179143271909197,
+     "normalized": -2.1694201215331668,
+     "huber_weight": 1.0
+    },
+    {
+     "seam": "5A-7",
+     "anchor": "20th St",
+     "face": 2,
+     "type": "pp_across",
+     "target": -6808.710747799784,
+     "sigma_panel_native": 4.5,
+     "sigma_block_native": 4.0,
+     "s_block": 1.0003067555240257,
+     "floor": true,
+     "sigma_mosaic": 12.0,
+     "residual_px": 61.415789501495965,
+     "normalized": 5.1179824584579965,
+     "huber_weight": 0.4884737336034614
+    },
+    {
+     "seam": "5A-9",
+     "anchor": "21st (Center) St",
+     "face": 1,
+     "type": "along",
+     "target": -3703.57723649057,
+     "sigma_panel_native": 8.0,
+     "sigma_block_native": 12.0,
+     "s_block": 0.9933293669305405,
+     "floor": false,
+     "sigma_mosaic": 19.81682984618094,
+     "residual_px": -18.389319306158086,
+     "normalized": -0.9279647374931687,
+     "huber_weight": 1.0
+    },
+    {
+     "seam": "5A-9",
+     "anchor": "21st (Center) St",
+     "face": 2,
+     "type": "along",
+     "target": -3218.335840745001,
+     "sigma_panel_native": 8.0,
+     "sigma_block_native": 6.0,
+     "s_block": 0.9933293669305405,
+     "floor": false,
+     "sigma_mosaic": 16.91575585607016,
+     "residual_px": 26.57016652297216,
+     "normalized": 1.5707348077761212,
+     "huber_weight": 1.0
+    },
+    {
+     "seam": "5A-9",
+     "anchor": "21st (Center) St",
+     "face": 2,
+     "type": "across",
+     "target": -6721.897951749926,
+     "sigma_panel_native": 8.0,
+     "sigma_block_native": 6.0,
+     "s_block": 0.9933293669305405,
+     "floor": true,
+     "sigma_mosaic": 16.91575585607016,
+     "residual_px": 26.370472547149802,
+     "normalized": 1.5589296021724535,
+     "huber_weight": 1.0
+    },
+    {
+     "seam": "5A-9",
+     "anchor": "22nd St",
+     "face": 1,
+     "type": "along",
+     "target": -1402.0330933125078,
+     "sigma_panel_native": 4.0,
+     "sigma_block_native": 5.5,
+     "s_block": 0.9933293669305405,
+     "floor": false,
+     "sigma_mosaic": 9.617855411092632,
+     "residual_px": 5.229381769184329,
+     "normalized": 0.5437159892373811,
+     "huber_weight": 1.0
+    },
+    {
+     "seam": "5A-9",
+     "anchor": "22nd St",
+     "face": 2,
+     "type": "along",
+     "target": -921.7583444015912,
+     "sigma_panel_native": 4.0,
+     "sigma_block_native": 5.5,
+     "s_block": 0.9933293669305405,
+     "floor": false,
+     "sigma_mosaic": 9.617855411092632,
+     "residual_px": 3.5371666686691015,
+     "normalized": 0.3677708301363685,
+     "huber_weight": 1.0
+    },
+    {
+     "seam": "5A-9",
+     "anchor": "22nd St",
+     "face": 1,
+     "type": "across",
+     "target": -6729.844586685371,
+     "sigma_panel_native": 4.0,
+     "sigma_block_native": 5.5,
+     "s_block": 0.9933293669305405,
+     "floor": true,
+     "sigma_mosaic": 12.0,
+     "residual_px": -49.24428805573007,
+     "normalized": -4.103690671310838,
+     "huber_weight": 0.6092077108729609
+    }
+   ]
+  },
+  "5B": {
+   "a": 1.988775879647088,
+   "b": 0.003032054253740313,
+   "tx": -9030.459465686874,
+   "ty": 6069.817802855683,
+   "s": 1.988778190955202,
+   "s_std": 0.004628893829107605,
+   "theta_deg": 0.08735211401820092,
+   "theta_std_mrad": 4.760815705916668,
+   "center": [
+    5240.162567097269,
+    3879.7976759275643
+   ],
+   "raw": {
+    "a": 1.988775879647088,
+    "b": 0.003032054253740313,
+    "tx": -19440.20462751254,
+    "ty": -1662.118690141744
+   },
+   "covariance": [
+    [
+     2.142407203014943e-05,
+     7.961116723799294e-07,
+     -0.026035126526274734,
+     0.025691064790174613
+    ],
+    [
+     7.961116723799273e-07,
+     8.964951937560528e-05,
+     -0.15318089775455396,
+     -0.11040057579642637
+    ],
+    [
+     -0.026035126526274738,
+     -0.15318089775455393,
+     523.2899894508868,
+     158.0138207557722
+    ],
+    [
+     0.025691064790174602,
+     -0.11040057579642637,
+     158.01382075577223,
+     245.05124730171065
+    ]
+   ],
+   "param_order": [
+    "a",
+    "b",
+    "tx",
+    "ty"
+   ],
+   "param_std": {
+    "a": 0.004628614482774455,
+    "b": 0.009468343011087276,
+    "tx": 22.875532550104417,
+    "ty": 15.65411279190586
+   },
+   "n_obs": 15,
+   "dof": 11,
+   "rank": 4,
+   "s0_sq": 6.76126608761131,
+   "rows": [
+    {
+     "seam": "5B-9",
+     "anchor": "22nd St",
+     "face": 1,
+     "type": "along",
+     "target": -1402.0330933125078,
+     "sigma_panel_native": 4.0,
+     "sigma_block_native": 5.5,
+     "s_block": 0.9933293669305405,
+     "floor": false,
+     "sigma_mosaic": 9.650471067730592,
+     "residual_px": 21.787277800790434,
+     "normalized": 2.2576387875658317,
+     "huber_weight": 1.0
+    },
+    {
+     "seam": "5B-9",
+     "anchor": "22nd St",
+     "face": 2,
+     "type": "along",
+     "target": -921.7583444015912,
+     "sigma_panel_native": 4.0,
+     "sigma_block_native": 5.5,
+     "s_block": 0.9933293669305405,
+     "floor": false,
+     "sigma_mosaic": 9.650471067730592,
+     "residual_px": 18.82033138225995,
+     "normalized": 1.9501982079601992,
+     "huber_weight": 1.0
+    },
+    {
+     "seam": "5B-9",
+     "anchor": "22nd St",
+     "face": 1,
+     "type": "across",
+     "target": -6729.844586685371,
+     "sigma_panel_native": 4.0,
+     "sigma_block_native": 5.5,
+     "s_block": 0.9933293669305405,
+     "floor": true,
+     "sigma_mosaic": 12.0,
+     "residual_px": -23.97325381175233,
+     "normalized": -1.9977711509793608,
+     "huber_weight": 1.0
+    },
+    {
+     "seam": "5B-9",
+     "anchor": "23rd (Tremont) St",
+     "face": 1,
+     "type": "along",
+     "target": 892.0610796135759,
+     "sigma_panel_native": 4.0,
+     "sigma_block_native": 6.0,
+     "s_block": 0.9933293669305405,
+     "floor": false,
+     "sigma_mosaic": 9.940077233530097,
+     "residual_px": -11.066236705747315,
+     "normalized": -1.1132948412531878,
+     "huber_weight": 1.0
+    },
+    {
+     "seam": "5B-9",
+     "anchor": "23rd (Tremont) St",
+     "face": 2,
+     "type": "along",
+     "target": 1390.2157571292419,
+     "sigma_panel_native": 4.0,
+     "sigma_block_native": 6.0,
+     "s_block": 0.9933293669305405,
+     "floor": false,
+     "sigma_mosaic": 9.940077233530097,
+     "residual_px": -21.967798469307127,
+     "normalized": -2.2100229156374,
+     "huber_weight": 1.0
+    },
+    {
+     "seam": "5B-9",
+     "anchor": "23rd (Tremont) St",
+     "face": 1,
+     "type": "across",
+     "target": -6729.84458668537,
+     "sigma_panel_native": 4.0,
+     "sigma_block_native": 6.0,
+     "s_block": 0.9933293669305405,
+     "floor": true,
+     "sigma_mosaic": 12.0,
+     "residual_px": 5.049475042017548,
+     "normalized": 0.4207895868347956,
+     "huber_weight": 1.0
+    },
+    {
+     "seam": "5B-9",
+     "anchor": "24th St",
+     "face": 1,
+     "type": "along",
+     "target": 3260.654955059451,
+     "sigma_panel_native": 4.0,
+     "sigma_block_native": 5.0,
+     "s_block": 0.9933293669305405,
+     "floor": false,
+     "sigma_mosaic": 9.378240766010993,
+     "residual_px": -82.61433387933448,
+     "normalized": -8.809150451622948,
+     "huber_weight": 0.2837958113814953
+    },
+    {
+     "seam": "5B-9",
+     "anchor": "24th St",
+     "face": 2,
+     "type": "along",
+     "target": 3702.6865233435406,
+     "sigma_panel_native": 4.0,
+     "sigma_block_native": 15.0,
+     "s_block": 0.9933293669305405,
+     "floor": false,
+     "sigma_mosaic": 16.890590460566976,
+     "residual_px": -43.359832073024336,
+     "normalized": -2.567099840248501,
+     "huber_weight": 0.9738616164449586
+    },
+    {
+     "seam": "5B-9",
+     "anchor": "24th St",
+     "face": 1,
+     "type": "across",
+     "target": -6731.831245419232,
+     "sigma_panel_native": 4.0,
+     "sigma_block_native": 5.0,
+     "s_block": 0.9933293669305405,
+     "floor": true,
+     "sigma_mosaic": 12.0,
+     "residual_px": 45.98994647685231,
+     "normalized": 3.8324955397376925,
+     "huber_weight": 0.6523164799745879
+    },
+    {
+     "seam": "5B-11",
+     "anchor": "25th (Rosenberg) St",
+     "face": 1,
+     "type": "along",
+     "target": 5481.592239593405,
+     "sigma_panel_native": 5.0,
+     "sigma_block_native": 5.5,
+     "s_block": 0.9981599570249649,
+     "floor": false,
+     "sigma_mosaic": 11.35868597768556,
+     "residual_px": 6.738482937711524,
+     "normalized": 0.5932449361615818,
+     "huber_weight": 1.0
+    },
+    {
+     "seam": "5B-11",
+     "anchor": "25th (Rosenberg) St",
+     "face": 2,
+     "type": "along",
+     "target": 6206.25636839353,
+     "sigma_panel_native": 5.0,
+     "sigma_block_native": 5.5,
+     "s_block": 0.9981599570249649,
+     "floor": false,
+     "sigma_mosaic": 11.35868597768556,
+     "residual_px": 11.971431284417122,
+     "normalized": 1.0539450873045806,
+     "huber_weight": 1.0
+    },
+    {
+     "seam": "5B-11",
+     "anchor": "25th (Rosenberg) St",
+     "face": 1,
+     "type": "across",
+     "target": -6754.784390697249,
+     "sigma_panel_native": 5.0,
+     "sigma_block_native": 5.5,
+     "s_block": 0.9981599570249649,
+     "floor": true,
+     "sigma_mosaic": 12.0,
+     "residual_px": 18.893498553990867,
+     "normalized": 1.5744582128325721,
+     "huber_weight": 1.0
+    },
+    {
+     "seam": "5B-11",
+     "anchor": "26th St",
+     "face": 1,
+     "type": "along",
+     "target": 8043.86884927649,
+     "sigma_panel_native": 4.0,
+     "sigma_block_native": 4.0,
+     "s_block": 0.9981599570249649,
+     "floor": false,
+     "sigma_mosaic": 8.90084220071528,
+     "residual_px": 4.003602973281886,
+     "normalized": 0.4498004664053198,
+     "huber_weight": 1.0
+    },
+    {
+     "seam": "5B-11",
+     "anchor": "26th St",
+     "face": 2,
+     "type": "along",
+     "target": 8515.998508949297,
+     "sigma_panel_native": 4.0,
+     "sigma_block_native": 4.0,
+     "s_block": 0.9981599570249649,
+     "floor": false,
+     "sigma_mosaic": 8.90084220071528,
+     "residual_px": 9.29062699842143,
+     "normalized": 1.0437919006894456,
+     "huber_weight": 1.0
+    },
+    {
+     "seam": "5B-11",
+     "anchor": "26th St",
+     "face": 1,
+     "type": "across",
+     "target": -6731.826711685676,
+     "sigma_panel_native": 4.0,
+     "sigma_block_native": 4.0,
+     "s_block": 0.9981599570249649,
+     "floor": true,
+     "sigma_mosaic": 12.0,
+     "residual_px": -57.24766004715457,
+     "normalized": -4.770638337262881,
+     "huber_weight": 0.524038886048603
+    }
+   ]
+  }
+ },
+ "attachments": {
+  "5A-7": {
+   "file": "pair_05A_07.json",
+   "panel": "5A",
+   "block": 7,
+   "overlap": true,
+   "context_only": false,
+   "reversed_sides": false,
+   "n_anchors": 2
+  },
+  "5A-9": {
+   "file": "pair_05A_09.json",
+   "panel": "5A",
+   "block": 9,
+   "overlap": false,
+   "context_only": false,
+   "reversed_sides": false,
+   "n_anchors": 2
+  },
+  "5B-9": {
+   "file": "pair_05B_09.json",
+   "panel": "5B",
+   "block": 9,
+   "overlap": false,
+   "context_only": false,
+   "reversed_sides": false,
+   "n_anchors": 3
+  },
+  "5B-11": {
+   "file": "pair_05B_11.json",
+   "panel": "5B",
+   "block": 11,
+   "overlap": false,
+   "context_only": false,
+   "reversed_sides": false,
+   "n_anchors": 2
+  },
+  "5B-13": {
+   "file": "pair_05B_13.json",
+   "panel": "5B",
+   "block": 13,
+   "overlap": false,
+   "context_only": true,
+   "reversed_sides": false,
+   "n_anchors": 2
+  }
+ },
+ "scale_comparison": [
+  {
+   "seam": "5A-7",
+   "solved_scale_ratio": 1.9782717818081232,
+   "drafted_width_ratio_mean": 1.9533578328759051,
+   "drafted_width_ratios": [
+    1.9227799227799227,
+    1.9839357429718876
+   ],
+   "expectation": 2.0
+  },
+  {
+   "seam": "5A-9",
+   "solved_scale_ratio": 1.9921676469911433,
+   "drafted_width_ratio_mean": 1.9070631970260223,
+   "drafted_width_ratios": [
+    1.8141263940520447,
+    2.0
+   ],
+   "expectation": 2.0
+  },
+  {
+   "seam": "5B-9",
+   "solved_scale_ratio": 2.0021336901582507,
+   "drafted_width_ratio_mean": 1.9378600476003072,
+   "drafted_width_ratios": [
+    2.0166666666666666,
+    2.048979591836735,
+    1.7479338842975207
+   ],
+   "expectation": 2.0
+  },
+  {
+   "seam": "5B-11",
+   "solved_scale_ratio": 1.9924443742291507,
+   "drafted_width_ratio_mean": 1.9772422797456857,
+   "drafted_width_ratios": [
+    1.9836512261580381,
+    1.9708333333333334
+   ],
+   "expectation": 2.0
+  }
+ ],
+ "context_reports": [
+  {
+   "seam": "5B-13",
+   "file": "pair_05B_13.json",
+   "mode": "relative",
+   "note": "sheet 13 has no frozen transform (outside the block solve), so two-sided point residuals are not computable; report compares relative anchor separations (translation-free) and drafted width ratios instead.  Block-side native px are converted at the drafted 50 ft/in (6.18 px/ft); the direction comparison assumes sheet 13 is drafted axis-aligned like its frozen neighbours (all block rotations < 0.5 deg).",
+   "anchors": [
+    {
+     "anchor": "27th St",
+     "status": "CONTEXT_ONLY",
+     "panel_corner_mosaic": [
+      -6654.7245450606115,
+      10333.8100223786
+     ],
+     "width_ratio_block_over_panel": 1.9875
+    },
+    {
+     "anchor": "28th St",
+     "status": "CONTEXT_ONLY",
+     "panel_corner_mosaic": [
+      -6670.113742187757,
+      12600.996332850758
+     ],
+     "width_ratio_block_over_panel": 1.9583333333333333
+    }
+   ],
+   "separations": [
+    {
+     "from": "27th St",
+     "to": "28th St",
+     "panel_separation_ft": 368.9371486615988,
+     "block_separation_ft": 372.4919093851133,
+     "difference_ft": -3.5547607235144483,
+     "direction_diff_deg": 0.3889060638864663
+    }
+   ]
+  }
+ ],
+ "cross_panel": {
+  "source": "/home/user/claude-code/galveston-1912/30_controls/verified/cross_panel_05.json",
+  "flag_threshold_px": 30.0,
+  "px_per_ft_used": 6.130029784675847,
+  "pairs": [
+   {
+    "id": "P1_22ndSt_blockN_SW_corner",
+    "group": "street",
+    "mosaic_A": [
+     -6777.462529297177,
+     -1397.758418066007
+    ],
+    "mosaic_B": [
+     -6752.202618308596,
+     -1388.2108714080537
+    ],
+    "delta_px": [
+     25.259910988580486,
+     9.547546657953262
+    ],
+    "norm_px": 27.004050628318776,
+    "approx_ft": 4.405207083304039,
+    "flagged": false
+   },
+   {
+    "id": "P2_22ndSt_blockS_NW_corner",
+    "group": "street",
+    "mosaic_A": [
+     -6751.24647050084,
+     -919.3259174410196
+    ],
+    "mosaic_B": [
+     -6746.9639836905535,
+     -910.8955641299913
+    ],
+    "delta_px": [
+     4.282486810286173,
+     8.430353311028284
+    ],
+    "norm_px": 9.455715215098254,
+    "approx_ft": 1.5425235353237792,
+    "flagged": false
+   },
+   {
+    "id": "P3_pier22_shed_root_W_corner",
+    "group": "pier",
+    "mosaic_A": [
+     -9567.007676523288,
+     -697.901013774801
+    ],
+    "mosaic_B": [
+     -9919.34652482751,
+     -728.7867579778807
+    ],
+    "delta_px": [
+     -352.33884830422176,
+     -30.885744203079753
+    ],
+    "norm_px": 353.6899676543335,
+    "approx_ft": 57.697919925039386,
+    "flagged": true
+   },
+   {
+    "id": "P4_pier22_shed_root_E_corner",
+    "group": "pier",
+    "mosaic_A": [
+     -9167.926337049685,
+     -732.2919876144533
+    ],
+    "mosaic_B": [
+     -9501.69449393886,
+     -734.1163542235365
+    ],
+    "delta_px": [
+     -333.76815688917486,
+     -1.8243666090831994
+    ],
+    "norm_px": 333.773142818174,
+    "approx_ft": 54.448861513292584,
+    "flagged": true
+   },
+   {
+    "id": "P5_pier22_deck_root_W_corner",
+    "group": "pier",
+    "mosaic_A": [
+     -9646.019098600185,
+     -599.198701524143
+    ],
+    "mosaic_B": [
+     -9939.385886336668,
+     -629.3782845380638
+    ],
+    "delta_px": [
+     -293.36678773648237,
+     -30.17958301392082
+    ],
+    "norm_px": 294.9150375577964,
+    "approx_ft": 48.10988656124308,
+    "flagged": true
+   },
+   {
+    "id": "P6_pier22_deck_root_E_corner",
+    "group": "pier",
+    "mosaic_A": [
+     -9041.139885024242,
+     -636.0758514851841
+    ],
+    "mosaic_B": [
+     -9454.133667865539,
+     -622.67213566121
+    ],
+    "delta_px": [
+     -412.9937828412967,
+     13.403715823974153
+    ],
+    "norm_px": 413.2112344351906,
+    "approx_ft": 67.40770419552553,
+    "flagged": true
+   }
+  ],
+  "groups": {
+   "street": {
+    "n": 2,
+    "mean_px": 18.229882921708516,
+    "max_px": 27.004050628318776
+   },
+   "pier": {
+    "n": 4,
+    "mean_px": 348.8973456163736,
+    "max_px": 413.2112344351906
+   }
+  },
+  "flagged_ids": [
+   "P3_pier22_shed_root_W_corner",
+   "P4_pier22_shed_root_E_corner",
+   "P5_pier22_deck_root_W_corner",
+   "P6_pier22_deck_root_E_corner"
+  ],
+  "note": "Street-corner pairs are the meaningful check; the pier-ground pairs are a recorded drafted disagreement (~55 ft) -- reported, never constrained.  Nothing here entered the fit."
+ },
+ "rerun_note": "Downstream of the block freeze: rerun fit_sheet5.py whenever 40_solve/output/transforms.json changes (sha256 above identifies the freeze used)."
+}

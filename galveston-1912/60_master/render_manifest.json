@@ -1,0 +1,449 @@
+{
+ "canvas": {
+  "mosaic_convention": {
+   "axes": "raster pixels, origin top-left, x right, y down",
+   "center": [
+    3326.0,
+    3898.0
+   ],
+   "centered": "p_mosaic = [[a,-b],[b,a]] @ (p_sheet - center) + (tx, ty)",
+   "gauge": "sheet 10 fixed to identity; mosaic frame = sheet 10 centered pixel frame",
+   "raw": "p_mosaic = [[a,-b],[b,a]] @ p_sheet + (raw.tx, raw.ty)  (same rotation/scale; translation composed with the recentring -- use THIS for raw sheet-pixel coordinates)"
+  },
+  "mosaic_rect": [
+   -16734,
+   -8279,
+   9472,
+   6210
+  ],
+  "reserved_bay_band_canvas_px": [
+   0,
+   0,
+   3730,
+   7245
+  ],
+  "reserved_bay_band_verified_empty": true,
+  "scale": 0.5,
+  "size_px": [
+   13103,
+   7245
+  ],
+  "strip_height": 2000
+ },
+ "generated_by": "60_master/tools/render_master.py",
+ "inputs": {
+  "cuts_json": {
+   "sha256": "0de6789d290f7226bec0e063b717ad7a83241eaf10ac95e16509d11255d7eef1"
+  },
+  "masks_json": {
+   "sha256": "c39c18983a589384cd9cfc8c67da988f1f5143adfdc47cdacdd25b1f43818edc"
+  },
+  "transforms_json": {
+   "sha256": "a57f3dcb8614c9939f1ab82322f8091167e98ba3122ebed634ff1c8b4f0bf11b"
+  }
+ },
+ "note": "half-resolution pipeline proof; NOT the final master — final render waits for the frozen transforms",
+ "outputs": {
+  "candidate_master_tif": {
+   "bytes": 153901295,
+   "compression": "lzw",
+   "dtype": "uint8 RGB",
+   "path": "60_master/candidate_master.tif"
+  },
+  "candidate_preview_png": {
+   "path": "60_master/candidate_preview.png",
+   "size_px": [
+    4000,
+    2212
+   ]
+  }
+ },
+ "sheets": [
+  {
+   "canvas_bbox": [
+    3716,
+    0,
+    7078,
+    2683
+   ],
+   "mask_region_ids": [
+    "s07_r0"
+   ],
+   "mask_sha256": "80f00ce7e08f4ffb257f0b075aabca973c1cbafe50928b7a22a99a82e5fd3a9d",
+   "seconds": 7.3,
+   "sheet": 7,
+   "source_file": "sanborn08539_004_img011_archival.jp2",
+   "source_sha256": "a0c42dde9c8e6f0d3148de82915b2e563d5763c7a4da6f81aaeb508bb1db0e62",
+   "source_sha256_verified_against_inventory": true,
+   "strips_written": 2,
+   "transform_raw": {
+    "a": 1.000272982,
+    "b": 0.008219865,
+    "tx": -9236.309836181,
+    "ty": -10767.985573085
+   },
+   "transform_sha256": "e84ad3ae4b92fd3a037c6afa72908bf430ede51292e5d3b8c24eb8d46f3f3898",
+   "warp": {
+    "border": "white",
+    "compositing": "hard ownership, no blending, no exposure or colour changes",
+    "interpolation": "INTER_LANCZOS4",
+    "mask_interpolation": "INTER_NEAREST",
+    "resamples_from_archival": 1
+   }
+  },
+  {
+   "canvas_bbox": [
+    6738,
+    0,
+    10081,
+    2668
+   ],
+   "mask_region_ids": [
+    "s08_r0"
+   ],
+   "mask_sha256": "7966ce7a0769a5416e1f08c3fd2922d7086dc39d6ab4c86939962e44fd297f04",
+   "seconds": 6.45,
+   "sheet": 8,
+   "source_file": "sanborn08539_004_img013_archival.jp2",
+   "source_sha256": "557220abd08263fa3f6e4ae83397b9f095c48158c8fbc8f2c679f14e377f98fe",
+   "source_sha256_verified_against_inventory": true,
+   "strips_written": 2,
+   "transform_raw": {
+    "a": 1.000992656,
+    "b": 0.002706716,
+    "tx": -3235.136956851,
+    "ty": -10767.206607848
+   },
+   "transform_sha256": "10ba3860ebcaf6778baa492aff27c2a7bd8e7c6ab2efb762c506ea5c2333d5c5",
+   "warp": {
+    "border": "white",
+    "compositing": "hard ownership, no blending, no exposure or colour changes",
+    "interpolation": "INTER_LANCZOS4",
+    "mask_interpolation": "INTER_NEAREST",
+    "resamples_from_archival": 1
+   }
+  },
+  {
+   "canvas_bbox": [
+    3702,
+    2197,
+    7013,
+    6075
+   ],
+   "mask_region_ids": [
+    "s09_r0"
+   ],
+   "mask_sha256": "3f4579540496b8a7c401f8db70be18e0b3f60827485267164e7d106bddb4eda4",
+   "seconds": 7.07,
+   "sheet": 9,
+   "source_file": "sanborn08539_004_img015_archival.jp2",
+   "source_sha256": "224dc450319645549d20110ca62813b8519ad60b997067623aae8647a1451249",
+   "source_sha256_verified_against_inventory": true,
+   "strips_written": 3,
+   "transform_raw": {
+    "a": 0.993328691,
+    "b": 0.001159056,
+    "tx": -9319.896027064,
+    "ty": -3883.320692057
+   },
+   "transform_sha256": "d8abf910675d409a588b1d471d71e310f8f1718e26d751398c3b5006ba728744",
+   "warp": {
+    "border": "white",
+    "compositing": "hard ownership, no blending, no exposure or colour changes",
+    "interpolation": "INTER_LANCZOS4",
+    "mask_interpolation": "INTER_NEAREST",
+    "resamples_from_archival": 1
+   }
+  },
+  {
+   "canvas_bbox": [
+    6704,
+    2190,
+    10032,
+    6089
+   ],
+   "mask_region_ids": [
+    "s10_r0"
+   ],
+   "mask_sha256": "9a75278c784491e3a216851e61ebaaa4cf17616806bd61a597589ec967f58074",
+   "seconds": 8.15,
+   "sheet": 10,
+   "source_file": "sanborn08539_004_img017_archival.jp2",
+   "source_sha256": "29ee9408cb043ec973b8d8d7bb3a542f40258142440eee182caf6eace04acd95",
+   "source_sha256_verified_against_inventory": true,
+   "strips_written": 3,
+   "transform_raw": {
+    "a": 1.0,
+    "b": 0.0,
+    "tx": -3326.0,
+    "ty": -3898.0
+   },
+   "transform_sha256": "889ba981f4d1bb91fe91eb1633052a3a0609aafb7b054a37939775361cfb770b",
+   "warp": {
+    "border": "white",
+    "compositing": "hard ownership, no blending, no exposure or colour changes",
+    "interpolation": "INTER_LANCZOS4",
+    "mask_interpolation": "INTER_NEAREST",
+    "resamples_from_archival": 1
+   }
+  },
+  {
+   "canvas_bbox": [
+    3730,
+    5679,
+    7054,
+    7245
+   ],
+   "mask_region_ids": [
+    "s11_r0"
+   ],
+   "mask_sha256": "be8bfdcda1a55eb792399d869f410453474502db2a66db59ba1b33addb1ed21a",
+   "seconds": 5.07,
+   "sheet": 11,
+   "source_file": "sanborn08539_004_img019_archival.jp2",
+   "source_sha256": "e7b2ff1b6b70c5d7124a4879e5feca478d95681224d97b88855de7bade1591df",
+   "source_sha256_verified_against_inventory": true,
+   "strips_written": 2,
+   "transform_raw": {
+    "a": 0.998159942,
+    "b": 0.00017088,
+    "tx": -9270.674972806,
+    "ty": 3080.428653124
+   },
+   "transform_sha256": "26c1d8acda645bff46970e4a780e1e0d0390395b505696545cc4183880870b0f",
+   "warp": {
+    "border": "white",
+    "compositing": "hard ownership, no blending, no exposure or colour changes",
+    "interpolation": "INTER_LANCZOS4",
+    "mask_interpolation": "INTER_NEAREST",
+    "resamples_from_archival": 1
+   }
+  },
+  {
+   "canvas_bbox": [
+    6712,
+    5683,
+    10040,
+    7245
+   ],
+   "mask_region_ids": [
+    "s12_r0"
+   ],
+   "mask_sha256": "568432819ac1ead5adbedeb2ceab37312cfb7ef039db3a48cf89cccc3919824d",
+   "seconds": 7.24,
+   "sheet": 12,
+   "source_file": "sanborn08539_004_img021_archival.jp2",
+   "source_sha256": "d2ab9e8aa706bfc1bd41732dbc85f3a23d8097732f92ebc13852276f7843a82f",
+   "source_sha256_verified_against_inventory": true,
+   "strips_written": 2,
+   "transform_raw": {
+    "a": 0.998756311,
+    "b": 0.000856012,
+    "tx": -3301.672828737,
+    "ty": 3088.459815952
+   },
+   "transform_sha256": "d6f91b0e2f1129bb9f2fb39dfa3dff432ac6901b8648aa890945b9e28154e7cb",
+   "warp": {
+    "border": "white",
+    "compositing": "hard ownership, no blending, no exposure or colour changes",
+    "interpolation": "INTER_LANCZOS4",
+    "mask_interpolation": "INTER_NEAREST",
+    "resamples_from_archival": 1
+   }
+  },
+  {
+   "canvas_bbox": [
+    9793,
+    0,
+    13103,
+    2645
+   ],
+   "mask_region_ids": [
+    "s39_r0"
+   ],
+   "mask_sha256": "fbd1ee1b7ea8e9776a263499e19880e0894f09d29f448b099da4ba003678021a",
+   "seconds": 5.77,
+   "sheet": 39,
+   "source_file": "sanborn08539_004_img049_archival.jp2",
+   "source_sha256": "ed732111ccd0586a02829c236c38306550fa5b544c287c58d017e40a16a6a0ee",
+   "source_sha256_verified_against_inventory": true,
+   "strips_written": 2,
+   "transform_raw": {
+    "a": 1.002940362,
+    "b": -6.155e-05,
+    "tx": 2853.755472404,
+    "ty": -10809.91974738
+   },
+   "transform_sha256": "52499ac2ac38a69701238104925ad95f32fc8f9a44edd42ec6096802f4c69c9c",
+   "warp": {
+    "border": "white",
+    "compositing": "hard ownership, no blending, no exposure or colour changes",
+    "interpolation": "INTER_LANCZOS4",
+    "mask_interpolation": "INTER_NEAREST",
+    "resamples_from_archival": 1
+   }
+  },
+  {
+   "canvas_bbox": [
+    12855,
+    0,
+    13103,
+    2663
+   ],
+   "mask_region_ids": [
+    "s40_r0"
+   ],
+   "mask_sha256": "fc3c2f19463236a5e4d8793977ac110a5fe3ec53eb359e76abb6dd05c286f03f",
+   "seconds": 5.41,
+   "sheet": 40,
+   "source_file": "sanborn08539_004_img050_archival.jp2",
+   "source_sha256": "12a04ff5411de391d2a1941dd414e37ee68103da84c34cff1e7c4428a5b37b7f",
+   "source_sha256_verified_against_inventory": true,
+   "strips_written": 2,
+   "transform_raw": {
+    "a": 1.003570459,
+    "b": 0.001127461,
+    "tx": 8985.532715494,
+    "ty": -10786.438309684
+   },
+   "transform_sha256": "38ba77ab829b510c8661ebad2ae96126f5665056dfbf8322e1e5f9c96e63824c",
+   "warp": {
+    "border": "white",
+    "compositing": "hard ownership, no blending, no exposure or colour changes",
+    "interpolation": "INTER_LANCZOS4",
+    "mask_interpolation": "INTER_NEAREST",
+    "resamples_from_archival": 1
+   }
+  },
+  {
+   "canvas_bbox": [
+    9819,
+    2190,
+    13103,
+    6110
+   ],
+   "mask_region_ids": [
+    "s43_r0"
+   ],
+   "mask_sha256": "bcb06c70562657866ce1f1d6a46fece7b73219f4cdd2dad379814f4ff3cc80fd",
+   "seconds": 6.41,
+   "sheet": 43,
+   "source_file": "sanborn08539_004_img053_archival.jp2",
+   "source_sha256": "af7d25e4a6f44a9a9fc6e0c04a4a11b8c12ceb886c8e56b6a2657b6b8b0ecf7a",
+   "source_sha256_verified_against_inventory": true,
+   "strips_written": 3,
+   "transform_raw": {
+    "a": 1.002189193,
+    "b": 0.003624765,
+    "tx": 2933.12006709,
+    "ty": -3898.687579323
+   },
+   "transform_sha256": "4c9a4a44cee91e5219aae317b053faaf78bf1fcb158f3f8a10fef49e52db0743",
+   "warp": {
+    "border": "white",
+    "compositing": "hard ownership, no blending, no exposure or colour changes",
+    "interpolation": "INTER_LANCZOS4",
+    "mask_interpolation": "INTER_NEAREST",
+    "resamples_from_archival": 1
+   }
+  },
+  {
+   "canvas_bbox": [
+    12845,
+    2187,
+    13103,
+    6103
+   ],
+   "mask_region_ids": [
+    "s44_r0"
+   ],
+   "mask_sha256": "793bb3ec10e7915b0abdb7dc11be1e444bae4fe9be68369e1203c78aec900e42",
+   "seconds": 5.32,
+   "sheet": 44,
+   "source_file": "sanborn08539_004_img054_archival.jp2",
+   "source_sha256": "47621807b513de7e8809b9b547c2cd7ded1e3b09e4d861b723c1225e4d4ffea6",
+   "source_sha256_verified_against_inventory": true,
+   "strips_written": 3,
+   "transform_raw": {
+    "a": 1.003710254,
+    "b": 0.000482634,
+    "tx": 8961.118598066,
+    "ty": -3903.290654042
+   },
+   "transform_sha256": "b50b4ceb978548da208fb9de176de4073d6cf569c1442af311f45cb327712570",
+   "warp": {
+    "border": "white",
+    "compositing": "hard ownership, no blending, no exposure or colour changes",
+    "interpolation": "INTER_LANCZOS4",
+    "mask_interpolation": "INTER_NEAREST",
+    "resamples_from_archival": 1
+   }
+  },
+  {
+   "canvas_bbox": [
+    9783,
+    5671,
+    13103,
+    7245
+   ],
+   "mask_region_ids": [
+    "s49_r0"
+   ],
+   "mask_sha256": "70e52ebd17b8cd35191473ec46c1fc458709118a17bf2652d0b8afaf1474bf3a",
+   "seconds": 5.8,
+   "sheet": 49,
+   "source_file": "sanborn08539_004_img059_archival.jp2",
+   "source_sha256": "ce9382f5fdedea88527e7a4f38a3ce77c3c83f305b48ebb9366f84bf2151e55b",
+   "source_sha256_verified_against_inventory": true,
+   "strips_written": 2,
+   "transform_raw": {
+    "a": 1.004683861,
+    "b": 0.001143317,
+    "tx": 2840.921500078,
+    "ty": 3064.613601586
+   },
+   "transform_sha256": "c0271bf967a294b279a68b0f44377e7b3025277e960689ce907035b26a06b02a",
+   "warp": {
+    "border": "white",
+    "compositing": "hard ownership, no blending, no exposure or colour changes",
+    "interpolation": "INTER_LANCZOS4",
+    "mask_interpolation": "INTER_NEAREST",
+    "resamples_from_archival": 1
+   }
+  },
+  {
+   "canvas_bbox": [
+    12835,
+    5678,
+    13103,
+    7245
+   ],
+   "mask_region_ids": [
+    "s50_r0"
+   ],
+   "mask_sha256": "2c25abc2ef642bab22ca20fb46a13e9f3ddbc81b041d57f09daefa02aae70437",
+   "seconds": 5.02,
+   "sheet": 50,
+   "source_file": "sanborn08539_004_img060_archival.jp2",
+   "source_sha256": "51ff18dfbe0b22e404b80b4c630b8b95e33ab6df101af7b87ad349f71754fde2",
+   "source_sha256_verified_against_inventory": true,
+   "strips_written": 2,
+   "transform_raw": {
+    "a": 1.003234455,
+    "b": 0.004601279,
+    "tx": 8971.956572906,
+    "ty": 3077.035803186
+   },
+   "transform_sha256": "bec0a6ecbd4da86b249ac6254203fc44c7cc14909948f05a3d7ebe66176b974c",
+   "warp": {
+    "border": "white",
+    "compositing": "hard ownership, no blending, no exposure or colour changes",
+    "interpolation": "INTER_LANCZOS4",
+    "mask_interpolation": "INTER_NEAREST",
+    "resamples_from_archival": 1
+   }
+  }
+ ],
+ "status": "preview-not-final",
+ "total_seconds": 78.8
+}
