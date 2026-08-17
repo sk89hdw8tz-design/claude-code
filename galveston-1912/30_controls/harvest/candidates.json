@@ -1,0 +1,299 @@
+{
+ "note": "PROPOSALS ONLY - nothing enters the solve until verified on A/B panels",
+ "method": "morphological long-line extraction v3",
+ "strip_range": [
+  0.58,
+  0.88
+ ],
+ "pairs": [
+  {
+   "pair": [
+    7,
+    8
+   ],
+   "axis": "vertical",
+   "lines_detected": {
+    "A": 39,
+    "B": 0
+   },
+   "streets_detected": {
+    "A": 0,
+    "B": 0
+   },
+   "expected_interior": 2,
+   "candidates": []
+  },
+  {
+   "pair": [
+    9,
+    10
+   ],
+   "axis": "vertical",
+   "lines_detected": {
+    "A": 6,
+    "B": 9
+   },
+   "streets_detected": {
+    "A": 0,
+    "B": 0
+   },
+   "expected_interior": 2,
+   "candidates": []
+  },
+  {
+   "pair": [
+    11,
+    12
+   ],
+   "axis": "vertical",
+   "lines_detected": {
+    "A": 17,
+    "B": 4
+   },
+   "streets_detected": {
+    "A": 0,
+    "B": 0
+   },
+   "expected_interior": 2,
+   "candidates": []
+  },
+  {
+   "pair": [
+    8,
+    39
+   ],
+   "axis": "vertical",
+   "lines_detected": {
+    "A": 45,
+    "B": 9
+   },
+   "streets_detected": {
+    "A": 0,
+    "B": 0
+   },
+   "expected_interior": 2,
+   "candidates": []
+  },
+  {
+   "pair": [
+    10,
+    43
+   ],
+   "axis": "vertical",
+   "lines_detected": {
+    "A": 0,
+    "B": 7
+   },
+   "streets_detected": {
+    "A": 0,
+    "B": 0
+   },
+   "expected_interior": 2,
+   "candidates": []
+  },
+  {
+   "pair": [
+    12,
+    49
+   ],
+   "axis": "vertical",
+   "lines_detected": {
+    "A": 15,
+    "B": 8
+   },
+   "streets_detected": {
+    "A": 0,
+    "B": 0
+   },
+   "expected_interior": 2,
+   "candidates": []
+  },
+  {
+   "pair": [
+    39,
+    40
+   ],
+   "axis": "vertical",
+   "lines_detected": {
+    "A": 27,
+    "B": 13
+   },
+   "streets_detected": {
+    "A": 0,
+    "B": 0
+   },
+   "expected_interior": 2,
+   "candidates": []
+  },
+  {
+   "pair": [
+    43,
+    44
+   ],
+   "axis": "vertical",
+   "lines_detected": {
+    "A": 28,
+    "B": 8
+   },
+   "streets_detected": {
+    "A": 0,
+    "B": 0
+   },
+   "expected_interior": 2,
+   "candidates": []
+  },
+  {
+   "pair": [
+    49,
+    50
+   ],
+   "axis": "vertical",
+   "lines_detected": {
+    "A": 38,
+    "B": 11
+   },
+   "streets_detected": {
+    "A": 0,
+    "B": 0
+   },
+   "expected_interior": 2,
+   "candidates": []
+  },
+  {
+   "pair": [
+    7,
+    9
+   ],
+   "axis": "horizontal",
+   "lines_detected": {
+    "A": 10,
+    "B": 4
+   },
+   "streets_detected": {
+    "A": 0,
+    "B": 0
+   },
+   "expected_interior": 1,
+   "candidates": []
+  },
+  {
+   "pair": [
+    9,
+    11
+   ],
+   "axis": "horizontal",
+   "lines_detected": {
+    "A": 6,
+    "B": 5
+   },
+   "streets_detected": {
+    "A": 0,
+    "B": 0
+   },
+   "expected_interior": 1,
+   "candidates": []
+  },
+  {
+   "pair": [
+    8,
+    10
+   ],
+   "axis": "horizontal",
+   "lines_detected": {
+    "A": 2,
+    "B": 8
+   },
+   "streets_detected": {
+    "A": 0,
+    "B": 0
+   },
+   "expected_interior": 2,
+   "candidates": []
+  },
+  {
+   "pair": [
+    10,
+    12
+   ],
+   "axis": "horizontal",
+   "lines_detected": {
+    "A": 3,
+    "B": 5
+   },
+   "streets_detected": {
+    "A": 0,
+    "B": 0
+   },
+   "expected_interior": 2,
+   "candidates": []
+  },
+  {
+   "pair": [
+    39,
+    43
+   ],
+   "axis": "horizontal",
+   "lines_detected": {
+    "A": 10,
+    "B": 7
+   },
+   "streets_detected": {
+    "A": 0,
+    "B": 0
+   },
+   "expected_interior": 2,
+   "candidates": []
+  },
+  {
+   "pair": [
+    43,
+    49
+   ],
+   "axis": "horizontal",
+   "lines_detected": {
+    "A": 12,
+    "B": 13
+   },
+   "streets_detected": {
+    "A": 0,
+    "B": 0
+   },
+   "expected_interior": 2,
+   "candidates": []
+  },
+  {
+   "pair": [
+    40,
+    44
+   ],
+   "axis": "horizontal",
+   "lines_detected": {
+    "A": 17,
+    "B": 11
+   },
+   "streets_detected": {
+    "A": 0,
+    "B": 0
+   },
+   "expected_interior": 1,
+   "candidates": []
+  },
+  {
+   "pair": [
+    44,
+    50
+   ],
+   "axis": "horizontal",
+   "lines_detected": {
+    "A": 15,
+    "B": 3
+   },
+   "streets_detected": {
+    "A": 0,
+    "B": 0
+   },
+   "expected_interior": 1,
+   "candidates": []
+  }
+ ]
+}

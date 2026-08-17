@@ -3,6 +3,38 @@
 Recorded rather than deleted. Prior Galveston editions showed that the failures and
 tooling bugs are as valuable to the next edition as the successes.
 
+## F-004 — Automated seam-control harvesting: three variants, none trustworthy (2026-08-17)
+
+**Goal.** Propose, for each of the 17 pairs, the positions of the block-face lines
+flanking each crossing street/avenue near the seam — the along-seam control observables.
+
+**Variant 1: low-ink band detection in the seam strip.** Profiled the outermost 12% of
+the page. Failed asymmetrically (0 bands on most A-sides): that strip lies largely inside
+the blank shared street, so the profile's own statistics collapse — the threshold is
+computed from what is mostly emptiness.
+
+**Variant 2: same, but profiled inside the adjacent block strip (0.58–0.88), first with a
+mean-relative threshold, then quantile-based.** Better (6, then 8 of 17 pairs plausible)
+but unstable: dense CBD strips and sparse residential strips defeat any single relative
+threshold in opposite directions, and detection counts flapped between parameter choices.
+A detector whose results flap under small parameter changes is not measuring the plates.
+
+**Variant 3: morphological long-line extraction** (open with a long structuring element,
+after cross-axis dilation to bridge line wobble; then streets = line pairs a street-width
+apart with low ink between). Two failures found by direct diagnosis on the known-good
+7–8 pair: (a) the dashed **water-pipe lines drawn down the street centres** merge under
+dilation into long runs and are detected as "block-face lines" mid-street — the very
+symbols the brief excludes as control; (b) the between-lines ink check became meaningless
+because it was computed from the dilated, loose-threshold image (nearly everything reads
+as ink, values 0.95+ in genuine streets).
+
+**Conclusion.** On this material, fully automatic harvesting is the wrong tool: every
+variant produced confident, well-formed output whose errors were only caught by reading
+the plates. The brief's prescription — *manually verified or semi-manually verified
+controls* — is adopted as the workflow, not just a review step: automation generates
+annotated A/B seam panels and fine-ruled corner crops; a human reads and records every
+control coordinate. Scripts retained for the panel/ crop generation only.
+
 ## F-001 — Ink-coverage bbox detector reported total nonsense (2026-08-16)
 
 **What was tried.** Bound each plate's drawn content by thresholding the downsampled
