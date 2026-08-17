@@ -4,7 +4,7 @@
  "loc_item": "sanborn08539_004",
  "provenance": "Library of Congress Sanborn Maps Collection; public domain (published pre-1931)",
  "target_extent": "Avenue A (Water) to Avenue I (Sealy); 19th St to 25th St (Rosenberg Av); Piers 19-25",
- "sheet_count": 13,
+ "sheet_count": 14,
  "all_verified": true,
  "problems": [],
  "items": [
@@ -202,6 +202,22 @@
    "decoded_ok": true,
    "source_url": "https://tile.loc.gov/storage-services/service/gmd/gmd403m/g4034m/g4034gm/g4034gm_g085391912/08539_1912-0050.jp2",
    "downloaded_utc": "2026-08-16T23:55:39.226599+00:00"
+  },
+  {
+   "sheet": 13,
+   "loc_image_index": 23,
+   "file": "sanborn08539_004_img023_archival.jp2",
+   "path": "/home/user/g1912/data-branch/galveston_1912_sources/sanborn08539_004_img023_archival.jp2",
+   "bytes": 7035253,
+   "sha256": "ff3077ac643d8ed4fe98e36e74ceddf2a80d3a44e6134e0eee29d6249a9fea73",
+   "width": 6653,
+   "height": 7795,
+   "mode": "RGB",
+   "megapixels": 51.9,
+   "decoded_ok": true,
+   "role": "context-only: sheet 5-13 topology check; NOT a mosaic source",
+   "source_url": "LOC sanborn08539_004 image 23 via CI fetch",
+   "downloaded_utc": "2026-08-17"
   }
  ]
 }
