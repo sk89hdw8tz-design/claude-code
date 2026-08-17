@@ -14,6 +14,11 @@ Nothing enters the solve that was not read off the plates by eye.
    seam-street corner on both plates. Purpose: read the flanking block-face line
    positions to ±10 px or better.
 
+> **SCHEMA NOTE (2026-08-17):** the JSON example below is the original sketch and is
+> SUPERSEDED by the binding record schema in `MEASUREMENT_BRIEF.md` (`face1_seg`/
+> `face2_seg` segment endpoints, `boundary`, per-side `sigma_along_px`, `source_sha256`,
+> etc.). The solver consumes the brief's schema. Do not copy the example below verbatim.
+
 ## What is recorded per control
 
 One control = one crossing feature at one seam, observed on both plates.
