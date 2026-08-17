@@ -9,7 +9,7 @@
  "axis_convention": "raster pixels of archival scan, origin top-left, x right, y down; face1=north frontage, face2=south frontage",
  "controls": [
   {
-   "anchor": "25th St (Rosenberg)",
+   "anchor": "25th St (Rosenberg Ave)",
    "status": "ACCEPTED",
    "class": "observed",
    "why_not_one_block_off": "Band flanked by Mechanic even 2428 (N corner) and 2502/2504 (S corner) on sheet 11, odd 2427 (N corner) and 2501/2503 (S corner) on sheet 12 -- 24xx->25xx rollover occurs only across 25th St; the 120' drafted width (Rosenberg Ave) is unique among my anchors and appears on both plates.",
@@ -81,7 +81,7 @@
     "70_qa/control_evidence/pair11-12_25th_sheet12_S.jpg",
     "70_qa/control_evidence/pair11-12_25th_sheet12_ctx.jpg"
    ],
-   "notes": "Width disagreement 730 vs 708 px (~3.5 ft); recorded, not reconciled. 25th is drafted ~120 ft -- do not treat as an 80' street in the solve's constructed across-seam constraint.",
+   "notes": "Width disagreement 730 vs 708 px (~3.5 ft); recorded, not reconciled. 25th is drafted ~120 ft -- do not treat as an 80' street in the solve's constructed across-seam constraint. | Controller edit 2026-08-17: anchor NAME harmonized to '25th St (Rosenberg Ave)' to match 12-49/49-50 records (same drafted street); no coordinate touched.",
    "verified_by": "visual read of 1:1 ruled corner crops (<=450 px wide) cut by ctrl-V1; overview panels used for navigation only, never for coordinates",
    "remeasured_by": null,
    "remeasure_delta_px": null,

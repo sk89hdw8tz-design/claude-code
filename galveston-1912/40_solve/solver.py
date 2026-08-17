@@ -33,6 +33,31 @@ Observations (from ACCEPTED anchors in 30_controls/verified/pair_*.json):
    with u_across = (1,0) for vertical seams (A left of B), (0,1) for horizontal
    (A above B).  sigma_across = max(12 px, |drafted_width_px.A - .B| / 2).
 
+3. STRAIGHT-STREET COLLINEARITY (--collinearity, off by default): the through
+   streets crossing the seams are platted straight, so the face lines measured
+   for the same street on multiple sheets are segments of one drafted straight
+   line.  Streets are grouped exactly as in the collinearity DIAGNOSTIC (by
+   anchor name + seam axis); each street contributes TWO lines, one per face
+   -- faces are never mixed into one line.  Face membership is canonicalized
+   by the pass-1 mosaic perpendicular coordinate (low/high), immune to
+   face1/face2 labeling differences across control files.  Each used line adds
+   two unknowns (c, m) for
+       perp = c + m * (along - mean_along_of_line)
+   i.e. y = c + m*x for streets crossing vertical seams (near-horizontal face
+   lines in the mosaic) and x = c + m*y for streets crossing horizontal seams.
+   m stays a FREE per-line parameter: no street direction is assumed, only
+   straightness.  One row per face midpoint p measured on sheet i:
+       r = u_perp . T_i(p) - c - m * (along0 - mean_along)
+   where along0 is the point's approximate mosaic along-coordinate taken from
+   a FIRST-PASS solve without collinearity (two-stage solve: pass 1 = current
+   model, pass 2 adds the collinearity rows built from pass-1 coordinates;
+   the bilinear m * T_i(p) term is linearized at m = 0, along = along0).
+   sigma_perp = 6 px by default (drafting scatter; --collinearity-sigma).
+   Collinearity rows are data-class constraints and ARE Huber-subject.
+   Guard: a line whose points all come from a single sheet -- or with < 3
+   points, which its own 2 unknowns fit exactly -- contributes nothing and is
+   skipped with a log line.  Used lines are counted and reported.
+
 Robust fitting: weighted linear least squares + IRLS with Huber (delta = 2.5,
 in units of sigma), 10 iterations.  Every down-weighted observation is logged.
 
@@ -43,7 +68,8 @@ the Ave I kink check.
 
 Usage:
     /home/user/g1912/venv/bin/python solver.py [--controls DIR] [--out DIR]
-        [--loso] [--adjacency PATH]
+        [--loso] [--adjacency PATH] [--rot-prior-mrad MRAD]
+        [--collinearity] [--collinearity-sigma PX]
 """
 
 from __future__ import annotations
@@ -72,6 +98,7 @@ SIGMA_ALONG_FALLBACK_PX = 2.0                 # used only if a record omits sigm
 HUBER_DELTA = 2.5                             # in units of normalized residual
 IRLS_ITERATIONS = 10
 ROT_FLAG_MRAD = 1.5
+COLLIN_SIGMA_DEFAULT_PX = 6.0                 # face-line drafting scatter (perp)
 
 # Default drafted seam-street widths (ft); may be overridden per seam by
 # consistent drafted evidence in the control records (logged, never silent).
@@ -430,6 +457,73 @@ def load_controls(controls_dir, adjacency_info, log):
 
 
 # ----------------------------------------------------------------------------
+# Straight-street collinearity observations (pass 2)
+# ----------------------------------------------------------------------------
+
+def build_collinearity_obs(anchor_registry, ref_result, sigma_perp, log):
+    """Promote through-street face lines to observations.
+
+    Groups the anchor registry exactly like the collinearity diagnostic (by
+    anchor name + seam axis).  For each street with points on >= 2 sheets the
+    TWO face lines are built SEPARATELY (never mixed): face membership is
+    canonicalized by the PASS-1 mosaic perpendicular coordinate (low/high per
+    registry entry), so inconsistent face1/face2 labeling across control files
+    cannot mix faces.  Each returned point-observation carries the point's
+    pass-1 mosaic along-coordinate ('coord0') used to linearize the bilinear
+    m * T(p) term; m remains a free per-line unknown (no street direction
+    assumed, only straightness).  Fine-grained guards (single-sheet lines,
+    < 3 points) are applied inside solve_network so LOSO refits re-guard.
+    """
+    params = ref_result["params"]
+    groups = {}
+    n_off = 0
+    for rec in anchor_registry:
+        if rec["sheet"] not in params:
+            n_off += 1
+            continue
+        groups.setdefault((rec["anchor"], rec["axis"]), []).append(rec)
+    if n_off:
+        log.append(f"[collin] {n_off} registry points on unsolved sheets ignored")
+
+    obs = []
+    for (street, axis), recs in sorted(groups.items()):
+        sheets_on = sorted({r["sheet"] for r in recs})
+        if len(sheets_on) < 2:
+            log.append(f"[collin] street '{street}' ({axis} seams): all points "
+                       f"on single sheet {sheets_on[0]}; no line built")
+            continue
+        # streets crossing vertical seams run near-horizontally in the mosaic
+        # (face lines y ~ const): perp component = y, along = x.  Mirrored for
+        # horizontal seams.
+        perp = 1 if axis == "vertical" else 0
+        along = 1 - perp
+        u = np.zeros(2)
+        u[perp] = 1.0
+        n_face1_low = 0
+        for r in recs:
+            pms = (apply_T(params[r["sheet"]], r["mid1_q"]),
+                   apply_T(params[r["sheet"]], r["mid2_q"]))
+            order = (0, 1) if pms[0][perp] <= pms[1][perp] else (1, 0)
+            if order[0] == 0:
+                n_face1_low += 1
+            for face_label, k in zip(("low", "high"), order):
+                obs.append({
+                    "line_key": (street, axis, face_label),
+                    "street": street, "face": face_label, "axis": axis,
+                    "sheet": r["sheet"], "seam": r["seam"], "anchor": r["anchor"],
+                    "q": (r["mid1_q"], r["mid2_q"])[k], "u": u,
+                    "coord0": float(pms[k][along]),
+                    "sigma": float(sigma_perp),
+                })
+        if 0 < n_face1_low < len(recs):
+            log.append(f"[collin] street '{street}' ({axis}): face1/face2 "
+                       f"labeling inconsistent across files "
+                       f"({n_face1_low}/{len(recs)} entries have face1 low); "
+                       f"faces canonicalized by pass-1 perpendicular coordinate")
+    return obs
+
+
+# ----------------------------------------------------------------------------
 # Network solve
 # ----------------------------------------------------------------------------
 
@@ -450,11 +544,15 @@ def connected_sheets(observations):
     return seen
 
 
-def solve_network(observations, log=None, rot_prior_sigma=None):
+def solve_network(observations, log=None, rot_prior_sigma=None, collin=None):
     """Weighted linear LS + Huber IRLS.  Returns a result dict (or None if the
-    datum sheet is unconstrained)."""
+    datum sheet is unconstrained).  'collin' (optional) is the flat list of
+    straight-street point-observations from build_collinearity_obs; each used
+    face line appends two unknowns (c, m) after kappa, so sheet-parameter and
+    kappa indices are unchanged."""
     if log is None:
         log = []
+    collin = collin or []
 
     comp = connected_sheets(observations)
     usable = [o for o in observations if o["plus"] in comp and o["minus"] in comp]
@@ -472,14 +570,51 @@ def solve_network(observations, log=None, rot_prior_sigma=None):
 
     index = {s: 4 * i for i, s in enumerate(free_sheets)}
     kappa_idx = 4 * len(free_sheets)
-    n_params = kappa_idx + 1
+
+    # ---- collinearity lines: filter, group, guard ---------------------------
+    collin_in = [c for c in collin if c["sheet"] in comp]
+    if len(collin_in) != len(collin):
+        log.append(f"[collin] {len(collin) - len(collin_in)} collinearity "
+                   f"points on sheets disconnected from the datum; dropped")
+    line_groups = {}
+    for c in collin_in:
+        line_groups.setdefault(c["line_key"], []).append(c)
+    used_lines = []
+    for lk in sorted(line_groups):
+        pts = line_groups[lk]
+        sheets_on = sorted({p["sheet"] for p in pts})
+        if len(sheets_on) < 2:
+            log.append(f"[collin] line {lk[0]}/{lk[2]}: all {len(pts)} point(s) "
+                       f"from single sheet {sheets_on[0]}; contributes nothing, "
+                       f"skipped")
+            continue
+        if len(pts) < 3:
+            log.append(f"[collin] line {lk[0]}/{lk[2]}: only {len(pts)} points "
+                       f"for 2 line unknowns (no redundancy); skipped")
+            continue
+        used_lines.append(lk)
+    # line unknowns (c, m) appended AFTER kappa; along-coordinates are centered
+    # per line so the (c, m) columns stay well conditioned and c is the line's
+    # perp position at its mean along-coordinate.
+    line_index = {lk: kappa_idx + 1 + 2 * j for j, lk in enumerate(used_lines)}
+    line_center = {lk: float(np.mean([p["coord0"] for p in line_groups[lk]]))
+                   for lk in used_lines}
+    collin_rows = [p for lk in used_lines for p in line_groups[lk]]
+    if used_lines:
+        log.append(f"[collin] {len(used_lines)} straight-street face lines "
+                   f"promoted to observations: {len(collin_rows)} rows, "
+                   f"+{2 * len(used_lines)} line unknowns (c, m per line; "
+                   f"m free -- straightness only, no direction assumed)")
+
+    n_params = kappa_idx + 1 + 2 * len(used_lines)
     # Rotation priors (optional; rot_prior_sigma in RADIANS or None=off):
     # for the real plates, measured drafted-grid deviations from scan axes
     # are < 1.26 mrad on every sheet (20_plates/grid_orientation.json),
     # justifying b_i ~ 0 +- 2 mrad as a MEASURED-plate prior. Synthetic
     # tests use larger rotations and run with the prior off.
     n_rot_priors = len(free_sheets) if rot_prior_sigma else 0
-    m = len(usable) + 1 + n_rot_priors  # + kappa prior + rotation priors
+    n_data = len(usable) + len(collin_rows)  # Huber-subject rows
+    m = n_data + 1 + n_rot_priors  # + kappa prior + rotation priors
 
     # Design matrix (unweighted), rhs, per-row sigma
     J = np.zeros((m, n_params))
@@ -496,8 +631,20 @@ def solve_network(observations, log=None, rot_prior_sigma=None):
         if o["wft"]:
             J[i, kappa_idx] = -o["wft"]
         sigmas[i] = o["sigma"]
+    # collinearity rows: r = u_perp . T_i(q) - c - m * (along0 - line mean)
+    for j, p in enumerate(collin_rows):
+        i = len(usable) + j
+        u, q = p["u"], p["q"]
+        if p["sheet"] == DATUM_SHEET:
+            rhs[i] -= u[0] * q[0] + u[1] * q[1]
+        else:
+            J[i, index[p["sheet"]]:index[p["sheet"]] + 4] = row_coeffs(u, q)
+        li = line_index[p["line_key"]]
+        J[i, li] = -1.0
+        J[i, li + 1] = -(p["coord0"] - line_center[p["line_key"]])
+        sigmas[i] = p["sigma"]
     # kappa prior row (never Huber-downweighted: it is a prior, not a datum obs)
-    kappa_row = len(usable)
+    kappa_row = n_data
     J[kappa_row, kappa_idx] = 1.0
     rhs[kappa_row] = KAPPA_PRIOR
     sigmas[kappa_row] = KAPPA_PRIOR_SIGMA
@@ -516,14 +663,14 @@ def solve_network(observations, log=None, rot_prior_sigma=None):
         rn = (J @ x - rhs) * inv_sig            # normalized residuals
         wh = np.where(np.abs(rn) > HUBER_DELTA,
                       HUBER_DELTA / np.maximum(np.abs(rn), 1e-12), 1.0)
-        wh[len(usable):] = 1.0                   # priors exempt from Huber
+        wh[n_data:] = 1.0                        # priors exempt from Huber
 
     # Final residuals / weights (from the last solution)
     raw_res = J @ x - rhs
     rn = raw_res * inv_sig
     wh = np.where(np.abs(rn) > HUBER_DELTA,
                   HUBER_DELTA / np.maximum(np.abs(rn), 1e-12), 1.0)
-    wh[len(usable):] = 1.0
+    wh[n_data:] = 1.0
 
     # Covariance: (J^T W J)^-1 scaled by the robust variance factor
     sw = inv_sig * np.sqrt(wh)
@@ -579,6 +726,24 @@ def solve_network(observations, log=None, rot_prior_sigma=None):
         if wh[i] < 1.0:
             downweighted.append(rec)
 
+    # Collinearity-row report (data-class; Huber-subject like seam obs)
+    collin_report = []
+    for j, p in enumerate(collin_rows):
+        i = len(usable) + j
+        rec = {
+            "type": "collin", "seam": p["seam"], "anchor": p["anchor"],
+            "street": p["street"], "face": p["face"], "axis": p["axis"],
+            "sheet": p["sheet"],
+            "residual_px": float(raw_res[i]),
+            "sigma_px": float(sigmas[i]),
+            "weight": float(inv_sig[i] ** 2),
+            "huber_weight": float(wh[i]),
+            "normalized_residual": float(rn[i]),
+        }
+        collin_report.append(rec)
+        if wh[i] < 1.0:
+            downweighted.append(rec)
+
     # Marginals
     marginals = {}
     for s in solved_sheets:
@@ -616,6 +781,12 @@ def solve_network(observations, log=None, rot_prior_sigma=None):
         "s0_sq": s0_sq, "dof": dof, "rank": rank, "n_params": n_params,
         "obs_report": obs_report, "downweighted": downweighted,
         "usable_obs": usable, "log": log,
+        "collin_report": collin_report,
+        "collin_lines_used": len(used_lines),
+        "collin_used_line_keys": [list(lk) for lk in used_lines],
+        "collin_rms_px": (float(np.sqrt(np.mean(
+            [r["residual_px"] ** 2 for r in collin_report])))
+            if collin_report else None),
     }
 
 
@@ -673,9 +844,12 @@ def collinearity_check(anchor_registry, result):
     return out
 
 
-def leave_one_seam_out(observations, log=None, rot_prior_sigma=None):
+def leave_one_seam_out(observations, log=None, rot_prior_sigma=None, collin=None):
     """Refit without each seam; report prediction error of the left-out
-    ALONG-seam residuals under the refit parameters."""
+    ALONG-seam residuals under the refit parameters.  When collinearity is
+    enabled the refits keep the collinearity rows EXCEPT the points measured
+    on the held-out seam's control file (those are held-out data too); line
+    guards are re-applied per refit inside solve_network."""
     if log is None:
         log = []
     seams = sorted({o["seam"] for o in observations})
@@ -683,7 +857,8 @@ def leave_one_seam_out(observations, log=None, rot_prior_sigma=None):
     for seam in seams:
         keep = [o for o in observations if o["seam"] != seam]
         held = [o for o in observations if o["seam"] == seam and o["kind"] == "along"]
-        sub = solve_network(keep, log=[])
+        ckeep = [c for c in collin if c["seam"] != seam] if collin else None
+        sub = solve_network(keep, log=[], collin=ckeep)
         if sub is None:
             results.append({"seam": seam, "status": "refit impossible (network "
                             "collapses without this seam)"})
@@ -756,6 +931,14 @@ def _transforms_payload(result):
                       "it downstream",
         "sheets": sheets,
         "unsolved_sheets": result["unsolved_sheets"],
+        "collinearity": {
+            "enabled": bool(result.get("collinearity_enabled")),
+            "sigma_perp_px": result.get("collinearity_sigma_px"),
+            "n_face_lines_used": result.get("collin_lines_used", 0),
+            "note": "straight-street face-line constraints; m free per line "
+                    "(straightness only, no street direction assumed); "
+                    "linearized at pass-1 mosaic coordinates",
+        },
     }
 
 
@@ -764,6 +947,9 @@ def _covariance_payload(result):
     for s in result["free_sheets"]:
         order += [f"{s}.a", f"{s}.b", f"{s}.tx", f"{s}.ty"]
     order.append("kappa")
+    for lk in result.get("collin_used_line_keys", []):
+        street, _axis, face = lk
+        order += [f"line:{street}/{face}.c", f"line:{street}/{face}.m"]
     marg = {str(s): result["marginals"][s] for s in result["marginals"]}
     return {
         "parameter_order": order,
@@ -797,9 +983,22 @@ def write_diagnostics_md(path, result, seam_summaries, collin, loso, log):
     if result["unsolved_sheets"]:
         lines.append(f"- **Unsolved sheets (no path of observations to the datum):** "
                      f"{result['unsolved_sheets']}")
-    lines.append(f"- Observations used: {len(result['obs_report'])} "
-                 f"(+ kappa prior); parameters: {result['n_params']}; "
-                 f"rank {result['rank']}; dof {result['dof']}")
+    n_collin_rows = len(result.get("collin_report", []))
+    collin_note = (f" + {n_collin_rows} collinearity rows"
+                   if n_collin_rows else "")
+    lines.append(f"- Observations used: {len(result['obs_report'])} seam obs"
+                 f"{collin_note} (+ kappa prior); parameters: "
+                 f"{result['n_params']}; rank {result['rank']}; "
+                 f"dof {result['dof']}")
+    if result.get("collinearity_enabled"):
+        lines.append(f"- Straight-street collinearity ON: "
+                     f"{result['collin_lines_used']} face lines "
+                     f"(+{2 * result['collin_lines_used']} line unknowns c, m; "
+                     f"m free per line -- straightness only, no direction "
+                     f"assumed), sigma_perp = "
+                     f"{result.get('collinearity_sigma_px'):g} px, residual "
+                     f"RMS {result['collin_rms_px']:.2f} px; rows linearized "
+                     f"at pass-1 mosaic coordinates (two-stage solve)")
     lines.append(f"- Robust variance factor s0^2 = {result['s0_sq']:.3f}")
     lines.append(f"- Kappa posterior: {result['kappa']:.4f} +- "
                  f"{result['kappa_std']:.4f} px/ft (prior {KAPPA_PRIOR} +- "
@@ -870,12 +1069,53 @@ def write_diagnostics_md(path, result, seam_summaries, collin, loso, log):
                      f"before it is reassurance.")
     lines.append("")
 
+    if result.get("collinearity_enabled"):
+        lines.append("## Straight-street collinearity constraints (pass 2)\n")
+        lines.append("Each through-street face line measured on >= 2 sheets is "
+                     "one drafted straight line; faces are canonicalized "
+                     "low/high by pass-1 perpendicular coordinate and NEVER "
+                     "mixed. m is free per line (no direction assumed).")
+        by_line = {}
+        for r in result["collin_report"]:
+            by_line.setdefault((r["street"], r["axis"], r["face"]), []).append(r)
+        lines.append("| street | axis | face | points | sheets | RMS (px) "
+                     "| max abs (px) | downweighted |")
+        lines.append("|---|---|---|---|---|---|---|---|")
+        for k in sorted(by_line):
+            rows = by_line[k]
+            res = [r["residual_px"] for r in rows]
+            ndw = sum(1 for r in rows if r["huber_weight"] < 1.0)
+            lines.append(f"| {k[0]} | {k[1]} | {k[2]} | {len(rows)} "
+                         f"| {len({r['sheet'] for r in rows})} "
+                         f"| {_rms(res):.2f} | {max(abs(v) for v in res):.2f} "
+                         f"| {ndw} |")
+        lines.append(f"\nOverall collinearity residual RMS: "
+                     f"{result['collin_rms_px']:.2f} px "
+                     f"(sigma_perp {result.get('collinearity_sigma_px'):g} px).")
+        p1 = result.get("pass1_marginals")
+        if p1:
+            lines.append("\n### Rotation std, pass 1 (no collinearity) vs "
+                         "pass 2 (with collinearity)\n")
+            lines.append("| sheet | pass-1 theta std (mrad) "
+                         "| pass-2 theta std (mrad) | ratio |")
+            lines.append("|---|---|---|---|")
+            for s in sorted(result["marginals"]):
+                m1 = p1[s]["theta_std_mrad"]
+                m2 = result["marginals"][s]["theta_std_mrad"]
+                if p1[s].get("gauge"):
+                    lines.append(f"| {s} | (gauge) | (gauge) | - |")
+                else:
+                    ratio = m1 / m2 if m2 > 0 else float("inf")
+                    lines.append(f"| {s} | {m1:.3f} | {m2:.3f} | {ratio:.1f}x |")
+        lines.append("")
+
     lines.append("## Down-weighted observations (Huber, delta = "
                  f"{HUBER_DELTA} sigma)\n")
     if result["downweighted"]:
+        n_data_rows = len(result["obs_report"]) + len(result.get("collin_report", []))
         lines.append(f"{len(result['downweighted'])} of "
-                     f"{len(result['obs_report'])} observations down-weighted "
-                     f"(never dropped):")
+                     f"{n_data_rows} data rows (seam + collinearity) "
+                     f"down-weighted (never dropped):")
         lines.append("| seam | anchor | type | face | residual (px) | "
                      "norm. resid | huber w |")
         lines.append("|---|---|---|---|---|---|---|")
@@ -949,10 +1189,14 @@ def write_diagnostics_md(path, result, seam_summaries, collin, loso, log):
 # ----------------------------------------------------------------------------
 
 def run_solve(controls_dir, out_dir, adjacency_path, run_loso=False, rot_prior_sigma=None,
-              write_outputs=True):
+              write_outputs=True, collinearity=False,
+              collinearity_sigma=COLLIN_SIGMA_DEFAULT_PX):
     """Load controls, solve, run diagnostics, write outputs.
     Returns the result dict (with 'marginals', 'collinearity', 'loso', ...)
-    or None if nothing could be solved."""
+    or None if nothing could be solved.  With collinearity=True a two-stage
+    solve is run: pass 1 = current model (also provides the linearization
+    coordinates), pass 2 adds the straight-street collinearity rows; the
+    returned result is pass 2, with pass-1 marginals kept for comparison."""
     log = []
     adjacency_info = load_adjacency(adjacency_path)
     observations, anchor_registry, seam_summaries = load_controls(
@@ -973,11 +1217,32 @@ def run_solve(controls_dir, out_dir, adjacency_path, run_loso=False, rot_prior_s
             print(entry)
         return None
 
+    collin_obs = None
+    if collinearity:
+        pass1_marginals = result["marginals"]
+        log.append(f"[collin] two-stage solve: pass 1 done; building "
+                   f"collinearity rows from pass-1 mosaic coordinates "
+                   f"(sigma_perp = {collinearity_sigma:g} px)")
+        collin_obs = build_collinearity_obs(
+            anchor_registry, result, collinearity_sigma, log)
+        result2 = solve_network(observations, log=log,
+                                rot_prior_sigma=rot_prior_sigma,
+                                collin=collin_obs)
+        if result2 is None:
+            log.append("[collin] pass-2 solve failed; keeping pass-1 result")
+            collin_obs = None
+        else:
+            result2["pass1_marginals"] = pass1_marginals
+            result = result2
+
     collin = collinearity_check(anchor_registry, result)
-    loso = leave_one_seam_out(result["usable_obs"], log=log) if run_loso else None
+    loso = leave_one_seam_out(result["usable_obs"], log=log,
+                              collin=collin_obs) if run_loso else None
     result["collinearity"] = collin
     result["loso"] = loso
     result["seam_summaries"] = seam_summaries
+    result["collinearity_enabled"] = bool(collinearity and collin_obs is not None)
+    result["collinearity_sigma_px"] = float(collinearity_sigma)
 
     if write_outputs:
         os.makedirs(out_dir, exist_ok=True)
@@ -985,6 +1250,7 @@ def run_solve(controls_dir, out_dir, adjacency_path, run_loso=False, rot_prior_s
             json.dump(_transforms_payload(result), fh, indent=1)
         with open(os.path.join(out_dir, "residuals.json"), "w") as fh:
             json.dump({"observations": result["obs_report"],
+                       "collinearity_observations": result.get("collin_report", []),
                        "downweighted_count": len(result["downweighted"])},
                       fh, indent=1)
         with open(os.path.join(out_dir, "covariance.json"), "w") as fh:
@@ -1008,11 +1274,20 @@ def main(argv=None):
                          "measured drafted-grid deviations); default off")
     ap.add_argument("--loso", action="store_true",
                     help="run leave-one-seam-out diagnostic")
+    ap.add_argument("--collinearity", action="store_true",
+                    help="add straight-street face-line collinearity "
+                         "constraints (two-stage solve; off by default)")
+    ap.add_argument("--collinearity-sigma", type=float,
+                    default=COLLIN_SIGMA_DEFAULT_PX,
+                    help="perpendicular sigma for collinearity rows, px "
+                         f"(drafting scatter; default "
+                         f"{COLLIN_SIGMA_DEFAULT_PX:g})")
     args = ap.parse_args(argv)
 
     rp = args.rot_prior_mrad / 1000.0 if args.rot_prior_mrad else None
     result = run_solve(args.controls, args.out, args.adjacency, rot_prior_sigma=rp,
-                       run_loso=args.loso)
+                       run_loso=args.loso, collinearity=args.collinearity,
+                       collinearity_sigma=args.collinearity_sigma)
     if result is None:
         print("No solve produced (see diagnostics.md).")
         return 1
@@ -1021,6 +1296,11 @@ def main(argv=None):
           f"kappa = {result['kappa']:.4f} +- {result['kappa_std']:.4f} px/ft; "
           f"s0^2 = {result['s0_sq']:.3f}; "
           f"{len(result['downweighted'])} obs down-weighted.")
+    if result.get("collinearity_enabled"):
+        print(f"Collinearity: {result['collin_lines_used']} face lines "
+              f"({len(result['collin_report'])} rows, sigma_perp "
+              f"{result['collinearity_sigma_px']:g} px), residual RMS "
+              f"{result['collin_rms_px']:.2f} px.")
     flagged = [s for s, m in result["marginals"].items()
                if m.get("flag_rotation")]
     if flagged:

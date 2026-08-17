@@ -16,7 +16,15 @@ solver, and asserts:
   3. leave-one-seam-out degrades gracefully (all 17 seams refittable,
      finite and bounded prediction errors);
   4. the solver tolerates missing seam files (partial data): sheet 40
-     disconnected -> reported unsolved, the rest still recovered.
+     disconnected -> reported unsolved, the rest still recovered;
+  5. straight-street collinearity constraints (--collinearity equivalent)
+     shrink every free sheet's rotation std, by >= 2x at the median, while
+     parameter recovery stays within 3-sigma and LOSO stays intact.  The
+     generator derives every sheet's face positions from SHARED GLOBAL street
+     lines (one centerline per through street, constant face offset), so the
+     same street's faces are EXACTLY collinear across sheets in mosaic truth
+     -- the constraint's premise holds by construction; only measurement
+     noise perturbs the points.
 
 Prints PASS/FAIL lines; exit code 0 iff all pass.
 
@@ -135,6 +143,18 @@ def gen_dataset(dirpath, rng, weak_seams=None, drop_seams=None):
     truth = make_truth(rng)
     os.makedirs(dirpath, exist_ok=True)
 
+    # GLOBAL street lines (mosaic truth).  Each through street has ONE shared
+    # centerline; every seam/sheet derives its face positions from it with the
+    # constant FACE_OFF offset, so the same street's faces are EXACTLY
+    # collinear across sheets (the straight-street constraint's premise is
+    # exact by construction; only measurement noise perturbs points).
+    street_y = {name: (r - 2) * DY + off
+                for r, names in ROW_STREETS.items()
+                for name, off in zip(names, (-1600.0, 1600.0))}
+    ave_x = {name: (c - 2) * DX + off
+             for c, names in COL_AVES.items()
+             for name, off in zip(names, (-1500.0, 1500.0))}
+
     for A, B, c, r in VSEAMS:
         key = f"{A}-{B}"
         if key in drop_seams:
@@ -143,9 +163,8 @@ def gen_dataset(dirpath, rng, weak_seams=None, drop_seams=None):
         sx = (c - 2) * DX + 3000.0
         halfw = w_ft * KAPPA_TRUE / 2.0
         controls = []
-        names = ROW_STREETS[r]
-        ys_list = [(r - 2) * DY - 1600.0, (r - 2) * DY + 1600.0]
-        for name, ys in zip(names, ys_list):
+        for name in ROW_STREETS[r]:
+            ys = street_y[name]          # shared global centerline
             d = rng.normal(0.0, DRAFT_ACROSS_SIGMA)
             cornerA = sx - halfw - d / 2.0
             cornerB = sx + halfw + d / 2.0
@@ -174,9 +193,8 @@ def gen_dataset(dirpath, rng, weak_seams=None, drop_seams=None):
         sy = (r - 2) * DY + 3500.0
         halfw = w_ft * KAPPA_TRUE / 2.0
         controls = []
-        names = COL_AVES[c]
-        xs_list = [(c - 2) * DX - 1500.0, (c - 2) * DX + 1500.0]
-        for name, xa in zip(names, xs_list):
+        for name in COL_AVES[c]:
+            xa = ave_x[name]             # shared global centerline
             d = rng.normal(0.0, DRAFT_ACROSS_SIGMA)
             cornerA = sy - halfw - d / 2.0
             cornerB = sy + halfw + d / 2.0
@@ -343,6 +361,62 @@ def main():
         check_recovery(res, part_truth, solved, "partial")
     report("partial data: missing seam files tolerated, disconnected sheet "
            "reported, remainder recovered", t4)
+
+    # ---- Test 5: straight-street collinearity constraints ------------------
+    def t5():
+        # sigma_perp = 2.0 px here, matched to the synthetic scatter: the
+        # generator's face lines are EXACTLY straight (zero drafting scatter),
+        # so only endpoint measurement noise (~1-1.4 px at midpoints) remains.
+        # The real-data default (6 px) budgets for real drafting scatter.
+        out_dir_c = os.path.join(tmp, "out_collin")
+        res_c = solver.run_solve(full_dir, out_dir_c, ADJACENCY, run_loso=True,
+                                 write_outputs=True, collinearity=True,
+                                 collinearity_sigma=2.0)
+        assert res_c is not None and res_c["collinearity_enabled"]
+        # 6 numbered streets (3 seams x 2 sheets or 2 seams: >= 4 points) and
+        # 8 avenues (2 seams, 4 points), two faces each -> 28 lines, 136 rows
+        assert res_c["collin_lines_used"] == 28, \
+            f"expected 28 face lines, got {res_c['collin_lines_used']}"
+        assert len(res_c["collin_report"]) == 136, \
+            f"expected 136 collinearity rows, got {len(res_c['collin_report'])}"
+        assert res_c["collin_rms_px"] < 3 * 2.0, \
+            f"collinearity residual RMS {res_c['collin_rms_px']:.2f} px implausible"
+        # rotation determinability: std shrinks on EVERY free sheet, and by
+        # at least 2x at the median across the network
+        ratios = []
+        for s in solver.SHEETS:
+            if s == solver.DATUM_SHEET:
+                continue
+            r0 = full_result["marginals"][s]["theta_std_mrad"]
+            r1 = res_c["marginals"][s]["theta_std_mrad"]
+            assert r1 < r0, \
+                f"sheet {s}: rotation std did not shrink ({r1:.3f} vs {r0:.3f} mrad)"
+            ratios.append(r0 / r1)
+        med = float(np.median(ratios))
+        assert med >= 2.0, \
+            f"median rotation-std improvement {med:.2f}x < required 2x"
+        # parameter recovery still within 3x the (now tighter) marginals
+        check_recovery(res_c, full_truth, solver.SHEETS, "collin")
+        assert 0.1 < res_c["s0_sq"] < 3.0, \
+            f"variance factor implausible with collinearity: {res_c['s0_sq']:.3f}"
+        # LOSO carries the collinearity rows (minus the held seam's points)
+        assert res_c["loso"] is not None and len(res_c["loso"]) == 17
+        for r in res_c["loso"]:
+            assert r["status"] == "ok", f"seam {r['seam']}: {r['status']}"
+            assert r["pred_rms_px"] < 40.0, \
+                f"seam {r['seam']} LOSO pred RMS {r['pred_rms_px']:.1f} px"
+        # outputs parseable; 2 unknowns per line appended after kappa
+        with open(os.path.join(out_dir_c, "covariance.json")) as fh:
+            cov = json.load(fh)
+        n_line_params = sum(1 for p in cov["parameter_order"]
+                            if p.startswith("line:"))
+        assert n_line_params == 2 * res_c["collin_lines_used"]
+        assert cov["n_params"] == 45 + n_line_params
+        with open(os.path.join(out_dir_c, "residuals.json")) as fh:
+            resid = json.load(fh)
+        assert len(resid["collinearity_observations"]) == 136
+    report("straight-street collinearity: rotation stds shrink on every sheet "
+           "(>= 2x median), recovery within 3-sigma, LOSO intact", t5)
 
     print(f"\n{passed} passed, {failed} failed  "
           f"({'ALL PASS' if failed == 0 else 'FAILURES PRESENT'})")

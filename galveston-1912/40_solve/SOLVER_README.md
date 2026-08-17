@@ -61,11 +61,28 @@ on any partial subset of seams, including a single file.
 ## Usage
 
     /home/user/g1912/venv/bin/python solver.py [--controls DIR] [--out DIR]
-        [--adjacency PATH] [--loso]
+        [--adjacency PATH] [--loso] [--rot-prior-mrad MRAD]
+        [--collinearity] [--collinearity-sigma PX]
 
 Defaults: controls `30_controls/verified/`, output `40_solve/output/`,
 adjacency `10_key/adjacency.json`. `--loso` runs leave-one-seam-out (refit
 without each seam; prediction error of the held-out along-seam residuals).
+
+`--collinearity` (off by default) promotes the through-street face lines to
+observations via a **two-stage solve**: pass 1 is the current model; pass 2
+adds, for each street measured on ≥ 2 sheets, one straight line PER FACE
+(faces never mixed; membership canonicalized low/high by the pass-1 mosaic
+perpendicular coordinate, immune to face1/face2 labeling differences across
+files). Each used line adds two unknowns `(c, m)` for
+`perp = c + m·(along − mean_along)` — `m` stays a free per-line parameter, so
+no street direction is assumed, only straightness. One row per face midpoint,
+linearized at the point's pass-1 mosaic along-coordinate;
+`sigma_perp = 6 px` by default (`--collinearity-sigma`, drafting scatter).
+Collinearity rows are data-class and Huber-subject. Lines with all points on
+one sheet, or with < 3 points (their own 2 unknowns fit them exactly),
+contribute nothing and are skipped with a log line; the used-line count is
+reported. LOSO refits keep the collinearity rows minus the held-out seam's
+points.
 
 ## Outputs (`40_solve/output/`)
 
@@ -110,4 +127,8 @@ at the stated sigmas (plus an 8 px across-seam drafting scatter, below the
 rotation-covariance flag fires when corner sheet 40 is weakened (half its
 observations dropped) while interior sheet 43 stays unflagged; LOSO refits all
 17 seams with bounded prediction error; missing seam files are tolerated with
-the disconnected sheet reported. Prints PASS/FAIL lines; exit 0 iff all pass.
+the disconnected sheet reported; straight-street collinearity constraints
+(the generator's face lines are exactly collinear across sheets by
+construction — shared global centerlines) shrink every free sheet's rotation
+std, ≥ 2× at the median, with recovery still within 3σ and LOSO intact.
+Prints PASS/FAIL lines; exit 0 iff all pass.
