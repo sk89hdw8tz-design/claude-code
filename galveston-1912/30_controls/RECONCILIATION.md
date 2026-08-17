@@ -33,3 +33,15 @@ with H2 adding the annotation split BETWEEN plates (sheet 44 prints 100' at its 
 corner but 150' at its 21st corner). Across-seam construction for Broadway uses the
 drafted ~603 px separation, never the 150' annotation. Real plate disagreement kept:
 43-49 Ave G width 426 vs 416 px (survived blind remeasure on both sides).
+
+## Batch ctrl-H1 vs Fable set (2026-08-17)
+Seam 7-9 (both measured; Fable id "07-09"): deltas 0.2-3.9 px on all faces of both
+anchors - corroborated, no bias, not averaged. Both observers independently flagged the
+same drafting scatter (+42..+67 px between anchors) and both avoided the documented
+alley trap via address runs. Genuine plate disagreements carried into the record:
+Strand drafted 16 px narrower on sheet 7 than sheet 9; sheet 10 draws both Market and
+Post Office ~412 px (consistent narrow tendency); sheet 11 has no west block face at
+Ave A (open wharf rail land) so that anchor is single-shared-face.
+FINAL STATE: all 17 block seams measured (34 anchors, all ACCEPTED); 6 seams doubly
+measured and reconciled (5 corroborated, 1 superseded on diagnosed bias); 11 seams
+sole-source with printed-evidence disambiguation and blind remeasure checks.

@@ -1,0 +1,84 @@
+{
+ "pair": [10, 12],
+ "axis": "horizontal",
+ "boundary": "24th St",
+ "observer": "ctrl-H1",
+ "axis_convention": "raster pixels of the archival scan, origin top-left, x right, y down",
+ "method": "anchors identified by eye on own 1:1/2x tick-ruled crops; final line centers refined by column-ink profile inside eye-designated windows spanning only the read segment; identity and acceptance decided by eye from printed address runs and labels",
+ "controls": [
+  {
+   "anchor": "Ave D (Market)",
+   "status": "ACCEPTED",
+   "class": "observed",
+   "why_not_one_block_off": "The 24th St 300/400-block transition happens across this avenue: printed runs '324' west and '402' east on sheet 10; '323' west and '401' east on sheet 12. Ave E one block east shows the 424/502-423/501 transition. The avenue carries its 2300-block (2325-2328) on sheet 10 and 2400-block (2401-2408) on sheet 12, the 23rd-24th and 24th-25th segments of Market.",
+   "anchor_evidence": "Sheet 10: 'S. 2' rows west with avenue gallery addresses 2326/2328 and 24th address 324; 'GIRARDIN' block east with gallery addresses 2325/2327 and 24th address 402; printed 70'; 8-inch pipe hatches attach at both faces (excluded). Sheet 12: '323'/'Sal.' (Trent Hotel) block west with gallery addresses 2402/2404/2406/2408 and 12-inch pipe hatch; '401' (Manhattan Hotel) block east with gallery addresses 2401/2403; printed 70'.",
+   "A": {
+    "sheet": 10,
+    "face1_seg": [[2215.9, 6900], [2215.9, 7135]],
+    "face1_sigma_px": 4.5,
+    "face1_sigma_basis": "doubled facade rule (ink centers 2211.4/2220.4); pair center, sigma = half separation; gallery dashed edge ~2290 excluded",
+    "face2_seg": [[2628.2, 6900], [2628.2, 7135]],
+    "face2_sigma_px": 4.3,
+    "face2_sigma_basis": "doubled facade rule (ink centers 2623.9/2632.5); pair center, sigma = half separation; gallery dashed edge ~2530 excluded",
+    "measured_at": "last ~235 px of the principal solid facades north of the 24th St block face (corners y~7135-7150)",
+    "source_sha256": "29ee9408cb043ec973b8d8d7bb3a542f40258142440eee182caf6eace04acd95"
+   },
+   "B": {
+    "sheet": 12,
+    "face1_seg": [[2183.8, 560], [2183.8, 1050]],
+    "face1_sigma_px": 2.5,
+    "face1_sigma_basis": "single clean rule, ink run 2182-2186 (w5); sigma = half line width; gallery dashed edge ~2270 excluded",
+    "face2_seg": [[2609.4, 560], [2609.4, 1050]],
+    "face2_sigma_px": 2.0,
+    "face2_sigma_basis": "single clean rule, ink run 2608-2611 (w4); sigma = half line width; gallery dashed edge ~2510 excluded",
+    "measured_at": "first ~490 px of the principal solid facades south of the 24th St frontage (corners y~545-560)",
+    "source_sha256": "d2ab9e8aa706bfc1bd41732dbc85f3a23d8097732f92ebc13852276f7843a82f"
+   },
+   "drafted_width_px": {"A": 412.3, "B": 425.6, "annotation": "70' printed mid-avenue on both plates; sheet 10 draws 68.7 ft equivalent, sheet 12 draws 70.9 ft equivalent"},
+   "remeasured_by": "ctrl-H1 second pass: profile-assisted re-read of tick-relative eye readings",
+   "remeasure_delta_px": {"A_face1": 0.9, "A_face2": 3.2, "B_face1": 3.8, "B_face2": 9.4},
+   "evidence_crops": [
+    "70_qa/control_evidence/pair10-12_aveD_sheet10.jpg",
+    "70_qa/control_evidence/pair10-12_aveD_sheet12.jpg"
+   ],
+   "notes": "PLATE DISAGREEMENT, recorded not reconciled: drafted Market width 412.3 px (sheet 10) vs 425.6 px (sheet 12), 13.3 px (~2.2 ft, ~1.9 sigma combined); cross-plate x-shift differs between flanks (-32.1 west vs -18.8 east). Sheet 10 also draws Ave E at 412 px (see other control), suggesting a slightly-narrow per-sheet drafting tendency rather than misidentification; identity is pinned by the address runs."
+  },
+  {
+   "anchor": "Ave E (Post Office)",
+   "status": "ACCEPTED",
+   "class": "observed",
+   "why_not_one_block_off": "The 24th St 400/500-block transition happens across this avenue: printed runs '424' west and '502 504' east on sheet 10; '421 423' west and '501 503' east on sheet 12. Ave D one block west shows the 324/402-323/401 transition instead. The avenue carries 2325-2328 (sheet 10, 23rd-24th segment) and 2401-2410 (sheet 12, 24th-25th segment).",
+   "anchor_evidence": "Sheet 10: '2/32-ft' pink block west with street-printed avenue addresses 2326/2328 and 24th address 424; 'LIVERY' stable east with gallery addresses 2325/2327 and 24th runs 502/504; printed 70'. Sheet 12: frame corner group '421 423' west (2-story 'S.' dwelling with veranda, avenue addresses 2402-2410); '501 503' corner group east (1-story 'S.' with gallery, avenue addresses 2401-2409, 8-inch pipe symbols); printed 70'. Residential-fringe corners: lighter drafting than the CBD anchors.",
+   "A": {
+    "sheet": 10,
+    "face1_seg": [[4223.1, 6900], [4223.1, 7135]],
+    "face1_sigma_px": 4.1,
+    "face1_sigma_basis": "doubled facade rule (ink centers 4219.0/4227.1); pair center, sigma = half separation",
+    "face2_seg": [[4635.3, 6850], [4635.3, 7130]],
+    "face2_sigma_px": 3.3,
+    "face2_sigma_basis": "doubled facade rule (ink centers 4632.0/4638.6); pair center, sigma = half separation; gallery dashed edge at 4546.5 identified and excluded",
+    "measured_at": "last ~235-280 px of the principal solid faces north of the 24th St block face (corners y~7130-7150)",
+    "source_sha256": "29ee9408cb043ec973b8d8d7bb3a542f40258142440eee182caf6eace04acd95"
+   },
+   "B": {
+    "sheet": 12,
+    "face1_seg": [[4206.1, 560], [4206.1, 795]],
+    "face1_sigma_px": 2.5,
+    "face1_sigma_basis": "single clean rule, ink run 4204-4208 (w5, east wall of the 2-story frame 'S.' at the corner); sigma = half line width; veranda dashed edge ~4340 excluded",
+    "face2_seg": [[4627.0, 555], [4627.0, 745]],
+    "face2_sigma_px": 4.0,
+    "face2_sigma_basis": "doubled wall rule (ink centers 4623.0/4630.9); pair center, sigma = half separation; wall exists only y~555-745 (building corner), open yard south of it - no continuous face line below; gallery dashed edge at 4537.1 excluded",
+    "measured_at": "first ~190-235 px of the corner buildings' avenue walls south of the 24th St frontage (corners y~545-560); sheet 12 east face readable only over the 190 px of the corner building",
+    "source_sha256": "d2ab9e8aa706bfc1bd41732dbc85f3a23d8097732f92ebc13852276f7843a82f"
+   },
+   "drafted_width_px": {"A": 412.2, "B": 420.9, "annotation": "70' printed mid-avenue on both plates; 412.2/420.9 px = 68.7/70.2 ft equivalent, disagreement 8.7 px"},
+   "remeasured_by": "ctrl-H1 second pass: profile-assisted re-read of tick-relative eye readings",
+   "remeasure_delta_px": {"A_face1": 51.1, "A_face2": 105.3, "B_face1": 39.9, "B_face2": 5.0},
+   "evidence_crops": [
+    "70_qa/control_evidence/pair10-12_aveE_sheet10.jpg",
+    "70_qa/control_evidence/pair10-12_aveE_sheet12.jpg"
+   ],
+   "notes": "The large remeasure deltas record first-pass display-parallax eye estimates (worst: sheet 10 east face first placed at the gallery dashed edge region ~4530); escalation diagnosis: rendering parallax plus one gallery-edge/facade confusion, both resolved by profile-confirmed tick-relative reads re-verified on the annotated evidence crops; width and shift checks close (see below). Cross-plate x-shifts: -17.0 (west) and -8.3 (east); with Ave D's -32.1/-18.8 this pair shows the largest internal shift spread of my four seams (24 px), consistent with looser residential drafting on sheet 12 and sheet 10's narrow tendency; recorded for the solve, not reconciled."
+  }
+ ]
+}

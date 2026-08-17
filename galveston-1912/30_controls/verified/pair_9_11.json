@@ -1,0 +1,84 @@
+{
+ "pair": [9, 11],
+ "axis": "horizontal",
+ "boundary": "24th St",
+ "observer": "ctrl-H1",
+ "axis_convention": "raster pixels of the archival scan, origin top-left, x right, y down",
+ "method": "anchors identified by eye on own 1:1/2x tick-ruled crops; final line centers refined by column-ink profile inside eye-designated windows spanning only the read segment; identity and acceptance decided by eye from printed address runs and labels",
+ "controls": [
+  {
+   "anchor": "Ave A (Water)",
+   "status": "ACCEPTED",
+   "class": "observed",
+   "why_not_one_block_off": "The 24th St 100-block starts at this avenue: printed runs '102 104 106' immediately east on sheet 9 and '101 103 105' east on sheet 11, with the wharf-side 0-block ('...20 22 24' / floating '21 23') west; the avenue segment carries the 2300-block (2321-2327) on sheet 9 and the 2400-block (2401-2407) on sheet 11, i.e. the 23rd-24th and 24th-25th segments of Ave A. Ave B one block east shows the 124/123 to 202/201 transition instead.",
+   "anchor_evidence": "Sheet 9: 'HAY & FEED / ALFALFA MEAL MILL' block east of avenue with gallery addresses 2321/2323/2325/2327; 24th St run 102/104/106; printed 70'; wharf block east face west of avenue. Sheet 11: 'Wholesale Gro's' 4-story block east with street-printed avenue run 2401/2403/2405/2407 and 24th St run 101/103/105; west of the avenue is open Galveston Wharf Co. rail land - addresses '21 23' print over tracks with no drawn block face. Railroad tracks drawn along the avenue on both plates (excluded).",
+   "A": {
+    "sheet": 9,
+    "face1_seg": [[2130.6, 6900], [2130.6, 7110]],
+    "face1_sigma_px": 2.0,
+    "face1_sigma_basis": "single clean rule, ink run 2129-2132 (w4); sigma = half line width",
+    "face2_seg": [[2553.0, 6950], [2553.0, 7115]],
+    "face2_sigma_px": 4.5,
+    "face2_sigma_basis": "doubled wall rule (ink centers 2548.5/2557.5); pair center, sigma = half separation; gallery west of it (dash-dot edge ~2464) excluded",
+    "measured_at": "last ~165-210 px of each face north of the 24th St block face (block corner y~7115-7125), at the Ave A x 24th NW and NE corners",
+    "source_sha256": "224dc450319645549d20110ca62813b8519ad60b997067623aae8647a1451249"
+   },
+   "B": {
+    "sheet": 11,
+    "face1_seg": null,
+    "face1_sigma_px": null,
+    "face1_sigma_basis": "NO DRAWN FACE: west of Ave A on sheet 11 is open wharf/rail land (diagonal and vertical track lines only); no block-face line exists to read",
+    "face2_seg": [[2478.0, 600], [2478.0, 990]],
+    "face2_sigma_px": 5.0,
+    "face2_sigma_basis": "doubled facade rule (ink centers 2472.9/2483.1); pair center, sigma = half separation; street rules at 2339/2387/2415 (curb/track) identified and excluded",
+    "measured_at": "first ~390 px of the east face south of the 24th St frontage (corner y~595), at the Ave A x 24th SE corner",
+    "source_sha256": "e7b2ff1b6b70c5d7124a4879e5feca478d95681224d97b88855de7bade1591df"
+   },
+   "drafted_width_px": {"A": 422.4, "B": null, "annotation": "70' printed mid-avenue on sheet 9 (422.4 px = 70.4 ft equivalent); width not constructible on sheet 11 (west face not drawn), so the built-in width sanity check applies on the sheet 9 side only"},
+   "remeasured_by": "ctrl-H1 second pass: profile-assisted re-read of tick-relative 2x eye readings",
+   "remeasure_delta_px": {"A_face2": 1.0, "B_face2": 2.0},
+   "evidence_crops": [
+    "70_qa/control_evidence/pair9-11_aveA_sheet9.jpg",
+    "70_qa/control_evidence/pair9-11_aveA_sheet11.jpg"
+   ],
+   "notes": "Single-shared-face control: only the east flanking face is drawn on both plates; sheet 9's west face is recorded for the width check but has no sheet 11 counterpart. Identity remains multiply pinned by address runs on both plates. An early profile window that included rows below the sheet 9 block corner diluted the wall and missed it - re-windowed to the actual segment span before recording."
+  },
+  {
+   "anchor": "Ave B (Strand)",
+   "status": "ACCEPTED",
+   "class": "observed",
+   "why_not_one_block_off": "The 24th St 100/200-block transition happens across this avenue: printed runs '124' west and '202 204' east on sheet 9; '123' west and '201 203 205' east on sheet 11; sheet 11 additionally prints the street name 'STRAND' vertically in this street space. The 20' mid-block alley near x~5350 (sheet 9) / x~5420 (sheet 11) splits 212|214 / 211|213 inside the 200 block and was checked and not selected.",
+   "anchor_evidence": "Sheet 9: brown fire-proof (Bank) block west with wall-mounted 12\" pipe hatch and avenue labels 2323/2326/2328; 'HARDWARE' + 'CARP'R SHOP' east with avenue labels 2325/2327 and 24th St run 202; 24th St '124' west; printed 80'. Sheet 11: '123' 3-story block west with gallery addresses 2402/2404/2406/2408; 'Whol. Liquors' east with gallery addresses 2401-2409 and 24th St run 201/203/205; 'STRAND' printed vertically in street; printed 80'.",
+   "A": {
+    "sheet": 9,
+    "face1_seg": [[4153.5, 6900], [4153.5, 7125]],
+    "face1_sigma_px": 3.9,
+    "face1_sigma_basis": "doubled wall rule (ink centers 4149.6/4157.4); pair center, sigma = half separation",
+    "face2_seg": [[4630.8, 6995], [4630.8, 7115]],
+    "face2_sigma_px": 4.4,
+    "face2_sigma_basis": "doubled wall rule of the corner CARP'R SHOP (ink centers 4626.4/4635.1); pair center, sigma = half separation; the HARDWARE block face north of y~6990 profiles at 4632.0 (collinear within 1.2 px); a projecting frame loading shed (yellow, to ~4612) juts into the street north of the corner and was excluded",
+    "measured_at": "last ~120-225 px of each face north of the 24th St block face (corner y~7115-7125), at the Ave B x 24th NW and NE corners",
+    "source_sha256": "224dc450319645549d20110ca62813b8519ad60b997067623aae8647a1451249"
+   },
+   "B": {
+    "sheet": 11,
+    "face1_seg": [[4075.2, 575], [4075.2, 1050]],
+    "face1_sigma_px": 5.0,
+    "face1_sigma_basis": "doubled facade rule (ink centers 4070.2/4080.1); pair center, sigma = half separation; gallery (dashed edge ~4150) excluded",
+    "face2_seg": [[4550.2, 575], [4550.2, 1050]],
+    "face2_sigma_px": 4.7,
+    "face2_sigma_basis": "doubled facade rule (ink centers 4545.5/4554.9); pair center, sigma = half separation; gallery (dashed edge ~4467) excluded",
+    "measured_at": "first ~475 px of the principal solid facades south of the 24th St frontage (corners y~570-575), at the Ave B x 24th SW and SE corners",
+    "source_sha256": "e7b2ff1b6b70c5d7124a4879e5feca478d95681224d97b88855de7bade1591df"
+   },
+   "drafted_width_px": {"A": 477.3, "B": 475.0, "annotation": "80' printed mid-avenue on both plates; 477.3/475.0 px = 79.6/79.2 ft equivalent, agreement 2.3 px"},
+   "remeasured_by": "ctrl-H1 second pass: profile-assisted re-read of tick-relative 2x eye readings",
+   "remeasure_delta_px": {"A_face1": 6.5, "A_face2": 10.2, "B_face1": 10.0, "B_face2": 5.0},
+   "evidence_crops": [
+    "70_qa/control_evidence/pair9-11_aveB_sheet9.jpg",
+    "70_qa/control_evidence/pair9-11_aveB_sheet11.jpg"
+   ],
+   "notes": "Cross-plate x-shifts are mutually consistent here: -75.0 (Ave A east), -78.3 (Ave B west), -80.6 (Ave B east). Remeasure deltas up to 10.2 px reflect the first-pass eye readings referencing the outer rule of doubled lines plus rendering parallax on rescaled displays; diagnosed and replaced by tick-relative reads with profile pair-centers (delta ~ rule separation, not anchor misidentity). An arithmetic slip in one tick conversion (east face briefly read as ~4496) was caught by the 80' width check and corrected to 4550.2 before recording."
+  }
+ ]
+}
