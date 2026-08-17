@@ -1,0 +1,75 @@
+{
+ "pair": [43, 49],
+ "axis": "horizontal",
+ "boundary": "24th St",
+ "observer": "ctrl-H2",
+ "axis_convention": "raster pixels of the archival scan, origin top-left, x right, y down; face1 = west (low-x) flank, face2 = east (high-x) flank of the crossing avenue",
+ "controls": [
+  {
+   "anchor": "Ave G (Winnie)",
+   "status": "ACCEPTED",
+   "class": "observed",
+   "why_not_one_block_off": "Sheet 43 prints 24th St even run 602-624 west of the gap ('624' at the corner) and 702-708 east, with Ave G runs 2324-2328 (west flank) / 2321-2327 (east flank); sheet 49 prints odd 621/623 vs 701-707 with the German Luth'n Church at the NE corner and Ave G runs 2402-2414 / 2401-2413. The 2300/2400 hundred-ranges pin the 23rd-24th / 24th-27th rows; nearest alternative gaps are 20'-annotated alleys with pipes and no address runs.",
+   "anchor_evidence": "sheet 43: '624' and '702 704 706 708' below the frontage, Ave G runs '2324-2328' and '2321-2327', '70'' printed mid-avenue; sheet 49: '621 623' and '701 703 705 707' above frontage, 'GERMAN LUTH'N CHURCH' 1-2 storey at NE corner, Ave G runs '2402-2414' and '2401-2413', '70'' printed",
+   "A": {
+    "sheet": 43,
+    "face1_seg": [[2036, 6950], [2036, 7105]],
+    "face2_seg": [[2462, 6950], [2462, 7108]],
+    "measured_at": "SE corner of 600-block (face1, corner y~7105) and SW corner of 700-block (face2, corner y~7108) above the 24th St north frontage",
+    "sigma_along_px": 3.0,
+    "sigma_basis": "face1 2.5: clean single rule ~5 px; face2 3.0: clean rule, corner dwelling's dashed west wall runs close on its E side",
+    "source_sha256": "af7d25e4a6f44a9a9fc6e0c04a4a11b8c12ceb886c8e56b6a2657b6b8b0ecf7a"
+   },
+   "B": {
+    "sheet": 49,
+    "face1_seg": [[2104, 590], [2104, 760]],
+    "face2_seg": [[2520, 577], [2520, 760]],
+    "measured_at": "NE corner of 600-block (face1, corner y~587) and NW corner of 700-block (face2, corner y~577) below the 24th St south frontage",
+    "sigma_along_px": 3.5,
+    "sigma_basis": "face1 3.5: corner dwelling drawn to the lot line, wall coincides with face rule (doubled/heavier), dashed porch east of it; face2 3.0: heavy clean rule ~8 px",
+    "source_sha256": "ce9382f5fdedea88527e7a4f38a3ce77c3c83f305b48ebb9366f84bf2151e55b"
+   },
+   "drafted_width_px": {"A": 426.0, "B": 416.0, "annotation": "70' printed mid-avenue on both plates, read at 1:1 (sheet 43 at ~(2245,7040); sheet 49 at ~(2450,640))"},
+   "remeasured_by": "ctrl-H2 second blind read from fresh unmarked-tick composite at same span (rm3)",
+   "remeasure_delta_px": {"A_face1": 0.0, "A_face2": 0.0, "B_face1": 0.0, "B_face2": 0.0},
+   "evidence_crops": [
+    "70_qa/control_evidence/pair43-49_aveG_sheet43.jpg",
+    "70_qa/control_evidence/pair43-49_aveG_sheet49.jpg"
+   ],
+   "notes": "PLATE DISAGREEMENT: drafted width 426 px (sheet 43) vs 416 px (sheet 49), 10 px ~ 1.7 ft; survived independent remeasure (all deltas 0), both plates' faces address-verified. Recorded as found, not reconciled. Sheet 43 bottom border jogs at the same x as its faces (~2035/~2455)."
+  },
+  {
+   "anchor": "Ave H (Ball)",
+   "status": "ACCEPTED",
+   "class": "observed",
+   "why_not_one_block_off": "Sheet 43 prints 24th St even '724' west and '802 804 806 808' east of the gap with Ave H runs 2324-2328 / 2321-2327 (2300 range = 23rd-24th row); sheet 49 prints odd 713-723 vs 801-811 with Ave H runs 2402-2406 / 2401-2405 (2400 range = 24th-27th row). Alley gaps nearby are 20'-annotated with pipes and no address runs.",
+   "anchor_evidence": "sheet 43: '724' and '802' flanking the gap, Ave H runs '2326 2328' and '2325 2327', '70'' printed mid-avenue; sheet 49: '723' and '801' flanking, Ave H runs '2402 2404 2406' and '2401 2403 2405', '70'' printed",
+   "A": {
+    "sheet": 43,
+    "face1_seg": [[4049, 6950], [4049, 7104]],
+    "face2_seg": [[4474, 6950], [4474, 7105]],
+    "measured_at": "SE corner of 700-block (face1, corner y~7104) and SW corner of 800-block (face2, corner y~7105) above the 24th St north frontage",
+    "sigma_along_px": 2.5,
+    "sigma_basis": "face1 2.5: solid clean rule (a dashed shed wall parallels it ~10 px inside the lot, distinct); face2 2.5: clean single rule",
+    "source_sha256": "af7d25e4a6f44a9a9fc6e0c04a4a11b8c12ceb886c8e56b6a2657b6b8b0ecf7a"
+   },
+   "B": {
+    "sheet": 49,
+    "face1_seg": [[4104, 584], [4104, 760]],
+    "face2_seg": [[4526, 565], [4526, 760]],
+    "measured_at": "NE corner of 700-block (face1, corner y~584) and NW corner of 800-block (face2, corner y~565) below the 24th St south frontage",
+    "sigma_along_px": 2.5,
+    "sigma_basis": "face1 2.5: clean heavy rule; face2 2.5: clean heavy rule with clear corner",
+    "source_sha256": "ce9382f5fdedea88527e7a4f38a3ce77c3c83f305b48ebb9366f84bf2151e55b"
+   },
+   "drafted_width_px": {"A": 425.0, "B": 422.0, "annotation": "70' printed mid-avenue on both plates, read at 1:1 (sheet 43 at ~(4300,7075); sheet 49 at ~(4330,610))"},
+   "remeasured_by": "ctrl-H2 second blind read from fresh unmarked-tick composite at same span (rm4)",
+   "remeasure_delta_px": {"A_face1": 0.0, "A_face2": -1.0, "B_face1": 0.0, "B_face2": 0.0},
+   "evidence_crops": [
+    "70_qa/control_evidence/pair43-49_aveH_sheet43.jpg",
+    "70_qa/control_evidence/pair43-49_aveH_sheet49.jpg"
+   ],
+   "notes": "Drafted widths agree to 3 px. Rigid x-offset 43->49: G +68/+58, H +55/+52; the G-west outlier reflects the 10 px width disagreement recorded in the Ave G control."
+  }
+ ]
+}

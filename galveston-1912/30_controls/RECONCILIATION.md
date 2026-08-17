@@ -23,3 +23,13 @@ Topology note adopted from V1: 20th St at Ave C is locally ~120 ft face-to-face 
 mid-street City Storage esplanade and 40' passages (printed on both plates) — local to
 Ave C; ordinary 80' at Ave F. Constructed across-seam constraints must use per-anchor
 drafted widths, never a global per-street constant.
+
+## Batch ctrl-H2 vs Fable set (2026-08-17)
+Seams 40-44 and 44-50 (both measured): deltas 0.4-3.1 px on every face of both anchors
+(Broadway and Ave K) - inside combined sigmas everywhere. Verdict: corroborated, no bias,
+not averaged; canonical = ctrl-H2 (finer sigmas). The Broadway drafted-separation
+finding (~100 ft vs 150' annotations) is now independently replicated by two observers,
+with H2 adding the annotation split BETWEEN plates (sheet 44 prints 100' at its 24th
+corner but 150' at its 21st corner). Across-seam construction for Broadway uses the
+drafted ~603 px separation, never the 150' annotation. Real plate disagreement kept:
+43-49 Ave G width 426 vs 416 px (survived blind remeasure on both sides).

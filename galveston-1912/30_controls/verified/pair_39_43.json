@@ -1,0 +1,75 @@
+{
+ "pair": [39, 43],
+ "axis": "horizontal",
+ "boundary": "21st or Center St",
+ "observer": "ctrl-H2",
+ "axis_convention": "raster pixels of the archival scan, origin top-left, x right, y down; face1 = west (low-x) flank, face2 = east (high-x) flank of the crossing avenue",
+ "controls": [
+  {
+   "anchor": "Ave G (Winnie)",
+   "status": "ACCEPTED",
+   "class": "observed",
+   "why_not_one_block_off": "Sheet 39 prints the 21st St even run 620-624 immediately west of the gap and the Ave G run 2022-2028 down its west flank; sheet 43 prints the odd runs 621/623 vs 701-707 across the gap and Ave G runs 2102-2112 (west flank) / 2101-2111 (east flank). The nearest alternative gaps are 20'-annotated mid-block alleys carrying pipe lines and no address runs; a one-block error would put 5xx/6xx or 7xx/8xx runs at the flanks and a different avenue hundred-range.",
+   "anchor_evidence": "sheet 39: '620 622 624' below SE block corner, Ave G run '2022 2024 2026 2028', '70'' printed mid-avenue, park block with diagonal paths on E flank; sheet 43: '621 623' and '701 703 705 707' above the top frontage, Ave G runs '2102-2112' and '2101-2111', '70'' printed mid-avenue",
+   "A": {
+    "sheet": 39,
+    "face1_seg": [[2125, 7025], [2125, 7148]],
+    "face2_seg": [[2547, 7055], [2547, 7149]],
+    "measured_at": "SE corner of 600-block frontage (face1, corner y~7148) and SW corner of park block (face2, corner y~7149), immediately above the 21st St north frontage",
+    "sigma_along_px": 3.0,
+    "sigma_basis": "face1 3.0: heavy clean rule ~6 px wide, dashed gallery/shed outline abuts it on the E; face2 2.5: clean single rule ~5 px",
+    "source_sha256": "ed732111ccd0586a02829c236c38306550fa5b544c287c58d017e40a16a6a0ee"
+   },
+   "B": {
+    "sheet": 43,
+    "face1_seg": [[2049, 670], [2049, 990]],
+    "face2_seg": [[2469, 670], [2469, 990]],
+    "measured_at": "NE corner of 600-block (face1) and NW corner of 700-block (face2), immediately below the 21st St south frontage line at y~670",
+    "sigma_along_px": 3.0,
+    "sigma_basis": "face1 2.5: clean single rule ~5 px; face2 3.0: clean but heavier rule ~6 px",
+    "source_sha256": "af7d25e4a6f44a9a9fc6e0c04a4a11b8c12ceb886c8e56b6a2657b6b8b0ecf7a"
+   },
+   "drafted_width_px": {"A": 422.0, "B": 420.0, "annotation": "70' printed mid-avenue on both plates, read at 1:1 (sheet 39 at ~(2380,7095); sheet 43 at ~(2310,720)); ~6.0 px/ft"},
+   "remeasured_by": "ctrl-H2 second blind read from fresh unmarked-tick composite at same span (rm1)",
+   "remeasure_delta_px": {"A_face1": 1.0, "A_face2": -1.0, "B_face1": -1.0, "B_face2": 0.0},
+   "evidence_crops": [
+    "70_qa/control_evidence/pair39-43_aveG_sheet39.jpg",
+    "70_qa/control_evidence/pair39-43_aveG_sheet43.jpg"
+   ],
+   "notes": "Sheet 39: dashed (frame) shed/gallery drawn east of face1 encroaching into the avenue space to x~2240 and south past the frontage; excluded from measurement. Sheet 39 bottom border jogs at the same x as both faces, corroborating. Plates' drafted widths agree to 2 px."
+  },
+  {
+   "anchor": "Ave H (Ball)",
+   "status": "ACCEPTED",
+   "class": "observed",
+   "why_not_one_block_off": "Sheet 39: the park block (fenced grounds with diagonal paths, spanning from Ave G) forms the W flank and the 800-block with 21st St run 802-808 and Ave H run 2021-2027 forms the E flank; sheet 43 prints 21st odd 801-807 above the E block and Ave H runs 2102-2110 / 2101-2109. Mid-block alleys nearby are 20'-annotated with no address runs; adjacent avenues would flank 6xx/7xx or 8xx/9xx runs instead.",
+   "anchor_evidence": "sheet 39: 'BALL SCHOOL ANNEX' and 'D.' in 800 block, 21st run '802 804 806 808', Ave H run '2021 2023 2025 2027' west of E face, '70'' printed mid-avenue; sheet 43: 21st odd run '801 803 805 807', Ave H runs '2102-2110' and '2101-2109', '70'' printed",
+   "A": {
+    "sheet": 39,
+    "face1_seg": [[4128, 6960], [4128, 7142]],
+    "face2_seg": [[4548, 6950], [4548, 7137]],
+    "measured_at": "SE corner of park block (face1, corner y~7142) and SW/NW corner of 800-block frontage (face2, corner y~7137)",
+    "sigma_along_px": 4.0,
+    "sigma_basis": "face1 3.0: clean rule with slight wobble ~6 px; face2 4.0: rule partially obstructed - '2027' numeral ink nearly touches its W edge",
+    "source_sha256": "ed732111ccd0586a02829c236c38306550fa5b544c287c58d017e40a16a6a0ee"
+   },
+   "B": {
+    "sheet": 43,
+    "face1_seg": [[4056, 665], [4056, 990]],
+    "face2_seg": [[4480, 668], [4480, 990]],
+    "measured_at": "NE corner of 700-block (face1, corner y~665) and NW corner of 800-block (face2, corner y~668) below the top frontage",
+    "sigma_along_px": 3.0,
+    "sigma_basis": "face1 2.5: clean single rule; face2 3.0: clean rule, heavier corner ink where 801 label sits above",
+    "source_sha256": "af7d25e4a6f44a9a9fc6e0c04a4a11b8c12ceb886c8e56b6a2657b6b8b0ecf7a"
+   },
+   "drafted_width_px": {"A": 420.0, "B": 424.0, "annotation": "70' printed mid-avenue on both plates, read at 1:1 (sheet 39 at ~(4440,7000); sheet 43 at ~(4330,315))"},
+   "remeasured_by": "ctrl-H2 second blind read from fresh unmarked-tick composite at same span (rm2)",
+   "remeasure_delta_px": {"A_face1": -1.0, "A_face2": 1.0, "B_face1": -1.0, "B_face2": 0.0},
+   "evidence_crops": [
+    "70_qa/control_evidence/pair39-43_aveH_sheet39.jpg",
+    "70_qa/control_evidence/pair39-43_aveH_sheet43.jpg"
+   ],
+   "notes": "Plates' drafted widths differ by 4 px (420 vs 424), recorded not reconciled. Rigid x-offset 39->43 is consistent between the two anchors (G: -76/-78, H: -72/-68)."
+  }
+ ]
+}
