@@ -285,7 +285,14 @@ def load_controls(controls_dir, adjacency_info, log):
         if not (isinstance(pair, list) and len(pair) == 2):
             log.append(f"[load] {name}: missing/invalid 'pair'; skipped")
             continue
-        pair = tuple(int(p) for p in pair)
+        try:
+            pair = tuple(int(p) for p in pair)
+        except (TypeError, ValueError):
+            # Sheet-5 panel attachments carry region ids like "5A"/"5B"; they are
+            # fitted against the frozen block in a later stage, never in this solve.
+            log.append(f"[load] {name}: non-block pair {pair} (sheet-5 attachment); "
+                       f"set aside for the panel-fit stage")
+            continue
         if any(p not in SHEETS for p in pair):
             log.append(f"[load] {name}: pair {pair} outside the 12-sheet block "
                        f"(e.g. sheet 5 deferred); skipped")
@@ -443,7 +450,7 @@ def connected_sheets(observations):
     return seen
 
 
-def solve_network(observations, log=None):
+def solve_network(observations, log=None, rot_prior_sigma=None):
     """Weighted linear LS + Huber IRLS.  Returns a result dict (or None if the
     datum sheet is unconstrained)."""
     if log is None:
@@ -466,7 +473,13 @@ def solve_network(observations, log=None):
     index = {s: 4 * i for i, s in enumerate(free_sheets)}
     kappa_idx = 4 * len(free_sheets)
     n_params = kappa_idx + 1
-    m = len(usable) + 1  # + kappa prior
+    # Rotation priors (optional; rot_prior_sigma in RADIANS or None=off):
+    # for the real plates, measured drafted-grid deviations from scan axes
+    # are < 1.26 mrad on every sheet (20_plates/grid_orientation.json),
+    # justifying b_i ~ 0 +- 2 mrad as a MEASURED-plate prior. Synthetic
+    # tests use larger rotations and run with the prior off.
+    n_rot_priors = len(free_sheets) if rot_prior_sigma else 0
+    m = len(usable) + 1 + n_rot_priors  # + kappa prior + rotation priors
 
     # Design matrix (unweighted), rhs, per-row sigma
     J = np.zeros((m, n_params))
@@ -484,9 +497,15 @@ def solve_network(observations, log=None):
             J[i, kappa_idx] = -o["wft"]
         sigmas[i] = o["sigma"]
     # kappa prior row (never Huber-downweighted: it is a prior, not a datum obs)
-    J[m - 1, kappa_idx] = 1.0
-    rhs[m - 1] = KAPPA_PRIOR
-    sigmas[m - 1] = KAPPA_PRIOR_SIGMA
+    kappa_row = len(usable)
+    J[kappa_row, kappa_idx] = 1.0
+    rhs[kappa_row] = KAPPA_PRIOR
+    sigmas[kappa_row] = KAPPA_PRIOR_SIGMA
+    for k, s in enumerate(free_sheets if rot_prior_sigma else []):
+        r = kappa_row + 1 + k
+        J[r, index[s] + 1] = 1.0   # b parameter ~ theta for small rotations
+        rhs[r] = 0.0
+        sigmas[r] = rot_prior_sigma
 
     inv_sig = 1.0 / sigmas
     wh = np.ones(m)
@@ -497,14 +516,14 @@ def solve_network(observations, log=None):
         rn = (J @ x - rhs) * inv_sig            # normalized residuals
         wh = np.where(np.abs(rn) > HUBER_DELTA,
                       HUBER_DELTA / np.maximum(np.abs(rn), 1e-12), 1.0)
-        wh[m - 1] = 1.0                          # prior exempt from Huber
+        wh[len(usable):] = 1.0                   # priors exempt from Huber
 
     # Final residuals / weights (from the last solution)
     raw_res = J @ x - rhs
     rn = raw_res * inv_sig
     wh = np.where(np.abs(rn) > HUBER_DELTA,
                   HUBER_DELTA / np.maximum(np.abs(rn), 1e-12), 1.0)
-    wh[m - 1] = 1.0
+    wh[len(usable):] = 1.0
 
     # Covariance: (J^T W J)^-1 scaled by the robust variance factor
     sw = inv_sig * np.sqrt(wh)
@@ -654,7 +673,7 @@ def collinearity_check(anchor_registry, result):
     return out
 
 
-def leave_one_seam_out(observations, log=None):
+def leave_one_seam_out(observations, log=None, rot_prior_sigma=None):
     """Refit without each seam; report prediction error of the left-out
     ALONG-seam residuals under the refit parameters."""
     if log is None:
@@ -929,7 +948,7 @@ def write_diagnostics_md(path, result, seam_summaries, collin, loso, log):
 # Top-level driver
 # ----------------------------------------------------------------------------
 
-def run_solve(controls_dir, out_dir, adjacency_path, run_loso=False,
+def run_solve(controls_dir, out_dir, adjacency_path, run_loso=False, rot_prior_sigma=None,
               write_outputs=True):
     """Load controls, solve, run diagnostics, write outputs.
     Returns the result dict (with 'marginals', 'collinearity', 'loso', ...)
@@ -939,7 +958,7 @@ def run_solve(controls_dir, out_dir, adjacency_path, run_loso=False,
     observations, anchor_registry, seam_summaries = load_controls(
         controls_dir, adjacency_info, log)
 
-    result = solve_network(observations, log=log) if observations else None
+    result = solve_network(observations, log=log, rot_prior_sigma=rot_prior_sigma) if observations else None
     if result is None:
         log.append("[solve] SOLVE NOT POSSIBLE with current data (no observations "
                    "connected to the datum sheet)")
@@ -984,11 +1003,15 @@ def main(argv=None):
                     default=os.path.join(base, "10_key", "adjacency.json"))
     ap.add_argument("--out",
                     default=os.path.join(base, "40_solve", "output"))
+    ap.add_argument("--rot-prior-mrad", type=float, default=None,
+                    help="rotation prior sigma in mrad (real plates: 2.0, from "
+                         "measured drafted-grid deviations); default off")
     ap.add_argument("--loso", action="store_true",
                     help="run leave-one-seam-out diagnostic")
     args = ap.parse_args(argv)
 
-    result = run_solve(args.controls, args.out, args.adjacency,
+    rp = args.rot_prior_mrad / 1000.0 if args.rot_prior_mrad else None
+    result = run_solve(args.controls, args.out, args.adjacency, rot_prior_sigma=rp,
                        run_loso=args.loso)
     if result is None:
         print("No solve produced (see diagnostics.md).")

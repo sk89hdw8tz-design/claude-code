@@ -1,0 +1,1490 @@
+{
+ "observations": [
+  {
+   "pair": [
+    10,
+    12
+   ],
+   "seam": "10-12",
+   "anchor": "Ave D (Market)",
+   "type": "along",
+   "face": 1,
+   "residual_px": 11.354906381769524,
+   "sigma_px": 2.8284271247461903,
+   "weight": 0.12499999999999997,
+   "huber_weight": 0.6227323743697424,
+   "normalized_residual": 4.014565651143817
+  },
+  {
+   "pair": [
+    10,
+    12
+   ],
+   "seam": "10-12",
+   "anchor": "Ave D (Market)",
+   "type": "along",
+   "face": 2,
+   "residual_px": -1.7943854031601632,
+   "sigma_px": 2.8284271247461903,
+   "weight": 0.12499999999999997,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.6344110433183541
+  },
+  {
+   "pair": [
+    10,
+    12
+   ],
+   "seam": "10-12",
+   "anchor": "Ave D (Market)",
+   "type": "across",
+   "face": 1,
+   "residual_px": 5.625357442441782,
+   "sigma_px": 12.0,
+   "weight": 0.006944444444444444,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.4687797868701485
+  },
+  {
+   "pair": [
+    10,
+    12
+   ],
+   "seam": "10-12",
+   "anchor": "Ave E (Post Office)",
+   "type": "along",
+   "face": 1,
+   "residual_px": -2.423610178854119,
+   "sigma_px": 2.8284271247461903,
+   "weight": 0.12499999999999997,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.8568755962102443
+  },
+  {
+   "pair": [
+    10,
+    12
+   ],
+   "seam": "10-12",
+   "anchor": "Ave E (Post Office)",
+   "type": "along",
+   "face": 2,
+   "residual_px": -10.843995937047339,
+   "sigma_px": 2.8284271247461903,
+   "weight": 0.12499999999999997,
+   "huber_weight": 0.6520721561419935,
+   "normalized_residual": -3.8339315311227713
+  },
+  {
+   "pair": [
+    10,
+    12
+   ],
+   "seam": "10-12",
+   "anchor": "Ave E (Post Office)",
+   "type": "across",
+   "face": 1,
+   "residual_px": -3.9765474224441277,
+   "sigma_px": 12.0,
+   "weight": 0.006944444444444444,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.33137895187034394
+  },
+  {
+   "pair": [
+    10,
+    43
+   ],
+   "seam": "10-43",
+   "anchor": "22nd St",
+   "type": "along",
+   "face": 1,
+   "residual_px": -6.618360745192831,
+   "sigma_px": 4.242640687119285,
+   "weight": 0.055555555555555566,
+   "huber_weight": 1.0,
+   "normalized_residual": -1.559962587754901
+  },
+  {
+   "pair": [
+    10,
+    43
+   ],
+   "seam": "10-43",
+   "anchor": "22nd St",
+   "type": "along",
+   "face": 2,
+   "residual_px": -4.74286851740726,
+   "sigma_px": 4.242640687119285,
+   "weight": 0.055555555555555566,
+   "huber_weight": 1.0,
+   "normalized_residual": -1.1179048303116201
+  },
+  {
+   "pair": [
+    10,
+    43
+   ],
+   "seam": "10-43",
+   "anchor": "22nd St",
+   "type": "across",
+   "face": 1,
+   "residual_px": -14.309088036370667,
+   "sigma_px": 12.0,
+   "weight": 0.006944444444444444,
+   "huber_weight": 1.0,
+   "normalized_residual": -1.1924240030308888
+  },
+  {
+   "pair": [
+    10,
+    43
+   ],
+   "seam": "10-43",
+   "anchor": "23rd St",
+   "type": "along",
+   "face": 1,
+   "residual_px": 20.174725189583228,
+   "sigma_px": 3.905124837953327,
+   "weight": 0.06557377049180328,
+   "huber_weight": 0.48391301507909157,
+   "normalized_residual": 5.16621773355568
+  },
+  {
+   "pair": [
+    10,
+    43
+   ],
+   "seam": "10-43",
+   "anchor": "23rd St",
+   "type": "along",
+   "face": 2,
+   "residual_px": 1.963249842997584,
+   "sigma_px": 3.905124837953327,
+   "weight": 0.06557377049180328,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.5027367688523171
+  },
+  {
+   "pair": [
+    10,
+    43
+   ],
+   "seam": "10-43",
+   "anchor": "23rd St",
+   "type": "across",
+   "face": 1,
+   "residual_px": -32.217315197462085,
+   "sigma_px": 12.0,
+   "weight": 0.006944444444444444,
+   "huber_weight": 0.9311762887791235,
+   "normalized_residual": -2.6847762664551738
+  },
+  {
+   "pair": [
+    11,
+    12
+   ],
+   "seam": "11-12",
+   "anchor": "25th St (Rosenberg)",
+   "type": "along",
+   "face": 1,
+   "residual_px": -4.58843188760273,
+   "sigma_px": 3.605551275463989,
+   "weight": 0.07692307692307693,
+   "huber_weight": 1.0,
+   "normalized_residual": -1.2726020342096664
+  },
+  {
+   "pair": [
+    11,
+    12
+   ],
+   "seam": "11-12",
+   "anchor": "25th St (Rosenberg)",
+   "type": "along",
+   "face": 2,
+   "residual_px": 17.019522861303628,
+   "sigma_px": 3.605551275463989,
+   "weight": 0.07692307692307693,
+   "huber_weight": 0.5296199113286743,
+   "normalized_residual": 4.720366335412448
+  },
+  {
+   "pair": [
+    11,
+    12
+   ],
+   "seam": "11-12",
+   "anchor": "25th St (Rosenberg)",
+   "type": "across",
+   "face": 1,
+   "residual_px": -91.26594153217007,
+   "sigma_px": 12.0,
+   "weight": 0.006944444444444444,
+   "huber_weight": 0.3287096971374079,
+   "normalized_residual": -7.60549512768084
+  },
+  {
+   "pair": [
+    11,
+    12
+   ],
+   "seam": "11-12",
+   "anchor": "26th St",
+   "type": "along",
+   "face": 1,
+   "residual_px": -5.8711174953722525,
+   "sigma_px": 3.2015621187164243,
+   "weight": 0.0975609756097561,
+   "huber_weight": 1.0,
+   "normalized_residual": -1.8338290114845908
+  },
+  {
+   "pair": [
+    11,
+    12
+   ],
+   "seam": "11-12",
+   "anchor": "26th St",
+   "type": "along",
+   "face": 2,
+   "residual_px": 2.376328133909725,
+   "sigma_px": 3.2015621187164243,
+   "weight": 0.0975609756097561,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.742240208308826
+  },
+  {
+   "pair": [
+    11,
+    12
+   ],
+   "seam": "11-12",
+   "anchor": "26th St",
+   "type": "across",
+   "face": 1,
+   "residual_px": 14.639767998473646,
+   "sigma_px": 12.0,
+   "weight": 0.006944444444444444,
+   "huber_weight": 1.0,
+   "normalized_residual": 1.2199806665394703
+  },
+  {
+   "pair": [
+    12,
+    49
+   ],
+   "seam": "12-49",
+   "anchor": "25th St (Rosenberg Ave)",
+   "type": "along",
+   "face": 1,
+   "residual_px": 4.098134756403407,
+   "sigma_px": 2.8284271247461903,
+   "weight": 0.12499999999999997,
+   "huber_weight": 1.0,
+   "normalized_residual": 1.4489094382345646
+  },
+  {
+   "pair": [
+    12,
+    49
+   ],
+   "seam": "12-49",
+   "anchor": "25th St (Rosenberg Ave)",
+   "type": "along",
+   "face": 2,
+   "residual_px": -0.48864686721691974,
+   "sigma_px": 2.8284271247461903,
+   "weight": 0.12499999999999997,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.1727627567073232
+  },
+  {
+   "pair": [
+    12,
+    49
+   ],
+   "seam": "12-49",
+   "anchor": "25th St (Rosenberg Ave)",
+   "type": "across",
+   "face": 1,
+   "residual_px": 94.79295783441364,
+   "sigma_px": 12.0,
+   "weight": 0.006944444444444444,
+   "huber_weight": 0.31647920568534893,
+   "normalized_residual": 7.899413152867803
+  },
+  {
+   "pair": [
+    12,
+    49
+   ],
+   "seam": "12-49",
+   "anchor": "26th St",
+   "type": "along",
+   "face": 1,
+   "residual_px": 2.7408209369242407,
+   "sigma_px": 3.2015621187164243,
+   "weight": 0.0975609756097561,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.8560886327650251
+  },
+  {
+   "pair": [
+    12,
+    49
+   ],
+   "seam": "12-49",
+   "anchor": "26th St",
+   "type": "along",
+   "face": 2,
+   "residual_px": -7.488018500750463,
+   "sigma_px": 3.2015621187164243,
+   "weight": 0.0975609756097561,
+   "huber_weight": 1.0,
+   "normalized_residual": -2.3388640367073594
+  },
+  {
+   "pair": [
+    12,
+    49
+   ],
+   "seam": "12-49",
+   "anchor": "26th St",
+   "type": "across",
+   "face": 1,
+   "residual_px": 73.46414349747954,
+   "sigma_px": 12.0,
+   "weight": 0.006944444444444444,
+   "huber_weight": 0.4083624823180476,
+   "normalized_residual": 6.122011958123295
+  },
+  {
+   "pair": [
+    39,
+    40
+   ],
+   "seam": "39-40",
+   "anchor": "19th St",
+   "type": "along",
+   "face": 1,
+   "residual_px": -1.608686540262994,
+   "sigma_px": 2.8284271247461903,
+   "weight": 0.12499999999999997,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.5687565807117445
+  },
+  {
+   "pair": [
+    39,
+    40
+   ],
+   "seam": "39-40",
+   "anchor": "19th St",
+   "type": "along",
+   "face": 2,
+   "residual_px": 1.6851333922672715,
+   "sigma_px": 2.8284271247461903,
+   "weight": 0.12499999999999997,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.595784624438039
+  },
+  {
+   "pair": [
+    39,
+    40
+   ],
+   "seam": "39-40",
+   "anchor": "19th St",
+   "type": "across",
+   "face": 1,
+   "residual_px": -2.5981800855851276,
+   "sigma_px": 12.0,
+   "weight": 0.006944444444444444,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.21651500713209396
+  },
+  {
+   "pair": [
+    39,
+    40
+   ],
+   "seam": "39-40",
+   "anchor": "20th St",
+   "type": "along",
+   "face": 1,
+   "residual_px": 7.791309186922149,
+   "sigma_px": 3.605551275463989,
+   "weight": 0.07692307692307693,
+   "huber_weight": 1.0,
+   "normalized_residual": 2.1609203674185733
+  },
+  {
+   "pair": [
+    39,
+    40
+   ],
+   "seam": "39-40",
+   "anchor": "20th St",
+   "type": "along",
+   "face": 2,
+   "residual_px": -6.474883604127232,
+   "sigma_px": 3.605551275463989,
+   "weight": 0.07692307692307693,
+   "huber_weight": 1.0,
+   "normalized_residual": -1.7958096028724473
+  },
+  {
+   "pair": [
+    39,
+    40
+   ],
+   "seam": "39-40",
+   "anchor": "20th St",
+   "type": "across",
+   "face": 1,
+   "residual_px": -10.939987166491235,
+   "sigma_px": 12.0,
+   "weight": 0.006944444444444444,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.9116655972076029
+  },
+  {
+   "pair": [
+    39,
+    43
+   ],
+   "seam": "39-43",
+   "anchor": "Ave G (Winnie)",
+   "type": "along",
+   "face": 1,
+   "residual_px": 0.5587637749751817,
+   "sigma_px": 4.242640687119285,
+   "weight": 0.055555555555555566,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.1317018847887817
+  },
+  {
+   "pair": [
+    39,
+    43
+   ],
+   "seam": "39-43",
+   "anchor": "Ave G (Winnie)",
+   "type": "along",
+   "face": 2,
+   "residual_px": 3.1392256804794556,
+   "sigma_px": 4.242640687119285,
+   "weight": 0.055555555555555566,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.7399225887806591
+  },
+  {
+   "pair": [
+    39,
+    43
+   ],
+   "seam": "39-43",
+   "anchor": "Ave G (Winnie)",
+   "type": "across",
+   "face": 1,
+   "residual_px": 16.141421439794385,
+   "sigma_px": 12.0,
+   "weight": 0.006944444444444444,
+   "huber_weight": 1.0,
+   "normalized_residual": 1.3451184533161986
+  },
+  {
+   "pair": [
+    39,
+    43
+   ],
+   "seam": "39-43",
+   "anchor": "Ave H (Ball)",
+   "type": "along",
+   "face": 1,
+   "residual_px": -0.6241418729518848,
+   "sigma_px": 5.0,
+   "weight": 0.04000000000000001,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.12482837459037698
+  },
+  {
+   "pair": [
+    39,
+    43
+   ],
+   "seam": "39-43",
+   "anchor": "Ave H (Ball)",
+   "type": "along",
+   "face": 2,
+   "residual_px": -4.038052356637066,
+   "sigma_px": 5.0,
+   "weight": 0.04000000000000001,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.8076104713274133
+  },
+  {
+   "pair": [
+    39,
+    43
+   ],
+   "seam": "39-43",
+   "anchor": "Ave H (Ball)",
+   "type": "across",
+   "face": 1,
+   "residual_px": 17.934645102436434,
+   "sigma_px": 12.0,
+   "weight": 0.006944444444444444,
+   "huber_weight": 1.0,
+   "normalized_residual": 1.4945537585363695
+  },
+  {
+   "pair": [
+    40,
+    44
+   ],
+   "seam": "40-44",
+   "anchor": "Ave J (Broadway)",
+   "type": "along",
+   "face": 1,
+   "residual_px": 5.352557817508968,
+   "sigma_px": 3.905124837953327,
+   "weight": 0.06557377049180328,
+   "huber_weight": 1.0,
+   "normalized_residual": 1.370649605228559
+  },
+  {
+   "pair": [
+    40,
+    44
+   ],
+   "seam": "40-44",
+   "anchor": "Ave J (Broadway)",
+   "type": "along",
+   "face": 2,
+   "residual_px": 0.03617681104685566,
+   "sigma_px": 3.905124837953327,
+   "weight": 0.06557377049180328,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.009263932024722647
+  },
+  {
+   "pair": [
+    40,
+    44
+   ],
+   "seam": "40-44",
+   "anchor": "Ave J (Broadway)",
+   "type": "across",
+   "face": 1,
+   "residual_px": -12.109091372337517,
+   "sigma_px": 12.0,
+   "weight": 0.006944444444444444,
+   "huber_weight": 1.0,
+   "normalized_residual": -1.009090947694793
+  },
+  {
+   "pair": [
+    40,
+    44
+   ],
+   "seam": "40-44",
+   "anchor": "Ave K",
+   "type": "along",
+   "face": 1,
+   "residual_px": -4.798944815798318,
+   "sigma_px": 4.301162633521313,
+   "weight": 0.05405405405405406,
+   "huber_weight": 1.0,
+   "normalized_residual": -1.1157320065968945
+  },
+  {
+   "pair": [
+    40,
+    44
+   ],
+   "seam": "40-44",
+   "anchor": "Ave K",
+   "type": "along",
+   "face": 2,
+   "residual_px": 0.0010697498054454968,
+   "sigma_px": 4.301162633521313,
+   "weight": 0.05405405405405406,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.00024871177785939813
+  },
+  {
+   "pair": [
+    40,
+    44
+   ],
+   "seam": "40-44",
+   "anchor": "Ave K",
+   "type": "across",
+   "face": 1,
+   "residual_px": -3.848896940846444,
+   "sigma_px": 12.0,
+   "weight": 0.006944444444444444,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.32074141173720366
+  },
+  {
+   "pair": [
+    43,
+    44
+   ],
+   "seam": "43-44",
+   "anchor": "22nd St",
+   "type": "along",
+   "face": 1,
+   "residual_px": -2.106704073673896,
+   "sigma_px": 4.716990566028302,
+   "weight": 0.04494382022471911,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.44662037037901847
+  },
+  {
+   "pair": [
+    43,
+    44
+   ],
+   "seam": "43-44",
+   "anchor": "22nd St",
+   "type": "along",
+   "face": 2,
+   "residual_px": -7.264459187993307,
+   "sigma_px": 4.716990566028302,
+   "weight": 0.04494382022471911,
+   "huber_weight": 1.0,
+   "normalized_residual": -1.5400622677331257
+  },
+  {
+   "pair": [
+    43,
+    44
+   ],
+   "seam": "43-44",
+   "anchor": "22nd St",
+   "type": "across",
+   "face": 1,
+   "residual_px": -1.8681123116098348,
+   "sigma_px": 12.0,
+   "weight": 0.006944444444444444,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.15567602596748623
+  },
+  {
+   "pair": [
+    43,
+    44
+   ],
+   "seam": "43-44",
+   "anchor": "23rd St",
+   "type": "along",
+   "face": 1,
+   "residual_px": 3.384669884017338,
+   "sigma_px": 2.8284271247461903,
+   "weight": 0.12499999999999997,
+   "huber_weight": 1.0,
+   "normalized_residual": 1.1966615135332725
+  },
+  {
+   "pair": [
+    43,
+    44
+   ],
+   "seam": "43-44",
+   "anchor": "23rd St",
+   "type": "along",
+   "face": 2,
+   "residual_px": 0.7352651796594074,
+   "sigma_px": 2.8284271247461903,
+   "weight": 0.12499999999999997,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.25995549725375605
+  },
+  {
+   "pair": [
+    43,
+    44
+   ],
+   "seam": "43-44",
+   "anchor": "23rd St",
+   "type": "across",
+   "face": 1,
+   "residual_px": -2.6855968556796057,
+   "sigma_px": 12.0,
+   "weight": 0.006944444444444444,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.22379973797330047
+  },
+  {
+   "pair": [
+    43,
+    49
+   ],
+   "seam": "43-49",
+   "anchor": "Ave G (Winnie)",
+   "type": "along",
+   "face": 1,
+   "residual_px": -5.40671890795781,
+   "sigma_px": 4.6097722286464435,
+   "weight": 0.047058823529411764,
+   "huber_weight": 1.0,
+   "normalized_residual": -1.1728820080000724
+  },
+  {
+   "pair": [
+    43,
+    49
+   ],
+   "seam": "43-49",
+   "anchor": "Ave G (Winnie)",
+   "type": "along",
+   "face": 2,
+   "residual_px": 3.329242868014422,
+   "sigma_px": 4.6097722286464435,
+   "weight": 0.047058823529411764,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.7222141795478644
+  },
+  {
+   "pair": [
+    43,
+    49
+   ],
+   "seam": "43-49",
+   "anchor": "Ave G (Winnie)",
+   "type": "across",
+   "face": 1,
+   "residual_px": 12.10468350952374,
+   "sigma_px": 12.0,
+   "weight": 0.006944444444444444,
+   "huber_weight": 1.0,
+   "normalized_residual": 1.008723625793645
+  },
+  {
+   "pair": [
+    43,
+    49
+   ],
+   "seam": "43-49",
+   "anchor": "Ave H (Ball)",
+   "type": "along",
+   "face": 1,
+   "residual_px": 1.6027781763275115,
+   "sigma_px": 3.5355339059327378,
+   "weight": 0.08,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.45333412688759656
+  },
+  {
+   "pair": [
+    43,
+    49
+   ],
+   "seam": "43-49",
+   "anchor": "Ave H (Ball)",
+   "type": "along",
+   "face": 2,
+   "residual_px": 3.2893053297963206,
+   "sigma_px": 3.5355339059327378,
+   "weight": 0.08,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.9303560416368125
+  },
+  {
+   "pair": [
+    43,
+    49
+   ],
+   "seam": "43-49",
+   "anchor": "Ave H (Ball)",
+   "type": "across",
+   "face": 1,
+   "residual_px": 15.641254955240358,
+   "sigma_px": 12.0,
+   "weight": 0.006944444444444444,
+   "huber_weight": 1.0,
+   "normalized_residual": 1.3034379129366964
+  },
+  {
+   "pair": [
+    44,
+    50
+   ],
+   "seam": "44-50",
+   "anchor": "Ave J (Broadway)",
+   "type": "along",
+   "face": 1,
+   "residual_px": 2.555504095189743,
+   "sigma_px": 3.905124837953327,
+   "weight": 0.06557377049180328,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.6543975420076662
+  },
+  {
+   "pair": [
+    44,
+    50
+   ],
+   "seam": "44-50",
+   "anchor": "Ave J (Broadway)",
+   "type": "along",
+   "face": 2,
+   "residual_px": 4.407927615021183,
+   "sigma_px": 3.905124837953327,
+   "weight": 0.06557377049180328,
+   "huber_weight": 1.0,
+   "normalized_residual": 1.1287545975947275
+  },
+  {
+   "pair": [
+    44,
+    50
+   ],
+   "seam": "44-50",
+   "anchor": "Ave J (Broadway)",
+   "type": "across",
+   "face": 1,
+   "residual_px": -15.599748986687828,
+   "sigma_px": 12.0,
+   "weight": 0.006944444444444444,
+   "huber_weight": 1.0,
+   "normalized_residual": -1.2999790822239856
+  },
+  {
+   "pair": [
+    44,
+    50
+   ],
+   "seam": "44-50",
+   "anchor": "Ave K",
+   "type": "along",
+   "face": 1,
+   "residual_px": -0.010215209238513268,
+   "sigma_px": 3.5355339059327378,
+   "weight": 0.08,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.00288929748951688
+  },
+  {
+   "pair": [
+    44,
+    50
+   ],
+   "seam": "44-50",
+   "anchor": "Ave K",
+   "type": "along",
+   "face": 2,
+   "residual_px": -4.1270403584154725,
+   "sigma_px": 3.5355339059327378,
+   "weight": 0.08,
+   "huber_weight": 1.0,
+   "normalized_residual": -1.1673032894664561
+  },
+  {
+   "pair": [
+    44,
+    50
+   ],
+   "seam": "44-50",
+   "anchor": "Ave K",
+   "type": "across",
+   "face": 1,
+   "residual_px": -13.867744111300581,
+   "sigma_px": 12.0,
+   "weight": 0.006944444444444444,
+   "huber_weight": 1.0,
+   "normalized_residual": -1.1556453426083817
+  },
+  {
+   "pair": [
+    49,
+    50
+   ],
+   "seam": "49-50",
+   "anchor": "25th St (Rosenberg Ave)",
+   "type": "along",
+   "face": 1,
+   "residual_px": -3.7296952514667185,
+   "sigma_px": 2.8284271247461903,
+   "weight": 0.12499999999999997,
+   "huber_weight": 1.0,
+   "normalized_residual": -1.318646402035691
+  },
+  {
+   "pair": [
+    49,
+    50
+   ],
+   "seam": "49-50",
+   "anchor": "25th St (Rosenberg Ave)",
+   "type": "along",
+   "face": 2,
+   "residual_px": -1.0148999940393126,
+   "sigma_px": 2.8284271247461903,
+   "weight": 0.12499999999999997,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.35882133400569227
+  },
+  {
+   "pair": [
+    49,
+    50
+   ],
+   "seam": "49-50",
+   "anchor": "25th St (Rosenberg Ave)",
+   "type": "across",
+   "face": 1,
+   "residual_px": 4.272726121560353,
+   "sigma_px": 12.0,
+   "weight": 0.006944444444444444,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.35606051013002943
+  },
+  {
+   "pair": [
+    49,
+    50
+   ],
+   "seam": "49-50",
+   "anchor": "26th St",
+   "type": "along",
+   "face": 1,
+   "residual_px": 5.94164495193573,
+   "sigma_px": 3.605551275463989,
+   "weight": 0.07692307692307693,
+   "huber_weight": 1.0,
+   "normalized_residual": 1.647915810369696
+  },
+  {
+   "pair": [
+    49,
+    50
+   ],
+   "seam": "49-50",
+   "anchor": "26th St",
+   "type": "along",
+   "face": 2,
+   "residual_px": -0.8919374412241088,
+   "sigma_px": 3.605551275463989,
+   "weight": 0.07692307692307693,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.24737893683382098
+  },
+  {
+   "pair": [
+    49,
+    50
+   ],
+   "seam": "49-50",
+   "anchor": "26th St",
+   "type": "across",
+   "face": 1,
+   "residual_px": 13.81915030430848,
+   "sigma_px": 12.0,
+   "weight": 0.006944444444444444,
+   "huber_weight": 1.0,
+   "normalized_residual": 1.1515958586923731
+  },
+  {
+   "pair": [
+    7,
+    8
+   ],
+   "seam": "7-8",
+   "anchor": "19th St",
+   "type": "along",
+   "face": 1,
+   "residual_px": 7.9335211528752865,
+   "sigma_px": 5.656854249492381,
+   "weight": 0.031249999999999993,
+   "huber_weight": 1.0,
+   "normalized_residual": 1.4024616514712578
+  },
+  {
+   "pair": [
+    7,
+    8
+   ],
+   "seam": "7-8",
+   "anchor": "19th St",
+   "type": "along",
+   "face": 2,
+   "residual_px": -8.10079587035424,
+   "sigma_px": 5.656854249492381,
+   "weight": 0.031249999999999993,
+   "huber_weight": 1.0,
+   "normalized_residual": -1.4320319232338656
+  },
+  {
+   "pair": [
+    7,
+    8
+   ],
+   "seam": "7-8",
+   "anchor": "19th St",
+   "type": "across",
+   "face": 1,
+   "residual_px": 25.375802342516522,
+   "sigma_px": 12.0,
+   "weight": 0.006944444444444444,
+   "huber_weight": 1.0,
+   "normalized_residual": 2.11465019520971
+  },
+  {
+   "pair": [
+    7,
+    8
+   ],
+   "seam": "7-8",
+   "anchor": "20th St",
+   "type": "along",
+   "face": 1,
+   "residual_px": -0.7837595433181122,
+   "sigma_px": 3.905124837953327,
+   "weight": 0.06557377049180328,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.20070025308816503
+  },
+  {
+   "pair": [
+    7,
+    8
+   ],
+   "seam": "7-8",
+   "anchor": "20th St",
+   "type": "along",
+   "face": 2,
+   "residual_px": -4.458658805516571,
+   "sigma_px": 3.905124837953327,
+   "weight": 0.06557377049180328,
+   "huber_weight": 1.0,
+   "normalized_residual": -1.141745524287349
+  },
+  {
+   "pair": [
+    7,
+    8
+   ],
+   "seam": "7-8",
+   "anchor": "20th St",
+   "type": "across",
+   "face": 1,
+   "residual_px": -11.615825747962615,
+   "sigma_px": 12.0,
+   "weight": 0.006944444444444444,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.9679854789968846
+  },
+  {
+   "pair": [
+    7,
+    9
+   ],
+   "seam": "7-9",
+   "anchor": "Ave A (Water)",
+   "type": "along",
+   "face": 1,
+   "residual_px": -1.7265290349252886,
+   "sigma_px": 2.8284271247461903,
+   "weight": 0.12499999999999997,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.6104201942555685
+  },
+  {
+   "pair": [
+    7,
+    9
+   ],
+   "seam": "7-9",
+   "anchor": "Ave A (Water)",
+   "type": "along",
+   "face": 2,
+   "residual_px": 1.9239833737339929,
+   "sigma_px": 2.8284271247461903,
+   "weight": 0.12499999999999997,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.6802308452287389
+  },
+  {
+   "pair": [
+    7,
+    9
+   ],
+   "seam": "7-9",
+   "anchor": "Ave A (Water)",
+   "type": "across",
+   "face": 1,
+   "residual_px": -20.27208728167183,
+   "sigma_px": 12.0,
+   "weight": 0.006944444444444444,
+   "huber_weight": 1.0,
+   "normalized_residual": -1.6893406068059857
+  },
+  {
+   "pair": [
+    7,
+    9
+   ],
+   "seam": "7-9",
+   "anchor": "Ave B (Strand)",
+   "type": "along",
+   "face": 1,
+   "residual_px": 6.487230092748209,
+   "sigma_px": 2.8284271247461903,
+   "weight": 0.12499999999999997,
+   "huber_weight": 1.0,
+   "normalized_residual": 2.293582194849847
+  },
+  {
+   "pair": [
+    7,
+    9
+   ],
+   "seam": "7-9",
+   "anchor": "Ave B (Strand)",
+   "type": "along",
+   "face": 2,
+   "residual_px": -5.920241279815588,
+   "sigma_px": 2.8284271247461903,
+   "weight": 0.12499999999999997,
+   "huber_weight": 1.0,
+   "normalized_residual": -2.0931213776090636
+  },
+  {
+   "pair": [
+    7,
+    9
+   ],
+   "seam": "7-9",
+   "anchor": "Ave B (Strand)",
+   "type": "across",
+   "face": 1,
+   "residual_px": -43.406864171568614,
+   "sigma_px": 12.0,
+   "weight": 0.006944444444444444,
+   "huber_weight": 0.6911349292918959,
+   "normalized_residual": -3.617238680964051
+  },
+  {
+   "pair": [
+    8,
+    10
+   ],
+   "seam": "8-10",
+   "anchor": "Ave D (Market)",
+   "type": "along",
+   "face": 1,
+   "residual_px": -0.3374217160387616,
+   "sigma_px": 2.8284271247461903,
+   "weight": 0.12499999999999997,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.11929659176530497
+  },
+  {
+   "pair": [
+    8,
+    10
+   ],
+   "seam": "8-10",
+   "anchor": "Ave D (Market)",
+   "type": "along",
+   "face": 2,
+   "residual_px": -3.124519636521427,
+   "sigma_px": 2.8284271247461903,
+   "weight": 0.12499999999999997,
+   "huber_weight": 1.0,
+   "normalized_residual": -1.1046845114674138
+  },
+  {
+   "pair": [
+    8,
+    10
+   ],
+   "seam": "8-10",
+   "anchor": "Ave D (Market)",
+   "type": "across",
+   "face": 1,
+   "residual_px": 14.29606571139766,
+   "sigma_px": 12.0,
+   "weight": 0.006944444444444444,
+   "huber_weight": 1.0,
+   "normalized_residual": 1.1913388092831383
+  },
+  {
+   "pair": [
+    8,
+    10
+   ],
+   "seam": "8-10",
+   "anchor": "Ave E (Post Office)",
+   "type": "along",
+   "face": 1,
+   "residual_px": -0.011999610869906974,
+   "sigma_px": 2.8284271247461903,
+   "weight": 0.12499999999999997,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.004242503108855513
+  },
+  {
+   "pair": [
+    8,
+    10
+   ],
+   "seam": "8-10",
+   "anchor": "Ave E (Post Office)",
+   "type": "along",
+   "face": 2,
+   "residual_px": 1.8057286837233733,
+   "sigma_px": 2.8284271247461903,
+   "weight": 0.12499999999999997,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.6384214986219279
+  },
+  {
+   "pair": [
+    8,
+    10
+   ],
+   "seam": "8-10",
+   "anchor": "Ave E (Post Office)",
+   "type": "across",
+   "face": 1,
+   "residual_px": 17.84077204916366,
+   "sigma_px": 12.0,
+   "weight": 0.006944444444444444,
+   "huber_weight": 1.0,
+   "normalized_residual": 1.4867310040969717
+  },
+  {
+   "pair": [
+    8,
+    39
+   ],
+   "seam": "8-39",
+   "anchor": "19th St",
+   "type": "along",
+   "face": 1,
+   "residual_px": -3.3019564518450935,
+   "sigma_px": 3.2015621187164243,
+   "weight": 0.0975609756097561,
+   "huber_weight": 1.0,
+   "normalized_residual": -1.0313579213540043
+  },
+  {
+   "pair": [
+    8,
+    39
+   ],
+   "seam": "8-39",
+   "anchor": "19th St",
+   "type": "along",
+   "face": 2,
+   "residual_px": 6.733602179934415,
+   "sigma_px": 3.2015621187164243,
+   "weight": 0.0975609756097561,
+   "huber_weight": 1.0,
+   "normalized_residual": 2.1032239670033523
+  },
+  {
+   "pair": [
+    8,
+    39
+   ],
+   "seam": "8-39",
+   "anchor": "19th St",
+   "type": "across",
+   "face": 1,
+   "residual_px": -12.95470230914141,
+   "sigma_px": 12.0,
+   "weight": 0.006944444444444444,
+   "huber_weight": 1.0,
+   "normalized_residual": -1.0795585257617841
+  },
+  {
+   "pair": [
+    8,
+    39
+   ],
+   "seam": "8-39",
+   "anchor": "20th St",
+   "type": "along",
+   "face": 1,
+   "residual_px": -2.8592333841736135,
+   "sigma_px": 2.8284271247461903,
+   "weight": 0.12499999999999997,
+   "huber_weight": 1.0,
+   "normalized_residual": -1.0108916574720614
+  },
+  {
+   "pair": [
+    8,
+    39
+   ],
+   "seam": "8-39",
+   "anchor": "20th St",
+   "type": "along",
+   "face": 2,
+   "residual_px": -0.8256841494129858,
+   "sigma_px": 2.8284271247461903,
+   "weight": 0.12499999999999997,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.2919234305840844
+  },
+  {
+   "pair": [
+    8,
+    39
+   ],
+   "seam": "8-39",
+   "anchor": "20th St",
+   "type": "across",
+   "face": 1,
+   "residual_px": -3.3131417658907623,
+   "sigma_px": 12.0,
+   "weight": 0.006944444444444444,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.2760951471575635
+  },
+  {
+   "pair": [
+    9,
+    10
+   ],
+   "seam": "9-10",
+   "anchor": "22nd St",
+   "type": "along",
+   "face": 1,
+   "residual_px": 6.433727135590743,
+   "sigma_px": 5.0,
+   "weight": 0.04000000000000001,
+   "huber_weight": 1.0,
+   "normalized_residual": 1.2867454271181487
+  },
+  {
+   "pair": [
+    9,
+    10
+   ],
+   "seam": "9-10",
+   "anchor": "22nd St",
+   "type": "along",
+   "face": 2,
+   "residual_px": 36.53085362760362,
+   "sigma_px": 5.0,
+   "weight": 0.04000000000000001,
+   "huber_weight": 0.3421765099558114,
+   "normalized_residual": 7.306170725520724
+  },
+  {
+   "pair": [
+    9,
+    10
+   ],
+   "seam": "9-10",
+   "anchor": "22nd St",
+   "type": "across",
+   "face": 1,
+   "residual_px": 37.8808111117296,
+   "sigma_px": 17.0,
+   "weight": 0.0034602076124567475,
+   "huber_weight": 1.0,
+   "normalized_residual": 2.228283006572329
+  },
+  {
+   "pair": [
+    9,
+    10
+   ],
+   "seam": "9-10",
+   "anchor": "23rd St",
+   "type": "along",
+   "face": 1,
+   "residual_px": 1.771929651523351,
+   "sigma_px": 5.315072906367325,
+   "weight": 0.035398230088495575,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.3333782400991383
+  },
+  {
+   "pair": [
+    9,
+    10
+   ],
+   "seam": "9-10",
+   "anchor": "23rd St",
+   "type": "along",
+   "face": 2,
+   "residual_px": -21.960657116438142,
+   "sigma_px": 5.315072906367325,
+   "weight": 0.035398230088495575,
+   "huber_weight": 0.6050676077434916,
+   "normalized_residual": -4.131769686570023
+  },
+  {
+   "pair": [
+    9,
+    10
+   ],
+   "seam": "9-10",
+   "anchor": "23rd St",
+   "type": "across",
+   "face": 1,
+   "residual_px": -17.300427523414328,
+   "sigma_px": 12.0,
+   "weight": 0.006944444444444444,
+   "huber_weight": 1.0,
+   "normalized_residual": -1.4417022936178605
+  },
+  {
+   "pair": [
+    9,
+    11
+   ],
+   "seam": "9-11",
+   "anchor": "Ave B (Strand)",
+   "type": "along",
+   "face": 1,
+   "residual_px": 0.8882574697445189,
+   "sigma_px": 2.8284271247461903,
+   "weight": 0.12499999999999997,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.31404644014797695
+  },
+  {
+   "pair": [
+    9,
+    11
+   ],
+   "seam": "9-11",
+   "anchor": "Ave B (Strand)",
+   "type": "along",
+   "face": 2,
+   "residual_px": -0.036345433153706086,
+   "sigma_px": 2.8284271247461903,
+   "weight": 0.12499999999999997,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.01285005112407397
+  },
+  {
+   "pair": [
+    9,
+    11
+   ],
+   "seam": "9-11",
+   "anchor": "Ave B (Strand)",
+   "type": "across",
+   "face": 1,
+   "residual_px": 0.07274462688734218,
+   "sigma_px": 12.0,
+   "weight": 0.006944444444444444,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.006062052240611848
+  }
+ ],
+ "downweighted_count": 11
+}

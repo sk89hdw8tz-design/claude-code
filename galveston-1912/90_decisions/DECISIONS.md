@@ -148,3 +148,25 @@ point pairs, 42 evidence crops). Canon updates it established:
    constraint; the pier disagreement is preserved as original drafting disagreement.
 5. **Orientation:** all plates in these attachments (5, 7, 9, 11, 13) are drafted
    bay-page-left (rotated from north-up); along-frontage is page-y everywhere here.
+
+## D-009 — First diagnostic solve; determinability response (2026-08-17)
+
+First full-network solve (34 anchors, 99 observations): along-seam RMS 6.7 px, kappa
+6.01 px/ft, collinearity clean on most streets — but rotation std 4-7 mrad on all free
+sheets against the 1.5 mrad standard, and LOSO shows sheet 11 swinging ~2,600 px without
+seam 11-12. Robust variance factor s0^2 ≈ 3.6-4.3: drafting scatter dominates reading
+noise, as the reconciliation record predicted. The Huber downweights cluster exactly on
+documented plate disagreements (9-10 gallery depth, Rosenberg corners) — absorbing real
+drafting scatter, not measurement error. The 20th-St collinearity outlier is the City
+Storage esplanade (real geometry, not error).
+
+Adopted responses (both pre-planned in FABLE_DETERMINABILITY_NOTES recommendations):
+1. Rotation priors from the measured drafted-grid deviations (< 1.26 mrad on every
+   plate): b_i ~ 0 ± 2 mrad, CLI-controlled, off for synthetic tests.
+2. Long-baseline boundary anchors (18th/27th St) appended to the six row-1/row-3
+   vertical seams — protocol amendment: boundary crossings are admitted as long-baseline
+   rotation controls where legible (larger honest sigma), superseding the interior-only
+   coverage rule.
+3. Straight-street collinearity promoted from diagnostic to constraint (per-face lines,
+   free direction parameters, only straightness assumed — the streets are platted
+   straight and each plate drafts them straight individually).
