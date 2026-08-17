@@ -195,6 +195,34 @@ cut_rationale = (
 # constant beyond the ends. A owns NORTH (smaller canvas y).
 CUT_POLYLINE = [(-1e9, 7750.0), (7850.0, 7750.0), (8100.0, 6620.0), (1e9, 6620.0)]
 
+# ---------------------------------------------------------------------------
+# D-014 -- Pier 22 rail-fan local source-ownership repair.
+#
+# The defect: at the Pier 22 rail convergence the panel/block content frontier
+# below ran ~150 px (mean, up to 324 px) EAST of where sheet 9's drawn content
+# actually begins. That is an artefact of the frontier's own spike filter --
+# maximum_filter1d(size=281) takes the easternmost frontier within +-140 rows,
+# and the fan's west envelope moves west as y increases, so the filter walks the
+# boundary off sheet 9's cartography. Sheet 5 panel B then supplied blank wharf
+# apron over ground where sheet 9 draws the yard, deleting sheet 9's tracks 5
+# and 7, the "T.H." tank-house and its track-8 label, the west end of the 6"
+# water main, and severing every track that crossed the staircase. Diagnosis is
+# recorded in 90_decisions/DECISIONS.md D-014: this is a source-ownership fault
+# (Case C), not a registration fault -- the two plates agree to -2 px in x here.
+#
+# The repair replaces the frontier with a stated polyline inside ONE bounded
+# canvas rectangle. The polyline runs ~20 px east of sheet 9's own slip
+# bulkhead (measured east edge 8126 + 0.0525*(y-6600)) and west of sheet 9's
+# westernmost yard ink, i.e. through the wharf apron that BOTH plates leave
+# blank. Its first and last breakpoints equal the frozen frontier at those rows,
+# so the boundary meets the frozen one with no step and no pixel outside
+# y 6400..9000 changes. Ownership only: no pixel is painted, cloned, blended or
+# interpolated, and every delivered pixel remains genuine plate imagery.
+P22_Y0, P22_Y1 = 6400, 9000
+P22_CUT = [(6400, 8161), (6700, 8150), (7000, 8168), (7340, 8186), (7700, 8206),
+           (8000, 8216), (8300, 8232), (8500, 8246), (8600, 8210), (8800, 8130),
+           (9000, 8153)]
+
 
 def cut_y_canvas(xs_canvas):
     """Boundary canvas-y for each canvas x (piecewise linear)."""
@@ -305,6 +333,13 @@ for name, (M, mine_sheet, other_sheet, M_other, owns_east) in panels.items():
         from scipy.ndimage import maximum_filter1d, median_filter
         _frontier = maximum_filter1d(_frontier, size=281)
         _frontier = median_filter(_frontier, size=41)
+        # D-014 local override (see rationale above). Bounded to P22_Y0..P22_Y1;
+        # every other row keeps the frozen frontier byte-for-byte.
+        _p22_rows = np.arange(P22_Y0, P22_Y1)
+        _frontier[P22_Y0:P22_Y1] = np.round(np.interp(
+            _p22_rows,
+            np.array([p[0] for p in P22_CUT], np.float64),
+            np.array([p[1] for p in P22_CUT], np.float64))).astype(np.int64)
         del gg, ii, dd, run
     xs = np.arange(x0, x1)[None, :]
     blk = blk_own & (xs >= _frontier[y0:y1, None])
@@ -376,6 +411,23 @@ manifest = {
             'line_at_band_edges_mosaic': cut_mosaic_at_band,
             'a_owns': 'east of the line (smaller mosaic y)',
             'rationale': cut_rationale,
+        },
+        'pier22_local_ownership_repair': {
+            'decision': 'D-014',
+            'class': 'source ownership (Case C) -- not registration',
+            'defect': 'content frontier ran a mean 151 px (max 324 px) east of '
+                      'sheet 9 drawn content at the Pier 22 rail fan, an '
+                      'artefact of maximum_filter1d(size=281); sheet 5 panel B '
+                      'blank apron then deleted sheet 9 tracks 5 and 7, the '
+                      'T.H. tank house and track-8 label, the west end of the '
+                      '6" water main, and severed tracks at a staircase edge',
+            'owner_of_circled_convergence': 'sheet 9 (block plate, 2x finer)',
+            'bounded_rows_canvas_y': [P22_Y0, P22_Y1],
+            'boundary_polyline_canvas_yx': P22_CUT,
+            'endpoints_equal_frozen_frontier': True,
+            'panel_transforms_changed': False,
+            'block_transforms_changed': False,
+            'pixels_painted_cloned_or_blended': 0,
         },
         'ownership_stats_px': stats,
     },

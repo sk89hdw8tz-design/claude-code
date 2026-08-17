@@ -266,3 +266,76 @@ would require extending panel A's ownership to ~canvas 8280, within 45 px of A's
 edge -- risking exactly the blank-margin intrusion that F1/1889 warn about. Left as
 documented furniture duplication, the same class already adjudicated at the block seams.
 Paper-tone steps at the panel boundary are authentic and preserved (no exposure matching).
+
+## D-014 — Pier 22 rail fan: local source-ownership repair (2026-08-17)
+
+**Owner report:** at the red-circled Pier 22 splice the railroad tracks jump, terminate,
+change vertical position, or fail to meet their corresponding continuation.
+
+**First finding: the disagreeing pair is not the one reported.** The report attributed the
+defect to the two sheet-5 panels. An empirical ownership map (every master pixel matched
+against every candidate source; 0.00% unmatched) shows the boundary through the circled
+convergence is **sheet 5 panel B vs SHEET 9**, not A|B. Provenance from `50_seams/masks.json`:
+region `s09_r0` covers 96.6% of the window. Panel A owns only a wedge 7.8% of it, ending at
+canvas y 8184, north of the circle. Both plates draw this ground: sheet 9 is a 50 ft/in block
+plate, sheet 5 the 100 ft/in wharf plate upscaled ~2x.
+
+**Case determination — Case C (seam through a locally disagreeing duplicate), not A or B.**
+Not Case A: flat-fielded ink correlation over the shared fan puts the two plates' relative
+offset at **-2 px in x** (well determined by the near-vertical tracks; y is a 44-49 px plateau,
+undetermined, as expected from vertical line work). The plates are registered. Not Case B:
+both draw the same fan in the same place. What differs is *content* — sheet 9 alone carries
+track numbers 5-24, "T.H." and its tank house, block number 742, the 6" water main and the
+80' dimensions — and the seam ran straight through it.
+
+**Root cause, quantified.** The panel/block content frontier ran a mean **151 px east** (max
+324 px) of where sheet 9's drawn content actually begins. This is an artefact of the frontier's
+own spike filter: `maximum_filter1d(size=281)` takes the easternmost frontier within +-140
+rows, and the fan's west envelope moves west as y increases, so the filter walks the boundary
+off sheet 9's cartography. Panel B then supplied blank wharf apron over ground where sheet 9
+draws the yard. Same family as the Mallory shed defect (F1/F2) and the 1889 lesson, but with
+the roles reversed: there blank *block* margin erased sole-source *wharf* content; here blank
+*wharf* apron erased *block* content. The frontier heuristic is one-sided by construction.
+
+**Both ownership directions were built and read at native resolution.**
+*Candidate P — panel B owns the convergence:* rejected. It deletes every track number (5-24),
+block number 742, the 6" water main and both 80' dimensions, floods the area with panel B's
+markedly dimmer paper, duplicates the ICE RUN / ICE RUNWAY label, and opens a **new** hard
+break at its east edge where panel B's coarser fan fails to meet sheet 9's. It repairs the
+visible break by deleting different genuine cartography — the brief's explicit reject test.
+*Candidate S — sheet 9 owns the convergence:* adopted.
+
+**Fix.** Inside ONE bounded canvas rectangle (rows 6400..9000) the frontier is replaced by a
+stated polyline running ~20 px east of sheet 9's own slip bulkhead (measured east edge
+`8126 + 0.0525*(y-6600)`) and west of sheet 9's westernmost yard ink — i.e. through the wharf
+apron that BOTH plates leave blank. Its first and last breakpoints equal the frozen frontier
+at those rows, so the boundaries meet with no step (change tapers 55 -> 30 -> 6 -> 0 px across
+y 8900..9000). Ownership only: no pixel painted, cloned, inpainted, blended or interpolated.
+
+**Measured against the frozen boundary.** Crosses sheet-9 ink in 381 rows vs 500; panel-B ink
+in 512 vs 615. Suppressed sheet-9 drawn ink falls 14.1% -> 10.9%, restoring 8,526 px of the
+plate's own line work. Restored: tracks 5 and 7, the T.H. tank house and track-8 label, the
+west end of the 6" water main, and continuity of every track that crossed the old staircase.
+
+**Transforms: none changed.** Both sheet-5 panel transforms and all block transforms are
+byte-identical (`verify_pier22_frozen.py`: 36 of 38 frozen artefacts byte-identical; the two
+that changed are the compositor carrying this override and its output).
+
+**Regression.** The frontier can only affect rows 6400..9000 and the panels can only write
+within canvas x 2661..10571, so a before/after diff over x2600-10600 x y6200-9200 is a proof
+rather than a sample: **517,949 px changed, bbox x8130..8471 y6402..8998, 100% inside the
+authorised band, 0.1364% of the canvas.** Piers 20-21, Pier 22 and its shed, Piers 23-28, the
+bay shoreline, both slips and their labels, and the Ave. A / Water St frontage all lie outside
+that rectangle and are bit-identical.
+
+**QA-tool bug found and fixed during this work.** The first frozen-input verifier reported
+"0 hashed artefacts checked ... OK" — a false pass, because the checkpoint stores
+component->sha256 with no paths and the parser silently matched nothing. Rewritten to resolve
+paths by hashing the tree and looking the frozen hashes up in that index, so a component that
+cannot be located fails loudly. Fourth instance in this project of a checker emitting
+confident, well-formed, meaningless output (cf. F-001, F-003, F-005).
+
+**Known remaining, not fixed:** panel B's paper is materially dimmer than sheet 9's (the
+sheet-5 scan falls off toward its right side; bright page detected only to x=4447 of 6653), so
+the ownership boundary is visible as a tone step in the blank apron. Authentic and preserved —
+no exposure matching, per the brief. The duplicated "Slip" label (D-013) is likewise unchanged.
