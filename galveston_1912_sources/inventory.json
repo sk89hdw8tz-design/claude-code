@@ -1,8 +1,8 @@
 {
- "generated_utc": "2026-08-16T23:55:42.226803+00:00",
+ "generated_utc": "2026-08-17T02:52:17.274476+00:00",
  "source": "Library of Congress Sanborn collection, public domain",
  "item_group": "sanborn08539",
- "count": 128,
+ "count": 129,
  "items": [
   {
    "file": "sanborn08539_004_img000_full.jpg",
@@ -1155,6 +1155,15 @@
    "bytes": 7758456,
    "sha256": "51ff18dfbe0b22e404b80b4c630b8b95e33ab6df101af7b87ad349f71754fde2",
    "downloaded_utc": "2026-08-16T23:55:39.226599+00:00"
+  },
+  {
+   "file": "sanborn08539_004_img023_archival.jp2",
+   "kind": "context-sheet13",
+   "image_index": 23,
+   "source_url": "https://tile.loc.gov/storage-services/service/gmd/gmd403m/g4034m/g4034gm/g4034gm_g085391912/08539_1912-0013.jp2",
+   "bytes": 7035253,
+   "sha256": "ff3077ac643d8ed4fe98e36e74ceddf2a80d3a44e6134e0eee29d6249a9fea73",
+   "downloaded_utc": "2026-08-17T02:52:14.273784+00:00"
   }
  ]
 }
