@@ -183,3 +183,31 @@ deviation giving the sheet-7 scale-bar area to sheet 9's authentic blank street 
 brief-preferred furniture removal by source ownership; nothing altered in any scan).
 Rosenberg x Ave C composites as a preserved plate disagreement (54-ft drafted frontage
 separation), documented rather than reconciled.
+
+## D-011 — Sheet-5 panel misfit found by the owner; joint re-fit (2026-08-17)
+
+**Owner report:** the two wharf panels do not align at the railroad tracks or at the
+building by Pier 22; the join should read as one continuous frontage.
+
+**Diagnosis (controller).** Confirmed and root-caused. `fit_sheet5.py` solves each panel
+INDEPENDENTLY against the frozen block; nothing couples panel A to panel B. Each panel's
+rotation was therefore set only by its own land-side attachments -- few, noisy (s0^2 ~
+6.5), short lever arm. Result: theta_A = -1.243 deg, theta_B = +0.087 deg, a **1.33 deg
+relative rotation between two panels drafted on one page by one hand at one scale**.
+Propagated along the frontage that is ~350 px (~57 ft) of divergence.
+
+**This supersedes an earlier finding of mine.** The ~55 ft discrepancy in the duplicated
+Pier 22 ground was recorded (D-008, and in the accepted report) as *preserved original
+drafting disagreement*. It is not: it is my fit error. Two panels of one continuous
+frontage on one sheet must agree to drafting precision, and the sheet proves it by
+drawing the Pier 22 / 22nd St ground twice. The earlier compositor decision to route the
+A|B cut through open water "so the pier disagreement never appears as a mid-pier jog" was
+therefore treating a symptom.
+
+**Fix.** `fit_sheet5_joint.py`: joint 8-parameter solve of both panels, coupling them
+with direct observations of the duplicated drafted ground (shed corners, track frogs,
+slip/bulkhead corners) as T_A(pA) - T_B(pB) = 0 rows, alongside the existing block
+attachments. The correspondences fix the panels RELATIVE to each other; the attachments
+fix the pair against the land. Robust IRLS, full 8x8 covariance, and the relative
+rotation reported as a first-class quantity -- the thing the independent fit could not
+constrain at all.
