@@ -53,6 +53,33 @@ One control = one crossing feature at one seam, observed on both plates.
 - Disagreements between the two plates' face positions are recorded as found — they
   are data (drafting or survey difference), not errors to reconcile at harvest time.
 
+## Amendments adopted from the independent protocol audit (2026-08-17)
+
+Per `fable_review/FABLE_PROTOCOL_AUDIT.md`, binding on every verified control record:
+
+1. **Axis convention (stated once, here):** all coordinates are raster pixels of the
+   archival scan, origin top-left, x rightward, y downward.
+2. **`why_not_one_block_off`** is a required field: an explicit disambiguation sentence
+   naming the printed evidence (address run / block number / label) that pins the anchor.
+3. **Remeasurement fields required:** `remeasured_by`, `remeasure_delta_px`. Deltas beyond
+   2·sigma escalate to diagnosis; they are never silently averaged.
+4. **Per-reading sigma:** no default. Set from stated criteria (clean single rule ≈ half
+   line width; obstructed/doubled rule ≥ 2×). A file where every sigma is identical fails review.
+5. **sigma_across construction defined:** from the drafted lot-face separation MEASURED on
+   both plates of the seam (not from printed width annotations — Broadway's drafted
+   separation is ~100 ft where annotations read 150'). Per-seam sigma_across = max(±12 px,
+   half the two plates' disagreement). Floor holds until a diagnostic solve justifies less.
+6. **REJECTED and CONTEXT-ONLY entries are retained** in the verified store with reasons.
+7. **Source binding:** each record carries the source file's SHA-256 (from `INVENTORY.json`).
+8. **Width evidence recorded:** any width used cites where its basis is drawn/printed.
+9. **Line-segment reads:** record both endpoints of the measured face segment (or position
+   + extent), not a bare coordinate, so re-readers measure the same span of a jogging face.
+10. **Junction statement:** 4-sheet junctions are QA panels, not controls — by decision, not omission.
+
+Known trap, binding on seam 7-9: the 20-ft mid-block alley near x≈5400 (carries the 10" pipe)
+mimics an avenue gap; the true Strand crossing is ~700 px west. Anchor identity there must be
+address-run-verified against `fable_review/evidence/seams/`.
+
 ## Coverage target
 
 Per vertical pair: the two interior crossing streets, both faces each — 2 controls.

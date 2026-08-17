@@ -49,7 +49,34 @@ rather than absorbed silently into a joint fit.
   and the pooled-seam table, flagged `deferred`, so it cannot be quietly forgotten.
 - Sheet 5's archival original remains in the verified inventory, checksummed and untouched.
 
-## Working hypothesis to test on re-entry: sheet 5 is *two* strips on one page
+## RESOLVED by independent review (2026-08-17): CONFIRMED MULTI-REGION — two panels
+
+The Fable review track investigated independently (`fable_review/SHEET05_INDEPENDENT_FINDING.md`,
+30 evidence crops, region polygons in `fable_review/sheet05_candidate_regions.geojson`) and the
+controller verified the pivotal evidence directly against the archival scan. Findings adopted:
+
+- Sheet 5 carries **two separately drafted panels of one continuous east-west wharf frontage**,
+  divided by a drafted full-height triple rule at centreline x ≈ 3789 + 0.0099·y.
+- **Panel A (page-left) = Piers 17–22** (16th–22nd St; landward refs 6, 33, 7, 9).
+  **Panel B (page-right) = Piers 22–28** (22nd–28th St; refs 9, 11, 13, 4).
+- **Pier 22 is drawn on BOTH panels** — verified at (1900, 7280) and (4560, 360). A single rigid
+  transform would displace the same pier ~2,400 ft; **two transforms are required**. The
+  duplicated Pier 22 / 22nd St ground is the cross-panel consistency check, and is the only
+  duplicated cartography known anywhere in this edition.
+- Corrections to the earlier stacked-strips hypothesis: the panels are **east/west**, the
+  continuation runs bottom-of-A → top-of-B, and **sheet 9 adjoins BOTH panels** (the break at
+  22nd St falls inside sheet 9's 21st–24th range). North is page-left (drafting rotated, page
+  not rotated in the scan — lettering is upright). Pier 16 is not drawn despite the index's
+  "16–28". The Piers 19–25 target footprint spans the break; Piers 17–18 and 26–28 lie outside
+  it (polygon-flagged).
+- Evidence gap: sheet 13 is not in the source set; the 5–13 attachment rests on sheet 5's own
+  printed refs and the key map until sheet 13 is fetched.
+
+Deferral and re-entry criteria below stand, amended: on re-entry, fit the TWO regions
+independently against the frozen block, with the duplicated Pier 22 ground as the cross-panel
+check, and controls per panel from the named features listed in the finding.
+
+## Superseded working hypothesis (retained for the record): sheet 5 as *two* strips on one page
 
 Raised by the project owner, and consistent with what has been observed: the plate may
 carry **two separate wharf-front strips** rather than one continuous run — the left half

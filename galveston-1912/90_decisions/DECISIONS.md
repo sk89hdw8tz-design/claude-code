@@ -84,6 +84,35 @@ modern geographic registration is wanted as the separate final phase the brief a
 that point OSM matching would be applied to the finished master as a registration step —
 never as control for the historical geometry itself.
 
+## D-006 — Fable review reconciled: sheet 5 multi-region adopted (2026-08-17)
+
+The independent Fable review (two subagents + coordinator verification; package under
+`fable_review/`) is reconciled into the canonical record with owner authorization.
+
+**Sheet 5:** CONFIRMED MULTI-REGION adopted — two east/west panels of one continuous
+wharf frontage split by a drafted rule; Pier 22 drawn on both panels (controller-verified
+against the scan); two transforms required; sheet 9 adjoins both panels. The earlier
+stacked-strips hypothesis is superseded and retained for the record in
+`WHARF_PLACEHOLDER.md`. Deferral and re-entry criteria stand, amended for two regions.
+
+**Accepted with it:** the 17-seam triage (HIGH = the three column-4 attachments), the 12
+independent controls as a reconciliation reference set, the alley-trap warning on 7-9,
+and the Broadway drafted-vs-annotated width finding.
+
+## D-007 — Protocol amendments and solve requirements adopted (2026-08-17)
+
+The ten protocol amendments from `fable_review/FABLE_PROTOCOL_AUDIT.md` are binding
+before any verified control is recorded (see the amendment block in
+`VERIFICATION_PROTOCOL.md`): stated axis convention; required why-not-one-block-off and
+remeasurement fields; per-reading sigmas (no defaults); defined sigma_across construction
+with a ±12 px floor from measured (not annotated) street widths; retained rejects;
+source-checksum binding; segment-endpoint reads; explicit junction statement.
+
+Determinability requirements adopted as `40_solve/SOLVE_REQUIREMENTS.md`: covariance
+flags on (θ, s) with expected first-solve flags on sheets 40, 50, 7; through-street
+collinearity diagnostics across Sealy; junction closure QA order; the prohibition on
+blanket-averaging independent measurement sets.
+
 ## D-002 — Print target (2026-08-16)
 
 The supplied 1899 benchmark PDF measures: single page, 39.39×26.55 in, one embedded baseline
