@@ -5,7 +5,9 @@ frozen block master.
 Reads:
   60_master/final/candidate_master.tif      (frozen block master -- NEVER modified)
   60_master/final/render_manifest.json
-  40_solve/output_sheet5/transforms_sheet5.json  (raw-pixel similarity per panel)
+  40_solve/output_sheet5_joint/transforms_sheet5_joint_shared.json
+      (joint two-panel fit, D-011: panels coupled through the duplicated
+       drafted ground so the wharf reads as one continuous frontage)
   fable_review/sheet05_candidate_regions.geojson (panel region polygons, sheet px)
   50_seams/cuts.json                        (canvas rect, reserved bay band)
   50_seams/masks.json                       (block sheets' owned footprint polygons)
@@ -71,7 +73,9 @@ def sha256_obj(obj):
 # ---------------------------------------------------------------- inputs
 cuts = json.load(open(f'{ROOT}/50_seams/cuts.json'))
 masks = json.load(open(f'{ROOT}/50_seams/masks.json'))
-tr5 = json.load(open(f'{ROOT}/40_solve/output_sheet5/transforms_sheet5.json'))
+PANEL_TF = (f'{ROOT}/40_solve/output_sheet5_joint/'
+            'transforms_sheet5_joint_shared.json')   # D-011 joint fit
+tr5 = json.load(open(PANEL_TF))
 geo = json.load(open(f'{ROOT}/fable_review/sheet05_candidate_regions.geojson'))
 xp = json.load(open(f'{ROOT}/30_controls/verified/cross_panel_05.json'))
 inv = json.load(open(f'{ROOT}/00_inventory/INVENTORY.json'))
@@ -330,7 +334,7 @@ manifest = {
                         'sha256_verified_against_inventory': True},
         'transforms': {p: tr5['panels'][p]['raw'] for p in ('5A', '5B')},
         'transforms_file_sha256': sha256_file(
-            f'{ROOT}/40_solve/output_sheet5/transforms_sheet5.json'),
+            PANEL_TF),
         'region_polygons': region_hashes,
         'divider_exclusion': {'centerline': div_line, 'half_width_px': DIV_HALF,
                               'measured_ink_span_px': 'centerline -22..+27'},

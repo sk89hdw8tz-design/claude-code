@@ -462,19 +462,19 @@
   },
   "transforms": {
    "5A": {
-    "a": 1.978412936167317,
-    "b": -0.042928740938011245,
-    "tx": -14134.440132574782,
-    "ty": -15251.881044686601
+    "a": 1.987505761890113,
+    "b": 0.02058793898396516,
+    "tx": -13912.481013559081,
+    "ty": -15526.283635612665
    },
    "5B": {
-    "a": 1.988775879647088,
-    "b": 0.003032054253740313,
-    "tx": -19440.20462751254,
-    "ty": -1662.118690141744
+    "a": 1.987505761890113,
+    "b": 0.02058793898396516,
+    "tx": -19385.78997367915,
+    "ty": -1775.3821590013622
    }
   },
-  "transforms_file_sha256": "fdeeedcc2f3ec948c973c98fd75fb06038c8c9cce879f2dbb3d89e562c19cc43",
+  "transforms_file_sha256": "92f39b5f2ab4611ec87d74997eda56c5e6f73a80a15bc47664e1d825ab062fd8",
   "region_polygons": {
    "geojson_file_sha256": "8385d7b40f5fb556e227303bb27a9b0a74fc6463727962f57aeabce735781b79",
    "region_A_coords_sha256": "b1fe15a459de9d12906a80b366016d0010c50c595be9f6789b333b3b34a5d795",
@@ -500,48 +500,48 @@
   "block_ownership": "union of the 12 polygon_mosaic rings of 50_seams/masks.json; block master pixels always win",
   "ab_cut": {
    "anchor_point_mosaic": [
-    -6756.968900449291,
-    -1154.0476927612679
+    -6837.477230521109,
+    -1145.9375437173142
    ],
    "slope_dy_dx": -0.3,
-   "corridor_slope_dy_dx": -0.03291108088795574,
+   "corridor_slope_dy_dx": -0.012459949805384007,
    "line_at_band_edges_mosaic": [
     [
      -9274,
-     -398.9383628960552
+     -414.9807128736469
     ],
     [
      -16734,
-     1839.0616371039448
+     1823.0192871263532
     ]
    ],
    "a_owns": "east of the line (smaller mosaic y)",
-   "rationale": "Straight cut anchored at C=(-6757.0,-1154.0) mosaic = midpoint of the A/B-mapped 22nd St street corners (cross_panel_05 P1/P2), i.e. the solved 22nd St cross-panel position; at the Ave A frontage the line passes mid-corridor. The corridor's own direction (dy/dx=-0.0329) extended bayward would slice panel A's Pier 22 shed mid-body (the pier leans across the corridor extension), so the line is tilted to dy/dx=-0.30: its visible portion (bayward of the block-owned boundary x~-9253) runs through open water between Pier 22's landward root and the plate edge. Clearances: A deck root E corner P6_A 167 px, A water-tint apron ~76 px, B deck root W corner P5_B ~366 px. Consequences: panel A's complete Pier 22 depiction renders; panel B's duplicate stub (truncated by its sheet edge) is suppressed; the ~55 ft drafted pier disagreement therefore does not appear as a mid-pier jog. The only drawn ink the cut crosses: B's slip-edge bulkhead line, dead-ending at x~-9233 (inside the block-owned strip, hidden), and A's soft plate-edge water wash in open water. A owns east of the line (smaller mosaic y), B west - verified from the mapped panel centroids (A centroid y=-7597 < B centroid y=6070)."
+   "rationale": "Straight cut anchored at C=(-6837.5,-1145.9) mosaic = midpoint of the A/B-mapped 22nd St street corners (cross_panel_05 P1/P2), i.e. the solved 22nd St cross-panel position; at the Ave A frontage the line passes mid-corridor. The corridor's own direction (dy/dx=-0.0125) extended bayward would slice panel A's Pier 22 shed mid-body (the pier leans across the corridor extension), so the line is tilted to dy/dx=-0.30: its visible portion (bayward of the block-owned boundary x~-9253) runs through open water between Pier 22's landward root and the plate edge. Clearances: A deck root E corner P6_A 167 px, A water-tint apron ~76 px, B deck root W corner P5_B ~366 px. Consequences: panel A's complete Pier 22 depiction renders; panel B's duplicate stub (truncated by its sheet edge) is suppressed; the ~55 ft drafted pier disagreement therefore does not appear as a mid-pier jog. The only drawn ink the cut crosses: B's slip-edge bulkhead line, dead-ending at x~-9233 (inside the block-owned strip, hidden), and A's soft plate-edge water wash in open water. A owns east of the line (smaller mosaic y), B west - verified from the mapped panel centroids (A centroid y=-7715 < B centroid y=6044)."
   },
   "ownership_stats_px": {
    "A": {
     "canvas_subrect_xyxy": [
-     3105,
+     3167,
      0,
-     10516,
-     8262
+     10440,
+     8148
     ],
-    "mask_px_in_canvas": 57506098,
-    "suppressed_by_block_ownership_px": 19796344,
-    "ceded_to_other_panel_by_cut_px": 561457,
-    "written_px": 37148297
+    "mask_px_in_canvas": 57212095,
+    "suppressed_by_block_ownership_px": 18974972,
+    "ceded_to_other_panel_by_cut_px": 488716,
+    "written_px": 37748407
    },
    "B": {
     "canvas_subrect_xyxy": [
-     4887,
-     6783,
-     10392,
+     4801,
+     6737,
+     10437,
      14489
     ],
-    "mask_px_in_canvas": 41848078,
-    "suppressed_by_block_ownership_px": 16334027,
-    "ceded_to_other_panel_by_cut_px": 4333996,
-    "written_px": 21180055
+    "mask_px_in_canvas": 41942093,
+    "suppressed_by_block_ownership_px": 16430741,
+    "ceded_to_other_panel_by_cut_px": 4170860,
+    "written_px": 21340492
    }
   }
  },
@@ -554,8 +554,8 @@
     26206,
     14489
    ],
-   "bytes": 382318101,
-   "sha256": "6541150275d6c098f673c356c286423c5ef53c1ac3d898632f2384c93ab4bba5"
+   "bytes": 383118719,
+   "sha256": "8ec46235c62f8ff071c251c74b6f5b2128519677ed650eac8099f87429665fb4"
   },
   "master_full_preview_png": {
    "path": "60_master/final/master_full_preview.png",

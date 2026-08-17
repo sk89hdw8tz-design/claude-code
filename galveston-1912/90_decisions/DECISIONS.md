@@ -211,3 +211,34 @@ attachments. The correspondences fix the panels RELATIVE to each other; the atta
 fix the pair against the land. Robust IRLS, full 8x8 covariance, and the relative
 rotation reported as a first-class quantity -- the thing the independent fit could not
 constrain at all.
+
+## D-012 — Joint panel fit adopted; shared-orientation model (2026-08-17)
+
+Seven cross-panel correspondences measured on the duplicated ground (shed and pier-deck
+corners, pipe/street intersection, two building corners; sigma 3-6 px, 14 evidence crops,
+one bad pairing caught and re-measured). Two models fitted and compared:
+
+| model | relative rotation | duplicated-ground disagreement | block RMS |
+|---|---|---|---|
+| independent (superseded) | +1.330 deg | 283 px (49 ft) | -- |
+| joint, free rotation | +0.373 +- 0.27 deg | 22.7 px (3.9 ft) | 60.8 px |
+| **joint, shared orientation (ADOPTED)** | 0 by construction | 32.5 px (5.6 ft) | 59.2 px |
+
+**Shared orientation adopted.** The free model's +0.373 deg is 1.4 sigma from zero -- not
+demonstrated. The correspondence set is strongly elongated (1610 px across the frontage,
+only 245 px along it), so relative rotation and scale are ill-conditioned from these
+points alone: the measurer's own subset fits swung scale 0.98-1.02 and rotation -0.55 to
++1.0 deg. Per the brief's least-complex-model rule, the extra DOF is not adopted merely
+because it lowers residuals. The physical argument is independent and strong: both panels
+are on one page, at one drafted scale ("Scale 100 Ft. to One Inch"), laid out as parallel
+bands with streets horizontal. Shared orientation also fits the land attachments slightly
+BETTER (59.2 vs 60.8 px).
+
+Residual ~5.6 ft disagreement is smaller than the ~10-11 ft the two hand drafts disagree
+by on slip/yard width -- i.e. now within the source's own inconsistency. THAT remains a
+genuine preserved drafting disagreement; the 49 ft was not.
+
+Verified: anaglyph of both panels warped into the mosaic shows shed outlines coincident
+and shared track lines printing neutral (agreement); remaining single-colour tracks are
+genuine draft differences (the panels draw different yard track counts). Native-resolution
+inspection at the cut shows continuous tracks and the Pier 22 shed rendered once, whole.
