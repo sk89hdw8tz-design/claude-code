@@ -165,6 +165,65 @@
    "remeasured_by": null,
    "remeasure_delta_px": null,
    "remeasure_note": "single-observer record; cross-observer remeasurement to be attached at harvest comparison"
+  },
+  {
+    "anchor": "27th St (bottom boundary)",
+    "status": "ACCEPTED",
+    "class": "observed",
+    "why_not_one_block_off": "The Mechanic address run TERMINATES immediately north of this band: evens end 2624/2626/2628 rotated at the corner on sheet 11, odds end 2621/2623/2625/2627 on sheet 12 -- exactly the closing values of the index run 2400-2628/2401-2627, and no further crossing is drafted south of the band (the street is clipped at the page bottom). One block north (26th St) the band is flanked by 2528 above and 2602/2604 below. 27th St north-side runs read 218/220/222/224 (sheet 11, 200-series) vs 302/304/306 (sheet 12, 300-series), the same 2xx->3xx split across Ave C as this seam's interior anchors.",
+    "anchor_evidence": "Sheet 11: 27th St N-side evens 218/220/222/224 printed in the street below the face; TEXAS SHEET METAL WORKS (IR.CL.) in the block above; Mechanic evens 2624/2626/2628 rotated at the corner; '80'' printed twice mid-street; '27TH' + 'ST.' label mid-street west of the corner. Sheet 12: evens 302/304/306 below the face; Mechanic odds 2621/2623/2625/2627 rotated at the corner; '80'' rotated mid-street; '70'' printed mid-Ave C in the intersection (not measured).",
+    "A": {
+      "sheet": 11,
+      "face1_seg": [
+        [
+          5960,
+          7262
+        ],
+        [
+          6150,
+          7262
+        ]
+      ],
+      "face2_seg": null,
+      "measured_at": "bottom-right corner adjacent to Ave C; N property face read x 5960-6150, immediately west of the dashed 1-sty corner shed (x~6080-6250) which projects south into the street to y~7360 and overrides the immediate corner",
+      "sigma_along_px": 3.0,
+      "sigma_basis": "clean solid property-line rule ~5-6 px, sigma ~ half line width (5x arbitration delta 0.5); face2 not drafted -- no south reading exists",
+      "source_sha256": "e7b2ff1b6b70c5d7124a4879e5feca478d95681224d97b88855de7bade1591df"
+    },
+    "B": {
+      "sheet": 12,
+      "face1_seg": [
+        [
+          620,
+          7258
+        ],
+        [
+          915,
+          7258
+        ]
+      ],
+      "face2_seg": null,
+      "measured_at": "bottom-left corner adjacent to Ave C; N property face read x 620-915 (S bldg block face; dashed corner shed edge at x~722 stays south of the rule)",
+      "sigma_along_px": 3.0,
+      "sigma_basis": "solid rule ~6 px; first 3x read (7262) included the lower scan fringe -- two independent higher-zoom windows (4x x750-900, 5x x615-715) both put the ink-core centre at 7257-7259; arbitrated value recorded, delta 3.5 noted (within 2 sigma); face2 not drafted",
+      "source_sha256": "d2ab9e8aa706bfc1bd41732dbc85f3a23d8097732f92ebc13852276f7843a82f"
+    },
+    "drafted_width_px": {
+      "A": null,
+      "B": null,
+      "annotation": "80' rotated mid-street on both plates; drafted width NOT measurable -- the south frontage and any far street-edge rule are clipped off the page bottom on both plates (paper edge y~7765, no drawn line south of the face)"
+    },
+    "evidence_crops": [
+      "70_qa/control_evidence/pair11-12_27th_sheet11_ctx.jpg",
+      "70_qa/control_evidence/pair11-12_27th_sheet11_N.jpg",
+      "70_qa/control_evidence/pair11-12_27th_sheet12_ctx.jpg",
+      "70_qa/control_evidence/pair11-12_27th_sheet12_N.jpg",
+      "70_qa/control_evidence/pair11-12_27th_sheet12_arb.jpg"
+    ],
+    "notes": "observer: ctrl-LB. SINGLE-FACE anchor (north property face only) -- unlike the 18th St top boundary, neither plate drafts a far (south) street-edge rule for 27th St; the street space runs open to the page bottom edge. Furniture check per self-adversarial pass: sheet 11 date stamp '6-25-12' at (x~6350, y~7650) and '27TH ST.' label not measured; sheet 12 carries a border/box fragment at its far bottom-left (x~170-220) far outside the measured span; the bottom paper edge was never taken as a line. Dashed corner sheds on both plates excluded (drawn dashed, project into the street).",
+    "verified_by": "visual read of 1:1 ruled corner crops cut by ctrl-LB from the archival JP2s (3x-5x nearest-neighbour zoom, plate-coordinate rulers); overview panels not used at all; SHA-256 of every source re-verified against INVENTORY.json before reading",
+    "remeasured_by": "ctrl-LB second pass (sheet 12 face1: 4x window x750-900 then 5x arbitration x615-715; sheet 11 face1: 5x arbitration x6000-6100, delta 0.5)",
+    "remeasure_delta_px": 3.5
   }
  ]
 }

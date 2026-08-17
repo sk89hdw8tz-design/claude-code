@@ -69,6 +69,64 @@
         "70_qa/control_evidence/pair49-50_26th_sheet50.jpg"
       ],
       "notes": "Drafted width 478 vs 482 px - 4 px disagreement, recorded not reconciled; sheet 49's merged north face is the likely cause."
-    }
-  ]
+    },
+  {
+    "anchor": "27th St (bottom boundary)",
+    "status": "ACCEPTED",
+    "class": "observed",
+    "why_not_one_block_off": "The Sealy address run TERMINATES immediately north of this band: evens end 2624/2626/2628 rotated at the corner on sheet 49, odds end 2623/2625/2627 on sheet 50 -- the closing values of the index run 2400-2628/2401-2627 -- and no further crossing is drafted south (page bottom). One block north (26th St) the band is flanked by 2602/2604 and 2601/2603 below its face (this seam's interior anchor). 27th St north-side runs read 820/822/824 (sheet 49, 800-series) vs 902/904/906/908 (sheet 50, 900-series), the same 8xx->9xx split across Ave I as the interior anchors.",
+    "anchor_evidence": "Sheet 49: 27th St N-side evens 820/822/824 below the face; D. dwellings above; Sealy evens 2624/2626/2628 rotated at the corner; '80'' rotated mid-street; '70'' mid-Ave I; date stamp 'E.G. 6/24/'12' in the street (not measured). Sheet 50: evens 902/904/906/908 below the face; D. dwellings with dashed porches; Sealy odds 2623/2625/2627 rotated at the corner; '80'' rotated mid-street; '70'' mid-Ave I.",
+    "A": {
+      "sheet": 49,
+      "face1_seg": [
+        [
+          5860,
+          7234
+        ],
+        [
+          6080,
+          7232
+        ]
+      ],
+      "face2_seg": null,
+      "measured_at": "bottom-right corner adjacent to Ave I; N property face read x 5860-6080 to the block corner (heavy vertical at x~6082)",
+      "sigma_along_px": 3.0,
+      "sigma_basis": "solid rule ~6 px, slightly heavy toward the corner, sigma ~ half line width; face2 not drafted",
+      "source_sha256": "ce9382f5fdedea88527e7a4f38a3ce77c3c83f305b48ebb9366f84bf2151e55b"
+    },
+    "B": {
+      "sheet": 50,
+      "face1_seg": [
+        [
+          455,
+          7231
+        ],
+        [
+          810,
+          7232
+        ]
+      ],
+      "face2_seg": null,
+      "measured_at": "bottom-left corner adjacent to Ave I; N property face read x 455-810 from the block corner (vertical at x~448) east; corner D. building sits on the line",
+      "sigma_along_px": 2.5,
+      "sigma_basis": "clean single rule ~5 px, half line width (4x remeasure delta 0.0); face2 not drafted",
+      "source_sha256": "51ff18dfbe0b22e404b80b4c630b8b95e33ab6df101af7b87ad349f71754fde2"
+    },
+    "drafted_width_px": {
+      "A": null,
+      "B": null,
+      "annotation": "80' rotated mid-street on both plates; drafted width NOT measurable -- south frontage clipped off the page bottom on both plates"
+    },
+    "evidence_crops": [
+      "70_qa/control_evidence/pair49-50_27th_sheet49_ctx.jpg",
+      "70_qa/control_evidence/pair49-50_27th_sheet49_N.jpg",
+      "70_qa/control_evidence/pair49-50_27th_sheet50_ctx.jpg",
+      "70_qa/control_evidence/pair49-50_27th_sheet50_N.jpg"
+    ],
+    "notes": "observer: ctrl-LB. SINGLE-FACE anchor (north face only); street space open to the page bottom on both plates. Topology observation: sheet 49 ALSO drafts Ave I's far east edge as a bare vertical rule at x~6520 that terminates at this face's level -- the same bare far-edge treatment found on the 18th St top boundary; it constrains x, not y, and was not measured. Furniture check: date stamp 'E.G. 6/24/'12' (sheet 49, x~6250, y~7550) not measured; no scale bar or header near either measured corner; bottom paper edge never taken as a line.",
+    "verified_by": "visual read of 1:1 ruled corner crops cut by ctrl-LB from the archival JP2s (3x-5x nearest-neighbour zoom, plate-coordinate rulers); overview panels not used at all; SHA-256 of every source re-verified against INVENTORY.json before reading",
+    "remeasured_by": "ctrl-LB second pass (independent window x 550-700, 4x nearest-neighbour, sheet 50 face1)",
+    "remeasure_delta_px": 0.0
+  }
+ ]
 }

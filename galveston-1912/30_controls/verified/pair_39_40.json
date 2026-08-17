@@ -69,6 +69,84 @@
         "70_qa/control_evidence/pair39-40_20th_sheet40.jpg"
       ],
       "notes": "PLATE DISAGREEMENT recorded, not reconciled: drafted street width 475 px (sheet 39) vs 490 px (sheet 40) against the same printed 80'. Largest width disagreement in ctrl-V2's four seams; possibly linked to the doubled rule on sheet 39's south face."
-    }
-  ]
+    },
+  {
+    "anchor": "18th St (top boundary)",
+    "status": "ACCEPTED",
+    "class": "observed",
+    "why_not_one_block_off": "The Sealy address run BEGINS immediately south of this band: evens 1802/1804 rotated below the corner on sheet 39, odds 1801/1803/1805 on sheet 40 -- the 18xx origin of the index run 1800-2028/1801-2027 lies only at 18th St; at 19th St the band is flanked by 1826/1828 above and 1902 below (this seam's interior anchor). No drafted crossing exists north (street exits the sheet top). 18th St south-side runs read 819/821/823 (sheet 39, 800-series) vs 901/903/905/907 (sheet 40, 900-series), the same 8xx->9xx split across Ave I shown by the 19th/20th anchors.",
+    "anchor_evidence": "Sheet 39: 18th St S-side odds 819/821/823 above the face; Sealy evens 1802/1804 rotated down the corner; '80'' rotated mid-street; '70'' printed mid-Ave I below the corner (not measured). Sheet 40: odds 901/903/905/907 above the face; yellow D. dwellings with dashed porches (excluded); Sealy odds 1801/1803/1805 rotated down the corner; '80'' rotated mid-street; '70'' mid-Ave I.",
+    "A": {
+      "sheet": 39,
+      "face1_seg": [
+        [
+          5910,
+          222
+        ],
+        [
+          6145,
+          224
+        ]
+      ],
+      "face2_seg": [
+        [
+          5860,
+          707
+        ],
+        [
+          6145,
+          709
+        ]
+      ],
+      "measured_at": "top-right corner adjacent to Ave I; face2 read x 5860-6145 to the block corner (vertical at x~6148); face1 read x 5910-6145 up to the Ave I opening",
+      "sigma_along_px": 3.5,
+      "sigma_basis": "face2 single rule ~5-6 px, 5x arbitration moved centre 2.5 px up from first 3x read (arbitrated value recorded, sigma 2.5); face1 heavy bare street-edge rule ~7 px (sigma 3.5); per-plate sigma = worse face",
+      "source_sha256": "ed732111ccd0586a02829c236c38306550fa5b544c287c58d017e40a16a6a0ee"
+    },
+    "B": {
+      "sheet": 40,
+      "face1_seg": [
+        [
+          490,
+          201
+        ],
+        [
+          820,
+          201
+        ]
+      ],
+      "face2_seg": [
+        [
+          460,
+          688
+        ],
+        [
+          800,
+          687
+        ]
+      ],
+      "measured_at": "top-left corner adjacent to Ave I; face2 read x 460-800 from the block corner (vertical at x~448) east; face1 read x 490-820 from the Ave I opening east",
+      "sigma_along_px": 3.5,
+      "sigma_basis": "face2 clean single rule ~5-6 px (sigma 2.5-3); face1 heavy bare street-edge rule ~6 px with fringe (sigma 3.5; 4x remeasure put ink-core centre at 202.5, delta 1.5); per-plate sigma = worse face",
+      "source_sha256": "12a04ff5411de391d2a1941dd414e37ee68103da84c34cff1e7c4428a5b37b7f"
+    },
+    "drafted_width_px": {
+      "A": 485.0,
+      "B": 486.0,
+      "annotation": "80' rotated mid-street on both plates; width is S property face to bare N street-edge rule (see notes)"
+    },
+    "evidence_crops": [
+      "70_qa/control_evidence/pair39-40_18th_sheet39_ctx.jpg",
+      "70_qa/control_evidence/pair39-40_18th_sheet39_N.jpg",
+      "70_qa/control_evidence/pair39-40_18th_sheet39_S.jpg",
+      "70_qa/control_evidence/pair39-40_18th_sheet40_ctx.jpg",
+      "70_qa/control_evidence/pair39-40_18th_sheet40_N.jpg",
+      "70_qa/control_evidence/pair39-40_18th_sheet40_S.jpg"
+    ],
+    "notes": "observer: ctrl-LB. BOTH faces measured; face1 on both plates is the bare far street-edge rule (17xx frontage on sheets 35/36). Furniture check: no header, sheet numeral, or box furniture in either measured corner (sheet 40's numeral is elsewhere); rules verified to turn up at the Ave I opening -- not box rules. Width check 485/486 px = 80', consistent with interior anchors 485/482/475/490. Largest remeasure delta of ctrl-LB's set is sheet 39 face2 (2.5 px, 3x fringe bias corrected by 5x arbitration; recorded, within 2 sigma).",
+    "verified_by": "visual read of 1:1 ruled corner crops cut by ctrl-LB from the archival JP2s (3x-5x nearest-neighbour zoom, plate-coordinate rulers); overview panels not used at all; SHA-256 of every source re-verified against INVENTORY.json before reading",
+    "remeasured_by": "ctrl-LB second pass (4x remeasure sheet 40 face1, delta 1.5; 5x arbitration sheet 39 face2, delta 2.5 -- larger value reported)",
+    "remeasure_delta_px": 2.5
+  }
+ ]
 }

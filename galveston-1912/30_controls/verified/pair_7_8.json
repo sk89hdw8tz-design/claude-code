@@ -163,6 +163,84 @@
    "remeasured_by": null,
    "remeasure_delta_px": null,
    "remeasure_note": "single-observer record; cross-observer remeasurement to be attached at harvest comparison"
+  },
+  {
+    "anchor": "18th St (top boundary)",
+    "status": "ACCEPTED",
+    "class": "observed",
+    "why_not_one_block_off": "The Mechanic address run BEGINS immediately south of this band: evens 1802/1804/1806 rotated below the corner on sheet 7, odds 1801/1803/1805 on sheet 8 -- the 18xx origin of the index run 1800-2028/1801-2027 lies only at 18th St; one block south (19th St) the band is flanked by 1828 above and 1902 below. No drafted crossing exists north of the band (the street exits the sheet top). 18th St south-side runs read 219/221/223 (sheet 7, 200-series) vs 301/303/305 (sheet 8, 300-series), the same 2xx->3xx split across Ave C shown by the 19th/20th anchors.",
+    "anchor_evidence": "Sheet 7: 18th St S-side odds 219/221/223 above the face; WARE HO. at the corner lot; Mechanic evens 1802/1804/1806 rotated down the corner; '80'' rotated mid-street; dashed 10\" W. PIPE mid-street turning south down Ave C at x~6390. Sheet 8: odds 301/303/305 above the face under 'NO WATCHMAN - NO HEAT - FUEL: SHAVINGS &...' warning; PLANING MILL; Mechanic odds 1801/1803/1805 rotated down the corner; '80'' rotated mid-street; pipe turning south at x~380.",
+    "A": {
+      "sheet": 7,
+      "face1_seg": [
+        [
+          6020,
+          146
+        ],
+        [
+          6175,
+          147
+        ]
+      ],
+      "face2_seg": [
+        [
+          5902,
+          633
+        ],
+        [
+          6175,
+          632
+        ]
+      ],
+      "measured_at": "top-right corner adjacent to Ave C; face2 (S property face) read x 5902-6175 to the block corner; face1 (bare N street-edge rule) read x 6020-6175 up to the Ave C opening where it turns north to the paper edge",
+      "sigma_along_px": 4.0,
+      "sigma_basis": "face2 clean solid building-front rule ~6 px (sigma 3, 5x arbitration delta 0.5); face1 heavy bare street-edge rule ~8-9 px with scan fringe (sigma 4); per-plate sigma = worse face",
+      "source_sha256": "a0c42dde9c8e6f0d3148de82915b2e563d5763c7a4da6f81aaeb508bb1db0e62"
+    },
+    "B": {
+      "sheet": 8,
+      "face1_seg": [
+        [
+          592,
+          198
+        ],
+        [
+          900,
+          199
+        ]
+      ],
+      "face2_seg": [
+        [
+          592,
+          681
+        ],
+        [
+          900,
+          680
+        ]
+      ],
+      "measured_at": "top-left corner adjacent to Ave C; face2 read x 592-900 from the block corner east; face1 read x 592-900 from the Ave C opening east",
+      "sigma_along_px": 4.0,
+      "sigma_basis": "face2 clean single rule ~5 px (sigma 2.5, 4x remeasure delta 0.5); face1 heavy bare street-edge rule ~7 px with fringe (sigma 4); per-plate sigma = worse face",
+      "source_sha256": "557220abd08263fa3f6e4ae83397b9f095c48158c8fbc8f2c679f14e377f98fe"
+    },
+    "drafted_width_px": {
+      "A": 486.0,
+      "B": 483.0,
+      "annotation": "80' rotated mid-street on both plates; width is S property face to bare N street-edge rule (see notes)"
+    },
+    "evidence_crops": [
+      "70_qa/control_evidence/pair7-8_18th_sheet7_ctx.jpg",
+      "70_qa/control_evidence/pair7-8_18th_sheet7_N.jpg",
+      "70_qa/control_evidence/pair7-8_18th_sheet7_S.jpg",
+      "70_qa/control_evidence/pair7-8_18th_sheet8_ctx.jpg",
+      "70_qa/control_evidence/pair7-8_18th_sheet8_N.jpg",
+      "70_qa/control_evidence/pair7-8_18th_sheet8_S.jpg"
+    ],
+    "notes": "observer: ctrl-LB (long-baseline boundary pass). BOTH faces measured, but face1 on both plates is the bare far street-edge rule at the nominal north property line -- the 17xx frontage belongs to sheets 33/34 and carries no buildings/addresses here. Self-adversarial furniture check: rule confirmed NOT a border/box -- it terminates and turns up at the Ave C opening instead of closing a frame corner, and sits one printed street width (80' at ~6.06 px/ft) above the south property face on both plates (486/483 px, consistent with this seam's interior 80' anchors 479/496). Sheet 8 margin furniture ('GALVESTON, TEXAS' header + large numeral 8 at x~230-500, y~200-440) lies west of every measured span; nothing was read from it. Weight face1 accordingly in the solve.",
+    "verified_by": "visual read of 1:1 ruled corner crops cut by ctrl-LB from the archival JP2s (3x-5x nearest-neighbour zoom, plate-coordinate rulers); overview panels not used at all; SHA-256 of every source re-verified against INVENTORY.json before reading",
+    "remeasured_by": "ctrl-LB second pass (independent window x 700-850, 4x nearest-neighbour, sheet 8 face2; plus 5x arbitration of sheet 7 face2)",
+    "remeasure_delta_px": 0.5
   }
  ]
 }

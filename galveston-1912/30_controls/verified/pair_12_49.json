@@ -69,6 +69,64 @@
         "70_qa/control_evidence/pair12-49_26th_sheet49.jpg"
       ],
       "notes": "Drafted width 477 vs 482 px - 5 px disagreement, recorded not reconciled. Measurement-process note: the first locating crop written for sheet 12/26th was overwritten in the shared scratchpad by another agent's crop of sheet 12's LEFT edge (Mechanic seam, 300-series runs) under the same filename; detected because the on-disk size did not match the generator's report and the address runs were wrong for this seam. Regenerated under a unique filename and verified against source SHA-256 before reading. No final coordinate was taken from the corrupted file."
-    }
-  ]
+    },
+  {
+    "anchor": "27th St (bottom boundary)",
+    "status": "ACCEPTED",
+    "class": "observed",
+    "why_not_one_block_off": "The Church address run TERMINATES immediately north of this band: evens end 2624/2626/2628 rotated at the corner on sheet 12, odds end 2623/2625/2627 on sheet 49 -- the closing values of the index run 2400-2628/2401-2627 -- and no further crossing is drafted south (page bottom). One block north (26th St) the band is flanked by 2602-2610/2601-2603 below its face (this seam's interior anchor). 27th St north-side runs read 520/522/524 (sheet 12, 500-series) vs 602/604/606/608 (sheet 49, 600-series), the same 5xx->6xx split across Ave F as the interior anchors.",
+    "anchor_evidence": "Sheet 12: 27th St N-side evens 520/522/524 below the face; Seaboard Lumber & Milling block with LUMBER SHED drawn to the lot line; Church evens 2624/2626/2628 rotated at the corner; 'F.A.' fire-alarm symbol at the corner mid-street (excluded); insurer warning text ('...NEWMAN CLOCK, HOURLY ROUNDS...') printed in the street; '80'' rotated mid-street. Sheet 49: evens 602/604/606/608 below the face; Gro.& Sal. corner building; Church odds 2623/2625/2627 rotated at the corner; '80'' rotated mid-street; '70'' mid-Ave F.",
+    "A": {
+      "sheet": 12,
+      "face1_seg": [
+        [
+          5890,
+          7239
+        ],
+        [
+          6185,
+          7235
+        ]
+      ],
+      "face2_seg": null,
+      "measured_at": "bottom-right corner adjacent to Ave F; N property face read x 5890-6185 to the block corner (vertical at x~6190); the LUMBER SHED is drawn to the lot line so shed edge and property line form one rule",
+      "sigma_along_px": 3.5,
+      "sigma_basis": "property line merged with lumber-shed south edge, heavy rule ~7 px, >= 1.5x half-width; face2 not drafted",
+      "source_sha256": "d2ab9e8aa706bfc1bd41732dbc85f3a23d8097732f92ebc13852276f7843a82f"
+    },
+    "B": {
+      "sheet": 49,
+      "face1_seg": [
+        [
+          515,
+          7242
+        ],
+        [
+          885,
+          7243
+        ]
+      ],
+      "face2_seg": null,
+      "measured_at": "bottom-left corner adjacent to Ave F; N property face read from the Gro.&Sal. SW corner (x~515) east to x 885; the immediate corner lot west of x~640 is a dashed 1-sty shed projecting south and west (excluded)",
+      "sigma_along_px": 2.5,
+      "sigma_basis": "clean single rule ~5 px, half line width (4x remeasure delta 1.0); face2 not drafted",
+      "source_sha256": "ce9382f5fdedea88527e7a4f38a3ce77c3c83f305b48ebb9366f84bf2151e55b"
+    },
+    "drafted_width_px": {
+      "A": null,
+      "B": null,
+      "annotation": "80' rotated mid-street on both plates; drafted width NOT measurable -- south frontage clipped off the page bottom on both plates"
+    },
+    "evidence_crops": [
+      "70_qa/control_evidence/pair12-49_27th_sheet12_ctx.jpg",
+      "70_qa/control_evidence/pair12-49_27th_sheet12_N.jpg",
+      "70_qa/control_evidence/pair12-49_27th_sheet49_ctx.jpg",
+      "70_qa/control_evidence/pair12-49_27th_sheet49_N.jpg"
+    ],
+    "notes": "observer: ctrl-LB. SINGLE-FACE anchor (north face only); street space open to the page bottom on both plates. MAJOR furniture hazard confirmed and avoided per self-adversarial pass: sheet 49 prints the sheet's GRAPHIC SCALE BAR ('50 40 30' + black bar) inside the 27th St street space at (x~830-1000+, y~7590-7620) -- it is a box/bar rule and was not measured; sheet 12 has the excluded 'F.A.' symbol below its face at the corner and a date stamp 'F. 6/26/12'. Frontage jog recorded: sheet 12's 27th St face sits ~20 px higher at this Ave F corner (7237) than at its Ave C corner (7258) -- readings on the two plates of each seam were taken at corresponding corners per protocol.",
+    "verified_by": "visual read of 1:1 ruled corner crops cut by ctrl-LB from the archival JP2s (3x-5x nearest-neighbour zoom, plate-coordinate rulers); overview panels not used at all; SHA-256 of every source re-verified against INVENTORY.json before reading",
+    "remeasured_by": "ctrl-LB second pass (independent window x 700-850, 4x nearest-neighbour, sheet 49 face1)",
+    "remeasure_delta_px": 1.0
+  }
+ ]
 }
