@@ -1,0 +1,82 @@
+{
+  "type": "FeatureCollection",
+  "name": "sheet05_candidate_regions",
+  "description": "Pixel-space regions of Sanborn Galveston 1912 Sheet 5 (sanborn08539_004_img009_archival.jp2, 6653x7795). Coordinate system: full-resolution source pixels, x right, y down. Independent review finding (Fable review workspace). Scale on plate: 100 ft = ~309 px. Page orientation: page-left = north (Galveston Bay), page-down = west (increasing numbered streets), per compass rose at (3990,5180).",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "region_id": "A",
+        "description": "East panel: wharf frontage strip drawn with bay to page-left, land to page-right, terminated on its landward side by the heavy triple-rule panel border (centerline x=3789@y0 to x=3866@y7795). Contains Piers 17-22 with sheds, GWC terminal tracks & yard, block fronts, Ave A or Water. Pier 22 at panel bottom is duplicated on panel B.",
+        "pier_range": "16/17-22 (Pier 16 not drawn; coverage begins at slip east of Pier 17; index assigns 16-28 to sheet 5)",
+        "cross_street_range": "16th St (y~240) to 22nd St (y~7160)",
+        "adjoining_sheet": "6 (top edge, east, at (1740,220)); 33 (landward at 17th, (2980,1420)); 7 (landward at 19th-20th, (3240,4270)); 9 (landward at 21st-22nd, (3290,6320))",
+        "confidence": 0.9
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[0,0],[3789,0],[3866,7795],[0,7795],[0,0]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_id": "B",
+        "description": "West panel: continuation of the same frontage, drawn as a second parallel strip to the right of the panel divider, same orientation (bay page-left). Begins with blank paper + bay water immediately right of the rule, then Piers 22-28, Mallory Steamship Co. shed (Piers 23-26), Sykes Bros shed (Pier 27), GWC terminal tracks & yard, Ave A or Water at far right margin. Pier 22 at panel top duplicates panel A's Pier 22.",
+        "pier_range": "22-28",
+        "cross_street_range": "22nd St (y~230) to 28th St (y~7290) on right margin; 23rd/Tremont y~1400, 24th y~2530, 25th/Rosenberg y~3715, 26th y~5000, 27th y~6150",
+        "adjoining_sheet": "9 (right margin boxed at 23rd/Tremont, (6460,1560)); 11 (right margin at ~25th, (6440,4390)); 13 (right margin at 27th-28th, (6460,6830) and bottom edge (5990,7540)); 4 (bottom edge, west, at (4830,7550))",
+        "confidence": 0.9
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[3789,0],[6653,0],[6653,7795],[3866,7795],[3789,0]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_id": "BREAK_RULE",
+        "description": "Drafted panel divider: heavy ~22 px solid rule flanked by thin parallel lines (triple-line border), running the full page height, measured centerline. It is panel A's landward border; blank paper then panel B's bay water lie to its right (gap narrows near bottom where Pier 28 of panel B approaches at x~3900). Not a physical page edge; not a shoreline feature.",
+        "pier_range": "n/a",
+        "cross_street_range": "n/a",
+        "adjoining_sheet": "n/a (internal panel division within sheet 5)",
+        "confidence": 0.95
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [[3789,0],[3790,100],[3800,600],[3807,1100],[3813,1600],[3819,2100],[3827,2600],[3833,3100],[3838,3600],[3843,4100],[3848,4600],[3858,5600],[3861,6100],[3863,6600],[3863,7100],[3866,7795]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_id": "A_out_of_target",
+        "description": "Portion of panel A outside the mosaic target footprint (target = Piers 19-25 / 19th-25th St): Piers 17-18, their slips, and the 16th-18th St landward strip. Southern boundary approximate (drawn across the slip between Pier 18 and Pier 19; Pier 18 label y=2040, Pier 19 label y=3520, 19th St landward y~3730).",
+        "pier_range": "16/17-18",
+        "cross_street_range": "16th-18th/19th",
+        "adjoining_sheet": "6, 33",
+        "confidence": 0.6
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[0,0],[3789,0],[3822,3000],[0,3000],[0,0]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region_id": "B_out_of_target",
+        "description": "Portion of panel B outside the mosaic target footprint (target = Piers 19-25 / 19th-25th St): Piers 26-28, Sykes Bros shed, and the 26th-28th St landward strip. Northern boundary approximate (drawn between the full extent of Pier 25 and Pier 26; Pier 25 label y=3696, Pier 26 label y=5064, 26th St landward y~5000).",
+        "pier_range": "26-28",
+        "cross_street_range": "26th-28th",
+        "adjoining_sheet": "11 (partial), 13, 4",
+        "confidence": 0.6
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[3849,4450],[6653,4450],[6653,7795],[3866,7795],[3849,4450]]]
+      }
+    }
+  ]
+}
