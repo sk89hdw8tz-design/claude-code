@@ -120,3 +120,15 @@ explainable outlier, since it is the wharf plate whose piers are drafted diagona
 to the street grid, not an orthogonal-grid sheet at all. Rotation nevertheless stays
 **free per sheet** in the fit, per the brief; this measurement tells us the expected
 magnitude is small, not that it may be assumed to be zero.
+
+## F-005 — Final render "succeeded" with exit 0 while writing nothing (2026-08-17)
+
+The first full-resolution render run reported success but produced no file: the renderer
+does not create its output directory (`--out ../final` on a nonexistent path raised
+FileNotFoundError at file-open), and the invoking shell pipeline (`python ... | tail`)
+reported *tail's* exit code, masking the Python failure as exit 0. Two lessons, both of
+the silent-success family this project keeps meeting: (1) any tool taking an output path
+must create it or fail before doing work; (2) never wrap a correctness-bearing command in
+a pipeline that swallows its exit status. Rerun with the directory pre-created; QA's
+stale/absence guards (hash-stamped artifacts, stability polling) were designed for
+exactly this class of failure and would have refused the missing master anyway.
