@@ -129,24 +129,56 @@ def build_joint(fit_atts, block_T, panels, xpairs, log):
     return np.array(rows_J), np.array(rows_t), np.array(rows_s), prov
 
 
-def solve_joint(J, tgt, sig, prov, log):
+def reduce_shared(J):
+    """Map the 8-column design to a 6-column one with a,b SHARED by both panels.
+
+    Justified only if the free-relative-rotation fit shows the panels are
+    parallel on the page: they are two bands of one strip map, drawn in one
+    sitting at one scale, so a shared orientation is the physically simpler
+    model. Columns: [a, b, txA, tyA, txB, tyB].
+    """
+    n = J.shape[0]
+    R = np.zeros((n, 6))
+    R[:, 0] = J[:, 0] + J[:, 4]     # a shared
+    R[:, 1] = J[:, 1] + J[:, 5]     # b shared
+    R[:, 2] = J[:, 2]               # txA
+    R[:, 3] = J[:, 3]               # tyA
+    R[:, 4] = J[:, 6]               # txB
+    R[:, 5] = J[:, 7]               # tyB
+    return R
+
+
+def expand_shared(x6, cov6):
+    """Lift a shared-orientation solution back to the 8-parameter layout."""
+    x8 = np.array([x6[0], x6[1], x6[2], x6[3], x6[0], x6[1], x6[4], x6[5]])
+    M = np.zeros((8, 6))
+    M[0, 0] = M[4, 0] = 1.0
+    M[1, 1] = M[5, 1] = 1.0
+    M[2, 2] = 1.0; M[3, 3] = 1.0
+    M[6, 4] = 1.0; M[7, 5] = 1.0
+    return x8, M @ cov6 @ M.T
+
+
+def solve_joint(J, tgt, sig, prov, log, shared=False):
     m = len(tgt)
+    Jw_design = reduce_shared(J) if shared else J
+    npar = Jw_design.shape[1]
     inv = 1.0 / sig
     wh = np.ones(m)
-    x = np.zeros(8)
+    x = np.zeros(npar)
     for _ in range(IRLS_ITERATIONS):
         sw = inv * np.sqrt(wh)
-        x, *_ = np.linalg.lstsq(J * sw[:, None], tgt * sw, rcond=None)
-        rn = (J @ x - tgt) * inv
+        x, *_ = np.linalg.lstsq(Jw_design * sw[:, None], tgt * sw, rcond=None)
+        rn = (Jw_design @ x - tgt) * inv
         wh = np.where(np.abs(rn) > HUBER_DELTA,
                       HUBER_DELTA / np.maximum(np.abs(rn), 1e-12), 1.0)
 
-    res = J @ x - tgt
+    res = Jw_design @ x - tgt
     rn = res * inv
-    Jw = J * (inv * np.sqrt(wh))[:, None]
+    Jw = Jw_design * (inv * np.sqrt(wh))[:, None]
     N = Jw.T @ Jw
     rank = int(np.linalg.matrix_rank(N))
-    Ninv = np.linalg.pinv(N) if rank < 8 else np.linalg.inv(N)
+    Ninv = np.linalg.pinv(N) if rank < npar else np.linalg.inv(N)
     dof = max(m - rank, 1)
     s0_sq = float(np.sum(wh * rn ** 2) / dof)
     cov = Ninv * s0_sq
@@ -156,6 +188,8 @@ def solve_joint(J, tgt, sig, prov, log):
             p = prov[i]
             log.append(f"[huber] {p.get('kind')} {p.get('feature', p.get('anchor',''))} "
                        f"{p.get('axis','')}: resid {res[i]:+.1f} px, w={w:.3f}")
+    if shared:
+        x, cov = expand_shared(x, cov)
     return x, cov, res, wh, s0_sq, rank, dof
 
 
@@ -202,12 +236,13 @@ def main():
     if not xpairs:
         raise SystemExit("joint fit requires cross-panel correspondences")
 
+    shared = "--shared-orientation" in sys.argv
     J, tgt, sig, prov = build_joint(fit_atts, block_T, panels, xpairs, log)
     n_blk = sum(1 for p in prov if p["kind"] == "block")
     n_xp = sum(1 for p in prov if p["kind"] == "xpanel")
     print(f"observations: {n_blk} block-attachment + {n_xp} cross-panel = {len(tgt)}")
 
-    x, cov, res, wh, s0_sq, rank, dof = solve_joint(J, tgt, sig, prov, log)
+    x, cov, res, wh, s0_sq, rank, dof = solve_joint(J, tgt, sig, prov, log, shared=shared)
 
     sol = {pid: panel_params(x, cov, pid, panels[pid]["center"]) for pid in PANEL_IDS}
     rel = sol["5B"]["theta_deg"] - sol["5A"]["theta_deg"]
@@ -218,7 +253,9 @@ def main():
         return float(np.sqrt(np.mean(np.square(v)))) if v else None
 
     payload = {
-        "model": "joint two-panel similarity, coupled by duplicated drafted ground",
+        "model": ("joint two-panel similarity, coupled by duplicated drafted ground"
+                  + (" [SHARED orientation: a,b common to both panels]" if shared else
+                     " [FREE relative rotation]")),
         "convention": {
             "centered": "p_mosaic = [[a,-b],[b,a]] @ (p_sheet5_raw - center) + (tx,ty)",
             "raw": "p_mosaic = [[a,-b],[b,a]] @ p_sheet5_raw + (raw.tx, raw.ty)",
@@ -236,7 +273,8 @@ def main():
         },
         "log": log,
     }
-    with open(os.path.join(OUT_DIR, "transforms_sheet5_joint.json"), "w") as fh:
+    name = "transforms_sheet5_joint_shared.json" if shared else "transforms_sheet5_joint.json"
+    with open(os.path.join(OUT_DIR, name), "w") as fh:
         json.dump(payload, fh, indent=1)
 
     print(f"panel 5A: s={sol['5A']['s']:.4f} theta={sol['5A']['theta_deg']:+.4f} deg "
@@ -247,7 +285,7 @@ def main():
     print(f"residual RMS: block {rms_of('block'):.1f} px, cross-panel "
           f"{rms_of('xpanel'):.1f} px; s0^2={s0_sq:.2f}; "
           f"{int(np.sum(wh < 0.999))} down-weighted")
-    print(f"wrote {OUT_DIR}/transforms_sheet5_joint.json")
+    print(f"wrote {OUT_DIR}/{name}")
 
 
 if __name__ == "__main__":
