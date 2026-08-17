@@ -1,0 +1,1246 @@
+{
+ "generated_by": "60_master/tools/content_extent_check.py",
+ "inputs": {
+  "cuts_json": {
+   "sha256": "3a235509a94ec8591323e715d1564c39b06c982f4aa35718c80daa68750a3d2d"
+  },
+  "masks_json": {
+   "sha256": "a79ad2caece5822ff317d465beca22566d4dbbcb6d56d6dc5f7f841380524e67"
+  },
+  "transforms_json": {
+   "sha256": "a57f3dcb8614c9939f1ab82322f8091167e98ba3122ebed634ff1c8b4f0bf11b"
+  }
+ },
+ "method": {
+  "border_zone": "ink within 100 px of the page boundary reported separately (neatline/margin furniture, discarded by the ownership mask, not amputated cartography)",
+  "corridor": "0..half-street-width past the cut toward the neighbour",
+  "downsample": 4,
+  "ink": "grey < per-page Otsu-within-page, clamped to [80, 185]. The prescribed literal 'ink<185' was validated first and REJECTED for these LOC archival scans: paper tone is 150-190 grey, so it classifies 84-99% of the paper as ink (validated on sheets 7, 9, 44; Otsu-in-page lands 121-139, ink fractions 7-21%, building tints correctly included as drawn content)",
+  "page_isolation": "largest connected component of grey>140, holes filled (F-001: naive thresholds read the dark scan backdrop as ink)",
+  "policy": "report only; never auto-fix"
+ },
+ "results": [
+  {
+   "bands_interior_px2": {
+    "0-40": 21200,
+    "120-215": 51136,
+    "40-120": 28560
+   },
+   "corridor_border_zone_ink_px2": 3408,
+   "corridor_ink_fraction": 0.075,
+   "corridor_ink_px2": 105376,
+   "corridor_interior_ink_px2": 101968,
+   "deepest_interior_blob": {
+    "area_px2": 37424,
+    "bbox_sheet_px": [
+     4552,
+     7436,
+     5764,
+     7500
+    ],
+    "deepest_point_mosaic": [
+     -4694.686,
+     -3230.111
+    ],
+    "deepest_point_sheet_px": [
+     4602.0,
+     7498.0
+    ]
+   },
+   "half_street_width_px": 215.774,
+   "ink_threshold_effective": 130.0,
+   "margin_zone_ink_px2": 52256,
+   "max_encroachment_interior_px": 215.771,
+   "max_encroachment_px": 215.771,
+   "sheet": 7,
+   "street_id": "21st_or_center_st"
+  },
+  {
+   "bands_interior_px2": {
+    "0-40": 19280,
+    "120-204": 0,
+    "40-120": 2704
+   },
+   "corridor_border_zone_ink_px2": 8992,
+   "corridor_ink_fraction": 0.024,
+   "corridor_ink_px2": 30976,
+   "corridor_interior_ink_px2": 21984,
+   "deepest_interior_blob": {
+    "area_px2": 5072,
+    "bbox_sheet_px": [
+     6400,
+     3748,
+     6472,
+     3896
+    ],
+    "deepest_point_mosaic": [
+     -2795.598,
+     -6935.772
+    ],
+    "deepest_point_sheet_px": [
+     6470.0,
+     3778.0
+    ]
+   },
+   "half_street_width_px": 204.644,
+   "ink_threshold_effective": 130.0,
+   "margin_zone_ink_px2": 0,
+   "max_encroachment_interior_px": 69.719,
+   "max_encroachment_px": 172.514,
+   "sheet": 7,
+   "street_id": "ave_c_or_mechanic"
+  },
+  {
+   "bands_interior_px2": {
+    "0-40": 12016,
+    "120-215": 26624,
+    "40-120": 12544
+   },
+   "corridor_border_zone_ink_px2": 208,
+   "corridor_ink_fraction": 0.037,
+   "corridor_ink_px2": 52112,
+   "corridor_interior_ink_px2": 51904,
+   "deepest_interior_blob": {
+    "area_px2": 20064,
+    "bbox_sheet_px": [
+     3916,
+     7496,
+     5132,
+     7524
+    ],
+    "deepest_point_mosaic": [
+     1879.595,
+     -3223.854
+    ],
+    "deepest_point_sheet_px": [
+     5130.0,
+     7522.0
+    ]
+   },
+   "half_street_width_px": 215.774,
+   "ink_threshold_effective": 122.0,
+   "margin_zone_ink_px2": 48208,
+   "max_encroachment_interior_px": 215.305,
+   "max_encroachment_px": 215.762,
+   "sheet": 8,
+   "street_id": "21st_or_center_st"
+  },
+  {
+   "bands_interior_px2": {
+    "0-40": 25840,
+    "120-204": 7184,
+    "40-120": 15504
+   },
+   "corridor_border_zone_ink_px2": 0,
+   "corridor_ink_fraction": 0.031,
+   "corridor_ink_px2": 48528,
+   "corridor_interior_ink_px2": 48528,
+   "deepest_interior_blob": {
+    "area_px2": 176,
+    "bbox_sheet_px": [
+     176,
+     432,
+     196,
+     444
+    ],
+    "deepest_point_mosaic": [
+     -3058.135,
+     -10332.294
+    ],
+    "deepest_point_sheet_px": [
+     178.0,
+     434.0
+    ]
+   },
+   "half_street_width_px": 204.644,
+   "ink_threshold_effective": 122.0,
+   "margin_zone_ink_px2": 496,
+   "max_encroachment_interior_px": 202.783,
+   "max_encroachment_px": 202.783,
+   "sheet": 8,
+   "street_id": "ave_c_or_mechanic"
+  },
+  {
+   "bands_interior_px2": {
+    "0-40": 8560,
+    "120-234": 0,
+    "40-120": 1344
+   },
+   "corridor_border_zone_ink_px2": 7376,
+   "corridor_ink_fraction": 0.014,
+   "corridor_ink_px2": 17280,
+   "corridor_interior_ink_px2": 9904,
+   "deepest_interior_blob": {
+    "area_px2": 928,
+    "bbox_sheet_px": [
+     6436,
+     3964,
+     6488,
+     4004
+    ],
+    "deepest_point_mosaic": [
+     3246.48,
+     -6747.682
+    ],
+    "deepest_point_sheet_px": [
+     6486.0,
+     3998.0
+    ]
+   },
+   "half_street_width_px": 234.977,
+   "ink_threshold_effective": 122.0,
+   "margin_zone_ink_px2": 0,
+   "max_encroachment_interior_px": 66.706,
+   "max_encroachment_px": 147.012,
+   "sheet": 8,
+   "street_id": "ave_f_or_church"
+  },
+  {
+   "bands_interior_px2": {
+    "0-40": 20896,
+    "120-215": 6816,
+    "40-120": 2352
+   },
+   "corridor_border_zone_ink_px2": 17328,
+   "corridor_ink_fraction": 0.036,
+   "corridor_ink_px2": 47392,
+   "corridor_interior_ink_px2": 30064,
+   "deepest_interior_blob": {
+    "area_px2": 144,
+    "bbox_sheet_px": [
+     692,
+     220,
+     708,
+     236
+    ],
+    "deepest_point_mosaic": [
+     -8626.81,
+     -3661.993
+    ],
+    "deepest_point_sheet_px": [
+     698.0,
+     222.0
+    ]
+   },
+   "half_street_width_px": 215.774,
+   "ink_threshold_effective": 139.0,
+   "margin_zone_ink_px2": 14160,
+   "max_encroachment_interior_px": 213.536,
+   "max_encroachment_px": 213.546,
+   "sheet": 9,
+   "street_id": "21st_or_center_st"
+  },
+  {
+   "bands_interior_px2": {
+    "0-40": 17488,
+    "120-218": 17312,
+    "40-120": 52864
+   },
+   "corridor_border_zone_ink_px2": 6176,
+   "corridor_ink_fraction": 0.067,
+   "corridor_ink_px2": 93840,
+   "corridor_interior_ink_px2": 87664,
+   "deepest_interior_blob": {
+    "area_px2": 16,
+    "bbox_sheet_px": [
+     5424,
+     7576,
+     5428,
+     7580
+    ],
+    "deepest_point_mosaic": [
+     -3938.878,
+     3650.413
+    ],
+    "deepest_point_sheet_px": [
+     5426.0,
+     7578.0
+    ]
+   },
+   "half_street_width_px": 218.804,
+   "ink_threshold_effective": 139.0,
+   "margin_zone_ink_px2": 48496,
+   "max_encroachment_interior_px": 216.203,
+   "max_encroachment_px": 216.386,
+   "sheet": 9,
+   "street_id": "24th_st"
+  },
+  {
+   "bands_interior_px2": {
+    "0-40": 672,
+    "120-204": 0,
+    "40-120": 0
+   },
+   "corridor_border_zone_ink_px2": 19744,
+   "corridor_ink_fraction": 0.027,
+   "corridor_ink_px2": 20416,
+   "corridor_interior_ink_px2": 672,
+   "deepest_interior_blob": {
+    "area_px2": 624,
+    "bbox_sheet_px": [
+     6480,
+     3880,
+     6488,
+     4008
+    ],
+    "deepest_point_mosaic": [
+     -2881.703,
+     12.085
+    ],
+    "deepest_point_sheet_px": [
+     6486.0,
+     3914.0
+    ]
+   },
+   "half_street_width_px": 204.644,
+   "ink_threshold_effective": 139.0,
+   "margin_zone_ink_px2": 0,
+   "max_encroachment_interior_px": 4.51,
+   "max_encroachment_px": 91.597,
+   "sheet": 9,
+   "street_id": "ave_c_or_mechanic"
+  },
+  {
+   "bands_interior_px2": {
+    "0-40": 20240,
+    "120-215": 28448,
+    "40-120": 28432
+   },
+   "corridor_border_zone_ink_px2": 2448,
+   "corridor_ink_fraction": 0.057,
+   "corridor_ink_px2": 79680,
+   "corridor_interior_ink_px2": 77232,
+   "deepest_interior_blob": {
+    "area_px2": 6944,
+    "bbox_sheet_px": [
+     308,
+     236,
+     376,
+     420
+    ],
+    "deepest_point_mosaic": [
+     -2972.0,
+     -3660.0
+    ],
+    "deepest_point_sheet_px": [
+     354.0,
+     238.0
+    ]
+   },
+   "half_street_width_px": 215.774,
+   "ink_threshold_effective": 122.0,
+   "margin_zone_ink_px2": 36336,
+   "max_encroachment_interior_px": 215.774,
+   "max_encroachment_px": 215.774,
+   "sheet": 10,
+   "street_id": "21st_or_center_st"
+  },
+  {
+   "bands_interior_px2": {
+    "0-40": 5536,
+    "120-218": 40288,
+    "40-120": 10064
+   },
+   "corridor_border_zone_ink_px2": 0,
+   "corridor_ink_fraction": 0.039,
+   "corridor_ink_px2": 55888,
+   "corridor_interior_ink_px2": 55888,
+   "deepest_interior_blob": {
+    "area_px2": 368,
+    "bbox_sheet_px": [
+     3364,
+     7536,
+     3388,
+     7556
+    ],
+    "deepest_point_mosaic": [
+     40.0,
+     3656.0
+    ],
+    "deepest_point_sheet_px": [
+     3366.0,
+     7554.0
+    ]
+   },
+   "half_street_width_px": 218.804,
+   "ink_threshold_effective": 122.0,
+   "margin_zone_ink_px2": 39600,
+   "max_encroachment_interior_px": 216.369,
+   "max_encroachment_px": 216.369,
+   "sheet": 10,
+   "street_id": "24th_st"
+  },
+  {
+   "bands_interior_px2": {
+    "0-40": 18912,
+    "120-204": 6432,
+    "40-120": 11584
+   },
+   "corridor_border_zone_ink_px2": 1136,
+   "corridor_ink_fraction": 0.024,
+   "corridor_ink_px2": 38064,
+   "corridor_interior_ink_px2": 36928,
+   "deepest_interior_blob": {
+    "area_px2": 4400,
+    "bbox_sheet_px": [
+     240,
+     3872,
+     312,
+     4020
+    ],
+    "deepest_point_mosaic": [
+     -3084.0,
+     88.0
+    ],
+    "deepest_point_sheet_px": [
+     242.0,
+     3986.0
+    ]
+   },
+   "half_street_width_px": 204.644,
+   "ink_threshold_effective": 122.0,
+   "margin_zone_ink_px2": 35920,
+   "max_encroachment_interior_px": 197.589,
+   "max_encroachment_px": 197.589,
+   "sheet": 10,
+   "street_id": "ave_c_or_mechanic"
+  },
+  {
+   "bands_interior_px2": {
+    "0-40": 672,
+    "120-234": 0,
+    "40-120": 0
+   },
+   "corridor_border_zone_ink_px2": 14416,
+   "corridor_ink_fraction": 0.021,
+   "corridor_ink_px2": 15088,
+   "corridor_interior_ink_px2": 672,
+   "deepest_interior_blob": {
+    "area_px2": 48,
+    "bbox_sheet_px": [
+     6488,
+     3680,
+     6492,
+     3692
+    ],
+    "deepest_point_mosaic": [
+     3164.0,
+     -208.0
+    ],
+    "deepest_point_sheet_px": [
+     6490.0,
+     3690.0
+    ]
+   },
+   "half_street_width_px": 234.977,
+   "ink_threshold_effective": 122.0,
+   "margin_zone_ink_px2": 0,
+   "max_encroachment_interior_px": 3.912,
+   "max_encroachment_px": 75.856,
+   "sheet": 10,
+   "street_id": "ave_f_or_church"
+  },
+  {
+   "bands_interior_px2": {
+    "0-40": 14864,
+    "120-218": 8608,
+    "40-120": 11088
+   },
+   "corridor_border_zone_ink_px2": 14752,
+   "corridor_ink_fraction": 0.043,
+   "corridor_ink_px2": 49312,
+   "corridor_interior_ink_px2": 34560,
+   "deepest_interior_blob": {
+    "area_px2": 4016,
+    "bbox_sheet_px": [
+     4480,
+     184,
+     4572,
+     252
+    ],
+    "deepest_point_mosaic": [
+     -4792.961,
+     3266.853
+    ],
+    "deepest_point_sheet_px": [
+     4486.0,
+     186.0
+    ]
+   },
+   "half_street_width_px": 218.804,
+   "ink_threshold_effective": 137.0,
+   "margin_zone_ink_px2": 1552,
+   "max_encroachment_interior_px": 168.254,
+   "max_encroachment_px": 216.964,
+   "sheet": 11,
+   "street_id": "24th_st"
+  },
+  {
+   "bands_interior_px2": {
+    "0-40": 2864,
+    "120-204": 0,
+    "40-120": 2160
+   },
+   "corridor_border_zone_ink_px2": 9760,
+   "corridor_ink_fraction": 0.011,
+   "corridor_ink_px2": 14784,
+   "corridor_interior_ink_px2": 5024,
+   "deepest_interior_blob": {
+    "area_px2": 4128,
+    "bbox_sheet_px": [
+     6376,
+     3908,
+     6456,
+     4048
+    ],
+    "deepest_point_mosaic": [
+     -2829.241,
+     7116.094
+    ],
+    "deepest_point_sheet_px": [
+     6454.0,
+     4042.0
+    ]
+   },
+   "half_street_width_px": 204.644,
+   "ink_threshold_effective": 137.0,
+   "margin_zone_ink_px2": 0,
+   "max_encroachment_interior_px": 78.397,
+   "max_encroachment_px": 186.951,
+   "sheet": 11,
+   "street_id": "ave_c_or_mechanic"
+  },
+  {
+   "bands_interior_px2": {
+    "0-40": 10272,
+    "120-218": 9680,
+    "40-120": 13824
+   },
+   "corridor_border_zone_ink_px2": 4800,
+   "corridor_ink_fraction": 0.028,
+   "corridor_ink_px2": 38576,
+   "corridor_interior_ink_px2": 33776,
+   "deepest_interior_blob": {
+    "area_px2": 192,
+    "bbox_sheet_px": [
+     248,
+     168,
+     272,
+     188
+    ],
+    "deepest_point_mosaic": [
+     -3044.139,
+     3258.469
+    ],
+    "deepest_point_sheet_px": [
+     258.0,
+     170.0
+    ]
+   },
+   "half_street_width_px": 218.804,
+   "ink_threshold_effective": 123.0,
+   "margin_zone_ink_px2": 4688,
+   "max_encroachment_interior_px": 178.299,
+   "max_encroachment_px": 218.751,
+   "sheet": 12,
+   "street_id": "24th_st"
+  },
+  {
+   "bands_interior_px2": {
+    "0-40": 18544,
+    "120-204": 5312,
+    "40-120": 9984
+   },
+   "corridor_border_zone_ink_px2": 384,
+   "corridor_ink_fraction": 0.022,
+   "corridor_ink_px2": 34768,
+   "corridor_interior_ink_px2": 34384,
+   "deepest_interior_blob": {
+    "area_px2": 1088,
+    "bbox_sheet_px": [
+     192,
+     3912,
+     200,
+     4048
+    ],
+    "deepest_point_mosaic": [
+     -3111.265,
+     6997.758
+    ],
+    "deepest_point_sheet_px": [
+     194.0,
+     3914.0
+    ]
+   },
+   "half_street_width_px": 204.644,
+   "ink_threshold_effective": 123.0,
+   "margin_zone_ink_px2": 29232,
+   "max_encroachment_interior_px": 204.378,
+   "max_encroachment_px": 204.378,
+   "sheet": 12,
+   "street_id": "ave_c_or_mechanic"
+  },
+  {
+   "bands_interior_px2": {
+    "0-40": 2128,
+    "120-234": 0,
+    "40-120": 0
+   },
+   "corridor_border_zone_ink_px2": 8640,
+   "corridor_ink_fraction": 0.012,
+   "corridor_ink_px2": 10768,
+   "corridor_interior_ink_px2": 2128,
+   "deepest_interior_blob": {
+    "area_px2": 32,
+    "bbox_sheet_px": [
+     6484,
+     2744,
+     6492,
+     2748
+    ],
+    "deepest_point_mosaic": [
+     3177.905,
+     5836.6
+    ],
+    "deepest_point_sheet_px": [
+     6490.0,
+     2746.0
+    ]
+   },
+   "half_street_width_px": 234.977,
+   "ink_threshold_effective": 123.0,
+   "margin_zone_ink_px2": 0,
+   "max_encroachment_interior_px": 35.996,
+   "max_encroachment_px": 119.978,
+   "sheet": 12,
+   "street_id": "ave_f_or_church"
+  },
+  {
+   "bands_interior_px2": {
+    "0-40": 25728,
+    "120-215": 4544,
+    "40-120": 48080
+   },
+   "corridor_border_zone_ink_px2": 544,
+   "corridor_ink_fraction": 0.058,
+   "corridor_ink_px2": 78896,
+   "corridor_interior_ink_px2": 78352,
+   "deepest_interior_blob": {
+    "area_px2": 32,
+    "bbox_sheet_px": [
+     1332,
+     7560,
+     1336,
+     7568
+    ],
+    "deepest_point_mosaic": [
+     4192.144,
+     -3221.755
+    ],
+    "deepest_point_sheet_px": [
+     1334.0,
+     7566.0
+    ]
+   },
+   "half_street_width_px": 215.774,
+   "ink_threshold_effective": 127.0,
+   "margin_zone_ink_px2": 44112,
+   "max_encroachment_interior_px": 214.675,
+   "max_encroachment_px": 214.675,
+   "sheet": 39,
+   "street_id": "21st_or_center_st"
+  },
+  {
+   "bands_interior_px2": {
+    "0-40": 15568,
+    "120-234": 32,
+    "40-120": 6992
+   },
+   "corridor_border_zone_ink_px2": 2976,
+   "corridor_ink_fraction": 0.014,
+   "corridor_ink_px2": 25568,
+   "corridor_interior_ink_px2": 22592,
+   "deepest_interior_blob": {
+    "area_px2": 32,
+    "bbox_sheet_px": [
+     176,
+     5072,
+     184,
+     5076
+    ],
+    "deepest_point_mosaic": [
+     3032.591,
+     -5721.011
+    ],
+    "deepest_point_sheet_px": [
+     178.0,
+     5074.0
+    ]
+   },
+   "half_street_width_px": 234.977,
+   "ink_threshold_effective": 127.0,
+   "margin_zone_ink_px2": 0,
+   "max_encroachment_interior_px": 143.613,
+   "max_encroachment_px": 207.837,
+   "sheet": 39,
+   "street_id": "ave_f_or_church"
+  },
+  {
+   "bands_interior_px2": {
+    "0-40": 4544,
+    "120-230": 0,
+    "40-120": 3040
+   },
+   "corridor_border_zone_ink_px2": 4448,
+   "corridor_ink_fraction": 0.009,
+   "corridor_ink_px2": 12032,
+   "corridor_interior_ink_px2": 7584,
+   "deepest_interior_blob": {
+    "area_px2": 176,
+    "bbox_sheet_px": [
+     6440,
+     5056,
+     6460,
+     5068
+    ],
+    "deepest_point_mosaic": [
+     9331.056,
+     -5729.421
+    ],
+    "deepest_point_sheet_px": [
+     6458.0,
+     5066.0
+    ]
+   },
+   "half_street_width_px": 230.698,
+   "ink_threshold_effective": 127.0,
+   "margin_zone_ink_px2": 0,
+   "max_encroachment_interior_px": 100.979,
+   "max_encroachment_px": 168.77,
+   "sheet": 39,
+   "street_id": "ave_i_or_sealy"
+  },
+  {
+   "bands_interior_px2": {
+    "0-40": 15360,
+    "120-215": 3264,
+    "40-120": 38368
+   },
+   "corridor_border_zone_ink_px2": 912,
+   "corridor_ink_fraction": 0.043,
+   "corridor_ink_px2": 57904,
+   "corridor_interior_ink_px2": 56992,
+   "deepest_interior_blob": {
+    "area_px2": 896,
+    "bbox_sheet_px": [
+     3472,
+     7508,
+     3504,
+     7544
+    ],
+    "deepest_point_mosaic": [
+     12491.533,
+     -3213.562
+    ],
+    "deepest_point_sheet_px": [
+     3502.0,
+     7542.0
+    ]
+   },
+   "half_street_width_px": 215.774,
+   "ink_threshold_effective": 119.0,
+   "margin_zone_ink_px2": 34848,
+   "max_encroachment_interior_px": 214.435,
+   "max_encroachment_px": 214.673,
+   "sheet": 40,
+   "street_id": "21st_or_center_st"
+  },
+  {
+   "bands_interior_px2": {
+    "0-40": 10928,
+    "120-230": 0,
+    "40-120": 1008
+   },
+   "corridor_border_zone_ink_px2": 5552,
+   "corridor_ink_fraction": 0.013,
+   "corridor_ink_px2": 17488,
+   "corridor_interior_ink_px2": 11936,
+   "deepest_interior_blob": {
+    "area_px2": 16,
+    "bbox_sheet_px": [
+     172,
+     1200,
+     176,
+     1204
+    ],
+    "deepest_point_mosaic": [
+     9158.799,
+     -9579.95
+    ],
+    "deepest_point_sheet_px": [
+     174.0,
+     1202.0
+    ]
+   },
+   "half_street_width_px": 230.698,
+   "ink_threshold_effective": 119.0,
+   "margin_zone_ink_px2": 0,
+   "max_encroachment_interior_px": 82.239,
+   "max_encroachment_px": 146.544,
+   "sheet": 40,
+   "street_id": "ave_i_or_sealy"
+  },
+  {
+   "bands_interior_px2": {
+    "0-40": 29008,
+    "120-215": 20512,
+    "40-120": 33424
+   },
+   "corridor_border_zone_ink_px2": 8496,
+   "corridor_ink_fraction": 0.069,
+   "corridor_ink_px2": 91472,
+   "corridor_interior_ink_px2": 82976,
+   "deepest_interior_blob": {
+    "area_px2": 24960,
+    "bbox_sheet_px": [
+     1892,
+     236,
+     2408,
+     452
+    ],
+    "deepest_point_mosaic": [
+     5183.174,
+     -3652.025
+    ],
+    "deepest_point_sheet_px": [
+     2246.0,
+     238.0
+    ]
+   },
+   "half_street_width_px": 215.774,
+   "ink_threshold_effective": 124.0,
+   "margin_zone_ink_px2": 8656,
+   "max_encroachment_interior_px": 215.481,
+   "max_encroachment_px": 215.481,
+   "sheet": 43,
+   "street_id": "21st_or_center_st"
+  },
+  {
+   "bands_interior_px2": {
+    "0-40": 8288,
+    "120-218": 30832,
+    "40-120": 11600
+   },
+   "corridor_border_zone_ink_px2": 6432,
+   "corridor_ink_fraction": 0.04,
+   "corridor_ink_px2": 57152,
+   "corridor_interior_ink_px2": 50720,
+   "deepest_interior_blob": {
+    "area_px2": 848,
+    "bbox_sheet_px": [
+     3296,
+     7512,
+     3356,
+     7536
+    ],
+    "deepest_point_mosaic": [
+     6267.154,
+     3663.963
+    ],
+    "deepest_point_sheet_px": [
+     3354.0,
+     7534.0
+    ]
+   },
+   "half_street_width_px": 218.804,
+   "ink_threshold_effective": 124.0,
+   "margin_zone_ink_px2": 34256,
+   "max_encroachment_interior_px": 217.627,
+   "max_encroachment_px": 217.627,
+   "sheet": 43,
+   "street_id": "24th_st"
+  },
+  {
+   "bands_interior_px2": {
+    "0-40": 13024,
+    "120-234": 0,
+    "40-120": 3136
+   },
+   "corridor_border_zone_ink_px2": 1552,
+   "corridor_ink_fraction": 0.014,
+   "corridor_ink_px2": 17712,
+   "corridor_interior_ink_px2": 16160,
+   "deepest_interior_blob": {
+    "area_px2": 1088,
+    "bbox_sheet_px": [
+     172,
+     3804,
+     180,
+     3940
+    ],
+    "deepest_point_mosaic": [
+     3093.227,
+     48.564
+    ],
+    "deepest_point_sheet_px": [
+     174.0,
+     3938.0
+    ]
+   },
+   "half_street_width_px": 234.977,
+   "ink_threshold_effective": 124.0,
+   "margin_zone_ink_px2": 0,
+   "max_encroachment_interior_px": 65.946,
+   "max_encroachment_px": 121.209,
+   "sheet": 43,
+   "street_id": "ave_f_or_church"
+  },
+  {
+   "bands_interior_px2": {
+    "0-40": 11136,
+    "120-230": 384,
+    "40-120": 4576
+   },
+   "corridor_border_zone_ink_px2": 1216,
+   "corridor_ink_fraction": 0.011,
+   "corridor_ink_px2": 17312,
+   "corridor_interior_ink_px2": 16096,
+   "deepest_interior_blob": {
+    "area_px2": 16,
+    "bbox_sheet_px": [
+     6472,
+     2732,
+     6476,
+     2736
+    ],
+    "deepest_point_mosaic": [
+     9411.383,
+     -1135.236
+    ],
+    "deepest_point_sheet_px": [
+     6474.0,
+     2734.0
+    ]
+   },
+   "half_street_width_px": 230.698,
+   "ink_threshold_effective": 124.0,
+   "margin_zone_ink_px2": 384,
+   "max_encroachment_interior_px": 194.956,
+   "max_encroachment_px": 226.961,
+   "sheet": 43,
+   "street_id": "ave_i_or_sealy"
+  },
+  {
+   "bands_interior_px2": {
+    "0-40": 19056,
+    "120-215": 30416,
+    "40-120": 17888
+   },
+   "corridor_border_zone_ink_px2": 4144,
+   "corridor_ink_fraction": 0.055,
+   "corridor_ink_px2": 71648,
+   "corridor_interior_ink_px2": 67504,
+   "deepest_interior_blob": {
+    "area_px2": 1664,
+    "bbox_sheet_px": [
+     272,
+     252,
+     320,
+     296
+    ],
+    "deepest_point_mosaic": [
+     9276.161,
+     -3648.197
+    ],
+    "deepest_point_sheet_px": [
+     314.0,
+     254.0
+    ]
+   },
+   "half_street_width_px": 215.774,
+   "ink_threshold_effective": 121.0,
+   "margin_zone_ink_px2": 36304,
+   "max_encroachment_interior_px": 215.42,
+   "max_encroachment_px": 215.42,
+   "sheet": 44,
+   "street_id": "21st_or_center_st"
+  },
+  {
+   "bands_interior_px2": {
+    "0-40": 8080,
+    "120-218": 37808,
+    "40-120": 10240
+   },
+   "corridor_border_zone_ink_px2": 352,
+   "corridor_ink_fraction": 0.041,
+   "corridor_ink_px2": 56480,
+   "corridor_interior_ink_px2": 56128,
+   "deepest_interior_blob": {
+    "area_px2": 16,
+    "bbox_sheet_px": [
+     1208,
+     7540,
+     1212,
+     7544
+    ],
+    "deepest_point_mosaic": [
+     10171.968,
+     3667.276
+    ],
+    "deepest_point_sheet_px": [
+     1210.0,
+     7542.0
+    ]
+   },
+   "half_street_width_px": 218.804,
+   "ink_threshold_effective": 121.0,
+   "margin_zone_ink_px2": 39584,
+   "max_encroachment_interior_px": 216.709,
+   "max_encroachment_px": 216.709,
+   "sheet": 44,
+   "street_id": "24th_st"
+  },
+  {
+   "bands_interior_px2": {
+    "0-40": 5856,
+    "120-230": 0,
+    "40-120": 256
+   },
+   "corridor_border_zone_ink_px2": 1984,
+   "corridor_ink_fraction": 0.006,
+   "corridor_ink_px2": 8096,
+   "corridor_interior_ink_px2": 6112,
+   "deepest_interior_blob": {
+    "area_px2": 96,
+    "bbox_sheet_px": [
+     176,
+     2728,
+     184,
+     2744
+    ],
+    "deepest_point_mosaic": [
+     9138.461,
+     -1163.076
+    ],
+    "deepest_point_sheet_px": [
+     178.0,
+     2730.0
+    ]
+   },
+   "half_street_width_px": 230.698,
+   "ink_threshold_effective": 121.0,
+   "margin_zone_ink_px2": 0,
+   "max_encroachment_interior_px": 77.332,
+   "max_encroachment_px": 158.641,
+   "sheet": 44,
+   "street_id": "ave_i_or_sealy"
+  },
+  {
+   "bands_interior_px2": {
+    "0-40": 11696,
+    "120-218": 9040,
+    "40-120": 18752
+   },
+   "corridor_border_zone_ink_px2": 11984,
+   "corridor_ink_fraction": 0.039,
+   "corridor_ink_px2": 51472,
+   "corridor_interior_ink_px2": 39488,
+   "deepest_interior_blob": {
+    "area_px2": 176,
+    "bbox_sheet_px": [
+     280,
+     200,
+     300,
+     216
+    ],
+    "deepest_point_mosaic": [
+     3128.03,
+     3267.887
+    ],
+    "deepest_point_sheet_px": [
+     286.0,
+     202.0
+    ]
+   },
+   "half_street_width_px": 218.804,
+   "ink_threshold_effective": 120.0,
+   "margin_zone_ink_px2": 480,
+   "max_encroachment_interior_px": 174.017,
+   "max_encroachment_px": 217.875,
+   "sheet": 49,
+   "street_id": "24th_st"
+  },
+  {
+   "bands_interior_px2": {
+    "0-40": 14096,
+    "120-234": 48,
+    "40-120": 8560
+   },
+   "corridor_border_zone_ink_px2": 416,
+   "corridor_ink_fraction": 0.013,
+   "corridor_ink_px2": 23120,
+   "corridor_interior_ink_px2": 22704,
+   "deepest_interior_blob": {
+    "area_px2": 64,
+    "bbox_sheet_px": [
+     176,
+     2756,
+     192,
+     2760
+    ],
+    "deepest_point_mosaic": [
+     3016.602,
+     5835.735
+    ],
+    "deepest_point_sheet_px": [
+     178.0,
+     2758.0
+    ]
+   },
+   "half_street_width_px": 234.977,
+   "ink_threshold_effective": 120.0,
+   "margin_zone_ink_px2": 0,
+   "max_encroachment_interior_px": 124.77,
+   "max_encroachment_px": 188.784,
+   "sheet": 49,
+   "street_id": "ave_f_or_church"
+  },
+  {
+   "bands_interior_px2": {
+    "0-40": 2192,
+    "120-230": 176,
+    "40-120": 2624
+   },
+   "corridor_border_zone_ink_px2": 4288,
+   "corridor_ink_fraction": 0.007,
+   "corridor_ink_px2": 9280,
+   "corridor_interior_ink_px2": 4992,
+   "deepest_interior_blob": {
+    "area_px2": 176,
+    "bbox_sheet_px": [
+     6448,
+     2736,
+     6464,
+     2752
+    ],
+    "deepest_point_mosaic": [
+     9330.049,
+     5830.864
+    ],
+    "deepest_point_sheet_px": [
+     6462.0,
+     2746.0
+    ]
+   },
+   "half_street_width_px": 230.698,
+   "ink_threshold_effective": 120.0,
+   "margin_zone_ink_px2": 0,
+   "max_encroachment_interior_px": 134.32,
+   "max_encroachment_px": 210.32,
+   "sheet": 49,
+   "street_id": "ave_i_or_sealy"
+  },
+  {
+   "bands_interior_px2": {
+    "0-40": 5152,
+    "120-218": 2608,
+    "40-120": 11136
+   },
+   "corridor_border_zone_ink_px2": 10384,
+   "corridor_ink_fraction": 0.023,
+   "corridor_ink_px2": 29280,
+   "corridor_interior_ink_px2": 18896,
+   "deepest_interior_blob": {
+    "area_px2": 720,
+    "bbox_sheet_px": [
+     1252,
+     192,
+     1296,
+     216
+    ],
+    "deepest_point_mosaic": [
+     10253.198,
+     3277.544
+    ],
+    "deepest_point_sheet_px": [
+     1278.0,
+     194.0
+    ]
+   },
+   "half_street_width_px": 218.804,
+   "ink_threshold_effective": 119.0,
+   "margin_zone_ink_px2": 160,
+   "max_encroachment_interior_px": 171.743,
+   "max_encroachment_px": 212.168,
+   "sheet": 50,
+   "street_id": "24th_st"
+  },
+  {
+   "bands_interior_px2": {
+    "0-40": 5872,
+    "120-230": 0,
+    "40-120": 480
+   },
+   "corridor_border_zone_ink_px2": 3040,
+   "corridor_ink_fraction": 0.008,
+   "corridor_ink_px2": 9392,
+   "corridor_interior_ink_px2": 6352,
+   "deepest_interior_blob": {
+    "area_px2": 2704,
+    "bbox_sheet_px": [
+     180,
+     3812,
+     236,
+     3944
+    ],
+    "deepest_point_mosaic": [
+     9136.517,
+     7008.546
+    ],
+    "deepest_point_sheet_px": [
+     182.0,
+     3918.0
+    ]
+   },
+   "half_street_width_px": 230.698,
+   "ink_threshold_effective": 119.0,
+   "margin_zone_ink_px2": 0,
+   "max_encroachment_interior_px": 54.87,
+   "max_encroachment_px": 144.801,
+   "sheet": 50,
+   "street_id": "ave_i_or_sealy"
+  }
+ ],
+ "worst_encroachments": [
+  {
+   "max_encroachment_interior_px": 217.627,
+   "max_encroachment_px": 217.627,
+   "sheet": 43,
+   "street_id": "24th_st"
+  },
+  {
+   "max_encroachment_interior_px": 216.709,
+   "max_encroachment_px": 216.709,
+   "sheet": 44,
+   "street_id": "24th_st"
+  },
+  {
+   "max_encroachment_interior_px": 216.369,
+   "max_encroachment_px": 216.369,
+   "sheet": 10,
+   "street_id": "24th_st"
+  },
+  {
+   "max_encroachment_interior_px": 216.203,
+   "max_encroachment_px": 216.386,
+   "sheet": 9,
+   "street_id": "24th_st"
+  },
+  {
+   "max_encroachment_interior_px": 215.774,
+   "max_encroachment_px": 215.774,
+   "sheet": 10,
+   "street_id": "21st_or_center_st"
+  }
+ ]
+}

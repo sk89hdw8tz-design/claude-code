@@ -1,0 +1,1094 @@
+{
+ "stamp": {
+  "master_sha256": "3c35c429cca0d4b8c823604cdcac8eaaad55fdc83da296275207b1557c1d4cb9",
+  "reviewed_by": "QA harness engineer (visual, all 108 side-by-side crops via 11 contact sheets + individual zooms)"
+ },
+ "summary": {
+  "FURNITURE-BY-DESIGN": 95,
+  "HIDDEN-CONTENT-FAIL": 0,
+  "OWNED-BY-NEIGHBOUR-CORRECTLY": 13,
+  "inspected": 108
+ },
+ "verdicts": {
+  "s07_c026": {
+   "area_native_px2": 4696,
+   "centroid_mosaic": [
+    -2828.4,
+    -6894.0
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 7,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s07_c053": {
+   "area_native_px2": 3408,
+   "centroid_mosaic": [
+    -8974.3,
+    -3299.4
+   ],
+   "note": "track lines at plate overlap; master shows s9 aligned copy",
+   "sheet": 7,
+   "verdict": "OWNED-BY-NEIGHBOUR-CORRECTLY"
+  },
+  "s07_c091": {
+   "area_native_px2": 2320,
+   "centroid_mosaic": [
+    -6396.6,
+    -3413.6
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 7,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s07_c192": {
+   "area_native_px2": 37884,
+   "centroid_mosaic": [
+    -4127.4,
+    -3248.7
+   ],
+   "note": "sheet-7 Scale-of-Feet ruler bar: removal DESIGNED by 21st St manual deviation (verified in cuts.json)",
+   "sheet": 7,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s07_c194": {
+   "area_native_px2": 4372,
+   "centroid_mosaic": [
+    -5961.3,
+    -3198.3
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 7,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s07_c207": {
+   "area_native_px2": 5248,
+   "centroid_mosaic": [
+    -7503.9,
+    -3164.7
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 7,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s07_c211": {
+   "area_native_px2": 5168,
+   "centroid_mosaic": [
+    -6400.6,
+    -3156.8
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 7,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s07_c212": {
+   "area_native_px2": 4188,
+   "centroid_mosaic": [
+    -5537.4,
+    -3151.8
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 7,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s07_c213": {
+   "area_native_px2": 7140,
+   "centroid_mosaic": [
+    -3473.4,
+    -3151.1
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 7,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s07_c215": {
+   "area_native_px2": 6800,
+   "centroid_mosaic": [
+    -4336.6,
+    -3149.2
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 7,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s08_c044": {
+   "area_native_px2": 2120,
+   "centroid_mosaic": [
+    -3043.3,
+    -6841.7
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 8,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s08_c045": {
+   "area_native_px2": 4276,
+   "centroid_mosaic": [
+    3230.3,
+    -6812.9
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 8,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s08_c111": {
+   "area_native_px2": 2696,
+   "centroid_mosaic": [
+    346.4,
+    -3408.5
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 8,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s08_c113": {
+   "area_native_px2": 2304,
+   "centroid_mosaic": [
+    -56.0,
+    -3408.2
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 8,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s08_c166": {
+   "area_native_px2": 4904,
+   "centroid_mosaic": [
+    183.5,
+    -3191.3
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 8,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s08_c168": {
+   "area_native_px2": 32784,
+   "centroid_mosaic": [
+    1277.3,
+    -3228.9
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 8,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s08_c179": {
+   "area_native_px2": 5632,
+   "centroid_mosaic": [
+    -2388.1,
+    -3166.4
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 8,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s08_c182": {
+   "area_native_px2": 5028,
+   "centroid_mosaic": [
+    -1450.7,
+    -3147.4
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 8,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s08_c183": {
+   "area_native_px2": 4900,
+   "centroid_mosaic": [
+    -352.7,
+    -3156.9
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 8,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s08_c184": {
+   "area_native_px2": 3504,
+   "centroid_mosaic": [
+    730.2,
+    -3148.7
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 8,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s08_c187": {
+   "area_native_px2": 6512,
+   "centroid_mosaic": [
+    1721.3,
+    -3155.9
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 8,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s09_c007": {
+   "area_native_px2": 5968,
+   "centroid_mosaic": [
+    -6430.8,
+    -3705.4
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 9,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s09_c019": {
+   "area_native_px2": 3336,
+   "centroid_mosaic": [
+    -5968.6,
+    -3686.7
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 9,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s09_c038": {
+   "area_native_px2": 5664,
+   "centroid_mosaic": [
+    -6698.2,
+    -3628.7
+   ],
+   "note": "F.A. alarm symbols; master shows s7 corner incl. its own F.A.",
+   "sheet": 9,
+   "verdict": "OWNED-BY-NEIGHBOUR-CORRECTLY"
+  },
+  "s09_c041": {
+   "area_native_px2": 2368,
+   "centroid_mosaic": [
+    -8616.6,
+    -3615.6
+   ],
+   "note": "T.H. symbol; master shows s7 equivalent",
+   "sheet": 9,
+   "verdict": "OWNED-BY-NEIGHBOUR-CORRECTLY"
+  },
+  "s09_c128": {
+   "area_native_px2": 2336,
+   "centroid_mosaic": [
+    -2841.5,
+    -2690.5
+   ],
+   "note": "ARCHIVAL DEFECT: paper puncture reads as ink; not cartography; master shows s10 clean paper",
+   "sheet": 9,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s09_c137": {
+   "area_native_px2": 2908,
+   "centroid_mosaic": [
+    -2849.9,
+    36.2
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 9,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s09_c139": {
+   "area_native_px2": 2016,
+   "centroid_mosaic": [
+    -2828.7,
+    322.8
+   ],
+   "note": "ARCHIVAL DEFECT: puncture + edge shading at s9 east edge; not cartography",
+   "sheet": 9,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s09_c161": {
+   "area_native_px2": 2032,
+   "centroid_mosaic": [
+    -8220.9,
+    3561.2
+   ],
+   "note": "track lines; s11 copy aligned in master",
+   "sheet": 9,
+   "verdict": "OWNED-BY-NEIGHBOUR-CORRECTLY"
+  },
+  "s09_c167": {
+   "area_native_px2": 2416,
+   "centroid_mosaic": [
+    -7959.0,
+    3585.5
+   ],
+   "note": "track/street lines at 24th; s11 copy aligned in master",
+   "sheet": 9,
+   "verdict": "OWNED-BY-NEIGHBOUR-CORRECTLY"
+  },
+  "s09_c168": {
+   "area_native_px2": 2120,
+   "centroid_mosaic": [
+    -7934.7,
+    3582.4
+   ],
+   "note": "track/street lines at 24th; s11 copy aligned in master",
+   "sheet": 9,
+   "verdict": "OWNED-BY-NEIGHBOUR-CORRECTLY"
+  },
+  "s09_c175": {
+   "area_native_px2": 3736,
+   "centroid_mosaic": [
+    -7692.1,
+    3609.8
+   ],
+   "note": "6\" pipe + street lines at 24th; master shows s11 aligned copy",
+   "sheet": 9,
+   "verdict": "OWNED-BY-NEIGHBOUR-CORRECTLY"
+  },
+  "s09_c189": {
+   "area_native_px2": 2360,
+   "centroid_mosaic": [
+    -7008.9,
+    3593.5
+   ],
+   "note": "track lines; s11 copy aligned in master",
+   "sheet": 9,
+   "verdict": "OWNED-BY-NEIGHBOUR-CORRECTLY"
+  },
+  "s09_c250": {
+   "area_native_px2": 38160,
+   "centroid_mosaic": [
+    -3914.6,
+    3533.8
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 9,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s09_c286": {
+   "area_native_px2": 2200,
+   "centroid_mosaic": [
+    -6025.8,
+    3677.9
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 9,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s09_c287": {
+   "area_native_px2": 2096,
+   "centroid_mosaic": [
+    -5976.2,
+    3678.2
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 9,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s09_c300": {
+   "area_native_px2": 7628,
+   "centroid_mosaic": [
+    -3515.4,
+    3672.4
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 9,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s09_c306": {
+   "area_native_px2": 6124,
+   "centroid_mosaic": [
+    -6478.8,
+    3684.1
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 9,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s09_c307": {
+   "area_native_px2": 4296,
+   "centroid_mosaic": [
+    -5530.6,
+    3686.2
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 9,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s09_c308": {
+   "area_native_px2": 6724,
+   "centroid_mosaic": [
+    -4364.8,
+    3679.1
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 9,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s09_c312": {
+   "area_native_px2": 2496,
+   "centroid_mosaic": [
+    -7501.5,
+    3679.9
+   ],
+   "note": "track diagonals + 17-23 addresses; master shows s11 aligned copy",
+   "sheet": 9,
+   "verdict": "OWNED-BY-NEIGHBOUR-CORRECTLY"
+  },
+  "s10_c001": {
+   "area_native_px2": 4928,
+   "centroid_mosaic": [
+    -292.5,
+    -3714.6
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 10,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s10_c002": {
+   "area_native_px2": 3248,
+   "centroid_mosaic": [
+    -1207.2,
+    -3719.8
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 10,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s10_c003": {
+   "area_native_px2": 6560,
+   "centroid_mosaic": [
+    1729.6,
+    -3703.5
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 10,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s10_c009": {
+   "area_native_px2": 4976,
+   "centroid_mosaic": [
+    139.6,
+    -3688.7
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 10,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s10_c011": {
+   "area_native_px2": 4592,
+   "centroid_mosaic": [
+    645.1,
+    -3707.4
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 10,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s10_c021": {
+   "area_native_px2": 17312,
+   "centroid_mosaic": [
+    -2870.7,
+    -3583.5
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 10,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s10_c022": {
+   "area_native_px2": 8384,
+   "centroid_mosaic": [
+    -2985.3,
+    -3583.1
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 10,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s10_c025": {
+   "area_native_px2": 28856,
+   "centroid_mosaic": [
+    1209.5,
+    -3541.9
+   ],
+   "note": "sheet-10 compass rose/ornament north of 21st midline; bottom part visible from s10 own half (seam 8-10 REVIEW note)",
+   "sheet": 10,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s10_c088": {
+   "area_native_px2": 5424,
+   "centroid_mosaic": [
+    -3101.9,
+    -2792.9
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 10,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s10_c092": {
+   "area_native_px2": 5904,
+   "centroid_mosaic": [
+    -3109.5,
+    -1792.7
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 10,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s10_c105": {
+   "area_native_px2": 5696,
+   "centroid_mosaic": [
+    -3115.1,
+    -562.0
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 10,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s10_c121": {
+   "area_native_px2": 2496,
+   "centroid_mosaic": [
+    -3116.8,
+    130.2
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 10,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s10_c125": {
+   "area_native_px2": 4400,
+   "centroid_mosaic": [
+    -3047.6,
+    49.5
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 10,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s10_c126": {
+   "area_native_px2": 2784,
+   "centroid_mosaic": [
+    3191.8,
+    72.0
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 10,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s10_c136": {
+   "area_native_px2": 3088,
+   "centroid_mosaic": [
+    -3123.3,
+    661.6
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 10,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s10_c142": {
+   "area_native_px2": 12048,
+   "centroid_mosaic": [
+    -3130.6,
+    2344.2
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 10,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s10_c207": {
+   "area_native_px2": 34144,
+   "centroid_mosaic": [
+    1015.9,
+    3631.1
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 10,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s10_c209": {
+   "area_native_px2": 8672,
+   "centroid_mosaic": [
+    350.5,
+    3717.9
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 10,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s10_c217": {
+   "area_native_px2": 3984,
+   "centroid_mosaic": [
+    -2356.9,
+    3712.6
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 10,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s10_c219": {
+   "area_native_px2": 4736,
+   "centroid_mosaic": [
+    -1448.1,
+    3715.5
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 10,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s10_c223": {
+   "area_native_px2": 6384,
+   "centroid_mosaic": [
+    -325.1,
+    3717.2
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 10,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s10_c224": {
+   "area_native_px2": 5792,
+   "centroid_mosaic": [
+    1689.7,
+    3722.9
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 10,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s10_c225": {
+   "area_native_px2": 6688,
+   "centroid_mosaic": [
+    2530.1,
+    3725.7
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 10,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s11_c009": {
+   "area_native_px2": 2064,
+   "centroid_mosaic": [
+    -7598.6,
+    3267.6
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 11,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s11_c012": {
+   "area_native_px2": 6272,
+   "centroid_mosaic": [
+    -4753.8,
+    3288.2
+   ],
+   "note": "F.A. symbol; master shows s12 F.A. copy",
+   "sheet": 11,
+   "verdict": "OWNED-BY-NEIGHBOUR-CORRECTLY"
+  },
+  "s11_c013": {
+   "area_native_px2": 2144,
+   "centroid_mosaic": [
+    -3862.9,
+    3266.4
+   ],
+   "note": "T.H. dots; master shows s12 copy + 214",
+   "sheet": 11,
+   "verdict": "OWNED-BY-NEIGHBOUR-CORRECTLY"
+  },
+  "s11_c021": {
+   "area_native_px2": 6736,
+   "centroid_mosaic": [
+    -5998.7,
+    3349.0
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 11,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s11_c042": {
+   "area_native_px2": 4080,
+   "centroid_mosaic": [
+    -8951.2,
+    3377.4
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 11,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s11_c044": {
+   "area_native_px2": 3632,
+   "centroid_mosaic": [
+    -9057.5,
+    3380.6
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 11,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s12_c001": {
+   "area_native_px2": 4288,
+   "centroid_mosaic": [
+    -1464.6,
+    3170.3
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 12,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s12_c007": {
+   "area_native_px2": 7184,
+   "centroid_mosaic": [
+    119.5,
+    3302.6
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 12,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s12_c015": {
+   "area_native_px2": 2208,
+   "centroid_mosaic": [
+    32.2,
+    3316.1
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 12,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s12_c022": {
+   "area_native_px2": 11400,
+   "centroid_mosaic": [
+    -2891.5,
+    3382.4
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 12,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s12_c024": {
+   "area_native_px2": 8720,
+   "centroid_mosaic": [
+    -3006.8,
+    3407.5
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 12,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s12_c058": {
+   "area_native_px2": 2912,
+   "centroid_mosaic": [
+    -3141.0,
+    4297.3
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 12,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s12_c062": {
+   "area_native_px2": 2964,
+   "centroid_mosaic": [
+    -3144.7,
+    5050.7
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 12,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s39_c018": {
+   "area_native_px2": 3968,
+   "centroid_mosaic": [
+    3147.0,
+    -6879.0
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 39,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s39_c019": {
+   "area_native_px2": 5072,
+   "centroid_mosaic": [
+    9276.6,
+    -6878.7
+   ],
+   "note": "cross-ref numeral; master shows the documented 4|9 chimera (seam 39-40 REVIEW note)",
+   "sheet": 39,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s39_c058": {
+   "area_native_px2": 6048,
+   "centroid_mosaic": [
+    6258.7,
+    -3399.1
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 39,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s39_c059": {
+   "area_native_px2": 3736,
+   "centroid_mosaic": [
+    6400.6,
+    -3405.7
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 39,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s39_c060": {
+   "area_native_px2": 2280,
+   "centroid_mosaic": [
+    6479.2,
+    -3405.7
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 39,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s39_c061": {
+   "area_native_px2": 2144,
+   "centroid_mosaic": [
+    6642.0,
+    -3404.8
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 39,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s39_c116": {
+   "area_native_px2": 38552,
+   "centroid_mosaic": [
+    8164.4,
+    -3355.2
+   ],
+   "note": "sheet-39 Scale-of-Feet ruler hidden under s43 blank street; its caption survives in master (floating caption, see seam 40-44/39-43 REVIEW note)",
+   "sheet": 39,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s39_c128": {
+   "area_native_px2": 23200,
+   "centroid_mosaic": [
+    6209.1,
+    -3164.9
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 39,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s39_c136": {
+   "area_native_px2": 7856,
+   "centroid_mosaic": [
+    7781.7,
+    -3162.8
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 39,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s39_c137": {
+   "area_native_px2": 6320,
+   "centroid_mosaic": [
+    4633.7,
+    -3156.4
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 39,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s39_c138": {
+   "area_native_px2": 6704,
+   "centroid_mosaic": [
+    3760.7,
+    -3155.5
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 39,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s40_c032": {
+   "area_native_px2": 2788,
+   "centroid_mosaic": [
+    9200.8,
+    -3570.2
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 40,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s43_c020": {
+   "area_native_px2": 14908,
+   "centroid_mosaic": [
+    3337.9,
+    -3565.6
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 43,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s43_c021": {
+   "area_native_px2": 29248,
+   "centroid_mosaic": [
+    5098.2,
+    -3537.0
+   ],
+   "note": "sheet-43 compass rose at 21st; fragments at cut (seam 39-43 REVIEW note)",
+   "sheet": 43,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s43_c022": {
+   "area_native_px2": 16368,
+   "centroid_mosaic": [
+    3175.9,
+    -3552.7
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 43,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s43_c052": {
+   "area_native_px2": 2864,
+   "centroid_mosaic": [
+    6288.2,
+    -3464.6
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 43,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s43_c054": {
+   "area_native_px2": 4976,
+   "centroid_mosaic": [
+    6485.2,
+    -3467.1
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 43,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s43_c055": {
+   "area_native_px2": 3240,
+   "centroid_mosaic": [
+    6780.4,
+    -3469.3
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 43,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s43_c148": {
+   "area_native_px2": 3792,
+   "centroid_mosaic": [
+    9301.8,
+    -11.8
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 43,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s43_c234": {
+   "area_native_px2": 33612,
+   "centroid_mosaic": [
+    8160.8,
+    3602.1
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 43,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s43_c248": {
+   "area_native_px2": 4008,
+   "centroid_mosaic": [
+    6153.1,
+    3716.3
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 43,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s43_c249": {
+   "area_native_px2": 7860,
+   "centroid_mosaic": [
+    6411.4,
+    3718.8
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 43,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s43_c254": {
+   "area_native_px2": 5684,
+   "centroid_mosaic": [
+    3685.6,
+    3713.4
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 43,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s43_c256": {
+   "area_native_px2": 4828,
+   "centroid_mosaic": [
+    4572.8,
+    3723.2
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 43,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s43_c258": {
+   "area_native_px2": 4436,
+   "centroid_mosaic": [
+    5688.5,
+    3724.3
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 43,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s43_c259": {
+   "area_native_px2": 6316,
+   "centroid_mosaic": [
+    7768.2,
+    3721.8
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 43,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s44_c008": {
+   "area_native_px2": 5712,
+   "centroid_mosaic": [
+    9247.2,
+    -3556.3
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 44,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s49_c008": {
+   "area_native_px2": 3360,
+   "centroid_mosaic": [
+    6216.7,
+    3297.9
+   ],
+   "note": "pipes at edge; master shows s43 content 714/T.H.",
+   "sheet": 49,
+   "verdict": "OWNED-BY-NEIGHBOUR-CORRECTLY"
+  },
+  "s49_c010": {
+   "area_native_px2": 4056,
+   "centroid_mosaic": [
+    6124.9,
+    3302.4
+   ],
+   "note": "cross-ref zone incl. pipes; master shows s43 content 712/T.H.",
+   "sheet": 49,
+   "verdict": "OWNED-BY-NEIGHBOUR-CORRECTLY"
+  },
+  "s49_c044": {
+   "area_native_px2": 12020,
+   "centroid_mosaic": [
+    3159.4,
+    3383.1
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 49,
+   "verdict": "FURNITURE-BY-DESIGN"
+  },
+  "s49_c045": {
+   "area_native_px2": 11532,
+   "centroid_mosaic": [
+    3317.8,
+    3361.5
+   ],
+   "note": "per-plate margin/street furniture (scale bar frame, sheet/cross-ref numeral, title, street name, symbol); master shows neighbour ground correctly",
+   "sheet": 49,
+   "verdict": "FURNITURE-BY-DESIGN"
+  }
+ }
+}

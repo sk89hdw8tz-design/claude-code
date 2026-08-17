@@ -1,0 +1,821 @@
+{
+ "rows": [
+  {
+   "across_note": "across = constructed frontage separation vs default street width * kappa; absorbs the plates' drafted-width disagreement (sigma floor 12 px), NOT seam misregistration",
+   "across_rms_px": 34.52,
+   "across_worst_abs_px": 44.42,
+   "content_extent": {
+    "half_street_width_px": 215.774,
+    "sheet_7_interior_px": 215.771,
+    "sheet_9_interior_px": 213.536
+   },
+   "cut_provenance": "pooled per-street TLS midline (21st_or_center_st), 8 anchors, anchor-midline rms 7.4 px",
+   "manual_deviations_in_span": [
+    {
+     "offset_px": -18.0,
+     "reason": "Sheet 7's 'Scale of Feet' bar occupies 21st St street space at the cut; default midline clips its label edge. Deviating the cut north gives ",
+     "t_range_mosaic": [
+      -8232.0,
+      -6580.0
+     ]
+    }
+   ],
+   "mask_tiling": {
+    "bad_sample_coords": [],
+    "cut_drift_from_polyline_px": 5.47,
+    "gap_samples_bad": 0,
+    "max_pair_gap_px": 0.001,
+    "n_gap_samples": 84,
+    "overlap_mean_width_px": 0.0,
+    "overlap_px2": 1.138,
+    "shared_boundary_px": 6389.4,
+    "verdict": "PASS"
+   },
+   "mid_anchor": {
+    "anchor": "Ave A (Water)",
+    "file": "pair_7_9.json",
+    "midpoint_mosaic": [
+     -6982.67,
+     -3453.439
+    ]
+   },
+   "n_residual_obs": 6,
+   "pair": [
+    7,
+    9
+   ],
+   "panel_reason": "all rail track groups continuous across cut; frontages stagger correctly; 21st scale-bar manual deviation verified working (bar ground owned by s9 blank street as designed)",
+   "panel_verdict": "PASS",
+   "seam": "7-9",
+   "seam_mid_mosaic": [
+    -6058.7,
+    -3443.2
+   ],
+   "solve_rms_px": 4.85,
+   "solve_worst_abs_px": 7.11,
+   "street_id": "21st_or_center_st",
+   "street_name": "21st or Center St"
+  },
+  {
+   "across_note": "across = constructed frontage separation vs default street width * kappa; absorbs the plates' drafted-width disagreement (sigma floor 12 px), NOT seam misregistration",
+   "across_rms_px": 10.29,
+   "across_worst_abs_px": 10.51,
+   "content_extent": {
+    "half_street_width_px": 215.774,
+    "sheet_10_interior_px": 215.774,
+    "sheet_8_interior_px": 215.305
+   },
+   "cut_provenance": "pooled per-street TLS midline (21st_or_center_st), 8 anchors, anchor-midline rms 7.4 px",
+   "manual_deviations_in_span": [],
+   "mask_tiling": {
+    "bad_sample_coords": [],
+    "cut_drift_from_polyline_px": 2.66,
+    "gap_samples_bad": 0,
+    "max_pair_gap_px": 0.0,
+    "n_gap_samples": 80,
+    "overlap_mean_width_px": 0.0,
+    "overlap_px2": 0.0,
+    "shared_boundary_px": 6065.2,
+    "verdict": "PASS"
+   },
+   "mid_anchor": {
+    "anchor": "Ave E (Post Office)",
+    "file": "pair_8_10.json",
+    "midpoint_mosaic": [
+     1140.399,
+     -3439.385
+    ]
+   },
+   "n_residual_obs": 6,
+   "pair": [
+    8,
+    10
+   ],
+   "panel_reason": "cosmetic: mid-intersection ornament (fountain/lamp) drawn by s10 loses its top at the cut, s8 half blank (canvas ~17800-18000, 4835); geometry aligned, no cartography lost",
+   "panel_verdict": "REVIEW",
+   "seam": "8-10",
+   "seam_mid_mosaic": [
+    147.2,
+    -3439.8
+   ],
+   "solve_rms_px": 2.98,
+   "solve_worst_abs_px": 3.99,
+   "street_id": "21st_or_center_st",
+   "street_name": "21st or Center St"
+  },
+  {
+   "across_note": "across = constructed frontage separation vs default street width * kappa; absorbs the plates' drafted-width disagreement (sigma floor 12 px), NOT seam misregistration",
+   "across_rms_px": 20.12,
+   "across_worst_abs_px": 23.88,
+   "content_extent": {
+    "half_street_width_px": 215.774,
+    "sheet_39_interior_px": 214.675,
+    "sheet_43_interior_px": 215.481
+   },
+   "cut_provenance": "pooled per-street TLS midline (21st_or_center_st), 8 anchors, anchor-midline rms 7.4 px",
+   "manual_deviations_in_span": [],
+   "mask_tiling": {
+    "bad_sample_coords": [],
+    "cut_drift_from_polyline_px": 2.65,
+    "gap_samples_bad": 0,
+    "max_pair_gap_px": 0.0,
+    "n_gap_samples": 80,
+    "overlap_mean_width_px": 0.0,
+    "overlap_px2": 0.0,
+    "shared_boundary_px": 6072.7,
+    "verdict": "PASS"
+   },
+   "mid_anchor": {
+    "anchor": "Ave G (Winnie)",
+    "file": "pair_39_43.json",
+    "midpoint_mosaic": [
+     5195.851,
+     -3429.788
+    ]
+   },
+   "n_residual_obs": 6,
+   "pair": [
+    39,
+    43
+   ],
+   "panel_reason": "cosmetic: s43 compass/ornament and arrow tops amputated at cut + s39's own version leaves stray tip fragments (canvas ~21730-22760, 4850); geometry aligned",
+   "panel_verdict": "REVIEW",
+   "seam": "39-43",
+   "seam_mid_mosaic": [
+    6196.1,
+    -3436.4
+   ],
+   "solve_rms_px": 3.17,
+   "solve_worst_abs_px": 4.36,
+   "street_id": "21st_or_center_st",
+   "street_name": "21st or Center St"
+  },
+  {
+   "across_note": "across = constructed frontage separation vs default street width * kappa; absorbs the plates' drafted-width disagreement (sigma floor 12 px), NOT seam misregistration",
+   "across_rms_px": 5.17,
+   "across_worst_abs_px": 6.65,
+   "content_extent": {
+    "half_street_width_px": 215.774,
+    "sheet_40_interior_px": 214.435,
+    "sheet_44_interior_px": 215.42
+   },
+   "cut_provenance": "pooled per-street TLS midline (21st_or_center_st), 8 anchors, anchor-midline rms 7.4 px",
+   "manual_deviations_in_span": [],
+   "mask_tiling": {
+    "bad_sample_coords": [],
+    "cut_drift_from_polyline_px": 5.44,
+    "gap_samples_bad": 0,
+    "max_pair_gap_px": 0.001,
+    "n_gap_samples": 84,
+    "overlap_mean_width_px": 0.0,
+    "overlap_px2": 1.938,
+    "shared_boundary_px": 6337.1,
+    "verdict": "PASS"
+   },
+   "mid_anchor": {
+    "anchor": "Ave J (Broadway)",
+    "file": "pair_40_44.json",
+    "midpoint_mosaic": [
+     11314.428,
+     -3444.567
+    ]
+   },
+   "n_residual_obs": 6,
+   "pair": [
+    40,
+    44
+   ],
+   "panel_reason": "sliver seam clean; NOTE shared with 39-43 zone: s39 'Scale of Feet.' caption floats at canvas ~24700-25080,4805 (its ruler bar lies south of cut under s43 blank; census s39_c116)",
+   "panel_verdict": "PASS",
+   "seam": "40-44",
+   "seam_mid_mosaic": [
+    9342.6,
+    -3434.6
+   ],
+   "solve_rms_px": 3.43,
+   "solve_worst_abs_px": 5.58,
+   "street_id": "21st_or_center_st",
+   "street_name": "21st or Center St"
+  },
+  {
+   "across_note": "across = constructed frontage separation vs default street width * kappa; absorbs the plates' drafted-width disagreement (sigma floor 12 px), NOT seam misregistration",
+   "across_rms_px": 7.63,
+   "across_worst_abs_px": 7.63,
+   "content_extent": {
+    "half_street_width_px": 218.804,
+    "sheet_11_interior_px": 168.254,
+    "sheet_9_interior_px": 216.203
+   },
+   "cut_provenance": "pooled per-street TLS midline (24th_st), 8 anchors, anchor-midline rms 4.5 px",
+   "manual_deviations_in_span": [],
+   "mask_tiling": {
+    "bad_sample_coords": [],
+    "cut_drift_from_polyline_px": 4.98,
+    "gap_samples_bad": 0,
+    "max_pair_gap_px": 0.0,
+    "n_gap_samples": 84,
+    "overlap_mean_width_px": 0.0,
+    "overlap_px2": 0.0,
+    "shared_boundary_px": 6328.1,
+    "verdict": "PASS"
+   },
+   "mid_anchor": {
+    "anchor": "Ave A (Water)",
+    "file": "pair_9_11.json",
+    "midpoint_mosaic": [
+     -6899.65,
+     3432.096
+    ]
+   },
+   "n_residual_obs": 3,
+   "pair": [
+    9,
+    11
+   ],
+   "panel_reason": "dense rail-yard trackage crosses with no visible jog (best seam, rms 0.85)",
+   "panel_verdict": "PASS",
+   "seam": "9-11",
+   "seam_mid_mosaic": [
+    -6050.8,
+    3429.8
+   ],
+   "solve_rms_px": 0.85,
+   "solve_worst_abs_px": 0.88,
+   "street_id": "24th_st",
+   "street_name": "24th St"
+  },
+  {
+   "across_note": "across = constructed frontage separation vs default street width * kappa; absorbs the plates' drafted-width disagreement (sigma floor 12 px), NOT seam misregistration",
+   "across_rms_px": 7.78,
+   "across_worst_abs_px": 8.6,
+   "content_extent": {
+    "half_street_width_px": 218.804,
+    "sheet_10_interior_px": 216.369,
+    "sheet_12_interior_px": 178.299
+   },
+   "cut_provenance": "pooled per-street TLS midline (24th_st), 8 anchors, anchor-midline rms 4.5 px",
+   "manual_deviations_in_span": [],
+   "mask_tiling": {
+    "bad_sample_coords": [],
+    "cut_drift_from_polyline_px": 2.43,
+    "gap_samples_bad": 0,
+    "max_pair_gap_px": 0.0,
+    "n_gap_samples": 80,
+    "overlap_mean_width_px": 0.0,
+    "overlap_px2": 0.0,
+    "shared_boundary_px": 6065.3,
+    "verdict": "PASS"
+   },
+   "mid_anchor": {
+    "anchor": "Ave E (Post Office)",
+    "file": "pair_10_12.json",
+    "midpoint_mosaic": [
+     1106.054,
+     3441.774
+    ]
+   },
+   "n_residual_obs": 6,
+   "pair": [
+    10,
+    12
+   ],
+   "panel_reason": "cosmetic: s12 large '24TH ST.' label top-amputated at cut, only glyph bottoms show (canvas ~16590-17100, 11690-11740); geometry aligned; candidate for a future manual deviation",
+   "panel_verdict": "REVIEW",
+   "seam": "10-12",
+   "seam_mid_mosaic": [
+    126.5,
+    3438.5
+   ],
+   "solve_rms_px": 7.49,
+   "solve_worst_abs_px": 11.18,
+   "street_id": "24th_st",
+   "street_name": "24th St"
+  },
+  {
+   "across_note": "across = constructed frontage separation vs default street width * kappa; absorbs the plates' drafted-width disagreement (sigma floor 12 px), NOT seam misregistration",
+   "across_rms_px": 20.38,
+   "across_worst_abs_px": 24.77,
+   "content_extent": {
+    "half_street_width_px": 218.804,
+    "sheet_43_interior_px": 217.627,
+    "sheet_49_interior_px": 174.017
+   },
+   "cut_provenance": "pooled per-street TLS midline (24th_st), 8 anchors, anchor-midline rms 4.5 px",
+   "manual_deviations_in_span": [],
+   "mask_tiling": {
+    "bad_sample_coords": [],
+    "cut_drift_from_polyline_px": 2.42,
+    "gap_samples_bad": 0,
+    "max_pair_gap_px": 0.0,
+    "n_gap_samples": 80,
+    "overlap_mean_width_px": 0.0,
+    "overlap_px2": 0.0,
+    "shared_boundary_px": 6072.8,
+    "verdict": "PASS"
+   },
+   "mid_anchor": {
+    "anchor": "Ave H (Ball)",
+    "file": "pair_43_49.json",
+    "midpoint_mosaic": [
+     7176.836,
+     3441.775
+    ]
+   },
+   "n_residual_obs": 6,
+   "pair": [
+    43,
+    49
+   ],
+   "panel_reason": "frontages + both pipe runs continuous; one small amputated glyph fragment mid-street (~23790,11730); s43 diagonal line is a crease in the archival scan",
+   "panel_verdict": "PASS",
+   "seam": "43-49",
+   "seam_mid_mosaic": [
+    6175.5,
+    3447.0
+   ],
+   "solve_rms_px": 4.04,
+   "solve_worst_abs_px": 5.9,
+   "street_id": "24th_st",
+   "street_name": "24th St"
+  },
+  {
+   "across_note": "across = constructed frontage separation vs default street width * kappa; absorbs the plates' drafted-width disagreement (sigma floor 12 px), NOT seam misregistration",
+   "across_rms_px": 23.86,
+   "across_worst_abs_px": 26.67,
+   "content_extent": {
+    "half_street_width_px": 218.804,
+    "sheet_44_interior_px": 216.709,
+    "sheet_50_interior_px": 171.743
+   },
+   "cut_provenance": "pooled per-street TLS midline (24th_st), 8 anchors, anchor-midline rms 4.5 px",
+   "manual_deviations_in_span": [],
+   "mask_tiling": {
+    "bad_sample_coords": [],
+    "cut_drift_from_polyline_px": 4.99,
+    "gap_samples_bad": 0,
+    "max_pair_gap_px": 0.001,
+    "n_gap_samples": 84,
+    "overlap_mean_width_px": 0.0,
+    "overlap_px2": 2.244,
+    "shared_boundary_px": 6366.4,
+    "verdict": "PASS"
+   },
+   "mid_anchor": {
+    "anchor": "Ave J (Broadway)",
+    "file": "pair_44_50.json",
+    "midpoint_mosaic": [
+     11281.498,
+     3455.622
+    ]
+   },
+   "n_residual_obs": 6,
+   "pair": [
+    44,
+    50
+   ],
+   "panel_reason": "corridor continuous, stagger correct, per-plate width labels by design",
+   "panel_verdict": "PASS",
+   "seam": "44-50",
+   "seam_mid_mosaic": [
+    9332.3,
+    3451.4
+   ],
+   "solve_rms_px": 2.75,
+   "solve_worst_abs_px": 4.19,
+   "street_id": "24th_st",
+   "street_name": "24th St"
+  },
+  {
+   "across_note": "across = constructed frontage separation vs default street width * kappa; absorbs the plates' drafted-width disagreement (sigma floor 12 px), NOT seam misregistration",
+   "across_rms_px": 17.05,
+   "across_worst_abs_px": 22.74,
+   "content_extent": {
+    "half_street_width_px": 204.644,
+    "sheet_7_interior_px": 69.719,
+    "sheet_8_interior_px": 202.783
+   },
+   "cut_provenance": "pooled per-street TLS midline (ave_c_or_mechanic), 8 anchors, anchor-midline rms 15.0 px",
+   "manual_deviations_in_span": [],
+   "mask_tiling": {
+    "bad_sample_coords": [],
+    "cut_drift_from_polyline_px": 2.55,
+    "gap_samples_bad": 0,
+    "max_pair_gap_px": 0.0,
+    "n_gap_samples": 96,
+    "overlap_mean_width_px": 0.0,
+    "overlap_px2": 0.0,
+    "shared_boundary_px": 7230.0,
+    "verdict": "PASS"
+   },
+   "mid_anchor": {
+    "anchor": "20th St",
+    "file": "pair_7_8.json",
+    "midpoint_mosaic": [
+     -2855.722,
+     -5575.449
+    ]
+   },
+   "n_residual_obs": 9,
+   "pair": [
+    7,
+    8
+   ],
+   "panel_reason": "street edges align (~10px); s7 'AVE. C.' name label nicked at cut (canvas x~13790, y 1490-1990); pipe annotations at plate-specific in-street offsets (drafting)",
+   "panel_verdict": "PASS",
+   "seam": "7-8",
+   "seam_mid_mosaic": [
+    -2870.0,
+    -5856.6
+   ],
+   "solve_rms_px": 6.15,
+   "solve_worst_abs_px": 12.81,
+   "street_id": "ave_c_or_mechanic",
+   "street_name": "Ave. C or Mechanic"
+  },
+  {
+   "across_note": "across = constructed frontage separation vs default street width * kappa; absorbs the plates' drafted-width disagreement (sigma floor 12 px), NOT seam misregistration",
+   "across_rms_px": 28.53,
+   "across_worst_abs_px": 37.68,
+   "content_extent": {
+    "half_street_width_px": 204.644,
+    "sheet_10_interior_px": 197.589,
+    "sheet_9_interior_px": 4.51
+   },
+   "cut_provenance": "pooled per-street TLS midline (ave_c_or_mechanic), 8 anchors, anchor-midline rms 15.0 px",
+   "manual_deviations_in_span": [],
+   "mask_tiling": {
+    "bad_sample_coords": [],
+    "cut_drift_from_polyline_px": 0.83,
+    "gap_samples_bad": 0,
+    "max_pair_gap_px": 0.0,
+    "n_gap_samples": 92,
+    "overlap_mean_width_px": 0.0,
+    "overlap_px2": 0.0,
+    "shared_boundary_px": 6900.8,
+    "verdict": "PASS"
+   },
+   "mid_anchor": {
+    "anchor": "23rd St",
+    "file": "pair_9_10.json",
+    "midpoint_mosaic": [
+     -2905.97,
+     1146.113
+    ]
+   },
+   "n_residual_obs": 6,
+   "pair": [
+    9,
+    10
+   ],
+   "panel_reason": "cross-street mouth jog 20-35px at 22nd/23rd = the plates' own drafting disagreement (matches along-residual 34.8 worst, huber-downweighted); s9 page edge safely outside master; no doubling",
+   "panel_verdict": "PASS",
+   "seam": "9-10",
+   "seam_mid_mosaic": [
+    -2886.2,
+    -3.7
+   ],
+   "solve_rms_px": 20.58,
+   "solve_worst_abs_px": 34.76,
+   "street_id": "ave_c_or_mechanic",
+   "street_name": "Ave. C or Mechanic"
+  },
+  {
+   "across_note": "across = constructed frontage separation vs default street width * kappa; absorbs the plates' drafted-width disagreement (sigma floor 12 px), NOT seam misregistration",
+   "across_rms_px": 62.09,
+   "across_worst_abs_px": 87.64,
+   "content_extent": {
+    "half_street_width_px": 204.644,
+    "sheet_11_interior_px": 78.397,
+    "sheet_12_interior_px": 204.378
+   },
+   "cut_provenance": "pooled per-street TLS midline (ave_c_or_mechanic), 8 anchors, anchor-midline rms 15.0 px",
+   "manual_deviations_in_span": [],
+   "mask_tiling": {
+    "bad_sample_coords": [],
+    "cut_drift_from_polyline_px": 2.56,
+    "gap_samples_bad": 0,
+    "max_pair_gap_px": 0.0,
+    "n_gap_samples": 98,
+    "overlap_mean_width_px": 0.0,
+    "overlap_px2": 0.339,
+    "shared_boundary_px": 7396.5,
+    "verdict": "PASS"
+   },
+   "mid_anchor": {
+    "anchor": "25th St (Rosenberg Ave)",
+    "file": "pair_11_12.json",
+    "midpoint_mosaic": [
+     -2874.708,
+     5846.463
+    ]
+   },
+   "n_residual_obs": 6,
+   "pair": [
+    11,
+    12
+   ],
+   "panel_reason": "s11 mid-street annotation column preserved complete; opposite frontages stagger normally; 12-inch pipe continuous; tone step = scan exposure (by design)",
+   "panel_verdict": "PASS",
+   "seam": "11-12",
+   "seam_mid_mosaic": [
+    -2899.5,
+    4818.4
+   ],
+   "solve_rms_px": 9.26,
+   "solve_worst_abs_px": 16.49,
+   "street_id": "ave_c_or_mechanic",
+   "street_name": "Ave. C or Mechanic"
+  },
+  {
+   "across_note": "across = constructed frontage separation vs default street width * kappa; absorbs the plates' drafted-width disagreement (sigma floor 12 px), NOT seam misregistration",
+   "across_rms_px": 14.96,
+   "across_worst_abs_px": 22.54,
+   "content_extent": {
+    "half_street_width_px": 234.977,
+    "sheet_39_interior_px": 143.613,
+    "sheet_8_interior_px": 66.706
+   },
+   "cut_provenance": "pooled per-street TLS midline (ave_f_or_church), 8 anchors, anchor-midline rms 12.3 px",
+   "manual_deviations_in_span": [],
+   "mask_tiling": {
+    "bad_sample_coords": [],
+    "cut_drift_from_polyline_px": 1.73,
+    "gap_samples_bad": 0,
+    "max_pair_gap_px": 0.0,
+    "n_gap_samples": 96,
+    "overlap_mean_width_px": 0.0,
+    "overlap_px2": 0.0,
+    "shared_boundary_px": 7265.7,
+    "verdict": "PASS"
+   },
+   "mid_anchor": {
+    "anchor": "20th St",
+    "file": "pair_8_39.json",
+    "midpoint_mosaic": [
+     3174.769,
+     -5704.216
+    ]
+   },
+   "n_residual_obs": 9,
+   "pair": [
+    8,
+    39
+   ],
+   "panel_reason": "10-inch pipe continuous; s8 'AVE. F' vertical name label split at cut (x~19905); frontages stagger correctly",
+   "panel_verdict": "PASS",
+   "seam": "8-39",
+   "seam_mid_mosaic": [
+    3176.1,
+    -5853.6
+   ],
+   "solve_rms_px": 4.51,
+   "solve_worst_abs_px": 7.73,
+   "street_id": "ave_f_or_church",
+   "street_name": "Ave. F or Church"
+  },
+  {
+   "across_note": "across = constructed frontage separation vs default street width * kappa; absorbs the plates' drafted-width disagreement (sigma floor 12 px), NOT seam misregistration",
+   "across_rms_px": 26.97,
+   "across_worst_abs_px": 35.98,
+   "content_extent": {
+    "half_street_width_px": 234.977,
+    "sheet_10_interior_px": 3.912,
+    "sheet_43_interior_px": 65.946
+   },
+   "cut_provenance": "pooled per-street TLS midline (ave_f_or_church), 8 anchors, anchor-midline rms 12.3 px",
+   "manual_deviations_in_span": [],
+   "mask_tiling": {
+    "bad_sample_coords": [],
+    "cut_drift_from_polyline_px": 0.56,
+    "gap_samples_bad": 0,
+    "max_pair_gap_px": 0.0,
+    "n_gap_samples": 92,
+    "overlap_mean_width_px": 0.0,
+    "overlap_px2": 0.0,
+    "shared_boundary_px": 6900.8,
+    "verdict": "PASS"
+   },
+   "mid_anchor": {
+    "anchor": "22nd St",
+    "file": "pair_10_43.json",
+    "midpoint_mosaic": [
+     3153.583,
+     -1150.271
+    ]
+   },
+   "n_residual_obs": 6,
+   "pair": [
+    10,
+    43
+   ],
+   "panel_reason": "pipe line continuous (~10px jog); both plates' 'CHURCH' label halves sit side-by-side at cut (honest duplication); mouth jog ~30px within drafting scatter",
+   "panel_verdict": "PASS",
+   "seam": "10-43",
+   "seam_mid_mosaic": [
+    3159.4,
+    2.3
+   ],
+   "solve_rms_px": 10.98,
+   "solve_worst_abs_px": 20.13,
+   "street_id": "ave_f_or_church",
+   "street_name": "Ave. F or Church"
+  },
+  {
+   "across_note": "across = constructed frontage separation vs default street width * kappa; absorbs the plates' drafted-width disagreement (sigma floor 12 px), NOT seam misregistration",
+   "across_rms_px": 108.71,
+   "across_worst_abs_px": 110.83,
+   "content_extent": {
+    "half_street_width_px": 234.977,
+    "sheet_12_interior_px": 35.996,
+    "sheet_49_interior_px": 124.77
+   },
+   "cut_provenance": "pooled per-street TLS midline (ave_f_or_church), 8 anchors, anchor-midline rms 12.3 px",
+   "manual_deviations_in_span": [],
+   "mask_tiling": {
+    "bad_sample_coords": [],
+    "cut_drift_from_polyline_px": 1.74,
+    "gap_samples_bad": 0,
+    "max_pair_gap_px": 0.001,
+    "n_gap_samples": 98,
+    "overlap_mean_width_px": 0.0,
+    "overlap_px2": 2.193,
+    "shared_boundary_px": 7395.6,
+    "verdict": "PASS"
+   },
+   "mid_anchor": {
+    "anchor": "25th St (Rosenberg Ave)",
+    "file": "pair_12_49.json",
+    "midpoint_mosaic": [
+     3159.349,
+     5834.518
+    ]
+   },
+   "n_residual_obs": 6,
+   "pair": [
+    12,
+    49
+   ],
+   "panel_reason": "the 110px worst ACROSS residual manifests only as the plates' differing drafted street width; corridor blank, frontages complete, no doubling",
+   "panel_verdict": "PASS",
+   "seam": "12-49",
+   "seam_mid_mosaic": [
+    3145.8,
+    4821.4
+   ],
+   "solve_rms_px": 4.74,
+   "solve_worst_abs_px": 7.95,
+   "street_id": "ave_f_or_church",
+   "street_name": "Ave. F or Church"
+  },
+  {
+   "across_note": "across = constructed frontage separation vs default street width * kappa; absorbs the plates' drafted-width disagreement (sigma floor 12 px), NOT seam misregistration",
+   "across_rms_px": 8.37,
+   "across_worst_abs_px": 14.0,
+   "content_extent": {
+    "half_street_width_px": 230.698,
+    "sheet_39_interior_px": 100.979,
+    "sheet_40_interior_px": 82.239
+   },
+   "cut_provenance": "pooled per-street TLS midline (ave_i_or_sealy), 8 anchors, anchor-midline rms 7.0 px",
+   "manual_deviations_in_span": [],
+   "mask_tiling": {
+    "bad_sample_coords": [],
+    "cut_drift_from_polyline_px": 0.93,
+    "gap_samples_bad": 0,
+    "max_pair_gap_px": 0.0,
+    "n_gap_samples": 96,
+    "overlap_mean_width_px": 0.0,
+    "overlap_px2": 1.282,
+    "shared_boundary_px": 7283.9,
+    "verdict": "PASS"
+   },
+   "mid_anchor": {
+    "anchor": "20th St",
+    "file": "pair_39_40.json",
+    "midpoint_mosaic": [
+     9234.334,
+     -5724.89
+    ]
+   },
+   "n_residual_obs": 9,
+   "pair": [
+    39,
+    40
+   ],
+   "panel_reason": "cosmetic: two plates' 'AVE. I' labels misaligned ~35px = ghost-doubled text at cut; margin cross-refs compose to a '4|9' chimera (s39 '40' + s40 '39'); geometry aligned",
+   "panel_verdict": "REVIEW",
+   "seam": "39-40",
+   "seam_mid_mosaic": [
+    9230.7,
+    -5850.5
+   ],
+   "solve_rms_px": 5.02,
+   "solve_worst_abs_px": 7.52,
+   "street_id": "ave_i_or_sealy",
+   "street_name": "Ave. I or Sealy"
+  },
+  {
+   "across_note": "across = constructed frontage separation vs default street width * kappa; absorbs the plates' drafted-width disagreement (sigma floor 12 px), NOT seam misregistration",
+   "across_rms_px": 3.71,
+   "across_worst_abs_px": 4.41,
+   "content_extent": {
+    "half_street_width_px": 230.698,
+    "sheet_43_interior_px": 194.956,
+    "sheet_44_interior_px": 77.332
+   },
+   "cut_provenance": "pooled per-street TLS midline (ave_i_or_sealy), 8 anchors, anchor-midline rms 7.0 px",
+   "manual_deviations_in_span": [],
+   "mask_tiling": {
+    "bad_sample_coords": [],
+    "cut_drift_from_polyline_px": 0.3,
+    "gap_samples_bad": 0,
+    "max_pair_gap_px": 0.0,
+    "n_gap_samples": 92,
+    "overlap_mean_width_px": 0.0,
+    "overlap_px2": 0.0,
+    "shared_boundary_px": 6900.8,
+    "verdict": "PASS"
+   },
+   "mid_anchor": {
+    "anchor": "22nd St",
+    "file": "pair_43_44.json",
+    "midpoint_mosaic": [
+     9211.527,
+     -1146.088
+    ]
+   },
+   "n_residual_obs": 6,
+   "pair": [
+    43,
+    44
+   ],
+   "panel_reason": "composite 'AVE. I OR SEALY' street text reads cleanly (halves from both plates align within ~5px); s44 margin cross-ref '43' correctly owned",
+   "panel_verdict": "PASS",
+   "seam": "43-44",
+   "seam_mid_mosaic": [
+    9212.6,
+    8.4
+   ],
+   "solve_rms_px": 3.95,
+   "solve_worst_abs_px": 6.94,
+   "street_id": "ave_i_or_sealy",
+   "street_name": "Ave. I or Sealy"
+  },
+  {
+   "across_note": "across = constructed frontage separation vs default street width * kappa; absorbs the plates' drafted-width disagreement (sigma floor 12 px), NOT seam misregistration",
+   "across_rms_px": 10.33,
+   "across_worst_abs_px": 12.05,
+   "content_extent": {
+    "half_street_width_px": 230.698,
+    "sheet_49_interior_px": 134.32,
+    "sheet_50_interior_px": 54.87
+   },
+   "cut_provenance": "pooled per-street TLS midline (ave_i_or_sealy), 8 anchors, anchor-midline rms 7.0 px",
+   "manual_deviations_in_span": [],
+   "mask_tiling": {
+    "bad_sample_coords": [],
+    "cut_drift_from_polyline_px": 0.94,
+    "gap_samples_bad": 0,
+    "max_pair_gap_px": 0.001,
+    "n_gap_samples": 98,
+    "overlap_mean_width_px": 0.0,
+    "overlap_px2": 2.698,
+    "shared_boundary_px": 7384.3,
+    "verdict": "PASS"
+   },
+   "mid_anchor": {
+    "anchor": "25th St (Rosenberg Ave)",
+    "file": "pair_49_50.json",
+    "midpoint_mosaic": [
+     9203.619,
+     5831.536
+    ]
+   },
+   "n_residual_obs": 6,
+   "pair": [
+    49,
+    50
+   ],
+   "panel_reason": "clean corridor; 12-inch pipe and 120-ft avenue labels continue",
+   "panel_verdict": "PASS",
+   "seam": "49-50",
+   "seam_mid_mosaic": [
+    9197.7,
+    4824.4
+   ],
+   "solve_rms_px": 3.61,
+   "solve_worst_abs_px": 6.16,
+   "street_id": "ave_i_or_sealy",
+   "street_name": "Ave. I or Sealy"
+  }
+ ],
+ "stamp": {
+  "content_extent_source": "70_qa/run1/content_extent_report_frozen.json",
+  "freeze_checks_all_ok": true,
+  "generated_utc": "2026-08-17T05:23:31.195884+00:00",
+  "master_sha256": "3c35c429cca0d4b8c823604cdcac8eaaad55fdc83da296275207b1557c1d4cb9",
+  "master_tif": "60_master/final/candidate_master.tif",
+  "qa_policy": "report only; sources/cuts/masks/transforms/master never modified",
+  "tool": "70_qa/tools/seam_matrix.py"
+ }
+}

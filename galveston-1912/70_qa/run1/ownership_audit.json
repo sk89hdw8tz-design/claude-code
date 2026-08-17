@@ -1,0 +1,141 @@
+{
+ "cuts_follow_pooled_definitions": {
+  "budget_note": "masks rebuild the cut from cuts.json's 3-dp canonical line_fit; worst-case rounding drift ~6 px at |t|~12000; both sides share the same rounded cut so tiling is exact",
+  "max_mask_cut_drift_px": 5.47,
+  "verdict": "PASS"
+ },
+ "freeze_checks": {
+  "all_ok": true,
+  "n": 19
+ },
+ "per_sheet_provenance": {
+  "rows": [
+   {
+    "mask_sha_match": true,
+    "sheet": 7,
+    "transform_sha_match": true
+   },
+   {
+    "mask_sha_match": true,
+    "sheet": 8,
+    "transform_sha_match": true
+   },
+   {
+    "mask_sha_match": true,
+    "sheet": 9,
+    "transform_sha_match": true
+   },
+   {
+    "mask_sha_match": true,
+    "sheet": 10,
+    "transform_sha_match": true
+   },
+   {
+    "mask_sha_match": true,
+    "sheet": 11,
+    "transform_sha_match": true
+   },
+   {
+    "mask_sha_match": true,
+    "sheet": 12,
+    "transform_sha_match": true
+   },
+   {
+    "mask_sha_match": true,
+    "sheet": 39,
+    "transform_sha_match": true
+   },
+   {
+    "mask_sha_match": true,
+    "sheet": 40,
+    "transform_sha_match": true
+   },
+   {
+    "mask_sha_match": true,
+    "sheet": 43,
+    "transform_sha_match": true
+   },
+   {
+    "mask_sha_match": true,
+    "sheet": 44,
+    "transform_sha_match": true
+   },
+   {
+    "mask_sha_match": true,
+    "sheet": 49,
+    "transform_sha_match": true
+   },
+   {
+    "mask_sha_match": true,
+    "sheet": 50,
+    "transform_sha_match": true
+   }
+  ],
+  "verdict": "PASS"
+ },
+ "raster_test": {
+  "edge_inset_examples_canvas": [
+   [
+    7476,
+    4476
+   ],
+   [
+    7484,
+    4476
+   ],
+   [
+    7476,
+    4484
+   ],
+   [
+    7484,
+    4484
+   ],
+   [
+    7476,
+    4492
+   ],
+   [
+    7484,
+    4492
+   ],
+   [
+    7476,
+    4500
+   ],
+   [
+    7476,
+    4508
+   ],
+   [
+    7476,
+    4516
+   ],
+   [
+    7476,
+    4524
+   ]
+  ],
+  "edge_inset_hole_samples": 412,
+  "edge_inset_note": "all footprint-minus-ownership samples sit in the west page-edge inset strip (canvas x ~7468-7516, sheets 7/9/11 bay-side trim edge); master verified white there by edge_audit check1 (0 stray non-white px)",
+  "exactly_one_or_boundary_px": 4235712,
+  "grid": [
+   3275,
+   1811
+  ],
+  "interior_hole_examples_canvas": [],
+  "interior_hole_samples": 0,
+  "max_hole_dist_from_ownership_px": 51.2,
+  "overlap_examples_canvas": [],
+  "overlap_ge2_px": 0,
+  "scale": "1/8 canvas",
+  "verdict": "PASS"
+ },
+ "stamp": {
+  "generated_utc": "2026-08-17T05:10:40.169543+00:00",
+  "master_sha256": "3c35c429cca0d4b8c823604cdcac8eaaad55fdc83da296275207b1557c1d4cb9",
+  "master_tif": "60_master/final/candidate_master.tif",
+  "qa_policy": "report only; sources/cuts/masks/transforms/master never modified",
+  "tool": "70_qa/tools/ownership_audit.py"
+ }
+}

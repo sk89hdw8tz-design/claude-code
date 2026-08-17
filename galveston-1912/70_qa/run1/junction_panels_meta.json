@@ -1,0 +1,223 @@
+{
+ "entries": [
+  {
+   "id": "J_21st_x_sealy",
+   "junction_mosaic": [
+    9223.2,
+    -3434.7
+   ],
+   "max_own_multiplicity": 4,
+   "nonwhite_master_px_in_unowned": 0,
+   "rect_canvas": [
+    24406,
+    3944,
+    1800,
+    1800
+   ],
+   "sheets": [
+    39,
+    40,
+    43,
+    44
+   ],
+   "streets": [
+    "21st_or_center_st",
+    "ave_i_or_sealy"
+   ],
+   "type": "interior-junction",
+   "unowned_px_in_300px_core": 0,
+   "unowned_px_in_rect": 0
+  },
+  {
+   "id": "J_24th_x_sealy",
+   "junction_mosaic": [
+    9201.9,
+    3451.2
+   ],
+   "max_own_multiplicity": 4,
+   "nonwhite_master_px_in_unowned": 0,
+   "rect_canvas": [
+    24406,
+    10830,
+    1800,
+    1800
+   ],
+   "sheets": [
+    43,
+    44,
+    49,
+    50
+   ],
+   "streets": [
+    "24th_st",
+    "ave_i_or_sealy"
+   ],
+   "type": "interior-junction",
+   "unowned_px_in_300px_core": 0,
+   "unowned_px_in_rect": 0
+  },
+  {
+   "id": "J_21st_x_aveC",
+   "junction_mosaic": [
+    -2876.7,
+    -3441.5
+   ],
+   "max_own_multiplicity": 4,
+   "nonwhite_master_px_in_unowned": 0,
+   "rect_canvas": [
+    12957,
+    3938,
+    1800,
+    1800
+   ],
+   "sheets": [
+    7,
+    8,
+    9,
+    10
+   ],
+   "streets": [
+    "21st_or_center_st",
+    "ave_c_or_mechanic"
+   ],
+   "type": "interior-junction",
+   "unowned_px_in_300px_core": 1,
+   "unowned_px_in_rect": 1
+  },
+  {
+   "id": "J_21st_x_aveF",
+   "junction_mosaic": [
+    3169.2,
+    -3438.1
+   ],
+   "max_own_multiplicity": 3,
+   "nonwhite_master_px_in_unowned": 0,
+   "rect_canvas": [
+    19003,
+    3941,
+    1800,
+    1800
+   ],
+   "sheets": [
+    8,
+    39,
+    10,
+    43
+   ],
+   "streets": [
+    "21st_or_center_st",
+    "ave_f_or_church"
+   ],
+   "type": "interior-junction",
+   "unowned_px_in_300px_core": 0,
+   "unowned_px_in_rect": 0
+  },
+  {
+   "id": "J_24th_x_aveC",
+   "junction_mosaic": [
+    -2895.6,
+    3434.2
+   ],
+   "max_own_multiplicity": 3,
+   "nonwhite_master_px_in_unowned": 0,
+   "rect_canvas": [
+    12938,
+    10813,
+    1800,
+    1800
+   ],
+   "sheets": [
+    9,
+    10,
+    11,
+    12
+   ],
+   "streets": [
+    "24th_st",
+    "ave_c_or_mechanic"
+   ],
+   "type": "interior-junction",
+   "unowned_px_in_300px_core": 0,
+   "unowned_px_in_rect": 0
+  },
+  {
+   "id": "J_24th_x_aveF",
+   "junction_mosaic": [
+    3149.7,
+    3442.7
+   ],
+   "max_own_multiplicity": 4,
+   "nonwhite_master_px_in_unowned": 0,
+   "rect_canvas": [
+    18984,
+    10822,
+    1800,
+    1800
+   ],
+   "sheets": [
+    10,
+    43,
+    12,
+    49
+   ],
+   "streets": [
+    "24th_st",
+    "ave_f_or_church"
+   ],
+   "type": "interior-junction",
+   "unowned_px_in_300px_core": 0,
+   "unowned_px_in_rect": 0
+  },
+  {
+   "id": "C_NW",
+   "near_black_px": 66499,
+   "rect_canvas": [
+    6661,
+    0,
+    1600,
+    1600
+   ],
+   "type": "outer-corner"
+  },
+  {
+   "id": "C_NE",
+   "near_black_px": 142769,
+   "rect_canvas": [
+    24606,
+    0,
+    1600,
+    1600
+   ],
+   "type": "outer-corner"
+  },
+  {
+   "id": "C_SW",
+   "near_black_px": 12913,
+   "rect_canvas": [
+    6661,
+    12889,
+    1600,
+    1600
+   ],
+   "type": "outer-corner"
+  },
+  {
+   "id": "C_SE",
+   "near_black_px": 106691,
+   "rect_canvas": [
+    24606,
+    12889,
+    1600,
+    1600
+   ],
+   "type": "outer-corner"
+  }
+ ],
+ "stamp": {
+  "generated_utc": "2026-08-17T04:55:26.211375+00:00",
+  "master_sha256": "3c35c429cca0d4b8c823604cdcac8eaaad55fdc83da296275207b1557c1d4cb9",
+  "master_tif": "60_master/final/candidate_master.tif",
+  "qa_policy": "report only; sources/cuts/masks/transforms/master never modified",
+  "tool": "70_qa/tools/junction_panels.py"
+ }
+}

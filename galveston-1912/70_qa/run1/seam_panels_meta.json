@@ -1,0 +1,480 @@
+{
+ "seams": {
+  "10-12": {
+   "anchor": "Ave E (Post Office)",
+   "centre_mosaic": [
+    1106.054,
+    3441.774
+   ],
+   "files": [
+    "seam_10_12_A.png",
+    "seam_10_12_B.png",
+    "seam_10_12_merged.png",
+    "seam_10_12_annot.png"
+   ],
+   "rect_canvas": [
+    16740,
+    10971,
+    2200,
+    1500
+   ],
+   "registration": {
+    "AB_ownership_overlap_px": 2721,
+    "A_owned_mismatch_px": 0,
+    "B_owned_mismatch_px": 0,
+    "byte_exact_vs_master": true,
+    "unowned_px_in_rect": 0
+   }
+  },
+  "10-43": {
+   "anchor": "22nd St",
+   "centre_mosaic": [
+    3153.583,
+    -1150.271
+   ],
+   "files": [
+    "seam_10_43_A.png",
+    "seam_10_43_B.png",
+    "seam_10_43_merged.png",
+    "seam_10_43_annot.png"
+   ],
+   "rect_canvas": [
+    19138,
+    6029,
+    1500,
+    2200
+   ],
+   "registration": {
+    "AB_ownership_overlap_px": 2080,
+    "A_owned_mismatch_px": 0,
+    "B_owned_mismatch_px": 0,
+    "byte_exact_vs_master": true,
+    "unowned_px_in_rect": 0
+   }
+  },
+  "11-12": {
+   "anchor": "25th St (Rosenberg Ave)",
+   "centre_mosaic": [
+    -2899.5,
+    4818.4
+   ],
+   "files": [
+    "seam_11_12_A.png",
+    "seam_11_12_B.png",
+    "seam_11_12_merged.png",
+    "seam_11_12_annot.png"
+   ],
+   "rect_canvas": [
+    13084,
+    11997,
+    1500,
+    2200
+   ],
+   "registration": {
+    "AB_ownership_overlap_px": 1566,
+    "A_owned_mismatch_px": 0,
+    "B_owned_mismatch_px": 0,
+    "byte_exact_vs_master": true,
+    "unowned_px_in_rect": 0
+   }
+  },
+  "12-49": {
+   "anchor": "25th St (Rosenberg Ave)",
+   "centre_mosaic": [
+    3145.8,
+    4821.4
+   ],
+   "files": [
+    "seam_12_49_A.png",
+    "seam_12_49_B.png",
+    "seam_12_49_merged.png",
+    "seam_12_49_annot.png"
+   ],
+   "rect_canvas": [
+    19130,
+    12000,
+    1500,
+    2200
+   ],
+   "registration": {
+    "AB_ownership_overlap_px": 2065,
+    "A_owned_mismatch_px": 0,
+    "B_owned_mismatch_px": 0,
+    "byte_exact_vs_master": true,
+    "unowned_px_in_rect": 0
+   }
+  },
+  "39-40": {
+   "anchor": "20th St",
+   "centre_mosaic": [
+    9230.7,
+    -5850.5
+   ],
+   "files": [
+    "seam_39_40_A.png",
+    "seam_39_40_B.png",
+    "seam_39_40_merged.png",
+    "seam_39_40_annot.png"
+   ],
+   "rect_canvas": [
+    24706,
+    1328,
+    1500,
+    2200
+   ],
+   "registration": {
+    "AB_ownership_overlap_px": 2312,
+    "A_owned_mismatch_px": 0,
+    "B_owned_mismatch_px": 0,
+    "byte_exact_vs_master": true,
+    "unowned_px_in_rect": 0
+   }
+  },
+  "39-43": {
+   "anchor": "Ave G (Winnie)",
+   "centre_mosaic": [
+    5195.851,
+    -3429.788
+   ],
+   "files": [
+    "seam_39_43_A.png",
+    "seam_39_43_B.png",
+    "seam_39_43_merged.png",
+    "seam_39_43_annot.png"
+   ],
+   "rect_canvas": [
+    20830,
+    4099,
+    2200,
+    1500
+   ],
+   "registration": {
+    "AB_ownership_overlap_px": 2461,
+    "A_owned_mismatch_px": 0,
+    "B_owned_mismatch_px": 0,
+    "byte_exact_vs_master": true,
+    "unowned_px_in_rect": 0
+   }
+  },
+  "40-44": {
+   "anchor": "Ave J (Broadway)",
+   "centre_mosaic": [
+    9342.6,
+    -3434.6
+   ],
+   "files": [
+    "seam_40_44_A.png",
+    "seam_40_44_B.png",
+    "seam_40_44_merged.png",
+    "seam_40_44_annot.png"
+   ],
+   "rect_canvas": [
+    24006,
+    4094,
+    2200,
+    1500
+   ],
+   "registration": {
+    "AB_ownership_overlap_px": 249,
+    "A_owned_mismatch_px": 0,
+    "B_owned_mismatch_px": 0,
+    "byte_exact_vs_master": true,
+    "unowned_px_in_rect": 2926712
+   }
+  },
+  "43-44": {
+   "anchor": "22nd St",
+   "centre_mosaic": [
+    9212.6,
+    8.4
+   ],
+   "files": [
+    "seam_43_44_A.png",
+    "seam_43_44_B.png",
+    "seam_43_44_merged.png",
+    "seam_43_44_annot.png"
+   ],
+   "rect_canvas": [
+    24706,
+    7187,
+    1500,
+    2200
+   ],
+   "registration": {
+    "AB_ownership_overlap_px": 2472,
+    "A_owned_mismatch_px": 0,
+    "B_owned_mismatch_px": 0,
+    "byte_exact_vs_master": true,
+    "unowned_px_in_rect": 0
+   }
+  },
+  "43-49": {
+   "anchor": "Ave H (Ball)",
+   "centre_mosaic": [
+    7176.836,
+    3441.775
+   ],
+   "files": [
+    "seam_43_49_A.png",
+    "seam_43_49_B.png",
+    "seam_43_49_merged.png",
+    "seam_43_49_annot.png"
+   ],
+   "rect_canvas": [
+    22811,
+    10971,
+    2200,
+    1500
+   ],
+   "registration": {
+    "AB_ownership_overlap_px": 4019,
+    "A_owned_mismatch_px": 0,
+    "B_owned_mismatch_px": 0,
+    "byte_exact_vs_master": true,
+    "unowned_px_in_rect": 0
+   }
+  },
+  "44-50": {
+   "anchor": "Ave J (Broadway)",
+   "centre_mosaic": [
+    9332.3,
+    3451.4
+   ],
+   "files": [
+    "seam_44_50_A.png",
+    "seam_44_50_B.png",
+    "seam_44_50_merged.png",
+    "seam_44_50_annot.png"
+   ],
+   "rect_canvas": [
+    24006,
+    10980,
+    2200,
+    1500
+   ],
+   "registration": {
+    "AB_ownership_overlap_px": 436,
+    "A_owned_mismatch_px": 0,
+    "B_owned_mismatch_px": 0,
+    "byte_exact_vs_master": true,
+    "unowned_px_in_rect": 2895583
+   }
+  },
+  "49-50": {
+   "anchor": "25th St (Rosenberg Ave)",
+   "centre_mosaic": [
+    9197.7,
+    4824.4
+   ],
+   "files": [
+    "seam_49_50_A.png",
+    "seam_49_50_B.png",
+    "seam_49_50_merged.png",
+    "seam_49_50_annot.png"
+   ],
+   "rect_canvas": [
+    24706,
+    12003,
+    1500,
+    2200
+   ],
+   "registration": {
+    "AB_ownership_overlap_px": 2194,
+    "A_owned_mismatch_px": 0,
+    "B_owned_mismatch_px": 0,
+    "byte_exact_vs_master": true,
+    "unowned_px_in_rect": 0
+   }
+  },
+  "7-8": {
+   "anchor": "20th St",
+   "centre_mosaic": [
+    -2855.722,
+    -5575.449
+   ],
+   "files": [
+    "seam_7_8_A.png",
+    "seam_7_8_B.png",
+    "seam_7_8_merged.png",
+    "seam_7_8_annot.png"
+   ],
+   "rect_canvas": [
+    13128,
+    1604,
+    1500,
+    2200
+   ],
+   "registration": {
+    "AB_ownership_overlap_px": 1079,
+    "A_owned_mismatch_px": 0,
+    "B_owned_mismatch_px": 0,
+    "byte_exact_vs_master": true,
+    "unowned_px_in_rect": 118
+   }
+  },
+  "7-9": {
+   "anchor": "Ave A (Water)",
+   "centre_mosaic": [
+    -6982.67,
+    -3453.439
+   ],
+   "files": [
+    "seam_7_9_A.png",
+    "seam_7_9_B.png",
+    "seam_7_9_merged.png",
+    "seam_7_9_annot.png"
+   ],
+   "rect_canvas": [
+    8651,
+    4076,
+    2200,
+    1500
+   ],
+   "registration": {
+    "AB_ownership_overlap_px": 1958,
+    "A_owned_mismatch_px": 0,
+    "B_owned_mismatch_px": 0,
+    "byte_exact_vs_master": true,
+    "unowned_px_in_rect": 8
+   }
+  },
+  "8-10": {
+   "anchor": "Ave E (Post Office)",
+   "centre_mosaic": [
+    1140.399,
+    -3439.385
+   ],
+   "files": [
+    "seam_8_10_A.png",
+    "seam_8_10_B.png",
+    "seam_8_10_merged.png",
+    "seam_8_10_annot.png"
+   ],
+   "rect_canvas": [
+    16774,
+    4090,
+    2200,
+    1500
+   ],
+   "registration": {
+    "AB_ownership_overlap_px": 1401,
+    "A_owned_mismatch_px": 0,
+    "B_owned_mismatch_px": 0,
+    "byte_exact_vs_master": true,
+    "unowned_px_in_rect": 0
+   }
+  },
+  "8-39": {
+   "anchor": "20th St",
+   "centre_mosaic": [
+    3174.769,
+    -5704.216
+   ],
+   "files": [
+    "seam_8_39_A.png",
+    "seam_8_39_B.png",
+    "seam_8_39_merged.png",
+    "seam_8_39_annot.png"
+   ],
+   "rect_canvas": [
+    19159,
+    1475,
+    1500,
+    2200
+   ],
+   "registration": {
+    "AB_ownership_overlap_px": 973,
+    "A_owned_mismatch_px": 0,
+    "B_owned_mismatch_px": 0,
+    "byte_exact_vs_master": true,
+    "unowned_px_in_rect": 0
+   }
+  },
+  "9-10": {
+   "anchor": "23rd St",
+   "centre_mosaic": [
+    -2905.97,
+    1146.113
+   ],
+   "files": [
+    "seam_9_10_A.png",
+    "seam_9_10_B.png",
+    "seam_9_10_merged.png",
+    "seam_9_10_annot.png"
+   ],
+   "rect_canvas": [
+    13078,
+    8325,
+    1500,
+    2200
+   ],
+   "registration": {
+    "AB_ownership_overlap_px": 1446,
+    "A_owned_mismatch_px": 0,
+    "B_owned_mismatch_px": 0,
+    "byte_exact_vs_master": true,
+    "unowned_px_in_rect": 0
+   }
+  },
+  "9-11": {
+   "anchor": "Ave A (Water)",
+   "centre_mosaic": [
+    -6899.65,
+    3432.096
+   ],
+   "files": [
+    "seam_9_11_A.png",
+    "seam_9_11_B.png",
+    "seam_9_11_merged.png",
+    "seam_9_11_annot.png"
+   ],
+   "rect_canvas": [
+    8734,
+    10961,
+    2200,
+    1500
+   ],
+   "registration": {
+    "AB_ownership_overlap_px": 3161,
+    "A_owned_mismatch_px": 0,
+    "B_owned_mismatch_px": 0,
+    "byte_exact_vs_master": true,
+    "unowned_px_in_rect": 0
+   }
+  }
+ },
+ "stamp": {
+  "generated_utc": "2026-08-17T04:51:26.375149+00:00",
+  "master_sha256": "3c35c429cca0d4b8c823604cdcac8eaaad55fdc83da296275207b1557c1d4cb9",
+  "master_tif": "60_master/final/candidate_master.tif",
+  "qa_policy": "report only; sources/cuts/masks/transforms/master never modified",
+  "self_test": {
+   "checks": [
+    "clamped-int-rect",
+    "A-owned byte-exact",
+    "B-owned byte-exact",
+    "recomposed==master",
+    "float-rect refused",
+    "shapes==rect"
+   ],
+   "rect_clamped": [
+    0,
+    0,
+    2000,
+    700
+   ],
+   "rect_requested": [
+    880,
+    -60,
+    2200,
+    700
+   ],
+   "result": "PASS",
+   "synthetic_canvas": [
+    2000,
+    1300
+   ]
+  },
+  "tool": "70_qa/tools/seam_panels.py"
+ }
+}
