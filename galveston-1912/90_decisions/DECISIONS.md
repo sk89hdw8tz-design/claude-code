@@ -242,3 +242,27 @@ Verified: anaglyph of both panels warped into the mosaic shows shed outlines coi
 and shared track lines printing neutral (agreement); remaining single-colour tracks are
 genuine draft differences (the panels draw different yard track counts). Native-resolution
 inspection at the cut shows continuous tracks and the Pier 22 shed rendered once, whole.
+
+## D-013 — A|B cut routed as a polyline to preserve the slip bulkhead (2026-08-17)
+
+**Owner report:** the slip between Piers 22 and 23 still did not align.
+
+**Diagnosis.** Confirmed at native resolution: the straight A|B cut crossed the slip's
+long east bulkhead obliquely, so the two drafts' residual ~30 px disagreement (genuine,
+D-012) showed as a ~40 px step in that single continuous line. Coverage analysis at the
+bulkhead column: panel A spans canvas y 0-8300, panel B spans 6620-14480, while the
+bulkhead runs ~6460-8600 -- neither panel alone covers all of it, so no straight cut can
+avoid splitting it.
+
+**Fix.** The A|B boundary is now a POLYLINE that rises to meet panel B's own top edge at
+the slip's chamfer corner (~canvas 8140, 6610): B draws the ENTIRE bulkhead, and the
+transition happens in open slip water where nothing is drafted. West of the slip the cut
+stays south of the Gulf Fishery shed so panel A keeps it whole. Verified at 1:1: the
+bulkhead is now one unbroken line; piers 20-25, sheds and tracks read continuously.
+
+**Known remaining, not fixed:** both panels label the slip, and the two labels sit ~900 px
+apart within the same water body, so one "Slip" appears twice. Suppressing the second
+would require extending panel A's ownership to ~canvas 8280, within 45 px of A's page
+edge -- risking exactly the blank-margin intrusion that F1/1889 warn about. Left as
+documented furniture duplication, the same class already adjudicated at the block seams.
+Paper-tone steps at the panel boundary are authentic and preserved (no exposure matching).

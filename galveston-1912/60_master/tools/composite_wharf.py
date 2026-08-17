@@ -183,11 +183,34 @@ cut_rationale = (
     '(A centroid y={:.0f} < B centroid y={:.0f}).'
 ).format(C[0], C[1], CORRIDOR_SLOPE, CUT_SLOPE, centroidA_y, centroidB_y)
 
+# A|B ownership boundary as a POLYLINE in CANVAS coords (D-013).
+#
+# A straight cut crossed the slip's long east bulkhead obliquely, so the two
+# drafts' genuine ~30 px disagreement showed as a visible step in that line.
+# The polyline instead rises to meet panel B's own top edge at the slip's
+# chamfer corner (canvas ~8140, 6610), so B draws the ENTIRE bulkhead and the
+# transition happens in open slip water where nothing is drawn. West of the
+# slip the cut stays south of the Gulf Fishery shed so panel A keeps it whole.
+# Breakpoints: (canvas_x, canvas_y); the boundary is linear between them and
+# constant beyond the ends. A owns NORTH (smaller canvas y).
+CUT_POLYLINE = [(-1e9, 7750.0), (7850.0, 7750.0), (8100.0, 6620.0), (1e9, 6620.0)]
+
+
+def cut_y_canvas(xs_canvas):
+    """Boundary canvas-y for each canvas x (piecewise linear)."""
+    px = np.array([p[0] for p in CUT_POLYLINE], np.float64)
+    py = np.array([p[1] for p in CUT_POLYLINE], np.float64)
+    return np.interp(xs_canvas, px, py)
+
+
 def east_of_cut(sub_x0, sub_y0, w, h):
-    """Boolean (h,w): True where canvas pixel is east (A side) of the cut."""
-    xs = np.arange(w, dtype=np.float64) + sub_x0 + CX0     # mosaic x
-    ys = np.arange(h, dtype=np.float64) + sub_y0 + CY0     # mosaic y
-    y_line = C[1] + CUT_SLOPE * (xs - C[0])
+    """Boolean (h,w): True where the canvas pixel is on panel A's side.
+
+    A owns north of the boundary (smaller canvas y); B owns south.
+    """
+    xs = np.arange(w, dtype=np.float64) + sub_x0          # canvas x
+    ys = np.arange(h, dtype=np.float64) + sub_y0          # canvas y
+    y_line = cut_y_canvas(xs)
     return ys[:, None] < y_line[None, :]
 
 # ---------------------------------------------------------------- block footprint
