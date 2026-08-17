@@ -1,0 +1,74 @@
+{
+  "pair": [12, 49],
+  "axis": "vertical",
+  "boundary": "Ave. F (Church)",
+  "observer": "ctrl-V2",
+  "controls": [
+    {
+      "anchor": "25th St (Rosenberg Ave)",
+      "status": "ACCEPTED",
+      "class": "observed",
+      "why_not_one_block_off": "The Church address run changes from 24xx to 25xx exactly at this crossing: sheet 12 prints 2428 above the corner north of the street and 2502 below it south; sheet 49 prints 2427 north (Atlanta Hotel block) and 2501 south (US Post Office block). Street runs are 500-series on sheet 12 (index: 25th St 300-525 -> 12; Ave E-F block) and 600-series on sheet 49 (600-825 -> 49; Ave F-G block), only possible at the Church seam.",
+      "anchor_evidence": "Sheet 12: runs 518/520/522/524 (N) and 517/519/521/523 (S); Church 2428 and 2502. Sheet 49: runs 602/604/606 (N) and 601/603/605 (S); Church 2427 and 2501; Atlanta Hotel N of street, United States Post Office & Custom House S (panel).",
+      "A": {
+        "sheet": 12,
+        "face1_seg": [[5910, 2379], [6215, 2383]],
+        "face2_seg": [[5910, 3106], [6220, 3109]],
+        "measured_at": "east end of both frontages, at the Church-adjacent corners (corner verticals x~6220-6225)",
+        "sigma_along_px": 2.0,
+        "sigma_basis": "both faces clean single rules ~4 px, half line width; slight uniform eastward tilt (~3-4 px over 300 px) captured by the segment endpoints",
+        "source_sha256": "d2ab9e8aa706bfc1bd41732dbc85f3a23d8097732f92ebc13852276f7843a82f"
+      },
+      "B": {
+        "sheet": 49,
+        "face1_seg": [[575, 2391], [885, 2390]],
+        "face2_seg": [[570, 3118], [880, 3117]],
+        "measured_at": "west end of both frontages at the Church-adjacent corners (x~565-575)",
+        "sigma_along_px": 2.0,
+        "sigma_basis": "both faces clean single rules; Atlanta Hotel wall sits ~35 px clear above face1",
+        "source_sha256": "ce9382f5fdedea88527e7a4f38a3ce77c3c83f305b48ebb9366f84bf2151e55b"
+      },
+      "drafted_width_px": {"A": 726.0, "B": 727.0, "annotation": "120' printed mid-street on both plates (Rosenberg Ave, beside 12\" W. PIPE label)"},
+      "remeasured_by": "ctrl-V2 second pass (independent window, 4x nearest-neighbour, sheet 12 face1)",
+      "remeasure_delta_px": 0.0,
+      "evidence_crops": [
+        "70_qa/control_evidence/pair12-49_25th_sheet12.jpg",
+        "70_qa/control_evidence/pair12-49_25th_sheet49.jpg"
+      ],
+      "notes": "Best width agreement of the set: 726 vs 727 px for the printed 120'."
+    },
+    {
+      "anchor": "26th St",
+      "status": "ACCEPTED",
+      "class": "observed",
+      "why_not_one_block_off": "The Church run changes from 25xx to 26xx exactly here: sheet 12 prints 2602/2604/2606/2608/2610 south of the street (Seaboard Lumber & Milling block); sheet 49 prints 2601/2603 south. Street runs 500-series (12) vs 600-series (49) as required at the Church seam.",
+      "anchor_evidence": "Sheet 12: runs 520/522/524 (N) and 517/519/521/523 (S); Church 2602-2610 below corner; Seaboard Lumber & Milling Co. office at SE corner (panel). Sheet 49: runs 602/604/606 (N) and 601/603/605 (S); Church 2601/2603 below.",
+      "A": {
+        "sheet": 12,
+        "face1_seg": [[5900, 4945], [6210, 4942]],
+        "face2_seg": [[5900, 5421], [6210, 5419]],
+        "measured_at": "east end of both frontages at the Church-adjacent corners (corner verticals x~6215-6220)",
+        "sigma_along_px": 2.5,
+        "sigma_basis": "face1 clean single rule (2.0); face2 partially overprinted by address digits and a dashed porch outline near the corner, read on the clean 5900-6050 span (2.5)",
+        "source_sha256": "d2ab9e8aa706bfc1bd41732dbc85f3a23d8097732f92ebc13852276f7843a82f"
+      },
+      "B": {
+        "sheet": 49,
+        "face1_seg": [[575, 4941], [885, 4939]],
+        "face2_seg": [[575, 5423], [885, 5425]],
+        "measured_at": "west end of both frontages at the Church-adjacent corners (x~565-575)",
+        "sigma_along_px": 2.0,
+        "sigma_basis": "both faces clean single rules, half line width",
+        "source_sha256": "ce9382f5fdedea88527e7a4f38a3ce77c3c83f305b48ebb9366f84bf2151e55b"
+      },
+      "drafted_width_px": {"A": 477.0, "B": 482.0, "annotation": "80' printed mid-street on both plates"},
+      "remeasured_by": "ctrl-V2 second pass (independent window, 4x nearest-neighbour, sheet 49 face2)",
+      "remeasure_delta_px": 0.2,
+      "evidence_crops": [
+        "70_qa/control_evidence/pair12-49_26th_sheet12.jpg",
+        "70_qa/control_evidence/pair12-49_26th_sheet49.jpg"
+      ],
+      "notes": "Drafted width 477 vs 482 px - 5 px disagreement, recorded not reconciled. Measurement-process note: the first locating crop written for sheet 12/26th was overwritten in the shared scratchpad by another agent's crop of sheet 12's LEFT edge (Mechanic seam, 300-series runs) under the same filename; detected because the on-disk size did not match the generator's report and the address runs were wrong for this seam. Regenerated under a unique filename and verified against source SHA-256 before reading. No final coordinate was taken from the corrupted file."
+    }
+  ]
+}

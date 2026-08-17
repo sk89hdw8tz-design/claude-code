@@ -1,0 +1,74 @@
+{
+  "pair": [49, 50],
+  "axis": "vertical",
+  "boundary": "Ave. I (Sealy)",
+  "observer": "ctrl-V2",
+  "controls": [
+    {
+      "anchor": "25th St (Rosenberg Ave)",
+      "status": "ACCEPTED",
+      "class": "observed",
+      "why_not_one_block_off": "The Sealy run changes from 24xx to 25xx exactly at this crossing: sheet 49 prints 2426/2428 north of the street and 2502/2504/2506 south of it; sheet 50 prints 2425/2427 north and 2501/2503 south. Additionally this is the only 120'-wide crossing on the seam (Rosenberg Ave), and both plates print 120' beside the 12\" W. PIPE label.",
+      "anchor_evidence": "Sheet 49: runs 820/822/824 (N) and 819/821/823 (S); Sealy 2426/2428 and 2502/2504/2506; Holy Rosary School/Convent in SW block (panel). Sheet 50: runs 902/904/906 (N) and 901/903/905/907 (S); Sealy 2425/2427 and 2501/2503.",
+      "A": {
+        "sheet": 49,
+        "face1_seg": [[5790, 2381], [6100, 2383]],
+        "face2_seg": [[5850, 3109], [6100, 3111]],
+        "measured_at": "east end of both frontages, at the Sealy-adjacent corners (corner verticals x~6105-6110)",
+        "sigma_along_px": 2.0,
+        "sigma_basis": "both faces clean single rules ~4-5 px, half line width",
+        "source_sha256": "ce9382f5fdedea88527e7a4f38a3ce77c3c83f305b48ebb9366f84bf2151e55b"
+      },
+      "B": {
+        "sheet": 50,
+        "face1_seg": [[480, 2381], [780, 2380]],
+        "face2_seg": [[480, 3106], [780, 3108]],
+        "measured_at": "west end of both frontages at the Sealy-adjacent corners (x~475-480)",
+        "sigma_along_px": 2.0,
+        "sigma_basis": "both faces clean single rules, half line width",
+        "source_sha256": "51ff18dfbe0b22e404b80b4c630b8b95e33ab6df101af7b87ad349f71754fde2"
+      },
+      "drafted_width_px": {"A": 728.0, "B": 725.0, "annotation": "120' printed mid-street on both plates (Rosenberg Ave)"},
+      "remeasured_by": "ctrl-V2 second pass (independent window, 4x nearest-neighbour, sheet 49 face2)",
+      "remeasure_delta_px": 0.7,
+      "evidence_crops": [
+        "70_qa/control_evidence/pair49-50_25th_sheet49.jpg",
+        "70_qa/control_evidence/pair49-50_25th_sheet50.jpg"
+      ],
+      "notes": "Drafted 120' width agrees within 3 px (728 vs 725). 728/120 = 6.07 px/ft matches the 80' streets (~487 px) - internal scale consistency check passes."
+    },
+    {
+      "anchor": "26th St",
+      "status": "ACCEPTED",
+      "class": "observed",
+      "why_not_one_block_off": "The Sealy run changes from 25xx to 26xx exactly here: sheet 49 prints 2602/2604 south of the street below the corner; sheet 50 prints 2601/2603 south. North of the street the 25xx blocks (Holy Rosary on 49) end. Street runs 800-series (49) vs 900-series (50), only possible at the Sealy seam.",
+      "anchor_evidence": "Sheet 49: runs 822/824 (N) and 819/821/823 (S); Sealy 2602/2604 below street corner. Sheet 50: runs 902/904/906 (N) and 901/903/905 (S); Sealy 2601/2603 below.",
+      "A": {
+        "sheet": 49,
+        "face1_seg": [[5790, 4941], [6095, 4939]],
+        "face2_seg": [[5790, 5415], [6100, 5417]],
+        "measured_at": "east end of both frontages at the Sealy-adjacent corners (x~6100-6110)",
+        "sigma_along_px": 3.0,
+        "sigma_basis": "face1 merged: commercial buildings drawn to the lot line make a combined ~5-6 px rule, >=1.5x width; face2 clean single rule (2.0)",
+        "source_sha256": "ce9382f5fdedea88527e7a4f38a3ce77c3c83f305b48ebb9366f84bf2151e55b"
+      },
+      "B": {
+        "sheet": 50,
+        "face1_seg": [[480, 4933], [780, 4932]],
+        "face2_seg": [[480, 5415], [780, 5417]],
+        "measured_at": "west end of both frontages at the Sealy-adjacent corners (x~475-480)",
+        "sigma_along_px": 2.0,
+        "sigma_basis": "both faces clean single rules; building bottoms sit clear of the face line",
+        "source_sha256": "51ff18dfbe0b22e404b80b4c630b8b95e33ab6df101af7b87ad349f71754fde2"
+      },
+      "drafted_width_px": {"A": 478.0, "B": 482.0, "annotation": "80' printed mid-street on both plates"},
+      "remeasured_by": "ctrl-V2 second pass (independent window, 4x nearest-neighbour, sheet 50 face1)",
+      "remeasure_delta_px": 0.3,
+      "evidence_crops": [
+        "70_qa/control_evidence/pair49-50_26th_sheet49.jpg",
+        "70_qa/control_evidence/pair49-50_26th_sheet50.jpg"
+      ],
+      "notes": "Drafted width 478 vs 482 px - 4 px disagreement, recorded not reconciled; sheet 49's merged north face is the likely cause."
+    }
+  ]
+}

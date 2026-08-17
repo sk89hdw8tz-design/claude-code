@@ -1,0 +1,74 @@
+{
+  "pair": [39, 40],
+  "axis": "vertical",
+  "boundary": "Ave. I (Sealy)",
+  "observer": "ctrl-V2",
+  "controls": [
+    {
+      "anchor": "19th St",
+      "status": "ACCEPTED",
+      "class": "observed",
+      "why_not_one_block_off": "The Sealy address run changes from 18xx to 19xx exactly at this crossing: sheet 39 prints 1826/1828 north of the street and 1902/1904 south of it; sheet 40 prints 1827 north and 1901/1903 south. Street runs are 800-series on sheet 39 (Ave H-I block) and 900-series on sheet 40 (Ave I-J block), which is only possible at the Sealy seam.",
+      "anchor_evidence": "Sheet 39: 19th St runs 818/820/822/824 (N side) and 815-823 incl. 819/821/823 (S side); Sealy runs 1826/1828 and 1902/1904; First Methodist Church block S of street (panel). Sheet 40: runs 902/904/906/908 (N) and 901/903/905/907 (S); Sealy 1827 and 1901/1903.",
+      "A": {
+        "sheet": 39,
+        "face1_seg": [[5850, 2525], [6140, 2524]],
+        "face2_seg": [[5850, 3011], [6130, 3009]],
+        "measured_at": "east end of both frontages, at the block corners adjacent to Sealy (corner verticals at x~6140-6150)",
+        "sigma_along_px": 2.0,
+        "sigma_basis": "clean single rule ~4 px wide, half line width; both faces unobstructed",
+        "source_sha256": "ed732111ccd0586a02829c236c38306550fa5b544c287c58d017e40a16a6a0ee"
+      },
+      "B": {
+        "sheet": 40,
+        "face1_seg": [[490, 2499], [780, 2496]],
+        "face2_seg": [[490, 2981], [780, 2979]],
+        "measured_at": "west end of both frontages, at the block corners adjacent to Sealy (corner verticals at x~480-490)",
+        "sigma_along_px": 2.0,
+        "sigma_basis": "clean single rules ~3-4 px wide (face1 thin, sigma 1.5 defensible; 2.0 kept as the pair value), half line width",
+        "source_sha256": "12a04ff5411de391d2a1941dd414e37ee68103da84c34cff1e7c4428a5b37b7f"
+      },
+      "drafted_width_px": {"A": 485.0, "B": 482.0, "annotation": "80' printed mid-street on both plates"},
+      "remeasured_by": "ctrl-V2 second pass (independent window, 4x nearest-neighbour, sheet 39 face2)",
+      "remeasure_delta_px": 0.2,
+      "evidence_crops": [
+        "70_qa/control_evidence/pair39-40_19th_sheet39.jpg",
+        "70_qa/control_evidence/pair39-40_19th_sheet40.jpg"
+      ],
+      "notes": "Drafted 80' width agrees within 3 px across the plates (485 vs 482). Face y-offsets between plates (~25-30 px) are per-sheet placement for the solve, not error."
+    },
+    {
+      "anchor": "20th St",
+      "status": "ACCEPTED",
+      "class": "observed",
+      "why_not_one_block_off": "The Sealy run changes from 19xx to 20xx exactly here: sheet 39 prints 1928 at the corner north of the street and 2002/2004/2006/2008 south of it (power-house block); sheet 40 prints 2001-2007 south. The 8\" W. PIPE label sits mid-street on both plates and was not measured.",
+      "anchor_evidence": "Sheet 39: runs 820/822/824 (N) and 819/821/823 (S); Sealy 1928 above corner, 2002-2008 below; Galveston Electric power house (ENG. 325 K.W. etc.) in SE block. Sheet 40: runs 902/904/906 (N) and 901/903/905 (S); Sealy 2001-2007 below street.",
+      "A": {
+        "sheet": 39,
+        "face1_seg": [[5850, 4835], [6140, 4833]],
+        "face2_seg": [[5850, 5311], [6130, 5308]],
+        "measured_at": "east end of both frontages at the Sealy-adjacent corners",
+        "sigma_along_px": 3.0,
+        "sigma_basis": "face1 clean single rule (2.0); face2 block-face rule closely paralleled ~5 px below by the heavy power-house wall - centres separable at 3x but doubled, so >=1.5x width",
+        "source_sha256": "ed732111ccd0586a02829c236c38306550fa5b544c287c58d017e40a16a6a0ee"
+      },
+      "B": {
+        "sheet": 40,
+        "face1_seg": [[480, 4798], [780, 4800]],
+        "face2_seg": [[480, 5288], [780, 5290]],
+        "measured_at": "west end of both frontages at the Sealy-adjacent corners",
+        "sigma_along_px": 2.0,
+        "sigma_basis": "clean single rules ~4 px, half line width",
+        "source_sha256": "12a04ff5411de391d2a1941dd414e37ee68103da84c34cff1e7c4428a5b37b7f"
+      },
+      "drafted_width_px": {"A": 475.0, "B": 490.0, "annotation": "80' printed mid-street on both plates"},
+      "remeasured_by": "ctrl-V2 second pass (independent window, 4x nearest-neighbour, sheet 40 face1)",
+      "remeasure_delta_px": 0.0,
+      "evidence_crops": [
+        "70_qa/control_evidence/pair39-40_20th_sheet39.jpg",
+        "70_qa/control_evidence/pair39-40_20th_sheet40.jpg"
+      ],
+      "notes": "PLATE DISAGREEMENT recorded, not reconciled: drafted street width 475 px (sheet 39) vs 490 px (sheet 40) against the same printed 80'. Largest width disagreement in ctrl-V2's four seams; possibly linked to the doubled rule on sheet 39's south face."
+    }
+  ]
+}
