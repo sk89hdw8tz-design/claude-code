@@ -1,0 +1,170 @@
+{
+ "pair": [
+  10,
+  43
+ ],
+ "axis": "vertical",
+ "boundary": "Ave F (Church)",
+ "observer": "ctrl-V1",
+ "axis_convention": "raster pixels of archival scan, origin top-left, x right, y down; face1=north frontage, face2=south frontage",
+ "controls": [
+  {
+   "anchor": "22nd St",
+   "status": "ACCEPTED",
+   "class": "observed",
+   "why_not_one_block_off": "Band flanked by Church even 2128 (N corner, Scottish Rite Cathedral block) and 2202/2204 (S corner, Southwestern Telegraph & Telephone block) on sheet 10, odd 2127 (N corner) and 2201/2203 (S corner, 'VACANT 1st' block) on sheet 43 -- 21xx->22xx rollover occurs only across 22nd St; street numerals 500-series (sheet 10) vs 600-series (sheet 43).",
+   "anchor_evidence": "Sheet 10: numerals 522/524 (N) / 517-523 (S); Church evens 2128 (N corner), 2202/2204 (S corner); 'SOUTHWESTERN TELEGRAPH & TELEPHONE CO.' S block; 10\" W. PIPE; '80''. Sheet 43: 602-606 (N, bare corner) / 601-611 (S); Church odds 2127 (N corner), 2201/2203 (S corner); 10\" W. PIPE; '80''.",
+   "A": {
+    "sheet": 10,
+    "face1_seg": [
+     [
+      6000,
+      2497
+     ],
+     [
+      6255,
+      2497
+     ]
+    ],
+    "face2_seg": [
+     [
+      6010,
+      2993
+     ],
+     [
+      6258,
+      2993
+     ]
+    ],
+    "measured_at": "east end of frontage, corner adjacent to Ave F",
+    "sigma_along_px": 3.0,
+    "sigma_basis": "both faces doubled rules (thin outer + thick wall); centres taken, sigma 3",
+    "source_sha256": "29ee9408cb043ec973b8d8d7bb3a542f40258142440eee182caf6eace04acd95"
+   },
+   "B": {
+    "sheet": 43,
+    "face1_seg": [
+     [
+      455,
+      2497
+     ],
+     [
+      750,
+      2497
+     ]
+    ],
+    "face2_seg": [
+     [
+      450,
+      2990
+     ],
+     [
+      750,
+      2990
+     ]
+    ],
+    "measured_at": "west end of frontage, corner adjacent to Ave F",
+    "sigma_along_px": 3.0,
+    "sigma_basis": "N face clean single on bare corner (2); S face doubled rule behind heavy dashed gallery (3)",
+    "source_sha256": "af7d25e4a6f44a9a9fc6e0c04a4a11b8c12ceb886c8e56b6a2657b6b8b0ecf7a"
+   },
+   "drafted_width_px": {
+    "A": 496.0,
+    "B": 493.0,
+    "annotation": "80' printed mid-street on both plates"
+   },
+   "evidence_crops": [
+    "70_qa/control_evidence/pair10-43_22nd_sheet10_N.jpg",
+    "70_qa/control_evidence/pair10-43_22nd_sheet10_S.jpg",
+    "70_qa/control_evidence/pair10-43_22nd_sheet10_ctx.jpg",
+    "70_qa/control_evidence/pair10-43_22nd_sheet43_N.jpg",
+    "70_qa/control_evidence/pair10-43_22nd_sheet43_S.jpg",
+    "70_qa/control_evidence/pair10-43_22nd_sheet43_ctx.jpg"
+   ],
+   "notes": "Width agreement 3 px; N faces coincide at y=2497 on both plates (plates nearly co-registered along this seam before any solve).",
+   "verified_by": "visual read of 1:1 ruled corner crops (<=450 px wide) cut by ctrl-V1; overview panels used for navigation only, never for coordinates",
+   "remeasured_by": null,
+   "remeasure_delta_px": null,
+   "remeasure_note": "single-observer record; cross-observer remeasurement to be attached at harvest comparison"
+  },
+  {
+   "anchor": "23rd St",
+   "status": "ACCEPTED",
+   "class": "observed",
+   "why_not_one_block_off": "Band flanked by Church even 2226 (N corner) and 2302/2304 (S corner, Tremont Hotel block) on sheet 10, odd 2227 (N corner) and 2301/2303 (S corner) on sheet 43 -- 22xx->23xx rollover occurs only across 23rd St; Tremont Hotel (sheet 10 S block) and the shops row w/ Repair Shop / Chinese Laundry (sheet 43 S block) corroborate.",
+   "anchor_evidence": "Sheet 10: numerals 522/524 (N, 'S.' bldgs) / 519-523 (S); Church evens 2226 (N corner), 2302/2304 (S corner); 'TREMONT HOTEL' S block; '80''. Sheet 43: 602/604 (N, 'S.' bldg) / 601-611 (S, row of 2-story 'S.' shops, Repair Shop, Chinese Laundry); Church odds 2227 (N corner), 2301/2303 (S corner); '80'' printed in Ave F space.",
+   "A": {
+    "sheet": 10,
+    "face1_seg": [
+     [
+      6000,
+      4822
+     ],
+     [
+      6270,
+      4822
+     ]
+    ],
+    "face2_seg": [
+     [
+      6000,
+      5318
+     ],
+     [
+      6230,
+      5318
+     ]
+    ],
+    "measured_at": "east end of frontage, corner adjacent to Ave F",
+    "sigma_along_px": 3.0,
+    "sigma_basis": "N face solid wall behind gallery, clean ~4 px (2.5); S face doubled rule, centre taken (3)",
+    "source_sha256": "29ee9408cb043ec973b8d8d7bb3a542f40258142440eee182caf6eace04acd95"
+   },
+   "B": {
+    "sheet": 43,
+    "face1_seg": [
+     [
+      455,
+      4790
+     ],
+     [
+      690,
+      4790
+     ]
+    ],
+    "face2_seg": [
+     [
+      455,
+      5303
+     ],
+     [
+      750,
+      5303
+     ]
+    ],
+    "measured_at": "west end of frontage, corner adjacent to Ave F",
+    "sigma_along_px": 2.5,
+    "sigma_basis": "both faces solid walls behind dashed galleries, ~4 px rules; sigma 2.5",
+    "source_sha256": "af7d25e4a6f44a9a9fc6e0c04a4a11b8c12ceb886c8e56b6a2657b6b8b0ecf7a"
+   },
+   "drafted_width_px": {
+    "A": 496.0,
+    "B": 513.0,
+    "annotation": "80' printed (sheet 10 mid-street; sheet 43 in Ave F space)"
+   },
+   "evidence_crops": [
+    "70_qa/control_evidence/pair10-43_23rd_sheet10_N.jpg",
+    "70_qa/control_evidence/pair10-43_23rd_sheet10_S.jpg",
+    "70_qa/control_evidence/pair10-43_23rd_sheet10_ctx.jpg",
+    "70_qa/control_evidence/pair10-43_23rd_sheet43_N.jpg",
+    "70_qa/control_evidence/pair10-43_23rd_sheet43_S.jpg",
+    "70_qa/control_evidence/pair10-43_23rd_sheet43_ctx.jpg"
+   ],
+   "notes": "Width disagreement 496 vs 513 px (~2.7 ft); recorded, not reconciled.",
+   "verified_by": "visual read of 1:1 ruled corner crops (<=450 px wide) cut by ctrl-V1; overview panels used for navigation only, never for coordinates",
+   "remeasured_by": null,
+   "remeasure_delta_px": null,
+   "remeasure_note": "single-observer record; cross-observer remeasurement to be attached at harvest comparison"
+  }
+ ]
+}

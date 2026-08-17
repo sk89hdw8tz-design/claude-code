@@ -1,0 +1,170 @@
+{
+ "pair": [
+  8,
+  39
+ ],
+ "axis": "vertical",
+ "boundary": "Ave F (Church)",
+ "observer": "ctrl-V1",
+ "axis_convention": "raster pixels of archival scan, origin top-left, x right, y down; face1=north frontage, face2=south frontage",
+ "controls": [
+  {
+   "anchor": "19th St",
+   "status": "ACCEPTED",
+   "class": "observed",
+   "why_not_one_block_off": "Band flanked by Church even 1828 (N corner) and 1902/1904 (S corner) on sheet 8, odd 1827 (N corner) and 1901/1903 (S corner, Presbyterian Church block) on sheet 39 -- 18xx->19xx rollover occurs only across 19th St; street numerals 500-series (sheet 8, Post Office-Church block) vs 600-series (sheet 39, Church-Winnie block) match the index split *8/*39.",
+   "anchor_evidence": "Sheet 8: numerals 518-524 (N) / 517-523 (S); Church evens 1828 (N corner), 1902/1904 (S corner); '80''. Sheet 39: 602-610 (N) / 601-609 (S); Church odds 1827 (N corner, bare block corner), 1901/1903 (S corner); 'PRESBY'N. CHURCH' on S block; '80''.",
+   "A": {
+    "sheet": 8,
+    "face1_seg": [
+     [
+      6000,
+      2470
+     ],
+     [
+      6198,
+      2470
+     ]
+    ],
+    "face2_seg": [
+     [
+      6000,
+      2958
+     ],
+     [
+      6198,
+      2958
+     ]
+    ],
+    "measured_at": "east end of frontage, corner adjacent to Ave F",
+    "sigma_along_px": 2.0,
+    "sigma_basis": "both faces clean single solid rules ~3-4 px; sigma 2",
+    "source_sha256": "557220abd08263fa3f6e4ae83397b9f095c48158c8fbc8f2c679f14e377f98fe"
+   },
+   "B": {
+    "sheet": 39,
+    "face1_seg": [
+     [
+      548,
+      2532
+     ],
+     [
+      800,
+      2532
+     ]
+    ],
+    "face2_seg": [
+     [
+      548,
+      3008
+     ],
+     [
+      800,
+      3008
+     ]
+    ],
+    "measured_at": "west end of frontage, corner adjacent to Ave F",
+    "sigma_along_px": 2.5,
+    "sigma_basis": "N face clean thin rule on bare corner (1.5); S face single rule with church-annex wall close behind (2.5)",
+    "source_sha256": "ed732111ccd0586a02829c236c38306550fa5b544c287c58d017e40a16a6a0ee"
+   },
+   "drafted_width_px": {
+    "A": 488.0,
+    "B": 476.0,
+    "annotation": "80' printed mid-street on both plates"
+   },
+   "evidence_crops": [
+    "70_qa/control_evidence/pair8-39_19th_sheet8_N.jpg",
+    "70_qa/control_evidence/pair8-39_19th_sheet8_S.jpg",
+    "70_qa/control_evidence/pair8-39_19th_sheet8_ctx.jpg",
+    "70_qa/control_evidence/pair8-39_19th_sheet39_N.jpg",
+    "70_qa/control_evidence/pair8-39_19th_sheet39_S.jpg",
+    "70_qa/control_evidence/pair8-39_19th_sheet39_ctx.jpg"
+   ],
+   "notes": "Width disagreement 488 vs 476 px (~2 ft); recorded, not reconciled.",
+   "verified_by": "visual read of 1:1 ruled corner crops (<=450 px wide) cut by ctrl-V1; overview panels used for navigation only, never for coordinates",
+   "remeasured_by": null,
+   "remeasure_delta_px": null,
+   "remeasure_note": "single-observer record; cross-observer remeasurement to be attached at harvest comparison"
+  },
+  {
+   "anchor": "20th St",
+   "status": "ACCEPTED",
+   "class": "observed",
+   "why_not_one_block_off": "Band flanked by Church even 1928 (N corner) and 2002/2004/2006 (S corner) on sheet 8, odd 1927 (N corner) and 2001/2003/2005 (S corner, St Mary Cathedral block) on sheet 39 -- 19xx->20xx rollover occurs only across 20th St.",
+   "anchor_evidence": "Sheet 8: numerals 522/524 (N) / 519-523 (S); Church evens 1928 (N corner), 2002/2004/2006 (S corner); 10\" W. PIPE; '80''. Sheet 39: 602/604 (N) / 601-609 (S); Church odds 1927 (N corner), 2001/2003/2005 (S corner); 'ST. MARY CATHEDRAL (R.C.)' on S block; 10\" W. PIPE; '80''.",
+   "A": {
+    "sheet": 8,
+    "face1_seg": [
+     [
+      6000,
+      4800
+     ],
+     [
+      6188,
+      4800
+     ]
+    ],
+    "face2_seg": [
+     [
+      6000,
+      5282
+     ],
+     [
+      6192,
+      5282
+     ]
+    ],
+    "measured_at": "east end of frontage, corner adjacent to Ave F",
+    "sigma_along_px": 2.0,
+    "sigma_basis": "both faces clean single solid rules ~3-4 px on bare corners; sigma 2",
+    "source_sha256": "557220abd08263fa3f6e4ae83397b9f095c48158c8fbc8f2c679f14e377f98fe"
+   },
+   "B": {
+    "sheet": 39,
+    "face1_seg": [
+     [
+      548,
+      4852
+     ],
+     [
+      800,
+      4852
+     ]
+    ],
+    "face2_seg": [
+     [
+      545,
+      5330
+     ],
+     [
+      800,
+      5330
+     ]
+    ],
+    "measured_at": "west end of frontage, corner adjacent to Ave F",
+    "sigma_along_px": 2.0,
+    "sigma_basis": "both faces clean single solid rules ~3-4 px on bare corners; sigma 2",
+    "source_sha256": "ed732111ccd0586a02829c236c38306550fa5b544c287c58d017e40a16a6a0ee"
+   },
+   "drafted_width_px": {
+    "A": 482.0,
+    "B": 478.0,
+    "annotation": "80' printed mid-street on both plates"
+   },
+   "evidence_crops": [
+    "70_qa/control_evidence/pair8-39_20th_sheet8_N.jpg",
+    "70_qa/control_evidence/pair8-39_20th_sheet8_S.jpg",
+    "70_qa/control_evidence/pair8-39_20th_sheet8_ctx.jpg",
+    "70_qa/control_evidence/pair8-39_20th_sheet39_N.jpg",
+    "70_qa/control_evidence/pair8-39_20th_sheet39_S.jpg",
+    "70_qa/control_evidence/pair8-39_20th_sheet39_ctx.jpg"
+   ],
+   "notes": "Cleanest anchor of my set (bare block corners on both plates). Width agreement 4 px. Note: 20th St here is ordinary 80'; the 120-ft City-Storage section seen at Ave C does not extend to Ave F -- the S frontage jogs between the C and F corners of the same sheet-8 block row.",
+   "verified_by": "visual read of 1:1 ruled corner crops (<=450 px wide) cut by ctrl-V1; overview panels used for navigation only, never for coordinates",
+   "remeasured_by": null,
+   "remeasure_delta_px": null,
+   "remeasure_note": "single-observer record; cross-observer remeasurement to be attached at harvest comparison"
+  }
+ ]
+}

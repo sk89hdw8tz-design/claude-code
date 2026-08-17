@@ -1,0 +1,168 @@
+{
+ "pair": [
+  7,
+  8
+ ],
+ "axis": "vertical",
+ "boundary": "Ave C (Mechanic)",
+ "observer": "ctrl-V1",
+ "axis_convention": "raster pixels of archival scan, origin top-left, x right, y down; face1=north frontage, face2=south frontage",
+ "controls": [
+  {
+   "anchor": "19th St",
+   "status": "ACCEPTED",
+   "class": "observed",
+   "why_not_one_block_off": "The band lies between Mechanic even run 1828 (north block corner) and 1902/1904/1906 (south block) on sheet 7, and between odd 1827 and 1901/1903 on sheet 8 -- only 19th St has 18xx north of it and 19xx south of it on Ave C; street numerals 200-series (sheet 7, Strand-Mechanic block) vs 300-series (sheet 8, Mechanic-Market block) match the index split *7/*8.",
+   "anchor_evidence": "Sheet 7: street numerals 214-224 (N) / 213-223 (S); Mechanic evens 1828 (N corner), 1902-1906 (S corner); 10\" W. PIPE dashed mid-street; '80'' printed. Sheet 8: 302-308 under Adam Sattler Carriage Mfy gallery (N), 301-307 at Rex Steam Laundry (S); Mechanic odds 1827 (N corner), 1901/1903 (S corner); '80' printed.",
+   "A": {
+    "sheet": 7,
+    "face1_seg": [
+     [
+      5950,
+      2451
+     ],
+     [
+      6175,
+      2452
+     ]
+    ],
+    "face2_seg": [
+     [
+      5950,
+      2932
+     ],
+     [
+      6180,
+      2930
+     ]
+    ],
+    "measured_at": "east end of frontage, corner adjacent to Ave C (x 5950-6180)",
+    "sigma_along_px": 4.0,
+    "sigma_basis": "N face: heavy building-front rule ~8 px (sigma half line width 4); S face thinner rule ~4 px (~2.5); per-plate sigma = worse face",
+    "source_sha256": "a0c42dde9c8e6f0d3148de82915b2e563d5763c7a4da6f81aaeb508bb1db0e62"
+   },
+   "B": {
+    "sheet": 8,
+    "face1_seg": [
+     [
+      590,
+      2484
+     ],
+     [
+      850,
+      2484
+     ]
+    ],
+    "face2_seg": [
+     [
+      583,
+      2980
+     ],
+     [
+      850,
+      2980
+     ]
+    ],
+    "measured_at": "west end of frontage, corner adjacent to Ave C (x 583-850)",
+    "sigma_along_px": 4.0,
+    "sigma_basis": "N face clean single ~4 px behind dashed gallery (gallery line at y~2578 excluded as projection); S face doubled rule ~2971/2985, centre taken, sigma 4",
+    "source_sha256": "557220abd08263fa3f6e4ae83397b9f095c48158c8fbc8f2c679f14e377f98fe"
+   },
+   "drafted_width_px": {
+    "A": 479.0,
+    "B": 496.0,
+    "annotation": "80' printed mid-street on both plates"
+   },
+   "evidence_crops": [
+    "70_qa/control_evidence/pair7-8_19th_sheet7.jpg",
+    "70_qa/control_evidence/pair7-8_19th_sheet7_ctx.jpg",
+    "70_qa/control_evidence/pair7-8_19th_sheet8_N.jpg",
+    "70_qa/control_evidence/pair7-8_19th_sheet8_S.jpg",
+    "70_qa/control_evidence/pair7-8_19th_sheet8_ctx.jpg"
+   ],
+   "notes": "Plate disagreement in drafted width: 479 (sheet 7) vs 496 (sheet 8), ~2.7 ft; recorded, not reconciled. Sheet 8 N frontage taken at solid wall; dashed tan outline below it read as gallery over sidewalk (solid-to-solid separation matches printed 80', gallery line would give ~66').",
+   "verified_by": "visual read of 1:1 ruled corner crops (<=450 px wide) cut by ctrl-V1; overview panels used for navigation only, never for coordinates",
+   "remeasured_by": null,
+   "remeasure_delta_px": null,
+   "remeasure_note": "single-observer record; cross-observer remeasurement to be attached at harvest comparison"
+  },
+  {
+   "anchor": "20th St",
+   "status": "ACCEPTED",
+   "class": "observed",
+   "why_not_one_block_off": "Band flanked by Mechanic evens 1926/1928 (N) and 2002-2008 (S) on sheet 7, odds 1927 (N) and 2005/2007 (S) on sheet 8 -- the 19xx->20xx rollover happens only across 20th St; both plates draw the same mid-street CITY STORAGE structure, unique to this crossing.",
+   "anchor_evidence": "Sheet 7: numerals 214-224 (N) / 213-223 (S); Mechanic evens 1926/1928 N corner ('S.' bldg), 2002/2006/2008 S corner (Sal.); CITY STORAGE bldg mid-street with '40'' printed in each flanking passage; 6\" W. PIPE both passages. Sheet 8: 302-310 (N) / 301-309 (S); Mechanic odds 1927 (N corner), 2005/2007 (S corner, Sal.); City Storage continuation with '123'' annotation; 8\" W PIPE north passage, 6\" W PIPE south passage.",
+   "A": {
+    "sheet": 7,
+    "face1_seg": [
+     [
+      6105,
+      4768
+     ],
+     [
+      6225,
+      4768
+     ]
+    ],
+    "face2_seg": [
+     [
+      6000,
+      5508
+     ],
+     [
+      6218,
+      5512
+     ]
+    ],
+    "measured_at": "east end of frontage, corner adjacent to Ave C; N face read east of jog at x~6105",
+    "sigma_along_px": 3.0,
+    "sigma_basis": "both faces clean solid building-front rules ~5 px; N face jogs at x~6105 (read east of jog)",
+    "source_sha256": "a0c42dde9c8e6f0d3148de82915b2e563d5763c7a4da6f81aaeb508bb1db0e62"
+   },
+   "B": {
+    "sheet": 8,
+    "face1_seg": [
+     [
+      590,
+      4812
+     ],
+     [
+      850,
+      4812
+     ]
+    ],
+    "face2_seg": [
+     [
+      595,
+      5558
+     ],
+     [
+      850,
+      5558
+     ]
+    ],
+    "measured_at": "west end of frontage, corner adjacent to Ave C",
+    "sigma_along_px": 2.5,
+    "sigma_basis": "both faces clean single solid walls ~4-5 px behind dashed gallery strips (galleries excluded)",
+    "source_sha256": "557220abd08263fa3f6e4ae83397b9f095c48158c8fbc8f2c679f14e377f98fe"
+   },
+   "drafted_width_px": {
+    "A": 742.0,
+    "B": 746.0,
+    "annotation": "no single width printed; '40'' in each passage flanking mid-street CITY STORAGE bldg (sheet 8 adds '123''); face-to-face ~120 ft drafted"
+   },
+   "evidence_crops": [
+    "70_qa/control_evidence/pair7-8_20th_sheet7.jpg",
+    "70_qa/control_evidence/pair7-8_20th_sheet7_ctx.jpg",
+    "70_qa/control_evidence/pair7-8_20th_sheet8_N.jpg",
+    "70_qa/control_evidence/pair7-8_20th_sheet8_S.jpg",
+    "70_qa/control_evidence/pair7-8_20th_sheet8_ctx.jpg"
+   ],
+   "notes": "20th St at Ave C is ~120 ft face-to-face with a CITY STORAGE building occupying the middle, 40' clear passages each side -- drawn identically on both plates. This widened section is local to the Ave C crossing: at Ave F the same street is ~482 px (80'). Width agreement A/B: 4 px. Passage edges NOT used as faces.",
+   "verified_by": "visual read of 1:1 ruled corner crops (<=450 px wide) cut by ctrl-V1; overview panels used for navigation only, never for coordinates",
+   "remeasured_by": null,
+   "remeasure_delta_px": null,
+   "remeasure_note": "single-observer record; cross-observer remeasurement to be attached at harvest comparison"
+  }
+ ]
+}
