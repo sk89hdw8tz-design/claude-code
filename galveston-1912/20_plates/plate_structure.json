@@ -1,0 +1,487 @@
+{
+ "downsample": 8,
+ "method": "otsu bright-region + minAreaRect",
+ "plates": [
+  {
+   "sheet": 5,
+   "image_size": [
+    6653,
+    7795
+   ],
+   "otsu_threshold": 128.0,
+   "page_center_fullres": [
+    3320.0,
+    3896.0
+   ],
+   "page_size_fullres": [
+    7680.0,
+    6528.0
+   ],
+   "page_skew_deg": 0.0,
+   "page_quad_fullres": [
+    [
+     6584.0,
+     7736.0
+    ],
+    [
+     56.0,
+     7736.0
+    ],
+    [
+     56.0,
+     56.0
+    ],
+    [
+     6584.0,
+     56.0
+    ]
+   ],
+   "page_area_fraction": 0.967,
+   "rect_fill_ratio": 0.9969
+  },
+  {
+   "sheet": 7,
+   "image_size": [
+    6653,
+    7795
+   ],
+   "otsu_threshold": 134.0,
+   "page_center_fullres": [
+    3319.4,
+    3897.8
+   ],
+   "page_size_fullres": [
+    7704.1,
+    6539.9
+   ],
+   "page_skew_deg": 0.1061,
+   "page_quad_fullres": [
+    [
+     6582.2,
+     7755.9
+    ],
+    [
+     42.3,
+     7743.8
+    ],
+    [
+     56.5,
+     39.7
+    ],
+    [
+     6596.5,
+     51.8
+    ]
+   ],
+   "page_area_fraction": 0.9165,
+   "rect_fill_ratio": 0.9934
+  },
+  {
+   "sheet": 8,
+   "image_size": [
+    6653,
+    7795
+   ],
+   "otsu_threshold": 130.0,
+   "page_center_fullres": [
+    3320.0,
+    3920.0
+   ],
+   "page_size_fullres": [
+    7728.0,
+    6528.0
+   ],
+   "page_skew_deg": 0.0,
+   "page_quad_fullres": [
+    [
+     6584.0,
+     7784.0
+    ],
+    [
+     56.0,
+     7784.0
+    ],
+    [
+     56.0,
+     56.0
+    ],
+    [
+     6584.0,
+     56.0
+    ]
+   ],
+   "page_area_fraction": 0.9636,
+   "rect_fill_ratio": 0.9914
+  },
+  {
+   "sheet": 9,
+   "image_size": [
+    6653,
+    7795
+   ],
+   "otsu_threshold": 138.0,
+   "page_center_fullres": [
+    3320.0,
+    3932.0
+   ],
+   "page_size_fullres": [
+    7704.0,
+    6528.0
+   ],
+   "page_skew_deg": 0.0,
+   "page_quad_fullres": [
+    [
+     6584.0,
+     7784.0
+    ],
+    [
+     56.0,
+     7784.0
+    ],
+    [
+     56.0,
+     80.0
+    ],
+    [
+     6584.0,
+     80.0
+    ]
+   ],
+   "page_area_fraction": 0.8657,
+   "rect_fill_ratio": 0.9932
+  },
+  {
+   "sheet": 10,
+   "image_size": [
+    6653,
+    7795
+   ],
+   "otsu_threshold": 132.0,
+   "page_center_fullres": [
+    3324.0,
+    3908.0
+   ],
+   "page_size_fullres": [
+    7672.0,
+    6520.0
+   ],
+   "page_skew_deg": 0.0,
+   "page_quad_fullres": [
+    [
+     6584.0,
+     7744.0
+    ],
+    [
+     64.0,
+     7744.0
+    ],
+    [
+     64.0,
+     72.0
+    ],
+    [
+     6584.0,
+     72.0
+    ]
+   ],
+   "page_area_fraction": 0.9633,
+   "rect_fill_ratio": 0.9967
+  },
+  {
+   "sheet": 11,
+   "image_size": [
+    6653,
+    7795
+   ],
+   "otsu_threshold": 135.0,
+   "page_center_fullres": [
+    3316.0,
+    3932.0
+   ],
+   "page_size_fullres": [
+    7704.0,
+    6520.0
+   ],
+   "page_skew_deg": 0.0,
+   "page_quad_fullres": [
+    [
+     6576.0,
+     7784.0
+    ],
+    [
+     56.0,
+     7784.0
+    ],
+    [
+     56.0,
+     80.0
+    ],
+    [
+     6576.0,
+     80.0
+    ]
+   ],
+   "page_area_fraction": 0.9035,
+   "rect_fill_ratio": 0.9907
+  },
+  {
+   "sheet": 12,
+   "image_size": [
+    6653,
+    7795
+   ],
+   "otsu_threshold": 130.0,
+   "page_center_fullres": [
+    3320.0,
+    3904.0
+   ],
+   "page_size_fullres": [
+    7680.0,
+    6528.0
+   ],
+   "page_skew_deg": 0.0,
+   "page_quad_fullres": [
+    [
+     6584.0,
+     7744.0
+    ],
+    [
+     56.0,
+     7744.0
+    ],
+    [
+     56.0,
+     64.0
+    ],
+    [
+     6584.0,
+     64.0
+    ]
+   ],
+   "page_area_fraction": 0.9594,
+   "rect_fill_ratio": 0.9937
+  },
+  {
+   "sheet": 39,
+   "image_size": [
+    6653,
+    7795
+   ],
+   "otsu_threshold": 128.0,
+   "page_center_fullres": [
+    3316.0,
+    3904.0
+   ],
+   "page_size_fullres": [
+    7648.0,
+    6504.0
+   ],
+   "page_skew_deg": 0.0,
+   "page_quad_fullres": [
+    [
+     6568.0,
+     7728.0
+    ],
+    [
+     64.0,
+     7728.0
+    ],
+    [
+     64.0,
+     80.0
+    ],
+    [
+     6568.0,
+     80.0
+    ]
+   ],
+   "page_area_fraction": 0.9294,
+   "rect_fill_ratio": 0.9959
+  },
+  {
+   "sheet": 40,
+   "image_size": [
+    6653,
+    7795
+   ],
+   "otsu_threshold": 127.0,
+   "page_center_fullres": [
+    3320.0,
+    3904.0
+   ],
+   "page_size_fullres": [
+    7648.0,
+    6496.0
+   ],
+   "page_skew_deg": 0.0,
+   "page_quad_fullres": [
+    [
+     6568.0,
+     7728.0
+    ],
+    [
+     72.0,
+     7728.0
+    ],
+    [
+     72.0,
+     80.0
+    ],
+    [
+     6568.0,
+     80.0
+    ]
+   ],
+   "page_area_fraction": 0.948,
+   "rect_fill_ratio": 0.9943
+  },
+  {
+   "sheet": 43,
+   "image_size": [
+    6653,
+    7795
+   ],
+   "otsu_threshold": 128.0,
+   "page_center_fullres": [
+    3316.0,
+    3912.0
+   ],
+   "page_size_fullres": [
+    7648.0,
+    6504.0
+   ],
+   "page_skew_deg": 0.0,
+   "page_quad_fullres": [
+    [
+     6568.0,
+     7736.0
+    ],
+    [
+     64.0,
+     7736.0
+    ],
+    [
+     64.0,
+     88.0
+    ],
+    [
+     6568.0,
+     88.0
+    ]
+   ],
+   "page_area_fraction": 0.9494,
+   "rect_fill_ratio": 0.9951
+  },
+  {
+   "sheet": 44,
+   "image_size": [
+    6653,
+    7795
+   ],
+   "otsu_threshold": 128.0,
+   "page_center_fullres": [
+    3321.4,
+    3905.5
+   ],
+   "page_size_fullres": [
+    6499.0,
+    7650.6
+   ],
+   "page_skew_deg": -0.0988,
+   "page_quad_fullres": [
+    [
+     78.5,
+     7736.4
+    ],
+    [
+     65.3,
+     85.8
+    ],
+    [
+     6564.4,
+     74.6
+    ],
+    [
+     6577.6,
+     7725.2
+    ]
+   ],
+   "page_area_fraction": 0.9442,
+   "rect_fill_ratio": 0.9939
+  },
+  {
+   "sheet": 49,
+   "image_size": [
+    6653,
+    7795
+   ],
+   "otsu_threshold": 128.0,
+   "page_center_fullres": [
+    3312.0,
+    3908.0
+   ],
+   "page_size_fullres": [
+    7640.0,
+    6496.0
+   ],
+   "page_skew_deg": 0.0,
+   "page_quad_fullres": [
+    [
+     6560.0,
+     7728.0
+    ],
+    [
+     64.0,
+     7728.0
+    ],
+    [
+     64.0,
+     88.0
+    ],
+    [
+     6560.0,
+     88.0
+    ]
+   ],
+   "page_area_fraction": 0.9549,
+   "rect_fill_ratio": 0.9954
+  },
+  {
+   "sheet": 50,
+   "image_size": [
+    6653,
+    7795
+   ],
+   "otsu_threshold": 125.0,
+   "page_center_fullres": [
+    3320.0,
+    3904.0
+   ],
+   "page_size_fullres": [
+    7632.0,
+    6496.0
+   ],
+   "page_skew_deg": 0.0,
+   "page_quad_fullres": [
+    [
+     6568.0,
+     7720.0
+    ],
+    [
+     72.0,
+     7720.0
+    ],
+    [
+     72.0,
+     88.0
+    ],
+    [
+     6568.0,
+     88.0
+    ]
+   ],
+   "page_area_fraction": 0.943,
+   "rect_fill_ratio": 0.9942
+  }
+ ]
+}
