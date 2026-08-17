@@ -48,10 +48,11 @@ FONT = '/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf'
 CAPTION = ('GALVESTON, TEXAS - WHARF FRONT AND DOWNTOWN, 1912 / '
            'Avenue A (Water) to Avenue I (Sealy) - 19th Street to 25th Street '
            '(Rosenberg Avenue) - Piers 19-25 / '
-           'Composited from 15 source regions of the 1912 Sanborn Fire '
+           'Composited from 14 source regions of the 1912 Sanborn Fire '
            'Insurance Map (LOC sanborn08539_004); sheets '
            '5(A,B),7,8,9,10,11,12,39,40,43,44,49,50; original colors '
-           'retained; plate disagreements preserved.')
+           'retained; plate disagreements preserved; wharf plates (100 ft/in) '
+           'unified to the grid scale of 50 ft/in - printed at approx. 80 ft/in.')
 
 
 def sha256_file(path, chunk=1 << 22):

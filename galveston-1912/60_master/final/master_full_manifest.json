@@ -527,9 +527,9 @@
      8262
     ],
     "mask_px_in_canvas": 57506098,
-    "suppressed_by_block_ownership_px": 23415075,
-    "ceded_to_other_panel_by_cut_px": 141701,
-    "written_px": 33949322
+    "suppressed_by_block_ownership_px": 19796344,
+    "ceded_to_other_panel_by_cut_px": 561457,
+    "written_px": 37148297
    },
    "B": {
     "canvas_subrect_xyxy": [
@@ -539,9 +539,9 @@
      14489
     ],
     "mask_px_in_canvas": 41848078,
-    "suppressed_by_block_ownership_px": 22284974,
-    "ceded_to_other_panel_by_cut_px": 3423795,
-    "written_px": 16139309
+    "suppressed_by_block_ownership_px": 16334027,
+    "ceded_to_other_panel_by_cut_px": 4333996,
+    "written_px": 21180055
    }
   }
  },
@@ -554,8 +554,8 @@
     26206,
     14489
    ],
-   "bytes": 382611097,
-   "sha256": "add306983e9c9c3e75ffdf711878d36c24a334d5a7f8fd2bf08b01ec61d98d62"
+   "bytes": 382318101,
+   "sha256": "6541150275d6c098f673c356c286423c5ef53c1ac3d898632f2384c93ab4bba5"
   },
   "master_full_preview_png": {
    "path": "60_master/final/master_full_preview.png",

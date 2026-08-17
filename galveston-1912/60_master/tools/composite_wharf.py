@@ -41,6 +41,7 @@ import sys
 
 import cv2
 import numpy as np
+import os
 import tifffile
 
 ROOT = '/home/user/claude-code/galveston-1912'
@@ -231,7 +232,55 @@ for name, (M, mine_sheet, other_sheet, M_other, owns_east) in panels.items():
     womask = warp_into(M_other, other_sheet, sub, cv2.INTER_NEAREST, 0) > 0
     east = east_of_cut(x0, y0, x1 - x0, y1 - y0)
     myside = east if owns_east else ~east
-    blk = block_owned[y0:y1, x0:x1] > 0
+    blk_own = block_owned[y0:y1, x0:x1] > 0
+    # F1/F2 fix (Reviewer A, confirmed by re-test): block priority applies only
+    # where the block master carries DRAWN CONTENT, not blank page margin. The
+    # 1889 lesson recurred: a blank bay-side margin had full ownership coverage
+    # and overwrote sole-source wharf cartography (Mallory shed, Merrow shed).
+    # "Drawn content" = non-paper tone, or paper with drafted ink nearby
+    # (31 px box) so tint fills and hatched sheds stay block-owned.
+    dstc = base[y0:y1, x0:x1]
+    g = dstc.mean(axis=2).astype(np.float32)
+    inkish = (g < 145).astype(np.float32)
+    dens = cv2.boxFilter(inkish, -1, (31, 31), normalize=True)
+    # Ownership v3 (F1/F2 confirmed fix): east of the block sheets' Ave A
+    # frontage the block master owns unconditionally. West of it (the wharf
+    # band) the block plates draw the shared shed strip only schematically
+    # (flat tint + a label) while sheet 5 is the dedicated, fully-detailed
+    # wharf source - so the panel owns that band UNLESS the block plate
+    # genuinely drew dense bay-side cartography there (sheet 7's Texas Star
+    # Flour Mills strip: ink density well above the schematic band's).
+    # Per-row content frontier: for each canvas row, the block owns from the
+    # first column where its own drawn-ink density is SUSTAINED (>0.05 mean
+    # over the next 300 px). West of that frontier the block plate offers only
+    # blank margin or the schematic shed tint, and the dedicated wharf plate
+    # (sheet 5) is the authoritative source. Frontier computed lazily once
+    # from the pristine block-only master.
+    global _frontier
+    try:
+        _frontier
+    except NameError:
+        blk_only = tifffile.imread(os.path.join(FINAL, 'candidate_master.tif'))
+        gg = blk_only[:, 6900:11000].mean(axis=2).astype(np.float32)
+        del blk_only
+        ii = (gg < 140).astype(np.float32)
+        dd = cv2.boxFilter(ii, -1, (41, 41), normalize=True)
+        run = cv2.boxFilter(dd, -1, (301, 1), normalize=True)  # forward-ish mean
+        _frontier = np.full(run.shape[0], 10**9, np.int64)
+        for yy in range(run.shape[0]):
+            ok = np.where(run[yy] > 0.05)[0]
+            if len(ok):
+                _frontier[yy] = 6900 + ok[0]
+        # Remove short westward spikes (e.g. a giant margin numeral capturing
+        # ~250 rows) with a running max over +-140 rows: genuine block bay-side
+        # structures (track fans, the mills strip) span thousands of rows and
+        # survive; furniture islands do not. Then lightly smooth the edge.
+        from scipy.ndimage import maximum_filter1d, median_filter
+        _frontier = maximum_filter1d(_frontier, size=281)
+        _frontier = median_filter(_frontier, size=41)
+        del gg, ii, dd, run
+    xs = np.arange(x0, x1)[None, :]
+    blk = blk_own & (xs >= _frontier[y0:y1, None])
     n_mask = int(wmask.sum())
     suppressed_block = wmask & blk
     n_blk = int(suppressed_block.sum())
