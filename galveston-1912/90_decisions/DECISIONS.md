@@ -31,6 +31,59 @@ were built from the same UT PCL web JPGs (~3400×4100 px, 300 dpi, ~2.6 MB) — 
 that this source meets the accepted print standard (the 1899 benchmark print is 11817×7965 px
 @ 300 dpi from 13 such sheets).
 
+## D-004 — utlibraries/histmap-autogeoref-tools evaluated, not adopted (2026-08-17)
+
+Proposed by the project owner. Repository inspected directly (public clone).
+
+**What it actually does.** Georeferences Sanborn sheets *individually* onto modern
+coordinates: a TF2 object-detection model finds street intersections and their street
+labels on the scan, those are matched to OpenStreetMap intersection coordinates for the
+city, `gdal.GCP` pairs are built, and `gdal.Translate`/`gdal.Warp` emit a georeferenced
+GeoTIFF/COG in EPSG:3857 when at least 3 GCPs match. Dependencies: `tensorflow`,
+`object_detection`, `osmnx`, `osgeo/gdal`, `pytesseract`, `geopandas`, `rasterio`.
+
+**Why it is not adopted for the current stage.**
+
+1. *It is the problem we deliberately deferred.* The brief separates historical sheet
+   reconstruction from modern georeferencing and says not to force the plates onto a
+   modern basemap prematurely. This tool is precisely that forcing.
+2. *It solves no part of our actual problem.* It has no notion of sheet-to-sheet relative
+   geometry, adjacency, seams, source ownership, or mosaicking. Our task is the relative
+   placement of twelve plates and the seam network between them.
+3. *OSM as control would import modern geometry into a 1912 reconstruction.* Galveston's
+   waterfront and street frontage changed profoundly after 1912 — the grade raising, the
+   seawall's extensions, and repeated rebuilding of the wharf front. Fitting 1912 drafting
+   to present-day intersection coordinates would distort historical geometry toward modern
+   truth, which is exactly what the brief forbids and what "preserve historical
+   disagreement" exists to prevent.
+4. *Its fitting standard is weaker than ours.* Three GCPs is the bare minimum and admits
+   weakly-determined solutions; the script reports GCP counts but no covariance or
+   determinability diagnostics, so a poorly constrained sheet with low residuals would
+   pass. `gdal.Warp` on GCPs also tends toward polynomial/TPS fitting — precisely the
+   higher-order distortion the brief says not to escalate to without independent evidence.
+
+**Blocked in practice regardless.** The trained detection model is not in the repository;
+it lives behind a Texas Data Repository DOI. OSMnx needs live OpenStreetMap queries. This
+session's egress permits only PyPI and GitHub, so both of the things that make the tool
+work are unreachable here.
+
+**What is worth borrowing.** Its core idea is well matched to our control problem: detect
+street intersections *together with their street labels*. That pairing is exactly the
+disambiguating semantic anchor our control schema requires, and it is the property that
+defeats one-block-off matching. We can pursue the same idea without their model or OSM —
+`pytesseract` (installable from PyPI) can read street labels off the plates to attach
+anchors to candidate controls, which are then **verified manually** and used only in the
+historical plane. Controls proposed, never auto-solved.
+
+Its quality-assessment script's habit of classifying outcomes into georeferenced-well /
+georeferenced-with-unacceptable-distortion / failed is also a sane precedent for our own
+diagnostics.
+
+**Revisit when.** After the historical master is built and its transforms frozen, if
+modern geographic registration is wanted as the separate final phase the brief allows. At
+that point OSM matching would be applied to the finished master as a registration step —
+never as control for the historical geometry itself.
+
 ## D-002 — Print target (2026-08-16)
 
 The supplied 1899 benchmark PDF measures: single page, 39.39×26.55 in, one embedded baseline
