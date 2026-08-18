@@ -140,9 +140,18 @@ def build_mask(img, spec_path):
                       "uncovered_canvas_neutralised_px": int(uncov.sum())}
 
 
-def apply(img, spec_path):
-    """Return (treated copy, stats). Pure: `img` is not modified."""
-    water, alpha, st = build_mask(img, spec_path)
+def apply(img, spec_path, mask_img=None):
+    """Return (treated copy, stats). Pure: `img` is not modified.
+
+    mask_img: image to build the water mask and ink alpha on. Defaults to
+    `img`. Pass the ORIGINAL master when `img` has been tone-matched (D-016):
+    the mask logic keys uncovered canvas on exact-255 pixels, and the highlight
+    shoulder maps 255 to ~251, so the mask must be measured on the original
+    while the fill is applied to the adjusted image.
+    """
+    if mask_img is None:
+        mask_img = img
+    water, alpha, st = build_mask(mask_img, spec_path)
     out = img.copy()
     idx = np.where(water)
     if len(idx[0]):
@@ -151,7 +160,8 @@ def apply(img, spec_path):
         tgt = np.array(WATER_RGB, np.float32)[None, :]
         out[idx] = np.round(a * orig + (1.0 - a) * tgt).astype(np.uint8)
 
-    was_white = (img[:, :, 0] == 255) & (img[:, :, 1] == 255) & (img[:, :, 2] == 255)
+    was_white = ((mask_img[:, :, 0] == 255) & (mask_img[:, :, 1] == 255)
+                 & (mask_img[:, :, 2] == 255))
     st.update({
         "water_rgb": list(WATER_RGB),
         "ink_alpha_band": [INK_LO, INK_HI],

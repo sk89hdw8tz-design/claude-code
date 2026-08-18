@@ -408,3 +408,57 @@ printed extent is identical to the previous build.
 slivers where abutting block sheets fail to meet. They are present in `candidate_master.tif`, so
 they pre-date the wharf composite and this stage, and are unrelated to water. Sub-pixel after the
 0.516x downsample. Recorded rather than silently tolerated.
+
+## D-016 — Tone and colour match of the print to the 1899 sheet (2026-08-18)
+
+**Owner request:** make the remaining 1912 colours match the 1899 companion; do not touch the
+1899; orange structures unchanged except brightening; no loss of type legibility.
+
+**Diagnosis: both brightness and saturation, not hue.** Matched-feature measurement (same
+blocks, Central Park on both sheets): 1912 paper (183,179,168) vs 1899 (238,228,202) — 1.24x
+dimmer; fills ~2x less saturated at the same hues; black ink already matched (27,21,17 vs
+36,27,12). Because the black point matches, brightening lifts paper while ink barely moves, so
+type contrast RISES — the opposite of the feared risk.
+
+**Orange, corrected mid-work.** An early hue-bucket measure suggested both sheets had orange.
+Connected components >= 2000 px show the 1899 has TWO pale-tan blobs (0.080% of page, one
+building) vs NINETEEN genuinely orange on the 1912 (0.448%): the earlier "1899 orange" was
+scattered blend pixels between yellow and pink fills. There is NO 1899 orange to match, so
+orange takes the brightness lift and holds its own saturation.
+
+**Transform** (`60_master/tools/tone_match.py`, constants + provenance in
+`50_seams/tone_anchors.json`), applied in memory before the water fill:
+1. Per-channel affine levels, fitted PRINT-TO-PRINT (ink->ink, paper->paper). Master-to-print
+   fitting was measured and rejected: the master's pre-JPEG blacks (9.8,6.8,6.6) are deeper than
+   any print black, and fitting across that mismatch would lift blacks and wash out type.
+   Per-channel, not 3x3, per the least-complex-model rule (3x3 improved anchor RMS only
+   12.9 -> 9.6 while allowing hue-shifting channel mixing).
+2. Soft highlight shoulder, knee 210: a hard stretch to the 1899 paper level clips 15.3% of map
+   content to 255; with the shoulder, 0.000%.
+3. Chroma x1.30 about Rec.601 luma (fitted optimum; sweep 1.00->err 9.0, 1.30->6.6, 1.75->10.3),
+   with the orange band (H 18-42 deg, S>0.30, feathered) holding saturation per pixel — the
+   levels step alone saturates warm colours (+12% measured with a naive gain-1.0 carve-out,
+   because the red gain 1.327 exceeds the blue 1.244), so inside the band chroma is rescaled to
+   keep S ~ c/Y constant.
+4. THEN the D-015 water fill — order matters, or the bay is dragged off (199,214,209) to
+   (255,255,249). The water mask is built on the ORIGINAL master (its uncovered-canvas logic
+   keys on exact-255, which the shoulder maps to ~251) and the fill applied to the toned image;
+   water stats reproduced byte-for-byte (60,008,046 px, same bbox).
+
+**One QA-tool bug found during the work:** the content window kept 0.5% of page width at the
+right edge, but the page's white margin is 0.78% wide, so ~16 columns of blank MARGIN were
+counted as clipped map content (0.268% "clipping" that did not exist). Crop corrected to 0.985.
+
+**Verification** (`tone_qa.py`, all assertions; `water_qa.py` still passes): type contrast UP in
+all six lettering regions spread across the sheet (+1.4% to +24.8%); land ink p1 50.5 (dark);
+0.000% of map content at 255; paper within 6 levels of the 1899; yellow saturation ratio 1.02,
+pink 1.01 vs the 1899; orange S 0.431->0.427 (held) with V 159->188 (brightened); hue shifts
+0.0 deg; open water still exactly (199,214,209); determinism byte-identical; frozen-artefact
+verifier passes; PDF 40.00 x 25.84 in at exactly 300.0 DPI.
+
+**Applied to the print only.** `master_full.tif` byte-identical; archival scans never opened for
+writing; page geometry measured from the untreated master and unchanged.
+
+**Known remaining, accepted by decision:** sheet-to-sheet paper steps are amplified by the
+~1.3x gain and stay visible — plate character preserved, consistent with the project rule and
+the 1899's own no-per-sheet-white-balance approach.
