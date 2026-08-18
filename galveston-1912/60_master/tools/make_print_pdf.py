@@ -31,6 +31,7 @@ import cv2
 import numpy as np
 import tifffile
 import pymupdf
+import water_treatment
 from PIL import Image, ImageDraw, ImageFont
 
 ROOT = '/home/user/claude-code/galveston-1912'
@@ -45,14 +46,17 @@ WATER_MARGIN = 250          # mosaic px beyond the longest pier
 WHITE_MARGIN = 180          # mosaic px intentional margin
 JPEG_QUALITY = 92
 FONT = '/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf'
+WATER_SPEC = f'{ROOT}/50_seams/water_regions.geojson'
 CAPTION = ('GALVESTON, TEXAS - WHARF FRONT AND DOWNTOWN, 1912 / '
            'Avenue A (Water) to Avenue I (Sealy) - 19th Street to 25th Street '
            '(Rosenberg Avenue) - Piers 19-25 / '
            'Composited from 14 source regions of the 1912 Sanborn Fire '
            'Insurance Map (LOC sanborn08539_004); sheets '
-           '5(A,B),7,8,9,10,11,12,39,40,43,44,49,50; original colors '
-           'retained; plate disagreements preserved; wharf plates (100 ft/in) '
-           'unified to the grid scale of 50 ft/in - printed at approx. 80 ft/in.')
+           '5(A,B),7,8,9,10,11,12,39,40,43,44,49,50; land colors as scanned; '
+           'open water flat-filled to the 1899 companion sheet, the bay beyond '
+           '1912 sheet coverage filled likewise and carrying no source detail; '
+           'plate disagreements preserved; wharf plates (100 ft/in) unified to '
+           'the grid scale of 50 ft/in - printed at approx. 80 ft/in.')
 
 
 def sha256_file(path, chunk=1 << 22):
@@ -127,6 +131,16 @@ page_h_px = int(round(page_h_mosaic * scale))
 print(f'page mosaic {page_w_mosaic} x {page_h_mosaic}; scale {scale:.6f}; '
       f'page px {page_w_px} x {page_h_px}; '
       f'{page_w_px/DPI:.2f} x {page_h_px/DPI:.2f} in @ {DPI} DPI')
+
+# ---------------------------------------------------------------- water (D-015)
+# Presentation stage only: master_full.tif and the archival scans are never
+# written. Deliberately applied AFTER the extents above are measured, so the
+# printed page geometry is derived from the untreated master and is unchanged
+# by the treatment.
+print('applying water treatment ...')
+img, water_stats = water_treatment.apply(img, WATER_SPEC)
+for k, v in water_stats.items():
+    print(f'  {k}: {v}')
 
 # ---------------------------------------------------------------- compose
 crop = img[map_y0:map_y1, map_x0:map_x1]
@@ -207,6 +221,11 @@ comp = {
     'page': {'px': [page_w_px, page_h_px], 'dpi': DPI,
              'inches': [page_w_px / DPI, page_h_px / DPI],
              'points': [pw_pt, ph_pt]},
+    'water_treatment': dict(water_stats, decision='D-015',
+                            spec='50_seams/water_regions.geojson',
+                            spec_sha256=sha256_file(WATER_SPEC),
+                            applied_to='print deliverable only',
+                            master_full_tif_modified=False),
     'jpeg_quality': JPEG_QUALITY,
     'caption_lines': lines,
     'sha256': sums,

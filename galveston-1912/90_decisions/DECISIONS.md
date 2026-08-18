@@ -339,3 +339,72 @@ confident, well-formed, meaningless output (cf. F-001, F-003, F-005).
 sheet-5 scan falls off toward its right side; bright page detected only to x=4447 of 6653), so
 the ownership boundary is visible as a tone step in the blank apron. Authentic and preserved —
 no exposure matching, per the brief. The duplicated "Slip" label (D-013) is likewise unchanged.
+
+## D-015 — Flat water treatment for the print deliverable (2026-08-18)
+
+**Owner request:** make Galveston Bay the same colour as the 1899 companion print, and fix a
+large white rectangle in the bay.
+
+**Measured first, because the obvious reading was wrong twice.**
+
+*The 1899 bay is a flat colour fill, not scanned tint.* 84.7% of its bay region carries exactly
+`RGB(199,214,209)`; p5 = p95 = median on every patch sampled. (That sheet's own caption claims
+"no fill, no generated content anywhere". Inaccurate for its water — noted so this project's
+caption does not inherit the claim.)
+
+*The 1912 plates do tint the bay.* Sheet 5's water reads 30-43 levels cooler than the same
+sheet's bare paper (`B-(R+G)/2`: bay -9 to -23, bare paper -52). It composites to warm grey
+`(180,175,165)` because the paper is strongly yellowed and the LOC scan dim — the tint is real
+but swamped. The 1912 page is globally ~55 levels darker than the 1899 (paper 177,166,132 vs
+233,213,165).
+
+*Colour cannot select water.* Bay measures -12.5 on `B-(R+G)/2`; a blank downtown street
+measures -11.5. A colour key would recolour streets. A geometric mask is required.
+
+*The white rectangle is uncovered canvas, not a plate defect:* canvas x 3324-4956, y 8148-14489.
+Sheet 5 panel A ends at y 8148 and panel B does not reach as far west, so no sheet in the set
+draws it. Filling it is generated content, disclosed in the caption and here. Because the fill
+is flat, it and the scanned bay land on the identical value and the rectangle vanishes into the
+bay with no seam — the two reported defects resolve together.
+
+**Method.** A presentation stage between master and PDF (`60_master/tools/water_treatment.py`),
+applied in memory. Shape comes from an ink-constrained flood fill seeded inside `seed_*` and
+capped by `bound` (`50_seams/water_regions.geojson`), so the fill snaps to the drafted shoreline
+and reaches every slip open to the bay — "all water" hydrographically — without hand-tracing a
+pier face. Ink is alpha-composited rather than thresholded, so lettering, compass roses, the
+scale bar, soundings, pier outlines and bulkheads keep full darkness with clean edges; a hard
+threshold would leave a warm halo round every mark on flat blue. 360,704 ink px inside the mask
+are preserved this way.
+
+**Two detector faults found and fixed during the work, both mine, both silent:**
+
+1. *Flat-fielding fooled by uncovered canvas.* The 121 px background blur read the exact-255
+   uncovered region as very bright paper, so genuine bay tint within ~60 px of it scored
+   rel ~0.75 and was classified as ink. That left a hairline of unfilled water tracing the panel
+   coverage edges, which I first read as a page edge in the scan — the pixel values proved it was
+   ordinary water tone. Fixed by neutralising uncovered canvas to the median tone of covered
+   water before estimating ink; it cannot affect output, since those pixels are filled regardless.
+   Removed a 399,870 px residue and dropped the water from 125 fragments to 28.
+2. *An idempotence check that was the wrong test.* Compositing ink with a partial coverage alpha
+   is by construction not self-idempotent — re-running on the OUTPUT blends the same ink toward
+   the fill a second time. Replaced with determinism (same input twice → byte-identical output,
+   verified 0 px), which is what reproducibility actually requires.
+
+**Verification** (`60_master/tools/water_qa.py`, all assertions): determinism 0 px; frozen-artefact
+verifier still passes with only D-014's compositor and its output changed; zero water outside
+`bound` and zero east of canvas x=9000, recoloured bbox stops at x 8123; ink preserved
+360,704 → 360,354; open-water median exactly `(199,214,209)`; zero pure-255 left anywhere in the
+printed bay; PDF 1 page, 40.00 x 25.84 in, one baseline JPEG at exactly 300.0 DPI both axes.
+Native crops rendered back out of the finished PDF confirm the D-014 Pier 22 repair intact.
+
+Recoloured 60,008,046 px — 40,024,006 from scanned tint, 19,984,040 from uncovered canvas.
+
+**Applied to the print only.** `master_full.tif` is unchanged (sha256 `a22da6ad…` identical
+across the build) and remains the as-scanned historical composite; the archival scans are never
+opened for writing. Page geometry is deliberately measured from the untreated master, so the
+printed extent is identical to the previous build.
+
+**Known remaining, not fixed:** 143 pure-255 px survive elsewhere in the printed rect as six 1 px
+slivers where abutting block sheets fail to meet. They are present in `candidate_master.tif`, so
+they pre-date the wharf composite and this stage, and are unrelated to water. Sub-pixel after the
+0.516x downsample. Recorded rather than silently tolerated.

@@ -1,0 +1,32 @@
+{
+ "type": "FeatureCollection",
+ "convention": "CANVAS pixel coordinates of 60_master/final/master_full.tif (26206 x 14489). canvas = mosaic - (-16734, -8279).",
+ "purpose": "Presentation-stage water mask for the print deliverable (D-015). Defines WHERE water may be, not its exact shape: the shape comes from an ink-constrained flood fill seeded inside these polygons, so the fill snaps to the drafted shoreline and flows into every slip that is open to the bay. Never applied to master_full.tif or to any archival scan.",
+ "features": [
+  {
+   "type": "Feature",
+   "properties": {
+    "region_id": "seed_bay",
+    "role": "seed",
+    "note": "Conservative band lying inside open water at every row: panel A's bay above y~8148, uncovered canvas below it. Both are non-ink, so the two are connected and one seed serves the whole bay."
+   },
+   "geometry": {"type": "Polygon", "coordinates": [[
+    [2900, 300], [4300, 300], [4300, 14200], [2900, 14200], [2900, 300]
+   ]]}
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "region_id": "bound",
+    "role": "bound",
+    "note": "Cap on how far water may spread. East edge follows the drafted wharf frontage plus margin, bulging at the Pier 22/23 slips so they are reachable. A leak through a gap in the frontage line cannot pass this, so it can never reach Avenue A or downtown."
+   },
+   "geometry": {"type": "Polygon", "coordinates": [[
+    [0, 0], [6300, 0], [6800, 2000], [7200, 4000], [7600, 6000],
+    [8000, 7000], [8600, 7600], [8700, 8700], [8100, 9200],
+    [7800, 10000], [7900, 11000], [8100, 12000], [8300, 13000],
+    [8600, 14489], [0, 14489], [0, 0]
+   ]]}
+  }
+ ]
+}
