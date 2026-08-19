@@ -462,3 +462,52 @@ writing; page geometry measured from the untreated master and unchanged.
 **Known remaining, accepted by decision:** sheet-to-sheet paper steps are amplified by the
 ~1.3x gain and stay visible — plate character preserved, consistent with the project rule and
 the 1899's own no-per-sheet-white-balance approach.
+
+## D-017 — Per-plate illumination correction so streets read one tone (2026-08-18)
+
+**Owner report:** not all streets on the 1912 sheet match the one at Ave. G (Winnie) x 22nd St;
+make them all that colour.
+
+**Diagnosis: per-plate vignetting, not a per-sheet offset.** Each LOC plate was photographed
+with its centre brightest and its edges falling off, so the same street reads bright mid-sheet
+and dark near a seam, and dark bands run along every join. Measured on blank paper in master
+space: **18.9 levels between plates but 26.0 levels WITHIN a plate** (p10-p90). Intra-sheet
+variation exceeds between-sheet variation, so a per-sheet constant gain cannot fix it -- the
+correction has to vary inside each plate. A field map with the sheet footprints overlaid shows
+the radial falloff directly.
+
+The reference the owner chose sits in region **s43_r0**, whose own median is 12 levels darker
+than that intersection -- i.e. the reference is a bright spot on a mid-toned plate, which is
+exactly why a per-sheet scheme would have failed.
+
+**Fix** (`60_master/tools/paper_flatfield.py`, spec `50_seams/paper_flatfield.json`): estimate
+the blank-paper level as a smooth field INSIDE each source region separately (normalized
+convolution, so the field is never smeared across a seam), then scale every pixel by
+target/field. Multiplicative, so black maps to black and hue is preserved: ink stays ink and
+type legibility cannot fall. Runs on the master ahead of the D-016 tone match.
+
+Target = (192.5, 187.6, 177.6), the Ave. G x 22nd street tone. It equals the page-wide paper
+mode to within 1.5 levels, so overall page brightness is preserved and the D-016 anchors stay
+valid -- confirmed by QA, which now reports paper within **3** levels of the 1899 (was 6) and
+yellow/pink saturation ratios of exactly 1.00 (were 1.02/1.01).
+
+**One estimator fault found and fixed.** The first field used a per-cell MEDIAN of paper
+candidates. Where that candidate set is polluted by grey fills or shading the median reads low,
+the gain runs high, and those cells over-brighten -- street p95 landed 18 levels ABOVE target
+and the spread only fell 34.6 -> 21.7. Switching to the mean of the brightest 30% of each cell's
+candidates keys the field to true blank paper. The target had to be re-measured with the same
+estimator (191,186,176 median vs 192.5,187.6,177.6 bright-tail); leaving the median target in
+place would have under-brightened the whole sheet.
+
+**Result:** wide-open street paper spread **34.6 -> 15.5 levels (55% better)**, sd 10.8 -> 4.8,
+median 186.5 against a target of 187.9. Gains ran 0.944-1.308, median 1.044. **Zero genuine map
+content clipped** -- all 5.6M clipped pixels were already white or water in the source and are
+flat-filled downstream anyway.
+
+**Applied to the print only.** `master_full.tif` byte-identical; archival scans never opened for
+writing; page geometry unchanged. Ordering: flat-field -> tone match -> water fill, with the
+water mask still measured on the ORIGINAL master (its uncovered-canvas test keys on exact 255,
+which the gain would otherwise move).
+
+**Supersedes** the "preserve sheet-to-sheet paper differences" choice recorded under D-016, at
+the owner's request.

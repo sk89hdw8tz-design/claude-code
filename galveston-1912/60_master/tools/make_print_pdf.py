@@ -31,6 +31,7 @@ import cv2
 import numpy as np
 import tifffile
 import pymupdf
+import paper_flatfield
 import tone_match
 import water_treatment
 from PIL import Image, ImageDraw, ImageFont
@@ -49,6 +50,7 @@ JPEG_QUALITY = 92
 FONT = '/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf'
 WATER_SPEC = f'{ROOT}/50_seams/water_regions.geojson'
 TONE_SPEC = f'{ROOT}/50_seams/tone_anchors.json'
+FF_SPEC = f'{ROOT}/50_seams/paper_flatfield.json'
 CAPTION = ('GALVESTON, TEXAS - WHARF FRONT AND DOWNTOWN, 1912 / '
            'Avenue A (Water) to Avenue I (Sealy) - 19th Street to 25th Street '
            '(Rosenberg Avenue) - Piers 19-25 / '
@@ -57,8 +59,9 @@ CAPTION = ('GALVESTON, TEXAS - WHARF FRONT AND DOWNTOWN, 1912 / '
            '5(A,B),7,8,9,10,11,12,39,40,43,44,49,50; land colors as scanned; '
            'open water flat-filled to the 1899 companion sheet, the bay beyond '
            '1912 sheet coverage filled likewise and carrying no source detail; '
-           'tone and color matched to the 1899 sheet (levels, highlight '
-           'shoulder, saturation; orange fills brightened only); '
+           'per-plate illumination corrected so streets and open ground read '
+           'one tone; tone and color matched to the 1899 sheet (levels, '
+           'highlight shoulder, saturation; orange fills brightened only); '
            'plate disagreements preserved; wharf plates (100 ft/in) unified to '
            'the grid scale of 50 ft/in - printed at approx. 80 ft/in.')
 
@@ -143,8 +146,14 @@ print(f'page mosaic {page_w_mosaic} x {page_h_mosaic}; scale {scale:.6f}; '
 # by the treatment.
 # D-016 tone match FIRST, then the water fill: the other way round the bay
 # would be dragged off its exact 1899 value by the levels gain.
-print('applying tone match ...')
 img_orig = img                       # kept for water-mask measurement only
+print('applying per-plate illumination correction ...')
+water_mask = water_treatment.build_mask(img_orig, WATER_SPEC)[0]
+img, ff_stats = paper_flatfield.apply(img, FF_SPEC, ROOT, water=water_mask)
+del water_mask
+for k, v in ff_stats.items():
+    print(f'  {k}: {v}')
+print('applying tone match ...')
 img, tone_stats = tone_match.apply(img, TONE_SPEC)
 for k, v in tone_stats.items():
     print(f'  {k}: {v}')
@@ -235,6 +244,11 @@ comp = {
     'page': {'px': [page_w_px, page_h_px], 'dpi': DPI,
              'inches': [page_w_px / DPI, page_h_px / DPI],
              'points': [pw_pt, ph_pt]},
+    'paper_flatfield': dict(ff_stats, decision='D-017',
+                            spec='50_seams/paper_flatfield.json',
+                            spec_sha256=sha256_file(FF_SPEC),
+                            applied_to='print deliverable only',
+                            master_full_tif_modified=False),
     'tone_match': dict(tone_stats, decision='D-016',
                        spec='50_seams/tone_anchors.json',
                        spec_sha256=sha256_file(TONE_SPEC),
