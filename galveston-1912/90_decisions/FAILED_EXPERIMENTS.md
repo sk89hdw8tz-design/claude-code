@@ -132,3 +132,29 @@ must create it or fail before doing work; (2) never wrap a correctness-bearing c
 a pipeline that swallows its exit status. Rerun with the directory pre-created; QA's
 stale/absence guards (hash-stamped artifacts, stability polling) were designed for
 exactly this class of failure and would have refused the missing master anyway.
+
+## F-006 — Automated seam-collision detector: confident nonsense, fifth of its kind (2026-08-18)
+
+**Goal.** Find every place where two plates both letter a shared street across a pooled cut, so
+the D-018 survey would be exhaustive rather than a spot check.
+
+**Variant 1: ink density along the cut corridor.** Measured ink fraction in a box centred on the
+cut, flagging peaks. It reported 5 hits and MISSED both known Ave. F collisions, whose density
+(0.078) fell under the threshold: a tangle of thin lettering simply is not dense.
+
+**Variant 2: "both flanking plates ink the same band".** The right idea, wrongly built. It
+reported 41 "collision windows" whose positions were suspiciously regular -- they were the
+SEGMENT BOUNDARIES where the flanking sheet pair changes, and the huge ink values came from the
+plates' dark page edges inside the corridor, not from lettering. It also had west and east
+reversed, because the flanking regions were sampled as `cx - n*160` / `cx + n*160` without
+accounting for the normal pointing in -x.
+
+**Conclusion.** Reverted to the brief's prescribed workflow: generate readable panels (every
+avenue corridor rotated and laid end-to-end in one image) and READ them. That found the five real
+collisions in a single pass, and correctly showed the other six avenues clean. The per-plate
+ink-cluster measurement was then used only to place each deviation, with a human deciding which
+plate keeps its label.
+
+**Tell.** Regularly spaced hits and values dominated by page edges are the signature of a
+detector measuring its own scaffolding. Same family as F-001 (threshold caught the scanner
+backdrop), F-003 (estimator returned its own floor) and F-005 (exit 0 while writing nothing).

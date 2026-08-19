@@ -511,3 +511,51 @@ which the gain would otherwise move).
 
 **Supersedes** the "preserve sheet-to-sheet paper differences" choice recorded under D-016, at
 the owner's request.
+
+## D-018 — Duplicated street labels at pooled cuts (2026-08-18)
+
+**Owner report:** a fragment showing "4" and mangled "F. OR CHURCH" lettering.
+
+**Diagnosis.** The pooled per-street cut runs down the CENTRE of the shared street, and BOTH
+flanking plates letter that street -- each with its own cross-reference numeral naming the
+adjoining sheet. Both label bands straddle the midline, so the composite showed half of each,
+180 deg apart, as an illegible tangle. Confirmed by warping each plate separately and measuring
+ink-cluster extents at 1:1; e.g. on Ave. F the sheet-10 band is canvas x 19782-19949 and the
+sheet-43 band 19860-19933, with the cut at 19893 splitting both.
+
+**Survey.** Five occurrences, found by laying every avenue corridor out end-to-end and reading
+them: Ave. F x2 (s10|s43, s08|s39), Ave. C x1 (s07|s08), Ave. I x2 (s39|s40, s43|s44). The
+other six avenues are clean.
+
+**Fix.** Five entries in `50_seams/manual_deviations.json` -- the mechanism the project already
+built for this. Each moves the cut 76-123 px sideways over the label's along-street range (with
+200 px ramps) so BOTH bands fall on one side and a single plate supplies one complete label.
+Ownership only: the duplicate is suppressed by whose ground it is, never erased. Every deviation
+was placed from measured clearances (25-93 px to the losing plate's nearest drawn content, and
+clear of both plates' page edges), and `build_cuts` reports 0 flagged spans with `build_masks`
+confirming "no seam gaps: every page reaches past every bounding cut".
+
+**Result.** All five now read as one clean label. The winning plate's own cross-reference numeral
+("10", "8", "39", "43") remains inside its label on four of them -- that is authentic plate
+drafting within that sheet's own coverage, legible and not obscuring the name, so it is preserved
+per the brief. Ave. C came out with no numeral at all.
+
+**Two faults of my own, both recorded rather than buried:**
+1. *A collision detector that produced confident nonsense.* An automated scan meant to find every
+   collision reported 41 "collision windows" that were actually segment boundaries and page
+   edges, and it had west/east reversed. This is the FIFTH detector in this project to emit
+   well-formed meaningless output (cf. F-001..F-003, F-005). Abandoned for the prescribed
+   workflow -- generate panels, read the plates -- which found the real five immediately.
+2. *`street_match` matched nothing.* The first pass used street IDs ("ave_f_or_church"), but the
+   loader tests against the human-readable `street_name` ("Ave. F or Church"). cuts.json rebuilt
+   byte-identical, which is the only reason it was caught. Corrected to the readable names.
+
+**Downstream.** Cuts, masks, block master, master_full and the print were all regenerated
+(block render 107 s). The D-014 Pier 22 repair was re-verified after the block master changed --
+tracks 5/7, the T.H. tank house, the 6" main and the whole fan render exactly as before. All
+transforms, controls, adjacency, inventory and archival scans stayed byte-identical. Both QA
+suites pass; the pre-existing 1 px inter-sheet white slivers fell from 143 to 33 as a side effect.
+
+**Checkpoint re-baselined** as `1912_POST_D018_FROZEN`, now recording component -> PATH -> sha256.
+The original Pier 22 checkpoint stored hashes without paths, which is what let a parser bug read
+as "0 artefacts checked ... OK"; `verify_checkpoint.py` resolves nothing by search.

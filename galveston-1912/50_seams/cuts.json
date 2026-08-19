@@ -2186,7 +2186,20 @@
     ],
     "rms_perp_px": 15.016
    },
-   "manual_deviations": [],
+   "manual_deviations": [
+    {
+     "date": "2026-08-18",
+     "offset_px": 78.0,
+     "ramp_px": 200.0,
+     "reason": "D-018 duplicated street label. Sheets 7 (west, label band canvas x 13822-13939, with cross-reference numeral '8') and 8 (east, 13829-13890, numeral '7') both letter Ave. C or Mechanic across the pooled cut. Moving the cut 78 px west (to ~13790) gives both bands to sheet 8. Sheet 7's last content ends 13746 (44 px clear); sheet 8's west page edge (13486-13545) and its edge ticks (13661-13718) stay west of the new cut and are supplied by sheet 7 as blank street.",
+     "street_match": "Ave. C or Mechanic",
+     "t_range_mosaic": [
+      -7350.0,
+      -5950.0
+     ],
+     "verified_by": "controller (Opus), from per-plate warps and ink-cluster extents at 1:1"
+    }
+   ],
    "mean_half_street_width_px": 204.644,
    "n_anchors": 8,
    "orientation": "vertical",
@@ -2196,6 +2209,22 @@
      -10910.477
     ],
     [
+     -2865.498,
+     -7485.399
+    ],
+    [
+     -2944.05,
+     -7285.615
+    ],
+    [
+     -2947.915,
+     -5885.62
+    ],
+    [
+     -2870.467,
+     -5685.406
+    ],
+    [
      -2916.713,
      11067.505
     ]
@@ -2203,6 +2232,22 @@
    "polyline_tn": [
     [
      -10975.091,
+     0.0
+    ],
+    [
+     -7550.0,
+     0.0
+    ],
+    [
+     -7350.0,
+     78.0
+    ],
+    [
+     -5950.0,
+     78.0
+    ],
+    [
+     -5750.0,
      0.0
     ],
     [
@@ -2840,7 +2885,33 @@
     ],
     "rms_perp_px": 12.259
    },
-   "manual_deviations": [],
+   "manual_deviations": [
+    {
+     "_note_frame": "Ave F normal = (-1,-0.003), so POSITIVE offset moves the cut WEST. t = mosaic_y - 48.0.",
+     "date": "2026-08-18",
+     "offset_px": 123.0,
+     "ramp_px": 200.0,
+     "reason": "D-018 duplicated street label. Sheets 10 (west) and 43 (east) BOTH letter Ave. F or Church here, each with its cross-reference numeral ('43' on sheet 10, '10' on sheet 43), and both label bands straddle the pooled midline cut - sheet 10 at canvas x 19782-19949, sheet 43 at 19860-19933. The composite therefore showed half of each, 180 deg apart, as an illegible tangle. Moving the cut 123 px west (to canvas x ~19770) puts BOTH bands east of it, so sheet 43 supplies one complete label and sheet 10's duplicate is suppressed by ownership, not erased. Clearances: sheet 10's last drawn content ends 19745 (25 px), sheet 43's west page edge ends 19726 (44 px clear of the new cut). The cut stays in blank street on both plates.",
+     "street_match": "Ave. F or Church",
+     "t_range_mosaic": [
+      -400.0,
+      660.0
+     ],
+     "verified_by": "controller (Opus), from per-plate warps and ink-cluster extents at 1:1"
+    },
+    {
+     "date": "2026-08-18",
+     "offset_px": 120.0,
+     "ramp_px": 200.0,
+     "reason": "D-018 duplicated street label, second occurrence on Ave. F. Sheets 8 (west, label band canvas x 19844-19996) and 39 (east, 19853-19931) both letter the avenue across the cut. Moving the cut 120 px west (to ~19793) gives both bands to sheet 39, which supplies one complete label. Sheet 8's last content ends 19738 (55 px clear); sheet 39's west page edge ends 19654, well west of the new cut.",
+     "street_match": "Ave. F or Church",
+     "t_range_mosaic": [
+      -7330.0,
+      -5930.0
+     ],
+     "verified_by": "controller (Opus), from per-plate warps and ink-cluster extents at 1:1"
+    }
+   ],
    "mean_half_street_width_px": 234.977,
    "n_anchors": 8,
    "orientation": "vertical",
@@ -2850,6 +2921,38 @@
      -10947.826
     ],
     [
+     3180.686,
+     -7482.02
+    ],
+    [
+     3060.119,
+     -7282.361
+    ],
+    [
+     3056.147,
+     -5882.367
+    ],
+    [
+     3175.579,
+     -5682.027
+    ],
+    [
+     3161.022,
+     -552.048
+    ],
+    [
+     3037.455,
+     -352.398
+    ],
+    [
+     3034.447,
+     707.598
+    ],
+    [
+     3156.879,
+     907.946
+    ],
+    [
      3128.126,
      11040.983
     ]
@@ -2857,6 +2960,38 @@
    "polyline_tn": [
     [
      -10995.82,
+     0.0
+    ],
+    [
+     -7530.0,
+     0.0
+    ],
+    [
+     -7330.0,
+     120.0
+    ],
+    [
+     -5930.0,
+     120.0
+    ],
+    [
+     -5730.0,
+     0.0
+    ],
+    [
+     -600.0,
+     0.0
+    ],
+    [
+     -400.0,
+     123.0
+    ],
+    [
+     660.0,
+     123.0
+    ],
+    [
+     860.0,
      0.0
     ],
     [
@@ -3494,7 +3629,32 @@
     ],
     "rms_perp_px": 6.966
    },
-   "manual_deviations": [],
+   "manual_deviations": [
+    {
+     "date": "2026-08-18",
+     "offset_px": 86.0,
+     "ramp_px": 200.0,
+     "reason": "D-018 duplicated street label. Sheets 39 (west, label band canvas x 25877-26046) and 40 (east, 25912-26070) both letter Ave. I or Sealy across the cut; their cross-reference numerals ('40' and '39') collided inside the lettering, printing as 'AVE. I 4/9/3 OR SEALY'. Moving the cut 86 px west (to ~25860) gives both bands to sheet 40. Sheet 39's last content west of the label ends 25792 (68 px clear); sheet 40's west page edge (25715-25788) stays west of the new cut and is not pulled in.",
+     "street_match": "Ave. I or Sealy",
+     "t_range_mosaic": [
+      -7580.0,
+      -6170.0
+     ],
+     "verified_by": "controller (Opus), from per-plate warps and ink-cluster extents at 1:1"
+    },
+    {
+     "date": "2026-08-18",
+     "offset_px": 76.0,
+     "ramp_px": 200.0,
+     "reason": "D-018 duplicated street label, second occurrence on Ave. I. Sheets 43 (west, label band canvas x 25898-25974) and 44 (east, 25917-25998) both letter the avenue across the cut. Moving the cut 76 px west (to ~25870) gives both bands to sheet 44. Sheet 43's last content ends 25777 (93 px clear); sheet 44's west page edge (25693-25772) stays west of the new cut.",
+     "street_match": "Ave. I or Sealy",
+     "t_range_mosaic": [
+      -880.0,
+      530.0
+     ],
+     "verified_by": "controller (Opus), from per-plate warps and ink-cluster extents at 1:1"
+    }
+   ],
    "mean_half_street_width_px": 230.698,
    "n_anchors": 8,
    "orientation": "vertical",
@@ -3504,6 +3664,38 @@
      -10930.691
     ],
     [
+     9236.479,
+     -7735.413
+    ],
+    [
+     9149.862,
+     -7535.68
+    ],
+    [
+     9145.508,
+     -6125.686
+    ],
+    [
+     9230.89,
+     -5925.422
+    ],
+    [
+     9215.792,
+     -1035.445
+    ],
+    [
+     9139.175,
+     -835.681
+    ],
+    [
+     9134.822,
+     574.313
+    ],
+    [
+     9210.204,
+     774.546
+    ],
+    [
      9178.483,
      11048.281
     ]
@@ -3511,6 +3703,38 @@
    "polyline_tn": [
     [
      -10975.293,
+     0.0
+    ],
+    [
+     -7780.0,
+     0.0
+    ],
+    [
+     -7580.0,
+     86.0
+    ],
+    [
+     -6170.0,
+     86.0
+    ],
+    [
+     -5970.0,
+     0.0
+    ],
+    [
+     -1080.0,
+     0.0
+    ],
+    [
+     -880.0,
+     76.0
+    ],
+    [
+     530.0,
+     76.0
+    ],
+    [
+     730.0,
      0.0
     ],
     [

@@ -156,7 +156,7 @@ check("same input twice byte-identical", int((t1 != t2).sum()) == 0)
 del m, t1, t2
 
 print("\n8. upstream frozen")
-r = subprocess.run([sys.executable, f"{ROOT}/90_decisions/checkpoints/verify_pier22_frozen.py"],
+r = subprocess.run([sys.executable, f"{ROOT}/90_decisions/checkpoints/verify_checkpoint.py"],
                    capture_output=True, text=True)
 check("frozen-artefact verifier passes", r.returncode == 0)
 

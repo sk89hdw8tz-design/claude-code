@@ -1,7 +1,7 @@
 {
  "source": {
   "path": "60_master/final/master_full.tif",
-  "sha256": "a22da6ad5b61147932553624df1ceb8120502e142e6e19689602baecfc0ce22c"
+  "sha256": "5923f908fe657d9218a7c927140669f40a0044b84f250436c76cf6a228a5e1fd"
  },
  "map_rect_canvas_xyxy": [
   3324,
@@ -58,12 +58,12 @@
   ],
   "gain_min": 0.9442055821418762,
   "gain_max": 1.3082879781723022,
-  "gain_median": 1.043684482574463,
+  "gain_median": 1.043764591217041,
   "field_cells_measured": 15085,
   "field_cells_total": 23370,
   "field_lum_min": 146.51898193359375,
   "field_lum_max": 196.8302001953125,
-  "px_clipped_by_gain": 5631238,
+  "px_clipped_by_gain": 5631128,
   "decision": "D-017",
   "spec": "50_seams/paper_flatfield.json",
   "spec_sha256": "4ae1faaa828418548d6328470add7975769575ea4dfba9c529d09b013fd04f55",
@@ -83,7 +83,7 @@
   ],
   "shoulder_knee": 210.0,
   "chroma_gain": 1.3,
-  "orange_carveout_px": 7922667,
+  "orange_carveout_px": 7914114,
   "decision": "D-016",
   "spec": "50_seams/tone_anchors.json",
   "spec_sha256": "2004f2e20fe3d3f3d1e863b6f2761989ac9fe358d5eaae73d72ccf13bbdf8779",
@@ -134,8 +134,8 @@
   "Composited from 14 source regions of the 1912 Sanborn Fire Insurance Map (LOC sanborn08539_004); sheets 5(A,B),7,8,9,10,11,12,39,40,43,44,49,50; land colors as scanned; open water flat-filled to the 1899 companion sheet, the bay beyond 1912 sheet coverage filled likewise and carrying no source detail; per-plate illumination corrected so streets and open ground read one tone; tone and color matched to the 1899 sheet (levels, highlight shoulder, saturation; orange fills brightened only); plate disagreements preserved; wharf plates (100 ft/in) unified to the grid scale of 50 ft/in - printed at approx. 80 ft/in."
  ],
  "sha256": {
-  "Galveston_1912_Wharf_Downtown_print.pdf": "d2e7a0420df94d9448547aa8ac0d244d7470375ce3202211a744fd211f92aab5",
-  "Galveston_1912_SelectedArea_HISTORICAL_MASTER.tif": "a22da6ad5b61147932553624df1ceb8120502e142e6e19689602baecfc0ce22c",
-  "Galveston_1912_Wharf_Downtown_print.jpg": "130791fc04303b25d07d519a628ec9d4009f1e31716b2647b1146d8b92a1ed0b"
+  "Galveston_1912_Wharf_Downtown_print.pdf": "b4ad7b6e8b56c55aabd893e845f39f05bb1afc7f77d4454c00ce2c575d96e3b9",
+  "Galveston_1912_SelectedArea_HISTORICAL_MASTER.tif": "5923f908fe657d9218a7c927140669f40a0044b84f250436c76cf6a228a5e1fd",
+  "Galveston_1912_Wharf_Downtown_print.jpg": "9e3d1ce88603e559d928aa12dba4601b07b7e7c76b8b5593c93c00bdeb9f597d"
  }
 }

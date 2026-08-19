@@ -1,0 +1,173 @@
+{
+ "checkpoint": "1912_POST_D018_FROZEN",
+ "created_utc": "2026-08-19T01:29:17.209677+00:00",
+ "scope": "State after D-018 (duplicated street-label cut deviations). Supersedes 1912_PRE_S5_PIER22_LOCAL_REPAIR_FROZEN, which remains as the historical record of the Pier 22 repair.",
+ "immutable": {
+  "block_transforms": {
+   "path": "40_solve/output/transforms.json",
+   "sha256": "a57f3dcb8614c9939f1ab82322f8091167e98ba3122ebed634ff1c8b4f0bf11b"
+  },
+  "block_covariance": {
+   "path": "40_solve/output/covariance.json",
+   "sha256": "ec9fae297190246b1e6c6b6a89f3d90f94489eb5f198212ca3aa10cc328485e6"
+  },
+  "adjacency_topology": {
+   "path": "10_key/adjacency.json",
+   "sha256": "0cc828411316cfd8e18e312fc48780da7d2f0e42e191d954a0bf3e11997455cf"
+  },
+  "cuts_block_streets": {
+   "path": "50_seams/cuts.json",
+   "sha256": "5d159f1ac5fb5837bb4558ab8640278ea10f66fcae36dee4820524cbebccf7dc"
+  },
+  "masks_block": {
+   "path": "50_seams/masks.json",
+   "sha256": "9b164bbbaea4e6a43419c1bd40fa3ac09da18c8f12bf3828ba1bd0d5199415df"
+  },
+  "manual_deviations": {
+   "path": "50_seams/manual_deviations.json",
+   "sha256": "354399f7a0a7a2c13e722d53010a21720af3ad29f7fff917647d6c3da4b16d84"
+  },
+  "manual_exclusions": {
+   "path": "50_seams/manual_exclusions.json",
+   "sha256": "061dad42b9b89b947d72ba201e8a20d578554fe0cedec32c591fc748def01ce1"
+  },
+  "freeze_manifest": {
+   "path": "40_solve/FREEZE_MANIFEST.json",
+   "sha256": "92e7f6e7274d41985dbcf12f7a4c0717e94598e8cec5562d28fc76444d861bbb"
+  },
+  "inventory": {
+   "path": "00_inventory/INVENTORY.json",
+   "sha256": "f254fbece7169c63ea6a6abd312f079dd0cafb20ef7d99fee046931ed896cf95"
+  },
+  "sheet5_panel_transforms": {
+   "path": "40_solve/output_sheet5_joint/transforms_sheet5_joint_shared.json",
+   "sha256": "92f39b5f2ab4611ec87d74997eda56c5e6f73a80a15bc47664e1d825ab062fd8"
+  },
+  "block_master_tif": {
+   "path": "60_master/final/candidate_master.tif",
+   "sha256": "06493498a00fca16b63fd440131448b78c5c0b85d21b20f3720bb618568252bf"
+  },
+  "current_master_full": {
+   "path": "60_master/final/master_full.tif",
+   "sha256": "5923f908fe657d9218a7c927140669f40a0044b84f250436c76cf6a228a5e1fd"
+  },
+  "compositor": {
+   "path": "60_master/tools/composite_wharf.py",
+   "sha256": "0153482cc7ebcbb0d24bffbc9026597200f0279b8f7945c96059e62f2274fada"
+  },
+  "water_spec": {
+   "path": "50_seams/water_regions.geojson",
+   "sha256": "6e14a3a0598906ef9f7ffe3c8a511b4e85aff35e1c52847134d82d2df44ebf68"
+  },
+  "tone_spec": {
+   "path": "50_seams/tone_anchors.json",
+   "sha256": "2004f2e20fe3d3f3d1e863b6f2761989ac9fe358d5eaae73d72ccf13bbdf8779"
+  },
+  "flatfield_spec": {
+   "path": "50_seams/paper_flatfield.json",
+   "sha256": "4ae1faaa828418548d6328470add7975769575ea4dfba9c529d09b013fd04f55"
+  },
+  "archival_sheet5": {
+   "path": "/home/user/g1912/data-branch/galveston_1912_sources/sanborn08539_004_img009_archival.jp2",
+   "sha256": "1b4dc8be49f5c9bf43a77247fc6ce155f368b0c2b804ecc2caec2a8be88a68de"
+  },
+  "controls": {
+   "cross_panel_05.json": {
+    "path": "30_controls/verified/cross_panel_05.json",
+    "sha256": "60a72aca20a8b457b27280592549ac61416c3e2e5ba104bf84697e1a94d10f12"
+   },
+   "cross_panel_05_v2.json": {
+    "path": "30_controls/verified/cross_panel_05_v2.json",
+    "sha256": "4cc198c1befa33b409bd9f2c0f6ca662a3105ce7e5075cfa64bb0443a3d59e99"
+   },
+   "pair_05A_07.json": {
+    "path": "30_controls/verified/pair_05A_07.json",
+    "sha256": "6558e454ff368d78db8210e8782191ca93d4066a75c7eae74cc3152bda3371c4"
+   },
+   "pair_05A_09.json": {
+    "path": "30_controls/verified/pair_05A_09.json",
+    "sha256": "5c97b49eab2232fa37763709c25feda4963bc50e1bb122d87ccb78ba095c3748"
+   },
+   "pair_05B_09.json": {
+    "path": "30_controls/verified/pair_05B_09.json",
+    "sha256": "5bc3059e5d0f0cfe19cc67a4f088c006b4416f8c308d7f76825aa84baf5c992b"
+   },
+   "pair_05B_11.json": {
+    "path": "30_controls/verified/pair_05B_11.json",
+    "sha256": "d1499222af77884b83b816006ab41d12a4202da7a29fcc12d03542abfe6a5823"
+   },
+   "pair_05B_13.json": {
+    "path": "30_controls/verified/pair_05B_13.json",
+    "sha256": "9ba994084a4a12303249d682c8612d36ead0ece17f70fa9599a1f23233b6801c"
+   },
+   "pair_10_12.json": {
+    "path": "30_controls/verified/pair_10_12.json",
+    "sha256": "a7d121ae42e31a75e0e494c633756a5445d386b2498c7831b48aa213dad063a6"
+   },
+   "pair_10_43.json": {
+    "path": "30_controls/verified/pair_10_43.json",
+    "sha256": "93b3c81b403b3cc4311a691d1fcba840124a70db95e4477f37b34e9c753897db"
+   },
+   "pair_11_12.json": {
+    "path": "30_controls/verified/pair_11_12.json",
+    "sha256": "1c3b06a24454f8ca6da8806e2e90815b890d766b1cac8a95ba0baae0df58f73e"
+   },
+   "pair_12_49.json": {
+    "path": "30_controls/verified/pair_12_49.json",
+    "sha256": "e38f0fdff732c689751518f9105ec935e5db616c03ea6bd5f2b4d63b8b570a64"
+   },
+   "pair_39_40.json": {
+    "path": "30_controls/verified/pair_39_40.json",
+    "sha256": "e4b4c9b7e1de34facd1d5fc7ed777be4ffede3c7a9ace787440ef2473b3171a0"
+   },
+   "pair_39_43.json": {
+    "path": "30_controls/verified/pair_39_43.json",
+    "sha256": "246f0adb37b962c0de705b84e89dbc591fa81f1fc0cd1c9daf4c921534df7438"
+   },
+   "pair_40_44.json": {
+    "path": "30_controls/verified/pair_40_44.json",
+    "sha256": "fa7a593756a3589c8904ffa7aebf3a0f93467585926a772edb01cdd830fd552f"
+   },
+   "pair_43_44.json": {
+    "path": "30_controls/verified/pair_43_44.json",
+    "sha256": "c04077e0e8cbb9c901c9c6f1edd231d203d3b6ff058e5c7c6074ad68c644d747"
+   },
+   "pair_43_49.json": {
+    "path": "30_controls/verified/pair_43_49.json",
+    "sha256": "88f8e2ee49c52ba6f2d25a330ded20ce063d8f858b1931ef2ff987c4a8543994"
+   },
+   "pair_44_50.json": {
+    "path": "30_controls/verified/pair_44_50.json",
+    "sha256": "16ea5659b2ead8ac1c8710bfb280ec7db81137e94bd99545eed0f31b6d8e0beb"
+   },
+   "pair_49_50.json": {
+    "path": "30_controls/verified/pair_49_50.json",
+    "sha256": "9ff5e4ae73da7855517bdc8c20ee12d900b039350e04a84c33b1b67f4df206f2"
+   },
+   "pair_7_8.json": {
+    "path": "30_controls/verified/pair_7_8.json",
+    "sha256": "e27bdc8bfd4511ee44d22cfda4d52ff00e9a0fcff2e53390cadda4eb3c37f53a"
+   },
+   "pair_7_9.json": {
+    "path": "30_controls/verified/pair_7_9.json",
+    "sha256": "469501db8b730de77e64f0b5b70359893bffae1cbf5ad9250e0aebddf0f4d8da"
+   },
+   "pair_8_10.json": {
+    "path": "30_controls/verified/pair_8_10.json",
+    "sha256": "1a2491637262f4bbcbb03fc3f947ceb224f25150981c6fd04b70a29d2c72ce0d"
+   },
+   "pair_8_39.json": {
+    "path": "30_controls/verified/pair_8_39.json",
+    "sha256": "e7957da192eacd8cd01f40f30a2f54fb180c7dd5665938d00df05f079d135ea9"
+   },
+   "pair_9_10.json": {
+    "path": "30_controls/verified/pair_9_10.json",
+    "sha256": "d73dfe92bbbc17d8ba300d7c86c42f542f2b97e44e8f9d18c0333c54555c7505"
+   },
+   "pair_9_11.json": {
+    "path": "30_controls/verified/pair_9_11.json",
+    "sha256": "db99b829f171e4a7b14a309c1bd8ecc6d9db5963dff32f52a2f0645ef4e09ffc"
+   }
+  }
+ }
+}

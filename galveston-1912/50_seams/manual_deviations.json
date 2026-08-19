@@ -13,6 +13,67 @@
    "verified_by": "controller (Fable), from 1:1 sheet-7 crop and solved transforms",
    "date": "2026-08-17",
    "_note_frame": "t is the street line's along-parameter relative to line_fit.p0 (for 21st: t = mosaic_x - 3184.96); offset along line_fit.normal (+y), so -18 px moves the cut north, clearing the scale bar's top edge (mosaic y -3431) by ~25 px"
+  },
+  {
+   "street_match": "Ave. F or Church",
+   "t_range_mosaic": [
+    -400.0,
+    660.0
+   ],
+   "offset_px": 123.0,
+   "ramp_px": 200.0,
+   "reason": "D-018 duplicated street label. Sheets 10 (west) and 43 (east) BOTH letter Ave. F or Church here, each with its cross-reference numeral ('43' on sheet 10, '10' on sheet 43), and both label bands straddle the pooled midline cut - sheet 10 at canvas x 19782-19949, sheet 43 at 19860-19933. The composite therefore showed half of each, 180 deg apart, as an illegible tangle. Moving the cut 123 px west (to canvas x ~19770) puts BOTH bands east of it, so sheet 43 supplies one complete label and sheet 10's duplicate is suppressed by ownership, not erased. Clearances: sheet 10's last drawn content ends 19745 (25 px), sheet 43's west page edge ends 19726 (44 px clear of the new cut). The cut stays in blank street on both plates.",
+   "verified_by": "controller (Opus), from per-plate warps and ink-cluster extents at 1:1",
+   "date": "2026-08-18",
+   "_note_frame": "Ave F normal = (-1,-0.003), so POSITIVE offset moves the cut WEST. t = mosaic_y - 48.0."
+  },
+  {
+   "street_match": "Ave. F or Church",
+   "t_range_mosaic": [
+    -7330.0,
+    -5930.0
+   ],
+   "offset_px": 120.0,
+   "ramp_px": 200.0,
+   "reason": "D-018 duplicated street label, second occurrence on Ave. F. Sheets 8 (west, label band canvas x 19844-19996) and 39 (east, 19853-19931) both letter the avenue across the cut. Moving the cut 120 px west (to ~19793) gives both bands to sheet 39, which supplies one complete label. Sheet 8's last content ends 19738 (55 px clear); sheet 39's west page edge ends 19654, well west of the new cut.",
+   "verified_by": "controller (Opus), from per-plate warps and ink-cluster extents at 1:1",
+   "date": "2026-08-18"
+  },
+  {
+   "street_match": "Ave. C or Mechanic",
+   "t_range_mosaic": [
+    -7350.0,
+    -5950.0
+   ],
+   "offset_px": 78.0,
+   "ramp_px": 200.0,
+   "reason": "D-018 duplicated street label. Sheets 7 (west, label band canvas x 13822-13939, with cross-reference numeral '8') and 8 (east, 13829-13890, numeral '7') both letter Ave. C or Mechanic across the pooled cut. Moving the cut 78 px west (to ~13790) gives both bands to sheet 8. Sheet 7's last content ends 13746 (44 px clear); sheet 8's west page edge (13486-13545) and its edge ticks (13661-13718) stay west of the new cut and are supplied by sheet 7 as blank street.",
+   "verified_by": "controller (Opus), from per-plate warps and ink-cluster extents at 1:1",
+   "date": "2026-08-18"
+  },
+  {
+   "street_match": "Ave. I or Sealy",
+   "t_range_mosaic": [
+    -7580.0,
+    -6170.0
+   ],
+   "offset_px": 86.0,
+   "ramp_px": 200.0,
+   "reason": "D-018 duplicated street label. Sheets 39 (west, label band canvas x 25877-26046) and 40 (east, 25912-26070) both letter Ave. I or Sealy across the cut; their cross-reference numerals ('40' and '39') collided inside the lettering, printing as 'AVE. I 4/9/3 OR SEALY'. Moving the cut 86 px west (to ~25860) gives both bands to sheet 40. Sheet 39's last content west of the label ends 25792 (68 px clear); sheet 40's west page edge (25715-25788) stays west of the new cut and is not pulled in.",
+   "verified_by": "controller (Opus), from per-plate warps and ink-cluster extents at 1:1",
+   "date": "2026-08-18"
+  },
+  {
+   "street_match": "Ave. I or Sealy",
+   "t_range_mosaic": [
+    -880.0,
+    530.0
+   ],
+   "offset_px": 76.0,
+   "ramp_px": 200.0,
+   "reason": "D-018 duplicated street label, second occurrence on Ave. I. Sheets 43 (west, label band canvas x 25898-25974) and 44 (east, 25917-25998) both letter the avenue across the cut. Moving the cut 76 px west (to ~25870) gives both bands to sheet 44. Sheet 43's last content ends 25777 (93 px clear); sheet 44's west page edge (25693-25772) stays west of the new cut.",
+   "verified_by": "controller (Opus), from per-plate warps and ink-cluster extents at 1:1",
+   "date": "2026-08-18"
   }
  ],
  "version": 1

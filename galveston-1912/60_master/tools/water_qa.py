@@ -51,7 +51,7 @@ check("same input twice gives identical output", d == 0, f"{d:,} px differ")
 del again
 
 print("\n2. upstream untouched")
-r = subprocess.run([sys.executable, f"{ROOT}/90_decisions/checkpoints/verify_pier22_frozen.py"],
+r = subprocess.run([sys.executable, f"{ROOT}/90_decisions/checkpoints/verify_checkpoint.py"],
                    capture_output=True, text=True)
 tail = [l for l in r.stdout.splitlines() if "changed" in l or "byte-identical" in l]
 check("frozen-artefact verifier passes", r.returncode == 0, " | ".join(tail[-2:]))
