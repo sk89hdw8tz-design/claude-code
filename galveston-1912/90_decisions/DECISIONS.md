@@ -606,3 +606,85 @@ orange held, water exact, determinism byte-identical, PDF 40.00 x 25.84 in at 30
 frozen-artefact verifier reports exactly the six files this change legitimately touches (cuts,
 masks, deviations, block master, master_full, compositor) and nothing else. Pier 22 re-verified
 intact after the block re-render. Checkpoint re-baseline deferred until owner approval.
+
+---
+
+## D-020 — Northern wharf yard: smooth ownership cut (two variants, PENDING OWNER APPROVAL)
+
+**Owner report.** Two circled areas in the wharf yard: the compass rose / shed edge, and the
+cotton-seed oil tanks. Shown a three-way comparison of the yard (block plates only / sheet-5
+panel A only / current composite) the owner said *"I think sheet five panel a looks the best"*,
+then asked for both variants below to be built in full.
+
+**Diagnosis — one cause, not two.** The panel/block content frontier over canvas rows 0-6399 is
+a STAIRCASE, not a line. Measured: it lands ON drawn ink in **1816 of 6400 rows (28.4%)**, and
+its largest row-to-row jump is **883 px**. Every large jump that falls on drawn content slices
+it. The compass rose printed cut in half (the step at y~5750 swings the frontier 8512 -> 7605,
+so panel A's blank apron supplies the top of the ornament and sheet 9 the bottom); the dashed
+track work beside the oil tanks was interrupted by rectangular panels of blank apron. This is a
+source-ownership fault, not registration: both plates draw this ground.
+
+**Rejected first — the "ink envelope" frontier (v2/v3).** Measured: it locks onto the block
+plates' own PAGE-EDGE LINE at canvas x 7445-7468 for every row from y 4000 to 9000, dragging a
+page margin into the print and rendering the slip corner twice at two scales. Reverted; the
+compositor was restored byte-identical before this work began. Recorded as F-007.
+
+**Method.** Min-cost path over rows 0-6399, cost `1000 * (cut lands on drawn ink on either
+plate) + 60 * (ink fraction within +-40 px)`. Anchored so row 6399 = canvas x 8161, the D-014
+polyline's first breakpoint, so the approved Pier 22 repair is met with **no ownership step** and
+rows 6400-8999 are byte-unchanged. The cut may never run west of the block plates' page-edge line
+(coverage edge + dark edge run + 8 px). Stated as a 200-breakpoint polyline in
+`50_seams/yard_cut.json`; max deviation from the solved path 2 px. Ownership only — no pixel is
+painted, cloned, blended or interpolated.
+
+**Why the second cost term exists.** A pure on-ink objective scored 0.4% and still looked wrong:
+it threaded the cut BETWEEN the compass rose's spokes, printing a sliver of star with the body
+gone. The metric was satisfied; the picture was not. The proximity term keeps the boundary
+mid-lane and repels it from ornament and lettering. Recorded as F-008 — the sixth automated
+detector on this project to return a confident wrong answer, and the reason every candidate here
+was rendered and looked at before being believed.
+
+| | rows on ink | max row jump |
+|---|---|---|
+| v1 frontier (delivered) | 1816 / 6400 (28.38%) | 883 px |
+| **A — compass kept** | **144 / 6400 (2.25%)** | **2 px** |
+| **B — compass dropped** | **172 / 6400 (2.69%)** | **3 px** |
+
+**Variant A — compass rose kept.** The cut is held west of the ornament so the block plate
+supplies it whole. Keeps every feature the block plates carry there: the compass rose, the
+rail-track numbering, the full `COTTON SEED OIL TANK` lettering, the `Fish Commis. Off.` label
+and the `740` block number.
+
+**Variant B — compass rose dropped.** The cut is held east of the ornament so sheet-5 panel A
+supplies that ground and the compass is suppressed by ownership, as Sanborn page furniture,
+following the D-013 precedent for page numerals. A first attempt constrained only to x 8460 left
+the ornament's long solid pointer (which reaches canvas x 8729) printing as an orphan dark
+sliver; the constraint now covers rows 5450-5899 out to x 8790. Suppressing it whole obliges
+panel A to supply a wider band of the yard through those rows, which also costs the rail-track
+numbering, the `SEED` in the tank labels and the Fish Commission label.
+
+**Plate resolution, measured.** Sheet 5 is a half-scale overview plate (solved scale 1.98761 vs
+the block sheets' 0.993-1.005), so panel A carries about one source pixel per 2x2 canvas pixels.
+Measured on features both plates draw: the block plates resolve line pairs down to ~9-10 canvas
+px separation, panel A needs ~12-13; above 0.15 cycles/px the block carries 5-30x more spectral
+energy. Both survive the 0.458x print downsample, so the plate, not the print, is the limit.
+(Measured by a subagent whose challengers were killed before they could re-verify; stated here
+with that provenance.)
+
+**Recommendation: A.** What made panel A look best in the three-way was the absence of seams,
+not the drawing; smoothing the boundary delivers that without giving up the cartography.
+
+**Verification.** Both variants built end to end. Every content check passes in both QA suites:
+contrast up in all six lettering regions (+2.3% to +21.4%), 0.000% of map content clipped, paper
+within 3 levels of the 1899, yellow and pink saturation ratio 1.00, orange saturation held and
+luminance up, hue shift 0-2 deg, open water exactly (199,214,209), determinism byte-identical,
+PDF 40.00 x 25.84 in at exactly 300.0 DPI. The frozen-artefact verifier reports 35 of 41
+artefacts byte-identical and exactly six changed — four from D-019 (cuts, masks, deviations,
+block master, still pending approval) and two from this decision (master_full, compositor). The
+archival scans, every transform, the inventory, the freeze manifest and the controls are
+untouched. Checkpoint re-baseline deferred until owner approval.
+
+**Deliverables.** `deliverables/variants/Galveston_1912_VARIANT_A_compass_kept.pdf` and
+`..._VARIANT_B_compass_dropped.pdf`, with their print_composition and master_full manifests.
+`50_seams/yard_cut.json` carries both polylines and an `active` selector; it is currently `A`,
+and the canonical deliverable is built from A.

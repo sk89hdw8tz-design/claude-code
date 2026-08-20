@@ -158,3 +158,42 @@ plate keeps its label.
 **Tell.** Regularly spaced hits and values dominated by page edges are the signature of a
 detector measuring its own scaffolding. Same family as F-001 (threshold caught the scanner
 backdrop), F-003 (estimator returned its own floor) and F-005 (exit 0 while writing nothing).
+
+---
+
+## F-007 — The "ink envelope" content frontier (v2/v3)
+
+**Idea.** Replace the density-based frontier with the block plates' own ink envelope: first drawn
+ink per row, closed horizontally to bridge dashed track work, opened to drop specks, backed off
+20 px. Intended to stop panel blank apron from erasing block track work in the northern yard.
+
+**Why it failed.** Measured per row, the envelope sits at canvas x 7445-7468 for EVERY row from
+y 4000 to y 9000 — a dead-straight vertical line. That is not content: it is the block plates'
+page-edge line, which is ink by any threshold and is the westernmost ink on almost every row. The
+frontier therefore handed the block plates' page margin to the print, and rendered the Pier 22
+slip corner twice at two different scales with a hard step between them.
+
+**Tell.** A "content-following" boundary that is constant to within 23 px over 5000 rows is not
+following content. Same family as F-001, F-003, F-004 and F-006: the detector measured its own
+scaffolding.
+
+---
+
+## F-008 — Min-cost ownership cut with a pure on-ink objective
+
+**Idea.** Choose the ownership boundary as the path minimising the number of rows where it lands
+on drawn ink. It scored beautifully: 13 rows out of 3400 (0.4%), against the delivered frontier's
+1257 (37.0%), with a maximum row-to-row wander of 2 px.
+
+**Why it failed.** Rendered, it had sliced the compass rose. A dense ornament has blank gaps
+BETWEEN its strokes, and the objective rewarded threading them: the cut ran up the middle of the
+star, printing a sliver of spokes with the body suppressed. The number was right and the picture
+was wrong.
+
+**Fix.** Add a proximity term — ink fraction within +-40 px of the cut — so the boundary prefers
+the middle of a wide blank lane and is repelled by ornament and lettering, plus an explicit
+protected box for the compass so the choice to keep or drop it is made deliberately rather than
+by the optimiser.
+
+**Tell.** An objective defined on the cut's own pixels cannot see a feature it passes through.
+Every candidate boundary in D-020 was rendered and looked at before it was believed.

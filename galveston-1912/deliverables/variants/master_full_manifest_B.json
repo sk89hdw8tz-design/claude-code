@@ -1,0 +1,678 @@
+{
+ "generated_by": "60_master/tools/composite_wharf.py",
+ "base_master": {
+  "path": "60_master/final/candidate_master.tif",
+  "sha256": "190f20638c423c9ff71b87af32b40b8fe459f3c39b6ba85a6a19f7fdab6d4f1b",
+  "modified": false
+ },
+ "block_render_manifest": {
+  "canvas": {
+   "mosaic_convention": {
+    "axes": "raster pixels, origin top-left, x right, y down",
+    "center": [
+     3326.0,
+     3898.0
+    ],
+    "centered": "p_mosaic = [[a,-b],[b,a]] @ (p_sheet - center) + (tx, ty)",
+    "gauge": "sheet 10 fixed to identity; mosaic frame = sheet 10 centered pixel frame",
+    "raw": "p_mosaic = [[a,-b],[b,a]] @ p_sheet + (raw.tx, raw.ty)  (same rotation/scale; translation composed with the recentring -- use THIS for raw sheet-pixel coordinates)"
+   },
+   "mosaic_rect": [
+    -16734,
+    -8279,
+    9472,
+    6210
+   ],
+   "reserved_bay_band_canvas_px": [
+    0,
+    0,
+    7460,
+    14489
+   ],
+   "reserved_bay_band_verified_empty": true,
+   "scale": 1.0,
+   "size_px": [
+    26206,
+    14489
+   ],
+   "strip_height": 2000
+  },
+  "generated_by": "60_master/tools/render_master.py",
+  "inputs": {
+   "cuts_json": {
+    "sha256": "09da1dc4fa0f681283f39794b6adab37ef84b21aab9a66cc560a04f990016039"
+   },
+   "masks_json": {
+    "sha256": "cd6e9e7f2909e04d38d3e59ac38dc5bc3a2b9cf2e8fffcb5ab9303fc63c04903"
+   },
+   "transforms_json": {
+    "sha256": "a57f3dcb8614c9939f1ab82322f8091167e98ba3122ebed634ff1c8b4f0bf11b"
+   }
+  },
+  "note": "full-resolution candidate; final only after transform freeze",
+  "outputs": {
+   "candidate_master_tif": {
+    "bytes": 552738178,
+    "compression": "lzw",
+    "dtype": "uint8 RGB",
+    "path": "60_master/candidate_master.tif"
+   },
+   "candidate_preview_png": {
+    "path": "60_master/candidate_preview.png",
+    "size_px": [
+     4000,
+     2212
+    ]
+   }
+  },
+  "sheets": [
+   {
+    "canvas_bbox": [
+     7433,
+     0,
+     14154,
+     5364
+    ],
+    "mask_region_ids": [
+     "s07_r0"
+    ],
+    "mask_sha256": "becf8e0a44bae1d0d238d5d406d120c78076aaacd71358ba9dd19c64249e2143",
+    "seconds": 11.91,
+    "sheet": 7,
+    "source_file": "sanborn08539_004_img011_archival.jp2",
+    "source_sha256": "a0c42dde9c8e6f0d3148de82915b2e563d5763c7a4da6f81aaeb508bb1db0e62",
+    "source_sha256_verified_against_inventory": true,
+    "strips_written": 3,
+    "transform_raw": {
+     "a": 1.000272982,
+     "b": 0.008219865,
+     "tx": -9236.309836181,
+     "ty": -10767.985573085
+    },
+    "transform_sha256": "e84ad3ae4b92fd3a037c6afa72908bf430ede51292e5d3b8c24eb8d46f3f3898",
+    "warp": {
+     "border": "white",
+     "compositing": "hard ownership, no blending, no exposure or colour changes",
+     "interpolation": "INTER_LANCZOS4",
+     "mask_interpolation": "INTER_NEAREST",
+     "resamples_from_archival": 1
+    }
+   },
+   {
+    "canvas_bbox": [
+     13477,
+     0,
+     20160,
+     5334
+    ],
+    "mask_region_ids": [
+     "s08_r0"
+    ],
+    "mask_sha256": "851445e5cfc22908eda3a517cdf5c356426e297c92f074af9cf452e8accc64cd",
+    "seconds": 9.49,
+    "sheet": 8,
+    "source_file": "sanborn08539_004_img013_archival.jp2",
+    "source_sha256": "557220abd08263fa3f6e4ae83397b9f095c48158c8fbc8f2c679f14e377f98fe",
+    "source_sha256_verified_against_inventory": true,
+    "strips_written": 3,
+    "transform_raw": {
+     "a": 1.000992656,
+     "b": 0.002706716,
+     "tx": -3235.136956851,
+     "ty": -10767.206607848
+    },
+    "transform_sha256": "10ba3860ebcaf6778baa492aff27c2a7bd8e7c6ab2efb762c506ea5c2333d5c5",
+    "warp": {
+     "border": "white",
+     "compositing": "hard ownership, no blending, no exposure or colour changes",
+     "interpolation": "INTER_LANCZOS4",
+     "mask_interpolation": "INTER_NEAREST",
+     "resamples_from_archival": 1
+    }
+   },
+   {
+    "canvas_bbox": [
+     7405,
+     4395,
+     14024,
+     12148
+    ],
+    "mask_region_ids": [
+     "s09_r0"
+    ],
+    "mask_sha256": "1efa31983474bbc49039b4d5a0b35a1b639b2d8b7cc03184a5557c4dd54841b0",
+    "seconds": 10.13,
+    "sheet": 9,
+    "source_file": "sanborn08539_004_img015_archival.jp2",
+    "source_sha256": "224dc450319645549d20110ca62813b8519ad60b997067623aae8647a1451249",
+    "source_sha256_verified_against_inventory": true,
+    "strips_written": 5,
+    "transform_raw": {
+     "a": 0.993328691,
+     "b": 0.001159056,
+     "tx": -9319.896027064,
+     "ty": -3883.320692057
+    },
+    "transform_sha256": "d8abf910675d409a588b1d471d71e310f8f1718e26d751398c3b5006ba728744",
+    "warp": {
+     "border": "white",
+     "compositing": "hard ownership, no blending, no exposure or colour changes",
+     "interpolation": "INTER_LANCZOS4",
+     "mask_interpolation": "INTER_NEAREST",
+     "resamples_from_archival": 1
+    }
+   },
+   {
+    "canvas_bbox": [
+     13408,
+     4381,
+     20062,
+     12177
+    ],
+    "mask_region_ids": [
+     "s10_r0"
+    ],
+    "mask_sha256": "fac475aca2bcca8635a4400cdba85bbec99d5afd58e52f9926f434c23c5a3053",
+    "seconds": 10.82,
+    "sheet": 10,
+    "source_file": "sanborn08539_004_img017_archival.jp2",
+    "source_sha256": "29ee9408cb043ec973b8d8d7bb3a542f40258142440eee182caf6eace04acd95",
+    "source_sha256_verified_against_inventory": true,
+    "strips_written": 5,
+    "transform_raw": {
+     "a": 1.0,
+     "b": 0.0,
+     "tx": -3326.0,
+     "ty": -3898.0
+    },
+    "transform_sha256": "889ba981f4d1bb91fe91eb1633052a3a0609aafb7b054a37939775361cfb770b",
+    "warp": {
+     "border": "white",
+     "compositing": "hard ownership, no blending, no exposure or colour changes",
+     "interpolation": "INTER_LANCZOS4",
+     "mask_interpolation": "INTER_NEAREST",
+     "resamples_from_archival": 1
+    }
+   },
+   {
+    "canvas_bbox": [
+     7461,
+     11359,
+     14106,
+     14489
+    ],
+    "mask_region_ids": [
+     "s11_r0"
+    ],
+    "mask_sha256": "ea36e74693e0310209a4d245a7ad8cd2cd26948005b9e18e8cf6ac13b2cbe717",
+    "seconds": 8.73,
+    "sheet": 11,
+    "source_file": "sanborn08539_004_img019_archival.jp2",
+    "source_sha256": "e7b2ff1b6b70c5d7124a4879e5feca478d95681224d97b88855de7bade1591df",
+    "source_sha256_verified_against_inventory": true,
+    "strips_written": 3,
+    "transform_raw": {
+     "a": 0.998159942,
+     "b": 0.00017088,
+     "tx": -9270.674972806,
+     "ty": 3080.428653124
+    },
+    "transform_sha256": "26c1d8acda645bff46970e4a780e1e0d0390395b505696545cc4183880870b0f",
+    "warp": {
+     "border": "white",
+     "compositing": "hard ownership, no blending, no exposure or colour changes",
+     "interpolation": "INTER_LANCZOS4",
+     "mask_interpolation": "INTER_NEAREST",
+     "resamples_from_archival": 1
+    }
+   },
+   {
+    "canvas_bbox": [
+     13425,
+     11367,
+     20079,
+     14489
+    ],
+    "mask_region_ids": [
+     "s12_r0"
+    ],
+    "mask_sha256": "b5c389250aba5ca39970c2c8ae908435798b2992fdd364b87f54b9e088c770e4",
+    "seconds": 8.32,
+    "sheet": 12,
+    "source_file": "sanborn08539_004_img021_archival.jp2",
+    "source_sha256": "d2ab9e8aa706bfc1bd41732dbc85f3a23d8097732f92ebc13852276f7843a82f",
+    "source_sha256_verified_against_inventory": true,
+    "strips_written": 3,
+    "transform_raw": {
+     "a": 0.998756311,
+     "b": 0.000856012,
+     "tx": -3301.672828737,
+     "ty": 3088.459815952
+    },
+    "transform_sha256": "d6f91b0e2f1129bb9f2fb39dfa3dff432ac6901b8648aa890945b9e28154e7cb",
+    "warp": {
+     "border": "white",
+     "compositing": "hard ownership, no blending, no exposure or colour changes",
+     "interpolation": "INTER_LANCZOS4",
+     "mask_interpolation": "INTER_NEAREST",
+     "resamples_from_archival": 1
+    }
+   },
+   {
+    "canvas_bbox": [
+     19587,
+     0,
+     26206,
+     5289
+    ],
+    "mask_region_ids": [
+     "s39_r0"
+    ],
+    "mask_sha256": "a26ef662cb6b54836783c0ac9f73d4455efbdd38d750b72704e1db75a1629324",
+    "seconds": 10.32,
+    "sheet": 39,
+    "source_file": "sanborn08539_004_img049_archival.jp2",
+    "source_sha256": "ed732111ccd0586a02829c236c38306550fa5b544c287c58d017e40a16a6a0ee",
+    "source_sha256_verified_against_inventory": true,
+    "strips_written": 3,
+    "transform_raw": {
+     "a": 1.002940362,
+     "b": -6.155e-05,
+     "tx": 2853.755472404,
+     "ty": -10809.91974738
+    },
+    "transform_sha256": "52499ac2ac38a69701238104925ad95f32fc8f9a44edd42ec6096802f4c69c9c",
+    "warp": {
+     "border": "white",
+     "compositing": "hard ownership, no blending, no exposure or colour changes",
+     "interpolation": "INTER_LANCZOS4",
+     "mask_interpolation": "INTER_NEAREST",
+     "resamples_from_archival": 1
+    }
+   },
+   {
+    "canvas_bbox": [
+     25710,
+     0,
+     26206,
+     5324
+    ],
+    "mask_region_ids": [
+     "s40_r0"
+    ],
+    "mask_sha256": "ea6360cf38800c975f4fe22435e5ea5c8d59ac240420b6a6efa6dc61f81d274f",
+    "seconds": 6.54,
+    "sheet": 40,
+    "source_file": "sanborn08539_004_img050_archival.jp2",
+    "source_sha256": "12a04ff5411de391d2a1941dd414e37ee68103da84c34cff1e7c4428a5b37b7f",
+    "source_sha256_verified_against_inventory": true,
+    "strips_written": 3,
+    "transform_raw": {
+     "a": 1.003570459,
+     "b": 0.001127461,
+     "tx": 8985.532715494,
+     "ty": -10786.438309684
+    },
+    "transform_sha256": "38ba77ab829b510c8661ebad2ae96126f5665056dfbf8322e1e5f9c96e63824c",
+    "warp": {
+     "border": "white",
+     "compositing": "hard ownership, no blending, no exposure or colour changes",
+     "interpolation": "INTER_LANCZOS4",
+     "mask_interpolation": "INTER_NEAREST",
+     "resamples_from_archival": 1
+    }
+   },
+   {
+    "canvas_bbox": [
+     19638,
+     4380,
+     26206,
+     12218
+    ],
+    "mask_region_ids": [
+     "s43_r0"
+    ],
+    "mask_sha256": "52e216baf3e65885df9d10bd261084360bca1481d395499bd6e0076bdedd1c70",
+    "seconds": 10.65,
+    "sheet": 43,
+    "source_file": "sanborn08539_004_img053_archival.jp2",
+    "source_sha256": "af7d25e4a6f44a9a9fc6e0c04a4a11b8c12ceb886c8e56b6a2657b6b8b0ecf7a",
+    "source_sha256_verified_against_inventory": true,
+    "strips_written": 5,
+    "transform_raw": {
+     "a": 1.002189193,
+     "b": 0.003624765,
+     "tx": 2933.12006709,
+     "ty": -3898.687579323
+    },
+    "transform_sha256": "4c9a4a44cee91e5219aae317b053faaf78bf1fcb158f3f8a10fef49e52db0743",
+    "warp": {
+     "border": "white",
+     "compositing": "hard ownership, no blending, no exposure or colour changes",
+     "interpolation": "INTER_LANCZOS4",
+     "mask_interpolation": "INTER_NEAREST",
+     "resamples_from_archival": 1
+    }
+   },
+   {
+    "canvas_bbox": [
+     25691,
+     4375,
+     26206,
+     12204
+    ],
+    "mask_region_ids": [
+     "s44_r0"
+    ],
+    "mask_sha256": "957de0de9b6581335d24030e80ff4eacf6a068f5b95a9cbe9e543bb7a0880198",
+    "seconds": 6.83,
+    "sheet": 44,
+    "source_file": "sanborn08539_004_img054_archival.jp2",
+    "source_sha256": "47621807b513de7e8809b9b547c2cd7ded1e3b09e4d861b723c1225e4d4ffea6",
+    "source_sha256_verified_against_inventory": true,
+    "strips_written": 5,
+    "transform_raw": {
+     "a": 1.003710254,
+     "b": 0.000482634,
+     "tx": 8961.118598066,
+     "ty": -3903.290654042
+    },
+    "transform_sha256": "b50b4ceb978548da208fb9de176de4073d6cf569c1442af311f45cb327712570",
+    "warp": {
+     "border": "white",
+     "compositing": "hard ownership, no blending, no exposure or colour changes",
+     "interpolation": "INTER_LANCZOS4",
+     "mask_interpolation": "INTER_NEAREST",
+     "resamples_from_archival": 1
+    }
+   },
+   {
+    "canvas_bbox": [
+     19566,
+     11343,
+     26206,
+     14489
+    ],
+    "mask_region_ids": [
+     "s49_r0"
+    ],
+    "mask_sha256": "29e48a02a68afe1e218de5b5fc9059f4995b94c858a774217253e37ae71c6649",
+    "seconds": 8.25,
+    "sheet": 49,
+    "source_file": "sanborn08539_004_img059_archival.jp2",
+    "source_sha256": "ce9382f5fdedea88527e7a4f38a3ce77c3c83f305b48ebb9366f84bf2151e55b",
+    "source_sha256_verified_against_inventory": true,
+    "strips_written": 3,
+    "transform_raw": {
+     "a": 1.004683861,
+     "b": 0.001143317,
+     "tx": 2840.921500078,
+     "ty": 3064.613601586
+    },
+    "transform_sha256": "c0271bf967a294b279a68b0f44377e7b3025277e960689ce907035b26a06b02a",
+    "warp": {
+     "border": "white",
+     "compositing": "hard ownership, no blending, no exposure or colour changes",
+     "interpolation": "INTER_LANCZOS4",
+     "mask_interpolation": "INTER_NEAREST",
+     "resamples_from_archival": 1
+    }
+   },
+   {
+    "canvas_bbox": [
+     25670,
+     11356,
+     26206,
+     14489
+    ],
+    "mask_region_ids": [
+     "s50_r0"
+    ],
+    "mask_sha256": "2c25abc2ef642bab22ca20fb46a13e9f3ddbc81b041d57f09daefa02aae70437",
+    "seconds": 6.13,
+    "sheet": 50,
+    "source_file": "sanborn08539_004_img060_archival.jp2",
+    "source_sha256": "51ff18dfbe0b22e404b80b4c630b8b95e33ab6df101af7b87ad349f71754fde2",
+    "source_sha256_verified_against_inventory": true,
+    "strips_written": 3,
+    "transform_raw": {
+     "a": 1.003234455,
+     "b": 0.004601279,
+     "tx": 8971.956572906,
+     "ty": 3077.035803186
+    },
+    "transform_sha256": "bec0a6ecbd4da86b249ac6254203fc44c7cc14909948f05a3d7ebe66176b974c",
+    "warp": {
+     "border": "white",
+     "compositing": "hard ownership, no blending, no exposure or colour changes",
+     "interpolation": "INTER_LANCZOS4",
+     "mask_interpolation": "INTER_NEAREST",
+     "resamples_from_archival": 1
+    }
+   }
+  ],
+  "status": "candidate-awaiting-frozen-transforms",
+  "total_seconds": 126.6
+ },
+ "wharf_panels": {
+  "source_scan": {
+   "file": "sanborn08539_004_img009_archival.jp2",
+   "sha256": "1b4dc8be49f5c9bf43a77247fc6ce155f368b0c2b804ecc2caec2a8be88a68de",
+   "sha256_verified_against_inventory": true
+  },
+  "transforms": {
+   "5A": {
+    "a": 1.987505761890113,
+    "b": 0.02058793898396516,
+    "tx": -13912.481013559081,
+    "ty": -15526.283635612665
+   },
+   "5B": {
+    "a": 1.987505761890113,
+    "b": 0.02058793898396516,
+    "tx": -19385.78997367915,
+    "ty": -1775.3821590013622
+   }
+  },
+  "transforms_file_sha256": "92f39b5f2ab4611ec87d74997eda56c5e6f73a80a15bc47664e1d825ab062fd8",
+  "region_polygons": {
+   "geojson_file_sha256": "8385d7b40f5fb556e227303bb27a9b0a74fc6463727962f57aeabce735781b79",
+   "region_A_coords_sha256": "b1fe15a459de9d12906a80b366016d0010c50c595be9f6789b333b3b34a5d795",
+   "region_B_coords_sha256": "e4fff26ec42adef451d89f6cc9aed4de0e9faff3e5dd104e47966c9305dc2f5f"
+  },
+  "divider_exclusion": {
+   "centerline": "x = 3789 + 0.0099*y",
+   "half_width_px": 40,
+   "measured_ink_span_px": "centerline -22..+27"
+  },
+  "scan_edge_insets_px": {
+   "top": 80,
+   "bottom": 96,
+   "left": 250,
+   "right": 70
+  },
+  "warp": {
+   "interpolation": "INTER_LANCZOS4",
+   "mask_interpolation": "INTER_NEAREST",
+   "resamples_from_archival": 1,
+   "compositing": "hard ownership, no blending, no exposure or colour changes"
+  },
+  "block_ownership": "union of the 12 polygon_mosaic rings of 50_seams/masks.json; block master pixels always win",
+  "ab_cut": {
+   "anchor_point_mosaic": [
+    -6837.477230521109,
+    -1145.9375437173142
+   ],
+   "slope_dy_dx": -0.3,
+   "corridor_slope_dy_dx": -0.012459949805384007,
+   "line_at_band_edges_mosaic": [
+    [
+     -9274,
+     -414.9807128736469
+    ],
+    [
+     -16734,
+     1823.0192871263532
+    ]
+   ],
+   "a_owns": "east of the line (smaller mosaic y)",
+   "rationale": "Straight cut anchored at C=(-6837.5,-1145.9) mosaic = midpoint of the A/B-mapped 22nd St street corners (cross_panel_05 P1/P2), i.e. the solved 22nd St cross-panel position; at the Ave A frontage the line passes mid-corridor. The corridor's own direction (dy/dx=-0.0125) extended bayward would slice panel A's Pier 22 shed mid-body (the pier leans across the corridor extension), so the line is tilted to dy/dx=-0.30: its visible portion (bayward of the block-owned boundary x~-9253) runs through open water between Pier 22's landward root and the plate edge. Clearances: A deck root E corner P6_A 167 px, A water-tint apron ~76 px, B deck root W corner P5_B ~366 px. Consequences: panel A's complete Pier 22 depiction renders; panel B's duplicate stub (truncated by its sheet edge) is suppressed; the ~55 ft drafted pier disagreement therefore does not appear as a mid-pier jog. The only drawn ink the cut crosses: B's slip-edge bulkhead line, dead-ending at x~-9233 (inside the block-owned strip, hidden), and A's soft plate-edge water wash in open water. A owns east of the line (smaller mosaic y), B west - verified from the mapped panel centroids (A centroid y=-7715 < B centroid y=6044)."
+  },
+  "pier22_local_ownership_repair": {
+   "decision": "D-014",
+   "class": "source ownership (Case C) -- not registration",
+   "defect": "content frontier ran a mean 151 px (max 324 px) east of sheet 9 drawn content at the Pier 22 rail fan, an artefact of maximum_filter1d(size=281); sheet 5 panel B blank apron then deleted sheet 9 tracks 5 and 7, the T.H. tank house and track-8 label, the west end of the 6\" water main, and severed tracks at a staircase edge",
+   "owner_of_circled_convergence": "sheet 9 (block plate, 2x finer)",
+   "bounded_rows_canvas_y": [
+    6400,
+    9000
+   ],
+   "boundary_polyline_canvas_yx": [
+    [
+     6400,
+     8161
+    ],
+    [
+     6700,
+     8150
+    ],
+    [
+     7000,
+     8168
+    ],
+    [
+     7340,
+     8186
+    ],
+    [
+     7700,
+     8206
+    ],
+    [
+     8000,
+     8216
+    ],
+    [
+     8300,
+     8232
+    ],
+    [
+     8500,
+     8246
+    ],
+    [
+     8600,
+     8210
+    ],
+    [
+     8800,
+     8130
+    ],
+    [
+     9000,
+     8153
+    ]
+   ],
+   "endpoints_equal_frozen_frontier": true,
+   "panel_transforms_changed": false,
+   "block_transforms_changed": false,
+   "pixels_painted_cloned_or_blended": 0
+  },
+  "northern_yard_smooth_cut": {
+   "decision": "D-020",
+   "class": "source ownership -- not registration",
+   "defect": "the v1 density frontier is a staircase; over canvas rows 0-6399 it lands on drawn ink in 1816 of 6400 rows (28.4%) with a largest row-to-row jump of 883 px. The jumps sliced the compass rose in half and interrupted dashed track work beside the cotton-seed oil tanks.",
+   "spec": "50_seams/yard_cut.json",
+   "spec_sha256": "3ba5d48cf83bf729a004b671aa74c2a73c89ba14660c957ccfe500fab970b82d",
+   "active_variant": "B",
+   "variant_description": "compass rose DROPPED - the cut is held east of the ornament and its pointer arms so sheet-5 panel A supplies that ground and the compass is suppressed by ownership",
+   "bounded_rows_canvas_y": [
+    0,
+    6400
+   ],
+   "breakpoints": 200,
+   "measured": {
+    "rows_on_ink": 172,
+    "rows_total": 6400,
+    "pct": 2.69,
+    "max_row_jump_px": 3,
+    "x_range": [
+     7593,
+     8875
+    ],
+    "x_at_row_6399": 8161,
+    "deviation_from_solved_path_px": 2
+   },
+   "meets_d014_anchor_without_step": true,
+   "panel_transforms_changed": false,
+   "block_transforms_changed": false,
+   "pixels_painted_cloned_or_blended": 0
+  },
+  "ownership_stats_px": {
+   "A": {
+    "canvas_subrect_xyxy": [
+     3167,
+     0,
+     10440,
+     8148
+    ],
+    "mask_px_in_canvas": 57212095,
+    "suppressed_by_block_ownership_px": 16747212,
+    "ceded_to_other_panel_by_cut_px": 1340077,
+    "written_px": 39124806
+   },
+   "B": {
+    "canvas_subrect_xyxy": [
+     4801,
+     6737,
+     10437,
+     14489
+    ],
+    "mask_px_in_canvas": 41942093,
+    "suppressed_by_block_ownership_px": 16905871,
+    "ceded_to_other_panel_by_cut_px": 2980644,
+    "written_px": 22055578
+   }
+  },
+  "ownership_map": {
+   "path": "60_master/final/ownership_map.tif",
+   "region_ids": {
+    "s07_r0": 1,
+    "s08_r0": 2,
+    "s09_r0": 3,
+    "s10_r0": 4,
+    "s11_r0": 5,
+    "s12_r0": 6,
+    "s39_r0": 7,
+    "s40_r0": 8,
+    "s43_r0": 9,
+    "s44_r0": 10,
+    "s49_r0": 11,
+    "s50_r0": 12,
+    "panel_A": 13,
+    "panel_B": 14
+   },
+   "convention": "0 = uncovered; 1..N = masks.json region order; then panel A, panel B"
+  }
+ },
+ "outputs": {
+  "master_full_tif": {
+   "path": "60_master/final/master_full.tif",
+   "compression": "lzw",
+   "dtype": "uint8 RGB",
+   "size_px": [
+    26206,
+    14489
+   ],
+   "bytes": 382628727,
+   "sha256": "cf65894fa77a30f9b709439687a6ce96f66910588049328f42082a5d38fbcef5"
+  },
+  "master_full_preview_png": {
+   "path": "60_master/final/master_full_preview.png",
+   "size_px": [
+    4000,
+    2212
+   ]
+  }
+ }
+}

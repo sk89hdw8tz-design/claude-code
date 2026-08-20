@@ -350,6 +350,28 @@ for name, (M, mine_sheet, other_sheet, M_other, owns_east) in panels.items():
             _p22_rows,
             np.array([p[0] for p in P22_CUT], np.float64),
             np.array([p[1] for p in P22_CUT], np.float64))).astype(np.int64)
+        # D-020 -- northern yard smooth ownership cut (50_seams/yard_cut.json).
+        #
+        # The v1 frontier is a STAIRCASE. Over canvas rows 0-6399 it lands on
+        # drawn ink in 1816 of 6400 rows (28.4%) and jumps up to 883 px between
+        # adjacent rows. Every large jump that falls on drawn content slices it:
+        # the compass rose printed cut in half, and the dashed track work beside
+        # the cotton-seed oil tanks was interrupted by rectangular panels of
+        # blank apron. The replacement is a stated polyline whose last
+        # breakpoint EQUALS the D-014 anchor (row 6399, x 8161), so rows
+        # 6400-8999 are unchanged and the two overrides meet with no step.
+        # Ownership only: no pixel is painted, cloned, blended or interpolated.
+        _yc = json.load(open(f'{ROOT}/50_seams/yard_cut.json'))
+        _yv = _yc['variants'][_yc['active']]
+        _yb0, _yb1 = _yc['band_rows_canvas']
+        _ypoly = _yv['polyline_canvas_yx']
+        _frontier[_yb0:_yb1] = np.round(np.interp(
+            np.arange(_yb0, _yb1),
+            np.array([p[0] for p in _ypoly], np.float64),
+            np.array([p[1] for p in _ypoly], np.float64))).astype(np.int64)
+        assert _frontier[6399] == P22_CUT[0][1], (
+            'D-020 must meet the D-014 anchor with no step',
+            _frontier[6399], P22_CUT[0][1])
         del gg, ii, dd, run
     xs = np.arange(x0, x1)[None, :]
     blk = blk_own & (xs >= _frontier[y0:y1, None])
@@ -446,6 +468,26 @@ manifest = {
             'bounded_rows_canvas_y': [P22_Y0, P22_Y1],
             'boundary_polyline_canvas_yx': P22_CUT,
             'endpoints_equal_frozen_frontier': True,
+            'panel_transforms_changed': False,
+            'block_transforms_changed': False,
+            'pixels_painted_cloned_or_blended': 0,
+        },
+        'northern_yard_smooth_cut': {
+            'decision': 'D-020',
+            'class': 'source ownership -- not registration',
+            'defect': 'the v1 density frontier is a staircase; over canvas rows '
+                      '0-6399 it lands on drawn ink in 1816 of 6400 rows '
+                      '(28.4%) with a largest row-to-row jump of 883 px. The '
+                      'jumps sliced the compass rose in half and interrupted '
+                      'dashed track work beside the cotton-seed oil tanks.',
+            'spec': '50_seams/yard_cut.json',
+            'spec_sha256': sha256_file(f'{ROOT}/50_seams/yard_cut.json'),
+            'active_variant': _yc['active'],
+            'variant_description': _yv['description'],
+            'bounded_rows_canvas_y': [_yb0, _yb1],
+            'breakpoints': len(_ypoly),
+            'measured': _yv['measured'],
+            'meets_d014_anchor_without_step': True,
             'panel_transforms_changed': False,
             'block_transforms_changed': False,
             'pixels_painted_cloned_or_blended': 0,
