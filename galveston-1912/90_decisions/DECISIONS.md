@@ -719,3 +719,31 @@ yellow untouched (x1.000). Both QA suites: every content check passes (pink satu
 now 1.01 page-wide, 0.000% clipping, water exact, determinism byte-identical, 300.0 DPI). The
 frozen-artefact verifier reports exactly seven intentional changes: six from D-019/D-020 plus
 `tone_anchors.json` from this decision. Checkpoint re-baseline still deferred until approval.
+
+---
+
+## D-022 — Per-sheet pink-wash equalisation (PENDING OWNER APPROVAL)
+
+**Owner report.** In the D-021 proof, the block-682 pink (Ave A x 23rd, "Feed Hay & Grain")
+reads lighter than the buildings to its left and right.
+
+**Diagnosis.** Not a treatment artefact and not D-021: the difference is in the archival plates
+and is present in the owner's selected print(4). The circled block and its same-sheet neighbour
+(Galveston Hardware) measure IDENTICALLY (S 0.259 in print(4)); the comparison blocks are on
+other sheets. Untreated master: sheet 9 wash S 0.180 vs sheet 11's 0.227 — the 1912 printer
+inked each plate's pink differently. Full survey of the print: s12 0.275, s09 0.286, s10/s43
+0.294, s08 0.314, s39 0.318, s07 0.325, s11 0.345, against the 1899's 0.302.
+
+**Change.** The D-021 pink stage gains a per-region gain table keyed by the compositor's
+ownership map (the D-017/D-019 precedent, applied to the pink pigment instead of the paper):
+each plate's wash is brought to the common 1899 target 0.302 — pale plates up (s12 x1.161
+total, s09 x1.113), rich plates down (s11 x0.923, s07 x0.980); regions with no measurable pink
+keep the global x1.055. Confinement unchanged: pink band, value ramp, orange gate, luma
+preserved, uniform inside each region so a plate's wash moves as one; region boundaries lie in
+blank streets. `tone_match.apply()` now takes the ownership-map path (omitted, it falls back to
+the global gain, keeping tone_qa's slab checks valid).
+
+**Result (built print).** Per-region wash S: 0.298-0.310 (was 0.275-0.345), page-wide median
+exactly 0.302. Block 682 vs 684 vs courthouse now read one weight. Both QA suites pass every
+content check; the frozen-artefact verifier flags the same seven intentional files (the
+tone spec counted once for D-021/D-022). Checkpoint re-baseline still deferred until approval.

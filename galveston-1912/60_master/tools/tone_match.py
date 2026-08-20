@@ -45,6 +45,11 @@ def _spec(path):
             "fh": float(pk["feather_hue_deg"]), "fs": float(pk["feather_sat"]),
             "y0": float(pk["value_ramp"][0]), "y1": float(pk["value_ramp"][1]),
             "g": float(pk["extra_chroma_gain"]),
+            # D-022: per-plate wash equalisation to the common 1899 target,
+            # keyed by the compositor's ownership map (region id -> total gain)
+            "per_region": {int(k): float(v) for k, v in
+                           pk.get("per_region_extra_chroma_gain", {}).items()},
+            "default": float(pk.get("per_region_default", pk["extra_chroma_gain"])),
         }
     return out
 
@@ -84,9 +89,19 @@ def _pink_weight(rgb_u8, pk):
     return wh * ws
 
 
-def apply(img, spec_path):
-    """Return (treated uint8 copy, stats). `img` is RGB uint8, not modified."""
+def apply(img, spec_path, ownership_map_path=None):
+    """Return (treated uint8 copy, stats). `img` is RGB uint8, not modified.
+
+    ownership_map_path: the compositor's ownership_map.tif (canvas-aligned,
+    uint8 region id per pixel, 0 = uncovered). Required when the spec carries
+    per-region pink gains (D-022); those rows use the region's own gain.
+    """
     p = _spec(spec_path)
+    own = None
+    if p["pink"] is not None and p["pink"]["per_region"] and ownership_map_path:
+        import tifffile
+        own = tifffile.imread(ownership_map_path)
+        assert own.shape == img.shape[:2], (own.shape, img.shape)
     H, W = img.shape[:2]
     out = np.empty_like(img)
     K = p["knee"]
@@ -127,7 +142,17 @@ def apply(img, spec_path):
             Vx = x.max(axis=-1, keepdims=True)
             wy = np.clip((Vx - pk["y0"]) / (pk["y1"] - pk["y0"]), 0, 1)
             wp = wp * wy
-            G = G * (1.0 + (pk["g"] - 1.0) * wp)
+            if own is not None:
+                # D-022 per-plate gain, uniform inside each region so a plate's
+                # wash moves as one; region boundaries lie in blank streets
+                g_map = np.full(src.shape[:2], pk["default"], np.float32)
+                strip_own = own[y0:y1]
+                for rid, gv in pk["per_region"].items():
+                    g_map[strip_own == rid] = gv
+                g_px = g_map[..., None]
+            else:
+                g_px = pk["g"]
+            G = G * (1.0 + (g_px - 1.0) * wp)
             n_pink += int((wp > 0.5).sum())
         x = Y + (x - Y) * G
         out[y0:y1] = np.clip(x, 0, 255).astype(np.uint8)
@@ -140,4 +165,6 @@ def apply(img, spec_path):
         "orange_carveout_px": n_orange,
         "pink_wash_boost_px": n_pink,
         "pink_wash_extra_chroma_gain": (p["pink"]["g"] if p["pink"] else None),
+        "pink_per_region_gains": (p["pink"]["per_region"] if p["pink"] else None),
+        "pink_region_source": ("ownership_map" if own is not None else "global"),
     }

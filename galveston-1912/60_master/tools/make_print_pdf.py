@@ -153,7 +153,8 @@ img, ff_stats = paper_flatfield.apply(
 for k, v in ff_stats.items():
     print(f'  {k}: {v}')
 print('applying tone match ...')
-img, tone_stats = tone_match.apply(img, TONE_SPEC)
+img, tone_stats = tone_match.apply(img, TONE_SPEC,
+                                   f'{FINAL}/ownership_map.tif')
 for k, v in tone_stats.items():
     print(f'  {k}: {v}')
 print('applying water treatment ...')
