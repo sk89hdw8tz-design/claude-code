@@ -27,7 +27,8 @@ def _spec(path):
     sh = s["shoulder"]
     ch = s["chroma"]
     oc = s["orange_carveout"]
-    return {
+    pk = s.get("pink_wash_boost")
+    out = {
         "gain": np.array(lv["gain"], np.float32),
         "offset": np.array(lv["offset"], np.float32),
         "knee": float(sh["knee"]),
@@ -35,7 +36,17 @@ def _spec(path):
         "o_h0": float(oc["hue_deg"][0]), "o_h1": float(oc["hue_deg"][1]),
         "o_smin": float(oc["sat_min"]),
         "o_fh": float(oc["feather_hue_deg"]), "o_fs": float(oc["feather_sat"]),
+        "pink": None,
     }
+    if pk:
+        out["pink"] = {
+            "h0": float(pk["hue_deg"][0]), "h1": float(pk["hue_deg"][1]),
+            "smin": float(pk["sat_min"]),
+            "fh": float(pk["feather_hue_deg"]), "fs": float(pk["feather_sat"]),
+            "y0": float(pk["value_ramp"][0]), "y1": float(pk["value_ramp"][1]),
+            "g": float(pk["extra_chroma_gain"]),
+        }
+    return out
 
 
 def _orange_weight(rgb_u8, p):
@@ -54,6 +65,25 @@ def _orange_weight(rgb_u8, p):
     return wh * ws
 
 
+def _pink_weight(rgb_u8, pk):
+    """1.0 inside the pink band (hue wraps through 0 deg), feathered to 0.0.
+
+    Measured on the ORIGINAL pixels, like the orange carve-out, so band
+    membership is stable under the transform (which preserves hue).
+    """
+    hsv = cv2.cvtColor(rgb_u8, cv2.COLOR_RGB2HSV).astype(np.float32)
+    H = hsv[..., 0] * 2.0
+    S = hsv[..., 1] / 255.0
+    fh, fs = pk["fh"], pk["fs"]
+    Hw = np.where(H >= 180.0, H - 360.0, H)      # wrap: band is h0-360..h1
+    h0 = pk["h0"] - 360.0                        # e.g. -30
+    h1 = pk["h1"]                                # e.g. +20
+    wh = np.clip((Hw - (h0 - fh)) / fh, 0, 1) * \
+        np.clip(((h1 + fh) - Hw) / fh, 0, 1)
+    ws = np.clip((S - (pk["smin"] - fs)) / fs, 0, 1)
+    return wh * ws
+
+
 def apply(img, spec_path):
     """Return (treated uint8 copy, stats). `img` is RGB uint8, not modified."""
     p = _spec(spec_path)
@@ -62,6 +92,7 @@ def apply(img, spec_path):
     K = p["knee"]
     R = 255.0 - K
     n_orange = 0
+    n_pink = 0
     for y0 in range(0, H, STRIP):
         y1 = min(y0 + STRIP, H)
         src = img[y0:y1]
@@ -82,6 +113,22 @@ def apply(img, spec_path):
         c_now = np.linalg.norm(x - Y, axis=-1, keepdims=True)
         hold = (c_src * np.maximum(Y, 1.0) / np.maximum(Ys, 1.0)) / np.maximum(c_now, 1e-3)
         G = p["chroma"] + (hold - p["chroma"]) * w
+        # D-021 pink-wash boost: the light pink building wash lands 5% under
+        # the 1899's saturation while the mid and deep red tones already
+        # match, so the extra gain is confined by a luma ramp to the wash and
+        # gated off wherever the orange hold applies. Chroma-only about the
+        # same luma axis: hue and luminance (hence legibility) are untouched.
+        if p["pink"] is not None:
+            pk = p["pink"]
+            wp = _pink_weight(src, pk)[..., None] * (1.0 - w)
+            # ramp on HSV V (max channel) of the POST-transform pixel -- the
+            # statistic the wash/mid/deep subclasses were measured with. (Rec.
+            # 601 luma of the wash is ~187 and would leave the ramp dark.)
+            Vx = x.max(axis=-1, keepdims=True)
+            wy = np.clip((Vx - pk["y0"]) / (pk["y1"] - pk["y0"]), 0, 1)
+            wp = wp * wy
+            G = G * (1.0 + (pk["g"] - 1.0) * wp)
+            n_pink += int((wp > 0.5).sum())
         x = Y + (x - Y) * G
         out[y0:y1] = np.clip(x, 0, 255).astype(np.uint8)
         n_orange += int((w > 0.5).sum())
@@ -91,4 +138,6 @@ def apply(img, spec_path):
         "shoulder_knee": K,
         "chroma_gain": p["chroma"],
         "orange_carveout_px": n_orange,
+        "pink_wash_boost_px": n_pink,
+        "pink_wash_extra_chroma_gain": (p["pink"]["g"] if p["pink"] else None),
     }

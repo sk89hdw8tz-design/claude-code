@@ -688,3 +688,34 @@ untouched. Checkpoint re-baseline deferred until owner approval.
 `..._VARIANT_B_compass_dropped.pdf`, with their print_composition and master_full manifests.
 `50_seams/yard_cut.json` carries both polylines and an `active` selector; it is currently `A`,
 and the canonical deliverable is built from A.
+
+---
+
+## D-021 — Pink-wash saturation match to the 1899 (PENDING OWNER APPROVAL)
+
+**Owner request.** The selected print (print(4), verified byte-identical in image content to the
+D-020 variant A build) will be framed side by side with the 1899; the owner asked for a check
+that the red-ish buildings match, colour changes only, nothing applied without approval.
+
+**Measured (print-to-print, 150 dpi, red/pink class by brightness subclass).** Mid tones and
+deep reds already match the 1899 within 3 levels. The only gap: the LIGHT PINK WASH — 86% of the
+class — at median S 0.286 vs the 1899's 0.302 (ratio 0.947).
+
+**Change.** `pink_wash_boost` in `50_seams/tone_anchors.json`, applied by `tone_match.py` inside
+the D-016 stage: extra chroma gain x1.055 about the same Rec.601 luma axis, confined to the pink
+band (hue 330-20 deg wrapped, S > 0.15, feathered 4 deg / 0.05 like the orange carve-out),
+ramped by HSV value (zero below V 190, full above 215) so the mid and deep tones do not move,
+and gated by (1 - orange weight) so the D-016 orange hold is never double-treated. Luma is
+preserved by construction, so type legibility cannot change.
+
+**Caught during implementation (units mismatch).** The first version ramped on Rec.601 luma; the
+wash's luma is ~187, below the ramp start, so the boost never engaged — pixels changed 0.14%,
+class median x1.000. The slab test caught it before anything shipped; the ramp now uses the max
+channel (HSV V), the same statistic the subclasses were measured with.
+
+**Result (rebuilt print vs the 1899).** Pink wash S 0.302 vs 0.302 — exact; mid (184,133,126)
+vs (185,136,131); deep red (117,81,75) vs (116,80,73); hue and luma unchanged; orange and
+yellow untouched (x1.000). Both QA suites: every content check passes (pink saturation ratio
+now 1.01 page-wide, 0.000% clipping, water exact, determinism byte-identical, 300.0 DPI). The
+frozen-artefact verifier reports exactly seven intentional changes: six from D-019/D-020 plus
+`tone_anchors.json` from this decision. Checkpoint re-baseline still deferred until approval.

@@ -3,16 +3,43 @@
  "purpose": "Colour controls for matching the 1912 print's tone to the 1899 companion sheet. Presentation stage only - never applied to master_full.tif or any archival scan.",
  "measured": {
   "method": "print-to-print at 150 dpi: both PDFs rendered, page margins and water excluded; paper = modal colour (3-level quantisation), ink = mean of the darkest 0.3% by luminance. NOT master-to-print: the master's pre-JPEG blacks (9.8,6.8,6.6) are far deeper than any print black, and fitting across that mismatch would lift the blacks and wash out type.",
-  "sample_px": {"1912": 17833483, "1899": 18060045},
-  "paper_1912": [187.5, 184.5, 172.5],
-  "paper_1899": [238.5, 229.5, 202.5],
-  "ink_1912": [28.3, 23.7, 21.4],
-  "ink_1899": [27.3, 25.2, 14.5]
+  "sample_px": {
+   "1912": 17833483,
+   "1899": 18060045
+  },
+  "paper_1912": [
+   187.5,
+   184.5,
+   172.5
+  ],
+  "paper_1899": [
+   238.5,
+   229.5,
+   202.5
+  ],
+  "ink_1912": [
+   28.3,
+   23.7,
+   21.4
+  ],
+  "ink_1899": [
+   27.3,
+   25.2,
+   14.5
+  ]
  },
  "levels": {
   "model": "per-channel affine y = gain*x + offset, anchored so 1912 ink maps to 1899 ink and 1912 paper to 1899 paper. Per-channel (not 3x3) per the least-complex-model rule: a full 3x3 improved anchor RMS only 12.9 -> 9.6 while allowing channel mixing, i.e. hue shifts.",
-  "gain": [1.3272, 1.2708, 1.2440],
-  "offset": [-10.358, -4.967, -12.097],
+  "gain": [
+   1.3272,
+   1.2708,
+   1.244
+  ],
+  "offset": [
+   -10.358,
+   -4.967,
+   -12.097
+  ],
   "black_check": "master near-black (9.8,6.8,6.6) maps to (2.6,3.7,-3.9) pre-clip - blacks stay black"
  },
  "shoulder": {
@@ -21,16 +48,36 @@
   "why": "a hard levels stretch to the 1899 paper level clips 15.3% of map content to 255; with the knee, 0.00% clips (swept K=200/210/220 on a 3125x3750 master slab; 210 keeps p99 at 233.9 vs the no-knee 244.3 with 2.93% clipped)"
  },
  "chroma": {
-  "gain": 1.30,
+  "gain": 1.3,
   "axis": "Rec.601 luma; only distance from neutral changes, hue and luminance untouched",
   "why": "fitted optimum across paper/yellow/pink anchors (sweep: 1.00 -> mean err 9.0, 1.30 -> 6.6, 1.75 -> 10.3); the 1912 fills are ~2x less saturated than the 1899's at the same hues"
  },
  "orange_carveout": {
-  "hue_deg": [18, 42],
-  "sat_min": 0.30,
+  "hue_deg": [
+   18,
+   42
+  ],
+  "sat_min": 0.3,
   "feather_hue_deg": 4.0,
   "feather_sat": 0.05,
   "chroma_gain_inside": 1.0,
   "why": "the 1899 has no orange class to match: connected components >= 2000 px at 150 dpi give the 1899 two pale-tan blobs (0.080% of page, one building, median 203,172,120) vs nineteen genuinely orange on the 1912 (0.448%, median 160,130,88). An earlier 'orange in both' reading was scattered blend pixels between yellow and pink fills. Orange therefore takes the brightness lift (levels+shoulder) but keeps its own saturation."
+ },
+ "pink_wash_boost": {
+  "decision": "D-021",
+  "hue_deg": [
+   330,
+   20
+  ],
+  "hue_wraps": true,
+  "sat_min": 0.15,
+  "feather_hue_deg": 4.0,
+  "feather_sat": 0.05,
+  "extra_chroma_gain": 1.055,
+  "why": "owner-requested final match of the red/pink building class to the 1899 for side-by-side framing. Measured print-to-print at 150 dpi on the selected print(4): the LIGHT PINK WASH (V>=210, 86% of the class) is the only subclass off - median S 0.286 vs the 1899's 0.302 (ratio 0.947, needs x1.056); the mid (0.306 vs 0.294) and deep-red (0.357 vs 0.373) subclasses already match within tolerance and must not move. Hence the value ramp (HSV V = max channel of the post-transform pixel, the same statistic the subclasses were measured with; the first implementation ramped on Rec.601 luma, whose value for the wash is ~187, so the boost never engaged - caught by the slab test): full boost above V 215, zero below 190, so mid and deep tones are untouched. Gated by (1 - orange weight) so the D-016 orange hold is never double-treated. Luma-preserving chroma-only, like the main chroma step: hue and luminance untouched, legibility contrast unchanged by construction.",
+  "value_ramp": [
+   190.0,
+   215.0
+  ]
  }
 }
