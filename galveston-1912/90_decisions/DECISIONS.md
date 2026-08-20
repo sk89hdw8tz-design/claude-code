@@ -691,7 +691,7 @@ and the canonical deliverable is built from A.
 
 ---
 
-## D-021 — Pink-wash saturation match to the 1899 (PENDING OWNER APPROVAL)
+## D-021 — Pink-wash saturation match to the 1899 (DECLINED BY OWNER, NOT ACTIVE)
 
 **Owner request.** The selected print (print(4), verified byte-identical in image content to the
 D-020 variant A build) will be framed side by side with the 1899; the owner asked for a check
@@ -722,7 +722,7 @@ frozen-artefact verifier reports exactly seven intentional changes: six from D-0
 
 ---
 
-## D-022 — Per-sheet pink-wash equalisation (PENDING OWNER APPROVAL)
+## D-022 — Per-sheet pink-wash equalisation (DECLINED BY OWNER, NOT ACTIVE)
 
 **Owner report.** In the D-021 proof, the block-682 pink (Ave A x 23rd, "Feed Hay & Grain")
 reads lighter than the buildings to its left and right.
@@ -747,3 +747,6 @@ the global gain, keeping tone_qa's slab checks valid).
 exactly 0.302. Block 682 vs 684 vs courthouse now read one weight. Both QA suites pass every
 content check; the frozen-artefact verifier flags the same seven intentional files (the
 tone spec counted once for D-021/D-022). Checkpoint re-baseline still deferred until approval.
+
+
+**D-021/D-022 outcome (2026-08-20).** Shown the full sheet against the untreated build, the owner reported no visible difference and kept the untreated print (print(4) = D-019 + D-020 variant A). Both passes are disabled via `pink_wash_boost.active = false` in `50_seams/tone_anchors.json` and remain there as the measured record. The measurements stand — the wash landed exactly on the 1899 and the per-plate spread collapsed from 0.275-0.345 to 0.298-0.310 — they were simply below the visible threshold at 300 dpi. NOTE: `deliverables/Galveston_1912_Wharf_Downtown_print.pdf` as committed still carries both passes; it was not rebuilt after the decision. Rerun `make_print_pdf.py` to bring the built artefact back in line with the spec. D-019 and D-020 variant A are approved by the owner's selection of print(4).

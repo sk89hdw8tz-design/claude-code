@@ -28,6 +28,8 @@ def _spec(path):
     ch = s["chroma"]
     oc = s["orange_carveout"]
     pk = s.get("pink_wash_boost")
+    if pk and not pk.get("active", True):
+        pk = None          # D-021/D-022 declined by the owner; kept for the record
     out = {
         "gain": np.array(lv["gain"], np.float32),
         "offset": np.array(lv["offset"], np.float32),
