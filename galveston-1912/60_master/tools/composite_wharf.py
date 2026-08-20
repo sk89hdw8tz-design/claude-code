@@ -242,11 +242,21 @@ def east_of_cut(sub_x0, sub_y0, w, h):
     return ys[:, None] < y_line[None, :]
 
 # ---------------------------------------------------------------- block footprint
-block_owned = np.zeros((H, W), np.uint8)
-for r in masks['regions']:
+# ownership_map: 0 = uncovered canvas, 1..N = masks.json region order,
+# N+1 = sheet-5 panel A, N+2 = panel B.  Written alongside the master so
+# downstream presentation stages (paper_flatfield, D-019) can apply
+# per-source corrections at PIXEL accuracy instead of re-deriving ownership.
+ownership_map = np.zeros((H, W), np.uint8)
+region_ids = {}
+for i, r in enumerate(masks['regions'], start=1):
     ring = np.array(r['polygon_mosaic']['exterior'], np.float64) - [CX0, CY0]
-    cv2.fillPoly(block_owned, [np.round(ring).astype(np.int32)], 255)
+    cv2.fillPoly(ownership_map, [np.round(ring).astype(np.int32)], i)
+    region_ids[r['region_id']] = i
     assert not r['polygon_mosaic']['interiors']
+block_owned = (ownership_map > 0).astype(np.uint8) * 255
+PANEL_ID = {'A': len(masks['regions']) + 1, 'B': len(masks['regions']) + 2}
+region_ids['panel_A'] = PANEL_ID['A']
+region_ids['panel_B'] = PANEL_ID['B']
 print('block-owned footprint px:', int((block_owned > 0).sum()))
 
 # ---------------------------------------------------------------- base master
@@ -353,6 +363,8 @@ for name, (M, mine_sheet, other_sheet, M_other, owns_east) in panels.items():
     assert n_mask == n_blk + n_ceded + n_written
     dst = base[y0:y1, x0:x1]
     dst[allowed] = wimg[allowed][:, ::-1]          # BGR -> RGB
+    om = ownership_map[y0:y1, x0:x1]
+    om[allowed] = PANEL_ID[name]
     stats[name] = {
         'canvas_subrect_xyxy': [x0, y0, x1, y1],
         'mask_px_in_canvas': n_mask,
@@ -366,6 +378,15 @@ for name, (M, mine_sheet, other_sheet, M_other, owns_east) in panels.items():
 del block_owned
 
 # ---------------------------------------------------------------- outputs
+# uncovered canvas is exact 255 white; ownership there is meaningless
+white = (base[:, :, 0] == 255) & (base[:, :, 1] == 255) & (base[:, :, 2] == 255)
+ownership_map[white] = 0
+del white
+OWN_TIF = f'{FINAL}/ownership_map.tif'
+print('writing', OWN_TIF)
+tifffile.imwrite(OWN_TIF, ownership_map, compression='lzw', rowsperstrip=1024)
+del ownership_map
+
 print('writing', OUT_TIF)
 tifffile.imwrite(OUT_TIF, base, photometric='rgb', compression='lzw',
                  predictor=True, rowsperstrip=512)
@@ -430,6 +451,10 @@ manifest = {
             'pixels_painted_cloned_or_blended': 0,
         },
         'ownership_stats_px': stats,
+        'ownership_map': {'path': '60_master/final/ownership_map.tif',
+                          'region_ids': region_ids,
+                          'convention': '0 = uncovered; 1..N = masks.json '
+                                        'region order; then panel A, panel B'},
     },
     'outputs': {
         'master_full_tif': {'path': '60_master/final/master_full.tif',

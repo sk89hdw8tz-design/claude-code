@@ -148,9 +148,8 @@ print(f'page mosaic {page_w_mosaic} x {page_h_mosaic}; scale {scale:.6f}; '
 # would be dragged off its exact 1899 value by the levels gain.
 img_orig = img                       # kept for water-mask measurement only
 print('applying per-plate illumination correction ...')
-water_mask = water_treatment.build_mask(img_orig, WATER_SPEC)[0]
-img, ff_stats = paper_flatfield.apply(img, FF_SPEC, ROOT, water=water_mask)
-del water_mask
+img, ff_stats = paper_flatfield.apply(
+    img, FF_SPEC, f'{FINAL}/ownership_map.tif')
 for k, v in ff_stats.items():
     print(f'  {k}: {v}')
 print('applying tone match ...')

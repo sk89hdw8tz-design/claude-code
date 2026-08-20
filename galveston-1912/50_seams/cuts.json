@@ -1530,7 +1530,33 @@
     ],
     "rms_perp_px": 4.545
    },
-   "manual_deviations": [],
+   "manual_deviations": [
+    {
+     "_note_frame": "24th normal ~(0,+1): POSITIVE offset moves the cut SOUTH. t = mosaic_x - 3167.2 = canvas_x - 19901.2.",
+     "date": "2026-08-19",
+     "offset_px": 100.0,
+     "ramp_px": 120.0,
+     "reason": "D-019 chopped page numeral at the Ave C x 24th junction. Sheet 12 prints its own page number '12' with 'GALVESTON, TEXAS.' (glyph bbox canvas x 13681-13908, y 11529-11794) into the intersection; sheets 9, 10 and 11 map that ground as blank street. The cuts clipped it to a floating fragment. Deviating the 24th cut 100 px SOUTH (11713 -> 11813) over x 13849-13965 hands the fragment's pocket to sheet 10, which is measured fully blank there (0 ink px in x 13850-14000, y 11722-11960); west of the Ave C cut sheet 11 already suppresses the rest. The numeral is page furniture, suppressed whole by ownership - consistent with the D-013 precedent and with every other plate's page number, none of which appears mid-print. Sheet 9's date stamp (y 11923+) and page edge (x 13930+, west of Ave C irrelevant) stay clear of the deviation and its ramps.",
+     "street_match": "24th",
+     "t_range_mosaic": [
+      -6052.0,
+      -5936.0
+     ],
+     "verified_by": "controller (Fable), from four-plate junction warps and component bboxes"
+    },
+    {
+     "date": "2026-08-19",
+     "offset_px": 80.0,
+     "ramp_px": 120.0,
+     "reason": "D-019 chopped page numeral at the Ave F x 24th junction. Sheet 49 prints its page number '49' with 'GALVESTON, TEXAS.' (glyph bbox canvas x 19823-20111, y 11534-11789) into the intersection; sheets 10, 43 and 12 map that ground as blank street. Deviating the 24th cut 80 px SOUTH (11722 -> 11802) over x 19876-20141 hands the visible pocket to sheet 43. Sheet 43's only ink there is its own 70-ft street-width figure (x 20079-20128, y 11698-11780), whose top half ALREADY shows on sheet 43's ground - the deviation completes that figure instead of leaving it clipped, while fully suppressing the numeral. Sheet 49's other content (house numbers y 11869+, marks x 20149+) stays clear.",
+     "street_match": "24th",
+     "t_range_mosaic": [
+      -25.0,
+      240.0
+     ],
+     "verified_by": "controller (Fable), from four-plate junction warps and component bboxes"
+    }
+   ],
    "mean_half_street_width_px": 218.804,
    "n_anchors": 8,
    "orientation": "horizontal",
@@ -1540,6 +1566,38 @@
      3425.002
     ],
     [
+     -3004.77,
+     3434.089
+    ],
+    [
+     -2884.91,
+     3534.258
+    ],
+    [
+     -2768.91,
+     3534.42
+    ],
+    [
+     -2648.77,
+     3434.589
+    ],
+    [
+     3022.225,
+     3442.555
+    ],
+    [
+     3142.112,
+     3522.723
+    ],
+    [
+     3407.112,
+     3523.095
+    ],
+    [
+     3527.224,
+     3443.264
+    ],
+    [
      15760.424,
      3460.447
     ]
@@ -1547,6 +1605,38 @@
    "polyline_tn": [
     [
      -12641.753,
+     0.0
+    ],
+    [
+     -6172.0,
+     0.0
+    ],
+    [
+     -6052.0,
+     100.0
+    ],
+    [
+     -5936.0,
+     100.0
+    ],
+    [
+     -5816.0,
+     0.0
+    ],
+    [
+     -145.0,
+     0.0
+    ],
+    [
+     -25.0,
+     80.0
+    ],
+    [
+     240.0,
+     80.0
+    ],
+    [
+     360.0,
      0.0
     ],
     [
@@ -2198,6 +2288,19 @@
       -5950.0
      ],
      "verified_by": "controller (Opus), from per-plate warps and ink-cluster extents at 1:1"
+    },
+    {
+     "_note_frame": "Ave C normal ~(-1,0), so NEGATIVE offset moves the cut EAST. t = mosaic_y - 64.6.",
+     "date": "2026-08-19",
+     "offset_px": -85.0,
+     "ramp_px": 180.0,
+     "reason": "D-019 duplicated street label, s09|s10 segment. Sheets 9 (west, label band canvas x 13762-13913, rows y 7595-8741) and 10 (east, band x 13612-13868) BOTH letter Ave. C or Mechanic here and both bands straddle the midline cut (~13848), printing as a doubled label with an arrow-like tangle. Moving the cut 85 px EAST (to ~13933) puts both bands west of it, so sheet 9 supplies one complete label and sheet 10's duplicate is suppressed by ownership. Clearances: sheet 9's label ends 13913 (20 px); sheet 9's east page edge begins 13953 (20 px); sheet 10's nearest content east of the new cut is its house-number row at 13974 (41 px). Moving WEST instead was rejected: it would delete sheet 9's drawn block face (content to x 13738).",
+     "street_match": "Ave. C or Mechanic",
+     "t_range_mosaic": [
+      -790.0,
+      580.0
+     ],
+     "verified_by": "controller (Fable), from per-plate warps and ink-cluster extents at 1:1"
     }
    ],
    "mean_half_street_width_px": 204.644,
@@ -2225,6 +2328,22 @@
      -5685.406
     ],
     [
+     -2883.662,
+     -905.424
+    ],
+    [
+     -2799.159,
+     -725.19
+    ],
+    [
+     -2802.941,
+     644.805
+    ],
+    [
+     -2888.438,
+     824.569
+    ],
+    [
      -2916.713,
      11067.505
     ]
@@ -2248,6 +2367,22 @@
     ],
     [
      -5750.0,
+     0.0
+    ],
+    [
+     -970.0,
+     0.0
+    ],
+    [
+     -790.0,
+     -85.0
+    ],
+    [
+     580.0,
+     -85.0
+    ],
+    [
+     760.0,
      0.0
     ],
     [

@@ -559,3 +559,50 @@ suites pass; the pre-existing 1 px inter-sheet white slivers fell from 143 to 33
 **Checkpoint re-baselined** as `1912_POST_D018_FROZEN`, now recording component -> PATH -> sha256.
 The original Pier 22 checkpoint stored hashes without paths, which is what let a parser bug read
 as "0 artefacts checked ... OK"; `verify_checkpoint.py` resolves nothing by search.
+
+## D-019 — Pixel-accurate flat-field + remaining label/numeral repairs (2026-08-20) [PENDING OWNER APPROVAL]
+
+**Owner review request:** red-circled areas on four crops of the print — wharf-yard tone
+patchwork, Ave. C labels, Ave. F corridor, Ave. I labels — with instruction to show results
+before finalizing. Before/after evidence delivered as review sheets 1-4; this entry records
+what was changed and why. Commit made to preserve state; the owner has not yet approved.
+
+**1. Wharf-yard patchwork (owner image 1) — my own artifact, root-caused and fixed.** The pale
+rectangles, the grey band around the Elevator conveyor, and the beige steps near the bay
+lettering were all one defect: D-017's flat-field rasterized its region map in 128 px CELLS, so
+gain steps landed NEAR but not ON the ownership seams — misaligned tone rectangles wherever
+ownership is fine-grained (the content-frontier staircase, every panel/block border). Fix:
+`composite_wharf.py` now writes `ownership_map.tif` (uint8 region id per pixel, 0=uncovered,
+1..12 = masks.json order, 13/14 = panels A/B), and `paper_flatfield.py` estimates each region's
+field as before but applies gain PER PIXEL by that map, each region's grid extrapolated over the
+whole cell lattice so bilinear sampling never mixes neighbouring regions. Tone transitions now
+sit exactly on source seams, where matching both sides to the common target makes them
+invisible. Side benefit: the panel-B/sheet-9 tone band at Pier 22 (D-014 "known remaining")
+is gone.
+
+**2. Ave. C s09|s10 doubled label (owner image 2, left circle).** Sheets 9 and 10 both letter
+the avenue at canvas y 7595-8741 and both bands straddled the cut — printed as a tangle with a
+ghost copy. Deviation moves the cut 85 px EAST (to ~13933) so sheet 9 supplies one complete
+label. Moving west was rejected: it would delete sheet 9's drawn block face. Clearances 20/20/41
+px, recorded in manual_deviations.json.
+
+**3. Chopped page numerals at the 24th St junctions (found during the sweep).** Sheets 12 and
+49 print their own page numbers ('12', '49', with 'GALVESTON, TEXAS.') into the Ave C x 24th
+and Ave F x 24th intersections; every neighbour maps that ground as blank street; the cuts
+showed floating fragments. Two 24th-St deviations (offsets +100 / +80 px south over the numeral
+spans) hand the fragment pockets to the blank northern plates — numerals suppressed whole by
+ownership, consistent with D-013 and with every other plate's page number, none of which appears
+mid-print. At the F junction this also completes sheet 43's half-clipped 70-ft width figure.
+
+**4. NOT changed, deliberately: the sideways cross-reference numerals** inside street names
+('AVE. F 10 OR CHURCH', 'AVE. I 39 OR SEALY'). Authentic Sanborn typography — the numeral names
+the adjacent sheet and is printed upright on the plate, hence sideways along the street. Cannot
+be removed by ownership: every flanking plate's label embeds one. Removal would mean erasing
+ink, which the project rules forbid.
+
+**Verification.** Both QA suites pass every content check (contrast up in all six lettering
+regions, 0.000% clipping, paper within 3 levels of the 1899, yellow/pink saturation 1.00,
+orange held, water exact, determinism byte-identical, PDF 40.00 x 25.84 in at 300.0 DPI). The
+frozen-artefact verifier reports exactly the six files this change legitimately touches (cuts,
+masks, deviations, block master, master_full, compositor) and nothing else. Pier 22 re-verified
+intact after the block re-render. Checkpoint re-baseline deferred until owner approval.
