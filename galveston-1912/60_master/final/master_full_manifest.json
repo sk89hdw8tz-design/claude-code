@@ -2,7 +2,7 @@
  "generated_by": "60_master/tools/composite_wharf.py",
  "base_master": {
   "path": "60_master/final/candidate_master.tif",
-  "sha256": "190f20638c423c9ff71b87af32b40b8fe459f3c39b6ba85a6a19f7fdab6d4f1b",
+  "sha256": "697ffa4ba7806930016a924dd3dc91f7fd447f32f80cd7de1c42c15e7f60230a",
   "modified": false
  },
  "block_render_manifest": {
@@ -40,10 +40,10 @@
   "generated_by": "60_master/tools/render_master.py",
   "inputs": {
    "cuts_json": {
-    "sha256": "09da1dc4fa0f681283f39794b6adab37ef84b21aab9a66cc560a04f990016039"
+    "sha256": "abeea961edc2476138e99fc3c8b7984420645abfb483a89c895061c06309e7e2"
    },
    "masks_json": {
-    "sha256": "cd6e9e7f2909e04d38d3e59ac38dc5bc3a2b9cf2e8fffcb5ab9303fc63c04903"
+    "sha256": "3f19add3a5e5b9735fe02983b1865b20d67732dc6dd6fb5c4104595d89e3328c"
    },
    "transforms_json": {
     "sha256": "a57f3dcb8614c9939f1ab82322f8091167e98ba3122ebed634ff1c8b4f0bf11b"
@@ -52,7 +52,7 @@
   "note": "full-resolution candidate; final only after transform freeze",
   "outputs": {
    "candidate_master_tif": {
-    "bytes": 552738178,
+    "bytes": 553138315,
     "compression": "lzw",
     "dtype": "uint8 RGB",
     "path": "60_master/candidate_master.tif"
@@ -76,8 +76,8 @@
     "mask_region_ids": [
      "s07_r0"
     ],
-    "mask_sha256": "becf8e0a44bae1d0d238d5d406d120c78076aaacd71358ba9dd19c64249e2143",
-    "seconds": 11.91,
+    "mask_sha256": "bc5956eb3529c9ed639170e2cebfa3fa679455dfa8240824e6a2bb82deb71a3e",
+    "seconds": 10.75,
     "sheet": 7,
     "source_file": "sanborn08539_004_img011_archival.jp2",
     "source_sha256": "a0c42dde9c8e6f0d3148de82915b2e563d5763c7a4da6f81aaeb508bb1db0e62",
@@ -108,8 +108,8 @@
     "mask_region_ids": [
      "s08_r0"
     ],
-    "mask_sha256": "851445e5cfc22908eda3a517cdf5c356426e297c92f074af9cf452e8accc64cd",
-    "seconds": 9.49,
+    "mask_sha256": "7b2fda3c87659751c3ae79b3a7509bf1c7a4c4b493cbfb0da288ef73d6321de1",
+    "seconds": 8.28,
     "sheet": 8,
     "source_file": "sanborn08539_004_img013_archival.jp2",
     "source_sha256": "557220abd08263fa3f6e4ae83397b9f095c48158c8fbc8f2c679f14e377f98fe",
@@ -140,8 +140,8 @@
     "mask_region_ids": [
      "s09_r0"
     ],
-    "mask_sha256": "1efa31983474bbc49039b4d5a0b35a1b639b2d8b7cc03184a5557c4dd54841b0",
-    "seconds": 10.13,
+    "mask_sha256": "0969fdc73b9197d3da8157ffe6f7a16ce671e6358bba4e2e175beb06a4045bdd",
+    "seconds": 8.11,
     "sheet": 9,
     "source_file": "sanborn08539_004_img015_archival.jp2",
     "source_sha256": "224dc450319645549d20110ca62813b8519ad60b997067623aae8647a1451249",
@@ -172,8 +172,8 @@
     "mask_region_ids": [
      "s10_r0"
     ],
-    "mask_sha256": "fac475aca2bcca8635a4400cdba85bbec99d5afd58e52f9926f434c23c5a3053",
-    "seconds": 10.82,
+    "mask_sha256": "95cc9ffde6b04077be58d9789c4656ecbacd860900a31795251f496c965efaf7",
+    "seconds": 9.2,
     "sheet": 10,
     "source_file": "sanborn08539_004_img017_archival.jp2",
     "source_sha256": "29ee9408cb043ec973b8d8d7bb3a542f40258142440eee182caf6eace04acd95",
@@ -204,8 +204,8 @@
     "mask_region_ids": [
      "s11_r0"
     ],
-    "mask_sha256": "ea36e74693e0310209a4d245a7ad8cd2cd26948005b9e18e8cf6ac13b2cbe717",
-    "seconds": 8.73,
+    "mask_sha256": "36949fd581b072b66177d427da757d323ec0708631c4b32fe442de407a7b3371",
+    "seconds": 6.5,
     "sheet": 11,
     "source_file": "sanborn08539_004_img019_archival.jp2",
     "source_sha256": "e7b2ff1b6b70c5d7124a4879e5feca478d95681224d97b88855de7bade1591df",
@@ -236,8 +236,8 @@
     "mask_region_ids": [
      "s12_r0"
     ],
-    "mask_sha256": "b5c389250aba5ca39970c2c8ae908435798b2992fdd364b87f54b9e088c770e4",
-    "seconds": 8.32,
+    "mask_sha256": "5206e0688fafbad7188e730b613efed52bf8a8edc4c70725e4ab791882d02860",
+    "seconds": 5.82,
     "sheet": 12,
     "source_file": "sanborn08539_004_img021_archival.jp2",
     "source_sha256": "d2ab9e8aa706bfc1bd41732dbc85f3a23d8097732f92ebc13852276f7843a82f",
@@ -268,8 +268,8 @@
     "mask_region_ids": [
      "s39_r0"
     ],
-    "mask_sha256": "a26ef662cb6b54836783c0ac9f73d4455efbdd38d750b72704e1db75a1629324",
-    "seconds": 10.32,
+    "mask_sha256": "cddbd0abb2fcabb96fc072e22cf1c7e98df6e69f85aaa97475d36ac44cd16020",
+    "seconds": 8.63,
     "sheet": 39,
     "source_file": "sanborn08539_004_img049_archival.jp2",
     "source_sha256": "ed732111ccd0586a02829c236c38306550fa5b544c287c58d017e40a16a6a0ee",
@@ -301,7 +301,7 @@
      "s40_r0"
     ],
     "mask_sha256": "ea6360cf38800c975f4fe22435e5ea5c8d59ac240420b6a6efa6dc61f81d274f",
-    "seconds": 6.54,
+    "seconds": 4.19,
     "sheet": 40,
     "source_file": "sanborn08539_004_img050_archival.jp2",
     "source_sha256": "12a04ff5411de391d2a1941dd414e37ee68103da84c34cff1e7c4428a5b37b7f",
@@ -332,8 +332,8 @@
     "mask_region_ids": [
      "s43_r0"
     ],
-    "mask_sha256": "52e216baf3e65885df9d10bd261084360bca1481d395499bd6e0076bdedd1c70",
-    "seconds": 10.65,
+    "mask_sha256": "10cd002dff5f16176730b22aec5caf4343d85d6d35718606b43903068eca67c0",
+    "seconds": 7.82,
     "sheet": 43,
     "source_file": "sanborn08539_004_img053_archival.jp2",
     "source_sha256": "af7d25e4a6f44a9a9fc6e0c04a4a11b8c12ceb886c8e56b6a2657b6b8b0ecf7a",
@@ -365,7 +365,7 @@
      "s44_r0"
     ],
     "mask_sha256": "957de0de9b6581335d24030e80ff4eacf6a068f5b95a9cbe9e543bb7a0880198",
-    "seconds": 6.83,
+    "seconds": 4.41,
     "sheet": 44,
     "source_file": "sanborn08539_004_img054_archival.jp2",
     "source_sha256": "47621807b513de7e8809b9b547c2cd7ded1e3b09e4d861b723c1225e4d4ffea6",
@@ -397,7 +397,7 @@
      "s49_r0"
     ],
     "mask_sha256": "29e48a02a68afe1e218de5b5fc9059f4995b94c858a774217253e37ae71c6649",
-    "seconds": 8.25,
+    "seconds": 6.58,
     "sheet": 49,
     "source_file": "sanborn08539_004_img059_archival.jp2",
     "source_sha256": "ce9382f5fdedea88527e7a4f38a3ce77c3c83f305b48ebb9366f84bf2151e55b",
@@ -429,7 +429,7 @@
      "s50_r0"
     ],
     "mask_sha256": "2c25abc2ef642bab22ca20fb46a13e9f3ddbc81b041d57f09daefa02aae70437",
-    "seconds": 6.13,
+    "seconds": 4.25,
     "sheet": 50,
     "source_file": "sanborn08539_004_img060_archival.jp2",
     "source_sha256": "51ff18dfbe0b22e404b80b4c630b8b95e33ab6df101af7b87ad349f71754fde2",
@@ -452,7 +452,7 @@
    }
   ],
   "status": "candidate-awaiting-frozen-transforms",
-  "total_seconds": 126.6
+  "total_seconds": 100.8
  },
  "wharf_panels": {
   "source_scan": {
@@ -664,8 +664,8 @@
     26206,
     14489
    ],
-   "bytes": 383026019,
-   "sha256": "de588b3e925728d5361d1645b8196af30d9e80722d905a5c44fd7d9638c71f08"
+   "bytes": 383241211,
+   "sha256": "447408a4de12c138e3d909632967b41576e2c5692e06a0b1bd1176286a03c0fc"
   },
   "master_full_preview_png": {
    "path": "60_master/final/master_full_preview.png",

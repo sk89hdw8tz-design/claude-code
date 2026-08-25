@@ -1,7 +1,7 @@
 {
  "source": {
   "path": "60_master/final/master_full.tif",
-  "sha256": "de588b3e925728d5361d1645b8196af30d9e80722d905a5c44fd7d9638c71f08"
+  "sha256": "447408a4de12c138e3d909632967b41576e2c5692e06a0b1bd1176286a03c0fc"
  },
  "map_rect_canvas_xyxy": [
   3324,
@@ -47,7 +47,7 @@
  },
  "paper_flatfield": {
   "regions_with_field": 14,
-  "field_cells_measured": 18308,
+  "field_cells_measured": 18310,
   "gain_clamp": [
    0.9,
    1.45
@@ -59,7 +59,7 @@
   ],
   "cell_canvas_px": 128,
   "gain_min": 0.9442055821418762,
-  "gain_max": 1.300378441810608,
+  "gain_max": 1.3003770112991333,
   "px_clipped_by_gain": 0,
   "region_source": "compositor ownership_map (pixel-accurate)",
   "decision": "D-017",
@@ -81,23 +81,14 @@
   ],
   "shoulder_knee": 210.0,
   "chroma_gain": 1.3,
-  "orange_carveout_px": 7867792,
-  "pink_wash_boost_px": 48447674,
-  "pink_wash_extra_chroma_gain": 1.055,
-  "pink_per_region_gains": {
-   "1": 0.98,
-   "2": 1.016,
-   "3": 1.113,
-   "4": 1.083,
-   "5": 0.923,
-   "6": 1.161,
-   "7": 1.003,
-   "9": 1.083
-  },
-  "pink_region_source": "ownership_map",
+  "orange_carveout_px": 7878833,
+  "pink_wash_boost_px": 0,
+  "pink_wash_extra_chroma_gain": null,
+  "pink_per_region_gains": null,
+  "pink_region_source": "global",
   "decision": "D-016",
   "spec": "50_seams/tone_anchors.json",
-  "spec_sha256": "9494063a6487db6a405fbac39d9e37c3075c7a00ce2618a3a2acae56ad72fbaa",
+  "spec_sha256": "227a3081c57f98b3fe2833ea41835fdc6e30d1f7482586249dcd4355025e32bf",
   "applied_to": "print deliverable only",
   "master_full_tif_modified": false
  },
@@ -105,7 +96,7 @@
   "components_kept": 28,
   "components_total": 2032,
   "enclosed_islands_absorbed_px": 427025,
-  "uncovered_canvas_neutralised_px": 19984048,
+  "uncovered_canvas_neutralised_px": 19984040,
   "water_rgb": [
    199,
    214,
@@ -145,8 +136,8 @@
   "Composited from 14 source regions of the 1912 Sanborn Fire Insurance Map (LOC sanborn08539_004); sheets 5(A,B),7,8,9,10,11,12,39,40,43,44,49,50; land colors as scanned; open water flat-filled to the 1899 companion sheet, the bay beyond 1912 sheet coverage filled likewise and carrying no source detail; per-plate illumination corrected so streets and open ground read one tone; tone and color matched to the 1899 sheet (levels, highlight shoulder, saturation; orange fills brightened only); plate disagreements preserved; wharf plates (100 ft/in) unified to the grid scale of 50 ft/in - printed at approx. 80 ft/in."
  ],
  "sha256": {
-  "Galveston_1912_Wharf_Downtown_print.pdf": "febdb40bb65da26d6d6ee836d3036ebb5b76f09360fcf1841d3fbdd82f1056a3",
-  "Galveston_1912_SelectedArea_HISTORICAL_MASTER.tif": "de588b3e925728d5361d1645b8196af30d9e80722d905a5c44fd7d9638c71f08",
-  "Galveston_1912_Wharf_Downtown_print.jpg": "a1cd9ee572635224a8ccd682667acbcaa3bf1aaedf5c4bba91f1ed813e01210d"
+  "Galveston_1912_Wharf_Downtown_print.pdf": "14b92c6e14a8c1e83f67d3f5b1e2ab1b02e8cde4aa1edb767a47448c22187a46",
+  "Galveston_1912_SelectedArea_HISTORICAL_MASTER.tif": "447408a4de12c138e3d909632967b41576e2c5692e06a0b1bd1176286a03c0fc",
+  "Galveston_1912_Wharf_Downtown_print.jpg": "cf26ced5322c2d3ef2a555bde2ab027fe97d8d451e64f40a6c679fbe2385110d"
  }
 }

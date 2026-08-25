@@ -750,3 +750,65 @@ tone spec counted once for D-021/D-022). Checkpoint re-baseline still deferred u
 
 
 **D-021/D-022 outcome (2026-08-20).** Shown the full sheet against the untreated build, the owner reported no visible difference and kept the untreated print (print(4) = D-019 + D-020 variant A). Both passes are disabled via `pink_wash_boost.active = false` in `50_seams/tone_anchors.json` and remain there as the measured record. The measurements stand — the wash landed exactly on the 1899 and the per-plate spread collapsed from 0.275-0.345 to 0.298-0.310 — they were simply below the visible threshold at 300 dpi. NOTE: `deliverables/Galveston_1912_Wharf_Downtown_print.pdf` as committed still carries both passes; it was not rebuilt after the decision. Rerun `make_print_pdf.py` to bring the built artefact back in line with the spec. D-019 and D-020 variant A are approved by the owner's selection of print(4).
+
+---
+
+## D-023 — Sliced wording along the 21st and 24th St pooled cuts (PENDING OWNER APPROVAL)
+
+**Owner report.** "The wording all the way down 21st or Center St ... and same for 24th St because I
+can't read it (except for past the railroad tracks to the wharf)."
+
+**Diagnosis — one cause, both streets.** The pooled cut runs along the street CENTRELINE, and Sanborn
+letters the street name centred on that same line. So the cut bisects the wording. The plate on each
+side letters the street at a slightly different height, so the surviving half has nothing to meet it:
+the print showed the lower halves of `21ST OR CENTER ST.` with their tops shaved flat, and worse
+further east. The avenues were repaired for this in D-018/D-019; the two numbered streets were never
+audited. Scope held to the owner's: canvas x >= 9200, east of the wharf railroad tracks.
+
+**Detector failure (F-009).** A height filter found nothing real — the defect HALVES the glyphs, so it
+rejected precisely what it was hunting. Replaced with a geometric discriminator: street names sit on
+the centreline, house numbers sit out by the block frontages. Every candidate was then confirmed by
+reading per-plate warps (new tool `60_master/tools/plate_view.py`).
+
+**Seven repairs**, each moving the cut so one plate supplies the whole item; ownership only, no pixel
+painted, cloned or blended:
+
+| street | canvas x | offset | who keeps it |
+|---|---|---|---|
+| 21st | 10771-11612 | -60 (north) | sheet 9's `21ST OR CENTER ST.` |
+| 21st | 16400-17600 | -75 (north) | sheet 10's `21ST OR CENTER ST.` |
+| 21st | 21700-25059 | +113 (south) | sheet 39's street name, `6" W. PIPE` and `Scale of Feet.` with its bar |
+| 24th | 10554-11411 | +93 (south) | sheet 9's `24TH ST.` |
+| 24th | 12629-12985 | -49 (north) | **suppressed**, see below |
+| 24th | 16525-17099 | +127 (south) | sheet 10's `24TH ST.` |
+
+**One suppression rather than a repair.** At 24th x 12629-12985 sheet 9 draws `Scale of Feet.` with its
+graduated bar and sheet 11 maps that ground as blank street. Showing it whole needed the cut 353 px
+south, swallowing a whole block row of sheet 11's frontage. Moving the cut 49 px north instead puts
+the whole assembly on sheet 11's side, suppressed by ownership, leaving clean street — the D-013
+precedent for page furniture. Other intact `Scale of Feet` instances are untouched.
+
+**Amendment to an existing deviation.** The legacy 21st scale-bar deviation's west ramp reached canvas
+x 11537, inside the label repaired here, and would have spiked the cut back to the default midline
+through it. Its west end was moved from t -8232 to -7719 (x 11687 -> 12200); sheet 7's bar and
+lettering measure x 12405-12824, so 205 px of margin remain.
+
+**Two faults caught by the first rebuild, then fixed.** (1) The eastern 21st repair was written as two
+deviations ending at x 22900 and starting at x 23558; the street name's tail runs to x 23300 and was
+still clipped in the ramp between them — merged into one flat span. (2) The second 21st repair's ramps
+had cut into the label's own start (x 16496) and had begun to reveal sheet 10's compass rose at
+x 17675-18570, which the default cut kept suppressed — flat widened to 16400-17600 and the ramp cut to
+70 px so it closes before the ornament, leaving it exactly as it was.
+
+**A rejected option, recorded.** At 24th x 16525-17099 the widest gap put the cut at y 11905. Rejected:
+at 11905 BOTH plates' block frontages (sheet 12 at 11876, sheet 10 at 11920) fall on the suppressed
+side and the frontage line would have vanished. y 11845 keeps sheet 12's, at the cost of a 15 px
+clearance below sheet 10's label.
+
+**Verification.** All seven read whole in the rebuilt master; Pier 22 (D-014), the avenue labels
+(D-018/D-019) and the wharf yard (D-020) re-checked and unchanged. Both QA suites pass every content
+check: contrast up in all six lettering regions, 0.000% clipping, paper within 3 levels of the 1899,
+yellow/pink saturation 1.00, orange held, water exactly (199,214,209), determinism byte-identical,
+40.00 x 25.84 in at exactly 300.0 DPI. The frozen-artefact verifier reports 34 of 41 byte-identical
+and exactly seven changed, all intentional across D-019/D-020/D-021-022/D-023. Archival scans, every
+transform, the inventory and the controls untouched. Checkpoint re-baseline still deferred.

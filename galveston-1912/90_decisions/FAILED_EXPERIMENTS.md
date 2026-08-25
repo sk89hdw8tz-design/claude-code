@@ -197,3 +197,22 @@ by the optimiser.
 
 **Tell.** An objective defined on the cut's own pixels cannot see a feature it passes through.
 Every candidate boundary in D-020 was rendered and looked at before it was believed.
+
+---
+
+## F-009 — Height-filtered detection of sliced street labels
+
+**Idea.** Street names are drawn much larger than house numbers, so filter connected components in the
+street band by glyph height (>= 52 px) to find the labels.
+
+**Why it failed.** It returned rail lines, a compass rose and hydrant marks, and not one real label.
+The defect being hunted CHOPS the glyphs in half, so the surviving fragments are ~30 px tall and the
+height filter rejected exactly the thing it was looking for. Relaxing the threshold then swamped the
+result with house numbers, which are the same height as a chopped street name.
+
+**Fix.** A geometric discriminator instead of a size one: the street NAME is centred on the street
+centreline, house numbers sit out near the block frontages. That property survives the chopping.
+Candidates were then confirmed by reading per-plate warps rather than trusted.
+
+**Tell.** A detector keyed on the very property the defect destroys cannot find the defect. Ask what
+the fault does to the feature before choosing what to measure. Ninth detector failure on this project.

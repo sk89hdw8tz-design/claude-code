@@ -822,16 +822,57 @@
    "manual_deviations": [
     {
      "_note_frame": "t is the street line's along-parameter relative to line_fit.p0 (for 21st: t = mosaic_x - 3184.96); offset along line_fit.normal (+y), so -18 px moves the cut north, clearing the scale bar's top edge (mosaic y -3431) by ~25 px",
+     "amended_by": "D-023",
+     "amended_date": "2026-08-21",
      "date": "2026-08-17",
      "offset_px": -18.0,
      "ramp_px": 150.0,
-     "reason": "Sheet 7's 'Scale of Feet' bar occupies 21st St street space at the cut; default midline clips its label edge. Deviating the cut north gives the whole bar area to sheet 9, which authentically maps that ground as blank street with the continuous 10-inch pipe line - the brief-preferred source-ownership removal of interior furniture. Archival scans untouched.",
+     "reason": "Sheet 7's 'Scale of Feet' bar occupies 21st St street space at the cut; default midline clips its label edge. Deviating the cut north gives the whole bar area to sheet 9, which authentically maps that ground as blank street with the continuous 10-inch pipe line - the brief-preferred source-ownership removal of interior furniture. Archival scans untouched. D-023 amendment: west end moved from t -8232 to -7719 (canvas x 11687 -> 12200). Sheet 7's bar and its lettering measure canvas x 12405-12824 in rows 4845-4925, so 205 px of margin remain; the old west ramp reached canvas x 11537, inside the '21ST OR CENTER ST.' label repaired by D-023, and would have spiked the cut back to the default midline through that label.",
      "street_match": "21st",
      "t_range_mosaic": [
-      -8232.0,
+      -7719.0,
       -6580.0
      ],
      "verified_by": "controller (Fable), from 1:1 sheet-7 crop and solved transforms"
+    },
+    {
+     "date": "2026-08-21",
+     "decision": "D-023",
+     "offset_px": -60.0,
+     "ramp_px": 180.0,
+     "reason": "D-023 sliced street name. The pooled cut runs along the street centreline and sheet 9 letters '21ST OR CENTER ST.' centred on that same line (canvas x 10680-11612, ink rows 4802-4852), so the cut bisected the glyphs: the print showed only their lower halves. Sheet 7 letters the street too but lower (rows 4852-4912), so nothing filled the top. Moving the cut north 60 px (4832 -> 4772) puts sheet 9's whole label on sheet 9's side and suppresses sheet 7's duplicate by ownership. Clearances: sheet 9's label top 4802 (30 px), sheet 7's nearest ink above 4742 (30 px); rows 4752-4792 are blank on BOTH plates across the label's full x span.",
+     "street_match": "21st",
+     "t_range_mosaic": [
+      -9148.0,
+      -8307.0
+     ],
+     "verified_by": "controller (Opus), per-plate warps and row ink profiles at 1:1"
+    },
+    {
+     "date": "2026-08-21",
+     "decision": "D-023",
+     "offset_px": -75.0,
+     "ramp_px": 70.0,
+     "reason": "D-023 sliced street name, second occurrence. Sheet 10 letters '21ST OR CENTER ST.' across the cut (ink rows 4788-4848); sheet 8 letters it lower (4848-4898). Only the bottom 10 px of sheet 10's label survived. Moving the cut north 75 px (4838 -> 4763) gives sheet 10 the whole label and suppresses sheet 8's duplicate. Clearance to sheet 10's label top 25 px; both plates are near-blank at 4758-4768. Range revised after the first rebuild: the west end had cut into the label's own start (sheet 10 letters from canvas x 16496, the old flat began at 16600), and the east ramp reached canvas x 18000, slicing sheet 10's compass rose at 17675-18570 which the default cut had kept suppressed. Flat now 16400-17600 with a 70 px ramp, so the whole label is inside the flat and the ramp closes before the ornament, leaving it suppressed as before.",
+     "street_match": "21st",
+     "t_range_mosaic": [
+      -3519.0,
+      -2319.0
+     ],
+     "verified_by": "controller (Opus), per-plate warps and row ink profiles at 1:1"
+    },
+    {
+     "date": "2026-08-21",
+     "decision": "D-023",
+     "offset_px": 113.0,
+     "ramp_px": 200.0,
+     "reason": "D-023 sliced wording, merged eastern deviation. Covers three items that all belong to sheet 39: '21ST OR CENTER ST.' (its ink runs canvas x 22483-23300), the 6-inch water-main label (x 23558-23967) and 'Scale of Feet.' with its graduated bar (x 24698-25059). These were first written as two deviations ending at x 22900 and starting at x 23558; the first rebuild showed the street name still clipped from x 22920 east, because its tail fell in the ramp between them. Merged into one flat span with offset +113 px (cut 4843 -> 4956), which sits inside sheet 39's blank band at every measured point (4923-5013 at the street name, 4884-5014 at the pipe label). Sheet 43 draws continuously through the default cut here, so it offers no gap; moving south also suppresses its duplicate label and the stray compass pointer that was printing into the street.",
+     "street_match": "21st",
+     "t_range_mosaic": [
+      1781.0,
+      5140.0
+     ],
+     "verified_by": "controller (Opus), per-plate warps, row and column ink profiles at 1:1"
     }
    ],
    "mean_half_street_width_px": 215.774,
@@ -843,12 +884,28 @@
      -3445.129
     ],
     [
-     -5197.037,
-     -3442.745
+     -6143.037,
+     -3443.273
     ],
     [
-     -5047.027,
-     -3460.661
+     -5963.003,
+     -3503.172
+    ],
+    [
+     -5122.003,
+     -3502.703
+    ],
+    [
+     -4942.037,
+     -3442.603
+    ],
+    [
+     -4684.037,
+     -3442.459
+    ],
+    [
+     -4534.027,
+     -3460.375
     ],
     [
      -3395.027,
@@ -857,6 +914,38 @@
     [
      -3245.037,
      -3441.656
+    ],
+    [
+     -404.038,
+     -3440.071
+    ],
+    [
+     -333.996,
+     -3515.032
+    ],
+    [
+     866.004,
+     -3514.363
+    ],
+    [
+     935.962,
+     -3439.324
+    ],
+    [
+     4765.962,
+     -3437.187
+    ],
+    [
+     4965.898,
+     -3324.075
+    ],
+    [
+     8324.898,
+     -3322.201
+    ],
+    [
+     8524.961,
+     -3435.09
     ],
     [
      15772.839,
@@ -869,11 +958,27 @@
      0.0
     ],
     [
-     -8382.0,
+     -9328.0,
      0.0
     ],
     [
-     -8232.0,
+     -9148.0,
+     -60.0
+    ],
+    [
+     -8307.0,
+     -60.0
+    ],
+    [
+     -8127.0,
+     0.0
+    ],
+    [
+     -7869.0,
+     0.0
+    ],
+    [
+     -7719.0,
      -18.0
     ],
     [
@@ -882,6 +987,38 @@
     ],
     [
      -6430.0,
+     0.0
+    ],
+    [
+     -3589.0,
+     0.0
+    ],
+    [
+     -3519.0,
+     -75.0
+    ],
+    [
+     -2319.0,
+     -75.0
+    ],
+    [
+     -2249.0,
+     0.0
+    ],
+    [
+     1581.0,
+     0.0
+    ],
+    [
+     1781.0,
+     113.0
+    ],
+    [
+     5140.0,
+     113.0
+    ],
+    [
+     5340.0,
      0.0
     ],
     [
@@ -1555,6 +1692,45 @@
       240.0
      ],
      "verified_by": "controller (Fable), from four-plate junction warps and component bboxes"
+    },
+    {
+     "date": "2026-08-21",
+     "decision": "D-023",
+     "offset_px": 93.0,
+     "ramp_px": 200.0,
+     "reason": "D-023 sliced street name. Sheet 9 letters '24TH ST.' at rows 11648-11752 and sheet 11 letters it at 11670-11801; the cut at 11712 bisected both. Moving the cut SOUTH 93 px (11712 -> 11805) gives sheet 9 its complete label and suppresses sheet 11's duplicate. Clearance below sheet 9's label 53 px.",
+     "street_match": "24th",
+     "t_range_mosaic": [
+      -9347.0,
+      -8490.0
+     ],
+     "verified_by": "controller (Opus), per-plate warps and row ink profiles at 1:1"
+    },
+    {
+     "date": "2026-08-21",
+     "decision": "D-023",
+     "offset_px": -49.0,
+     "ramp_px": 180.0,
+     "reason": "D-023 mangled 'Scale of Feet.' SUPPRESSED rather than repaired. Sheet 9 draws the scale text with its graduated bar (rows 11681 to ~11790) and sheet 11 maps that ground as blank street. Showing it whole would need the cut 353 px south, swallowing a whole block row of sheet 11's frontage; the cheaper and cleaner repair is to move the cut north 49 px (11714 -> 11665) so the whole assembly falls on sheet 11's side and is suppressed by ownership, leaving clean street. Consistent with D-013 (page furniture suppressed by ownership); other intact 'Scale of Feet' instances elsewhere on the sheet are unaffected.",
+     "street_match": "24th",
+     "t_range_mosaic": [
+      -7272.0,
+      -6916.0
+     ],
+     "verified_by": "controller (Opus), per-plate warps and row ink profiles at 1:1"
+    },
+    {
+     "date": "2026-08-21",
+     "decision": "D-023",
+     "offset_px": 127.0,
+     "ramp_px": 200.0,
+     "reason": "D-023 sliced street name. Sheet 12 letters '24TH ST.' across the cut (rows 11673-11731, only its bottom 13 px survived) and sheet 10 letters it lower at 11760-11830. Sheet 12 offers no clean gap above its label (continuous light ink 11620-11672), so sheet 10 takes the label: moving the cut SOUTH 127 px (11718 -> 11845) gives sheet 10 its whole label and suppresses sheet 12's. 11845 was chosen over the wider gap at 11905 deliberately: at 11905 BOTH plates' block frontages (sheet 12 at 11876, sheet 10 at 11920) fall on the suppressed side and the frontage line would vanish. At 11845 sheet 12 keeps and draws it. Clearance below sheet 10's label 15 px.",
+     "street_match": "24th",
+     "t_range_mosaic": [
+      -3376.0,
+      -2802.0
+     ],
+     "verified_by": "controller (Opus), per-plate warps and row ink profiles at 1:1"
     }
    ],
    "mean_half_street_width_px": 218.804,
@@ -1564,6 +1740,38 @@
     [
      -9474.516,
      3425.002
+    ],
+    [
+     -6379.766,
+     3429.349
+    ],
+    [
+     -6179.897,
+     3522.629
+    ],
+    [
+     -5322.898,
+     3523.833
+    ],
+    [
+     -5122.767,
+     3431.114
+    ],
+    [
+     -4284.768,
+     3432.291
+    ],
+    [
+     -4104.7,
+     3383.544
+    ],
+    [
+     -3748.7,
+     3384.044
+    ],
+    [
+     -3568.769,
+     3433.297
     ],
     [
      -3004.77,
@@ -1580,6 +1788,22 @@
     [
      -2648.77,
      3434.589
+    ],
+    [
+     -408.772,
+     3437.735
+    ],
+    [
+     -208.951,
+     3565.016
+    ],
+    [
+     365.049,
+     3565.822
+    ],
+    [
+     565.227,
+     3439.103
     ],
     [
      3022.225,
@@ -1608,6 +1832,38 @@
      0.0
     ],
     [
+     -9547.0,
+     0.0
+    ],
+    [
+     -9347.0,
+     93.0
+    ],
+    [
+     -8490.0,
+     93.0
+    ],
+    [
+     -8290.0,
+     0.0
+    ],
+    [
+     -7452.0,
+     0.0
+    ],
+    [
+     -7272.0,
+     -49.0
+    ],
+    [
+     -6916.0,
+     -49.0
+    ],
+    [
+     -6736.0,
+     0.0
+    ],
+    [
      -6172.0,
      0.0
     ],
@@ -1621,6 +1877,22 @@
     ],
     [
      -5816.0,
+     0.0
+    ],
+    [
+     -3576.0,
+     0.0
+    ],
+    [
+     -3376.0,
+     127.0
+    ],
+    [
+     -2802.0,
+     127.0
+    ],
+    [
+     -2602.0,
      0.0
     ],
     [
