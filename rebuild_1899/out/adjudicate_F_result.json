@@ -237,6 +237,482 @@
    ],
    "confidence": "medium",
    "note": "Crossing of the N-S dashed 8-in water pipe in Avenue N (labeled 8\" W.PIPE on 72) with the E-W dashed pipe line of the 120-ft 25th St. Offsets agree with tie-71b-72-1 within ~7 px. Note: the solid G&W R.R. track line is drawn east of the pipe on 71b but west of it on 72 - sheets disagree on rail/pipe order."
+  },
+  {
+   "pair": [
+    "71b",
+    "75"
+   ],
+   "id": "tie-71b-75-1",
+   "owner_xy": [
+    3246,
+    3850
+   ],
+   "nbr_xy": [
+    2240,
+    250
+   ],
+   "confidence": "low",
+   "note": "Galveston & Western R.R. solid double track line running N-S in Avenue N (the 14xx/15xx avenue - east side numbers 1501+ on 75, west side ...1424 on 71b) where it crosses the 27th St corridor. LINE feature, vertical: constrains x only; y placed mid-corridor. Note pipe/rail lateral placement disagrees sheet-to-sheet (8-in pipe 24 px W of rail on 71b, 65 px E on 75), so the rail centerline was used."
+  },
+  {
+   "pair": [
+    "71b",
+    "75"
+   ],
+   "id": "tie-71b-75-2",
+   "owner_xy": [
+    2500,
+    3702
+   ],
+   "nbr_xy": [
+    1470,
+    150
+   ],
+   "confidence": "low",
+   "note": "North block front line of 27th St (face of the 1402-1424 block, drawn fully on 71b; on 75 only as a schematic marginal reference line at its top edge). LINE feature, horizontal: y only. The marginal line on 75 shows an avenue gap at x1660-1735 that has no counterpart on 71b - marginal geometry is schematic; treat with caution. No true shared point object exists on this seam (75s T.H. hydrant at x2432 falls beyond 71s trimmed paper edge, where 71 shows only the T.H. label)."
+  },
+  {
+   "pair": [
+    "65",
+    "69"
+   ],
+   "id": "tie-65-69-1",
+   "owner_xy": [
+    1002,
+    3733
+   ],
+   "nbr_xy": [
+    1089,
+    137
+   ],
+   "confidence": "medium",
+   "note": "NE corner of the north-side block with houses 1918-1924 where its front line meets the 20xx avenue (rotated numbers 2026/2028 in avenue on 65; 2102/2104 south segment on 69). On 69 the corner is the jog in its top marginal reference line, which here matches the real avenue edges below it exactly. dy ~ -3596."
+  },
+  {
+   "pair": [
+    "65",
+    "69"
+   ],
+   "id": "tie-65-69-2",
+   "owner_xy": [
+    2237,
+    3729
+   ],
+   "nbr_xy": [
+    2325,
+    137
+   ],
+   "confidence": "medium",
+   "note": "Intersection of the bayou west bank (single black line, blue wash east of it) with the north block-front line of 21st/Centre St (dashed lot line starting at the bank, numbers 2102+ eastward on 65; marginal reference line on 69 ends at the bank). dx (+88) agrees with tie-65-69-1. CAUTION: further south the two sheets draw the bayou bank with very different curvature - bank positions away from this line disagree."
+  },
+  {
+   "pair": [
+    "68",
+    "69"
+   ],
+   "id": "tie-68-69-1",
+   "owner_xy": [
+    3257,
+    2440
+   ],
+   "nbr_xy": [
+    213,
+    2526
+   ],
+   "confidence": "high",
+   "note": "Red fire-alarm box circle numbered 12 in the Avenue P corridor, opposite the dashed-outline building at house 1902 (69) / south of the 1824 block corner with 2226/2228 rotated numbers (68). Unique red circle on this seam; same number 12 on both sheets. Circle center measured (slightly cropped by sheet edge on each side)."
+  },
+  {
+   "pair": [
+    "68",
+    "69"
+   ],
+   "id": "tie-68-69-2",
+   "owner_xy": [
+    3280,
+    1316
+   ],
+   "nbr_xy": [
+    225,
+    1353
+   ],
+   "confidence": "medium",
+   "note": "T.H. hydrant dot in Avenue P at the cross street two blocks north of alarm box 12 (68: SE of the 1822/1824 block corner; 69: NW of the 1902/1904 block front). dx agrees with tie-68-69-1 within ~11 px but dy differs by ~50 px (the sheets also place the street pipe dashes 87 px apart in y) - vertical placement disagreement between sheets."
+  },
+  {
+   "pair": [
+    "69",
+    "70"
+   ],
+   "id": "tie-69-70-1",
+   "owner_xy": [
+    3227,
+    2637
+   ],
+   "nbr_xy": [
+    155,
+    2630
+   ],
+   "confidence": "low",
+   "note": "6-in water pipe dashed line (labeled 6\" W.PIPE on 69) in the E-W street between the 21xx and 22xx blocks, crossing the Av. Q 1/2 corridor. LINE feature, horizontal: y only; x at nominal seam. Overlap is corridor-only. NOTE: 70 draws a T.H. hydrant at (248,2692) in this intersection that 69 omits at the corresponding spot (blank)."
+  },
+  {
+   "pair": [
+    "69",
+    "70"
+   ],
+   "id": "tie-69-70-2",
+   "owner_xy": [
+    3227,
+    1300
+   ],
+   "nbr_xy": [
+    155,
+    1298
+   ],
+   "confidence": "low",
+   "note": "Dashed north edge line of the Not-Opened street two blocks further north, which on both sheets runs up to the bayou bank and stops. LINE feature: y only. The bank endpoint itself disagrees: 69 ends it at its x3080, 70 at its x230 (dx -2850, vs -3072 nominal) - the two sheets draw the bayou ~200 px apart in y as well; bayou geometry untrustworthy across this seam."
+  },
+  {
+   "pair": [
+    "69",
+    "73"
+   ],
+   "id": "tie-69-73-1",
+   "owner_xy": [
+    140,
+    3850
+   ],
+   "nbr_xy": [
+    1210,
+    420
+   ],
+   "confidence": "low",
+   "note": "N-S dashed water-pipe line in the avenue whose rotated numbers read 23xx on 69 (north of 24th) and 2401-2404 on 73 (south of 24th), between the 18xx and 19xx blocks. LINE feature, vertical: x only (dx ~ +1070); y placed mid-corridor. On 69 this pipe elbows into the 24th St pipe at (140,3783); on 73 the junction area is covered by the compass rose."
+  },
+  {
+   "pair": [
+    "69",
+    "73"
+   ],
+   "id": "tie-69-73-2",
+   "owner_xy": [
+    95,
+    3780
+   ],
+   "nbr_xy": [
+    1165,
+    277
+   ],
+   "confidence": "low",
+   "note": "6-in water pipe dashed line running E-W in 24th St (labeled 6 W.PIPE on 73). LINE feature, horizontal: y only. NOTE: 69 draws a T.H. hydrant at (222,3690) at this avenue crossing; 73 shows no dot at the corresponding location."
+  },
+  {
+   "pair": [
+    "69",
+    "74"
+   ],
+   "id": "tie-69-74-1",
+   "owner_xy": [
+    3113,
+    3660
+   ],
+   "nbr_xy": [
+    1088,
+    88
+   ],
+   "confidence": "low",
+   "note": "West edge of the 23xx/24xx avenue at 24th St, north side: on 69 the real SE corner of the 2124-block front line (rotated 2328 in the avenue); on 74 the corresponding jog in its top marginal reference line. Marginal gap on 74 (1088-1322) matches its own real avenue (1093-1288) on the west edge. dx ~ -2025."
+  },
+  {
+   "pair": [
+    "69",
+    "74"
+   ],
+   "id": "tie-69-74-2",
+   "owner_xy": [
+    3105,
+    3900
+   ],
+   "nbr_xy": [
+    1093,
+    378
+   ],
+   "confidence": "low",
+   "note": "Same avenue, south side: on 74 the real NW corner of the block with numbers 2401-2408 rotated (SW corner of avenue at 24th, west of house 2201 block); on 69 the corresponding jog in its bottom marginal reference line at y3900. dx ~ -2012, consistent with tie-69-74-1. Corridor itself is bare of pipes/hydrants on both sheets in the shared stretch."
+  },
+  {
+   "pair": [
+    "64",
+    "65"
+   ],
+   "id": "tie-64-65-1",
+   "owner_xy": [
+    3225,
+    1300
+   ],
+   "nbr_xy": [
+    206,
+    1370
+   ],
+   "confidence": "low",
+   "note": "North block-front line of the E-W street between the 18xx and 19xx blocks (numbers 1823/1824 above on 64; 1902 row on 65), projected across the Avenue P corridor. LINE feature, horizontal: y only; x at nominal seam. Avenue P corridor itself carries no shared ink (no pipes/hydrants/dashes) along this seam."
+  },
+  {
+   "pair": [
+    "64",
+    "65"
+   ],
+   "id": "tie-64-65-2",
+   "owner_xy": [
+    3225,
+    1550
+   ],
+   "nbr_xy": [
+    206,
+    1655
+   ],
+   "confidence": "low",
+   "note": "South block-front line of the same street (1821/1823 row on 64; 1901/1903 row on 65). LINE feature: y only. CAUTION: the two sheets draw this street with different widths across the avenue (250 px on 64 vs 285 px on 65), so the two line ties are mutually inconsistent by ~35 px."
+  },
+  {
+   "pair": [
+    "75",
+    "79"
+   ],
+   "id": "tie-75-79-1",
+   "owner_xy": [
+    3080,
+    3855
+   ],
+   "nbr_xy": [
+    2115,
+    322
+   ],
+   "confidence": "high",
+   "note": "NW corner of the third L-shaped cottage (labeled D. on 79) in the row of four identical cottages on the south side of 30th St, just west of the 50-ft N-S street; counted from the row west end (first cottage has a dashed east wing on both sheets). Corner offsets for cottages 2-4 agree within 12 px (dx ~ -955)."
+  },
+  {
+   "pair": [
+    "75",
+    "79"
+   ],
+   "id": "tie-75-79-2",
+   "owner_xy": [
+    3195,
+    3595
+   ],
+   "nbr_xy": [
+    2245,
+    75
+   ],
+   "confidence": "medium",
+   "note": "NW corner of the narrow X-marked shed on the NORTH side of 30th St at the block corner east of the vertical block line (75) - first of the pair of X-marked outbuildings. dx (-950) agrees with tie-75-79-1. CAUTION: the larger second X-building next to it is drawn ~85x80 px on 75 but ~155x130 px on 79 - footprints disagree, so only this narrow shed corner was used."
+  },
+  {
+   "pair": [
+    "75",
+    "34"
+   ],
+   "id": "tie-75-34-1",
+   "owner_xy": [
+    605,
+    3705
+   ],
+   "nbr_xy": [
+    2315,
+    110
+   ],
+   "confidence": "low",
+   "note": "West corner of the north-side 1302-1324 block at 30th St: real dashed block outline corner on 75; on 34 the corresponding jog in its top marginal reference line. WARNING: dx implied here (+1710) conflicts with the house-number/block-edge alignment (1302 on 75 at x700 vs 1301 on 34 at x2640, real south block edge 75 x605 -> 34 x2560, dx ~ +1950) by ~245 px - 34s marginal line is schematic. Prefer the house-number alignment."
+  },
+  {
+   "pair": [
+    "75",
+    "34"
+   ],
+   "id": "tie-75-34-2",
+   "owner_xy": [
+    605,
+    3708
+   ],
+   "nbr_xy": [
+    2560,
+    248
+   ],
+   "confidence": "low",
+   "note": "Complementary corner pair using real ink on each side of the corridor: 75s dashed NW-block corner (north side, house 1302) vs 34s real SW block-front corner under house 1301 (south side). These are NOT the same physical point (opposite sides of 30th St, ~70 ft apart in y, odd/even half-lot offset in x); usable only as an approximate dx ~ +1955, dy ~ -3460 pairing. No true shared drawn object exists on this seam (34s two T.H. hydrants lie west of 75s coverage; corridor otherwise empty)."
+  },
+  {
+   "pair": [
+    "36",
+    "75"
+   ],
+   "id": "tie-36-75-1",
+   "owner_xy": [
+    3197,
+    363
+   ],
+   "nbr_xy": [
+    126,
+    381
+   ],
+   "confidence": "high",
+   "note": "Red fire-alarm box circle numbered 43 in the Avenue M corridor near the top of both sheets (NE of the 1221/1223 block corner on 36; NW of the 1301 block corner on 75). Same box number on both; unique on this seam. Circle center measured."
+  },
+  {
+   "pair": [
+    "36",
+    "75"
+   ],
+   "id": "tie-36-75-2",
+   "owner_xy": [
+    3226,
+    2622
+   ],
+   "nbr_xy": [
+    210,
+    2643
+   ],
+   "confidence": "medium",
+   "note": "Double-dash water-pipe line in the 80-ft E-W street between the 12xx/13xx blocks (labeled 80 ft on both; 29xx rotated avenue numbers below on both sides) crossing the Avenue M corridor. LINE feature, horizontal: y only; x at nominal seam. dy (+21) agrees with alarm-box tie-36-75-1 (+19)."
+  },
+  {
+   "pair": [
+    "79",
+    "83"
+   ],
+   "id": "tie-79-83-1",
+   "owner_xy": [
+    1275,
+    3685
+   ],
+   "nbr_xy": [
+    288,
+    153
+   ],
+   "confidence": "high",
+   "note": "T.H. hydrant dot on 33rd St at the NE corner of the avenue crossing west of houses 1502 (79, north side) / 1501 (83, south side); labeled T.H. on both, just east of the N-S dashed pipe + solid avenue line pair. Dot centers measured."
+  },
+  {
+   "pair": [
+    "79",
+    "83"
+   ],
+   "id": "tie-79-83-2",
+   "owner_xy": [
+    3227,
+    3790
+   ],
+   "nbr_xy": [
+    2262,
+    273
+   ],
+   "confidence": "medium",
+   "note": "Junction of the N-S dashed avenue pipe with the E-W 10-in water pipe of 33rd St at the avenue crossing east of houses 1624 (79) / 1623-Drugs corner store (83), where the pipe label changes to 8\" W.PIPE on 83. dx/dy agree with tie-79-83-1 within ~22 px. NOTE: 79's second T.H. hydrant at (3288,3668) matches 83's dot at (2328,149) (found later, east of the initial crop) - dx -960, consistent."
+  },
+  {
+   "pair": [
+    "80",
+    "83"
+   ],
+   "id": "tie-80-83-1",
+   "owner_xy": [
+    238,
+    3703
+   ],
+   "nbr_xy": [
+    2328,
+    149
+   ],
+   "confidence": "high",
+   "note": "T.H. hydrant dot on 33rd St NE of the avenue crossing west of houses 1702 (80, north side) / 1701 (83, south side); labeled T.H. on both, east of the N-S dashed avenue pipe. Same physical hydrant also appears on sheet 79 at (3288,3668)."
+  },
+  {
+   "pair": [
+    "80",
+    "83"
+   ],
+   "id": "tie-80-83-2",
+   "owner_xy": [
+    147,
+    3800
+   ],
+   "nbr_xy": [
+    2255,
+    265
+   ],
+   "confidence": "medium",
+   "note": "Junction of the N-S dashed avenue pipe (16xx/17xx avenue) with the E-W water pipe of 33rd St (10\" W.P. label on 80 west of it; 8\" W.PIPE on 83/80 east). Offsets agree with tie-80-83-1 within ~20 px."
+  },
+  {
+   "pair": [
+    "83",
+    "30"
+   ],
+   "id": "tie-83-30-1",
+   "owner_xy": [
+    2775,
+    3850
+   ],
+   "nbr_xy": [
+    2790,
+    300
+   ],
+   "confidence": "low",
+   "note": "East edge line of the wide N-S avenue (rotated numbers 3529/3531 on 83 north of 36th; 3601-3607 on 30 south of it) - the line runs unbroken through the unopened/unpaved 36th St corridor on both sheets. LINE feature, vertical: x only. West edge line gives dx +38 vs +15 here (23 px internal disagreement). Corridor contents disagree: 83 draws a red-brown double-dashed track at its x2572 inside the avenue that 30 omits; 30 draws a solid double lane at its x2200-2215 west of the avenue that 83 omits."
+  },
+  {
+   "pair": [
+    "83",
+    "30"
+   ],
+   "id": "tie-83-30-2",
+   "owner_xy": [
+    400,
+    3795
+   ],
+   "nbr_xy": [
+    400,
+    140
+   ],
+   "confidence": "low",
+   "note": "North block-front line of 36th St (real line on 83; schematic top marginal reference line on 30). LINE feature, horizontal: y only. Weak - 30s marginal line is schematic; no true shared point object exists on this seam (36th is Not Opened here and the corridor is empty on both sheets)."
+  },
+  {
+   "pair": [
+    "32",
+    "83"
+   ],
+   "id": "tie-32-83-1",
+   "owner_xy": [
+    3181,
+    2699
+   ],
+   "nbr_xy": [
+    112,
+    2703
+   ],
+   "confidence": "high",
+   "note": "Red fire-alarm box circle numbered 57 in the Avenue N corridor (G&W R.R. avenue), opposite the corner-store house 1501/1421-1425 blocks. Same box number on both sheets; unique on this seam. Circle center measured."
+  },
+  {
+   "pair": [
+    "32",
+    "83"
+   ],
+   "id": "tie-32-83-2",
+   "owner_xy": [
+    3227,
+    240
+   ],
+   "nbr_xy": [
+    211,
+    250
+   ],
+   "confidence": "medium",
+   "note": "Dashed water-pipe line of 33rd St (top street on both sheets) where it crosses the Avenue N corridor. LINE feature, horizontal: y only; x at nominal seam. dy (+10) consistent with tie-32-83-1 (+4)."
   }
  ]
 }

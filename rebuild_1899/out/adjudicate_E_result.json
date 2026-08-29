@@ -287,6 +287,405 @@
    ],
    "confidence": "medium",
    "note": "NW corner of block 195 (south of 15th, east of the 900-block 20-ft street, houses 913-923); reference outline on 56 partially covered by the printed 57 numeral, full block on 57; offsets from the hydrant tie agree within ~6 px"
+  },
+  {
+   "pair": [
+    "56",
+    "58"
+   ],
+   "id": "tie-56-58-1",
+   "owner_xy": [
+    1742,
+    3685
+   ],
+   "nbr_xy": [
+    745,
+    157
+   ],
+   "confidence": "high",
+   "note": "T.H. hydrant NE of 15th St and the 1000-block 20-ft street (houses 1012/1014 on 56 = 1011/1013 on 58); anchored by the 56 sheet-ref numeral above it on 58 and the 58 numeral below the street on 56"
+  },
+  {
+   "pair": [
+    "56",
+    "58"
+   ],
+   "id": "tie-56-58-2",
+   "owner_xy": [
+    2751,
+    3690
+   ],
+   "nbr_xy": [
+    1757,
+    154
+   ],
+   "confidence": "high",
+   "note": "T.H. hydrant NE of 15th St and the 1100-block 20-ft street (houses 1112/1114 on 56 = 1111/1113 on 58); one block east of the 1000-block twin, verified by house numbers on both sheets"
+  },
+  {
+   "pair": [
+    "56",
+    "59"
+   ],
+   "id": "tie-56-59-1",
+   "owner_xy": [
+    3203,
+    1550
+   ],
+   "nbr_xy": [
+    229,
+    1557
+   ],
+   "confidence": "medium",
+   "note": "Red fire-alarm box disk 24 in the Avenue L corridor near 14th St (NE of 56 block 73 house 1123/1302 corner; NW of 59 corner drugstore 1301). Unique number so identity certain; medium because each sheet places the symbol at a slightly different spot within the avenue. Only shared point feature on this butt-joint seam - rest of corridor is bare"
+  },
+  {
+   "pair": [
+    "51",
+    "52"
+   ],
+   "status": "featureless",
+   "note": "Butt joint on Av J (Broadway): 51 draws only the west ~110px of the 80-ft boulevard east of its blocks 186-188 (even columns 602-828), 52 only the east ~150px west of its blocks 126-128 (odd columns 601-827). Both print AV. J. OR BROADWAY and the neighbor sheet numeral, but the shared corridor is bare paper - no hydrants, esplanade detail, or alarm boxes"
+  },
+  {
+   "pair": [
+    "52",
+    "54"
+   ],
+   "id": "tie-52-54-1",
+   "owner_xy": [
+    254,
+    3881
+   ],
+   "nbr_xy": [
+    1357,
+    377
+   ],
+   "confidence": "high",
+   "note": "NW corner of block 129 (SE corner of 9th St and Av J/Broadway, house 1001); reference outline on 52 next to its 80-ft Broadway width label, full block on 54; anchored by Broadway and the 900/1000 house-number change"
+  },
+  {
+   "pair": [
+    "52",
+    "54"
+   ],
+   "id": "tie-52-54-2",
+   "owner_xy": [
+    686,
+    3881
+   ],
+   "nbr_xy": [
+    1782,
+    378
+   ],
+   "confidence": "high",
+   "note": "Corner where block 129 outline resumes east of the 20-ft street (houses 1011/1013 south side = 1012/1014 north side); outline on 52, full block on 54; G&W RR (not used) runs along 9th St on both sheets confirming the corridor"
+  },
+  {
+   "pair": [
+    "52",
+    "66"
+   ],
+   "id": "tie-52-66-1",
+   "owner_xy": [
+    2699,
+    3685
+   ],
+   "nbr_xy": [
+    760,
+    167
+   ],
+   "confidence": "high",
+   "note": "T.H. hydrant NE of 9th St and the 1200-block 20-ft street (houses 1212/1214 on 52 = 1211/1213 on 66); anchored by the 20-ft label and G&W RR (not used) corridor on both sheets"
+  },
+  {
+   "pair": [
+    "52",
+    "66"
+   ],
+   "id": "tie-52-66-2",
+   "owner_xy": [
+    2693,
+    3634
+   ],
+   "nbr_xy": [
+    748,
+    122
+   ],
+   "confidence": "high",
+   "note": "SW corner of the block segment north of 9th St east of the same 20-ft street (house 1214 side); 52 own block edge, reference outline on 66; offset to the hydrant matches on both sheets"
+  },
+  {
+   "pair": [
+    "60",
+    "62"
+   ],
+   "id": "tie-60-62-1",
+   "owner_xy": [
+    2680,
+    3651
+   ],
+   "nbr_xy": [
+    1753,
+    128
+   ],
+   "confidence": "high",
+   "note": "SW corner of the block segment north of 15th St, east of the 1700-block 20-ft street (house 1714 on 60); 60 own block edge, reference outline on 62; anchored by the 6-in W.PIPE 20-ft street and house numbers 1710-1716 / 1701-1723"
+  },
+  {
+   "pair": [
+    "60",
+    "62"
+   ],
+   "id": "tie-60-62-2",
+   "owner_xy": [
+    2693,
+    3694
+   ],
+   "nbr_xy": [
+    1776,
+    145
+   ],
+   "confidence": "medium",
+   "note": "T.H. hydrant NE of 15th St and the same 20-ft street; identity certain but 62 draws the dot ~30px closer to the block line than 60 does"
+  },
+  {
+   "pair": [
+    "60",
+    "61"
+   ],
+   "id": "tie-60-61-1",
+   "owner_xy": [
+    677,
+    3898
+   ],
+   "nbr_xy": [
+    2778,
+    372
+   ],
+   "confidence": "high",
+   "note": "NW corner of the block south of 15th St east of the 1500-block 20-ft street (house 1513 on 61); reference outline on 60 beside its printed 61 numeral, full block on 61; anchored by houses 1511/1513 and 1512/1514 flanking the same 20-ft street"
+  },
+  {
+   "pair": [
+    "60",
+    "61"
+   ],
+   "id": "tie-60-61-2",
+   "owner_xy": [
+    605,
+    3898
+   ],
+   "nbr_xy": [
+    2715,
+    378
+   ],
+   "confidence": "high",
+   "note": "NE corner of the block south of 15th St west of the same 20-ft street (house 1511 side); outline on 60, full block on 61. Note 61 top also spans sheet 59 to its west (1400 block) - number rows repeat, identification counted from the 20-ft street and the 1500-block corner"
+  },
+  {
+   "pair": [
+    "59",
+    "60"
+   ],
+   "id": "tie-59-60-1",
+   "owner_xy": [
+    3160,
+    3688
+   ],
+   "nbr_xy": [
+    91,
+    3662
+   ],
+   "confidence": "medium",
+   "note": "T.H. hydrant on the west side of Avenue N just north of 15th St (below houses 1422/1424 on 59, opposite house 1502 corner on 60); identified by being the only hydrant at the 15th/Ave N corner; medium because each sheet offsets the symbol differently from the G&W RR track that runs down the avenue. Corridor otherwise bare butt joint - the RR line is shared but continuous (no point), so no second tie"
+  },
+  {
+   "pair": [
+    "61",
+    "62"
+   ],
+   "id": "tie-61-62-1",
+   "owner_xy": [
+    3182,
+    2514
+   ],
+   "nbr_xy": [
+    111,
+    2503
+   ],
+   "confidence": "high",
+   "note": "T.H. hydrant in the Avenue N1/2 corridor just north of the 6-in W.PIPE cross line (pipe dashes at y2625 on both sheets); only hydrant on this seam, below houses 1522/1524 (61) opposite 62 block west face. Butt-joint corridor otherwise bare - no second point feature"
+  },
+  {
+   "pair": [
+    "62",
+    "64"
+   ],
+   "id": "tie-62-64-1",
+   "owner_xy": [
+    1308,
+    3688
+   ],
+   "nbr_xy": [
+    1322,
+    168
+   ],
+   "confidence": "high",
+   "note": "T.H. hydrant north side of 18th St just SW of house 1702 (62) = west of house 1701 (64), at the avenue corner of the 1700 block; only hydrant on this stretch, dashed avenue line ~55px west on both sheets"
+  },
+  {
+   "pair": [
+    "62",
+    "64"
+   ],
+   "id": "tie-62-64-2",
+   "owner_xy": [
+    1316,
+    3650
+   ],
+   "nbr_xy": [
+    1358,
+    124
+   ],
+   "confidence": "medium",
+   "note": "SW corner of the 1700 block north of 18th St (house 1702/1727 corner); 62 own block edge, reference outline on 64; medium - outline on 64 is drawn slightly wider than 62s block edge (corner offsets differ ~25px)"
+  },
+  {
+   "pair": [
+    "36",
+    "33"
+   ],
+   "id": "tie-36-33-1",
+   "owner_xy": [
+    323,
+    3648
+   ],
+   "nbr_xy": [
+    2361,
+    154
+   ],
+   "confidence": "high",
+   "note": "SW corner of block 149 (house 1002, column 2921-2925) north of 30th St; 36 own block edge, reference outline on 33; anchored by T.H. hydrant just below and the 1000-block house numbers on both sheets"
+  },
+  {
+   "pair": [
+    "36",
+    "33"
+   ],
+   "id": "tie-36-33-2",
+   "owner_xy": [
+    292,
+    3680
+   ],
+   "nbr_xy": [
+    2364,
+    223
+   ],
+   "confidence": "medium",
+   "note": "T.H. hydrant NW of 30th St and the avenue at block 149 SW corner (west of house 1002 on 36 = 1001 on 33); identity certain, but 36 draws it ~30px west of the corner while 33 draws it directly below"
+  },
+  {
+   "pair": [
+    "36",
+    "34"
+   ],
+   "id": "tie-36-34-1",
+   "owner_xy": [
+    1333,
+    3671
+   ],
+   "nbr_xy": [
+    275,
+    156
+   ],
+   "confidence": "medium",
+   "note": "T.H. hydrant NW of 30th St at SW corner of block 89 (west of house 1102 on 36 = 1101 on 34); identity anchored by block corner/column 2927 above it; medium - symbol sits ~30px differently relative to the dashed avenue on the two sheets"
+  },
+  {
+   "pair": [
+    "36",
+    "34"
+   ],
+   "id": "tie-36-34-2",
+   "owner_xy": [
+    2338,
+    3700
+   ],
+   "nbr_xy": [
+    1308,
+    157
+   ],
+   "confidence": "high",
+   "note": "T.H. hydrant NW of 30th St at SW corner of block 29 (below corner store S/1202 on 36, west of 1201 on 34); ~130-150px east of the dashed avenue on both sheets"
+  },
+  {
+   "pair": [
+    "35",
+    "36"
+   ],
+   "id": "tie-35-36-1",
+   "owner_xy": [
+    3090,
+    1341
+   ],
+   "nbr_xy": [
+    124,
+    1304
+   ],
+   "confidence": "low",
+   "note": "Red fire-alarm box 41 at the cross-street/Broadway corner (SE of house 924 on 35); unique number so identity certain, but 35 draws it against its own block edge while 36 draws it mid-corridor - expect ~100px x-bias; y is trustworthy"
+  },
+  {
+   "pair": [
+    "35",
+    "36"
+   ],
+   "id": "tie-35-36-2",
+   "owner_xy": [
+    3209,
+    2612
+   ],
+   "nbr_xy": [
+    188,
+    2621
+   ],
+   "confidence": "low",
+   "note": "Junction of the E-W 6-in water pipe with the pipe running down Av J/Broadway (elbow on 35, tee on 36); plausibly the same main drawn on each sheets own side of the avenue - y reliable, x uncertain. Broadway butt joint has no better shared point feature"
+  },
+  {
+   "pair": [
+    "38",
+    "36"
+   ],
+   "id": "tie-38-36-1",
+   "owner_xy": [
+    3112,
+    3928
+   ],
+   "nbr_xy": [
+    3196,
+    363
+   ],
+   "confidence": "high",
+   "note": "Red fire-alarm box 43 south of 27th St, NE of block corner house 1223/2702; unique printed number on both sheets (38 draws it at its trimmed bottom edge)"
+  },
+  {
+   "pair": [
+    "38",
+    "36"
+   ],
+   "id": "tie-38-36-2",
+   "owner_xy": [
+    1703,
+    3771
+   ],
+   "nbr_xy": [
+    1768,
+    162
+   ],
+   "confidence": "high",
+   "note": "T.H. hydrant NE of 27th St and the 1100-block 20-ft street (houses 1112/1114 on 38 = 1111/1113 on 36), ~30px east of the dashed street on both; the 38/36 ref numerals are printed right at it"
   }
  ]
 }

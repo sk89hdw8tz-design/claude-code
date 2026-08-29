@@ -1,0 +1,1421 @@
+{
+ "units": [
+  "60",
+  "61",
+  "67",
+  "68",
+  "69",
+  "73",
+  "74",
+  "75",
+  "76",
+  "77",
+  "78",
+  "81",
+  "82",
+  "83",
+  "84",
+  "85",
+  "86",
+  "90",
+  "91",
+  "92",
+  "93",
+  "94",
+  "95",
+  "99"
+ ],
+ "seams": [
+  {
+   "unit": "60",
+   "pair": [
+    "60",
+    "48"
+   ],
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)",
+   "owner_img": "work/sheets/1912w/u60.jpg",
+   "nbr_img": "work/sheets/1912w/u48.jpg",
+   "owner_native": 2182,
+   "nbr_native": 227
+  },
+  {
+   "unit": "60",
+   "pair": [
+    "54",
+    "60"
+   ],
+   "axis": "h",
+   "boundary": "street 27",
+   "owner_img": "work/sheets/1912w/u54.jpg",
+   "nbr_img": "work/sheets/1912w/u60.jpg",
+   "owner_native": 6400,
+   "nbr_native": 862
+  },
+  {
+   "unit": "60",
+   "pair": [
+    "59",
+    "60"
+   ],
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)",
+   "owner_img": "work/sheets/1912w/u59.jpg",
+   "nbr_img": "work/sheets/1912w/u60.jpg",
+   "owner_native": 2235,
+   "nbr_native": 214
+  },
+  {
+   "unit": "60",
+   "pair": [
+    "60",
+    "66"
+   ],
+   "axis": "h",
+   "boundary": "street 30",
+   "owner_img": "work/sheets/1912w/u60.jpg",
+   "nbr_img": "work/sheets/1912w/u66.jpg",
+   "owner_native": 4177,
+   "nbr_native": 934
+  },
+  {
+   "unit": "61",
+   "pair": [
+    "16",
+    "61"
+   ],
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)",
+   "owner_img": "work/sheets/1912w/u16.jpg",
+   "nbr_img": "work/sheets/1912w/u61.jpg",
+   "owner_native": 2362,
+   "nbr_native": 178
+  },
+  {
+   "unit": "61",
+   "pair": [
+    "55",
+    "61"
+   ],
+   "axis": "h",
+   "boundary": "street 30",
+   "owner_img": "work/sheets/1912w/u55.jpg",
+   "nbr_img": "work/sheets/1912w/u61.jpg",
+   "owner_native": 4166,
+   "nbr_native": 716
+  },
+  {
+   "unit": "61",
+   "pair": [
+    "61",
+    "62"
+   ],
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)",
+   "owner_img": "work/sheets/1912w/u61.jpg",
+   "nbr_img": "work/sheets/1912w/u62.jpg",
+   "owner_native": 2096,
+   "nbr_native": 179
+  },
+  {
+   "unit": "61",
+   "pair": [
+    "61",
+    "68"
+   ],
+   "axis": "h",
+   "boundary": "street 33",
+   "owner_img": "work/sheets/1912w/u61.jpg",
+   "nbr_img": "work/sheets/1912w/u68.jpg",
+   "owner_native": 4031,
+   "nbr_native": 764
+  },
+  {
+   "unit": "61",
+   "pair": [
+    "61",
+    "69"
+   ],
+   "axis": "h",
+   "boundary": "street 33",
+   "owner_img": "work/sheets/1912w/u61.jpg",
+   "nbr_img": "work/sheets/1912w/u69.jpg",
+   "owner_native": 4031,
+   "nbr_native": 727
+  },
+  {
+   "unit": "67",
+   "pair": [
+    "15",
+    "67"
+   ],
+   "axis": "h",
+   "boundary": "street 33",
+   "owner_img": "work/sheets/1912w/u15.jpg",
+   "nbr_img": "work/sheets/1912w/u67.jpg",
+   "owner_native": 4223,
+   "nbr_native": 979
+  },
+  {
+   "unit": "67",
+   "pair": [
+    "16",
+    "67"
+   ],
+   "axis": "h",
+   "boundary": "street 33",
+   "owner_img": "work/sheets/1912w/u16.jpg",
+   "nbr_img": "work/sheets/1912w/u67.jpg",
+   "owner_native": 3916,
+   "nbr_native": 979
+  },
+  {
+   "unit": "67",
+   "pair": [
+    "67",
+    "68"
+   ],
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)",
+   "owner_img": "work/sheets/1912w/u67.jpg",
+   "nbr_img": "work/sheets/1912w/u68.jpg",
+   "owner_native": 2244,
+   "nbr_native": 178
+  },
+  {
+   "unit": "67",
+   "pair": [
+    "67",
+    "75"
+   ],
+   "axis": "h",
+   "boundary": "street 36",
+   "owner_img": "work/sheets/1912w/u67.jpg",
+   "nbr_img": "work/sheets/1912w/u75.jpg",
+   "owner_native": 4294,
+   "nbr_native": 664
+  },
+  {
+   "unit": "68",
+   "pair": [
+    "16",
+    "68"
+   ],
+   "axis": "h",
+   "boundary": "street 33",
+   "owner_img": "work/sheets/1912w/u16.jpg",
+   "nbr_img": "work/sheets/1912w/u68.jpg",
+   "owner_native": 3916,
+   "nbr_native": 764
+  },
+  {
+   "unit": "68",
+   "pair": [
+    "61",
+    "68"
+   ],
+   "axis": "h",
+   "boundary": "street 33",
+   "owner_img": "work/sheets/1912w/u61.jpg",
+   "nbr_img": "work/sheets/1912w/u68.jpg",
+   "owner_native": 4031,
+   "nbr_native": 764
+  },
+  {
+   "unit": "68",
+   "pair": [
+    "67",
+    "68"
+   ],
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)",
+   "owner_img": "work/sheets/1912w/u67.jpg",
+   "nbr_img": "work/sheets/1912w/u68.jpg",
+   "owner_native": 2244,
+   "nbr_native": 178
+  },
+  {
+   "unit": "68",
+   "pair": [
+    "68",
+    "69"
+   ],
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)",
+   "owner_img": "work/sheets/1912w/u68.jpg",
+   "nbr_img": "work/sheets/1912w/u69.jpg",
+   "owner_native": 2170,
+   "nbr_native": 177
+  },
+  {
+   "unit": "68",
+   "pair": [
+    "68",
+    "75"
+   ],
+   "axis": "h",
+   "boundary": "street 36",
+   "owner_img": "work/sheets/1912w/u68.jpg",
+   "nbr_img": "work/sheets/1912w/u75.jpg",
+   "owner_native": 4079,
+   "nbr_native": 664
+  },
+  {
+   "unit": "68",
+   "pair": [
+    "68",
+    "76"
+   ],
+   "axis": "h",
+   "boundary": "street 36",
+   "owner_img": "work/sheets/1912w/u68.jpg",
+   "nbr_img": "work/sheets/1912w/u76.jpg",
+   "owner_native": 4079,
+   "nbr_native": 413
+  },
+  {
+   "unit": "69",
+   "pair": [
+    "61",
+    "69"
+   ],
+   "axis": "h",
+   "boundary": "street 33",
+   "owner_img": "work/sheets/1912w/u61.jpg",
+   "nbr_img": "work/sheets/1912w/u69.jpg",
+   "owner_native": 4031,
+   "nbr_native": 727
+  },
+  {
+   "unit": "69",
+   "pair": [
+    "62",
+    "69"
+   ],
+   "axis": "h",
+   "boundary": "street 33",
+   "owner_img": "work/sheets/1912w/u62.jpg",
+   "nbr_img": "work/sheets/1912w/u69.jpg",
+   "owner_native": 4005,
+   "nbr_native": 727
+  },
+  {
+   "unit": "69",
+   "pair": [
+    "68",
+    "69"
+   ],
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)",
+   "owner_img": "work/sheets/1912w/u68.jpg",
+   "nbr_img": "work/sheets/1912w/u69.jpg",
+   "owner_native": 2170,
+   "nbr_native": 177
+  },
+  {
+   "unit": "69",
+   "pair": [
+    "69",
+    "70"
+   ],
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)",
+   "owner_img": "work/sheets/1912w/u69.jpg",
+   "nbr_img": "work/sheets/1912w/u70.jpg",
+   "owner_native": 2269,
+   "nbr_native": 189
+  },
+  {
+   "unit": "69",
+   "pair": [
+    "69",
+    "76"
+   ],
+   "axis": "h",
+   "boundary": "street 36",
+   "owner_img": "work/sheets/1912w/u69.jpg",
+   "nbr_img": "work/sheets/1912w/u76.jpg",
+   "owner_native": 4042,
+   "nbr_native": 413
+  },
+  {
+   "unit": "69",
+   "pair": [
+    "69",
+    "77"
+   ],
+   "axis": "h",
+   "boundary": "street 36",
+   "owner_img": "work/sheets/1912w/u69.jpg",
+   "nbr_img": "work/sheets/1912w/u77.jpg",
+   "owner_native": 4042,
+   "nbr_native": 794
+  },
+  {
+   "unit": "73",
+   "pair": [
+    "65",
+    "73"
+   ],
+   "axis": "h",
+   "boundary": "street 33",
+   "owner_img": "work/sheets/1912w/u65.jpg",
+   "nbr_img": "work/sheets/1912w/u73.jpg",
+   "owner_native": 4199,
+   "nbr_native": 938
+  },
+  {
+   "unit": "73",
+   "pair": [
+    "66",
+    "73"
+   ],
+   "axis": "h",
+   "boundary": "street 33",
+   "owner_img": "work/sheets/1912w/u66.jpg",
+   "nbr_img": "work/sheets/1912w/u73.jpg",
+   "owner_native": 4249,
+   "nbr_native": 938
+  },
+  {
+   "unit": "73",
+   "pair": [
+    "73",
+    "74"
+   ],
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)",
+   "owner_img": "work/sheets/1912w/u73.jpg",
+   "nbr_img": "work/sheets/1912w/u74.jpg",
+   "owner_native": 2207,
+   "nbr_native": 233
+  },
+  {
+   "unit": "73",
+   "pair": [
+    "73",
+    "80"
+   ],
+   "axis": "h",
+   "boundary": "street 36",
+   "owner_img": "work/sheets/1912w/u73.jpg",
+   "nbr_img": "work/sheets/1912w/u80.jpg",
+   "owner_native": 4253,
+   "nbr_native": 762
+  },
+  {
+   "unit": "73",
+   "pair": [
+    "73",
+    "81"
+   ],
+   "axis": "h",
+   "boundary": "street 36",
+   "owner_img": "work/sheets/1912w/u73.jpg",
+   "nbr_img": "work/sheets/1912w/u81.jpg",
+   "owner_native": 4253,
+   "nbr_native": 1085
+  },
+  {
+   "unit": "74",
+   "pair": [
+    "48",
+    "74"
+   ],
+   "axis": "h",
+   "boundary": "street 33",
+   "owner_img": "work/sheets/1912w/u48.jpg",
+   "nbr_img": "work/sheets/1912w/u74.jpg",
+   "owner_native": 6417,
+   "nbr_native": 890
+  },
+  {
+   "unit": "74",
+   "pair": [
+    "66",
+    "74"
+   ],
+   "axis": "h",
+   "boundary": "street 33",
+   "owner_img": "work/sheets/1912w/u66.jpg",
+   "nbr_img": "work/sheets/1912w/u74.jpg",
+   "owner_native": 4249,
+   "nbr_native": 890
+  },
+  {
+   "unit": "74",
+   "pair": [
+    "73",
+    "74"
+   ],
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)",
+   "owner_img": "work/sheets/1912w/u73.jpg",
+   "nbr_img": "work/sheets/1912w/u74.jpg",
+   "owner_native": 2207,
+   "nbr_native": 233
+  },
+  {
+   "unit": "74",
+   "pair": [
+    "74",
+    "81"
+   ],
+   "axis": "h",
+   "boundary": "street 36",
+   "owner_img": "work/sheets/1912w/u74.jpg",
+   "nbr_img": "work/sheets/1912w/u81.jpg",
+   "owner_native": 4205,
+   "nbr_native": 1085
+  },
+  {
+   "unit": "74",
+   "pair": [
+    "74",
+    "82"
+   ],
+   "axis": "h",
+   "boundary": "street 36",
+   "owner_img": "work/sheets/1912w/u74.jpg",
+   "nbr_img": "work/sheets/1912w/u82.jpg",
+   "owner_native": 4205,
+   "nbr_native": 874
+  },
+  {
+   "unit": "74",
+   "pair": [
+    "74",
+    "99"
+   ],
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)",
+   "owner_img": "work/sheets/1912w/u74.jpg",
+   "nbr_img": "work/sheets/1912w/u99.jpg",
+   "owner_native": 2125,
+   "nbr_native": 256
+  },
+  {
+   "unit": "75",
+   "pair": [
+    "67",
+    "75"
+   ],
+   "axis": "h",
+   "boundary": "street 36",
+   "owner_img": "work/sheets/1912w/u67.jpg",
+   "nbr_img": "work/sheets/1912w/u75.jpg",
+   "owner_native": 4294,
+   "nbr_native": 664
+  },
+  {
+   "unit": "75",
+   "pair": [
+    "68",
+    "75"
+   ],
+   "axis": "h",
+   "boundary": "street 36",
+   "owner_img": "work/sheets/1912w/u68.jpg",
+   "nbr_img": "work/sheets/1912w/u75.jpg",
+   "owner_native": 4079,
+   "nbr_native": 664
+  },
+  {
+   "unit": "75",
+   "pair": [
+    "75",
+    "76"
+   ],
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)",
+   "owner_img": "work/sheets/1912w/u75.jpg",
+   "nbr_img": "work/sheets/1912w/u76.jpg",
+   "owner_native": 2290,
+   "nbr_native": 173
+  },
+  {
+   "unit": "75",
+   "pair": [
+    "75",
+    "83"
+   ],
+   "axis": "h",
+   "boundary": "street 39",
+   "owner_img": "work/sheets/1912w/u75.jpg",
+   "nbr_img": "work/sheets/1912w/u83.jpg",
+   "owner_native": 3979,
+   "nbr_native": 912
+  },
+  {
+   "unit": "76",
+   "pair": [
+    "68",
+    "76"
+   ],
+   "axis": "h",
+   "boundary": "street 36",
+   "owner_img": "work/sheets/1912w/u68.jpg",
+   "nbr_img": "work/sheets/1912w/u76.jpg",
+   "owner_native": 4079,
+   "nbr_native": 413
+  },
+  {
+   "unit": "76",
+   "pair": [
+    "69",
+    "76"
+   ],
+   "axis": "h",
+   "boundary": "street 36",
+   "owner_img": "work/sheets/1912w/u69.jpg",
+   "nbr_img": "work/sheets/1912w/u76.jpg",
+   "owner_native": 4042,
+   "nbr_native": 413
+  },
+  {
+   "unit": "76",
+   "pair": [
+    "75",
+    "76"
+   ],
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)",
+   "owner_img": "work/sheets/1912w/u75.jpg",
+   "nbr_img": "work/sheets/1912w/u76.jpg",
+   "owner_native": 2290,
+   "nbr_native": 173
+  },
+  {
+   "unit": "76",
+   "pair": [
+    "76",
+    "77"
+   ],
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)",
+   "owner_img": "work/sheets/1912w/u76.jpg",
+   "nbr_img": "work/sheets/1912w/u77.jpg",
+   "owner_native": 2189,
+   "nbr_native": 180
+  },
+  {
+   "unit": "76",
+   "pair": [
+    "76",
+    "83"
+   ],
+   "axis": "h",
+   "boundary": "street 39",
+   "owner_img": "work/sheets/1912w/u76.jpg",
+   "nbr_img": "work/sheets/1912w/u83.jpg",
+   "owner_native": 3728,
+   "nbr_native": 912
+  },
+  {
+   "unit": "76",
+   "pair": [
+    "76",
+    "84"
+   ],
+   "axis": "h",
+   "boundary": "street 39",
+   "owner_img": "work/sheets/1912w/u76.jpg",
+   "nbr_img": "work/sheets/1912w/u84.jpg",
+   "owner_native": 3728,
+   "nbr_native": 795
+  },
+  {
+   "unit": "77",
+   "pair": [
+    "69",
+    "77"
+   ],
+   "axis": "h",
+   "boundary": "street 36",
+   "owner_img": "work/sheets/1912w/u69.jpg",
+   "nbr_img": "work/sheets/1912w/u77.jpg",
+   "owner_native": 4042,
+   "nbr_native": 794
+  },
+  {
+   "unit": "77",
+   "pair": [
+    "70",
+    "77"
+   ],
+   "axis": "h",
+   "boundary": "street 36",
+   "owner_img": "work/sheets/1912w/u70.jpg",
+   "nbr_img": "work/sheets/1912w/u77.jpg",
+   "owner_native": 4093,
+   "nbr_native": 794
+  },
+  {
+   "unit": "77",
+   "pair": [
+    "76",
+    "77"
+   ],
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)",
+   "owner_img": "work/sheets/1912w/u76.jpg",
+   "nbr_img": "work/sheets/1912w/u77.jpg",
+   "owner_native": 2189,
+   "nbr_native": 180
+  },
+  {
+   "unit": "77",
+   "pair": [
+    "77",
+    "78"
+   ],
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)",
+   "owner_img": "work/sheets/1912w/u77.jpg",
+   "nbr_img": "work/sheets/1912w/u78.jpg",
+   "owner_native": 2218,
+   "nbr_native": 207
+  },
+  {
+   "unit": "77",
+   "pair": [
+    "77",
+    "84"
+   ],
+   "axis": "h",
+   "boundary": "street 39",
+   "owner_img": "work/sheets/1912w/u77.jpg",
+   "nbr_img": "work/sheets/1912w/u84.jpg",
+   "owner_native": 4109,
+   "nbr_native": 795
+  },
+  {
+   "unit": "77",
+   "pair": [
+    "77",
+    "85"
+   ],
+   "axis": "h",
+   "boundary": "street 39",
+   "owner_img": "work/sheets/1912w/u77.jpg",
+   "nbr_img": "work/sheets/1912w/u85.jpg",
+   "owner_native": 4109,
+   "nbr_native": 845
+  },
+  {
+   "unit": "78",
+   "pair": [
+    "70",
+    "78"
+   ],
+   "axis": "h",
+   "boundary": "street 36",
+   "owner_img": "work/sheets/1912w/u70.jpg",
+   "nbr_img": "work/sheets/1912w/u78.jpg",
+   "owner_native": 4093,
+   "nbr_native": 750
+  },
+  {
+   "unit": "78",
+   "pair": [
+    "71",
+    "78"
+   ],
+   "axis": "h",
+   "boundary": "street 36",
+   "owner_img": "work/sheets/1912w/u71.jpg",
+   "nbr_img": "work/sheets/1912w/u78.jpg",
+   "owner_native": 4037,
+   "nbr_native": 750
+  },
+  {
+   "unit": "78",
+   "pair": [
+    "77",
+    "78"
+   ],
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)",
+   "owner_img": "work/sheets/1912w/u77.jpg",
+   "nbr_img": "work/sheets/1912w/u78.jpg",
+   "owner_native": 2218,
+   "nbr_native": 207
+  },
+  {
+   "unit": "78",
+   "pair": [
+    "78",
+    "79"
+   ],
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)",
+   "owner_img": "work/sheets/1912w/u78.jpg",
+   "nbr_img": "work/sheets/1912w/u79.jpg",
+   "owner_native": 2190,
+   "nbr_native": 219
+  },
+  {
+   "unit": "78",
+   "pair": [
+    "78",
+    "85"
+   ],
+   "axis": "h",
+   "boundary": "street 39",
+   "owner_img": "work/sheets/1912w/u78.jpg",
+   "nbr_img": "work/sheets/1912w/u85.jpg",
+   "owner_native": 4065,
+   "nbr_native": 845
+  },
+  {
+   "unit": "78",
+   "pair": [
+    "78",
+    "86"
+   ],
+   "axis": "h",
+   "boundary": "street 39",
+   "owner_img": "work/sheets/1912w/u78.jpg",
+   "nbr_img": "work/sheets/1912w/u86.jpg",
+   "owner_native": 4065,
+   "nbr_native": 931
+  },
+  {
+   "unit": "81",
+   "pair": [
+    "73",
+    "81"
+   ],
+   "axis": "h",
+   "boundary": "street 36",
+   "owner_img": "work/sheets/1912w/u73.jpg",
+   "nbr_img": "work/sheets/1912w/u81.jpg",
+   "owner_native": 4253,
+   "nbr_native": 1085
+  },
+  {
+   "unit": "81",
+   "pair": [
+    "74",
+    "81"
+   ],
+   "axis": "h",
+   "boundary": "street 36",
+   "owner_img": "work/sheets/1912w/u74.jpg",
+   "nbr_img": "work/sheets/1912w/u81.jpg",
+   "owner_native": 4205,
+   "nbr_native": 1085
+  },
+  {
+   "unit": "81",
+   "pair": [
+    "80",
+    "81"
+   ],
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)",
+   "owner_img": "work/sheets/1912w/u80.jpg",
+   "nbr_img": "work/sheets/1912w/u81.jpg",
+   "owner_native": 2208,
+   "nbr_native": 239
+  },
+  {
+   "unit": "81",
+   "pair": [
+    "81",
+    "82"
+   ],
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)",
+   "owner_img": "work/sheets/1912w/u81.jpg",
+   "nbr_img": "work/sheets/1912w/u82.jpg",
+   "owner_native": 2184,
+   "nbr_native": 234
+  },
+  {
+   "unit": "81",
+   "pair": [
+    "81",
+    "88"
+   ],
+   "axis": "h",
+   "boundary": "street 39",
+   "owner_img": "work/sheets/1912w/u81.jpg",
+   "nbr_img": "work/sheets/1912w/u88.jpg",
+   "owner_native": 4400,
+   "nbr_native": 813
+  },
+  {
+   "unit": "81",
+   "pair": [
+    "81",
+    "89"
+   ],
+   "axis": "h",
+   "boundary": "street 39",
+   "owner_img": "work/sheets/1912w/u81.jpg",
+   "nbr_img": "work/sheets/1912w/u89.jpg",
+   "owner_native": 4400,
+   "nbr_native": 960
+  },
+  {
+   "unit": "82",
+   "pair": [
+    "74",
+    "82"
+   ],
+   "axis": "h",
+   "boundary": "street 36",
+   "owner_img": "work/sheets/1912w/u74.jpg",
+   "nbr_img": "work/sheets/1912w/u82.jpg",
+   "owner_native": 4205,
+   "nbr_native": 874
+  },
+  {
+   "unit": "82",
+   "pair": [
+    "81",
+    "82"
+   ],
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)",
+   "owner_img": "work/sheets/1912w/u81.jpg",
+   "nbr_img": "work/sheets/1912w/u82.jpg",
+   "owner_native": 2184,
+   "nbr_native": 234
+  },
+  {
+   "unit": "82",
+   "pair": [
+    "82",
+    "89"
+   ],
+   "axis": "h",
+   "boundary": "street 39",
+   "owner_img": "work/sheets/1912w/u82.jpg",
+   "nbr_img": "work/sheets/1912w/u89.jpg",
+   "owner_native": 4189,
+   "nbr_native": 960
+  },
+  {
+   "unit": "83",
+   "pair": [
+    "75",
+    "83"
+   ],
+   "axis": "h",
+   "boundary": "street 39",
+   "owner_img": "work/sheets/1912w/u75.jpg",
+   "nbr_img": "work/sheets/1912w/u83.jpg",
+   "owner_native": 3979,
+   "nbr_native": 912
+  },
+  {
+   "unit": "83",
+   "pair": [
+    "76",
+    "83"
+   ],
+   "axis": "h",
+   "boundary": "street 39",
+   "owner_img": "work/sheets/1912w/u76.jpg",
+   "nbr_img": "work/sheets/1912w/u83.jpg",
+   "owner_native": 3728,
+   "nbr_native": 912
+  },
+  {
+   "unit": "83",
+   "pair": [
+    "83",
+    "84"
+   ],
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)",
+   "owner_img": "work/sheets/1912w/u83.jpg",
+   "nbr_img": "work/sheets/1912w/u84.jpg",
+   "owner_native": 2211,
+   "nbr_native": 216
+  },
+  {
+   "unit": "83",
+   "pair": [
+    "83",
+    "91"
+   ],
+   "axis": "h",
+   "boundary": "street 42",
+   "owner_img": "work/sheets/1912w/u83.jpg",
+   "nbr_img": "work/sheets/1912w/u91.jpg",
+   "owner_native": 4227,
+   "nbr_native": 845
+  },
+  {
+   "unit": "84",
+   "pair": [
+    "76",
+    "84"
+   ],
+   "axis": "h",
+   "boundary": "street 39",
+   "owner_img": "work/sheets/1912w/u76.jpg",
+   "nbr_img": "work/sheets/1912w/u84.jpg",
+   "owner_native": 3728,
+   "nbr_native": 795
+  },
+  {
+   "unit": "84",
+   "pair": [
+    "77",
+    "84"
+   ],
+   "axis": "h",
+   "boundary": "street 39",
+   "owner_img": "work/sheets/1912w/u77.jpg",
+   "nbr_img": "work/sheets/1912w/u84.jpg",
+   "owner_native": 4109,
+   "nbr_native": 795
+  },
+  {
+   "unit": "84",
+   "pair": [
+    "83",
+    "84"
+   ],
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)",
+   "owner_img": "work/sheets/1912w/u83.jpg",
+   "nbr_img": "work/sheets/1912w/u84.jpg",
+   "owner_native": 2211,
+   "nbr_native": 216
+  },
+  {
+   "unit": "84",
+   "pair": [
+    "84",
+    "85"
+   ],
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)",
+   "owner_img": "work/sheets/1912w/u84.jpg",
+   "nbr_img": "work/sheets/1912w/u85.jpg",
+   "owner_native": 2126,
+   "nbr_native": 200
+  },
+  {
+   "unit": "84",
+   "pair": [
+    "84",
+    "92"
+   ],
+   "axis": "h",
+   "boundary": "street 42",
+   "owner_img": "work/sheets/1912w/u84.jpg",
+   "nbr_img": "work/sheets/1912w/u92.jpg",
+   "owner_native": 4110,
+   "nbr_native": 704
+  },
+  {
+   "unit": "85",
+   "pair": [
+    "77",
+    "85"
+   ],
+   "axis": "h",
+   "boundary": "street 39",
+   "owner_img": "work/sheets/1912w/u77.jpg",
+   "nbr_img": "work/sheets/1912w/u85.jpg",
+   "owner_native": 4109,
+   "nbr_native": 845
+  },
+  {
+   "unit": "85",
+   "pair": [
+    "78",
+    "85"
+   ],
+   "axis": "h",
+   "boundary": "street 39",
+   "owner_img": "work/sheets/1912w/u78.jpg",
+   "nbr_img": "work/sheets/1912w/u85.jpg",
+   "owner_native": 4065,
+   "nbr_native": 845
+  },
+  {
+   "unit": "85",
+   "pair": [
+    "84",
+    "85"
+   ],
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)",
+   "owner_img": "work/sheets/1912w/u84.jpg",
+   "nbr_img": "work/sheets/1912w/u85.jpg",
+   "owner_native": 2126,
+   "nbr_native": 200
+  },
+  {
+   "unit": "85",
+   "pair": [
+    "85",
+    "86"
+   ],
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)",
+   "owner_img": "work/sheets/1912w/u85.jpg",
+   "nbr_img": "work/sheets/1912w/u86.jpg",
+   "owner_native": 2262,
+   "nbr_native": 223
+  },
+  {
+   "unit": "85",
+   "pair": [
+    "85",
+    "93"
+   ],
+   "axis": "h",
+   "boundary": "street 42",
+   "owner_img": "work/sheets/1912w/u85.jpg",
+   "nbr_img": "work/sheets/1912w/u93.jpg",
+   "owner_native": 4160,
+   "nbr_native": 941
+  },
+  {
+   "unit": "85",
+   "pair": [
+    "85",
+    "94"
+   ],
+   "axis": "h",
+   "boundary": "street 42",
+   "owner_img": "work/sheets/1912w/u85.jpg",
+   "nbr_img": "work/sheets/1912w/u94.jpg",
+   "owner_native": 4160,
+   "nbr_native": 917
+  },
+  {
+   "unit": "86",
+   "pair": [
+    "78",
+    "86"
+   ],
+   "axis": "h",
+   "boundary": "street 39",
+   "owner_img": "work/sheets/1912w/u78.jpg",
+   "nbr_img": "work/sheets/1912w/u86.jpg",
+   "owner_native": 4065,
+   "nbr_native": 931
+  },
+  {
+   "unit": "86",
+   "pair": [
+    "79",
+    "86"
+   ],
+   "axis": "h",
+   "boundary": "street 39",
+   "owner_img": "work/sheets/1912w/u79.jpg",
+   "nbr_img": "work/sheets/1912w/u86.jpg",
+   "owner_native": 4296,
+   "nbr_native": 931
+  },
+  {
+   "unit": "86",
+   "pair": [
+    "85",
+    "86"
+   ],
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)",
+   "owner_img": "work/sheets/1912w/u85.jpg",
+   "nbr_img": "work/sheets/1912w/u86.jpg",
+   "owner_native": 2262,
+   "nbr_native": 223
+  },
+  {
+   "unit": "86",
+   "pair": [
+    "86",
+    "87"
+   ],
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)",
+   "owner_img": "work/sheets/1912w/u86.jpg",
+   "nbr_img": "work/sheets/1912w/u87.jpg",
+   "owner_native": 2122,
+   "nbr_native": 203
+  },
+  {
+   "unit": "86",
+   "pair": [
+    "86",
+    "94"
+   ],
+   "axis": "h",
+   "boundary": "street 42",
+   "owner_img": "work/sheets/1912w/u86.jpg",
+   "nbr_img": "work/sheets/1912w/u94.jpg",
+   "owner_native": 4246,
+   "nbr_native": 917
+  },
+  {
+   "unit": "90",
+   "pair": [
+    "89",
+    "90"
+   ],
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)",
+   "owner_img": "work/sheets/1912w/u89.jpg",
+   "nbr_img": "work/sheets/1912w/u90.jpg",
+   "owner_native": 2184,
+   "nbr_native": 300
+  },
+  {
+   "unit": "90",
+   "pair": [
+    "90",
+    "98"
+   ],
+   "axis": "h",
+   "boundary": "street 42",
+   "owner_img": "work/sheets/1912w/u90.jpg",
+   "nbr_img": "work/sheets/1912w/u98.jpg",
+   "owner_native": 4255,
+   "nbr_native": 893
+  },
+  {
+   "unit": "90",
+   "pair": [
+    "90",
+    "99"
+   ],
+   "axis": "h",
+   "boundary": "street 39",
+   "owner_img": "work/sheets/1912w/u90.jpg",
+   "nbr_img": "work/sheets/1912w/u99.jpg",
+   "owner_native": 940,
+   "nbr_native": 7654
+  },
+  {
+   "unit": "91",
+   "pair": [
+    "83",
+    "91"
+   ],
+   "axis": "h",
+   "boundary": "street 42",
+   "owner_img": "work/sheets/1912w/u83.jpg",
+   "nbr_img": "work/sheets/1912w/u91.jpg",
+   "owner_native": 4227,
+   "nbr_native": 845
+  },
+  {
+   "unit": "91",
+   "pair": [
+    "91",
+    "92"
+   ],
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)",
+   "owner_img": "work/sheets/1912w/u91.jpg",
+   "nbr_img": "work/sheets/1912w/u92.jpg",
+   "owner_native": 2264,
+   "nbr_native": 231
+  },
+  {
+   "unit": "92",
+   "pair": [
+    "84",
+    "92"
+   ],
+   "axis": "h",
+   "boundary": "street 42",
+   "owner_img": "work/sheets/1912w/u84.jpg",
+   "nbr_img": "work/sheets/1912w/u92.jpg",
+   "owner_native": 4110,
+   "nbr_native": 704
+  },
+  {
+   "unit": "92",
+   "pair": [
+    "91",
+    "92"
+   ],
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)",
+   "owner_img": "work/sheets/1912w/u91.jpg",
+   "nbr_img": "work/sheets/1912w/u92.jpg",
+   "owner_native": 2264,
+   "nbr_native": 231
+  },
+  {
+   "unit": "92",
+   "pair": [
+    "92",
+    "93"
+   ],
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)",
+   "owner_img": "work/sheets/1912w/u92.jpg",
+   "nbr_img": "work/sheets/1912w/u93.jpg",
+   "owner_native": 2144,
+   "nbr_native": 219
+  },
+  {
+   "unit": "93",
+   "pair": [
+    "85",
+    "93"
+   ],
+   "axis": "h",
+   "boundary": "street 42",
+   "owner_img": "work/sheets/1912w/u85.jpg",
+   "nbr_img": "work/sheets/1912w/u93.jpg",
+   "owner_native": 4160,
+   "nbr_native": 941
+  },
+  {
+   "unit": "93",
+   "pair": [
+    "92",
+    "93"
+   ],
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)",
+   "owner_img": "work/sheets/1912w/u92.jpg",
+   "nbr_img": "work/sheets/1912w/u93.jpg",
+   "owner_native": 2144,
+   "nbr_native": 219
+  },
+  {
+   "unit": "93",
+   "pair": [
+    "93",
+    "94"
+   ],
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)",
+   "owner_img": "work/sheets/1912w/u93.jpg",
+   "nbr_img": "work/sheets/1912w/u94.jpg",
+   "owner_native": 2251,
+   "nbr_native": 271
+  },
+  {
+   "unit": "94",
+   "pair": [
+    "85",
+    "94"
+   ],
+   "axis": "h",
+   "boundary": "street 42",
+   "owner_img": "work/sheets/1912w/u85.jpg",
+   "nbr_img": "work/sheets/1912w/u94.jpg",
+   "owner_native": 4160,
+   "nbr_native": 917
+  },
+  {
+   "unit": "94",
+   "pair": [
+    "86",
+    "94"
+   ],
+   "axis": "h",
+   "boundary": "street 42",
+   "owner_img": "work/sheets/1912w/u86.jpg",
+   "nbr_img": "work/sheets/1912w/u94.jpg",
+   "owner_native": 4246,
+   "nbr_native": 917
+  },
+  {
+   "unit": "94",
+   "pair": [
+    "93",
+    "94"
+   ],
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)",
+   "owner_img": "work/sheets/1912w/u93.jpg",
+   "nbr_img": "work/sheets/1912w/u94.jpg",
+   "owner_native": 2251,
+   "nbr_native": 271
+  },
+  {
+   "unit": "94",
+   "pair": [
+    "94",
+    "95"
+   ],
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)",
+   "owner_img": "work/sheets/1912w/u94.jpg",
+   "nbr_img": "work/sheets/1912w/u95.jpg",
+   "owner_native": 2122,
+   "nbr_native": 239
+  },
+  {
+   "unit": "95",
+   "pair": [
+    "87",
+    "95"
+   ],
+   "axis": "h",
+   "boundary": "street 42",
+   "owner_img": "work/sheets/1912w/u87.jpg",
+   "nbr_img": "work/sheets/1912w/u95.jpg",
+   "owner_native": 4281,
+   "nbr_native": 1093
+  },
+  {
+   "unit": "95",
+   "pair": [
+    "94",
+    "95"
+   ],
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)",
+   "owner_img": "work/sheets/1912w/u94.jpg",
+   "nbr_img": "work/sheets/1912w/u95.jpg",
+   "owner_native": 2122,
+   "nbr_native": 239
+  },
+  {
+   "unit": "95",
+   "pair": [
+    "95",
+    "96"
+   ],
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)",
+   "owner_img": "work/sheets/1912w/u95.jpg",
+   "nbr_img": "work/sheets/1912w/u96.jpg",
+   "owner_native": 2224,
+   "nbr_native": 267
+  },
+  {
+   "unit": "99",
+   "pair": [
+    "74",
+    "99"
+   ],
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)",
+   "owner_img": "work/sheets/1912w/u74.jpg",
+   "nbr_img": "work/sheets/1912w/u99.jpg",
+   "owner_native": 2125,
+   "nbr_native": 256
+  },
+  {
+   "unit": "99",
+   "pair": [
+    "90",
+    "99"
+   ],
+   "axis": "h",
+   "boundary": "street 39",
+   "owner_img": "work/sheets/1912w/u90.jpg",
+   "nbr_img": "work/sheets/1912w/u99.jpg",
+   "owner_native": 940,
+   "nbr_native": 7654
+  }
+ ]
+}

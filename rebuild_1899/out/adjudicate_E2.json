@@ -1,0 +1,866 @@
+{
+ "units": [
+  "19",
+  "22",
+  "23",
+  "24",
+  "25",
+  "26",
+  "26b",
+  "27",
+  "28",
+  "29",
+  "40",
+  "45",
+  "49",
+  "51",
+  "53"
+ ],
+ "seams": [
+  {
+   "unit": "19",
+   "pair": [
+    "17",
+    "19"
+   ],
+   "axis": "h",
+   "boundary": "street 30",
+   "owner_file": 17,
+   "nbr_file": 19,
+   "owner_native": 3773.0,
+   "nbr_native": 264.0
+  },
+  {
+   "unit": "19",
+   "pair": [
+    "18",
+    "19"
+   ],
+   "axis": "h",
+   "boundary": "street 30",
+   "owner_file": 18,
+   "nbr_file": 19,
+   "owner_native": 3771.0,
+   "nbr_native": 264.0
+  },
+  {
+   "unit": "19",
+   "pair": [
+    "19",
+    "20"
+   ],
+   "axis": "v",
+   "boundary": "avenue slot 4",
+   "owner_file": 19,
+   "nbr_file": 20,
+   "owner_native": 3226.0,
+   "nbr_native": 218.0
+  },
+  {
+   "unit": "19",
+   "pair": [
+    "19",
+    "21"
+   ],
+   "axis": "h",
+   "boundary": "street 33",
+   "owner_file": 19,
+   "nbr_file": 21,
+   "owner_native": 3771.0,
+   "nbr_native": 267.0
+  },
+  {
+   "unit": "22",
+   "pair": [
+    "20",
+    "22"
+   ],
+   "axis": "h",
+   "boundary": "street 33",
+   "owner_file": 20,
+   "nbr_file": 22,
+   "owner_native": 3769.0,
+   "nbr_native": 267.0
+  },
+  {
+   "unit": "22",
+   "pair": [
+    "21",
+    "22"
+   ],
+   "axis": "v",
+   "boundary": "avenue slot 5",
+   "owner_file": 21,
+   "nbr_file": 22,
+   "owner_native": 3225.0,
+   "nbr_native": 210.0
+  },
+  {
+   "unit": "22",
+   "pair": [
+    "22",
+    "23"
+   ],
+   "axis": "h",
+   "boundary": "street 36",
+   "owner_file": 22,
+   "nbr_file": 23,
+   "owner_native": 3774.0,
+   "nbr_native": 268.0
+  },
+  {
+   "unit": "22",
+   "pair": [
+    "22",
+    "24"
+   ],
+   "axis": "h",
+   "boundary": "street 36",
+   "owner_file": 22,
+   "nbr_file": 24,
+   "owner_native": 3774.0,
+   "nbr_native": 266.0
+  },
+  {
+   "unit": "22",
+   "pair": [
+    "22",
+    "31"
+   ],
+   "axis": "v",
+   "boundary": "avenue slot 8",
+   "owner_file": 22,
+   "nbr_file": 31,
+   "owner_native": 3228.0,
+   "nbr_native": 204.0
+  },
+  {
+   "unit": "22",
+   "pair": [
+    "33",
+    "22"
+   ],
+   "axis": "h",
+   "boundary": "street 33",
+   "owner_file": 33,
+   "nbr_file": 22,
+   "owner_native": 3775.0,
+   "nbr_native": 267.0
+  },
+  {
+   "unit": "23",
+   "pair": [
+    "21",
+    "23"
+   ],
+   "axis": "h",
+   "boundary": "street 36",
+   "owner_file": 21,
+   "nbr_file": 23,
+   "owner_native": 3774.0,
+   "nbr_native": 268.0
+  },
+  {
+   "unit": "23",
+   "pair": [
+    "22",
+    "23"
+   ],
+   "axis": "h",
+   "boundary": "street 36",
+   "owner_file": 22,
+   "nbr_file": 23,
+   "owner_native": 3774.0,
+   "nbr_native": 268.0
+  },
+  {
+   "unit": "23",
+   "pair": [
+    "23",
+    "24"
+   ],
+   "axis": "v",
+   "boundary": "avenue slot 6",
+   "owner_file": 23,
+   "nbr_file": 24,
+   "owner_native": 3226.0,
+   "nbr_native": 208.0
+  },
+  {
+   "unit": "23",
+   "pair": [
+    "23",
+    "25"
+   ],
+   "axis": "h",
+   "boundary": "street 39",
+   "owner_file": 23,
+   "nbr_file": 25,
+   "owner_native": 3775.0,
+   "nbr_native": 267.0
+  },
+  {
+   "unit": "24",
+   "pair": [
+    "22",
+    "24"
+   ],
+   "axis": "h",
+   "boundary": "street 36",
+   "owner_file": 22,
+   "nbr_file": 24,
+   "owner_native": 3774.0,
+   "nbr_native": 266.0
+  },
+  {
+   "unit": "24",
+   "pair": [
+    "23",
+    "24"
+   ],
+   "axis": "v",
+   "boundary": "avenue slot 6",
+   "owner_file": 23,
+   "nbr_file": 24,
+   "owner_native": 3226.0,
+   "nbr_native": 208.0
+  },
+  {
+   "unit": "24",
+   "pair": [
+    "24",
+    "25"
+   ],
+   "axis": "h",
+   "boundary": "street 39",
+   "owner_file": 24,
+   "nbr_file": 25,
+   "owner_native": 3773.0,
+   "nbr_native": 267.0
+  },
+  {
+   "unit": "24",
+   "pair": [
+    "24",
+    "26"
+   ],
+   "axis": "h",
+   "boundary": "street 39",
+   "owner_file": 24,
+   "nbr_file": 26,
+   "owner_native": 3773.0,
+   "nbr_native": 290.0
+  },
+  {
+   "unit": "24",
+   "pair": [
+    "24",
+    "29"
+   ],
+   "axis": "v",
+   "boundary": "avenue slot 9",
+   "owner_file": 24,
+   "nbr_file": 29,
+   "owner_native": 3226.0,
+   "nbr_native": 208.0
+  },
+  {
+   "unit": "24",
+   "pair": [
+    "31",
+    "24"
+   ],
+   "axis": "h",
+   "boundary": "street 36",
+   "owner_file": 31,
+   "nbr_file": 24,
+   "owner_native": 3775.0,
+   "nbr_native": 266.0
+  },
+  {
+   "unit": "25",
+   "pair": [
+    "23",
+    "25"
+   ],
+   "axis": "h",
+   "boundary": "street 39",
+   "owner_file": 23,
+   "nbr_file": 25,
+   "owner_native": 3775.0,
+   "nbr_native": 267.0
+  },
+  {
+   "unit": "25",
+   "pair": [
+    "24",
+    "25"
+   ],
+   "axis": "h",
+   "boundary": "street 39",
+   "owner_file": 24,
+   "nbr_file": 25,
+   "owner_native": 3773.0,
+   "nbr_native": 267.0
+  },
+  {
+   "unit": "25",
+   "pair": [
+    "25",
+    "26"
+   ],
+   "axis": "v",
+   "boundary": "avenue slot 7",
+   "owner_file": 25,
+   "nbr_file": 26,
+   "owner_native": 3226.0,
+   "nbr_native": 210.0
+  },
+  {
+   "unit": "25",
+   "pair": [
+    "25",
+    "27"
+   ],
+   "axis": "h",
+   "boundary": "street 42",
+   "owner_file": 25,
+   "nbr_file": 27,
+   "owner_native": 3774.0,
+   "nbr_native": 263.0
+  },
+  {
+   "unit": "25",
+   "pair": [
+    "25",
+    "28"
+   ],
+   "axis": "h",
+   "boundary": "street 42",
+   "owner_file": 25,
+   "nbr_file": 28,
+   "owner_native": 3774.0,
+   "nbr_native": 266.0
+  },
+  {
+   "unit": "26",
+   "pair": [
+    "24",
+    "26"
+   ],
+   "axis": "h",
+   "boundary": "street 39",
+   "owner_file": 24,
+   "nbr_file": 26,
+   "owner_native": 3773.0,
+   "nbr_native": 290.0
+  },
+  {
+   "unit": "26",
+   "pair": [
+    "25",
+    "26"
+   ],
+   "axis": "v",
+   "boundary": "avenue slot 7",
+   "owner_file": 25,
+   "nbr_file": 26,
+   "owner_native": 3226.0,
+   "nbr_native": 210.0
+  },
+  {
+   "unit": "26",
+   "pair": [
+    "26",
+    "26b"
+   ],
+   "axis": "v",
+   "boundary": "avenue slot 10",
+   "owner_file": 26,
+   "nbr_file": 26,
+   "owner_native": 3228.0,
+   "nbr_native": 2331.0
+  },
+  {
+   "unit": "26",
+   "pair": [
+    "26",
+    "28"
+   ],
+   "axis": "h",
+   "boundary": "street 42",
+   "owner_file": 26,
+   "nbr_file": 28,
+   "owner_native": 3797.0,
+   "nbr_native": 266.0
+  },
+  {
+   "unit": "26",
+   "pair": [
+    "29",
+    "26"
+   ],
+   "axis": "h",
+   "boundary": "street 39",
+   "owner_file": 29,
+   "nbr_file": 26,
+   "owner_native": 3775.0,
+   "nbr_native": 290.0
+  },
+  {
+   "unit": "26b",
+   "pair": [
+    "26",
+    "26b"
+   ],
+   "axis": "v",
+   "boundary": "avenue slot 10",
+   "owner_file": 26,
+   "nbr_file": 26,
+   "owner_native": 3228.0,
+   "nbr_native": 2331.0
+  },
+  {
+   "unit": "26b",
+   "pair": [
+    "29",
+    "26b"
+   ],
+   "axis": "h",
+   "boundary": "street 39",
+   "owner_file": 29,
+   "nbr_file": 26,
+   "owner_native": 3775.0,
+   "nbr_native": 1730.0
+  },
+  {
+   "unit": "26b",
+   "pair": [
+    "26b",
+    "91"
+   ],
+   "axis": "v",
+   "boundary": "avenue slot 11",
+   "owner_file": 26,
+   "nbr_file": 91,
+   "owner_native": 3337.0,
+   "nbr_native": 209.0
+  },
+  {
+   "unit": "27",
+   "pair": [
+    "25",
+    "27"
+   ],
+   "axis": "h",
+   "boundary": "street 42",
+   "owner_file": 25,
+   "nbr_file": 27,
+   "owner_native": 3774.0,
+   "nbr_native": 263.0
+  },
+  {
+   "unit": "27",
+   "pair": [
+    "27",
+    "28"
+   ],
+   "axis": "v",
+   "boundary": "avenue slot 6",
+   "owner_file": 27,
+   "nbr_file": 28,
+   "owner_native": 3226.0,
+   "nbr_native": 207.0
+  },
+  {
+   "unit": "28",
+   "pair": [
+    "25",
+    "28"
+   ],
+   "axis": "h",
+   "boundary": "street 42",
+   "owner_file": 25,
+   "nbr_file": 28,
+   "owner_native": 3774.0,
+   "nbr_native": 266.0
+  },
+  {
+   "unit": "28",
+   "pair": [
+    "26",
+    "28"
+   ],
+   "axis": "h",
+   "boundary": "street 42",
+   "owner_file": 26,
+   "nbr_file": 28,
+   "owner_native": 3797.0,
+   "nbr_native": 266.0
+  },
+  {
+   "unit": "28",
+   "pair": [
+    "27",
+    "28"
+   ],
+   "axis": "v",
+   "boundary": "avenue slot 6",
+   "owner_file": 27,
+   "nbr_file": 28,
+   "owner_native": 3226.0,
+   "nbr_native": 207.0
+  },
+  {
+   "unit": "28",
+   "pair": [
+    "28",
+    "71a"
+   ],
+   "axis": "v",
+   "boundary": "avenue slot 9",
+   "owner_file": 28,
+   "nbr_file": 71,
+   "owner_native": 3225.0,
+   "nbr_native": 230.0
+  },
+  {
+   "unit": "29",
+   "pair": [
+    "24",
+    "29"
+   ],
+   "axis": "v",
+   "boundary": "avenue slot 9",
+   "owner_file": 24,
+   "nbr_file": 29,
+   "owner_native": 3226.0,
+   "nbr_native": 208.0
+  },
+  {
+   "unit": "29",
+   "pair": [
+    "29",
+    "26"
+   ],
+   "axis": "h",
+   "boundary": "street 39",
+   "owner_file": 29,
+   "nbr_file": 26,
+   "owner_native": 3775.0,
+   "nbr_native": 290.0
+  },
+  {
+   "unit": "29",
+   "pair": [
+    "29",
+    "26b"
+   ],
+   "axis": "h",
+   "boundary": "street 39",
+   "owner_file": 29,
+   "nbr_file": 26,
+   "owner_native": 3775.0,
+   "nbr_native": 1730.0
+  },
+  {
+   "unit": "29",
+   "pair": [
+    "29",
+    "30"
+   ],
+   "axis": "v",
+   "boundary": "avenue slot 12",
+   "owner_file": 29,
+   "nbr_file": 30,
+   "owner_native": 3226.0,
+   "nbr_native": 207.0
+  },
+  {
+   "unit": "29",
+   "pair": [
+    "31",
+    "29"
+   ],
+   "axis": "h",
+   "boundary": "street 36",
+   "owner_file": 31,
+   "nbr_file": 29,
+   "owner_native": 3775.0,
+   "nbr_native": 268.0
+  },
+  {
+   "unit": "29",
+   "pair": [
+    "32",
+    "29"
+   ],
+   "axis": "h",
+   "boundary": "street 36",
+   "owner_file": 32,
+   "nbr_file": 29,
+   "owner_native": 3773.0,
+   "nbr_native": 268.0
+  },
+  {
+   "unit": "29",
+   "pair": [
+    "29",
+    "91"
+   ],
+   "axis": "h",
+   "boundary": "street 39",
+   "owner_file": 29,
+   "nbr_file": 91,
+   "owner_native": 3775.0,
+   "nbr_native": 266.0
+  },
+  {
+   "unit": "40",
+   "pair": [
+    "40",
+    "38"
+   ],
+   "axis": "h",
+   "boundary": "street 24",
+   "owner_file": 40,
+   "nbr_file": 38,
+   "owner_native": 3776.0,
+   "nbr_native": 268.0
+  },
+  {
+   "unit": "40",
+   "pair": [
+    "39",
+    "40"
+   ],
+   "axis": "v",
+   "boundary": "avenue slot 9",
+   "owner_file": 39,
+   "nbr_file": 40,
+   "owner_native": 3221.0,
+   "nbr_native": 207.0
+  },
+  {
+   "unit": "40",
+   "pair": [
+    "42",
+    "40"
+   ],
+   "axis": "h",
+   "boundary": "street 21",
+   "owner_file": 42,
+   "nbr_file": 40,
+   "owner_native": 3770.0,
+   "nbr_native": 269.0
+  },
+  {
+   "unit": "40",
+   "pair": [
+    "40",
+    "67"
+   ],
+   "axis": "v",
+   "boundary": "avenue slot 12",
+   "owner_file": 40,
+   "nbr_file": 67,
+   "owner_native": 3225.0,
+   "nbr_native": 206.0
+  },
+  {
+   "unit": "45",
+   "pair": [
+    "45",
+    "43"
+   ],
+   "axis": "h",
+   "boundary": "street 15",
+   "owner_file": 45,
+   "nbr_file": 43,
+   "owner_native": 3772.0,
+   "nbr_native": 270.0
+  },
+  {
+   "unit": "45",
+   "pair": [
+    "45",
+    "46"
+   ],
+   "axis": "v",
+   "boundary": "avenue slot 2",
+   "owner_file": 45,
+   "nbr_file": 46,
+   "owner_native": 2217.0,
+   "nbr_native": 210.0
+  },
+  {
+   "unit": "45",
+   "pair": [
+    "47",
+    "45"
+   ],
+   "axis": "h",
+   "boundary": "street 12",
+   "owner_file": 47,
+   "nbr_file": 45,
+   "owner_native": 3772.0,
+   "nbr_native": 265.0
+  },
+  {
+   "unit": "49",
+   "pair": [
+    "49",
+    "47"
+   ],
+   "axis": "h",
+   "boundary": "street 9",
+   "owner_file": 49,
+   "nbr_file": 47,
+   "owner_native": 3773.0,
+   "nbr_native": 265.0
+  },
+  {
+   "unit": "49",
+   "pair": [
+    "49",
+    "48"
+   ],
+   "axis": "h",
+   "boundary": "street 9",
+   "owner_file": 49,
+   "nbr_file": 48,
+   "owner_native": 3773.0,
+   "nbr_native": 262.0
+  },
+  {
+   "unit": "49",
+   "pair": [
+    "49",
+    "50"
+   ],
+   "axis": "v",
+   "boundary": "avenue slot 3",
+   "owner_file": 49,
+   "nbr_file": 50,
+   "owner_native": 3220.0,
+   "nbr_native": 209.0
+  },
+  {
+   "unit": "51",
+   "pair": [
+    "50",
+    "51"
+   ],
+   "axis": "v",
+   "boundary": "avenue slot 6",
+   "owner_file": 50,
+   "nbr_file": 51,
+   "owner_native": 3227.0,
+   "nbr_native": 261.0
+  },
+  {
+   "unit": "51",
+   "pair": [
+    "51",
+    "52"
+   ],
+   "axis": "v",
+   "boundary": "avenue slot 9",
+   "owner_file": 51,
+   "nbr_file": 52,
+   "owner_native": 3279.0,
+   "nbr_native": 208.0
+  },
+  {
+   "unit": "51",
+   "pair": [
+    "51",
+    "53"
+   ],
+   "axis": "h",
+   "boundary": "street 9",
+   "owner_file": 51,
+   "nbr_file": 53,
+   "owner_native": 3775.0,
+   "nbr_native": 267.0
+  },
+  {
+   "unit": "51",
+   "pair": [
+    "51",
+    "54"
+   ],
+   "axis": "h",
+   "boundary": "street 9",
+   "owner_file": 51,
+   "nbr_file": 54,
+   "owner_native": 3775.0,
+   "nbr_native": 265.0
+  },
+  {
+   "unit": "53",
+   "pair": [
+    "48",
+    "53"
+   ],
+   "axis": "v",
+   "boundary": "avenue slot 5",
+   "owner_file": 48,
+   "nbr_file": 53,
+   "owner_native": 3226.0,
+   "nbr_native": 207.0
+  },
+  {
+   "unit": "53",
+   "pair": [
+    "50",
+    "53"
+   ],
+   "axis": "h",
+   "boundary": "street 9",
+   "owner_file": 50,
+   "nbr_file": 53,
+   "owner_native": 3775.0,
+   "nbr_native": 267.0
+  },
+  {
+   "unit": "53",
+   "pair": [
+    "51",
+    "53"
+   ],
+   "axis": "h",
+   "boundary": "street 9",
+   "owner_file": 51,
+   "nbr_file": 53,
+   "owner_native": 3775.0,
+   "nbr_native": 267.0
+  },
+  {
+   "unit": "53",
+   "pair": [
+    "53",
+    "54"
+   ],
+   "axis": "v",
+   "boundary": "avenue slot 8",
+   "owner_file": 53,
+   "nbr_file": 54,
+   "owner_native": 3225.0,
+   "nbr_native": 208.0
+  },
+  {
+   "unit": "53",
+   "pair": [
+    "53",
+    "55"
+   ],
+   "axis": "h",
+   "boundary": "street 12",
+   "owner_file": 53,
+   "nbr_file": 55,
+   "owner_native": 3774.0,
+   "nbr_native": 267.0
+  }
+ ]
+}
