@@ -207,6 +207,82 @@
    ],
    "confidence": "medium",
    "note": "double-dash 8in W PIPE row at Ave A; 15 also has a dash-dot row at y1413 - picked the double-dash row matching 06 pattern"
+  },
+  {
+   "id": "new-06-13-1",
+   "new": true,
+   "a_xy": [
+    3093,
+    157
+   ],
+   "b_xy": [
+    142,
+    1470
+   ],
+   "confidence": "high",
+   "note": "pair 06/13: 22nd St double-dash water-pipe row crossing Ave A seam (06 sheet_a, 13 sheet_b); same row as junction-22nd-0713 b-side"
+  },
+  {
+   "id": "new-06-13-2",
+   "new": true,
+   "a_xy": [
+    3093,
+    2553
+   ],
+   "b_xy": [
+    142,
+    3795
+   ],
+   "confidence": "high",
+   "note": "pair 06/13: 24th St 6in W PIPE double-dash row crossing Ave A on both sheets"
+  },
+  {
+   "id": "new-06-15-1",
+   "new": true,
+   "a_xy": [
+    3093,
+    3688
+   ],
+   "b_xy": [
+    143,
+    1413
+   ],
+   "confidence": "medium",
+   "note": "pair 06/15: 25th St fire-LIMITS dash-dot row crossing Ave A; distinct from the 8in pipe row ~35-55px north of it on both sheets"
+  },
+  {
+   "id": "new-07-13-1",
+   "new": true,
+   "a_xy": [
+    3245,
+    2657
+   ],
+   "b_xy": [
+    276,
+    392
+   ],
+   "confidence": "medium",
+   "note": "pair 07/13: NW corner of block 2101 (east of Ave A, south of 21st): 07 simplified open-rectangle corner, 13 real frontage corner at lots 101/103; dy from 22nd row 1076 vs 1078 px"
+  },
+  {
+   "id": "new-07-13-2",
+   "new": true,
+   "a_xy": [
+    3247,
+    3583
+   ],
+   "b_xy": [
+    250,
+    1330
+   ],
+   "confidence": "low",
+   "note": "pair 07/13: corner north of 22nd east of Ave A - 07 draws L (vertical turning east at y3583); 13 west-frontage corner of warehouse block at y1330; x-offsets from seam differ 120 vs 108, wharf-sheet east margin is schematic"
+  },
+  {
+   "id": "new-08-11-1",
+   "new": true,
+   "status": "not-found",
+   "note": "pair 08/11 extra features: seam overlap is only the 19th St crossing band; 08 east of Ave A shows just a schematic L (already paired with 07) with no counterpart on 11 (tracks occupy that strip), T.H. dots do not repeat across the pair, and block frontages visible on 11 (x~400) fall beyond 08 sheet edge. Could not bring pair to 3 features"
   }
  ]
 }
