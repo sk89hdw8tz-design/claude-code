@@ -22,10 +22,19 @@ REPO = os.path.dirname(ROOT)
 SEED = os.path.join(REPO, "work", "seed_pipeline", "SEED_1899")
 
 def main(aff_path, max_ok=8.0, hard=12.0):
-    lm = json.load(open(os.path.join(SEED, "landmarks.json")))
+    v2 = os.path.join(os.path.dirname(aff_path), "landmarks_v2.json")
+    if os.path.exists(v2):
+        feats = [dict(sheet_a=f["pair"][0], sheet_b=f["pair"][1], **{k: f[k] for k in ("id", "a_xy", "b_xy")},
+                      schematic=f["schematic"], split=f.get("split"))
+                 for f in json.load(open(v2))["features"]
+                 if f.get("split") == "gate"]
+        print(f"gating on the {len(feats)} HELD-OUT consolidated landmarks "
+              f"(fit half and excluded features not scored)")
+    else:
+        feats = json.load(open(os.path.join(SEED, "landmarks.json")))["features"]
     aff = json.load(open(aff_path))["sheets"]
     rows = []
-    for f in lm["features"]:
+    for f in feats:
         a, b = f["sheet_a"], f["sheet_b"]
         Ta, Tb = aff[a], aff[b]
         ga = np.array(Ta["m"]) @ np.array(f["a_xy"]) + np.array(Ta["t"])

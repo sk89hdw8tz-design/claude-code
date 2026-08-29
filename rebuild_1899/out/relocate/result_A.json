@@ -194,6 +194,19 @@
    ],
    "confidence": "high",
    "note": "same row as junction-20th-0711 (double-dash pipe row, dash period ~23px)"
+  },
+  {
+   "id": "junction-25th-0615",
+   "a_xy": [
+    3093,
+    3652
+   ],
+   "b_xy": [
+    143,
+    1468
+   ],
+   "confidence": "medium",
+   "note": "double-dash 8in W PIPE row at Ave A; 15 also has a dash-dot row at y1413 - picked the double-dash row matching 06 pattern"
   }
  ]
 }

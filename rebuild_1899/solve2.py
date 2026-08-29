@@ -37,18 +37,18 @@ for pair, recs in M["seam_matches"].items():
         matches.append([a, b, r["a_xy"][0], r["a_xy"][1],
                         r["b_xy"][0], r["b_xy"][1], True, 1.0])
 n_dense = len(matches)
-# ink-verified landmarks as high-weight constraints (a_xy human-located,
-# b from the matcher's confirmed peak). The gate is later evaluated with
-# split statistics: landmarks used here are reported separately from the
-# held-out ones, which are the real check.
+# Landmark constraints come from the consolidated three-source set
+# (landmarks_v2.json): only its FIT half; the GATE half never enters the
+# solver, keeping gate.py an honest hold-out.
 FIT_LM_IDS = []
-for r in M["landmark_verification"]:
-    if r["verdict"] == "verified":
+LM2 = json.load(open(os.path.join(OUT, "landmarks_v2.json")))
+for r in LM2["features"]:
+    if r.get("split") == "fit":
         a, b = r["pair"]
         matches.append([a, b, r["a_xy"][0], r["a_xy"][1],
-                        r["b_xy_matched"][0], r["b_xy_matched"][1], True, 3.0])
+                        r["b_xy"][0], r["b_xy"][1], True, 3.0])
         FIT_LM_IDS.append(r["id"])
-print(f"{n_dense} dense + {len(FIT_LM_IDS)} landmark constraints "
+print(f"{n_dense} dense + {len(FIT_LM_IDS)} fit-landmark constraints "
       f"over {len(M['seam_matches'])} pairs")
 
 x0 = np.zeros(len(SHEETS) * NP)

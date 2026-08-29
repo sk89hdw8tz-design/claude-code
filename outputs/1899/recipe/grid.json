@@ -1,0 +1,140 @@
+{
+ "frame": "1899 mosaic frame: x = avenue_slot*1006, y = street_index*1169 (SEED grid; gauge sheet 13 at anchor offset)",
+ "avenue_slots": "A=0 .. J=9 within the wharf/downtown footprint",
+ "streets": {
+  "16": {
+   "y": 18704.0,
+   "n": 0,
+   "spread": 0.0,
+   "method": "frame definition"
+  },
+  "17": {
+   "y": 19873.0,
+   "n": 0,
+   "spread": 0.0,
+   "method": "frame definition"
+  },
+  "18": {
+   "y": 21042.0,
+   "n": 0,
+   "spread": 0.0,
+   "method": "frame definition"
+  },
+  "19": {
+   "y": 22211.0,
+   "n": 0,
+   "spread": 0.0,
+   "method": "frame definition"
+  },
+  "20": {
+   "y": 23380.0,
+   "n": 0,
+   "spread": 0.0,
+   "method": "frame definition"
+  },
+  "21": {
+   "y": 24549.0,
+   "n": 0,
+   "spread": 0.0,
+   "method": "frame definition"
+  },
+  "22": {
+   "y": 25718.0,
+   "n": 0,
+   "spread": 0.0,
+   "method": "frame definition"
+  },
+  "23": {
+   "y": 26887.0,
+   "n": 0,
+   "spread": 0.0,
+   "method": "frame definition"
+  },
+  "24": {
+   "y": 28056.0,
+   "n": 0,
+   "spread": 0.0,
+   "method": "frame definition"
+  },
+  "25": {
+   "y": 29225.0,
+   "n": 0,
+   "spread": 0.0,
+   "method": "frame definition"
+  },
+  "26": {
+   "y": 30394.0,
+   "n": 0,
+   "spread": 0.0,
+   "method": "frame definition"
+  },
+  "27": {
+   "y": 31563.0,
+   "n": 0,
+   "spread": 0.0,
+   "method": "frame definition"
+  }
+ },
+ "avenues": {
+  "0": {
+   "x": 0.0,
+   "n": 0,
+   "spread": 0.0,
+   "method": "frame definition"
+  },
+  "1": {
+   "x": 1006.0,
+   "n": 0,
+   "spread": 0.0,
+   "method": "frame definition"
+  },
+  "2": {
+   "x": 2012.0,
+   "n": 0,
+   "spread": 0.0,
+   "method": "frame definition"
+  },
+  "3": {
+   "x": 3018.0,
+   "n": 0,
+   "spread": 0.0,
+   "method": "frame definition"
+  },
+  "4": {
+   "x": 4024.0,
+   "n": 0,
+   "spread": 0.0,
+   "method": "frame definition"
+  },
+  "5": {
+   "x": 5030.0,
+   "n": 0,
+   "spread": 0.0,
+   "method": "frame definition"
+  },
+  "6": {
+   "x": 6036.0,
+   "n": 0,
+   "spread": 0.0,
+   "method": "frame definition"
+  },
+  "7": {
+   "x": 7042.0,
+   "n": 0,
+   "spread": 0.0,
+   "method": "frame definition"
+  },
+  "8": {
+   "x": 8048.0,
+   "n": 0,
+   "spread": 0.0,
+   "method": "frame definition"
+  },
+  "9": {
+   "x": 9054.0,
+   "n": 0,
+   "spread": 0.0,
+   "method": "frame definition"
+  }
+ }
+}

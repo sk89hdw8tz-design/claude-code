@@ -142,6 +142,32 @@
    ],
    "confidence": "high",
    "note": "T.H. dot E of alley dash-dot line below '514' (Eng.&Dynamo/Servants Ho. block); on sheet16 immediately right of big '14.' numeral. Dot centroids: sheet14 n=350, sheet16 n=259."
+  },
+  {
+   "id": "th-hydrant-614",
+   "a_xy": [
+    2711,
+    3704
+   ],
+   "b_xy": [
+    2744,
+    93
+   ],
+   "confidence": "high",
+   "note": "T.H. dot E of alley dashes below '614', NOT PAVED stretch of 24th on both sheets. Dot centroids: sheet14 n=300, sheet16 n=269."
+  },
+  {
+   "id": "alarmbox-64",
+   "a_xy": [
+    3073,
+    2673
+   ],
+   "b_xy": [
+    129,
+    2706
+   ],
+   "confidence": "high",
+   "note": "Red circle with '64' alone in Winnie/23rd intersection, N of YMCA/Natatorium block (ticks 2301/2303 on 39, 2302/2304 on 14), '80'' numeral nearby. Red-pixel centroids: sheet14 n=729, sheet39 n=777."
   }
  ]
 }

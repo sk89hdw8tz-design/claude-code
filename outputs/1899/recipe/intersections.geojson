@@ -1,0 +1,2046 @@
+{
+ "type": "FeatureCollection",
+ "crs_note": "1899 mosaic frame: x = avenue_slot*1006, y = street_index*1169 (SEED grid; gauge sheet 13 at anchor offset)",
+ "features": [
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "16th Street",
+    "street_no": 16,
+    "avenue": "Avenue A (Water)",
+    "avenue_slot": 0,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     0.0,
+     18704.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "16th Street",
+    "street_no": 16,
+    "avenue": "Avenue B (Strand)",
+    "avenue_slot": 1,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     1006.0,
+     18704.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "16th Street",
+    "street_no": 16,
+    "avenue": "Avenue C (Mechanic)",
+    "avenue_slot": 2,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     2012.0,
+     18704.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "16th Street",
+    "street_no": 16,
+    "avenue": "Avenue D (Market)",
+    "avenue_slot": 3,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     3018.0,
+     18704.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "16th Street",
+    "street_no": 16,
+    "avenue": "Avenue E (Postoffice)",
+    "avenue_slot": 4,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     4024.0,
+     18704.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "16th Street",
+    "street_no": 16,
+    "avenue": "Avenue F (Church)",
+    "avenue_slot": 5,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     5030.0,
+     18704.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "16th Street",
+    "street_no": 16,
+    "avenue": "Avenue G (Winnie)",
+    "avenue_slot": 6,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     6036.0,
+     18704.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "16th Street",
+    "street_no": 16,
+    "avenue": "Avenue H (Ball)",
+    "avenue_slot": 7,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     7042.0,
+     18704.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "16th Street",
+    "street_no": 16,
+    "avenue": "Avenue I (Sealy)",
+    "avenue_slot": 8,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     8048.0,
+     18704.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "16th Street",
+    "street_no": 16,
+    "avenue": "Avenue J (Broadway)",
+    "avenue_slot": 9,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     9054.0,
+     18704.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "17th Street",
+    "street_no": 17,
+    "avenue": "Avenue A (Water)",
+    "avenue_slot": 0,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     0.0,
+     19873.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "17th Street",
+    "street_no": 17,
+    "avenue": "Avenue B (Strand)",
+    "avenue_slot": 1,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     1006.0,
+     19873.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "17th Street",
+    "street_no": 17,
+    "avenue": "Avenue C (Mechanic)",
+    "avenue_slot": 2,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     2012.0,
+     19873.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "17th Street",
+    "street_no": 17,
+    "avenue": "Avenue D (Market)",
+    "avenue_slot": 3,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     3018.0,
+     19873.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "17th Street",
+    "street_no": 17,
+    "avenue": "Avenue E (Postoffice)",
+    "avenue_slot": 4,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     4024.0,
+     19873.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "17th Street",
+    "street_no": 17,
+    "avenue": "Avenue F (Church)",
+    "avenue_slot": 5,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     5030.0,
+     19873.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "17th Street",
+    "street_no": 17,
+    "avenue": "Avenue G (Winnie)",
+    "avenue_slot": 6,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     6036.0,
+     19873.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "17th Street",
+    "street_no": 17,
+    "avenue": "Avenue H (Ball)",
+    "avenue_slot": 7,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     7042.0,
+     19873.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "17th Street",
+    "street_no": 17,
+    "avenue": "Avenue I (Sealy)",
+    "avenue_slot": 8,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     8048.0,
+     19873.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "17th Street",
+    "street_no": 17,
+    "avenue": "Avenue J (Broadway)",
+    "avenue_slot": 9,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     9054.0,
+     19873.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "18th Street",
+    "street_no": 18,
+    "avenue": "Avenue A (Water)",
+    "avenue_slot": 0,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     0.0,
+     21042.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "18th Street",
+    "street_no": 18,
+    "avenue": "Avenue B (Strand)",
+    "avenue_slot": 1,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     1006.0,
+     21042.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "18th Street",
+    "street_no": 18,
+    "avenue": "Avenue C (Mechanic)",
+    "avenue_slot": 2,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     2012.0,
+     21042.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "18th Street",
+    "street_no": 18,
+    "avenue": "Avenue D (Market)",
+    "avenue_slot": 3,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     3018.0,
+     21042.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "18th Street",
+    "street_no": 18,
+    "avenue": "Avenue E (Postoffice)",
+    "avenue_slot": 4,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     4024.0,
+     21042.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "18th Street",
+    "street_no": 18,
+    "avenue": "Avenue F (Church)",
+    "avenue_slot": 5,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     5030.0,
+     21042.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "18th Street",
+    "street_no": 18,
+    "avenue": "Avenue G (Winnie)",
+    "avenue_slot": 6,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     6036.0,
+     21042.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "18th Street",
+    "street_no": 18,
+    "avenue": "Avenue H (Ball)",
+    "avenue_slot": 7,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     7042.0,
+     21042.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "18th Street",
+    "street_no": 18,
+    "avenue": "Avenue I (Sealy)",
+    "avenue_slot": 8,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     8048.0,
+     21042.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "18th Street",
+    "street_no": 18,
+    "avenue": "Avenue J (Broadway)",
+    "avenue_slot": 9,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     9054.0,
+     21042.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "19th Street",
+    "street_no": 19,
+    "avenue": "Avenue A (Water)",
+    "avenue_slot": 0,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     0.0,
+     22211.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "19th Street",
+    "street_no": 19,
+    "avenue": "Avenue B (Strand)",
+    "avenue_slot": 1,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     1006.0,
+     22211.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "19th Street",
+    "street_no": 19,
+    "avenue": "Avenue C (Mechanic)",
+    "avenue_slot": 2,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     2012.0,
+     22211.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "19th Street",
+    "street_no": 19,
+    "avenue": "Avenue D (Market)",
+    "avenue_slot": 3,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     3018.0,
+     22211.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "19th Street",
+    "street_no": 19,
+    "avenue": "Avenue E (Postoffice)",
+    "avenue_slot": 4,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     4024.0,
+     22211.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "19th Street",
+    "street_no": 19,
+    "avenue": "Avenue F (Church)",
+    "avenue_slot": 5,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     5030.0,
+     22211.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "19th Street",
+    "street_no": 19,
+    "avenue": "Avenue G (Winnie)",
+    "avenue_slot": 6,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     6036.0,
+     22211.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "19th Street",
+    "street_no": 19,
+    "avenue": "Avenue H (Ball)",
+    "avenue_slot": 7,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     7042.0,
+     22211.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "19th Street",
+    "street_no": 19,
+    "avenue": "Avenue I (Sealy)",
+    "avenue_slot": 8,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     8048.0,
+     22211.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "19th Street",
+    "street_no": 19,
+    "avenue": "Avenue J (Broadway)",
+    "avenue_slot": 9,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     9054.0,
+     22211.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "20th Street",
+    "street_no": 20,
+    "avenue": "Avenue A (Water)",
+    "avenue_slot": 0,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     0.0,
+     23380.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "20th Street",
+    "street_no": 20,
+    "avenue": "Avenue B (Strand)",
+    "avenue_slot": 1,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     1006.0,
+     23380.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "20th Street",
+    "street_no": 20,
+    "avenue": "Avenue C (Mechanic)",
+    "avenue_slot": 2,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     2012.0,
+     23380.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "20th Street",
+    "street_no": 20,
+    "avenue": "Avenue D (Market)",
+    "avenue_slot": 3,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     3018.0,
+     23380.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "20th Street",
+    "street_no": 20,
+    "avenue": "Avenue E (Postoffice)",
+    "avenue_slot": 4,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     4024.0,
+     23380.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "20th Street",
+    "street_no": 20,
+    "avenue": "Avenue F (Church)",
+    "avenue_slot": 5,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     5030.0,
+     23380.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "20th Street",
+    "street_no": 20,
+    "avenue": "Avenue G (Winnie)",
+    "avenue_slot": 6,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     6036.0,
+     23380.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "20th Street",
+    "street_no": 20,
+    "avenue": "Avenue H (Ball)",
+    "avenue_slot": 7,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     7042.0,
+     23380.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "20th Street",
+    "street_no": 20,
+    "avenue": "Avenue I (Sealy)",
+    "avenue_slot": 8,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     8048.0,
+     23380.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "20th Street",
+    "street_no": 20,
+    "avenue": "Avenue J (Broadway)",
+    "avenue_slot": 9,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     9054.0,
+     23380.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "21st Street",
+    "street_no": 21,
+    "avenue": "Avenue A (Water)",
+    "avenue_slot": 0,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     0.0,
+     24549.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "21st Street",
+    "street_no": 21,
+    "avenue": "Avenue B (Strand)",
+    "avenue_slot": 1,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     1006.0,
+     24549.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "21st Street",
+    "street_no": 21,
+    "avenue": "Avenue C (Mechanic)",
+    "avenue_slot": 2,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     2012.0,
+     24549.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "21st Street",
+    "street_no": 21,
+    "avenue": "Avenue D (Market)",
+    "avenue_slot": 3,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     3018.0,
+     24549.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "21st Street",
+    "street_no": 21,
+    "avenue": "Avenue E (Postoffice)",
+    "avenue_slot": 4,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     4024.0,
+     24549.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "21st Street",
+    "street_no": 21,
+    "avenue": "Avenue F (Church)",
+    "avenue_slot": 5,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     5030.0,
+     24549.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "21st Street",
+    "street_no": 21,
+    "avenue": "Avenue G (Winnie)",
+    "avenue_slot": 6,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     6036.0,
+     24549.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "21st Street",
+    "street_no": 21,
+    "avenue": "Avenue H (Ball)",
+    "avenue_slot": 7,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     7042.0,
+     24549.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "21st Street",
+    "street_no": 21,
+    "avenue": "Avenue I (Sealy)",
+    "avenue_slot": 8,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     8048.0,
+     24549.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "21st Street",
+    "street_no": 21,
+    "avenue": "Avenue J (Broadway)",
+    "avenue_slot": 9,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     9054.0,
+     24549.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "22nd Street",
+    "street_no": 22,
+    "avenue": "Avenue A (Water)",
+    "avenue_slot": 0,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     0.0,
+     25718.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "22nd Street",
+    "street_no": 22,
+    "avenue": "Avenue B (Strand)",
+    "avenue_slot": 1,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     1006.0,
+     25718.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "22nd Street",
+    "street_no": 22,
+    "avenue": "Avenue C (Mechanic)",
+    "avenue_slot": 2,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     2012.0,
+     25718.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "22nd Street",
+    "street_no": 22,
+    "avenue": "Avenue D (Market)",
+    "avenue_slot": 3,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     3018.0,
+     25718.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "22nd Street",
+    "street_no": 22,
+    "avenue": "Avenue E (Postoffice)",
+    "avenue_slot": 4,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     4024.0,
+     25718.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "22nd Street",
+    "street_no": 22,
+    "avenue": "Avenue F (Church)",
+    "avenue_slot": 5,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     5030.0,
+     25718.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "22nd Street",
+    "street_no": 22,
+    "avenue": "Avenue G (Winnie)",
+    "avenue_slot": 6,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     6036.0,
+     25718.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "22nd Street",
+    "street_no": 22,
+    "avenue": "Avenue H (Ball)",
+    "avenue_slot": 7,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     7042.0,
+     25718.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "22nd Street",
+    "street_no": 22,
+    "avenue": "Avenue I (Sealy)",
+    "avenue_slot": 8,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     8048.0,
+     25718.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "22nd Street",
+    "street_no": 22,
+    "avenue": "Avenue J (Broadway)",
+    "avenue_slot": 9,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     9054.0,
+     25718.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "23rd Street",
+    "street_no": 23,
+    "avenue": "Avenue A (Water)",
+    "avenue_slot": 0,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     0.0,
+     26887.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "23rd Street",
+    "street_no": 23,
+    "avenue": "Avenue B (Strand)",
+    "avenue_slot": 1,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     1006.0,
+     26887.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "23rd Street",
+    "street_no": 23,
+    "avenue": "Avenue C (Mechanic)",
+    "avenue_slot": 2,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     2012.0,
+     26887.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "23rd Street",
+    "street_no": 23,
+    "avenue": "Avenue D (Market)",
+    "avenue_slot": 3,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     3018.0,
+     26887.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "23rd Street",
+    "street_no": 23,
+    "avenue": "Avenue E (Postoffice)",
+    "avenue_slot": 4,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     4024.0,
+     26887.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "23rd Street",
+    "street_no": 23,
+    "avenue": "Avenue F (Church)",
+    "avenue_slot": 5,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     5030.0,
+     26887.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "23rd Street",
+    "street_no": 23,
+    "avenue": "Avenue G (Winnie)",
+    "avenue_slot": 6,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     6036.0,
+     26887.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "23rd Street",
+    "street_no": 23,
+    "avenue": "Avenue H (Ball)",
+    "avenue_slot": 7,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     7042.0,
+     26887.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "23rd Street",
+    "street_no": 23,
+    "avenue": "Avenue I (Sealy)",
+    "avenue_slot": 8,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     8048.0,
+     26887.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "23rd Street",
+    "street_no": 23,
+    "avenue": "Avenue J (Broadway)",
+    "avenue_slot": 9,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     9054.0,
+     26887.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "24th Street",
+    "street_no": 24,
+    "avenue": "Avenue A (Water)",
+    "avenue_slot": 0,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     0.0,
+     28056.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "24th Street",
+    "street_no": 24,
+    "avenue": "Avenue B (Strand)",
+    "avenue_slot": 1,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     1006.0,
+     28056.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "24th Street",
+    "street_no": 24,
+    "avenue": "Avenue C (Mechanic)",
+    "avenue_slot": 2,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     2012.0,
+     28056.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "24th Street",
+    "street_no": 24,
+    "avenue": "Avenue D (Market)",
+    "avenue_slot": 3,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     3018.0,
+     28056.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "24th Street",
+    "street_no": 24,
+    "avenue": "Avenue E (Postoffice)",
+    "avenue_slot": 4,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     4024.0,
+     28056.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "24th Street",
+    "street_no": 24,
+    "avenue": "Avenue F (Church)",
+    "avenue_slot": 5,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     5030.0,
+     28056.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "24th Street",
+    "street_no": 24,
+    "avenue": "Avenue G (Winnie)",
+    "avenue_slot": 6,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     6036.0,
+     28056.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "24th Street",
+    "street_no": 24,
+    "avenue": "Avenue H (Ball)",
+    "avenue_slot": 7,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     7042.0,
+     28056.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "24th Street",
+    "street_no": 24,
+    "avenue": "Avenue I (Sealy)",
+    "avenue_slot": 8,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     8048.0,
+     28056.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "24th Street",
+    "street_no": 24,
+    "avenue": "Avenue J (Broadway)",
+    "avenue_slot": 9,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     9054.0,
+     28056.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "25th Street",
+    "street_no": 25,
+    "avenue": "Avenue A (Water)",
+    "avenue_slot": 0,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     0.0,
+     29225.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "25th Street",
+    "street_no": 25,
+    "avenue": "Avenue B (Strand)",
+    "avenue_slot": 1,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     1006.0,
+     29225.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "25th Street",
+    "street_no": 25,
+    "avenue": "Avenue C (Mechanic)",
+    "avenue_slot": 2,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     2012.0,
+     29225.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "25th Street",
+    "street_no": 25,
+    "avenue": "Avenue D (Market)",
+    "avenue_slot": 3,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     3018.0,
+     29225.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "25th Street",
+    "street_no": 25,
+    "avenue": "Avenue E (Postoffice)",
+    "avenue_slot": 4,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     4024.0,
+     29225.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "25th Street",
+    "street_no": 25,
+    "avenue": "Avenue F (Church)",
+    "avenue_slot": 5,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     5030.0,
+     29225.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "25th Street",
+    "street_no": 25,
+    "avenue": "Avenue G (Winnie)",
+    "avenue_slot": 6,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     6036.0,
+     29225.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "25th Street",
+    "street_no": 25,
+    "avenue": "Avenue H (Ball)",
+    "avenue_slot": 7,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     7042.0,
+     29225.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "25th Street",
+    "street_no": 25,
+    "avenue": "Avenue I (Sealy)",
+    "avenue_slot": 8,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     8048.0,
+     29225.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "25th Street",
+    "street_no": 25,
+    "avenue": "Avenue J (Broadway)",
+    "avenue_slot": 9,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     9054.0,
+     29225.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "26th Street",
+    "street_no": 26,
+    "avenue": "Avenue A (Water)",
+    "avenue_slot": 0,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     0.0,
+     30394.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "26th Street",
+    "street_no": 26,
+    "avenue": "Avenue B (Strand)",
+    "avenue_slot": 1,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     1006.0,
+     30394.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "26th Street",
+    "street_no": 26,
+    "avenue": "Avenue C (Mechanic)",
+    "avenue_slot": 2,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     2012.0,
+     30394.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "26th Street",
+    "street_no": 26,
+    "avenue": "Avenue D (Market)",
+    "avenue_slot": 3,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     3018.0,
+     30394.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "26th Street",
+    "street_no": 26,
+    "avenue": "Avenue E (Postoffice)",
+    "avenue_slot": 4,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     4024.0,
+     30394.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "26th Street",
+    "street_no": 26,
+    "avenue": "Avenue F (Church)",
+    "avenue_slot": 5,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     5030.0,
+     30394.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "26th Street",
+    "street_no": 26,
+    "avenue": "Avenue G (Winnie)",
+    "avenue_slot": 6,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     6036.0,
+     30394.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "26th Street",
+    "street_no": 26,
+    "avenue": "Avenue H (Ball)",
+    "avenue_slot": 7,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     7042.0,
+     30394.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "26th Street",
+    "street_no": 26,
+    "avenue": "Avenue I (Sealy)",
+    "avenue_slot": 8,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     8048.0,
+     30394.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "26th Street",
+    "street_no": 26,
+    "avenue": "Avenue J (Broadway)",
+    "avenue_slot": 9,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     9054.0,
+     30394.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "27th Street",
+    "street_no": 27,
+    "avenue": "Avenue A (Water)",
+    "avenue_slot": 0,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     0.0,
+     31563.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "27th Street",
+    "street_no": 27,
+    "avenue": "Avenue B (Strand)",
+    "avenue_slot": 1,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     1006.0,
+     31563.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "27th Street",
+    "street_no": 27,
+    "avenue": "Avenue C (Mechanic)",
+    "avenue_slot": 2,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     2012.0,
+     31563.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "27th Street",
+    "street_no": 27,
+    "avenue": "Avenue D (Market)",
+    "avenue_slot": 3,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     3018.0,
+     31563.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "27th Street",
+    "street_no": 27,
+    "avenue": "Avenue E (Postoffice)",
+    "avenue_slot": 4,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     4024.0,
+     31563.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "27th Street",
+    "street_no": 27,
+    "avenue": "Avenue F (Church)",
+    "avenue_slot": 5,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     5030.0,
+     31563.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "27th Street",
+    "street_no": 27,
+    "avenue": "Avenue G (Winnie)",
+    "avenue_slot": 6,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     6036.0,
+     31563.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "27th Street",
+    "street_no": 27,
+    "avenue": "Avenue H (Ball)",
+    "avenue_slot": 7,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     7042.0,
+     31563.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "27th Street",
+    "street_no": 27,
+    "avenue": "Avenue I (Sealy)",
+    "avenue_slot": 8,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     8048.0,
+     31563.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "street": "27th Street",
+    "street_no": 27,
+    "avenue": "Avenue J (Broadway)",
+    "avenue_slot": 9,
+    "confidence": "frame-exact"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     9054.0,
+     31563.0
+    ]
+   }
+  }
+ ]
+}
