@@ -169,6 +169,74 @@
    ],
    "confidence": "low",
    "note": "Center of the small detached square outbuilding just east of the same complex (east of the dashed annex), drawn on both sheets. Same anchor as tie-67-72-1. Footprint proportions disagree between the sheets - possible scale/redraw difference on 72; flagged suspicious."
+  },
+  {
+   "pair": [
+    "38",
+    "71b"
+   ],
+   "id": "tie-38-71b-1",
+   "owner_xy": [
+    3227,
+    240
+   ],
+   "nbr_xy": [
+    1214,
+    210
+   ],
+   "confidence": "low",
+   "note": "Dashed water-pipe line of 24th St (top street on both sheets) where it crosses the Avenue M corridor. LINE feature, horizontal: constrains y only; x set at nominal seam line. Anchored: first E-W street from sheet top on both."
+  },
+  {
+   "pair": [
+    "38",
+    "71b"
+   ],
+   "id": "tie-38-71b-2",
+   "owner_xy": [
+    3227,
+    1478
+   ],
+   "nbr_xy": [
+    1214,
+    1435
+   ],
+   "confidence": "low",
+   "note": "12-inch water pipe dashed line in 25th St (the 120-ft street, labeled 120 ft on 38 and 12\" W.P. on 71b) crossing Avenue M. LINE feature, horizontal: y only; x at nominal seam. No shared vertical/point ink exists in this corridor-only overlap (25th crossing occupied by compass rose on 71b)."
+  },
+  {
+   "pair": [
+    "71b",
+    "72"
+   ],
+   "id": "tie-71b-72-1",
+   "owner_xy": [
+    3284,
+    1262
+   ],
+   "nbr_xy": [
+    242,
+    1281
+   ],
+   "confidence": "high",
+   "note": "T.H. hydrant dot in Avenue N corridor just N of the 120-ft 25th St crossing, east of the Galveston & Western R.R. track; on 71b below the 1422/1424 block corner, on 72 west of the 1502 block corner. Labeled T.H. on both. Dot center measured."
+  },
+  {
+   "pair": [
+    "71b",
+    "72"
+   ],
+   "id": "tie-71b-72-2",
+   "owner_xy": [
+    3222,
+    1437
+   ],
+   "nbr_xy": [
+    182,
+    1450
+   ],
+   "confidence": "medium",
+   "note": "Crossing of the N-S dashed 8-in water pipe in Avenue N (labeled 8\" W.PIPE on 72) with the E-W dashed pipe line of the 120-ft 25th St. Offsets agree with tie-71b-72-1 within ~7 px. Note: the solid G&W R.R. track line is drawn east of the pipe on 71b but west of it on 72 - sheets disagree on rail/pipe order."
   }
  ]
 }

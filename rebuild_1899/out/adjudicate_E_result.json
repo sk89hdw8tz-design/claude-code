@@ -211,6 +211,48 @@
    ],
    "confidence": "medium",
    "note": "Red fire-alarm box disk 14 in the Av F corridor south of 12th St; unique number so identity certain, but the symbol is placed ~50 px differently relative to the block corner on the two sheets - use corner tie as primary"
+  },
+  {
+   "pair": [
+    "54",
+    "56"
+   ],
+   "id": "tie-54-56-1",
+   "owner_xy": [
+    1077,
+    3871
+   ],
+   "nbr_xy": [
+    1054,
+    340
+   ],
+   "confidence": "high",
+   "note": "Red fire-alarm box disk 27, south side of 12th St just NE of block-192 corner (house 923); unique printed number, and disk-to-corner offset matches on both sheets"
+  },
+  {
+   "pair": [
+    "54",
+    "56"
+   ],
+   "id": "tie-54-56-2",
+   "owner_xy": [
+    1775,
+    3699
+   ],
+   "nbr_xy": [
+    1769,
+    153
+   ],
+   "confidence": "high",
+   "note": "T.H. hydrant NE of 12th St and the 20-ft street of the 1000 block (houses 1012/1014 on 54 = 1011/1013 on 56); anchored by the 54/56 sheet-ref numerals printed beside it"
+  },
+  {
+   "pair": [
+    "55",
+    "56"
+   ],
+   "status": "featureless",
+   "note": "Butt joint on Av I (Sealy): 55 draws only the west ~200px of the corridor (east of its blocks 252-254, even columns 1202-1228), 56 only the east ~120px (west of blocks 192-194, odd columns 1201-1227, St Marys University on 193). Both sheets print AV. I. OR SEALY and the other sheets numeral, but the shared paper is bare avenue - no hydrants, rails, or building work crosses it"
   }
  ]
 }
