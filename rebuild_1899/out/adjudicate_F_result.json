@@ -67,6 +67,40 @@
    ],
    "confidence": "low",
    "note": "SE corner of the north-side block front where the 21st St block line (houses 1518-1524, nrs 2026/2028 around the corner) turns north along the avenue at x~3100. On 67 this block is drawn only as a marginal reference outline above the street; corner measured where the reference line jogs north. Schematic on 67, hence low; offset disagrees with hydrant tie by ~25-30 px."
+  },
+  {
+   "pair": [
+    "67",
+    "68"
+   ],
+   "id": "tie-67-68-1",
+   "owner_xy": [
+    3072,
+    753
+   ],
+   "nbr_xy": [
+    93,
+    728
+   ],
+   "confidence": "high",
+   "note": "NW corner of the X-marked outbuilding labeled 1525 1/2 (on 67), drawn on both sheets just west of the NOT OPEN(ED) unopened road, immediately south of the jog in the lot line. Identity anchored by the 1525/1527 house numbers and the unopened road."
+  },
+  {
+   "pair": [
+    "67",
+    "68"
+   ],
+   "id": "tie-67-68-2",
+   "owner_xy": [
+    3193,
+    613
+   ],
+   "nbr_xy": [
+    204,
+    597
+   ],
+   "confidence": "high",
+   "note": "NW corner of the small 1-story shed marked 1-x standing inside the NOT OPEN(ED) road corridor, ~100 px NE of the 1525 1/2 X-outbuilding; the only such shed along this seam. Offsets consistent with tie-67-68-1 within ~10 px."
   }
  ]
 }
