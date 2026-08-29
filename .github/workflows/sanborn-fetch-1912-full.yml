@@ -6,6 +6,9 @@ on:
       pct:
         description: "IIIF scale percent for working copies"
         default: "50"
+  push:
+    branches: [claude/galveston-setup-part-a-mk5z1l]
+    paths: [".github/sanborn-fetch-1912-request"]
 
 permissions:
   contents: write
