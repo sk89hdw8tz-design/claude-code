@@ -611,6 +611,312 @@
    ],
    "confidence": "high",
    "note": "SW corner of the 1700-block of 39th St, the other side of the same 204-px avenue (87: numbers 1702/1704 east, 3827 up the avenue; 92: sliver stub directly above its own block corner carrying 1701/1703 and 3901/3903). dx 1090, dy 3558 - matches tie-87-92-1 (dx 1083, dy 3554)."
+  },
+  {
+   "pair": [
+    "87",
+    "93"
+   ],
+   "id": "tie-87-93-1",
+   "owner_xy": [
+    3257,
+    3685
+   ],
+   "nbr_xy": [
+    1279,
+    122
+   ],
+   "confidence": "high",
+   "note": "T.H. hydrant dot in 39th St at Avenue P, the only T.H. in the shared 39th-St corridor; on both sheets it sits ~28 px SW of the block corner at Avenue P and just north of the dashed pipe line. dx 1978."
+  },
+  {
+   "pair": [
+    "87",
+    "93"
+   ],
+   "id": "tie-87-93-2",
+   "owner_xy": [
+    3286,
+    3673
+   ],
+   "nbr_xy": [
+    1307,
+    123
+   ],
+   "confidence": "high",
+   "note": "SW corner of the block north of 39th St east of Avenue P (the block that continues onto sheet 88): 87 draws its west edge as a stub ending at this corner near its own paper edge, 93 draws the same corner at the west end of the eastern top-margin sliver segment. dx 1979, matching the hydrant tie to 1 px."
+  },
+  {
+   "pair": [
+    "84",
+    "88"
+   ],
+   "id": "tie-84-88-1",
+   "owner_xy": [
+    2281,
+    3653
+   ],
+   "nbr_xy": [
+    1355,
+    118
+   ],
+   "confidence": "high",
+   "note": "SW corner of the 2000-block of 36th St on 84 (numbers 2002/2004 east, 3519/3523/3525/3527 up the avenue). On 88 it is the east side of the 107-px gap in the top-margin sliver line (the sliver of 84s block). Anchored by that gap: 84 shows the identical 103-px gap between this corner and the line at x=2178, so the instance is unambiguous. dx 926."
+  },
+  {
+   "pair": [
+    "84",
+    "88"
+   ],
+   "id": "tie-84-88-2",
+   "owner_xy": [
+    2178,
+    3653
+   ],
+   "nbr_xy": [
+    1248,
+    122
+   ],
+   "confidence": "high",
+   "note": "West wall of the 35-ft lane of block 86 N.W. where it meets the 36th-St block line - 88 draws the lane wall running north to this corner (its own lane, labelled 35, is 1244-1352), and 84 draws the same wall as a stub dropping south from its block line into 36th St. dx 930, dy 3531; matches tie-84-88-1 (dx 926)."
+  },
+  {
+   "pair": [
+    "88",
+    "89"
+   ],
+   "id": "tie-88-89-1",
+   "owner_xy": [
+    3245,
+    2596
+   ],
+   "nbr_xy": [
+    151,
+    2592
+   ],
+   "confidence": "high",
+   "note": "Corner of the long north-south line that runs down the middle of Avenue Q-1/2 and turns west into 38th St - both sheets draw the same L (vertical to the north, spur to the west) at the same street. Anchored by the block structure: 88s block east edge is 3131 and 89s block west edge 251, i.e. a 213-px (70-ft) avenue, which independently gives dx 3092 against 3094 from this corner. dy 4."
+  },
+  {
+   "pair": [
+    "88",
+    "89"
+   ],
+   "id": "tie-88-89-2",
+   "owner_xy": [
+    3254,
+    1550
+   ],
+   "nbr_xy": [
+    154,
+    1548
+   ],
+   "confidence": "high",
+   "note": "Same avenue-centre line one street north, where it meets the north block line of the 2200/2100-block south of 37th St (both sheets also carry the dashed 37th-St pipe line ~100 px above). dx 3100, dy 2 - matches tie-88-89-1 (dx 3094)."
+  },
+  {
+   "pair": [
+    "88",
+    "93"
+   ],
+   "id": "tie-88-93-1",
+   "owner_xy": [
+    279,
+    3646
+   ],
+   "nbr_xy": [
+    1278,
+    122
+   ],
+   "confidence": "high",
+   "note": "T.H. hydrant dot in 39th St at Avenue P (the same hydrant used for tie-87-93-1): identified on both sheets by the block corner ~25 px NE carrying house nos. 1902 east and 3327/3329 up the avenue. Two T.H.s exist in this shared corridor, 2017 px apart on 88 and 2010 px apart on 93, so the pairing is unambiguous. dx -999."
+  },
+  {
+   "pair": [
+    "88",
+    "93"
+   ],
+   "id": "tie-88-93-2",
+   "owner_xy": [
+    2296,
+    3643
+   ],
+   "nbr_xy": [
+    3288,
+    124
+   ],
+   "confidence": "high",
+   "note": "The eastern T.H. hydrant in 39th St, at the avenue two blocks east: on both sheets it sits just east of the dashed avenue pipe line and just SW of the block corner with 2702 east / 3825-3827 up the avenue. dx -992, dy 3519 - matches tie-88-93-1 (dx -999, dy 3524)."
+  },
+  {
+   "pair": [
+    "89",
+    "90"
+   ],
+   "id": "tie-89-90-1",
+   "owner_xy": [
+    3306,
+    1305
+   ],
+   "nbr_xy": [
+    284,
+    1312
+   ],
+   "confidence": "high",
+   "note": "SW corner of the 2500-block of 37th St east of Avenue S (90: numbers 2502/2504/2506 east, 1623/1625/1627 up the avenue). Sheet 89 draws that block west edge as a long east-margin sliver whose corner and eastward spur sit here. dx 3022."
+  },
+  {
+   "pair": [
+    "89",
+    "90"
+   ],
+   "id": "tie-89-90-2",
+   "owner_xy": [
+    3296,
+    3651
+   ],
+   "nbr_xy": [
+    267,
+    3657
+   ],
+   "confidence": "high",
+   "note": "Same block west line two streets south, at its 39th-St corner (90: 2502/2504/2506 east, 3823/3825/3827 up the avenue); on 89 the sliver line ends here with the same eastward spur. dx 3029, dy -6 - matches tie-89-90-1 (dx 3022, dy -7)."
+  },
+  {
+   "pair": [
+    "91",
+    "92"
+   ],
+   "id": "tie-91-92-1",
+   "owner_xy": [
+    3145,
+    390
+   ],
+   "nbr_xy": [
+    115,
+    377
+   ],
+   "confidence": "high",
+   "note": "NE corner of block 39 at 39th St and Avenue N (91: last numbers 1419/1421/1423 west along 39th St, 3902/3904 down the avenue). Sheet 92 carries the same block edge as a west-margin sliver whose north end is this corner with a short westward spur. Cross-checked by the Galveston City R.R. double track running down the avenue: 91 x 3244-3253 vs 92 x 214-223, dx 3030, identical to this corner."
+  },
+  {
+   "pair": [
+    "91",
+    "92"
+   ],
+   "id": "tie-91-92-2",
+   "owner_xy": [
+    3139,
+    1314
+   ],
+   "nbr_xy": [
+    114,
+    1305
+   ],
+   "confidence": "high",
+   "note": "SE corner of the same block at 40th St (numbers 1420/1422/1424 west, 3924/3926/3928 up the avenue on 91); south end of the sliver line on 92, again with a westward spur. dx 3025, dy 9 - matches tie-91-92-1 (dx 3030, dy 13)."
+  },
+  {
+   "pair": [
+    "30",
+    "91"
+   ],
+   "id": "tie-30-91-1",
+   "owner_xy": [
+    219,
+    3682
+   ],
+   "nbr_xy": [
+    1314,
+    176
+   ],
+   "confidence": "high",
+   "note": "Western of the two T.H. hydrants in the shared 39th-St corridor, in the avenue just SW of the block corner carrying house no. 1302 east and 3827 up the avenue (30). The two hydrants are 1034 px apart on 30 and 1020 px on 91, and both sheets show the same 6-in W. PIPE dashed line ~100 px south, so the pairing is unambiguous. dx -1095."
+  },
+  {
+   "pair": [
+    "30",
+    "91"
+   ],
+   "id": "tie-30-91-2",
+   "owner_xy": [
+    1253,
+    3673
+   ],
+   "nbr_xy": [
+    2334,
+    177
+   ],
+   "confidence": "high",
+   "note": "Eastern T.H. hydrant of that pair, SW of the block corner with 1402 east / 3821 up the avenue on 30 (on 91 the same corner sits just NE of the dot, under the 30 neighbour glyph). dx -1081, dy 3496 - matches tie-30-91-1 (dx -1095, dy 3506) to within the 1.4% scale difference between the two sheets."
+  },
+  {
+   "pair": [
+    "29",
+    "91"
+   ],
+   "id": "tie-29-91-1",
+   "owner_xy": [
+    2308,
+    3638
+   ],
+   "nbr_xy": [
+    334,
+    132
+   ],
+   "confidence": "high",
+   "note": "SW corner of the 1200-block of 39th St on 29 (house nos. 1202/1204 east along 39th St, 3823/3827 up the avenue) - block instance fixed by those numbers and by the West End German Lutheran Church two blocks east on 29. On 91 it is the corner of the top-margin sliver just right of the 91 sheet number and the GALVESTON TEX. caption. dx 1974, dy 3506."
+  },
+  {
+   "pair": [
+    "29",
+    "91"
+   ],
+   "id": "tie-29-91-2",
+   "owner_xy": [
+    2327,
+    3671
+   ],
+   "nbr_xy": [
+    319,
+    168
+   ],
+   "confidence": "medium",
+   "note": "T.H. hydrant dot in the same avenue mouth, just below the tie-29-91-1 corner. dy 3503 matches the corner tie exactly, but the symbol is drawn ~20 px east of the corner on 29 and ~15 px west of it on 91, so dx 2008 vs 1974 - hence medium. (Sheet 29 also seems compressed near its east edge: its next hydrant east, the 1300-block one shared with sheet 30, sits only 924 px away where 91 and 30 both show ~1000.)"
+  },
+  {
+   "pair": [
+    "26b",
+    "91"
+   ],
+   "id": "tie-26b-91-1",
+   "owner_xy": [
+    3168,
+    2879
+   ],
+   "nbr_xy": [
+    112,
+    1310
+   ],
+   "confidence": "high",
+   "note": "SE corner of the 1100-block between 39th and 40th St on panel 26b (house nos. 1122/1124 below on 40th St, 3926/3928 up Avenue L, corner store with dashed gallery). Sheet 91 draws that block edge as a west-margin sliver ending here with a westward spur. dx 3056, dy 1569."
+  },
+  {
+   "pair": [
+    "26b",
+    "91"
+   ],
+   "id": "tie-26b-91-2",
+   "owner_xy": [
+    3178,
+    1950
+   ],
+   "nbr_xy": [
+    120,
+    373
+   ],
+   "confidence": "high",
+   "note": "NE corner of the same block at 39th St (numbers 1119/1121/1123 west along 39th St, 3902/3904 down Avenue L on 26b; the 8-in W. PIPE dashed line runs along 39th St just north). North end of the same sliver on 91, just below its 91 sheet number. dx 3058, dy 1577 - matches tie-26b-91-1."
   }
  ]
 }

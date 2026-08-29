@@ -2,7 +2,7 @@
  "project": "Galveston Sanborn wharf/downtown mosaics, 1899 + 1912",
  "branch": "claude/galveston-setup-part-a-mk5z1l",
  "governing_spec": "Cloud addendum (Part B brief unavailable in this cloud session; stage structure reconstructed from the addendum and prior-work branches). Ambiguities go to HUMAN_QUEUE.md, not guessed.",
- "updated_utc": "2026-08-29T10:40:00Z",
+ "updated_utc": "2026-08-29T22:10:00Z",
  "environment": {
   "network": "restricted proxy: pypi/apt/github reachable; loc.gov, tile.loc.gov, maps.lib.utexas.edu, texashistory.unt.edu blocked (CONNECT 403)",
   "source_fetch_path": "GitHub Actions CI runners (full egress) commit sources to data branches; sessions read them via git",
@@ -108,12 +108,16 @@
    "notes": "DZI tile sets deferred off-cloud (repo size budget); render.py --dzi produces them. state/events.jsonl hook stream was never wired (no hooks configured in Part A settings.json) \u2014 deviation from addendum \u00a7C, ledger+STATUS pushes served as the event record."
   },
   "5_city_1899": {
-   "status": "in progress",
-   "state": "network 90 units/196 pairs; ring solve from frozen core; 26 units in adjudication; cuts/masks/QC pending final solve"
+   "status": "done",
+   "state": "89/90 units placed ({'fit': 34, 'core': 12, 'tie-translation': 28, 'tie-fit': 12, 'tie-single': 3, 'prior-unverified': 1}); 71a unplaceable (no shared ground, 2 agents concur)"
   },
   "6_1912_full": {
-   "status": "in progress",
-   "state": "acquisition complete (233 files); keymap spans 2/4 quadrants; registration pending spans"
+   "status": "done",
+   "state": "92/92 units placed ({'core': 12, 'tie-translation': 34, 'tie-fit': 4, 'fit': 33, 'tie-single': 9}); city recipe exported"
+  },
+  "7_remaining": {
+   "status": "open",
+   "state": "1912 city-wide corridor grid from transcribed keymap spans; panel-split 1912 sheets 48/85/93/99; city QC pass"
   }
  },
  "disk": {

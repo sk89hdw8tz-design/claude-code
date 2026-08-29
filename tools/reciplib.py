@@ -26,16 +26,30 @@ class Recipe:
         self.items_by_file = {i["file"]: i for i in self.inv["items"]}
         tpath = os.path.join(self.dir, "transforms.json")
         self.transforms = json.load(open(tpath)) if os.path.exists(tpath) else None
+        # city-wide superset (all units incl. outer sheets); the gated core
+        # keeps identical values, so preferring this only adds coverage
+        cpath = os.path.join(self.dir, "transforms_city.json")
+        self.city = json.load(open(cpath)) if os.path.exists(cpath) else None
+        upath = os.path.join(self.dir, "units.json")
+        self.units = json.load(open(upath))["units"] if os.path.exists(upath) else {}
+        if self.city:
+            self.transforms = self.city
         gpath = os.path.join(self.dir, "grid.json")
         self.grid = json.load(open(gpath)) if os.path.exists(gpath) else None
         mpath = os.path.join(self.dir, "seams", "masks.json")
         self.masks = json.load(open(mpath)) if os.path.exists(mpath) else None
+        opath = os.path.join(self.dir, "seams", "ownership_city.json")
+        self.own_city = json.load(open(opath)) if os.path.exists(opath) else None
+        if self.own_city:
+            self.masks = self.own_city
         self.cache = os.path.join(REPO, "work", "sheets", str(year))
         os.makedirs(self.cache, exist_ok=True)
 
     # ---------------- fetching ----------------
     def fetch(self, file):
         """Return a local path to the named source file, hash-verified."""
+        if file.startswith("LOCAL:"):
+            return file[6:]
         it = self.items_by_file[file]
         dst = os.path.join(self.cache, it["sha256"] + os.path.splitext(file)[1])
         if os.path.exists(dst):
@@ -81,15 +95,20 @@ class Recipe:
         raise ValueError(f"unknown transform format for sheet {sheet}")
 
     def ownership(self):
-        """[(sheet, exterior_polygon_mosaic np.ndarray)]"""
+        """[(unit, exterior_polygon_mosaic np.ndarray)]"""
         out = []
         for r in self.masks["regions"]:
-            out.append((str(r["sheet"]),
-                        np.array(r["polygon_mosaic"]["exterior"], float)))
+            uid = str(r.get("unit", r.get("sheet")))
+            out.append((uid, np.array(r["polygon_mosaic"]["exterior"], float)))
         return out
 
     def sheet_file(self, sheet):
-        """Inventory file name for a sheet's full-resolution scan."""
+        """Inventory file name for a unit's source scan."""
+        u = self.units.get(str(sheet))
+        if u:
+            if self.year == 1912 and u.get("source_image"):
+                return ("LOCAL:" + u["source_image"])   # working copy on disk
+            return f"Galveston_1899_sheet_{int(u['file']):02d}.jpg"
         if self.year == 1912:
             m = {"7": 11, "8": 13, "9": 15, "10": 17, "11": 19, "12": 21,
                  "39": 49, "40": 50, "43": 53, "44": 54, "49": 59, "50": 60,
@@ -98,14 +117,42 @@ class Recipe:
         return f"Galveston_1899_sheet_{int(sheet):02d}.jpg"
 
     # ---------------- address lookup ----------------
+    @staticmethod
+    def avenue_slot(avenue):
+        """Slot for an avenue given as a slot int, a letter (optionally with
+        1/2), or a name. A..M are slots 0..12; south of Avenue M the outlot
+        district names every corridor, so M1/2=13, N=14, N1/2=15 ... T1/2=27.
+        """
+        if isinstance(avenue, int):
+            return avenue
+        s = str(avenue).strip().lower().replace("avenue", "").replace("av.", "").strip()
+        if s.isdigit():
+            return int(s)
+        if s.startswith("broadway"):
+            return 9
+        aliases = {"water": 0, "strand": 1, "mechanic": 2, "market": 3,
+                   "postoffice": 4, "post office": 4, "church": 5,
+                   "winnie": 6, "ball": 7, "sealy": 8}
+        if s in aliases:
+            return aliases[s]
+        half = ("1/2" in s) or ("½" in s) or s.endswith("half")
+        letter = s[0]
+        if letter in "abcdefghijkl" and not half:
+            return "abcdefghijkl".index(letter)
+        if letter == "m":
+            return 13 if half else 12
+        if letter in "nopqrst":
+            j = "nopqrst".index(letter)
+            return 14 + 2 * j + (1 if half else 0)
+        raise ValueError(f"unknown avenue {avenue!r}")
+
     def locate(self, street_no=None, avenue=None):
         """Mosaic-frame point for a street/avenue crossing (either may be
         None: returns the corridor coordinate that is known)."""
         g = self.grid
         x = y = None
         if avenue is not None:
-            slot = avenue if isinstance(avenue, int) else \
-                "abcdefghijk".index(avenue.strip().lower()[0]) if avenue.strip().lower() != "broadway" else 9
+            slot = self.avenue_slot(avenue)
             x = g["avenues"][str(slot)]["x"]
         if street_no is not None:
             y = g["streets"][str(int(street_no))]["y"]

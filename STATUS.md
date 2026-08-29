@@ -21,8 +21,8 @@ Stage 1  consolidate 1912 recipe   ██████████ done
 Stage 2  register 1899             ██████████ done (HQ-4 awaiting answer)
 Stage 3  QC + human queue          ██████████ done (HQ-4 awaiting answer)
 Stage 4  indexes + render/crop     ██████████ done (both years; DZI deferred off-cloud)
-Stage 5  1899 city-wide (90 units)  ███████░░░ draft placed; 26 units in adjudication
-Stage 6  1912 full volume           █████░░░░░ all 233 sources fetched; keymap spans 2/4 quadrants
+Stage 5  1899 city-wide (90 units)  ██████████ 89/90 placed (71a: no shared ground)
+Stage 6  1912 full volume           ██████████ 92/92 placed; city recipe exported
 ```
 
 ## Sheet grid (target footprint)
@@ -76,9 +76,8 @@ affine's illusion — see REPORT.md.)
 
 | agent | task |
 |---|---|
-| orchestrator | city-wide expansion (both years) |
-| keymap NW/SW | transcribing 1912 sheet spans (running) |
-| adjudicators E/F | tie points for 26 flagged 1899 units (running) |
+| orchestrator | city recipes exported; 1912 city grid outstanding |
+| adjudicators (6 batches) | ✅ finished — 227 landmark-anchored ties |
 
 ## ETA
 

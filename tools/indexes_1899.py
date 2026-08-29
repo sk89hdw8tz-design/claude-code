@@ -20,10 +20,15 @@ AV_PITCH, ST_PITCH = 1006.0, 1169.0
 AVE_NAMES = {0: "Avenue A (Water)", 1: "Avenue B (Strand)", 2: "Avenue C (Mechanic)",
              3: "Avenue D (Market)", 4: "Avenue E (Postoffice)", 5: "Avenue F (Church)",
              6: "Avenue G (Winnie)", 7: "Avenue H (Ball)", 8: "Avenue I (Sealy)",
-             9: "Avenue J (Broadway)"}
+             9: "Avenue J (Broadway)", 10: "Avenue K", 11: "Avenue L",
+             12: "Avenue M"}
+# south of Avenue M the outlot district names every corridor: M1/2 = 13 ...
+for _i, _n in enumerate(["M 1/2","N","N 1/2","O","O 1/2","P","P 1/2","Q","Q 1/2",
+                         "R","R 1/2","S","S 1/2","T","T 1/2"], start=13):
+    AVE_NAMES[_i] = f"Avenue {_n}"
 ST_NAME = lambda n: f"{n}{'st' if n % 10 == 1 and n != 11 else 'nd' if n % 10 == 2 and n != 12 else 'rd' if n % 10 == 3 and n != 13 else 'th'} Street"
-STREETS = list(range(16, 28))
-AVES = list(range(0, 10))
+STREETS = list(range(6, 47))     # whole island, per coverage spans
+AVES = list(range(0, 28))       # A..M then the outlot half-avenues M1/2..T1/2
 
 grid = {
  "frame": "1899 mosaic frame: x = avenue_slot*1006, y = street_index*1169 (SEED grid; gauge sheet 13 at anchor offset)",
@@ -61,16 +66,19 @@ json.dump({"type": "FeatureCollection", "crs_note": grid["frame"], "features": f
 # sheets.geojson if transforms exist
 tp = f"{RD}/transforms.json"
 if os.path.exists(tp):
-    tr = json.load(open(tp))["sheets"]
+    tp2 = f"{RD}/transforms_city.json"
+    tr = json.load(open(tp2 if os.path.exists(tp2) else tp))["sheets"]
     feats = []
     for sheet, s in tr.items():
         M = np.array(s["m"]); t = np.array(s["t"])
-        W, H = 3400, 4100
+        u = json.load(open(f"{RD}/units.json"))["units"].get(sheet) if os.path.exists(f"{RD}/units.json") else None
+        ext = u["extent"] if u else [0, 0, 3400, 4100]
+        W, H = ext[2], ext[3]
         quad = [(M @ np.array(p) + t).tolist() for p in
                 ([0, 0], [W, 0], [W, H], [0, H], [0, 0])]
         feats.append({"type": "Feature",
                       "properties": {"sheet": sheet, "year": 1899,
-                                     "source_file": f"Galveston_1899_sheet_{int(sheet):02d}.jpg"},
+                                     "source_file": f"Galveston_1899_sheet_{int(u['file']) if u else int(''.join(c for c in sheet if c.isdigit())):02d}.jpg"},
                       "geometry": {"type": "Polygon", "coordinates": [quad]}})
     json.dump({"type": "FeatureCollection", "crs_note": grid["frame"], "features": feats},
               open(f"{RD}/sheets.geojson", "w"), indent=1)

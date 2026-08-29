@@ -2,6 +2,66 @@
  "frame": "1899 mosaic frame: x = avenue_slot*1006, y = street_index*1169 (SEED grid; gauge sheet 13 at anchor offset)",
  "avenue_slots": "A=0 .. J=9 within the wharf/downtown footprint",
  "streets": {
+  "6": {
+   "y": 7014.0,
+   "n": 0,
+   "spread": 0.0,
+   "method": "frame definition"
+  },
+  "7": {
+   "y": 8183.0,
+   "n": 0,
+   "spread": 0.0,
+   "method": "frame definition"
+  },
+  "8": {
+   "y": 9352.0,
+   "n": 0,
+   "spread": 0.0,
+   "method": "frame definition"
+  },
+  "9": {
+   "y": 10521.0,
+   "n": 0,
+   "spread": 0.0,
+   "method": "frame definition"
+  },
+  "10": {
+   "y": 11690.0,
+   "n": 0,
+   "spread": 0.0,
+   "method": "frame definition"
+  },
+  "11": {
+   "y": 12859.0,
+   "n": 0,
+   "spread": 0.0,
+   "method": "frame definition"
+  },
+  "12": {
+   "y": 14028.0,
+   "n": 0,
+   "spread": 0.0,
+   "method": "frame definition"
+  },
+  "13": {
+   "y": 15197.0,
+   "n": 0,
+   "spread": 0.0,
+   "method": "frame definition"
+  },
+  "14": {
+   "y": 16366.0,
+   "n": 0,
+   "spread": 0.0,
+   "method": "frame definition"
+  },
+  "15": {
+   "y": 17535.0,
+   "n": 0,
+   "spread": 0.0,
+   "method": "frame definition"
+  },
   "16": {
    "y": 18704.0,
    "n": 0,
@@ -73,6 +133,120 @@
    "n": 0,
    "spread": 0.0,
    "method": "frame definition"
+  },
+  "28": {
+   "y": 32732.0,
+   "n": 0,
+   "spread": 0.0,
+   "method": "frame definition"
+  },
+  "29": {
+   "y": 33901.0,
+   "n": 0,
+   "spread": 0.0,
+   "method": "frame definition"
+  },
+  "30": {
+   "y": 35070.0,
+   "n": 0,
+   "spread": 0.0,
+   "method": "frame definition"
+  },
+  "31": {
+   "y": 36239.0,
+   "n": 0,
+   "spread": 0.0,
+   "method": "frame definition"
+  },
+  "32": {
+   "y": 37408.0,
+   "n": 0,
+   "spread": 0.0,
+   "method": "frame definition"
+  },
+  "33": {
+   "y": 38577.0,
+   "n": 0,
+   "spread": 0.0,
+   "method": "frame definition"
+  },
+  "34": {
+   "y": 39746.0,
+   "n": 0,
+   "spread": 0.0,
+   "method": "frame definition"
+  },
+  "35": {
+   "y": 40915.0,
+   "n": 0,
+   "spread": 0.0,
+   "method": "frame definition"
+  },
+  "36": {
+   "y": 42084.0,
+   "n": 0,
+   "spread": 0.0,
+   "method": "frame definition"
+  },
+  "37": {
+   "y": 43253.0,
+   "n": 0,
+   "spread": 0.0,
+   "method": "frame definition"
+  },
+  "38": {
+   "y": 44422.0,
+   "n": 0,
+   "spread": 0.0,
+   "method": "frame definition"
+  },
+  "39": {
+   "y": 45591.0,
+   "n": 0,
+   "spread": 0.0,
+   "method": "frame definition"
+  },
+  "40": {
+   "y": 46760.0,
+   "n": 0,
+   "spread": 0.0,
+   "method": "frame definition"
+  },
+  "41": {
+   "y": 47929.0,
+   "n": 0,
+   "spread": 0.0,
+   "method": "frame definition"
+  },
+  "42": {
+   "y": 49098.0,
+   "n": 0,
+   "spread": 0.0,
+   "method": "frame definition"
+  },
+  "43": {
+   "y": 50267.0,
+   "n": 0,
+   "spread": 0.0,
+   "method": "frame definition"
+  },
+  "44": {
+   "y": 51436.0,
+   "n": 0,
+   "spread": 0.0,
+   "method": "frame definition"
+  },
+  "45": {
+   "y": 52605.0,
+   "n": 0,
+   "spread": 0.0,
+   "method": "frame definition"
+  },
+  "46": {
+   "y": 53774.0,
+   "n": 0,
+   "spread": 0.0,
+   "method": "frame definition"
   }
  },
  "avenues": {
@@ -132,6 +306,114 @@
   },
   "9": {
    "x": 9054.0,
+   "n": 0,
+   "spread": 0.0,
+   "method": "frame definition"
+  },
+  "10": {
+   "x": 10060.0,
+   "n": 0,
+   "spread": 0.0,
+   "method": "frame definition"
+  },
+  "11": {
+   "x": 11066.0,
+   "n": 0,
+   "spread": 0.0,
+   "method": "frame definition"
+  },
+  "12": {
+   "x": 12072.0,
+   "n": 0,
+   "spread": 0.0,
+   "method": "frame definition"
+  },
+  "13": {
+   "x": 13078.0,
+   "n": 0,
+   "spread": 0.0,
+   "method": "frame definition"
+  },
+  "14": {
+   "x": 14084.0,
+   "n": 0,
+   "spread": 0.0,
+   "method": "frame definition"
+  },
+  "15": {
+   "x": 15090.0,
+   "n": 0,
+   "spread": 0.0,
+   "method": "frame definition"
+  },
+  "16": {
+   "x": 16096.0,
+   "n": 0,
+   "spread": 0.0,
+   "method": "frame definition"
+  },
+  "17": {
+   "x": 17102.0,
+   "n": 0,
+   "spread": 0.0,
+   "method": "frame definition"
+  },
+  "18": {
+   "x": 18108.0,
+   "n": 0,
+   "spread": 0.0,
+   "method": "frame definition"
+  },
+  "19": {
+   "x": 19114.0,
+   "n": 0,
+   "spread": 0.0,
+   "method": "frame definition"
+  },
+  "20": {
+   "x": 20120.0,
+   "n": 0,
+   "spread": 0.0,
+   "method": "frame definition"
+  },
+  "21": {
+   "x": 21126.0,
+   "n": 0,
+   "spread": 0.0,
+   "method": "frame definition"
+  },
+  "22": {
+   "x": 22132.0,
+   "n": 0,
+   "spread": 0.0,
+   "method": "frame definition"
+  },
+  "23": {
+   "x": 23138.0,
+   "n": 0,
+   "spread": 0.0,
+   "method": "frame definition"
+  },
+  "24": {
+   "x": 24144.0,
+   "n": 0,
+   "spread": 0.0,
+   "method": "frame definition"
+  },
+  "25": {
+   "x": 25150.0,
+   "n": 0,
+   "spread": 0.0,
+   "method": "frame definition"
+  },
+  "26": {
+   "x": 26156.0,
+   "n": 0,
+   "spread": 0.0,
+   "method": "frame definition"
+  },
+  "27": {
+   "x": 27162.0,
    "n": 0,
    "spread": 0.0,
    "method": "frame definition"

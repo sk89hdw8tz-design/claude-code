@@ -1346,12 +1346,12 @@
   "83": "ties-trans(n=4/6,spread=19)",
   "85": "ties-sim(n=2,med=0.0)",
   "86": "ties-sim(n=3,med=2.4)",
-  "87": "ties-trans(n=2/2,spread=7)",
-  "88": "ties-trans(n=2/4,spread=10)",
-  "89": "ties-sim(n=4,med=3.4)",
-  "90": "ties-trans(n=2/2,spread=8)",
-  "91": "ties-single(nbr=29,ties-trans)",
-  "26b": "ties-trans(n=2/2,spread=7)",
+  "87": "ties-sim(n=3,med=6.8)",
+  "88": "ties-trans(n=3/8,spread=144)",
+  "89": "ties-trans(n=4/6,spread=21)",
+  "90": "ties-sim(n=4,med=9.6)",
+  "91": "ties-trans(n=5/7,spread=108)",
+  "26b": "ties-sim(n=4,med=14.3)",
   "65": "ties-trans(n=2/2,spread=10)"
  },
  "still_flagged": [

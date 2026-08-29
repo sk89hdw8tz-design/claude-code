@@ -132,6 +132,69 @@ prompt prescribes. Pairs without a held-out landmark (08\|11, 11\|13,
 panels in `qc/proof/` rather than an independent numeric gate — disclosed
 limitation.
 
+## City-wide expansion (both years, all sheets)
+
+Scope was extended from the 27x40 wharf/downtown footprint to the whole
+island for both editions. Method: the gated downtown solve is **frozen**,
+and every other sheet is placed outward from it — never the reverse, so a
+weak lock in a vacant outlot stays local instead of bending the core.
+
+| | 1899 | 1912 |
+|---|---|---|
+| Units placed | **89 / 90** | **92 / 92** |
+| Source sheets | 87 (+3 panels; 6 excluded with cause) | 92 |
+| core (gated downtown) | 12 | 12 |
+| fit (content matching) | 34 | 33 |
+| tie-fit / tie-translation | 12 / 28 | 4 / 34 |
+| tie-single | 3 | 9 |
+| prior-unverified | 1 | 0 |
+
+Placement chain: dense edge-NCC content matching where sheets have enough
+shared ink; 1D corridor-profile alignment where 2D matching aliases on
+repeating lot ticks; and blind human-style tie measurement by agents where
+neither works — each tie anchored to a *named* landmark (block numbers,
+water-pipe junctions, named buildings, rail crossings) and cross-checked by
+counting lot lines, which is what defeats the one-block (~1010 px) ambiguity
+that wrecked earlier automated attempts. Ties are combined by
+largest-agreeing-cluster, so a single mismeasured tie is outvoted rather
+than fatal; a lone tie places a unit only when it is high-confidence and
+anchored on a reliably-placed neighbour (recorded as `tie-single`).
+
+**The one unplaced unit** is 1899 panel 71a. Two independent adjudicators
+established the same physical fact: across 150-ft Broadway, sheet 28 draws
+only its west ~210 px and panel 71 only its east ~150 px, leaving a ~90 px
+strip of ground that **neither sheet maps**. There is nothing to tie. It
+keeps its grid-prior placement and is tiered `prior-unverified`.
+
+### Source-level disagreements found (not registration error)
+
+- Drawn symbols (hydrants, fire-alarm boxes) sit 9-90 px apart between
+  sheets that otherwise agree to a few px — the same class as HQ-4
+  downtown. Ties were taken on pipes and block corners instead.
+- 1899 sheet 67 is drawn ~9% larger than sheet 40; sheets 32/38 in 1912
+  differ ~0.8% in scale: those seams cannot close by translation alone.
+- 1899 panel 26b maps a block north of 39th St as "Cemetery, No Exposure";
+  sheet 29 maps the same ground as dwellings 1102-1124.
+- 1899 sheet 49 calls the 9th-St track "Galveston & Western R.R."; sheets
+  47/48 call it "Galveston, La Porte & Houston (Bay Shore Line)".
+- Several 1912 sheets (48, 85, 93, 99) carry **inset panels with their own
+  origins**; ties to them were deliberately avoided, and they need panel
+  splitting (as 1899's 26b/71a/71b already have) before final ownership.
+
+### City ownership and indexes
+
+`seams/ownership_city.json` gives every unit a polygon: downtown keeps the
+frozen min-ink DP cuts (authoritative), and the outer city uses each unit's
+Voronoi cell clipped to its printed extent — a uniform, explainable rule for
+sheets whose overlaps are often only a corridor wide. 1899's address index
+now spans the whole island (streets 6-46, Avenues A-M plus the outlot
+half-avenues M1/2-T1/2): **1148 intersections, 1080 blocks, 90 footprints**.
+`crop.py` resolves city-wide addresses (verified at 35th x Avenue O in the
+southern outlots, and at the downtown crossings). The 1912 corridor grid is
+still downtown-only; its key-map spans are transcribed (4 quadrants) but not
+yet converted into a city-wide grid, so 1912 address lookup outside downtown
+is the main piece of remaining work.
+
 ## Environment & acquisition
 
 Cloud VM egress is proxy-restricted (no loc.gov / maps.lib.utexas.edu /
