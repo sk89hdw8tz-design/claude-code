@@ -1,0 +1,658 @@
+{
+ "ties": [
+  {
+   "pair": [
+    "23",
+    "24"
+   ],
+   "id": "tie-23-24-1",
+   "owner_xy": [
+    3282,
+    1488
+   ],
+   "nbr_xy": [
+    198,
+    1501
+   ],
+   "confidence": "high",
+   "note": "NW corner of block 190 at 10th St & Ave I (Sealy). Anchored on u24 by the block label 190 and the first numbers of both frontages meeting at this corner (901 on 10th St, 1001 on Ave I); u23 draws the same far-side corner as the only line east of the 80-ft Ave I corridor, opposite block 250 whose 10th-St numbers run 813-823. Implies dx=3084, dy=-13."
+  },
+  {
+   "pair": [
+    "23",
+    "24"
+   ],
+   "id": "tie-23-24-2",
+   "owner_xy": [
+    3285,
+    2399
+   ],
+   "nbr_xy": [
+    197,
+    2411
+   ],
+   "confidence": "high",
+   "note": "SW corner of block 190 at 11th St & Ave I (Sealy) - i.e. the NW corner of the 11th-St frontage of block 190, anchored on u24 by numbers 902/904 (900 block of 11th St) and the 1025/1027 Ave I numbers; on u23 the same far-side corner faces block 250 whose 11th-St number 824 ends the 800 block. Independent of tie-1 and agrees with it (dx 3088 vs 3084, dy -12 vs -13)."
+  },
+  {
+   "pair": [
+    "22",
+    "23"
+   ],
+   "status": "featureless",
+   "note": "Shared strip is the interior of AVE. F OR CHURCH. u22 paper ends at x~3230-3290, well short of the east curb of Ave F (which would be near x~3355 in u22 coords); u23 paper starts at x~25 and its west block line (odd numbers 901-927 / 1001-1027 / 1101-1127) is at x~247. The ~180 px of true overlap contains no drawn object: no hydrant, no lot line, no building. Only the 10-IN W.PIPE dashed line along 12th St crosses the strip (u22 y~3672, u23 y~3675, giving dy~-3 but no x control). No tie recorded."
+  },
+  {
+   "pair": [
+    "19",
+    "23"
+   ],
+   "id": "tie-19-23-1",
+   "owner_xy": [
+    2308,
+    3582
+   ],
+   "nbr_xy": [
+    2277,
+    92
+   ],
+   "confidence": "high",
+   "note": "SW corner of block 248 at 9th St & Ave H (Ball): junction of the Ave-H side line (numbers 823/825/827) with the 9th-St front line whose first even number east of Ave H is 802. On u19 this is the labelled block 248; on u23 the same corner appears in the top sliver (dotted redraw of the block-248 south front) directly above block 249 whose 9th-St numbers start 801/803/805. Implies dx=+31, dy=+3490."
+  },
+  {
+   "pair": [
+    "19",
+    "23"
+   ],
+   "id": "tie-19-23-2",
+   "owner_xy": [
+    2101,
+    3584
+   ],
+   "nbr_xy": [
+    2061,
+    91
+   ],
+   "confidence": "high",
+   "note": "SE corner of block 308 at 9th St & Ave H (Ball), the west counterpart of tie-1 across the 70-ft avenue: anchored by 9th-St numbers 722/724 ending the 700 block and Ave-H side number 828. On u23 the same corner is the dotted sliver corner at the top margin. Independent of tie-1; dx=+40 vs +31, dy=+3493 vs +3490."
+  },
+  {
+   "pair": [
+    "18",
+    "22"
+   ],
+   "id": "tie-18-22-1",
+   "owner_xy": [
+    2226,
+    3591
+   ],
+   "nbr_xy": [
+    2297,
+    103
+   ],
+   "confidence": "high",
+   "note": "SW corner of block 428 at 9th St & Ave E (Post Office): the Ave-E side line (numbers 823/825/827) meeting the 9th-St front line whose first even number east of Ave E is 502. On u18 this is the labelled block 428 (SE quadrant, St Marys Infirmary block 487 two columns west); on u22 the same corner is the top-margin sliver corner immediately NW of the compass rose. Implies dx=-71, dy=+3488."
+  },
+  {
+   "pair": [
+    "18",
+    "22"
+   ],
+   "id": "tie-18-22-2",
+   "owner_xy": [
+    2018,
+    3594
+   ],
+   "nbr_xy": [
+    2083,
+    99
+   ],
+   "confidence": "high",
+   "note": "SE corner of block 488 at 9th St & Ave E (Post Office), the west counterpart of tie-1 across the avenue: 9th-St numbers 422/424 end the 400 block and Ave-E side number 828 runs up the lot line. On u22 the same corner is the sliver corner just above the compass roses west point. Independent of tie-1; dx=-65 vs -71, dy=+3495 vs +3488."
+  },
+  {
+   "pair": [
+    "23",
+    "29"
+   ],
+   "id": "tie-23-29-1",
+   "owner_xy": [
+    2258,
+    3550
+   ],
+   "nbr_xy": [
+    2245,
+    79
+   ],
+   "confidence": "high",
+   "note": "SW corner of block 251 at 12th St & Ave H (Ball) - the block immediately east of the HENRY ROSENBERG FREE SCHOOL block (311) on u23. Corner = Ave-H side line (numbers 1123/1125/1127) meeting the 12th-St front line whose first numbers east of Ave H are 802/804; a fire-alarm box (F.A. in a circle) sits in the intersection just south of it on both sheets, and the 6-IN W.PIPE dashed line runs down Ave H. 14 lot-line verticals along this front line match between u23 and u29 with a constant ~15 px shift, so no wrong-instance ambiguity. Implies dx=+13, dy=+3471."
+  },
+  {
+   "pair": [
+    "23",
+    "29"
+   ],
+   "id": "tie-23-29-2",
+   "owner_xy": [
+    2257,
+    3593
+   ],
+   "nbr_xy": [
+    2231,
+    114
+   ],
+   "confidence": "medium",
+   "note": "Centre of the FIRE ALARM box (black ring with pink F.A. disc) standing in 12th St just east of Ave H, drawn on both sheets - unique symbol, only one F.A. in this intersection. Symbol centre is hand-placed so it disagrees with the block-corner tie by ~13 px in x; hence medium."
+  },
+  {
+   "pair": [
+    "21",
+    "27"
+   ],
+   "id": "tie-21-27-1",
+   "owner_xy": [
+    2272,
+    3555
+   ],
+   "nbr_xy": [
+    2284,
+    94
+   ],
+   "confidence": "high",
+   "note": "SW corner of the block on the east side of STRAND (the avenue where 12th-St numbering changes from 1xx to 2xx; first numbers east of it are 202/204, side numbers on the avenue are 1123/1125/1127). 23 lot-line verticals along this 12th-St front line match between u21 and u27 at a constant ~-20 px, so the instance is unambiguous. Implies dx=-12, dy=+3461."
+  },
+  {
+   "pair": [
+    "22",
+    "28"
+   ],
+   "id": "tie-22-28-1",
+   "owner_xy": [
+    2302,
+    3550
+   ],
+   "nbr_xy": [
+    2278,
+    99
+   ],
+   "confidence": "high",
+   "note": "SW corner of block 431 at 12th St & Ave E (Post Office): Ave-E side line (numbers 1125/1127) meeting the 12th-St front line whose first numbers east of Ave E are 502/504. Same avenue and address run as the 9th-St corner used for the 18-22 ties, one sheet-row south. 13 lot-line verticals along this front line match u22 to u28 at a constant ~+23 px. Implies dx=+24, dy=+3451."
+  },
+  {
+   "pair": [
+    "24",
+    "30"
+   ],
+   "id": "tie-24-30-1",
+   "owner_xy": [
+    2313,
+    3550
+   ],
+   "nbr_xy": [
+    2312,
+    101
+   ],
+   "confidence": "high",
+   "note": "SW corner of block 71 (the BAPTIST CHURCH block on u24) at 12th St & Ave K: Ave-K side line (numbers 1125/1127) meeting the 12th-St front line whose first numbers east of Ave K are 1102/1104. Lot-line verticals along this front line match u24 to u30 at a constant ~0 px offset. Implies dx=+1, dy=+3449."
+  },
+  {
+   "pair": [
+    "25",
+    "31"
+   ],
+   "id": "tie-25-31-1",
+   "owner_xy": [
+    2221,
+    3550
+   ],
+   "nbr_xy": [
+    2256,
+    100
+   ],
+   "confidence": "high",
+   "note": "SW corner of the block on the east side of the avenue where 12th-St numbering changes from 13xx to 14xx (first numbers east of it 1402/1404; avenue side numbers 1126/1127) - u25 covers avenues L, M, M-1/2, N. 14 lot-line verticals along this 12th-St front line match u25 to u31 at a constant ~-40 px, so the instance is unambiguous. Implies dx=-35, dy=+3450."
+  },
+  {
+   "pair": [
+    "27",
+    "33"
+   ],
+   "id": "tie-27-33-1",
+   "owner_xy": [
+    2301,
+    3559
+   ],
+   "nbr_xy": [
+    2301,
+    100
+   ],
+   "confidence": "high",
+   "note": "SW corner of the corner store (S) block on the east side of STRAND at 15th St - same avenue used for tie-21-27-1 one row north (15th-St numbering changes 1xx to 2xx here; first numbers east are 202/204, avenue side numbers 1425/1427). 23 lot-line verticals along this 15th-St front line match u27 to u33 at a constant ~+10 px. Implies dx=0, dy=+3459."
+  },
+  {
+   "pair": [
+    "28",
+    "34"
+   ],
+   "id": "tie-28-34-1",
+   "owner_xy": [
+    2276,
+    3562
+   ],
+   "nbr_xy": [
+    2277,
+    100
+   ],
+   "confidence": "high",
+   "note": "SW corner of the block on the east side of Ave E (Post Office) at 15th St: Ave-E side line (numbers 1425/1427) meeting the 15th-St front line whose first numbers east of Ave E are 502/504 - the same avenue and address run used for the 18-22 (9th St) and 22-28 (12th St) ties, two rows south. 14 lot-line verticals match u28 to u34 at a constant ~+7 px. Implies dx=-1, dy=+3462."
+  },
+  {
+   "pair": [
+    "29",
+    "35"
+   ],
+   "id": "tie-29-35-1",
+   "owner_xy": [
+    2260,
+    3783
+   ],
+   "nbr_xy": [
+    2267,
+    345
+   ],
+   "confidence": "high",
+   "note": "NW corner of the block east of Ave H (Ball) at 15th St: 15th-St front line whose first numbers east of Ave H are 801/803, meeting the Ave-H side line with numbers 1501/1503. On u29 the same corner is drawn in the bottom-margin sliver. 13 lot-line verticals along this front line match u29 to u35 at a constant ~-8 px. Implies dx=-7, dy=+3438."
+  },
+  {
+   "pair": [
+    "30",
+    "36"
+   ],
+   "id": "tie-30-36-1",
+   "owner_xy": [
+    2319,
+    3783
+   ],
+   "nbr_xy": [
+    2304,
+    345
+   ],
+   "confidence": "high",
+   "note": "NW corner of the block east of Ave K at 15th St: 15th-St front line whose first numbers east of Ave K are 1101/1103, meeting the Ave-K side line with numbers 1501/1503 - the same Ave K used for tie-24-30-1 at 12th St. On u30 the corner is drawn in the bottom-margin sliver. 13 lot-line verticals match u30 to u36 at a constant ~+18 px. Implies dx=+15, dy=+3438."
+  },
+  {
+   "pair": [
+    "32",
+    "38"
+   ],
+   "id": "tie-32-38-1",
+   "owner_xy": [
+    2372,
+    3538
+   ],
+   "nbr_xy": [
+    2304,
+    99
+   ],
+   "confidence": "high",
+   "note": "SW corner of the wedge-shaped (triangular) block on the east side of the avenue with side numbers 1425/1427, at 15th St - u32/u38 cover avenues N, N-1/2, O and the block is cut diagonally by the shoreline-parallel line, giving it a unique hypotenuse drawn on both sheets. 10 lot-line verticals along this 15th-St front line match u32 to u38 (u32 = u38 + 86 at x~80 falling to +69 at x~2300, i.e. a ~0.8 percent scale difference between the two sheets), so the instance is unambiguous. Implies dx=+68, dy=+3439 at this point."
+  },
+  {
+   "pair": [
+    "35",
+    "39"
+   ],
+   "id": "tie-35-39-1",
+   "owner_xy": [
+    2026,
+    3562
+   ],
+   "nbr_xy": [
+    2068,
+    113
+   ],
+   "confidence": "high",
+   "note": "SE corner of the block west of Ave H (Ball) at 18th St: 18th-St front line ending with numbers 722/724 (700 block, i.e. Winnie-to-Ball) meeting the Ave-H side line with numbers 1726/1728. On u39 the same corner is the top-margin sliver corner. Six lot-line verticals along this front line match u35 to u39 at a constant ~-38 px. Implies dx=-42, dy=+3449."
+  },
+  {
+   "pair": [
+    "36",
+    "40"
+   ],
+   "id": "tie-36-40-1",
+   "owner_xy": [
+    2302,
+    3552
+   ],
+   "nbr_xy": [
+    2317,
+    99
+   ],
+   "confidence": "high",
+   "note": "SW corner of the block east of Ave K at 18th St: Ave-K side line (numbers 1725/1727) meeting the 18th-St front line whose first numbers east of Ave K are 1102/1104 - the same Ave K corner pattern as ties 24-30-1 (12th St) and 30-36-1 (15th St). 12 lot-line verticals match u36 to u40 at a constant ~-16 px. Implies dx=-15, dy=+3453."
+  },
+  {
+   "pair": [
+    "38",
+    "42"
+   ],
+   "id": "tie-38-42-1",
+   "owner_xy": [
+    2277,
+    3800
+   ],
+   "nbr_xy": [
+    2282,
+    336
+   ],
+   "confidence": "high",
+   "note": "NW corner of the block east of the avenue carrying side numbers 1801/1803, at 18th St; the first 18th-St numbers east of that avenue are 1701/1703 (u38/u42 cover avenues N, N-1/2, O). A dashed W.PIPE line runs down the same avenue on both sheets. On u38 the corner is in the bottom-margin sliver just below the Scale of Feet bar. 13 lot-line verticals match u38 to u42 at a constant ~+6 px. Implies dx=-5, dy=+3464."
+  },
+  {
+   "pair": [
+    "42",
+    "46"
+   ],
+   "id": "tie-42-46-1",
+   "owner_xy": [
+    2262,
+    3547
+   ],
+   "nbr_xy": [
+    2263,
+    105
+   ],
+   "confidence": "high",
+   "note": "SW corner of the block east of the avenue with side numbers 2025/2027 at 21st St; first 21st-St numbers east of it are 1702/1704, a 6-IN W.PIPE dashed line runs down that avenue and a T.H. hydrant dot stands in the intersection just south-west of the corner on both sheets. 12 lot-line verticals match u42 to u46 at a constant ~-3 px. Implies dx=-1, dy=+3442."
+  },
+  {
+   "pair": [
+    "42",
+    "46"
+   ],
+   "id": "tie-42-46-2",
+   "owner_xy": [
+    2229,
+    3584
+   ],
+   "nbr_xy": [
+    2221,
+    131
+   ],
+   "confidence": "medium",
+   "note": "Centre of the T.H. hydrant dot (labelled T.H.) in 21st St just west of the corner used in tie-1 - the only hydrant in this intersection, drawn on both sheets. Hand-placed symbol, disagrees with the corner tie by ~9 px, hence medium."
+  },
+  {
+   "pair": [
+    "46",
+    "52"
+   ],
+   "id": "tie-46-52-1",
+   "owner_xy": [
+    2068,
+    3674
+   ],
+   "nbr_xy": [
+    2076,
+    180
+   ],
+   "confidence": "high",
+   "note": "T-junction where the lot line separating houses 2332 and 2334 meets the east lot line of the avenue; both sheets print the same side-number run 2330 / 2332 / 2334 / 2336 down this line, which fixes the position along the avenue uniquely. 11 lot-line features match u46 to u52 at a constant ~-6 px. Implies dx=-8, dy=+3494."
+  },
+  {
+   "pair": [
+    "51",
+    "57"
+   ],
+   "id": "tie-51-57-1",
+   "owner_xy": [
+    2238,
+    3627
+   ],
+   "nbr_xy": [
+    2303,
+    101
+   ],
+   "confidence": "high",
+   "note": "SW corner of the block east of the avenue carrying side numbers 2623/2625/2627, at 27th St; the first 27th-St numbers east of it are 1402/1404 (same 14xx column as the 25-31 tie at 12th St - u51 and u57 both cover avenues L, M, M-1/2, N). 12 lot-line verticals match u51 to u57 at a constant ~-58 px. Implies dx=-65, dy=+3526."
+  },
+  {
+   "pair": [
+    "52",
+    "58"
+   ],
+   "id": "tie-52-58-1",
+   "owner_xy": [
+    2288,
+    3625
+   ],
+   "nbr_xy": [
+    2213,
+    108
+   ],
+   "confidence": "high",
+   "note": "SW corner of the block east of the avenue where 27th-St numbering changes from 16xx to 17xx (first numbers east 1702/1704; avenue side numbers 2623/2625/2627). u52 and u58 both cover avenues N, N-1/2, O, O-1/2. Lot-line verticals along this 27th-St front line match u52 to u58 at a constant ~+69 px. Implies dx=+75, dy=+3517."
+  },
+  {
+   "pair": [
+    "58",
+    "64"
+   ],
+   "id": "tie-58-64-1",
+   "owner_xy": [
+    2013,
+    3675
+   ],
+   "nbr_xy": [
+    2060,
+    219
+   ],
+   "confidence": "high",
+   "note": "T-junction where the block rear/lot line meets the avenue lot line carrying side numbers 2930/2932 (30th-St side of the block), on the 30th-St seam. A dashed W.PIPE line runs down the next avenue ~120 px east on both sheets and gives the same shift. 13 lot-line features match u58 to u64 at a constant ~-47 px. Implies dx=-47, dy=+3456."
+  },
+  {
+   "pair": [
+    "45",
+    "51"
+   ],
+   "id": "tie-45-51-1",
+   "owner_xy": [
+    1229,
+    3793
+   ],
+   "nbr_xy": [
+    1261,
+    290
+   ],
+   "confidence": "high",
+   "note": "NW corner of the 1300-block of 24th St (its first south-side number is 1301; the avenue lot line carries side numbers 2401/2403 below and 2325/2327 above). u45 draws only the 24th-St south curb line in its bottom sliver and this corner - with its ~40 px lot-line stub running down - is the west end of that line, so there is only one candidate; u51 draws the same corner as the NW corner of its top-left block. Implies dx=-32, dy=+3503."
+  },
+  {
+   "pair": [
+    "20",
+    "24"
+   ],
+   "id": "tie-20-24-1",
+   "owner_xy": [
+    2389,
+    3571
+   ],
+   "nbr_xy": [
+    2294,
+    97
+   ],
+   "confidence": "high",
+   "note": "SW corner of the block east of Ave K at 9th St: Ave-K side line (numbers 825/827) meeting the 9th-St front line whose first numbers east of Ave K are 1102/1104 - the same Ave K / 11xx column used for ties 24-30-1, 30-36-1 and 36-40-1. A fire-alarm box (F.A.) sits in the intersection just south of the corner on both sheets. Nine lot-line verticals along this front line match u20 to u24 at ~+96 to +106 px. Implies dx=+95, dy=+3474."
+  },
+  {
+   "pair": [
+    "8",
+    "34"
+   ],
+   "id": "tie-8-34-1",
+   "owner_xy": [
+    2298,
+    94
+   ],
+   "nbr_xy": [
+    2273,
+    3539
+   ],
+   "confidence": "high",
+   "note": "SW corner of the block east of Ave E (Post Office) at 18th St - u34 lies NORTH of u8, so this is u8s top-margin sliver matched to u34s own 18th-St front line. Anchored by the 18th-St numbers 502/504 (first even numbers east of Ave E) and the Ave-E side numbers 1725/1727; same Ave E / 5xx column as ties 18-22-1, 22-28-1 and 28-34-1. 13 lot-line verticals match at a constant ~+18 px. Implies dx=+25, dy=-3445."
+  },
+  {
+   "pair": [
+    "18",
+    "19"
+   ],
+   "id": "tie-18-19-1",
+   "owner_xy": [
+    3230,
+    2436
+   ],
+   "nbr_xy": [
+    298,
+    2432
+   ],
+   "confidence": "high",
+   "note": "NW corner of the 600-block of 8th St at AVE. F OR CHURCH: on u19 it is the SW corner of block 367, with 8th-St number 602 starting to the east and Ave-F side numbers 725/727 running up the lot line. u18 draws the far (east) curb of Ave F at x~3230 with the same corner stub; the two sheets also share the west curb (u18 x~3018 = u19 x~75), and both curb pairs give the same shift (~2932/2944), which rules out a one-block error. Implies dx=+2932, dy=+4."
+  },
+  {
+   "pair": [
+    "27",
+    "28"
+   ],
+   "id": "tie-27-28-1",
+   "owner_xy": [
+    3096,
+    2399
+   ],
+   "nbr_xy": [
+    63,
+    2411
+   ],
+   "confidence": "high",
+   "note": "SE corner of the block on the west side of AVE. C OR MECHANIC at 14th St: the 200-block of 14th St ends with numbers 222/224 at this corner and the Ave-C side numbers running up the lot line are 1326/1328. u28 draws the same line as its near (west) curb of Mechanic, with the matching westward front-line stub; the full gap pattern of that curb line (street breaks at y~228-345, 1251-1493, 2410-2649, 3570-3805 on u28 against 210-336, 1239-1480, 2397-2638, 3553-3788 on u27) matches one-to-one, so the street is identified without ambiguity. Implies dx=+3033, dy=-12."
+  },
+  {
+   "pair": [
+    "33",
+    "34"
+   ],
+   "id": "tie-33-34-1",
+   "owner_xy": [
+    3095,
+    1238
+   ],
+   "nbr_xy": [
+    63,
+    1241
+   ],
+   "confidence": "high",
+   "note": "SE corner of the block on the west side of AVE. C OR MECHANIC at 16th St: the 200-block of 16th St ends with numbers 222/224 at this corner and the Ave-C side numbers running up the lot line are 1526/1528. u34 draws the same line as its near (west) curb of Mechanic with the matching westward stub; same seam geometry as tie-27-28-1 one sheet-row north. Implies dx=+3032, dy=-3."
+  },
+  {
+   "pair": [
+    "46",
+    "47"
+   ],
+   "id": "tie-46-47-1",
+   "owner_xy": [
+    3231,
+    1296
+   ],
+   "nbr_xy": [
+    239,
+    1280
+   ],
+   "confidence": "medium",
+   "note": "T.H. hydrant dot standing in AVENUE O-1/2 (both sheets letter AVENUE O-1/2 across this strip, u46 with the neighbour number 47 and u47 with 46). It is the only hydrant in this segment of the avenue and both sheets label it T.H.; on u47 it sits just west of the block corner with side number 2127 and the 1802 frontage number. Identification is certain; the symbol is hand-placed so the centre is good to roughly +/-8 px, hence medium. Implies dx=+2992, dy=+16."
+  },
+  {
+   "pair": [
+    "20",
+    "24"
+   ],
+   "id": "tie-20-24-2",
+   "owner_xy": [
+    3178,
+    3571
+   ],
+   "nbr_xy": [
+    3078,
+    98
+   ],
+   "confidence": "high",
+   "note": "SE corner of the block west of Ave L at 9th St: the 1100 block of 9th St ends with numbers 1122/1124 and the Ave-L side numbers are 826/828. Independent of tie-20-24-1 (which is at Ave K, ~790 px west) and agrees with it: dx +100 vs +95, dy +3473 vs +3474."
+  },
+  {
+   "pair": [
+    "25",
+    "31"
+   ],
+   "id": "tie-25-31-2",
+   "owner_xy": [
+    3003,
+    3550
+   ],
+   "nbr_xy": [
+    3038,
+    101
+   ],
+   "confidence": "high",
+   "note": "SE corner of the block west of the next avenue east at 12th St: the 1400 block of 12th St ends with numbers 1420/1422/1424 and the avenue side numbers are 1126/1128. About 780 px east of tie-25-31-1 and independent of it; agrees closely (dx -35 vs -35, dy +3449 vs +3450)."
+  },
+  {
+   "pair": [
+    "58",
+    "59"
+   ],
+   "id": "tie-58-59-1",
+   "owner_xy": [
+    3224,
+    2400
+   ],
+   "nbr_xy": [
+    249,
+    2401
+   ],
+   "confidence": "high",
+   "note": "NW corner of the 1800-block of 29th St at the shared avenue: on u59 the frontage numbers 1802/1804/1806/1808 start at this corner and the avenue side numbers 2825/2827 run up the lot line; u58 draws the same line as the far (east) curb of the avenue, and both curbs of the avenue are drawn on both sheets (u58 3014/3226 against u59 ~35/247, both giving ~2979), so the identification is unambiguous. Implies dx=+2975, dy=-1. NOTE: a fire-alarm box (F.A.) is drawn in this avenue on both sheets but at positions differing by ~67 px in x (u58 3031,2443 vs u59 119,2421) - a genuine drawing disagreement; the block corner was used instead."
+  },
+  {
+   "pair": [
+    "37",
+    "38"
+   ],
+   "id": "tie-37-38-1",
+   "owner_xy": [
+    3233,
+    1247
+   ],
+   "nbr_xy": [
+    257,
+    1266
+   ],
+   "confidence": "medium",
+   "note": "T.H. hydrant dot standing in AVENUE N (both sheets letter AVENUE N across this strip, u37 with the neighbour number 38 and u38 with 37). It is the only hydrant in this block-length of the avenue, labelled T.H. on both sheets, and on u38 it sits just west of the block corner where frontage number 1502 begins and side numbers 1527/1529 run up the lot line. Neither sheet draws the other side of the avenue, so this symbol is the only shared feature; hand-placed, so medium. Implies dx=+2976, dy=-19."
+  },
+  {
+   "pair": [
+    "50",
+    "51"
+   ],
+   "id": "tie-50-51-1",
+   "owner_xy": [
+    3133,
+    1517
+   ],
+   "nbr_xy": [
+    85,
+    1542
+   ],
+   "confidence": "medium",
+   "note": "Centre of the FIRE ALARM box (black ring with pink F.A. disc) standing in AVENUE L (both sheets letter AVENUE L across this strip, u50 with the neighbour number 51 and u51 with 50). It is the only F.A. in this stretch of the avenue and is the only object either sheet draws in the shared strip. The dashed W.PIPE line crossing ~150 px north gives dy ~ -3 while the symbol centres give dy ~ -25, so the symbol placement disagrees by ~20 px; hence medium. Implies dx=+3048, dy=-25."
+  }
+ ]
+}

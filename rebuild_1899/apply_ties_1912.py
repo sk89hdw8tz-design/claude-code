@@ -21,7 +21,7 @@ RR = json.load(open(os.path.join(OUT, "ring_1912_report.json")))
 FLAGGED = set(RR["flags"])
 
 ties = []
-for tag in ("G", "H"):
+for tag in ("G", "H", "G2", "H2"):
     _p = os.path.join(OUT, f"adjudicate_{tag}_result.json")
     if not os.path.exists(_p):
         continue

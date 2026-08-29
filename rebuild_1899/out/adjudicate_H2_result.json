@@ -1,1 +1,810 @@
-{"ties": []}
+{
+ "ties": [
+  {
+   "pair": [
+    "65",
+    "73"
+   ],
+   "id": "tie-65-73-1",
+   "owner_xy": [
+    2626,
+    3545
+   ],
+   "nbr_xy": [
+    640,
+    76
+   ],
+   "confidence": "high",
+   "note": "SE corner (at 20-ft alley) of the west half of block S.W.88, N side of 33rd St, W of Avenue Q; anchored by house numbers 2012|2014 flanking the 20-ft alley and the S.W.88 block label on u65. u73 redraws this frontage+alley as its top reference fragment."
+  },
+  {
+   "pair": [
+    "65",
+    "73"
+   ],
+   "id": "tie-65-73-2",
+   "owner_xy": [
+    2686,
+    3545
+   ],
+   "nbr_xy": [
+    701,
+    76
+   ],
+   "confidence": "high",
+   "note": "SW corner of the east half of block S.W.88 on the same 20-ft alley (house 2014), N side of 33rd St; same anchor as tie-1, alley width 62px on u65 vs 61px on u73."
+  },
+  {
+   "pair": [
+    "66",
+    "73"
+   ],
+   "id": "tie-66-73-1",
+   "owner_xy": [
+    277,
+    3556
+   ],
+   "nbr_xy": [
+    1276,
+    75
+   ],
+   "confidence": "high",
+   "note": "SW corner of block N.W.113 (lot 3227, house 2102) at N side of 33rd St / E side of Avenue Q; u66 draws the full block, u73 redraws this corner as its top reference fragment. Anchored by the 2102-2124 address run and the N.W.113 block label on u66. NOTE: the T.H. hydrant beside this corner is drawn 26px W of the corner on u66 but directly S of it on u73 - do not use the hydrant."
+  },
+  {
+   "pair": [
+    "66",
+    "73"
+   ],
+   "id": "tie-66-73-2",
+   "owner_xy": [
+    1069,
+    3557
+   ],
+   "nbr_xy": [
+    2060,
+    80
+   ],
+   "confidence": "high",
+   "note": "SE corner of block N.W.113 (lot 3228, house 2124) at N side of 33rd St / W side of the 30-ft Avenue Q1/2; labelled 30 ft on u66 and Av. Q1/2 on u73. Consistent with tie-66-73-1 to within 8px over an 800px span."
+  },
+  {
+   "pair": [
+    "73",
+    "81"
+   ],
+   "id": "tie-73-81-1",
+   "owner_xy": [
+    1622,
+    3526
+   ],
+   "nbr_xy": [
+    621,
+    90
+   ],
+   "confidence": "high",
+   "note": "SE corner of the west half of block N.E.111 at the 20-ft alley, N side of 36th St between Avenue Q and Q1/2; anchored by house numbers 2112|2114 flanking the alley and the N.E.111 block label on u73. u81 redraws this frontage+alley as its top reference fragment."
+  },
+  {
+   "pair": [
+    "73",
+    "81"
+   ],
+   "id": "tie-73-81-2",
+   "owner_xy": [
+    1679,
+    3526
+   ],
+   "nbr_xy": [
+    680,
+    90
+   ],
+   "confidence": "high",
+   "note": "SW corner of the east half of block N.E.111 on the same 20-ft alley (house 2114); alley width 57px on u73 vs 59px on u81; offsets agree with tie-1 within 2px."
+  },
+  {
+   "pair": [
+    "73",
+    "74"
+   ],
+   "status": "featureless",
+   "note": "Vertical seam is the 70-ft Avenue R corridor (33rd-36th). u73 draws only the WEST frontage (lot numbers 3302-3336) and its sheet border cuts the avenue at x~3230; u74 draws only the EAST frontage (lots 3301-3333) with its border at x~50. The shared middle of the avenue is blank paper - no reference outline, pipe, hydrant or rail crosses it. Street-corner y-values are shared but give no x."
+  },
+  {
+   "pair": [
+    "48",
+    "74"
+   ],
+   "id": "tie-48-74-1",
+   "owner_xy": [
+    655,
+    3558
+   ],
+   "nbr_xy": [
+    1624,
+    107
+   ],
+   "confidence": "high",
+   "note": "SE corner of the west half of block S.W.138 at the 20-ft alley, N side of 33rd St between Avenue R1/2 and S; anchored by house numbers 2412|2414 flanking the alley on u48 and by u74s own 2411|2413 alley directly across 33rd St. u74 redraws this frontage as its top reference fragment."
+  },
+  {
+   "pair": [
+    "48",
+    "74"
+   ],
+   "id": "tie-48-74-2",
+   "owner_xy": [
+    713,
+    3558
+   ],
+   "nbr_xy": [
+    1681,
+    107
+   ],
+   "confidence": "high",
+   "note": "SW corner of the east half of block S.W.138 on the same 20-ft alley (house 2414); alley width 58px on u48 vs 57px on u74, dx agrees with tie-1 within 1px. CAUTION: further east on the same u74 fragment the Tented City block (2502-2524) is drawn ~10pc too wide and Avenue S only ~123px instead of ~205px - do not tie off that part of the fragment."
+  },
+  {
+   "pair": [
+    "66",
+    "74"
+   ],
+   "id": "tie-66-74-1",
+   "owner_xy": [
+    2283,
+    3542
+   ],
+   "nbr_xy": [
+    265,
+    117
+   ],
+   "confidence": "high",
+   "note": "SW corner of block N.W.138 (lot 3227, house 2302) at N side of 33rd St / E side of Avenue R; u66 draws the full block (2302-2324 with 20-ft alley), u74 redraws the whole frontage as its top-left reference fragment. Anchored by the N.W.138 label + 2302 house number."
+  },
+  {
+   "pair": [
+    "66",
+    "74"
+   ],
+   "id": "tie-66-74-2",
+   "owner_xy": [
+    3067,
+    3532
+   ],
+   "nbr_xy": [
+    1052,
+    111
+   ],
+   "confidence": "high",
+   "note": "SE corner of block N.W.138 (lot 3228, house 2324) at N side of 33rd St / W side of Avenue R1/2; block width 784px on u66 vs 787px on u74; offsets agree with tie-1 within 4px."
+  },
+  {
+   "pair": [
+    "70",
+    "77"
+   ],
+   "id": "tie-70-77-1",
+   "owner_xy": [
+    300,
+    3563
+   ],
+   "nbr_xy": [
+    2302,
+    100
+   ],
+   "confidence": "high",
+   "note": "SW corner of block 95 (lot 3527, house 1102) at N side of 36th St / E side of Avenue K; u70 draws the full block 1102-1124, u77 redraws the whole frontage as its top-right reference fragment. Anchored by the block-95 label and the 1102 house number on u70."
+  },
+  {
+   "pair": [
+    "70",
+    "77"
+   ],
+   "id": "tie-70-77-2",
+   "owner_xy": [
+    1085,
+    3558
+   ],
+   "nbr_xy": [
+    3090,
+    105
+   ],
+   "confidence": "high",
+   "note": "SE corner of block 95 (lot 3528, house 1124) at N side of 36th St / W side of Avenue L; block width 785px on u70 vs 788px on u77; offsets agree with tie-1 within 10px over the 790px span."
+  },
+  {
+   "pair": [
+    "70",
+    "78"
+   ],
+   "id": "tie-70-78-1",
+   "owner_xy": [
+    1291,
+    3554
+   ],
+   "nbr_xy": [
+    248,
+    101
+   ],
+   "confidence": "high",
+   "note": "SW corner of block 35 (lot 3527, house 1202) at N side of 36th St / E side of Avenue L; u70 draws the full 1202-1224 block, u78 redraws the frontage as its top-left reference fragment. Anchored by the block-35 label and house 1202 on u70. The T.H. hydrant beside this corner sits in a different relative position on each sheet - not used."
+  },
+  {
+   "pair": [
+    "70",
+    "78"
+   ],
+   "id": "tie-70-78-2",
+   "owner_xy": [
+    2083,
+    3547
+   ],
+   "nbr_xy": [
+    1034,
+    98
+   ],
+   "confidence": "high",
+   "note": "SE corner of the same block 35 (lot 3528, house 1224) at N side of 36th St / W side of Avenue M; block width 792px on u70 vs 786px on u78; offsets agree with tie-1 within 6px."
+  },
+  {
+   "pair": [
+    "81",
+    "89"
+   ],
+   "id": "tie-81-89-1",
+   "owner_xy": [
+    2249,
+    3533
+   ],
+   "nbr_xy": [
+    282,
+    92
+   ],
+   "confidence": "high",
+   "note": "SW corner of the block on the N side of 39th St between Avenue R and R1/2 (lot 3827, house 2302 on u81); u89 redraws this frontage as its top-left reference fragment above its own block N.E.134 (houses 2301-2323, lot 3901). Cross-checked with the 8-in W PIPE dashed main running in 39th St, which sits 107px S of the corner on u81 and 120px S on u89."
+  },
+  {
+   "pair": [
+    "81",
+    "89"
+   ],
+   "id": "tie-81-89-2",
+   "owner_xy": [
+    3029,
+    3533
+   ],
+   "nbr_xy": [
+    1072,
+    91
+   ],
+   "confidence": "high",
+   "note": "SE corner of the same block (lot 3828, house 2324) at N side of 39th St / W side of Avenue R1/2; block width 780px on u81 vs 790px on u89; offsets agree with tie-1 within 10px."
+  },
+  {
+   "pair": [
+    "82",
+    "89"
+   ],
+   "id": "tie-82-89-1",
+   "owner_xy": [
+    305,
+    3549
+   ],
+   "nbr_xy": [
+    1281,
+    96
+   ],
+   "confidence": "high",
+   "note": "SW corner of block S.W.135 (lot 3827, house 2402) at N side of 39th St / E side of Avenue R1/2; u89 redraws this frontage as the second reference fragment across its top, above its own block S.E.134 (houses 2401-2423). Anchored by the 2402-2424 address run and the S.W.135 block label on u82."
+  },
+  {
+   "pair": [
+    "82",
+    "89"
+   ],
+   "id": "tie-82-89-2",
+   "owner_xy": [
+    1090,
+    3549
+   ],
+   "nbr_xy": [
+    2071,
+    98
+   ],
+   "confidence": "high",
+   "note": "SE corner of block S.W.135 (lot 3828, house 2424) at N side of 39th St / W side of Avenue S; block width 785px on u82 vs 790px on u89; offsets agree with tie-1 within 5px."
+  },
+  {
+   "pair": [
+    "76",
+    "83"
+   ],
+   "id": "tie-76-83-1",
+   "owner_xy": [
+    227,
+    3541
+   ],
+   "nbr_xy": [
+    2238,
+    99
+   ],
+   "confidence": "high",
+   "note": "SW corner of block 398, the Galveston Bagging Co / Gen. Ware Ho. block, at N side of 39th St / E side of Ave. F or Church (lot 3827, house 602 on u76). u83 redraws this frontage as its top-right reference fragment, directly above u83s own Galveston Bagging Co block (lots 601-623). Named-mill anchor, unambiguous."
+  },
+  {
+   "pair": [
+    "76",
+    "83"
+   ],
+   "id": "tie-76-83-2",
+   "owner_xy": [
+    1068,
+    3542
+   ],
+   "nbr_xy": [
+    3071,
+    104
+   ],
+   "confidence": "high",
+   "note": "SE corner of the same block 398 (lot 3828, house 624, beside the A.S. tank marker) at N side of 39th St / W side of Ave. G or Winnie; block width 841px on u76 vs 833px on u83; offsets agree with tie-1 within 8px. Cross-checked with the 6-in W PIPE dashed main in 39th St."
+  },
+  {
+   "pair": [
+    "76",
+    "84"
+   ],
+   "id": "tie-76-84-1",
+   "owner_xy": [
+    1273,
+    3539
+   ],
+   "nbr_xy": [
+    274,
+    103
+   ],
+   "confidence": "high",
+   "note": "SW corner of block 338 (lot 3827, house 702) at N side of 39th St / E side of Ave. G or Winnie; u84 redraws this frontage as its top-left reference fragment, above its own block 339 (houses 701-723). Anchored by the block-338 label and the 702-724 address run on u76. Street furniture (T.H., FA alarm box) near this corner is placed differently on the two sheets - not used."
+  },
+  {
+   "pair": [
+    "76",
+    "84"
+   ],
+   "id": "tie-76-84-2",
+   "owner_xy": [
+    2059,
+    3529
+   ],
+   "nbr_xy": [
+    1062,
+    97
+   ],
+   "confidence": "high",
+   "note": "SE corner of block 338 (lot 3828, house 724, under the S. shed) at N side of 39th St / W side of Ave. H or Ball; block width 786px on u76 vs 788px on u84; offsets agree with tie-1 within 4px."
+  },
+  {
+   "pair": [
+    "77",
+    "85"
+   ],
+   "id": "tie-77-85-1",
+   "owner_xy": [
+    2302,
+    3547
+   ],
+   "nbr_xy": [
+    292,
+    128
+   ],
+   "confidence": "high",
+   "note": "SW corner of the block N of 39th St between Avenue K and Avenue L (lot 3827, house 1102 on u77); u85 redraws this frontage as its top-left reference fragment, directly above its own block with houses 1101-1123. Anchored by the 1102-1124 address run on u77 and the matching 1101-1123 run on u85."
+  },
+  {
+   "pair": [
+    "77",
+    "85"
+   ],
+   "id": "tie-77-85-2",
+   "owner_xy": [
+    3085,
+    3545
+   ],
+   "nbr_xy": [
+    1082,
+    117
+   ],
+   "confidence": "high",
+   "note": "SE corner of the same block (lot 3828, house 1124) at N side of 39th St / W side of Avenue L; block width 783px on u77 vs 790px on u85; offsets agree with tie-1 within 9px."
+  },
+  {
+   "pair": [
+    "78",
+    "85"
+   ],
+   "id": "tie-78-85-1",
+   "owner_xy": [
+    1606,
+    3536
+   ],
+   "nbr_xy": [
+    2660,
+    107
+   ],
+   "confidence": "high",
+   "note": "SE corner of the west half of the block N of 39th St between Avenue M and M1/2, at the 20-ft alley (house 1312 on u78). Anchored by the 1302-1324 address run, the 20-ft label, and the 6-in W PIPE that runs down this very alley on BOTH sheets. u85 redraws the frontage with the alley gap as its top-right reference fragment."
+  },
+  {
+   "pair": [
+    "78",
+    "85"
+   ],
+   "id": "tie-78-85-2",
+   "owner_xy": [
+    1664,
+    3536
+   ],
+   "nbr_xy": [
+    2719,
+    107
+   ],
+   "confidence": "high",
+   "note": "SW corner of the east half of the same block on the same 20-ft alley (house 1314); alley width 58px on u78 vs 59px on u85; offsets agree with tie-1 within 1px. NOTE the outer corners of this block give dx -1032 (west) and -1047 (east) vs -1054 at the alley - the block is drawn ~2pc wider on u85."
+  },
+  {
+   "pair": [
+    "79",
+    "86"
+   ],
+   "id": "tie-79-86-1",
+   "owner_xy": [
+    591,
+    3546
+   ],
+   "nbr_xy": [
+    1632,
+    93
+   ],
+   "confidence": "high",
+   "note": "SE corner of the west half of block N.W.35 at its 20-ft alley, N side of 39th St between Avenue N and N1/2 (house 1512 on u79). Anchored by the 1502-1524 address run and the N.W.35 block label on u79, and by u86s own 1511|1513 alley directly across 39th St. u86 redraws this frontage with the alley gap as its top reference fragment."
+  },
+  {
+   "pair": [
+    "79",
+    "86"
+   ],
+   "id": "tie-79-86-2",
+   "owner_xy": [
+    652,
+    3546
+   ],
+   "nbr_xy": [
+    1692,
+    93
+   ],
+   "confidence": "high",
+   "note": "SW corner of the east half of block N.W.35 on the same 20-ft alley (house 1514); alley width 61px on u79 vs 60px on u86; offsets agree with tie-1 within 1px."
+  },
+  {
+   "pair": [
+    "87",
+    "95"
+   ],
+   "id": "tie-87-95-1",
+   "owner_xy": [
+    626,
+    3548
+   ],
+   "nbr_xy": [
+    1609,
+    83
+   ],
+   "confidence": "high",
+   "note": "SE corner of the west half of block N.E.58 at its 20-ft alley, N side of 42nd St between Avenue O and O1/2 (house 1712 on u87). Anchored by the printed block number 58 appearing on both sheets (N.E.58 north of 42nd on u87, N.W.58 south of 42nd on u95) plus the 1702-1724 / 1701-1723 address runs. u95 redraws this frontage with the alley gap as its top reference fragment."
+  },
+  {
+   "pair": [
+    "87",
+    "95"
+   ],
+   "id": "tie-87-95-2",
+   "owner_xy": [
+    688,
+    3548
+   ],
+   "nbr_xy": [
+    1667,
+    83
+   ],
+   "confidence": "high",
+   "note": "SW corner of the east half of block N.E.58 on the same 20-ft alley (house 1714); alley width 62px on u87 vs 58px on u95; offsets agree with tie-1 within 4px."
+  },
+  {
+   "pair": [
+    "84",
+    "92"
+   ],
+   "id": "tie-84-92-1",
+   "owner_xy": [
+    1279,
+    3546
+   ],
+   "nbr_xy": [
+    1240,
+    104
+   ],
+   "confidence": "high",
+   "note": "SW corner of the block N of 42nd St between Ave. H or Ball and Ave. I or Sealy (lot 4127, house 802 on u84); u92 redraws this frontage as its top-centre reference fragment, directly above its own block 282 with houses 801-823. Anchored by the 802-824 address run and lot numbers 4126/4127."
+  },
+  {
+   "pair": [
+    "84",
+    "92"
+   ],
+   "id": "tie-84-92-2",
+   "owner_xy": [
+    2068,
+    3546
+   ],
+   "nbr_xy": [
+    2025,
+    104
+   ],
+   "confidence": "high",
+   "note": "SE corner of the same block (lot 4128, house 824) at N side of 42nd St / W side of Ave. I or Sealy; block width 789px on u84 vs 785px on u92; offsets agree with tie-1 within 4px."
+  },
+  {
+   "pair": [
+    "85",
+    "93"
+   ],
+   "id": "tie-85-93-1",
+   "owner_xy": [
+    1728,
+    3553
+   ],
+   "nbr_xy": [
+    2686,
+    99
+   ],
+   "confidence": "high",
+   "note": "SW corner of the east half of the block N of 42nd St between Avenue L and Avenue M, at its 20-ft alley (house 1214, lot 4126 on u85). Anchored by the 1202-1224 address run on u85 and the matching 1201-1223 run with the same 20-ft alley on u93 directly across 42nd St. u93 redraws this frontage as its top-right reference fragment."
+  },
+  {
+   "pair": [
+    "85",
+    "93"
+   ],
+   "id": "tie-85-93-2",
+   "owner_xy": [
+    1668,
+    3553
+   ],
+   "nbr_xy": [
+    2625,
+    99
+   ],
+   "confidence": "medium",
+   "note": "SE corner of the west half of the same block on the same 20-ft alley (house 1212). On u93 the large 85 margin numeral is printed over this corner, so the vertical is read from the thin line above the numeral - offsets nonetheless agree with tie-1 within 1px."
+  },
+  {
+   "pair": [
+    "86",
+    "94"
+   ],
+   "id": "tie-86-94-1",
+   "owner_xy": [
+    642,
+    3528
+   ],
+   "nbr_xy": [
+    1645,
+    98
+   ],
+   "confidence": "high",
+   "note": "SE corner of the west half of block S.E.8 at its 20-ft alley, N side of 42nd St between Avenue M1/2 and Avenue N (house 1412 on u86). Anchored by the printed block number 8 on both sheets (S.E.8 north of 42nd on u86, S.W.8 south of 42nd on u94) plus the 1402-1424 / 1401-1423 address runs. u94 redraws this frontage with the alley gap as its top-centre reference fragment."
+  },
+  {
+   "pair": [
+    "86",
+    "94"
+   ],
+   "id": "tie-86-94-2",
+   "owner_xy": [
+    702,
+    3528
+   ],
+   "nbr_xy": [
+    1702,
+    98
+   ],
+   "confidence": "high",
+   "note": "SW corner of the east half of block S.E.8 on the same 20-ft alley (house 1414); alley width 60px on u86 vs 57px on u94; offsets agree with tie-1 within 3px."
+  },
+  {
+   "pair": [
+    "83",
+    "91"
+   ],
+   "id": "tie-83-91-1",
+   "owner_xy": [
+    1267,
+    3534
+   ],
+   "nbr_xy": [
+    1269,
+    107
+   ],
+   "confidence": "high",
+   "note": "SW corner of the block N of 42nd St between Ave. E or Post Office and Ave. F or Church (lot 4127, house 502 on u83); u91 redraws this frontage as its top-centre reference fragment above its own block 462 (houses 501-523). Anchored by the 502-524 address run plus the 6-in W PIPE and the pair of rail-yard tracks just west of the corner, which appear on both sheets."
+  },
+  {
+   "pair": [
+    "83",
+    "91"
+   ],
+   "id": "tie-83-91-2",
+   "owner_xy": [
+    2053,
+    3534
+   ],
+   "nbr_xy": [
+    2058,
+    107
+   ],
+   "confidence": "high",
+   "note": "SE corner of the same block (lot 4128, house 524) at N side of 42nd St / W side of Ave. F or Church; block width 786px on u83 vs 789px on u91; offsets agree with tie-1 within 3px. The 20-ft alley mid-block is overprinted by the large 83 margin numeral on u91 - corners used instead."
+  },
+  {
+   "pair": [
+    "90",
+    "98"
+   ],
+   "id": "tie-90-98-1",
+   "owner_xy": [
+    281,
+    3539
+   ],
+   "nbr_xy": [
+    1287,
+    89
+   ],
+   "confidence": "high",
+   "note": "SW corner of block S.E.158 (lot 4127, house 2602) at N side of 42nd St / E side of Avenue S1/2; anchored by the printed block number 158 on both sheets (S.E.158 north of 42nd on u90, S.W.158 south of it on u98) and the 2602-2624 / 2601-2623 address runs. u98 redraws this frontage as its top-centre reference fragment."
+  },
+  {
+   "pair": [
+    "90",
+    "98"
+   ],
+   "id": "tie-90-98-2",
+   "owner_xy": [
+    1070,
+    3538
+   ],
+   "nbr_xy": [
+    2072,
+    92
+   ],
+   "confidence": "high",
+   "note": "SE corner of block S.E.158 (lot 4128, house 2624) at N side of 42nd St / W side of Avenue T; block width 789px on u90 vs 785px on u98; offsets agree with tie-1 within 4px."
+  },
+  {
+   "pair": [
+    "90",
+    "99"
+   ],
+   "id": "tie-90-99-1",
+   "owner_xy": [
+    1273,
+    95
+   ],
+   "nbr_xy": [
+    1881,
+    3532
+   ],
+   "confidence": "high",
+   "note": "SW corner of block N.W.185 (lot 3827, house 2702) at N side of 39th St / E side of Avenue T, in the RIGHT panel of u99 (u99 is a two-panel sheet split by a heavy vertical rule at x~1730). u90 redraws this frontage as its top reference fragment above its own 2701-2729 block. Anchored by the N.W.185 block label and the 2702-2724 address run on u99."
+  },
+  {
+   "pair": [
+    "90",
+    "99"
+   ],
+   "id": "tie-90-99-2",
+   "owner_xy": [
+    2061,
+    95
+   ],
+   "nbr_xy": [
+    2661,
+    3532
+   ],
+   "confidence": "high",
+   "note": "SE corner of block N.W.185 (lot 3828, house 2724) at N side of 39th St / W side of the 70-ft Avenue T1/2 (labelled Av. T1/2 on u90 just east of this corner); block width 780px on u99 vs 788px on u90; offsets agree with tie-1 within 8px."
+  },
+  {
+   "pair": [
+    "74",
+    "99"
+   ],
+   "status": "featureless",
+   "note": "Vertical seam is the 70-ft Avenue S1/2 corridor. u74 draws only its WEST frontage (lot numbers 3302-3328) and its border stops at x~3250; u99 (left panel) draws only the EAST frontage (lots 3401-3427) from x~390 and its border stops at x~60. The shared middle of the avenue is blank paper on both - no reference outline, pipe, hydrant or rail crosses it."
+  },
+  {
+   "pair": [
+    "85",
+    "94"
+   ],
+   "id": "tie-85-94-1",
+   "owner_xy": [
+    2668,
+    3552
+   ],
+   "nbr_xy": [
+    652,
+    98
+   ],
+   "confidence": "high",
+   "note": "SE corner of the west half of the block N of 42ND St between Avenue M and Avenue M1/2, at its 20-ft alley (house 1312, lot 4125/4127 on u85). Anchored by the 1302-1324 address run on u85 and by u94s own 1311|1313 alley in block N.W.8 directly across 42nd St. (Distinct from the identically-numbered 1302-1324 block on 39th St used for the 78-85 ties - this one is on 42nd St and carries lot numbers 4125-4128.)"
+  },
+  {
+   "pair": [
+    "85",
+    "94"
+   ],
+   "id": "tie-85-94-2",
+   "owner_xy": [
+    2729,
+    3552
+   ],
+   "nbr_xy": [
+    710,
+    98
+   ],
+   "confidence": "high",
+   "note": "SW corner of the east half of the same block on the same 20-ft alley (house 1314); alley width 61px on u85 vs 58px on u94; offsets agree with tie-1 within 3px."
+  },
+  {
+   "pair": [
+    "84",
+    "85"
+   ],
+   "status": "featureless",
+   "note": "WARNING - do not tie these two on the Broadway corridor. u84 stops just inside the 150-ft Ave. J or Broadway (block frontage at x~3080, lot numbers 3904-3928, the 10-in W PIPE in the avenue at x~3155, border at x~3270). u85s MAIN panel does not reach Broadway at all - its left edge is Avenue K (frontage x~295, lots 3903-3927). The Broadway frontage DOES appear on u85, but only inside the separate inset panel in u85s lower-left (x<1190, y 1690-3850), which is a displaced panel with its own origin (39th St at y~1975, 40th St at y~3033 there, versus 39th St at y~205 in the main panel). Tying u84 to that inset would mis-place u85s main panel."
+  },
+  {
+   "pair": [
+    "91",
+    "92"
+   ],
+   "id": "tie-91-92-1",
+   "owner_xy": [
+    3138,
+    1370
+   ],
+   "nbr_xy": [
+    117,
+    1368
+   ],
+   "confidence": "high",
+   "note": "Crossing of the E-W 6-in W. PIPE running in 43rd St with the WESTERN of the two parallel dashed pipe lines running N-S in Ave. G or Winnie. Anchored by the unique cluster at this corner: the T.H. hydrant NE of it, the pair of curving railroad tracks that sweep across the avenue here, and the block corners (lot 4228 / house 624 on u91, lot 4227 / house 702 on u92). This is the only place on either sheet where the avenue pipes, the 43rd St pipe and the rail curve meet."
+  },
+  {
+   "pair": [
+    "91",
+    "92"
+   ],
+   "id": "tie-91-92-2",
+   "owner_xy": [
+    3187,
+    1370
+   ],
+   "nbr_xy": [
+    163,
+    1368
+   ],
+   "confidence": "medium",
+   "note": "Same 43rd St 6-in W. PIPE crossing the EASTERN of the two parallel N-S dashed pipe lines in Ave. G or Winnie; only 46-49px east of tie-1 so it adds little independent leverage, but dx agrees within 3px (3024 vs 3021) which confirms the identification."
+  }
+ ]
+}

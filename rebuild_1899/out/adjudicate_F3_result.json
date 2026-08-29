@@ -1,1 +1,378 @@
-{"ties": []}
+{
+ "ties": [
+  {
+   "pair": [
+    "73",
+    "77"
+   ],
+   "id": "tie-73-77-1",
+   "owner_xy": [
+    3247,
+    3761
+   ],
+   "nbr_xy": [
+    2318,
+    182
+   ],
+   "confidence": "high",
+   "note": "T.H. fire-hydrant dot in 27th St at Avenue Q, the ONLY T.H. in the shared 27th-St corridor on either sheet. Anchored by the dashed 6-in water-pipe line running down Avenue Q (73 x=3198, 77 x=2259, dx=939) with the hydrant dot ~50px east of it on both; implied dx=929 agrees. Dot centre measured at zoom 3."
+  },
+  {
+   "pair": [
+    "76",
+    "77"
+   ],
+   "id": "tie-76-77-1",
+   "owner_xy": [
+    3116,
+    396
+   ],
+   "nbr_xy": [
+    126,
+    386
+   ],
+   "confidence": "high",
+   "note": "NE corner of block 65 N.E. (east side of Avenue P at 27th St): on 76 the corner where the 27th-St house-number row ...1819/1821/1823 meets the Avenue-P number column 2702/2704; sheet 77 carries the same corner as a short stub at its west margin, confirmed by the identical 70-ft avenue-width label sitting at the same offset east of it on both sheets (dx 2985 vs corner dx 2990)."
+  },
+  {
+   "pair": [
+    "76",
+    "77"
+   ],
+   "id": "tie-76-77-2",
+   "owner_xy": [
+    3261,
+    2543
+   ],
+   "nbr_xy": [
+    277,
+    2518
+   ],
+   "confidence": "high",
+   "note": "T.H. hydrant dot in Avenue P, the only one on this seam; anchored by the SW corner of block 90 N.W. drawn just NE of it on both sheets (77 shows house no. 2827 on the avenue and the 1900-row on 29th St) and by the dashed water-pipe line along 29th St ~110 px below. Implied dx 2984 matches the 27th-St corner tie (2990)."
+  },
+  {
+   "pair": [
+    "74",
+    "77"
+   ],
+   "id": "tie-74-77-1",
+   "owner_xy": [
+    239,
+    3760
+   ],
+   "nbr_xy": [
+    2318,
+    182
+   ],
+   "confidence": "high",
+   "note": "Same T.H. hydrant dot in 27th St at Avenue Q used for the 73-77 tie: identified on both by the dashed 6-in water-pipe line running down Avenue Q ~100px west and the 70-ft / 80-ft width labels flanking it; only T.H. in the shared corridor."
+  },
+  {
+   "pair": [
+    "74",
+    "77"
+   ],
+   "id": "tie-74-77-2",
+   "owner_xy": [
+    279,
+    3720
+   ],
+   "nbr_xy": [
+    2343,
+    142
+   ],
+   "confidence": "high",
+   "note": "SW corner of the block north of 27th St east of Avenue Q (house no. 2627 on the avenue, 2102 first even number on 27th St, visible on 74); sheet 77 draws the same corner as an overlap sliver at its top margin. Corner sits ~45px NE of the T.H. hydrant on both sheets; implied dy 3578 identical to the hydrant tie."
+  },
+  {
+   "pair": [
+    "77",
+    "80"
+   ],
+   "id": "tie-77-80-1",
+   "owner_xy": [
+    303,
+    3657
+   ],
+   "nbr_xy": [
+    2309,
+    126
+   ],
+   "confidence": "high",
+   "note": "SW corner of block 89 N.E. (Avenue P x 30th St): on 77 the corner carrying house no. 2927 up the avenue and 1902/1904 east along 30th St; sheet 80 draws the same block-south line as an 80-px overlap sliver at its top margin, where this is the WEST END of the line (nothing drawn west of it). Cross-checked against the 20-ft alley mouth 395 px east on 77 / 401 px east on 80."
+  },
+  {
+   "pair": [
+    "77",
+    "80"
+   ],
+   "id": "tie-77-80-2",
+   "owner_xy": [
+    668,
+    3657
+   ],
+   "nbr_xy": [
+    2679,
+    126
+   ],
+   "confidence": "high",
+   "note": "West wall of the 20-ft alley of block 89 N.E. where it meets the block line on 30th St, between house numbers 1912 and 1914 on 77; same alley mouth appears in 80s top-margin sliver (partly behind the big 77 neighbour glyph). Anchored by distance from the Avenue-P corner: 365 px on 77 vs 370 px on 80, so the alley instance is unambiguous. Implied dx 2011 vs 2006 from the corner tie."
+  },
+  {
+   "pair": [
+    "77",
+    "81"
+   ],
+   "id": "tie-77-81-1",
+   "owner_xy": [
+    1309,
+    3659
+   ],
+   "nbr_xy": [
+    338,
+    130
+   ],
+   "confidence": "high",
+   "note": "SW corner of block 89 S.E. on 30th St (house no. 2921 running up the avenue, 2002/2004 east along 30th St on 77). Sheet 81 carries this block-south line as a top-margin sliver whose WEST END is this corner, sitting directly above 81s own block 89 S.W. NW corner and the 2001 number row. dx 971 / dy 3529."
+  },
+  {
+   "pair": [
+    "77",
+    "81"
+   ],
+   "id": "tie-77-81-2",
+   "owner_xy": [
+    2095,
+    3665
+   ],
+   "nbr_xy": [
+    1126,
+    125
+   ],
+   "confidence": "high",
+   "note": "SE corner of the same block 89 S.E. (numbers 2924/2926/2928 up the avenue, 2024 last number west on 30th St); on 81 it is the east end of the top-margin sliver line, with the dashed water-pipe line of the avenue running south just east of it on both sheets. dx 969 / dy 3540, agreeing with tie-77-81-1."
+  },
+  {
+   "pair": [
+    "80",
+    "81"
+   ],
+   "id": "tie-80-81-1",
+   "owner_xy": [
+    3105,
+    388
+   ],
+   "nbr_xy": [
+    119,
+    380
+   ],
+   "confidence": "high",
+   "note": "NE corner of the block east of 80s last drawn block, at Avenue P-1/2 and 30th St (80 shows house nos. 1921/1923 west along 30th St and 3002/3004/3006 down the avenue). Sheet 81 carries that same block edge as a west-margin sliver whose north end is this corner, with the 70-ft avenue label between it and 81s own corner. dx 2986."
+  },
+  {
+   "pair": [
+    "80",
+    "81"
+   ],
+   "id": "tie-80-81-2",
+   "owner_xy": [
+    3103,
+    1303
+   ],
+   "nbr_xy": [
+    117,
+    1305
+   ],
+   "confidence": "high",
+   "note": "SE corner of the same 80 block at 31st St (numbers 3024/3026/3028 up the avenue, 1922/1924 west on 31st St); on 81 it is the south end of the west-margin sliver line. Independently cross-checked by 81s own block SE corner (81 x=330) appearing on 80 at x=3311: dx 2981 vs 2986 here."
+  },
+  {
+   "pair": [
+    "81",
+    "84"
+   ],
+   "id": "tie-81-84-1",
+   "owner_xy": [
+    319,
+    3657
+   ],
+   "nbr_xy": [
+    2323,
+    135
+   ],
+   "confidence": "high",
+   "note": "SW corner of the block north of 33rd St (81s block with the 2002/2004 corner store, house no. 3227 up the avenue); on 84 it is the WEST END of the top-margin sliver line, with the stub running north to the paper edge. Anchored by the 20-ft alley mouth 369 px east on 81 / 370 px east on 84, so the block instance is unambiguous. dx 2004."
+  },
+  {
+   "pair": [
+    "81",
+    "84"
+   ],
+   "id": "tie-81-84-2",
+   "owner_xy": [
+    1116,
+    3657
+   ],
+   "nbr_xy": [
+    3121,
+    137
+   ],
+   "confidence": "high",
+   "note": "SE corner of the same block at 33rd St (numbers 2022/2024 west along 33rd, 3026/3028 up the avenue on 81, dashed water-pipe line in the avenue just east); east end of 84s top-margin sliver. dx 2005, dy 3520 - matches tie-81-84-1 (dx 2004) and the alley-wall check (dx 2005)."
+  },
+  {
+   "pair": [
+    "81",
+    "85"
+   ],
+   "id": "tie-81-85-1",
+   "owner_xy": [
+    1324,
+    3654
+   ],
+   "nbr_xy": [
+    290,
+    128
+   ],
+   "confidence": "high",
+   "note": "SW corner of block 113 N.W. on 33rd St - the corner east of the avenue, carrying house no. 3227 up the avenue and 2102/2104 east along 33rd St on 81. On 85 it is the west end/corner of the top-margin sliver line, immediately NE of the T.H. hydrant that appears on both sheets. dx 1034, dy 3526."
+  },
+  {
+   "pair": [
+    "81",
+    "85"
+   ],
+   "id": "tie-81-85-2",
+   "owner_xy": [
+    1311,
+    3722
+   ],
+   "nbr_xy": [
+    274,
+    172
+   ],
+   "confidence": "medium",
+   "note": "T.H. hydrant dot in the avenue at 33rd St, just SW of the block 113 N.W. corner used in tie-81-85-1 (only T.H. on this seam). Implied dx 1037 agrees with the corner tie (1034), but dy 3550 vs 3526: the symbol is drawn ~24 px further from the block line on 81 than on 85, so medium."
+  },
+  {
+   "pair": [
+    "84",
+    "85"
+   ],
+   "id": "tie-84-85-1",
+   "owner_xy": [
+    3327,
+    386
+   ],
+   "nbr_xy": [
+    288,
+    370
+   ],
+   "confidence": "high",
+   "note": "NW corner of block 112 N.E. at 33rd St and Avenue Q - on 85 the corner carrying house nos. 2101/2103 east along 33rd St and 3301/3303 down the avenue; 84 draws it as the margin corner just NE of its 70-ft avenue label (line runs south and east from the point, nothing north). dx 3039, dy 16 - matches the hydrant tie dx 3038."
+  },
+  {
+   "pair": [
+    "84",
+    "85"
+   ],
+   "id": "tie-84-85-2",
+   "owner_xy": [
+    3291,
+    2534
+   ],
+   "nbr_xy": [
+    253,
+    2504
+   ],
+   "confidence": "high",
+   "note": "T.H. hydrant dot in Avenue Q at 35th St, the only T.H. in the shared avenue strip on either sheet; both sheets also carry the 6 IN. PIPE dashed line down the avenue west of it. On 85 it sits just SW of the SW corner of block 112 N.W. (numbers 3427 up the avenue, 2102/2104 east). dx 3038 matches tie-84-85-1."
+  },
+  {
+   "pair": [
+    "82",
+    "85"
+   ],
+   "id": "tie-82-85-1",
+   "owner_xy": [
+    265,
+    3664
+   ],
+   "nbr_xy": [
+    2303,
+    123
+   ],
+   "confidence": "high",
+   "note": "SW corner of the 2300-block of 33rd St on 82 (corner store 2-story 5-ft, house nos. 2302/2304 east, 3221/3223/3225/3227 up the avenue); on 85 it is the west end of the top-margin sliver line at x=2303. Anchored by the numbered block (2302 not 2002 - checked at zoom to avoid the identical corner store on the 2000-block) and by the alley mouth 364 px east on 82 / 366 px east on 85. dx 2038."
+  },
+  {
+   "pair": [
+    "82",
+    "85"
+   ],
+   "id": "tie-82-85-2",
+   "owner_xy": [
+    629,
+    3665
+   ],
+   "nbr_xy": [
+    2669,
+    123
+   ],
+   "confidence": "high",
+   "note": "West wall of the 20-ft alley of that same block where it meets the 33rd St block line, between house nos. 2312 and 2314 on 82; 85 shows both alley walls as stubs in its top-margin sliver (partly behind its 82 neighbour glyph). dx 2040, dy 3542 - matches tie-82-85-1 (dx 2038)."
+  },
+  {
+   "pair": [
+    "82",
+    "86"
+   ],
+   "id": "tie-82-86-1",
+   "owner_xy": [
+    2268,
+    3657
+   ],
+   "nbr_xy": [
+    1300,
+    134
+   ],
+   "confidence": "high",
+   "note": "SW corner of the 2500-block of 33rd St on 82 (house nos. 2502/2504 east, 3225/3227 up the avenue). On 86 it is the stub rising from the top-margin line at x=1300, the east side of the 220-px avenue gap in that line. dx 968."
+  },
+  {
+   "pair": [
+    "82",
+    "86"
+   ],
+   "id": "tie-82-86-2",
+   "owner_xy": [
+    2056,
+    3657
+   ],
+   "nbr_xy": [
+    1089,
+    138
+   ],
+   "confidence": "high",
+   "note": "SE corner of the 2400-block of 33rd St on 82 (numbers 2422/2424 west, 3226/3228 up the avenue) - the west side of the same avenue gap on 86s top-margin line. dx 967, dy 3519, matching tie-82-86-1 (dx 968) and confirming the block instance by the 2400/2500 number series on both sheets."
+  },
+  {
+   "pair": [
+    "85",
+    "86"
+   ],
+   "id": "tie-85-86-1",
+   "owner_xy": [
+    3310,
+    366
+   ],
+   "nbr_xy": [
+    288,
+    387
+   ],
+   "confidence": "medium",
+   "note": "CONSTRUCTED, not shared ink: the avenue between 85 and 86 carries no hydrant, pipe or overlap sliver - each sheet stops inside it. Point = NW corner of 86s 2400-block at 33rd St (86 x=288,y=387, numbers 2401/2403 east and 3301/3303 down the avenue), expressed in 85 coordinates as its own block NE corner (3100,366, numbers 2323 west / 3302 down) plus the 70-ft avenue width (210 px) at the same street line. Cross-check: chaining 82-85 (dx 2038) with 82-86 (dx 967) gives dx 3005 vs 3022 here, so x is good to ~20 px; y from the common 33rd-St curb line drawn on both margins."
+  }
+ ]
+}

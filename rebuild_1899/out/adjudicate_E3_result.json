@@ -1,1 +1,395 @@
-{"ties": []}
+{
+ "ties": [
+  {
+   "pair": [
+    "23",
+    "25"
+   ],
+   "id": "tie-23-25-1",
+   "owner_xy": [
+    3131,
+    3870
+   ],
+   "nbr_xy": [
+    2149,
+    370
+   ],
+   "confidence": "high",
+   "note": "Red-circled fire-alarm box '125' - unique on both sheets - sitting in 39th St at the SE outside corner of the Galveston Bagging & Cordage Co. warehouse block (the 'W.TANK ON ROOF' yellow bldg, house nos 621/623 on 25, 622/624 on 23), just west of the dashed 'not opened' avenue. Circle center measured at zoom 8. Implied offset sheet23 = sheet25 + (982,3500)."
+  },
+  {
+   "pair": [
+    "23",
+    "25"
+   ],
+   "id": "tie-23-25-2",
+   "owner_xy": [
+    1300,
+    3876
+   ],
+   "nbr_xy": [
+    319,
+    368
+   ],
+   "confidence": "high",
+   "note": "NW corner of lot '3901' - the first lot corner east of the not-opened Avenue E on the SOUTH frontage of 39th St, carrying house no. 501 on sheet 25. Identity cross-checked by house numbering: 501 (odd, south side, sheet 25) sits directly opposite 502 (even, north side, sheet 23) at the same x within a few px, and both are the first number east of the not-opened avenue. Implied offset (981,3508), agrees with the '125' alarm-box tie (982,3500)."
+  },
+  {
+   "pair": [
+    "24",
+    "25"
+   ],
+   "id": "tie-24-25-1",
+   "owner_xy": [
+    121,
+    3863
+   ],
+   "nbr_xy": [
+    2149,
+    370
+   ],
+   "confidence": "high",
+   "note": "Same unique red-circled fire-alarm box '125' in 39th St as tie-23-25-1 (it falls in the 23/24/25 triple overlap). Anchored on both sheets by sitting ~45 px WEST of the double-dashed not-opened avenue line that crosses 39th St, and on 24 immediately west of house-number row 702-724. Implied offset sheet24 = sheet25 + (-2028,+3493); the avenue's dashed line gives the identical dx (-2028) and the 8in W.PIPE dashed line in 39th St gives dy=+3500."
+  },
+  {
+   "pair": [
+    "25",
+    "26"
+   ],
+   "id": "tie-25-26-1",
+   "owner_xy": [
+    3310,
+    111
+   ],
+   "nbr_xy": [
+    207,
+    140
+   ],
+   "confidence": "medium",
+   "note": "The single T.H. (hydrant) dot at the 39th St / Avenue H (Ball) intersection - the only shared point feature in this seam. Anchored: it is the ONLY dot anywhere in the Avenue H corridor on either sheet, and on both it sits just west of the east property line of the 70-ft avenue, at the north edge of 39th St. Caveat: the two sheets place the dot ~50 px apart in y relative to the 8in W.PIPE dashed line in 39th St (pipe gives dy=-21, dot gives dy=+29), so y is uncertain to ~+-25 px. Otherwise this seam is featureless: sheet 25 draws nothing east of its block line at x=3140 and sheet 26 nothing west of x=215, so the sheets only share the empty avenue pavement."
+  },
+  {
+   "pair": [
+    "25",
+    "27"
+   ],
+   "id": "tie-25-27-1",
+   "owner_xy": [
+    2269,
+    3629
+   ],
+   "nbr_xy": [
+    3292,
+    164
+   ],
+   "confidence": "medium",
+   "note": "T.H. hydrant dot in 42nd St, ~48 px EAST of the double-dashed not-opened avenue that separates the 600 block from the 700 block. Block identity fixed by house numbering: on 25 the numbers east of this avenue are 702-724 (even, north side) and the block corner beside the dot carries lot label 4127; on 27 the numbers west of the same avenue are 613-623 (odd, south side) and the 700 block lies east of it off the sheet edge. The dot's offset from the dashed line matches on both sheets (48 vs 50 px). Note: hydrant dots on these sheets are hand-placed and can differ ~30 px in y between sheets; dx=1023 here vs 1020 from the dashed avenue lines."
+  },
+  {
+   "pair": [
+    "25",
+    "27"
+   ],
+   "id": "tie-25-27-2",
+   "owner_xy": [
+    260,
+    3620
+   ],
+   "nbr_xy": [
+    1309,
+    160
+   ],
+   "confidence": "medium",
+   "note": "Second T.H. dot in 42nd St, at the avenue two blocks west of tie-1 - the one separating the 400 block from the 500 block. Anchored by numbering: on 25 house 502 and lot 4127 are immediately east of the block corner beside this dot; on 27 house numbers 401-423 lie west of the same avenue and 501-511 east. Same caveat on hand-placed dots (this pair gives dx=1049 vs 1023 for tie-1)."
+  },
+  {
+   "pair": [
+    "25",
+    "28"
+   ],
+   "id": "tie-25-28-1",
+   "owner_xy": [
+    2269,
+    3629
+   ],
+   "nbr_xy": [
+    282,
+    123
+   ],
+   "confidence": "medium",
+   "note": "Same T.H. dot as tie-25-27-1: in 42nd St ~48 px east of the double-dashed not-opened avenue between the 600 and 700 blocks (on 25 the block corner with lot 4127 and houses 702-724 east of it; on 28 houses 701-723 east of the same avenue, 801+ beyond the next). Dot-to-dashed-line offset matches (47 vs 52 px) and the derived dy (-3506) agrees within 12 px with the dy implied by the 42nd St frontage lines (-3494)."
+  },
+  {
+   "pair": [
+    "24",
+    "26"
+   ],
+   "id": "tie-24-26-1",
+   "owner_xy": [
+    3234,
+    3777
+   ],
+   "nbr_xy": [
+    2202,
+    256
+   ],
+   "confidence": "high",
+   "note": "T-junction where the dashed water pipe running down the middle of Avenue J / BROADWAY meets the dashed 8in W.PIPE running along 39th St. Unique: Broadway is the only 150-ft-wide avenue on these sheets (labelled '150' on both) and this is the only pipe crossing in the strip. Implied offset sheet26 = sheet24 + (-1032,-3521), which agrees with the -1020 dx implied by the avenue between the 800 and 900 blocks."
+  },
+  {
+   "pair": [
+    "29",
+    "26"
+   ],
+   "id": "tie-29-26-1",
+   "owner_xy": [
+    185,
+    3785
+   ],
+   "nbr_xy": [
+    2202,
+    256
+   ],
+   "confidence": "high",
+   "note": "Same unique landmark as tie-24-26-1: the crossing of the dashed water pipe in the middle of Avenue J / BROADWAY (the only 150-ft avenue, labelled '150' on both sheets) with the dashed 8in W.PIPE in 39th St. On 29 it is at the west edge of the sheet with house numbers 1002-1024 immediately east; on 26 the 1001-1023 block lies east of it. Implied offset sheet26 = sheet29 + (2017,-3529)."
+  },
+  {
+   "pair": [
+    "29",
+    "26b"
+   ],
+   "id": "tie-29-26b-1",
+   "owner_xy": [
+    1291,
+    3785
+   ],
+   "nbr_xy": [
+    2364,
+    1858
+   ],
+   "confidence": "high",
+   "note": "Constructed corner point: intersection of the EAST property line of Avenue K with the dashed 8in W.PIPE running down 39th St. On 29 the Av-K east line is the west edge of the block carrying house nos. 1102-1124 (lot 3827 at its corner); on panel 26b it is the west edge of the block carrying 1101-1123 - the same single property line, north and south of 39th St. Corroborated by the T.H. dot at that same corner on both (29: 1289,3672; 26b: 2356,1728) which gives dx within 6 px. NOTE sheet disagreement: 26b draws the block NORTH of 39th between Av K and Av L as an empty rectangle labelled '0 CEMETERY. No Exposure', while sheet 29 maps that same block as dwellings 1102-1124."
+  },
+  {
+   "pair": [
+    "26b",
+    "91"
+   ],
+   "id": "tie-26b-91-1",
+   "owner_xy": [
+    3169,
+    1962
+   ],
+   "nbr_xy": [
+    122,
+    378
+   ],
+   "confidence": "high",
+   "note": "NE corner of the block that carries house numbers 1101-1123 on 39th St - i.e. the intersection of Avenue L's WEST property line with 39th St's SOUTH property line. Drawn as an explicit corner on both: on panel 26b the corner sits immediately right of number 1123 with lot label 3902 on the Av-L face and '70' (Av L) beyond it; on 91 it is the corner immediately west of the 1201-1223 block, with '70' for Av L between them. Independently corroborated: the dashed 8in/6in W.PIPE in 39th St gives dy=-1581 vs -1584 from the corner."
+  },
+  {
+   "pair": [
+    "29",
+    "91"
+   ],
+   "id": "tie-29-91-1",
+   "owner_xy": [
+    2299,
+    3785
+   ],
+   "nbr_xy": [
+    332,
+    277
+   ],
+   "confidence": "high",
+   "note": "Constructed point: intersection of Avenue L's EAST property line with the dashed 6in W.PIPE in 39th St. On 29 the Av-L east line is the west edge of the block with house nos. 1202-1224 (corner at 2299,3634, lot 3827 label); on 91 it is the west edge of the block with 1201-1223 (heavy line at x=332, lot labels 3901/3903 written in the avenue beside it). Corroborated by the T.H. dot at that corner on both sheets (29: 2305,3675; 91: 312,168), whose dy (-3507) matches the pipe-derived dy (-3508) to 1 px."
+  },
+  {
+   "pair": [
+    "24",
+    "29"
+   ],
+   "id": "tie-24-29-1",
+   "owner_xy": [
+    3234,
+    3777
+   ],
+   "nbr_xy": [
+    185,
+    3785
+   ],
+   "confidence": "high",
+   "note": "The crossing of the dashed water pipe running down the centre of Avenue J / BROADWAY (the unique 150-ft avenue, so labelled on both sheets) with the dashed 8in W.PIPE in 39th St. This is the same physical crossing used in tie-24-26-1 and tie-29-26-1, so the three sheets are tied to one another consistently."
+  },
+  {
+   "pair": [
+    "29",
+    "30"
+   ],
+   "id": "tie-29-30-1",
+   "owner_xy": [
+    3251,
+    3795
+   ],
+   "nbr_xy": [
+    195,
+    3777
+   ],
+   "confidence": "medium",
+   "note": "Constructed point on the dashed W.PIPE in 39th St, taken directly below the single T.H. hydrant dot that both sheets draw in the 39th St / Avenue M intersection (29: dot at 3251,3627 just inside the sheet's SE corner beside lot 3828 / house 1224; 30: dot at 195,3675 beside lot 3827 / house 1302). y comes from the pipe (a line drawn on both, dy=-18); x comes from the dot, whose dx (-3056) is confirmed within 8 px by the Avenue M property lines (29 draws the west line at 3110, 30 the east line at 250, a 70-ft = 204 px avenue -> dx=-3064). The dots' own y placement differs by ~66 px between the sheets, which is why y is taken from the pipe instead."
+  },
+  {
+   "pair": [
+    "31",
+    "29"
+   ],
+   "id": "tie-31-29-1",
+   "owner_xy": [
+    2340,
+    3873
+   ],
+   "nbr_xy": [
+    1329,
+    372
+   ],
+   "confidence": "high",
+   "note": "NW corner of the 1100-block on the south side of 36th St (corner of the not-opened avenue east line with 36th St's south property line). Sheet 31 draws this block as the neighbour-sheet outline with '29' lettered inside it; sheet 29 draws it as the real block, the corner sitting immediately left of house no. 1101 with lot 3601 below. Anchored by house numbering (1101 first number east of the corner on 29; 1102-1124 the facing row on 31) and cross-checked against the dashed not-opened-avenue line, which gives dx=-1009 vs -1011 from this corner."
+  },
+  {
+   "pair": [
+    "32",
+    "29"
+   ],
+   "id": "tie-32-29-1",
+   "owner_xy": [
+    307,
+    3872
+   ],
+   "nbr_xy": [
+    2340,
+    372
+   ],
+   "confidence": "high",
+   "note": "NW corner of the 1200-block on the south side of 36th St (not-opened avenue east line x 36th St south property line). Sheet 32 draws that block as the neighbour outline with '29' inside; on 29 it is the real block corner just left of house no. 1201 with lot 3601 below and the church/rectory block to its west. Cross-checked with the dashed not-opened-avenue line (dx=2025) and with 32's own 1202 block corner north of the street (dx=2041) - this corner-to-corner value 2033 lies between them."
+  },
+  {
+   "pair": [
+    "26",
+    "28"
+   ],
+   "id": "tie-26-28-1",
+   "owner_xy": [
+    1214,
+    3612
+   ],
+   "nbr_xy": [
+    2345,
+    124
+   ],
+   "confidence": "high",
+   "note": "SW corner of the 900-block on the north side of 42nd St (east property line of the 70-ft avenue x 42nd St north property line). On 26 it is the real block corner with house no. 902 lettered immediately right of it and lot 4125/4127 above; on 28 the same corner is drawn as the neighbour-block outline with '26' lettered in the gap to its west, and 28's own 901-923 row sits directly below it. Anchored by the matching house-number series (902-914 on 26 north side, 901-923 on 28 south side) and by Broadway (150') two blocks east on both."
+  },
+  {
+   "pair": [
+    "25",
+    "28"
+   ],
+   "id": "tie-25-28-2",
+   "owner_xy": [
+    2302,
+    3632
+   ],
+   "nbr_xy": [
+    322,
+    126
+   ],
+   "confidence": "high",
+   "note": "SW corner of the 700-block on the north side of 42nd St. On 25 it is the real block corner (lot 4127, house nos. 702-724 running east); on 28 the same block is drawn as the neighbour-sheet outline with '25' lettered inside it, and the T.H. dot of tie-25-28-1 sits 40 px west of the corner on both sheets. Gives dx=-1980, dy=-3506, agreeing with the hydrant tie (-1987,-3506) to 7 px."
+  },
+  {
+   "pair": [
+    "25",
+    "27"
+   ],
+   "id": "tie-25-27-3",
+   "owner_xy": [
+    1288,
+    3630
+   ],
+   "nbr_xy": [
+    2325,
+    143
+   ],
+   "confidence": "high",
+   "note": "SW corner of the 600-block on the north side of 42nd St - the first block corner east of the pair of thin lines marking the not-opened avenue. On 25 it is the real corner: house no. 602 is lettered immediately east of it and the corner dwelling (lots 4125/4127) sits on it. On 27 the same block is drawn as the neighbour-sheet outline with '25' lettered just west of the corner and the same avenue line-pair beside it. This supersedes the two hydrant-dot ties for this seam in accuracy: it gives dy=-3487 against -3496 implied by the 42nd St frontage lines, whereas the dots gave -3460/-3465."
+  },
+  {
+   "pair": [
+    "27",
+    "28"
+   ],
+   "id": "tie-27-28-1",
+   "owner_xy": [
+    3207,
+    390
+   ],
+   "nbr_xy": [
+    190,
+    376
+   ],
+   "confidence": "medium",
+   "note": "Constructed point: midpoint of the pair of dashed lines that mark the not-opened 70-ft avenue forming this seam (27: dashed at 3183 and 3230; 28: dashed at 161 and 218; the '70' width label sits between the pair on both sheets), taken at the SOUTH property line of 42nd St - the north edge of each sheet's own block row (27: y=390 at the 521/523 block corner; 28: y=376 at the 4201/4203 block). Both dashed lines give dx within 10 px (-3022 and -3012). The neighbour-block outline that 28 draws for 27's block is 35 px too wide here, so it was not used."
+  },
+  {
+   "pair": [
+    "40",
+    "38"
+   ],
+   "id": "tie-40-38-1",
+   "owner_xy": [
+    2717,
+    3778
+   ],
+   "nbr_xy": [
+    2707,
+    238
+   ],
+   "confidence": "high",
+   "note": "T-junction where the WEST END of the dashed 6in W.PIPE in 24th St meets the double-dashed 20-ft alley line that runs north-south through the 1200 block. Unique in the strip and drawn identically on both sheets (pipe running east from the alley, alley continuing north and south past it). Anchored by house numbering: the alley separates 1212 from 1214 on 40 (north side) and 1211 from 1213 on 38 (south side). Implied offset (-10,-3540); the T.H. dot nearby differs by ~40 px between sheets and was not used."
+  },
+  {
+   "pair": [
+    "42",
+    "40"
+   ],
+   "id": "tie-42-40-1",
+   "owner_xy": [
+    2745,
+    3660
+   ],
+   "nbr_xy": [
+    2748,
+    132
+   ],
+   "confidence": "high",
+   "note": "SW corner of the 1214-1224 block on the north side of Centre (21st) St, i.e. the corner where the 20-ft alley's east line meets the street's north property line. On 42 it is the real block corner with house no. 1214 lettered immediately below-right; on 40 the same block is drawn as the neighbour-sheet outline (the '42'/'40' margin row) with the corner in the same relation to the double-dashed 20-ft alley. Alley line gives dx=+9 vs +3 from the corner; T.H. dots beside it agree on dy within 15 px."
+  },
+  {
+   "pair": [
+    "39",
+    "40"
+   ],
+   "id": "tie-39-40-1",
+   "owner_xy": [
+    3319,
+    1550
+   ],
+   "nbr_xy": [
+    88,
+    1572
+   ],
+   "confidence": "medium",
+   "note": "Constructed point at the centre of Avenue J / BROADWAY where it crosses the south property line of the 80-ft street carrying house nos. 919-924 (39) / 1001-1006 (40). y is taken from that property line, which both sheets draw as their own block's frontage (39: block NE corner at 3100,1550 with 923 lettered above; 40: block NW corner at 307,1572 with 'GALLERY 2ND 1001' above). x is constructed by stepping half of Broadway's labelled 150 ft (=219 px at 2.92 px/ft) inward from each sheet's own Broadway property line (39 west line 3100, 40 east line 307), because nothing at all is drawn inside Broadway on this seam - no pipe, no hydrant, no lettering that both sheets share. Cross-check: the pipe in that street gives dy=+32 vs +22 from the property line. Treat x as +-20 px."
+  }
+ ]
+}
