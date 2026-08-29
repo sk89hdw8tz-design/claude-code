@@ -1,0 +1,82 @@
+{
+  "pair": ["5B", "11"],
+  "axis": "wharf-frontage seam; Ave A runs along page-y on both plates (sheet 11 drafted in the same rotated orientation: bay page-left, GWC terminal tracks yard on its left strip).",
+  "boundary": "Ave. A or Water (sheet 5 panel B landward margin / sheet 11 bay-side edge)",
+  "observer": "ctrl-S5",
+  "plate_scales": {
+    "5B": "100 ft to one inch (~309 px/100 ft)",
+    "11": "50 ft to one inch (~618 px/100 ft)"
+  },
+  "landward_side_verification": "Panel B landward side = page-RIGHT ('AVE. A / OR' vertical label x~6150-6230, 'GULF COLORADO & SANTA FE' x~6230-6280, boxed '11' at (6270-6310, 4300-4460) between 25th and 26th - the plate's own statement that sheet 11 abuts this stretch).",
+  "controls": [
+    {
+      "anchor": "25th (Rosenberg) St",
+      "status": "ACCEPTED",
+      "class": "observed",
+      "why_not_one_block_off": "Both plates draw this crossing roughly 1.5x the width of every neighbouring numbered street (Rosenberg Av class): panel B stub gap 367 px (~119 ft) vs 240 px for 24th/26th; sheet 11 gap 728 px (~118 ft) vs ~473 px. Panel B prints '25TH OR ROSENBERG AV.' along the corner; sheet 11 prints '25TH ST.' with italic Ave A runs 2427 (north) and 2501 (south) - no other crossing on this attachment has this width.",
+      "anchor_evidence": "Sheet 5 panel B: printed '25TH OR ROSENBERG AV.', boxed '11' just south. Sheet 11: '25TH ST.' label, runs 102-108 / 101-109, italics 2427, 2501, 'WOOD POSTS'/'STEEL POSTS' shed annotations, '56'' span note, F.A./T.H. symbols (excluded).",
+      "A": {
+        "sheet": "5B",
+        "face1_seg": [[6393, 3585], [6505, 3585]],
+        "face2_seg": [[6398, 3952], [6512, 3952]],
+        "measured_at": "landward stub block fronts, x 6393-6512 (shorter stubs than at 22nd-24th)",
+        "sigma_along_px": 5.0,
+        "sigma_basis": "clean single rules but short spans (~115 px) and the diagonal street label crosses near the stubs",
+        "source_sha256": "1b4dc8be49f5c9bf43a77247fc6ce155f368b0c2b804ecc2caec2a8be88a68de"
+      },
+      "B": {
+        "sheet": 11,
+        "face1_seg": [[2520, 2406], [2955, 2402]],
+        "face2_seg": [[2545, 3134], [2955, 3126]],
+        "measured_at": "solid block faces at the Ave A corner (galleries dashed y2410-2500 and y3140-3210 excluded); face2 steps slightly at the '2501' corner building",
+        "sigma_along_px": 5.5,
+        "sigma_basis": "face1 double-ruled (face + building line); face2 stepped corner with yellow Ave-A-fronting building at x2400-2455",
+        "source_sha256": "e7b2ff1b6b70c5d7124a4879e5feca478d95681224d97b88855de7bade1591df"
+      },
+      "drafted_width_px": {"A": 367, "B": 728, "annotation": "B/A ratio 1.98 (~119 vs ~118 ft) - agreement ~1 ft on a double-width avenue-class street"},
+      "evidence_crops": [
+        "70_qa/control_evidence/sheet5B_25th_sheet5.jpg",
+        "70_qa/control_evidence/sheet5B_25th_sheet5_zoom.jpg",
+        "70_qa/control_evidence/sheet5B_25th_sheet11.jpg",
+        "70_qa/control_evidence/sheet5B_25th_sheet11_northface.jpg",
+        "70_qa/control_evidence/sheet5B_25th_sheet11_southface.jpg"
+      ],
+      "remeasured_by": "ctrl-S5 (second-pass zoom re-read at 1.8x)",
+      "remeasure_delta_px": 25,
+      "notes": "Remeasure delta 25 px exceeded 2 sigma - diagnosed per amendment 3: the first read was taken from a 0.7x navigation-scale crop and misidentified the north stub end; the 1.8x zoom re-read (authoritative) gives face1 y=3585. All recorded coordinates are from the 1.8x zoom. No unresolved discrepancy remains."
+    },
+    {
+      "anchor": "26th St",
+      "status": "ACCEPTED",
+      "class": "observed",
+      "why_not_one_block_off": "Panel B prints '26TH. ST' beside the measured stubs, between the labelled Rosenberg crossing (double-width, north) and '27TH ST.'; sheet 11 prints '...ST.' with italic Ave A runs 2527/2525 (north of 26th) and the G.C.&S.F. R.R. lettering in the Ave A track corridor matching panel B's 'Gulf Colorado & Santa Fe' - one block off would hit Rosenberg's width or the 2701 run.",
+      "anchor_evidence": "Sheet 5 panel B: printed '26TH. ST', paper flaw (repaired nick) at (6580, 4990) noted, does not touch faces. Sheet 11: runs 102-112 / 101-111, italics 2527, 2525, 'G. C. & S. F. R. R.' vertical lettering at x~2340 in the Ave A corridor.",
+      "A": {
+        "sheet": "5B",
+        "face1_seg": [[6368, 4872], [6520, 4872]],
+        "face2_seg": [[6370, 5112], [6600, 5112]],
+        "measured_at": "landward stub block fronts, x 6368-6600",
+        "sigma_along_px": 4.0,
+        "sigma_basis": "clean single stub rules",
+        "source_sha256": "1b4dc8be49f5c9bf43a77247fc6ce155f368b0c2b804ecc2caec2a8be88a68de"
+      },
+      "B": {
+        "sheet": 11,
+        "face1_seg": [[2543, 4972], [3285, 4970]],
+        "face2_seg": [[2532, 5445], [3290, 5443]],
+        "measured_at": "solid block faces at the Ave A corner, x 2532-3290; no galleries at this crossing (clean)",
+        "sigma_along_px": 4.0,
+        "sigma_basis": "face1 clean single rule; face2 doubled (face + building top) but consistent",
+        "source_sha256": "e7b2ff1b6b70c5d7124a4879e5feca478d95681224d97b88855de7bade1591df"
+      },
+      "drafted_width_px": {"A": 240, "B": 473, "annotation": "B/A ratio 1.97 (~78 vs ~77 ft) - agreement ~1 ft"},
+      "evidence_crops": [
+        "70_qa/control_evidence/sheet5B_26th_sheet5.jpg",
+        "70_qa/control_evidence/sheet5B_26th_sheet11.jpg"
+      ],
+      "remeasured_by": "ctrl-S5 (second-pass re-read)",
+      "remeasure_delta_px": 4,
+      "notes": "26th St is outside the mosaic target footprint (target ends at 25th/Rosenberg) but inside panel B's drawn coverage; retained as a full control for the 5B-11 attachment."
+    }
+  ]
+}

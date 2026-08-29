@@ -1,0 +1,539 @@
+{
+ "source": "adjoining-sheet numbers printed on each plate edge (independent of key map and street index)",
+ "sheets": [
+  5,
+  7,
+  8,
+  9,
+  10,
+  11,
+  12,
+  39,
+  40,
+  43,
+  44,
+  49,
+  50
+ ],
+ "edges": {
+  "5": {
+   "top": [
+    null,
+    "16th St"
+   ],
+   "bottom": [
+    null,
+    null
+   ],
+   "left": [
+    null,
+    "Galveston Bay"
+   ],
+   "right": [
+    [
+     7,
+     "Ave. A or Water"
+    ],
+    [
+     9,
+     "Ave. A or Water"
+    ],
+    [
+     11,
+     "Ave. A or Water"
+    ],
+    [
+     13,
+     "Ave. A or Water"
+    ]
+   ]
+  },
+  "7": {
+   "top": [
+    33,
+    "18th St"
+   ],
+   "bottom": [
+    9,
+    "21st or Center St"
+   ],
+   "left": [
+    5,
+    "Ave. A or Water"
+   ],
+   "right": [
+    8,
+    "Ave. C or Mechanic"
+   ]
+  },
+  "8": {
+   "top": [
+    34,
+    "18th St"
+   ],
+   "bottom": [
+    10,
+    "21st or Center St"
+   ],
+   "left": [
+    7,
+    "Ave. C or Mechanic"
+   ],
+   "right": [
+    39,
+    "Ave. F or Church"
+   ]
+  },
+  "9": {
+   "top": [
+    7,
+    "21st or Center St"
+   ],
+   "bottom": [
+    11,
+    "24th St"
+   ],
+   "left": [
+    5,
+    "Ave. A or Water"
+   ],
+   "right": [
+    10,
+    "Ave. C or Mechanic"
+   ]
+  },
+  "10": {
+   "top": [
+    8,
+    "21st or Center St"
+   ],
+   "bottom": [
+    12,
+    "24th St"
+   ],
+   "left": [
+    9,
+    "Ave. C or Mechanic"
+   ],
+   "right": [
+    43,
+    "Ave. F or Church"
+   ]
+  },
+  "11": {
+   "top": [
+    9,
+    "24th St"
+   ],
+   "bottom": [
+    13,
+    "27th St"
+   ],
+   "left": [
+    5,
+    "Ave. A or Water"
+   ],
+   "right": [
+    12,
+    "Ave. C or Mechanic"
+   ]
+  },
+  "12": {
+   "top": [
+    10,
+    "24th St"
+   ],
+   "bottom": [
+    14,
+    "27th St"
+   ],
+   "left": [
+    11,
+    "Ave. C or Mechanic"
+   ],
+   "right": [
+    49,
+    "Ave. F or Church"
+   ]
+  },
+  "39": {
+   "top": [
+    35,
+    "18th St"
+   ],
+   "bottom": [
+    43,
+    "21st or Center St"
+   ],
+   "left": [
+    8,
+    "Ave. F or Church"
+   ],
+   "right": [
+    40,
+    "Ave. I or Sealy"
+   ]
+  },
+  "40": {
+   "top": [
+    36,
+    "18th St"
+   ],
+   "bottom": [
+    44,
+    "21st or Center St"
+   ],
+   "left": [
+    39,
+    "Ave. I or Sealy"
+   ],
+   "right": [
+    41,
+    "Avenue L"
+   ]
+  },
+  "43": {
+   "top": [
+    39,
+    "21st or Center St"
+   ],
+   "bottom": [
+    49,
+    "24th St"
+   ],
+   "left": [
+    10,
+    "Ave. F or Church"
+   ],
+   "right": [
+    44,
+    "Ave. I or Sealy"
+   ]
+  },
+  "44": {
+   "top": [
+    40,
+    "21st or Center St"
+   ],
+   "bottom": [
+    50,
+    "24th St"
+   ],
+   "left": [
+    43,
+    "Ave. I or Sealy"
+   ],
+   "right": [
+    45,
+    "Avenue L"
+   ]
+  },
+  "49": {
+   "top": [
+    43,
+    "24th St"
+   ],
+   "bottom": [
+    55,
+    "27th St"
+   ],
+   "left": [
+    12,
+    "Ave. F or Church"
+   ],
+   "right": [
+    50,
+    "Ave. I or Sealy"
+   ]
+  },
+  "50": {
+   "top": [
+    44,
+    "24th St"
+   ],
+   "bottom": [
+    56,
+    "27th St"
+   ],
+   "left": [
+    49,
+    "Ave. I or Sealy"
+   ],
+   "right": [
+    51,
+    "Avenue L"
+   ]
+  }
+ },
+ "internal_pairs": [
+  {
+   "sheets": [
+    5,
+    7
+   ],
+   "shared_feature": "Ave. A or Water",
+   "orientation": "vertical-seam"
+  },
+  {
+   "sheets": [
+    5,
+    9
+   ],
+   "shared_feature": "Ave. A or Water",
+   "orientation": "vertical-seam"
+  },
+  {
+   "sheets": [
+    5,
+    11
+   ],
+   "shared_feature": "Ave. A or Water",
+   "orientation": "vertical-seam"
+  },
+  {
+   "sheets": [
+    7,
+    8
+   ],
+   "shared_feature": "Ave. C or Mechanic",
+   "orientation": "vertical-seam"
+  },
+  {
+   "sheets": [
+    7,
+    9
+   ],
+   "shared_feature": "21st or Center St",
+   "orientation": "horizontal-seam"
+  },
+  {
+   "sheets": [
+    8,
+    10
+   ],
+   "shared_feature": "21st or Center St",
+   "orientation": "horizontal-seam"
+  },
+  {
+   "sheets": [
+    8,
+    39
+   ],
+   "shared_feature": "Ave. F or Church",
+   "orientation": "vertical-seam"
+  },
+  {
+   "sheets": [
+    9,
+    10
+   ],
+   "shared_feature": "Ave. C or Mechanic",
+   "orientation": "vertical-seam"
+  },
+  {
+   "sheets": [
+    9,
+    11
+   ],
+   "shared_feature": "24th St",
+   "orientation": "horizontal-seam"
+  },
+  {
+   "sheets": [
+    10,
+    12
+   ],
+   "shared_feature": "24th St",
+   "orientation": "horizontal-seam"
+  },
+  {
+   "sheets": [
+    10,
+    43
+   ],
+   "shared_feature": "Ave. F or Church",
+   "orientation": "vertical-seam"
+  },
+  {
+   "sheets": [
+    11,
+    12
+   ],
+   "shared_feature": "Ave. C or Mechanic",
+   "orientation": "vertical-seam"
+  },
+  {
+   "sheets": [
+    12,
+    49
+   ],
+   "shared_feature": "Ave. F or Church",
+   "orientation": "vertical-seam"
+  },
+  {
+   "sheets": [
+    39,
+    40
+   ],
+   "shared_feature": "Ave. I or Sealy",
+   "orientation": "vertical-seam"
+  },
+  {
+   "sheets": [
+    39,
+    43
+   ],
+   "shared_feature": "21st or Center St",
+   "orientation": "horizontal-seam"
+  },
+  {
+   "sheets": [
+    40,
+    44
+   ],
+   "shared_feature": "21st or Center St",
+   "orientation": "horizontal-seam"
+  },
+  {
+   "sheets": [
+    43,
+    44
+   ],
+   "shared_feature": "Ave. I or Sealy",
+   "orientation": "vertical-seam"
+  },
+  {
+   "sheets": [
+    43,
+    49
+   ],
+   "shared_feature": "24th St",
+   "orientation": "horizontal-seam"
+  },
+  {
+   "sheets": [
+    44,
+    50
+   ],
+   "shared_feature": "24th St",
+   "orientation": "horizontal-seam"
+  },
+  {
+   "sheets": [
+    49,
+    50
+   ],
+   "shared_feature": "Ave. I or Sealy",
+   "orientation": "vertical-seam"
+  }
+ ],
+ "pooled_seam_groups": {
+  "21st or Center St": [
+   [
+    7,
+    9
+   ],
+   [
+    8,
+    10
+   ],
+   [
+    39,
+    43
+   ],
+   [
+    40,
+    44
+   ]
+  ],
+  "24th St": [
+   [
+    9,
+    11
+   ],
+   [
+    10,
+    12
+   ],
+   [
+    43,
+    49
+   ],
+   [
+    44,
+    50
+   ]
+  ],
+  "Ave. A or Water": [
+   [
+    5,
+    7
+   ],
+   [
+    5,
+    9
+   ],
+   [
+    5,
+    11
+   ]
+  ],
+  "Ave. C or Mechanic": [
+   [
+    7,
+    8
+   ],
+   [
+    9,
+    10
+   ],
+   [
+    11,
+    12
+   ]
+  ],
+  "Ave. F or Church": [
+   [
+    8,
+    39
+   ],
+   [
+    10,
+    43
+   ],
+   [
+    12,
+    49
+   ]
+  ],
+  "Ave. I or Sealy": [
+   [
+    39,
+    40
+   ],
+   [
+    43,
+    44
+   ],
+   [
+    49,
+    50
+   ]
+  ]
+ },
+ "boundary_neighbours": [
+  13,
+  14,
+  33,
+  34,
+  35,
+  36,
+  41,
+  45,
+  51,
+  55,
+  56
+ ],
+ "reciprocity_problems": [],
+ "key_grid_problems": []
+}

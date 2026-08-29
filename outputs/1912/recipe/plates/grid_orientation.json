@@ -1,0 +1,111 @@
+{
+ "method": "Canny + HoughLinesP, length-weighted mod-90 orientation histogram",
+ "downsample": 4,
+ "roi_margin": 0.1,
+ "plates": [
+  {
+   "sheet": 5,
+   "grid_angle_mod90_deg": 89.9277,
+   "grid_dev_from_axis_deg": -0.0723,
+   "concentration": 0.4538,
+   "n_segments": 348,
+   "total_segment_px": 57642.4
+  },
+  {
+   "sheet": 7,
+   "grid_angle_mod90_deg": 89.9818,
+   "grid_dev_from_axis_deg": -0.0182,
+   "concentration": 0.8825,
+   "n_segments": 311,
+   "total_segment_px": 53476.8
+  },
+  {
+   "sheet": 8,
+   "grid_angle_mod90_deg": 89.9955,
+   "grid_dev_from_axis_deg": -0.0045,
+   "concentration": 1.0,
+   "n_segments": 259,
+   "total_segment_px": 38471.1
+  },
+  {
+   "sheet": 9,
+   "grid_angle_mod90_deg": 0.002,
+   "grid_dev_from_axis_deg": 0.002,
+   "concentration": 0.69,
+   "n_segments": 401,
+   "total_segment_px": 83479.7
+  },
+  {
+   "sheet": 10,
+   "grid_angle_mod90_deg": 0.0202,
+   "grid_dev_from_axis_deg": 0.0202,
+   "concentration": 0.9581,
+   "n_segments": 296,
+   "total_segment_px": 38447.8
+  },
+  {
+   "sheet": 11,
+   "grid_angle_mod90_deg": 89.9928,
+   "grid_dev_from_axis_deg": -0.0072,
+   "concentration": 0.9747,
+   "n_segments": 413,
+   "total_segment_px": 81706.2
+  },
+  {
+   "sheet": 12,
+   "grid_angle_mod90_deg": 89.9923,
+   "grid_dev_from_axis_deg": -0.0077,
+   "concentration": 1.0,
+   "n_segments": 247,
+   "total_segment_px": 37410.1
+  },
+  {
+   "sheet": 39,
+   "grid_angle_mod90_deg": 89.9959,
+   "grid_dev_from_axis_deg": -0.0041,
+   "concentration": 0.9611,
+   "n_segments": 186,
+   "total_segment_px": 29128.8
+  },
+  {
+   "sheet": 40,
+   "grid_angle_mod90_deg": 0.0108,
+   "grid_dev_from_axis_deg": 0.0108,
+   "concentration": 1.0,
+   "n_segments": 202,
+   "total_segment_px": 31802.1
+  },
+  {
+   "sheet": 43,
+   "grid_angle_mod90_deg": 0.0018,
+   "grid_dev_from_axis_deg": 0.0018,
+   "concentration": 1.0,
+   "n_segments": 198,
+   "total_segment_px": 31032.1
+  },
+  {
+   "sheet": 44,
+   "grid_angle_mod90_deg": 0.0021,
+   "grid_dev_from_axis_deg": 0.0021,
+   "concentration": 1.0,
+   "n_segments": 202,
+   "total_segment_px": 27783.0
+  },
+  {
+   "sheet": 49,
+   "grid_angle_mod90_deg": 89.9885,
+   "grid_dev_from_axis_deg": -0.0115,
+   "concentration": 0.9943,
+   "n_segments": 238,
+   "total_segment_px": 34943.3
+  },
+  {
+   "sheet": 50,
+   "grid_angle_mod90_deg": 89.9879,
+   "grid_dev_from_axis_deg": -0.0121,
+   "concentration": 0.9964,
+   "n_segments": 180,
+   "total_segment_px": 28448.6
+  }
+ ]
+}

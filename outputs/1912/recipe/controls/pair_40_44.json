@@ -1,0 +1,75 @@
+{
+ "pair": [40, 44],
+ "axis": "horizontal",
+ "boundary": "21st or Center St",
+ "observer": "ctrl-H2",
+ "axis_convention": "raster pixels of the archival scan, origin top-left, x right, y down; face1 = west (low-x) flank, face2 = east (high-x) flank of the crossing avenue",
+ "controls": [
+  {
+   "anchor": "Ave J (Broadway)",
+   "status": "ACCEPTED",
+   "class": "observed",
+   "why_not_one_block_off": "Sheet 40 prints 21st St even runs 902-924 west and 1002+ east of the gap with Broadway runs 2026/2028 (west flank) / 2025/2027 (east flank); sheet 44 prints odd 923 vs 1001 with Broadway runs 2102/2104 / 2101/2103/2105. No other gap on these strips approaches this drafted width (~600 px); the mid-block alleys are 20'-annotated with 8\" pipe lines and no address runs.",
+   "anchor_evidence": "sheet 40: '924' and '1002' flanking, Broadway runs '2026 2028' and '2025 2027', '150'' printed mid-avenue; sheet 44: '923' and '1001' flanking, Broadway runs '2102 2104' and '2101 2103 2105', '150'' printed mid-avenue, '106'' lot depth at W corner",
+   "A": {
+    "sheet": 40,
+    "face1_seg": [[2030, 6950], [2030, 7098]],
+    "face2_seg": [[2630, 6900], [2630, 7045]],
+    "measured_at": "SE corner of 900-block (face1, corner y~7098); face2 read on the straight rule above y~7045 where the 1000-block NW corner chamfers (dashed rounded veranda of 1002 below), frontage line y~7098",
+    "sigma_along_px": 3.0,
+    "sigma_basis": "face1 3.0: rule merges with dashed gallery outline near its top; face2 2.5: clean single rule above the chamfer",
+    "source_sha256": "12a04ff5411de391d2a1941dd414e37ee68103da84c34cff1e7c4428a5b37b7f"
+   },
+   "B": {
+    "sheet": 44,
+    "face1_seg": [[2041, 696], [2041, 1000]],
+    "face2_seg": [[2646, 699], [2646, 1000]],
+    "measured_at": "NE corner of 900-block (face1, corner y~696) and NW corner of 1000-block (face2, corner y~699) below the 21st St south frontage",
+    "sigma_along_px": 2.5,
+    "sigma_basis": "face1 2.5: clean rule (S. dwelling at 923 set back from line); face2 2.5: clean single rule",
+    "source_sha256": "47621807b513de7e8809b9b547c2cd7ded1e3b09e4d861b723c1225e4d4ffea6"
+   },
+   "drafted_width_px": {"A": 600.0, "B": 605.0, "annotation": "BOTH plates print 150' mid-avenue at this corner (read at 1:1), but the drafted lot-face separation is ~600-605 px ~ 100 ft at 6 px/ft. Recorded as found per brief - not forced to match the printed 150'. Same avenue's 24th corner on sheet 44 prints 100' (see pair_44_50). Esplanaded avenue; no esplanade structure is drafted near these seam corners."},
+   "remeasured_by": "ctrl-H2 second blind read from fresh unmarked-tick composite at same span (rm5)",
+   "remeasure_delta_px": {"A_face1": 0.0, "A_face2": 0.0, "B_face1": -1.0, "B_face2": 0.0},
+   "evidence_crops": [
+    "70_qa/control_evidence/pair40-44_broadway_sheet40.jpg",
+    "70_qa/control_evidence/pair40-44_broadway_sheet44.jpg"
+   ],
+   "notes": "Drafted separations agree to 5 px between plates. The 150' annotation vs ~100 ft drafted separation confirms the protocol amendment's warning; sigma_across for this seam must come from the measured separation, not the printed 150'."
+  },
+  {
+   "anchor": "Ave K",
+   "status": "ACCEPTED",
+   "class": "observed",
+   "why_not_one_block_off": "Sheet 40 prints 21st St even '1024' west and '1102' east of the gap with Ave K runs 2026/2028 / 2025/2027; sheet 44 prints odd '1023' vs '1101' with Ave K runs 2102-2106 / 2101-2105. The 70' annotation and the flanking 1000/1100 hundred-ranges exclude Broadway (one block west, ~600 px wide) and Avenue L (plate boundary, clipped).",
+   "anchor_evidence": "sheet 40: '1024' and '1102' flanking, Ave K runs '2026 2028' and '2025 2027', '70'' printed mid-avenue at ~(4400,7010); sheet 44: '1023' and '1101' flanking, Ave K runs '2102 2104 2106' and '2101 2103 2105', '70'' printed at ~(4430,740)",
+   "A": {
+    "sheet": 40,
+    "face1_seg": [[4213, 6950], [4213, 7097]],
+    "face2_seg": [[4637, 6950], [4637, 7097]],
+    "measured_at": "SE corner of 1000-block (face1) and SW corner of 1100-block (face2), both corners at y~7097 above the 21st St north frontage",
+    "sigma_along_px": 2.5,
+    "sigma_basis": "face1 2.5: clean single rule; face2 2.5: clean single rule",
+    "source_sha256": "12a04ff5411de391d2a1941dd414e37ee68103da84c34cff1e7c4428a5b37b7f"
+   },
+   "B": {
+    "sheet": 44,
+    "face1_seg": [[4233, 700], [4233, 1000]],
+    "face2_seg": [[4652, 700], [4652, 1000]],
+    "measured_at": "NE corner of 1000-block (face1, corner y~692) and NW corner of 1100-block (face2, corner y~692) below the 21st St south frontage",
+    "sigma_along_px": 3.5,
+    "sigma_basis": "face1 3.5: corner dwelling built to the lot line, heavy wall ~10 px doubles the face rule; face2 3.5: dwelling wall on lot line, dashed porch of 1101 encroaches into the avenue at the corner",
+    "source_sha256": "47621807b513de7e8809b9b547c2cd7ded1e3b09e4d861b723c1225e4d4ffea6"
+   },
+   "drafted_width_px": {"A": 424.0, "B": 419.0, "annotation": "70' printed mid-avenue on both plates, read at 1:1"},
+   "remeasured_by": "ctrl-H2 second blind read from fresh unmarked-tick composite at same span (rm6)",
+   "remeasure_delta_px": {"A_face1": -1.0, "A_face2": -1.0, "B_face1": 0.0, "B_face2": -1.0},
+   "evidence_crops": [
+    "70_qa/control_evidence/pair40-44_aveK_sheet40.jpg",
+    "70_qa/control_evidence/pair40-44_aveK_sheet44.jpg"
+   ],
+   "notes": "TOPOLOGY NOTE: the tasking assumed only one interior avenue (Broadway) crosses this seam, but Avenue K is drawn whole and interior on sheets 40/44 - the plate boundary is Avenue L (adjacency: 40-right = [41, 'Avenue L']). Avenue K therefore serves as a full second observed anchor, not a fallback corner-geometry construction. Drafted widths agree to 5 px."
+  }
+ ]
+}

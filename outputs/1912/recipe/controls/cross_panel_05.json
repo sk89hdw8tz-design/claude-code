@@ -1,0 +1,78 @@
+{
+  "pair": ["5A", "5B"],
+  "kind": "cross-panel consistency ground (NOT a seam control): the duplicated Pier 22 / 22nd St ground drawn on both panels of sheet 5",
+  "observer": "ctrl-S5",
+  "source": "sanborn08539_004_img009_archival.jp2 (both panels on the one plate)",
+  "source_sha256": "1b4dc8be49f5c9bf43a77247fc6ce155f368b0c2b804ecc2caec2a8be88a68de",
+  "axis_note": "raster pixels of the sheet 5 scan, origin top-left, x right, y down; panel A depiction at page bottom-left of the divider rule, panel B depiction at page top-right of it",
+  "point_pairs": [
+    {
+      "id": "P1_22ndSt_blockN_SW_corner",
+      "feature": "SW corner (at Ave A east face) of the landward block front on the NORTH side of 22nd St",
+      "panel_A": [3565, 7080],
+      "panel_B": [6380, 128],
+      "sigma_px": {"A": 4.0, "B": 4.0},
+      "evidence": "Panel A: '22ND ST.' printed in-band, corner where the stub front meets the Ave A face, x3565. Panel B: '22ND ST.' printed beside the stub, corner at x6380. Same drafted corner: block north of 22nd at Ave A.",
+      "crops": ["70_qa/control_evidence/sheet5A_22nd_sheet5_zoom.jpg", "70_qa/control_evidence/sheet5B_22nd_sheet5.jpg"]
+    },
+    {
+      "id": "P2_22ndSt_blockS_NW_corner",
+      "feature": "NW corner (at Ave A east face) of the landward block front on the SOUTH side of 22nd St",
+      "panel_A": [3573, 7322],
+      "panel_B": [6383, 368],
+      "sigma_px": {"A": 4.0, "B": 4.0},
+      "evidence": "Corner where the south-side stub front meets the Ave A face on each panel, immediately south of the printed '22ND ST.' labels.",
+      "crops": ["70_qa/control_evidence/sheet5A_22nd_sheet5_zoom.jpg", "70_qa/control_evidence/sheet5B_22nd_sheet5.jpg"]
+    },
+    {
+      "id": "P3_pier22_shed_root_W_corner",
+      "feature": "West corner of the Pier 22 shed's landward (root) end wall (inner yellow rectangle, 'Galveston Wharf Co's Shed / Gulf Fishery Co. Lessee')",
+      "panel_A": [2148, 7403],
+      "panel_B": [4788, 462],
+      "sigma_px": {"A": 6.0, "B": 5.0},
+      "evidence": "Panel A: shed carries the full lessee text ('...WHARF CO'S. SHED / ...ERY CO. LESSEE / NIGHT WATCHMAN REPORTS HOURLY TO TWO STATIONS') and 'PIER 22' label; panel B: 'PIER 22' label beside the same shed footprint with Slip to its east on both panels.",
+      "crops": ["70_qa/control_evidence/sheet5A_pier22_root_zoom.jpg", "70_qa/control_evidence/sheet5B_pier22_root_zoom.jpg"]
+    },
+    {
+      "id": "P4_pier22_shed_root_E_corner",
+      "feature": "East corner of the Pier 22 shed's landward (root) end wall",
+      "panel_A": [2350, 7390],
+      "panel_B": [4998, 459],
+      "sigma_px": {"A": 6.0, "B": 5.0},
+      "evidence": "As P3. Shed end-wall length: panel A ~202 px, panel B ~210 px (agreement ~2.6 ft at 309 px/100 ft).",
+      "crops": ["70_qa/control_evidence/sheet5A_pier22_root_zoom.jpg", "70_qa/control_evidence/sheet5B_pier22_root_zoom.jpg"]
+    },
+    {
+      "id": "P5_pier22_deck_root_W_corner",
+      "feature": "West corner of the Pier 22 outer deck outline at the root end",
+      "panel_A": [2107, 7452],
+      "panel_B": [4778, 512],
+      "sigma_px": {"A": 10.0, "B": 5.0},
+      "evidence": "Outer heavy pier outline. Panel A's corner is rounded/multi-segment (reads 2085-2107 depending on segment extension) - sigma inflated accordingly.",
+      "crops": ["70_qa/control_evidence/sheet5A_pier22_root_zoom.jpg", "70_qa/control_evidence/sheet5B_pier22_root_zoom.jpg"]
+    },
+    {
+      "id": "P6_pier22_deck_root_E_corner",
+      "feature": "East corner of the Pier 22 outer deck outline at the root end",
+      "panel_A": [2413, 7440],
+      "panel_B": [5022, 515],
+      "sigma_px": {"A": 8.0, "B": 6.0},
+      "evidence": "Outer heavy pier outline; panel B's east side bends just above this corner.",
+      "crops": ["70_qa/control_evidence/sheet5A_pier22_root_zoom.jpg", "70_qa/control_evidence/sheet5B_pier22_root_zoom.jpg"]
+    }
+  ],
+  "consistency_check": {
+    "translation_deltas_B_minus_A": {
+      "P1": [2815, -6952],
+      "P2": [2810, -6954],
+      "P3": [2640, -6941],
+      "P4": [2648, -6931],
+      "P5": [2671, -6940],
+      "P6": [2609, -6925]
+    },
+    "internal_agreement": "Within-group agreement is good: the two 22nd St pairs agree to (5, 2) px; the two shed pairs to (8, 10) px; the two deck pairs to (62, 15) px (deck corners are the weakest reads).",
+    "cross_group_disagreement": "Between the street group and the pier group the translation differs by ~170 px in page-x and ~15 px in page-y (street pairs ~(2812,-6953), shed pairs ~(2644,-6936)). The two panels are therefore NOT related by pure translation for this duplicated ground: the pier root sits ~170 px (~55 ft at panel scale) closer to the Ave A frontage relative to 22nd St on panel A than on panel B, and the pier is drawn at a visibly different angle to the page on the two panels (panel A's depiction leans harder into the page corner). RECORDED AS DRAFTED DISAGREEMENT - do not reconcile; the fit should treat the 22nd St pairs (P1/P2) as the primary cross-panel constraint and the pier pairs as corroboration with their stated sigmas.",
+    "other_recorded_disagreements": "Outer deck end-wall drafted length: panel A ~306 px vs panel B ~244 px (~20 ft) - panel A appears to include an apron/extension in the outer outline at the root that panel B does not; the inner shed end walls agree (~202 vs ~210 px)."
+  },
+  "notes": "Panel break confirmed at 22nd St: panel A's landward column ends with 22nd (label at y~7200) and the plate's corner numeral '5' below; panel B begins with 22nd (label at y~200) at its top. Both panels carry their own 'Ave. A or Water' label and their own Slip east of Pier 22, as canon describes."
+}

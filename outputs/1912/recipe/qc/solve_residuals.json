@@ -1,0 +1,3587 @@
+{
+ "observations": [
+  {
+   "pair": [
+    10,
+    12
+   ],
+   "seam": "10-12",
+   "anchor": "Ave D (Market)",
+   "type": "along",
+   "face": 1,
+   "residual_px": 11.177887744250711,
+   "sigma_px": 2.8284271247461903,
+   "weight": 0.12499999999999997,
+   "huber_weight": 0.6325942766335655,
+   "normalized_residual": 3.951980111650839
+  },
+  {
+   "pair": [
+    10,
+    12
+   ],
+   "seam": "10-12",
+   "anchor": "Ave D (Market)",
+   "type": "along",
+   "face": 2,
+   "residual_px": -1.592798015596145,
+   "sigma_px": 2.8284271247461903,
+   "weight": 0.12499999999999997,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.5631391389442552
+  },
+  {
+   "pair": [
+    10,
+    12
+   ],
+   "seam": "10-12",
+   "anchor": "Ave D (Market)",
+   "type": "across",
+   "face": 1,
+   "residual_px": 6.86666678165966,
+   "sigma_px": 12.0,
+   "weight": 0.006944444444444444,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.5722222318049717
+  },
+  {
+   "pair": [
+    10,
+    12
+   ],
+   "seam": "10-12",
+   "anchor": "Ave E (Post Office)",
+   "type": "along",
+   "face": 1,
+   "residual_px": -1.516140605789019,
+   "sigma_px": 2.8284271247461903,
+   "weight": 0.12499999999999997,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.5360366517928477
+  },
+  {
+   "pair": [
+    10,
+    12
+   ],
+   "seam": "10-12",
+   "anchor": "Ave E (Post Office)",
+   "type": "along",
+   "face": 2,
+   "residual_px": -9.716212045524117,
+   "sigma_px": 2.8284271247461903,
+   "weight": 0.12499999999999997,
+   "huber_weight": 0.7277597255735937,
+   "normalized_residual": -3.435199712418259
+  },
+  {
+   "pair": [
+    10,
+    12
+   ],
+   "seam": "10-12",
+   "anchor": "Ave E (Post Office)",
+   "type": "across",
+   "face": 1,
+   "residual_px": 8.597780537638755,
+   "sigma_px": 12.0,
+   "weight": 0.006944444444444444,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.7164817114698963
+  },
+  {
+   "pair": [
+    10,
+    43
+   ],
+   "seam": "10-43",
+   "anchor": "22nd St",
+   "type": "along",
+   "face": 1,
+   "residual_px": -6.962756605581262,
+   "sigma_px": 4.242640687119285,
+   "weight": 0.055555555555555566,
+   "huber_weight": 1.0,
+   "normalized_residual": -1.641137470519313
+  },
+  {
+   "pair": [
+    10,
+    43
+   ],
+   "seam": "10-43",
+   "anchor": "22nd St",
+   "type": "along",
+   "face": 2,
+   "residual_px": -5.03296687764896,
+   "sigma_px": 4.242640687119285,
+   "weight": 0.055555555555555566,
+   "huber_weight": 1.0,
+   "normalized_residual": -1.1862816695576215
+  },
+  {
+   "pair": [
+    10,
+    43
+   ],
+   "seam": "10-43",
+   "anchor": "22nd St",
+   "type": "across",
+   "face": 1,
+   "residual_px": -12.667508280351285,
+   "sigma_px": 12.0,
+   "weight": 0.006944444444444444,
+   "huber_weight": 1.0,
+   "normalized_residual": -1.0556256900292738
+  },
+  {
+   "pair": [
+    10,
+    43
+   ],
+   "seam": "10-43",
+   "anchor": "23rd St",
+   "type": "along",
+   "face": 1,
+   "residual_px": 20.126166627450175,
+   "sigma_px": 3.905124837953327,
+   "weight": 0.06557377049180328,
+   "huber_weight": 0.4850805558554689,
+   "normalized_residual": 5.153783159976592
+  },
+  {
+   "pair": [
+    10,
+    43
+   ],
+   "seam": "10-43",
+   "anchor": "23rd St",
+   "type": "along",
+   "face": 2,
+   "residual_px": 1.8943676359451729,
+   "sigma_px": 3.905124837953327,
+   "weight": 0.06557377049180328,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.4850978431045522
+  },
+  {
+   "pair": [
+    10,
+    43
+   ],
+   "seam": "10-43",
+   "anchor": "23rd St",
+   "type": "across",
+   "face": 1,
+   "residual_px": -35.9790941084525,
+   "sigma_px": 12.0,
+   "weight": 0.006944444444444444,
+   "huber_weight": 0.8338175472003382,
+   "normalized_residual": -2.9982578423710415
+  },
+  {
+   "pair": [
+    11,
+    12
+   ],
+   "seam": "11-12",
+   "anchor": "25th St (Rosenberg Ave)",
+   "type": "along",
+   "face": 1,
+   "residual_px": -5.045466698609731,
+   "sigma_px": 3.605551275463989,
+   "weight": 0.07692307692307693,
+   "huber_weight": 1.0,
+   "normalized_residual": -1.3993606838833386
+  },
+  {
+   "pair": [
+    11,
+    12
+   ],
+   "seam": "11-12",
+   "anchor": "25th St (Rosenberg Ave)",
+   "type": "along",
+   "face": 2,
+   "residual_px": 16.49370549871493,
+   "sigma_px": 3.605551275463989,
+   "weight": 0.07692307692307693,
+   "huber_weight": 0.5465041308857047,
+   "normalized_residual": 4.5745308383091565
+  },
+  {
+   "pair": [
+    11,
+    12
+   ],
+   "seam": "11-12",
+   "anchor": "25th St (Rosenberg Ave)",
+   "type": "across",
+   "face": 1,
+   "residual_px": -87.64488245275693,
+   "sigma_px": 12.0,
+   "weight": 0.006944444444444444,
+   "huber_weight": 0.34229037863301204,
+   "normalized_residual": -7.30374020439641
+  },
+  {
+   "pair": [
+    11,
+    12
+   ],
+   "seam": "11-12",
+   "anchor": "26th St",
+   "type": "along",
+   "face": 1,
+   "residual_px": -6.569043684197769,
+   "sigma_px": 3.2015621187164243,
+   "weight": 0.0975609756097561,
+   "huber_weight": 1.0,
+   "normalized_residual": -2.051824528343508
+  },
+  {
+   "pair": [
+    11,
+    12
+   ],
+   "seam": "11-12",
+   "anchor": "26th St",
+   "type": "along",
+   "face": 2,
+   "residual_px": 1.6152899154373408,
+   "sigma_px": 3.2015621187164243,
+   "weight": 0.0975609756097561,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.5045318052691558
+  },
+  {
+   "pair": [
+    11,
+    12
+   ],
+   "seam": "11-12",
+   "anchor": "26th St",
+   "type": "across",
+   "face": 1,
+   "residual_px": 5.441269121403895,
+   "sigma_px": 12.0,
+   "weight": 0.006944444444444444,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.45343909345032457
+  },
+  {
+   "pair": [
+    12,
+    49
+   ],
+   "seam": "12-49",
+   "anchor": "25th St (Rosenberg Ave)",
+   "type": "along",
+   "face": 1,
+   "residual_px": 4.543172775698893,
+   "sigma_px": 2.8284271247461903,
+   "weight": 0.12499999999999997,
+   "huber_weight": 1.0,
+   "normalized_residual": 1.6062541388993983
+  },
+  {
+   "pair": [
+    12,
+    49
+   ],
+   "seam": "12-49",
+   "anchor": "25th St (Rosenberg Ave)",
+   "type": "along",
+   "face": 2,
+   "residual_px": -0.25767821731926155,
+   "sigma_px": 2.8284271247461903,
+   "weight": 0.12499999999999997,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.09110300741525534
+  },
+  {
+   "pair": [
+    12,
+    49
+   ],
+   "seam": "12-49",
+   "anchor": "25th St (Rosenberg Ave)",
+   "type": "across",
+   "face": 1,
+   "residual_px": 106.55724351187332,
+   "sigma_px": 12.0,
+   "weight": 0.006944444444444444,
+   "huber_weight": 0.28153881436185235,
+   "normalized_residual": 8.87977029265611
+  },
+  {
+   "pair": [
+    12,
+    49
+   ],
+   "seam": "12-49",
+   "anchor": "26th St",
+   "type": "along",
+   "face": 1,
+   "residual_px": 2.408293883277439,
+   "sigma_px": 3.2015621187164243,
+   "weight": 0.0975609756097561,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.7522246309695145
+  },
+  {
+   "pair": [
+    12,
+    49
+   ],
+   "seam": "12-49",
+   "anchor": "26th St",
+   "type": "along",
+   "face": 2,
+   "residual_px": -7.951313046555823,
+   "sigma_px": 3.2015621187164243,
+   "weight": 0.0975609756097561,
+   "huber_weight": 1.0,
+   "normalized_residual": -2.483572940869152
+  },
+  {
+   "pair": [
+    12,
+    49
+   ],
+   "seam": "12-49",
+   "anchor": "26th St",
+   "type": "across",
+   "face": 1,
+   "residual_px": 110.82610303046445,
+   "sigma_px": 12.0,
+   "weight": 0.006944444444444444,
+   "huber_weight": 0.2706943506960039,
+   "normalized_residual": 9.235508585872036
+  },
+  {
+   "pair": [
+    39,
+    40
+   ],
+   "seam": "39-40",
+   "anchor": "19th St",
+   "type": "along",
+   "face": 1,
+   "residual_px": 0.9393560178393443,
+   "sigma_px": 2.8284271247461903,
+   "weight": 0.12499999999999997,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.3321125050812959
+  },
+  {
+   "pair": [
+    39,
+    40
+   ],
+   "seam": "39-40",
+   "anchor": "19th St",
+   "type": "along",
+   "face": 2,
+   "residual_px": 3.644463225960635,
+   "sigma_px": 2.8284271247461903,
+   "weight": 0.12499999999999997,
+   "huber_weight": 1.0,
+   "normalized_residual": 1.2885123304308828
+  },
+  {
+   "pair": [
+    39,
+    40
+   ],
+   "seam": "39-40",
+   "anchor": "19th St",
+   "type": "across",
+   "face": 1,
+   "residual_px": -1.2325528644212227,
+   "sigma_px": 12.0,
+   "weight": 0.006944444444444444,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.10271273870176856
+  },
+  {
+   "pair": [
+    39,
+    40
+   ],
+   "seam": "39-40",
+   "anchor": "20th St",
+   "type": "along",
+   "face": 1,
+   "residual_px": 7.5183488090350465,
+   "sigma_px": 3.605551275463989,
+   "weight": 0.07692307692307693,
+   "huber_weight": 1.0,
+   "normalized_residual": 2.085214779830729
+  },
+  {
+   "pair": [
+    39,
+    40
+   ],
+   "seam": "39-40",
+   "anchor": "20th St",
+   "type": "along",
+   "face": 2,
+   "residual_px": -7.332726042703769,
+   "sigma_px": 3.605551275463989,
+   "weight": 0.07692307692307693,
+   "huber_weight": 1.0,
+   "normalized_residual": -2.0337322873768144
+  },
+  {
+   "pair": [
+    39,
+    40
+   ],
+   "seam": "39-40",
+   "anchor": "20th St",
+   "type": "across",
+   "face": 1,
+   "residual_px": -14.002409594356493,
+   "sigma_px": 12.0,
+   "weight": 0.006944444444444444,
+   "huber_weight": 1.0,
+   "normalized_residual": -1.1668674661963743
+  },
+  {
+   "pair": [
+    39,
+    40
+   ],
+   "seam": "39-40",
+   "anchor": "18th St (top boundary)",
+   "type": "along",
+   "face": 1,
+   "residual_px": -2.6528784616237147,
+   "sigma_px": 4.949747468305833,
+   "weight": 0.04081632653061224,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.5359623856793899
+  },
+  {
+   "pair": [
+    39,
+    40
+   ],
+   "seam": "39-40",
+   "anchor": "18th St (top boundary)",
+   "type": "along",
+   "face": 2,
+   "residual_px": -4.4341057398600014,
+   "sigma_px": 4.949747468305833,
+   "weight": 0.04081632653061224,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.8958246391866287
+  },
+  {
+   "pair": [
+    39,
+    40
+   ],
+   "seam": "39-40",
+   "anchor": "18th St (top boundary)",
+   "type": "across",
+   "face": 1,
+   "residual_px": -3.514783941523774,
+   "sigma_px": 12.0,
+   "weight": 0.006944444444444444,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.2928986617936478
+  },
+  {
+   "pair": [
+    39,
+    43
+   ],
+   "seam": "39-43",
+   "anchor": "Ave G (Winnie)",
+   "type": "along",
+   "face": 1,
+   "residual_px": 1.8427463843878797,
+   "sigma_px": 4.242640687119285,
+   "weight": 0.055555555555555566,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.4343394881358874
+  },
+  {
+   "pair": [
+    39,
+    43
+   ],
+   "seam": "39-43",
+   "anchor": "Ave G (Winnie)",
+   "type": "along",
+   "face": 2,
+   "residual_px": 4.165072084218195,
+   "sigma_px": 4.242640687119285,
+   "weight": 0.055555555555555566,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.9817169049604911
+  },
+  {
+   "pair": [
+    39,
+    43
+   ],
+   "seam": "39-43",
+   "anchor": "Ave G (Winnie)",
+   "type": "across",
+   "face": 1,
+   "residual_px": 15.47311379587336,
+   "sigma_px": 12.0,
+   "weight": 0.006944444444444444,
+   "huber_weight": 1.0,
+   "normalized_residual": 1.2894261496561132
+  },
+  {
+   "pair": [
+    39,
+    43
+   ],
+   "seam": "39-43",
+   "anchor": "Ave H (Ball)",
+   "type": "along",
+   "face": 1,
+   "residual_px": -0.6726659495572562,
+   "sigma_px": 5.0,
+   "weight": 0.04000000000000001,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.13453318991145125
+  },
+  {
+   "pair": [
+    39,
+    43
+   ],
+   "seam": "39-43",
+   "anchor": "Ave H (Ball)",
+   "type": "along",
+   "face": 2,
+   "residual_px": -4.360956247121095,
+   "sigma_px": 5.0,
+   "weight": 0.04000000000000001,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.872191249424219
+  },
+  {
+   "pair": [
+    39,
+    43
+   ],
+   "seam": "39-43",
+   "anchor": "Ave H (Ball)",
+   "type": "across",
+   "face": 1,
+   "residual_px": 23.877997590122504,
+   "sigma_px": 12.0,
+   "weight": 0.006944444444444444,
+   "huber_weight": 1.0,
+   "normalized_residual": 1.9898331325102085
+  },
+  {
+   "pair": [
+    40,
+    44
+   ],
+   "seam": "40-44",
+   "anchor": "Ave J (Broadway)",
+   "type": "along",
+   "face": 1,
+   "residual_px": 5.579506979130485,
+   "sigma_px": 3.905124837953327,
+   "weight": 0.06557377049180328,
+   "huber_weight": 1.0,
+   "normalized_residual": 1.4287653303433703
+  },
+  {
+   "pair": [
+    40,
+    44
+   ],
+   "seam": "40-44",
+   "anchor": "Ave J (Broadway)",
+   "type": "along",
+   "face": 2,
+   "residual_px": 0.5358669544427244,
+   "sigma_px": 3.905124837953327,
+   "weight": 0.06557377049180328,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.13722146581197947
+  },
+  {
+   "pair": [
+    40,
+    44
+   ],
+   "seam": "40-44",
+   "anchor": "Ave J (Broadway)",
+   "type": "across",
+   "face": 1,
+   "residual_px": -6.649433797661004,
+   "sigma_px": 12.0,
+   "weight": 0.006944444444444444,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.554119483138417
+  },
+  {
+   "pair": [
+    40,
+    44
+   ],
+   "seam": "40-44",
+   "anchor": "Ave K",
+   "type": "along",
+   "face": 1,
+   "residual_px": -3.7575286473232836,
+   "sigma_px": 4.301162633521313,
+   "weight": 0.05405405405405406,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.8736076655271781
+  },
+  {
+   "pair": [
+    40,
+    44
+   ],
+   "seam": "40-44",
+   "anchor": "Ave K",
+   "type": "along",
+   "face": 2,
+   "residual_px": 1.2017495681354262,
+   "sigma_px": 4.301162633521313,
+   "weight": 0.05405405405405406,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.27940109931429574
+  },
+  {
+   "pair": [
+    40,
+    44
+   ],
+   "seam": "40-44",
+   "anchor": "Ave K",
+   "type": "across",
+   "face": 1,
+   "residual_px": -3.0343362761132084,
+   "sigma_px": 12.0,
+   "weight": 0.006944444444444444,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.25286135634276735
+  },
+  {
+   "pair": [
+    43,
+    44
+   ],
+   "seam": "43-44",
+   "anchor": "22nd St",
+   "type": "along",
+   "face": 1,
+   "residual_px": -1.6825944606722771,
+   "sigma_px": 4.716990566028302,
+   "weight": 0.04494382022471911,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.3567093122446117
+  },
+  {
+   "pair": [
+    43,
+    44
+   ],
+   "seam": "43-44",
+   "anchor": "22nd St",
+   "type": "along",
+   "face": 2,
+   "residual_px": -6.940807598183852,
+   "sigma_px": 4.716990566028302,
+   "weight": 0.04494382022471911,
+   "huber_weight": 1.0,
+   "normalized_residual": -1.4714482679213838
+  },
+  {
+   "pair": [
+    43,
+    44
+   ],
+   "seam": "43-44",
+   "anchor": "22nd St",
+   "type": "across",
+   "face": 1,
+   "residual_px": -4.408598155706841,
+   "sigma_px": 12.0,
+   "weight": 0.006944444444444444,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.3673831796422367
+  },
+  {
+   "pair": [
+    43,
+    44
+   ],
+   "seam": "43-44",
+   "anchor": "23rd St",
+   "type": "along",
+   "face": 1,
+   "residual_px": 3.3360534573539837,
+   "sigma_px": 2.8284271247461903,
+   "weight": 0.12499999999999997,
+   "huber_weight": 1.0,
+   "normalized_residual": 1.1794730110479144
+  },
+  {
+   "pair": [
+    43,
+    44
+   ],
+   "seam": "43-44",
+   "anchor": "23rd St",
+   "type": "along",
+   "face": 2,
+   "residual_px": 0.5863554235319555,
+   "sigma_px": 2.8284271247461903,
+   "weight": 0.12499999999999997,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.2073079480824779
+  },
+  {
+   "pair": [
+    43,
+    44
+   ],
+   "seam": "43-44",
+   "anchor": "23rd St",
+   "type": "across",
+   "face": 1,
+   "residual_px": 2.8504428940304933,
+   "sigma_px": 12.0,
+   "weight": 0.006944444444444444,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.23753690783587444
+  },
+  {
+   "pair": [
+    43,
+    49
+   ],
+   "seam": "43-49",
+   "anchor": "Ave G (Winnie)",
+   "type": "along",
+   "face": 1,
+   "residual_px": -5.900376469448929,
+   "sigma_px": 4.6097722286464435,
+   "weight": 0.047058823529411764,
+   "huber_weight": 1.0,
+   "normalized_residual": -1.2799713688199823
+  },
+  {
+   "pair": [
+    43,
+    49
+   ],
+   "seam": "43-49",
+   "anchor": "Ave G (Winnie)",
+   "type": "along",
+   "face": 2,
+   "residual_px": 3.0708647497092443,
+   "sigma_px": 4.6097722286464435,
+   "weight": 0.047058823529411764,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.6661640960535994
+  },
+  {
+   "pair": [
+    43,
+    49
+   ],
+   "seam": "43-49",
+   "anchor": "Ave G (Winnie)",
+   "type": "across",
+   "face": 1,
+   "residual_px": 24.76991662286946,
+   "sigma_px": 12.0,
+   "weight": 0.006944444444444444,
+   "huber_weight": 1.0,
+   "normalized_residual": 2.064159718572455
+  },
+  {
+   "pair": [
+    43,
+    49
+   ],
+   "seam": "43-49",
+   "anchor": "Ave H (Ball)",
+   "type": "along",
+   "face": 1,
+   "residual_px": 2.1371289071914816,
+   "sigma_px": 3.5355339059327378,
+   "weight": 0.08,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.604471337017957
+  },
+  {
+   "pair": [
+    43,
+    49
+   ],
+   "seam": "43-49",
+   "anchor": "Ave H (Ball)",
+   "type": "along",
+   "face": 2,
+   "residual_px": 4.078272579881514,
+   "sigma_px": 3.5355339059327378,
+   "weight": 0.08,
+   "huber_weight": 1.0,
+   "normalized_residual": 1.1535096787045496
+  },
+  {
+   "pair": [
+    43,
+    49
+   ],
+   "seam": "43-49",
+   "anchor": "Ave H (Ball)",
+   "type": "across",
+   "face": 1,
+   "residual_px": 14.733984403063005,
+   "sigma_px": 12.0,
+   "weight": 0.006944444444444444,
+   "huber_weight": 1.0,
+   "normalized_residual": 1.2278320335885837
+  },
+  {
+   "pair": [
+    44,
+    50
+   ],
+   "seam": "44-50",
+   "anchor": "Ave J (Broadway)",
+   "type": "along",
+   "face": 1,
+   "residual_px": 1.8971475814103087,
+   "sigma_px": 3.905124837953327,
+   "weight": 0.06557377049180328,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.4858097141920314
+  },
+  {
+   "pair": [
+    44,
+    50
+   ],
+   "seam": "44-50",
+   "anchor": "Ave J (Broadway)",
+   "type": "along",
+   "face": 2,
+   "residual_px": 4.192184818675628,
+   "sigma_px": 3.905124837953327,
+   "weight": 0.06557377049180328,
+   "huber_weight": 1.0,
+   "normalized_residual": 1.0735085285705612
+  },
+  {
+   "pair": [
+    44,
+    50
+   ],
+   "seam": "44-50",
+   "anchor": "Ave J (Broadway)",
+   "type": "across",
+   "face": 1,
+   "residual_px": -26.665713077913097,
+   "sigma_px": 12.0,
+   "weight": 0.006944444444444444,
+   "huber_weight": 1.0,
+   "normalized_residual": -2.222142756492758
+  },
+  {
+   "pair": [
+    44,
+    50
+   ],
+   "seam": "44-50",
+   "anchor": "Ave K",
+   "type": "along",
+   "face": 1,
+   "residual_px": 0.928622681857064,
+   "sigma_px": 3.5355339059327378,
+   "weight": 0.08,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.26265415820190713
+  },
+  {
+   "pair": [
+    44,
+    50
+   ],
+   "seam": "44-50",
+   "anchor": "Ave K",
+   "type": "along",
+   "face": 2,
+   "residual_px": -2.8806460702153345,
+   "sigma_px": 3.5355339059327378,
+   "weight": 0.08,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.814769748179057
+  },
+  {
+   "pair": [
+    44,
+    50
+   ],
+   "seam": "44-50",
+   "anchor": "Ave K",
+   "type": "across",
+   "face": 1,
+   "residual_px": -20.67663903718585,
+   "sigma_px": 12.0,
+   "weight": 0.006944444444444444,
+   "huber_weight": 1.0,
+   "normalized_residual": -1.7230532530988207
+  },
+  {
+   "pair": [
+    49,
+    50
+   ],
+   "seam": "49-50",
+   "anchor": "25th St (Rosenberg Ave)",
+   "type": "along",
+   "face": 1,
+   "residual_px": -3.5666523771187713,
+   "sigma_px": 2.8284271247461903,
+   "weight": 0.12499999999999997,
+   "huber_weight": 1.0,
+   "normalized_residual": -1.2610020409979013
+  },
+  {
+   "pair": [
+    49,
+    50
+   ],
+   "seam": "49-50",
+   "anchor": "25th St (Rosenberg Ave)",
+   "type": "along",
+   "face": 2,
+   "residual_px": -0.9723334777359014,
+   "sigma_px": 2.8284271247461903,
+   "weight": 0.12499999999999997,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.34377179784087736
+  },
+  {
+   "pair": [
+    49,
+    50
+   ],
+   "seam": "49-50",
+   "anchor": "25th St (Rosenberg Ave)",
+   "type": "across",
+   "face": 1,
+   "residual_px": 12.052314690256935,
+   "sigma_px": 12.0,
+   "weight": 0.006944444444444444,
+   "huber_weight": 1.0,
+   "normalized_residual": 1.0043595575214113
+  },
+  {
+   "pair": [
+    49,
+    50
+   ],
+   "seam": "49-50",
+   "anchor": "26th St",
+   "type": "along",
+   "face": 1,
+   "residual_px": 6.157477127673928,
+   "sigma_px": 3.605551275463989,
+   "weight": 0.07692307692307693,
+   "huber_weight": 1.0,
+   "normalized_residual": 1.7077768854865443
+  },
+  {
+   "pair": [
+    49,
+    50
+   ],
+   "seam": "49-50",
+   "anchor": "26th St",
+   "type": "along",
+   "face": 2,
+   "residual_px": -0.6740056418600489,
+   "sigma_px": 3.605551275463989,
+   "weight": 0.07692307692307693,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.1869355308983403
+  },
+  {
+   "pair": [
+    49,
+    50
+   ],
+   "seam": "49-50",
+   "anchor": "26th St",
+   "type": "across",
+   "face": 1,
+   "residual_px": 8.25558705709227,
+   "sigma_px": 12.0,
+   "weight": 0.006944444444444444,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.6879655880910225
+  },
+  {
+   "pair": [
+    7,
+    8
+   ],
+   "seam": "7-8",
+   "anchor": "19th St",
+   "type": "along",
+   "face": 1,
+   "residual_px": 12.808590697034369,
+   "sigma_px": 5.656854249492381,
+   "weight": 0.031249999999999993,
+   "huber_weight": 1.0,
+   "normalized_residual": 2.264260334828982
+  },
+  {
+   "pair": [
+    7,
+    8
+   ],
+   "seam": "7-8",
+   "anchor": "19th St",
+   "type": "along",
+   "face": 2,
+   "residual_px": -4.022848474636717,
+   "sigma_px": 5.656854249492381,
+   "weight": 0.031249999999999993,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.7111458590253954
+  },
+  {
+   "pair": [
+    7,
+    8
+   ],
+   "seam": "7-8",
+   "anchor": "19th St",
+   "type": "across",
+   "face": 1,
+   "residual_px": 22.738465196000263,
+   "sigma_px": 12.0,
+   "weight": 0.006944444444444444,
+   "huber_weight": 1.0,
+   "normalized_residual": 1.8948720996666886
+  },
+  {
+   "pair": [
+    7,
+    8
+   ],
+   "seam": "7-8",
+   "anchor": "20th St",
+   "type": "along",
+   "face": 1,
+   "residual_px": 0.47258730988862396,
+   "sigma_px": 3.905124837953327,
+   "weight": 0.06557377049180328,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.1210172093080401
+  },
+  {
+   "pair": [
+    7,
+    8
+   ],
+   "seam": "7-8",
+   "anchor": "20th St",
+   "type": "along",
+   "face": 2,
+   "residual_px": -4.532460408065319,
+   "sigma_px": 3.905124837953327,
+   "weight": 0.06557377049180328,
+   "huber_weight": 1.0,
+   "normalized_residual": -1.1606441781361279
+  },
+  {
+   "pair": [
+    7,
+    8
+   ],
+   "seam": "7-8",
+   "anchor": "20th St",
+   "type": "across",
+   "face": 1,
+   "residual_px": -14.539210954836598,
+   "sigma_px": 12.0,
+   "weight": 0.006944444444444444,
+   "huber_weight": 1.0,
+   "normalized_residual": -1.2116009129030498
+  },
+  {
+   "pair": [
+    7,
+    8
+   ],
+   "seam": "7-8",
+   "anchor": "18th St (top boundary)",
+   "type": "along",
+   "face": 1,
+   "residual_px": -4.834597646810238,
+   "sigma_px": 5.656854249492381,
+   "weight": 0.031249999999999993,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.8546441950920111
+  },
+  {
+   "pair": [
+    7,
+    8
+   ],
+   "seam": "7-8",
+   "anchor": "18th St (top boundary)",
+   "type": "along",
+   "face": 2,
+   "residual_px": -1.6653604670945015,
+   "sigma_px": 5.656854249492381,
+   "weight": 0.031249999999999993,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.29439691985062955
+  },
+  {
+   "pair": [
+    7,
+    8
+   ],
+   "seam": "7-8",
+   "anchor": "18th St (top boundary)",
+   "type": "across",
+   "face": 1,
+   "residual_px": 11.981213992993517,
+   "sigma_px": 12.0,
+   "weight": 0.006944444444444444,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.9984344994161264
+  },
+  {
+   "pair": [
+    7,
+    9
+   ],
+   "seam": "7-9",
+   "anchor": "Ave A (Water)",
+   "type": "along",
+   "face": 1,
+   "residual_px": -0.09971717448489414,
+   "sigma_px": 2.8284271247461903,
+   "weight": 0.12499999999999997,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.03525534513951541
+  },
+  {
+   "pair": [
+    7,
+    9
+   ],
+   "seam": "7-9",
+   "anchor": "Ave A (Water)",
+   "type": "along",
+   "face": 2,
+   "residual_px": 3.032632267188376,
+   "sigma_px": 2.8284271247461903,
+   "weight": 0.12499999999999997,
+   "huber_weight": 1.0,
+   "normalized_residual": 1.072197420487017
+  },
+  {
+   "pair": [
+    7,
+    9
+   ],
+   "seam": "7-9",
+   "anchor": "Ave A (Water)",
+   "type": "across",
+   "face": 1,
+   "residual_px": -20.254330374871643,
+   "sigma_px": 12.0,
+   "weight": 0.006944444444444444,
+   "huber_weight": 1.0,
+   "normalized_residual": -1.6878608645726367
+  },
+  {
+   "pair": [
+    7,
+    9
+   ],
+   "seam": "7-9",
+   "anchor": "Ave B (Strand)",
+   "type": "along",
+   "face": 1,
+   "residual_px": 5.851512067055921,
+   "sigma_px": 2.8284271247461903,
+   "weight": 0.12499999999999997,
+   "huber_weight": 1.0,
+   "normalized_residual": 2.068821931405077
+  },
+  {
+   "pair": [
+    7,
+    9
+   ],
+   "seam": "7-9",
+   "anchor": "Ave B (Strand)",
+   "type": "along",
+   "face": 2,
+   "residual_px": -7.108901415189656,
+   "sigma_px": 2.8284271247461903,
+   "weight": 0.12499999999999997,
+   "huber_weight": 0.9946779957809878,
+   "normalized_residual": -2.513376198733625
+  },
+  {
+   "pair": [
+    7,
+    9
+   ],
+   "seam": "7-9",
+   "anchor": "Ave B (Strand)",
+   "type": "across",
+   "face": 1,
+   "residual_px": -44.41848037213731,
+   "sigma_px": 12.0,
+   "weight": 0.006944444444444444,
+   "huber_weight": 0.6753945598467234,
+   "normalized_residual": -3.7015400310114424
+  },
+  {
+   "pair": [
+    8,
+    10
+   ],
+   "seam": "8-10",
+   "anchor": "Ave D (Market)",
+   "type": "along",
+   "face": 1,
+   "residual_px": -1.764028277493253,
+   "sigma_px": 2.8284271247461903,
+   "weight": 0.12499999999999997,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.623678178610152
+  },
+  {
+   "pair": [
+    8,
+    10
+   ],
+   "seam": "8-10",
+   "anchor": "Ave D (Market)",
+   "type": "along",
+   "face": 2,
+   "residual_px": -3.98849094282798,
+   "sigma_px": 2.8284271247461903,
+   "weight": 0.12499999999999997,
+   "huber_weight": 1.0,
+   "normalized_residual": -1.4101444961873952
+  },
+  {
+   "pair": [
+    8,
+    10
+   ],
+   "seam": "8-10",
+   "anchor": "Ave D (Market)",
+   "type": "across",
+   "face": 1,
+   "residual_px": 10.509661085295647,
+   "sigma_px": 12.0,
+   "weight": 0.006944444444444444,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.875805090441304
+  },
+  {
+   "pair": [
+    8,
+    10
+   ],
+   "seam": "8-10",
+   "anchor": "Ave E (Post Office)",
+   "type": "along",
+   "face": 1,
+   "residual_px": 1.4031502237799032,
+   "sigma_px": 2.8284271247461903,
+   "weight": 0.12499999999999997,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.4960885191290956
+  },
+  {
+   "pair": [
+    8,
+    10
+   ],
+   "seam": "8-10",
+   "anchor": "Ave E (Post Office)",
+   "type": "along",
+   "face": 2,
+   "residual_px": 3.8113135912808502,
+   "sigma_px": 2.8284271247461903,
+   "weight": 0.12499999999999997,
+   "huber_weight": 1.0,
+   "normalized_residual": 1.3475028428115712
+  },
+  {
+   "pair": [
+    8,
+    10
+   ],
+   "seam": "8-10",
+   "anchor": "Ave E (Post Office)",
+   "type": "across",
+   "face": 1,
+   "residual_px": 10.071868658838412,
+   "sigma_px": 12.0,
+   "weight": 0.006944444444444444,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.8393223882365343
+  },
+  {
+   "pair": [
+    8,
+    39
+   ],
+   "seam": "8-39",
+   "anchor": "19th St",
+   "type": "along",
+   "face": 1,
+   "residual_px": -7.730251558282738,
+   "sigma_px": 3.2015621187164243,
+   "weight": 0.0975609756097561,
+   "huber_weight": 1.0,
+   "normalized_residual": -2.414524932404549
+  },
+  {
+   "pair": [
+    8,
+    39
+   ],
+   "seam": "8-39",
+   "anchor": "19th St",
+   "type": "along",
+   "face": 2,
+   "residual_px": 3.354552196569635,
+   "sigma_px": 3.2015621187164243,
+   "weight": 0.0975609756097561,
+   "huber_weight": 1.0,
+   "normalized_residual": 1.0477860719799335
+  },
+  {
+   "pair": [
+    8,
+    39
+   ],
+   "seam": "8-39",
+   "anchor": "19th St",
+   "type": "across",
+   "face": 1,
+   "residual_px": -22.539920942255186,
+   "sigma_px": 12.0,
+   "weight": 0.006944444444444444,
+   "huber_weight": 1.0,
+   "normalized_residual": -1.8783267451879322
+  },
+  {
+   "pair": [
+    8,
+    39
+   ],
+   "seam": "8-39",
+   "anchor": "20th St",
+   "type": "along",
+   "face": 1,
+   "residual_px": -2.252536790409266,
+   "sigma_px": 2.8284271247461903,
+   "weight": 0.12499999999999997,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.7963920196852864
+  },
+  {
+   "pair": [
+    8,
+    39
+   ],
+   "seam": "8-39",
+   "anchor": "20th St",
+   "type": "along",
+   "face": 2,
+   "residual_px": 0.8257514122464329,
+   "sigma_px": 2.8284271247461903,
+   "weight": 0.12499999999999997,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.2919472115869105
+  },
+  {
+   "pair": [
+    8,
+    39
+   ],
+   "seam": "8-39",
+   "anchor": "20th St",
+   "type": "across",
+   "face": 1,
+   "residual_px": -6.080550286022305,
+   "sigma_px": 12.0,
+   "weight": 0.006944444444444444,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.506712523835192
+  },
+  {
+   "pair": [
+    8,
+    39
+   ],
+   "seam": "8-39",
+   "anchor": "18th St (top boundary)",
+   "type": "along",
+   "face": 1,
+   "residual_px": 5.248223977375304,
+   "sigma_px": 4.949747468305833,
+   "weight": 0.04081632653061224,
+   "huber_weight": 1.0,
+   "normalized_residual": 1.0603013610251173
+  },
+  {
+   "pair": [
+    8,
+    39
+   ],
+   "seam": "8-39",
+   "anchor": "18th St (top boundary)",
+   "type": "along",
+   "face": 2,
+   "residual_px": 4.235661461228673,
+   "sigma_px": 4.949747468305833,
+   "weight": 0.04081632653061224,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.8557328405843758
+  },
+  {
+   "pair": [
+    8,
+    39
+   ],
+   "seam": "8-39",
+   "anchor": "18th St (top boundary)",
+   "type": "across",
+   "face": 1,
+   "residual_px": 11.222352079524757,
+   "sigma_px": 12.0,
+   "weight": 0.006944444444444444,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.935196006627063
+  },
+  {
+   "pair": [
+    9,
+    10
+   ],
+   "seam": "9-10",
+   "anchor": "22nd St",
+   "type": "along",
+   "face": 1,
+   "residual_px": 4.166356871423432,
+   "sigma_px": 5.0,
+   "weight": 0.04000000000000001,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.8332713742846863
+  },
+  {
+   "pair": [
+    9,
+    10
+   ],
+   "seam": "9-10",
+   "anchor": "22nd St",
+   "type": "along",
+   "face": 2,
+   "residual_px": 34.7573178265759,
+   "sigma_px": 5.0,
+   "weight": 0.04000000000000001,
+   "huber_weight": 0.3596364961867782,
+   "normalized_residual": 6.95146356531518
+  },
+  {
+   "pair": [
+    9,
+    10
+   ],
+   "seam": "9-10",
+   "anchor": "22nd St",
+   "type": "across",
+   "face": 1,
+   "residual_px": 37.68299539828831,
+   "sigma_px": 17.0,
+   "weight": 0.0034602076124567475,
+   "huber_weight": 1.0,
+   "normalized_residual": 2.216646788134607
+  },
+  {
+   "pair": [
+    9,
+    10
+   ],
+   "seam": "9-10",
+   "anchor": "23rd St",
+   "type": "along",
+   "face": 1,
+   "residual_px": 1.7625732764997792,
+   "sigma_px": 5.315072906367325,
+   "weight": 0.035398230088495575,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.3316178926517189
+  },
+  {
+   "pair": [
+    9,
+    10
+   ],
+   "seam": "9-10",
+   "anchor": "23rd St",
+   "type": "along",
+   "face": 2,
+   "residual_px": -21.565480108830798,
+   "sigma_px": 5.315072906367325,
+   "weight": 0.035398230088495575,
+   "huber_weight": 0.6161551794284965,
+   "normalized_residual": -4.0574194350177
+  },
+  {
+   "pair": [
+    9,
+    10
+   ],
+   "seam": "9-10",
+   "anchor": "23rd St",
+   "type": "across",
+   "face": 1,
+   "residual_px": -14.40377223511041,
+   "sigma_px": 12.0,
+   "weight": 0.006944444444444444,
+   "huber_weight": 1.0,
+   "normalized_residual": -1.2003143529258673
+  },
+  {
+   "pair": [
+    9,
+    11
+   ],
+   "seam": "9-11",
+   "anchor": "Ave B (Strand)",
+   "type": "along",
+   "face": 1,
+   "residual_px": 0.8792281324136013,
+   "sigma_px": 2.8284271247461903,
+   "weight": 0.12499999999999997,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.31085408731982056
+  },
+  {
+   "pair": [
+    9,
+    11
+   ],
+   "seam": "9-11",
+   "anchor": "Ave B (Strand)",
+   "type": "along",
+   "face": 2,
+   "residual_px": 0.8197797085219918,
+   "sigma_px": 2.8284271247461903,
+   "weight": 0.12499999999999997,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.28983589548751587
+  },
+  {
+   "pair": [
+    9,
+    11
+   ],
+   "seam": "9-11",
+   "anchor": "Ave B (Strand)",
+   "type": "across",
+   "face": 1,
+   "residual_px": -7.62599615903855,
+   "sigma_px": 12.0,
+   "weight": 0.006944444444444444,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.6354996799198791
+  }
+ ],
+ "collinearity_observations": [
+  {
+   "type": "collin",
+   "seam": "39-40",
+   "anchor": "18th St (top boundary)",
+   "street": "18th St (top boundary)",
+   "face": "high",
+   "axis": "vertical",
+   "sheet": 39,
+   "residual_px": -3.91386790392653,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.6523113173210883
+  },
+  {
+   "type": "collin",
+   "seam": "39-40",
+   "anchor": "18th St (top boundary)",
+   "street": "18th St (top boundary)",
+   "face": "high",
+   "axis": "vertical",
+   "sheet": 40,
+   "residual_px": 1.3240301288392402,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.22067168813987337
+  },
+  {
+   "type": "collin",
+   "seam": "7-8",
+   "anchor": "18th St (top boundary)",
+   "street": "18th St (top boundary)",
+   "face": "high",
+   "axis": "vertical",
+   "sheet": 7,
+   "residual_px": -2.3801305338047314,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.39668842230078855
+  },
+  {
+   "type": "collin",
+   "seam": "7-8",
+   "anchor": "18th St (top boundary)",
+   "street": "18th St (top boundary)",
+   "face": "high",
+   "axis": "vertical",
+   "sheet": 8,
+   "residual_px": 0.050867361352629814,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.008477893558771635
+  },
+  {
+   "type": "collin",
+   "seam": "8-39",
+   "anchor": "18th St (top boundary)",
+   "street": "18th St (top boundary)",
+   "face": "high",
+   "axis": "vertical",
+   "sheet": 8,
+   "residual_px": 4.177507070251977,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.6962511783753295
+  },
+  {
+   "type": "collin",
+   "seam": "8-39",
+   "anchor": "18th St (top boundary)",
+   "street": "18th St (top boundary)",
+   "face": "high",
+   "axis": "vertical",
+   "sheet": 39,
+   "residual_px": 0.7415938688441202,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.12359897814068668
+  },
+  {
+   "type": "collin",
+   "seam": "39-40",
+   "anchor": "18th St (top boundary)",
+   "street": "18th St (top boundary)",
+   "face": "low",
+   "axis": "vertical",
+   "sheet": 39,
+   "residual_px": -3.2157599812953777,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.5359599968825629
+  },
+  {
+   "type": "collin",
+   "seam": "39-40",
+   "anchor": "18th St (top boundary)",
+   "street": "18th St (top boundary)",
+   "face": "low",
+   "axis": "vertical",
+   "sheet": 40,
+   "residual_px": 0.4422104282161854,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.07370173803603089
+  },
+  {
+   "type": "collin",
+   "seam": "7-8",
+   "anchor": "18th St (top boundary)",
+   "street": "18th St (top boundary)",
+   "face": "low",
+   "axis": "vertical",
+   "sheet": 7,
+   "residual_px": -4.104115579737936,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.684019263289656
+  },
+  {
+   "type": "collin",
+   "seam": "7-8",
+   "anchor": "18th St (top boundary)",
+   "street": "18th St (top boundary)",
+   "face": "low",
+   "axis": "vertical",
+   "sheet": 8,
+   "residual_px": 1.604609157658615,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.26743485960976915
+  },
+  {
+   "type": "collin",
+   "seam": "8-39",
+   "anchor": "18th St (top boundary)",
+   "street": "18th St (top boundary)",
+   "face": "low",
+   "axis": "vertical",
+   "sheet": 8,
+   "residual_px": 4.764489808850158,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.7940816348083596
+  },
+  {
+   "type": "collin",
+   "seam": "8-39",
+   "anchor": "18th St (top boundary)",
+   "street": "18th St (top boundary)",
+   "face": "low",
+   "axis": "vertical",
+   "sheet": 39,
+   "residual_px": 0.508566108087507,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.0847610180145845
+  },
+  {
+   "type": "collin",
+   "seam": "39-40",
+   "anchor": "19th St",
+   "street": "19th St",
+   "face": "high",
+   "axis": "vertical",
+   "sheet": 39,
+   "residual_px": 2.4467025719285402,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.40778376198809
+  },
+  {
+   "type": "collin",
+   "seam": "39-40",
+   "anchor": "19th St",
+   "street": "19th St",
+   "face": "high",
+   "axis": "vertical",
+   "sheet": 40,
+   "residual_px": -0.6300580298061504,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.1050096716343584
+  },
+  {
+   "type": "collin",
+   "seam": "7-8",
+   "anchor": "19th St",
+   "street": "19th St",
+   "face": "high",
+   "axis": "vertical",
+   "sheet": 7,
+   "residual_px": -1.4041247390138096,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.23402078983563493
+  },
+  {
+   "type": "collin",
+   "seam": "7-8",
+   "anchor": "19th St",
+   "street": "19th St",
+   "face": "high",
+   "axis": "vertical",
+   "sheet": 8,
+   "residual_px": 3.1155770252220236,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.5192628375370039
+  },
+  {
+   "type": "collin",
+   "seam": "8-39",
+   "anchor": "19th St",
+   "street": "19th St",
+   "face": "high",
+   "axis": "vertical",
+   "sheet": 8,
+   "residual_px": -0.33614527376801107,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.05602421229466851
+  },
+  {
+   "type": "collin",
+   "seam": "8-39",
+   "anchor": "19th St",
+   "street": "19th St",
+   "face": "high",
+   "axis": "vertical",
+   "sheet": 39,
+   "residual_px": -3.1919515679054484,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.5319919279842413
+  },
+  {
+   "type": "collin",
+   "seam": "39-40",
+   "anchor": "19th St",
+   "street": "19th St",
+   "face": "low",
+   "axis": "vertical",
+   "sheet": 39,
+   "residual_px": -0.07851829218543571,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.013086382030905952
+  },
+  {
+   "type": "collin",
+   "seam": "39-40",
+   "anchor": "19th St",
+   "street": "19th St",
+   "face": "low",
+   "axis": "vertical",
+   "sheet": 40,
+   "residual_px": -0.6048098783487603,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.10080164639146005
+  },
+  {
+   "type": "collin",
+   "seam": "7-8",
+   "anchor": "19th St",
+   "street": "19th St",
+   "face": "low",
+   "axis": "vertical",
+   "sheet": 7,
+   "residual_px": 5.742368855538643,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.9570614759231072
+  },
+  {
+   "type": "collin",
+   "seam": "7-8",
+   "anchor": "19th St",
+   "street": "19th St",
+   "face": "low",
+   "axis": "vertical",
+   "sheet": 8,
+   "residual_px": -6.700588394817032,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": -1.1167647324695054
+  },
+  {
+   "type": "collin",
+   "seam": "8-39",
+   "anchor": "19th St",
+   "street": "19th St",
+   "face": "low",
+   "axis": "vertical",
+   "sheet": 8,
+   "residual_px": -3.226789005871751,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.5377981676452919
+  },
+  {
+   "type": "collin",
+   "seam": "8-39",
+   "anchor": "19th St",
+   "street": "19th St",
+   "face": "low",
+   "axis": "vertical",
+   "sheet": 39,
+   "residual_px": 4.868336704834974,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.8113894508058289
+  },
+  {
+   "type": "collin",
+   "seam": "39-40",
+   "anchor": "20th St",
+   "street": "20th St",
+   "face": "high",
+   "axis": "vertical",
+   "sheet": 39,
+   "residual_px": -0.8610647996576972,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.14351079994294952
+  },
+  {
+   "type": "collin",
+   "seam": "39-40",
+   "anchor": "20th St",
+   "street": "20th St",
+   "face": "high",
+   "axis": "vertical",
+   "sheet": 40,
+   "residual_px": 23.948717066079553,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 0.6263383528483736,
+   "normalized_residual": 3.991452844346592
+  },
+  {
+   "type": "collin",
+   "seam": "7-8",
+   "anchor": "20th St",
+   "street": "20th St",
+   "face": "high",
+   "axis": "vertical",
+   "sheet": 7,
+   "residual_px": 0.9148135028417528,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.15246891714029212
+  },
+  {
+   "type": "collin",
+   "seam": "7-8",
+   "anchor": "20th St",
+   "street": "20th St",
+   "face": "high",
+   "axis": "vertical",
+   "sheet": 8,
+   "residual_px": 20.31993957610439,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 0.7381911714757031,
+   "normalized_residual": 3.386656596017398
+  },
+  {
+   "type": "collin",
+   "seam": "8-39",
+   "anchor": "20th St",
+   "street": "20th St",
+   "face": "high",
+   "axis": "vertical",
+   "sheet": 8,
+   "residual_px": -117.54331020537757,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 0.1276125368069969,
+   "normalized_residual": -19.59055170089626
+  },
+  {
+   "type": "collin",
+   "seam": "8-39",
+   "anchor": "20th St",
+   "street": "20th St",
+   "face": "high",
+   "axis": "vertical",
+   "sheet": 39,
+   "residual_px": -102.79538230479261,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 0.14592095154162055,
+   "normalized_residual": -17.132563717465434
+  },
+  {
+   "type": "collin",
+   "seam": "39-40",
+   "anchor": "20th St",
+   "street": "20th St",
+   "face": "low",
+   "axis": "vertical",
+   "sheet": 39,
+   "residual_px": -0.7923518500325599,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.1320586416720933
+  },
+  {
+   "type": "collin",
+   "seam": "39-40",
+   "anchor": "20th St",
+   "street": "20th St",
+   "face": "low",
+   "axis": "vertical",
+   "sheet": 40,
+   "residual_px": -7.203262222358376,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": -1.200543703726396
+  },
+  {
+   "type": "collin",
+   "seam": "7-8",
+   "anchor": "20th St",
+   "street": "20th St",
+   "face": "low",
+   "axis": "vertical",
+   "sheet": 7,
+   "residual_px": -4.318573684607372,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.7197622807678954
+  },
+  {
+   "type": "collin",
+   "seam": "7-8",
+   "anchor": "20th St",
+   "street": "20th St",
+   "face": "low",
+   "axis": "vertical",
+   "sheet": 8,
+   "residual_px": -3.9347811305036657,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.6557968550839443
+  },
+  {
+   "type": "collin",
+   "seam": "8-39",
+   "anchor": "20th St",
+   "street": "20th St",
+   "face": "low",
+   "axis": "vertical",
+   "sheet": 8,
+   "residual_px": 6.499496956812777,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": 1.0832494928021295
+  },
+  {
+   "type": "collin",
+   "seam": "8-39",
+   "anchor": "20th St",
+   "street": "20th St",
+   "face": "low",
+   "axis": "vertical",
+   "sheet": 39,
+   "residual_px": 9.749471908591204,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": 1.6249119847652005
+  },
+  {
+   "type": "collin",
+   "seam": "10-43",
+   "anchor": "22nd St",
+   "street": "22nd St",
+   "face": "high",
+   "axis": "vertical",
+   "sheet": 10,
+   "residual_px": -2.000389979806414,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.33339832996773566
+  },
+  {
+   "type": "collin",
+   "seam": "10-43",
+   "anchor": "22nd St",
+   "street": "22nd St",
+   "face": "high",
+   "axis": "vertical",
+   "sheet": 43,
+   "residual_px": 2.7382470831465753,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.4563745138577625
+  },
+  {
+   "type": "collin",
+   "seam": "43-44",
+   "anchor": "22nd St",
+   "street": "22nd St",
+   "face": "high",
+   "axis": "vertical",
+   "sheet": 43,
+   "residual_px": -3.2902749650741043,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.548379160845684
+  },
+  {
+   "type": "collin",
+   "seam": "43-44",
+   "anchor": "22nd St",
+   "street": "22nd St",
+   "face": "high",
+   "axis": "vertical",
+   "sheet": 44,
+   "residual_px": 3.337612251174278,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.5562687085290463
+  },
+  {
+   "type": "collin",
+   "seam": "9-10",
+   "anchor": "22nd St",
+   "street": "22nd St",
+   "face": "high",
+   "axis": "vertical",
+   "sheet": 9,
+   "residual_px": 14.231943431029435,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": 2.3719905718382392
+  },
+  {
+   "type": "collin",
+   "seam": "9-10",
+   "anchor": "22nd St",
+   "street": "22nd St",
+   "face": "high",
+   "axis": "vertical",
+   "sheet": 10,
+   "residual_px": -20.78580140206259,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 0.7216464599970411,
+   "normalized_residual": -3.464300233677098
+  },
+  {
+   "type": "collin",
+   "seam": "10-43",
+   "anchor": "22nd St",
+   "street": "22nd St",
+   "face": "low",
+   "axis": "vertical",
+   "sheet": 10,
+   "residual_px": -4.060043610954153,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.6766739351590255
+  },
+  {
+   "type": "collin",
+   "seam": "10-43",
+   "anchor": "22nd St",
+   "street": "22nd St",
+   "face": "low",
+   "axis": "vertical",
+   "sheet": 43,
+   "residual_px": 2.3344757548190955,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.38907929246984924
+  },
+  {
+   "type": "collin",
+   "seam": "43-44",
+   "anchor": "22nd St",
+   "street": "22nd St",
+   "face": "low",
+   "axis": "vertical",
+   "sheet": 43,
+   "residual_px": -0.16251327067698185,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.027085545112830307
+  },
+  {
+   "type": "collin",
+   "seam": "43-44",
+   "anchor": "22nd St",
+   "street": "22nd St",
+   "face": "low",
+   "axis": "vertical",
+   "sheet": 44,
+   "residual_px": 0.923860471684975,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.15397674528082916
+  },
+  {
+   "type": "collin",
+   "seam": "9-10",
+   "anchor": "22nd St",
+   "street": "22nd St",
+   "face": "low",
+   "axis": "vertical",
+   "sheet": 9,
+   "residual_px": 2.8162424432737225,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.4693737405456204
+  },
+  {
+   "type": "collin",
+   "seam": "9-10",
+   "anchor": "22nd St",
+   "street": "22nd St",
+   "face": "low",
+   "axis": "vertical",
+   "sheet": 10,
+   "residual_px": -1.852021774292325,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.3086702957153875
+  },
+  {
+   "type": "collin",
+   "seam": "10-43",
+   "anchor": "23rd St",
+   "street": "23rd St",
+   "face": "high",
+   "axis": "vertical",
+   "sheet": 10,
+   "residual_px": 11.93484001402885,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": 1.9891400023381416
+  },
+  {
+   "type": "collin",
+   "seam": "10-43",
+   "anchor": "23rd St",
+   "street": "23rd St",
+   "face": "high",
+   "axis": "vertical",
+   "sheet": 43,
+   "residual_px": 9.084046671743863,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": 1.5140077786239772
+  },
+  {
+   "type": "collin",
+   "seam": "43-44",
+   "anchor": "23rd St",
+   "street": "23rd St",
+   "face": "high",
+   "axis": "vertical",
+   "sheet": 43,
+   "residual_px": -4.6813715989728735,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.7802285998288122
+  },
+  {
+   "type": "collin",
+   "seam": "43-44",
+   "anchor": "23rd St",
+   "street": "23rd St",
+   "face": "high",
+   "axis": "vertical",
+   "sheet": 44,
+   "residual_px": -6.258119635722096,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": -1.0430199392870159
+  },
+  {
+   "type": "collin",
+   "seam": "9-10",
+   "anchor": "23rd St",
+   "street": "23rd St",
+   "face": "high",
+   "axis": "vertical",
+   "sheet": 9,
+   "residual_px": -15.773413342234335,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 0.9509672811170509,
+   "normalized_residual": -2.6289022237057225
+  },
+  {
+   "type": "collin",
+   "seam": "9-10",
+   "anchor": "23rd St",
+   "street": "23rd St",
+   "face": "high",
+   "axis": "vertical",
+   "sheet": 10,
+   "residual_px": 4.9233967926302284,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.820566132105038
+  },
+  {
+   "type": "collin",
+   "seam": "10-43",
+   "anchor": "23rd St",
+   "street": "23rd St",
+   "face": "low",
+   "axis": "vertical",
+   "sheet": 10,
+   "residual_px": 14.213237858792354,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": 2.368872976465392
+  },
+  {
+   "type": "collin",
+   "seam": "10-43",
+   "anchor": "23rd St",
+   "street": "23rd St",
+   "face": "low",
+   "axis": "vertical",
+   "sheet": 43,
+   "residual_px": -7.204120971710836,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": -1.2006868286184726
+  },
+  {
+   "type": "collin",
+   "seam": "43-44",
+   "anchor": "23rd St",
+   "street": "23rd St",
+   "face": "low",
+   "axis": "vertical",
+   "sheet": 43,
+   "residual_px": 1.0500442602373141,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.17500737670621902
+  },
+  {
+   "type": "collin",
+   "seam": "43-44",
+   "anchor": "23rd St",
+   "street": "23rd St",
+   "face": "low",
+   "axis": "vertical",
+   "sheet": 44,
+   "residual_px": -3.719629459722455,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.6199382432870758
+  },
+  {
+   "type": "collin",
+   "seam": "9-10",
+   "anchor": "23rd St",
+   "street": "23rd St",
+   "face": "low",
+   "axis": "vertical",
+   "sheet": 9,
+   "residual_px": -0.7099247824808117,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.11832079708013528
+  },
+  {
+   "type": "collin",
+   "seam": "9-10",
+   "anchor": "23rd St",
+   "street": "23rd St",
+   "face": "low",
+   "axis": "vertical",
+   "sheet": 10,
+   "residual_px": -3.6296069026977875,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.6049344837829645
+  },
+  {
+   "type": "collin",
+   "seam": "11-12",
+   "anchor": "25th St (Rosenberg Ave)",
+   "street": "25th St (Rosenberg Ave)",
+   "face": "high",
+   "axis": "vertical",
+   "sheet": 11,
+   "residual_px": 9.047776091854303,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": 1.507962681975717
+  },
+  {
+   "type": "collin",
+   "seam": "11-12",
+   "anchor": "25th St (Rosenberg Ave)",
+   "street": "25th St (Rosenberg Ave)",
+   "face": "high",
+   "axis": "vertical",
+   "sheet": 12,
+   "residual_px": -6.989704540431603,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": -1.1649507567386004
+  },
+  {
+   "type": "collin",
+   "seam": "12-49",
+   "anchor": "25th St (Rosenberg Ave)",
+   "street": "25th St (Rosenberg Ave)",
+   "face": "high",
+   "axis": "vertical",
+   "sheet": 12,
+   "residual_px": -2.8085392365682083,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.46808987276136804
+  },
+  {
+   "type": "collin",
+   "seam": "12-49",
+   "anchor": "25th St (Rosenberg Ave)",
+   "street": "25th St (Rosenberg Ave)",
+   "face": "high",
+   "axis": "vertical",
+   "sheet": 49,
+   "residual_px": -1.940722761422876,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.3234537935704793
+  },
+  {
+   "type": "collin",
+   "seam": "49-50",
+   "anchor": "25th St (Rosenberg Ave)",
+   "street": "25th St (Rosenberg Ave)",
+   "face": "high",
+   "axis": "vertical",
+   "sheet": 49,
+   "residual_px": 0.5726046928247115,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.09543411547078524
+  },
+  {
+   "type": "collin",
+   "seam": "49-50",
+   "anchor": "25th St (Rosenberg Ave)",
+   "street": "25th St (Rosenberg Ave)",
+   "face": "high",
+   "axis": "vertical",
+   "sheet": 50,
+   "residual_px": 2.118585778992383,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.35309762983206383
+  },
+  {
+   "type": "collin",
+   "seam": "11-12",
+   "anchor": "25th St (Rosenberg Ave)",
+   "street": "25th St (Rosenberg Ave)",
+   "face": "low",
+   "axis": "vertical",
+   "sheet": 11,
+   "residual_px": -0.43122927045737924,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.07187154507622986
+  },
+  {
+   "type": "collin",
+   "seam": "11-12",
+   "anchor": "25th St (Rosenberg Ave)",
+   "street": "25th St (Rosenberg Ave)",
+   "face": "low",
+   "axis": "vertical",
+   "sheet": 12,
+   "residual_px": 5.652558989841509,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.9420931649735849
+  },
+  {
+   "type": "collin",
+   "seam": "12-49",
+   "anchor": "25th St (Rosenberg Ave)",
+   "street": "25th St (Rosenberg Ave)",
+   "face": "low",
+   "axis": "vertical",
+   "sheet": 12,
+   "residual_px": -3.455160612909367,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.5758601021515611
+  },
+  {
+   "type": "collin",
+   "seam": "12-49",
+   "anchor": "25th St (Rosenberg Ave)",
+   "street": "25th St (Rosenberg Ave)",
+   "face": "low",
+   "axis": "vertical",
+   "sheet": 49,
+   "residual_px": -6.588182590840461,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": -1.0980304318067433
+  },
+  {
+   "type": "collin",
+   "seam": "49-50",
+   "anchor": "25th St (Rosenberg Ave)",
+   "street": "25th St (Rosenberg Ave)",
+   "face": "low",
+   "axis": "vertical",
+   "sheet": 49,
+   "residual_px": -0.04806483132733774,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.008010805221222956
+  },
+  {
+   "type": "collin",
+   "seam": "49-50",
+   "anchor": "25th St (Rosenberg Ave)",
+   "street": "25th St (Rosenberg Ave)",
+   "face": "low",
+   "axis": "vertical",
+   "sheet": 50,
+   "residual_px": 4.870078348628795,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.8116797247714658
+  },
+  {
+   "type": "collin",
+   "seam": "11-12",
+   "anchor": "26th St",
+   "street": "26th St",
+   "face": "high",
+   "axis": "vertical",
+   "sheet": 11,
+   "residual_px": 3.5875027531033084,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.597917125517218
+  },
+  {
+   "type": "collin",
+   "seam": "11-12",
+   "anchor": "26th St",
+   "street": "26th St",
+   "face": "high",
+   "axis": "vertical",
+   "sheet": 12,
+   "residual_px": 2.6936195187931844,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.4489365864655307
+  },
+  {
+   "type": "collin",
+   "seam": "12-49",
+   "anchor": "26th St",
+   "street": "26th St",
+   "face": "high",
+   "axis": "vertical",
+   "sheet": 12,
+   "residual_px": -10.387937804401645,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": -1.7313229674002741
+  },
+  {
+   "type": "collin",
+   "seam": "12-49",
+   "anchor": "26th St",
+   "street": "26th St",
+   "face": "high",
+   "axis": "vertical",
+   "sheet": 49,
+   "residual_px": -1.5763701658422633,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.26272836097371055
+  },
+  {
+   "type": "collin",
+   "seam": "49-50",
+   "anchor": "26th St",
+   "street": "26th St",
+   "face": "high",
+   "axis": "vertical",
+   "sheet": 49,
+   "residual_px": 2.077009680381252,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.346168280063542
+  },
+  {
+   "type": "collin",
+   "seam": "49-50",
+   "anchor": "26th St",
+   "street": "26th St",
+   "face": "high",
+   "axis": "vertical",
+   "sheet": 50,
+   "residual_px": 3.6061760094903548,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.601029334915059
+  },
+  {
+   "type": "collin",
+   "seam": "11-12",
+   "anchor": "26th St",
+   "street": "26th St",
+   "face": "low",
+   "axis": "vertical",
+   "sheet": 11,
+   "residual_px": -3.888802924215497,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.6481338207025829
+  },
+  {
+   "type": "collin",
+   "seam": "11-12",
+   "anchor": "26th St",
+   "street": "26th St",
+   "face": "low",
+   "axis": "vertical",
+   "sheet": 12,
+   "residual_px": 2.2634628082853396,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.3772438013808899
+  },
+  {
+   "type": "collin",
+   "seam": "12-49",
+   "anchor": "26th St",
+   "street": "26th St",
+   "face": "low",
+   "axis": "vertical",
+   "sheet": 12,
+   "residual_px": 2.9402808226709567,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.49004680377849275
+  },
+  {
+   "type": "collin",
+   "seam": "12-49",
+   "anchor": "26th St",
+   "street": "26th St",
+   "face": "low",
+   "axis": "vertical",
+   "sheet": 49,
+   "residual_px": 0.02832820948765402,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.004721368247942337
+  },
+  {
+   "type": "collin",
+   "seam": "49-50",
+   "anchor": "26th St",
+   "street": "26th St",
+   "face": "low",
+   "axis": "vertical",
+   "sheet": 49,
+   "residual_px": 2.6564216436490824,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.44273694060818036
+  },
+  {
+   "type": "collin",
+   "seam": "49-50",
+   "anchor": "26th St",
+   "street": "26th St",
+   "face": "low",
+   "axis": "vertical",
+   "sheet": 50,
+   "residual_px": -3.999690563288823,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.6666150938814704
+  },
+  {
+   "type": "collin",
+   "seam": "7-9",
+   "anchor": "Ave B (Strand)",
+   "street": "Ave B (Strand)",
+   "face": "high",
+   "axis": "horizontal",
+   "sheet": 7,
+   "residual_px": -4.33475392872424,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.7224589881207066
+  },
+  {
+   "type": "collin",
+   "seam": "7-9",
+   "anchor": "Ave B (Strand)",
+   "street": "Ave B (Strand)",
+   "face": "high",
+   "axis": "horizontal",
+   "sheet": 9,
+   "residual_px": 4.890821427688024,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.8151369046146707
+  },
+  {
+   "type": "collin",
+   "seam": "9-11",
+   "anchor": "Ave B (Strand)",
+   "street": "Ave B (Strand)",
+   "face": "high",
+   "axis": "horizontal",
+   "sheet": 9,
+   "residual_px": -1.0194499388944678,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.16990832314907794
+  },
+  {
+   "type": "collin",
+   "seam": "9-11",
+   "anchor": "Ave B (Strand)",
+   "street": "Ave B (Strand)",
+   "face": "high",
+   "axis": "horizontal",
+   "sheet": 11,
+   "residual_px": 0.46338246155028173,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.07723041025838029
+  },
+  {
+   "type": "collin",
+   "seam": "7-9",
+   "anchor": "Ave B (Strand)",
+   "street": "Ave B (Strand)",
+   "face": "low",
+   "axis": "horizontal",
+   "sheet": 7,
+   "residual_px": 1.637298937450396,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.27288315624173265
+  },
+  {
+   "type": "collin",
+   "seam": "7-9",
+   "anchor": "Ave B (Strand)",
+   "street": "Ave B (Strand)",
+   "face": "low",
+   "axis": "horizontal",
+   "sheet": 9,
+   "residual_px": -1.6869509012585695,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.2811584835430949
+  },
+  {
+   "type": "collin",
+   "seam": "9-11",
+   "anchor": "Ave B (Strand)",
+   "street": "Ave B (Strand)",
+   "face": "low",
+   "axis": "horizontal",
+   "sheet": 9,
+   "residual_px": -0.9942514159884013,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.1657085693314002
+  },
+  {
+   "type": "collin",
+   "seam": "9-11",
+   "anchor": "Ave B (Strand)",
+   "street": "Ave B (Strand)",
+   "face": "low",
+   "axis": "horizontal",
+   "sheet": 11,
+   "residual_px": 1.0439034005466965,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.17398390009111608
+  },
+  {
+   "type": "collin",
+   "seam": "10-12",
+   "anchor": "Ave D (Market)",
+   "street": "Ave D (Market)",
+   "face": "high",
+   "axis": "horizontal",
+   "sheet": 10,
+   "residual_px": -2.9811944424889134,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.4968657404148189
+  },
+  {
+   "type": "collin",
+   "seam": "10-12",
+   "anchor": "Ave D (Market)",
+   "street": "Ave D (Market)",
+   "face": "high",
+   "axis": "horizontal",
+   "sheet": 12,
+   "residual_px": 2.2712688411392037,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.3785448068565339
+  },
+  {
+   "type": "collin",
+   "seam": "8-10",
+   "anchor": "Ave D (Market)",
+   "street": "Ave D (Market)",
+   "face": "high",
+   "axis": "horizontal",
+   "sheet": 8,
+   "residual_px": -3.4406000585685206,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.5734333430947534
+  },
+  {
+   "type": "collin",
+   "seam": "8-10",
+   "anchor": "Ave D (Market)",
+   "street": "Ave D (Market)",
+   "face": "high",
+   "axis": "horizontal",
+   "sheet": 10,
+   "residual_px": 4.150525664318252,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.6917542773863753
+  },
+  {
+   "type": "collin",
+   "seam": "10-12",
+   "anchor": "Ave D (Market)",
+   "street": "Ave D (Market)",
+   "face": "low",
+   "axis": "horizontal",
+   "sheet": 10,
+   "residual_px": 3.469893583421708,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.5783155972369514
+  },
+  {
+   "type": "collin",
+   "seam": "10-12",
+   "anchor": "Ave D (Market)",
+   "street": "Ave D (Market)",
+   "face": "low",
+   "axis": "horizontal",
+   "sheet": 12,
+   "residual_px": -3.4220925427212023,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.5703487571202004
+  },
+  {
+   "type": "collin",
+   "seam": "8-10",
+   "anchor": "Ave D (Market)",
+   "street": "Ave D (Market)",
+   "face": "low",
+   "axis": "horizontal",
+   "sheet": 8,
+   "residual_px": -3.046066656820358,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.5076777761367263
+  },
+  {
+   "type": "collin",
+   "seam": "8-10",
+   "anchor": "Ave D (Market)",
+   "street": "Ave D (Market)",
+   "face": "low",
+   "axis": "horizontal",
+   "sheet": 10,
+   "residual_px": 2.998265622392637,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.49971093706543945
+  },
+  {
+   "type": "collin",
+   "seam": "10-12",
+   "anchor": "Ave E (Post Office)",
+   "street": "Ave E (Post Office)",
+   "face": "high",
+   "axis": "horizontal",
+   "sheet": 10,
+   "residual_px": -6.757272059132447,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": -1.1262120098554078
+  },
+  {
+   "type": "collin",
+   "seam": "10-12",
+   "anchor": "Ave E (Post Office)",
+   "street": "Ave E (Post Office)",
+   "face": "high",
+   "axis": "horizontal",
+   "sheet": 12,
+   "residual_px": 6.162329837798325,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": 1.0270549729663874
+  },
+  {
+   "type": "collin",
+   "seam": "8-10",
+   "anchor": "Ave E (Post Office)",
+   "street": "Ave E (Post Office)",
+   "face": "high",
+   "axis": "horizontal",
+   "sheet": 8,
+   "residual_px": 0.3503510665623253,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.05839184442705421
+  },
+  {
+   "type": "collin",
+   "seam": "8-10",
+   "anchor": "Ave E (Post Office)",
+   "street": "Ave E (Post Office)",
+   "face": "high",
+   "axis": "horizontal",
+   "sheet": 10,
+   "residual_px": 0.24459114772866997,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.04076519128811166
+  },
+  {
+   "type": "collin",
+   "seam": "10-12",
+   "anchor": "Ave E (Post Office)",
+   "street": "Ave E (Post Office)",
+   "face": "low",
+   "axis": "horizontal",
+   "sheet": 10,
+   "residual_px": -2.4806630516677615,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.4134438419446269
+  },
+  {
+   "type": "collin",
+   "seam": "10-12",
+   "anchor": "Ave E (Post Office)",
+   "street": "Ave E (Post Office)",
+   "face": "low",
+   "axis": "horizontal",
+   "sheet": 12,
+   "residual_px": 2.1659544021385955,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.36099240035643254
+  },
+  {
+   "type": "collin",
+   "seam": "8-10",
+   "anchor": "Ave E (Post Office)",
+   "street": "Ave E (Post Office)",
+   "face": "low",
+   "axis": "horizontal",
+   "sheet": 8,
+   "residual_px": -0.837081940975736,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.13951365682928932
+  },
+  {
+   "type": "collin",
+   "seam": "8-10",
+   "anchor": "Ave E (Post Office)",
+   "street": "Ave E (Post Office)",
+   "face": "low",
+   "axis": "horizontal",
+   "sheet": 10,
+   "residual_px": 1.1517905864292288,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.1919650977382048
+  },
+  {
+   "type": "collin",
+   "seam": "39-43",
+   "anchor": "Ave G (Winnie)",
+   "street": "Ave G (Winnie)",
+   "face": "high",
+   "axis": "horizontal",
+   "sheet": 39,
+   "residual_px": 0.5118151476644925,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.08530252461074875
+  },
+  {
+   "type": "collin",
+   "seam": "39-43",
+   "anchor": "Ave G (Winnie)",
+   "street": "Ave G (Winnie)",
+   "face": "high",
+   "axis": "horizontal",
+   "sheet": 43,
+   "residual_px": -0.5732568411358443,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.09554280685597405
+  },
+  {
+   "type": "collin",
+   "seam": "43-49",
+   "anchor": "Ave G (Winnie)",
+   "street": "Ave G (Winnie)",
+   "face": "high",
+   "axis": "horizontal",
+   "sheet": 43,
+   "residual_px": 0.1612186798674884,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.02686977997791473
+  },
+  {
+   "type": "collin",
+   "seam": "43-49",
+   "anchor": "Ave G (Winnie)",
+   "street": "Ave G (Winnie)",
+   "face": "high",
+   "axis": "horizontal",
+   "sheet": 49,
+   "residual_px": -0.09977695166980993,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.016629491944968322
+  },
+  {
+   "type": "collin",
+   "seam": "39-43",
+   "anchor": "Ave G (Winnie)",
+   "street": "Ave G (Winnie)",
+   "face": "low",
+   "axis": "horizontal",
+   "sheet": 39,
+   "residual_px": -0.4292996813319405,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.07154994688865675
+  },
+  {
+   "type": "collin",
+   "seam": "39-43",
+   "anchor": "Ave G (Winnie)",
+   "street": "Ave G (Winnie)",
+   "face": "low",
+   "axis": "horizontal",
+   "sheet": 43,
+   "residual_px": 0.8638101072128848,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.14396835120214746
+  },
+  {
+   "type": "collin",
+   "seam": "43-49",
+   "anchor": "Ave G (Winnie)",
+   "street": "Ave G (Winnie)",
+   "face": "low",
+   "axis": "horizontal",
+   "sheet": 43,
+   "residual_px": -4.579909877514183,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.7633183129190304
+  },
+  {
+   "type": "collin",
+   "seam": "43-49",
+   "anchor": "Ave G (Winnie)",
+   "street": "Ave G (Winnie)",
+   "face": "low",
+   "axis": "horizontal",
+   "sheet": 49,
+   "residual_px": 4.145399490983436,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.690899915163906
+  },
+  {
+   "type": "collin",
+   "seam": "39-43",
+   "anchor": "Ave H (Ball)",
+   "street": "Ave H (Ball)",
+   "face": "high",
+   "axis": "horizontal",
+   "sheet": 39,
+   "residual_px": -3.4540848957731214,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.5756808159621869
+  },
+  {
+   "type": "collin",
+   "seam": "39-43",
+   "anchor": "Ave H (Ball)",
+   "street": "Ave H (Ball)",
+   "face": "high",
+   "axis": "horizontal",
+   "sheet": 43,
+   "residual_px": 3.7465799319861617,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.6244299886643603
+  },
+  {
+   "type": "collin",
+   "seam": "43-49",
+   "anchor": "Ave H (Ball)",
+   "street": "Ave H (Ball)",
+   "face": "high",
+   "axis": "horizontal",
+   "sheet": 43,
+   "residual_px": 0.701756870117606,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.11695947835293433
+  },
+  {
+   "type": "collin",
+   "seam": "43-49",
+   "anchor": "Ave H (Ball)",
+   "street": "Ave H (Ball)",
+   "face": "high",
+   "axis": "horizontal",
+   "sheet": 49,
+   "residual_px": -0.9942518890020438,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.16570864816700728
+  },
+  {
+   "type": "collin",
+   "seam": "39-43",
+   "anchor": "Ave H (Ball)",
+   "street": "Ave H (Ball)",
+   "face": "low",
+   "axis": "horizontal",
+   "sheet": 39,
+   "residual_px": -1.7335582622145012,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.2889263770357502
+  },
+  {
+   "type": "collin",
+   "seam": "39-43",
+   "anchor": "Ave H (Ball)",
+   "street": "Ave H (Ball)",
+   "face": "low",
+   "axis": "horizontal",
+   "sheet": 43,
+   "residual_px": 1.936059325932547,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.32267655432209114
+  },
+  {
+   "type": "collin",
+   "seam": "43-49",
+   "anchor": "Ave H (Ball)",
+   "street": "Ave H (Ball)",
+   "face": "low",
+   "axis": "horizontal",
+   "sheet": 43,
+   "residual_px": -0.32542454633130546,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.054237424388550906
+  },
+  {
+   "type": "collin",
+   "seam": "43-49",
+   "anchor": "Ave H (Ball)",
+   "street": "Ave H (Ball)",
+   "face": "low",
+   "axis": "horizontal",
+   "sheet": 49,
+   "residual_px": 0.1229235018899999,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.020487250314999983
+  },
+  {
+   "type": "collin",
+   "seam": "40-44",
+   "anchor": "Ave J (Broadway)",
+   "street": "Ave J (Broadway)",
+   "face": "high",
+   "axis": "horizontal",
+   "sheet": 40,
+   "residual_px": -1.3608619904480292,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.2268103317413382
+  },
+  {
+   "type": "collin",
+   "seam": "40-44",
+   "anchor": "Ave J (Broadway)",
+   "street": "Ave J (Broadway)",
+   "face": "high",
+   "axis": "horizontal",
+   "sheet": 44,
+   "residual_px": 1.4483228872923064,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.24138714788205107
+  },
+  {
+   "type": "collin",
+   "seam": "44-50",
+   "anchor": "Ave J (Broadway)",
+   "street": "Ave J (Broadway)",
+   "face": "high",
+   "axis": "horizontal",
+   "sheet": 44,
+   "residual_px": 0.6567595941069158,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.10945993235115262
+  },
+  {
+   "type": "collin",
+   "seam": "44-50",
+   "anchor": "Ave J (Broadway)",
+   "street": "Ave J (Broadway)",
+   "face": "high",
+   "axis": "horizontal",
+   "sheet": 50,
+   "residual_px": -0.7442205101215222,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.12403675168692037
+  },
+  {
+   "type": "collin",
+   "seam": "40-44",
+   "anchor": "Ave J (Broadway)",
+   "street": "Ave J (Broadway)",
+   "face": "low",
+   "axis": "horizontal",
+   "sheet": 40,
+   "residual_px": 1.0339714829769946,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.17232858049616576
+  },
+  {
+   "type": "collin",
+   "seam": "40-44",
+   "anchor": "Ave J (Broadway)",
+   "street": "Ave J (Broadway)",
+   "face": "low",
+   "axis": "horizontal",
+   "sheet": 44,
+   "residual_px": -1.084884720545233,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.18081412009087217
+  },
+  {
+   "type": "collin",
+   "seam": "44-50",
+   "anchor": "Ave J (Broadway)",
+   "street": "Ave J (Broadway)",
+   "face": "low",
+   "axis": "horizontal",
+   "sheet": 44,
+   "residual_px": -0.5819364983271953,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.09698941638786587
+  },
+  {
+   "type": "collin",
+   "seam": "44-50",
+   "anchor": "Ave J (Broadway)",
+   "street": "Ave J (Broadway)",
+   "face": "low",
+   "axis": "horizontal",
+   "sheet": 50,
+   "residual_px": 0.6328497213617084,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.10547495356028472
+  },
+  {
+   "type": "collin",
+   "seam": "40-44",
+   "anchor": "Ave K",
+   "street": "Ave K",
+   "face": "high",
+   "axis": "horizontal",
+   "sheet": 40,
+   "residual_px": -0.9051596544923086,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.15085994241538475
+  },
+  {
+   "type": "collin",
+   "seam": "40-44",
+   "anchor": "Ave K",
+   "street": "Ave K",
+   "face": "high",
+   "axis": "horizontal",
+   "sheet": 44,
+   "residual_px": 1.283358170376232,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.21389302839603866
+  },
+  {
+   "type": "collin",
+   "seam": "44-50",
+   "anchor": "Ave K",
+   "street": "Ave K",
+   "face": "high",
+   "axis": "horizontal",
+   "sheet": 44,
+   "residual_px": -3.1614978588022495,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.5269163098003748
+  },
+  {
+   "type": "collin",
+   "seam": "44-50",
+   "anchor": "Ave K",
+   "street": "Ave K",
+   "face": "high",
+   "axis": "horizontal",
+   "sheet": 50,
+   "residual_px": 2.783299305896435,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.46388321764940577
+  },
+  {
+   "type": "collin",
+   "seam": "40-44",
+   "anchor": "Ave K",
+   "street": "Ave K",
+   "face": "low",
+   "axis": "horizontal",
+   "sheet": 40,
+   "residual_px": -3.5433981350086463,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.5905663558347743
+  },
+  {
+   "type": "collin",
+   "seam": "40-44",
+   "anchor": "Ave K",
+   "street": "Ave K",
+   "face": "low",
+   "axis": "horizontal",
+   "sheet": 44,
+   "residual_px": 4.034049631592228,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.6723416052653712
+  },
+  {
+   "type": "collin",
+   "seam": "44-50",
+   "anchor": "Ave K",
+   "street": "Ave K",
+   "face": "low",
+   "axis": "horizontal",
+   "sheet": 44,
+   "residual_px": -1.4947378250647654,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": -0.24912297084412754
+  },
+  {
+   "type": "collin",
+   "seam": "44-50",
+   "anchor": "Ave K",
+   "street": "Ave K",
+   "face": "low",
+   "axis": "horizontal",
+   "sheet": 50,
+   "residual_px": 1.0040862952300602,
+   "sigma_px": 6.0,
+   "weight": 0.027777777777777776,
+   "huber_weight": 1.0,
+   "normalized_residual": 0.16734771587167668
+  }
+ ],
+ "downweighted_count": 18
+}

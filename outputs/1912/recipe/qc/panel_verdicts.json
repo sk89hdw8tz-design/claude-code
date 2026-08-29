@@ -1,0 +1,75 @@
+{
+ "stamp": {
+  "master_sha256": "3c35c429cca0d4b8c823604cdcac8eaaad55fdc83da296275207b1557c1d4cb9"
+ },
+ "verdicts": {
+  "10-12": {
+   "reason": "cosmetic: s12 large '24TH ST.' label top-amputated at cut, only glyph bottoms show (canvas ~16590-17100, 11690-11740); geometry aligned; candidate for a future manual deviation",
+   "verdict": "REVIEW"
+  },
+  "10-43": {
+   "reason": "pipe line continuous (~10px jog); both plates' 'CHURCH' label halves sit side-by-side at cut (honest duplication); mouth jog ~30px within drafting scatter",
+   "verdict": "PASS"
+  },
+  "11-12": {
+   "reason": "s11 mid-street annotation column preserved complete; opposite frontages stagger normally; 12-inch pipe continuous; tone step = scan exposure (by design)",
+   "verdict": "PASS"
+  },
+  "12-49": {
+   "reason": "the 110px worst ACROSS residual manifests only as the plates' differing drafted street width; corridor blank, frontages complete, no doubling",
+   "verdict": "PASS"
+  },
+  "39-40": {
+   "reason": "cosmetic: two plates' 'AVE. I' labels misaligned ~35px = ghost-doubled text at cut; margin cross-refs compose to a '4|9' chimera (s39 '40' + s40 '39'); geometry aligned",
+   "verdict": "REVIEW"
+  },
+  "39-43": {
+   "reason": "cosmetic: s43 compass/ornament and arrow tops amputated at cut + s39's own version leaves stray tip fragments (canvas ~21730-22760, 4850); geometry aligned",
+   "verdict": "REVIEW"
+  },
+  "40-44": {
+   "reason": "sliver seam clean; NOTE shared with 39-43 zone: s39 'Scale of Feet.' caption floats at canvas ~24700-25080,4805 (its ruler bar lies south of cut under s43 blank; census s39_c116)",
+   "verdict": "PASS"
+  },
+  "43-44": {
+   "reason": "composite 'AVE. I OR SEALY' street text reads cleanly (halves from both plates align within ~5px); s44 margin cross-ref '43' correctly owned",
+   "verdict": "PASS"
+  },
+  "43-49": {
+   "reason": "frontages + both pipe runs continuous; one small amputated glyph fragment mid-street (~23790,11730); s43 diagonal line is a crease in the archival scan",
+   "verdict": "PASS"
+  },
+  "44-50": {
+   "reason": "corridor continuous, stagger correct, per-plate width labels by design",
+   "verdict": "PASS"
+  },
+  "49-50": {
+   "reason": "clean corridor; 12-inch pipe and 120-ft avenue labels continue",
+   "verdict": "PASS"
+  },
+  "7-8": {
+   "reason": "street edges align (~10px); s7 'AVE. C.' name label nicked at cut (canvas x~13790, y 1490-1990); pipe annotations at plate-specific in-street offsets (drafting)",
+   "verdict": "PASS"
+  },
+  "7-9": {
+   "reason": "all rail track groups continuous across cut; frontages stagger correctly; 21st scale-bar manual deviation verified working (bar ground owned by s9 blank street as designed)",
+   "verdict": "PASS"
+  },
+  "8-10": {
+   "reason": "cosmetic: mid-intersection ornament (fountain/lamp) drawn by s10 loses its top at the cut, s8 half blank (canvas ~17800-18000, 4835); geometry aligned, no cartography lost",
+   "verdict": "REVIEW"
+  },
+  "8-39": {
+   "reason": "10-inch pipe continuous; s8 'AVE. F' vertical name label split at cut (x~19905); frontages stagger correctly",
+   "verdict": "PASS"
+  },
+  "9-10": {
+   "reason": "cross-street mouth jog 20-35px at 22nd/23rd = the plates' own drafting disagreement (matches along-residual 34.8 worst, huber-downweighted); s9 page edge safely outside master; no doubling",
+   "verdict": "PASS"
+  },
+  "9-11": {
+   "reason": "dense rail-yard trackage crosses with no visible jog (best seam, rms 0.85)",
+   "verdict": "PASS"
+  }
+ }
+}

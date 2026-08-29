@@ -1,0 +1,49 @@
+{
+ "decision": "D-017",
+ "purpose": "Per-plate illumination (vignetting) correction so blank paper - streets, yards, vacant ground - reads the same tone everywhere. Presentation stage only; never applied to master_full.tif or any archival scan.",
+ "problem": {
+  "observed": "streets do not match across the sheet; dark bands run along every seam",
+  "cause": "each LOC plate was photographed with its centre brightest and its edges falling off (bound-volume vignetting). The falloff is per-plate and discontinuous at seams, so a street reads bright mid-sheet and dark near a join.",
+  "measured_master_space": {
+   "between_sheet_paper_spread_lum": 18.9,
+   "intra_sheet_paper_spread_lum_p10_p90": 26.0,
+   "note": "intra-sheet exceeds between-sheet, so a per-sheet constant gain cannot fix it; the correction must vary within each plate"
+  }
+ },
+ "target": {
+  "sample": "Ave. G (Winnie) x 22nd St, open intersection, canvas x21800-22100 y6950-7300",
+  "region": "s43_r0",
+  "master_space_rgb": [
+   192.5,
+   187.6,
+   177.6
+  ],
+  "why": "chosen by the owner as the reference street tone. It also equals the page-wide paper mode (190.5,184.5,175.5) to within 1.5 levels, so overall page brightness is preserved and the D-016 tone-match anchors stay valid.",
+  "estimator_note": "measured with the SAME bright-30% estimator the field uses; the earlier median value (191,186,176) would under-brighten everything"
+ },
+ "method": {
+  "paper_detect": {
+   "max_saturation": 0.16,
+   "min_value": 120,
+   "exclude": "water mask (D-015) and uncovered canvas"
+  },
+  "field": {
+   "cell_canvas_px": 128,
+   "min_paper_px_per_cell": 60,
+   "smooth_sigma_cells": 3.5,
+   "per_region": true,
+   "note": "estimated inside each source region separately, by normalized convolution, so the field is never smeared across a seam",
+   "downsample": 4,
+   "bright_frac": 0.3,
+   "estimator": "mean of the brightest 30% of a cell's paper candidates - a median is pulled down by grey fills and shading and over-brightens those cells"
+  },
+  "gain": {
+   "form": "multiplicative, out = in * target / field",
+   "clamp": [
+    0.9,
+    1.45
+   ],
+   "why_multiplicative": "preserves black exactly (0 maps to 0) and preserves hue, so ink stays ink and type legibility cannot fall"
+  }
+ }
+}

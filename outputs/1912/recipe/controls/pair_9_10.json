@@ -1,0 +1,170 @@
+{
+ "pair": [
+  9,
+  10
+ ],
+ "axis": "vertical",
+ "boundary": "Ave C (Mechanic)",
+ "observer": "ctrl-V1",
+ "axis_convention": "raster pixels of archival scan, origin top-left, x right, y down; face1=north frontage, face2=south frontage",
+ "controls": [
+  {
+   "anchor": "22nd St",
+   "status": "ACCEPTED",
+   "class": "observed",
+   "why_not_one_block_off": "Band flanked by Mechanic even run 21xx (2126/2128, Security Building block) north and 22xx (2202/2204) south on sheet 9; odd 2127 north (ship-chandler block) and 2201 south on sheet 10 -- the 21xx->22xx rollover occurs only across 22nd St; street numerals 200-series (sheet 9) vs 300-series (sheet 10) match the index split *9/*10.",
+   "anchor_evidence": "Sheet 9: numerals 222/224 (N) / 219-223 (S); Mechanic evens 2126/2128 (N corner), 2202/2204 (S corner); 12\" W. PIPE mid-street; '80''. Sheet 10: 302-308 (N) / 301,A303B,A305B,307 (S); Mechanic odds 2127 (N corner, '50'' depth), 2201 (S corner); 12\" W. PIPE; '80''.",
+   "A": {
+    "sheet": 9,
+    "face1_seg": [
+     [
+      6050,
+      2494
+     ],
+     [
+      6245,
+      2494
+     ]
+    ],
+    "face2_seg": [
+     [
+      6050,
+      3005
+     ],
+     [
+      6245,
+      3005
+     ]
+    ],
+    "measured_at": "east end of frontage, corner adjacent to Ave C",
+    "sigma_along_px": 4.0,
+    "sigma_basis": "both faces doubled rules (thin outer + thick wall ~10 px band); centre taken, sigma 4",
+    "source_sha256": "224dc450319645549d20110ca62813b8519ad60b997067623aae8647a1451249"
+   },
+   "B": {
+    "sheet": 10,
+    "face1_seg": [
+     [
+      650,
+      2495
+     ],
+     [
+      850,
+      2495
+     ]
+    ],
+    "face2_seg": [
+     [
+      635,
+      2972
+     ],
+     [
+      850,
+      2972
+     ]
+    ],
+    "measured_at": "west end of frontage, corner adjacent to Ave C",
+    "sigma_along_px": 3.0,
+    "sigma_basis": "N face doubled rule (per-face 4.0); S face clean single ~4 px (per-face 2.0); per-plate value = RMS of the two faces ~3.2 -> 3.0",
+    "source_sha256": "29ee9408cb043ec973b8d8d7bb3a542f40258142440eee182caf6eace04acd95"
+   },
+   "drafted_width_px": {
+    "A": 511.0,
+    "B": 477.0,
+    "annotation": "80' printed mid-street on both plates"
+   },
+   "evidence_crops": [
+    "70_qa/control_evidence/pair9-10_22nd_sheet9_N.jpg",
+    "70_qa/control_evidence/pair9-10_22nd_sheet9_S.jpg",
+    "70_qa/control_evidence/pair9-10_22nd_sheet9_ctx.jpg",
+    "70_qa/control_evidence/pair9-10_22nd_sheet10_N.jpg",
+    "70_qa/control_evidence/pair9-10_22nd_sheet10_S.jpg",
+    "70_qa/control_evidence/pair9-10_22nd_sheet10_ctx.jpg"
+   ],
+   "notes": "Largest width disagreement of my five seams: 511 vs 477 px (~5.5 ft). Sheet 9 S face is a solid wall behind a gallery, sheet 10 S face a bare block line -- possible gallery-depth convention difference between plates; recorded, not reconciled. N faces nearly coincide (2494/2495).",
+   "verified_by": "visual read of 1:1 ruled corner crops (<=450 px wide) cut by ctrl-V1; overview panels used for navigation only, never for coordinates",
+   "remeasured_by": null,
+   "remeasure_delta_px": null,
+   "remeasure_note": "single-observer record; cross-observer remeasurement to be attached at harvest comparison"
+  },
+  {
+   "anchor": "23rd St",
+   "status": "ACCEPTED",
+   "class": "observed",
+   "why_not_one_block_off": "Band flanked by Mechanic evens 2228 (Washington Hotel block) north and 2302/2304 (Royal Hotel block) south on sheet 9; odds 2227 north and 2301/2303 (Palmetto Hotel block) south on sheet 10 -- the 22xx->23xx rollover occurs only across 23rd St; hotel names corroborate.",
+   "anchor_evidence": "Sheet 9: numerals 222/224 (N) / 219-223 (S, entry porches); Mechanic evens 2228 (N corner), 2302/2304 (S corner); 'WASHINGTON HOTEL' N block, 'ROYAL HOTEL' S block; '80''. Sheet 10: 302/304 (N, '4 IRON' bldg, '56''), 301/303 (S, PALMETTO HOTEL); Mechanic odds 2227 (N corner), 2301/2303 (S corner); '80''; 8\" main tick at S face.",
+   "A": {
+    "sheet": 9,
+    "face1_seg": [
+     [
+      6050,
+      4806
+     ],
+     [
+      6280,
+      4806
+     ]
+    ],
+    "face2_seg": [
+     [
+      6010,
+      5296
+     ],
+     [
+      6218,
+      5296
+     ]
+    ],
+    "measured_at": "east end of frontage, corner adjacent to Ave C",
+    "sigma_along_px": 4.0,
+    "sigma_basis": "both faces thick/doubled rules; centres taken, sigma 4",
+    "source_sha256": "224dc450319645549d20110ca62813b8519ad60b997067623aae8647a1451249"
+   },
+   "B": {
+    "sheet": 10,
+    "face1_seg": [
+     [
+      630,
+      4794
+     ],
+     [
+      850,
+      4794
+     ]
+    ],
+    "face2_seg": [
+     [
+      635,
+      5304
+     ],
+     [
+      850,
+      5304
+     ]
+    ],
+    "measured_at": "west end of frontage, corner adjacent to Ave C",
+    "sigma_along_px": 3.5,
+    "sigma_basis": "N face solid thick single ~5 px (per-face 3.0); S face doubled ~14 px band, centre taken (per-face 4.0); per-plate value = RMS ~3.5",
+    "source_sha256": "29ee9408cb043ec973b8d8d7bb3a542f40258142440eee182caf6eace04acd95"
+   },
+   "drafted_width_px": {
+    "A": 490.0,
+    "B": 510.0,
+    "annotation": "80' printed mid-street on both plates"
+   },
+   "evidence_crops": [
+    "70_qa/control_evidence/pair9-10_23rd_sheet9_N.jpg",
+    "70_qa/control_evidence/pair9-10_23rd_sheet9_S.jpg",
+    "70_qa/control_evidence/pair9-10_23rd_sheet9_ctx.jpg",
+    "70_qa/control_evidence/pair9-10_23rd_sheet10_N.jpg",
+    "70_qa/control_evidence/pair9-10_23rd_sheet10_S.jpg",
+    "70_qa/control_evidence/pair9-10_23rd_sheet10_ctx.jpg"
+   ],
+   "notes": "Width disagreement 490 vs 510 px (~3 ft); recorded, not reconciled. 'ROYAL HOTEL' name label printed partly inside the avenue space on sheet 9 (label only, not geometry).",
+   "verified_by": "visual read of 1:1 ruled corner crops (<=450 px wide) cut by ctrl-V1; overview panels used for navigation only, never for coordinates",
+   "remeasured_by": null,
+   "remeasure_delta_px": null,
+   "remeasure_note": "single-observer record; cross-observer remeasurement to be attached at harvest comparison"
+  }
+ ]
+}

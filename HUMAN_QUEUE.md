@@ -21,3 +21,13 @@ only, and the repo holds all 94 numbered 1899 sheets. Stage 2 will register
 the **13 print-footprint sheets** first. Confirm whether the recipe should
 eventually extend to all 94 sheets (registration effort scales roughly
 linearly per seam), or the print footprint is the product.
+
+## HQ-3 · 1912: D-019/D-023 marked "pending owner approval" — OPEN
+
+The 1912 source branch tip includes cut/mask revisions from decisions
+D-018/D-019/D-023 (street-label repairs). D-019 and D-023 are logged as
+*pending owner approval*, but the uploaded 27×40 master (8-27-26) postdates
+them and presumably renders them. The consolidated recipe takes the branch
+tip. **Confirm the 8-27-26 masters are the accepted deliverables** (making
+D-019/D-023 approved); if not, the recipe rolls back to the D-010 freeze
+state, which is fully hash-pinned in `freeze_manifest.json`.

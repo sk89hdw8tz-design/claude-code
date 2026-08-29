@@ -1,0 +1,47 @@
+{
+ "stamp": {
+  "master_sha256": "3c35c429cca0d4b8c823604cdcac8eaaad55fdc83da296275207b1557c1d4cb9"
+ },
+ "verdicts": {
+  "C_NE": {
+   "reason": "content trims cleanly at canvas edges; 4|9 chimera documented under seam 39-40",
+   "verdict": "PASS"
+  },
+  "C_NW": {
+   "reason": "reserved band pure white; s7 content begins with its physically-trimmed paper edge visible as faint 2-3px line (stage-5 REVIEW note); printed '5' cross-ref points into the band correctly",
+   "verdict": "PASS"
+  },
+  "C_SE": {
+   "reason": "clean trims both edges; no backdrop",
+   "verdict": "PASS"
+  },
+  "C_SW": {
+   "reason": "band white; s11 trim edge line (same west-edge note); margin legend note preserved",
+   "verdict": "PASS"
+  },
+  "J_21st_x_aveC": {
+   "reason": "all four quadrants intact (Cotton Exchange etc.); single unowned core pixel is the 4-corner rounding coincidence, master white there",
+   "verdict": "PASS"
+  },
+  "J_21st_x_aveF": {
+   "reason": "Cathedral and Interurban Station blocks intact; sub-glyph stray marks only",
+   "verdict": "PASS"
+  },
+  "J_21st_x_sealy": {
+   "reason": "coverage full, no holes; cosmetic: s40 F.A. circle halved at Ave I cut (~25960,4700); floating Scale-of-Feet caption in 39/43 zone; per-plate 70-ft label pairs by design",
+   "verdict": "PASS"
+  },
+  "J_24th_x_aveC": {
+   "reason": "cosmetic: s12 street-name glyph double-amputated at junction corner leaves an isolated wedge (~13890,11800); quadrants intact",
+   "verdict": "PASS"
+  },
+  "J_24th_x_aveF": {
+   "reason": "cosmetic: bold amputated street-name fragment ('T/C' tops) floats at junction (~19890-20110,11770-11850); quadrants intact",
+   "verdict": "PASS"
+  },
+  "J_24th_x_sealy": {
+   "reason": "Rosenberg Library block intact; corridors cross cleanly; only by-design label pairs",
+   "verdict": "PASS"
+  }
+ }
+}

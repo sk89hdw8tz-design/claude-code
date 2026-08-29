@@ -1,0 +1,38 @@
+{
+ "year": 1912,
+ "consolidated_utc": "2026-08-29",
+ "consolidated_from": {
+  "branch": "claude/galveston-1912-sanborn-mosaic-747rju",
+  "tip_commit": "79b58a2a5870f206cf07450a4ec96267bfc61c17",
+  "tip_date": "2026-08-25",
+  "tip_subject": "D-023 (pending owner approval): repair the sliced wording on 21st and 24th St"
+ },
+ "frame_convention": "See transforms.json 'convention': mosaic frame = sheet 10 centered pixel frame (gauge: sheet 10 identity); p_mosaic = [[a,-b],[b,a]] @ p_sheet + (raw.tx, raw.ty) for raw sheet pixels.",
+ "verification": {
+  "against_freeze_manifest": {
+   "byte_identical": ["transforms.json", "qc/solve_covariance.json", "adjacency.json", "seams/manual_exclusions.json", "controls/* (23/23)"],
+   "intentionally_post_freeze": {
+    "files": ["seams/cuts.json", "seams/masks.json", "seams/manual_deviations.json"],
+    "reason": "Decisions D-018 (duplicated street labels at pooled cuts), D-019 (flat-field, Ave C label, junction numerals), D-023 (sliced wording on 21st/24th St; seven ownership-only cut moves + one suppression). Recorded in 90_decisions/DECISIONS.md on the source branch. D-019 and D-023 are marked 'pending owner approval' in the source log; the branch's own QA suites pass on the revised state ('34 of 41 byte-identical and exactly seven changed, all intentional'). Consolidation takes the branch tip; see HUMAN_QUEUE.md HQ-3."
+   }
+  },
+  "controls_hash_check": "23/23 verified against freeze_manifest.json sha256",
+  "inventory_hash_check": "source files spot-verified against git blobs (Stage 0)"
+ },
+ "master_deliverable": {
+  "branch_print_pdf_sha256": "14b92c6e14a8c1e83f67d3f5b1e2ab1b02e8cde4aa1edb767a47448c22187a46",
+  "uploaded_master": {
+   "path": "inputs/masters/Galveston_1912_Wharf_Downtown_27x40_Master_8-27-26.pdf",
+   "sha256": "c686fd53a79e8b3bf431ea6a6abf56507d631a79dfa1588d5ff529025c3ccf29",
+   "note": "Differs from the branch deliverable (216-page document dated 2 days after the branch tip; produced by a later, unpushed session). The recipe reflects the branch tip geometry; see HQ-3."
+  }
+ },
+ "not_copied_but_referenced": {
+  "solver_code": "galveston-1912/40_solve/solver.py (+tests) on source branch",
+  "seam_build_code": "galveston-1912/50_seams/build_cuts.py, build_masks.py, seamlib.py",
+  "render_code": "galveston-1912/60_master/tools/render_master.py, make_print_pdf.py",
+  "qa_code_and_evidence": "galveston-1912/70_qa/ (tools + run1 evidence PNGs)",
+  "decision_log": "galveston-1912/90_decisions/DECISIONS.md, FAILED_EXPERIMENTS.md, checkpoints/",
+  "reviews": "galveston-1912/80_review/ (ACCEPTANCE.md + two reviewer reports)"
+ }
+}

@@ -1,0 +1,229 @@
+{
+ "pair": [
+  11,
+  12
+ ],
+ "axis": "vertical",
+ "boundary": "Ave C (Mechanic)",
+ "observer": "ctrl-V1",
+ "axis_convention": "raster pixels of archival scan, origin top-left, x right, y down; face1=north frontage, face2=south frontage",
+ "controls": [
+  {
+   "anchor": "25th St (Rosenberg Ave)",
+   "status": "ACCEPTED",
+   "class": "observed",
+   "why_not_one_block_off": "Band flanked by Mechanic even 2428 (N corner) and 2502/2504 (S corner) on sheet 11, odd 2427 (N corner) and 2501/2503 (S corner) on sheet 12 -- 24xx->25xx rollover occurs only across 25th St; the 120' drafted width (Rosenberg Ave) is unique among my anchors and appears on both plates.",
+   "anchor_evidence": "Sheet 11: numerals 220-224 (N, under gallery) / 221/223 (S); Mechanic evens 2428 (N corner), 2502/2504 (S corner, 'S. (IR.CL.)' shed); 12\" W. PIPE mid-street; '120''. Sheet 12: 302/304 (N, bare block corner) / 301-307 (S, Bl.Sm.& Wagon Shop); Mechanic odds 2427 (N corner), 2501/2503 (S corner); 12\" W. PIPE; '120''.",
+   "A": {
+    "sheet": 11,
+    "face1_seg": [
+     [
+      5950,
+      2408
+     ],
+     [
+      6248,
+      2408
+     ]
+    ],
+    "face2_seg": [
+     [
+      5950,
+      3138
+     ],
+     [
+      6255,
+      3138
+     ]
+    ],
+    "measured_at": "east end of frontage, corner adjacent to Ave C",
+    "sigma_along_px": 3.0,
+    "sigma_basis": "both faces clean solid rules ~4-5 px; sigma ~ half line width",
+    "source_sha256": "e7b2ff1b6b70c5d7124a4879e5feca478d95681224d97b88855de7bade1591df"
+   },
+   "B": {
+    "sheet": 12,
+    "face1_seg": [
+     [
+      588,
+      2404
+     ],
+     [
+      850,
+      2404
+     ]
+    ],
+    "face2_seg": [
+     [
+      585,
+      3112
+     ],
+     [
+      850,
+      3112
+     ]
+    ],
+    "measured_at": "west end of frontage, corner adjacent to Ave C",
+    "sigma_along_px": 2.0,
+    "sigma_basis": "both faces clean thin single rules ~3 px on bare/lightly built corners; sigma 1.5-2",
+    "source_sha256": "d2ab9e8aa706bfc1bd41732dbc85f3a23d8097732f92ebc13852276f7843a82f"
+   },
+   "drafted_width_px": {
+    "A": 730.0,
+    "B": 708.0,
+    "annotation": "120' printed mid-street on both plates (Rosenberg Ave)"
+   },
+   "evidence_crops": [
+    "70_qa/control_evidence/pair11-12_25th_sheet11_N.jpg",
+    "70_qa/control_evidence/pair11-12_25th_sheet11_S.jpg",
+    "70_qa/control_evidence/pair11-12_25th_sheet11_ctx.jpg",
+    "70_qa/control_evidence/pair11-12_25th_sheet12_N.jpg",
+    "70_qa/control_evidence/pair11-12_25th_sheet12_S.jpg",
+    "70_qa/control_evidence/pair11-12_25th_sheet12_ctx.jpg"
+   ],
+   "notes": "Width disagreement 730 vs 708 px (~3.5 ft); recorded, not reconciled. 25th is drafted ~120 ft -- do not treat as an 80' street in the solve's constructed across-seam constraint. | Controller edit 2026-08-17: anchor NAME harmonized to '25th St (Rosenberg Ave)' to match 12-49/49-50 records (same drafted street); no coordinate touched.",
+   "verified_by": "visual read of 1:1 ruled corner crops (<=450 px wide) cut by ctrl-V1; overview panels used for navigation only, never for coordinates",
+   "remeasured_by": null,
+   "remeasure_delta_px": null,
+   "remeasure_note": "single-observer record; cross-observer remeasurement to be attached at harvest comparison"
+  },
+  {
+   "anchor": "26th St",
+   "status": "ACCEPTED",
+   "class": "observed",
+   "why_not_one_block_off": "Band flanked by Mechanic even 2528 (block 625 'D' bldg) north and 2602/2604 south on sheet 11, odd 2527 north and 2601/2603 south on sheet 12 -- 25xx->26xx rollover occurs only across 26th St; sheet 11 also prints block numbers 625/626 and the label '26TH ST.' beside the band.",
+   "anchor_evidence": "Sheet 11: numerals 222/224 (N) / 221/223 (S); Mechanic evens 2528 (N corner), 2602/2604 (S corner 'S.' bldg); '26TH ST.' + '80'' printed on-sheet west of seam; block numbers 625 (N) and 626 (S). Sheet 12: 302/304 (N, bare corner) / 301/303 (S, Boarding); Mechanic odds 2527 (N corner), 2601/2603 (S corner); '80''.",
+   "A": {
+    "sheet": 11,
+    "face1_seg": [
+     [
+      5950,
+      4948
+     ],
+     [
+      6155,
+      4948
+     ]
+    ],
+    "face2_seg": [
+     [
+      5950,
+      5456
+     ],
+     [
+      6155,
+      5456
+     ]
+    ],
+    "measured_at": "east end of frontage, corner adjacent to Ave C",
+    "sigma_along_px": 2.0,
+    "sigma_basis": "both faces clean single rules ~3 px; sigma ~1.5-2",
+    "source_sha256": "e7b2ff1b6b70c5d7124a4879e5feca478d95681224d97b88855de7bade1591df"
+   },
+   "B": {
+    "sheet": 12,
+    "face1_seg": [
+     [
+      590,
+      4944
+     ],
+     [
+      850,
+      4944
+     ]
+    ],
+    "face2_seg": [
+     [
+      595,
+      5443
+     ],
+     [
+      850,
+      5444
+     ]
+    ],
+    "measured_at": "west end of frontage, corner adjacent to Ave C",
+    "sigma_along_px": 2.5,
+    "sigma_basis": "N face clean thin rule on bare corner (1.5); S face slightly wavy single rule (2.5); per-plate sigma = worse face",
+    "source_sha256": "d2ab9e8aa706bfc1bd41732dbc85f3a23d8097732f92ebc13852276f7843a82f"
+   },
+   "drafted_width_px": {
+    "A": 508.0,
+    "B": 499.0,
+    "annotation": "80' printed mid-street on both plates"
+   },
+   "evidence_crops": [
+    "70_qa/control_evidence/pair11-12_26th_sheet11_N.jpg",
+    "70_qa/control_evidence/pair11-12_26th_sheet11_S.jpg",
+    "70_qa/control_evidence/pair11-12_26th_sheet11_ctx.jpg",
+    "70_qa/control_evidence/pair11-12_26th_sheet12_N.jpg",
+    "70_qa/control_evidence/pair11-12_26th_sheet12_S.jpg",
+    "70_qa/control_evidence/pair11-12_26th_sheet12_ctx.jpg"
+   ],
+   "notes": "Dashed 1-story open structures project into the street corner from the S block on both plates (drawn dashed, excluded from faces). Width agreement 9 px.",
+   "verified_by": "visual read of 1:1 ruled corner crops (<=450 px wide) cut by ctrl-V1; overview panels used for navigation only, never for coordinates",
+   "remeasured_by": null,
+   "remeasure_delta_px": null,
+   "remeasure_note": "single-observer record; cross-observer remeasurement to be attached at harvest comparison"
+  },
+  {
+    "anchor": "27th St (bottom boundary)",
+    "status": "ACCEPTED",
+    "class": "observed",
+    "why_not_one_block_off": "The Mechanic address run TERMINATES immediately north of this band: evens end 2624/2626/2628 rotated at the corner on sheet 11, odds end 2621/2623/2625/2627 on sheet 12 -- exactly the closing values of the index run 2400-2628/2401-2627, and no further crossing is drafted south of the band (the street is clipped at the page bottom). One block north (26th St) the band is flanked by 2528 above and 2602/2604 below. 27th St north-side runs read 218/220/222/224 (sheet 11, 200-series) vs 302/304/306 (sheet 12, 300-series), the same 2xx->3xx split across Ave C as this seam's interior anchors.",
+    "anchor_evidence": "Sheet 11: 27th St N-side evens 218/220/222/224 printed in the street below the face; TEXAS SHEET METAL WORKS (IR.CL.) in the block above; Mechanic evens 2624/2626/2628 rotated at the corner; '80'' printed twice mid-street; '27TH' + 'ST.' label mid-street west of the corner. Sheet 12: evens 302/304/306 below the face; Mechanic odds 2621/2623/2625/2627 rotated at the corner; '80'' rotated mid-street; '70'' printed mid-Ave C in the intersection (not measured).",
+    "A": {
+      "sheet": 11,
+      "face1_seg": [
+        [
+          5960,
+          7262
+        ],
+        [
+          6150,
+          7262
+        ]
+      ],
+      "face2_seg": null,
+      "measured_at": "bottom-right corner adjacent to Ave C; N property face read x 5960-6150, immediately west of the dashed 1-sty corner shed (x~6080-6250) which projects south into the street to y~7360 and overrides the immediate corner",
+      "sigma_along_px": 3.0,
+      "sigma_basis": "clean solid property-line rule ~5-6 px, sigma ~ half line width (5x arbitration delta 0.5); face2 not drafted -- no south reading exists",
+      "source_sha256": "e7b2ff1b6b70c5d7124a4879e5feca478d95681224d97b88855de7bade1591df"
+    },
+    "B": {
+      "sheet": 12,
+      "face1_seg": [
+        [
+          620,
+          7258
+        ],
+        [
+          915,
+          7258
+        ]
+      ],
+      "face2_seg": null,
+      "measured_at": "bottom-left corner adjacent to Ave C; N property face read x 620-915 (S bldg block face; dashed corner shed edge at x~722 stays south of the rule)",
+      "sigma_along_px": 3.0,
+      "sigma_basis": "solid rule ~6 px; first 3x read (7262) included the lower scan fringe -- two independent higher-zoom windows (4x x750-900, 5x x615-715) both put the ink-core centre at 7257-7259; arbitrated value recorded, delta 3.5 noted (within 2 sigma); face2 not drafted",
+      "source_sha256": "d2ab9e8aa706bfc1bd41732dbc85f3a23d8097732f92ebc13852276f7843a82f"
+    },
+    "drafted_width_px": {
+      "A": null,
+      "B": null,
+      "annotation": "80' rotated mid-street on both plates; drafted width NOT measurable -- the south frontage and any far street-edge rule are clipped off the page bottom on both plates (paper edge y~7765, no drawn line south of the face)"
+    },
+    "evidence_crops": [
+      "70_qa/control_evidence/pair11-12_27th_sheet11_ctx.jpg",
+      "70_qa/control_evidence/pair11-12_27th_sheet11_N.jpg",
+      "70_qa/control_evidence/pair11-12_27th_sheet12_ctx.jpg",
+      "70_qa/control_evidence/pair11-12_27th_sheet12_N.jpg",
+      "70_qa/control_evidence/pair11-12_27th_sheet12_arb.jpg"
+    ],
+    "notes": "observer: ctrl-LB. SINGLE-FACE anchor (north property face only) -- unlike the 18th St top boundary, neither plate drafts a far (south) street-edge rule for 27th St; the street space runs open to the page bottom edge. Furniture check per self-adversarial pass: sheet 11 date stamp '6-25-12' at (x~6350, y~7650) and '27TH ST.' label not measured; sheet 12 carries a border/box fragment at its far bottom-left (x~170-220) far outside the measured span; the bottom paper edge was never taken as a line. Dashed corner sheds on both plates excluded (drawn dashed, project into the street).",
+    "verified_by": "visual read of 1:1 ruled corner crops cut by ctrl-LB from the archival JP2s (3x-5x nearest-neighbour zoom, plate-coordinate rulers); overview panels not used at all; SHA-256 of every source re-verified against INVENTORY.json before reading",
+    "remeasured_by": "ctrl-LB second pass (sheet 12 face1: 4x window x750-900 then 5x arbitration x615-715; sheet 11 face1: 5x arbitration x6000-6100, delta 0.5)",
+    "remeasure_delta_px": 3.5
+  }
+ ]
+}

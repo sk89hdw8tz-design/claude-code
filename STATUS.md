@@ -1,6 +1,6 @@
 # Galveston Sanborn mosaics — status
 
-**Updated:** 2026-08-29 (Stage 0 gate) · **Branch:** `claude/galveston-setup-part-a-mk5z1l` · **Ledger:** `state/ledger.json`
+**Updated:** 2026-08-29 (Stage 1 gate) · **Branch:** `claude/galveston-setup-part-a-mk5z1l` · **Ledger:** `state/ledger.json`
 
 ## Headline
 
@@ -11,14 +11,14 @@
 | Registration | ⬜ provisional grid only | ✅ solved affines (prior accepted run) |
 | Seams | ⬜ | ✅ cuts + masks frozen |
 | QC | ⬜ | ✅ prior run1 + 2 reviewer reports |
-| Recipe consolidated | ⬜ | ⬜ (Stage 1, next) |
+| Recipe consolidated | ⬜ | ✅ (hash-verified vs freeze) |
 
 ## Stage bars
 
 ```
 Stage 0  inventory + environment   ██████████ done
-Stage 1  consolidate 1912 recipe   ░░░░░░░░░░ next
-Stage 2  register 1899             ░░░░░░░░░░
+Stage 1  consolidate 1912 recipe   ██████████ done
+Stage 2  register 1899             ░░░░░░░░░░ next
 Stage 3  QC + human queue          ░░░░░░░░░░
 Stage 4  indexes + render/crop     ░░░░░░░░░░
 ```
@@ -47,7 +47,7 @@ and is consolidated in Stage 1.
 
 | agent | task |
 |---|---|
-| orchestrator | Stage 1: consolidating 1912 recipe |
+| orchestrator | Stage 2: 1899 registration rebuild per SEED_1899 |
 
 ## ETA
 
@@ -57,5 +57,4 @@ cleanly at half resolution. Estimate firms up after the first seam group.
 
 ## Human queue
 
-See `HUMAN_QUEUE.md` — 2 open items (Part B unavailable in cloud; 1899 scope
-confirmation).
+See `HUMAN_QUEUE.md` — 3 open items (Part B unavailable; 1899 scope; 1912 D-019/D-023 approval).

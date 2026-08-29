@@ -1,0 +1,74 @@
+{
+  "pair": [43, 44],
+  "axis": "vertical",
+  "boundary": "Ave. I (Sealy)",
+  "observer": "ctrl-V2",
+  "controls": [
+    {
+      "anchor": "22nd St",
+      "status": "ACCEPTED",
+      "class": "observed",
+      "why_not_one_block_off": "The Sealy run changes from 21xx to 22xx exactly at this crossing: sheet 43 prints 2126/2128 north of the street (Synagogue block) and 2202/2204/2206 south of it; sheet 44 prints 2127 north (Galveston House Apartments block) and 2201/2203 south. Street runs are 800-series on sheet 43 and 900-series on sheet 44, only possible at the Sealy seam.",
+      "anchor_evidence": "Sheet 43: runs 820/822/824 (N) and 819/821/823 (S); Sealy 2126/2128 and 2202/2204/2206; Hebrew B'nai Israel Synagogue in NW block (panel). Sheet 44: runs 902/904/-906/908 (N) and 901/903/905/907 (S); Sealy 2127 and 2201/2203; Galveston House Apartments in NE block (panel).",
+      "A": {
+        "sheet": 43,
+        "face1_seg": [[5750, 2480], [6045, 2479]],
+        "face2_seg": [[5750, 2966], [6045, 2968]],
+        "measured_at": "east end of both frontages, at the Sealy-adjacent corners (corner verticals at x~6045-6080)",
+        "sigma_along_px": 4.0,
+        "sigma_basis": "face1 obstructed: Synagogue wall/steps drawn as several near-parallel rules just above the face; outermost full-width rule read, >=2x line width. face2 clean single rule (2.0); pair sigma set by the worse face",
+        "source_sha256": "af7d25e4a6f44a9a9fc6e0c04a4a11b8c12ceb886c8e56b6a2657b6b8b0ecf7a"
+      },
+      "B": {
+        "sheet": 44,
+        "face1_seg": [[480, 2502], [780, 2504]],
+        "face2_seg": [[480, 2994], [780, 2996]],
+        "measured_at": "west end of both frontages at the Sealy-adjacent corners (x~480-490)",
+        "sigma_along_px": 2.5,
+        "sigma_basis": "face1 merged with store building drawn to the lot line (~5 px combined rule); face2 clean single rule",
+        "source_sha256": "47621807b513de7e8809b9b547c2cd7ded1e3b09e4d861b723c1225e4d4ffea6"
+      },
+      "drafted_width_px": {"A": 489.0, "B": 492.0, "annotation": "80' printed mid-street on both plates (beside 12\" W. PIPE label)"},
+      "remeasured_by": "ctrl-V2 second pass (independent window, 4x nearest-neighbour, sheet 43 face2)",
+      "remeasure_delta_px": 0.5,
+      "evidence_crops": [
+        "70_qa/control_evidence/pair43-44_22nd_sheet43.jpg",
+        "70_qa/control_evidence/pair43-44_22nd_sheet44.jpg"
+      ],
+      "notes": "Drafted 80' width agrees within 3 px (489 vs 492). 12\" water pipe mid-street excluded from measurement."
+    },
+    {
+      "anchor": "23rd St",
+      "status": "ACCEPTED",
+      "class": "observed",
+      "why_not_one_block_off": "The Sealy run changes from 22xx to 23xx exactly here: sheet 43 prints 22xx above the street (First Baptist Church block) and 2302/2304/2306 below (Rosenberg Library block); sheet 44 prints 2227-range above and 2301/2303/2305 below. Street runs 800-series (43) vs 900-series (44).",
+      "anchor_evidence": "Sheet 43: runs 820/822/824 (N) and 819/821/823 (S); Sealy 2302/2304/2306 below street; Rosenberg Library block SW (panel). Sheet 44: runs 902/904/906/908 (N) and 901/903/905/907 (S); Sealy 2301/2303/2305 below.",
+      "A": {
+        "sheet": 43,
+        "face1_seg": [[5750, 4790], [6045, 4788]],
+        "face2_seg": [[5750, 5276], [6045, 5278]],
+        "measured_at": "east end of both frontages at the Sealy-adjacent corners (corner verticals x~6050)",
+        "sigma_along_px": 2.0,
+        "sigma_basis": "both faces clean single rules ~4 px, half line width",
+        "source_sha256": "af7d25e4a6f44a9a9fc6e0c04a4a11b8c12ceb886c8e56b6a2657b6b8b0ecf7a"
+      },
+      "B": {
+        "sheet": 44,
+        "face1_seg": [[480, 4803], [780, 4805]],
+        "face2_seg": [[480, 5293], [780, 5295]],
+        "measured_at": "west end of both frontages at the Sealy-adjacent corners (x~475-480)",
+        "sigma_along_px": 2.0,
+        "sigma_basis": "both faces clean single rules ~4 px, half line width",
+        "source_sha256": "47621807b513de7e8809b9b547c2cd7ded1e3b09e4d861b723c1225e4d4ffea6"
+      },
+      "drafted_width_px": {"A": 490.0, "B": 490.0, "annotation": "80' printed mid-street on both plates"},
+      "remeasured_by": "ctrl-V2 second pass (independent window, 4x nearest-neighbour, sheet 44 face1)",
+      "remeasure_delta_px": 0.0,
+      "evidence_crops": [
+        "70_qa/control_evidence/pair43-44_23rd_sheet43.jpg",
+        "70_qa/control_evidence/pair43-44_23rd_sheet44.jpg"
+      ],
+      "notes": "Cleanest control of ctrl-V2's set: drafted widths agree exactly (490 vs 490)."
+    }
+  ]
+}

@@ -1,0 +1,84 @@
+{
+ "pair": [7, 9],
+ "axis": "horizontal",
+ "boundary": "21st or Center St",
+ "observer": "ctrl-H1",
+ "axis_convention": "raster pixels of the archival scan, origin top-left, x right, y down",
+ "method": "anchors identified by eye on own 1:1/2x tick-ruled crops; final line centers refined by column-ink profile inside eye-designated windows spanning only the read segment; identity and acceptance decided by eye from printed address runs and labels",
+ "controls": [
+  {
+   "anchor": "Ave A (Water)",
+   "status": "ACCEPTED",
+   "class": "observed",
+   "why_not_one_block_off": "The 21st St 100-block starts at this avenue: printed runs '102 104' immediately east and '...20 22 / 23' west on sheet 7, '101 103 105' east and '23' west on sheet 9; the avenue itself carries the 2000-block (2021-2028) on sheet 7 and the 2100-block (2101-2108) on sheet 9, i.e. the 20th-21st and 21st-22nd segments of Ave A. One block east (Ave B/Strand) would show the 124/201-202 transition instead.",
+   "anchor_evidence": "Sheet 7: 'GALVESTON ICE & COLD STORAGE' (American Brewing/Anheuser-Busch) east of avenue; avenue addresses 2022/2024/2026/2028 (west flank) and 2021/2023/2025/2027 (east flank); 21st St addresses 102/104 east of avenue; printed width 70'. Sheet 9: corner block '23' west; 'WARE HO.' with 21st St run 101/103/105 east; avenue addresses 2102/2104/2106/2108 (west) and 2101/2103/2105/2107 (east); printed 70'. Railroad tracks drawn down the avenue on both plates (excluded from measurement).",
+   "A": {
+    "sheet": 7,
+    "face1_seg": [[2100.3, 6945], [2100.3, 7090]],
+    "face1_sigma_px": 5.5,
+    "face1_sigma_basis": "two parallel rules 11.4 px apart (building east wall at 2094.6 + outer property/porch rule at 2106.0, ink runs 2092-2097 and 2105-2107); pair ink-center used, sigma = half separation to cover either-line ambiguity",
+    "face2_seg": [[2522.8, 6850], [2522.8, 7090]],
+    "face2_sigma_px": 4.3,
+    "face2_sigma_basis": "doubled brick-wall rule (ink runs 2517-2520 and 2525-2529, centers 2518.5/2527.0); pair center, sigma = half separation",
+    "measured_at": "last ~150-240 px of each face north of the 21st St block-face corner (y~7090), at the Ave A x 21st NW and NE corners",
+    "source_sha256": "a0c42dde9c8e6f0d3148de82915b2e563d5763c7a4da6f81aaeb508bb1db0e62"
+   },
+   "B": {
+    "sheet": 9,
+    "face1_seg": [[2142.1, 670], [2142.1, 940]],
+    "face1_sigma_px": 2.5,
+    "face1_sigma_basis": "single heavy clean rule, ink run 2140-2144 (w5); sigma = half line width",
+    "face2_seg": [[2564.7, 600], [2564.7, 850]],
+    "face2_sigma_px": 4.3,
+    "face2_sigma_basis": "doubled rule (ink runs 2560-2561 and 2567-2571, centers 2560.4/2569.0); pair center, sigma = half separation; curving track line passes ~45 px west (excluded by eye)",
+    "measured_at": "first ~250-270 px of each face south of the 21st St frontage (corner y~665 west flank, y~600 east flank), at the Ave A x 21st SW and SE corners",
+    "source_sha256": "224dc450319645549d20110ca62813b8519ad60b997067623aae8647a1451249"
+   },
+   "drafted_width_px": {"A": 422.5, "B": 422.6, "annotation": "70' printed mid-avenue on both plates; 422.5 px at ~6.0 px/ft = 70.4 ft"},
+   "remeasured_by": "ctrl-H1 second pass: profile-assisted re-read of initial 1:1 eye readings",
+   "remeasure_delta_px": {"A_face1": 1.7, "A_face2": 0.2, "B_face1": 3.9, "B_face2": 6.3},
+   "evidence_crops": [
+    "70_qa/control_evidence/pair7-9_aveA_sheet7.jpg",
+    "70_qa/control_evidence/pair7-9_aveA_sheet9.jpg"
+   ],
+   "notes": "Widths agree to 0.1 px across plates. All remeasure deltas within 2 sigma. Sheet 7 west flank carries a warehouse whose front (dashed canopy) juts to x~2157-2170 north of y~6945; the corner office at the seam corner is the read face. Initial eye estimates from rescaled displays carried up to ~25 px rendering parallax; all recorded numbers are tick-relative fine-crop reads confirmed by profile centers."
+  },
+  {
+   "anchor": "Ave B (Strand)",
+   "status": "ACCEPTED",
+   "class": "observed",
+   "why_not_one_block_off": "The 21st St 100/200-block transition happens across this avenue: printed runs '122 124' west and '202 204' east on sheet 7; '121 123' west and '201 203' east on sheet 9. The documented alley trap near x~5370 (sheet 7) / x~5420 (sheet 9) was checked: it is a 20'-annotated mid-block alley splitting 212|214 and 211|213 inside the 200 block, two faces east of here, and was not selected.",
+   "anchor_evidence": "Sheet 7: avenue addresses 2020-2028 on west gallery and 2025/2027 on east gallery (2000-block = 20th-21st segment); 21st St runs 122/124 west, 202/204 east ('Plumber' block); printed 80'. Sheet 9: avenue addresses 2102-2108 on west gallery, 2101/2103/2105/2107 east; 21st St runs 121/123 ('Bank') west, 201/203 ('W.U.T. OFFICE') east; printed 80'. Both plates draw 1-story galleries/canopies protruding into the street space (s7: dashed edges at ~4200 and ~4507; s9: west gallery to dashed ~4249).",
+   "A": {
+    "sheet": 7,
+    "face1_seg": [[4117.2, 6800], [4117.2, 7090]],
+    "face1_sigma_px": 5.3,
+    "face1_sigma_basis": "doubled facade rule (ink runs 4110-4114 and 4122-4123, centers 4111.9/4122.5); pair center, sigma = half separation",
+    "face2_seg": [[4581.2, 6800], [4581.2, 7090]],
+    "face2_sigma_px": 4.2,
+    "face2_sigma_basis": "doubled facade rule (centers 4577.0/4585.4); pair center, sigma = half separation",
+    "measured_at": "last ~290 px of the principal solid facades north of the 21st St block face (y~7090); galleries excluded",
+    "source_sha256": "a0c42dde9c8e6f0d3148de82915b2e563d5763c7a4da6f81aaeb508bb1db0e62"
+   },
+   "B": {
+    "sheet": 9,
+    "face1_seg": [[4167.7, 660], [4167.7, 935]],
+    "face1_sigma_px": 4.2,
+    "face1_sigma_basis": "doubled facade rule (centers 4163.5/4171.9); pair center, sigma = half separation",
+    "face2_seg": [[4648.0, 660], [4648.0, 950]],
+    "face2_sigma_px": 4.5,
+    "face2_sigma_basis": "doubled facade rule (centers 4643.5/4652.5); pair center, sigma = half separation",
+    "measured_at": "first ~275-290 px of the principal solid facades south of the 21st St frontage (corner y~655-660); west gallery excluded",
+    "source_sha256": "224dc450319645549d20110ca62813b8519ad60b997067623aae8647a1451249"
+   },
+   "drafted_width_px": {"A": 464.0, "B": 480.3, "annotation": "80' printed mid-avenue on both plates; sheet 9 draws 80.05 ft equivalent, sheet 7 draws 77.3 ft equivalent"},
+   "remeasured_by": "ctrl-H1 second pass: profile-assisted re-read of initial 1:1 eye readings",
+   "remeasure_delta_px": {"A_face1": 5.2, "A_face2": 2.8, "B_face1": 0.3, "B_face2": 2.0},
+   "evidence_crops": [
+    "70_qa/control_evidence/pair7-9_aveB_sheet7.jpg",
+    "70_qa/control_evidence/pair7-9_aveB_sheet9.jpg"
+   ],
+   "notes": "PLATE DISAGREEMENT, recorded not reconciled: drafted Strand width 464.0 px (sheet 7) vs 480.3 px (sheet 9), a 16.3 px (~2.7 ft) difference, and the cross-plate x-shift differs between flanks (+50.5 west vs +66.8 east) while Ave A gives +41.8/+41.9. Sheet 7 appears to draft this frontage slightly narrow relative to sheet 9. Identity is not in doubt (address runs above). All remeasure deltas within 2 sigma."
+  }
+ ]
+}

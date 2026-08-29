@@ -1,0 +1,83 @@
+{
+  "pair": ["5A", "9"],
+  "axis": "wharf-frontage seam; Ave A runs along page-y on BOTH plates (sheet 9 drafted in the same rotated orientation: bay page-left, numbered streets horizontal). Along-frontage = page-y; anchors are crossing numbered streets read as y-face pairs.",
+  "boundary": "Ave. A or Water (sheet 5 panel A landward edge / sheet 9 bay-side edge). Sheet 9 meets BOTH panels of sheet 5; panel A carries the 21st-22nd portion (panel break at 22nd St).",
+  "observer": "ctrl-S5",
+  "plate_scales": {
+    "5A": "100 ft to one inch (~309 px/100 ft)",
+    "9": "50 ft to one inch (~618 px/100 ft); Ave A width annotated '70'' in-corridor on sheet 9"
+  },
+  "landward_side_verification": "Panel A landward side = page-RIGHT (Ave A label column x~3470-3540); on sheet 9 the bay side = page-LEFT (GWC terminal tracks & yard strip, slip at far left, outline blocks 741-743 bay-side of Ave A).",
+  "controls": [
+    {
+      "anchor": "21st (Center) St",
+      "status": "ACCEPTED",
+      "class": "observed",
+      "why_not_one_block_off": "Sheet 5 prints '21ST OR CENTER ST.' inside the measured band; sheet 9's top edge IS the 21st St seam (only street at its top edge, per the 7-9 seam) and carries the south-side 100-block run 101-107 with italic Ave A addresses 2101/2102 (the 2100-block starts south of 21st) and the '70'' Ave A width annotation - one block off (22nd) would show 2201-series italics and the Gulf Fishery premises.",
+      "anchor_evidence": "Sheet 5: printed '21ST OR CENTER ST.', 6\" W. PIPE (excluded), F.A. symbols (excluded). Sheet 9: 'WARE HO.' block with run 101-107, italics 2101, 2102, 2104, '70'' in Ave A corridor, dashed yellow platform projecting into 21st (excluded from face read).",
+      "A": {
+        "sheet": "5A",
+        "face1_seg": [[3628, 5903], [3748, 5905]],
+        "face2_seg": [[3628, 6172], [3748, 6172]],
+        "measured_at": "landward block fronts east of Ave A, x 3628-3748; track fan crosses the intersection diagonally",
+        "sigma_along_px": 8.0,
+        "sigma_basis": "face1 possibly a depot/shed front rather than the generalized block face (detailed structures drawn landward here, unlike the outline fronts at 19th/20th); face2 clean but short",
+        "source_sha256": "1b4dc8be49f5c9bf43a77247fc6ce155f368b0c2b804ecc2caec2a8be88a68de"
+      },
+      "B": {
+        "sheet": 9,
+        "face1_seg": [[2625, 172], [3290, 168]],
+        "face2_seg": [[2620, 661], [3050, 656]],
+        "measured_at": "face2 (south, solid) at the Ave A corner x 2620; face1 (north) exists only as reference outline ~100 px inside the neatline (north side of 21st belongs to sheet 7)",
+        "sigma_along_px": 6.0,
+        "sigma_basis": "face2: solid warehouse face doubled by the dashed platform line 5 px above (>=2x half-line-width); face1: outline ghost near plate edge, sigma 12 for that face specifically",
+        "source_sha256": "224dc450319645549d20110ca62813b8519ad60b997067623aae8647a1451249"
+      },
+      "drafted_width_px": {"A": 269, "B": 488, "annotation": "no printed 21st width; B/A ratio 1.81 - sheet 5 draws ~87 ft vs sheet 9 ~79 ft. PLATE DISAGREEMENT ~8 ft, recorded not reconciled; sheet 5's other crossings (19th/20th/22nd) sit at 78-84 ft, so the outlier is sheet 5's face1 at this crossing (see sigma_basis)"},
+      "evidence_crops": [
+        "70_qa/control_evidence/sheet5A_21st_sheet5.jpg",
+        "70_qa/control_evidence/sheet5A_21st_sheet5_zoom.jpg",
+        "70_qa/control_evidence/sheet5A_21st_sheet9.jpg",
+        "70_qa/control_evidence/sheet5A_21st_sheet9_zoom.jpg"
+      ],
+      "remeasured_by": "ctrl-S5 (second-pass zoom re-read at 1.6x)",
+      "remeasure_delta_px": 8,
+      "notes": "21st is the split street of seam 7-9: sheet 9 draws only the south frontage solid; its north face is a reference outline. Weight face2 (south) as the primary along-frontage observable. Sheet 5's landward strip at 21st carries detailed buildings (GWC depot area), not plain outline fronts."
+    },
+    {
+      "anchor": "22nd St",
+      "status": "ACCEPTED",
+      "class": "observed",
+      "why_not_one_block_off": "Sheet 5 prints '22ND ST.' inside the measured band at the very bottom of panel A (last crossing before the panel break); sheet 9 carries 'GULF FISHERY CO'S ICE PLANT / COLD STORAGE' on the north corner block with run 102-112, odd run 101-111 south, italic Ave A addresses 2128/2127 (north) and 2201 (south) - and the Gulf Fishery name ties directly to sheet 5's Pier 22 shed lessee ('Gulf Fishery Co. Lessee').",
+      "anchor_evidence": "Sheet 5: printed '22ND ST.', 10\" W. PIPE dashed vertical (excluded), 'IRON ICE RUNWAY' dashed diagonal toward Pier 22 (excluded as symbol/dashed, corroborates identity). Sheet 9: ice plant premises text, runs 102-112 / 101-111, italics 2128, 2127, 2201, the same ice runway entering from the bay side.",
+      "A": {
+        "sheet": "5A",
+        "face1_seg": [[3565, 7080], [3785, 7078]],
+        "face2_seg": [[3573, 7322], [3785, 7320]],
+        "measured_at": "landward block fronts east of Ave A, x 3565-3785",
+        "sigma_along_px": 4.0,
+        "sigma_basis": "clean single outline rules; track fan passes west of the corner and does not touch the faces",
+        "source_sha256": "1b4dc8be49f5c9bf43a77247fc6ce155f368b0c2b804ecc2caec2a8be88a68de"
+      },
+      "B": {
+        "sheet": 9,
+        "face1_seg": [[2612, 2488], [2995, 2486]],
+        "face2_seg": [[2615, 2972], [2995, 2969]],
+        "measured_at": "block faces at the Ave A corner, x 2612-2995; ice-plant gallery (dashed, y2490-2570) excluded",
+        "sigma_along_px": 5.5,
+        "sigma_basis": "face1 solid under gallery strip (doubled lines nearby); face2 partially text-obstructed near the corner ('101' printed against the line)",
+        "source_sha256": "224dc450319645549d20110ca62813b8519ad60b997067623aae8647a1451249"
+      },
+      "drafted_width_px": {"A": 242, "B": 484, "annotation": "no printed width; B/A ratio exactly 2.00 - perfect agreement at common scale (~78 ft)"},
+      "evidence_crops": [
+        "70_qa/control_evidence/sheet5A_22nd_sheet5.jpg",
+        "70_qa/control_evidence/sheet5A_22nd_sheet5_zoom.jpg",
+        "70_qa/control_evidence/sheet5A_22nd_sheet9.jpg",
+        "70_qa/control_evidence/sheet5A_22nd_sheet9_zoom.jpg"
+      ],
+      "remeasured_by": "ctrl-S5 (second-pass zoom re-read at 1.6x)",
+      "remeasure_delta_px": 5,
+      "notes": "22nd St is also drawn on panel B (top edge) - this anchor doubles as one leg of the cross-panel consistency check (see cross_panel_05.json)."
+    }
+  ]
+}

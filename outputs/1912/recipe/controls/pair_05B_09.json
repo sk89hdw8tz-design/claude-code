@@ -1,0 +1,113 @@
+{
+  "pair": ["5B", "9"],
+  "axis": "wharf-frontage seam; Ave A runs along page-y on both plates. Panel B's landward margin is the narrow strip x~6100-6620 at sheet 5's page-right edge; block fronts appear as clipped stub outlines opening toward the page edge.",
+  "boundary": "Ave. A or Water (sheet 5 panel B landward margin / sheet 9 bay-side edge). Sheet 9 meets BOTH panels; panel B carries the 22nd-24th portion (panel break at 22nd St).",
+  "observer": "ctrl-S5",
+  "plate_scales": {
+    "5B": "100 ft to one inch (~309 px/100 ft)",
+    "9": "50 ft to one inch (~618 px/100 ft); Ave A annotated '70'' on sheet 9"
+  },
+  "landward_side_verification": "Panel B landward side = page-RIGHT: vertical 'AVE. A' + 'OR' label at x~6150-6230 with 'GULF COLORADO & SANTA FE' RR lettering at x~6230-6280 and the boxed adjoining-sheet numerals 9/11/13 in the stub margin x~6270-6500. Verified in-crop (sheet5B_aveA_landward_verify.jpg, sheet5B_23rd_sheet5.jpg).",
+  "controls": [
+    {
+      "anchor": "22nd St",
+      "status": "ACCEPTED",
+      "class": "observed",
+      "why_not_one_block_off": "On panel B, 22nd is the FIRST crossing from the panel top and is printed '22ND ST.' beside the measured stubs; the next crossing south is labelled '23RD OR TREMONT ST.', pinning the sequence. On sheet 9 the corner is pinned by the Gulf Fishery Ice Plant premises and italic Ave A runs 2128/2127 (north) and 2201 (south).",
+      "anchor_evidence": "Sheet 5 panel B: printed '22ND ST.' at (6350-6520, 190-230), water-pipe dashes y~245 (excluded), landward stub outlines. Sheet 9: 'GULF FISHERY CO'S ICE PLANT', runs 102-112 / 101-111, italics 2128, 2127, 2201.",
+      "A": {
+        "sheet": "5B",
+        "face1_seg": [[6380, 128], [6620, 128]],
+        "face2_seg": [[6383, 368], [6620, 368]],
+        "measured_at": "landward stub block fronts at the page-right margin, x 6380-6620 (clipped by page edge)",
+        "sigma_along_px": 4.0,
+        "sigma_basis": "clean single stub rules, unobstructed",
+        "source_sha256": "1b4dc8be49f5c9bf43a77247fc6ce155f368b0c2b804ecc2caec2a8be88a68de"
+      },
+      "B": {
+        "sheet": 9,
+        "face1_seg": [[2612, 2488], [2995, 2486]],
+        "face2_seg": [[2615, 2972], [2995, 2969]],
+        "measured_at": "block faces at the Ave A corner, x 2612-2995 (same reading as pair_05A_09 22nd - sheet 9 draws this ground once; both panels attach to it)",
+        "sigma_along_px": 5.5,
+        "sigma_basis": "face1 solid under dashed gallery; face2 text-obstructed near corner",
+        "source_sha256": "224dc450319645549d20110ca62813b8519ad60b997067623aae8647a1451249"
+      },
+      "drafted_width_px": {"A": 240, "B": 484, "annotation": "B/A ratio 2.02; ~78 ft both plates"},
+      "evidence_crops": [
+        "70_qa/control_evidence/sheet5B_22nd_sheet5.jpg",
+        "70_qa/control_evidence/sheet5A_22nd_sheet9.jpg",
+        "70_qa/control_evidence/sheet5A_22nd_sheet9_zoom.jpg"
+      ],
+      "remeasured_by": "ctrl-S5 (second-pass re-read)",
+      "remeasure_delta_px": 3,
+      "notes": "22nd St is duplicated on panel A (y7080/7322) - cross-panel leg recorded in cross_panel_05.json. Panel B's stub faces sit at the Ave A east face x~6380."
+    },
+    {
+      "anchor": "23rd (Tremont) St",
+      "status": "ACCEPTED",
+      "class": "observed",
+      "why_not_one_block_off": "Panel B prints '23RD OR / TREMONT ST.' diagonally beside the measured stubs with the boxed adjoining-sheet numeral '9' INSIDE the south stub (the plate's own statement that sheet 9 abuts here); sheet 9 prints '23RD...' with italic Ave A runs 222x (2226/2228, north) and 2301 (south) and the Swift & Company cold-storage block on the south corner - one block off would show 2128/2201 or 2401-series italics.",
+      "anchor_evidence": "Sheet 5 panel B: printed '23RD OR TREMONT ST.', boxed '9' at (6410-6500, 1520-1660). Sheet 9: runs 102-112 / 101-111, italics 2226/2228 ('222_') and 2301, 'COLD STORAGE' / '...& CO.' premises, '46'' height note, dashed galleries both sides (excluded).",
+      "A": {
+        "sheet": "5B",
+        "face1_seg": [[6395, 1265], [6605, 1265]],
+        "face2_seg": [[6400, 1510], [6607, 1510]],
+        "measured_at": "landward stub block fronts, x 6395-6607",
+        "sigma_along_px": 4.0,
+        "sigma_basis": "clean single stub rules",
+        "source_sha256": "1b4dc8be49f5c9bf43a77247fc6ce155f368b0c2b804ecc2caec2a8be88a68de"
+      },
+      "B": {
+        "sheet": 9,
+        "face1_seg": [[2612, 4798], [3200, 4795]],
+        "face2_seg": [[2545, 5300], [2960, 5296]],
+        "measured_at": "solid block faces at the Ave A corner (galleries y4800-4895 and y5208-5295 dashed, excluded), x 2545-3200",
+        "sigma_along_px": 6.0,
+        "sigma_basis": "both faces doubled by dashed gallery lines within ~100 px; solid faces legible but >= 2x half-line-width applied",
+        "source_sha256": "224dc450319645549d20110ca62813b8519ad60b997067623aae8647a1451249"
+      },
+      "drafted_width_px": {"A": 245, "B": 502, "annotation": "B/A ratio 2.05 (~79 vs ~81 ft) - ~2 ft drafted disagreement, recorded"},
+      "evidence_crops": [
+        "70_qa/control_evidence/sheet5B_23rd_sheet5.jpg",
+        "70_qa/control_evidence/sheet5B_23rd_sheet9.jpg"
+      ],
+      "remeasured_by": "ctrl-S5 (second-pass re-read)",
+      "remeasure_delta_px": 4,
+      "notes": "Sheet 9's solid faces vs galleries distinction is critical here; the gallery lines (dashed) project ~95 px into the street on both sides."
+    },
+    {
+      "anchor": "24th St",
+      "status": "ACCEPTED",
+      "class": "observed",
+      "why_not_one_block_off": "Panel B prints '24TH ST.' beside the measured stubs, third crossing in the labelled 22nd/23rd-Tremont/24th sequence; sheet 9's bottom edge IS the 24th St seam (9-11), its north block carrying 'HAY & FEED' with run 102-112 and italic Ave A 2327 (the 2300-block ends north of 24th) - one block off would show 2201/2301 italics or Rosenberg's double width.",
+      "anchor_evidence": "Sheet 5 panel B: printed '24TH ST.', pipe dashes y~2555 (excluded). Sheet 9: 'HAY & FEED' block, run 102-112, italic 2327, '70'' Ave A annotation repeated at (2330, 7100), '6\" W.PIPE' (excluded).",
+      "A": {
+        "sheet": "5B",
+        "face1_seg": [[6415, 2420], [6605, 2420]],
+        "face2_seg": [[6425, 2662], [6600, 2662]],
+        "measured_at": "landward stub block fronts, x 6415-6605",
+        "sigma_along_px": 4.0,
+        "sigma_basis": "clean single stub rules",
+        "source_sha256": "1b4dc8be49f5c9bf43a77247fc6ce155f368b0c2b804ecc2caec2a8be88a68de"
+      },
+      "B": {
+        "sheet": 9,
+        "face1_seg": [[2610, 7182], [3200, 7180]],
+        "face2_seg": [[2620, 7650], [3290, 7602]],
+        "measured_at": "face1 (north, solid) at the Ave A corner x 2610; face2 (south) exists only as a SLOPING outline ghost near the plate edge (south side of 24th belongs to sheet 11)",
+        "sigma_along_px": 5.0,
+        "sigma_basis": "face1: solid under dashed gallery (y7185-7265); face2: outline ghost near plate edge, visibly sloping ~50 px over its run, sigma 15 for that face - possibly not a frontage line at all",
+        "source_sha256": "224dc450319645549d20110ca62813b8519ad60b997067623aae8647a1451249"
+      },
+      "drafted_width_px": {"A": 242, "B": 423, "annotation": "B width uses the unreliable ghost face (ratio 1.75); using face1 only, this anchor constrains along-frontage via the north face pair. Recorded as found."},
+      "evidence_crops": [
+        "70_qa/control_evidence/sheet5B_24th_sheet5.jpg",
+        "70_qa/control_evidence/sheet5B_24th_sheet9.jpg"
+      ],
+      "remeasured_by": "ctrl-S5 (second-pass re-read)",
+      "remeasure_delta_px": 3,
+      "notes": "24th is the split street of seam 9-11: weight face1 (north) as the primary observable; face2 on sheet 9 retained per amendment 6 but should not enter the solve at full weight."
+    }
+  ]
+}

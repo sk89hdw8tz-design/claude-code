@@ -1,0 +1,84 @@
+{
+ "pair": [8, 10],
+ "axis": "horizontal",
+ "boundary": "21st or Center St",
+ "observer": "ctrl-H1",
+ "axis_convention": "raster pixels of the archival scan, origin top-left, x right, y down",
+ "method": "anchors identified by eye on own 1:1/2x tick-ruled crops; final line centers refined by column-ink profile inside eye-designated windows spanning only the read segment; identity and acceptance decided by eye from printed address runs and labels",
+ "controls": [
+  {
+   "anchor": "Ave D (Market)",
+   "status": "ACCEPTED",
+   "class": "observed",
+   "why_not_one_block_off": "The 21st St 300/400-block transition happens across this avenue: printed runs '...324' west and '402 404' east on sheet 8; '321 323' west and '401' east on sheet 10. Ave C (west plate edge) would show 2xx/30x runs; Ave E one block east shows the 424/502-423/501 transition. The avenue carries its 2000-block (2023-2028) on sheet 8 and 2100-block (2101-2106) on sheet 10, the 20th-21st and 21st-22nd segments of Market.",
+   "anchor_evidence": "Sheet 8: blue-tinted stone corner building '324' with '2' and '90' marks west; 'Drugs' pink block east with gallery addresses 2023/2025/2027 and 21st runs 402/404; avenue addresses 2024/2026/2028 west flank; printed 70'. Sheet 10: 'Sal.' 3-story block '321 323' west with gallery addresses 2102/2104/2106; 'Moving Pictures' block '401' east with gallery addresses 2101/2103; printed 70'; 8-inch water-pipe hatch symbols attach to both east-side faces (excluded from measurement).",
+   "A": {
+    "sheet": 8,
+    "face1_seg": [[2173.5, 6780], [2173.5, 7100]],
+    "face1_sigma_px": 4.0,
+    "face1_sigma_basis": "doubled facade rule (ink centers 2169.5/2177.5); pair center, sigma = half separation",
+    "face2_seg": [[2585.9, 6800], [2585.9, 7105]],
+    "face2_sigma_px": 4.3,
+    "face2_sigma_basis": "doubled facade rule (ink centers 2581.6/2590.1); pair center, sigma = half separation; gallery dashed edge ~2490 excluded",
+    "measured_at": "last ~300-320 px of the principal solid facades north of the 21st St block face (corners y~7100-7105)",
+    "source_sha256": "557220abd08263fa3f6e4ae83397b9f095c48158c8fbc8f2c679f14e377f98fe"
+   },
+   "B": {
+    "sheet": 10,
+    "face1_seg": [[2249.5, 660], [2249.5, 1050]],
+    "face1_sigma_px": 4.1,
+    "face1_sigma_basis": "doubled facade rule (ink centers 2245.4/2253.5); pair center, sigma = half separation; gallery dashed edge ~2335 excluded",
+    "face2_seg": [[2664.5, 660], [2664.5, 1050]],
+    "face2_sigma_px": 4.6,
+    "face2_sigma_basis": "doubled facade rule (ink centers 2659.9/2669.1); pair center, sigma = half separation; gallery dashed edge ~2570 excluded",
+    "measured_at": "first ~390 px of the principal solid facades south of the 21st St frontage (corners y~640-665)",
+    "source_sha256": "29ee9408cb043ec973b8d8d7bb3a542f40258142440eee182caf6eace04acd95"
+   },
+   "drafted_width_px": {"A": 412.4, "B": 415.0, "annotation": "70' printed mid-avenue on both plates; 412.4/415.0 px = 68.7/69.2 ft equivalent, agreement 2.6 px"},
+   "remeasured_by": "ctrl-H1 second pass: profile-assisted re-read of tick-relative eye readings",
+   "remeasure_delta_px": {"A_face1": 8.5, "A_face2": 5.9, "B_face1": 4.5, "B_face2": 4.5},
+   "evidence_crops": [
+    "70_qa/control_evidence/pair8-10_aveD_sheet8.jpg",
+    "70_qa/control_evidence/pair8-10_aveD_sheet10.jpg"
+   ],
+   "notes": "Cross-plate x-shifts +76.0 (west) and +78.6 (east) are mutually consistent. First-pass eye estimate of the sheet 8 west face (2165) referenced the outer rule plus rendering parallax; profile pair-center adopted."
+  },
+  {
+   "anchor": "Ave E (Post Office)",
+   "status": "ACCEPTED",
+   "class": "observed",
+   "why_not_one_block_off": "The 21st St 400/500-block transition happens across this avenue: printed runs '424' west and '502 504 506' east on sheet 8; '421 423' west and '501 503' east on sheet 10. Ave D one block west shows the 324/402-323/401 transition instead. The avenue carries 2023-2028 (sheet 8) and 2101-2106 (sheet 10) segment addresses.",
+   "anchor_evidence": "Sheet 8: 'S.' 2-story rows west with avenue addresses 2024/2026/2028 on gallery and 21st address 424; 'Furniture' block east with gallery addresses 2023/2025/2027 and 21st runs 502/504/506; printed 70'. Sheet 10: '421 423' 3-story block west with gallery addresses 2102/2104/2106; '501 503' block east with gallery addresses 2101/2103/2105 and 8-inch pipe hatch at the face; printed 70'; decorative compass rose drawn in this street space on sheet 10 (plate furniture, excluded).",
+   "A": {
+    "sheet": 8,
+    "face1_seg": [[4182.5, 6800], [4182.5, 7100]],
+    "face1_sigma_px": 3.5,
+    "face1_sigma_basis": "doubled facade rule (ink centers 4179.0/4186.0); pair center, sigma = half separation; gallery dashed edge ~4295 excluded",
+    "face2_seg": [[4600.5, 6800], [4600.5, 7105]],
+    "face2_sigma_px": 3.5,
+    "face2_sigma_basis": "doubled facade rule (ink centers 4597.0/4604.0); pair center, sigma = half separation; gallery dashed edge at 4512.5 identified and excluded",
+    "measured_at": "last ~300 px of the principal solid facades north of the 21st St block face (corners y~7100-7105)",
+    "source_sha256": "557220abd08263fa3f6e4ae83397b9f095c48158c8fbc8f2c679f14e377f98fe"
+   },
+   "B": {
+    "sheet": 10,
+    "face1_seg": [[4257.3, 665], [4257.3, 905]],
+    "face1_sigma_px": 3.7,
+    "face1_sigma_basis": "doubled facade rule (ink centers 4253.6/4261.0); pair center, sigma = half separation; gallery dashed edge at 4347.0 identified and excluded; face jogs at annex y~905",
+    "face2_seg": [[4673.3, 665], [4673.3, 1000]],
+    "face2_sigma_px": 4.3,
+    "face2_sigma_basis": "doubled facade rule (ink centers 4669.0/4677.5); pair center, sigma = half separation; gallery dashed edge ~4589 excluded",
+    "measured_at": "first ~240-335 px of the principal solid facades south of the 21st St frontage (corners y~665)",
+    "source_sha256": "29ee9408cb043ec973b8d8d7bb3a542f40258142440eee182caf6eace04acd95"
+   },
+   "drafted_width_px": {"A": 418.0, "B": 416.0, "annotation": "70' printed mid-avenue on both plates; 418.0/416.0 px = 69.7/69.3 ft equivalent, agreement 2.0 px"},
+   "remeasured_by": "ctrl-H1 second pass: profile-assisted re-read of tick-relative eye readings",
+   "remeasure_delta_px": {"A_face1": 21.5, "A_face2": 25.5, "B_face1": 43.7, "B_face2": 203.0},
+   "evidence_crops": [
+    "70_qa/control_evidence/pair8-10_aveE_sheet8.jpg",
+    "70_qa/control_evidence/pair8-10_aveE_sheet10.jpg"
+   ],
+   "notes": "Cross-plate x-shifts +74.8 (west) and +72.8 (east) are mutually consistent with this pair's Ave D control (+76.0/+78.6). The large remeasure deltas record first-pass eye estimates taken from rescaled image renders whose displayed-pixel positions were systematically off (worst case: sheet 10 east face first placed at ~4470 from a mislocated render read); the escalation diagnosis is rendering parallax in the reading environment, not plate ambiguity - every final number is a profile-confirmed tick-relative read whose placement was re-verified visually on the annotated evidence crop, and the drafted-width and shift-consistency checks close (416-418 px vs printed 70', shifts within 2 px of Ave D's). No plate disagreement at this anchor."
+  }
+ ]
+}

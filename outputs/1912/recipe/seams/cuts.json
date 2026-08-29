@@ -1,0 +1,4382 @@
+{
+ "convention": {
+  "axes": "raster pixels, origin top-left, x right, y down",
+  "center": [
+   3326.0,
+   3898.0
+  ],
+  "centered": "p_mosaic = [[a,-b],[b,a]] @ (p_sheet - center) + (tx, ty)",
+  "gauge": "sheet 10 fixed to identity; mosaic frame = sheet 10 centered pixel frame",
+  "raw": "p_mosaic = [[a,-b],[b,a]] @ p_sheet + (raw.tx, raw.ty)  (same rotation/scale; translation composed with the recentring -- use THIS for raw sheet-pixel coordinates)"
+ },
+ "generated_by": "50_seams/build_cuts.py",
+ "inputs": {
+  "adjacency_json": {
+   "sha256": "0cc828411316cfd8e18e312fc48780da7d2f0e42e191d954a0bf3e11997455cf"
+  },
+  "pair_files": {
+   "pair_10_12.json": "a7d121ae42e31a75e0e494c633756a5445d386b2498c7831b48aa213dad063a6",
+   "pair_10_43.json": "93b3c81b403b3cc4311a691d1fcba840124a70db95e4477f37b34e9c753897db",
+   "pair_11_12.json": "1c3b06a24454f8ca6da8806e2e90815b890d766b1cac8a95ba0baae0df58f73e",
+   "pair_12_49.json": "e38f0fdff732c689751518f9105ec935e5db616c03ea6bd5f2b4d63b8b570a64",
+   "pair_39_40.json": "e4b4c9b7e1de34facd1d5fc7ed777be4ffede3c7a9ace787440ef2473b3171a0",
+   "pair_39_43.json": "246f0adb37b962c0de705b84e89dbc591fa81f1fc0cd1c9daf4c921534df7438",
+   "pair_40_44.json": "fa7a593756a3589c8904ffa7aebf3a0f93467585926a772edb01cdd830fd552f",
+   "pair_43_44.json": "c04077e0e8cbb9c901c9c6f1edd231d203d3b6ff058e5c7c6074ad68c644d747",
+   "pair_43_49.json": "88f8e2ee49c52ba6f2d25a330ded20ce063d8f858b1931ef2ff987c4a8543994",
+   "pair_44_50.json": "16ea5659b2ead8ac1c8710bfb280ec7db81137e94bd99545eed0f31b6d8e0beb",
+   "pair_49_50.json": "9ff5e4ae73da7855517bdc8c20ee12d900b039350e04a84c33b1b67f4df206f2",
+   "pair_7_8.json": "e27bdc8bfd4511ee44d22cfda4d52ff00e9a0fcff2e53390cadda4eb3c37f53a",
+   "pair_7_9.json": "469501db8b730de77e64f0b5b70359893bffae1cbf5ad9250e0aebddf0f4d8da",
+   "pair_8_10.json": "1a2491637262f4bbcbb03fc3f947ceb224f25150981c6fd04b70a29d2c72ce0d",
+   "pair_8_39.json": "e7957da192eacd8cd01f40f30a2f54fb180c7dd5665938d00df05f079d135ea9",
+   "pair_9_10.json": "d73dfe92bbbc17d8ba300d7c86c42f542f2b97e44e8f9d18c0333c54555c7505",
+   "pair_9_11.json": "db99b829f171e4a7b14a309c1bd8ecc6d9db5963dff32f52a2f0645ef4e09ffc"
+  },
+  "plate_structure_json": {
+   "sha256": "93423f3e11cee0ca6f23f8e87e0cd9304a412e5eda7821b4b40c93cad298f8ca"
+  },
+  "transforms_json": {
+   "path": "40_solve/output/transforms.json",
+   "sha256": "a57f3dcb8614c9939f1ab82322f8091167e98ba3122ebed634ff1c8b4f0bf11b"
+  }
+ },
+ "kappa_caveat": "kappa is a nuisance parameter used only by across-seam constraints; the network structure cancels kappa against sheet translations, so when kappa_prior_dominated is true the value is the prior, not a measurement -- compare per-plate drafted street widths directly before reusing it downstream",
+ "kappa_px_per_ft": 5.797,
+ "outer_boundary": {
+  "provenance": "union boundary of the 12 solved page quads (20_plates/plate_structure.json, Otsu paper detection); NOT a drawn-content boundary — outer trimming is done by the target extent at render time",
+  "ring_mosaic": [
+   [
+    -9264.362,
+    -3803.789
+   ],
+   [
+    -9273.292,
+    3848.815
+   ],
+   [
+    -9214.91,
+    3848.883
+   ],
+   [
+    -9216.108,
+    10850.115
+   ],
+   [
+    -2708.105,
+    10851.229
+   ],
+   [
+    -2708.101,
+    10823.343
+   ],
+   [
+    2896.387,
+    10828.147
+   ],
+   [
+    2896.386,
+    10828.884
+   ],
+   [
+    9422.812,
+    10836.311
+   ],
+   [
+    9422.826,
+    10824.237
+   ],
+   [
+    15525.679,
+    10852.227
+   ],
+   [
+    15557.777,
+    3853.748
+   ],
+   [
+    15559.395,
+    3853.746
+   ],
+   [
+    15559.049,
+    3576.266
+   ],
+   [
+    15560.796,
+    3195.542
+   ],
+   [
+    15558.576,
+    3195.531
+   ],
+   [
+    15550.836,
+    -3023.46
+   ],
+   [
+    15568.27,
+    -3023.441
+   ],
+   [
+    15576.893,
+    -10698.748
+   ],
+   [
+    9441.074,
+    -10705.641
+   ],
+   [
+    9441.073,
+    -10730.089
+   ],
+   [
+    2917.949,
+    -10729.688
+   ],
+   [
+    2917.951,
+    -10694.512
+   ],
+   [
+    -3179.233,
+    -10710.999
+   ],
+   [
+    -3179.351,
+    -10667.395
+   ],
+   [
+    -9180.121,
+    -10727.81
+   ],
+   [
+    -9249.783,
+    -3803.772
+   ],
+   [
+    -9264.362,
+    -3803.789
+   ]
+  ]
+ },
+ "skipped_inputs": [
+  {
+   "item": "pair_05A_07.json",
+   "reason": "non-integer sheet ids (wharf attachment; out of scope)"
+  },
+  {
+   "item": "pair_05A_09.json",
+   "reason": "non-integer sheet ids (wharf attachment; out of scope)"
+  },
+  {
+   "item": "pair_05B_09.json",
+   "reason": "non-integer sheet ids (wharf attachment; out of scope)"
+  },
+  {
+   "item": "pair_05B_11.json",
+   "reason": "non-integer sheet ids (wharf attachment; out of scope)"
+  },
+  {
+   "item": "pair_05B_13.json",
+   "reason": "non-integer sheet ids (wharf attachment; out of scope)"
+  }
+ ],
+ "streets": [
+  {
+   "along_range": [
+    -12654.186,
+    12587.879
+   ],
+   "anchor_midline_residuals_px": {
+    "max_abs": 11.146,
+    "rms": 7.359
+   },
+   "anchors": [
+    {
+     "anchor": "Ave A (Water)",
+     "file": "pair_7_9.json",
+     "midline_residual_px": -9.698,
+     "midpoint_mosaic": [
+      -6982.67,
+      -3453.439
+     ],
+     "pair": [
+      7,
+      9
+     ],
+     "plates": {
+      "7": {
+       "corner_offsets_px": [
+        -214.927,
+        -211.69
+       ],
+       "corners_mosaic": [
+        [
+         -7193.715,
+         -3658.786
+        ],
+        [
+         -6771.1,
+         -3655.313
+        ]
+       ],
+       "corners_sheet_px": [
+        [
+         2100.3,
+         7090.0
+        ],
+        [
+         2522.8,
+         7090.0
+        ]
+       ],
+       "frontage_offset_px": -213.308,
+       "side": "bottom",
+       "side_sign": -1.0,
+       "source_sha256": "a0c42dde9c8e6f0d3148de82915b2e563d5763c7a4da6f81aaeb508bb1db0e62"
+      },
+      "9": {
+       "corner_offsets_px": [
+        228.551,
+        159.273
+       ],
+       "corners_mosaic": [
+        [
+         -7192.863,
+         -3215.308
+        ],
+        [
+         -6773.001,
+         -3284.351
+        ]
+       ],
+       "corners_sheet_px": [
+        [
+         2142.1,
+         670.0
+        ],
+        [
+         2564.7,
+         600.0
+        ]
+       ],
+       "frontage_offset_px": 193.912,
+       "side": "top",
+       "side_sign": 1.0,
+       "source_sha256": "224dc450319645549d20110ca62813b8519ad60b997067623aae8647a1451249"
+      }
+     },
+     "solved_street_width_px": 407.22
+    },
+    {
+     "anchor": "Ave B (Strand)",
+     "file": "pair_7_9.json",
+     "midline_residual_px": 11.146,
+     "midpoint_mosaic": [
+      -4943.209,
+      -3431.458
+     ],
+     "pair": [
+      7,
+      9
+     ],
+     "plates": {
+      "7": {
+       "corner_offsets_px": [
+        -199.474,
+        -195.919
+       ],
+       "corners_mosaic": [
+        [
+         -5176.265,
+         -3642.207
+        ],
+        [
+         -4712.138,
+         -3638.393
+        ]
+       ],
+       "corners_sheet_px": [
+        [
+         4117.2,
+         7090.0
+        ],
+        [
+         4581.2,
+         7090.0
+        ]
+       ],
+       "frontage_offset_px": -197.696,
+       "side": "bottom",
+       "side_sign": -1.0,
+       "source_sha256": "a0c42dde9c8e6f0d3148de82915b2e563d5763c7a4da6f81aaeb508bb1db0e62"
+      },
+      "9": {
+       "corner_offsets_px": [
+        219.843,
+        220.133
+       ],
+       "corners_mosaic": [
+        [
+         -5180.765,
+         -3222.893
+        ],
+        [
+         -4703.669,
+         -3222.336
+        ]
+       ],
+       "corners_sheet_px": [
+        [
+         4167.7,
+         660.0
+        ],
+        [
+         4648.0,
+         660.0
+        ]
+       ],
+       "frontage_offset_px": 219.988,
+       "side": "top",
+       "side_sign": 1.0,
+       "source_sha256": "224dc450319645549d20110ca62813b8519ad60b997067623aae8647a1451249"
+      }
+     },
+     "solved_street_width_px": 417.684
+    },
+    {
+     "anchor": "Ave D (Market)",
+     "file": "pair_8_10.json",
+     "midline_residual_px": -4.276,
+     "midpoint_mosaic": [
+      -870.65,
+      -3444.608
+     ],
+     "pair": [
+      8,
+      10
+     ],
+     "plates": {
+      "10": {
+       "corner_offsets_px": [
+        202.446,
+        202.215
+       ],
+       "corners_mosaic": [
+        [
+         -1076.5,
+         -3238.0
+        ],
+        [
+         -661.5,
+         -3238.0
+        ]
+       ],
+       "corners_sheet_px": [
+        [
+         2249.5,
+         660.0
+        ],
+        [
+         2664.5,
+         660.0
+        ]
+       ],
+       "frontage_offset_px": 202.33,
+       "side": "top",
+       "side_sign": 1.0,
+       "source_sha256": "29ee9408cb043ec973b8d8d7bb3a542f40258142440eee182caf6eace04acd95"
+      },
+      "8": {
+       "corner_offsets_px": [
+        -213.828,
+        -207.937
+       ],
+       "corners_mosaic": [
+        [
+         -1078.697,
+         -3654.276
+        ],
+        [
+         -665.901,
+         -3648.154
+        ]
+       ],
+       "corners_sheet_px": [
+        [
+         2173.5,
+         7100.0
+        ],
+        [
+         2585.9,
+         7105.0
+        ]
+       ],
+       "frontage_offset_px": -210.883,
+       "side": "bottom",
+       "side_sign": -1.0,
+       "source_sha256": "557220abd08263fa3f6e4ae83397b9f095c48158c8fbc8f2c679f14e377f98fe"
+      }
+     },
+     "solved_street_width_px": 413.213
+    },
+    {
+     "anchor": "Ave E (Post Office)",
+     "file": "pair_8_10.json",
+     "midline_residual_px": -0.175,
+     "midpoint_mosaic": [
+      1140.399,
+      -3439.385
+     ],
+     "pair": [
+      8,
+      10
+     ],
+     "plates": {
+      "10": {
+       "corner_offsets_px": [
+        206.326,
+        206.094
+       ],
+       "corners_mosaic": [
+        [
+         931.3,
+         -3233.0
+        ],
+        [
+         1347.3,
+         -3233.0
+        ]
+       ],
+       "corners_sheet_px": [
+        [
+         4257.3,
+         665.0
+        ],
+        [
+         4673.3,
+         665.0
+        ]
+       ],
+       "frontage_offset_px": 206.21,
+       "side": "top",
+       "side_sign": 1.0,
+       "source_sha256": "29ee9408cb043ec973b8d8d7bb3a542f40258142440eee182caf6eace04acd95"
+      },
+      "8": {
+       "corner_offsets_px": [
+        -209.512,
+        -203.609
+       ],
+       "corners_mosaic": [
+        [
+         932.297,
+         -3648.838
+        ],
+        [
+         1350.699,
+         -3642.702
+        ]
+       ],
+       "corners_sheet_px": [
+        [
+         4182.5,
+         7100.0
+        ],
+        [
+         4600.5,
+         7105.0
+        ]
+       ],
+       "frontage_offset_px": -206.561,
+       "side": "bottom",
+       "side_sign": -1.0,
+       "source_sha256": "557220abd08263fa3f6e4ae83397b9f095c48158c8fbc8f2c679f14e377f98fe"
+      }
+     },
+     "solved_street_width_px": 412.771
+    },
+    {
+     "anchor": "Ave G (Winnie)",
+     "file": "pair_39_43.json",
+     "midline_residual_px": 7.159,
+     "midpoint_mosaic": [
+      5195.851,
+      -3429.788
+     ],
+     "pair": [
+      39,
+      43
+     ],
+     "plates": {
+      "39": {
+       "corner_offsets_px": [
+        -203.968,
+        -203.228
+       ],
+       "corners_mosaic": [
+        [
+         4985.444,
+         -3641.033
+        ],
+        [
+         5408.685,
+         -3640.056
+        ]
+       ],
+       "corners_sheet_px": [
+        [
+         2125.0,
+         7148.0
+        ],
+        [
+         2547.0,
+         7149.0
+        ]
+       ],
+       "frontage_offset_px": -203.598,
+       "side": "bottom",
+       "side_sign": -1.0,
+       "source_sha256": "ed732111ccd0586a02829c236c38306550fa5b544c287c58d017e40a16a6a0ee"
+      },
+      "43": {
+       "corner_offsets_px": [
+        217.271,
+        218.559
+       ],
+       "corners_mosaic": [
+        [
+         4984.177,
+         -3219.794
+        ],
+        [
+         5405.097,
+         -3218.271
+        ]
+       ],
+       "corners_sheet_px": [
+        [
+         2049.0,
+         670.0
+        ],
+        [
+         2469.0,
+         670.0
+        ]
+       ],
+       "frontage_offset_px": 217.915,
+       "side": "top",
+       "side_sign": 1.0,
+       "source_sha256": "af7d25e4a6f44a9a9fc6e0c04a4a11b8c12ceb886c8e56b6a2657b6b8b0ecf7a"
+      }
+     },
+     "solved_street_width_px": 421.513
+    },
+    {
+     "anchor": "Ave H (Ball)",
+     "file": "pair_39_43.json",
+     "midline_residual_px": 3.349,
+     "midpoint_mosaic": [
+      7206.499,
+      -3432.476
+     ],
+     "pair": [
+      39,
+      43
+     ],
+     "plates": {
+      "39": {
+       "corner_offsets_px": [
+        -211.23,
+        -216.506
+       ],
+       "corners_mosaic": [
+        [
+         6994.333,
+         -3647.174
+        ],
+        [
+         7415.568,
+         -3652.214
+        ]
+       ],
+       "corners_sheet_px": [
+        [
+         4128.0,
+         7142.0
+        ],
+        [
+         4548.0,
+         7137.0
+        ]
+       ],
+       "frontage_offset_px": -213.868,
+       "side": "bottom",
+       "side_sign": -1.0,
+       "source_sha256": "ed732111ccd0586a02829c236c38306550fa5b544c287c58d017e40a16a6a0ee"
+      },
+      "43": {
+       "corner_offsets_px": [
+        218.413,
+        222.72
+       ],
+       "corners_mosaic": [
+        [
+         6995.589,
+         -3217.53
+        ],
+        [
+         7420.506,
+         -3212.986
+        ]
+       ],
+       "corners_sheet_px": [
+        [
+         4056.0,
+         665.0
+        ],
+        [
+         4480.0,
+         668.0
+        ]
+       ],
+       "frontage_offset_px": 220.566,
+       "side": "top",
+       "side_sign": 1.0,
+       "source_sha256": "af7d25e4a6f44a9a9fc6e0c04a4a11b8c12ceb886c8e56b6a2657b6b8b0ecf7a"
+      }
+     },
+     "solved_street_width_px": 434.434
+    },
+    {
+     "anchor": "Ave J (Broadway)",
+     "file": "pair_40_44.json",
+     "midline_residual_px": -11.034,
+     "midpoint_mosaic": [
+      11314.428,
+      -3444.567
+     ],
+     "pair": [
+      40,
+      44
+     ],
+     "plates": {
+      "40": {
+       "corner_offsets_px": [
+        -227.106,
+        -279.955
+       ],
+       "corners_mosaic": [
+        [
+         11014.778,
+         -3660.806
+        ],
+        [
+         11616.98,
+         -3713.319
+        ]
+       ],
+       "corners_sheet_px": [
+        [
+         2030.0,
+         7098.0
+        ],
+        [
+         2630.0,
+         7045.0
+        ]
+       ],
+       "frontage_offset_px": -253.53,
+       "side": "bottom",
+       "side_sign": -1.0,
+       "source_sha256": "12a04ff5411de391d2a1941dd414e37ee68103da84c34cff1e7c4428a5b37b7f"
+      },
+      "44": {
+       "corner_offsets_px": [
+        229.98,
+        232.945
+       ],
+       "corners_mosaic": [
+        [
+         11009.355,
+         -3203.723
+        ],
+        [
+         11616.599,
+         -3200.42
+        ]
+       ],
+       "corners_sheet_px": [
+        [
+         2041.0,
+         696.0
+        ],
+        [
+         2646.0,
+         699.0
+        ]
+       ],
+       "frontage_offset_px": 231.463,
+       "side": "top",
+       "side_sign": 1.0,
+       "source_sha256": "47621807b513de7e8809b9b547c2cd7ded1e3b09e4d861b723c1225e4d4ffea6"
+      }
+     },
+     "solved_street_width_px": 484.993
+    },
+    {
+     "anchor": "Ave K",
+     "file": "pair_40_44.json",
+     "midline_residual_px": 3.53,
+     "midpoint_mosaic": [
+      13419.047,
+      -3428.83
+     ],
+     "pair": [
+      40,
+      44
+     ],
+     "plates": {
+      "40": {
+       "corner_offsets_px": [
+        -226.87,
+        -226.63
+       ],
+       "corners_mosaic": [
+        [
+         13205.573,
+         -3659.349
+        ],
+        [
+         13631.087,
+         -3658.871
+        ]
+       ],
+       "corners_sheet_px": [
+        [
+         4213.0,
+         7097.0
+        ],
+        [
+         4637.0,
+         7097.0
+        ]
+       ],
+       "frontage_offset_px": -226.75,
+       "side": "bottom",
+       "side_sign": -1.0,
+       "source_sha256": "12a04ff5411de391d2a1941dd414e37ee68103da84c34cff1e7c4428a5b37b7f"
+      },
+      "44": {
+       "corner_offsets_px": [
+        233.826,
+        233.793
+       ],
+       "corners_mosaic": [
+        [
+         13209.486,
+         -3198.65
+        ],
+        [
+         13630.041,
+         -3198.448
+        ]
+       ],
+       "corners_sheet_px": [
+        [
+         4233.0,
+         700.0
+        ],
+        [
+         4652.0,
+         700.0
+        ]
+       ],
+       "frontage_offset_px": 233.809,
+       "side": "top",
+       "side_sign": 1.0,
+       "source_sha256": "47621807b513de7e8809b9b547c2cd7ded1e3b09e4d861b723c1225e4d4ffea6"
+      }
+     },
+     "solved_street_width_px": 460.56
+    }
+   ],
+   "flagged_spans": [],
+   "line_fit": {
+    "dir": [
+     1.0,
+     0.001
+    ],
+    "n_points": 8,
+    "normal": [
+     -0.001,
+     1.0
+    ],
+    "p0": [
+     3184.962,
+     -3438.069
+    ],
+    "rms_perp_px": 7.359
+   },
+   "manual_deviations": [
+    {
+     "_note_frame": "t is the street line's along-parameter relative to line_fit.p0 (for 21st: t = mosaic_x - 3184.96); offset along line_fit.normal (+y), so -18 px moves the cut north, clearing the scale bar's top edge (mosaic y -3431) by ~25 px",
+     "amended_by": "D-023",
+     "amended_date": "2026-08-21",
+     "date": "2026-08-17",
+     "offset_px": -18.0,
+     "ramp_px": 150.0,
+     "reason": "Sheet 7's 'Scale of Feet' bar occupies 21st St street space at the cut; default midline clips its label edge. Deviating the cut north gives the whole bar area to sheet 9, which authentically maps that ground as blank street with the continuous 10-inch pipe line - the brief-preferred source-ownership removal of interior furniture. Archival scans untouched. D-023 amendment: west end moved from t -8232 to -7719 (canvas x 11687 -> 12200). Sheet 7's bar and its lettering measure canvas x 12405-12824 in rows 4845-4925, so 205 px of margin remain; the old west ramp reached canvas x 11537, inside the '21ST OR CENTER ST.' label repaired by D-023, and would have spiked the cut back to the default midline through that label.",
+     "street_match": "21st",
+     "t_range_mosaic": [
+      -7719.0,
+      -6580.0
+     ],
+     "verified_by": "controller (Fable), from 1:1 sheet-7 crop and solved transforms"
+    },
+    {
+     "date": "2026-08-21",
+     "decision": "D-023",
+     "offset_px": -60.0,
+     "ramp_px": 180.0,
+     "reason": "D-023 sliced street name. The pooled cut runs along the street centreline and sheet 9 letters '21ST OR CENTER ST.' centred on that same line (canvas x 10680-11612, ink rows 4802-4852), so the cut bisected the glyphs: the print showed only their lower halves. Sheet 7 letters the street too but lower (rows 4852-4912), so nothing filled the top. Moving the cut north 60 px (4832 -> 4772) puts sheet 9's whole label on sheet 9's side and suppresses sheet 7's duplicate by ownership. Clearances: sheet 9's label top 4802 (30 px), sheet 7's nearest ink above 4742 (30 px); rows 4752-4792 are blank on BOTH plates across the label's full x span.",
+     "street_match": "21st",
+     "t_range_mosaic": [
+      -9148.0,
+      -8307.0
+     ],
+     "verified_by": "controller (Opus), per-plate warps and row ink profiles at 1:1"
+    },
+    {
+     "date": "2026-08-21",
+     "decision": "D-023",
+     "offset_px": -75.0,
+     "ramp_px": 70.0,
+     "reason": "D-023 sliced street name, second occurrence. Sheet 10 letters '21ST OR CENTER ST.' across the cut (ink rows 4788-4848); sheet 8 letters it lower (4848-4898). Only the bottom 10 px of sheet 10's label survived. Moving the cut north 75 px (4838 -> 4763) gives sheet 10 the whole label and suppresses sheet 8's duplicate. Clearance to sheet 10's label top 25 px; both plates are near-blank at 4758-4768. Range revised after the first rebuild: the west end had cut into the label's own start (sheet 10 letters from canvas x 16496, the old flat began at 16600), and the east ramp reached canvas x 18000, slicing sheet 10's compass rose at 17675-18570 which the default cut had kept suppressed. Flat now 16400-17600 with a 70 px ramp, so the whole label is inside the flat and the ramp closes before the ornament, leaving it suppressed as before.",
+     "street_match": "21st",
+     "t_range_mosaic": [
+      -3519.0,
+      -2319.0
+     ],
+     "verified_by": "controller (Opus), per-plate warps and row ink profiles at 1:1"
+    },
+    {
+     "date": "2026-08-21",
+     "decision": "D-023",
+     "offset_px": 113.0,
+     "ramp_px": 200.0,
+     "reason": "D-023 sliced wording, merged eastern deviation. Covers three items that all belong to sheet 39: '21ST OR CENTER ST.' (its ink runs canvas x 22483-23300), the 6-inch water-main label (x 23558-23967) and 'Scale of Feet.' with its graduated bar (x 24698-25059). These were first written as two deviations ending at x 22900 and starting at x 23558; the first rebuild showed the street name still clipped from x 22920 east, because its tail fell in the ramp between them. Merged into one flat span with offset +113 px (cut 4843 -> 4956), which sits inside sheet 39's blank band at every measured point (4923-5013 at the street name, 4884-5014 at the pipe label). Sheet 43 draws continuously through the default cut here, so it offers no gap; moving south also suppresses its duplicate label and the stray compass pointer that was printing into the street.",
+     "street_match": "21st",
+     "t_range_mosaic": [
+      1781.0,
+      5140.0
+     ],
+     "verified_by": "controller (Opus), per-plate warps, row and column ink profiles at 1:1"
+    }
+   ],
+   "mean_half_street_width_px": 215.774,
+   "n_anchors": 8,
+   "orientation": "horizontal",
+   "polyline_mosaic": [
+    [
+     -9469.222,
+     -3445.129
+    ],
+    [
+     -6143.037,
+     -3443.273
+    ],
+    [
+     -5963.003,
+     -3503.172
+    ],
+    [
+     -5122.003,
+     -3502.703
+    ],
+    [
+     -4942.037,
+     -3442.603
+    ],
+    [
+     -4684.037,
+     -3442.459
+    ],
+    [
+     -4534.027,
+     -3460.375
+    ],
+    [
+     -3395.027,
+     -3459.74
+    ],
+    [
+     -3245.037,
+     -3441.656
+    ],
+    [
+     -404.038,
+     -3440.071
+    ],
+    [
+     -333.996,
+     -3515.032
+    ],
+    [
+     866.004,
+     -3514.363
+    ],
+    [
+     935.962,
+     -3439.324
+    ],
+    [
+     4765.962,
+     -3437.187
+    ],
+    [
+     4965.898,
+     -3324.075
+    ],
+    [
+     8324.898,
+     -3322.201
+    ],
+    [
+     8524.961,
+     -3435.09
+    ],
+    [
+     15772.839,
+     -3431.046
+    ]
+   ],
+   "polyline_tn": [
+    [
+     -12654.186,
+     0.0
+    ],
+    [
+     -9328.0,
+     0.0
+    ],
+    [
+     -9148.0,
+     -60.0
+    ],
+    [
+     -8307.0,
+     -60.0
+    ],
+    [
+     -8127.0,
+     0.0
+    ],
+    [
+     -7869.0,
+     0.0
+    ],
+    [
+     -7719.0,
+     -18.0
+    ],
+    [
+     -6580.0,
+     -18.0
+    ],
+    [
+     -6430.0,
+     0.0
+    ],
+    [
+     -3589.0,
+     0.0
+    ],
+    [
+     -3519.0,
+     -75.0
+    ],
+    [
+     -2319.0,
+     -75.0
+    ],
+    [
+     -2249.0,
+     0.0
+    ],
+    [
+     1581.0,
+     0.0
+    ],
+    [
+     1781.0,
+     113.0
+    ],
+    [
+     5140.0,
+     113.0
+    ],
+    [
+     5340.0,
+     0.0
+    ],
+    [
+     12587.879,
+     0.0
+    ]
+   ],
+   "provenance": "cut = TLS midline through per-anchor midpoints of the two plates' solved frontage corners (seam-ward endpoints of the verified face segments); extended straight along the platted street; sides fixed by adjacency",
+   "sheet_side_sign": {
+    "10": 1.0,
+    "39": -1.0,
+    "40": -1.0,
+    "43": 1.0,
+    "44": 1.0,
+    "7": -1.0,
+    "8": -1.0,
+    "9": 1.0
+   },
+   "street_id": "21st_or_center_st",
+   "street_name": "21st or Center St"
+  },
+  {
+   "along_range": [
+    -12641.753,
+    12593.212
+   ],
+   "anchor_midline_residuals_px": {
+    "max_abs": 6.646,
+    "rms": 4.545
+   },
+   "anchors": [
+    {
+     "anchor": "Ave A (Water)",
+     "file": "pair_9_11.json",
+     "midline_residual_px": 3.478,
+     "midpoint_mosaic": [
+      -6899.65,
+      3432.096
+     ],
+     "pair": [
+      9,
+      11
+     ],
+     "plates": {
+      "11": {
+       "corner_offsets_px": [
+        250.986
+       ],
+       "corners_mosaic": [
+        [
+         -6797.337,
+         3679.748
+        ]
+       ],
+       "corners_sheet_px": [
+        [
+         2478.0,
+         600.0
+        ]
+       ],
+       "frontage_offset_px": 250.986,
+       "side": "top",
+       "side_sign": 1.0,
+       "source_sha256": "e7b2ff1b6b70c5d7124a4879e5feca478d95681224d97b88855de7bade1591df"
+      },
+      "9": {
+       "corner_offsets_px": [
+        -246.464,
+        -241.597
+       ],
+       "corners_mosaic": [
+        [
+         -7211.751,
+         3181.716
+        ],
+        [
+         -6792.175,
+         3187.172
+        ]
+       ],
+       "corners_sheet_px": [
+        [
+         2130.6,
+         7110.0
+        ],
+        [
+         2553.0,
+         7115.0
+        ]
+       ],
+       "frontage_offset_px": -244.03,
+       "side": "bottom",
+       "side_sign": -1.0,
+       "source_sha256": "224dc450319645549d20110ca62813b8519ad60b997067623aae8647a1451249"
+      }
+     },
+     "solved_street_width_px": 495.016
+    },
+    {
+     "anchor": "Ave B (Strand)",
+     "file": "pair_9_11.json",
+     "midline_residual_px": -6.646,
+     "midpoint_mosaic": [
+      -4965.654,
+      3424.689
+     ],
+     "pair": [
+      9,
+      11
+     ],
+     "plates": {
+      "11": {
+       "corner_offsets_px": [
+        224.065,
+        223.481
+       ],
+       "corners_mosaic": [
+        [
+         -5203.072,
+         3655.067
+        ],
+        [
+         -4728.946,
+         3655.148
+        ]
+       ],
+       "corners_sheet_px": [
+        [
+         4075.2,
+         575.0
+        ],
+        [
+         4550.2,
+         575.0
+        ]
+       ],
+       "frontage_offset_px": 223.773,
+       "side": "top",
+       "side_sign": 1.0,
+       "source_sha256": "e7b2ff1b6b70c5d7124a4879e5feca478d95681224d97b88855de7bade1591df"
+      },
+      "9": {
+       "corner_offsets_px": [
+        -232.042,
+        -242.088
+       ],
+       "corners_mosaic": [
+        [
+         -5202.364,
+         3198.96
+        ],
+        [
+         -4728.236,
+         3189.58
+        ]
+       ],
+       "corners_sheet_px": [
+        [
+         4153.5,
+         7125.0
+        ],
+        [
+         4630.8,
+         7115.0
+        ]
+       ],
+       "frontage_offset_px": -237.065,
+       "side": "bottom",
+       "side_sign": -1.0,
+       "source_sha256": "224dc450319645549d20110ca62813b8519ad60b997067623aae8647a1451249"
+      }
+     },
+     "solved_street_width_px": 460.838
+    },
+    {
+     "anchor": "Ave D (Market)",
+     "file": "pair_10_12.json",
+     "midline_residual_px": 6.371,
+     "midpoint_mosaic": [
+      -906.241,
+      3443.407
+     ],
+     "pair": [
+      10,
+      12
+     ],
+     "plates": {
+      "10": {
+       "corner_offsets_px": [
+        -199.75,
+        -200.329
+       ],
+       "corners_mosaic": [
+        [
+         -1110.1,
+         3237.0
+        ],
+        [
+         -697.8,
+         3237.0
+        ]
+       ],
+       "corners_sheet_px": [
+        [
+         2215.9,
+         7135.0
+        ],
+        [
+         2628.2,
+         7135.0
+        ]
+       ],
+       "frontage_offset_px": -200.04,
+       "side": "bottom",
+       "side_sign": -1.0,
+       "source_sha256": "29ee9408cb043ec973b8d8d7bb3a542f40258142440eee182caf6eace04acd95"
+      },
+      "12": {
+       "corner_offsets_px": [
+        212.898,
+        212.665
+       ],
+       "corners_mosaic": [
+        [
+         -1121.068,
+         3649.633
+        ],
+        [
+         -695.997,
+         3649.997
+        ]
+       ],
+       "corners_sheet_px": [
+        [
+         2183.8,
+         560.0
+        ],
+        [
+         2609.4,
+         560.0
+        ]
+       ],
+       "frontage_offset_px": 212.781,
+       "side": "top",
+       "side_sign": 1.0,
+       "source_sha256": "d2ab9e8aa706bfc1bd41732dbc85f3a23d8097732f92ebc13852276f7843a82f"
+      }
+     },
+     "solved_street_width_px": 412.821
+    },
+    {
+     "anchor": "Ave E (Post Office)",
+     "file": "pair_10_12.json",
+     "midline_residual_px": 1.91,
+     "midpoint_mosaic": [
+      1106.054,
+      3441.774
+     ],
+     "pair": [
+      10,
+      12
+     ],
+     "plates": {
+      "10": {
+       "corner_offsets_px": [
+        -202.569,
+        -208.148
+       ],
+       "corners_mosaic": [
+        [
+         897.1,
+         3237.0
+        ],
+        [
+         1309.3,
+         3232.0
+        ]
+       ],
+       "corners_sheet_px": [
+        [
+         4223.1,
+         7135.0
+        ],
+        [
+         4635.3,
+         7130.0
+        ]
+       ],
+       "frontage_offset_px": -205.359,
+       "side": "bottom",
+       "side_sign": -1.0,
+       "source_sha256": "29ee9408cb043ec973b8d8d7bb3a542f40258142440eee182caf6eace04acd95"
+      },
+      "12": {
+       "corner_offsets_px": [
+        211.792,
+        206.568
+       ],
+       "corners_mosaic": [
+        [
+         898.717,
+         3651.364
+        ],
+        [
+         1319.098,
+         3646.73
+        ]
+       ],
+       "corners_sheet_px": [
+        [
+         4206.1,
+         560.0
+        ],
+        [
+         4627.0,
+         555.0
+        ]
+       ],
+       "frontage_offset_px": 209.18,
+       "side": "top",
+       "side_sign": 1.0,
+       "source_sha256": "d2ab9e8aa706bfc1bd41732dbc85f3a23d8097732f92ebc13852276f7843a82f"
+      }
+     },
+     "solved_street_width_px": 414.539
+    },
+    {
+     "anchor": "Ave G (Winnie)",
+     "file": "pair_43_49.json",
+     "midline_residual_px": -3.054,
+     "midpoint_mosaic": [
+      5162.184,
+      3442.506
+     ],
+     "pair": [
+      43,
+      49
+     ],
+     "plates": {
+      "43": {
+       "corner_offsets_px": [
+        -216.012,
+        -212.061
+       ],
+       "corners_mosaic": [
+        [
+         4947.823,
+         3229.247
+        ],
+        [
+         5374.745,
+         3233.797
+        ]
+       ],
+       "corners_sheet_px": [
+        [
+         2036.0,
+         7105.0
+        ],
+        [
+         2462.0,
+         7108.0
+        ]
+       ],
+       "frontage_offset_px": -214.037,
+       "side": "bottom",
+       "side_sign": -1.0,
+       "source_sha256": "af7d25e4a6f44a9a9fc6e0c04a4a11b8c12ceb886c8e56b6a2657b6b8b0ecf7a"
+      },
+      "49": {
+       "corner_offsets_px": [
+        214.514,
+        201.342
+       ],
+       "corners_mosaic": [
+        [
+         4954.102,
+         3659.783
+        ],
+        [
+         5372.065,
+         3647.197
+        ]
+       ],
+       "corners_sheet_px": [
+        [
+         2104.0,
+         590.0
+        ],
+        [
+         2520.0,
+         577.0
+        ]
+       ],
+       "frontage_offset_px": 207.928,
+       "side": "top",
+       "side_sign": 1.0,
+       "source_sha256": "ce9382f5fdedea88527e7a4f38a3ce77c3c83f305b48ebb9366f84bf2151e55b"
+      }
+     },
+     "solved_street_width_px": 421.965
+    },
+    {
+     "anchor": "Ave H (Ball)",
+     "file": "pair_43_49.json",
+     "midline_residual_px": -6.615,
+     "midpoint_mosaic": [
+      7176.836,
+      3441.775
+     ],
+     "pair": [
+      43,
+      49
+     ],
+     "plates": {
+      "43": {
+       "corner_offsets_px": [
+        -212.552,
+        -210.607
+       ],
+       "corners_mosaic": [
+        [
+         6965.234,
+         3235.541
+        ],
+        [
+         7391.161,
+         3238.084
+        ]
+       ],
+       "corners_sheet_px": [
+        [
+         4049.0,
+         7104.0
+        ],
+        [
+         4474.0,
+         7105.0
+        ]
+       ],
+       "frontage_offset_px": -211.579,
+       "side": "bottom",
+       "side_sign": -1.0,
+       "source_sha256": "af7d25e4a6f44a9a9fc6e0c04a4a11b8c12ceb886c8e56b6a2657b6b8b0ecf7a"
+      },
+      "49": {
+       "corner_offsets_px": [
+        207.951,
+        188.748
+       ],
+       "corners_mosaic": [
+        [
+         6963.476,
+         3656.041
+        ],
+        [
+         7387.475,
+         3637.435
+        ]
+       ],
+       "corners_sheet_px": [
+        [
+         4104.0,
+         584.0
+        ],
+        [
+         4526.0,
+         565.0
+        ]
+       ],
+       "frontage_offset_px": 198.349,
+       "side": "top",
+       "side_sign": 1.0,
+       "source_sha256": "ce9382f5fdedea88527e7a4f38a3ce77c3c83f305b48ebb9366f84bf2151e55b"
+      }
+     },
+     "solved_street_width_px": 409.929
+    },
+    {
+     "anchor": "Ave J (Broadway)",
+     "file": "pair_44_50.json",
+     "midline_residual_px": 1.466,
+     "midpoint_mosaic": [
+      11281.498,
+      3455.622
+     ],
+     "pair": [
+      44,
+      50
+     ],
+     "plates": {
+      "44": {
+       "corner_offsets_px": [
+        -217.661,
+        -217.22
+       ],
+       "corners_mosaic": [
+        [
+         10978.155,
+         3236.068
+        ],
+        [
+         11587.406,
+         3237.365
+        ]
+       ],
+       "corners_sheet_px": [
+        [
+         2013.0,
+         7112.0
+        ],
+        [
+         2620.0,
+         7113.0
+        ]
+       ],
+       "frontage_offset_px": -217.441,
+       "side": "bottom",
+       "side_sign": -1.0,
+       "source_sha256": "47621807b513de7e8809b9b547c2cd7ded1e3b09e4d861b723c1225e4d4ffea6"
+      },
+      "50": {
+       "corner_offsets_px": [
+        219.407,
+        221.339
+       ],
+       "corners_mosaic": [
+        [
+         10976.737,
+         3673.135
+        ],
+        [
+         11583.694,
+         3675.919
+        ]
+       ],
+       "corners_sheet_px": [
+        [
+         2001.0,
+         585.0
+        ],
+        [
+         2606.0,
+         585.0
+        ]
+       ],
+       "frontage_offset_px": 220.373,
+       "side": "top",
+       "side_sign": 1.0,
+       "source_sha256": "51ff18dfbe0b22e404b80b4c630b8b95e33ab6df101af7b87ad349f71754fde2"
+      }
+     },
+     "solved_street_width_px": 437.814
+    },
+    {
+     "anchor": "Ave K",
+     "file": "pair_44_50.json",
+     "midline_residual_px": 3.09,
+     "midpoint_mosaic": [
+      13382.769,
+      3460.197
+     ],
+     "pair": [
+      44,
+      50
+     ],
+     "plates": {
+      "44": {
+       "corner_offsets_px": [
+        -216.674,
+        -225.097
+       ],
+       "corners_mosaic": [
+        [
+         13169.253,
+         3240.133
+        ],
+        [
+         13594.83,
+         3232.308
+        ]
+       ],
+       "corners_sheet_px": [
+        [
+         4196.0,
+         7115.0
+        ],
+        [
+         4620.0,
+         7107.0
+        ]
+       ],
+       "frontage_offset_px": -220.885,
+       "side": "bottom",
+       "side_sign": -1.0,
+       "source_sha256": "47621807b513de7e8809b9b547c2cd7ded1e3b09e4d861b723c1225e4d4ffea6"
+      },
+      "50": {
+       "corner_offsets_px": [
+        226.382,
+        227.749
+       ],
+       "corners_mosaic": [
+        [
+         13168.804,
+         3683.189
+        ],
+        [
+         13598.189,
+         3685.158
+        ]
+       ],
+       "corners_sheet_px": [
+        [
+         4186.0,
+         585.0
+        ],
+        [
+         4614.0,
+         585.0
+        ]
+       ],
+       "frontage_offset_px": 227.065,
+       "side": "top",
+       "side_sign": 1.0,
+       "source_sha256": "51ff18dfbe0b22e404b80b4c630b8b95e33ab6df101af7b87ad349f71754fde2"
+      }
+     },
+     "solved_street_width_px": 447.951
+    }
+   ],
+   "flagged_spans": [],
+   "line_fit": {
+    "dir": [
+     1.0,
+     0.001
+    ],
+    "n_points": 8,
+    "normal": [
+     -0.001,
+     1.0
+    ],
+    "p0": [
+     3167.224,
+     3442.758
+    ],
+    "rms_perp_px": 4.545
+   },
+   "manual_deviations": [
+    {
+     "_note_frame": "24th normal ~(0,+1): POSITIVE offset moves the cut SOUTH. t = mosaic_x - 3167.2 = canvas_x - 19901.2.",
+     "date": "2026-08-19",
+     "offset_px": 100.0,
+     "ramp_px": 120.0,
+     "reason": "D-019 chopped page numeral at the Ave C x 24th junction. Sheet 12 prints its own page number '12' with 'GALVESTON, TEXAS.' (glyph bbox canvas x 13681-13908, y 11529-11794) into the intersection; sheets 9, 10 and 11 map that ground as blank street. The cuts clipped it to a floating fragment. Deviating the 24th cut 100 px SOUTH (11713 -> 11813) over x 13849-13965 hands the fragment's pocket to sheet 10, which is measured fully blank there (0 ink px in x 13850-14000, y 11722-11960); west of the Ave C cut sheet 11 already suppresses the rest. The numeral is page furniture, suppressed whole by ownership - consistent with the D-013 precedent and with every other plate's page number, none of which appears mid-print. Sheet 9's date stamp (y 11923+) and page edge (x 13930+, west of Ave C irrelevant) stay clear of the deviation and its ramps.",
+     "street_match": "24th",
+     "t_range_mosaic": [
+      -6052.0,
+      -5936.0
+     ],
+     "verified_by": "controller (Fable), from four-plate junction warps and component bboxes"
+    },
+    {
+     "date": "2026-08-19",
+     "offset_px": 80.0,
+     "ramp_px": 120.0,
+     "reason": "D-019 chopped page numeral at the Ave F x 24th junction. Sheet 49 prints its page number '49' with 'GALVESTON, TEXAS.' (glyph bbox canvas x 19823-20111, y 11534-11789) into the intersection; sheets 10, 43 and 12 map that ground as blank street. Deviating the 24th cut 80 px SOUTH (11722 -> 11802) over x 19876-20141 hands the visible pocket to sheet 43. Sheet 43's only ink there is its own 70-ft street-width figure (x 20079-20128, y 11698-11780), whose top half ALREADY shows on sheet 43's ground - the deviation completes that figure instead of leaving it clipped, while fully suppressing the numeral. Sheet 49's other content (house numbers y 11869+, marks x 20149+) stays clear.",
+     "street_match": "24th",
+     "t_range_mosaic": [
+      -25.0,
+      240.0
+     ],
+     "verified_by": "controller (Fable), from four-plate junction warps and component bboxes"
+    },
+    {
+     "date": "2026-08-21",
+     "decision": "D-023",
+     "offset_px": 93.0,
+     "ramp_px": 200.0,
+     "reason": "D-023 sliced street name. Sheet 9 letters '24TH ST.' at rows 11648-11752 and sheet 11 letters it at 11670-11801; the cut at 11712 bisected both. Moving the cut SOUTH 93 px (11712 -> 11805) gives sheet 9 its complete label and suppresses sheet 11's duplicate. Clearance below sheet 9's label 53 px.",
+     "street_match": "24th",
+     "t_range_mosaic": [
+      -9347.0,
+      -8490.0
+     ],
+     "verified_by": "controller (Opus), per-plate warps and row ink profiles at 1:1"
+    },
+    {
+     "date": "2026-08-21",
+     "decision": "D-023",
+     "offset_px": -49.0,
+     "ramp_px": 180.0,
+     "reason": "D-023 mangled 'Scale of Feet.' SUPPRESSED rather than repaired. Sheet 9 draws the scale text with its graduated bar (rows 11681 to ~11790) and sheet 11 maps that ground as blank street. Showing it whole would need the cut 353 px south, swallowing a whole block row of sheet 11's frontage; the cheaper and cleaner repair is to move the cut north 49 px (11714 -> 11665) so the whole assembly falls on sheet 11's side and is suppressed by ownership, leaving clean street. Consistent with D-013 (page furniture suppressed by ownership); other intact 'Scale of Feet' instances elsewhere on the sheet are unaffected.",
+     "street_match": "24th",
+     "t_range_mosaic": [
+      -7272.0,
+      -6916.0
+     ],
+     "verified_by": "controller (Opus), per-plate warps and row ink profiles at 1:1"
+    },
+    {
+     "date": "2026-08-21",
+     "decision": "D-023",
+     "offset_px": 127.0,
+     "ramp_px": 200.0,
+     "reason": "D-023 sliced street name. Sheet 12 letters '24TH ST.' across the cut (rows 11673-11731, only its bottom 13 px survived) and sheet 10 letters it lower at 11760-11830. Sheet 12 offers no clean gap above its label (continuous light ink 11620-11672), so sheet 10 takes the label: moving the cut SOUTH 127 px (11718 -> 11845) gives sheet 10 its whole label and suppresses sheet 12's. 11845 was chosen over the wider gap at 11905 deliberately: at 11905 BOTH plates' block frontages (sheet 12 at 11876, sheet 10 at 11920) fall on the suppressed side and the frontage line would vanish. At 11845 sheet 12 keeps and draws it. Clearance below sheet 10's label 15 px.",
+     "street_match": "24th",
+     "t_range_mosaic": [
+      -3376.0,
+      -2802.0
+     ],
+     "verified_by": "controller (Opus), per-plate warps and row ink profiles at 1:1"
+    }
+   ],
+   "mean_half_street_width_px": 218.804,
+   "n_anchors": 8,
+   "orientation": "horizontal",
+   "polyline_mosaic": [
+    [
+     -9474.516,
+     3425.002
+    ],
+    [
+     -6379.766,
+     3429.349
+    ],
+    [
+     -6179.897,
+     3522.629
+    ],
+    [
+     -5322.898,
+     3523.833
+    ],
+    [
+     -5122.767,
+     3431.114
+    ],
+    [
+     -4284.768,
+     3432.291
+    ],
+    [
+     -4104.7,
+     3383.544
+    ],
+    [
+     -3748.7,
+     3384.044
+    ],
+    [
+     -3568.769,
+     3433.297
+    ],
+    [
+     -3004.77,
+     3434.089
+    ],
+    [
+     -2884.91,
+     3534.258
+    ],
+    [
+     -2768.91,
+     3534.42
+    ],
+    [
+     -2648.77,
+     3434.589
+    ],
+    [
+     -408.772,
+     3437.735
+    ],
+    [
+     -208.951,
+     3565.016
+    ],
+    [
+     365.049,
+     3565.822
+    ],
+    [
+     565.227,
+     3439.103
+    ],
+    [
+     3022.225,
+     3442.555
+    ],
+    [
+     3142.112,
+     3522.723
+    ],
+    [
+     3407.112,
+     3523.095
+    ],
+    [
+     3527.224,
+     3443.264
+    ],
+    [
+     15760.424,
+     3460.447
+    ]
+   ],
+   "polyline_tn": [
+    [
+     -12641.753,
+     0.0
+    ],
+    [
+     -9547.0,
+     0.0
+    ],
+    [
+     -9347.0,
+     93.0
+    ],
+    [
+     -8490.0,
+     93.0
+    ],
+    [
+     -8290.0,
+     0.0
+    ],
+    [
+     -7452.0,
+     0.0
+    ],
+    [
+     -7272.0,
+     -49.0
+    ],
+    [
+     -6916.0,
+     -49.0
+    ],
+    [
+     -6736.0,
+     0.0
+    ],
+    [
+     -6172.0,
+     0.0
+    ],
+    [
+     -6052.0,
+     100.0
+    ],
+    [
+     -5936.0,
+     100.0
+    ],
+    [
+     -5816.0,
+     0.0
+    ],
+    [
+     -3576.0,
+     0.0
+    ],
+    [
+     -3376.0,
+     127.0
+    ],
+    [
+     -2802.0,
+     127.0
+    ],
+    [
+     -2602.0,
+     0.0
+    ],
+    [
+     -145.0,
+     0.0
+    ],
+    [
+     -25.0,
+     80.0
+    ],
+    [
+     240.0,
+     80.0
+    ],
+    [
+     360.0,
+     0.0
+    ],
+    [
+     12593.212,
+     0.0
+    ]
+   ],
+   "provenance": "cut = TLS midline through per-anchor midpoints of the two plates' solved frontage corners (seam-ward endpoints of the verified face segments); extended straight along the platted street; sides fixed by adjacency",
+   "sheet_side_sign": {
+    "10": -1.0,
+    "11": 1.0,
+    "12": 1.0,
+    "43": -1.0,
+    "44": -1.0,
+    "49": 1.0,
+    "50": 1.0,
+    "9": -1.0
+   },
+   "street_id": "24th_st",
+   "street_name": "24th St"
+  },
+  {
+   "along_range": [
+    -10975.091,
+    11002.975
+   ],
+   "anchor_midline_residuals_px": {
+    "max_abs": 27.593,
+    "rms": 15.016
+   },
+   "anchors": [
+    {
+     "anchor": "18th St (top boundary)",
+     "file": "pair_7_8.json",
+     "midline_residual_px": -4.373,
+     "midpoint_mosaic": [
+      -2853.282,
+      -10326.645
+     ],
+     "pair": [
+      7,
+      8
+     ],
+     "plates": {
+      "7": {
+       "corner_offsets_px": [
+        203.849,
+        206.497
+       ],
+       "corners_mosaic": [
+        [
+         -3060.832,
+         -10570.188
+        ],
+        [
+         -3064.819,
+         -10085.055
+        ]
+       ],
+       "corners_sheet_px": [
+        [
+         6175.0,
+         147.0
+        ],
+        [
+         6175.0,
+         632.0
+        ]
+       ],
+       "frontage_offset_px": 205.173,
+       "side": "right",
+       "side_sign": 1.0,
+       "source_sha256": "a0c42dde9c8e6f0d3148de82915b2e563d5763c7a4da6f81aaeb508bb1db0e62"
+      },
+      "8": {
+       "corner_offsets_px": [
+        -213.904,
+        -213.932
+       ],
+       "corners_mosaic": [
+        [
+         -2643.085,
+         -10567.408
+        ],
+        [
+         -2644.393,
+         -10083.928
+        ]
+       ],
+       "corners_sheet_px": [
+        [
+         592.0,
+         198.0
+        ],
+        [
+         592.0,
+         681.0
+        ]
+       ],
+       "frontage_offset_px": -213.918,
+       "side": "left",
+       "side_sign": -1.0,
+       "source_sha256": "557220abd08263fa3f6e4ae83397b9f095c48158c8fbc8f2c679f14e377f98fe"
+      }
+     },
+     "solved_street_width_px": 419.091
+    },
+    {
+     "anchor": "19th St",
+     "file": "pair_7_8.json",
+     "midline_residual_px": 3.347,
+     "midpoint_mosaic": [
+      -2867.346,
+      -8028.19
+     ],
+     "pair": [
+      7,
+      8
+     ],
+     "plates": {
+      "7": {
+       "corner_offsets_px": [
+        216.431,
+        214.039
+       ],
+       "corners_mosaic": [
+        [
+         -3079.779,
+         -8264.559
+        ],
+        [
+         -3078.707,
+         -7786.387
+        ]
+       ],
+       "corners_sheet_px": [
+        [
+         6175.0,
+         2452.0
+        ],
+        [
+         6180.0,
+         2930.0
+        ]
+       ],
+       "frontage_offset_px": 215.235,
+       "side": "right",
+       "side_sign": 1.0,
+       "source_sha256": "a0c42dde9c8e6f0d3148de82915b2e563d5763c7a4da6f81aaeb508bb1db0e62"
+      },
+      "8": {
+       "corner_offsets_px": [
+        -212.031,
+        -205.052
+       ],
+       "corners_mosaic": [
+        [
+         -2651.275,
+         -8279.144
+        ],
+        [
+         -2659.624,
+         -7782.67
+        ]
+       ],
+       "corners_sheet_px": [
+        [
+         590.0,
+         2484.0
+        ],
+        [
+         583.0,
+         2980.0
+        ]
+       ],
+       "frontage_offset_px": -208.542,
+       "side": "left",
+       "side_sign": -1.0,
+       "source_sha256": "557220abd08263fa3f6e4ae83397b9f095c48158c8fbc8f2c679f14e377f98fe"
+      }
+     },
+     "solved_street_width_px": 423.777
+    },
+    {
+     "anchor": "20th St",
+     "file": "pair_7_8.json",
+     "midline_residual_px": -15.048,
+     "midpoint_mosaic": [
+      -2855.722,
+      -5575.449
+     ],
+     "pair": [
+      7,
+      8
+     ],
+     "plates": {
+      "7": {
+       "corner_offsets_px": [
+        179.059,
+        190.122
+       ],
+       "corners_mosaic": [
+        [
+         -3048.803,
+         -5947.515
+        ],
+        [
+         -3061.92,
+         -5203.37
+        ]
+       ],
+       "corners_sheet_px": [
+        [
+         6225.0,
+         4768.0
+        ],
+        [
+         6218.0,
+         5512.0
+        ]
+       ],
+       "frontage_offset_px": 184.59,
+       "side": "right",
+       "side_sign": 1.0,
+       "source_sha256": "a0c42dde9c8e6f0d3148de82915b2e563d5763c7a4da6f81aaeb508bb1db0e62"
+      },
+      "8": {
+       "corner_offsets_px": [
+        -212.163,
+        -217.21
+       ],
+       "corners_mosaic": [
+        [
+         -2657.576,
+         -5948.833
+        ],
+        [
+         -2654.59,
+         -5202.079
+        ]
+       ],
+       "corners_sheet_px": [
+        [
+         590.0,
+         4812.0
+        ],
+        [
+         595.0,
+         5558.0
+        ]
+       ],
+       "frontage_offset_px": -214.687,
+       "side": "left",
+       "side_sign": -1.0,
+       "source_sha256": "557220abd08263fa3f6e4ae83397b9f095c48158c8fbc8f2c679f14e377f98fe"
+      }
+     },
+     "solved_street_width_px": 399.277
+    },
+    {
+     "anchor": "22nd St",
+     "file": "pair_9_10.json",
+     "midline_residual_px": 18.649,
+     "midpoint_mosaic": [
+      -2901.623,
+      -1154.713
+     ],
+     "pair": [
+      9,
+      10
+     ],
+     "plates": {
+      "10": {
+       "corner_offsets_px": [
+        -206.288,
+        -192.605
+       ],
+       "corners_mosaic": [
+        [
+         -2676.0,
+         -1403.0
+        ],
+        [
+         -2691.0,
+         -926.0
+        ]
+       ],
+       "corners_sheet_px": [
+        [
+         650.0,
+         2495.0
+        ],
+        [
+         635.0,
+         2972.0
+        ]
+       ],
+       "frontage_offset_px": -199.446,
+       "side": "left",
+       "side_sign": -1.0,
+       "source_sha256": "29ee9408cb043ec973b8d8d7bb3a542f40258142440eee182caf6eace04acd95"
+      },
+      "9": {
+       "corner_offsets_px": [
+        237.148,
+        236.339
+       ],
+       "corners_mosaic": [
+        [
+         -3119.449,
+         -1398.721
+        ],
+        [
+         -3120.041,
+         -891.13
+        ]
+       ],
+       "corners_sheet_px": [
+        [
+         6245.0,
+         2494.0
+        ],
+        [
+         6245.0,
+         3005.0
+        ]
+       ],
+       "frontage_offset_px": 236.743,
+       "side": "right",
+       "side_sign": 1.0,
+       "source_sha256": "224dc450319645549d20110ca62813b8519ad60b997067623aae8647a1451249"
+      }
+     },
+     "solved_street_width_px": 436.189
+    },
+    {
+     "anchor": "23rd St",
+     "file": "pair_9_10.json",
+     "midline_residual_px": 16.644,
+     "midpoint_mosaic": [
+      -2905.97,
+      1146.113
+     ],
+     "pair": [
+      9,
+      10
+     ],
+     "plates": {
+      "10": {
+       "corner_offsets_px": [
+        -192.634,
+        -199.042
+       ],
+       "corners_mosaic": [
+        [
+         -2696.0,
+         896.0
+        ],
+        [
+         -2691.0,
+         1406.0
+        ]
+       ],
+       "corners_sheet_px": [
+        [
+         630.0,
+         4794.0
+        ],
+        [
+         635.0,
+         5304.0
+        ]
+       ],
+       "frontage_offset_px": -195.838,
+       "side": "left",
+       "side_sign": -1.0,
+       "source_sha256": "29ee9408cb043ec973b8d8d7bb3a542f40258142440eee182caf6eace04acd95"
+      },
+      "9": {
+       "corner_offsets_px": [
+        198.721,
+        259.532
+       ],
+       "corners_mosaic": [
+        [
+         -3087.362,
+         897.896
+        ],
+        [
+         -3149.517,
+         1384.555
+        ]
+       ],
+       "corners_sheet_px": [
+        [
+         6280.0,
+         4806.0
+        ],
+        [
+         6218.0,
+         5296.0
+        ]
+       ],
+       "frontage_offset_px": 229.127,
+       "side": "right",
+       "side_sign": 1.0,
+       "source_sha256": "224dc450319645549d20110ca62813b8519ad60b997067623aae8647a1451249"
+      }
+     },
+     "solved_street_width_px": 424.965
+    },
+    {
+     "anchor": "25th St (Rosenberg Ave)",
+     "file": "pair_11_12.json",
+     "midline_residual_px": -27.593,
+     "midpoint_mosaic": [
+      -2874.708,
+      5846.463
+     ],
+     "pair": [
+      11,
+      12
+     ],
+     "plates": {
+      "11": {
+       "corner_offsets_px": [
+        133.28,
+        124.406
+       ],
+       "corners_mosaic": [
+        [
+         -3034.583,
+         5485.065
+        ],
+        [
+         -3027.721,
+         6213.723
+        ]
+       ],
+       "corners_sheet_px": [
+        [
+         6248.0,
+         2408.0
+        ],
+        [
+         6255.0,
+         3138.0
+        ]
+       ],
+       "frontage_offset_px": 128.843,
+       "side": "right",
+       "side_sign": 1.0,
+       "source_sha256": "e7b2ff1b6b70c5d7124a4879e5feca478d95681224d97b88855de7bade1591df"
+      },
+      "12": {
+       "corner_offsets_px": [
+        -184.854,
+        -183.203
+       ],
+       "corners_mosaic": [
+        [
+         -2716.462,
+         5489.973
+        ],
+        [
+         -2720.064,
+         6197.09
+        ]
+       ],
+       "corners_sheet_px": [
+        [
+         588.0,
+         2404.0
+        ],
+        [
+         585.0,
+         3112.0
+        ]
+       ],
+       "frontage_offset_px": -184.029,
+       "side": "left",
+       "side_sign": -1.0,
+       "source_sha256": "d2ab9e8aa706bfc1bd41732dbc85f3a23d8097732f92ebc13852276f7843a82f"
+      }
+     },
+     "solved_street_width_px": 312.871
+    },
+    {
+     "anchor": "26th St",
+     "file": "pair_11_12.json",
+     "midline_residual_px": 12.118,
+     "midpoint_mosaic": [
+      -2921.122,
+      8274.958
+     ],
+     "pair": [
+      11,
+      12
+     ],
+     "plates": {
+      "11": {
+       "corner_offsets_px": [
+        219.544,
+        218.231
+       ],
+       "corners_mosaic": [
+        [
+         -3127.846,
+         8020.376
+        ],
+        [
+         -3127.933,
+         8527.441
+        ]
+       ],
+       "corners_sheet_px": [
+        [
+         6155.0,
+         4948.0
+        ],
+        [
+         6155.0,
+         5456.0
+        ]
+       ],
+       "frontage_offset_px": 218.887,
+       "side": "right",
+       "side_sign": 1.0,
+       "source_sha256": "e7b2ff1b6b70c5d7124a4879e5feca478d95681224d97b88855de7bade1591df"
+      },
+      "12": {
+       "corner_offsets_px": [
+        -191.68,
+        -197.622
+       ],
+       "corners_mosaic": [
+        [
+         -2716.639,
+         8026.816
+        ],
+        [
+         -2712.072,
+         8525.2
+        ]
+       ],
+       "corners_sheet_px": [
+        [
+         590.0,
+         4944.0
+        ],
+        [
+         595.0,
+         5443.0
+        ]
+       ],
+       "frontage_offset_px": -194.651,
+       "side": "left",
+       "side_sign": -1.0,
+       "source_sha256": "d2ab9e8aa706bfc1bd41732dbc85f3a23d8097732f92ebc13852276f7843a82f"
+      }
+     },
+     "solved_street_width_px": 413.538
+    },
+    {
+     "anchor": "27th St (bottom boundary)",
+     "file": "pair_11_12.json",
+     "midline_residual_px": -3.744,
+     "midpoint_mosaic": [
+      -2910.945,
+      10334.04
+     ],
+     "pair": [
+      11,
+      12
+     ],
+     "plates": {
+      "11": {
+       "corner_offsets_px": [
+        218.554
+       ],
+       "corners_mosaic": [
+        [
+         -3133.232,
+         10330.117
+        ]
+       ],
+       "corners_sheet_px": [
+        [
+         6150.0,
+         7262.0
+        ]
+       ],
+       "frontage_offset_px": 218.554,
+       "side": "right",
+       "side_sign": 1.0,
+       "source_sha256": "e7b2ff1b6b70c5d7124a4879e5feca478d95681224d97b88855de7bade1591df"
+      },
+      "12": {
+       "corner_offsets_px": [
+        -226.042
+       ],
+       "corners_mosaic": [
+        [
+         -2688.657,
+         10337.964
+        ]
+       ],
+       "corners_sheet_px": [
+        [
+         620.0,
+         7258.0
+        ]
+       ],
+       "frontage_offset_px": -226.042,
+       "side": "left",
+       "side_sign": -1.0,
+       "source_sha256": "d2ab9e8aa706bfc1bd41732dbc85f3a23d8097732f92ebc13852276f7843a82f"
+      }
+     },
+     "solved_street_width_px": 444.595
+    }
+   ],
+   "flagged_spans": [],
+   "line_fit": {
+    "dir": [
+     -0.003,
+     1.0
+    ],
+    "n_points": 8,
+    "normal": [
+     -1.0,
+     -0.003
+    ],
+    "p0": [
+     -2886.34,
+     64.572
+    ],
+    "rms_perp_px": 15.016
+   },
+   "manual_deviations": [
+    {
+     "date": "2026-08-18",
+     "offset_px": 78.0,
+     "ramp_px": 200.0,
+     "reason": "D-018 duplicated street label. Sheets 7 (west, label band canvas x 13822-13939, with cross-reference numeral '8') and 8 (east, 13829-13890, numeral '7') both letter Ave. C or Mechanic across the pooled cut. Moving the cut 78 px west (to ~13790) gives both bands to sheet 8. Sheet 7's last content ends 13746 (44 px clear); sheet 8's west page edge (13486-13545) and its edge ticks (13661-13718) stay west of the new cut and are supplied by sheet 7 as blank street.",
+     "street_match": "Ave. C or Mechanic",
+     "t_range_mosaic": [
+      -7350.0,
+      -5950.0
+     ],
+     "verified_by": "controller (Opus), from per-plate warps and ink-cluster extents at 1:1"
+    },
+    {
+     "_note_frame": "Ave C normal ~(-1,0), so NEGATIVE offset moves the cut EAST. t = mosaic_y - 64.6.",
+     "date": "2026-08-19",
+     "offset_px": -85.0,
+     "ramp_px": 180.0,
+     "reason": "D-019 duplicated street label, s09|s10 segment. Sheets 9 (west, label band canvas x 13762-13913, rows y 7595-8741) and 10 (east, band x 13612-13868) BOTH letter Ave. C or Mechanic here and both bands straddle the midline cut (~13848), printing as a doubled label with an arrow-like tangle. Moving the cut 85 px EAST (to ~13933) puts both bands west of it, so sheet 9 supplies one complete label and sheet 10's duplicate is suppressed by ownership. Clearances: sheet 9's label ends 13913 (20 px); sheet 9's east page edge begins 13953 (20 px); sheet 10's nearest content east of the new cut is its house-number row at 13974 (41 px). Moving WEST instead was rejected: it would delete sheet 9's drawn block face (content to x 13738).",
+     "street_match": "Ave. C or Mechanic",
+     "t_range_mosaic": [
+      -790.0,
+      580.0
+     ],
+     "verified_by": "controller (Fable), from per-plate warps and ink-cluster extents at 1:1"
+    }
+   ],
+   "mean_half_street_width_px": 204.644,
+   "n_anchors": 8,
+   "orientation": "vertical",
+   "polyline_mosaic": [
+    [
+     -2856.043,
+     -10910.477
+    ],
+    [
+     -2865.498,
+     -7485.399
+    ],
+    [
+     -2944.05,
+     -7285.615
+    ],
+    [
+     -2947.915,
+     -5885.62
+    ],
+    [
+     -2870.467,
+     -5685.406
+    ],
+    [
+     -2883.662,
+     -905.424
+    ],
+    [
+     -2799.159,
+     -725.19
+    ],
+    [
+     -2802.941,
+     644.805
+    ],
+    [
+     -2888.438,
+     824.569
+    ],
+    [
+     -2916.713,
+     11067.505
+    ]
+   ],
+   "polyline_tn": [
+    [
+     -10975.091,
+     0.0
+    ],
+    [
+     -7550.0,
+     0.0
+    ],
+    [
+     -7350.0,
+     78.0
+    ],
+    [
+     -5950.0,
+     78.0
+    ],
+    [
+     -5750.0,
+     0.0
+    ],
+    [
+     -970.0,
+     0.0
+    ],
+    [
+     -790.0,
+     -85.0
+    ],
+    [
+     580.0,
+     -85.0
+    ],
+    [
+     760.0,
+     0.0
+    ],
+    [
+     11002.975,
+     0.0
+    ]
+   ],
+   "provenance": "cut = TLS midline through per-anchor midpoints of the two plates' solved frontage corners (seam-ward endpoints of the verified face segments); extended straight along the platted street; sides fixed by adjacency",
+   "sheet_side_sign": {
+    "10": -1.0,
+    "11": 1.0,
+    "12": -1.0,
+    "7": 1.0,
+    "8": -1.0,
+    "9": 1.0
+   },
+   "street_id": "ave_c_or_mechanic",
+   "street_name": "Ave. C or Mechanic"
+  },
+  {
+   "along_range": [
+    -10995.82,
+    10993.077
+   ],
+   "anchor_midline_residuals_px": {
+    "max_abs": 20.394,
+    "rms": 12.259
+   },
+   "anchors": [
+    {
+     "anchor": "18th St (top boundary)",
+     "file": "pair_8_39.json",
+     "midline_residual_px": -3.895,
+     "midpoint_mosaic": [
+      3192.662,
+      -10330.044
+     ],
+     "pair": [
+      8,
+      39
+     ],
+     "plates": {
+      "39": {
+       "corner_offsets_px": [
+        -246.014,
+        -227.356
+       ],
+       "corners_mosaic": [
+        [
+         3435.475,
+         -10574.264
+        ],
+        [
+         3415.446,
+         -10090.846
+        ]
+       ],
+       "corners_sheet_px": [
+        [
+         580.0,
+         235.0
+        ],
+        [
+         560.0,
+         717.0
+        ]
+       ],
+       "frontage_offset_px": -236.685,
+       "side": "left",
+       "side_sign": -1.0,
+       "source_sha256": "ed732111ccd0586a02829c236c38306550fa5b544c287c58d017e40a16a6a0ee"
+      },
+      "8": {
+       "corner_offsets_px": [
+        228.928,
+        228.863
+       ],
+       "corners_mosaic": [
+        [
+         2960.52,
+         -10570.273
+        ],
+        [
+         2959.208,
+         -10084.792
+        ]
+       ],
+       "corners_sheet_px": [
+        [
+         6190.0,
+         180.0
+        ],
+        [
+         6190.0,
+         665.0
+        ]
+       ],
+       "frontage_offset_px": 228.896,
+       "side": "right",
+       "side_sign": 1.0,
+       "source_sha256": "557220abd08263fa3f6e4ae83397b9f095c48158c8fbc8f2c679f14e377f98fe"
+      }
+     },
+     "solved_street_width_px": 465.581
+    },
+    {
+     "anchor": "19th St",
+     "file": "pair_8_39.json",
+     "midline_residual_px": -0.354,
+     "midpoint_mosaic": [
+      3182.603,
+      -8032.772
+     ],
+     "pair": [
+      8,
+      39
+     ],
+     "plates": {
+      "39": {
+       "corner_offsets_px": [
+        -220.598,
+        -221.982
+       ],
+       "corners_mosaic": [
+        [
+         3403.523,
+         -8270.508
+        ],
+        [
+         3403.552,
+         -7793.109
+        ]
+       ],
+       "corners_sheet_px": [
+        [
+         548.0,
+         2532.0
+        ],
+        [
+         548.0,
+         3008.0
+        ]
+       ],
+       "frontage_offset_px": -221.29,
+       "side": "left",
+       "side_sign": -1.0,
+       "source_sha256": "ed732111ccd0586a02829c236c38306550fa5b544c287c58d017e40a16a6a0ee"
+      },
+      "8": {
+       "corner_offsets_px": [
+        220.614,
+        220.549
+       ],
+       "corners_mosaic": [
+        [
+         2962.33,
+         -8277.979
+        ],
+        [
+         2961.009,
+         -7789.494
+        ]
+       ],
+       "corners_sheet_px": [
+        [
+         6198.0,
+         2470.0
+        ],
+        [
+         6198.0,
+         2958.0
+        ]
+       ],
+       "frontage_offset_px": 220.582,
+       "side": "right",
+       "side_sign": 1.0,
+       "source_sha256": "557220abd08263fa3f6e4ae83397b9f095c48158c8fbc8f2c679f14e377f98fe"
+      }
+     },
+     "solved_street_width_px": 441.871
+    },
+    {
+     "anchor": "20th St",
+     "file": "pair_8_39.json",
+     "midline_residual_px": 0.872,
+     "midpoint_mosaic": [
+      3174.769,
+      -5704.216
+     ],
+     "pair": [
+      8,
+      39
+     ],
+     "plates": {
+      "39": {
+       "corner_offsets_px": [
+        -227.343,
+        -225.724
+       ],
+       "corners_mosaic": [
+        [
+         3403.665,
+         -5943.687
+        ],
+        [
+         3400.686,
+         -5464.281
+        ]
+       ],
+       "corners_sheet_px": [
+        [
+         548.0,
+         4852.0
+        ],
+        [
+         545.0,
+         5330.0
+        ]
+       ],
+       "frontage_offset_px": -226.534,
+       "side": "left",
+       "side_sign": -1.0,
+       "source_sha256": "ed732111ccd0586a02829c236c38306550fa5b544c287c58d017e40a16a6a0ee"
+      },
+      "8": {
+       "corner_offsets_px": [
+        230.313,
+        226.244
+       ],
+       "corners_mosaic": [
+        [
+         2946.013,
+         -5945.693
+        ],
+        [
+         2948.713,
+         -5463.203
+        ]
+       ],
+       "corners_sheet_px": [
+        [
+         6188.0,
+         4800.0
+        ],
+        [
+         6192.0,
+         5282.0
+        ]
+       ],
+       "frontage_offset_px": 228.278,
+       "side": "right",
+       "side_sign": 1.0,
+       "source_sha256": "557220abd08263fa3f6e4ae83397b9f095c48158c8fbc8f2c679f14e377f98fe"
+      }
+     },
+     "solved_street_width_px": 454.812
+    },
+    {
+     "anchor": "22nd St",
+     "file": "pair_10_43.json",
+     "midline_residual_px": 9.136,
+     "midpoint_mosaic": [
+      3153.583,
+      -1150.271
+     ],
+     "pair": [
+      10,
+      43
+     ],
+     "plates": {
+      "10": {
+       "corner_offsets_px": [
+        234.43,
+        230.023
+       ],
+       "corners_mosaic": [
+        [
+         2929.0,
+         -1401.0
+        ],
+        [
+         2932.0,
+         -905.0
+        ]
+       ],
+       "corners_sheet_px": [
+        [
+         6255.0,
+         2497.0
+        ],
+        [
+         6258.0,
+         2993.0
+        ]
+       ],
+       "frontage_offset_px": 232.226,
+       "side": "right",
+       "side_sign": 1.0,
+       "source_sha256": "29ee9408cb043ec973b8d8d7bb3a542f40258142440eee182caf6eace04acd95"
+      },
+      "43": {
+       "corner_offsets_px": [
+        -216.651,
+        -211.255
+       ],
+       "corners_mosaic": [
+        [
+         3380.065,
+         -1394.572
+        ],
+        [
+         3373.267,
+         -900.511
+        ]
+       ],
+       "corners_sheet_px": [
+        [
+         455.0,
+         2497.0
+        ],
+        [
+         450.0,
+         2990.0
+        ]
+       ],
+       "frontage_offset_px": -213.953,
+       "side": "left",
+       "side_sign": -1.0,
+       "source_sha256": "af7d25e4a6f44a9a9fc6e0c04a4a11b8c12ceb886c8e56b6a2657b6b8b0ecf7a"
+      }
+     },
+     "solved_street_width_px": 446.18
+    },
+    {
+     "anchor": "23rd St",
+     "file": "pair_10_43.json",
+     "midline_residual_px": 8.734,
+     "midpoint_mosaic": [
+      3147.412,
+      1166.255
+     ],
+     "pair": [
+      10,
+      43
+     ],
+     "plates": {
+      "10": {
+       "corner_offsets_px": [
+        212.833,
+        251.425
+       ],
+       "corners_mosaic": [
+        [
+         2944.0,
+         924.0
+        ],
+        [
+         2904.0,
+         1420.0
+        ]
+       ],
+       "corners_sheet_px": [
+        [
+         6270.0,
+         4822.0
+        ],
+        [
+         6230.0,
+         5318.0
+        ]
+       ],
+       "frontage_offset_px": 232.129,
+       "side": "right",
+       "side_sign": 1.0,
+       "source_sha256": "29ee9408cb043ec973b8d8d7bb3a542f40258142440eee182caf6eace04acd95"
+      },
+      "43": {
+       "corner_offsets_px": [
+        -214.861,
+        -214.46
+       ],
+       "corners_mosaic": [
+        [
+         3371.754,
+         903.448
+        ],
+        [
+         3369.894,
+         1417.571
+        ]
+       ],
+       "corners_sheet_px": [
+        [
+         455.0,
+         4790.0
+        ],
+        [
+         455.0,
+         5303.0
+        ]
+       ],
+       "frontage_offset_px": -214.66,
+       "side": "left",
+       "side_sign": -1.0,
+       "source_sha256": "af7d25e4a6f44a9a9fc6e0c04a4a11b8c12ceb886c8e56b6a2657b6b8b0ecf7a"
+      }
+     },
+     "solved_street_width_px": 446.789
+    },
+    {
+     "anchor": "25th St (Rosenberg Ave)",
+     "file": "pair_12_49.json",
+     "midline_residual_px": -16.449,
+     "midpoint_mosaic": [
+      3159.349,
+      5834.518
+     ],
+     "pair": [
+      12,
+      49
+     ],
+     "plates": {
+      "12": {
+       "corner_offsets_px": [
+        240.365,
+        233.935
+       ],
+       "corners_mosaic": [
+        [
+         2903.558,
+         5473.816
+        ],
+        [
+         2907.93,
+         6198.918
+        ]
+       ],
+       "corners_sheet_px": [
+        [
+         6215.0,
+         2383.0
+        ],
+        [
+         6220.0,
+         3109.0
+        ]
+       ],
+       "frontage_offset_px": 237.15,
+       "side": "right",
+       "side_sign": 1.0,
+       "source_sha256": "d2ab9e8aa706bfc1bd41732dbc85f3a23d8097732f92ebc13852276f7843a82f"
+      },
+      "49": {
+       "corner_offsets_px": [
+        -271.939,
+        -268.157
+       ],
+       "corners_mosaic": [
+        [
+         3415.881,
+         5467.47
+        ],
+        [
+         3410.026,
+         6197.87
+        ]
+       ],
+       "corners_sheet_px": [
+        [
+         575.0,
+         2391.0
+        ],
+        [
+         570.0,
+         3118.0
+        ]
+       ],
+       "frontage_offset_px": -270.048,
+       "side": "left",
+       "side_sign": -1.0,
+       "source_sha256": "ce9382f5fdedea88527e7a4f38a3ce77c3c83f305b48ebb9366f84bf2151e55b"
+      }
+     },
+     "solved_street_width_px": 507.197
+    },
+    {
+     "anchor": "26th St",
+     "file": "pair_12_49.json",
+     "midline_residual_px": -18.44,
+     "midpoint_mosaic": [
+      3154.43,
+      8269.688
+     ],
+     "pair": [
+      12,
+      49
+     ],
+     "plates": {
+      "12": {
+       "corner_offsets_px": [
+        240.297,
+        239.353
+       ],
+       "corners_mosaic": [
+        [
+         2896.373,
+         8029.629
+        ],
+        [
+         2895.965,
+         8506.036
+        ]
+       ],
+       "corners_sheet_px": [
+        [
+         6210.0,
+         4942.0
+        ],
+        [
+         6210.0,
+         5419.0
+        ]
+       ],
+       "frontage_offset_px": 239.825,
+       "side": "right",
+       "side_sign": 1.0,
+       "source_sha256": "d2ab9e8aa706bfc1bd41732dbc85f3a23d8097732f92ebc13852276f7843a82f"
+      },
+      "49": {
+       "corner_offsets_px": [
+        -276.293,
+        -277.116
+       ],
+       "corners_mosaic": [
+        [
+         3412.966,
+         8029.414
+        ],
+        [
+         3412.415,
+         8513.672
+        ]
+       ],
+       "corners_sheet_px": [
+        [
+         575.0,
+         4941.0
+        ],
+        [
+         575.0,
+         5423.0
+        ]
+       ],
+       "frontage_offset_px": -276.704,
+       "side": "left",
+       "side_sign": -1.0,
+       "source_sha256": "ce9382f5fdedea88527e7a4f38a3ce77c3c83f305b48ebb9366f84bf2151e55b"
+      }
+     },
+     "solved_street_width_px": 516.529
+    },
+    {
+     "anchor": "27th St (bottom boundary)",
+     "file": "pair_12_49.json",
+     "midline_residual_px": 20.394,
+     "midpoint_mosaic": [
+      3109.748,
+      10330.44
+     ],
+     "pair": [
+      12,
+      49
+     ],
+     "plates": {
+      "12": {
+       "corner_offsets_px": [
+        260.73
+       ],
+       "corners_mosaic": [
+        [
+         2869.442,
+         10319.756
+        ]
+       ],
+       "corners_sheet_px": [
+        [
+         6185.0,
+         7235.0
+        ]
+       ],
+       "frontage_offset_px": 260.73,
+       "side": "right",
+       "side_sign": 1.0,
+       "source_sha256": "d2ab9e8aa706bfc1bd41732dbc85f3a23d8097732f92ebc13852276f7843a82f"
+      },
+      "49": {
+       "corner_offsets_px": [
+        -219.941
+       ],
+       "corners_mosaic": [
+        [
+         3350.054,
+         10341.123
+        ]
+       ],
+       "corners_sheet_px": [
+        [
+         515.0,
+         7242.0
+        ]
+       ],
+       "frontage_offset_px": -219.941,
+       "side": "left",
+       "side_sign": -1.0,
+       "source_sha256": "ce9382f5fdedea88527e7a4f38a3ce77c3c83f305b48ebb9366f84bf2151e55b"
+      }
+     },
+     "solved_street_width_px": 480.671
+    }
+   ],
+   "flagged_spans": [],
+   "line_fit": {
+    "dir": [
+     -0.003,
+     1.0
+    ],
+    "n_points": 8,
+    "normal": [
+     -1.0,
+     -0.003
+    ],
+    "p0": [
+     3159.32,
+     47.95
+    ],
+    "rms_perp_px": 12.259
+   },
+   "manual_deviations": [
+    {
+     "_note_frame": "Ave F normal = (-1,-0.003), so POSITIVE offset moves the cut WEST. t = mosaic_y - 48.0.",
+     "date": "2026-08-18",
+     "offset_px": 123.0,
+     "ramp_px": 200.0,
+     "reason": "D-018 duplicated street label. Sheets 10 (west) and 43 (east) BOTH letter Ave. F or Church here, each with its cross-reference numeral ('43' on sheet 10, '10' on sheet 43), and both label bands straddle the pooled midline cut - sheet 10 at canvas x 19782-19949, sheet 43 at 19860-19933. The composite therefore showed half of each, 180 deg apart, as an illegible tangle. Moving the cut 123 px west (to canvas x ~19770) puts BOTH bands east of it, so sheet 43 supplies one complete label and sheet 10's duplicate is suppressed by ownership, not erased. Clearances: sheet 10's last drawn content ends 19745 (25 px), sheet 43's west page edge ends 19726 (44 px clear of the new cut). The cut stays in blank street on both plates.",
+     "street_match": "Ave. F or Church",
+     "t_range_mosaic": [
+      -400.0,
+      660.0
+     ],
+     "verified_by": "controller (Opus), from per-plate warps and ink-cluster extents at 1:1"
+    },
+    {
+     "date": "2026-08-18",
+     "offset_px": 120.0,
+     "ramp_px": 200.0,
+     "reason": "D-018 duplicated street label, second occurrence on Ave. F. Sheets 8 (west, label band canvas x 19844-19996) and 39 (east, 19853-19931) both letter the avenue across the cut. Moving the cut 120 px west (to ~19793) gives both bands to sheet 39, which supplies one complete label. Sheet 8's last content ends 19738 (55 px clear); sheet 39's west page edge ends 19654, well west of the new cut.",
+     "street_match": "Ave. F or Church",
+     "t_range_mosaic": [
+      -7330.0,
+      -5930.0
+     ],
+     "verified_by": "controller (Opus), from per-plate warps and ink-cluster extents at 1:1"
+    }
+   ],
+   "mean_half_street_width_px": 234.977,
+   "n_anchors": 8,
+   "orientation": "vertical",
+   "polyline_mosaic": [
+    [
+     3190.521,
+     -10947.826
+    ],
+    [
+     3180.686,
+     -7482.02
+    ],
+    [
+     3060.119,
+     -7282.361
+    ],
+    [
+     3056.147,
+     -5882.367
+    ],
+    [
+     3175.579,
+     -5682.027
+    ],
+    [
+     3161.022,
+     -552.048
+    ],
+    [
+     3037.455,
+     -352.398
+    ],
+    [
+     3034.447,
+     707.598
+    ],
+    [
+     3156.879,
+     907.946
+    ],
+    [
+     3128.126,
+     11040.983
+    ]
+   ],
+   "polyline_tn": [
+    [
+     -10995.82,
+     0.0
+    ],
+    [
+     -7530.0,
+     0.0
+    ],
+    [
+     -7330.0,
+     120.0
+    ],
+    [
+     -5930.0,
+     120.0
+    ],
+    [
+     -5730.0,
+     0.0
+    ],
+    [
+     -600.0,
+     0.0
+    ],
+    [
+     -400.0,
+     123.0
+    ],
+    [
+     660.0,
+     123.0
+    ],
+    [
+     860.0,
+     0.0
+    ],
+    [
+     10993.077,
+     0.0
+    ]
+   ],
+   "provenance": "cut = TLS midline through per-anchor midpoints of the two plates' solved frontage corners (seam-ward endpoints of the verified face segments); extended straight along the platted street; sides fixed by adjacency",
+   "sheet_side_sign": {
+    "10": 1.0,
+    "12": 1.0,
+    "39": -1.0,
+    "43": -1.0,
+    "49": -1.0,
+    "8": 1.0
+   },
+   "street_id": "ave_f_or_church",
+   "street_name": "Ave. F or Church"
+  },
+  {
+   "along_range": [
+    -10975.293,
+    11003.784
+   ],
+   "anchor_midline_residuals_px": {
+    "max_abs": 12.54,
+    "rms": 6.966
+   },
+   "anchors": [
+    {
+     "anchor": "18th St (top boundary)",
+     "file": "pair_39_40.json",
+     "midline_residual_px": 5.234,
+     "midpoint_mosaic": [
+      9239.29,
+      -10341.121
+     ],
+     "pair": [
+      39,
+      40
+     ],
+     "plates": {
+      "39": {
+       "corner_offsets_px": [
+        228.44,
+        226.909
+       ],
+       "corners_mosaic": [
+        [
+         9016.838,
+         -10585.639
+        ],
+        [
+         9016.868,
+         -10099.213
+        ]
+       ],
+       "corners_sheet_px": [
+        [
+         6145.0,
+         224.0
+        ],
+        [
+         6145.0,
+         709.0
+        ]
+       ],
+       "frontage_offset_px": 227.674,
+       "side": "right",
+       "side_sign": 1.0,
+       "source_sha256": "ed732111ccd0586a02829c236c38306550fa5b544c287c58d017e40a16a6a0ee"
+      },
+      "40": {
+       "corner_offsets_px": [
+        -231.78,
+        -202.633
+       ],
+       "corners_mosaic": [
+        [
+         9477.056,
+         -10584.168
+        ],
+        [
+         9446.399,
+         -10095.463
+        ]
+       ],
+       "corners_sheet_px": [
+        [
+         490.0,
+         201.0
+        ],
+        [
+         460.0,
+         688.0
+        ]
+       ],
+       "frontage_offset_px": -217.206,
+       "side": "left",
+       "side_sign": -1.0,
+       "source_sha256": "12a04ff5411de391d2a1941dd414e37ee68103da84c34cff1e7c4428a5b37b7f"
+      }
+     },
+     "solved_street_width_px": 444.881
+    },
+    {
+     "anchor": "19th St",
+     "file": "pair_39_40.json",
+     "midline_residual_px": -3.172,
+     "midpoint_mosaic": [
+      9240.579,
+      -8035.883
+     ],
+     "pair": [
+      39,
+      40
+     ],
+     "plates": {
+      "39": {
+       "corner_offsets_px": [
+        226.191,
+        234.689
+       ],
+       "corners_mosaic": [
+        [
+         9011.965,
+         -8278.876
+        ],
+        [
+         9001.965,
+         -7792.449
+        ]
+       ],
+       "corners_sheet_px": [
+        [
+         6140.0,
+         2524.0
+        ],
+        [
+         6130.0,
+         3009.0
+        ]
+       ],
+       "frontage_offset_px": 230.44,
+       "side": "right",
+       "side_sign": 1.0,
+       "source_sha256": "ed732111ccd0586a02829c236c38306550fa5b544c287c58d017e40a16a6a0ee"
+      },
+      "40": {
+       "corner_offsets_px": [
+        -236.31,
+        -237.26
+       ],
+       "corners_mosaic": [
+        [
+         9474.465,
+         -8277.963
+        ],
+        [
+         9473.921,
+         -7794.242
+        ]
+       ],
+       "corners_sheet_px": [
+        [
+         490.0,
+         2499.0
+        ],
+        [
+         490.0,
+         2981.0
+        ]
+       ],
+       "frontage_offset_px": -236.785,
+       "side": "left",
+       "side_sign": -1.0,
+       "source_sha256": "12a04ff5411de391d2a1941dd414e37ee68103da84c34cff1e7c4428a5b37b7f"
+      }
+     },
+     "solved_street_width_px": 467.225
+    },
+    {
+     "anchor": "20th St",
+     "file": "pair_39_40.json",
+     "midline_residual_px": -4.062,
+     "midpoint_mosaic": [
+      9234.334,
+      -5724.89
+     ],
+     "pair": [
+      39,
+      40
+     ],
+     "plates": {
+      "39": {
+       "corner_offsets_px": [
+        218.899,
+        227.428
+       ],
+       "corners_mosaic": [
+        [
+         9012.107,
+         -5963.087
+        ],
+        [
+         9002.107,
+         -5486.69
+        ]
+       ],
+       "corners_sheet_px": [
+        [
+         6140.0,
+         4833.0
+        ],
+        [
+         6130.0,
+         5308.0
+        ]
+       ],
+       "frontage_offset_px": 223.163,
+       "side": "right",
+       "side_sign": 1.0,
+       "source_sha256": "ed732111ccd0586a02829c236c38306550fa5b544c287c58d017e40a16a6a0ee"
+      },
+      "40": {
+       "corner_offsets_px": [
+        -230.806,
+        -231.771
+       ],
+       "corners_mosaic": [
+        [
+         9461.837,
+         -5970.766
+        ],
+        [
+         9461.285,
+         -5479.017
+        ]
+       ],
+       "corners_sheet_px": [
+        [
+         480.0,
+         4798.0
+        ],
+        [
+         480.0,
+         5288.0
+        ]
+       ],
+       "frontage_offset_px": -231.288,
+       "side": "left",
+       "side_sign": -1.0,
+       "source_sha256": "12a04ff5411de391d2a1941dd414e37ee68103da84c34cff1e7c4428a5b37b7f"
+      }
+     },
+     "solved_street_width_px": 454.452
+    },
+    {
+     "anchor": "22nd St",
+     "file": "pair_43_44.json",
+     "midline_residual_px": 4.606,
+     "midpoint_mosaic": [
+      9211.527,
+      -1146.088
+     ],
+     "pair": [
+      43,
+      44
+     ],
+     "plates": {
+      "43": {
+       "corner_offsets_px": [
+        234.525,
+        234.784
+       ],
+       "corners_mosaic": [
+        [
+         8982.368,
+         -1392.349
+        ],
+        [
+         8980.595,
+         -902.278
+        ]
+       ],
+       "corners_sheet_px": [
+        [
+         6045.0,
+         2479.0
+        ],
+        [
+         6045.0,
+         2968.0
+        ]
+       ],
+       "frontage_offset_px": 234.655,
+       "side": "right",
+       "side_sign": 1.0,
+       "source_sha256": "af7d25e4a6f44a9a9fc6e0c04a4a11b8c12ceb886c8e56b6a2657b6b8b0ecf7a"
+      },
+      "44": {
+       "corner_offsets_px": [
+        -224.798,
+        -226.086
+       ],
+       "corners_mosaic": [
+        [
+         9441.692,
+         -1391.776
+        ],
+        [
+         9441.455,
+         -897.95
+        ]
+       ],
+       "corners_sheet_px": [
+        [
+         480.0,
+         2502.0
+        ],
+        [
+         480.0,
+         2994.0
+        ]
+       ],
+       "frontage_offset_px": -225.442,
+       "side": "left",
+       "side_sign": -1.0,
+       "source_sha256": "47621807b513de7e8809b9b547c2cd7ded1e3b09e4d861b723c1225e4d4ffea6"
+      }
+     },
+     "solved_street_width_px": 460.097
+    },
+    {
+     "anchor": "23rd St",
+     "file": "pair_43_44.json",
+     "midline_residual_px": 2.21,
+     "midpoint_mosaic": [
+      9206.787,
+      1165.456
+     ],
+     "pair": [
+      43,
+      44
+     ],
+     "plates": {
+      "43": {
+       "corner_offsets_px": [
+        235.75,
+        236.01
+       ],
+       "corners_mosaic": [
+        [
+         8973.998,
+         921.706
+        ],
+        [
+         8972.222,
+         1412.779
+        ]
+       ],
+       "corners_sheet_px": [
+        [
+         6045.0,
+         4788.0
+        ],
+        [
+         6045.0,
+         5278.0
+        ]
+       ],
+       "frontage_offset_px": 235.88,
+       "side": "right",
+       "side_sign": 1.0,
+       "source_sha256": "af7d25e4a6f44a9a9fc6e0c04a4a11b8c12ceb886c8e56b6a2657b6b8b0ecf7a"
+      },
+      "44": {
+       "corner_offsets_px": [
+        -230.819,
+        -232.101
+       ],
+       "corners_mosaic": [
+        [
+         9440.581,
+         917.761
+        ],
+        [
+         9440.345,
+         1409.579
+        ]
+       ],
+       "corners_sheet_px": [
+        [
+         480.0,
+         4803.0
+        ],
+        [
+         480.0,
+         5293.0
+        ]
+       ],
+       "frontage_offset_px": -231.46,
+       "side": "left",
+       "side_sign": -1.0,
+       "source_sha256": "47621807b513de7e8809b9b547c2cd7ded1e3b09e4d861b723c1225e4d4ffea6"
+      }
+     },
+     "solved_street_width_px": 467.34
+    },
+    {
+     "anchor": "25th St (Rosenberg Ave)",
+     "file": "pair_49_50.json",
+     "midline_residual_px": -9.029,
+     "midpoint_mosaic": [
+      9203.619,
+      5831.536
+     ],
+     "pair": [
+      49,
+      50
+     ],
+     "plates": {
+      "49": {
+       "corner_offsets_px": [
+        228.95,
+        227.524
+       ],
+       "corners_mosaic": [
+        [
+         8966.769,
+         5465.749
+        ],
+        [
+         8965.936,
+         6197.159
+        ]
+       ],
+       "corners_sheet_px": [
+        [
+         6100.0,
+         2383.0
+        ],
+        [
+         6100.0,
+         3111.0
+        ]
+       ],
+       "frontage_offset_px": 228.237,
+       "side": "right",
+       "side_sign": 1.0,
+       "source_sha256": "ce9382f5fdedea88527e7a4f38a3ce77c3c83f305b48ebb9366f84bf2151e55b"
+      },
+      "50": {
+       "corner_offsets_px": [
+        -246.84,
+        -245.75
+       ],
+       "corners_mosaic": [
+        [
+         9442.553,
+         5467.946
+        ],
+        [
+         9439.218,
+         6195.291
+        ]
+       ],
+       "corners_sheet_px": [
+        [
+         480.0,
+         2381.0
+        ],
+        [
+         480.0,
+         3106.0
+        ]
+       ],
+       "frontage_offset_px": -246.295,
+       "side": "left",
+       "side_sign": -1.0,
+       "source_sha256": "51ff18dfbe0b22e404b80b4c630b8b95e33ab6df101af7b87ad349f71754fde2"
+      }
+     },
+     "solved_street_width_px": 474.531
+    },
+    {
+     "anchor": "26th St",
+     "file": "pair_49_50.json",
+     "midline_residual_px": -8.327,
+     "midpoint_mosaic": [
+      9195.382,
+      8271.909
+     ],
+     "pair": [
+      49,
+      50
+     ],
+     "plates": {
+      "49": {
+       "corner_offsets_px": [
+        228.967,
+        223.007
+       ],
+       "corners_mosaic": [
+        [
+         8958.823,
+         8033.716
+        ],
+        [
+         8963.3,
+         8513.96
+        ]
+       ],
+       "corners_sheet_px": [
+        [
+         6095.0,
+         4939.0
+        ],
+        [
+         6100.0,
+         5417.0
+        ]
+       ],
+       "frontage_offset_px": 225.987,
+       "side": "right",
+       "side_sign": 1.0,
+       "source_sha256": "ce9382f5fdedea88527e7a4f38a3ce77c3c83f305b48ebb9366f84bf2151e55b"
+      },
+      "50": {
+       "corner_offsets_px": [
+        -243.002,
+        -242.277
+       ],
+       "corners_mosaic": [
+        [
+         9430.811,
+         8028.2
+        ],
+        [
+         9428.593,
+         8511.759
+        ]
+       ],
+       "corners_sheet_px": [
+        [
+         480.0,
+         4933.0
+        ],
+        [
+         480.0,
+         5415.0
+        ]
+       ],
+       "frontage_offset_px": -242.64,
+       "side": "left",
+       "side_sign": -1.0,
+       "source_sha256": "51ff18dfbe0b22e404b80b4c630b8b95e33ab6df101af7b87ad349f71754fde2"
+      }
+     },
+     "solved_street_width_px": 468.627
+    },
+    {
+     "anchor": "27th St (bottom boundary)",
+     "file": "pair_49_50.json",
+     "midline_residual_px": 12.54,
+     "midpoint_mosaic": [
+      9168.144,
+      10335.478
+     ],
+     "pair": [
+      49,
+      50
+     ],
+     "plates": {
+      "49": {
+       "corner_offsets_px": [
+        239.546
+       ],
+       "corners_mosaic": [
+        [
+         8941.131,
+         10337.439
+        ]
+       ],
+       "corners_sheet_px": [
+        [
+         6080.0,
+         7232.0
+        ]
+       ],
+       "frontage_offset_px": 239.546,
+       "side": "right",
+       "side_sign": 1.0,
+       "source_sha256": "ce9382f5fdedea88527e7a4f38a3ce77c3c83f305b48ebb9366f84bf2151e55b"
+      },
+      "50": {
+       "corner_offsets_px": [
+        -214.466
+       ],
+       "corners_mosaic": [
+        [
+         9395.156,
+         10333.518
+        ]
+       ],
+       "corners_sheet_px": [
+        [
+         455.0,
+         7231.0
+        ]
+       ],
+       "frontage_offset_px": -214.466,
+       "side": "left",
+       "side_sign": -1.0,
+       "source_sha256": "51ff18dfbe0b22e404b80b4c630b8b95e33ab6df101af7b87ad349f71754fde2"
+      }
+     },
+     "solved_street_width_px": 454.011
+    }
+   ],
+   "flagged_spans": [],
+   "line_fit": {
+    "dir": [
+     -0.003,
+     1.0
+    ],
+    "n_points": 8,
+    "normal": [
+     -1.0,
+     -0.003
+    ],
+    "p0": [
+     9212.458,
+     44.55
+    ],
+    "rms_perp_px": 6.966
+   },
+   "manual_deviations": [
+    {
+     "date": "2026-08-18",
+     "offset_px": 86.0,
+     "ramp_px": 200.0,
+     "reason": "D-018 duplicated street label. Sheets 39 (west, label band canvas x 25877-26046) and 40 (east, 25912-26070) both letter Ave. I or Sealy across the cut; their cross-reference numerals ('40' and '39') collided inside the lettering, printing as 'AVE. I 4/9/3 OR SEALY'. Moving the cut 86 px west (to ~25860) gives both bands to sheet 40. Sheet 39's last content west of the label ends 25792 (68 px clear); sheet 40's west page edge (25715-25788) stays west of the new cut and is not pulled in.",
+     "street_match": "Ave. I or Sealy",
+     "t_range_mosaic": [
+      -7580.0,
+      -6170.0
+     ],
+     "verified_by": "controller (Opus), from per-plate warps and ink-cluster extents at 1:1"
+    },
+    {
+     "date": "2026-08-18",
+     "offset_px": 76.0,
+     "ramp_px": 200.0,
+     "reason": "D-018 duplicated street label, second occurrence on Ave. I. Sheets 43 (west, label band canvas x 25898-25974) and 44 (east, 25917-25998) both letter the avenue across the cut. Moving the cut 76 px west (to ~25870) gives both bands to sheet 44. Sheet 43's last content ends 25777 (93 px clear); sheet 44's west page edge (25693-25772) stays west of the new cut.",
+     "street_match": "Ave. I or Sealy",
+     "t_range_mosaic": [
+      -880.0,
+      530.0
+     ],
+     "verified_by": "controller (Opus), from per-plate warps and ink-cluster extents at 1:1"
+    }
+   ],
+   "mean_half_street_width_px": 230.698,
+   "n_anchors": 8,
+   "orientation": "vertical",
+   "polyline_mosaic": [
+    [
+     9246.344,
+     -10930.691
+    ],
+    [
+     9236.479,
+     -7735.413
+    ],
+    [
+     9149.862,
+     -7535.68
+    ],
+    [
+     9145.508,
+     -6125.686
+    ],
+    [
+     9230.89,
+     -5925.422
+    ],
+    [
+     9215.792,
+     -1035.445
+    ],
+    [
+     9139.175,
+     -835.681
+    ],
+    [
+     9134.822,
+     574.313
+    ],
+    [
+     9210.204,
+     774.546
+    ],
+    [
+     9178.483,
+     11048.281
+    ]
+   ],
+   "polyline_tn": [
+    [
+     -10975.293,
+     0.0
+    ],
+    [
+     -7780.0,
+     0.0
+    ],
+    [
+     -7580.0,
+     86.0
+    ],
+    [
+     -6170.0,
+     86.0
+    ],
+    [
+     -5970.0,
+     0.0
+    ],
+    [
+     -1080.0,
+     0.0
+    ],
+    [
+     -880.0,
+     76.0
+    ],
+    [
+     530.0,
+     76.0
+    ],
+    [
+     730.0,
+     0.0
+    ],
+    [
+     11003.784,
+     0.0
+    ]
+   ],
+   "provenance": "cut = TLS midline through per-anchor midpoints of the two plates' solved frontage corners (seam-ward endpoints of the verified face segments); extended straight along the platted street; sides fixed by adjacency",
+   "sheet_side_sign": {
+    "39": 1.0,
+    "40": -1.0,
+    "43": 1.0,
+    "44": -1.0,
+    "49": 1.0,
+    "50": -1.0
+   },
+   "street_id": "ave_i_or_sealy",
+   "street_name": "Ave. I or Sealy"
+  }
+ ],
+ "target_extent": {
+  "bay_sheets": [
+   7,
+   9,
+   11
+  ],
+  "canvas_rect_mosaic": [
+   -16734,
+   -8279,
+   9472,
+   6210
+  ],
+  "description": "canvas = bbox of the 12 solved footprints intersected with the target extent (Ave A/Water to Ave I/Sealy; 19th to 25th St) + reserved blank bay-side band for the sheet-5 panels",
+  "footprint_bbox_mosaic": [
+   -9273.292,
+   -10730.089,
+   15576.893,
+   10852.227
+  ],
+  "line_sources": {
+   "19th": [
+    {
+     "anchor": "19th St",
+     "face_index": 0,
+     "file": "pair_7_8.json",
+     "sheet": 7
+    },
+    {
+     "anchor": "19th St",
+     "face_index": 0,
+     "file": "pair_7_8.json",
+     "sheet": 8
+    },
+    {
+     "anchor": "19th St",
+     "face_index": 0,
+     "file": "pair_8_39.json",
+     "sheet": 8
+    },
+    {
+     "anchor": "19th St",
+     "face_index": 0,
+     "file": "pair_8_39.json",
+     "sheet": 39
+    },
+    {
+     "anchor": "19th St",
+     "face_index": 0,
+     "file": "pair_39_40.json",
+     "sheet": 39
+    },
+    {
+     "anchor": "19th St",
+     "face_index": 0,
+     "file": "pair_39_40.json",
+     "sheet": 40
+    }
+   ],
+   "25th": [
+    {
+     "anchor": "25th St (Rosenberg Ave)",
+     "face_index": 1,
+     "file": "pair_11_12.json",
+     "sheet": 11
+    },
+    {
+     "anchor": "25th St (Rosenberg Ave)",
+     "face_index": 1,
+     "file": "pair_11_12.json",
+     "sheet": 12
+    },
+    {
+     "anchor": "25th St (Rosenberg Ave)",
+     "face_index": 1,
+     "file": "pair_12_49.json",
+     "sheet": 12
+    },
+    {
+     "anchor": "25th St (Rosenberg Ave)",
+     "face_index": 1,
+     "file": "pair_12_49.json",
+     "sheet": 49
+    },
+    {
+     "anchor": "25th St (Rosenberg Ave)",
+     "face_index": 1,
+     "file": "pair_49_50.json",
+     "sheet": 49
+    },
+    {
+     "anchor": "25th St (Rosenberg Ave)",
+     "face_index": 1,
+     "file": "pair_49_50.json",
+     "sheet": 50
+    }
+   ],
+   "sealy_east": [
+    {
+     "anchor": "18th St (top boundary)",
+     "file": "pair_39_40.json",
+     "sheet": 40
+    },
+    {
+     "anchor": "19th St",
+     "file": "pair_39_40.json",
+     "sheet": 40
+    },
+    {
+     "anchor": "20th St",
+     "file": "pair_39_40.json",
+     "sheet": 40
+    },
+    {
+     "anchor": "22nd St",
+     "file": "pair_43_44.json",
+     "sheet": 44
+    },
+    {
+     "anchor": "23rd St",
+     "file": "pair_43_44.json",
+     "sheet": 44
+    },
+    {
+     "anchor": "25th St (Rosenberg Ave)",
+     "file": "pair_49_50.json",
+     "sheet": 50
+    },
+    {
+     "anchor": "26th St",
+     "file": "pair_49_50.json",
+     "sheet": 50
+    },
+    {
+     "anchor": "27th St (bottom boundary)",
+     "file": "pair_49_50.json",
+     "sheet": 50
+    }
+   ]
+  },
+  "lines": {
+   "ave_i_east_frontage": {
+    "dir": [
+     -0.003,
+     1.0
+    ],
+    "n_points": 15,
+    "normal": [
+     -1.0,
+     -0.003
+    ],
+    "p0": [
+     9446.358,
+     -641.819
+    ],
+    "rms_perp_px": 10.692
+   },
+   "st_19th_north_face": {
+    "dir": [
+     1.0,
+     -0.001
+    ],
+    "n_points": 12,
+    "normal": [
+     0.001,
+     1.0
+    ],
+    "p0": [
+     3194.366,
+     -8275.202
+    ],
+    "rms_perp_px": 4.409
+   },
+   "st_25th_south_face": {
+    "dir": [
+     1.0,
+     -0.001
+    ],
+    "n_points": 12,
+    "normal": [
+     0.001,
+     1.0
+    ],
+    "p0": [
+     3163.543,
+     6199.788
+    ],
+    "rms_perp_px": 5.087
+   }
+  },
+  "notes": [
+   "band width = widest sheet-5 panel (3866 px) x kappa ratio 1.876 (kappa_mosaic 5.797 / sheet5 3.09 px/ft) + 200 px margin; kappa is prior-dominated (see transforms.json kappa_note) so the band is a RESERVATION, not solved geometry",
+   "right edge = Sealy east frontage line (target ends at Ave I)",
+   "top edge = 19th St outer (north) face line from boundary-row anchors",
+   "bottom edge = 25th St (Rosenberg) outer (south) face line"
+  ],
+  "reserved_bay_band": {
+   "mosaic_rect": [
+    -16734,
+    -8279,
+    -9274,
+    6210
+   ],
+   "panels": [
+    {
+     "region_id": "A",
+     "width_sheet5_px": 3866.0
+    },
+    {
+     "region_id": "B",
+     "width_sheet5_px": 2864.0
+    }
+   ],
+   "sheet5_scale_px_per_ft": 3.09,
+   "status": "reserved-empty: sheet-5 attachments out of scope for this stage",
+   "width_px": 7460
+  }
+ }
+}
