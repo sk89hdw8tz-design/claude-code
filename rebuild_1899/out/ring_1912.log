@@ -1,8 +1,12 @@
-  55: PRIOR (fit rejected med=30.9 kept=4 th=12.27 (nbr 0.07) sc=0.8307 (nbr 2.0094))
-  14: PRIOR (fit rejected med=28.1 kept=10 th=-1.10 (nbr 0.06) sc=1.7302 (nbr 2.0034))
-  13: PRIOR (fit rejected med=24.8 kept=5 th=-2.12 (nbr 0.03) sc=2.2991 (nbr 1.9969))
-  56: fit n=46 med=14.6 th=+0.04 sc=2.015
-  61: PRIOR (only 2 correspondences)
-  16: PRIOR (only 41 correspondences)
-  15: PRIOR (only 46 correspondences)
-  67: PRIOR (only 5 correspondences)
+  13: PRIOR (fit failed (no per-neighbour fit; 2 correspondences))
+  14: PRIOR (fit failed (no per-neighbour fit; 41 correspondences))
+  55: PRIOR (fit rejected med=41.8 kept=24 th=-0.11 (nbr 0.06) sc=1.9491 (nbr 2.0034))
+  56: fit n=47 med=14.9 th=+0.03 sc=2.002
+  62: PRIOR (fit rejected med=28.7 kept=3 th=1.58 (nbr 0.03) sc=2.1550 (nbr 2.0024))
+  61: PRIOR (fit rejected med=78.1 kept=7 th=-2.08 (nbr 0.04) sc=2.0357 (nbr 2.0000))
+  16: PRIOR (fit rejected med=61.7 kept=10 th=-2.10 (nbr 0.05) sc=1.9869 (nbr 1.9975))
+  15: PRIOR (fit rejected med=40.4 kept=8 th=1.61 (nbr 0.03) sc=1.7798 (nbr 1.9969))
+  69: PRIOR (fit rejected med=27.8 kept=4 th=1.95 (nbr 0.04) sc=1.7911 (nbr 2.0000))
+  68: PRIOR (fit rejected med=20.9 kept=10 th=-2.48 (nbr 0.05) sc=1.9334 (nbr 1.9975))
+  67: fit n=13 med=11.5 th=-1.22 sc=1.989
+  76: PRIOR (fit rejected med=66.4 kept=5 th=-1.06 (nbr 0.05) sc=1.9174 (nbr 1.9975))

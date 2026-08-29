@@ -33,6 +33,14 @@
    ],
    "confidence": "high",
    "note": "NW corner of block south of 15th St immediately east of the 20-ft street (block with houses 213-223); reference outline on 45, full block on 43; anchored by adjacency to the T.H. hydrant"
+  },
+  {
+   "pair": [
+    "45",
+    "46"
+   ],
+   "status": "featureless",
+   "note": "Overlap is only the Av C (Mechanic) corridor: 45 draws it at x 3115-3400 (its east sheet edge, labeled AV. C OR MECHANIC with ref numeral 46), 46 draws only x 0-190 east of a match-line bracket labeled 45. No hydrants, rails or building work in the corridor on either sheet. NOTE: seam metadata owner_native=2217 is wrong - 45 x2217 is Av B/Strand with blocks 612-614 east of it; the true seam avenue is Av C at 45 x~3250. Blocks 552-554 (46) adjoin blocks 612-614 (45) across Av C; house-number columns 1201-1227 repeat on both avenues (trap)."
   }
  ]
 }

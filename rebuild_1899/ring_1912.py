@@ -132,7 +132,7 @@ def match_pts(uid, other, Mu, tu, search, thr=0.42):
 def fit_similarity(cor):
     A = np.array([c[0] for c in cor]); B = np.array([c[1] for c in cor])
     w = np.ones(len(A)); res = np.full(len(A), 1e9)
-    for _ in range(6):
+    for it in range(8):
         if w.sum() < 1e-6:
             return None
         ca = (A * w[:, None]).sum(0) / w.sum()
@@ -153,11 +153,46 @@ def fit_similarity(cor):
         t = cb - s * R @ ca
         res = np.hypot(*(((s * (R @ A0.T)).T + cb) - B).T)
         w = np.where(res <= 12, 1.0, np.sqrt(12 / np.maximum(res, 1e-9)))
-        w = np.where(res > 120, 0.0, w)
+        if it >= 2:                     # let the fit settle before hard cuts
+            w = np.where(res > 120, 0.0, w)
     keep = w > 0
     if keep.sum() < 3:
         return None
     return s * R, t, float(np.median(res[keep])), int(keep.sum())
+
+def fit_multi(cors_by_nbr):
+    """Per-neighbour pre-fits, then a merged fit over agreeing neighbours.
+    Different seed poses put different neighbours' correspondences in
+    conflict; fitting per neighbour first and merging only those whose
+    poses agree (within 2 deg / 5% / 250 px at the unit centre) avoids the
+    mid-way collapse."""
+    pre = {}
+    for nb, cor in cors_by_nbr.items():
+        if len(cor) >= 3:
+            f = fit_similarity(cor)
+            if f:
+                pre[nb] = (f, cor)
+    if not pre:
+        return None, "no per-neighbour fit"
+    # cluster by pose agreement, seed = most-supported fit
+    best_nb = max(pre, key=lambda nb: pre[nb][0][3])
+    (Mb, tb, _, _), _ = pre[best_nb]
+    merged = list(pre[best_nb][1])
+    agree = [best_nb]
+    c0 = np.array([1700.0, 2000.0])
+    for nb, ((M, t, _, _), cor) in pre.items():
+        if nb == best_nb:
+            continue
+        dth = abs(np.degrees(np.arctan2(M[1,0],M[0,0])) - np.degrees(np.arctan2(Mb[1,0],Mb[0,0])))
+        dsc = abs(np.hypot(M[0,0],M[1,0]) - np.hypot(Mb[0,0],Mb[1,0]))
+        dpt = np.hypot(*((M @ c0 + t) - (Mb @ c0 + tb)))
+        if dth <= 2.0 and dsc <= 0.1 and dpt <= 250:
+            merged += cor
+            agree.append(nb)
+    f = fit_similarity(merged)
+    if not f:
+        return None, "merged fit failed"
+    return f, f"merged {len(agree)}/{len(pre)} neighbours"
 
 flags, report = {}, {}
 pool = set(UNITS) - set(placed)
@@ -176,7 +211,7 @@ while pool:
         flags[uid] = "no placed neighbour"
         report[uid] = {"how": "isolated"}
         continue
-    cors = []
+    cors_by_nbr = {}
     nb_th, nb_sc = [], []
     seedref = None
     for p in nbr_pairs.get(uid, []):
@@ -188,9 +223,12 @@ while pool:
         nb_sc.append(np.hypot(M[0, 0], M[1, 0]))
         seedref = seedref or (p, other)
         Mu, tu = seed_pose(uid, p, other)
-        cors += match_pts(uid, other, Mu, tu, search=380)
+        got = match_pts(uid, other, Mu, tu, search=380)
+        if got:
+            cors_by_nbr.setdefault(other, []).extend(got)
     nth, nsc = float(np.median(nb_th)), float(np.median(nb_sc))
-    fit = fit_similarity(cors) if len(cors) >= 3 else None
+    fit, fitnote = fit_multi(cors_by_nbr) if cors_by_nbr else (None, "no matches")
+    cors = [c for v in cors_by_nbr.values() for c in v]
     if fit:
         M, t, med, kept = fit
         th = float(np.degrees(np.arctan2(M[1, 0], M[0, 0])))
@@ -205,7 +243,7 @@ while pool:
         flags[uid] = (f"fit rejected med={med:.1f} kept={kept} th={th:.2f} "
                       f"(nbr {nth:.2f}) sc={sc:.4f} (nbr {nsc:.4f})")
     else:
-        flags[uid] = f"only {len(cors)} correspondences"
+        flags[uid] = f"fit failed ({fitnote}; {len(cors)} correspondences)"
     p, other = seedref
     Mu, tu = seed_pose(uid, p, other)
     placed[uid] = {"m": Mu, "t": tu, "how": "prior"}

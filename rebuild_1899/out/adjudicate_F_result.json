@@ -50,6 +50,23 @@
    ],
    "confidence": "high",
    "note": "Black hydrant dot labeled T.H. in 21st/Centre St corridor just east of the avenue crossing at x~2200; identified on both sheets by the label T.H. and its position NE of the avenue/21st intersection (only such dot along this seam). Measured dot center."
+  },
+  {
+   "pair": [
+    "63",
+    "67"
+   ],
+   "id": "tie-63-67-2",
+   "owner_xy": [
+    3100,
+    3663
+   ],
+   "nbr_xy": [
+    3077,
+    128
+   ],
+   "confidence": "low",
+   "note": "SE corner of the north-side block front where the 21st St block line (houses 1518-1524, nrs 2026/2028 around the corner) turns north along the avenue at x~3100. On 67 this block is drawn only as a marginal reference outline above the street; corner measured where the reference line jogs north. Schematic on 67, hence low; offset disagrees with hydrant tie by ~25-30 px."
   }
  ]
 }
