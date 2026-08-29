@@ -45,3 +45,15 @@ alarm boxes and dash rows the relocation agents condemned. Proposed
 verdict: registration passes THE BAR on surveyed structural landmarks;
 symbol placement variance (≤16 px) is a disclosed source property.
 Confirm, or direct otherwise.
+
+## HQ-5 · City-wide expansion status — INFO (no answer needed yet)
+
+Scope extended per your direction: all sheets, both years. 1899: 87 sheets /
+90 units placed (frozen gated downtown core + ring solve; 26 sparse southern
+units under blind tie-point adjudication; draft preview
+`outputs/qc/preview_1899_city_draft.png`). 6 sheets excluded with cause
+(rotated wharf-pier sheets 01/02/03/09/10, Texas City inset 94). 1912: all
+233 source files fetched and hash-verified (archival for the accepted core,
+IIIF pct:50 working copies elsewhere; full-res URLs recorded); key-map span
+transcription in progress; registration will freeze the accepted 13-sheet
+core and ring outward, same as 1899.

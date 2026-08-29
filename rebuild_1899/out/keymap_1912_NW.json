@@ -799,6 +799,105 @@
     3430
    ],
    "note": "All blocks are outlot quarters (42, 41, 67, 66 series); sheet 53's dashed boundary begins just E of this sheet."
+  },
+  {
+   "sheet": 13,
+   "streets": [
+    27,
+    30
+   ],
+   "avenues": [
+    "A",
+    "B",
+    "C"
+   ],
+   "keymap_rect": [
+    1240,
+    3440,
+    1520,
+    3860
+   ],
+   "note": "Narrow waterfront blocks 747-749 on W edge next to pier sheets 5/4; E boundary printed AVENUE \"C\" OR MECHANIC. FIRE LIMITS line along 27th at its N edge."
+  },
+  {
+   "sheet": 14,
+   "streets": [
+    27,
+    30
+   ],
+   "avenues": [
+    "C",
+    "D",
+    "E",
+    "F"
+   ],
+   "keymap_rect": [
+    1545,
+    3450,
+    1900,
+    3880
+   ],
+   "note": "Avenues printed AVENUE \"C\" OR MECHANIC, \"D\" OR MARKET, \"E\" OR POST OFFICE, \"F\" OR CHURCH; FIRE LIMITS line zigzags through this sheet."
+  },
+  {
+   "sheet": 55,
+   "streets": [
+    27,
+    30
+   ],
+   "avenues": [
+    "F",
+    "G",
+    "H",
+    "I"
+   ],
+   "keymap_rect": [
+    1920,
+    3455,
+    2300,
+    3890
+   ],
+   "note": "Avenues printed AVENUE \"F\" OR CHURCH, \"G\" OR WINNIE, \"H\" OR BALL, \"I\" OR SEALY."
+  },
+  {
+   "sheet": 56,
+   "streets": [
+    27,
+    30
+   ],
+   "avenues": [
+    "I",
+    "J",
+    "K",
+    "L"
+   ],
+   "keymap_rect": [
+    2320,
+    3460,
+    2720,
+    3900
+   ],
+   "note": "Avenues printed AVENUE \"I\" OR SEALY, AVENUE \"J\" OR BROADWAY, \"K\", \"L\"."
+  },
+  {
+   "sheet": 57,
+   "streets": [
+    27,
+    30
+   ],
+   "avenues": [
+    "L",
+    "M",
+    "M 1/2",
+    "N"
+   ],
+   "keymap_rect": [
+    2740,
+    3470,
+    3080,
+    3910
+   ],
+   "note": "E blocks are outlot quarters (15, 14 N.E./S.E./N.W./S.W.); internal street printed 29TH."
   }
  ]
 }
