@@ -1,1 +1,44 @@
-{"results": []}
+{
+ "results": [
+  {
+   "sheet": 73,
+   "streets": [
+    33,
+    36
+   ],
+   "avenues": [
+    "P 1/2",
+    "Q",
+    "Q 1/2",
+    "R"
+   ],
+   "keymap_rect": [
+    3665,
+    4235,
+    3995,
+    4605
+   ],
+   "note": "Map is rotated: numbered streets run horizontal (33rd top bound, 36th bottom), avenues vertical. Left half of blocks 87/86 (west of P 1/2) excluded."
+  },
+  {
+   "sheet": 74,
+   "streets": [
+    33,
+    36
+   ],
+   "avenues": [
+    "R",
+    "R 1/2",
+    "S",
+    "S 1/2"
+   ],
+   "keymap_rect": [
+    4040,
+    4230,
+    4370,
+    4600
+   ],
+   "note": "NE corner approaches Seawall Boulevard; block 162 split down S 1/2, seaward half belongs to sheet 99."
+  }
+ ]
+}

@@ -25,7 +25,7 @@
    13
   ]
  },
- "count": 129,
+ "count": 233,
  "items": [
   {
    "file": "sanborn08539_004_img000_full.jpg",
@@ -1960,6 +1960,1566 @@
     "repo": "sk89hdw8tz-design/claude-code",
     "branch": "claude/galveston-1912-source-data",
     "path": "galveston_1912_sources/sanborn08539_004_img023_archival.jp2"
+   }
+  },
+  {
+   "file": "pct50/sheet_0001.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0001/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0001/full/pct:100/0/default.jpg",
+   "sha256": "e9b7aa0c737579856b043170abfe36c87c41c374ffa7edc248c78df61e99b9b1",
+   "bytes": 796952,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0001.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0002.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0002/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0002/full/pct:100/0/default.jpg",
+   "sha256": "ad00a7deaebbf76e0b51e58b2d189f17358f81ef483bce53362d71b7f0f65ddf",
+   "bytes": 1108267,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0002.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0003.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0003/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0003/full/pct:100/0/default.jpg",
+   "sha256": "70b8b81d2ca137af8333ec35bdfcc4394908cfaa34f89cc03d56f202de7f9164",
+   "bytes": 1238152,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0003.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0004.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0004/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0004/full/pct:100/0/default.jpg",
+   "sha256": "c92f20007f4e0d8b2082f2e5ffc826a8d7dfdc9cbe0ab9b07b4cb94dd820622d",
+   "bytes": 993243,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0004.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0005.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0005/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0005/full/pct:100/0/default.jpg",
+   "sha256": "dfec0a7998a7beb864d1a1e42d089fb84324f841bd30b75658a8350bb9e4733a",
+   "bytes": 1324030,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0005.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0006.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0006/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0006/full/pct:100/0/default.jpg",
+   "sha256": "3e9fbb8666c39c30514448f3e24dd089bd85212c82e3397aea559b0e61be5356",
+   "bytes": 1221997,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0006.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0007.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0007/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0007/full/pct:100/0/default.jpg",
+   "sha256": "0550ea069470196801ca63882700d39ba0aade9ea2832df50ffb804682817f3c",
+   "bytes": 1540457,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0007.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0008.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0008/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0008/full/pct:100/0/default.jpg",
+   "sha256": "ea03efffd28953ce7d57ab46c7ddd290ab72e1dbf97f34f737102a538c67dff9",
+   "bytes": 1422915,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0008.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0009.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0009/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0009/full/pct:100/0/default.jpg",
+   "sha256": "612623d48edd368295c6c0f5e460d47a8a4dab3d03f83c5dc9d314c1b17aedee",
+   "bytes": 1583811,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0009.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0010.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0010/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0010/full/pct:100/0/default.jpg",
+   "sha256": "9793b600daba7ac461bb6eaeaa864f6f2e367bb0889593da624c0e4a947407e0",
+   "bytes": 1694994,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0010.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0012.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0012/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0012/full/pct:100/0/default.jpg",
+   "sha256": "e664db4df7f1ad1dafdcb6a34dd3cfa9e38203f0f21b119df749ec2d34f0b49c",
+   "bytes": 1393071,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0012.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0013.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0013/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0013/full/pct:100/0/default.jpg",
+   "sha256": "d2f22b5ce3c6c32c9bc01305d5318f26ba6a09dce756bb0a8053a64720423f87",
+   "bytes": 1337579,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0013.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0014.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0014/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0014/full/pct:100/0/default.jpg",
+   "sha256": "ad178dcce104eff2c242d90e41a6e5cba68a65d13b49a8ea7c431a71eb3f2bbb",
+   "bytes": 1439966,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0014.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0015.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0015/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0015/full/pct:100/0/default.jpg",
+   "sha256": "302c5dc9a68525ddb5a896dbaac44d011b7138b34fed93195edca17bfc6606ff",
+   "bytes": 1205893,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0015.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0016.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0016/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0016/full/pct:100/0/default.jpg",
+   "sha256": "5b2f3ca145fcf3c5fdfef65f506f6ecdef2669f7895b23faaf923c0ab995a735",
+   "bytes": 1211249,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0016.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0017.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0017/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0017/full/pct:100/0/default.jpg",
+   "sha256": "e687d70ec9ba99343ddf0b207612b0f1f0eef152a63108a576a431fed734604a",
+   "bytes": 926978,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0017.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0018.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0018/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0018/full/pct:100/0/default.jpg",
+   "sha256": "88dfd210d6366b68dab748b39f234697556d328881342fd2fe7b183286d83f3a",
+   "bytes": 1138824,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0018.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0019.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0019/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0019/full/pct:100/0/default.jpg",
+   "sha256": "6cae3391a42b6585080a9978907d3d59dbbd416fd8013e24afa47d9683b46fd0",
+   "bytes": 1089043,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0019.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0020.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0020/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0020/full/pct:100/0/default.jpg",
+   "sha256": "39a021343a033ad14af4590a10ce58ca179a3ac1bf7cd4e8b0ce04fd5bf78081",
+   "bytes": 1007168,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0020.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0021.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0021/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0021/full/pct:100/0/default.jpg",
+   "sha256": "d3f4e65bf279e8a7ac38e3e6d2901b9e0e3fc8ace35f99cfc123b14968274d0a",
+   "bytes": 1121469,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0021.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0022.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0022/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0022/full/pct:100/0/default.jpg",
+   "sha256": "fcedfc490dd08aa9d8c6e4009cb7ce55fdbc50d8f8cbaa0410ce5cdaa37f9e6d",
+   "bytes": 1272603,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0022.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0023.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0023/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0023/full/pct:100/0/default.jpg",
+   "sha256": "7ccbb7fd4a3113b1232698178b0fa0620fd104934bd5fb92ad7f00ea2d19d29a",
+   "bytes": 1089534,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0023.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0024.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0024/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0024/full/pct:100/0/default.jpg",
+   "sha256": "db71c04c23a429643904067b47bea2449b1227cee6a9c50f05664a07674444f3",
+   "bytes": 1168258,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0024.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0025.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0025/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0025/full/pct:100/0/default.jpg",
+   "sha256": "e48c5e0955b2466c57d7a91b6af08b4b9bf36b77ec5298c2a0e670e7d063722f",
+   "bytes": 949657,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0025.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0026.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0026/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0026/full/pct:100/0/default.jpg",
+   "sha256": "01f5bacc6206d6ab2be2ddfb95f4a7725bb2c87270a155433cf754815cc85df4",
+   "bytes": 949828,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0026.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0027.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0027/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0027/full/pct:100/0/default.jpg",
+   "sha256": "812c918f5466a6a7f645d97b29321db9795d7f461a39089a22131496878f088a",
+   "bytes": 1205262,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0027.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0028.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0028/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0028/full/pct:100/0/default.jpg",
+   "sha256": "3aa0f215c84583fe8a0852dc273715afc9cabce94a595d1b0e1099719d3ea627",
+   "bytes": 1263924,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0028.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0029.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0029/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0029/full/pct:100/0/default.jpg",
+   "sha256": "fb7077457ebb529d11a1f962e2fabb594ba421684d47318fa7648d37ea3f54e5",
+   "bytes": 1233308,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0029.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0030.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0030/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0030/full/pct:100/0/default.jpg",
+   "sha256": "d4eadf06fef74e90e0a1e24815f41985f73b2b6ab12e70bce54b84792e250dc2",
+   "bytes": 1259326,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0030.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0031.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0031/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0031/full/pct:100/0/default.jpg",
+   "sha256": "16e86d1c929a7e588e8a55ee165dfea247a6055fccaf96a2182b080327aeb613",
+   "bytes": 1144440,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0031.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0032.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0032/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0032/full/pct:100/0/default.jpg",
+   "sha256": "0eff88178e86bc65f2774eff0b8aa13e019a9978c48d930d782a051d33ec679e",
+   "bytes": 907344,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0032.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0033.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0033/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0033/full/pct:100/0/default.jpg",
+   "sha256": "151119a282a66e59cca7bc46b8d7caa713fd8797b9bd67793c3bb01cc785203a",
+   "bytes": 1298771,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0033.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0034.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0034/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0034/full/pct:100/0/default.jpg",
+   "sha256": "e93f4dcacf57928d0c2599f80df1741f8d549b3b52ca06b963ea4b1f331f5852",
+   "bytes": 1258350,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0034.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0035.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0035/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0035/full/pct:100/0/default.jpg",
+   "sha256": "dfeb34818ff0b6cfe28818bb214144c546e9081dd55f1a3fd4274d5108904103",
+   "bytes": 1315941,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0035.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0036.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0036/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0036/full/pct:100/0/default.jpg",
+   "sha256": "574c3f7aed59da2a8f693f1f9e1da7f889156d5b1eb5271aad4a90ae2fde4eba",
+   "bytes": 1217718,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0036.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0037.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0037/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0037/full/pct:100/0/default.jpg",
+   "sha256": "cda96057e8f5c315334cf01a210daf4587e11073d1a654f8e2ac224a614013ef",
+   "bytes": 1256119,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0037.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0038.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0038/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0038/full/pct:100/0/default.jpg",
+   "sha256": "2b59daa27ec39268030a0c7cd53ea4852f5456ac380d3749fc7062c362117e34",
+   "bytes": 1084504,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0038.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0039.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0039/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0039/full/pct:100/0/default.jpg",
+   "sha256": "ecf11aa672007757cea0a4a6c82010e758ed2c90f86d22b2e58e4664c42fa959",
+   "bytes": 1262114,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0039.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0040.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0040/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0040/full/pct:100/0/default.jpg",
+   "sha256": "7b342372e58b420e164ea240f5502ad4d797e02191bcc8947d4fc5bfcf6d807d",
+   "bytes": 1341290,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0040.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0041.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0041/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0041/full/pct:100/0/default.jpg",
+   "sha256": "1d510138cf837f2fd139fa61f2056e3e8f85ce4edb1752377c622e2377176149",
+   "bytes": 1316557,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0041.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0042.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0042/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0042/full/pct:100/0/default.jpg",
+   "sha256": "4c89d78747450b44b9cb84e189fd197030332fb74adb5d13a2b4e23983f1bea3",
+   "bytes": 1235207,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0042.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0043.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0043/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0043/full/pct:100/0/default.jpg",
+   "sha256": "ac358473a14c5a8465eae444b78477951096b9ec760233a4f35d34c66420956b",
+   "bytes": 1364599,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0043.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0044.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0044/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0044/full/pct:100/0/default.jpg",
+   "sha256": "606039b3e29e1f329911a939e7107157a078ebad6f5bc6fc406cddc883d79b73",
+   "bytes": 1288773,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0044.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0045.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0045/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0045/full/pct:100/0/default.jpg",
+   "sha256": "a1bc6bbc981abcbaea92b236d94e2041f560a4da7fc12350a0e9eb1841ff9e8d",
+   "bytes": 1145605,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0045.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0046.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0046/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0046/full/pct:100/0/default.jpg",
+   "sha256": "48c99657c7c0df72454f2639d788258ec86cd27d2aef151ab2d1e7d2780b35f9",
+   "bytes": 1225354,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0046.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0047.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0047/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0047/full/pct:100/0/default.jpg",
+   "sha256": "15612fc3e6297ffb79bf6fb8e431c6cc78f48a672aef79698c6b780420b62a38",
+   "bytes": 1052331,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0047.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0048.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0048/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0048/full/pct:100/0/default.jpg",
+   "sha256": "b4907091db8826aad78b06085885dac8bd9f14d01aabe1f2c050d48c7ac4c291",
+   "bytes": 860497,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0048.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0049.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0049/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0049/full/pct:100/0/default.jpg",
+   "sha256": "6ed399dea4c49a121afab17aafc5ccb32298f1750be099ecdb459a8b32db8b1a",
+   "bytes": 1379635,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0049.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0050.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0050/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0050/full/pct:100/0/default.jpg",
+   "sha256": "227541c0210aac62e16be340dcc30269aad228a5be1f496c0c230693205c5347",
+   "bytes": 1175550,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0050.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0051.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0051/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0051/full/pct:100/0/default.jpg",
+   "sha256": "2e6feb8226b22eeffb192514d141e721365dc410582e46c77c468bd3a9a21df8",
+   "bytes": 1306308,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0051.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0052.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0052/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0052/full/pct:100/0/default.jpg",
+   "sha256": "ba51a6cab5598b5417c34660fb4e8b2df35f6471d1923bcf0cc192176e61b20a",
+   "bytes": 892228,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0052.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0053.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0053/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0053/full/pct:100/0/default.jpg",
+   "sha256": "4833ff4ef2533471c47d54d6094dce6dc2decfc17cfcb187e31bf0382a59dc99",
+   "bytes": 1138604,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0053.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0054.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0054/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0054/full/pct:100/0/default.jpg",
+   "sha256": "dac9c9ef75c2b1aca397f523b51e0ef79b4444c06e356e8aa639f7d9a7a3a1b5",
+   "bytes": 1041206,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0054.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0055.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0055/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0055/full/pct:100/0/default.jpg",
+   "sha256": "937cc5652c67f88e9d235123a944a9aa60270d336acb5e4b96ffd7bf20cf9113",
+   "bytes": 1340929,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0055.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0056.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0056/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0056/full/pct:100/0/default.jpg",
+   "sha256": "409fb5bb2b03fe619bf4b3e21f9b2edab0827c6a9710c2f00604efdd6b78829d",
+   "bytes": 1264121,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0056.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0057.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0057/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0057/full/pct:100/0/default.jpg",
+   "sha256": "c351b9be297140b988214bfb4f44772549e3e8e526dc5dfcf0e5ea5b7fac1ff3",
+   "bytes": 1269805,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0057.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0058.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0058/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0058/full/pct:100/0/default.jpg",
+   "sha256": "887ebe953fe22ba9686eadb9c5ccac92c5a130284f9077a05e396ab213a709fd",
+   "bytes": 984928,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0058.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0059.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0059/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0059/full/pct:100/0/default.jpg",
+   "sha256": "1989f2ef2d98d0b108302e7f015b1d47cb59d6bc4bfc43b54bb29cc204b3f13e",
+   "bytes": 1167390,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0059.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0060.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0060/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0060/full/pct:100/0/default.jpg",
+   "sha256": "63a814731b5c81f8a73e67e8f1196c286834c55d83b3c35ca44a12418a2e3216",
+   "bytes": 1020668,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0060.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0061.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0061/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0061/full/pct:100/0/default.jpg",
+   "sha256": "162456171c80e58eb51651a7060a32d3d0aff624ad745dab34f0f3a97936df26",
+   "bytes": 1266939,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0061.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0062.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0062/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0062/full/pct:100/0/default.jpg",
+   "sha256": "aa926eeb26c6f84775a918ede255ce49f97e71a3e629273dc02cbf2a625c9ae0",
+   "bytes": 1208151,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0062.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0063.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0063/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0063/full/pct:100/0/default.jpg",
+   "sha256": "e3b52633653e8e359505bd447b26e70b063159fda80868f978228259b79e92d3",
+   "bytes": 1239662,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0063.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0064.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0064/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0064/full/pct:100/0/default.jpg",
+   "sha256": "2aa8ca0844721480a811a5977e334a665662f5a02d8a6c10fdec0b5c6580c1ab",
+   "bytes": 1127366,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0064.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0065.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0065/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0065/full/pct:100/0/default.jpg",
+   "sha256": "3e2e72ef9028246d2d8d18fd7a0f2f22b9d05ba0fd7fd6e864c818245a759655",
+   "bytes": 1124890,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0065.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0066.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0066/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0066/full/pct:100/0/default.jpg",
+   "sha256": "f2fe95c7502049074d43b982b6258a6f419aee35e7d2689eb03b2e46ea4314cf",
+   "bytes": 909545,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0066.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0067.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0067/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0067/full/pct:100/0/default.jpg",
+   "sha256": "0041b5b2b7dc6dc4da0f14a25bbad6775f214066da59c641ec7c35d431dfaea5",
+   "bytes": 1374403,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0067.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0068.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0068/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0068/full/pct:100/0/default.jpg",
+   "sha256": "60df7fc347e3e2b9ab7121cbba6f1ebc38044cf67d0af4c82dd61013ca16bc87",
+   "bytes": 1286406,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0068.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0069.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0069/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0069/full/pct:100/0/default.jpg",
+   "sha256": "77a0070a86d73acf1a112e6dc23f86c7e6994454666ed5cf653710be220e947d",
+   "bytes": 1270024,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0069.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0070.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0070/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0070/full/pct:100/0/default.jpg",
+   "sha256": "e2f21a3a83ffac48d31500ebb6ba63719fca47deb028dd427c387e585d9a3128",
+   "bytes": 1194660,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0070.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0071.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0071/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0071/full/pct:100/0/default.jpg",
+   "sha256": "1d23b0ea09b0cec683507b3f0ec2eb86959f233cca5192a8a93eff9aaf612a26",
+   "bytes": 1119885,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0071.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0072.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0072/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0072/full/pct:100/0/default.jpg",
+   "sha256": "7bcc12fff84a2a35dce9a970fcecaff9cc2c6559e12b00e1ea42a11f6f2854b6",
+   "bytes": 991587,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0072.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0073.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0073/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0073/full/pct:100/0/default.jpg",
+   "sha256": "a709671ebc4bb869c72b753698c888f1a99e98e48ca157241d773cbec67b6bb1",
+   "bytes": 950038,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0073.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0074.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0074/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0074/full/pct:100/0/default.jpg",
+   "sha256": "3a22e4c36e7822b798cf492ffb97cca034dc2dffc61cf285d0b9dbfd80dc67a2",
+   "bytes": 883957,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0074.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0075.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0075/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0075/full/pct:100/0/default.jpg",
+   "sha256": "04165410fc4e608f7db794b48b30889c6dabfc576b213a1f8e29bce5d8e11821",
+   "bytes": 1331475,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0075.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0076.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0076/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0076/full/pct:100/0/default.jpg",
+   "sha256": "58f07c2df580f2424956596d616c95a8f89204a7259e9ccbbaf112a6e987d74e",
+   "bytes": 1407661,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0076.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0077.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0077/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0077/full/pct:100/0/default.jpg",
+   "sha256": "90b3577a02b78e530a8e5b1ad6a5a50fafda56c04c718da2a667d64de7ab3c96",
+   "bytes": 1289651,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0077.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0078.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0078/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0078/full/pct:100/0/default.jpg",
+   "sha256": "4768ed0afa27a43805247efe874c9054c9d43997d4a41832f20ee4fc49543452",
+   "bytes": 1152342,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0078.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0079.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0079/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0079/full/pct:100/0/default.jpg",
+   "sha256": "567e06e0235c2ed329684c2e80ea9af9470f50fe53ed101263d4906fbdc9f60d",
+   "bytes": 1032070,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0079.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0080.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0080/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0080/full/pct:100/0/default.jpg",
+   "sha256": "5167f4420717c8e1fcc5ea31a9350e3d0ddae3b89d2a1282b9c67a723edbfffd",
+   "bytes": 1006783,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0080.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0081.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0081/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0081/full/pct:100/0/default.jpg",
+   "sha256": "8ae101c92260e060df82481286b516e5c3969c7a046c82c7c07dee1158fbf102",
+   "bytes": 869460,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0081.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0082.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0082/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0082/full/pct:100/0/default.jpg",
+   "sha256": "59bf7f3477ef917dbae3336ca716880022c3cdcdd04864630076b741083502f0",
+   "bytes": 864342,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0082.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0083.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0083/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0083/full/pct:100/0/default.jpg",
+   "sha256": "b48ad64d988967c5e7fcedf395e58aa2cfe574440bf1de1775a1149948f0cc9c",
+   "bytes": 1485840,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0083.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0084.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0084/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0084/full/pct:100/0/default.jpg",
+   "sha256": "b6442c300e2de23e1edf1c0113d6b4c477db5c5fc2ab5cbfe3e0cfa97301b249",
+   "bytes": 1097238,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0084.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0085.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0085/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0085/full/pct:100/0/default.jpg",
+   "sha256": "73ae1c35c3d4ebfb22156dd41e2d5decdf79d911bd9572cb0b782ac68a2a6238",
+   "bytes": 1104541,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0085.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0086.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0086/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0086/full/pct:100/0/default.jpg",
+   "sha256": "b148ef23c62e2150ea214b0f6bfa0d2154904b2d27f3d3b01f8a94e1a56d0fd9",
+   "bytes": 984527,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0086.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0087.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0087/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0087/full/pct:100/0/default.jpg",
+   "sha256": "ae5f1c652510e19ddd90541bb8183d0f2f52efdb3dab1082534f59c7d0dcd0fe",
+   "bytes": 968754,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0087.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0088.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0088/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0088/full/pct:100/0/default.jpg",
+   "sha256": "efc61a8bdb9855da4c8c337b623289cd57420d9bc56ac993af8c905b8d1168ce",
+   "bytes": 852783,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0088.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0089.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0089/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0089/full/pct:100/0/default.jpg",
+   "sha256": "a26006b4295447608caa5624221d22142d832e0b898e2f78e85d6414c1695414",
+   "bytes": 780972,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0089.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0090.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0090/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0090/full/pct:100/0/default.jpg",
+   "sha256": "cdd0d4dee2157eb4915cba7608d90b74fe775e7623b6212a72f46e518a5119d3",
+   "bytes": 728868,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0090.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0091.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0091/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0091/full/pct:100/0/default.jpg",
+   "sha256": "8897b8a3190b821c6d45a186332069b5858c64111d2af20d99e96fb12b8808d3",
+   "bytes": 1146017,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0091.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0092.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0092/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0092/full/pct:100/0/default.jpg",
+   "sha256": "4a04baa645766446bbe70abf95901cd08505ae34b67231a33e866c8bfb15406b",
+   "bytes": 1230990,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0092.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0093.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0093/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0093/full/pct:100/0/default.jpg",
+   "sha256": "6e07ff82e591bd8fccfb59fc489981dc413a10953b92a5c63a4b733d977be965",
+   "bytes": 927856,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0093.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0094.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0094/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0094/full/pct:100/0/default.jpg",
+   "sha256": "f8c42c2c391b6593ef63f6f3a54d2f8825fe10fb4a6cb4867f65d124989426bf",
+   "bytes": 729408,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0094.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0095.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0095/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0095/full/pct:100/0/default.jpg",
+   "sha256": "64c830bcfb7357cbeb4b65ba6abb16a8be7475feda3c85ed22ba0f53913b9b1a",
+   "bytes": 704427,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0095.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0096.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0096/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0096/full/pct:100/0/default.jpg",
+   "sha256": "1437d78e7df57ff444cd630afadf59eaa8ca6b2a1582b614752ae582957b2b44",
+   "bytes": 734196,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0096.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0097.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0097/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0097/full/pct:100/0/default.jpg",
+   "sha256": "cb5be341baf9329eec0ea89329bbad85a7e11ecd56b06e7130989c8dbf160056",
+   "bytes": 793425,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0097.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0098.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0098/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0098/full/pct:100/0/default.jpg",
+   "sha256": "e2f797915ece134b9ab4351a0e4c4f459bbacc80c59e83c302e89c8e3006f1e7",
+   "bytes": 883989,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0098.jpg"
+   }
+  },
+  {
+   "file": "pct50/sheet_0099.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0099/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0099/full/pct:100/0/default.jpg",
+   "sha256": "fecb52c4773196c609d63d009533bc673124514ee2f3098d076f5a770870c62c",
+   "bytes": 942833,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/sheet_0099.jpg"
+   }
+  },
+  {
+   "file": "pct50/skel_0007s.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0007s/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0007s/full/pct:100/0/default.jpg",
+   "sha256": "3b64b234ab60c787bb07ca05c32c6b6f8c4fcc04d4c76192cb4b9b62ca75971e",
+   "bytes": 853362,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/skel_0007s.jpg"
+   }
+  },
+  {
+   "file": "pct50/skel_0008s.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0008s/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0008s/full/pct:100/0/default.jpg",
+   "sha256": "ecbf6c57988fe165f56e2f932565adfd92798e9884ed97e1133498737549a4ab",
+   "bytes": 973612,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/skel_0008s.jpg"
+   }
+  },
+  {
+   "file": "pct50/skel_0009s.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0009s/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0009s/full/pct:100/0/default.jpg",
+   "sha256": "51c2721e937eae0a865440bb82ab1ab2b989382e96110192cdfb5dc5db105fe7",
+   "bytes": 823041,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/skel_0009s.jpg"
+   }
+  },
+  {
+   "file": "pct50/skel_0010s.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0010s/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0010s/full/pct:100/0/default.jpg",
+   "sha256": "67bcf44b19dccddc59efa39f8d44f126ef89729ee098463bc013f91cd7db04c3",
+   "bytes": 930934,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/skel_0010s.jpg"
+   }
+  },
+  {
+   "file": "pct50/skel_0011s.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0011s/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0011s/full/pct:100/0/default.jpg",
+   "sha256": "ecabe63e30f52aac3090e27966c2a16948f2007daef55c6f20dd0fae8c479583",
+   "bytes": 787755,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/skel_0011s.jpg"
+   }
+  },
+  {
+   "file": "pct50/skel_0012s.jpg",
+   "kind": "working-copy-pct50",
+   "resolution": "IIIF pct:50",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0012s/full/pct:50/0/default.jpg",
+   "full_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0012s/full/pct:100/0/default.jpg",
+   "sha256": "40a491cc847659e7a08e5a6db2eb9c9b7605bdf8d0cb0f8d63ce006f4a3010f8",
+   "bytes": 998332,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "claude/galveston-1912-source-data",
+    "path": "galveston_1912_sources/pct50/skel_0012s.jpg"
    }
   }
  ]
