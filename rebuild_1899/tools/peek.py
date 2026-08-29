@@ -19,7 +19,7 @@ REPO = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("sheet")
+    ap.add_argument("sheet", help="1899 sheet number, or a path to any image when it contains '/'")
     ap.add_argument("cx", type=int)
     ap.add_argument("cy", type=int)
     ap.add_argument("--r", type=int, default=250)
@@ -27,8 +27,12 @@ def main():
     ap.add_argument("--grid", type=int, default=50)
     ap.add_argument("--out", default=None)
     a = ap.parse_args()
-    img = cv2.imread(os.path.join(REPO, "work", "sheets", "1899",
-                                  f"Galveston_1899_sheet_{a.sheet}.jpg"))
+    if "/" in a.sheet:
+        img = cv2.imread(a.sheet if os.path.isabs(a.sheet)
+                         else os.path.join(REPO, a.sheet))
+    else:
+        img = cv2.imread(os.path.join(REPO, "work", "sheets", "1899",
+                                      f"Galveston_1899_sheet_{a.sheet}.jpg"))
     assert img is not None, "sheet not found"
     H, W = img.shape[:2]
     x0, y0 = max(0, a.cx - a.r), max(0, a.cy - a.r)
@@ -53,8 +57,9 @@ def main():
         cv2.putText(crop, str(gy), (4, py - 4), cv2.FONT_HERSHEY_SIMPLEX,
                     0.55, (0, 90, 255), 2)
         gy += a.grid
+    base = os.path.splitext(os.path.basename(a.sheet))[0]
     out = a.out or os.path.join(REPO, "rebuild_1899", "out", "peek",
-                                f"{a.sheet}_{a.cx}_{a.cy}.png")
+                                f"{base}_{a.cx}_{a.cy}.png")
     os.makedirs(os.path.dirname(out), exist_ok=True)
     cv2.imwrite(out, crop)
     print(out)
