@@ -1,0 +1,143 @@
+{
+ "model": "joint two-panel similarity, coupled by duplicated drafted ground [SHARED orientation: a,b common to both panels]",
+ "convention": {
+  "centered": "p_mosaic = [[a,-b],[b,a]] @ (p_sheet5_raw - center) + (tx,ty)",
+  "raw": "p_mosaic = [[a,-b],[b,a]] @ p_sheet5_raw + (raw.tx, raw.ty)",
+  "centers": {
+   "5A": [
+    1913.8145438711083,
+    3910.568038319181
+   ],
+   "5B": [
+    5240.162567097269,
+    3879.7976759275643
+   ]
+  }
+ },
+ "block_source": {
+  "path": "/home/user/claude-code/galveston-1912/40_solve/output/transforms.json",
+  "sha256": "a57f3dcb8614c9939f1ab82322f8091167e98ba3122ebed634ff1c8b4f0bf11b",
+  "kappa_px_per_ft": 5.796657754477792,
+  "kappa_prior_dominated": true,
+  "sheets_available": [
+   7,
+   8,
+   9,
+   10,
+   11,
+   12,
+   39,
+   40,
+   43,
+   44,
+   49,
+   50
+  ]
+ },
+ "cross_panel_source": "/home/user/claude-code/galveston-1912/30_controls/verified/cross_panel_05_v2.json",
+ "panels": {
+  "5A": {
+   "a": 1.987505761890113,
+   "b": 0.02058793898396516,
+   "tx": -10189.274116591714,
+   "ty": -7714.6056301341305,
+   "s": 1.9876123909801946,
+   "theta_deg": 0.5934874990851567,
+   "theta_std_mrad": 2.5038579556679954,
+   "s_std": 0.0027251077072485553,
+   "center": [
+    1913.8145438711083,
+    3910.568038319181
+   ],
+   "raw": {
+    "a": 1.987505761890113,
+    "b": 0.02058793898396516,
+    "tx": -13912.481013559081,
+    "ty": -15526.283635612665
+   }
+  },
+  "5B": {
+   "a": 1.987505761890113,
+   "b": 0.02058793898396516,
+   "tx": -9050.81371615457,
+   "ty": 6043.622224069998,
+   "s": 1.9876123909801946,
+   "theta_deg": 0.5934874990851567,
+   "theta_std_mrad": 2.5038579556679954,
+   "s_std": 0.0027251077072485553,
+   "center": [
+    5240.162567097269,
+    3879.7976759275643
+   ],
+   "raw": {
+    "a": 1.987505761890113,
+    "b": 0.02058793898396516,
+    "tx": -19385.78997367915,
+    "ty": -1775.3821590013622
+   }
+  }
+ },
+ "relative_rotation_deg": 0.0,
+ "diagnostics": {
+  "n_block_rows": 29,
+  "n_xpanel_rows": 14,
+  "rank": 6,
+  "dof": 37,
+  "s0_sq": 8.908577356155217,
+  "rms_block_px": 59.22401431364086,
+  "rms_xpanel_px": 28.42780272651528,
+  "downweighted": 17
+ },
+ "log": [
+  "[parse] pair_05A_07.json: seam 5A-7, 2 anchors, context_only=False, overlap=True",
+  "[parse] pair_05A_09.json:21st (Center) St block(B): face1 sigma override 12 px (from sigma_basis prose)",
+  "[parse] pair_05A_09.json: seam 5A-9, 2 anchors, context_only=False, overlap=False",
+  "[parse] pair_05B_09.json:24th St block(B): face2 sigma override 15 px (from sigma_basis prose)",
+  "[parse] pair_05B_09.json: seam 5B-9, 3 anchors, context_only=False, overlap=False",
+  "[parse] pair_05B_11.json: seam 5B-11, 2 anchors, context_only=False, overlap=False",
+  "[parse] pair_05B_13.json:27th St block(B): face1 sigma override 12 px (from sigma_basis prose)",
+  "[parse] pair_05B_13.json: seam 5B-13, 2 anchors, context_only=True, overlap=False",
+  "[regions] 5A-7: all panel-side points inside the 5A polygon",
+  "[axes] 5A-7 panel: along=page-y verified (anchor spread y 1409 px vs x 14 px)",
+  "[axes] 5A-7 block: along=page-y verified (anchor spread y 2814 px vs x 101 px)",
+  "[axes] 5A-7: page-y runs the same direction on both sides",
+  "[regions] 5A-9: all panel-side points inside the 5A polygon",
+  "[axes] 5A-9 panel: along=page-y verified (anchor spread y 1417 px vs x 13 px)",
+  "[axes] 5A-9 block: along=page-y verified (anchor spread y 2800 px vs x 154 px)",
+  "[axes] 5A-9: page-y runs the same direction on both sides",
+  "[regions] 5B-9: all panel-side points inside the 5B polygon",
+  "[axes] 5B-9 panel: along=page-y verified (anchor spread y 2534 px vs x 12 px)",
+  "[axes] 5B-9 block: along=page-y verified (anchor spread y 5139 px vs x 202 px)",
+  "[axes] 5B-9: page-y runs the same direction on both sides",
+  "[regions] 5B-11: all panel-side points inside the 5B polygon",
+  "[axes] 5B-11 panel: along=page-y verified (anchor spread y 1527 px vs x 41 px)",
+  "[axes] 5B-11 block: along=page-y verified (anchor spread y 3040 px vs x 176 px)",
+  "[axes] 5B-11: page-y runs the same direction on both sides",
+  "[regions] 5B-13: all panel-side points inside the 5B polygon",
+  "[axes] 5B-13 panel: along=page-y verified (anchor spread y 1380 px vs x 28 px)",
+  "[axes] 5B-13 block: along=page-y verified (anchor spread y 2773 px vs x 78 px)",
+  "[axes] 5B-13: page-y runs the same direction on both sides",
+  "[xpanel] 7 correspondences from cross_panel_05_v2.json",
+  "[obs] 5A-7: 8 rows (pp (duplicated ground))",
+  "[obs] 5A-9: 6 rows (along+across)",
+  "[obs] 5B-9: 9 rows (along+across)",
+  "[obs] 5B-11: 6 rows (along+across)",
+  "[huber] block 19th St : resid -31.2 px, w=0.961",
+  "[huber] block 21st (Center) St : resid -110.7 px, w=0.386",
+  "[huber] block 22nd St : resid +28.8 px, w=0.840",
+  "[huber] block 22nd St : resid +29.6 px, w=0.817",
+  "[huber] block 22nd St : resid -244.5 px, w=0.123",
+  "[huber] block 24th St : resid -84.7 px, w=0.278",
+  "[huber] block 24th St : resid -45.7 px, w=0.926",
+  "[huber] block 24th St : resid +49.8 px, w=0.603",
+  "[huber] block 26th St : resid -96.5 px, w=0.311",
+  "[huber] xpanel Bay-side (NW) bottom corner of the Pier 22 'GALVESTON WHARF CO'S SHED / GULF FISHERY CO LESSEE' shed inner outline (corner of shed left wall and shed bottom wall) x: resid -10.8 px, w=0.924",
+  "[huber] xpanel SW corner of the Pier 22 deck outline (outer heavy line around the shed), bayward end of the deck's south face y: resid -9.4 px, w=0.795",
+  "[huber] xpanel SE corner of the Pier 22 deck outline (outer heavy line), where deck south face meets deck east (slip) face x: resid -20.7 px, w=0.362",
+  "[huber] xpanel SE corner of the Pier 22 deck outline (outer heavy line), where deck south face meets deck east (slip) face y: resid -15.6 px, w=0.480",
+  "[huber] xpanel Intersection of the 10-inch W.PIPE dashed line (running N-S, labeled in panel A) with the 22nd St double-dashed street line x: resid +68.9 px, w=0.218",
+  "[huber] xpanel Intersection of the 10-inch W.PIPE dashed line (running N-S, labeled in panel A) with the 22nd St double-dashed street line y: resid +30.4 px, w=0.493",
+  "[huber] xpanel NW corner of the block 9 corner building at the SE corner of Ave A x 22nd St intersection (building front on Ave A east side, south of 22nd St) x: resid +44.7 px, w=0.336",
+  "[huber] xpanel NW corner of the warehouse south of 22nd St between the track fan and Ave A: its north edge (drawn solid+dashed in A, solid in B) meets the heavy west wall descending south x: resid +49.8 px, w=0.301"
+ ]
+}
