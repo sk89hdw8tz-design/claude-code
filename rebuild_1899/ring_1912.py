@@ -195,87 +195,84 @@ def fit_multi(cors_by_nbr):
     return f, f"merged {len(agree)}/{len(pre)} neighbours"
 
 flags, report = {}, {}
-# Iterated ring: only core + FITTED units anchor matching (a prior-placed
-# unit never propagates its guess). Flagged units are retried every round
-# as their neighbourhoods solidify; priors are assigned only at the end.
-anchors = set(placed)
-rounds = 0
-while True:
-    rounds += 1
-    pool = set(UNITS) - anchors
-    progress = False
-    for uid in sorted(pool, key=lambda u: -sum(
-            1 for p in nbr_pairs.get(u, [])
-            if (p["nbr"] if p["owner"] == u else p["owner"]) in anchors)):
-        others = [(p, (p["nbr"] if p["owner"] == uid else p["owner"]))
-                  for p in nbr_pairs.get(uid, [])]
-        if not any(o in anchors for _, o in others):
+# 1) chained prior poses for EVERY unit (BFS from core): a prior only aims
+#    the match search window; the fit corrects the pose from real ink.
+from collections import deque
+q = deque(placed)
+seen = set(placed)
+while q:
+    cur = q.popleft()
+    for p in nbr_pairs.get(cur, []):
+        other = p["nbr"] if p["owner"] == cur else p["owner"]
+        if other in seen:
             continue
+        Mu, tu = seed_pose(other, p, cur)
+        placed[other] = {"m": Mu, "t": tu, "how": "prior-seed"}
+        seen.add(other)
+        q.append(other)
+for uid in set(UNITS) - seen:
+    placed[uid] = {"m": 2 * np.eye(2), "t": np.zeros(2), "how": "isolated"}
+    flags[uid] = "no path from core"
+
+# 2) iterate fit rounds: every non-fitted unit re-matches against all its
+#    neighbours' CURRENT poses; accepted fits update the pose and firm the
+#    neighbourhood for the next round.
+fitted = set(NET["core_working"])
+rounds = 0
+while rounds < 6:
+    rounds += 1
+    progress = False
+    for uid in sorted(set(UNITS) - fitted,
+                      key=lambda u: -sum(1 for p in nbr_pairs.get(u, [])
+                                         if (p["nbr"] if p["owner"] == u else p["owner"]) in fitted)):
         cors_by_nbr = {}
         nb_th, nb_sc = [], []
-        for p, other in others:
-            if other not in anchors:
-                continue
+        for p in nbr_pairs.get(uid, []):
+            other = p["nbr"] if p["owner"] == uid else p["owner"]
             M = placed[other]["m"]
-            nb_th.append(np.degrees(np.arctan2(M[1, 0], M[0, 0])))
-            nb_sc.append(np.hypot(M[0, 0], M[1, 0]))
-            Mu, tu = seed_pose(uid, p, other)
+            if other in fitted:
+                nb_th.append(np.degrees(np.arctan2(M[1, 0], M[0, 0])))
+                nb_sc.append(np.hypot(M[0, 0], M[1, 0]))
+            Mu, tu = placed[uid]["m"], placed[uid]["t"]
             got = match_pts(uid, other, Mu, tu, search=380)
             if got:
                 cors_by_nbr.setdefault(other, []).extend(got)
         if not cors_by_nbr:
+            flags[uid] = "no matches to any neighbour"
             continue
+        if not nb_th:
+            nb_th, nb_sc = [0.0], [2.0]
         nth, nsc = float(np.median(nb_th)), float(np.median(nb_sc))
         fit, fitnote = fit_multi(cors_by_nbr)
         if not fit:
+            flags[uid] = f"fit failed ({fitnote})"
             continue
         M, t, med, kept = fit
         th = float(np.degrees(np.arctan2(M[1, 0], M[0, 0])))
         sc = float(np.hypot(M[0, 0], M[1, 0]))
-        if abs(sc - nsc) <= 0.05 * nsc and abs(th - nth) <= 1.8 and med <= 25:
-            placed[uid] = {"m": M, "t": t, "how": f"fit(n={kept},med={med:.1f},round={rounds})"}
+        if abs(sc - nsc) <= 0.05 * nsc and abs(th - nth) <= 1.8 and med <= 25 and kept >= 5:
+            placed[uid] = {"m": M, "t": t,
+                           "how": f"fit(n={kept},med={med:.1f},round={rounds})"}
             report[uid] = {"how": "fit", "n": kept, "med": round(med, 1),
-                           "theta": round(th, 2), "scale": round(sc, 4), "round": rounds}
-            anchors.add(uid)
+                           "theta": round(th, 2), "scale": round(sc, 4),
+                           "round": rounds}
+            fitted.add(uid)
             flags.pop(uid, None)
             progress = True
-            print(f"  {uid}: fit n={kept} med={med:.1f} th={th:+.2f} sc={sc:.3f} (round {rounds})",
-                  flush=True)
+            print(f"  {uid}: fit n={kept} med={med:.1f} th={th:+.2f} sc={sc:.3f} "
+                  f"(round {rounds})", flush=True)
         else:
+            # keep the fitted pose as an improved seed even when rejected:
+            # it aims the next round's search better than the chained prior
+            if med <= 60 and kept >= 4 and abs(sc - nsc) <= 0.15 * nsc:
+                placed[uid] = {"m": M, "t": t, "how": "seed-improved"}
             flags[uid] = (f"fit rejected med={med:.1f} kept={kept} th={th:.2f} "
                           f"(nbr {nth:.2f}) sc={sc:.4f} (nbr {nsc:.4f})")
     if not progress:
         break
-# residual units: prior placement chained from nearest anchor
-pool = set(UNITS) - anchors
-while pool:
-    scored = []
-    for uid in pool:
-        others = [(p, (p["nbr"] if p["owner"] == uid else p["owner"]))
-                  for p in nbr_pairs.get(uid, [])]
-        n_placed = sum(1 for _, o in others if o in placed)
-        scored.append((n_placed, uid))
-    scored.sort(key=lambda s: -s[0])
-    n_pl, uid = scored[0]
-    pool.discard(uid)
-    seedref = None
-    for p in nbr_pairs.get(uid, []):
-        other = p["nbr"] if p["owner"] == uid else p["owner"]
-        if other in placed:
-            seedref = (p, other)
-            if other in anchors:
-                break
-    if seedref is None:
-        placed[uid] = {"m": 2 * np.eye(2), "t": np.zeros(2), "how": "isolated"}
-        flags[uid] = "no placed neighbour"
-        report[uid] = {"how": "isolated"}
-        continue
-    p, other = seedref
-    Mu, tu = seed_pose(uid, p, other)
-    placed[uid] = {"m": Mu, "t": tu, "how": "prior"}
-    flags.setdefault(uid, "no accepted fit after iterated rounds")
-    report[uid] = {"how": "prior", "flag": flags[uid]}
-    print(f"  {uid}: PRIOR ({flags[uid]})", flush=True)
+for uid in set(UNITS) - fitted:
+    report[uid] = {"how": placed[uid]["how"], "flag": flags.get(uid, "")}
+    print(f"  {uid}: UNFITTED ({placed[uid]['how']}: {flags.get(uid,'')})", flush=True)
 
 n_fit = sum(1 for r in report.values() if r.get("how") == "fit")
 print(f"placed {len(placed)}: {len(NET['core_working'])} core, {n_fit} fit, "

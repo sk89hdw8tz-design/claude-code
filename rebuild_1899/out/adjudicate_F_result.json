@@ -101,6 +101,40 @@
    ],
    "confidence": "high",
    "note": "NW corner of the small 1-story shed marked 1-x standing inside the NOT OPEN(ED) road corridor, ~100 px NE of the 1525 1/2 X-outbuilding; the only such shed along this seam. Offsets consistent with tie-67-68-1 within ~10 px."
+  },
+  {
+   "pair": [
+    "67",
+    "71b"
+   ],
+   "id": "tie-67-71b-1",
+   "owner_xy": [
+    1252,
+    3866
+   ],
+   "nbr_xy": [
+    2331,
+    256
+   ],
+   "confidence": "high",
+   "note": "Black hydrant dot labeled T.H. on the south side of 24th St at the NE corner of the 13xx/14xx avenue crossing; on 71b it sits between house numbers 1323 and 1401, on 67 just west of the 1402 block. Only hydrant along this seam segment. Dot center measured."
+  },
+  {
+   "pair": [
+    "67",
+    "71b"
+   ],
+   "id": "tie-67-71b-2",
+   "owner_xy": [
+    2162,
+    3806
+   ],
+   "nbr_xy": [
+    3228,
+    215
+   ],
+   "confidence": "medium",
+   "note": "Crossing of the N-S dashed avenue pipe line with the E-W dashed 6-in water pipe in 24th St, at the avenue crossing east of house 1424 (67) / east of 1423 with 2402/2404 numbers below (71b) - the first avenue east of the T.H. hydrant crossing. Offsets agree with tie-67-71b-1 within ~20 px. Solid avenue line drawn on opposite sides of the pipe on the two sheets, hence medium."
   }
  ]
 }

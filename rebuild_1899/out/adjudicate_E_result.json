@@ -75,6 +75,40 @@
    ],
    "confidence": "high",
    "note": "NW corner of block 612 (houses 201-223) south of 12th St; reference outline on 47, full block on 45; anchored 40-55 px SE of alarm box 16"
+  },
+  {
+   "pair": [
+    "46",
+    "43"
+   ],
+   "id": "tie-46-43-1",
+   "owner_xy": [
+    743,
+    3887
+   ],
+   "nbr_xy": [
+    2753,
+    394
+   ],
+   "confidence": "high",
+   "note": "NW corner of block south of 15th St just east of the 20-ft street (houses 313-323 on 43); reference outline on 46 (next to printed 43 numeral), full block on 43; anchored by the 20-ft street gap between 311/313 (43) = 312/314 (46)"
+  },
+  {
+   "pair": [
+    "46",
+    "43"
+   ],
+   "id": "tie-46-43-2",
+   "owner_xy": [
+    680,
+    3888
+   ],
+   "nbr_xy": [
+    2688,
+    386
+   ],
+   "confidence": "high",
+   "note": "NE corner of block south of 15th St just west of the same 20-ft street (houses ...311 on 43); outline on 46, full block on 43. Note: T.H. hydrant at 46 (752,3692) north of 15th is NOT drawn on 43"
   }
  ]
 }
