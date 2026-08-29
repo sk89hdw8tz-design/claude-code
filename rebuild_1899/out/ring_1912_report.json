@@ -513,8 +513,17 @@
   "23": "ties-trans(n=4/4,spread=70)",
   "24": "ties-trans(n=2/3,spread=35)",
   "25": "ties-trans(n=2/2,spread=6)",
+  "27": "ties-single(nbr=21,fit)",
+  "28": "ties-single(nbr=22,fit)",
   "29": "ties-trans(n=2/2,spread=15)",
+  "33": "ties-single(nbr=27,ties-single)",
+  "34": "ties-single(nbr=8,frozen-core)",
+  "35": "ties-single(nbr=39,frozen-core)",
+  "36": "ties-single(nbr=40,frozen-core)",
+  "38": "ties-single(nbr=32,fit)",
   "46": "ties-trans(n=2/4,spread=14)",
+  "51": "ties-single(nbr=57,fit)",
+  "58": "ties-single(nbr=52,fit)",
   "60": "ties-trans(n=3/7,spread=15)",
   "61": "ties-trans(n=3/6,spread=17)",
   "67": "ties-trans(n=4/7,spread=102)",
@@ -542,15 +551,5 @@
   "20": "ties-trans(n=2/2,spread=9)",
   "55": "ties-trans(n=2/2,spread=13)"
  },
- "still_flagged": [
-  "27",
-  "28",
-  "33",
-  "34",
-  "35",
-  "36",
-  "38",
-  "51",
-  "58"
- ]
+ "still_flagged": []
 }

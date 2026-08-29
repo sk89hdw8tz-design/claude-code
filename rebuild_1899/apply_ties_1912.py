@@ -88,15 +88,18 @@ for sweep in range(6):
             if a == uid and b in solid:
                 Mo, to = pose_of(b)
                 cor.append((np.array(t["owner_xy"], float),
-                            Mo @ np.array(t["nbr_xy"], float) + to))
+                            Mo @ np.array(t["nbr_xy"], float) + to,
+                            b, t.get("confidence", "medium")))
             elif b == uid and a in solid:
                 Mo, to = pose_of(a)
                 cor.append((np.array(t["nbr_xy"], float),
-                            Mo @ np.array(t["owner_xy"], float) + to))
-        if len(cor) < 2:
+                            Mo @ np.array(t["owner_xy"], float) + to,
+                            a, t.get("confidence", "medium")))
+        if len(cor) < 1:
             continue
         spread = np.ptp(np.array([c[0] for c in cor]), axis=0).max() if len(cor) > 2 else 0
-        fit = fit_sim(cor) if len(cor) >= 3 and spread > 800 else None
+        fit_cor = [(c[0], c[1]) for c in cor]
+        fit = fit_sim(fit_cor) if len(cor) >= 3 and spread > 800 else None
         if fit:
             M, t_, med, kept = fit
             sc = float(np.hypot(M[0,0], M[1,0]))
@@ -108,7 +111,7 @@ for sweep in range(6):
             how = f"ties-sim(n={kept},med={med:.1f})"
         else:
             M = nbr_pose(uid, solid)
-            votes = np.array([g - M @ m for m, g in cor])
+            votes = np.array([c[1] - M @ c[0] for c in cor])
             # Largest agreeing cluster wins: a single mismeasured tie must not
             # drag the median (2-vote medians are maximally fragile).
             best, best_n = None, 0
@@ -116,9 +119,32 @@ for sweep in range(6):
                 inl = votes[np.hypot(*(votes - c).T) <= 150]
                 if len(inl) > best_n:
                     best, best_n = inl, len(inl)
-            if best_n < 2 and len(votes) > 1:
-                sp = float(np.hypot(*(votes - votes.mean(0)).T).max())
-                print(f"  {uid}: tie votes disagree by {sp:.0f}px — left flagged")
+            if best_n < 2:
+                # No agreeing cluster: fall back to the single tie anchored on
+                # the most reliably-placed neighbour, and only if that tie is
+                # high confidence. Recorded as single-tie (lower tier).
+                RANK = {"frozen": 0, "core": 0, "fit": 1, "ties-sim": 2,
+                        "profile": 3, "ties-trans": 4, "prior": 9}
+                def rank(nb):
+                    how = AFF.get(nb, {}).get("how", "prior")
+                    for k, v in RANK.items():
+                        if how.startswith(k):
+                            return v
+                    return 8
+                cands = [c for c in cor if c[3] == "high"]
+                if not cands:
+                    sp = float(np.hypot(*(votes - votes.mean(0)).T).max()) if len(votes) > 1 else 0
+                    print(f"  {uid}: no agreeing/high-confidence tie ({sp:.0f}px spread) — left flagged")
+                    continue
+                best_c = min(cands, key=lambda c: rank(c[2]))
+                t_ = best_c[1] - M @ best_c[0]
+                how = f"ties-single(nbr={best_c[2]},{AFF[best_c[2]]['how'].split('(')[0]})"
+                AFF[uid] = {"m": [[float(v) for v in r] for r in M],
+                            "t": [float(v) for v in t_], "how": how}
+                placed_now[uid] = how
+                solid.add(uid)
+                progress = True
+                print(f"  {uid}: {how}")
                 continue
             t_ = np.median(best, axis=0)
             sp = float(np.hypot(*(best - t_).T).max()) if best_n > 1 else 0.0

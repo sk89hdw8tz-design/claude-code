@@ -390,6 +390,23 @@
    ],
    "confidence": "medium",
    "note": "Constructed point at the centre of Avenue J / BROADWAY where it crosses the south property line of the 80-ft street carrying house nos. 919-924 (39) / 1001-1006 (40). y is taken from that property line, which both sheets draw as their own block's frontage (39: block NE corner at 3100,1550 with 923 lettered above; 40: block NW corner at 307,1572 with 'GALLERY 2ND 1001' above). x is constructed by stepping half of Broadway's labelled 150 ft (=219 px at 2.92 px/ft) inward from each sheet's own Broadway property line (39 west line 3100, 40 east line 307), because nothing at all is drawn inside Broadway on this seam - no pipe, no hydrant, no lettering that both sheets share. Cross-check: the pipe in that street gives dy=+32 vs +22 from the property line. Treat x as +-20 px."
+  },
+  {
+   "pair": [
+    "40",
+    "67"
+   ],
+   "id": "tie-40-67-1",
+   "owner_xy": [
+    3217,
+    1470
+   ],
+   "nbr_xy": [
+    154,
+    1390
+   ],
+   "confidence": "medium",
+   "note": "Constructed point at the centre of Avenue M where the dashed water pipe of the 80-ft street crosses it. y from the pipe, which both sheets draw. x by stepping half the labelled 70-ft avenue width inward from each sheet's own Avenue M property line (40 west line x=3115, 67 east line x=265). Block identity fixed by house numbering - the street carries 1219-1224 west of Avenue M on 40 and 1301-1306 east of it on 67 - and by the Av-M lot label runs (2102-2128 on 40, 2101-2127 on 67). CAUTION: sheet 67 appears drawn ~9% larger than 40 (its Av-M lot run spans 927 px against 850 px on 40) and it draws this street only 123 px wide against 243 px on 40, so x/y here are good only to ~+-25 px. Nothing is drawn inside Avenue M on either sheet."
   }
  ]
 }
