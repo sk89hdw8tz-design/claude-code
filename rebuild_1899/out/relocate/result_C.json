@@ -1,0 +1,95 @@
+{
+ "results": [
+  {
+   "id": "width70-top",
+   "a_xy": [
+    3230,
+    391
+   ],
+   "b_xy": [
+    158,
+    381
+   ],
+   "confidence": "high",
+   "note": "Ink centroid of italic 70' (glyphs+prime) via dark-pixel centroid in tight box; sheet13 box x3205-3262 y355-425 (n=252), sheet14 box x120-200 y355-410 (n=204)."
+  },
+  {
+   "id": "red-disc-214",
+   "a_xy": [
+    3273,
+    2670
+   ],
+   "b_xy": [
+    211,
+    2632
+   ],
+   "confidence": "high",
+   "note": "Red-pixel centroid of the '214' disc; sheet13 n=813 in box x3225-3300 y2645-2720, sheet14 n=676 in box x170-245 y2605-2680. Numeral '214' read at zoom on both sheets."
+  },
+  {
+   "id": "width70-bottom",
+   "a_xy": [
+    3216,
+    3618
+   ],
+   "b_xy": [
+    133,
+    3621
+   ],
+   "confidence": "high",
+   "note": "Ink centroid of italic 70' at southernmost Av D intersection (S of ticks 2328 / 2327); sheet13 box x3185-3250 y3590-3645 (n=211), sheet14 box x95-165 y3598-3648 (n=179)."
+  },
+  {
+   "id": "th-hydrant-314",
+   "a_xy": [
+    2731,
+    3673
+   ],
+   "b_xy": [
+    2785,
+    138
+   ],
+   "confidence": "high",
+   "note": "Filled T.H. dot below '314', ~30-60 px E of dashed alley centerline on both sheets; dot dark-pixel centroid, sheet13 n=273, sheet15 n=256 (T.H. text excluded from boxes)."
+  },
+  {
+   "id": "th-hydrant-114",
+   "a_xy": [
+    696,
+    3690
+   ],
+   "b_xy": [
+    744,
+    123
+   ],
+   "confidence": "high",
+   "note": "Filled T.H. dot ~40px SE of dashed alley line, S of '114' (bank block E of it); label below dot on 13, right of dot on 15. Dot centroids: sheet13 n=320, sheet15 n=249."
+  },
+  {
+   "id": "th-hydrant-214",
+   "a_xy": [
+    1734,
+    3676
+   ],
+   "b_xy": [
+    1780,
+    136
+   ],
+   "confidence": "high",
+   "note": "T.H. dot below '214' just E of alley dashes (sheet13); on sheet15 the dot right of big '13' numeral with T.H. label. Dot centroids: sheet13 n=377, sheet15 n=242."
+  },
+  {
+   "id": "alarm-box-212",
+   "a_xy": [
+    1224,
+    3698
+   ],
+   "b_xy": [
+    1300,
+    96
+   ],
+   "confidence": "medium",
+   "note": "Red-pixel centroid of alarm circle '212' (sheet13 n=855, sheet15 n=637; numeral verified both sheets). Medium: symbol placement relative to block corners visibly differs between sheets (schematic), as the description warns."
+  }
+ ]
+}

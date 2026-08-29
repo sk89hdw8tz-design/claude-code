@@ -1,0 +1,215 @@
+{
+ "group": "B",
+ "pairs": [
+  [
+   "11",
+   "12"
+  ],
+  [
+   "11",
+   "13"
+  ],
+  [
+   "12",
+   "14"
+  ],
+  [
+   "12",
+   "41"
+  ]
+ ],
+ "features": [
+  {
+   "id": "blk-corner-n80",
+   "sheet_a": "11",
+   "sheet_b": "12",
+   "description": "SE corner of the west-side block outline immediately north of the northernmost 80-ft cross street (the block containing 'Lumber Yard', opposite sheet 12's Chas Neumiller block). On sheet 11 it is the full solid block-outline corner (vertical Av D frontage line meets the cross-street line); on sheet 12 the same corner is drawn as an L-shaped facing-block stub (vertical line ending in a short leftward tick), just below the 'Galveston Texas' script and NW of the large '12' sheet numeral.",
+   "seam_hint": {
+    "boundary": "Avenue D",
+    "x_on_sheet_11": 3126,
+    "x_on_sheet_12": 164,
+    "note": "the shared line; the feature lies within ~250 px of it on both sheets"
+   }
+  },
+  {
+   "id": "blk323-ne-corner",
+   "sheet_a": "11",
+   "sheet_b": "12",
+   "description": "NE corner of block 323's frontage outline, first block south of the northernmost 80-ft cross street (corner where the yellow dwelling addressed 1802 sits; '323' lot label just left of it). Solid outline corner on sheet 11; L-shaped stub (vertical line with leftward tick at its top) on sheet 12, left of the '70'' width label.",
+   "seam_hint": {
+    "boundary": "Avenue D",
+    "x_on_sheet_11": 3126,
+    "x_on_sheet_12": 164,
+    "note": "the shared line; the feature lies within ~250 px of it on both sheets"
+   }
+  },
+  {
+   "id": "red-disc-7",
+   "sheet_a": "11",
+   "sheet_b": "12",
+   "description": "Centre of the small red circled block-number disc reading '7', drawn in the Av D roadway just SE of the corner of the block containing bldg 1928 (sheet 11) / just west of sheet 12's 1925-1927 frontage, north of the 40-ft cross street. Same numeral on both sheets; centres measured as red-pixel centroids. It is an annotation symbol placed by the draftsman, but it fits the transform implied by the two outline corners above to about 15 px.",
+   "seam_hint": {
+    "boundary": "Avenue D",
+    "x_on_sheet_11": 3126,
+    "x_on_sheet_12": 164,
+    "note": "the shared line; the feature lies within ~250 px of it on both sheets"
+   }
+  },
+  {
+   "id": "blk324-se-corner",
+   "sheet_a": "11",
+   "sheet_b": "12",
+   "description": "SE corner of block 324's dashed frontage outline at the southernmost 80-ft cross street (yellow porch outline of bldg 2028; a solid black dot sits ~15 px inside the corner). Dashed corner on sheet 11; L-shaped stub (long vertical line ending in a leftward foot tick) on sheet 12, above the Gill & League Bldg block. Stub placement looks sketchier than the two northern stubs (about 30 px west of where they imply), hence medium.",
+   "seam_hint": {
+    "boundary": "Avenue D",
+    "x_on_sheet_11": 3126,
+    "x_on_sheet_12": 164,
+    "note": "the shared line; the feature lies within ~250 px of it on both sheets"
+   }
+  },
+  {
+   "id": "w-corner-1802",
+   "sheet_a": "12",
+   "sheet_b": "41",
+   "description": "NE corner of the block on the west side of Winnie carrying frontage ticks 1802-1814 (cross-street ticks 621/623 above), at Winnie & 18th St. Full block-outline corner on sheet 12; drawn on sheet 41 as the vertex of an open bracket tick (horizontal stroke with vertical drop at its right end) just west of the shared line, level with the 1801 tick.",
+   "seam_hint": {
+    "boundary": "Avenue G",
+    "x_on_sheet_12": 3127,
+    "x_on_sheet_41": 147,
+    "note": "the shared line; the feature lies within ~250 px of it on both sheets"
+   }
+  },
+  {
+   "id": "w-corner-1902",
+   "sheet_a": "12",
+   "sheet_b": "41",
+   "description": "NE corner of the next block south (frontage ticks 1902-1922, cross-street ticks 621/623, label '623' immediately above the corner), at Winnie & 19th St. Full corner on sheet 12; matching open bracket vertex on sheet 41 level with the 1901 tick.",
+   "seam_hint": {
+    "boundary": "Avenue G",
+    "x_on_sheet_12": 3127,
+    "x_on_sheet_41": 147,
+    "note": "the shared line; the feature lies within ~250 px of it on both sheets"
+   }
+  },
+  {
+   "id": "w-corner-2002",
+   "sheet_a": "12",
+   "sheet_b": "41",
+   "description": "NE corner of the SCHOOL block (pink, 'STAGE & SCENERY' annotation; frontage ticks 2002-2010; '623' above corner), first block south of the horizontal double-dashed 80' line, at Winnie & 20th St. Full corner on sheet 12; open bracket vertex on sheet 41 opposite the park with radiating dashed walks.",
+   "seam_hint": {
+    "boundary": "Avenue G",
+    "x_on_sheet_12": 3127,
+    "x_on_sheet_41": 147,
+    "note": "the shared line; the feature lies within ~250 px of it on both sheets"
+   }
+  },
+  {
+   "id": "th-hydrant-e-of-alley-114",
+   "sheet_a": "11",
+   "sheet_b": "13",
+   "description": "Fire hydrant dot labelled T.H., in 21st St just east of the 20-ft dashed alley line and SW of the yellow building at no. 114 (sheet 11) / south of the north-block outline corner (sheet 13); dot centre.",
+   "seam_hint": {
+    "boundary": "21th Street",
+    "y_on_sheet_11": 3737,
+    "y_on_sheet_13": 320,
+    "note": "the shared line; the feature lies within ~250 px of it on both sheets"
+   }
+  },
+  {
+   "id": "th-hydrant-214",
+   "sheet_a": "11",
+   "sheet_b": "13",
+   "description": "Fire hydrant dot with label 'T.H. 1', at west end of yellow frontage of no. 214 (sheet 11), east of the 20-ft dashed alley; on sheet 13 the same dot sits in the street NE of alley, north of no. 213; dot centre.",
+   "seam_hint": {
+    "boundary": "21th Street",
+    "y_on_sheet_11": 3737,
+    "y_on_sheet_13": 320,
+    "note": "the shared line; the feature lies within ~250 px of it on both sheets"
+   }
+  },
+  {
+   "id": "ne-corner-211",
+   "sheet_a": "11",
+   "sheet_b": "13",
+   "description": "NE front corner of building at no. 211 (yellow, dashed front line on sheet 13, small circle just inside corner), ~28 px west of the dashed alley line; drawn on sheet 11 as the top-right corner of the schematic south-side outline rectangle west of the alley.",
+   "seam_hint": {
+    "boundary": "21th Street",
+    "y_on_sheet_11": 3737,
+    "y_on_sheet_13": 320,
+    "note": "the shared line; the feature lies within ~250 px of it on both sheets"
+   }
+  },
+  {
+   "id": "th-hydrant-414",
+   "sheet_a": "12",
+   "sheet_b": "14",
+   "description": "Fire hydrant dot labelled T.H., in 21st St just SW of the yellow frontage of no. 414 (with '8'' and '1' marks at its west edge), east of the dashed 20-ft alley; dot centre. On sheet 14 it sits below the north-block outline corner, above 'WOOD BLOCK PAVED'.",
+   "seam_hint": {
+    "boundary": "21th Street",
+    "y_on_sheet_12": 3743,
+    "y_on_sheet_14": 323,
+    "note": "the shared line; the feature lies within ~250 px of it on both sheets"
+   }
+  },
+  {
+   "id": "th-hydrant-514",
+   "sheet_a": "12",
+   "sheet_b": "14",
+   "description": "Fire hydrant dot labelled T.H., just south of the SW corner of the yellow frontage of no. 514 (small circle inside its SE corner on sheet 12), east of the double dashed alley lines; dot centre. On sheet 14 it is above the 'C' of CENTRE.",
+   "seam_hint": {
+    "boundary": "21th Street",
+    "y_on_sheet_12": 3743,
+    "y_on_sheet_14": 323,
+    "note": "the shared line; the feature lies within ~250 px of it on both sheets"
+   }
+  },
+  {
+   "id": "th-hydrant-614",
+   "sheet_a": "12",
+   "sheet_b": "14",
+   "description": "Fire hydrant dot labelled T.H., just south of the SW corner of yellow frontage of no. 614, east of the dashed alley; dot centre. On sheet 14 it lies just SE of the compass-rose rays and the north-block outline corner.",
+   "seam_hint": {
+    "boundary": "21th Street",
+    "y_on_sheet_12": 3743,
+    "y_on_sheet_14": 323,
+    "note": "the shared line; the feature lies within ~250 px of it on both sheets"
+   }
+  },
+  {
+   "id": "dash-19th-aveD",
+   "sheet_a": "11",
+   "sheet_b": "12",
+   "description": "street dash centerline continuity at slot 3, measured dash-row step -15px",
+   "seam_hint": {
+    "boundary": "Avenue D",
+    "x_on_sheet_11": 3126,
+    "x_on_sheet_12": 164,
+    "note": "the shared line; the feature lies within ~250 px of it on both sheets"
+   }
+  },
+  {
+   "id": "dash-20th-aveD",
+   "sheet_a": "11",
+   "sheet_b": "12",
+   "description": "street dash centerline continuity at slot 3, measured dash-row step +34px",
+   "seam_hint": {
+    "boundary": "Avenue D",
+    "x_on_sheet_11": 3126,
+    "x_on_sheet_12": 164,
+    "note": "the shared line; the feature lies within ~250 px of it on both sheets"
+   }
+  },
+  {
+   "id": "dash-20th-aveG",
+   "sheet_a": "12",
+   "sheet_b": "41",
+   "description": "street dash centerline continuity at slot 6, measured dash-row step +17px",
+   "seam_hint": {
+    "boundary": "Avenue G",
+    "x_on_sheet_12": 3127,
+    "x_on_sheet_41": 147,
+    "note": "the shared line; the feature lies within ~250 px of it on both sheets"
+   }
+  }
+ ]
+}

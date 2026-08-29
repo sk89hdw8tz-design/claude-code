@@ -1,0 +1,227 @@
+{
+ "group": "A",
+ "pairs": [
+  [
+   "07",
+   "06"
+  ],
+  [
+   "08",
+   "07"
+  ],
+  [
+   "06",
+   "13"
+  ],
+  [
+   "06",
+   "15"
+  ],
+  [
+   "07",
+   "13"
+  ],
+  [
+   "08",
+   "11"
+  ],
+  [
+   "07",
+   "11"
+  ]
+ ],
+ "features": [
+  {
+   "id": "th-hydrant-19th",
+   "sheet_a": "08",
+   "sheet_b": "07",
+   "description": "Fire hydrant dot labelled T.H., centre of the solid black circle. It sits on the wharf-side (north) of 19th St between the dashed bulkhead line and the fan of rail tracks, ~110-120 px north of the fire-limits line; on sheet 08 the 'T.H.' label is above the dot, on sheet 07 it is below the dot. Coordinates are the dark-blob centroid.",
+   "seam_hint": {
+    "boundary": "19th Street",
+    "y_on_sheet_08": 3795,
+    "y_on_sheet_07": 201,
+    "note": "the shared line; the feature lies within ~250 px of it on both sheets"
+   }
+  },
+  {
+   "id": "blk-se-corner-1828",
+   "sheet_a": "08",
+   "sheet_b": "07",
+   "description": "Southeast corner of the block frontage on the north side of 19th St: the corner where the block's south frontage line (lot numbers 14-24 below it on sheet 08, addresses 1826/1828 on the dashed east property line) turns north. Sheet 07 draws the same block as a simplified open rectangle; this is the down-turn at the right (east) end of its south edge. Corner = intersection of the fitted vertical east line and horizontal frontage line.",
+   "seam_hint": {
+    "boundary": "19th Street",
+    "y_on_sheet_08": 3795,
+    "y_on_sheet_07": 201,
+    "note": "the shared line; the feature lies within ~250 px of it on both sheets"
+   }
+  },
+  {
+   "id": "blk-sw-corner-east-of-tracks",
+   "sheet_a": "08",
+   "sheet_b": "07",
+   "description": "L-shaped corner (southwest corner of the next block east) on the north side of 19th St, just east of the multi-track railroad crossing near the '70 ft' street-width note: a vertical property line coming down from the north turns east into a short horizontal frontage line. Same L appears on both sheets; corner = intersection of fitted vertical and horizontal strokes.",
+   "seam_hint": {
+    "boundary": "19th Street",
+    "y_on_sheet_08": 3795,
+    "y_on_sheet_07": 201,
+    "note": "the shared line; the feature lies within ~250 px of it on both sheets"
+   }
+  },
+  {
+   "id": "hides-ne-corner",
+   "sheet_a": "08",
+   "sheet_b": "07",
+   "description": "Northeast corner of the 'Hides' warehouse (lot 1, block 739, address 1902) on the south side of 19th St: on sheet 07 it is the top-right corner of the yellow Hides building where its north wall meets the east wall; on sheet 08 (simplified, uncolored) it is the top-right corner of the building outline drawn just below the 19th St line, right vertical directly across the street from feature blk-se-corner-1828. Sheet 08 draws the outline wider to the west than sheet 07's Hides footprint, so only this east corner corresponds; the west end does not.",
+   "seam_hint": {
+    "boundary": "19th Street",
+    "y_on_sheet_08": 3795,
+    "y_on_sheet_07": 201,
+    "note": "the shared line; the feature lies within ~250 px of it on both sheets"
+   }
+  },
+  {
+   "id": "th_hydrant_dot",
+   "sheet_a": "07",
+   "sheet_b": "06",
+   "description": "Centre of the solid black T.H. hydrant dot west of the terminal track fan, at the west end of the dashed 22nd St line, labelled 'T.H.' just above it. On sheet 06 the dashes abut the dot's east side.",
+   "seam_hint": {
+    "boundary": "22th Street",
+    "y_on_sheet_07": 3700,
+    "y_on_sheet_06": 176,
+    "note": "the shared line; the feature lies within ~250 px of it on both sheets"
+   }
+  },
+  {
+   "id": "pier22_whse_se_corner",
+   "sheet_a": "07",
+   "sheet_b": "06",
+   "description": "South-east corner of the yellow Pier No 22 warehouse footprint (Galveston Wharf Co, Morgan Steam-Ship Co lessee) - the vertex where the building's south (slip-end) wall meets its east wall. Sheet 07 draws a small black circle just inside this corner; sheet 06 draws the south wall dotted.",
+   "seam_hint": {
+    "boundary": "22th Street",
+    "y_on_sheet_07": 3700,
+    "y_on_sheet_06": 176,
+    "note": "the shared line; the feature lies within ~250 px of it on both sheets"
+   }
+  },
+  {
+   "id": "pier22_apron_se_corner",
+   "sheet_a": "07",
+   "sheet_b": "06",
+   "description": "South-east outer corner of the white pier apron/platform (black outline) that surrounds the Pier 22 warehouse, at the slip edge - the outline vertex diagonally outside the warehouse SE corner.",
+   "seam_hint": {
+    "boundary": "22th Street",
+    "y_on_sheet_07": 3700,
+    "y_on_sheet_06": 176,
+    "note": "the shared line; the feature lies within ~250 px of it on both sheets"
+   }
+  },
+  {
+   "id": "pier22_apron_sw_corner",
+   "sheet_a": "07",
+   "sheet_b": "06",
+   "description": "South-west outer corner of the same white pier apron outline around the Pier 22 warehouse, where the south edge meets the west edge against the blue wharf/water tint.",
+   "seam_hint": {
+    "boundary": "22th Street",
+    "y_on_sheet_07": 3700,
+    "y_on_sheet_06": 176,
+    "note": "the shared line; the feature lies within ~250 px of it on both sheets"
+   }
+  },
+  {
+   "id": "block_lot13_nw_corner",
+   "sheet_a": "07",
+   "sheet_b": "06",
+   "description": "North-west corner of the building-block outline on the south side of 22nd St, immediately west of lot number '13' (block containing lots 13-23), east of the track fan.",
+   "seam_hint": {
+    "boundary": "22th Street",
+    "y_on_sheet_07": 3700,
+    "y_on_sheet_06": 176,
+    "note": "the shared line; the feature lies within ~250 px of it on both sheets"
+   }
+  },
+  {
+   "id": "junction-22nd-0713",
+   "sheet_a": "07",
+   "sheet_b": "13",
+   "description": "10-inch water main in 22nd St at the Avenue A crossing; both sheets place it 121-123 px north of their own corridor centre. Selected as the DASHED row (ink fraction 0.12-0.55) nearest-consistent with each sheet's own corridor centre; solid frontage rows excluded.",
+   "seam_hint": {
+    "boundary": "Avenue A",
+    "x_on_sheet_07": 3127,
+    "x_on_sheet_13": 142,
+    "note": "the shared line; the feature lies within ~250 px of it on both sheets"
+   }
+  },
+  {
+   "id": "junction-21st-0711",
+   "sheet_a": "07",
+   "sheet_b": "11",
+   "description": "21st St pipe at Avenue A; offsets -14/-5 px from own centres. Selected as the DASHED row (ink fraction 0.12-0.55) nearest-consistent with each sheet's own corridor centre; solid frontage rows excluded.",
+   "seam_hint": {
+    "boundary": "Avenue A",
+    "x_on_sheet_07": 3127,
+    "x_on_sheet_11": 107,
+    "note": "the shared line; the feature lies within ~250 px of it on both sheets"
+   }
+  },
+  {
+   "id": "junction-20th-0711",
+   "sheet_a": "07",
+   "sheet_b": "11",
+   "description": "20th St pipe at Avenue A; offsets -11/+13 px from own centres. Selected as the DASHED row (ink fraction 0.12-0.55) nearest-consistent with each sheet's own corridor centre; solid frontage rows excluded.",
+   "seam_hint": {
+    "boundary": "Avenue A",
+    "x_on_sheet_07": 3127,
+    "x_on_sheet_11": 107,
+    "note": "the shared line; the feature lies within ~250 px of it on both sheets"
+   }
+  },
+  {
+   "id": "junction-19th-0811",
+   "sheet_a": "08",
+   "sheet_b": "11",
+   "description": "19th St pipe at Avenue A; offsets +10/+46 px from own centres - weaker agreement. Selected as the DASHED row (ink fraction 0.12-0.55) nearest-consistent with each sheet's own corridor centre; solid frontage rows excluded.",
+   "seam_hint": {
+    "boundary": "Avenue A",
+    "x_on_sheet_08": 3147,
+    "x_on_sheet_11": 107,
+    "note": "the shared line; the feature lies within ~250 px of it on both sheets"
+   }
+  },
+  {
+   "id": "junction-25th-0615",
+   "sheet_a": "06",
+   "sheet_b": "15",
+   "description": "25th St (Rosenberg) pipe at Avenue A; offsets +13/-11 px from own centres. Selected as the DASHED row (ink fraction 0.12-0.55) nearest-consistent with each sheet's own corridor centre; solid frontage rows excluded.",
+   "seam_hint": {
+    "boundary": "Avenue A",
+    "x_on_sheet_06": 3093,
+    "x_on_sheet_15": 143,
+    "note": "the shared line; the feature lies within ~250 px of it on both sheets"
+   }
+  },
+  {
+   "id": "junction-dash-19th",
+   "sheet_a": "07",
+   "sheet_b": "11",
+   "description": "junction dash row at Ave A, step +21px",
+   "seam_hint": {
+    "boundary": "Avenue A",
+    "x_on_sheet_07": 3127,
+    "x_on_sheet_11": 107,
+    "note": "the shared line; the feature lies within ~250 px of it on both sheets"
+   }
+  },
+  {
+   "id": "junction-dash-20th",
+   "sheet_a": "07",
+   "sheet_b": "11",
+   "description": "junction dash row at Ave A, step +23px",
+   "seam_hint": {
+    "boundary": "Avenue A",
+    "x_on_sheet_07": 3127,
+    "x_on_sheet_11": 107,
+    "note": "the shared line; the feature lies within ~250 px of it on both sheets"
+   }
+  }
+ ]
+}

@@ -1,0 +1,173 @@
+{
+ "results": [
+  {
+   "id": "blk-corner-n80",
+   "a_xy": [
+    3095,
+    154
+   ],
+   "b_xy": [
+    107,
+    140
+   ],
+   "confidence": "high",
+   "note": "Sheet 11 solid SE corner of block north of 80-ft street (vertical frontage meets cross-street line); sheet 12 L-stub below 'Galveston Texas' script, tick at bottom of vertical."
+  },
+  {
+   "id": "blk323-ne-corner",
+   "a_xy": [
+    3098,
+    403
+   ],
+   "b_xy": [
+    105,
+    389
+   ],
+   "confidence": "high",
+   "note": "Sheet 11 NE corner of block 323 outline ('323' label left, 1802 tick right); sheet 12 L-stub with leftward tick at top, left of 70' label."
+  },
+  {
+   "id": "red-disc-7",
+   "a_xy": [
+    3132,
+    2533
+   ],
+   "b_xy": [
+    124,
+    2485
+   ],
+   "confidence": "high",
+   "note": "Red circled '7' disc centroid in Av D roadway, SE of 1928 block corner (sheet 11) / west of 1925-1927 frontage (sheet 12), north of 40-ft street."
+  },
+  {
+   "id": "blk324-se-corner",
+   "a_xy": [
+    3092,
+    3696
+   ],
+   "b_xy": [
+    68,
+    3640
+   ],
+   "confidence": "medium",
+   "note": "Sheet 11 dashed SE corner of block 324 (dot ~15px inside, 2028 porch); sheet 12 long vertical stub with leftward foot at (68,3640) above Gill & League block. Stub sits ~30px west of where the northern stubs imply, as the description warns."
+  },
+  {
+   "id": "w-corner-1802",
+   "a_xy": [
+    3103,
+    399
+   ],
+   "b_xy": [
+    120,
+    394
+   ],
+   "confidence": "high",
+   "note": "Sheet 12 NE corner of block with cross ticks 621/623 and frontage 1802ff at Winnie & 18th; sheet 41 open-bracket vertex (horizontal stroke, vertical drop at right end) level with 1801 tick."
+  },
+  {
+   "id": "w-corner-1902",
+   "a_xy": [
+    3097,
+    1568
+   ],
+   "b_xy": [
+    110,
+    1571
+   ],
+   "confidence": "high",
+   "note": "Sheet 12 NE corner of 1902-1922 block ('623' tick immediately above corner) at Winnie & 19th; sheet 41 open-bracket vertex level with 1901 tick."
+  },
+  {
+   "id": "w-corner-2002",
+   "a_xy": [
+    3082,
+    2724
+   ],
+   "b_xy": [
+    100,
+    2736
+   ],
+   "confidence": "high",
+   "note": "Sheet 12 NE corner of St Mary's R.C. School block (STAGE & SCENERY, frontage 2002ff) at Winnie & 20th; sheet 41 open-bracket vertex south of double-dashed 80' line."
+  },
+  {
+   "id": "dash-19th-aveD",
+   "a_xy": [
+    3126,
+    1449
+   ],
+   "b_xy": [
+    164,
+    1466
+   ],
+   "confidence": "low",
+   "note": "Measured as intersection of 19th St dash-dot centerline row with the shared Av D line (x fixed at seam hint). Rows are drawn independently per sheet: sheet 12 row sits ~45px south of where sheet 11 row maps via nearby corners, so this is a drafting convention, not a rigid shared point."
+  },
+  {
+   "id": "dash-20th-aveD",
+   "a_xy": [
+    3126,
+    2581
+   ],
+   "b_xy": [
+    164,
+    2615
+   ],
+   "confidence": "low",
+   "note": "Intersection of 20th St double-dash row with shared Av D line. Sheet 11 draws the row at the north 40-ft half (City Hall mid-street); sheet 12 draws it near the full-street centerline; y values disagree by tens of px after transform. Use with caution."
+  },
+  {
+   "id": "dash-20th-aveG",
+   "a_xy": [
+    3127,
+    2626
+   ],
+   "b_xy": [
+    147,
+    2632
+   ],
+   "confidence": "low",
+   "note": "Intersection of the 20th St double-dash 80' row with shared Av G line, north of the school block (12) / park brackets (41). Same caveat: dash rows are per-sheet drafting, ~10-20px vertical step vs corner-implied transform."
+  },
+  {
+   "id": "th-hydrant-e-of-alley-114",
+   "a_xy": [
+    650,
+    3715
+   ],
+   "b_xy": [
+    735,
+    181
+   ],
+   "confidence": "high",
+   "note": "Black T.H. hydrant dot in 21st St east of 20-ft alley, below no.114 frontage (sheet 11); on sheet 13 same dot with T.H. label south of north-block stub corner. Dot centroids."
+  },
+  {
+   "id": "th-hydrant-214",
+   "a_xy": [
+    1707,
+    3691
+   ],
+   "b_xy": [
+    1750,
+    188
+   ],
+   "confidence": "high",
+   "note": "T.H. 1 hydrant dot at west end of yellow 214 frontage east of 20-ft alley (sheet 11); same dot NE of alley, north of 213, on sheet 13. Dot centroids."
+  },
+  {
+   "id": "ne-corner-211",
+   "a_xy": [
+    1627,
+    3894
+   ],
+   "b_xy": [
+    1673,
+    344
+   ],
+   "confidence": "medium",
+   "note": "Sheet 13: NE corner of yellow bldg 211 (dashed front line y~344, solid east edge x~1673, circle just inside), 27px west of alley. Sheet 11: top-right corner of schematic south-side outline rectangle, 28px west of alley. Schematic on 11, so vertical placement is approximate (~45px south of what the hydrant pair implies)."
+  }
+ ]
+}

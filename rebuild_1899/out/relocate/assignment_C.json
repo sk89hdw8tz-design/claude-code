@@ -1,0 +1,239 @@
+{
+ "group": "C",
+ "pairs": [
+  [
+   "13",
+   "14"
+  ],
+  [
+   "13",
+   "15"
+  ],
+  [
+   "14",
+   "16"
+  ],
+  [
+   "14",
+   "39"
+  ]
+ ],
+ "features": [
+  {
+   "id": "red-disc-214",
+   "sheet_a": "13",
+   "sheet_b": "14",
+   "description": "Centre of the red circled block-number disc reading '214', drawn in the Av D roadway at the NW corner of block 214, immediately below the third 80-ft cross street (sheet 13: SE of its blocks 2306/2302 corner; sheet 14: just NW of its yellow block corner addressed 2301, above the E.S. Levy Bldg latitude is the same street). Numeral verified identical at 6x zoom on both sheets; centres are red-pixel centroids.",
+   "seam_hint": {
+    "boundary": "Avenue D",
+    "x_on_sheet_13": 3243,
+    "x_on_sheet_14": 265,
+    "note": "the shared line; the feature lies within ~250 px of it on both sheets"
+   }
+  },
+  {
+   "id": "width70-top",
+   "sheet_a": "13",
+   "sheet_b": "14",
+   "description": "Ink centroid of the italic '70'' Av D street-width label at the northernmost intersection on these sheets (opposite the Galveston Tribune block; north of sheet 13's block 2102 corner and NW of sheet 14's '401' Central corner). Text annotation drawn once per sheet from the same master; centroid of dark pixels in a tight box around the two glyphs plus prime.",
+   "seam_hint": {
+    "boundary": "Avenue D",
+    "x_on_sheet_13": 3243,
+    "x_on_sheet_14": 265,
+    "note": "the shared line; the feature lies within ~250 px of it on both sheets"
+   }
+  },
+  {
+   "id": "width70-bottom",
+   "sheet_a": "13",
+   "sheet_b": "14",
+   "description": "Ink centroid of the italic '70'' Av D street-width label at the southernmost intersection (south of sheet 13's block 2328 corner / sheet 14's block 2327 corner, above the sheet-bottom 80-ft street).",
+   "seam_hint": {
+    "boundary": "Avenue D",
+    "x_on_sheet_13": 3243,
+    "x_on_sheet_14": 265,
+    "note": "the shared line; the feature lies within ~250 px of it on both sheets"
+   }
+  },
+  {
+   "id": "alarmbox-64",
+   "sheet_a": "14",
+   "sheet_b": "39",
+   "description": "Fire alarm box symbol: red-filled circle with black '64', standing alone in the Winnie / 23rd St intersection (just north of the YMCA/Natatorium block ticks 2301/2302, near the '80'' width numeral). Centre of the circle. Drawn complete on both sheets.",
+   "seam_hint": {
+    "boundary": "Avenue G",
+    "x_on_sheet_14": 3139,
+    "x_on_sheet_39": 267,
+    "note": "the shared line; the feature lies within ~250 px of it on both sheets"
+   }
+  },
+  {
+   "id": "e-corner-2101",
+   "sheet_a": "14",
+   "sheet_b": "39",
+   "description": "NW corner of the block on the east side of Winnie with frontage ticks 2101-2123 and cross-street ticks 701/703/705, at Winnie & 21st St ('70'' cross-street numeral nearby). Full corner on sheet 39 (vertex where the top block line meets the west frontage line, left of the '701' label); on sheet 14 the vertex of the open bracket (vertical drop at the LEFT end of the horizontal stroke) east of the shared line.",
+   "seam_hint": {
+    "boundary": "Avenue G",
+    "x_on_sheet_14": 3139,
+    "x_on_sheet_39": 267,
+    "note": "the shared line; the feature lies within ~250 px of it on both sheets"
+   }
+  },
+  {
+   "id": "e-corner-2201",
+   "sheet_a": "14",
+   "sheet_b": "39",
+   "description": "NW corner of the Trinity Episc. Church block (frontage ticks 2201-2217, '701' label above, 48' TOWER at the corner building), at Winnie & 22nd St, first block south of the double-dashed 80' line. Full corner on sheet 39; open bracket vertex on sheet 14.",
+   "seam_hint": {
+    "boundary": "Avenue G",
+    "x_on_sheet_14": 3139,
+    "x_on_sheet_39": 267,
+    "note": "the shared line; the feature lies within ~250 px of it on both sheets"
+   }
+  },
+  {
+   "id": "th-hydrant-114",
+   "sheet_a": "13",
+   "sheet_b": "15",
+   "description": "Filled black T.H. hydrant dot on N side of 24th St just S of street no. 114 (First Nat. Bank block), ~40 px SE of the dashed alley centerline; label 'T.H.' below dot on sheet 13, right of dot on sheet 15",
+   "seam_hint": {
+    "boundary": "24th Street",
+    "y_on_sheet_13": 3738,
+    "y_on_sheet_15": 340,
+    "note": "the shared line; the feature lies within ~250 px of it on both sheets"
+   }
+  },
+  {
+   "id": "th-hydrant-214",
+   "sheet_a": "13",
+   "sheet_b": "15",
+   "description": "Filled black T.H. hydrant dot on N side of 24th St below street no. 214, E of dashed alley centerline; on sheet 15 it sits immediately right of the large '13' sheet-reference numeral",
+   "seam_hint": {
+    "boundary": "24th Street",
+    "y_on_sheet_13": 3738,
+    "y_on_sheet_15": 340,
+    "note": "the shared line; the feature lies within ~250 px of it on both sheets"
+   }
+  },
+  {
+   "id": "th-hydrant-314",
+   "sheet_a": "13",
+   "sheet_b": "15",
+   "description": "Filled black T.H. hydrant dot on N side of 24th St below street no. 314 (iron-clad warehouse block), E of dashed centerline",
+   "seam_hint": {
+    "boundary": "24th Street",
+    "y_on_sheet_13": 3738,
+    "y_on_sheet_15": 340,
+    "note": "the shared line; the feature lies within ~250 px of it on both sheets"
+   }
+  },
+  {
+   "id": "alarm-box-212",
+   "sheet_a": "13",
+   "sheet_b": "15",
+   "description": "Red fire-alarm-box circle numbered 212 in the street SW of block corner near street no. 212/213; red-pixel centroid. Placement relative to adjacent block corner differs ~30 px between sheets (schematic symbol), so not suitable for tight registration",
+   "seam_hint": {
+    "boundary": "24th Street",
+    "y_on_sheet_13": 3738,
+    "y_on_sheet_15": 340,
+    "note": "the shared line; the feature lies within ~250 px of it on both sheets"
+   }
+  },
+  {
+   "id": "th-hydrant-414",
+   "sheet_a": "14",
+   "sheet_b": "16",
+   "description": "Filled black T.H. hydrant dot on N side of 24th St below street no. 414 (steam laundry 'Washing & Ironing' block), just E of dashed alley centerline; label T.H. right of dot on both sheets",
+   "seam_hint": {
+    "boundary": "24th Street",
+    "y_on_sheet_14": 3749,
+    "y_on_sheet_16": 347,
+    "note": "the shared line; the feature lies within ~250 px of it on both sheets"
+   }
+  },
+  {
+   "id": "th-hydrant-514",
+   "sheet_a": "14",
+   "sheet_b": "16",
+   "description": "Filled black T.H. hydrant dot on N side of 24th St below street no. 514 (block with Eng. & Dynamo / Servants Ho.), E of dashed centerline; on sheet 16 it sits right of the large '14' sheet-reference numeral",
+   "seam_hint": {
+    "boundary": "24th Street",
+    "y_on_sheet_14": 3749,
+    "y_on_sheet_16": 347,
+    "note": "the shared line; the feature lies within ~250 px of it on both sheets"
+   }
+  },
+  {
+   "id": "th-hydrant-614",
+   "sheet_a": "14",
+   "sheet_b": "16",
+   "description": "Filled black T.H. hydrant dot on N side of 24th St below street no. 614, E of dashed centerline, in 'NOT PAVED' stretch",
+   "seam_hint": {
+    "boundary": "24th Street",
+    "y_on_sheet_14": 3749,
+    "y_on_sheet_16": 347,
+    "note": "the shared line; the feature lies within ~250 px of it on both sheets"
+   }
+  },
+  {
+   "id": "corridor-strand-24th",
+   "sheet_a": "13",
+   "sheet_b": "15",
+   "description": "Strand corridor kerb alignment crossing 24th, column-profile NCC step +20px measured in composite",
+   "seam_hint": {
+    "boundary": "24th Street",
+    "y_on_sheet_13": 3738,
+    "y_on_sheet_15": 340,
+    "note": "the shared line; the feature lies within ~250 px of it on both sheets"
+   }
+  },
+  {
+   "id": "corridor-mechanic-24th",
+   "sheet_a": "13",
+   "sheet_b": "15",
+   "description": "Mechanic corridor kerb alignment crossing 24th, column-profile NCC step +25px measured in composite",
+   "seam_hint": {
+    "boundary": "24th Street",
+    "y_on_sheet_13": 3738,
+    "y_on_sheet_15": 340,
+    "note": "the shared line; the feature lies within ~250 px of it on both sheets"
+   }
+  },
+  {
+   "id": "dash-22nd-aveD",
+   "sheet_a": "13",
+   "sheet_b": "14",
+   "description": "street dash centerline continuity at slot 3, measured dash-row step +26px",
+   "seam_hint": {
+    "boundary": "Avenue D",
+    "x_on_sheet_13": 3243,
+    "x_on_sheet_14": 265,
+    "note": "the shared line; the feature lies within ~250 px of it on both sheets"
+   }
+  },
+  {
+   "id": "dash-23rd-aveD",
+   "sheet_a": "13",
+   "sheet_b": "14",
+   "description": "street dash centerline continuity at slot 3, measured dash-row step +37px",
+   "seam_hint": {
+    "boundary": "Avenue D",
+    "x_on_sheet_13": 3243,
+    "x_on_sheet_14": 265,
+    "note": "the shared line; the feature lies within ~250 px of it on both sheets"
+   }
+  },
+  {
+   "id": "dash-22nd-aveG",
+   "sheet_a": "14",
+   "sheet_b": "39",
+   "description": "street dash centerline continuity at slot 6, measured dash-row step +26px",
+   "seam_hint": {
+    "boundary": "Avenue G",
+    "x_on_sheet_14": 3139,
+    "x_on_sheet_39": 267,
+    "note": "the shared line; the feature lies within ~250 px of it on both sheets"
+   }
+  }
+ ]
+}

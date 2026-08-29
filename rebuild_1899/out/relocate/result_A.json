@@ -1,0 +1,134 @@
+{
+ "results": [
+  {
+   "id": "blk-se-corner-1828",
+   "a_xy": [
+    3040,
+    3675
+   ],
+   "b_xy": [
+    3011,
+    88
+   ],
+   "confidence": "high",
+   "note": "frontage line y3675 turns north at x3040 on 08; on 07 south edge y88 turns up at x3011 (block cut by sheet top edge)"
+  },
+  {
+   "id": "hides-ne-corner",
+   "a_xy": [
+    3006,
+    3924
+   ],
+   "b_xy": [
+    3000,
+    322
+   ],
+   "confidence": "high",
+   "note": "08: outline top y3924 turns down at x3006 near scan edge; 07: Hides top wall y322 meets east wall x3000"
+  },
+  {
+   "id": "th-hydrant-19th",
+   "a_xy": [
+    1942,
+    3682
+   ],
+   "b_xy": [
+    1925,
+    97
+   ],
+   "confidence": "high",
+   "note": "solid black dot; 08 label above, 07 label below; ~116px north of fire-limits on 08"
+  },
+  {
+   "id": "blk-sw-corner-east-of-tracks",
+   "a_xy": [
+    3245,
+    3718
+   ],
+   "b_xy": [
+    3246,
+    170
+   ],
+   "confidence": "high",
+   "note": "vertical line east of track corridor ends turning east in short horizontal; clear L on both sheets"
+  },
+  {
+   "id": "pier22_whse_se_corner",
+   "a_xy": [
+    1976,
+    3874
+   ],
+   "b_xy": [
+    1949,
+    356
+   ],
+   "confidence": "high",
+   "note": "vertex south+east walls of yellow warehouse; 07 has black circle just inside at ~(1966,3865)"
+  },
+  {
+   "id": "pier22_apron_se_corner",
+   "a_xy": [
+    2016,
+    3918
+   ],
+   "b_xy": [
+    1992,
+    410
+   ],
+   "confidence": "high",
+   "note": "outer black apron outline vertex at slip edge, diagonally outside whse SE corner"
+  },
+  {
+   "id": "pier22_apron_sw_corner",
+   "a_xy": [
+    1701,
+    3907
+   ],
+   "b_xy": [
+    1665,
+    412
+   ],
+   "confidence": "high",
+   "note": "outer apron outline SW vertex against blue water tint"
+  },
+  {
+   "id": "th_hydrant_dot",
+   "a_xy": [
+    2352,
+    3700
+   ],
+   "b_xy": [
+    2334,
+    157
+   ],
+   "confidence": "high",
+   "note": "solid dot west of track fan at west end of dashed 22nd St line; 06 dashes abut east side of dot"
+  },
+  {
+   "id": "block_lot13_nw_corner",
+   "a_xy": [
+    2651,
+    3823
+   ],
+   "b_xy": [
+    2621,
+    309
+   ],
+   "confidence": "high",
+   "note": "block outline top edge turns down at west end just west of lot 13; offsets from T.H. dot consistent (299 vs 287 px)"
+  },
+  {
+   "id": "junction-22nd-0713",
+   "a_xy": [
+    3127,
+    3733
+   ],
+   "b_xy": [
+    142,
+    1470
+   ],
+   "confidence": "high",
+   "note": "10in W PIPE double-dash row crossing Ave A; 07 row y=3733, 13 row y=1470; only dashed row at this crossing on both"
+  }
+ ]
+}

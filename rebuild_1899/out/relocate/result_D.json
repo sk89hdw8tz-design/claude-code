@@ -1,0 +1,23 @@
+{"results": [
+{"id": "width70-top", "a_xy": [3237, 350], "b_xy": [167, 318], "confidence": "high", "note": "italic 70' ink centroid incl. apostrophe; NE of China Rest't block corner on 15, NW of Central Hotel 401 corner on 16"}
+,
+{"id": "red-disc-124", "a_xy": [3281, 2813], "b_xy": [199, 2734], "confidence": "high", "note": "red disc '124' centroid in Av D roadway NW of Iron Front/2601 block corner; verified numeral both sheets"}
+,
+{"id": "width70-bottom", "a_xy": [3228, 3707], "b_xy": [170, 3686], "confidence": "high", "note": "italic 70' centroid; S of 2626/2628 corner on 15, W of 2623-2627 frontage on 16, above bottom 80-ft street"}
+,
+{"id": "dash-25th-aveD", "status": "not-found", "note": "description ('slot 3', 'dash-row step +15px') references a periodic dash centerline with a counting convention that cannot be reproduced independently; dashes on 25th St centerline are visually identical and un-anchored. Declined to guess."}
+,
+{"id": "e-corner-2401", "a_xy": [3320, 302], "b_xy": [269, 352], "confidence": "high", "note": "sheet16: open-bracket vertex (top of long vertical, stroke right) E of seam; sheet37: full NW corner of German Luth Church/School block, ticks 2401-2407, 701 above"}
+,
+{"id": "e-corner-2501", "a_xy": [3309, 1600], "b_xy": [260, 1651], "confidence": "high", "note": "sheet16: bracket vertex opposite ticks 2502/2504, S of 120' double-dashed line; sheet37: full NW corner of 2501-2515 block left of 701"}
+,
+{"id": "e-corner-2601", "a_xy": [3299, 2761], "b_xy": [255, 2818], "confidence": "high", "note": "sheet16: bracket vertex opposite ticks 2602/2604, S of 80' intersection; sheet37: full NW corner of 2601-2609 block, 701/703 above"}
+,
+{"id": "th-hydrant-714-block", "a_xy": [729, 3706], "b_xy": [734, 190], "confidence": "high", "note": "T.H. dot in 21st St; label below dot on 41, right of dot on 39; NE of compass rose on 39, S of 702/724 outline gap on 41"}
+,
+{"id": "fire-alarm-box-71", "a_xy": [2123, 3735], "b_xy": [2154, 171], "confidence": "high", "note": "red circled 71 disc centre in 21st St; SE of Car Barn/720 frontage on 41, E of south-block outline corner on 39"}
+,
+{"id": "th-hydrant-914", "pair": "41|39", "a_xy": [2739, 3717], "b_xy": [2755, 173], "confidence": "high", "note": "T.H. dot S of SW corner of lot 914, E of 20-ft double-dashed alley on both sheets; label below on 41, right on 39"}
+,
+{"id": "th-hydrant-714", "pair": "39|37", "a_xy": [715, 3691], "b_xy": [694, 129], "confidence": "high", "note": "T.H. dot N side 24th St, ~35px E of dashed alley centerline, ~30-40px below north-block outline on both sheets; below 714 label on 39 (714 label cut off on 37)"}
+]}

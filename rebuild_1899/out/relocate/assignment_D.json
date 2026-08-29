@@ -1,0 +1,179 @@
+{
+ "group": "D",
+ "pairs": [
+  [
+   "15",
+   "16"
+  ],
+  [
+   "16",
+   "37"
+  ],
+  [
+   "39",
+   "37"
+  ],
+  [
+   "41",
+   "39"
+  ]
+ ],
+ "features": [
+  {
+   "id": "red-disc-124",
+   "sheet_a": "15",
+   "sheet_b": "16",
+   "description": "Centre of the red circled block-number disc reading '124', drawn in the Av D roadway just NW of block 124's corner (the 'Iron Front' block addressed 2601, Kindergarten block), immediately south of the 80-ft cross street between the 25xx and 26xx blocks. Numeral verified identical at 6x zoom on both sheets; centres are red-pixel centroids.",
+   "seam_hint": {
+    "boundary": "Avenue D",
+    "x_on_sheet_15": 3130,
+    "x_on_sheet_16": 147,
+    "note": "the shared line; the feature lies within ~250 px of it on both sheets"
+   }
+  },
+  {
+   "id": "width70-top",
+   "sheet_a": "15",
+   "sheet_b": "16",
+   "description": "Ink centroid of the italic '70'' Av D street-width label at the northernmost intersection on these sheets (NW of sheet 16's Central Hotel block corner '401'; NE of sheet 15's block 2402/China Rest't corner).",
+   "seam_hint": {
+    "boundary": "Avenue D",
+    "x_on_sheet_15": 3130,
+    "x_on_sheet_16": 147,
+    "note": "the shared line; the feature lies within ~250 px of it on both sheets"
+   }
+  },
+  {
+   "id": "width70-bottom",
+   "sheet_a": "15",
+   "sheet_b": "16",
+   "description": "Ink centroid of the italic '70'' Av D street-width label at the southernmost intersection (south of sheet 15's block 2626 corner and next to sheet 16's 2623-2627 frontage, above the sheet-bottom 80-ft street).",
+   "seam_hint": {
+    "boundary": "Avenue D",
+    "x_on_sheet_15": 3130,
+    "x_on_sheet_16": 147,
+    "note": "the shared line; the feature lies within ~250 px of it on both sheets"
+   }
+  },
+  {
+   "id": "e-corner-2401",
+   "sheet_a": "16",
+   "sheet_b": "37",
+   "description": "NW corner of the German school block (yellow 'GERMAN...' building with '16' TO EAVES', frontage ticks 2401-2407, '701' above), east side of Winnie at 24th St. Full corner on sheet 37; on sheet 16 the vertex of the open bracket (top of the long vertical block-edge line, horizontal stroke to the right) east of the shared line, level with tick 2402.",
+   "seam_hint": {
+    "boundary": "Avenue G",
+    "x_on_sheet_16": 3119,
+    "x_on_sheet_37": 134,
+    "note": "the shared line; the feature lies within ~250 px of it on both sheets"
+   }
+  },
+  {
+   "id": "e-corner-2501",
+   "sheet_a": "16",
+   "sheet_b": "37",
+   "description": "NW corner of the block with frontage ticks 2501-2515 ('701 703' above), east side of Winnie at 25th St, south of the 120' double-dashed line. Full corner on sheet 37 (left of the '701' label); open bracket vertex on sheet 16 opposite frontage ticks 2502/2504.",
+   "seam_hint": {
+    "boundary": "Avenue G",
+    "x_on_sheet_16": 3119,
+    "x_on_sheet_37": 134,
+    "note": "the shared line; the feature lies within ~250 px of it on both sheets"
+   }
+  },
+  {
+   "id": "e-corner-2601",
+   "sheet_a": "16",
+   "sheet_b": "37",
+   "description": "NW corner of the block with frontage ticks 2601-2609 ('701 703' above), east side of Winnie at 26th St ('80'' width numeral in the intersection to the north). Full corner on sheet 37; open bracket vertex on sheet 16 opposite frontage ticks 2602/2604.",
+   "seam_hint": {
+    "boundary": "Avenue G",
+    "x_on_sheet_16": 3119,
+    "x_on_sheet_37": 134,
+    "note": "the shared line; the feature lies within ~250 px of it on both sheets"
+   }
+  },
+  {
+   "id": "th-hydrant-714-block",
+   "sheet_a": "41",
+   "sheet_b": "39",
+   "description": "Fire hydrant dot labelled T.H. (label below the dot on sheet 41, right of it on sheet 39), in 21st St south of the gap between the 702-724 block corner outlines; on sheet 39 it sits just NE of the compass rose, below the north-block outline line; dot centre.",
+   "seam_hint": {
+    "boundary": "21th Street",
+    "y_on_sheet_41": 3767,
+    "y_on_sheet_39": 344,
+    "note": "the shared line; the feature lies within ~250 px of it on both sheets"
+   }
+  },
+  {
+   "id": "fire-alarm-box-71",
+   "sheet_a": "41",
+   "sheet_b": "39",
+   "description": "Red circled fire-alarm box numbered 71, in 21st St SE of frontage no. 720 / Galveston power-house Car Barn corner (sheet 41), east of the south-block outline corner on sheet 39; disc centre.",
+   "seam_hint": {
+    "boundary": "21th Street",
+    "y_on_sheet_41": 3767,
+    "y_on_sheet_39": 344,
+    "note": "the shared line; the feature lies within ~250 px of it on both sheets"
+   }
+  },
+  {
+   "id": "th-hydrant-914",
+   "sheet_a": "41",
+   "sheet_b": "39",
+   "description": "Fire hydrant dot labelled T.H., just south of SW corner of yellow frontage no. 914, east of the 20-ft double-dashed alley line on both sheets; dot centre.",
+   "seam_hint": {
+    "boundary": "21th Street",
+    "y_on_sheet_41": 3767,
+    "y_on_sheet_39": 344,
+    "note": "the shared line; the feature lies within ~250 px of it on both sheets"
+   }
+  },
+  {
+   "id": "th-hydrant-714",
+   "sheet_a": "39",
+   "sheet_b": "37",
+   "description": "Filled black T.H. hydrant dot on N side of 24th St below street no. 714 (block with dwellings 'D.'), just E of dashed alley centerline",
+   "seam_hint": {
+    "boundary": "24th Street",
+    "y_on_sheet_39": 3758,
+    "y_on_sheet_37": 327,
+    "note": "the shared line; the feature lies within ~250 px of it on both sheets"
+   }
+  },
+  {
+   "id": "th-hydrant-814",
+   "sheet_a": "39",
+   "sheet_b": "37",
+   "description": "Filled black T.H. hydrant dot on N side of 24th St below street no. 814, E of dashed centerline; on sheet 37 it sits right of the large '39' sheet-reference numeral",
+   "seam_hint": {
+    "boundary": "24th Street",
+    "y_on_sheet_39": 3758,
+    "y_on_sheet_37": 327,
+    "note": "the shared line; the feature lies within ~250 px of it on both sheets"
+   }
+  },
+  {
+   "id": "th-hydrant-914",
+   "sheet_a": "39",
+   "sheet_b": "37",
+   "description": "Filled black T.H. hydrant dot on N side of 24th St below street no. 914 (E of lot 912 with cross-hatched stable), E of dashed centerline",
+   "seam_hint": {
+    "boundary": "24th Street",
+    "y_on_sheet_39": 3758,
+    "y_on_sheet_37": 327,
+    "note": "the shared line; the feature lies within ~250 px of it on both sheets"
+   }
+  },
+  {
+   "id": "dash-25th-aveD",
+   "sheet_a": "15",
+   "sheet_b": "16",
+   "description": "street dash centerline continuity at slot 3, measured dash-row step +15px",
+   "seam_hint": {
+    "boundary": "Avenue D",
+    "x_on_sheet_15": 3130,
+    "x_on_sheet_16": 147,
+    "note": "the shared line; the feature lies within ~250 px of it on both sheets"
+   }
+  }
+ ]
+}

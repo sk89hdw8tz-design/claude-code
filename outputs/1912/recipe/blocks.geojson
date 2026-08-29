@@ -1,0 +1,3686 @@
+{
+ "type": "FeatureCollection",
+ "crs_note": "1912 mosaic frame (sheet 10 raw pixels minus [3326, 3898])",
+ "features": [
+  {
+   "type": "Feature",
+   "properties": {
+    "bounded_by": [
+     "18th Street",
+     "19th Street",
+     "Avenue A (Water)",
+     "Avenue B (Strand)"
+    ],
+    "streets": [
+     18,
+     19
+    ],
+    "avenue_slots": [
+     0,
+     1
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -6983.1,
+       -10330.7
+      ],
+      [
+       -4954.1,
+       -10330.7
+      ],
+      [
+       -4954.1,
+       -8034.0
+      ],
+      [
+       -6983.1,
+       -8034.0
+      ],
+      [
+       -6983.1,
+       -10330.7
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "bounded_by": [
+     "18th Street",
+     "19th Street",
+     "Avenue B (Strand)",
+     "Avenue C (Mechanic)"
+    ],
+    "streets": [
+     18,
+     19
+    ],
+    "avenue_slots": [
+     1,
+     2
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -4954.1,
+       -10330.7
+      ],
+      [
+       -2879.2,
+       -10330.7
+      ],
+      [
+       -2879.2,
+       -8034.0
+      ],
+      [
+       -4954.1,
+       -8034.0
+      ],
+      [
+       -4954.1,
+       -10330.7
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "bounded_by": [
+     "18th Street",
+     "19th Street",
+     "Avenue C (Mechanic)",
+     "Avenue D (Market)"
+    ],
+    "streets": [
+     18,
+     19
+    ],
+    "avenue_slots": [
+     2,
+     3
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -2879.2,
+       -10330.7
+      ],
+      [
+       -887.9,
+       -10330.7
+      ],
+      [
+       -887.9,
+       -8034.0
+      ],
+      [
+       -2879.2,
+       -8034.0
+      ],
+      [
+       -2879.2,
+       -10330.7
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "bounded_by": [
+     "18th Street",
+     "19th Street",
+     "Avenue D (Market)",
+     "Avenue E (Postoffice)"
+    ],
+    "streets": [
+     18,
+     19
+    ],
+    "avenue_slots": [
+     3,
+     4
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -887.9,
+       -10330.7
+      ],
+      [
+       1124.1,
+       -10330.7
+      ],
+      [
+       1124.1,
+       -8034.0
+      ],
+      [
+       -887.9,
+       -8034.0
+      ],
+      [
+       -887.9,
+       -10330.7
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "bounded_by": [
+     "18th Street",
+     "19th Street",
+     "Avenue E (Postoffice)",
+     "Avenue F (Church)"
+    ],
+    "streets": [
+     18,
+     19
+    ],
+    "avenue_slots": [
+     4,
+     5
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       1124.1,
+       -10330.7
+      ],
+      [
+       3174.2,
+       -10330.7
+      ],
+      [
+       3174.2,
+       -8034.0
+      ],
+      [
+       1124.1,
+       -8034.0
+      ],
+      [
+       1124.1,
+       -10330.7
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "bounded_by": [
+     "18th Street",
+     "19th Street",
+     "Avenue F (Church)",
+     "Avenue G (Winnie)"
+    ],
+    "streets": [
+     18,
+     19
+    ],
+    "avenue_slots": [
+     5,
+     6
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       3174.2,
+       -10330.7
+      ],
+      [
+       5178.5,
+       -10330.7
+      ],
+      [
+       5178.5,
+       -8034.0
+      ],
+      [
+       3174.2,
+       -8034.0
+      ],
+      [
+       3174.2,
+       -10330.7
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "bounded_by": [
+     "18th Street",
+     "19th Street",
+     "Avenue G (Winnie)",
+     "Avenue H (Ball)"
+    ],
+    "streets": [
+     18,
+     19
+    ],
+    "avenue_slots": [
+     6,
+     7
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       5178.5,
+       -10330.7
+      ],
+      [
+       7191.7,
+       -10330.7
+      ],
+      [
+       7191.7,
+       -8034.0
+      ],
+      [
+       5178.5,
+       -8034.0
+      ],
+      [
+       5178.5,
+       -10330.7
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "bounded_by": [
+     "18th Street",
+     "19th Street",
+     "Avenue H (Ball)",
+     "Avenue I (Sealy)"
+    ],
+    "streets": [
+     18,
+     19
+    ],
+    "avenue_slots": [
+     7,
+     8
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       7191.7,
+       -10330.7
+      ],
+      [
+       9220.6,
+       -10330.7
+      ],
+      [
+       9220.6,
+       -8034.0
+      ],
+      [
+       7191.7,
+       -8034.0
+      ],
+      [
+       7191.7,
+       -10330.7
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "bounded_by": [
+     "18th Street",
+     "19th Street",
+     "Avenue I (Sealy)",
+     "Broadway (Avenue J)"
+    ],
+    "streets": [
+     18,
+     19
+    ],
+    "avenue_slots": [
+     8,
+     9
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       9220.6,
+       -10330.7
+      ],
+      [
+       11297.9,
+       -10330.7
+      ],
+      [
+       11297.9,
+       -8034.0
+      ],
+      [
+       9220.6,
+       -8034.0
+      ],
+      [
+       9220.6,
+       -10330.7
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "bounded_by": [
+     "18th Street",
+     "19th Street",
+     "Broadway (Avenue J)",
+     "Avenue K"
+    ],
+    "streets": [
+     18,
+     19
+    ],
+    "avenue_slots": [
+     9,
+     10
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       11297.9,
+       -10330.7
+      ],
+      [
+       13400.7,
+       -10330.7
+      ],
+      [
+       13400.7,
+       -8034.0
+      ],
+      [
+       11297.9,
+       -8034.0
+      ],
+      [
+       11297.9,
+       -10330.7
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "bounded_by": [
+     "19th Street",
+     "20th Street",
+     "Avenue A (Water)",
+     "Avenue B (Strand)"
+    ],
+    "streets": [
+     19,
+     20
+    ],
+    "avenue_slots": [
+     0,
+     1
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -6983.1,
+       -8034.0
+      ],
+      [
+       -4954.1,
+       -8034.0
+      ],
+      [
+       -4954.1,
+       -5704.7
+      ],
+      [
+       -6983.1,
+       -5704.7
+      ],
+      [
+       -6983.1,
+       -8034.0
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "bounded_by": [
+     "19th Street",
+     "20th Street",
+     "Avenue B (Strand)",
+     "Avenue C (Mechanic)"
+    ],
+    "streets": [
+     19,
+     20
+    ],
+    "avenue_slots": [
+     1,
+     2
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -4954.1,
+       -8034.0
+      ],
+      [
+       -2879.2,
+       -8034.0
+      ],
+      [
+       -2879.2,
+       -5704.7
+      ],
+      [
+       -4954.1,
+       -5704.7
+      ],
+      [
+       -4954.1,
+       -8034.0
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "bounded_by": [
+     "19th Street",
+     "20th Street",
+     "Avenue C (Mechanic)",
+     "Avenue D (Market)"
+    ],
+    "streets": [
+     19,
+     20
+    ],
+    "avenue_slots": [
+     2,
+     3
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -2879.2,
+       -8034.0
+      ],
+      [
+       -887.9,
+       -8034.0
+      ],
+      [
+       -887.9,
+       -5704.7
+      ],
+      [
+       -2879.2,
+       -5704.7
+      ],
+      [
+       -2879.2,
+       -8034.0
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "bounded_by": [
+     "19th Street",
+     "20th Street",
+     "Avenue D (Market)",
+     "Avenue E (Postoffice)"
+    ],
+    "streets": [
+     19,
+     20
+    ],
+    "avenue_slots": [
+     3,
+     4
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -887.9,
+       -8034.0
+      ],
+      [
+       1124.1,
+       -8034.0
+      ],
+      [
+       1124.1,
+       -5704.7
+      ],
+      [
+       -887.9,
+       -5704.7
+      ],
+      [
+       -887.9,
+       -8034.0
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "bounded_by": [
+     "19th Street",
+     "20th Street",
+     "Avenue E (Postoffice)",
+     "Avenue F (Church)"
+    ],
+    "streets": [
+     19,
+     20
+    ],
+    "avenue_slots": [
+     4,
+     5
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       1124.1,
+       -8034.0
+      ],
+      [
+       3174.2,
+       -8034.0
+      ],
+      [
+       3174.2,
+       -5704.7
+      ],
+      [
+       1124.1,
+       -5704.7
+      ],
+      [
+       1124.1,
+       -8034.0
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "bounded_by": [
+     "19th Street",
+     "20th Street",
+     "Avenue F (Church)",
+     "Avenue G (Winnie)"
+    ],
+    "streets": [
+     19,
+     20
+    ],
+    "avenue_slots": [
+     5,
+     6
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       3174.2,
+       -8034.0
+      ],
+      [
+       5178.5,
+       -8034.0
+      ],
+      [
+       5178.5,
+       -5704.7
+      ],
+      [
+       3174.2,
+       -5704.7
+      ],
+      [
+       3174.2,
+       -8034.0
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "bounded_by": [
+     "19th Street",
+     "20th Street",
+     "Avenue G (Winnie)",
+     "Avenue H (Ball)"
+    ],
+    "streets": [
+     19,
+     20
+    ],
+    "avenue_slots": [
+     6,
+     7
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       5178.5,
+       -8034.0
+      ],
+      [
+       7191.7,
+       -8034.0
+      ],
+      [
+       7191.7,
+       -5704.7
+      ],
+      [
+       5178.5,
+       -5704.7
+      ],
+      [
+       5178.5,
+       -8034.0
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "bounded_by": [
+     "19th Street",
+     "20th Street",
+     "Avenue H (Ball)",
+     "Avenue I (Sealy)"
+    ],
+    "streets": [
+     19,
+     20
+    ],
+    "avenue_slots": [
+     7,
+     8
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       7191.7,
+       -8034.0
+      ],
+      [
+       9220.6,
+       -8034.0
+      ],
+      [
+       9220.6,
+       -5704.7
+      ],
+      [
+       7191.7,
+       -5704.7
+      ],
+      [
+       7191.7,
+       -8034.0
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "bounded_by": [
+     "19th Street",
+     "20th Street",
+     "Avenue I (Sealy)",
+     "Broadway (Avenue J)"
+    ],
+    "streets": [
+     19,
+     20
+    ],
+    "avenue_slots": [
+     8,
+     9
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       9220.6,
+       -8034.0
+      ],
+      [
+       11297.9,
+       -8034.0
+      ],
+      [
+       11297.9,
+       -5704.7
+      ],
+      [
+       9220.6,
+       -5704.7
+      ],
+      [
+       9220.6,
+       -8034.0
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "bounded_by": [
+     "19th Street",
+     "20th Street",
+     "Broadway (Avenue J)",
+     "Avenue K"
+    ],
+    "streets": [
+     19,
+     20
+    ],
+    "avenue_slots": [
+     9,
+     10
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       11297.9,
+       -8034.0
+      ],
+      [
+       13400.7,
+       -8034.0
+      ],
+      [
+       13400.7,
+       -5704.7
+      ],
+      [
+       11297.9,
+       -5704.7
+      ],
+      [
+       11297.9,
+       -8034.0
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "bounded_by": [
+     "20th Street",
+     "21st Street",
+     "Avenue A (Water)",
+     "Avenue B (Strand)"
+    ],
+    "streets": [
+     20,
+     21
+    ],
+    "avenue_slots": [
+     0,
+     1
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -6983.1,
+       -5704.7
+      ],
+      [
+       -4954.1,
+       -5704.7
+      ],
+      [
+       -4954.1,
+       -3434.5
+      ],
+      [
+       -6983.1,
+       -3434.5
+      ],
+      [
+       -6983.1,
+       -5704.7
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "bounded_by": [
+     "20th Street",
+     "21st Street",
+     "Avenue B (Strand)",
+     "Avenue C (Mechanic)"
+    ],
+    "streets": [
+     20,
+     21
+    ],
+    "avenue_slots": [
+     1,
+     2
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -4954.1,
+       -5704.7
+      ],
+      [
+       -2879.2,
+       -5704.7
+      ],
+      [
+       -2879.2,
+       -3434.5
+      ],
+      [
+       -4954.1,
+       -3434.5
+      ],
+      [
+       -4954.1,
+       -5704.7
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "bounded_by": [
+     "20th Street",
+     "21st Street",
+     "Avenue C (Mechanic)",
+     "Avenue D (Market)"
+    ],
+    "streets": [
+     20,
+     21
+    ],
+    "avenue_slots": [
+     2,
+     3
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -2879.2,
+       -5704.7
+      ],
+      [
+       -887.9,
+       -5704.7
+      ],
+      [
+       -887.9,
+       -3434.5
+      ],
+      [
+       -2879.2,
+       -3434.5
+      ],
+      [
+       -2879.2,
+       -5704.7
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "bounded_by": [
+     "20th Street",
+     "21st Street",
+     "Avenue D (Market)",
+     "Avenue E (Postoffice)"
+    ],
+    "streets": [
+     20,
+     21
+    ],
+    "avenue_slots": [
+     3,
+     4
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -887.9,
+       -5704.7
+      ],
+      [
+       1124.1,
+       -5704.7
+      ],
+      [
+       1124.1,
+       -3434.5
+      ],
+      [
+       -887.9,
+       -3434.5
+      ],
+      [
+       -887.9,
+       -5704.7
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "bounded_by": [
+     "20th Street",
+     "21st Street",
+     "Avenue E (Postoffice)",
+     "Avenue F (Church)"
+    ],
+    "streets": [
+     20,
+     21
+    ],
+    "avenue_slots": [
+     4,
+     5
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       1124.1,
+       -5704.7
+      ],
+      [
+       3174.2,
+       -5704.7
+      ],
+      [
+       3174.2,
+       -3434.5
+      ],
+      [
+       1124.1,
+       -3434.5
+      ],
+      [
+       1124.1,
+       -5704.7
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "bounded_by": [
+     "20th Street",
+     "21st Street",
+     "Avenue F (Church)",
+     "Avenue G (Winnie)"
+    ],
+    "streets": [
+     20,
+     21
+    ],
+    "avenue_slots": [
+     5,
+     6
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       3174.2,
+       -5704.7
+      ],
+      [
+       5178.5,
+       -5704.7
+      ],
+      [
+       5178.5,
+       -3434.5
+      ],
+      [
+       3174.2,
+       -3434.5
+      ],
+      [
+       3174.2,
+       -5704.7
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "bounded_by": [
+     "20th Street",
+     "21st Street",
+     "Avenue G (Winnie)",
+     "Avenue H (Ball)"
+    ],
+    "streets": [
+     20,
+     21
+    ],
+    "avenue_slots": [
+     6,
+     7
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       5178.5,
+       -5704.7
+      ],
+      [
+       7191.7,
+       -5704.7
+      ],
+      [
+       7191.7,
+       -3434.5
+      ],
+      [
+       5178.5,
+       -3434.5
+      ],
+      [
+       5178.5,
+       -5704.7
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "bounded_by": [
+     "20th Street",
+     "21st Street",
+     "Avenue H (Ball)",
+     "Avenue I (Sealy)"
+    ],
+    "streets": [
+     20,
+     21
+    ],
+    "avenue_slots": [
+     7,
+     8
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       7191.7,
+       -5704.7
+      ],
+      [
+       9220.6,
+       -5704.7
+      ],
+      [
+       9220.6,
+       -3434.5
+      ],
+      [
+       7191.7,
+       -3434.5
+      ],
+      [
+       7191.7,
+       -5704.7
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "bounded_by": [
+     "20th Street",
+     "21st Street",
+     "Avenue I (Sealy)",
+     "Broadway (Avenue J)"
+    ],
+    "streets": [
+     20,
+     21
+    ],
+    "avenue_slots": [
+     8,
+     9
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       9220.6,
+       -5704.7
+      ],
+      [
+       11297.9,
+       -5704.7
+      ],
+      [
+       11297.9,
+       -3434.5
+      ],
+      [
+       9220.6,
+       -3434.5
+      ],
+      [
+       9220.6,
+       -5704.7
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "bounded_by": [
+     "20th Street",
+     "21st Street",
+     "Broadway (Avenue J)",
+     "Avenue K"
+    ],
+    "streets": [
+     20,
+     21
+    ],
+    "avenue_slots": [
+     9,
+     10
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       11297.9,
+       -5704.7
+      ],
+      [
+       13400.7,
+       -5704.7
+      ],
+      [
+       13400.7,
+       -3434.5
+      ],
+      [
+       11297.9,
+       -3434.5
+      ],
+      [
+       11297.9,
+       -5704.7
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "bounded_by": [
+     "21st Street",
+     "22nd Street",
+     "Avenue A (Water)",
+     "Avenue B (Strand)"
+    ],
+    "streets": [
+     21,
+     22
+    ],
+    "avenue_slots": [
+     0,
+     1
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -6983.1,
+       -3434.5
+      ],
+      [
+       -4954.1,
+       -3434.5
+      ],
+      [
+       -4954.1,
+       -1150.5
+      ],
+      [
+       -6983.1,
+       -1150.5
+      ],
+      [
+       -6983.1,
+       -3434.5
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "bounded_by": [
+     "21st Street",
+     "22nd Street",
+     "Avenue B (Strand)",
+     "Avenue C (Mechanic)"
+    ],
+    "streets": [
+     21,
+     22
+    ],
+    "avenue_slots": [
+     1,
+     2
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -4954.1,
+       -3434.5
+      ],
+      [
+       -2879.2,
+       -3434.5
+      ],
+      [
+       -2879.2,
+       -1150.5
+      ],
+      [
+       -4954.1,
+       -1150.5
+      ],
+      [
+       -4954.1,
+       -3434.5
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "bounded_by": [
+     "21st Street",
+     "22nd Street",
+     "Avenue C (Mechanic)",
+     "Avenue D (Market)"
+    ],
+    "streets": [
+     21,
+     22
+    ],
+    "avenue_slots": [
+     2,
+     3
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -2879.2,
+       -3434.5
+      ],
+      [
+       -887.9,
+       -3434.5
+      ],
+      [
+       -887.9,
+       -1150.5
+      ],
+      [
+       -2879.2,
+       -1150.5
+      ],
+      [
+       -2879.2,
+       -3434.5
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "bounded_by": [
+     "21st Street",
+     "22nd Street",
+     "Avenue D (Market)",
+     "Avenue E (Postoffice)"
+    ],
+    "streets": [
+     21,
+     22
+    ],
+    "avenue_slots": [
+     3,
+     4
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -887.9,
+       -3434.5
+      ],
+      [
+       1124.1,
+       -3434.5
+      ],
+      [
+       1124.1,
+       -1150.5
+      ],
+      [
+       -887.9,
+       -1150.5
+      ],
+      [
+       -887.9,
+       -3434.5
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "bounded_by": [
+     "21st Street",
+     "22nd Street",
+     "Avenue E (Postoffice)",
+     "Avenue F (Church)"
+    ],
+    "streets": [
+     21,
+     22
+    ],
+    "avenue_slots": [
+     4,
+     5
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       1124.1,
+       -3434.5
+      ],
+      [
+       3174.2,
+       -3434.5
+      ],
+      [
+       3174.2,
+       -1150.5
+      ],
+      [
+       1124.1,
+       -1150.5
+      ],
+      [
+       1124.1,
+       -3434.5
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "bounded_by": [
+     "21st Street",
+     "22nd Street",
+     "Avenue F (Church)",
+     "Avenue G (Winnie)"
+    ],
+    "streets": [
+     21,
+     22
+    ],
+    "avenue_slots": [
+     5,
+     6
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       3174.2,
+       -3434.5
+      ],
+      [
+       5178.5,
+       -3434.5
+      ],
+      [
+       5178.5,
+       -1150.5
+      ],
+      [
+       3174.2,
+       -1150.5
+      ],
+      [
+       3174.2,
+       -3434.5
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "bounded_by": [
+     "21st Street",
+     "22nd Street",
+     "Avenue G (Winnie)",
+     "Avenue H (Ball)"
+    ],
+    "streets": [
+     21,
+     22
+    ],
+    "avenue_slots": [
+     6,
+     7
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       5178.5,
+       -3434.5
+      ],
+      [
+       7191.7,
+       -3434.5
+      ],
+      [
+       7191.7,
+       -1150.5
+      ],
+      [
+       5178.5,
+       -1150.5
+      ],
+      [
+       5178.5,
+       -3434.5
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "bounded_by": [
+     "21st Street",
+     "22nd Street",
+     "Avenue H (Ball)",
+     "Avenue I (Sealy)"
+    ],
+    "streets": [
+     21,
+     22
+    ],
+    "avenue_slots": [
+     7,
+     8
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       7191.7,
+       -3434.5
+      ],
+      [
+       9220.6,
+       -3434.5
+      ],
+      [
+       9220.6,
+       -1150.5
+      ],
+      [
+       7191.7,
+       -1150.5
+      ],
+      [
+       7191.7,
+       -3434.5
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "bounded_by": [
+     "21st Street",
+     "22nd Street",
+     "Avenue I (Sealy)",
+     "Broadway (Avenue J)"
+    ],
+    "streets": [
+     21,
+     22
+    ],
+    "avenue_slots": [
+     8,
+     9
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       9220.6,
+       -3434.5
+      ],
+      [
+       11297.9,
+       -3434.5
+      ],
+      [
+       11297.9,
+       -1150.5
+      ],
+      [
+       9220.6,
+       -1150.5
+      ],
+      [
+       9220.6,
+       -3434.5
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "bounded_by": [
+     "21st Street",
+     "22nd Street",
+     "Broadway (Avenue J)",
+     "Avenue K"
+    ],
+    "streets": [
+     21,
+     22
+    ],
+    "avenue_slots": [
+     9,
+     10
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       11297.9,
+       -3434.5
+      ],
+      [
+       13400.7,
+       -3434.5
+      ],
+      [
+       13400.7,
+       -1150.5
+      ],
+      [
+       11297.9,
+       -1150.5
+      ],
+      [
+       11297.9,
+       -3434.5
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "bounded_by": [
+     "22nd Street",
+     "23rd Street",
+     "Avenue A (Water)",
+     "Avenue B (Strand)"
+    ],
+    "streets": [
+     22,
+     23
+    ],
+    "avenue_slots": [
+     0,
+     1
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -6983.1,
+       -1150.5
+      ],
+      [
+       -4954.1,
+       -1150.5
+      ],
+      [
+       -4954.1,
+       1161.0
+      ],
+      [
+       -6983.1,
+       1161.0
+      ],
+      [
+       -6983.1,
+       -1150.5
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "bounded_by": [
+     "22nd Street",
+     "23rd Street",
+     "Avenue B (Strand)",
+     "Avenue C (Mechanic)"
+    ],
+    "streets": [
+     22,
+     23
+    ],
+    "avenue_slots": [
+     1,
+     2
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -4954.1,
+       -1150.5
+      ],
+      [
+       -2879.2,
+       -1150.5
+      ],
+      [
+       -2879.2,
+       1161.0
+      ],
+      [
+       -4954.1,
+       1161.0
+      ],
+      [
+       -4954.1,
+       -1150.5
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "bounded_by": [
+     "22nd Street",
+     "23rd Street",
+     "Avenue C (Mechanic)",
+     "Avenue D (Market)"
+    ],
+    "streets": [
+     22,
+     23
+    ],
+    "avenue_slots": [
+     2,
+     3
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -2879.2,
+       -1150.5
+      ],
+      [
+       -887.9,
+       -1150.5
+      ],
+      [
+       -887.9,
+       1161.0
+      ],
+      [
+       -2879.2,
+       1161.0
+      ],
+      [
+       -2879.2,
+       -1150.5
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "bounded_by": [
+     "22nd Street",
+     "23rd Street",
+     "Avenue D (Market)",
+     "Avenue E (Postoffice)"
+    ],
+    "streets": [
+     22,
+     23
+    ],
+    "avenue_slots": [
+     3,
+     4
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -887.9,
+       -1150.5
+      ],
+      [
+       1124.1,
+       -1150.5
+      ],
+      [
+       1124.1,
+       1161.0
+      ],
+      [
+       -887.9,
+       1161.0
+      ],
+      [
+       -887.9,
+       -1150.5
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "bounded_by": [
+     "22nd Street",
+     "23rd Street",
+     "Avenue E (Postoffice)",
+     "Avenue F (Church)"
+    ],
+    "streets": [
+     22,
+     23
+    ],
+    "avenue_slots": [
+     4,
+     5
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       1124.1,
+       -1150.5
+      ],
+      [
+       3174.2,
+       -1150.5
+      ],
+      [
+       3174.2,
+       1161.0
+      ],
+      [
+       1124.1,
+       1161.0
+      ],
+      [
+       1124.1,
+       -1150.5
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "bounded_by": [
+     "22nd Street",
+     "23rd Street",
+     "Avenue F (Church)",
+     "Avenue G (Winnie)"
+    ],
+    "streets": [
+     22,
+     23
+    ],
+    "avenue_slots": [
+     5,
+     6
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       3174.2,
+       -1150.5
+      ],
+      [
+       5178.5,
+       -1150.5
+      ],
+      [
+       5178.5,
+       1161.0
+      ],
+      [
+       3174.2,
+       1161.0
+      ],
+      [
+       3174.2,
+       -1150.5
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "bounded_by": [
+     "22nd Street",
+     "23rd Street",
+     "Avenue G (Winnie)",
+     "Avenue H (Ball)"
+    ],
+    "streets": [
+     22,
+     23
+    ],
+    "avenue_slots": [
+     6,
+     7
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       5178.5,
+       -1150.5
+      ],
+      [
+       7191.7,
+       -1150.5
+      ],
+      [
+       7191.7,
+       1161.0
+      ],
+      [
+       5178.5,
+       1161.0
+      ],
+      [
+       5178.5,
+       -1150.5
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "bounded_by": [
+     "22nd Street",
+     "23rd Street",
+     "Avenue H (Ball)",
+     "Avenue I (Sealy)"
+    ],
+    "streets": [
+     22,
+     23
+    ],
+    "avenue_slots": [
+     7,
+     8
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       7191.7,
+       -1150.5
+      ],
+      [
+       9220.6,
+       -1150.5
+      ],
+      [
+       9220.6,
+       1161.0
+      ],
+      [
+       7191.7,
+       1161.0
+      ],
+      [
+       7191.7,
+       -1150.5
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "bounded_by": [
+     "22nd Street",
+     "23rd Street",
+     "Avenue I (Sealy)",
+     "Broadway (Avenue J)"
+    ],
+    "streets": [
+     22,
+     23
+    ],
+    "avenue_slots": [
+     8,
+     9
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       9220.6,
+       -1150.5
+      ],
+      [
+       11297.9,
+       -1150.5
+      ],
+      [
+       11297.9,
+       1161.0
+      ],
+      [
+       9220.6,
+       1161.0
+      ],
+      [
+       9220.6,
+       -1150.5
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "bounded_by": [
+     "22nd Street",
+     "23rd Street",
+     "Broadway (Avenue J)",
+     "Avenue K"
+    ],
+    "streets": [
+     22,
+     23
+    ],
+    "avenue_slots": [
+     9,
+     10
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       11297.9,
+       -1150.5
+      ],
+      [
+       13400.7,
+       -1150.5
+      ],
+      [
+       13400.7,
+       1161.0
+      ],
+      [
+       11297.9,
+       1161.0
+      ],
+      [
+       11297.9,
+       -1150.5
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "bounded_by": [
+     "23rd Street",
+     "24th Street",
+     "Avenue A (Water)",
+     "Avenue B (Strand)"
+    ],
+    "streets": [
+     23,
+     24
+    ],
+    "avenue_slots": [
+     0,
+     1
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -6983.1,
+       1161.0
+      ],
+      [
+       -4954.1,
+       1161.0
+      ],
+      [
+       -4954.1,
+       3443.3
+      ],
+      [
+       -6983.1,
+       3443.3
+      ],
+      [
+       -6983.1,
+       1161.0
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "bounded_by": [
+     "23rd Street",
+     "24th Street",
+     "Avenue B (Strand)",
+     "Avenue C (Mechanic)"
+    ],
+    "streets": [
+     23,
+     24
+    ],
+    "avenue_slots": [
+     1,
+     2
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -4954.1,
+       1161.0
+      ],
+      [
+       -2879.2,
+       1161.0
+      ],
+      [
+       -2879.2,
+       3443.3
+      ],
+      [
+       -4954.1,
+       3443.3
+      ],
+      [
+       -4954.1,
+       1161.0
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "bounded_by": [
+     "23rd Street",
+     "24th Street",
+     "Avenue C (Mechanic)",
+     "Avenue D (Market)"
+    ],
+    "streets": [
+     23,
+     24
+    ],
+    "avenue_slots": [
+     2,
+     3
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -2879.2,
+       1161.0
+      ],
+      [
+       -887.9,
+       1161.0
+      ],
+      [
+       -887.9,
+       3443.3
+      ],
+      [
+       -2879.2,
+       3443.3
+      ],
+      [
+       -2879.2,
+       1161.0
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "bounded_by": [
+     "23rd Street",
+     "24th Street",
+     "Avenue D (Market)",
+     "Avenue E (Postoffice)"
+    ],
+    "streets": [
+     23,
+     24
+    ],
+    "avenue_slots": [
+     3,
+     4
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -887.9,
+       1161.0
+      ],
+      [
+       1124.1,
+       1161.0
+      ],
+      [
+       1124.1,
+       3443.3
+      ],
+      [
+       -887.9,
+       3443.3
+      ],
+      [
+       -887.9,
+       1161.0
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "bounded_by": [
+     "23rd Street",
+     "24th Street",
+     "Avenue E (Postoffice)",
+     "Avenue F (Church)"
+    ],
+    "streets": [
+     23,
+     24
+    ],
+    "avenue_slots": [
+     4,
+     5
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       1124.1,
+       1161.0
+      ],
+      [
+       3174.2,
+       1161.0
+      ],
+      [
+       3174.2,
+       3443.3
+      ],
+      [
+       1124.1,
+       3443.3
+      ],
+      [
+       1124.1,
+       1161.0
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "bounded_by": [
+     "23rd Street",
+     "24th Street",
+     "Avenue F (Church)",
+     "Avenue G (Winnie)"
+    ],
+    "streets": [
+     23,
+     24
+    ],
+    "avenue_slots": [
+     5,
+     6
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       3174.2,
+       1161.0
+      ],
+      [
+       5178.5,
+       1161.0
+      ],
+      [
+       5178.5,
+       3443.3
+      ],
+      [
+       3174.2,
+       3443.3
+      ],
+      [
+       3174.2,
+       1161.0
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "bounded_by": [
+     "23rd Street",
+     "24th Street",
+     "Avenue G (Winnie)",
+     "Avenue H (Ball)"
+    ],
+    "streets": [
+     23,
+     24
+    ],
+    "avenue_slots": [
+     6,
+     7
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       5178.5,
+       1161.0
+      ],
+      [
+       7191.7,
+       1161.0
+      ],
+      [
+       7191.7,
+       3443.3
+      ],
+      [
+       5178.5,
+       3443.3
+      ],
+      [
+       5178.5,
+       1161.0
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "bounded_by": [
+     "23rd Street",
+     "24th Street",
+     "Avenue H (Ball)",
+     "Avenue I (Sealy)"
+    ],
+    "streets": [
+     23,
+     24
+    ],
+    "avenue_slots": [
+     7,
+     8
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       7191.7,
+       1161.0
+      ],
+      [
+       9220.6,
+       1161.0
+      ],
+      [
+       9220.6,
+       3443.3
+      ],
+      [
+       7191.7,
+       3443.3
+      ],
+      [
+       7191.7,
+       1161.0
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "bounded_by": [
+     "23rd Street",
+     "24th Street",
+     "Avenue I (Sealy)",
+     "Broadway (Avenue J)"
+    ],
+    "streets": [
+     23,
+     24
+    ],
+    "avenue_slots": [
+     8,
+     9
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       9220.6,
+       1161.0
+      ],
+      [
+       11297.9,
+       1161.0
+      ],
+      [
+       11297.9,
+       3443.3
+      ],
+      [
+       9220.6,
+       3443.3
+      ],
+      [
+       9220.6,
+       1161.0
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "bounded_by": [
+     "23rd Street",
+     "24th Street",
+     "Broadway (Avenue J)",
+     "Avenue K"
+    ],
+    "streets": [
+     23,
+     24
+    ],
+    "avenue_slots": [
+     9,
+     10
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       11297.9,
+       1161.0
+      ],
+      [
+       13400.7,
+       1161.0
+      ],
+      [
+       13400.7,
+       3443.3
+      ],
+      [
+       11297.9,
+       3443.3
+      ],
+      [
+       11297.9,
+       1161.0
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "bounded_by": [
+     "24th Street",
+     "25th Street",
+     "Avenue A (Water)",
+     "Avenue B (Strand)"
+    ],
+    "streets": [
+     24,
+     25
+    ],
+    "avenue_slots": [
+     0,
+     1
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -6983.1,
+       3443.3
+      ],
+      [
+       -4954.1,
+       3443.3
+      ],
+      [
+       -4954.1,
+       5842.8
+      ],
+      [
+       -6983.1,
+       5842.8
+      ],
+      [
+       -6983.1,
+       3443.3
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "bounded_by": [
+     "24th Street",
+     "25th Street",
+     "Avenue B (Strand)",
+     "Avenue C (Mechanic)"
+    ],
+    "streets": [
+     24,
+     25
+    ],
+    "avenue_slots": [
+     1,
+     2
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -4954.1,
+       3443.3
+      ],
+      [
+       -2879.2,
+       3443.3
+      ],
+      [
+       -2879.2,
+       5842.8
+      ],
+      [
+       -4954.1,
+       5842.8
+      ],
+      [
+       -4954.1,
+       3443.3
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "bounded_by": [
+     "24th Street",
+     "25th Street",
+     "Avenue C (Mechanic)",
+     "Avenue D (Market)"
+    ],
+    "streets": [
+     24,
+     25
+    ],
+    "avenue_slots": [
+     2,
+     3
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -2879.2,
+       3443.3
+      ],
+      [
+       -887.9,
+       3443.3
+      ],
+      [
+       -887.9,
+       5842.8
+      ],
+      [
+       -2879.2,
+       5842.8
+      ],
+      [
+       -2879.2,
+       3443.3
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "bounded_by": [
+     "24th Street",
+     "25th Street",
+     "Avenue D (Market)",
+     "Avenue E (Postoffice)"
+    ],
+    "streets": [
+     24,
+     25
+    ],
+    "avenue_slots": [
+     3,
+     4
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -887.9,
+       3443.3
+      ],
+      [
+       1124.1,
+       3443.3
+      ],
+      [
+       1124.1,
+       5842.8
+      ],
+      [
+       -887.9,
+       5842.8
+      ],
+      [
+       -887.9,
+       3443.3
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "bounded_by": [
+     "24th Street",
+     "25th Street",
+     "Avenue E (Postoffice)",
+     "Avenue F (Church)"
+    ],
+    "streets": [
+     24,
+     25
+    ],
+    "avenue_slots": [
+     4,
+     5
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       1124.1,
+       3443.3
+      ],
+      [
+       3174.2,
+       3443.3
+      ],
+      [
+       3174.2,
+       5842.8
+      ],
+      [
+       1124.1,
+       5842.8
+      ],
+      [
+       1124.1,
+       3443.3
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "bounded_by": [
+     "24th Street",
+     "25th Street",
+     "Avenue F (Church)",
+     "Avenue G (Winnie)"
+    ],
+    "streets": [
+     24,
+     25
+    ],
+    "avenue_slots": [
+     5,
+     6
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       3174.2,
+       3443.3
+      ],
+      [
+       5178.5,
+       3443.3
+      ],
+      [
+       5178.5,
+       5842.8
+      ],
+      [
+       3174.2,
+       5842.8
+      ],
+      [
+       3174.2,
+       3443.3
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "bounded_by": [
+     "24th Street",
+     "25th Street",
+     "Avenue G (Winnie)",
+     "Avenue H (Ball)"
+    ],
+    "streets": [
+     24,
+     25
+    ],
+    "avenue_slots": [
+     6,
+     7
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       5178.5,
+       3443.3
+      ],
+      [
+       7191.7,
+       3443.3
+      ],
+      [
+       7191.7,
+       5842.8
+      ],
+      [
+       5178.5,
+       5842.8
+      ],
+      [
+       5178.5,
+       3443.3
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "bounded_by": [
+     "24th Street",
+     "25th Street",
+     "Avenue H (Ball)",
+     "Avenue I (Sealy)"
+    ],
+    "streets": [
+     24,
+     25
+    ],
+    "avenue_slots": [
+     7,
+     8
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       7191.7,
+       3443.3
+      ],
+      [
+       9220.6,
+       3443.3
+      ],
+      [
+       9220.6,
+       5842.8
+      ],
+      [
+       7191.7,
+       5842.8
+      ],
+      [
+       7191.7,
+       3443.3
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "bounded_by": [
+     "24th Street",
+     "25th Street",
+     "Avenue I (Sealy)",
+     "Broadway (Avenue J)"
+    ],
+    "streets": [
+     24,
+     25
+    ],
+    "avenue_slots": [
+     8,
+     9
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       9220.6,
+       3443.3
+      ],
+      [
+       11297.9,
+       3443.3
+      ],
+      [
+       11297.9,
+       5842.8
+      ],
+      [
+       9220.6,
+       5842.8
+      ],
+      [
+       9220.6,
+       3443.3
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "bounded_by": [
+     "24th Street",
+     "25th Street",
+     "Broadway (Avenue J)",
+     "Avenue K"
+    ],
+    "streets": [
+     24,
+     25
+    ],
+    "avenue_slots": [
+     9,
+     10
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       11297.9,
+       3443.3
+      ],
+      [
+       13400.7,
+       3443.3
+      ],
+      [
+       13400.7,
+       5842.8
+      ],
+      [
+       11297.9,
+       5842.8
+      ],
+      [
+       11297.9,
+       3443.3
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "bounded_by": [
+     "25th Street",
+     "26th Street",
+     "Avenue A (Water)",
+     "Avenue B (Strand)"
+    ],
+    "streets": [
+     25,
+     26
+    ],
+    "avenue_slots": [
+     0,
+     1
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -6983.1,
+       5842.8
+      ],
+      [
+       -4954.1,
+       5842.8
+      ],
+      [
+       -4954.1,
+       8273.7
+      ],
+      [
+       -6983.1,
+       8273.7
+      ],
+      [
+       -6983.1,
+       5842.8
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "bounded_by": [
+     "25th Street",
+     "26th Street",
+     "Avenue B (Strand)",
+     "Avenue C (Mechanic)"
+    ],
+    "streets": [
+     25,
+     26
+    ],
+    "avenue_slots": [
+     1,
+     2
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -4954.1,
+       5842.8
+      ],
+      [
+       -2879.2,
+       5842.8
+      ],
+      [
+       -2879.2,
+       8273.7
+      ],
+      [
+       -4954.1,
+       8273.7
+      ],
+      [
+       -4954.1,
+       5842.8
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "bounded_by": [
+     "25th Street",
+     "26th Street",
+     "Avenue C (Mechanic)",
+     "Avenue D (Market)"
+    ],
+    "streets": [
+     25,
+     26
+    ],
+    "avenue_slots": [
+     2,
+     3
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -2879.2,
+       5842.8
+      ],
+      [
+       -887.9,
+       5842.8
+      ],
+      [
+       -887.9,
+       8273.7
+      ],
+      [
+       -2879.2,
+       8273.7
+      ],
+      [
+       -2879.2,
+       5842.8
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "bounded_by": [
+     "25th Street",
+     "26th Street",
+     "Avenue D (Market)",
+     "Avenue E (Postoffice)"
+    ],
+    "streets": [
+     25,
+     26
+    ],
+    "avenue_slots": [
+     3,
+     4
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -887.9,
+       5842.8
+      ],
+      [
+       1124.1,
+       5842.8
+      ],
+      [
+       1124.1,
+       8273.7
+      ],
+      [
+       -887.9,
+       8273.7
+      ],
+      [
+       -887.9,
+       5842.8
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "bounded_by": [
+     "25th Street",
+     "26th Street",
+     "Avenue E (Postoffice)",
+     "Avenue F (Church)"
+    ],
+    "streets": [
+     25,
+     26
+    ],
+    "avenue_slots": [
+     4,
+     5
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       1124.1,
+       5842.8
+      ],
+      [
+       3174.2,
+       5842.8
+      ],
+      [
+       3174.2,
+       8273.7
+      ],
+      [
+       1124.1,
+       8273.7
+      ],
+      [
+       1124.1,
+       5842.8
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "bounded_by": [
+     "25th Street",
+     "26th Street",
+     "Avenue F (Church)",
+     "Avenue G (Winnie)"
+    ],
+    "streets": [
+     25,
+     26
+    ],
+    "avenue_slots": [
+     5,
+     6
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       3174.2,
+       5842.8
+      ],
+      [
+       5178.5,
+       5842.8
+      ],
+      [
+       5178.5,
+       8273.7
+      ],
+      [
+       3174.2,
+       8273.7
+      ],
+      [
+       3174.2,
+       5842.8
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "bounded_by": [
+     "25th Street",
+     "26th Street",
+     "Avenue G (Winnie)",
+     "Avenue H (Ball)"
+    ],
+    "streets": [
+     25,
+     26
+    ],
+    "avenue_slots": [
+     6,
+     7
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       5178.5,
+       5842.8
+      ],
+      [
+       7191.7,
+       5842.8
+      ],
+      [
+       7191.7,
+       8273.7
+      ],
+      [
+       5178.5,
+       8273.7
+      ],
+      [
+       5178.5,
+       5842.8
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "bounded_by": [
+     "25th Street",
+     "26th Street",
+     "Avenue H (Ball)",
+     "Avenue I (Sealy)"
+    ],
+    "streets": [
+     25,
+     26
+    ],
+    "avenue_slots": [
+     7,
+     8
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       7191.7,
+       5842.8
+      ],
+      [
+       9220.6,
+       5842.8
+      ],
+      [
+       9220.6,
+       8273.7
+      ],
+      [
+       7191.7,
+       8273.7
+      ],
+      [
+       7191.7,
+       5842.8
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "bounded_by": [
+     "25th Street",
+     "26th Street",
+     "Avenue I (Sealy)",
+     "Broadway (Avenue J)"
+    ],
+    "streets": [
+     25,
+     26
+    ],
+    "avenue_slots": [
+     8,
+     9
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       9220.6,
+       5842.8
+      ],
+      [
+       11297.9,
+       5842.8
+      ],
+      [
+       11297.9,
+       8273.7
+      ],
+      [
+       9220.6,
+       8273.7
+      ],
+      [
+       9220.6,
+       5842.8
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "bounded_by": [
+     "25th Street",
+     "26th Street",
+     "Broadway (Avenue J)",
+     "Avenue K"
+    ],
+    "streets": [
+     25,
+     26
+    ],
+    "avenue_slots": [
+     9,
+     10
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       11297.9,
+       5842.8
+      ],
+      [
+       13400.7,
+       5842.8
+      ],
+      [
+       13400.7,
+       8273.7
+      ],
+      [
+       11297.9,
+       8273.7
+      ],
+      [
+       11297.9,
+       5842.8
+      ]
+     ]
+    ]
+   }
+  }
+ ]
+}
