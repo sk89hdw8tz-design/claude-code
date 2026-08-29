@@ -109,6 +109,74 @@
    ],
    "confidence": "high",
    "note": "NE corner of block south of 15th St just west of the same 20-ft street (houses ...311 on 43); outline on 46, full block on 43. Note: T.H. hydrant at 46 (752,3692) north of 15th is NOT drawn on 43"
+  },
+  {
+   "pair": [
+    "46",
+    "44"
+   ],
+   "id": "tie-46-44-1",
+   "owner_xy": [
+    1752,
+    3702
+   ],
+   "nbr_xy": [
+    747,
+    188
+   ],
+   "confidence": "high",
+   "note": "T.H. hydrant NE corner of 15th St and the 20-ft street of the 400 block (between houses 412/414 on 46 = 411/413 on 44); anchored by house-number count from the block corner and the 20-ft gap"
+  },
+  {
+   "pair": [
+    "46",
+    "44"
+   ],
+   "id": "tie-46-44-2",
+   "owner_xy": [
+    2757,
+    3692
+   ],
+   "nbr_xy": [
+    1768,
+    187
+   ],
+   "confidence": "high",
+   "note": "T.H. hydrant NE corner of 15th St and the 20-ft street of the 500 block (houses 512/514 on 46 = 511/513 on 44); distinct from 400-block twin one block west - verified by counting blocks from the 46/44 sheet-ref numerals"
+  },
+  {
+   "pair": [
+    "48",
+    "46"
+   ],
+   "id": "tie-48-46-1",
+   "owner_xy": [
+    3152,
+    3865
+   ],
+   "nbr_xy": [
+    3162,
+    326
+   ],
+   "confidence": "high",
+   "note": "Red fire-alarm box disk numbered 14, south side of 12th St SE of house 523; unique printed box number seen on both sheets"
+  },
+  {
+   "pair": [
+    "48",
+    "46"
+   ],
+   "id": "tie-48-46-2",
+   "owner_xy": [
+    1742,
+    3691
+   ],
+   "nbr_xy": [
+    1767,
+    173
+   ],
+   "confidence": "high",
+   "note": "T.H. hydrant NE corner of 12th St and the 20-ft street of the 400 block (houses 412/414 on 48 = 411/413 on 46); anchored by 48/46 sheet-ref numerals printed beside it on each sheet"
   }
  ]
 }

@@ -2,10 +2,10 @@
  "report": {
   "41": {
    "how": "fit",
-   "n": 7,
-   "med": 2.4,
-   "theta": 0.65,
-   "scale": 1.991,
+   "n": 10,
+   "med": 10.4,
+   "theta": 0.81,
+   "scale": 2.0989,
    "round": 1
   },
   "45": {
@@ -16,397 +16,478 @@
    "scale": 1.9936,
    "round": 1
   },
-  "51": {
-   "how": "prior",
-   "flag": "fit rejected med=40.0 kept=23 th=-0.04 (nbr 0.30) sc=2.0178 (nbr 2.0001)"
-  },
-  "37": {
-   "how": "prior",
-   "flag": "no accepted fit after iterated rounds"
-  },
-  "36": {
-   "how": "prior",
-   "flag": "no accepted fit after iterated rounds"
-  },
-  "35": {
-   "how": "prior",
-   "flag": "no accepted fit after iterated rounds"
-  },
-  "34": {
-   "how": "prior",
-   "flag": "no accepted fit after iterated rounds"
-  },
-  "52": {
-   "how": "prior",
-   "flag": "no accepted fit after iterated rounds"
-  },
-  "46": {
-   "how": "prior",
-   "flag": "no accepted fit after iterated rounds"
-  },
-  "42": {
-   "how": "prior",
-   "flag": "fit rejected med=9.9 kept=7 th=-2.64 (nbr 0.65) sc=1.8352 (nbr 1.9910)"
-  },
-  "38": {
-   "how": "prior",
-   "flag": "no accepted fit after iterated rounds"
-  },
-  "26": {
-   "how": "prior",
-   "flag": "no accepted fit after iterated rounds"
-  },
-  "47": {
-   "how": "prior",
-   "flag": "no accepted fit after iterated rounds"
-  },
-  "53": {
-   "how": "prior",
-   "flag": "no accepted fit after iterated rounds"
-  },
-  "58": {
-   "how": "prior",
-   "flag": "no accepted fit after iterated rounds"
-  },
-  "59": {
-   "how": "prior",
-   "flag": "no accepted fit after iterated rounds"
-  },
-  "57": {
-   "how": "prior",
-   "flag": "no accepted fit after iterated rounds"
-  },
   "56": {
-   "how": "prior",
-   "flag": "no accepted fit after iterated rounds"
-  },
-  "55": {
-   "how": "prior",
-   "flag": "fit rejected med=30.8 kept=4 th=12.26 (nbr 0.07) sc=0.8306 (nbr 2.0094)"
-  },
-  "14": {
-   "how": "prior",
-   "flag": "no accepted fit after iterated rounds"
-  },
-  "13": {
-   "how": "prior",
-   "flag": "no accepted fit after iterated rounds"
-  },
-  "60": {
-   "how": "prior",
-   "flag": "no accepted fit after iterated rounds"
-  },
-  "54": {
-   "how": "prior",
-   "flag": "no accepted fit after iterated rounds"
-  },
-  "61": {
-   "how": "prior",
-   "flag": "no accepted fit after iterated rounds"
-  },
-  "16": {
-   "how": "prior",
-   "flag": "no accepted fit after iterated rounds"
-  },
-  "15": {
-   "how": "prior",
-   "flag": "no accepted fit after iterated rounds"
-  },
-  "62": {
-   "how": "prior",
-   "flag": "no accepted fit after iterated rounds"
-  },
-  "69": {
-   "how": "prior",
-   "flag": "no accepted fit after iterated rounds"
-  },
-  "68": {
-   "how": "prior",
-   "flag": "no accepted fit after iterated rounds"
-  },
-  "67": {
-   "how": "prior",
-   "flag": "no accepted fit after iterated rounds"
-  },
-  "63": {
-   "how": "prior",
-   "flag": "no accepted fit after iterated rounds"
-  },
-  "70": {
-   "how": "prior",
-   "flag": "no accepted fit after iterated rounds"
-  },
-  "64": {
-   "how": "prior",
-   "flag": "no accepted fit after iterated rounds"
-  },
-  "71": {
-   "how": "prior",
-   "flag": "no accepted fit after iterated rounds"
+   "how": "fit",
+   "n": 16,
+   "med": 8.8,
+   "theta": 0.07,
+   "scale": 2.0907,
+   "round": 1
   },
   "65": {
-   "how": "prior",
-   "flag": "no accepted fit after iterated rounds"
+   "how": "fit",
+   "n": 30,
+   "med": 9.3,
+   "theta": -0.36,
+   "scale": 2.0124,
+   "round": 1
   },
-  "66": {
-   "how": "prior",
-   "flag": "no accepted fit after iterated rounds"
-  },
-  "73": {
-   "how": "prior",
-   "flag": "no accepted fit after iterated rounds"
-  },
-  "78": {
-   "how": "prior",
-   "flag": "no accepted fit after iterated rounds"
-  },
-  "77": {
-   "how": "prior",
-   "flag": "no accepted fit after iterated rounds"
-  },
-  "76": {
-   "how": "prior",
-   "flag": "no accepted fit after iterated rounds"
-  },
-  "75": {
-   "how": "prior",
-   "flag": "no accepted fit after iterated rounds"
-  },
-  "83": {
-   "how": "prior",
-   "flag": "no accepted fit after iterated rounds"
-  },
-  "84": {
-   "how": "prior",
-   "flag": "no accepted fit after iterated rounds"
-  },
-  "85": {
-   "how": "prior",
-   "flag": "no accepted fit after iterated rounds"
-  },
-  "86": {
-   "how": "prior",
-   "flag": "no accepted fit after iterated rounds"
-  },
-  "79": {
-   "how": "prior",
-   "flag": "no accepted fit after iterated rounds"
-  },
-  "87": {
-   "how": "prior",
-   "flag": "no accepted fit after iterated rounds"
-  },
-  "80": {
-   "how": "prior",
-   "flag": "no accepted fit after iterated rounds"
-  },
-  "88": {
-   "how": "prior",
-   "flag": "no accepted fit after iterated rounds"
-  },
-  "81": {
-   "how": "prior",
-   "flag": "no accepted fit after iterated rounds"
-  },
-  "74": {
-   "how": "prior",
-   "flag": "no accepted fit after iterated rounds"
-  },
-  "48": {
-   "how": "prior",
-   "flag": "no accepted fit after iterated rounds"
-  },
-  "82": {
-   "how": "prior",
-   "flag": "no accepted fit after iterated rounds"
-  },
-  "89": {
-   "how": "prior",
-   "flag": "no accepted fit after iterated rounds"
-  },
-  "94": {
-   "how": "prior",
-   "flag": "no accepted fit after iterated rounds"
-  },
-  "95": {
-   "how": "prior",
-   "flag": "no accepted fit after iterated rounds"
-  },
-  "93": {
-   "how": "prior",
-   "flag": "no accepted fit after iterated rounds"
-  },
-  "92": {
-   "how": "prior",
-   "flag": "no accepted fit after iterated rounds"
-  },
-  "91": {
-   "how": "prior",
-   "flag": "no accepted fit after iterated rounds"
-  },
-  "28": {
-   "how": "prior",
-   "flag": "no accepted fit after iterated rounds"
-  },
-  "29": {
-   "how": "prior",
-   "flag": "no accepted fit after iterated rounds"
-  },
-  "30": {
-   "how": "prior",
-   "flag": "no accepted fit after iterated rounds"
-  },
-  "31": {
-   "how": "prior",
-   "flag": "no accepted fit after iterated rounds"
-  },
-  "32": {
-   "how": "prior",
-   "flag": "no accepted fit after iterated rounds"
-  },
-  "22": {
-   "how": "prior",
-   "flag": "no accepted fit after iterated rounds"
-  },
-  "23": {
-   "how": "prior",
-   "flag": "no accepted fit after iterated rounds"
-  },
-  "24": {
-   "how": "prior",
-   "flag": "no accepted fit after iterated rounds"
-  },
-  "25": {
-   "how": "prior",
-   "flag": "no accepted fit after iterated rounds"
-  },
-  "19": {
-   "how": "prior",
-   "flag": "no accepted fit after iterated rounds"
-  },
-  "20": {
-   "how": "prior",
-   "flag": "no accepted fit after iterated rounds"
-  },
-  "18": {
-   "how": "prior",
-   "flag": "no accepted fit after iterated rounds"
-  },
-  "99": {
-   "how": "prior",
-   "flag": "no accepted fit after iterated rounds"
-  },
-  "90": {
-   "how": "prior",
-   "flag": "no accepted fit after iterated rounds"
-  },
-  "98": {
-   "how": "prior",
-   "flag": "no accepted fit after iterated rounds"
-  },
-  "17": {
-   "how": "prior",
-   "flag": "no accepted fit after iterated rounds"
+  "47": {
+   "how": "fit",
+   "n": 24,
+   "med": 11.5,
+   "theta": 0.07,
+   "scale": 2.009,
+   "round": 1
   },
   "21": {
-   "how": "prior",
-   "flag": "no accepted fit after iterated rounds"
+   "how": "fit",
+   "n": 10,
+   "med": 18.6,
+   "theta": -0.37,
+   "scale": 2.0231,
+   "round": 1
   },
-  "27": {
-   "how": "prior",
-   "flag": "no accepted fit after iterated rounds"
+  "71": {
+   "how": "fit",
+   "n": 10,
+   "med": 14.1,
+   "theta": 0.44,
+   "scale": 1.9471,
+   "round": 1
   },
-  "33": {
-   "how": "prior",
-   "flag": "no accepted fit after iterated rounds"
+  "31": {
+   "how": "fit",
+   "n": 26,
+   "med": 11.4,
+   "theta": -0.82,
+   "scale": 2.0073,
+   "round": 1
   },
-  "97": {
-   "how": "prior",
-   "flag": "no accepted fit after iterated rounds"
+  "22": {
+   "how": "fit",
+   "n": 15,
+   "med": 14.2,
+   "theta": 0.15,
+   "scale": 2.0006,
+   "round": 1
+  },
+  "88": {
+   "how": "fit",
+   "n": 28,
+   "med": 4.5,
+   "theta": -0.13,
+   "scale": 2.0161,
+   "round": 1
+  },
+  "19": {
+   "how": "fit",
+   "n": 12,
+   "med": 23.4,
+   "theta": 1.03,
+   "scale": 1.9964,
+   "round": 1
+  },
+  "66": {
+   "how": "fit",
+   "n": 36,
+   "med": 7.0,
+   "theta": 0.17,
+   "scale": 2.0038,
+   "round": 1
+  },
+  "60": {
+   "how": "fit",
+   "n": 32,
+   "med": 14.7,
+   "theta": -0.15,
+   "scale": 2.0111,
+   "round": 1
+  },
+  "48": {
+   "how": "fit",
+   "n": 19,
+   "med": 24.9,
+   "theta": -0.34,
+   "scale": 1.9719,
+   "round": 1
+  },
+  "98": {
+   "how": "fit",
+   "n": 18,
+   "med": 23.7,
+   "theta": 0.05,
+   "scale": 2.0279,
+   "round": 1
+  },
+  "78": {
+   "how": "fit",
+   "n": 26,
+   "med": 22.8,
+   "theta": 0.16,
+   "scale": 1.8595,
+   "round": 1
+  },
+  "53": {
+   "how": "fit",
+   "n": 33,
+   "med": 18.1,
+   "theta": -0.77,
+   "scale": 1.9976,
+   "round": 1
+  },
+  "59": {
+   "how": "fit",
+   "n": 28,
+   "med": 10.9,
+   "theta": -0.22,
+   "scale": 2.0023,
+   "round": 1
+  },
+  "32": {
+   "how": "fit",
+   "n": 8,
+   "med": 1.8,
+   "theta": 0.8,
+   "scale": 2.0517,
+   "round": 1
   },
   "96": {
-   "how": "prior",
-   "flag": "no accepted fit after iterated rounds"
+   "how": "fit",
+   "n": 5,
+   "med": 16.4,
+   "theta": 1.03,
+   "scale": 1.9478,
+   "round": 1
+  },
+  "64": {
+   "how": "fit",
+   "n": 34,
+   "med": 12.4,
+   "theta": -1.48,
+   "scale": 1.9674,
+   "round": 1
+  },
+  "97": {
+   "how": "fit",
+   "n": 18,
+   "med": 4.8,
+   "theta": 0.22,
+   "scale": 2.0312,
+   "round": 1
+  },
+  "52": {
+   "how": "fit",
+   "n": 9,
+   "med": 15.3,
+   "theta": -0.88,
+   "scale": 2.0362,
+   "round": 1
+  },
+  "54": {
+   "how": "fit",
+   "n": 23,
+   "med": 12.3,
+   "theta": -0.43,
+   "scale": 1.9791,
+   "round": 1
+  },
+  "63": {
+   "how": "fit",
+   "n": 9,
+   "med": 10.0,
+   "theta": -2.17,
+   "scale": 1.9257,
+   "round": 2
+  },
+  "70": {
+   "how": "fit",
+   "n": 14,
+   "med": 15.7,
+   "theta": 0.26,
+   "scale": 1.9633,
+   "round": 2
+  },
+  "79": {
+   "how": "fit",
+   "n": 22,
+   "med": 13.6,
+   "theta": 0.4,
+   "scale": 1.8709,
+   "round": 2
+  },
+  "89": {
+   "how": "fit",
+   "n": 28,
+   "med": 23.7,
+   "theta": -0.45,
+   "scale": 2.0254,
+   "round": 2
+  },
+  "80": {
+   "how": "fit",
+   "n": 12,
+   "med": 4.1,
+   "theta": 0.84,
+   "scale": 2.0348,
+   "round": 3
+  },
+  "26": {
+   "how": "seed-improved",
+   "flag": "fit rejected med=11.5 kept=9 th=-16.85 (nbr 0.07) sc=2.0194 (nbr 2.0090)"
+  },
+  "90": {
+   "how": "prior-seed",
+   "flag": "no matches to any neighbour"
+  },
+  "99": {
+   "how": "prior-seed",
+   "flag": "fit rejected med=26.0 kept=9 th=-0.45 (nbr 0.00) sc=2.5236 (nbr 2.0000)"
+  },
+  "76": {
+   "how": "prior-seed",
+   "flag": "fit rejected med=66.4 kept=5 th=-1.06 (nbr 0.00) sc=1.9174 (nbr 2.0000)"
+  },
+  "57": {
+   "how": "seed-improved",
+   "flag": "fit rejected med=28.2 kept=36 th=-0.44 (nbr -1.05) sc=1.9628 (nbr 2.0082)"
+  },
+  "91": {
+   "how": "prior-seed",
+   "flag": "no matches to any neighbour"
+  },
+  "92": {
+   "how": "seed-improved",
+   "flag": "fit rejected med=66.0 kept=9 th=-1.10 (nbr 0.00) sc=1.6420 (nbr 2.0000)"
+  },
+  "13": {
+   "how": "prior-seed",
+   "flag": "fit failed (no per-neighbour fit)"
+  },
+  "29": {
+   "how": "prior-seed",
+   "flag": "fit rejected med=1.7 kept=3 th=8.90 (nbr 0.00) sc=0.2394 (nbr 2.0000)"
+  },
+  "23": {
+   "how": "seed-improved",
+   "flag": "fit rejected med=39.6 kept=9 th=-3.15 (nbr 0.59) sc=2.0063 (nbr 1.9985)"
+  },
+  "95": {
+   "how": "seed-improved",
+   "flag": "fit rejected med=27.2 kept=10 th=-6.90 (nbr 1.03) sc=1.9600 (nbr 1.9478)"
+  },
+  "82": {
+   "how": "prior-seed",
+   "flag": "no matches to any neighbour"
+  },
+  "25": {
+   "how": "seed-improved",
+   "flag": "fit rejected med=19.7 kept=29 th=0.76 (nbr -0.82) sc=1.6842 (nbr 2.0073)"
+  },
+  "81": {
+   "how": "seed-improved",
+   "flag": "fit rejected med=60.1 kept=22 th=0.49 (nbr -0.13) sc=2.0044 (nbr 2.0254)"
+  },
+  "24": {
+   "how": "seed-improved",
+   "flag": "fit rejected med=32.6 kept=9 th=-14.45 (nbr 0.00) sc=1.3962 (nbr 2.0000)"
+  },
+  "38": {
+   "how": "seed-improved",
+   "flag": "fit rejected med=2.0 kept=7 th=-7.25 (nbr 0.80) sc=2.2986 (nbr 2.0517)"
+  },
+  "73": {
+   "how": "prior-seed",
+   "flag": "fit failed (no per-neighbour fit)"
+  },
+  "51": {
+   "how": "seed-improved",
+   "flag": "fit rejected med=38.8 kept=23 th=-0.04 (nbr 0.30) sc=2.0187 (nbr 2.0001)"
+  },
+  "93": {
+   "how": "seed-improved",
+   "flag": "fit rejected med=37.8 kept=32 th=-0.64 (nbr 0.00) sc=1.7499 (nbr 2.0000)"
+  },
+  "87": {
+   "how": "seed-improved",
+   "flag": "fit rejected med=25.0 kept=35 th=0.06 (nbr 0.40) sc=2.0333 (nbr 2.0161)"
+  },
+  "55": {
+   "how": "prior-seed",
+   "flag": "fit rejected med=55.5 kept=6 th=0.34 (nbr 0.07) sc=2.4417 (nbr 2.0500)"
+  },
+  "61": {
+   "how": "prior-seed",
+   "flag": "fit failed (no per-neighbour fit)"
+  },
+  "85": {
+   "how": "prior-seed",
+   "flag": "fit failed (no per-neighbour fit)"
+  },
+  "35": {
+   "how": "seed-improved",
+   "flag": "fit rejected med=22.8 kept=5 th=-2.11 (nbr -0.00) sc=2.4673 (nbr 2.0059)"
+  },
+  "74": {
+   "how": "prior-seed",
+   "flag": "fit rejected med=34.4 kept=6 th=-1.62 (nbr -0.08) sc=1.5595 (nbr 1.9879)"
+  },
+  "27": {
+   "how": "seed-improved",
+   "flag": "fit rejected med=43.9 kept=8 th=-0.25 (nbr -0.37) sc=1.9874 (nbr 2.0231)"
+  },
+  "77": {
+   "how": "seed-improved",
+   "flag": "fit failed (no per-neighbour fit)"
+  },
+  "58": {
+   "how": "seed-improved",
+   "flag": "fit rejected med=50.4 kept=28 th=-0.29 (nbr -0.88) sc=1.9661 (nbr 2.0023)"
+  },
+  "34": {
+   "how": "seed-improved",
+   "flag": "fit rejected med=63.3 kept=9 th=-18.55 (nbr 0.15) sc=1.3835 (nbr 2.0020)"
+  },
+  "69": {
+   "how": "seed-improved",
+   "flag": "fit rejected med=57.8 kept=9 th=-0.96 (nbr 0.26) sc=1.8395 (nbr 1.9633)"
+  },
+  "46": {
+   "how": "seed-improved",
+   "flag": "fit rejected med=21.6 kept=7 th=2.17 (nbr -0.41) sc=1.7601 (nbr 2.0226)"
+  },
+  "17": {
+   "how": "prior-seed",
+   "flag": "fit rejected med=30.3 kept=3 th=7.16 (nbr -0.37) sc=1.9749 (nbr 2.0231)"
+  },
+  "75": {
+   "how": "prior-seed",
+   "flag": "no matches to any neighbour"
+  },
+  "42": {
+   "how": "seed-improved",
+   "flag": "fit rejected med=18.6 kept=28 th=-17.30 (nbr 0.81) sc=2.0421 (nbr 2.0989)"
+  },
+  "18": {
+   "how": "seed-improved",
+   "flag": "fit rejected med=56.7 kept=31 th=0.38 (nbr 0.59) sc=1.8783 (nbr 1.9985)"
+  },
+  "15": {
+   "how": "seed-improved",
+   "flag": "fit failed (no per-neighbour fit)"
+  },
+  "84": {
+   "how": "prior-seed",
+   "flag": "fit rejected med=2.9 kept=3 th=-3.25 (nbr 0.00) sc=2.0845 (nbr 2.0000)"
+  },
+  "36": {
+   "how": "seed-improved",
+   "flag": "fit rejected med=11.5 kept=7 th=-7.52 (nbr 0.06) sc=2.3562 (nbr 2.0071)"
+  },
+  "67": {
+   "how": "prior-seed",
+   "flag": "no matches to any neighbour"
+  },
+  "86": {
+   "how": "prior-seed",
+   "flag": "fit failed (no per-neighbour fit)"
+  },
+  "37": {
+   "how": "seed-improved",
+   "flag": "fit rejected med=25.2 kept=13 th=-8.06 (nbr -0.00) sc=2.2204 (nbr 2.0531)"
+  },
+  "68": {
+   "how": "prior-seed",
+   "flag": "fit rejected med=19.3 kept=4 th=0.83 (nbr 0.00) sc=2.3909 (nbr 2.0000)"
+  },
+  "30": {
+   "how": "seed-improved",
+   "flag": "fit rejected med=71.4 kept=8 th=-0.08 (nbr -0.82) sc=2.0518 (nbr 2.0073)"
+  },
+  "14": {
+   "how": "prior-seed",
+   "flag": "fit failed (no per-neighbour fit)"
+  },
+  "20": {
+   "how": "prior-seed",
+   "flag": "fit rejected med=67.9 kept=16 th=-0.40 (nbr 1.03) sc=2.0289 (nbr 1.9964)"
+  },
+  "16": {
+   "how": "prior-seed",
+   "flag": "fit failed (no per-neighbour fit)"
+  },
+  "33": {
+   "how": "seed-improved",
+   "flag": "fit rejected med=12.6 kept=9 th=-11.77 (nbr 0.00) sc=1.9120 (nbr 2.0000)"
+  },
+  "83": {
+   "how": "prior-seed",
+   "flag": "fit failed (no per-neighbour fit)"
+  },
+  "62": {
+   "how": "seed-improved",
+   "flag": "fit rejected med=10.1 kept=14 th=-1.94 (nbr 0.07) sc=1.9013 (nbr 1.9633)"
+  },
+  "94": {
+   "how": "seed-improved",
+   "flag": "fit rejected med=43.2 kept=22 th=-1.50 (nbr 0.00) sc=1.6870 (nbr 2.0000)"
+  },
+  "28": {
+   "how": "prior-seed",
+   "flag": "fit rejected med=68.7 kept=12 th=0.25 (nbr 0.15) sc=1.9368 (nbr 2.0006)"
   }
  },
  "flags": {
-  "51": "fit rejected med=40.0 kept=23 th=-0.04 (nbr 0.30) sc=2.0178 (nbr 2.0001)",
-  "55": "fit rejected med=30.8 kept=4 th=12.26 (nbr 0.07) sc=0.8306 (nbr 2.0094)",
-  "42": "fit rejected med=9.9 kept=7 th=-2.64 (nbr 0.65) sc=1.8352 (nbr 1.9910)",
-  "37": "no accepted fit after iterated rounds",
-  "36": "no accepted fit after iterated rounds",
-  "35": "no accepted fit after iterated rounds",
-  "34": "no accepted fit after iterated rounds",
-  "52": "no accepted fit after iterated rounds",
-  "46": "no accepted fit after iterated rounds",
-  "38": "no accepted fit after iterated rounds",
-  "26": "no accepted fit after iterated rounds",
-  "47": "no accepted fit after iterated rounds",
-  "53": "no accepted fit after iterated rounds",
-  "58": "no accepted fit after iterated rounds",
-  "59": "no accepted fit after iterated rounds",
-  "57": "no accepted fit after iterated rounds",
-  "56": "no accepted fit after iterated rounds",
-  "14": "no accepted fit after iterated rounds",
-  "13": "no accepted fit after iterated rounds",
-  "60": "no accepted fit after iterated rounds",
-  "54": "no accepted fit after iterated rounds",
-  "61": "no accepted fit after iterated rounds",
-  "16": "no accepted fit after iterated rounds",
-  "15": "no accepted fit after iterated rounds",
-  "62": "no accepted fit after iterated rounds",
-  "69": "no accepted fit after iterated rounds",
-  "68": "no accepted fit after iterated rounds",
-  "67": "no accepted fit after iterated rounds",
-  "63": "no accepted fit after iterated rounds",
-  "70": "no accepted fit after iterated rounds",
-  "64": "no accepted fit after iterated rounds",
-  "71": "no accepted fit after iterated rounds",
-  "65": "no accepted fit after iterated rounds",
-  "66": "no accepted fit after iterated rounds",
-  "73": "no accepted fit after iterated rounds",
-  "78": "no accepted fit after iterated rounds",
-  "77": "no accepted fit after iterated rounds",
-  "76": "no accepted fit after iterated rounds",
-  "75": "no accepted fit after iterated rounds",
-  "83": "no accepted fit after iterated rounds",
-  "84": "no accepted fit after iterated rounds",
-  "85": "no accepted fit after iterated rounds",
-  "86": "no accepted fit after iterated rounds",
-  "79": "no accepted fit after iterated rounds",
-  "87": "no accepted fit after iterated rounds",
-  "80": "no accepted fit after iterated rounds",
-  "88": "no accepted fit after iterated rounds",
-  "81": "no accepted fit after iterated rounds",
-  "74": "no accepted fit after iterated rounds",
-  "48": "no accepted fit after iterated rounds",
-  "82": "no accepted fit after iterated rounds",
-  "89": "no accepted fit after iterated rounds",
-  "94": "no accepted fit after iterated rounds",
-  "95": "no accepted fit after iterated rounds",
-  "93": "no accepted fit after iterated rounds",
-  "92": "no accepted fit after iterated rounds",
-  "91": "no accepted fit after iterated rounds",
-  "28": "no accepted fit after iterated rounds",
-  "29": "no accepted fit after iterated rounds",
-  "30": "no accepted fit after iterated rounds",
-  "31": "no accepted fit after iterated rounds",
-  "32": "no accepted fit after iterated rounds",
-  "22": "no accepted fit after iterated rounds",
-  "23": "no accepted fit after iterated rounds",
-  "24": "no accepted fit after iterated rounds",
-  "25": "no accepted fit after iterated rounds",
-  "19": "no accepted fit after iterated rounds",
-  "20": "no accepted fit after iterated rounds",
-  "18": "no accepted fit after iterated rounds",
-  "99": "no accepted fit after iterated rounds",
-  "90": "no accepted fit after iterated rounds",
-  "98": "no accepted fit after iterated rounds",
-  "17": "no accepted fit after iterated rounds",
-  "21": "no accepted fit after iterated rounds",
-  "27": "no accepted fit after iterated rounds",
-  "33": "no accepted fit after iterated rounds",
-  "97": "no accepted fit after iterated rounds",
-  "96": "no accepted fit after iterated rounds"
+  "36": "fit rejected med=11.5 kept=7 th=-7.52 (nbr 0.06) sc=2.3562 (nbr 2.0071)",
+  "14": "fit failed (no per-neighbour fit)",
+  "13": "fit failed (no per-neighbour fit)",
+  "51": "fit rejected med=38.8 kept=23 th=-0.04 (nbr 0.30) sc=2.0187 (nbr 2.0001)",
+  "55": "fit rejected med=55.5 kept=6 th=0.34 (nbr 0.07) sc=2.4417 (nbr 2.0500)",
+  "35": "fit rejected med=22.8 kept=5 th=-2.11 (nbr -0.00) sc=2.4673 (nbr 2.0059)",
+  "34": "fit rejected med=63.3 kept=9 th=-18.55 (nbr 0.15) sc=1.3835 (nbr 2.0020)",
+  "26": "fit rejected med=11.5 kept=9 th=-16.85 (nbr 0.07) sc=2.0194 (nbr 2.0090)",
+  "90": "no matches to any neighbour",
+  "57": "fit rejected med=28.2 kept=36 th=-0.44 (nbr -1.05) sc=1.9628 (nbr 2.0082)",
+  "29": "fit rejected med=1.7 kept=3 th=8.90 (nbr 0.00) sc=0.2394 (nbr 2.0000)",
+  "23": "fit rejected med=39.6 kept=9 th=-3.15 (nbr 0.59) sc=2.0063 (nbr 1.9985)",
+  "95": "fit rejected med=27.2 kept=10 th=-6.90 (nbr 1.03) sc=1.9600 (nbr 1.9478)",
+  "25": "fit rejected med=19.7 kept=29 th=0.76 (nbr -0.82) sc=1.6842 (nbr 2.0073)",
+  "81": "fit rejected med=60.1 kept=22 th=0.49 (nbr -0.13) sc=2.0044 (nbr 2.0254)",
+  "24": "fit rejected med=32.6 kept=9 th=-14.45 (nbr 0.00) sc=1.3962 (nbr 2.0000)",
+  "61": "fit failed (no per-neighbour fit)",
+  "27": "fit rejected med=43.9 kept=8 th=-0.25 (nbr -0.37) sc=1.9874 (nbr 2.0231)",
+  "77": "fit failed (no per-neighbour fit)",
+  "58": "fit rejected med=50.4 kept=28 th=-0.29 (nbr -0.88) sc=1.9661 (nbr 2.0023)",
+  "46": "fit rejected med=21.6 kept=7 th=2.17 (nbr -0.41) sc=1.7601 (nbr 2.0226)",
+  "69": "fit rejected med=57.8 kept=9 th=-0.96 (nbr 0.26) sc=1.8395 (nbr 1.9633)",
+  "15": "fit failed (no per-neighbour fit)",
+  "84": "fit rejected med=2.9 kept=3 th=-3.25 (nbr 0.00) sc=2.0845 (nbr 2.0000)",
+  "86": "fit failed (no per-neighbour fit)",
+  "20": "fit rejected med=67.9 kept=16 th=-0.40 (nbr 1.03) sc=2.0289 (nbr 1.9964)",
+  "16": "fit failed (no per-neighbour fit)",
+  "33": "fit rejected med=12.6 kept=9 th=-11.77 (nbr 0.00) sc=1.9120 (nbr 2.0000)",
+  "62": "fit rejected med=10.1 kept=14 th=-1.94 (nbr 0.07) sc=1.9013 (nbr 1.9633)",
+  "94": "fit rejected med=43.2 kept=22 th=-1.50 (nbr 0.00) sc=1.6870 (nbr 2.0000)",
+  "28": "fit rejected med=68.7 kept=12 th=0.25 (nbr 0.15) sc=1.9368 (nbr 2.0006)",
+  "99": "fit rejected med=26.0 kept=9 th=-0.45 (nbr 0.00) sc=2.5236 (nbr 2.0000)",
+  "76": "fit rejected med=66.4 kept=5 th=-1.06 (nbr 0.00) sc=1.9174 (nbr 2.0000)",
+  "91": "no matches to any neighbour",
+  "92": "fit rejected med=66.0 kept=9 th=-1.10 (nbr 0.00) sc=1.6420 (nbr 2.0000)",
+  "82": "no matches to any neighbour",
+  "38": "fit rejected med=2.0 kept=7 th=-7.25 (nbr 0.80) sc=2.2986 (nbr 2.0517)",
+  "73": "fit failed (no per-neighbour fit)",
+  "93": "fit rejected med=37.8 kept=32 th=-0.64 (nbr 0.00) sc=1.7499 (nbr 2.0000)",
+  "87": "fit rejected med=25.0 kept=35 th=0.06 (nbr 0.40) sc=2.0333 (nbr 2.0161)",
+  "85": "fit failed (no per-neighbour fit)",
+  "74": "fit rejected med=34.4 kept=6 th=-1.62 (nbr -0.08) sc=1.5595 (nbr 1.9879)",
+  "17": "fit rejected med=30.3 kept=3 th=7.16 (nbr -0.37) sc=1.9749 (nbr 2.0231)",
+  "75": "no matches to any neighbour",
+  "42": "fit rejected med=18.6 kept=28 th=-17.30 (nbr 0.81) sc=2.0421 (nbr 2.0989)",
+  "18": "fit rejected med=56.7 kept=31 th=0.38 (nbr 0.59) sc=1.8783 (nbr 1.9985)",
+  "67": "no matches to any neighbour",
+  "37": "fit rejected med=25.2 kept=13 th=-8.06 (nbr -0.00) sc=2.2204 (nbr 2.0531)",
+  "68": "fit rejected med=19.3 kept=4 th=0.83 (nbr 0.00) sc=2.3909 (nbr 2.0000)",
+  "30": "fit rejected med=71.4 kept=8 th=-0.08 (nbr -0.82) sc=2.0518 (nbr 2.0073)",
+  "83": "fit failed (no per-neighbour fit)"
  }
 }

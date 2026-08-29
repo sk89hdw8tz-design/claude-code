@@ -135,6 +135,40 @@
    ],
    "confidence": "medium",
    "note": "Crossing of the N-S dashed avenue pipe line with the E-W dashed 6-in water pipe in 24th St, at the avenue crossing east of house 1424 (67) / east of 1423 with 2402/2404 numbers below (71b) - the first avenue east of the T.H. hydrant crossing. Offsets agree with tie-67-71b-1 within ~20 px. Solid avenue line drawn on opposite sides of the pipe on the two sheets, hence medium."
+  },
+  {
+   "pair": [
+    "67",
+    "72"
+   ],
+   "id": "tie-67-72-1",
+   "owner_xy": [
+    2140,
+    3682
+   ],
+   "nbr_xy": [
+    248,
+    98
+   ],
+   "confidence": "low",
+   "note": "NW corner of the dashed west wing of the building complex (labeled A. on 67, 80-ft label on 72) on the north side of 24th St at the NE corner of the N-S avenue whose house numbers read 23xx on 67 and 24xx on 72 (same avenue, opposite segments). Identity certain from position, but the drawn footprint disagrees between sheets (72 much narrower in x than in y relative to 67), so geometry is unreliable."
+  },
+  {
+   "pair": [
+    "67",
+    "72"
+   ],
+   "id": "tie-67-72-2",
+   "owner_xy": [
+    2557,
+    3765
+   ],
+   "nbr_xy": [
+    420,
+    160
+   ],
+   "confidence": "low",
+   "note": "Center of the small detached square outbuilding just east of the same complex (east of the dashed annex), drawn on both sheets. Same anchor as tie-67-72-1. Footprint proportions disagree between the sheets - possible scale/redraw difference on 72; flagged suspicious."
   }
  ]
 }
