@@ -39,9 +39,24 @@ Row/col per the key maps; 1899 wharf column sits 0.67 rows high of the inland gr
 
 ## Worst ten seams
 
-Not yet measured this run. The prior 1912 QA seam matrix lives at
-`claude/galveston-1912-sanborn-mosaic-747rju:galveston-1912/70_qa/run1/seam_matrix.md`
-and is consolidated in Stage 1.
+### 1912 (consolidated QA)
+
+| seam | across RMS px* | mask tiling |
+|---|---|---|
+| 12\|49 | 108.71 | PASS |
+| 11\|12 | 62.09 | PASS |
+| 7\|9 | 34.52 | PASS |
+| 9\|10 | 28.53 | PASS |
+| 10\|43 | 26.97 | PASS |
+| 44\|50 | 23.86 | PASS |
+| 43\|49 | 20.38 | PASS |
+| 39\|43 | 20.12 | PASS |
+| 7\|8 | 17.05 | PASS |
+| 8\|39 | 14.96 | PASS |
+
+\*across = drafted frontage separation vs. default street width — absorbs the plates' drafted-width disagreement, **not** seam misregistration (source: prior QA run1, consolidated). All 17 seams PASS mask tiling; worst gap 0.001 px.
+
+1899: measured after the consolidated solve.
 
 ## Active agents
 
