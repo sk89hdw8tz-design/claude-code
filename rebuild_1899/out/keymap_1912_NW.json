@@ -1,1 +1,804 @@
-{"results": []}
+{
+ "results": [
+  {
+   "sheet": 17,
+   "streets": [
+    8,
+    9
+   ],
+   "avenues": [
+    "WATER",
+    "STRAND",
+    "MECHANIC"
+   ],
+   "keymap_rect": [
+    1150,
+    550,
+    1520,
+    910
+   ],
+   "note": "Shore-front sheet (pink). N boundary is the shoreline/Sea Wall; 7th St does not extend this far W - blocks 667/607 lie between the Sea Wall and 8th. Includes narrow wharf strip along the wall NW of the grid."
+  },
+  {
+   "sheet": 18,
+   "streets": [
+    7,
+    9
+   ],
+   "avenues": [
+    "MECHANIC",
+    "MARKET",
+    "POST OFFICE",
+    "CHURCH"
+   ],
+   "keymap_rect": [
+    1530,
+    545,
+    1890,
+    915
+   ],
+   "note": "Top row of blocks (546/486/426) lies between Sea Wall Boulevard and 7th."
+  },
+  {
+   "sheet": 19,
+   "streets": [
+    7,
+    9
+   ],
+   "avenues": [
+    "CHURCH",
+    "WINNIE",
+    "BALL",
+    "SEALY"
+   ],
+   "keymap_rect": [
+    1890,
+    500,
+    2270,
+    915
+   ],
+   "note": "Top row of blocks lies between Sea Wall Boulevard and 7th."
+  },
+  {
+   "sheet": 20,
+   "streets": [
+    7,
+    9
+   ],
+   "avenues": [
+    "SEALY",
+    "BROADWAY",
+    "K",
+    "L"
+   ],
+   "keymap_rect": [
+    2270,
+    500,
+    2745,
+    915
+   ],
+   "note": "NE edge cut diagonally by Sea Wall Boulevard; triangular blocks 67 and 8 against the wall east of Avenue L."
+  },
+  {
+   "sheet": 21,
+   "streets": [
+    9,
+    12
+   ],
+   "avenues": [
+    "WATER",
+    "STRAND",
+    "MECHANIC"
+   ],
+   "keymap_rect": [
+    1205,
+    920,
+    1535,
+    1315
+   ],
+   "note": "Westernmost column of blocks (730/731) lies between the wharf front and Water St; abuts pier sheet 6 on W."
+  },
+  {
+   "sheet": 22,
+   "streets": [
+    9,
+    12
+   ],
+   "avenues": [
+    "MECHANIC",
+    "MARKET",
+    "POST OFFICE",
+    "CHURCH"
+   ],
+   "keymap_rect": [
+    1555,
+    920,
+    1885,
+    1315
+   ],
+   "note": ""
+  },
+  {
+   "sheet": 23,
+   "streets": [
+    9,
+    12
+   ],
+   "avenues": [
+    "CHURCH",
+    "WINNIE",
+    "BALL",
+    "SEALY"
+   ],
+   "keymap_rect": [
+    1895,
+    920,
+    2265,
+    1320
+   ],
+   "note": ""
+  },
+  {
+   "sheet": 24,
+   "streets": [
+    9,
+    12
+   ],
+   "avenues": [
+    "SEALY",
+    "BROADWAY",
+    "K",
+    "L"
+   ],
+   "keymap_rect": [
+    2280,
+    925,
+    2660,
+    1325
+   ],
+   "note": ""
+  },
+  {
+   "sheet": 25,
+   "streets": [
+    9,
+    12
+   ],
+   "avenues": [
+    "L",
+    "M",
+    "M 1/2",
+    "N"
+   ],
+   "keymap_rect": [
+    2690,
+    925,
+    3120,
+    1330
+   ],
+   "note": "E corner cut diagonally by Sea Wall Boulevard; small triangular blocks (marked N.E., S.W., N.E.) against the wall."
+  },
+  {
+   "sheet": 27,
+   "streets": [
+    12,
+    15
+   ],
+   "avenues": [
+    "WATER",
+    "STRAND",
+    "MECHANIC"
+   ],
+   "keymap_rect": [
+    1215,
+    1330,
+    1540,
+    1725
+   ],
+   "note": "Westernmost column (732-734) lies between the wharf front and Water St; abuts pier sheet 6 on W."
+  },
+  {
+   "sheet": 28,
+   "streets": [
+    12,
+    15
+   ],
+   "avenues": [
+    "MECHANIC",
+    "MARKET",
+    "POST OFFICE",
+    "CHURCH"
+   ],
+   "keymap_rect": [
+    1560,
+    1330,
+    1885,
+    1725
+   ],
+   "note": ""
+  },
+  {
+   "sheet": 29,
+   "streets": [
+    12,
+    15
+   ],
+   "avenues": [
+    "CHURCH",
+    "WINNIE",
+    "BALL",
+    "SEALY"
+   ],
+   "keymap_rect": [
+    1895,
+    1335,
+    2265,
+    1735
+   ],
+   "note": ""
+  },
+  {
+   "sheet": 30,
+   "streets": [
+    12,
+    15
+   ],
+   "avenues": [
+    "SEALY",
+    "BROADWAY",
+    "K",
+    "L"
+   ],
+   "keymap_rect": [
+    2280,
+    1340,
+    2665,
+    1740
+   ],
+   "note": ""
+  },
+  {
+   "sheet": 31,
+   "streets": [
+    12,
+    15
+   ],
+   "avenues": [
+    "L",
+    "M",
+    "M 1/2",
+    "N"
+   ],
+   "keymap_rect": [
+    2690,
+    1340,
+    3035,
+    1745
+   ],
+   "note": "Blocks E of Avenue L are outlot quarters labeled 23 N.W./S.W., 22 N.E./S.E. etc."
+  },
+  {
+   "sheet": 32,
+   "streets": [
+    12,
+    15
+   ],
+   "avenues": [
+    "N",
+    "N 1/2",
+    "O"
+   ],
+   "keymap_rect": [
+    3055,
+    1310,
+    3420,
+    1750
+   ],
+   "note": "NE edge cut diagonally by Sea Wall Boulevard; 12th-13th row reduced to a single block (47 outlot quarters)."
+  },
+  {
+   "sheet": 6,
+   "streets": [
+    9,
+    16
+   ],
+   "avenues": [],
+   "keymap_rect": [
+    440,
+    970,
+    1310,
+    1870
+   ],
+   "note": "Pier/wharf-only sheet (pink), no street grid or avenues: Piers Nos. 10, 11, 12, 14 E., 14 W., 15 and intervening slips (slip letters Y, N, A, P, M along the wharf). Street range approximate - frontage lies bay-ward of sheets 21/27 (about 9th-16th projected)."
+  },
+  {
+   "sheet": 33,
+   "streets": [
+    15,
+    18
+   ],
+   "avenues": [
+    "WATER",
+    "STRAND",
+    "MECHANIC"
+   ],
+   "keymap_rect": [
+    1215,
+    1740,
+    1540,
+    2145
+   ],
+   "note": "Westernmost column (735-737) lies between the wharf front and Water St; abuts pier sheet 5 on W."
+  },
+  {
+   "sheet": 34,
+   "streets": [
+    15,
+    18
+   ],
+   "avenues": [
+    "MECHANIC",
+    "MARKET",
+    "POST OFFICE",
+    "CHURCH"
+   ],
+   "keymap_rect": [
+    1560,
+    1745,
+    1890,
+    2155
+   ],
+   "note": ""
+  },
+  {
+   "sheet": 5,
+   "streets": [
+    16,
+    22
+   ],
+   "avenues": [],
+   "keymap_rect": [
+    880,
+    1860,
+    1310,
+    2680
+   ],
+   "note": "Pier/wharf-only sheet (tan/olive), no street grid: Piers Nos. 16, 18, 19, 20, 22 and slips (letters C, D, F, R). Street range approximate - frontage bay-ward of sheets 33/7/9. Numeral printed at about (1120,2445)."
+  },
+  {
+   "sheet": 7,
+   "streets": [
+    18,
+    21
+   ],
+   "avenues": [
+    "A",
+    "B",
+    "C"
+   ],
+   "keymap_rect": [
+    1240,
+    2205,
+    1540,
+    2615
+   ],
+   "note": "Avenues printed as AVENUE \"A\" / AVENUE \"B\" here (same streets labeled WATER/STRAND farther N). Narrow waterfront blocks 738-740 along W edge; FIRE LIMITS boundary runs along its N edge."
+  },
+  {
+   "sheet": 8,
+   "streets": [
+    18,
+    21
+   ],
+   "avenues": [
+    "MECHANIC",
+    "MARKET",
+    "POST OFFICE",
+    "CHURCH"
+   ],
+   "keymap_rect": [
+    1560,
+    2210,
+    1890,
+    2620
+   ],
+   "note": "FIRE LIMITS boundary line zigzags through this sheet's area."
+  },
+  {
+   "sheet": 35,
+   "streets": [
+    15,
+    18
+   ],
+   "avenues": [
+    "CHURCH",
+    "WINNIE",
+    "BALL",
+    "SEALY"
+   ],
+   "keymap_rect": [
+    1930,
+    1755,
+    2270,
+    2160
+   ],
+   "note": ""
+  },
+  {
+   "sheet": 36,
+   "streets": [
+    15,
+    18
+   ],
+   "avenues": [
+    "SEALY",
+    "BROADWAY",
+    "K",
+    "L"
+   ],
+   "keymap_rect": [
+    2290,
+    1760,
+    2680,
+    2170
+   ],
+   "note": ""
+  },
+  {
+   "sheet": 37,
+   "streets": [
+    15,
+    18
+   ],
+   "avenues": [
+    "L",
+    "M",
+    "M 1/2",
+    "N"
+   ],
+   "keymap_rect": [
+    2700,
+    1770,
+    3040,
+    2180
+   ],
+   "note": "E blocks are outlot quarters (21 N.E./S.E./N.W./S.W., 20 N.E./S.E.); avenue printed vertically as AVENUE M 1/2."
+  },
+  {
+   "sheet": 38,
+   "streets": [
+    15,
+    18
+   ],
+   "avenues": [
+    "N",
+    "N 1/2",
+    "O"
+   ],
+   "keymap_rect": [
+    3050,
+    1755,
+    3450,
+    2190
+   ],
+   "note": "Easternmost column (outlot 71/70 quarters) lies E of Avenue O toward Sea Wall Boulevard; NE corner tapers against the Boulevard. Avenue printed vertically as AVENUE N 1/2."
+  },
+  {
+   "sheet": 39,
+   "streets": [
+    18,
+    21
+   ],
+   "avenues": [
+    "CHURCH",
+    "WINNIE",
+    "BALL",
+    "SEALY"
+   ],
+   "keymap_rect": [
+    1930,
+    2170,
+    2270,
+    2575
+   ],
+   "note": "S boundary street printed 21ST OR CENTER."
+  },
+  {
+   "sheet": 40,
+   "streets": [
+    18,
+    21
+   ],
+   "avenues": [
+    "SEALY",
+    "BROADWAY",
+    "K",
+    "L"
+   ],
+   "keymap_rect": [
+    2290,
+    2180,
+    2680,
+    2580
+   ],
+   "note": "S boundary street printed 21ST OR CENTER."
+  },
+  {
+   "sheet": 41,
+   "streets": [
+    18,
+    21
+   ],
+   "avenues": [
+    "L",
+    "M",
+    "M 1/2",
+    "N"
+   ],
+   "keymap_rect": [
+    2700,
+    2185,
+    3040,
+    2590
+   ],
+   "note": "E blocks are outlot quarters (20 N.W./S.W., 19 N.E./S.E./N.W./S.W.)."
+  },
+  {
+   "sheet": 42,
+   "streets": [
+    18,
+    21
+   ],
+   "avenues": [
+    "N",
+    "N 1/2",
+    "O"
+   ],
+   "keymap_rect": [
+    3050,
+    2190,
+    3450,
+    2600
+   ],
+   "note": "Blocks are outlot quarters (45, 44, 69, 70 series). S boundary street printed 21ST OR CENTER."
+  },
+  {
+   "sheet": 9,
+   "streets": [
+    21,
+    24
+   ],
+   "avenues": [
+    "A",
+    "B",
+    "MECHANIC"
+   ],
+   "keymap_rect": [
+    1240,
+    2560,
+    1520,
+    2965
+   ],
+   "note": "Narrow waterfront blocks 741-743 along W edge next to pier sheet 5. Left avenue names printed AVENUE \"A\"/AVENUE \"B\" just N of here; right boundary is Mechanic. N boundary printed 21ST OR CENTER."
+  },
+  {
+   "sheet": 10,
+   "streets": [
+    21,
+    24
+   ],
+   "avenues": [
+    "MECHANIC",
+    "MARKET",
+    "POST OFFICE",
+    "CHURCH"
+   ],
+   "keymap_rect": [
+    1545,
+    2565,
+    1900,
+    2970
+   ],
+   "note": "Internal streets printed 22ND and 23RD OR TREMONT; FIRE LIMITS line runs along its E side."
+  },
+  {
+   "sheet": 43,
+   "streets": [
+    21,
+    24
+   ],
+   "avenues": [
+    "CHURCH",
+    "WINNIE",
+    "BALL",
+    "SEALY"
+   ],
+   "keymap_rect": [
+    1920,
+    2570,
+    2300,
+    2990
+   ],
+   "note": "Internal streets printed 22ND and 23RD OR TREMONT."
+  },
+  {
+   "sheet": 44,
+   "streets": [
+    21,
+    24
+   ],
+   "avenues": [
+    "SEALY",
+    "BROADWAY",
+    "K",
+    "L"
+   ],
+   "keymap_rect": [
+    2320,
+    2580,
+    2720,
+    3000
+   ],
+   "note": ""
+  },
+  {
+   "sheet": 45,
+   "streets": [
+    21,
+    24
+   ],
+   "avenues": [
+    "L",
+    "M",
+    "M 1/2",
+    "N"
+   ],
+   "keymap_rect": [
+    2740,
+    2585,
+    3130,
+    3010
+   ],
+   "note": "E blocks are outlot quarters (19, 18, 17 N.E./S.E./N.W./S.W.); some drawn with irregular L-shaped outlines."
+  },
+  {
+   "sheet": 11,
+   "streets": [
+    24,
+    27
+   ],
+   "avenues": [
+    "A",
+    "B",
+    "MECHANIC"
+   ],
+   "keymap_rect": [
+    1240,
+    2970,
+    1520,
+    3395
+   ],
+   "note": "Narrow waterfront blocks 744-746 on W edge next to pier sheet 5; middle avenue printed vertically as B. OR STRAND EXT'ND. FIRE LIMITS line along 27th at its S edge."
+  },
+  {
+   "sheet": 12,
+   "streets": [
+    24,
+    27
+   ],
+   "avenues": [
+    "MECHANIC",
+    "MARKET",
+    "POST OFFICE",
+    "CHURCH"
+   ],
+   "keymap_rect": [
+    1545,
+    2975,
+    1900,
+    3400
+   ],
+   "note": "Avenue names MECHANIC, MARKET, POST OFFICE, CHURCH all printed vertically within/beside this sheet; internal streets 25TH and 26TH; FIRE LIMITS line zigzags through."
+  },
+  {
+   "sheet": 49,
+   "streets": [
+    24,
+    27
+   ],
+   "avenues": [
+    "CHURCH",
+    "WINNIE",
+    "BALL",
+    "SEALY"
+   ],
+   "keymap_rect": [
+    1920,
+    2995,
+    2300,
+    3410
+   ],
+   "note": "Internal street printed 25TH OR ROSENBERG AV."
+  },
+  {
+   "sheet": 50,
+   "streets": [
+    24,
+    27
+   ],
+   "avenues": [
+    "SEALY",
+    "BROADWAY",
+    "K",
+    "L"
+   ],
+   "keymap_rect": [
+    2320,
+    3000,
+    2720,
+    3420
+   ],
+   "note": "Internal street printed 25TH OR ROSENBERG AV.; BROADWAY printed vertically through the sheet."
+  },
+  {
+   "sheet": 51,
+   "streets": [
+    24,
+    27
+   ],
+   "avenues": [
+    "L",
+    "M",
+    "M 1/2",
+    "N"
+   ],
+   "keymap_rect": [
+    2740,
+    3010,
+    3130,
+    3430
+   ],
+   "note": "E blocks are outlot quarters (17, 16 N.E./S.E./N.W./S.W.)."
+  },
+  {
+   "sheet": 46,
+   "streets": [
+    21,
+    24
+   ],
+   "avenues": [
+    "N",
+    "N 1/2",
+    "O",
+    "O 1/2"
+   ],
+   "keymap_rect": [
+    3040,
+    2555,
+    3410,
+    2990
+   ],
+   "note": "All blocks are outlot quarters (43, 68 N.E./S.E./N.W./S.W.); avenues printed AV. \"N 1/2\" and \"O 1/2\"."
+  },
+  {
+   "sheet": 52,
+   "streets": [
+    24,
+    27
+   ],
+   "avenues": [
+    "N",
+    "N 1/2",
+    "O",
+    "O 1/2"
+   ],
+   "keymap_rect": [
+    3040,
+    3000,
+    3410,
+    3430
+   ],
+   "note": "All blocks are outlot quarters (42, 41, 67, 66 series); sheet 53's dashed boundary begins just E of this sheet."
+  }
+ ]
+}

@@ -1,1 +1,194 @@
-{"results": []}
+{
+ "results": [
+  {
+   "sheet": 26,
+   "streets": [
+    17,
+    21
+   ],
+   "avenues": [
+    "O 1/2",
+    "P",
+    "P 1/2"
+   ],
+   "keymap_rect": [
+    3400,
+    1930,
+    3760,
+    2565
+   ],
+   "note": "Blue area (blocks 70, 69, 94) bounded W by Avenue O 1/2; seaward (E) edge cut diagonally by the Sea Wall/beach. Small shore-cut triangle of block 71 S.W. extends one row N (16th-17th). Map is rotated: numbered streets run horizontally, avenues vertically; Gulf at right."
+  },
+  {
+   "sheet": 47,
+   "streets": [
+    21,
+    24
+   ],
+   "avenues": [
+    "O 1/2",
+    "P",
+    "P 1/2",
+    "Q"
+   ],
+   "keymap_rect": [
+    3400,
+    2560,
+    3990,
+    2950
+   ],
+   "note": "Yellow area (blocks 68, 67 S.E., 93, 92 N.E./S.E.); SE corner (block 93 S.E.) clipped by the Sea Wall."
+  },
+  {
+   "sheet": 32,
+   "streets": [
+    21,
+    26
+   ],
+   "avenues": [],
+   "keymap_rect": [
+    3760,
+    2555,
+    4110,
+    2990
+   ],
+   "note": "Duplicate/secondary numeral '32' printed on the beach seaward of the Sea Wall covering Murdock Bath Ho. and Breakers Bath Ho. (pier structures over the Gulf); no street grid or avenues. Sheet 32's main area and primary numeral lie at approx (3130,1510), outside this region (NW quadrant)."
+  },
+  {
+   "sheet": 53,
+   "streets": [
+    24,
+    27
+   ],
+   "avenues": [
+    "O 1/2",
+    "P",
+    "P 1/2",
+    "Q"
+   ],
+   "keymap_rect": [
+    3400,
+    2955,
+    3765,
+    3395
+   ],
+   "note": "Pink area (blocks 67 S.W., 92 N.W./S.W., 66 S.E./S.W., 91). Dot-dash fire-limits ('roof limits/non-combustible') boundary line crosses its NE corner."
+  },
+  {
+   "sheet": 54,
+   "streets": [
+    22,
+    27
+   ],
+   "avenues": [
+    "Q",
+    "Q 1/2",
+    "R"
+   ],
+   "keymap_rect": [
+    3765,
+    2700,
+    4230,
+    3395
+   ],
+   "note": "Green area (blocks 117, 116, plus clipped fragments: '[118] N.W.' between 22nd-23rd, 117 S.W. triangle, 141 N.W. triangle between Ave R and the Sea Wall). Seaward edge cut diagonally by Sea Wall; irregular tapering top toward 22nd. Breakers Bath Ho. adjoins on the beach (labeled sheet 32)."
+  },
+  {
+   "sheet": 59,
+   "streets": [
+    27,
+    30
+   ],
+   "avenues": [
+    "O 1/2",
+    "P",
+    "P 1/2",
+    "Q"
+   ],
+   "keymap_rect": [
+    3400,
+    3400,
+    3765,
+    3800
+   ],
+   "note": "Yellow area (blocks 65 S.E./S.W., 90, 64 S.E., 89 N.E.); regular rectangle. Dot-dash fire-limits line runs along Avenue P through it."
+  },
+  {
+   "sheet": 60,
+   "streets": [
+    27,
+    30
+   ],
+   "avenues": [
+    "Q",
+    "Q 1/2",
+    "R",
+    "R 1/2"
+   ],
+   "keymap_rect": [
+    3765,
+    3400,
+    4130,
+    3800
+   ],
+   "note": "Blue area (blocks 115, 114 N.E./S.E., 140 N.E./N.W., 139 N.E.); NE corner (block 140 N.E.) clipped by the Sea Wall."
+  },
+  {
+   "sheet": 65,
+   "streets": [
+    30,
+    33
+   ],
+   "avenues": [
+    "O 1/2",
+    "P",
+    "P 1/2",
+    "Q"
+   ],
+   "keymap_rect": [
+    3400,
+    3800,
+    3765,
+    4210
+   ],
+   "note": "Pink area (blocks 64 S.W., 89 N.W./S.W., 63 S.E., 88); regular rectangle. Numeral at approx (3640,3995); area's bottom edge (33rd St) lies just south of this region's y-limit."
+  },
+  {
+   "sheet": 66,
+   "streets": [
+    30,
+    33
+   ],
+   "avenues": [
+    "Q",
+    "Q 1/2",
+    "R",
+    "R 1/2"
+   ],
+   "keymap_rect": [
+    3765,
+    3800,
+    4130,
+    4210
+   ],
+   "note": "Green area (blocks 114 N.W./S.W., 113, 139 N.W., 138 N.E./N.W.); regular rectangle ending at 33rd St (just below region y-limit)."
+  },
+  {
+   "sheet": 48,
+   "streets": [
+    28,
+    33
+   ],
+   "avenues": [
+    "R 1/2"
+   ],
+   "keymap_rect": [
+    4130,
+    3570,
+    4340,
+    4210
+   ],
+   "note": "Pink narrow Gulf-front strip east of Avenue R 1/2 (S halves of blocks 140, 139, 138 plus clipped triangle of block 163 N.E. beyond the Avenue S line); tapers to a point near 28th at top; seaward edge follows the Sea Wall/shoreline diagonally; no full avenue crossings within it."
+  }
+ ]
+}

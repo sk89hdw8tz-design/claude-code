@@ -39,6 +39,224 @@
     4600
    ],
    "note": "NE corner approaches Seawall Boulevard; block 162 split down S 1/2, seaward half belongs to sheet 99."
+  },
+  {
+   "sheet": 80,
+   "streets": [
+    36,
+    39
+   ],
+   "avenues": [
+    "O 1/2",
+    "P",
+    "P 1/2",
+    "Q"
+   ],
+   "keymap_rect": [
+    3430,
+    4645,
+    3760,
+    5020
+   ],
+   "note": "Blue area extends west of region boundary (left edge at Ave O 1/2, x~3430); numeral center at ~(3635,4812) inside region."
+  },
+  {
+   "sheet": 81,
+   "streets": [
+    36,
+    39
+   ],
+   "avenues": [
+    "Q",
+    "Q 1/2",
+    "R",
+    "R 1/2"
+   ],
+   "keymap_rect": [
+    3795,
+    4640,
+    4125,
+    5015
+   ],
+   "note": ""
+  },
+  {
+   "sheet": 82,
+   "streets": [
+    36,
+    39
+   ],
+   "avenues": [
+    "R 1/2",
+    "S",
+    "S 1/2",
+    "T"
+   ],
+   "keymap_rect": [
+    4130,
+    4645,
+    4485,
+    5020
+   ],
+   "note": ""
+  },
+  {
+   "sheet": 99,
+   "streets": [
+    33,
+    39
+   ],
+   "avenues": [
+    "S 1/2",
+    "T",
+    "T 1/2"
+   ],
+   "keymap_rect": [
+    4390,
+    4225,
+    4800,
+    5030
+   ],
+   "note": "Irregular diagonal beach strip along Seawall Boulevard/Gulf shore; seaward bound is the shoreline, not an avenue. Left edge steps from S 1/2 (blocks 162,161) to T (blocks 185,186) south of 37th; blocks cut diagonally by the Boulevard. Numeral printed twice: ~(4480,4505) and ~(4615,4845)."
+  },
+  {
+   "sheet": 88,
+   "streets": [
+    39,
+    42
+   ],
+   "avenues": [
+    "P 1/2",
+    "Q",
+    "Q 1/2",
+    "R"
+   ],
+   "keymap_rect": [
+    3670,
+    5055,
+    4000,
+    5430
+   ],
+   "note": ""
+  },
+  {
+   "sheet": 89,
+   "streets": [
+    39,
+    42
+   ],
+   "avenues": [
+    "R",
+    "R 1/2",
+    "S",
+    "S 1/2"
+   ],
+   "keymap_rect": [
+    4030,
+    5045,
+    4405,
+    5430
+   ],
+   "note": ""
+  },
+  {
+   "sheet": 90,
+   "streets": [
+    39,
+    42
+   ],
+   "avenues": [
+    "S 1/2",
+    "T",
+    "T 1/2"
+   ],
+   "keymap_rect": [
+    4405,
+    5050,
+    4735,
+    5430
+   ],
+   "note": "Seaward (SE) edge cut diagonally by Seawall Boulevard/shoreline; blocks 184 S.E. and 183 S.E. truncated."
+  },
+  {
+   "sheet": 87,
+   "streets": [
+    39,
+    42
+   ],
+   "avenues": [
+    "O",
+    "O 1/2",
+    "P",
+    "P 1/2"
+   ],
+   "keymap_rect": [
+    3305,
+    5060,
+    3630,
+    5430
+   ],
+   "note": "Green area extends west of region boundary x=3500 (left edge at Ave O); numeral center ~(3537,5235) just inside region."
+  },
+  {
+   "sheet": 96,
+   "streets": [
+    42,
+    45
+   ],
+   "avenues": [
+    "P",
+    "P 1/2",
+    "Q",
+    "Q 1/2"
+   ],
+   "keymap_rect": [
+    3555,
+    5510,
+    3880,
+    5892
+   ],
+   "note": ""
+  },
+  {
+   "sheet": 97,
+   "streets": [
+    42,
+    45
+   ],
+   "avenues": [
+    "Q 1/2",
+    "R",
+    "R 1/2",
+    "S"
+   ],
+   "keymap_rect": [
+    3920,
+    5505,
+    4245,
+    5890
+   ],
+   "note": ""
+  },
+  {
+   "sheet": 98,
+   "streets": [
+    42,
+    45
+   ],
+   "avenues": [
+    "S",
+    "S 1/2",
+    "T",
+    "T 1/2"
+   ],
+   "keymap_rect": [
+    4290,
+    5460,
+    4610,
+    5900
+   ],
+   "note": "Southernmost/westernmost colored sheet in this quadrant; grid east of T 1/2 (blocks 182, 183 S.W.) and south of 45th is uncovered."
   }
  ]
 }

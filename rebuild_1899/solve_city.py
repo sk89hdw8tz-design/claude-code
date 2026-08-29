@@ -132,6 +132,24 @@ def solve():
         x = x_new
 
 solve()
+# Pair-level pruning: a pair whose MEDIAN residual stays high after the
+# robust solve is systematically locked wrong (progressive/skewed aliasing
+# in vacant-outlot content); killing the whole pair beats letting it bend
+# the region. Two pruning rounds, threshold tightening 30 -> 22 px.
+for thr in (30.0, 22.0):
+    res = residuals(x)
+    stepn = np.hypot(res[:, 0], res[:, 1])
+    pm = {}
+    for k, m in enumerate(matches):
+        if m[6]:
+            pm.setdefault(f"{m[0]}|{m[1]}", []).append(stepn[k])
+    kill = {p for p, v in pm.items() if np.median(v) > thr}
+    if kill:
+        print(f"pruning {len(kill)} pairs with median > {thr}: {sorted(kill)[:10]}...")
+        for m in matches:
+            if f"{m[0]}|{m[1]}" in kill:
+                m[6] = False
+        solve()
 # Second pass: units with too few live constraints wander (a narrow panel or
 # a vacant seam can't pin rotation/scale). Their priors snap to the local
 # consensus: b-target = median b of their live-solved neighbours, tight

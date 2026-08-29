@@ -53,7 +53,12 @@ def sheet_edges(uid):
 measure.sheet_gray = sheet_gray
 measure.sheet_edges = sheet_edges
 measure.OFFSETS = {uid: tuple(u["offsets"]) for uid, u in UNITS.items()}
-measure.TRANSFORMS = None
+import os as _os
+if _os.environ.get("CITY_REFINE"):
+    measure.TRANSFORMS = json.load(open(os.path.join(ROOT, "out", "affine_city_1899.json")))["sheets"]
+    print("REFINE MODE: predictions through current city solve")
+else:
+    measure.TRANSFORMS = None
 # wharf-family v-pairs get the wide band; everything else narrow
 WHARF_UNITS = {"04", "05", "06", "07", "08"}
 measure.WHARF_PAIRS = {(p["owner"], p["nbr"]) for p in NET["pairs"]
