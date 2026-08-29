@@ -92,9 +92,36 @@ def main():
         canvas[mask > 0] = warped[mask > 0]
         covered |= mask
         print(f"  sheet {sheet}: composited {int((mask > 0).sum())} px")
+    # fallback: pixels no ownership polygon claims but that lie on a real
+    # sheet's scan are filled from that sheet, in deterministic priority
+    # order (wharf sheets first). No content is invented; slivers between
+    # neighbouring regions' bookkeeping edges get real ink.
+    order = sorted({s for s, _ in involved},
+                   key=lambda s: (s not in ("7", "07", "6", "06", "8", "08"), int(s)))
+    for sheet in order:
+        if not (covered == 0).any():
+            break
+        path_ = r.fetch(r.sheet_file(sheet))
+        img = cv2.imread(path_, cv2.IMREAD_COLOR)
+        M, t = r.sheet_matrix(sheet)
+        A = np.hstack([M, (t - np.array([x0, y0])).reshape(2, 1)])
+        warped = cv2.warpAffine(img, A, (W, H), flags=cv2.INTER_LANCZOS4,
+                                borderValue=(255, 255, 255))
+        inb = np.zeros((H, W), np.uint8)
+        corners = np.array([(M @ np.array(p) + t - [x0, y0])
+                            for p in [(0, 0), (img.shape[1], 0),
+                                      (img.shape[1], img.shape[0]), (0, img.shape[0])]],
+                           np.int32)
+        cv2.fillPoly(inb, [corners], 255)
+        fb = (covered == 0) & (inb > 0)
+        n = int(fb.sum())
+        if n:
+            canvas[fb] = warped[fb]
+            covered[fb] = 255
+            print(f"  sheet {sheet}: +{n} px unowned-sliver fallback (disclosed)")
     uncovered = int((covered == 0).sum())
     if uncovered:
-        print(f"  note: {uncovered} px outside every ownership region left paper-white (disclosed)")
+        print(f"  note: {uncovered} px outside every source sheet left paper-white (disclosed)")
 
     out_w = int(round(a.width_in * a.dpi))
     out_h = int(round(a.height_in * a.dpi))

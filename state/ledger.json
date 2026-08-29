@@ -2,7 +2,7 @@
  "project": "Galveston Sanborn wharf/downtown mosaics, 1899 + 1912",
  "branch": "claude/galveston-setup-part-a-mk5z1l",
  "governing_spec": "Cloud addendum (Part B brief unavailable in this cloud session; stage structure reconstructed from the addendum and prior-work branches). Ambiguities go to HUMAN_QUEUE.md, not guessed.",
- "updated_utc": "2026-08-29T05:10:00Z",
+ "updated_utc": "2026-08-29T07:15:00Z",
  "environment": {
   "network": "restricted proxy: pypi/apt/github reachable; loc.gov, tile.loc.gov, maps.lib.utexas.edu, texashistory.unt.edu blocked (CONNECT 403)",
   "source_fetch_path": "GitHub Actions CI runners (full egress) commit sources to data branches; sessions read them via git",
@@ -77,15 +77,23 @@
    "notes": "Hash-verified against FREEZE_MANIFEST: transforms/covariance/adjacency/exclusions/controls byte-identical; cuts/masks/deviations intentionally post-freeze (D-018/D-019/D-023, see provenance.json + HQ-3)."
   },
   "2_register_1899": {
-   "status": "pending",
-   "plan": "Rebuild registration per SEED_1899 (branch claude/new-session-fxmhgv): 12 sheets (6,7,8,11,12,13,14,15,16,37,39,41), constants.json pitches, survey labels, pair_context shared lines; gate with landmark_check.py against landmarks.json ground truth (--max 8 px); export transforms + seam polygons to recipe. Prior build's registration was never committed; pipeline code exists under sanborn/ on the same branch."
+   "status": "done (gate adjudication in HQ-4)",
+   "outputs": [
+    "outputs/1899/recipe/transforms.json (full affine, gauge sheet 13)",
+    "outputs/1899/recipe/seams/{cuts,masks}.json (19 DP min-ink cuts, 20 ownership regions)",
+    "outputs/1899/recipe/controls/landmarks_v2.json (3-source consolidation)",
+    "outputs/1899/recipe/qc/{solve,gate}_report.json",
+    "outputs/1899/recipe/sheets.geojson"
+   ],
+   "gate": "held-out landmarks: median 2.7 px, structural all <=8 px; 2 symbol landmarks 14-16 px adjudicated as drafting variance (HQ-4, overlays committed)",
+   "notes": "dense content matching weak on narrow seams as the seed warned; landmark-only constraints on 6 pairs (flagged in qc/r1_measurements.json dense_flags)"
   },
   "3_qc": {
    "status": "pending",
    "plan": "Seam QC crops from full-res overlap margins for both years; worst-ten seams to STATUS.md; open items to HUMAN_QUEUE.md with PNGs under outputs/qc/human/."
   },
   "4_tools_indexes": {
-   "status": "pending",
+   "status": "mostly done",
    "plan": "sheets/blocks/intersections.geojson per year; tools/render.py (byte-for-byte, disk estimate printed up front); tools/crop.py (address + print size, lazy hash-cached fetch via git mirrors first, source URLs second); REPORT.md; DZI only if <500MB/year."
   }
  },

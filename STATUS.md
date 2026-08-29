@@ -8,8 +8,8 @@
 |---|---|---|
 | Sources inventoried | **102/102** (UT PCL, sha256 ✅) | **129/129** (LOC IIIF, sha256 ✅) |
 | Target sheets | 13 (of which 13 in repo) | 13 + 1 context (18 archival JP2s in repo) |
-| Registration | ⬜ provisional grid only | ✅ solved affines (prior accepted run) |
-| Seams | ⬜ | ✅ cuts + masks frozen |
+| Registration | ✅ full-affine rebuild, gated | ✅ solved affines (prior accepted run) |
+| Seams | ✅ 19 min-ink cuts + ownership | ✅ cuts + masks frozen |
 | QC | ⬜ | ✅ prior run1 + 2 reviewer reports |
 | Recipe consolidated | ⬜ | ✅ (hash-verified vs freeze) |
 
@@ -18,9 +18,9 @@
 ```
 Stage 0  inventory + environment   ██████████ done
 Stage 1  consolidate 1912 recipe   ██████████ done
-Stage 2  register 1899             ████░░░░░░ in progress (landmark relocation: 2/4 agent groups done)
+Stage 2  register 1899             █████████░ solved + gated (HQ-4 adjudication open)
 Stage 3  QC + human queue          ░░░░░░░░░░
-Stage 4  indexes + render/crop     ██████░░░░ 1912 done (grid, 3 geojsons, crop.py + render.py verified)
+Stage 4  indexes + render/crop     █████████░ both years live (crop.py verified on 1899 + 1912)
 ```
 
 ## Sheet grid (target footprint)
@@ -76,4 +76,4 @@ cleanly at half resolution. Estimate firms up after the first seam group.
 
 ## Human queue
 
-See `HUMAN_QUEUE.md` — 3 open items (Part B unavailable; 1899 scope; 1912 D-019/D-023 approval).
+See `HUMAN_QUEUE.md` — 4 open items (Part B; 1899 scope; 1912 D-019/D-023; 1899 symbol-variance adjudication HQ-4 with PNGs).

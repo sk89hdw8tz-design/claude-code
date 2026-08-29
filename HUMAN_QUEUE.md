@@ -31,3 +31,17 @@ them and presumably renders them. The consolidated recipe takes the branch
 tip. **Confirm the 8-27-26 masters are the accepted deliverables** (making
 D-019/D-023 approved); if not, the recipe rolls back to the D-010 freeze
 state, which is fully hash-pinned in `freeze_manifest.json`.
+
+## HQ-4 · 1899: two symbol landmarks exceed the 8 px bar — adjudicated as drafting variance, confirm — OPEN
+
+Held-out gate: 9 landmarks, median 2.7 px; all structural landmarks
+(block/pier corners) pass at ≤7.7 px. Two drawn point-symbols are over:
+`th-hydrant-514` (14|16, 16.3 px) and `red-disc-7` (11|12, 14.3 px). In the
+overlays (`outputs/qc/human/HQ4_*.png`, panels: sheet A | sheet B |
+red/blue blend) the surrounding structural ink — alley dashes, block
+corners — aligns within a few px while only the symbol is offset, i.e. the
+two draftsmen placed the symbol differently, the same failure class as the
+alarm boxes and dash rows the relocation agents condemned. Proposed
+verdict: registration passes THE BAR on surveyed structural landmarks;
+symbol placement variance (≤16 px) is a disclosed source property.
+Confirm, or direct otherwise.

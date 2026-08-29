@@ -50,9 +50,31 @@ def printed_extent(n):
     core = g[:H - CAPTION_BAND]
     colink = (core < 200).mean(axis=0)
     rowink = (core < 200).mean(axis=1)
-    def first_last(v, thr=0.02):
-        idx = np.where(v > thr)[0]
-        return (int(idx[0]), int(idx[-1])) if len(idx) else (0, len(v) - 1)
+    def first_last(v, thr=0.008, max_gap=500):
+        # low threshold + gap bridging: Avenue A's sparse frontage splits the
+        # ink run on the wharf sheets (the seed's documented 240-px
+        # truncation trap), so runs separated by < max_gap are merged
+        on = v > thr
+        idx = np.where(on)[0]
+        if len(idx) == 0:
+            return (0, len(v) - 1)
+        runs = []
+        start = prev = idx[0]
+        for i in idx[1:]:
+            if i - prev > max_gap:
+                runs.append((start, prev))
+                start = i
+            prev = i
+        runs.append((start, prev))
+        best = max(runs, key=lambda r: r[1] - r[0])
+        # extend across small gaps to adjacent runs
+        lo, hi = best
+        for r in runs:
+            if 0 < lo - r[1] <= max_gap:
+                lo = r[0]
+            if 0 < r[0] - hi <= max_gap:
+                hi = r[1]
+        return (int(lo), int(hi))
     x0, x1 = first_last(colink)
     y0, y1 = first_last(rowink)
     return x0, y0, x1, min(y1, H - CAPTION_BAND)
@@ -106,7 +128,7 @@ def cut_pair(ctx, scale=2):
     yend = int(dp[:, -1].argmin())
     path = [yend]
     for x in range(Wc - 1, 0, -1):
-        path.append(path[-1] + back[path[-1], x])
+        path.append(int(path[-1]) + int(back[path[-1], x]))
     path = path[::-1]
     pts = []
     for x, y in enumerate(path):
@@ -147,8 +169,7 @@ def main():
               open(os.path.join(OUT, "cuts_1899.json"), "w"), indent=1)
 
     regions = []
-    for ctx in PAIR_CTX:
-        pass
+    owned = {}
     for sheet, q in quads.items():
         poly = q
         centre = np.array(AFF[sheet]["m"]) @ np.array([1700, 2050]) + np.array(AFF[sheet]["t"])
@@ -175,6 +196,35 @@ def main():
                         "polygon_mosaic": {"exterior":
                             [[round(x, 1), round(y, 1)]
                              for x, y in np.array(poly.exterior.coords)]}})
+        owned[sheet] = poly
+
+    # Leftover printed area (the extended cuts carve wedges no region kept,
+    # e.g. beyond a cut's real overlap span): give each piece back to a sheet
+    # whose printed extent covers it — wharf sheets first, matching the seed's
+    # "northern wharf sheet laid over through the whole overlap" rule.
+    from shapely.ops import unary_union
+    total = unary_union([q.buffer(20) for q in quads.values()])
+    covered = unary_union(list(owned.values()))
+    leftover = total.difference(covered)
+    pieces = list(getattr(leftover, "geoms", [leftover])) if not leftover.is_empty else []
+    PRIORITY = ["07", "06", "08"] + sorted(quads, key=lambda s: int(s))
+    n_extra = 0
+    for piece in pieces:
+        if piece.area < 500:
+            continue
+        for sheet in PRIORITY:
+            if sheet in quads and quads[sheet].buffer(2).contains(piece.representative_point())                     and quads[sheet].intersection(piece).area > 0.5 * piece.area:
+                clip = quads[sheet].intersection(piece)
+                for geom in getattr(clip, "geoms", [clip]):
+                    if geom.area < 500 or geom.geom_type != "Polygon":
+                        continue
+                    regions.append({"sheet": sheet, "reassigned_leftover": True,
+                                    "polygon_mosaic": {"exterior":
+                                        [[round(x, 1), round(y, 1)]
+                                         for x, y in np.array(geom.exterior.coords)]}})
+                    n_extra += 1
+                break
+    print(f"reassigned {n_extra} leftover pieces")
     json.dump({"convention": "1899 mosaic frame; ownership = printed extent "
                              "split by extended cuts, sheet-centre side kept",
                "regions": regions},

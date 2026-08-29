@@ -1,0 +1,4036 @@
+{
+ "method": "Rendition 1 calibration: verify landmarks and measure every seam.\n\nMethod (fresh code; no legacy pipeline imports \u2014 SEED_1899 FIREWALL):\n- Initial per-sheet placement from SEED constants' street/avenue anchors\n  (ground frame: x = avenue slot * 1006 px, y = street index * 1169 px).\n- Landmark verification: normalized cross-correlation of a Sobel-edge patch\n  from sheet A around a_xy, searched on sheet B around the anchor-predicted\n  position. A strong, unambiguous peak within tolerance of b_xy verifies the\n  correspondence with ink, independent of the locator's B coordinate.\n- Dense seam measurement: the same matcher run at edge-rich sample points\n  along the pair's overlap band. These (not the landmarks) feed the solver,\n  keeping landmark_check.py non-circular.\n\nOutputs rebuild_1899/out/r1_measurements.json.\n",
+ "anchor_offsets": {
+  "06": [
+   -3093.0,
+   25544.0
+  ],
+  "07": [
+   -3127.0,
+   22013.833333333332
+  ],
+  "08": [
+   -3147.0,
+   18415.8
+  ],
+  "11": [
+   -107.33333333333333,
+   20812.0
+  ],
+  "12": [
+   2881.5,
+   20806.0
+  ],
+  "41": [
+   5889.0,
+   20782.0
+  ],
+  "13": [
+   -169.66666666666666,
+   24273.5
+  ],
+  "14": [
+   2825.0,
+   24266.5
+  ],
+  "39": [
+   5769.0,
+   24251.5
+  ],
+  "15": [
+   -127.5,
+   27716.0
+  ],
+  "16": [
+   2894.0,
+   27709.0
+  ],
+  "37": [
+   5902.0,
+   27729.0
+  ]
+ },
+ "grid": {
+  "avenue_pitch_px": 1006,
+  "street_pitch_px": 1169
+ },
+ "landmark_verification": [
+  {
+   "id": "blk-corner-n80",
+   "pair": [
+    "11",
+    "12"
+   ],
+   "schematic": false,
+   "a_xy": [
+    3104,
+    152
+   ],
+   "b_xy_located": [
+    105,
+    140
+   ],
+   "b_xy_matched": [
+    104.37,
+    139.92
+   ],
+   "score": 0.655,
+   "distinct": 0.2,
+   "located_vs_matched_px": [
+    -0.6299999999999955,
+    -0.0800000000000125
+   ],
+   "verdict": "verified"
+  },
+  {
+   "id": "blk323-ne-corner",
+   "pair": [
+    "11",
+    "12"
+   ],
+   "schematic": false,
+   "a_xy": [
+    3099,
+    400
+   ],
+   "b_xy_located": [
+    102,
+    386
+   ],
+   "b_xy_matched": [
+    103.25,
+    387.05
+   ],
+   "score": 0.405,
+   "distinct": 0.081,
+   "located_vs_matched_px": [
+    1.25,
+    1.0500000000000114
+   ],
+   "verdict": "verified"
+  },
+  {
+   "id": "red-disc-7",
+   "pair": [
+    "11",
+    "12"
+   ],
+   "schematic": false,
+   "a_xy": [
+    3139,
+    2529
+   ],
+   "b_xy_located": [
+    123,
+    2477
+   ],
+   "b_xy_matched": [
+    122.23,
+    2475.87
+   ],
+   "score": 0.364,
+   "distinct": 0.04,
+   "located_vs_matched_px": [
+    -0.769999999999996,
+    -1.1300000000001091
+   ],
+   "verdict": "verified"
+  },
+  {
+   "id": "blk324-se-corner",
+   "pair": [
+    "11",
+    "12"
+   ],
+   "schematic": false,
+   "a_xy": [
+    3109,
+    3694
+   ],
+   "b_xy_located": [
+    71,
+    3638
+   ],
+   "b_xy_matched": [
+    70.62,
+    3638.01
+   ],
+   "score": 0.616,
+   "distinct": 0.045,
+   "located_vs_matched_px": [
+    -0.37999999999999545,
+    0.010000000000218279
+   ],
+   "verdict": "verified"
+  },
+  {
+   "id": "red-disc-214",
+   "pair": [
+    "13",
+    "14"
+   ],
+   "schematic": false,
+   "a_xy": [
+    3273,
+    2671
+   ],
+   "b_xy_located": [
+    210,
+    2632
+   ],
+   "b_xy_matched": [
+    207.65,
+    2634.07
+   ],
+   "score": 0.452,
+   "distinct": 0.159,
+   "located_vs_matched_px": [
+    -2.3499999999999943,
+    2.0700000000001637
+   ],
+   "verdict": "verified"
+  },
+  {
+   "id": "width70-top",
+   "pair": [
+    "13",
+    "14"
+   ],
+   "schematic": false,
+   "a_xy": [
+    3230,
+    392
+   ],
+   "b_xy_located": [
+    158,
+    381
+   ],
+   "b_xy_matched": [
+    156.98,
+    381.66
+   ],
+   "score": 0.676,
+   "distinct": 0.276,
+   "located_vs_matched_px": [
+    -1.0200000000000102,
+    0.660000000000025
+   ],
+   "verdict": "verified"
+  },
+  {
+   "id": "width70-bottom",
+   "pair": [
+    "13",
+    "14"
+   ],
+   "schematic": false,
+   "a_xy": [
+    3216,
+    3617
+   ],
+   "b_xy_located": [
+    132,
+    3621
+   ],
+   "b_xy_matched": [
+    130.25,
+    3623.15
+   ],
+   "score": 0.702,
+   "distinct": 0.268,
+   "located_vs_matched_px": [
+    -1.75,
+    2.150000000000091
+   ],
+   "verdict": "verified"
+  },
+  {
+   "id": "red-disc-124",
+   "pair": [
+    "15",
+    "16"
+   ],
+   "schematic": false,
+   "a_xy": [
+    3279,
+    2811
+   ],
+   "b_xy_located": [
+    198,
+    2730
+   ],
+   "b_xy_matched": [
+    197.57,
+    2730.47
+   ],
+   "score": 0.482,
+   "distinct": 0.15,
+   "located_vs_matched_px": [
+    -0.4300000000000068,
+    0.4699999999997999
+   ],
+   "verdict": "verified"
+  },
+  {
+   "id": "width70-top",
+   "pair": [
+    "15",
+    "16"
+   ],
+   "schematic": false,
+   "a_xy": [
+    3234,
+    346
+   ],
+   "b_xy_located": [
+    192,
+    312
+   ],
+   "b_xy_matched": [
+    305.21,
+    170.81
+   ],
+   "score": 0.386,
+   "distinct": 0.033,
+   "located_vs_matched_px": [
+    113.20999999999998,
+    -141.19
+   ],
+   "verdict": "weak"
+  },
+  {
+   "id": "width70-bottom",
+   "pair": [
+    "15",
+    "16"
+   ],
+   "schematic": false,
+   "a_xy": [
+    3231,
+    3701
+   ],
+   "b_xy_located": [
+    168,
+    3683
+   ],
+   "b_xy_matched": [
+    167.25,
+    3683.19
+   ],
+   "score": 0.519,
+   "distinct": 0.114,
+   "located_vs_matched_px": [
+    -0.75,
+    0.19000000000005457
+   ],
+   "verdict": "verified"
+  },
+  {
+   "id": "blk682-nw-corner",
+   "pair": [
+    "06",
+    "13"
+   ],
+   "schematic": true,
+   "a_xy": [
+    3216,
+    311
+   ],
+   "b_xy_located": [
+    279,
+    1556
+   ],
+   "b_xy_matched": [
+    276.77,
+    1557.86
+   ],
+   "score": 0.469,
+   "distinct": 0.035,
+   "located_vs_matched_px": [
+    -2.230000000000018,
+    1.8599999999999
+   ],
+   "verdict": "verified"
+  },
+  {
+   "id": "blk682-sw-corner",
+   "pair": [
+    "06",
+    "13"
+   ],
+   "schematic": true,
+   "a_xy": [
+    3212,
+    1233
+   ],
+   "b_xy_located": [
+    228,
+    2519
+   ],
+   "b_xy_matched": [
+    227.1,
+    2513.78
+   ],
+   "score": 0.391,
+   "distinct": 0.026,
+   "located_vs_matched_px": [
+    -0.9000000000000057,
+    -5.2199999999998
+   ],
+   "verdict": "verified"
+  },
+  {
+   "id": "blk683-nw-corner",
+   "pair": [
+    "06",
+    "13"
+   ],
+   "schematic": true,
+   "a_xy": [
+    3211,
+    1483
+   ],
+   "b_xy_located": [
+    233,
+    2670
+   ],
+   "b_xy_matched": [
+    420.33,
+    2808.18
+   ],
+   "score": 0.375,
+   "distinct": 0.004,
+   "located_vs_matched_px": [
+    187.32999999999998,
+    138.17999999999984
+   ],
+   "verdict": "weak"
+  },
+  {
+   "id": "blk684-nw-corner",
+   "pair": [
+    "06",
+    "15"
+   ],
+   "schematic": true,
+   "a_xy": [
+    3211,
+    2642
+   ],
+   "b_xy_located": [
+    252,
+    284
+   ],
+   "b_xy_matched": [
+    56.94,
+    240.6
+   ],
+   "score": 0.431,
+   "distinct": 0.001,
+   "located_vs_matched_px": [
+    -195.06,
+    -43.400000000000006
+   ],
+   "verdict": "weak"
+  },
+  {
+   "id": "blk684-sw-corner",
+   "pair": [
+    "06",
+    "15"
+   ],
+   "schematic": true,
+   "a_xy": [
+    3210,
+    3568
+   ],
+   "b_xy_located": [
+    287,
+    1256
+   ],
+   "b_xy_matched": [
+    287.97,
+    1259.97
+   ],
+   "score": 0.637,
+   "distinct": 0.101,
+   "located_vs_matched_px": [
+    0.9700000000000273,
+    3.9700000000000273
+   ],
+   "verdict": "verified"
+  },
+  {
+   "id": "blk679-nw-corner",
+   "pair": [
+    "07",
+    "11"
+   ],
+   "schematic": true,
+   "a_xy": [
+    3247,
+    322
+   ],
+   "b_xy_located": [
+    247,
+    1560
+   ],
+   "b_xy_matched": [
+    245.81,
+    1510.66
+   ],
+   "score": 0.564,
+   "distinct": 0.04,
+   "located_vs_matched_px": [
+    -1.1899999999999977,
+    -49.33999999999992
+   ],
+   "verdict": "weak"
+  },
+  {
+   "id": "blk680-nw-corner",
+   "pair": [
+    "07",
+    "11"
+   ],
+   "schematic": true,
+   "a_xy": [
+    3246,
+    1493
+   ],
+   "b_xy_located": [
+    239,
+    2669
+   ],
+   "b_xy_matched": [
+    267.52,
+    2477.72
+   ],
+   "score": 0.345,
+   "distinct": 0.015,
+   "located_vs_matched_px": [
+    28.519999999999982,
+    -191.2800000000002
+   ],
+   "verdict": "weak"
+  },
+  {
+   "id": "blk680-sw-corner",
+   "pair": [
+    "07",
+    "11"
+   ],
+   "schematic": true,
+   "a_xy": [
+    3244,
+    2404
+   ],
+   "b_xy_located": [
+    226,
+    3644
+   ],
+   "b_xy_matched": [
+    175.0,
+    3471.92
+   ],
+   "score": 0.294,
+   "distinct": 0.001,
+   "located_vs_matched_px": [
+    -51.0,
+    -172.07999999999993
+   ],
+   "verdict": "weak"
+  },
+  {
+   "id": "blk681-nw-corner",
+   "pair": [
+    "07",
+    "13"
+   ],
+   "schematic": true,
+   "a_xy": [
+    3245,
+    2651
+   ],
+   "b_xy_located": [
+    287,
+    386
+   ],
+   "b_xy_matched": [
+    432.2,
+    517.99
+   ],
+   "score": 0.731,
+   "distinct": 0.249,
+   "located_vs_matched_px": [
+    145.2,
+    131.99
+   ],
+   "verdict": "relocated"
+  },
+  {
+   "id": "blk681-sw-corner",
+   "pair": [
+    "07",
+    "13"
+   ],
+   "schematic": true,
+   "a_xy": [
+    3253,
+    3573
+   ],
+   "b_xy_located": [
+    249,
+    1356
+   ],
+   "b_xy_matched": [
+    84.68,
+    1462.14
+   ],
+   "score": 0.368,
+   "distinct": 0.02,
+   "located_vs_matched_px": [
+    -164.32,
+    106.1400000000001
+   ],
+   "verdict": "weak"
+  },
+  {
+   "id": "blk682-nw-corner-07",
+   "pair": [
+    "07",
+    "13"
+   ],
+   "schematic": true,
+   "a_xy": [
+    3252,
+    3820
+   ],
+   "b_xy_located": [
+    279,
+    1556
+   ],
+   "b_xy_matched": [
+    277.5,
+    1555.9
+   ],
+   "score": 0.371,
+   "distinct": 0.012,
+   "located_vs_matched_px": [
+    -1.5,
+    -0.09999999999990905
+   ],
+   "verdict": "verified"
+  },
+  {
+   "id": "blk678-nw-corner",
+   "pair": [
+    "08",
+    "11"
+   ],
+   "schematic": true,
+   "a_xy": [
+    3276,
+    2750
+   ],
+   "b_xy_located": [
+    259,
+    393
+   ],
+   "b_xy_matched": [
+    62.76,
+    307.02
+   ],
+   "score": 0.502,
+   "distinct": 0.017,
+   "located_vs_matched_px": [
+    -196.24,
+    -85.98000000000002
+   ],
+   "verdict": "weak"
+  },
+  {
+   "id": "blk678-sw-corner",
+   "pair": [
+    "08",
+    "11"
+   ],
+   "schematic": true,
+   "a_xy": [
+    3268,
+    3670
+   ],
+   "b_xy_located": [
+    249,
+    1314
+   ],
+   "b_xy_matched": [
+    370.95,
+    1175.87
+   ],
+   "score": 0.611,
+   "distinct": 0.028,
+   "located_vs_matched_px": [
+    121.94999999999999,
+    -138.1300000000001
+   ],
+   "verdict": "weak"
+  },
+  {
+   "id": "rail19th-dashdot-x",
+   "pair": [
+    "08",
+    "11"
+   ],
+   "schematic": true,
+   "a_xy": [
+    3179,
+    3803
+   ],
+   "b_xy_located": [
+    162,
+    1436
+   ],
+   "b_xy_matched": [
+    202.22,
+    1434.92
+   ],
+   "score": 0.524,
+   "distinct": 0.109,
+   "located_vs_matched_px": [
+    40.22,
+    -1.0799999999999272
+   ],
+   "verdict": "relocated"
+  },
+  {
+   "id": "w-corner-1802",
+   "pair": [
+    "12",
+    "41"
+   ],
+   "schematic": false,
+   "a_xy": [
+    3106,
+    400
+   ],
+   "b_xy_located": [
+    120,
+    392
+   ],
+   "b_xy_matched": [
+    120.71,
+    393.86
+   ],
+   "score": 0.446,
+   "distinct": 0.045,
+   "located_vs_matched_px": [
+    0.7099999999999937,
+    1.8600000000000136
+   ],
+   "verdict": "verified"
+  },
+  {
+   "id": "w-corner-1902",
+   "pair": [
+    "12",
+    "41"
+   ],
+   "schematic": false,
+   "a_xy": [
+    3093,
+    1564
+   ],
+   "b_xy_located": [
+    109,
+    1568
+   ],
+   "b_xy_matched": [
+    104.88,
+    1567.02
+   ],
+   "score": 0.44,
+   "distinct": 0.023,
+   "located_vs_matched_px": [
+    -4.1200000000000045,
+    -0.9800000000000182
+   ],
+   "verdict": "verified"
+  },
+  {
+   "id": "w-corner-2002",
+   "pair": [
+    "12",
+    "41"
+   ],
+   "schematic": false,
+   "a_xy": [
+    3084,
+    2722
+   ],
+   "b_xy_located": [
+    100,
+    2731
+   ],
+   "b_xy_matched": [
+    98.06,
+    2727.93
+   ],
+   "score": 0.415,
+   "distinct": 0.059,
+   "located_vs_matched_px": [
+    -1.9399999999999977,
+    -3.0700000000001637
+   ],
+   "verdict": "verified"
+  },
+  {
+   "id": "alarmbox-64",
+   "pair": [
+    "14",
+    "39"
+   ],
+   "schematic": false,
+   "a_xy": [
+    3073,
+    2673
+   ],
+   "b_xy_located": [
+    129,
+    2706
+   ],
+   "b_xy_matched": [
+    127.26,
+    2705.5
+   ],
+   "score": 0.44,
+   "distinct": 0.147,
+   "located_vs_matched_px": [
+    -1.7399999999999949,
+    -0.5
+   ],
+   "verdict": "verified"
+  },
+  {
+   "id": "e-corner-2101",
+   "pair": [
+    "14",
+    "39"
+   ],
+   "schematic": false,
+   "a_xy": [
+    3309,
+    387
+   ],
+   "b_xy_located": [
+    305,
+    378
+   ],
+   "b_xy_matched": [
+    305.51,
+    377.07
+   ],
+   "score": 0.416,
+   "distinct": 0.042,
+   "located_vs_matched_px": [
+    0.5099999999999909,
+    -0.9300000000000068
+   ],
+   "verdict": "verified"
+  },
+  {
+   "id": "e-corner-2201",
+   "pair": [
+    "14",
+    "39"
+   ],
+   "schematic": false,
+   "a_xy": [
+    3296,
+    1561
+   ],
+   "b_xy_located": [
+    295,
+    1548
+   ],
+   "b_xy_matched": [
+    295.02,
+    1547.94
+   ],
+   "score": 0.496,
+   "distinct": 0.138,
+   "located_vs_matched_px": [
+    0.01999999999998181,
+    -0.05999999999994543
+   ],
+   "verdict": "verified"
+  },
+  {
+   "id": "e-corner-2401",
+   "pair": [
+    "16",
+    "37"
+   ],
+   "schematic": false,
+   "a_xy": [
+    3321,
+    299
+   ],
+   "b_xy_located": [
+    269,
+    351
+   ],
+   "b_xy_matched": [
+    267.56,
+    51.26
+   ],
+   "score": 0.533,
+   "distinct": 0.136,
+   "located_vs_matched_px": [
+    -1.4399999999999977,
+    -299.74
+   ],
+   "verdict": "relocated"
+  },
+  {
+   "id": "e-corner-2501",
+   "pair": [
+    "16",
+    "37"
+   ],
+   "schematic": false,
+   "a_xy": [
+    3308,
+    1594
+   ],
+   "b_xy_located": [
+    258,
+    1645
+   ],
+   "b_xy_matched": [
+    258.8,
+    1644.83
+   ],
+   "score": 0.516,
+   "distinct": 0.057,
+   "located_vs_matched_px": [
+    0.8000000000000114,
+    -0.17000000000007276
+   ],
+   "verdict": "verified"
+  },
+  {
+   "id": "e-corner-2601",
+   "pair": [
+    "16",
+    "37"
+   ],
+   "schematic": false,
+   "a_xy": [
+    3300,
+    2758
+   ],
+   "b_xy_located": [
+    254,
+    2814
+   ],
+   "b_xy_matched": [
+    254.2,
+    2814.22
+   ],
+   "score": 0.496,
+   "distinct": 0.044,
+   "located_vs_matched_px": [
+    0.19999999999998863,
+    0.2199999999997999
+   ],
+   "verdict": "verified"
+  },
+  {
+   "id": "th-hydrant-19th",
+   "pair": [
+    "08",
+    "07"
+   ],
+   "schematic": false,
+   "a_xy": [
+    1947.8,
+    3675.4
+   ],
+   "b_xy_located": [
+    1932.4,
+    92.4
+   ],
+   "b_xy_matched": [
+    1931.92,
+    80.15
+   ],
+   "score": 0.466,
+   "distinct": 0.123,
+   "located_vs_matched_px": [
+    -0.4800000000000182,
+    -12.25
+   ],
+   "verdict": "weak"
+  },
+  {
+   "id": "blk-se-corner-1828",
+   "pair": [
+    "08",
+    "07"
+   ],
+   "schematic": false,
+   "a_xy": [
+    3058,
+    3674.5
+   ],
+   "b_xy_located": [
+    3038.5,
+    81.5
+   ],
+   "b_xy_matched": [
+    3040.5,
+    82.87
+   ],
+   "score": 0.505,
+   "distinct": 0.157,
+   "located_vs_matched_px": [
+    2.0,
+    1.3700000000000045
+   ],
+   "verdict": "verified"
+  },
+  {
+   "id": "blk-sw-corner-east-of-tracks",
+   "pair": [
+    "08",
+    "07"
+   ],
+   "schematic": false,
+   "a_xy": [
+    3268.6,
+    3673.8
+   ],
+   "b_xy_located": [
+    3254.4,
+    84.5
+   ],
+   "b_xy_matched": [
+    3254.37,
+    84.92
+   ],
+   "score": 0.627,
+   "distinct": 0.222,
+   "located_vs_matched_px": [
+    -0.03000000000020009,
+    0.4200000000000017
+   ],
+   "verdict": "verified"
+  },
+  {
+   "id": "hides-ne-corner",
+   "pair": [
+    "08",
+    "07"
+   ],
+   "schematic": false,
+   "a_xy": [
+    3057.2,
+    3916.5
+   ],
+   "b_xy_located": [
+    3034.6,
+    321.2
+   ],
+   "b_xy_matched": [
+    3244.09,
+    231.4
+   ],
+   "score": 0.542,
+   "distinct": 0.022,
+   "located_vs_matched_px": [
+    209.49000000000024,
+    -89.79999999999998
+   ],
+   "verdict": "weak"
+  },
+  {
+   "id": "th-hydrant-e-of-alley-114",
+   "pair": [
+    "11",
+    "13"
+   ],
+   "schematic": false,
+   "a_xy": [
+    660,
+    3706
+   ],
+   "b_xy_located": [
+    734,
+    179
+   ],
+   "b_xy_matched": [
+    716.87,
+    250.8
+   ],
+   "score": 0.412,
+   "distinct": 0.01,
+   "located_vs_matched_px": [
+    -17.129999999999995,
+    71.80000000000001
+   ],
+   "verdict": "weak"
+  },
+  {
+   "id": "th-hydrant-214",
+   "pair": [
+    "11",
+    "13"
+   ],
+   "schematic": false,
+   "a_xy": [
+    1707,
+    3685
+   ],
+   "b_xy_located": [
+    1771,
+    182
+   ],
+   "b_xy_matched": [
+    1794.22,
+    304.79
+   ],
+   "score": 0.283,
+   "distinct": 0.002,
+   "located_vs_matched_px": [
+    23.220000000000027,
+    122.79000000000002
+   ],
+   "verdict": "weak"
+  },
+  {
+   "id": "ne-corner-211",
+   "pair": [
+    "11",
+    "13"
+   ],
+   "schematic": false,
+   "a_xy": [
+    1627,
+    3892
+   ],
+   "b_xy_located": [
+    1689,
+    337
+   ],
+   "b_xy_matched": [
+    1688.89,
+    472.91
+   ],
+   "score": 0.529,
+   "distinct": 0.012,
+   "located_vs_matched_px": [
+    -0.10999999999989996,
+    135.91000000000003
+   ],
+   "verdict": "weak"
+  },
+  {
+   "id": "th-hydrant-414",
+   "pair": [
+    "12",
+    "14"
+   ],
+   "schematic": false,
+   "a_xy": [
+    723,
+    3713
+   ],
+   "b_xy_located": [
+    716,
+    170
+   ],
+   "b_xy_matched": [
+    558.12,
+    243.82
+   ],
+   "score": 0.292,
+   "distinct": 0.004,
+   "located_vs_matched_px": [
+    -157.88,
+    73.82
+   ],
+   "verdict": "weak"
+  },
+  {
+   "id": "th-hydrant-514",
+   "pair": [
+    "12",
+    "14"
+   ],
+   "schematic": false,
+   "a_xy": [
+    1722,
+    3719
+   ],
+   "b_xy_located": [
+    1730,
+    184
+   ],
+   "b_xy_matched": [
+    1734.99,
+    199.32
+   ],
+   "score": 0.399,
+   "distinct": 0.017,
+   "located_vs_matched_px": [
+    4.990000000000009,
+    15.319999999999993
+   ],
+   "verdict": "weak"
+  },
+  {
+   "id": "th-hydrant-614",
+   "pair": [
+    "12",
+    "14"
+   ],
+   "schematic": false,
+   "a_xy": [
+    2724,
+    3719
+   ],
+   "b_xy_located": [
+    2741,
+    184
+   ],
+   "b_xy_matched": [
+    2943.13,
+    465.98
+   ],
+   "score": 0.332,
+   "distinct": 0.011,
+   "located_vs_matched_px": [
+    202.1300000000001,
+    281.98
+   ],
+   "verdict": "weak"
+  },
+  {
+   "id": "th-hydrant-714-block",
+   "pair": [
+    "41",
+    "39"
+   ],
+   "schematic": false,
+   "a_xy": [
+    729,
+    3703
+   ],
+   "b_xy_located": [
+    733,
+    187
+   ],
+   "b_xy_matched": [
+    928.84,
+    417.17
+   ],
+   "score": 0.476,
+   "distinct": 0.033,
+   "located_vs_matched_px": [
+    195.84000000000003,
+    230.17000000000002
+   ],
+   "verdict": "weak"
+  },
+  {
+   "id": "fire-alarm-box-71",
+   "pair": [
+    "41",
+    "39"
+   ],
+   "schematic": false,
+   "a_xy": [
+    2125,
+    3732
+   ],
+   "b_xy_located": [
+    2153,
+    170
+   ],
+   "b_xy_matched": [
+    2153.98,
+    169.56
+   ],
+   "score": 0.783,
+   "distinct": 0.537,
+   "located_vs_matched_px": [
+    0.9800000000000182,
+    -0.4399999999999977
+   ],
+   "verdict": "verified"
+  },
+  {
+   "id": "th-hydrant-914",
+   "pair": [
+    "41",
+    "39"
+   ],
+   "schematic": false,
+   "a_xy": [
+    2740,
+    3712
+   ],
+   "b_xy_located": [
+    2755,
+    169
+   ],
+   "b_xy_matched": [
+    2746.03,
+    219.65
+   ],
+   "score": 0.358,
+   "distinct": 0.014,
+   "located_vs_matched_px": [
+    -8.9699999999998,
+    50.650000000000006
+   ],
+   "verdict": "weak"
+  },
+  {
+   "id": "th_hydrant_dot",
+   "pair": [
+    "07",
+    "06"
+   ],
+   "schematic": false,
+   "a_xy": [
+    2357,
+    3696
+   ],
+   "b_xy_located": [
+    2337,
+    154
+   ],
+   "b_xy_matched": [
+    2331.98,
+    268.23
+   ],
+   "score": 0.594,
+   "distinct": 0.004,
+   "located_vs_matched_px": [
+    -5.019999999999982,
+    114.23000000000002
+   ],
+   "verdict": "weak"
+  },
+  {
+   "id": "pier22_whse_se_corner",
+   "pair": [
+    "07",
+    "06"
+   ],
+   "schematic": false,
+   "a_xy": [
+    1974,
+    3868
+   ],
+   "b_xy_located": [
+    1952,
+    354
+   ],
+   "b_xy_matched": [
+    1950.88,
+    352.64
+   ],
+   "score": 0.695,
+   "distinct": 0.059,
+   "located_vs_matched_px": [
+    -1.1199999999998909,
+    -1.3600000000000136
+   ],
+   "verdict": "verified"
+  },
+  {
+   "id": "pier22_apron_se_corner",
+   "pair": [
+    "07",
+    "06"
+   ],
+   "schematic": false,
+   "a_xy": [
+    2017,
+    3914
+   ],
+   "b_xy_located": [
+    1996,
+    403
+   ],
+   "b_xy_matched": [
+    1993.99,
+    402.83
+   ],
+   "score": 0.727,
+   "distinct": 0.294,
+   "located_vs_matched_px": [
+    -2.009999999999991,
+    -0.17000000000001592
+   ],
+   "verdict": "verified"
+  },
+  {
+   "id": "pier22_apron_sw_corner",
+   "pair": [
+    "07",
+    "06"
+   ],
+   "schematic": false,
+   "a_xy": [
+    1706,
+    3917
+   ],
+   "b_xy_located": [
+    1675,
+    408
+   ],
+   "b_xy_matched": [
+    1675.75,
+    407.98
+   ],
+   "score": 0.81,
+   "distinct": 0.174,
+   "located_vs_matched_px": [
+    0.75,
+    -0.01999999999998181
+   ],
+   "verdict": "verified"
+  },
+  {
+   "id": "block_lot13_nw_corner",
+   "pair": [
+    "07",
+    "06"
+   ],
+   "schematic": false,
+   "a_xy": [
+    2664,
+    3823
+   ],
+   "b_xy_located": [
+    2633,
+    308
+   ],
+   "b_xy_matched": [
+    2634.28,
+    305.86
+   ],
+   "score": 0.719,
+   "distinct": 0.264,
+   "located_vs_matched_px": [
+    1.2800000000002,
+    -2.1399999999999864
+   ],
+   "verdict": "verified"
+  },
+  {
+   "id": "th-hydrant-114",
+   "pair": [
+    "13",
+    "15"
+   ],
+   "schematic": false,
+   "a_xy": [
+    696,
+    3688
+   ],
+   "b_xy_located": [
+    745,
+    123
+   ],
+   "b_xy_matched": [
+    595.83,
+    374.87
+   ],
+   "score": 0.412,
+   "distinct": 0.011,
+   "located_vs_matched_px": [
+    -149.16999999999996,
+    251.87
+   ],
+   "verdict": "weak"
+  },
+  {
+   "id": "th-hydrant-214",
+   "pair": [
+    "13",
+    "15"
+   ],
+   "schematic": false,
+   "a_xy": [
+    1734,
+    3674
+   ],
+   "b_xy_located": [
+    1775,
+    134
+   ],
+   "b_xy_matched": [
+    1776.0,
+    219.92
+   ],
+   "score": 0.257,
+   "distinct": 0.009,
+   "located_vs_matched_px": [
+    1.0,
+    85.91999999999999
+   ],
+   "verdict": "weak"
+  },
+  {
+   "id": "th-hydrant-314",
+   "pair": [
+    "13",
+    "15"
+   ],
+   "schematic": false,
+   "a_xy": [
+    2731,
+    3673
+   ],
+   "b_xy_located": [
+    2787,
+    138
+   ],
+   "b_xy_matched": [
+    2776.77,
+    165.72
+   ],
+   "score": 0.294,
+   "distinct": 0.014,
+   "located_vs_matched_px": [
+    -10.230000000000018,
+    27.72
+   ],
+   "verdict": "weak"
+  },
+  {
+   "id": "alarm-box-212",
+   "pair": [
+    "13",
+    "15"
+   ],
+   "schematic": false,
+   "a_xy": [
+    1224,
+    3697
+   ],
+   "b_xy_located": [
+    1300,
+    96
+   ],
+   "b_xy_matched": [
+    1300.01,
+    91.71
+   ],
+   "score": 0.371,
+   "distinct": 0.115,
+   "located_vs_matched_px": [
+    0.009999999999990905,
+    -4.290000000000006
+   ],
+   "verdict": "verified"
+  },
+  {
+   "id": "th-hydrant-414",
+   "pair": [
+    "14",
+    "16"
+   ],
+   "schematic": false,
+   "a_xy": [
+    685,
+    3699
+   ],
+   "b_xy_located": [
+    734,
+    98
+   ],
+   "b_xy_matched": [
+    519.87,
+    468.97
+   ],
+   "score": 0.365,
+   "distinct": 0.019,
+   "located_vs_matched_px": [
+    -214.13,
+    370.97
+   ],
+   "verdict": "weak"
+  },
+  {
+   "id": "th-hydrant-514",
+   "pair": [
+    "14",
+    "16"
+   ],
+   "schematic": false,
+   "a_xy": [
+    1692,
+    3702
+   ],
+   "b_xy_located": [
+    1752,
+    103
+   ],
+   "b_xy_matched": [
+    1750.26,
+    353.05
+   ],
+   "score": 0.34,
+   "distinct": 0.028,
+   "located_vs_matched_px": [
+    -1.740000000000009,
+    250.05
+   ],
+   "verdict": "weak"
+  },
+  {
+   "id": "th-hydrant-614",
+   "pair": [
+    "14",
+    "16"
+   ],
+   "schematic": false,
+   "a_xy": [
+    2712,
+    3704
+   ],
+   "b_xy_located": [
+    2746,
+    93
+   ],
+   "b_xy_matched": [
+    2584.65,
+    226.56
+   ],
+   "score": 0.351,
+   "distinct": 0.016,
+   "located_vs_matched_px": [
+    -161.3499999999999,
+    133.56
+   ],
+   "verdict": "weak"
+  },
+  {
+   "id": "th-hydrant-714",
+   "pair": [
+    "39",
+    "37"
+   ],
+   "schematic": false,
+   "a_xy": [
+    720,
+    3686
+   ],
+   "b_xy_located": [
+    701,
+    124
+   ],
+   "b_xy_matched": [
+    707.91,
+    182.01
+   ],
+   "score": 0.41,
+   "distinct": 0.024,
+   "located_vs_matched_px": [
+    6.909999999999968,
+    58.00999999999999
+   ],
+   "verdict": "weak"
+  },
+  {
+   "id": "th-hydrant-814",
+   "pair": [
+    "39",
+    "37"
+   ],
+   "schematic": false,
+   "a_xy": [
+    1717,
+    3684
+   ],
+   "b_xy_located": [
+    1705,
+    128
+   ],
+   "b_xy_matched": [
+    1780.77,
+    138.82
+   ],
+   "score": 0.298,
+   "distinct": 0.007,
+   "located_vs_matched_px": [
+    75.76999999999998,
+    10.819999999999993
+   ],
+   "verdict": "weak"
+  },
+  {
+   "id": "th-hydrant-914",
+   "pair": [
+    "39",
+    "37"
+   ],
+   "schematic": false,
+   "a_xy": [
+    2722,
+    3683
+   ],
+   "b_xy_located": [
+    2721,
+    120
+   ],
+   "b_xy_matched": [
+    2709.93,
+    162.94
+   ],
+   "score": 0.331,
+   "distinct": 0.022,
+   "located_vs_matched_px": [
+    -11.070000000000164,
+    42.94
+   ],
+   "verdict": "weak"
+  },
+  {
+   "id": "junction-22nd-0713",
+   "pair": [
+    "07",
+    "13"
+   ],
+   "schematic": false,
+   "a_xy": [
+    3127,
+    3577
+   ],
+   "b_xy_located": [
+    142,
+    1317
+   ],
+   "b_xy_matched": [
+    158.13,
+    1103.25
+   ],
+   "score": 0.614,
+   "distinct": 0.017,
+   "located_vs_matched_px": [
+    16.129999999999995,
+    -213.75
+   ],
+   "verdict": "weak"
+  },
+  {
+   "id": "junction-21st-0711",
+   "pair": [
+    "07",
+    "11"
+   ],
+   "schematic": false,
+   "a_xy": [
+    3127,
+    2520
+   ],
+   "b_xy_located": [
+    107,
+    3732
+   ],
+   "b_xy_matched": [
+    156.98,
+    3689.97
+   ],
+   "score": 0.486,
+   "distinct": 0.05,
+   "located_vs_matched_px": [
+    49.97999999999999,
+    -42.0300000000002
+   ],
+   "verdict": "weak"
+  },
+  {
+   "id": "junction-20th-0711",
+   "pair": [
+    "07",
+    "11"
+   ],
+   "schematic": false,
+   "a_xy": [
+    3127,
+    1357
+   ],
+   "b_xy_located": [
+    107,
+    2572
+   ],
+   "b_xy_matched": [
+    161.94,
+    2534.99
+   ],
+   "score": 0.528,
+   "distinct": 0.056,
+   "located_vs_matched_px": [
+    54.94,
+    -37.01000000000022
+   ],
+   "verdict": "weak"
+  },
+  {
+   "id": "junction-19th-0811",
+   "pair": [
+    "08",
+    "11"
+   ],
+   "schematic": false,
+   "a_xy": [
+    3147,
+    3805
+   ],
+   "b_xy_located": [
+    107,
+    1437
+   ],
+   "b_xy_matched": [
+    170.28,
+    1435.98
+   ],
+   "score": 0.428,
+   "distinct": 0.001,
+   "located_vs_matched_px": [
+    63.28,
+    -1.0199999999999818
+   ],
+   "verdict": "weak"
+  },
+  {
+   "id": "junction-25th-0615",
+   "pair": [
+    "06",
+    "15"
+   ],
+   "schematic": false,
+   "a_xy": [
+    3093,
+    3691
+   ],
+   "b_xy_located": [
+    143,
+    1466
+   ],
+   "b_xy_matched": [
+    197.08,
+    1510.97
+   ],
+   "score": 0.557,
+   "distinct": 0.002,
+   "located_vs_matched_px": [
+    54.08000000000001,
+    44.97000000000003
+   ],
+   "verdict": "weak"
+  },
+  {
+   "id": "corridor-strand-24th",
+   "pair": [
+    "13",
+    "15"
+   ],
+   "schematic": false,
+   "a_xy": [
+    1251.0,
+    3762.3
+   ],
+   "b_xy_located": [
+    1289.3,
+    200.4
+   ],
+   "b_xy_matched": [
+    1328.14,
+    156.81
+   ],
+   "score": 0.766,
+   "distinct": 0.27,
+   "located_vs_matched_px": [
+    38.840000000000146,
+    -43.59
+   ],
+   "verdict": "relocated"
+  },
+  {
+   "id": "corridor-mechanic-24th",
+   "pair": [
+    "13",
+    "15"
+   ],
+   "schematic": false,
+   "a_xy": [
+    2259.0,
+    3762.3
+   ],
+   "b_xy_located": [
+    2296.3,
+    200.4
+   ],
+   "verdict": "unmatchable",
+   "why": "featureless"
+  },
+  {
+   "id": "dash-19th-aveD",
+   "pair": [
+    "11",
+    "12"
+   ],
+   "schematic": false,
+   "a_xy": [
+    3205.3,
+    1544.5
+   ],
+   "b_xy_located": [
+    195.3,
+    1506.3
+   ],
+   "verdict": "unmatchable",
+   "why": "featureless"
+  },
+  {
+   "id": "dash-20th-aveD",
+   "pair": [
+    "11",
+    "12"
+   ],
+   "schematic": false,
+   "a_xy": [
+    3205.3,
+    2675.0
+   ],
+   "b_xy_located": [
+    195.3,
+    2692.1
+   ],
+   "verdict": "unmatchable",
+   "why": "featureless"
+  },
+  {
+   "id": "dash-22nd-aveD",
+   "pair": [
+    "13",
+    "14"
+   ],
+   "schematic": false,
+   "a_xy": [
+    3264.9,
+    1455.5
+   ],
+   "b_xy_located": [
+    190.2,
+    1444.0
+   ],
+   "b_xy_matched": [
+    499.34,
+    1464.94
+   ],
+   "score": 0.716,
+   "distinct": 0.048,
+   "located_vs_matched_px": [
+    309.14,
+    20.940000000000055
+   ],
+   "verdict": "weak"
+  },
+  {
+   "id": "dash-23rd-aveD",
+   "pair": [
+    "13",
+    "14"
+   ],
+   "schematic": false,
+   "a_xy": [
+    3264.9,
+    2657.4
+   ],
+   "b_xy_located": [
+    190.2,
+    2669.5
+   ],
+   "b_xy_matched": [
+    199.65,
+    2620.16
+   ],
+   "score": 0.493,
+   "distinct": 0.197,
+   "located_vs_matched_px": [
+    9.450000000000017,
+    -49.340000000000146
+   ],
+   "verdict": "weak"
+  },
+  {
+   "id": "dash-25th-aveD",
+   "pair": [
+    "15",
+    "16"
+   ],
+   "schematic": false,
+   "a_xy": [
+    3310.9,
+    1312.1
+   ],
+   "b_xy_located": [
+    246.2,
+    1281.3
+   ],
+   "verdict": "unmatchable",
+   "why": "featureless"
+  },
+  {
+   "id": "dash-20th-aveG",
+   "pair": [
+    "12",
+    "41"
+   ],
+   "schematic": false,
+   "a_xy": [
+    3159.9,
+    2705.7
+   ],
+   "b_xy_located": [
+    173.5,
+    2730.0
+   ],
+   "verdict": "unmatchable",
+   "why": "featureless"
+  },
+  {
+   "id": "dash-22nd-aveG",
+   "pair": [
+    "14",
+    "39"
+   ],
+   "schematic": false,
+   "a_xy": [
+    3138.7,
+    1426.1
+   ],
+   "b_xy_located": [
+    152.0,
+    1448.0
+   ],
+   "b_xy_matched": [
+    381.58,
+    1413.05
+   ],
+   "score": 0.825,
+   "distinct": 0.047,
+   "located_vs_matched_px": [
+    229.57999999999998,
+    -34.950000000000045
+   ],
+   "verdict": "weak"
+  },
+  {
+   "id": "junction-dash-19th",
+   "pair": [
+    "07",
+    "11"
+   ],
+   "schematic": false,
+   "a_xy": [
+    3134.0,
+    241.8
+   ],
+   "b_xy_located": [
+    104.6,
+    1540.6
+   ],
+   "b_xy_matched": [
+    336.0,
+    1209.0
+   ],
+   "score": 0.416,
+   "distinct": 0.006,
+   "located_vs_matched_px": [
+    231.4,
+    -331.5999999999999
+   ],
+   "verdict": "weak"
+  },
+  {
+   "id": "junction-dash-20th",
+   "pair": [
+    "07",
+    "11"
+   ],
+   "schematic": false,
+   "a_xy": [
+    3134.0,
+    1397.9
+   ],
+   "b_xy_located": [
+    104.6,
+    2696.2
+   ],
+   "b_xy_matched": [
+    168.77,
+    2575.93
+   ],
+   "score": 0.633,
+   "distinct": 0.064,
+   "located_vs_matched_px": [
+    64.17000000000002,
+    -120.26999999999998
+   ],
+   "verdict": "weak"
+  }
+ ],
+ "seam_summaries": [
+  {
+   "pair": [
+    "07",
+    "06"
+   ],
+   "boundary": "22th Street",
+   "axis": "h",
+   "bias_used": [
+    9.5,
+    20.7
+   ],
+   "bias_source": "verified-landmarks",
+   "bias_conflict": null,
+   "n_candidates_matched": 11,
+   "pred_err_median": [
+    -8.5,
+    -52.8
+   ],
+   "pred_err_iqr": [
+    [
+     -9.85,
+     -3.7
+    ],
+    [
+     -53.25,
+     -38.7
+    ]
+   ]
+  },
+  {
+   "pair": [
+    "06",
+    "13"
+   ],
+   "boundary": "Avenue A",
+   "axis": "v",
+   "bias_used": [
+    0.0,
+    0.0
+   ],
+   "bias_source": "none",
+   "bias_conflict": null,
+   "n_candidates_matched": 2,
+   "pred_err_median": [
+    1.3999999999999986,
+    57.300000000000004
+   ],
+   "pred_err_iqr": null
+  },
+  {
+   "pair": [
+    "06",
+    "15"
+   ],
+   "boundary": "Avenue A",
+   "axis": "v",
+   "bias_used": [
+    46.4,
+    -288.3
+   ],
+   "bias_source": "pass1-cluster(n=3)",
+   "bias_conflict": null,
+   "n_candidates_matched": 5,
+   "pred_err_median": [
+    0.0,
+    -29.8
+   ],
+   "pred_err_iqr": [
+    [
+     -14.0,
+     0.1
+    ],
+    [
+     -33.4,
+     0.0
+    ]
+   ]
+  },
+  {
+   "pair": [
+    "08",
+    "07"
+   ],
+   "boundary": "19th Street",
+   "axis": "h",
+   "bias_used": [
+    3.8,
+    8.7
+   ],
+   "bias_source": "verified-landmarks",
+   "bias_conflict": null,
+   "n_candidates_matched": 17,
+   "pred_err_median": [
+    0.2,
+    1.4
+   ],
+   "pred_err_iqr": [
+    [
+     -2.8,
+     1.8
+    ],
+    [
+     -1.9,
+     17.2
+    ]
+   ]
+  },
+  {
+   "pair": [
+    "07",
+    "11"
+   ],
+   "boundary": "Avenue A",
+   "axis": "v",
+   "bias_used": [
+    15.7,
+    123.5
+   ],
+   "bias_source": "pass1-cluster(n=6)",
+   "bias_conflict": null,
+   "n_candidates_matched": 5,
+   "pred_err_median": [
+    9.4,
+    -32.9
+   ],
+   "pred_err_iqr": [
+    [
+     8.0,
+     9.9
+    ],
+    [
+     -33.6,
+     -3.8
+    ]
+   ]
+  },
+  {
+   "pair": [
+    "07",
+    "13"
+   ],
+   "boundary": "Avenue A",
+   "axis": "v",
+   "bias_used": [
+    0.0,
+    0.0
+   ],
+   "bias_source": "none",
+   "bias_conflict": null,
+   "n_candidates_matched": 3,
+   "pred_err_median": [
+    78.2,
+    -14.6
+   ],
+   "pred_err_iqr": null
+  },
+  {
+   "pair": [
+    "08",
+    "11"
+   ],
+   "boundary": "Avenue A",
+   "axis": "v",
+   "bias_used": [
+    -0.3,
+    27.7
+   ],
+   "bias_source": "verified-landmarks",
+   "bias_conflict": {
+    "landmark_bias": [
+     -0.3333333333333286,
+     27.700000000000728
+    ],
+    "cluster": [
+     297.2198941508929,
+     38.138730284572375
+    ],
+    "cluster_n": 3
+   },
+   "n_candidates_matched": 3,
+   "pred_err_median": [
+    37.2,
+    -7.7
+   ],
+   "pred_err_iqr": null
+  },
+  {
+   "pair": [
+    "11",
+    "12"
+   ],
+   "boundary": "Avenue D",
+   "axis": "v",
+   "bias_used": [
+    -14.7,
+    -38.0
+   ],
+   "bias_source": "verified-landmarks",
+   "bias_conflict": null,
+   "n_candidates_matched": 13,
+   "pred_err_median": [
+    8.5,
+    -19.2
+   ],
+   "pred_err_iqr": [
+    [
+     -10.6,
+     19.2
+    ],
+    [
+     -24.2,
+     11.0
+    ]
+   ]
+  },
+  {
+   "pair": [
+    "11",
+    "13"
+   ],
+   "boundary": "21th Street",
+   "axis": "h",
+   "bias_used": [
+    17.2,
+    -69.0
+   ],
+   "bias_source": "verified-landmarks",
+   "bias_conflict": null,
+   "n_candidates_matched": 10,
+   "pred_err_median": [
+    -24.35,
+    14.5
+   ],
+   "pred_err_iqr": [
+    [
+     -34.025,
+     -16.325
+    ],
+    [
+     11.149999999999999,
+     16.475
+    ]
+   ]
+  },
+  {
+   "pair": [
+    "12",
+    "41"
+   ],
+   "boundary": "Avenue G",
+   "axis": "v",
+   "bias_used": [
+    23.0,
+    -20.5
+   ],
+   "bias_source": "verified-landmarks",
+   "bias_conflict": null,
+   "n_candidates_matched": 9,
+   "pred_err_median": [
+    -0.7,
+    -2.4
+   ],
+   "pred_err_iqr": [
+    [
+     -4.5,
+     2.4
+    ],
+    [
+     -10.4,
+     -1.2
+    ]
+   ]
+  },
+  {
+   "pair": [
+    "12",
+    "14"
+   ],
+   "boundary": "21th Street",
+   "axis": "h",
+   "bias_used": [
+    -66.5,
+    -48.8
+   ],
+   "bias_source": "pass1-cluster(n=14)",
+   "bias_conflict": null,
+   "n_candidates_matched": 13,
+   "pred_err_median": [
+    0.6,
+    0.0
+   ],
+   "pred_err_iqr": [
+    [
+     -1.8,
+     3.4
+    ],
+    [
+     -1.8,
+     0.6
+    ]
+   ]
+  },
+  {
+   "pair": [
+    "41",
+    "39"
+   ],
+   "boundary": "21th Street",
+   "axis": "h",
+   "bias_used": [
+    -115.5,
+    -46.5
+   ],
+   "bias_source": "verified-landmarks",
+   "bias_conflict": null,
+   "n_candidates_matched": 17,
+   "pred_err_median": [
+    -21.8,
+    -18.9
+   ],
+   "pred_err_iqr": [
+    [
+     -27.2,
+     -11.5
+    ],
+    [
+     -20.1,
+     -16.4
+    ]
+   ]
+  },
+  {
+   "pair": [
+    "13",
+    "14"
+   ],
+   "boundary": "Avenue D",
+   "axis": "v",
+   "bias_used": [
+    -67.8,
+    -45.5
+   ],
+   "bias_source": "verified-landmarks",
+   "bias_conflict": {
+    "landmark_bias": [
+     -67.83333333333348,
+     -45.5
+    ],
+    "cluster": [
+     -81.89484300216054,
+     -131.09725941717625
+    ],
+    "cluster_n": 9
+   },
+   "n_candidates_matched": 5,
+   "pred_err_median": [
+    -11.5,
+    -1.8
+   ],
+   "pred_err_iqr": [
+    [
+     -14.2,
+     1.6
+    ],
+    [
+     -24.1,
+     -1.2
+    ]
+   ]
+  },
+  {
+   "pair": [
+    "13",
+    "15"
+   ],
+   "boundary": "24th Street",
+   "axis": "h",
+   "bias_used": [
+    90.7,
+    -97.5
+   ],
+   "bias_source": "verified-landmarks",
+   "bias_conflict": null,
+   "n_candidates_matched": 11,
+   "pred_err_median": [
+    -23.7,
+    -9.5
+   ],
+   "pred_err_iqr": [
+    [
+     -33.7,
+     4.95
+    ],
+    [
+     -9.649999999999999,
+     -4.7
+    ]
+   ]
+  },
+  {
+   "pair": [
+    "14",
+    "39"
+   ],
+   "boundary": "Avenue G",
+   "axis": "v",
+   "bias_used": [
+    -59.0,
+    -26.2
+   ],
+   "bias_source": "verified-landmarks",
+   "bias_conflict": null,
+   "n_candidates_matched": 6,
+   "pred_err_median": [
+    -6.4,
+    6.449999999999999
+   ],
+   "pred_err_iqr": [
+    [
+     -8.25,
+     -3.7249999999999996
+    ],
+    [
+     -5.775,
+     18.375
+    ]
+   ]
+  },
+  {
+   "pair": [
+    "14",
+    "16"
+   ],
+   "boundary": "24th Street",
+   "axis": "h",
+   "bias_used": [
+    118.5,
+    -159.0
+   ],
+   "bias_source": "verified-landmarks",
+   "bias_conflict": null,
+   "n_candidates_matched": 11,
+   "pred_err_median": [
+    -8.7,
+    6.3
+   ],
+   "pred_err_iqr": [
+    [
+     -13.05,
+     -4.5
+    ],
+    [
+     -11.149999999999999,
+     12.55
+    ]
+   ]
+  },
+  {
+   "pair": [
+    "39",
+    "37"
+   ],
+   "boundary": "24th Street",
+   "axis": "h",
+   "bias_used": [
+    122.0,
+    -68.0
+   ],
+   "bias_source": "pass1-cluster(n=10)",
+   "bias_conflict": null,
+   "n_candidates_matched": 10,
+   "pred_err_median": [
+    8.95,
+    -4.0
+   ],
+   "pred_err_iqr": [
+    [
+     -7.0,
+     22.4
+    ],
+    [
+     -15.425,
+     -0.9749999999999999
+    ]
+   ]
+  },
+  {
+   "pair": [
+    "15",
+    "16"
+   ],
+   "boundary": "Avenue D",
+   "axis": "v",
+   "bias_used": [
+    -60.0,
+    -87.0
+   ],
+   "bias_source": "verified-landmarks",
+   "bias_conflict": {
+    "landmark_bias": [
+     -60.0,
+     -87.0
+    ],
+    "cluster": [
+     198.10456520318985,
+     -60.91082100570202
+    ],
+    "cluster_n": 7
+   },
+   "n_candidates_matched": 0,
+   "pred_err_median": null,
+   "pred_err_iqr": null
+  },
+  {
+   "pair": [
+    "16",
+    "37"
+   ],
+   "boundary": "Avenue G",
+   "axis": "v",
+   "bias_used": [
+    -41.5,
+    71.0
+   ],
+   "bias_source": "verified-landmarks",
+   "bias_conflict": {
+    "landmark_bias": [
+     -41.5,
+     71.0
+    ],
+    "cluster": [
+     218.53201442956924,
+     72.41301892325282
+    ],
+    "cluster_n": 4
+   },
+   "n_candidates_matched": 2,
+   "pred_err_median": [
+    1.5,
+    -8.35
+   ],
+   "pred_err_iqr": null
+  }
+ ],
+ "seam_matches": {
+  "07|06": [],
+  "06|13": [
+   {
+    "a_xy": [
+     3143,
+     171
+    ],
+    "b_xy": [
+     242.06,
+     1478.18
+    ],
+    "score": 0.682,
+    "pred_err": [
+     22.4,
+     36.7
+    ]
+   },
+   {
+    "a_xy": [
+     3143,
+     1611
+    ],
+    "b_xy": [
+     200.08,
+     2959.37
+    ],
+    "score": 0.858,
+    "pred_err": [
+     -19.6,
+     77.9
+    ]
+   }
+  ],
+  "06|15": [
+   {
+    "a_xy": [
+     3043,
+     3051
+    ],
+    "b_xy": [
+     123.91,
+     557.31
+    ],
+    "score": 0.798,
+    "pred_err": [
+     -0.0,
+     -33.4
+    ]
+   },
+   {
+    "a_xy": [
+     3043,
+     3141
+    ],
+    "b_xy": [
+     123.97,
+     685.33
+    ],
+    "score": 0.789,
+    "pred_err": [
+     0.1,
+     4.7
+    ]
+   },
+   {
+    "a_xy": [
+     3043,
+     3591
+    ],
+    "b_xy": [
+     109.95,
+     1095.2
+    ],
+    "score": 0.661,
+    "pred_err": [
+     -14.0,
+     -35.5
+    ]
+   },
+   {
+    "a_xy": [
+     3093,
+     2871
+    ],
+    "b_xy": [
+     176.72,
+     380.82
+    ],
+    "score": 0.779,
+    "pred_err": [
+     2.8,
+     -29.8
+    ]
+   },
+   {
+    "a_xy": [
+     3143,
+     3681
+    ],
+    "b_xy": [
+     209.94,
+     1220.66
+    ],
+    "score": 0.611,
+    "pred_err": [
+     -14.0,
+     0.0
+    ]
+   }
+  ],
+  "08|07": [
+   {
+    "a_xy": [
+     3051,
+     3695
+    ],
+    "b_xy": [
+     3033.02,
+     103.83
+    ],
+    "score": 0.721,
+    "pred_err": [
+     -1.8,
+     -1.9
+    ]
+   },
+   {
+    "a_xy": [
+     1971,
+     3745
+    ],
+    "b_xy": [
+     1952.84,
+     149.35
+    ],
+    "score": 0.718,
+    "pred_err": [
+     -2.0,
+     -6.3
+    ]
+   },
+   {
+    "a_xy": [
+     2151,
+     3745
+    ],
+    "b_xy": [
+     2133.98,
+     155.15
+    ],
+    "score": 0.697,
+    "pred_err": [
+     -0.8,
+     -0.6
+    ]
+   },
+   {
+    "a_xy": [
+     2241,
+     3745
+    ],
+    "b_xy": [
+     2203.04,
+     175.52
+    ],
+    "score": 0.679,
+    "pred_err": [
+     -21.8,
+     19.8
+    ]
+   },
+   {
+    "a_xy": [
+     2781,
+     3745
+    ],
+    "b_xy": [
+     2766.61,
+     153.76
+    ],
+    "score": 0.777,
+    "pred_err": [
+     1.8,
+     -1.9
+    ]
+   },
+   {
+    "a_xy": [
+     2961,
+     3745
+    ],
+    "b_xy": [
+     2958.76,
+     152.33
+    ],
+    "score": 0.817,
+    "pred_err": [
+     14.0,
+     -3.4
+    ]
+   },
+   {
+    "a_xy": [
+     2241,
+     3795
+    ],
+    "b_xy": [
+     2215.77,
+     237.87
+    ],
+    "score": 0.576,
+    "pred_err": [
+     -9.0,
+     32.2
+    ]
+   },
+   {
+    "a_xy": [
+     2511,
+     3795
+    ],
+    "b_xy": [
+     2460.99,
+     231.67
+    ],
+    "score": 0.464,
+    "pred_err": [
+     -33.8,
+     26.0
+    ]
+   },
+   {
+    "a_xy": [
+     2781,
+     3795
+    ],
+    "b_xy": [
+     2766.43,
+     203.75
+    ],
+    "score": 0.516,
+    "pred_err": [
+     1.6,
+     -2.0
+    ]
+   },
+   {
+    "a_xy": [
+     2961,
+     3795
+    ],
+    "b_xy": [
+     2958.44,
+     202.3
+    ],
+    "score": 0.506,
+    "pred_err": [
+     13.6,
+     -3.4
+    ]
+   },
+   {
+    "a_xy": [
+     3141,
+     3795
+    ],
+    "b_xy": [
+     3121.38,
+     222.65
+    ],
+    "score": 0.805,
+    "pred_err": [
+     -3.4,
+     16.9
+    ]
+   },
+   {
+    "a_xy": [
+     3231,
+     3795
+    ],
+    "b_xy": [
+     3245.1,
+     222.91
+    ],
+    "score": 0.876,
+    "pred_err": [
+     30.3,
+     17.2
+    ]
+   },
+   {
+    "a_xy": [
+     1431,
+     3845
+    ],
+    "b_xy": [
+     1421.99,
+     287.02
+    ],
+    "score": 0.989,
+    "pred_err": [
+     7.2,
+     31.3
+    ]
+   },
+   {
+    "a_xy": [
+     1971,
+     3845
+    ],
+    "b_xy": [
+     1951.95,
+     257.37
+    ],
+    "score": 0.626,
+    "pred_err": [
+     -2.8,
+     1.7
+    ]
+   },
+   {
+    "a_xy": [
+     2151,
+     3845
+    ],
+    "b_xy": [
+     2134.98,
+     257.1
+    ],
+    "score": 0.697,
+    "pred_err": [
+     0.2,
+     1.4
+    ]
+   },
+   {
+    "a_xy": [
+     1971,
+     3895
+    ],
+    "b_xy": [
+     1955.06,
+     318.81
+    ],
+    "score": 0.757,
+    "pred_err": [
+     0.3,
+     13.1
+    ]
+   },
+   {
+    "a_xy": [
+     2151,
+     3895
+    ],
+    "b_xy": [
+     2134.97,
+     304.06
+    ],
+    "score": 0.891,
+    "pred_err": [
+     0.2,
+     -1.6
+    ]
+   }
+  ],
+  "07|11": [
+   {
+    "a_xy": [
+     3127,
+     81
+    ],
+    "b_xy": [
+     167.05,
+     1402.45
+    ],
+    "score": 0.814,
+    "pred_err": [
+     44.0,
+     -3.8
+    ]
+   },
+   {
+    "a_xy": [
+     3177,
+     351
+    ],
+    "b_xy": [
+     182.39,
+     1642.72
+    ],
+    "score": 0.702,
+    "pred_err": [
+     9.4,
+     -33.6
+    ]
+   },
+   {
+    "a_xy": [
+     3177,
+     441
+    ],
+    "b_xy": [
+     182.94,
+     1733.37
+    ],
+    "score": 0.709,
+    "pred_err": [
+     9.9,
+     -32.9
+    ]
+   },
+   {
+    "a_xy": [
+     3177,
+     621
+    ],
+    "b_xy": [
+     180.97,
+     1955.29
+    ],
+    "score": 0.649,
+    "pred_err": [
+     8.0,
+     9.0
+    ]
+   },
+   {
+    "a_xy": [
+     3227,
+     621
+    ],
+    "b_xy": [
+     225.19,
+     1912.6
+    ],
+    "score": 0.51,
+    "pred_err": [
+     2.2,
+     -33.7
+    ]
+   }
+  ],
+  "07|13": [
+   {
+    "a_xy": [
+     3077,
+     2781
+    ],
+    "b_xy": [
+     198.0,
+     507.8
+    ],
+    "score": 0.924,
+    "pred_err": [
+     78.3,
+     -13.5
+    ]
+   },
+   {
+    "a_xy": [
+     3077,
+     2871
+    ],
+    "b_xy": [
+     197.91,
+     546.02
+    ],
+    "score": 0.928,
+    "pred_err": [
+     78.2,
+     -65.3
+    ]
+   },
+   {
+    "a_xy": [
+     3077,
+     3141
+    ],
+    "b_xy": [
+     197.02,
+     866.77
+    ],
+    "score": 0.907,
+    "pred_err": [
+     77.4,
+     -14.6
+    ]
+   }
+  ],
+  "08|11": [],
+  "11|12": [],
+  "11|13": [],
+  "12|41": [
+   {
+    "a_xy": [
+     3097,
+     171
+    ],
+    "b_xy": [
+     111.99,
+     164.07
+    ],
+    "score": 0.704,
+    "pred_err": [
+     -0.5,
+     -10.4
+    ]
+   },
+   {
+    "a_xy": [
+     3097,
+     1251
+    ],
+    "b_xy": [
+     108.04,
+     1228.46
+    ],
+    "score": 0.634,
+    "pred_err": [
+     -4.5,
+     -26.0
+    ]
+   },
+   {
+    "a_xy": [
+     3097,
+     1341
+    ],
+    "b_xy": [
+     108.68,
+     1339.13
+    ],
+    "score": 0.586,
+    "pred_err": [
+     -3.8,
+     -5.4
+    ]
+   },
+   {
+    "a_xy": [
+     3097,
+     2061
+    ],
+    "b_xy": [
+     108.04,
+     2068.11
+    ],
+    "score": 0.619,
+    "pred_err": [
+     -4.5,
+     3.6
+    ]
+   },
+   {
+    "a_xy": [
+     3097,
+     2601
+    ],
+    "b_xy": [
+     114.94,
+     2603.28
+    ],
+    "score": 0.74,
+    "pred_err": [
+     2.4,
+     -1.2
+    ]
+   },
+   {
+    "a_xy": [
+     3127,
+     171
+    ],
+    "b_xy": [
+     141.84,
+     164.03
+    ],
+    "score": 0.668,
+    "pred_err": [
+     -0.7,
+     -10.5
+    ]
+   },
+   {
+    "a_xy": [
+     3127,
+     2601
+    ],
+    "b_xy": [
+     129.5,
+     2603.14
+    ],
+    "score": 0.768,
+    "pred_err": [
+     -13.0,
+     -1.4
+    ]
+   },
+   {
+    "a_xy": [
+     3157,
+     1701
+    ],
+    "b_xy": [
+     194.01,
+     1709.42
+    ],
+    "score": 0.733,
+    "pred_err": [
+     21.5,
+     4.9
+    ]
+   },
+   {
+    "a_xy": [
+     3157,
+     1791
+    ],
+    "b_xy": [
+     194.11,
+     1792.07
+    ],
+    "score": 0.81,
+    "pred_err": [
+     21.6,
+     -2.4
+    ]
+   }
+  ],
+  "12|14": [
+   {
+    "a_xy": [
+     1791,
+     3743
+    ],
+    "b_xy": [
+     1784.64,
+     233.73
+    ],
+    "score": 0.827,
+    "pred_err": [
+     3.6,
+     0.0
+    ]
+   },
+   {
+    "a_xy": [
+     1881,
+     3743
+    ],
+    "b_xy": [
+     1874.42,
+     231.94
+    ],
+    "score": 0.816,
+    "pred_err": [
+     3.4,
+     -1.8
+    ]
+   },
+   {
+    "a_xy": [
+     1971,
+     3743
+    ],
+    "b_xy": [
+     1960.1,
+     231.6
+    ],
+    "score": 0.792,
+    "pred_err": [
+     -0.9,
+     -2.1
+    ]
+   },
+   {
+    "a_xy": [
+     2331,
+     3743
+    ],
+    "b_xy": [
+     2314.36,
+     234.32
+    ],
+    "score": 0.815,
+    "pred_err": [
+     -6.7,
+     0.6
+    ]
+   },
+   {
+    "a_xy": [
+     2421,
+     3743
+    ],
+    "b_xy": [
+     2411.6,
+     235.22
+    ],
+    "score": 0.799,
+    "pred_err": [
+     0.6,
+     1.5
+    ]
+   },
+   {
+    "a_xy": [
+     621,
+     3773
+    ],
+    "b_xy": [
+     595.75,
+     234.66
+    ],
+    "score": 0.781,
+    "pred_err": [
+     -15.3,
+     -29.0
+    ]
+   },
+   {
+    "a_xy": [
+     1701,
+     3773
+    ],
+    "b_xy": [
+     1712.56,
+     284.92
+    ],
+    "score": 0.653,
+    "pred_err": [
+     21.5,
+     21.2
+    ]
+   },
+   {
+    "a_xy": [
+     1791,
+     3773
+    ],
+    "b_xy": [
+     1784.31,
+     263.87
+    ],
+    "score": 0.807,
+    "pred_err": [
+     3.3,
+     0.2
+    ]
+   },
+   {
+    "a_xy": [
+     1881,
+     3773
+    ],
+    "b_xy": [
+     1874.48,
+     261.92
+    ],
+    "score": 0.792,
+    "pred_err": [
+     3.4,
+     -1.8
+    ]
+   },
+   {
+    "a_xy": [
+     1971,
+     3773
+    ],
+    "b_xy": [
+     1960.47,
+     261.88
+    ],
+    "score": 0.82,
+    "pred_err": [
+     -0.6,
+     -1.8
+    ]
+   },
+   {
+    "a_xy": [
+     2331,
+     3773
+    ],
+    "b_xy": [
+     2313.8,
+     263.68
+    ],
+    "score": 0.762,
+    "pred_err": [
+     -7.2,
+     -0.0
+    ]
+   },
+   {
+    "a_xy": [
+     2421,
+     3773
+    ],
+    "b_xy": [
+     2409.2,
+     265.19
+    ],
+    "score": 0.722,
+    "pred_err": [
+     -1.8,
+     1.5
+    ]
+   },
+   {
+    "a_xy": [
+     3051,
+     3773
+    ],
+    "b_xy": [
+     3067.68,
+     254.29
+    ],
+    "score": 0.653,
+    "pred_err": [
+     26.6,
+     -9.4
+    ]
+   }
+  ],
+  "41|39": [],
+  "13|14": [
+   {
+    "a_xy": [
+     3213,
+     1791
+    ],
+    "b_xy": [
+     136.07,
+     1728.36
+    ],
+    "score": 0.557,
+    "pred_err": [
+     -14.4,
+     -24.1
+    ]
+   },
+   {
+    "a_xy": [
+     3243,
+     1701
+    ],
+    "b_xy": [
+     168.96,
+     1676.33
+    ],
+    "score": 0.428,
+    "pred_err": [
+     -11.5,
+     13.8
+    ]
+   },
+   {
+    "a_xy": [
+     3243,
+     1791
+    ],
+    "b_xy": [
+     166.27,
+     1728.41
+    ],
+    "score": 0.579,
+    "pred_err": [
+     -14.2,
+     -24.1
+    ]
+   },
+   {
+    "a_xy": [
+     3243,
+     2691
+    ],
+    "b_xy": [
+     182.26,
+     2651.26
+    ],
+    "score": 0.75,
+    "pred_err": [
+     1.8,
+     -1.2
+    ]
+   },
+   {
+    "a_xy": [
+     3273,
+     2691
+    ],
+    "b_xy": [
+     212.07,
+     2650.7
+    ],
+    "score": 0.482,
+    "pred_err": [
+     1.6,
+     -1.8
+    ]
+   }
+  ],
+  "13|15": [],
+  "14|39": [
+   {
+    "a_xy": [
+     3169,
+     1161
+    ],
+    "b_xy": [
+     162.75,
+     1142.93
+    ],
+    "score": 0.745,
+    "pred_err": [
+     -3.3,
+     -6.8
+    ]
+   },
+   {
+    "a_xy": [
+     3169,
+     1251
+    ],
+    "b_xy": [
+     161.05,
+     1237.01
+    ],
+    "score": 0.755,
+    "pred_err": [
+     -5.0,
+     -2.7
+    ]
+   },
+   {
+    "a_xy": [
+     3169,
+     1701
+    ],
+    "b_xy": [
+     158.17,
+     1675.33
+    ],
+    "score": 0.859,
+    "pred_err": [
+     -7.8,
+     -14.4
+    ]
+   },
+   {
+    "a_xy": [
+     3169,
+     2241
+    ],
+    "b_xy": [
+     157.55,
+     2245.34
+    ],
+    "score": 0.82,
+    "pred_err": [
+     -8.4,
+     15.6
+    ]
+   },
+   {
+    "a_xy": [
+     3169,
+     2331
+    ],
+    "b_xy": [
+     156.49,
+     2340.09
+    ],
+    "score": 0.589,
+    "pred_err": [
+     -9.5,
+     20.3
+    ]
+   },
+   {
+    "a_xy": [
+     3169,
+     3591
+    ],
+    "b_xy": [
+     165.92,
+     3599.0
+    ],
+    "score": 0.785,
+    "pred_err": [
+     -0.1,
+     19.3
+    ]
+   }
+  ],
+  "14|16": [
+   {
+    "a_xy": [
+     621,
+     3719
+    ],
+    "b_xy": [
+     661.81,
+     98.43
+    ],
+    "score": 0.687,
+    "pred_err": [
+     -8.7,
+     -19.1
+    ]
+   },
+   {
+    "a_xy": [
+     261,
+     3749
+    ],
+    "b_xy": [
+     292.99,
+     149.61
+    ],
+    "score": 0.544,
+    "pred_err": [
+     -17.5,
+     2.1
+    ]
+   },
+   {
+    "a_xy": [
+     711,
+     3749
+    ],
+    "b_xy": [
+     754.81,
+     175.99
+    ],
+    "score": 0.477,
+    "pred_err": [
+     -5.7,
+     28.5
+    ]
+   },
+   {
+    "a_xy": [
+     1431,
+     3749
+    ],
+    "b_xy": [
+     1476.83,
+     159.66
+    ],
+    "score": 0.712,
+    "pred_err": [
+     -3.7,
+     12.2
+    ]
+   },
+   {
+    "a_xy": [
+     1521,
+     3749
+    ],
+    "b_xy": [
+     1566.02,
+     160.38
+    ],
+    "score": 0.873,
+    "pred_err": [
+     -4.5,
+     12.9
+    ]
+   },
+   {
+    "a_xy": [
+     2691,
+     3749
+    ],
+    "b_xy": [
+     2731.0,
+     141.69
+    ],
+    "score": 0.823,
+    "pred_err": [
+     -9.5,
+     -5.8
+    ]
+   },
+   {
+    "a_xy": [
+     261,
+     3779
+    ],
+    "b_xy": [
+     291.96,
+     183.84
+    ],
+    "score": 0.572,
+    "pred_err": [
+     -18.5,
+     6.3
+    ]
+   },
+   {
+    "a_xy": [
+     801,
+     3779
+    ],
+    "b_xy": [
+     836.55,
+     160.96
+    ],
+    "score": 0.501,
+    "pred_err": [
+     -13.9,
+     -16.5
+    ]
+   },
+   {
+    "a_xy": [
+     1431,
+     3779
+    ],
+    "b_xy": [
+     1477.05,
+     189.72
+    ],
+    "score": 0.662,
+    "pred_err": [
+     -3.5,
+     12.2
+    ]
+   },
+   {
+    "a_xy": [
+     1521,
+     3779
+    ],
+    "b_xy": [
+     1565.99,
+     190.48
+    ],
+    "score": 0.815,
+    "pred_err": [
+     -4.5,
+     13.0
+    ]
+   },
+   {
+    "a_xy": [
+     3051,
+     3779
+    ],
+    "b_xy": [
+     3088.26,
+     151.93
+    ],
+    "score": 0.684,
+    "pred_err": [
+     -12.2,
+     -25.6
+    ]
+   }
+  ],
+  "39|37": [
+   {
+    "a_xy": [
+     1701,
+     3728
+    ],
+    "b_xy": [
+     1698.99,
+     214.42
+    ],
+    "score": 0.782,
+    "pred_err": [
+     8.9,
+     31.9
+    ]
+   },
+   {
+    "a_xy": [
+     1791,
+     3728
+    ],
+    "b_xy": [
+     1802.44,
+     179.22
+    ],
+    "score": 0.738,
+    "pred_err": [
+     22.4,
+     -3.3
+    ]
+   },
+   {
+    "a_xy": [
+     261,
+     3758
+    ],
+    "b_xy": [
+     279.89,
+     202.14
+    ],
+    "score": 0.616,
+    "pred_err": [
+     29.8,
+     -10.4
+    ]
+   },
+   {
+    "a_xy": [
+     1611,
+     3758
+    ],
+    "b_xy": [
+     1566.07,
+     212.35
+    ],
+    "score": 0.894,
+    "pred_err": [
+     -34.0,
+     -0.2
+    ]
+   },
+   {
+    "a_xy": [
+     1791,
+     3758
+    ],
+    "b_xy": [
+     1802.71,
+     208.83
+    ],
+    "score": 0.64,
+    "pred_err": [
+     22.7,
+     -3.7
+    ]
+   },
+   {
+    "a_xy": [
+     3051,
+     3758
+    ],
+    "b_xy": [
+     3031.07,
+     187.62
+    ],
+    "score": 0.7,
+    "pred_err": [
+     -9.0,
+     -24.9
+    ]
+   },
+   {
+    "a_xy": [
+     1701,
+     3788
+    ],
+    "b_xy": [
+     1699.04,
+     278.51
+    ],
+    "score": 0.858,
+    "pred_err": [
+     9.0,
+     36.0
+    ]
+   },
+   {
+    "a_xy": [
+     1791,
+     3788
+    ],
+    "b_xy": [
+     1802.48,
+     238.25
+    ],
+    "score": 0.625,
+    "pred_err": [
+     22.4,
+     -4.3
+    ]
+   },
+   {
+    "a_xy": [
+     2691,
+     3788
+    ],
+    "b_xy": [
+     2679.09,
+     211.64
+    ],
+    "score": 0.801,
+    "pred_err": [
+     -1.0,
+     -30.9
+    ]
+   },
+   {
+    "a_xy": [
+     3051,
+     3788
+    ],
+    "b_xy": [
+     3030.9,
+     225.41
+    ],
+    "score": 0.497,
+    "pred_err": [
+     -9.1,
+     -17.1
+    ]
+   }
+  ],
+  "15|16": [],
+  "16|37": [
+   {
+    "a_xy": [
+     3119,
+     621
+    ],
+    "b_xy": [
+     73.75,
+     662.09
+    ],
+    "score": 0.58,
+    "pred_err": [
+     4.2,
+     -9.9
+    ]
+   },
+   {
+    "a_xy": [
+     3149,
+     81
+    ],
+    "b_xy": [
+     98.31,
+     125.22
+    ],
+    "score": 0.579,
+    "pred_err": [
+     -1.2,
+     -6.8
+    ]
+   }
+  ]
+ },
+ "dense_flags": {
+  "07|06": {
+   "dense_vs_landmark_px": [
+    -8.5,
+    -52.8
+   ],
+   "action": "dense dropped, landmarks only"
+  },
+  "08|11": {
+   "dense_vs_landmark_px": [
+    37.2,
+    -7.7
+   ],
+   "action": "dense dropped, landmarks only"
+  },
+  "11|12": {
+   "dense_vs_landmark_px": [
+    8.5,
+    -19.2
+   ],
+   "action": "dense dropped, landmarks only"
+  },
+  "11|13": {
+   "dense_vs_landmark_px": [
+    -24.4,
+    14.5
+   ],
+   "action": "dense dropped, landmarks only"
+  },
+  "41|39": {
+   "dense_vs_landmark_px": [
+    -21.8,
+    -18.9
+   ],
+   "action": "dense dropped, landmarks only"
+  },
+  "13|15": {
+   "dense_vs_landmark_px": [
+    -23.7,
+    -9.5
+   ],
+   "action": "dense dropped, landmarks only"
+  }
+ },
+ "note": "re-measured with landmarks_v2 biases; disagreeing pairs dropped to landmark-only"
+}
