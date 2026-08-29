@@ -1,0 +1,77 @@
+name: fetch-sanborn-1912-full
+
+on:
+  workflow_dispatch:
+    inputs:
+      pct:
+        description: "IIIF scale percent for working copies"
+        default: "50"
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    env:
+      DATA_BRANCH: claude/galveston-1912-source-data
+      SERVICE: "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912"
+    steps:
+      - name: Init data branch workspace
+        run: |
+          set -euo pipefail
+          git init work
+          cd work
+          git config user.name "sanborn-fetch-action"
+          git config user.email "actions@github.com"
+          git remote add origin \
+            "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git"
+          git fetch origin "$DATA_BRANCH"
+          git checkout -B "$DATA_BRANCH" FETCH_HEAD
+
+      - name: Fetch remaining 1912 sheets at reduced scale (plain IIIF requests, no bot-defense circumvention)
+        run: |
+          set -uo pipefail
+          cd work/galveston_1912_sources
+          PCT="${{ github.event.inputs.pct || '50' }}"
+          mkdir -p pct${PCT}
+          : > pct${PCT}/FETCHED.tsv
+          # sheets 1-99; skip sheets whose full-res archival is already here
+          have_archival="9 11 13 15 17 19 21 23 49 50 53 54 59 60"
+          fetchone () {  # $1 = page id (e.g. 0042 or 0008s), $2 = out name
+            dest="pct${PCT}/$2.jpg"
+            [ -s "$dest" ] && return 0
+            url="${SERVICE}-$1/full/pct:${PCT}/0/default.jpg"
+            code=$(curl -sS -L -A "Mozilla/5.0" -o "$dest" -w "%{http_code}" "$url" || echo 000)
+            if [ "$code" = 200 ] && head -c 3 "$dest" | grep -q $'\xff\xd8'; then
+              printf '%s\t%s\t%s\t%s\n' "$2" "$url" \
+                "$(sha256sum "$dest" | cut -d' ' -f1)" "$(stat -c%s "$dest")" \
+                >> pct${PCT}/FETCHED.tsv
+              echo "ok $2 ($code)"
+            else
+              rm -f "$dest"
+              echo "miss $2 ($code)"
+            fi
+            sleep 1
+          }
+          # image-index mapping: sheets 1-6 -> img 5-10; 7-12 (+skeletons)
+          # interleaved; 13-99 -> img N+10. We fetch by PAGE ID, which is
+          # unambiguous: zero-padded sheet number, plus the six skeletons.
+          for n in $(seq 1 99); do
+            id=$(printf '%04d' "$n")
+            case " $have_archival " in *" $((n+10)) "*) : ;; esac
+            fetchone "$id" "sheet_${id}"
+          done
+          for s in 0007s 0008s 0009s 0010s 0011s 0012s; do
+            fetchone "$s" "skel_${s}"
+          done
+          wc -l pct${PCT}/FETCHED.tsv
+
+      - name: Commit and push
+        run: |
+          set -euo pipefail
+          cd work
+          git add galveston_1912_sources
+          git commit -m "1912 working copies at reduced scale for city-wide registration (IIIF pct fetch; FETCHED.tsv carries url+sha256+bytes per file)" || echo "nothing to commit"
+          git push origin "$DATA_BRANCH"
