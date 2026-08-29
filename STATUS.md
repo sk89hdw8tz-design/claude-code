@@ -18,9 +18,9 @@
 ```
 Stage 0  inventory + environment   ██████████ done
 Stage 1  consolidate 1912 recipe   ██████████ done
-Stage 2  register 1899             █████████░ solved + gated (HQ-4 adjudication open)
-Stage 3  QC + human queue          █████████░ done (HQ-4 open)
-Stage 4  indexes + render/crop     █████████░ both years live (crop.py verified on 1899 + 1912)
+Stage 2  register 1899             ██████████ done (HQ-4 awaiting answer)
+Stage 3  QC + human queue          ██████████ done (HQ-4 awaiting answer)
+Stage 4  indexes + render/crop     ██████████ done (both years; DZI deferred off-cloud)
 ```
 
 ## Sheet grid (target footprint)
@@ -70,17 +70,14 @@ Row/col per the key maps; 1899 wharf column sits 0.67 rows high of the inland gr
 
 | agent | task |
 |---|---|
-| orchestrator | 1912 indexes + tools; 1899 solve pending relocations |
-| measurer A | wharf + Avenue A landmarks (running) |
-| measurer B | ✅ 16/16 located (dash-* features condemned as unshared) |
-| measurer C | center seams (running) |
-| measurer D | ✅ 12/13 located |
+| orchestrator | all stages complete; awaiting HUMAN_QUEUE answers |
+| measurers A–D | ✅ finished (63 relocations + 5 new features) |
 
 ## ETA
 
-Stage 1 is file consolidation (no compute): hours, not days. Stage 2 (1899
-registration) is the long pole; band depends on how many control pairs verify
-cleanly at half resolution. Estimate firms up after the first seam group.
+All cloud stages complete. Remaining: HUMAN_QUEUE answers (HQ-1..4) and the
+off-cloud full-resolution renders/DZI (single commands, documented in
+REPORT.md).
 
 ## Human queue
 

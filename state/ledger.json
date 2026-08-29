@@ -2,7 +2,7 @@
  "project": "Galveston Sanborn wharf/downtown mosaics, 1899 + 1912",
  "branch": "claude/galveston-setup-part-a-mk5z1l",
  "governing_spec": "Cloud addendum (Part B brief unavailable in this cloud session; stage structure reconstructed from the addendum and prior-work branches). Ambiguities go to HUMAN_QUEUE.md, not guessed.",
- "updated_utc": "2026-08-29T07:50:00Z",
+ "updated_utc": "2026-08-29T08:05:00Z",
  "environment": {
   "network": "restricted proxy: pypi/apt/github reachable; loc.gov, tile.loc.gov, maps.lib.utexas.edu, texashistory.unt.edu blocked (CONNECT 403)",
   "source_fetch_path": "GitHub Actions CI runners (full egress) commit sources to data branches; sessions read them via git",
@@ -98,8 +98,13 @@
    ]
   },
   "4_tools_indexes": {
-   "status": "mostly done",
-   "plan": "sheets/blocks/intersections.geojson per year; tools/render.py (byte-for-byte, disk estimate printed up front); tools/crop.py (address + print size, lazy hash-cached fetch via git mirrors first, source URLs second); REPORT.md; DZI only if <500MB/year."
+   "status": "done",
+   "outputs": [
+    "tools/{reciplib,crop,render}.py (+--dzi)",
+    "outputs/{1899,1912}/recipe/{grid.json, sheets/intersections/blocks.geojson}",
+    "REPORT.md"
+   ],
+   "notes": "DZI tile sets deferred off-cloud (repo size budget); render.py --dzi produces them. state/events.jsonl hook stream was never wired (no hooks configured in Part A settings.json) \u2014 deviation from addendum \u00a7C, ledger+STATUS pushes served as the event record."
   }
  },
  "disk": {
