@@ -25,6 +25,14 @@ os.chdir(REPO)
 NET = json.load(open(os.path.join(ROOT, "out", "network_1912.json")))
 UNITS = NET["units"]
 PAIRS = NET["pairs"]
+import re as _re
+# keymap-documented oblique sheets: the DRAWING is rotated (shore strips,
+# Seawall diagonals), so the angle bound does not apply — only scale + fit
+# quality gate them
+OBLIQUE = {uid for uid, u in UNITS.items()
+           if _re.search(r"diagonal|shore|sea ?wall|boulevard|beach",
+                         (u.get("note") or ""), _re.I)}
+print("oblique class:", sorted(OBLIQUE))
 
 _gray, _edge = OrderedDict(), OrderedDict()
 def gray(uid):
@@ -250,7 +258,8 @@ while rounds < 6:
         M, t, med, kept = fit
         th = float(np.degrees(np.arctan2(M[1, 0], M[0, 0])))
         sc = float(np.hypot(M[0, 0], M[1, 0]))
-        if abs(sc - nsc) <= 0.05 * nsc and abs(th - nth) <= 1.8 and med <= 25 and kept >= 5:
+        th_ok = (abs(th - nth) <= 1.8) or (uid in OBLIQUE and med <= 18)
+        if abs(sc - nsc) <= 0.05 * nsc and th_ok and med <= 25 and kept >= 5:
             placed[uid] = {"m": M, "t": t,
                            "how": f"fit(n={kept},med={med:.1f},round={rounds})"}
             report[uid] = {"how": "fit", "n": kept, "med": round(med, 1),
