@@ -10,7 +10,7 @@
 | Target sheets | 13 (of which 13 in repo) | 13 + 1 context (18 archival JP2s in repo) |
 | Registration | ✅ full-affine rebuild, gated | ✅ solved affines (prior accepted run) |
 | Seams | ✅ 19 min-ink cuts + ownership | ✅ cuts + masks frozen |
-| QC | ⬜ | ✅ prior run1 + 2 reviewer reports |
+| QC | ✅ gate + guard metrics + proof panels | ✅ prior run1 + 2 reviewer reports |
 | Recipe consolidated | ⬜ | ✅ (hash-verified vs freeze) |
 
 ## Stage bars
@@ -19,7 +19,7 @@
 Stage 0  inventory + environment   ██████████ done
 Stage 1  consolidate 1912 recipe   ██████████ done
 Stage 2  register 1899             █████████░ solved + gated (HQ-4 adjudication open)
-Stage 3  QC + human queue          ░░░░░░░░░░
+Stage 3  QC + human queue          █████████░ done (HQ-4 open)
 Stage 4  indexes + render/crop     █████████░ both years live (crop.py verified on 1899 + 1912)
 ```
 
@@ -56,7 +56,15 @@ Row/col per the key maps; 1899 wharf column sits 0.67 rows high of the inland gr
 
 \*across = drafted frontage separation vs. default street width — absorbs the plates' drafted-width disagreement, **not** seam misregistration (source: prior QA run1, consolidated). All 17 seams PASS mask tiling; worst gap 0.001 px.
 
-1899: measured after the consolidated solve.
+### 1899 (held-out landmark gate, worst first)
+
+| landmark | pair | step px |
+|---|---|---|
+| th-hydrant-514 (symbol) | 14\|16 | 16.3 — HQ-4 |
+| red-disc-7 (symbol) | 11\|12 | 14.3 — HQ-4 |
+| blk-sw-corner-east-of-tracks | 08\|07 | 7.7 |
+| pier22 corners | 07\|06 | ≤5.6 |
+| all remaining structural | — | ≤3.6 |
 
 ## Active agents
 

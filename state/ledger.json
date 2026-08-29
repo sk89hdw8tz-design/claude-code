@@ -2,7 +2,7 @@
  "project": "Galveston Sanborn wharf/downtown mosaics, 1899 + 1912",
  "branch": "claude/galveston-setup-part-a-mk5z1l",
  "governing_spec": "Cloud addendum (Part B brief unavailable in this cloud session; stage structure reconstructed from the addendum and prior-work branches). Ambiguities go to HUMAN_QUEUE.md, not guessed.",
- "updated_utc": "2026-08-29T07:15:00Z",
+ "updated_utc": "2026-08-29T07:50:00Z",
  "environment": {
   "network": "restricted proxy: pypi/apt/github reachable; loc.gov, tile.loc.gov, maps.lib.utexas.edu, texashistory.unt.edu blocked (CONNECT 403)",
   "source_fetch_path": "GitHub Actions CI runners (full egress) commit sources to data branches; sessions read them via git",
@@ -89,8 +89,13 @@
    "notes": "dense content matching weak on narrow seams as the seed warned; landmark-only constraints on 6 pairs (flagged in qc/r1_measurements.json dense_flags)"
   },
   "3_qc": {
-   "status": "pending",
-   "plan": "Seam QC crops from full-res overlap margins for both years; worst-ten seams to STATUS.md; open items to HUMAN_QUEUE.md with PNGs under outputs/qc/human/."
+   "status": "done",
+   "outputs": [
+    "outputs/1899/recipe/qc/guard_metrics.json (footprint coverage 99.68%, tone jump 12.95 vs 18.48)",
+    "outputs/1899/recipe/qc/proof/ (19 seam panels + gate-landmark contact sheet)",
+    "outputs/qc/preview_1899_div8.png",
+    "outputs/qc/human/HQ4_*.png"
+   ]
   },
   "4_tools_indexes": {
    "status": "mostly done",

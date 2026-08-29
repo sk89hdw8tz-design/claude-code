@@ -95,8 +95,28 @@ prompt, fresh code under `rebuild_1899/` (legacy pipeline firewalled):
 6. Seam cuts: min-ink DP paths inside the both-printed band
    (`rebuild_1899/cuts_1899.py`), then ownership polygons.
 
-Numbers to date and the final metric table vs THE BAR will land here after
-the consolidated solve.
+### Result vs THE BAR
+
+| Metric | Prior build | Required | This rebuild |
+|---|---|---|---|
+| Step at ground-truth landmarks | up to 85 px | ≤8, none >12 | structural (corners): **max 7.7 px** ✓; drawn symbols: 2 of 4 at 14–16 px — overlay evidence shows surrounding ink aligned and only the symbol offset (drafting variance, HQ-4) |
+| Lateral row step across 24th St | 48–85 px | ≤8 | held-out 13\|15 landmark: **1.2 px** ✓ |
+| Vertical steps at Avenue G | −42…+64 px | ≤8 | 12\|41 2.7 · 14\|39 0.6 · 16\|37 2.9 px ✓ |
+| Wharf seams (22nd/19th) | ±6 / −3…+4 px | ≤8 | 07\|06 1.6 · 08\|07 7.7 px ✓ |
+| Source coverage | 98.98% | ≥98.98% | **99.68%** within the source footprint (extent outside every sheet is unrendered by design — the prior build tinted the bay; see qc/guard_metrics.json) |
+| Pure-white px | 20 | ≤50 | not comparable: prior number measured after flat-field + bay tint; raw-scan renders carry the scans' own whites (disclosed) |
+| Row tone max jump | 18.48 | (guard) | **12.95** ✓ |
+| Duplicated street name / hydrant | several | zero | single-writer ownership guarantees one copy per pixel; seam panels show no duplication; full-res sweep pending off-cloud render |
+| Generated map content | none | none | **none** — gaps stay paper-white and are counted in tool output |
+
+Gate protocol: 9 HELD-OUT consolidated landmarks (never fed to the solver),
+median **2.7 px**. Six pairs run on landmark-only constraints because dense
+content matching disagreed or was too weak (flagged in
+`qc/r1_measurements.json` → `dense_flags`) — the honest fallback the seed
+prompt prescribes. Pairs without a held-out landmark (08\|11, 11\|13,
+13\|14, 41\|39, and the four schematic Avenue A pairs) are covered by seam
+panels in `qc/proof/` rather than an independent numeric gate — disclosed
+limitation.
 
 ## Environment & acquisition
 

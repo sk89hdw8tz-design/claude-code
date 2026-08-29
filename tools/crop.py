@@ -108,9 +108,12 @@ def main():
         warped = cv2.warpAffine(img, A, (W, H), flags=cv2.INTER_LANCZOS4,
                                 borderValue=(255, 255, 255))
         inb = np.zeros((H, W), np.uint8)
+        wq, hq = img.shape[1], img.shape[0]
+        ins = 60      # keep scanner-edge junk out of the fallback fill
+        bot = 230 if getattr(r, "year", None) == 1899 else ins  # 1899 credit caption band
         corners = np.array([(M @ np.array(p) + t - [x0, y0])
-                            for p in [(0, 0), (img.shape[1], 0),
-                                      (img.shape[1], img.shape[0]), (0, img.shape[0])]],
+                            for p in [(ins, ins), (wq - ins, ins),
+                                      (wq - ins, hq - bot), (ins, hq - bot)]],
                            np.int32)
         cv2.fillPoly(inb, [corners], 255)
         fb = (covered == 0) & (inb > 0)
