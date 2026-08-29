@@ -407,6 +407,193 @@
    ],
    "confidence": "medium",
    "note": "Constructed point at the centre of Avenue M where the dashed water pipe of the 80-ft street crosses it. y from the pipe, which both sheets draw. x by stepping half the labelled 70-ft avenue width inward from each sheet's own Avenue M property line (40 west line x=3115, 67 east line x=265). Block identity fixed by house numbering - the street carries 1219-1224 west of Avenue M on 40 and 1301-1306 east of it on 67 - and by the Av-M lot label runs (2102-2128 on 40, 2101-2127 on 67). CAUTION: sheet 67 appears drawn ~9% larger than 40 (its Av-M lot run spans 927 px against 850 px on 40) and it draws this street only 123 px wide against 243 px on 40, so x/y here are good only to ~+-25 px. Nothing is drawn inside Avenue M on either sheet."
+  },
+  {
+   "pair": [
+    "49",
+    "48"
+   ],
+   "id": "tie-49-48-1",
+   "owner_xy": [
+    2711,
+    3781
+   ],
+   "nbr_xy": [
+    725,
+    250
+   ],
+   "confidence": "high",
+   "note": "Crossing of the double-dashed 20-ft alley through the 300-block with the NORTH rail line of the railroad in 9th St. Alley identity fixed by house numbers on both sides: it separates 312 from 314 on 49 (north side of 9th) and 311 from 313 on 48 (south side). Both sheets draw the pair of rail lines 17-18 px apart; the northern one was used on both. NOTE the two sheets label the same track differently - 49 calls it 'GALVESTON & WESTERN R.R.', 48 and 47 call it 'GALVESTON, LA PORT & HOUSTON R.R. (BAY SHORE LINE)'."
+  },
+  {
+   "pair": [
+    "49",
+    "47"
+   ],
+   "id": "tie-49-47-1",
+   "owner_xy": [
+    1690,
+    3778
+   ],
+   "nbr_xy": [
+    2705,
+    228
+   ],
+   "confidence": "high",
+   "note": "Crossing of the double-dashed 20-ft alley through the 200-block with the NORTH rail line of the railroad in 9th St. Alley identity fixed by house numbers: 212|214 on 49 (north side), 211|213 on 47 (south side); a T.H. dot sits just NE of the crossing on both sheets. Same construction as tie-49-48-1, so the three sheets are tied consistently."
+  },
+  {
+   "pair": [
+    "51",
+    "53"
+   ],
+   "id": "tie-51-53-1",
+   "owner_xy": [
+    705,
+    3777
+   ],
+   "nbr_xy": [
+    1737,
+    251
+   ],
+   "confidence": "high",
+   "note": "Crossing of the double-dashed 20-ft alley through the 700-block with the northern of the two rail/track lines drawn along 9th St ('Galveston & Western R.R., not used'). Alley identity fixed by house numbers: it separates 712 from 714 on 51 (north side of 9th) and 711 from 713 on 53 (south side); a T.H. dot sits just NE of the alley on both sheets. Implied offset sheet53 = sheet51 + (1032,-3526)."
+  },
+  {
+   "pair": [
+    "50",
+    "53"
+   ],
+   "id": "tie-50-53-1",
+   "owner_xy": [
+    2726,
+    3778
+   ],
+   "nbr_xy": [
+    738,
+    251
+   ],
+   "confidence": "high",
+   "note": "Crossing of the dashed 20-ft alley through the 600-block with the heavy (southern) of the two track lines of the 'G.& W. R.R. not used' in 9th St. Alley anchored by house numbers: 612|614 on 50 (north side), 611|613 on 53 (south side), with a T.H. dot immediately NE of it on both sheets. dy=-3527 matches the 51->53 tie (-3526)."
+  },
+  {
+   "pair": [
+    "51",
+    "54"
+   ],
+   "id": "tie-51-54-1",
+   "owner_xy": [
+    2718,
+    3779
+   ],
+   "nbr_xy": [
+    653,
+    250
+   ],
+   "confidence": "high",
+   "note": "Crossing of the double-dashed 20-ft alley through the 900-block with the heavy track line of the G.& W. R.R. in 9th St. Alley anchored by house numbers: 912|914 on 51 (north side), 911|913 on 54 (south side), T.H. dot immediately NE on both. dy=-3529, consistent with the other three 9th-St seams (-3526/-3527)."
+  },
+  {
+   "pair": [
+    "53",
+    "55"
+   ],
+   "id": "tie-53-55-1",
+   "owner_xy": [
+    2221,
+    3803
+   ],
+   "nbr_xy": [
+    2247,
+    277
+   ],
+   "confidence": "high",
+   "note": "Junction of the dashed 6in W.PIPE that runs north along the 70-ft avenue between the 700 and 800 blocks with the dashed 10in W.PIPE running along 12th St. Unique in the strip and explicitly lettered '6in W.PIPE' on 55. Anchored by house numbering: houses 714-724 west of the avenue and 802-812 east of it on 53 (north side of 12th), 713-723 and 801-811 on 55 (south side). Implied offset sheet55 = sheet53 + (26,-3526)."
+  },
+  {
+   "pair": [
+    "53",
+    "54"
+   ],
+   "id": "tie-53-54-1",
+   "owner_xy": [
+    3242,
+    388
+   ],
+   "nbr_xy": [
+    183,
+    391
+   ],
+   "confidence": "medium",
+   "note": "Constructed point at the centre of SEALY avenue where it meets the south property line of the 80-ft street north of the 900 block. y comes from that property line, drawn as a real block corner on both sheets (53: NE corner of the block with houses 819-823 at 3140,388 with Sealy lots 902/904 beside it; 54: NW corner of the block with houses 901-905 at 285,391 with lots 901/903 beside it). x is constructed by stepping half the labelled 70-ft width (102 px) inward from each sheet's own Sealy property line, because nothing is drawn inside Sealy avenue here - no pipe, no hydrant. Treat x as +-25 px."
+  },
+  {
+   "pair": [
+    "49",
+    "50"
+   ],
+   "id": "tie-49-50-1",
+   "owner_xy": [
+    3143,
+    380
+   ],
+   "nbr_xy": [
+    117,
+    382
+   ],
+   "confidence": "high",
+   "note": "NE corner of the block whose north face carries houses 319-323 and whose east (avenue) face carries lots 602/604/606 - i.e. the corner of the 70-ft avenue's west line with the 80-ft street's south property line. Sheet 49 draws it as the real block corner; sheet 50 draws the same corner as the neighbour-block outline at its left margin, 215 px west of its own block corner at x=332 (which matches the 70-ft avenue width). Implied offset sheet50 = sheet49 + (-3026,+2)."
+  },
+  {
+   "pair": [
+    "50",
+    "51"
+   ],
+   "id": "tie-50-51-1",
+   "owner_xy": [
+    3143,
+    380
+   ],
+   "nbr_xy": [
+    121,
+    379
+   ],
+   "confidence": "high",
+   "note": "Same construction one avenue east: NE corner of the block with houses 619-623 on its north face and lots 602/604/606 on its avenue face. Sheet 50 draws the real corner; sheet 51 draws it as the neighbour-block outline at its left margin, 212 px west of its own block NW corner at x=333 (= the 70-ft avenue). Implied offset sheet51 = sheet50 + (-3022,-1)."
+  },
+  {
+   "pair": [
+    "48",
+    "53"
+   ],
+   "id": "tie-48-53-1",
+   "owner_xy": [
+    3143,
+    378
+   ],
+   "nbr_xy": [
+    127,
+    380
+   ],
+   "confidence": "high",
+   "note": "NE corner of the block with houses 519-523 on its north face and lots 902/904/906 on its avenue face. Sheet 48 draws the real corner; sheet 53 draws the same corner as the neighbour-block outline at its left margin, 208 px west of its own block NW corner at x=335 (= the labelled 70-ft avenue). Implied offset sheet53 = sheet48 + (-3016,+2)."
+  },
+  {
+   "pair": [
+    "51",
+    "52"
+   ],
+   "id": "tie-51-52-1",
+   "owner_xy": [
+    3347,
+    385
+   ],
+   "nbr_xy": [
+    56,
+    370
+   ],
+   "confidence": "medium",
+   "note": "Constructed point at the centre of Avenue J / BROADWAY (labelled '150' on both sheets) where it meets the south property line of the 80-ft street north of the 600/1000 blocks. y from that property line, drawn as a real block corner on both (51: NE corner of the pink brick block with houses 921-923 at 3128,385; 52: NW corner of the block with houses 1001-1005 at 275,370). x constructed by stepping half of Broadway's 150 ft (219 px) inward from each sheet's own Broadway property line, since nothing is drawn inside Broadway here. Treat x as +-30 px (the same construction on the Sealy seam 53|54 was ~38 px off the value implied by the high-confidence 9th-St ties)."
   }
  ]
 }

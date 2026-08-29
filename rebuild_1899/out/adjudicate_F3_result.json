@@ -407,6 +407,210 @@
    ],
    "confidence": "high",
    "note": "East end of the same block on 36th St, where the 35-ft passage (labelled 35, numbers 3526/3528 west and 3525/3527 east) meets the block line - last number 2124 on 85. On 88 it is the east end of the top-margin sliver line at x=3163. dx 2086 vs 2070 for tie-85-88-1 (sliver line 801 px long on 88 vs 785 px on 85)."
+  },
+  {
+   "pair": [
+    "85",
+    "89"
+   ],
+   "id": "tie-85-89-1",
+   "owner_xy": [
+    2084,
+    3649
+   ],
+   "nbr_xy": [
+    1074,
+    119
+   ],
+   "confidence": "high",
+   "note": "SE corner of the 2200-block of 36th St (85: last numbers 2222/2224 west of it, 3526/3528 up Avenue R). On 89 it is the west side of the 213-px avenue gap in the top-margin sliver line. dx 1010."
+  },
+  {
+   "pair": [
+    "85",
+    "89"
+   ],
+   "id": "tie-85-89-2",
+   "owner_xy": [
+    2290,
+    3647
+   ],
+   "nbr_xy": [
+    1287,
+    119
+   ],
+   "confidence": "high",
+   "note": "SW corner of the 2300-block of 36th St, the other side of the same avenue (85: numbers 2302/2304 east, 3525/3527 up the avenue; 89: 2301/2303 and 3601/3603 on its own block below). dx 1003, dy 3528 - matches tie-85-89-1 (dx 1010)."
+  },
+  {
+   "pair": [
+    "86",
+    "89"
+   ],
+   "id": "tie-86-89-1",
+   "owner_xy": [
+    274,
+    3665
+   ],
+   "nbr_xy": [
+    2304,
+    123
+   ],
+   "confidence": "high",
+   "note": "SW corner of the 2400-block of 36th St on 86 (numbers 3525/3527 up Avenue R-1/2, 2402/2404 east). On 89 it is the west end of the eastern segment of the top-margin sliver line (stub rising to the paper edge), the segment that runs under the 86 neighbour glyph. dx 2030."
+  },
+  {
+   "pair": [
+    "86",
+    "89"
+   ],
+   "id": "tie-86-89-2",
+   "owner_xy": [
+    1069,
+    3662
+   ],
+   "nbr_xy": [
+    3103,
+    126
+   ],
+   "confidence": "high",
+   "note": "SE corner of the same 2400-block (last numbers 2422/2424 west, 3526/3528 up the avenue, 70-ft label east on 86); east end of that sliver segment on 89. dx 2034, dy 3536 - matches tie-86-89-1 (dx 2030, dy 3542), and the 783-px block length is identical on both sheets."
+  },
+  {
+   "pair": [
+    "86",
+    "90"
+   ],
+   "id": "tie-86-90-1",
+   "owner_xy": [
+    1282,
+    3667
+   ],
+   "nbr_xy": [
+    292,
+    138
+   ],
+   "confidence": "high",
+   "note": "SW corner of the 2500-block of 36th St on 86 (numbers 3525/3527 up Avenue S, 70-ft label west, 2502/2504 east). On 90 it is the west end of the top-margin sliver line, the stub just NE of the compass rose. dx 990."
+  },
+  {
+   "pair": [
+    "86",
+    "90"
+   ],
+   "id": "tie-86-90-2",
+   "owner_xy": [
+    2070,
+    3674
+   ],
+   "nbr_xy": [
+    1093,
+    142
+   ],
+   "confidence": "high",
+   "note": "SE corner of the same 2500-block, where the 35-ft passage (numbers 3526/3528 east of the line) meets 36th St, last number 2524 west. On 90 it is the stub left of the 86 neighbour glyph, with the matching 35-ft gap (90 x 1093-1200 vs 86 x 2070-2177). dx 977 vs 990 for tie-86-90-1."
+  },
+  {
+   "pair": [
+    "30",
+    "87"
+   ],
+   "id": "tie-30-87-1",
+   "owner_xy": [
+    3316,
+    1534
+   ],
+   "nbr_xy": [
+    251,
+    1570
+   ],
+   "confidence": "medium",
+   "note": "CONSTRUCTED: Avenue N-1/2 carries no hydrant, pipe or overlap sliver - 30 stops at its own block line (x 3104) and 87 at its own (x 251), each leaving the avenue blank. Point = NW corner of 87s block 60 N.E. below 37th St (numbers 1601/1603 east, 3701/3703 down the avenue), expressed on 30 as its block 10 S.E. NE corner (3104,1534; numbers 1519/1521/1523 west, 3702/3704 down) plus the 212-px (70-ft) avenue width measured elsewhere in this atlas. y from the common 37th-St south curb."
+  },
+  {
+   "pair": [
+    "30",
+    "87"
+   ],
+   "id": "tie-30-87-2",
+   "owner_xy": [
+    3310,
+    2700
+   ],
+   "nbr_xy": [
+    249,
+    2745
+   ],
+   "confidence": "medium",
+   "note": "CONSTRUCTED, same method one street south: NW corner of 87s block 60 N.W. below 38th St (numbers 1601/1603 east, 3801/3803 down the avenue) vs 30s block 10 N.W. NE corner (3098,2700; 1519/1521/1523 west, 3802/3804 down) plus 212 px. Implied dx 3061 agrees with tie-30-87-1 (3065), so the two corner pairs are consistently identified."
+  },
+  {
+   "pair": [
+    "87",
+    "88"
+   ],
+   "id": "tie-87-88-1",
+   "owner_xy": [
+    3293,
+    1316
+   ],
+   "nbr_xy": [
+    330,
+    1291
+   ],
+   "confidence": "high",
+   "note": "SW corner of block 86 N.W. at Avenue P and 37th St - on 88 the corner with house nos. 1902/1904 east along 37th St and 3625/3627 up the avenue; sheet 87 draws the same corner in its east-margin sliver (line runs north and a short spur east to the paper edge). dx 2963."
+  },
+  {
+   "pair": [
+    "87",
+    "88"
+   ],
+   "id": "tie-87-88-2",
+   "owner_xy": [
+    3256,
+    1358
+   ],
+   "nbr_xy": [
+    292,
+    1321
+   ],
+   "confidence": "high",
+   "note": "T.H. hydrant dot in Avenue P just SW of that same corner (the only T.H. in the shared avenue strip; both sheets label it T.H. and both show the dashed 37th-St line ~120 px below). dx 2964, matching tie-87-88-1 to 1 px; dy 37 vs 25 because the symbol is drawn slightly lower on 87."
+  },
+  {
+   "pair": [
+    "87",
+    "92"
+   ],
+   "id": "tie-87-92-1",
+   "owner_xy": [
+    1050,
+    3677
+   ],
+   "nbr_xy": [
+    2133,
+    123
+   ],
+   "confidence": "high",
+   "note": "SE corner of the 1600-block of 39th St on 87 (last numbers 1622/1624 west, 3826/3828 up Avenue N-1/2). On 92 it is the east end of the western top-margin sliver segment, immediately left of the 87 neighbour glyph, with 92s own 1621/1623 numbers just below. dx 1083."
+  },
+  {
+   "pair": [
+    "87",
+    "92"
+   ],
+   "id": "tie-87-92-2",
+   "owner_xy": [
+    1254,
+    3677
+   ],
+   "nbr_xy": [
+    2344,
+    119
+   ],
+   "confidence": "high",
+   "note": "SW corner of the 1700-block of 39th St, the other side of the same 204-px avenue (87: numbers 1702/1704 east, 3827 up the avenue; 92: sliver stub directly above its own block corner carrying 1701/1703 and 3901/3903). dx 1090, dy 3558 - matches tie-87-92-1 (dx 1083, dy 3554)."
   }
  ]
 }
