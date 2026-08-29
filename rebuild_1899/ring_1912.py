@@ -195,7 +195,59 @@ def fit_multi(cors_by_nbr):
     return f, f"merged {len(agree)}/{len(pre)} neighbours"
 
 flags, report = {}, {}
-pool = set(UNITS) - set(placed)
+# Iterated ring: only core + FITTED units anchor matching (a prior-placed
+# unit never propagates its guess). Flagged units are retried every round
+# as their neighbourhoods solidify; priors are assigned only at the end.
+anchors = set(placed)
+rounds = 0
+while True:
+    rounds += 1
+    pool = set(UNITS) - anchors
+    progress = False
+    for uid in sorted(pool, key=lambda u: -sum(
+            1 for p in nbr_pairs.get(u, [])
+            if (p["nbr"] if p["owner"] == u else p["owner"]) in anchors)):
+        others = [(p, (p["nbr"] if p["owner"] == uid else p["owner"]))
+                  for p in nbr_pairs.get(uid, [])]
+        if not any(o in anchors for _, o in others):
+            continue
+        cors_by_nbr = {}
+        nb_th, nb_sc = [], []
+        for p, other in others:
+            if other not in anchors:
+                continue
+            M = placed[other]["m"]
+            nb_th.append(np.degrees(np.arctan2(M[1, 0], M[0, 0])))
+            nb_sc.append(np.hypot(M[0, 0], M[1, 0]))
+            Mu, tu = seed_pose(uid, p, other)
+            got = match_pts(uid, other, Mu, tu, search=380)
+            if got:
+                cors_by_nbr.setdefault(other, []).extend(got)
+        if not cors_by_nbr:
+            continue
+        nth, nsc = float(np.median(nb_th)), float(np.median(nb_sc))
+        fit, fitnote = fit_multi(cors_by_nbr)
+        if not fit:
+            continue
+        M, t, med, kept = fit
+        th = float(np.degrees(np.arctan2(M[1, 0], M[0, 0])))
+        sc = float(np.hypot(M[0, 0], M[1, 0]))
+        if abs(sc - nsc) <= 0.05 * nsc and abs(th - nth) <= 1.8 and med <= 25:
+            placed[uid] = {"m": M, "t": t, "how": f"fit(n={kept},med={med:.1f},round={rounds})"}
+            report[uid] = {"how": "fit", "n": kept, "med": round(med, 1),
+                           "theta": round(th, 2), "scale": round(sc, 4), "round": rounds}
+            anchors.add(uid)
+            flags.pop(uid, None)
+            progress = True
+            print(f"  {uid}: fit n={kept} med={med:.1f} th={th:+.2f} sc={sc:.3f} (round {rounds})",
+                  flush=True)
+        else:
+            flags[uid] = (f"fit rejected med={med:.1f} kept={kept} th={th:.2f} "
+                          f"(nbr {nth:.2f}) sc={sc:.4f} (nbr {nsc:.4f})")
+    if not progress:
+        break
+# residual units: prior placement chained from nearest anchor
+pool = set(UNITS) - anchors
 while pool:
     scored = []
     for uid in pool:
@@ -206,47 +258,22 @@ while pool:
     scored.sort(key=lambda s: -s[0])
     n_pl, uid = scored[0]
     pool.discard(uid)
-    if n_pl == 0:
+    seedref = None
+    for p in nbr_pairs.get(uid, []):
+        other = p["nbr"] if p["owner"] == uid else p["owner"]
+        if other in placed:
+            seedref = (p, other)
+            if other in anchors:
+                break
+    if seedref is None:
         placed[uid] = {"m": 2 * np.eye(2), "t": np.zeros(2), "how": "isolated"}
         flags[uid] = "no placed neighbour"
         report[uid] = {"how": "isolated"}
         continue
-    cors_by_nbr = {}
-    nb_th, nb_sc = [], []
-    seedref = None
-    for p in nbr_pairs.get(uid, []):
-        other = p["nbr"] if p["owner"] == uid else p["owner"]
-        if other not in placed:
-            continue
-        M = placed[other]["m"]
-        nb_th.append(np.degrees(np.arctan2(M[1, 0], M[0, 0])))
-        nb_sc.append(np.hypot(M[0, 0], M[1, 0]))
-        seedref = seedref or (p, other)
-        Mu, tu = seed_pose(uid, p, other)
-        got = match_pts(uid, other, Mu, tu, search=380)
-        if got:
-            cors_by_nbr.setdefault(other, []).extend(got)
-    nth, nsc = float(np.median(nb_th)), float(np.median(nb_sc))
-    fit, fitnote = fit_multi(cors_by_nbr) if cors_by_nbr else (None, "no matches")
-    cors = [c for v in cors_by_nbr.values() for c in v]
-    if fit:
-        M, t, med, kept = fit
-        th = float(np.degrees(np.arctan2(M[1, 0], M[0, 0])))
-        sc = float(np.hypot(M[0, 0], M[1, 0]))
-        if abs(sc - nsc) <= 0.05 * nsc and abs(th - nth) <= 1.8 and med <= 25:
-            placed[uid] = {"m": M, "t": t, "how": f"fit(n={kept},med={med:.1f})"}
-            report[uid] = {"how": "fit", "n": kept, "med": round(med, 1),
-                           "theta": round(th, 2), "scale": round(sc, 4)}
-            print(f"  {uid}: fit n={kept} med={med:.1f} th={th:+.2f} sc={sc:.3f}",
-                  flush=True)
-            continue
-        flags[uid] = (f"fit rejected med={med:.1f} kept={kept} th={th:.2f} "
-                      f"(nbr {nth:.2f}) sc={sc:.4f} (nbr {nsc:.4f})")
-    else:
-        flags[uid] = f"fit failed ({fitnote}; {len(cors)} correspondences)"
     p, other = seedref
     Mu, tu = seed_pose(uid, p, other)
     placed[uid] = {"m": Mu, "t": tu, "how": "prior"}
+    flags.setdefault(uid, "no accepted fit after iterated rounds")
     report[uid] = {"how": "prior", "flag": flags[uid]}
     print(f"  {uid}: PRIOR ({flags[uid]})", flush=True)
 
