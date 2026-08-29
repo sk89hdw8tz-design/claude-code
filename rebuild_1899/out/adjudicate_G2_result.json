@@ -653,6 +653,102 @@
    ],
    "confidence": "medium",
    "note": "Centre of the FIRE ALARM box (black ring with pink F.A. disc) standing in AVENUE L (both sheets letter AVENUE L across this strip, u50 with the neighbour number 51 and u51 with 50). It is the only F.A. in this stretch of the avenue and is the only object either sheet draws in the shared strip. The dashed W.PIPE line crossing ~150 px north gives dy ~ -3 while the symbol centres give dy ~ -25, so the symbol placement disagrees by ~20 px; hence medium. Implies dx=+3048, dy=-25."
+  },
+  {
+   "pair": [
+    "17",
+    "18"
+   ],
+   "status": "featureless",
+   "note": "Shared strip is the interior of AVE. C OR MECHANIC. u17's east block line is at x~3060 and its paper ends ~3290, short of the far curb; u18's own west block line is at x~228 and everything west of it to the paper edge is blank. Verified visually at 8th St: nothing drawn between the two frontages except each sheet's own AVE. C OR MECHANIC lettering. No tie."
+  },
+  {
+   "pair": [
+    "19",
+    "20"
+   ],
+   "status": "featureless",
+   "note": "Shared strip is the interior of AVE. I OR SEALY. Neither sheet draws the other's curb (u19 east block line x~3102, paper edge ~3290; u20 west block line x~151 with nothing west of it). Only each sheet's own avenue lettering plus the W.PIPE dashed lines that cross the strip (y-only information). No tie."
+  },
+  {
+   "pair": [
+    "24",
+    "25"
+   ],
+   "status": "featureless",
+   "note": "Shared strip is the interior of AVENUE L. u24's east block line is x~3103 and u25's west block line x~218; neither draws the opposite curb and the intervening avenue carries only the AVENUE L lettering on each sheet. No tie."
+  },
+  {
+   "pair": [
+    "28",
+    "29"
+   ],
+   "status": "featureless",
+   "note": "Shared strip is the interior of AVE. F OR CHURCH. u28 east block line x~3076, u29 west block line x~250; the avenue interior is blank on both apart from the avenue lettering. No tie."
+  },
+  {
+   "pair": [
+    "29",
+    "30"
+   ],
+   "status": "featureless",
+   "note": "Shared strip is the interior of AVE. I OR SEALY. u29 east block line x~3049, u30 west block line x~231; blank between. No tie."
+  },
+  {
+   "pair": [
+    "34",
+    "35"
+   ],
+   "status": "featureless",
+   "note": "Shared strip is the interior of AVE. F OR CHURCH. u34 east block line x~3072 (side numbers 1502-1528), u35 west block line ~250 (side numbers 1601-1637); nothing is drawn in between except the avenue lettering and two W.PIPE dashed lines crossing the strip (y-only). No tie."
+  },
+  {
+   "pair": [
+    "35",
+    "36"
+   ],
+   "status": "featureless",
+   "note": "Shared strip is the interior of AVE. I OR SEALY; u35 draws nothing east of its own block line (x~3056) and u36 nothing west of its own (x~207). No tie."
+  },
+  {
+   "pair": [
+    "36",
+    "37"
+   ],
+   "status": "featureless",
+   "note": "Shared strip is the interior of AVENUE L; u36 draws nothing east of x~3092 and u37 nothing west of its blocks. Only the AVENUE L lettering on each sheet. No tie."
+  },
+  {
+   "pair": [
+    "38",
+    "26"
+   ],
+   "status": "featureless",
+   "note": "Not a normal shared-avenue seam: u38's east margin is the Gulf shoreline strip (it prints the neighbour number 26 and the shoreline/0 edge) while u26's west margin holds its own O-1/2 blocks. No feature is drawn on both. No tie."
+  },
+  {
+   "pair": [
+    "57",
+    "58"
+   ],
+   "status": "featureless",
+   "note": "Shared strip is the interior of AVENUE N. u57 draws nothing east of its own block line (x~3096, side numbers 2816-2822) and u58 nothing west of its own (x~225, side numbers 2813-2821). The only ink in the strip is each sheet's own large AVENUE lettering - the round letters coincide in y on both sheets, which is typographic coincidence and must not be used as a tie. No tie."
+  },
+  {
+   "pair": [
+    "46",
+    "51"
+   ],
+   "status": "corner-overlap-only",
+   "note": "Diagonal adjacency: 51 lies below and WEST of 46 (46 covers avenues N-O-1/2 streets 21-24, 51 covers L-N streets 24-27), so the sheets meet only in a ~230x400 px corner (u46 bottom-left against u51 top-right). Template matching over that corner locks onto the black paper margin (dx pinned at -3012 with dy unresolved, several equal-scoring dy values 42 px apart), and no named or countable feature could be anchored there. Not measured; use the 46-52, 45-51 and 51-57 chains instead."
+  },
+  {
+   "pair": [
+    "51",
+    "58"
+   ],
+   "status": "corner-overlap-only",
+   "note": "Diagonal adjacency: 58 lies below and EAST of 51 (51 covers avenues L-N streets 24-27, 58 covers N-O-1/2 streets 27-30), leaving only a ~300x380 px corner overlap (u51 bottom-right against u58 top-left). Correlation there is weak (0.28) and pinned by the sheet margin rather than by content; no anchorable feature. Not measured; use the 51-57 / 57-58 / 52-58 chains instead."
   }
  ]
 }

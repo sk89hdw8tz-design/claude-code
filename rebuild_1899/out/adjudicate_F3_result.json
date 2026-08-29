@@ -373,6 +373,40 @@
    ],
    "confidence": "medium",
    "note": "CONSTRUCTED, not shared ink: the avenue between 85 and 86 carries no hydrant, pipe or overlap sliver - each sheet stops inside it. Point = NW corner of 86s 2400-block at 33rd St (86 x=288,y=387, numbers 2401/2403 east and 3301/3303 down the avenue), expressed in 85 coordinates as its own block NE corner (3100,366, numbers 2323 west / 3302 down) plus the 70-ft avenue width (210 px) at the same street line. Cross-check: chaining 82-85 (dx 2038) with 82-86 (dx 967) gives dx 3005 vs 3022 here, so x is good to ~20 px; y from the common 33rd-St curb line drawn on both margins."
+  },
+  {
+   "pair": [
+    "85",
+    "88"
+   ],
+   "id": "tie-85-88-1",
+   "owner_xy": [
+    292,
+    3649
+   ],
+   "nbr_xy": [
+    2362,
+    121
+   ],
+   "confidence": "high",
+   "note": "SW corner of the 2100-block of 36th St (85: numbers 3525/3527 up Avenue Q, 2102/2104 east). On 88 it is the east side of the 211-px avenue gap in the top-margin sliver line, the stub rising to the paper edge; the avenue gap itself (88 x 2151-2362) matches 85s avenue (x 82-292). dx 2070."
+  },
+  {
+   "pair": [
+    "85",
+    "88"
+   ],
+   "id": "tie-85-88-2",
+   "owner_xy": [
+    1077,
+    3650
+   ],
+   "nbr_xy": [
+    3163,
+    126
+   ],
+   "confidence": "high",
+   "note": "East end of the same block on 36th St, where the 35-ft passage (labelled 35, numbers 3526/3528 west and 3525/3527 east) meets the block line - last number 2124 on 85. On 88 it is the east end of the top-margin sliver line at x=3163. dx 2086 vs 2070 for tie-85-88-1 (sliver line 801 px long on 88 vs 785 px on 85)."
   }
  ]
 }
