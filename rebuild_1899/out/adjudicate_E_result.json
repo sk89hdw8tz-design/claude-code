@@ -1,1 +1,38 @@
-{"ties": []}
+{
+ "ties": [
+  {
+   "pair": [
+    "45",
+    "43"
+   ],
+   "id": "tie-45-43-1",
+   "owner_xy": [
+    2758,
+    3706
+   ],
+   "nbr_xy": [
+    1746,
+    187
+   ],
+   "confidence": "high",
+   "note": "T.H. hydrant dot on NE corner of 15th St and the 20-ft narrow street between houses 212/214 (45) = 211/213 (43); anchored by the 20-ft width label and house-number sequence on both sheets"
+  },
+  {
+   "pair": [
+    "45",
+    "43"
+   ],
+   "id": "tie-45-43-2",
+   "owner_xy": [
+    2736,
+    3893
+   ],
+   "nbr_xy": [
+    1748,
+    393
+   ],
+   "confidence": "high",
+   "note": "NW corner of block south of 15th St immediately east of the 20-ft street (block with houses 213-223); reference outline on 45, full block on 43; anchored by adjacency to the T.H. hydrant"
+  }
+ ]
+}

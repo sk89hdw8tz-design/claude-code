@@ -1,0 +1,3020 @@
+{
+ "units": {
+  "7": {
+   "file": 7,
+   "st": [
+    18,
+    21
+   ],
+   "avenues": [
+    "A",
+    "B",
+    "C"
+   ],
+   "keymap_rect": [
+    1240,
+    2205,
+    1540,
+    2615
+   ],
+   "note": "Avenues printed as AVENUE \"A\" / AVENUE \"B\" here (same streets labeled WATER/STRAND farther N). Narrow waterfront blocks 738-740 along W edge; FIRE LIMITS boundary runs along its N edge."
+  },
+  "8": {
+   "file": 8,
+   "st": [
+    18,
+    21
+   ],
+   "avenues": [
+    "MECHANIC",
+    "MARKET",
+    "POST OFFICE",
+    "CHURCH"
+   ],
+   "keymap_rect": [
+    1560,
+    2210,
+    1890,
+    2620
+   ],
+   "note": "FIRE LIMITS boundary line zigzags through this sheet's area."
+  },
+  "9": {
+   "file": 9,
+   "st": [
+    21,
+    24
+   ],
+   "avenues": [
+    "A",
+    "B",
+    "MECHANIC"
+   ],
+   "keymap_rect": [
+    1240,
+    2560,
+    1520,
+    2965
+   ],
+   "note": "Narrow waterfront blocks 741-743 along W edge next to pier sheet 5. Left avenue names printed AVENUE \"A\"/AVENUE \"B\" just N of here; right boundary is Mechanic. N boundary printed 21ST OR CENTER."
+  },
+  "10": {
+   "file": 10,
+   "st": [
+    21,
+    24
+   ],
+   "avenues": [
+    "MECHANIC",
+    "MARKET",
+    "POST OFFICE",
+    "CHURCH"
+   ],
+   "keymap_rect": [
+    1545,
+    2565,
+    1900,
+    2970
+   ],
+   "note": "Internal streets printed 22ND and 23RD OR TREMONT; FIRE LIMITS line runs along its E side."
+  },
+  "11": {
+   "file": 11,
+   "st": [
+    24,
+    27
+   ],
+   "avenues": [
+    "A",
+    "B",
+    "MECHANIC"
+   ],
+   "keymap_rect": [
+    1240,
+    2970,
+    1520,
+    3395
+   ],
+   "note": "Narrow waterfront blocks 744-746 on W edge next to pier sheet 5; middle avenue printed vertically as B. OR STRAND EXT'ND. FIRE LIMITS line along 27th at its S edge."
+  },
+  "12": {
+   "file": 12,
+   "st": [
+    24,
+    27
+   ],
+   "avenues": [
+    "MECHANIC",
+    "MARKET",
+    "POST OFFICE",
+    "CHURCH"
+   ],
+   "keymap_rect": [
+    1545,
+    2975,
+    1900,
+    3400
+   ],
+   "note": "Avenue names MECHANIC, MARKET, POST OFFICE, CHURCH all printed vertically within/beside this sheet; internal streets 25TH and 26TH; FIRE LIMITS line zigzags through."
+  },
+  "13": {
+   "file": 13,
+   "st": [
+    27,
+    30
+   ],
+   "avenues": [
+    "A",
+    "B",
+    "C"
+   ],
+   "keymap_rect": [
+    1240,
+    3440,
+    1520,
+    3860
+   ],
+   "note": "Narrow waterfront blocks 747-749 on W edge next to pier sheets 5/4; E boundary printed AVENUE \"C\" OR MECHANIC. FIRE LIMITS line along 27th at its N edge."
+  },
+  "14": {
+   "file": 14,
+   "st": [
+    27,
+    30
+   ],
+   "avenues": [
+    "C",
+    "D",
+    "E",
+    "F"
+   ],
+   "keymap_rect": [
+    1545,
+    3450,
+    1900,
+    3880
+   ],
+   "note": "Avenues printed AVENUE \"C\" OR MECHANIC, \"D\" OR MARKET, \"E\" OR POST OFFICE, \"F\" OR CHURCH; FIRE LIMITS line zigzags through this sheet."
+  },
+  "15": {
+   "file": 15,
+   "st": [
+    30,
+    33
+   ],
+   "avenues": [
+    "A",
+    "B",
+    "C"
+   ],
+   "keymap_rect": [
+    1300,
+    3860,
+    1540,
+    4250
+   ],
+   "note": "Only two block columns (690-692, 630-632); W part is an unplatted strip along the wharf flats (sheet 4). Avenue letters not printed at this latitude - identified by column continuation."
+  },
+  "16": {
+   "file": 16,
+   "st": [
+    30,
+    33
+   ],
+   "avenues": [
+    "C",
+    "D",
+    "E",
+    "F"
+   ],
+   "keymap_rect": [
+    1560,
+    3865,
+    1900,
+    4255
+   ],
+   "note": "Internal streets printed 31 ST. and 32 ND. Avenue letters not printed at this latitude - identified by column continuation."
+  },
+  "17": {
+   "file": 17,
+   "st": [
+    8,
+    9
+   ],
+   "avenues": [
+    "WATER",
+    "STRAND",
+    "MECHANIC"
+   ],
+   "keymap_rect": [
+    1150,
+    550,
+    1520,
+    910
+   ],
+   "note": "Shore-front sheet (pink). N boundary is the shoreline/Sea Wall; 7th St does not extend this far W - blocks 667/607 lie between the Sea Wall and 8th. Includes narrow wharf strip along the wall NW of the grid."
+  },
+  "18": {
+   "file": 18,
+   "st": [
+    7,
+    9
+   ],
+   "avenues": [
+    "MECHANIC",
+    "MARKET",
+    "POST OFFICE",
+    "CHURCH"
+   ],
+   "keymap_rect": [
+    1530,
+    545,
+    1890,
+    915
+   ],
+   "note": "Top row of blocks (546/486/426) lies between Sea Wall Boulevard and 7th."
+  },
+  "19": {
+   "file": 19,
+   "st": [
+    7,
+    9
+   ],
+   "avenues": [
+    "CHURCH",
+    "WINNIE",
+    "BALL",
+    "SEALY"
+   ],
+   "keymap_rect": [
+    1890,
+    500,
+    2270,
+    915
+   ],
+   "note": "Top row of blocks lies between Sea Wall Boulevard and 7th."
+  },
+  "20": {
+   "file": 20,
+   "st": [
+    7,
+    9
+   ],
+   "avenues": [
+    "SEALY",
+    "BROADWAY",
+    "K",
+    "L"
+   ],
+   "keymap_rect": [
+    2270,
+    500,
+    2745,
+    915
+   ],
+   "note": "NE edge cut diagonally by Sea Wall Boulevard; triangular blocks 67 and 8 against the wall east of Avenue L."
+  },
+  "21": {
+   "file": 21,
+   "st": [
+    9,
+    12
+   ],
+   "avenues": [
+    "WATER",
+    "STRAND",
+    "MECHANIC"
+   ],
+   "keymap_rect": [
+    1205,
+    920,
+    1535,
+    1315
+   ],
+   "note": "Westernmost column of blocks (730/731) lies between the wharf front and Water St; abuts pier sheet 6 on W."
+  },
+  "22": {
+   "file": 22,
+   "st": [
+    9,
+    12
+   ],
+   "avenues": [
+    "MECHANIC",
+    "MARKET",
+    "POST OFFICE",
+    "CHURCH"
+   ],
+   "keymap_rect": [
+    1555,
+    920,
+    1885,
+    1315
+   ],
+   "note": ""
+  },
+  "23": {
+   "file": 23,
+   "st": [
+    9,
+    12
+   ],
+   "avenues": [
+    "CHURCH",
+    "WINNIE",
+    "BALL",
+    "SEALY"
+   ],
+   "keymap_rect": [
+    1895,
+    920,
+    2265,
+    1320
+   ],
+   "note": ""
+  },
+  "24": {
+   "file": 24,
+   "st": [
+    9,
+    12
+   ],
+   "avenues": [
+    "SEALY",
+    "BROADWAY",
+    "K",
+    "L"
+   ],
+   "keymap_rect": [
+    2280,
+    925,
+    2660,
+    1325
+   ],
+   "note": ""
+  },
+  "25": {
+   "file": 25,
+   "st": [
+    9,
+    12
+   ],
+   "avenues": [
+    "L",
+    "M",
+    "M 1/2",
+    "N"
+   ],
+   "keymap_rect": [
+    2690,
+    925,
+    3120,
+    1330
+   ],
+   "note": "E corner cut diagonally by Sea Wall Boulevard; small triangular blocks (marked N.E., S.W., N.E.) against the wall."
+  },
+  "26": {
+   "file": 26,
+   "st": [
+    17,
+    21
+   ],
+   "avenues": [
+    "O 1/2",
+    "P",
+    "P 1/2"
+   ],
+   "keymap_rect": [
+    3400,
+    1930,
+    3760,
+    2565
+   ],
+   "note": "Blue area (blocks 70, 69, 94) bounded W by Avenue O 1/2; seaward (E) edge cut diagonally by the Sea Wall/beach. Small shore-cut triangle of block 71 S.W. extends one row N (16th-17th). Map is rotated: numbered streets run horizontally, avenues vertically; Gulf at right."
+  },
+  "27": {
+   "file": 27,
+   "st": [
+    12,
+    15
+   ],
+   "avenues": [
+    "WATER",
+    "STRAND",
+    "MECHANIC"
+   ],
+   "keymap_rect": [
+    1215,
+    1330,
+    1540,
+    1725
+   ],
+   "note": "Westernmost column (732-734) lies between the wharf front and Water St; abuts pier sheet 6 on W."
+  },
+  "28": {
+   "file": 28,
+   "st": [
+    12,
+    15
+   ],
+   "avenues": [
+    "MECHANIC",
+    "MARKET",
+    "POST OFFICE",
+    "CHURCH"
+   ],
+   "keymap_rect": [
+    1560,
+    1330,
+    1885,
+    1725
+   ],
+   "note": ""
+  },
+  "29": {
+   "file": 29,
+   "st": [
+    12,
+    15
+   ],
+   "avenues": [
+    "CHURCH",
+    "WINNIE",
+    "BALL",
+    "SEALY"
+   ],
+   "keymap_rect": [
+    1895,
+    1335,
+    2265,
+    1735
+   ],
+   "note": ""
+  },
+  "30": {
+   "file": 30,
+   "st": [
+    12,
+    15
+   ],
+   "avenues": [
+    "SEALY",
+    "BROADWAY",
+    "K",
+    "L"
+   ],
+   "keymap_rect": [
+    2280,
+    1340,
+    2665,
+    1740
+   ],
+   "note": ""
+  },
+  "31": {
+   "file": 31,
+   "st": [
+    12,
+    15
+   ],
+   "avenues": [
+    "L",
+    "M",
+    "M 1/2",
+    "N"
+   ],
+   "keymap_rect": [
+    2690,
+    1340,
+    3035,
+    1745
+   ],
+   "note": "Blocks E of Avenue L are outlot quarters labeled 23 N.W./S.W., 22 N.E./S.E. etc."
+  },
+  "32": {
+   "file": 32,
+   "st": [
+    12,
+    15
+   ],
+   "avenues": [
+    "N",
+    "N 1/2",
+    "O"
+   ],
+   "keymap_rect": [
+    3055,
+    1310,
+    3420,
+    1750
+   ],
+   "note": "NE edge cut diagonally by Sea Wall Boulevard; 12th-13th row reduced to a single block (47 outlot quarters)."
+  },
+  "33": {
+   "file": 33,
+   "st": [
+    15,
+    18
+   ],
+   "avenues": [
+    "WATER",
+    "STRAND",
+    "MECHANIC"
+   ],
+   "keymap_rect": [
+    1215,
+    1740,
+    1540,
+    2145
+   ],
+   "note": "Westernmost column (735-737) lies between the wharf front and Water St; abuts pier sheet 5 on W."
+  },
+  "34": {
+   "file": 34,
+   "st": [
+    15,
+    18
+   ],
+   "avenues": [
+    "MECHANIC",
+    "MARKET",
+    "POST OFFICE",
+    "CHURCH"
+   ],
+   "keymap_rect": [
+    1560,
+    1745,
+    1890,
+    2155
+   ],
+   "note": ""
+  },
+  "35": {
+   "file": 35,
+   "st": [
+    15,
+    18
+   ],
+   "avenues": [
+    "CHURCH",
+    "WINNIE",
+    "BALL",
+    "SEALY"
+   ],
+   "keymap_rect": [
+    1930,
+    1755,
+    2270,
+    2160
+   ],
+   "note": ""
+  },
+  "36": {
+   "file": 36,
+   "st": [
+    15,
+    18
+   ],
+   "avenues": [
+    "SEALY",
+    "BROADWAY",
+    "K",
+    "L"
+   ],
+   "keymap_rect": [
+    2290,
+    1760,
+    2680,
+    2170
+   ],
+   "note": ""
+  },
+  "37": {
+   "file": 37,
+   "st": [
+    15,
+    18
+   ],
+   "avenues": [
+    "L",
+    "M",
+    "M 1/2",
+    "N"
+   ],
+   "keymap_rect": [
+    2700,
+    1770,
+    3040,
+    2180
+   ],
+   "note": "E blocks are outlot quarters (21 N.E./S.E./N.W./S.W., 20 N.E./S.E.); avenue printed vertically as AVENUE M 1/2."
+  },
+  "38": {
+   "file": 38,
+   "st": [
+    15,
+    18
+   ],
+   "avenues": [
+    "N",
+    "N 1/2",
+    "O"
+   ],
+   "keymap_rect": [
+    3050,
+    1755,
+    3450,
+    2190
+   ],
+   "note": "Easternmost column (outlot 71/70 quarters) lies E of Avenue O toward Sea Wall Boulevard; NE corner tapers against the Boulevard. Avenue printed vertically as AVENUE N 1/2."
+  },
+  "39": {
+   "file": 39,
+   "st": [
+    18,
+    21
+   ],
+   "avenues": [
+    "CHURCH",
+    "WINNIE",
+    "BALL",
+    "SEALY"
+   ],
+   "keymap_rect": [
+    1930,
+    2170,
+    2270,
+    2575
+   ],
+   "note": "S boundary street printed 21ST OR CENTER."
+  },
+  "40": {
+   "file": 40,
+   "st": [
+    18,
+    21
+   ],
+   "avenues": [
+    "SEALY",
+    "BROADWAY",
+    "K",
+    "L"
+   ],
+   "keymap_rect": [
+    2290,
+    2180,
+    2680,
+    2580
+   ],
+   "note": "S boundary street printed 21ST OR CENTER."
+  },
+  "41": {
+   "file": 41,
+   "st": [
+    18,
+    21
+   ],
+   "avenues": [
+    "L",
+    "M",
+    "M 1/2",
+    "N"
+   ],
+   "keymap_rect": [
+    2700,
+    2185,
+    3040,
+    2590
+   ],
+   "note": "E blocks are outlot quarters (20 N.W./S.W., 19 N.E./S.E./N.W./S.W.)."
+  },
+  "42": {
+   "file": 42,
+   "st": [
+    18,
+    21
+   ],
+   "avenues": [
+    "N",
+    "N 1/2",
+    "O"
+   ],
+   "keymap_rect": [
+    3050,
+    2190,
+    3450,
+    2600
+   ],
+   "note": "Blocks are outlot quarters (45, 44, 69, 70 series). S boundary street printed 21ST OR CENTER."
+  },
+  "43": {
+   "file": 43,
+   "st": [
+    21,
+    24
+   ],
+   "avenues": [
+    "CHURCH",
+    "WINNIE",
+    "BALL",
+    "SEALY"
+   ],
+   "keymap_rect": [
+    1920,
+    2570,
+    2300,
+    2990
+   ],
+   "note": "Internal streets printed 22ND and 23RD OR TREMONT."
+  },
+  "44": {
+   "file": 44,
+   "st": [
+    21,
+    24
+   ],
+   "avenues": [
+    "SEALY",
+    "BROADWAY",
+    "K",
+    "L"
+   ],
+   "keymap_rect": [
+    2320,
+    2580,
+    2720,
+    3000
+   ],
+   "note": ""
+  },
+  "45": {
+   "file": 45,
+   "st": [
+    21,
+    24
+   ],
+   "avenues": [
+    "L",
+    "M",
+    "M 1/2",
+    "N"
+   ],
+   "keymap_rect": [
+    2740,
+    2585,
+    3130,
+    3010
+   ],
+   "note": "E blocks are outlot quarters (19, 18, 17 N.E./S.E./N.W./S.W.); some drawn with irregular L-shaped outlines."
+  },
+  "46": {
+   "file": 46,
+   "st": [
+    21,
+    24
+   ],
+   "avenues": [
+    "N",
+    "N 1/2",
+    "O",
+    "O 1/2"
+   ],
+   "keymap_rect": [
+    3040,
+    2555,
+    3410,
+    2990
+   ],
+   "note": "All blocks are outlot quarters (43, 68 N.E./S.E./N.W./S.W.); avenues printed AV. \"N 1/2\" and \"O 1/2\"."
+  },
+  "47": {
+   "file": 47,
+   "st": [
+    21,
+    24
+   ],
+   "avenues": [
+    "O 1/2",
+    "P",
+    "P 1/2",
+    "Q"
+   ],
+   "keymap_rect": [
+    3400,
+    2560,
+    3990,
+    2950
+   ],
+   "note": "Yellow area (blocks 68, 67 S.E., 93, 92 N.E./S.E.); SE corner (block 93 S.E.) clipped by the Sea Wall."
+  },
+  "48": {
+   "file": 48,
+   "st": [
+    28,
+    33
+   ],
+   "avenues": [
+    "R 1/2"
+   ],
+   "keymap_rect": [
+    4130,
+    3570,
+    4340,
+    4210
+   ],
+   "note": "Pink narrow Gulf-front strip east of Avenue R 1/2 (S halves of blocks 140, 139, 138 plus clipped triangle of block 163 N.E. beyond the Avenue S line); tapers to a point near 28th at top; seaward edge follows the Sea Wall/shoreline diagonally; no full avenue crossings within it."
+  },
+  "49": {
+   "file": 49,
+   "st": [
+    24,
+    27
+   ],
+   "avenues": [
+    "CHURCH",
+    "WINNIE",
+    "BALL",
+    "SEALY"
+   ],
+   "keymap_rect": [
+    1920,
+    2995,
+    2300,
+    3410
+   ],
+   "note": "Internal street printed 25TH OR ROSENBERG AV."
+  },
+  "50": {
+   "file": 50,
+   "st": [
+    24,
+    27
+   ],
+   "avenues": [
+    "SEALY",
+    "BROADWAY",
+    "K",
+    "L"
+   ],
+   "keymap_rect": [
+    2320,
+    3000,
+    2720,
+    3420
+   ],
+   "note": "Internal street printed 25TH OR ROSENBERG AV.; BROADWAY printed vertically through the sheet."
+  },
+  "51": {
+   "file": 51,
+   "st": [
+    24,
+    27
+   ],
+   "avenues": [
+    "L",
+    "M",
+    "M 1/2",
+    "N"
+   ],
+   "keymap_rect": [
+    2740,
+    3010,
+    3130,
+    3430
+   ],
+   "note": "E blocks are outlot quarters (17, 16 N.E./S.E./N.W./S.W.)."
+  },
+  "52": {
+   "file": 52,
+   "st": [
+    24,
+    27
+   ],
+   "avenues": [
+    "N",
+    "N 1/2",
+    "O",
+    "O 1/2"
+   ],
+   "keymap_rect": [
+    3040,
+    3000,
+    3410,
+    3430
+   ],
+   "note": "All blocks are outlot quarters (42, 41, 67, 66 series); sheet 53's dashed boundary begins just E of this sheet."
+  },
+  "53": {
+   "file": 53,
+   "st": [
+    24,
+    27
+   ],
+   "avenues": [
+    "O 1/2",
+    "P",
+    "P 1/2",
+    "Q"
+   ],
+   "keymap_rect": [
+    3400,
+    2955,
+    3765,
+    3395
+   ],
+   "note": "Pink area (blocks 67 S.W., 92 N.W./S.W., 66 S.E./S.W., 91). Dot-dash fire-limits ('roof limits/non-combustible') boundary line crosses its NE corner."
+  },
+  "54": {
+   "file": 54,
+   "st": [
+    22,
+    27
+   ],
+   "avenues": [
+    "Q",
+    "Q 1/2",
+    "R"
+   ],
+   "keymap_rect": [
+    3765,
+    2700,
+    4230,
+    3395
+   ],
+   "note": "Green area (blocks 117, 116, plus clipped fragments: '[118] N.W.' between 22nd-23rd, 117 S.W. triangle, 141 N.W. triangle between Ave R and the Sea Wall). Seaward edge cut diagonally by Sea Wall; irregular tapering top toward 22nd. Breakers Bath Ho. adjoins on the beach (labeled sheet 32)."
+  },
+  "55": {
+   "file": 55,
+   "st": [
+    27,
+    30
+   ],
+   "avenues": [
+    "F",
+    "G",
+    "H",
+    "I"
+   ],
+   "keymap_rect": [
+    1920,
+    3455,
+    2300,
+    3890
+   ],
+   "note": "Avenues printed AVENUE \"F\" OR CHURCH, \"G\" OR WINNIE, \"H\" OR BALL, \"I\" OR SEALY."
+  },
+  "56": {
+   "file": 56,
+   "st": [
+    27,
+    30
+   ],
+   "avenues": [
+    "I",
+    "J",
+    "K",
+    "L"
+   ],
+   "keymap_rect": [
+    2320,
+    3460,
+    2720,
+    3900
+   ],
+   "note": "Avenues printed AVENUE \"I\" OR SEALY, AVENUE \"J\" OR BROADWAY, \"K\", \"L\"."
+  },
+  "57": {
+   "file": 57,
+   "st": [
+    27,
+    30
+   ],
+   "avenues": [
+    "L",
+    "M",
+    "M 1/2",
+    "N"
+   ],
+   "keymap_rect": [
+    2740,
+    3470,
+    3080,
+    3910
+   ],
+   "note": "E blocks are outlot quarters (15, 14 N.E./S.E./N.W./S.W.); internal street printed 29TH."
+  },
+  "58": {
+   "file": 58,
+   "st": [
+    27,
+    30
+   ],
+   "avenues": [
+    "N",
+    "N 1/2",
+    "O",
+    "O 1/2"
+   ],
+   "keymap_rect": [
+    3040,
+    3450,
+    3420,
+    3830
+   ],
+   "note": "All blocks are outlot quarters (40, 39, 65, 64 series); avenues printed \"N\", AV. \"N 1/2\", \"O\". Some block outlines dashed/irregular in the 29th-30th row."
+  },
+  "59": {
+   "file": 59,
+   "st": [
+    27,
+    30
+   ],
+   "avenues": [
+    "O 1/2",
+    "P",
+    "P 1/2",
+    "Q"
+   ],
+   "keymap_rect": [
+    3400,
+    3400,
+    3765,
+    3800
+   ],
+   "note": "Yellow area (blocks 65 S.E./S.W., 90, 64 S.E., 89 N.E.); regular rectangle. Dot-dash fire-limits line runs along Avenue P through it."
+  },
+  "60": {
+   "file": 60,
+   "st": [
+    27,
+    30
+   ],
+   "avenues": [
+    "Q",
+    "Q 1/2",
+    "R",
+    "R 1/2"
+   ],
+   "keymap_rect": [
+    3765,
+    3400,
+    4130,
+    3800
+   ],
+   "note": "Blue area (blocks 115, 114 N.E./S.E., 140 N.E./N.W., 139 N.E.); NE corner (block 140 N.E.) clipped by the Sea Wall."
+  },
+  "61": {
+   "file": 61,
+   "st": [
+    30,
+    33
+   ],
+   "avenues": [
+    "F",
+    "G",
+    "H",
+    "I"
+   ],
+   "keymap_rect": [
+    1920,
+    3870,
+    2300,
+    4260
+   ],
+   "note": ""
+  },
+  "62": {
+   "file": 62,
+   "st": [
+    30,
+    33
+   ],
+   "avenues": [
+    "I",
+    "J",
+    "K",
+    "L"
+   ],
+   "keymap_rect": [
+    2320,
+    3880,
+    2720,
+    4265
+   ],
+   "note": ""
+  },
+  "63": {
+   "file": 63,
+   "st": [
+    30,
+    33
+   ],
+   "avenues": [
+    "L",
+    "M",
+    "M 1/2",
+    "N"
+   ],
+   "keymap_rect": [
+    2740,
+    3890,
+    3060,
+    4270
+   ],
+   "note": "E blocks are outlot quarters (14, 13 N.E./S.E./N.W./S.W.); internal streets printed 31 ST. and 32 ND."
+  },
+  "64": {
+   "file": 64,
+   "st": [
+    30,
+    33
+   ],
+   "avenues": [
+    "N",
+    "N 1/2",
+    "O",
+    "O 1/2"
+   ],
+   "keymap_rect": [
+    3070,
+    3830,
+    3420,
+    4280
+   ],
+   "note": "All blocks are outlot quarters (39, 38, 64, 63 series); dashed subdivision outlines in its NW corner; NON COMBUSTIBLE ROOF LIMITS line runs just E of the sheet."
+  },
+  "65": {
+   "file": 65,
+   "st": [
+    30,
+    33
+   ],
+   "avenues": [
+    "O 1/2",
+    "P",
+    "P 1/2",
+    "Q"
+   ],
+   "keymap_rect": [
+    3400,
+    3800,
+    3765,
+    4210
+   ],
+   "note": "Pink area (blocks 64 S.W., 89 N.W./S.W., 63 S.E., 88); regular rectangle. Numeral at approx (3640,3995); area's bottom edge (33rd St) lies just south of this region's y-limit."
+  },
+  "66": {
+   "file": 66,
+   "st": [
+    30,
+    33
+   ],
+   "avenues": [
+    "Q",
+    "Q 1/2",
+    "R",
+    "R 1/2"
+   ],
+   "keymap_rect": [
+    3765,
+    3800,
+    4130,
+    4210
+   ],
+   "note": "Green area (blocks 114 N.W./S.W., 113, 139 N.W., 138 N.E./N.W.); regular rectangle ending at 33rd St (just below region y-limit)."
+  },
+  "67": {
+   "file": 67,
+   "st": [
+    33,
+    36
+   ],
+   "avenues": [
+    "STRAND OR. AVENUE \"B\"",
+    "C",
+    "D",
+    "E"
+   ],
+   "keymap_rect": [
+    1435,
+    4235,
+    1800,
+    4630
+   ],
+   "note": "Blocks 633-635/573-575/513-515. Only Strand is labeled in this quadrant (printed vertically as STRAND OR. AVENUE 'B'); letters C-E inferred from block columns."
+  },
+  "68": {
+   "file": 68,
+   "st": [
+    33,
+    36
+   ],
+   "avenues": [
+    "E",
+    "F",
+    "G",
+    "H"
+   ],
+   "keymap_rect": [
+    1800,
+    4235,
+    2165,
+    4630
+   ],
+   "note": "Blocks 453-455/393-395/333-335; avenue letters inferred from block columns (labels printed east of this quadrant)."
+  },
+  "69": {
+   "file": 69,
+   "st": [
+    33,
+    36
+   ],
+   "avenues": [
+    "H",
+    "I",
+    "J",
+    "K"
+   ],
+   "keymap_rect": [
+    2165,
+    4235,
+    2510,
+    4630
+   ],
+   "note": "Blocks 273-275/213-215/153-155; spans Broadway (Avenue J)."
+  },
+  "70": {
+   "file": 70,
+   "st": [
+    33,
+    36
+   ],
+   "avenues": [
+    "K",
+    "L",
+    "M",
+    "M 1/2"
+   ],
+   "keymap_rect": [
+    2510,
+    4235,
+    2925,
+    4630
+   ],
+   "note": "Blocks 93-95/33-35 plus the north (M to M 1/2) halves of outlots 12 and 11 at its east edge."
+  },
+  "71": {
+   "file": 71,
+   "st": [
+    33,
+    36
+   ],
+   "avenues": [
+    "M 1/2",
+    "N",
+    "N 1/2",
+    "O"
+   ],
+   "keymap_rect": [
+    2925,
+    4255,
+    3390,
+    4640
+   ],
+   "note": "Outlot district: S halves of outlots 12/11 and both halves of outlots 37/36, quartered by 34th-35th."
+  },
+  "73": {
+   "file": 73,
+   "st": [
+    33,
+    36
+   ],
+   "avenues": [
+    "P 1/2",
+    "Q",
+    "Q 1/2",
+    "R"
+   ],
+   "keymap_rect": [
+    3665,
+    4235,
+    3995,
+    4605
+   ],
+   "note": "Map is rotated: numbered streets run horizontal (33rd top bound, 36th bottom), avenues vertical. Left half of blocks 87/86 (west of P 1/2) excluded."
+  },
+  "74": {
+   "file": 74,
+   "st": [
+    33,
+    36
+   ],
+   "avenues": [
+    "R",
+    "R 1/2",
+    "S",
+    "S 1/2"
+   ],
+   "keymap_rect": [
+    4040,
+    4230,
+    4370,
+    4600
+   ],
+   "note": "NE corner approaches Seawall Boulevard; block 162 split down S 1/2, seaward half belongs to sheet 99."
+  },
+  "75": {
+   "file": 75,
+   "st": [
+    36,
+    39
+   ],
+   "avenues": [
+    "C",
+    "D",
+    "E",
+    "F"
+   ],
+   "keymap_rect": [
+    1550,
+    4630,
+    1925,
+    5040
+   ],
+   "note": "Blocks 576-578/516-518/456-458. Blocks 636-638 (Strand to C) west of it are uncolored/uncovered."
+  },
+  "76": {
+   "file": 76,
+   "st": [
+    36,
+    39
+   ],
+   "avenues": [
+    "F",
+    "G",
+    "H",
+    "I"
+   ],
+   "keymap_rect": [
+    1925,
+    4630,
+    2280,
+    5040
+   ],
+   "note": "Blocks 396-398/336-338/276-278."
+  },
+  "77": {
+   "file": 77,
+   "st": [
+    36,
+    39
+   ],
+   "avenues": [
+    "I",
+    "J",
+    "K",
+    "L"
+   ],
+   "keymap_rect": [
+    2280,
+    4630,
+    2625,
+    5040
+   ],
+   "note": "Blocks 216-218/156-158/96-98; non-combustible roof-limits dash-dot line steps through near 38th at its SE corner."
+  },
+  "78": {
+   "file": 78,
+   "st": [
+    36,
+    39
+   ],
+   "avenues": [
+    "L",
+    "M",
+    "M 1/2",
+    "N"
+   ],
+   "keymap_rect": [
+    2625,
+    4630,
+    3135,
+    5040
+   ],
+   "note": "City blocks 36-38 plus quarters of outlots 11 and 10."
+  },
+  "79": {
+   "file": 79,
+   "st": [
+    36,
+    39
+   ],
+   "avenues": [
+    "N",
+    "N 1/2",
+    "O",
+    "O 1/2"
+   ],
+   "keymap_rect": [
+    3135,
+    4640,
+    3500,
+    5040
+   ],
+   "note": "Quarters of outlots 36/35 and 61/60; non-combustible roof-limits line crosses it along 37th."
+  },
+  "80": {
+   "file": 80,
+   "st": [
+    36,
+    39
+   ],
+   "avenues": [
+    "O 1/2",
+    "P",
+    "P 1/2",
+    "Q"
+   ],
+   "keymap_rect": [
+    3430,
+    4645,
+    3760,
+    5020
+   ],
+   "note": "Blue area extends west of region boundary (left edge at Ave O 1/2, x~3430); numeral center at ~(3635,4812) inside region."
+  },
+  "81": {
+   "file": 81,
+   "st": [
+    36,
+    39
+   ],
+   "avenues": [
+    "Q",
+    "Q 1/2",
+    "R",
+    "R 1/2"
+   ],
+   "keymap_rect": [
+    3795,
+    4640,
+    4125,
+    5015
+   ],
+   "note": ""
+  },
+  "82": {
+   "file": 82,
+   "st": [
+    36,
+    39
+   ],
+   "avenues": [
+    "R 1/2",
+    "S",
+    "S 1/2",
+    "T"
+   ],
+   "keymap_rect": [
+    4130,
+    4645,
+    4485,
+    5020
+   ],
+   "note": ""
+  },
+  "83": {
+   "file": 83,
+   "st": [
+    39,
+    42
+   ],
+   "avenues": [
+    "D",
+    "E",
+    "F",
+    "G"
+   ],
+   "keymap_rect": [
+    1675,
+    5040,
+    2045,
+    5470
+   ],
+   "note": "Blocks 519-521/459-461/399-401."
+  },
+  "84": {
+   "file": 84,
+   "st": [
+    39,
+    42
+   ],
+   "avenues": [
+    "G",
+    "H",
+    "I",
+    "J"
+   ],
+   "keymap_rect": [
+    2045,
+    5040,
+    2430,
+    5470
+   ],
+   "note": "Blocks 339-341/279-281/219-221; east boundary is Broadway (Ave J), along which the fire-limit dash line runs."
+  },
+  "85": {
+   "file": 85,
+   "st": [
+    39,
+    42
+   ],
+   "avenues": [
+    "J",
+    "K",
+    "L",
+    "M",
+    "M 1/2"
+   ],
+   "keymap_rect": [
+    2430,
+    5040,
+    2925,
+    5470
+   ],
+   "note": "Four columns wide (J to M 1/2): blocks 159, 99, 39-41 and outlot 9 / 8 N.E. quarters. Two uncolored Cemetery tracts (40th-43rd, between J and L) sit inside its footprint, so the colored area is C-shaped."
+  },
+  "86": {
+   "file": 86,
+   "st": [
+    39,
+    42
+   ],
+   "avenues": [
+    "M 1/2",
+    "N",
+    "N 1/2",
+    "O"
+   ],
+   "keymap_rect": [
+    2925,
+    5040,
+    3290,
+    5470
+   ],
+   "note": "S-half quarters of outlots 9/8 and quarters of outlots 34/33."
+  },
+  "87": {
+   "file": 87,
+   "st": [
+    39,
+    42
+   ],
+   "avenues": [
+    "O",
+    "O 1/2",
+    "P",
+    "P 1/2"
+   ],
+   "keymap_rect": [
+    3305,
+    5060,
+    3630,
+    5430
+   ],
+   "note": "Green area extends west of region boundary x=3500 (left edge at Ave O); numeral center ~(3537,5235) just inside region."
+  },
+  "88": {
+   "file": 88,
+   "st": [
+    39,
+    42
+   ],
+   "avenues": [
+    "P 1/2",
+    "Q",
+    "Q 1/2",
+    "R"
+   ],
+   "keymap_rect": [
+    3670,
+    5055,
+    4000,
+    5430
+   ],
+   "note": ""
+  },
+  "89": {
+   "file": 89,
+   "st": [
+    39,
+    42
+   ],
+   "avenues": [
+    "R",
+    "R 1/2",
+    "S",
+    "S 1/2"
+   ],
+   "keymap_rect": [
+    4030,
+    5045,
+    4405,
+    5430
+   ],
+   "note": ""
+  },
+  "90": {
+   "file": 90,
+   "st": [
+    39,
+    42
+   ],
+   "avenues": [
+    "S 1/2",
+    "T",
+    "T 1/2"
+   ],
+   "keymap_rect": [
+    4405,
+    5050,
+    4735,
+    5430
+   ],
+   "note": "Seaward (SE) edge cut diagonally by Seawall Boulevard/shoreline; blocks 184 S.E. and 183 S.E. truncated."
+  },
+  "91": {
+   "file": 91,
+   "st": [
+    42,
+    45
+   ],
+   "avenues": [
+    "D",
+    "E",
+    "F",
+    "G"
+   ],
+   "keymap_rect": [
+    1675,
+    5470,
+    2045,
+    5880
+   ],
+   "note": "Blocks 522-524/462-464/402-404; its south bound (45th) is the NON COMBUSTIBLE ROOF LIMITS dashed line."
+  },
+  "92": {
+   "file": 92,
+   "st": [
+    42,
+    45
+   ],
+   "avenues": [
+    "G",
+    "H",
+    "I",
+    "J"
+   ],
+   "keymap_rect": [
+    2045,
+    5470,
+    2430,
+    5880
+   ],
+   "note": "Blocks 342-344/282-284/222-224; fire-limit corner (Broadway at 45th) at its SE corner."
+  },
+  "93": {
+   "file": 93,
+   "st": [
+    42,
+    46
+   ],
+   "avenues": [
+    "J",
+    "K",
+    "L",
+    "M"
+   ],
+   "keymap_rect": [
+    2440,
+    5470,
+    2815,
+    6030
+   ],
+   "note": "Irregular cross-shape: block 42 (42nd-43rd) only in the L-M column (Cemetery tracts occupy 40th-43rd to its west); blocks 163-164/103-104/43-44 for 43rd-45th; plus block 12 (45th-46th) in the J-K column only."
+  },
+  "94": {
+   "file": 94,
+   "st": [
+    42,
+    45
+   ],
+   "avenues": [
+    "M",
+    "M 1/2",
+    "N",
+    "N 1/2"
+   ],
+   "keymap_rect": [
+    2815,
+    5470,
+    3230,
+    5880
+   ],
+   "note": "Quarters of outlots 8/7 and N halves of 33/32."
+  },
+  "95": {
+   "file": 95,
+   "st": [
+    42,
+    45
+   ],
+   "avenues": [
+    "N 1/2",
+    "O",
+    "O 1/2",
+    "P"
+   ],
+   "keymap_rect": [
+    3230,
+    5470,
+    3590,
+    5880
+   ],
+   "note": "S halves of outlots 33/32 and quarters of outlots 58/57. Right (south) edge is Avenue P, along which the fire-limit line runs; rect extends slightly past x=3500 but numeral center is at ~x3390."
+  },
+  "96": {
+   "file": 96,
+   "st": [
+    42,
+    45
+   ],
+   "avenues": [
+    "P",
+    "P 1/2",
+    "Q",
+    "Q 1/2"
+   ],
+   "keymap_rect": [
+    3555,
+    5510,
+    3880,
+    5892
+   ],
+   "note": ""
+  },
+  "97": {
+   "file": 97,
+   "st": [
+    42,
+    45
+   ],
+   "avenues": [
+    "Q 1/2",
+    "R",
+    "R 1/2",
+    "S"
+   ],
+   "keymap_rect": [
+    3920,
+    5505,
+    4245,
+    5890
+   ],
+   "note": ""
+  },
+  "98": {
+   "file": 98,
+   "st": [
+    42,
+    45
+   ],
+   "avenues": [
+    "S",
+    "S 1/2",
+    "T",
+    "T 1/2"
+   ],
+   "keymap_rect": [
+    4290,
+    5460,
+    4610,
+    5900
+   ],
+   "note": "Southernmost/westernmost colored sheet in this quadrant; grid east of T 1/2 (blocks 182, 183 S.W.) and south of 45th is uncovered."
+  },
+  "99": {
+   "file": 99,
+   "st": [
+    33,
+    39
+   ],
+   "avenues": [
+    "S 1/2",
+    "T",
+    "T 1/2"
+   ],
+   "keymap_rect": [
+    4390,
+    4225,
+    4800,
+    5030
+   ],
+   "note": "Irregular diagonal beach strip along Seawall Boulevard/Gulf shore; seaward bound is the shoreline, not an avenue. Left edge steps from S 1/2 (blocks 162,161) to T (blocks 185,186) south of 37th; blocks cut diagonally by the Boulevard. Numeral printed twice: ~(4480,4505) and ~(4615,4845)."
+  }
+ },
+ "pairs": [
+  {
+   "owner": "7",
+   "nbr": "8",
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)"
+  },
+  {
+   "owner": "7",
+   "nbr": "9",
+   "axis": "h",
+   "idx": 21,
+   "boundary": "street 21"
+  },
+  {
+   "owner": "8",
+   "nbr": "10",
+   "axis": "h",
+   "idx": 21,
+   "boundary": "street 21"
+  },
+  {
+   "owner": "8",
+   "nbr": "34",
+   "axis": "h",
+   "idx": 18,
+   "boundary": "street 18"
+  },
+  {
+   "owner": "8",
+   "nbr": "39",
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)"
+  },
+  {
+   "owner": "9",
+   "nbr": "10",
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)"
+  },
+  {
+   "owner": "9",
+   "nbr": "11",
+   "axis": "h",
+   "idx": 24,
+   "boundary": "street 24"
+  },
+  {
+   "owner": "10",
+   "nbr": "12",
+   "axis": "h",
+   "idx": 24,
+   "boundary": "street 24"
+  },
+  {
+   "owner": "10",
+   "nbr": "43",
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)"
+  },
+  {
+   "owner": "11",
+   "nbr": "12",
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)"
+  },
+  {
+   "owner": "11",
+   "nbr": "13",
+   "axis": "h",
+   "idx": 27,
+   "boundary": "street 27"
+  },
+  {
+   "owner": "12",
+   "nbr": "14",
+   "axis": "h",
+   "idx": 27,
+   "boundary": "street 27"
+  },
+  {
+   "owner": "12",
+   "nbr": "49",
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)"
+  },
+  {
+   "owner": "13",
+   "nbr": "14",
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)"
+  },
+  {
+   "owner": "13",
+   "nbr": "15",
+   "axis": "h",
+   "idx": 30,
+   "boundary": "street 30"
+  },
+  {
+   "owner": "14",
+   "nbr": "16",
+   "axis": "h",
+   "idx": 30,
+   "boundary": "street 30"
+  },
+  {
+   "owner": "14",
+   "nbr": "55",
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)"
+  },
+  {
+   "owner": "15",
+   "nbr": "16",
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)"
+  },
+  {
+   "owner": "15",
+   "nbr": "67",
+   "axis": "h",
+   "idx": 33,
+   "boundary": "street 33"
+  },
+  {
+   "owner": "16",
+   "nbr": "61",
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)"
+  },
+  {
+   "owner": "16",
+   "nbr": "67",
+   "axis": "h",
+   "idx": 33,
+   "boundary": "street 33"
+  },
+  {
+   "owner": "16",
+   "nbr": "68",
+   "axis": "h",
+   "idx": 33,
+   "boundary": "street 33"
+  },
+  {
+   "owner": "17",
+   "nbr": "18",
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)"
+  },
+  {
+   "owner": "17",
+   "nbr": "21",
+   "axis": "h",
+   "idx": 9,
+   "boundary": "street 9"
+  },
+  {
+   "owner": "18",
+   "nbr": "19",
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)"
+  },
+  {
+   "owner": "18",
+   "nbr": "22",
+   "axis": "h",
+   "idx": 9,
+   "boundary": "street 9"
+  },
+  {
+   "owner": "19",
+   "nbr": "20",
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)"
+  },
+  {
+   "owner": "19",
+   "nbr": "23",
+   "axis": "h",
+   "idx": 9,
+   "boundary": "street 9"
+  },
+  {
+   "owner": "20",
+   "nbr": "24",
+   "axis": "h",
+   "idx": 9,
+   "boundary": "street 9"
+  },
+  {
+   "owner": "21",
+   "nbr": "22",
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)"
+  },
+  {
+   "owner": "21",
+   "nbr": "27",
+   "axis": "h",
+   "idx": 12,
+   "boundary": "street 12"
+  },
+  {
+   "owner": "22",
+   "nbr": "23",
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)"
+  },
+  {
+   "owner": "22",
+   "nbr": "28",
+   "axis": "h",
+   "idx": 12,
+   "boundary": "street 12"
+  },
+  {
+   "owner": "23",
+   "nbr": "24",
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)"
+  },
+  {
+   "owner": "23",
+   "nbr": "29",
+   "axis": "h",
+   "idx": 12,
+   "boundary": "street 12"
+  },
+  {
+   "owner": "24",
+   "nbr": "25",
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)"
+  },
+  {
+   "owner": "24",
+   "nbr": "30",
+   "axis": "h",
+   "idx": 12,
+   "boundary": "street 12"
+  },
+  {
+   "owner": "25",
+   "nbr": "31",
+   "axis": "h",
+   "idx": 12,
+   "boundary": "street 12"
+  },
+  {
+   "owner": "26",
+   "nbr": "38",
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)"
+  },
+  {
+   "owner": "26",
+   "nbr": "42",
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)"
+  },
+  {
+   "owner": "26",
+   "nbr": "47",
+   "axis": "h",
+   "idx": 21,
+   "boundary": "street 21"
+  },
+  {
+   "owner": "27",
+   "nbr": "28",
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)"
+  },
+  {
+   "owner": "27",
+   "nbr": "33",
+   "axis": "h",
+   "idx": 15,
+   "boundary": "street 15"
+  },
+  {
+   "owner": "28",
+   "nbr": "29",
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)"
+  },
+  {
+   "owner": "28",
+   "nbr": "34",
+   "axis": "h",
+   "idx": 15,
+   "boundary": "street 15"
+  },
+  {
+   "owner": "29",
+   "nbr": "30",
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)"
+  },
+  {
+   "owner": "29",
+   "nbr": "35",
+   "axis": "h",
+   "idx": 15,
+   "boundary": "street 15"
+  },
+  {
+   "owner": "30",
+   "nbr": "31",
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)"
+  },
+  {
+   "owner": "30",
+   "nbr": "36",
+   "axis": "h",
+   "idx": 15,
+   "boundary": "street 15"
+  },
+  {
+   "owner": "31",
+   "nbr": "32",
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)"
+  },
+  {
+   "owner": "31",
+   "nbr": "37",
+   "axis": "h",
+   "idx": 15,
+   "boundary": "street 15"
+  },
+  {
+   "owner": "32",
+   "nbr": "38",
+   "axis": "h",
+   "idx": 15,
+   "boundary": "street 15"
+  },
+  {
+   "owner": "33",
+   "nbr": "34",
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)"
+  },
+  {
+   "owner": "34",
+   "nbr": "35",
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)"
+  },
+  {
+   "owner": "35",
+   "nbr": "36",
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)"
+  },
+  {
+   "owner": "35",
+   "nbr": "39",
+   "axis": "h",
+   "idx": 18,
+   "boundary": "street 18"
+  },
+  {
+   "owner": "36",
+   "nbr": "37",
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)"
+  },
+  {
+   "owner": "36",
+   "nbr": "40",
+   "axis": "h",
+   "idx": 18,
+   "boundary": "street 18"
+  },
+  {
+   "owner": "37",
+   "nbr": "38",
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)"
+  },
+  {
+   "owner": "37",
+   "nbr": "41",
+   "axis": "h",
+   "idx": 18,
+   "boundary": "street 18"
+  },
+  {
+   "owner": "38",
+   "nbr": "42",
+   "axis": "h",
+   "idx": 18,
+   "boundary": "street 18"
+  },
+  {
+   "owner": "39",
+   "nbr": "40",
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)"
+  },
+  {
+   "owner": "39",
+   "nbr": "43",
+   "axis": "h",
+   "idx": 21,
+   "boundary": "street 21"
+  },
+  {
+   "owner": "40",
+   "nbr": "41",
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)"
+  },
+  {
+   "owner": "40",
+   "nbr": "44",
+   "axis": "h",
+   "idx": 21,
+   "boundary": "street 21"
+  },
+  {
+   "owner": "41",
+   "nbr": "42",
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)"
+  },
+  {
+   "owner": "41",
+   "nbr": "45",
+   "axis": "h",
+   "idx": 21,
+   "boundary": "street 21"
+  },
+  {
+   "owner": "42",
+   "nbr": "46",
+   "axis": "h",
+   "idx": 21,
+   "boundary": "street 21"
+  },
+  {
+   "owner": "43",
+   "nbr": "44",
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)"
+  },
+  {
+   "owner": "43",
+   "nbr": "49",
+   "axis": "h",
+   "idx": 24,
+   "boundary": "street 24"
+  },
+  {
+   "owner": "44",
+   "nbr": "45",
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)"
+  },
+  {
+   "owner": "44",
+   "nbr": "50",
+   "axis": "h",
+   "idx": 24,
+   "boundary": "street 24"
+  },
+  {
+   "owner": "45",
+   "nbr": "51",
+   "axis": "h",
+   "idx": 24,
+   "boundary": "street 24"
+  },
+  {
+   "owner": "45",
+   "nbr": "52",
+   "axis": "h",
+   "idx": 24,
+   "boundary": "street 24"
+  },
+  {
+   "owner": "46",
+   "nbr": "47",
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)"
+  },
+  {
+   "owner": "46",
+   "nbr": "51",
+   "axis": "h",
+   "idx": 24,
+   "boundary": "street 24"
+  },
+  {
+   "owner": "46",
+   "nbr": "52",
+   "axis": "h",
+   "idx": 24,
+   "boundary": "street 24"
+  },
+  {
+   "owner": "47",
+   "nbr": "53",
+   "axis": "h",
+   "idx": 24,
+   "boundary": "street 24"
+  },
+  {
+   "owner": "48",
+   "nbr": "60",
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)"
+  },
+  {
+   "owner": "48",
+   "nbr": "66",
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)"
+  },
+  {
+   "owner": "48",
+   "nbr": "74",
+   "axis": "h",
+   "idx": 33,
+   "boundary": "street 33"
+  },
+  {
+   "owner": "49",
+   "nbr": "50",
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)"
+  },
+  {
+   "owner": "49",
+   "nbr": "55",
+   "axis": "h",
+   "idx": 27,
+   "boundary": "street 27"
+  },
+  {
+   "owner": "50",
+   "nbr": "51",
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)"
+  },
+  {
+   "owner": "50",
+   "nbr": "56",
+   "axis": "h",
+   "idx": 27,
+   "boundary": "street 27"
+  },
+  {
+   "owner": "51",
+   "nbr": "57",
+   "axis": "h",
+   "idx": 27,
+   "boundary": "street 27"
+  },
+  {
+   "owner": "51",
+   "nbr": "58",
+   "axis": "h",
+   "idx": 27,
+   "boundary": "street 27"
+  },
+  {
+   "owner": "52",
+   "nbr": "53",
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)"
+  },
+  {
+   "owner": "52",
+   "nbr": "58",
+   "axis": "h",
+   "idx": 27,
+   "boundary": "street 27"
+  },
+  {
+   "owner": "53",
+   "nbr": "54",
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)"
+  },
+  {
+   "owner": "53",
+   "nbr": "59",
+   "axis": "h",
+   "idx": 27,
+   "boundary": "street 27"
+  },
+  {
+   "owner": "54",
+   "nbr": "60",
+   "axis": "h",
+   "idx": 27,
+   "boundary": "street 27"
+  },
+  {
+   "owner": "55",
+   "nbr": "56",
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)"
+  },
+  {
+   "owner": "55",
+   "nbr": "61",
+   "axis": "h",
+   "idx": 30,
+   "boundary": "street 30"
+  },
+  {
+   "owner": "56",
+   "nbr": "57",
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)"
+  },
+  {
+   "owner": "56",
+   "nbr": "62",
+   "axis": "h",
+   "idx": 30,
+   "boundary": "street 30"
+  },
+  {
+   "owner": "57",
+   "nbr": "58",
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)"
+  },
+  {
+   "owner": "57",
+   "nbr": "63",
+   "axis": "h",
+   "idx": 30,
+   "boundary": "street 30"
+  },
+  {
+   "owner": "58",
+   "nbr": "59",
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)"
+  },
+  {
+   "owner": "58",
+   "nbr": "64",
+   "axis": "h",
+   "idx": 30,
+   "boundary": "street 30"
+  },
+  {
+   "owner": "59",
+   "nbr": "60",
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)"
+  },
+  {
+   "owner": "59",
+   "nbr": "65",
+   "axis": "h",
+   "idx": 30,
+   "boundary": "street 30"
+  },
+  {
+   "owner": "60",
+   "nbr": "66",
+   "axis": "h",
+   "idx": 30,
+   "boundary": "street 30"
+  },
+  {
+   "owner": "61",
+   "nbr": "62",
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)"
+  },
+  {
+   "owner": "61",
+   "nbr": "68",
+   "axis": "h",
+   "idx": 33,
+   "boundary": "street 33"
+  },
+  {
+   "owner": "61",
+   "nbr": "69",
+   "axis": "h",
+   "idx": 33,
+   "boundary": "street 33"
+  },
+  {
+   "owner": "62",
+   "nbr": "63",
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)"
+  },
+  {
+   "owner": "62",
+   "nbr": "69",
+   "axis": "h",
+   "idx": 33,
+   "boundary": "street 33"
+  },
+  {
+   "owner": "62",
+   "nbr": "70",
+   "axis": "h",
+   "idx": 33,
+   "boundary": "street 33"
+  },
+  {
+   "owner": "63",
+   "nbr": "64",
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)"
+  },
+  {
+   "owner": "63",
+   "nbr": "70",
+   "axis": "h",
+   "idx": 33,
+   "boundary": "street 33"
+  },
+  {
+   "owner": "63",
+   "nbr": "71",
+   "axis": "h",
+   "idx": 33,
+   "boundary": "street 33"
+  },
+  {
+   "owner": "64",
+   "nbr": "65",
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)"
+  },
+  {
+   "owner": "64",
+   "nbr": "71",
+   "axis": "h",
+   "idx": 33,
+   "boundary": "street 33"
+  },
+  {
+   "owner": "65",
+   "nbr": "66",
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)"
+  },
+  {
+   "owner": "65",
+   "nbr": "73",
+   "axis": "h",
+   "idx": 33,
+   "boundary": "street 33"
+  },
+  {
+   "owner": "66",
+   "nbr": "73",
+   "axis": "h",
+   "idx": 33,
+   "boundary": "street 33"
+  },
+  {
+   "owner": "66",
+   "nbr": "74",
+   "axis": "h",
+   "idx": 33,
+   "boundary": "street 33"
+  },
+  {
+   "owner": "67",
+   "nbr": "68",
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)"
+  },
+  {
+   "owner": "67",
+   "nbr": "75",
+   "axis": "h",
+   "idx": 36,
+   "boundary": "street 36"
+  },
+  {
+   "owner": "68",
+   "nbr": "69",
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)"
+  },
+  {
+   "owner": "68",
+   "nbr": "75",
+   "axis": "h",
+   "idx": 36,
+   "boundary": "street 36"
+  },
+  {
+   "owner": "68",
+   "nbr": "76",
+   "axis": "h",
+   "idx": 36,
+   "boundary": "street 36"
+  },
+  {
+   "owner": "69",
+   "nbr": "70",
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)"
+  },
+  {
+   "owner": "69",
+   "nbr": "76",
+   "axis": "h",
+   "idx": 36,
+   "boundary": "street 36"
+  },
+  {
+   "owner": "69",
+   "nbr": "77",
+   "axis": "h",
+   "idx": 36,
+   "boundary": "street 36"
+  },
+  {
+   "owner": "70",
+   "nbr": "71",
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)"
+  },
+  {
+   "owner": "70",
+   "nbr": "77",
+   "axis": "h",
+   "idx": 36,
+   "boundary": "street 36"
+  },
+  {
+   "owner": "70",
+   "nbr": "78",
+   "axis": "h",
+   "idx": 36,
+   "boundary": "street 36"
+  },
+  {
+   "owner": "71",
+   "nbr": "78",
+   "axis": "h",
+   "idx": 36,
+   "boundary": "street 36"
+  },
+  {
+   "owner": "71",
+   "nbr": "79",
+   "axis": "h",
+   "idx": 36,
+   "boundary": "street 36"
+  },
+  {
+   "owner": "73",
+   "nbr": "74",
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)"
+  },
+  {
+   "owner": "73",
+   "nbr": "80",
+   "axis": "h",
+   "idx": 36,
+   "boundary": "street 36"
+  },
+  {
+   "owner": "73",
+   "nbr": "81",
+   "axis": "h",
+   "idx": 36,
+   "boundary": "street 36"
+  },
+  {
+   "owner": "74",
+   "nbr": "81",
+   "axis": "h",
+   "idx": 36,
+   "boundary": "street 36"
+  },
+  {
+   "owner": "74",
+   "nbr": "82",
+   "axis": "h",
+   "idx": 36,
+   "boundary": "street 36"
+  },
+  {
+   "owner": "74",
+   "nbr": "99",
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)"
+  },
+  {
+   "owner": "75",
+   "nbr": "76",
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)"
+  },
+  {
+   "owner": "75",
+   "nbr": "83",
+   "axis": "h",
+   "idx": 39,
+   "boundary": "street 39"
+  },
+  {
+   "owner": "76",
+   "nbr": "77",
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)"
+  },
+  {
+   "owner": "76",
+   "nbr": "83",
+   "axis": "h",
+   "idx": 39,
+   "boundary": "street 39"
+  },
+  {
+   "owner": "76",
+   "nbr": "84",
+   "axis": "h",
+   "idx": 39,
+   "boundary": "street 39"
+  },
+  {
+   "owner": "77",
+   "nbr": "78",
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)"
+  },
+  {
+   "owner": "77",
+   "nbr": "84",
+   "axis": "h",
+   "idx": 39,
+   "boundary": "street 39"
+  },
+  {
+   "owner": "77",
+   "nbr": "85",
+   "axis": "h",
+   "idx": 39,
+   "boundary": "street 39"
+  },
+  {
+   "owner": "78",
+   "nbr": "79",
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)"
+  },
+  {
+   "owner": "78",
+   "nbr": "85",
+   "axis": "h",
+   "idx": 39,
+   "boundary": "street 39"
+  },
+  {
+   "owner": "78",
+   "nbr": "86",
+   "axis": "h",
+   "idx": 39,
+   "boundary": "street 39"
+  },
+  {
+   "owner": "79",
+   "nbr": "86",
+   "axis": "h",
+   "idx": 39,
+   "boundary": "street 39"
+  },
+  {
+   "owner": "79",
+   "nbr": "87",
+   "axis": "h",
+   "idx": 39,
+   "boundary": "street 39"
+  },
+  {
+   "owner": "80",
+   "nbr": "81",
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)"
+  },
+  {
+   "owner": "80",
+   "nbr": "87",
+   "axis": "h",
+   "idx": 39,
+   "boundary": "street 39"
+  },
+  {
+   "owner": "80",
+   "nbr": "88",
+   "axis": "h",
+   "idx": 39,
+   "boundary": "street 39"
+  },
+  {
+   "owner": "81",
+   "nbr": "82",
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)"
+  },
+  {
+   "owner": "81",
+   "nbr": "88",
+   "axis": "h",
+   "idx": 39,
+   "boundary": "street 39"
+  },
+  {
+   "owner": "81",
+   "nbr": "89",
+   "axis": "h",
+   "idx": 39,
+   "boundary": "street 39"
+  },
+  {
+   "owner": "82",
+   "nbr": "89",
+   "axis": "h",
+   "idx": 39,
+   "boundary": "street 39"
+  },
+  {
+   "owner": "83",
+   "nbr": "84",
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)"
+  },
+  {
+   "owner": "83",
+   "nbr": "91",
+   "axis": "h",
+   "idx": 42,
+   "boundary": "street 42"
+  },
+  {
+   "owner": "84",
+   "nbr": "85",
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)"
+  },
+  {
+   "owner": "84",
+   "nbr": "92",
+   "axis": "h",
+   "idx": 42,
+   "boundary": "street 42"
+  },
+  {
+   "owner": "85",
+   "nbr": "86",
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)"
+  },
+  {
+   "owner": "85",
+   "nbr": "93",
+   "axis": "h",
+   "idx": 42,
+   "boundary": "street 42"
+  },
+  {
+   "owner": "85",
+   "nbr": "94",
+   "axis": "h",
+   "idx": 42,
+   "boundary": "street 42"
+  },
+  {
+   "owner": "86",
+   "nbr": "87",
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)"
+  },
+  {
+   "owner": "86",
+   "nbr": "94",
+   "axis": "h",
+   "idx": 42,
+   "boundary": "street 42"
+  },
+  {
+   "owner": "87",
+   "nbr": "88",
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)"
+  },
+  {
+   "owner": "87",
+   "nbr": "95",
+   "axis": "h",
+   "idx": 42,
+   "boundary": "street 42"
+  },
+  {
+   "owner": "88",
+   "nbr": "89",
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)"
+  },
+  {
+   "owner": "89",
+   "nbr": "90",
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)"
+  },
+  {
+   "owner": "89",
+   "nbr": "98",
+   "axis": "h",
+   "idx": 42,
+   "boundary": "street 42"
+  },
+  {
+   "owner": "90",
+   "nbr": "98",
+   "axis": "h",
+   "idx": 42,
+   "boundary": "street 42"
+  },
+  {
+   "owner": "90",
+   "nbr": "99",
+   "axis": "h",
+   "idx": 39,
+   "boundary": "street 39"
+  },
+  {
+   "owner": "91",
+   "nbr": "92",
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)"
+  },
+  {
+   "owner": "92",
+   "nbr": "93",
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)"
+  },
+  {
+   "owner": "93",
+   "nbr": "94",
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)"
+  },
+  {
+   "owner": "94",
+   "nbr": "95",
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)"
+  },
+  {
+   "owner": "95",
+   "nbr": "96",
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)"
+  },
+  {
+   "owner": "96",
+   "nbr": "97",
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)"
+  },
+  {
+   "owner": "97",
+   "nbr": "98",
+   "axis": "v",
+   "boundary": "shared avenue (keymap adjacency)"
+  }
+ ],
+ "excluded": {
+  "1": "SP Terminal, piers drawn rotated ~45deg, no street grid",
+  "2": "wharf piers, no street grid",
+  "3": "wharf shoreline strip, no regular grid",
+  "4": "wharf flats, no street grid",
+  "5": "two-panel wharf sheet; already solved in the core recipe",
+  "6": "piers 10-15, no street grid"
+ },
+ "note": "registration at IIIF pct:50 working scale; archival core downscaled x0.5 to match"
+}

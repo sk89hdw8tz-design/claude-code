@@ -1,1 +1,55 @@
-{"ties": []}
+{
+ "ties": [
+  {
+   "pair": [
+    "40",
+    "67"
+   ],
+   "id": "tie-40-67-1",
+   "owner_xy": [
+    3225,
+    1478
+   ],
+   "nbr_xy": [
+    206,
+    1390
+   ],
+   "confidence": "low",
+   "note": "Double-dash water-pipe line crossing Avenue M corridor in the first street south of the 21xx house-number block (identified by counting blocks from the sheet-top street on both sheets; 21xx numbers above, 22xx below on both). LINE feature, horizontal: constrains y only; x placed at nominal seam line on both sheets."
+  },
+  {
+   "pair": [
+    "40",
+    "67"
+   ],
+   "id": "tie-40-67-2",
+   "owner_xy": [
+    3225,
+    3778
+   ],
+   "nbr_xy": [
+    206,
+    3797
+   ],
+   "confidence": "low",
+   "note": "Dashed 6-inch water pipe line (labeled 6\" W. PIPE on sheet 40) in the bottom street corridor (street 24), anchored by sheet-bottom block corner just above it on both sheets. LINE feature, horizontal: y only; x at nominal seam. WARNING: implied dy here (+19) disagrees with tie-40-67-1 (-88) by ~107 px \u2014 sheets disagree or paper distortion."
+  },
+  {
+   "pair": [
+    "63",
+    "67"
+   ],
+   "id": "tie-63-67-1",
+   "owner_xy": [
+    2261,
+    3722
+   ],
+   "nbr_xy": [
+    2266,
+    155
+   ],
+   "confidence": "high",
+   "note": "Black hydrant dot labeled T.H. in 21st/Centre St corridor just east of the avenue crossing at x~2200; identified on both sheets by the label T.H. and its position NE of the avenue/21st intersection (only such dot along this seam). Measured dot center."
+  }
+ ]
+}
