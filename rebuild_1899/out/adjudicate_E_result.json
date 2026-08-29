@@ -253,6 +253,40 @@
    ],
    "status": "featureless",
    "note": "Butt joint on Av I (Sealy): 55 draws only the west ~200px of the corridor (east of its blocks 252-254, even columns 1202-1228), 56 only the east ~120px (west of blocks 192-194, odd columns 1201-1227, St Marys University on 193). Both sheets print AV. I. OR SEALY and the other sheets numeral, but the shared paper is bare avenue - no hydrants, rails, or building work crosses it"
+  },
+  {
+   "pair": [
+    "56",
+    "57"
+   ],
+   "id": "tie-56-57-1",
+   "owner_xy": [
+    640,
+    3687
+   ],
+   "nbr_xy": [
+    2782,
+    175
+   ],
+   "confidence": "high",
+   "note": "T.H. hydrant NE of 15th St and the 900-block 20-ft street (houses 912/914 on 56 = 911/913 on 57); anchored by the 57/56 sheet-ref numerals printed right beside it on each sheet"
+  },
+  {
+   "pair": [
+    "56",
+    "57"
+   ],
+   "id": "tie-56-57-2",
+   "owner_xy": [
+    628,
+    3888
+   ],
+   "nbr_xy": [
+    2766,
+    382
+   ],
+   "confidence": "medium",
+   "note": "NW corner of block 195 (south of 15th, east of the 900-block 20-ft street, houses 913-923); reference outline on 56 partially covered by the printed 57 numeral, full block on 57; offsets from the hydrant tie agree within ~6 px"
   }
  ]
 }
