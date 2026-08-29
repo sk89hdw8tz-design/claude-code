@@ -156,3 +156,42 @@
 [156/196] 71b|72    avenue slot 14   n=  8 none
 [157/196] 71b|75    street 27        n=  2 none
 [158/196] 72|73     avenue slot 17   n= 17 pass1-cluster(n=11)
+[159/196] 72|76     street 27        n=  3 none
+[160/196] 73|74     avenue slot 20   n= 18 pass1-cluster(n=4)
+[161/196] 73|76     street 27        n=  3 none
+[162/196] 73|77     street 27        n=  3 none
+[163/196] 74|77     street 27        n=  2 none
+[164/196] 74|78     street 27        n=  6 none
+[165/196] 75|79     street 30        n= 10 none
+[166/196] 76|77     avenue slot 18   n= 13 pass1-cluster(n=4)
+[167/196] 76|80     street 30        n=  5 pass1-cluster(n=3)
+[168/196] 77|78     avenue slot 21   n= 15 pass1-cluster(n=14)
+[169/196] 77|80     street 30        n=  1 none
+[170/196] 77|81     street 30        n=  5 pass1-cluster(n=5)
+[171/196] 78|82     street 30        n= 10 none
+[172/196] 79|80     avenue slot 16   n= 21 pass1-cluster(n=4)
+[173/196] 79|83     street 33        n=  5 pass1-cluster(n=3)
+[174/196] 80|81     avenue slot 19   n= 13 pass1-cluster(n=12)
+[175/196] 80|83     street 33        n=  3 none
+[176/196] 80|84     street 33        n=  4 none
+[177/196] 81|84     street 33        n=  1 none
+[178/196] 81|85     street 33        n=  3 none
+[179/196] 82|85     street 33        n=  0 none
+[180/196] 82|86     street 33        n=  4 none
+[181/196] 83|84     avenue slot 17   n= 48 pass1-cluster(n=20)
+[182/196] 84|85     avenue slot 20   n= 16 pass1-cluster(n=4)
+[183/196] 84|88     street 36        n=  4 none
+[184/196] 85|86     avenue slot 23   n=  8 pass1-cluster(n=14)
+[185/196] 85|88     street 36        n=  0 none
+[186/196] 85|89     street 36        n=  3 none
+[187/196] 86|89     street 36        n=  0 none
+[188/196] 86|90     street 36        n=  2 none
+[189/196] 87|88     avenue slot 18   n=  2 none
+[190/196] 87|92     street 39        n=  7 pass1-cluster(n=6)
+[191/196] 87|93     street 39        n=  5 pass1-cluster(n=3)
+[192/196] 88|89     avenue slot 21   n= 15 pass1-cluster(n=15)
+[193/196] 88|93     street 39        n=  5 none
+[194/196] 89|90     avenue slot 24   n=  9 pass1-cluster(n=11)
+[195/196] 91|92     avenue slot 14   n= 18 pass1-cluster(n=4)
+[196/196] 92|93     avenue slot 17   n= 15 pass1-cluster(n=19)
+done: 1694 matches; pairs with n>=6: 111/196; zero: 8
