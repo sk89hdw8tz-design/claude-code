@@ -1,0 +1,58 @@
+{
+ "project": "Galveston Sanborn wharf/downtown mosaics, 1899 + 1912",
+ "branch": "claude/galveston-setup-part-a-mk5z1l",
+ "governing_spec": "Cloud addendum (Part B brief unavailable in this cloud session; stage structure reconstructed from the addendum and prior-work branches). Ambiguities go to HUMAN_QUEUE.md, not guessed.",
+ "updated_utc": "2026-08-29T00:00:00Z",
+ "environment": {
+  "network": "restricted proxy: pypi/apt/github reachable; loc.gov, tile.loc.gov, maps.lib.utexas.edu, texashistory.unt.edu blocked (CONNECT 403)",
+  "source_fetch_path": "GitHub Actions CI runners (full egress) commit sources to data branches; sessions read them via git",
+  "toolchain": "libvips-dev libvips-tools gdal-bin libgdal-dev + pyvips rasterio rio-cogeo opencv-python-headless scikit-image shapely geopandas pillow numpy requests matplotlib (pip --ignore-installed over debian numpy)"
+ },
+ "prior_work": {
+  "1912_pipeline": {
+   "branch": "claude/galveston-1912-sanborn-mosaic-747rju",
+   "state": "complete through acceptance: 00_inventory..90_decisions, solved per-sheet affine transforms (40_solve/output/transforms.json, gauge = sheet 10 identity), seam cuts/masks (50_seams), QA run1, two reviewer reports + ACCEPTANCE.md, deliverable 27x40 PDF",
+   "sheets": [5, 7, 8, 9, 10, 11, 12, 39, 40, 43, 44, 49, 50]
+  },
+  "1912_sources": {
+   "branch": "claude/galveston-1912-source-data",
+   "state": "129 files from LOC sanborn08539_004 with inventory.json (URL+sha256 each); 18 archival JP2s cover the target sheets"
+  },
+  "1899_sources": {
+   "branch": "sanborn-data-1899",
+   "state": "102 files from UT PCL with SHA256SUMS + INDEX_LINKS.txt; sheets 01-94 + skeletons + key/index/cover"
+  },
+  "1899_pipeline": {
+   "branch": "claude/galveston-1899-sanborn-maps-g5pfqc",
+   "state": "print tooling (make_print.py, layout-index.json with 0.67-row wharf offset, 5%-per-side overlap inset); NO solved per-sheet transforms — placement is grid-cell, verified by reading street numbers, not by control-point solve",
+   "sheets_on_print": [8, 7, 6, 5, 11, 13, 15, 12, 14, 16, 41, 39, 37]
+  }
+ },
+ "stages": {
+  "0_inventory": {
+   "status": "done",
+   "outputs": ["outputs/1899/recipe/inventory.json", "outputs/1912/recipe/inventory.json"],
+   "notes": "Built from committed provenance; sha256 spot-checked against git blobs (6/6 pass). No network used."
+  },
+  "1_consolidate_1912": {
+   "status": "pending",
+   "plan": "Port frozen 1912 solve into recipe form: transforms.json (verbatim + convention note), seam cuts/masks, adjacency, plate structure, QC scores from 70_qa/run1 seam_matrix, provenance manifest referencing FREEZE_MANIFEST hashes."
+  },
+  "2_register_1899": {
+   "status": "pending",
+   "plan": "True registration for the 13 print sheets: half-resolution working copies, control points at street junctions read from printed street names/numbers (correlation alone is defeated by the ~820 px block pitch — see g5pfqc README), solve per-sheet affines with a gauge sheet, seam polygons. This is the heavy stage; use up to 4 agents on contiguous groups."
+  },
+  "3_qc": {
+   "status": "pending",
+   "plan": "Seam QC crops from full-res overlap margins for both years; worst-ten seams to STATUS.md; open items to HUMAN_QUEUE.md with PNGs under outputs/qc/human/."
+  },
+  "4_tools_indexes": {
+   "status": "pending",
+   "plan": "sheets/blocks/intersections.geojson per year; tools/render.py (byte-for-byte, disk estimate printed up front); tools/crop.py (address + print size, lazy hash-cached fetch via git mirrors first, source URLs second); REPORT.md; DZI only if <500MB/year."
+  }
+ },
+ "disk": {
+  "policy": "one year of full sheets on disk at a time; working copies at half resolution; delete after stage passes and is pushed",
+  "work_dir": "work/sheets/ (hash-named, gitignored)"
+ }
+}

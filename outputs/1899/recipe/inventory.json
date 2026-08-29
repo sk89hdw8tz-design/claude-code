@@ -1,0 +1,1661 @@
+{
+ "year": 1899,
+ "generated_utc": "2026-08-29T04:57:37.263236+00:00",
+ "source": "University of Texas at Austin, Perry-Casta\u00f1eda Library Map Collection \u2014 Sanborn Fire Insurance Maps, Galveston 1899. Public domain.",
+ "index_page": "https://maps.lib.utexas.edu/maps/sanborn/g.html",
+ "acquisition": "Fetched by GitHub Actions workflow sanborn-fetch-1899.yml (CI runner has full egress; the cloud session proxy does not reach maps.lib.utexas.edu). Hashes recorded at fetch time in sources/1899/SHA256SUMS on branch sanborn-data-1899; verified against git blobs here.",
+ "target_footprint": {
+  "description": "Wharf/downtown 27x40 print selection",
+  "sheets": [
+   5,
+   6,
+   7,
+   8,
+   11,
+   12,
+   13,
+   14,
+   15,
+   16,
+   37,
+   39,
+   41
+  ],
+  "caption": "Avenue A (Water) to Avenue I (Sealy) \u00b7 19th St to 25th St (Rosenberg) \u00b7 Piers 19-25"
+ },
+ "count": 102,
+ "items": [
+  {
+   "file": "Galveston_1899_extra_11s.jpg",
+   "sheet": null,
+   "role": "skeleton",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-11s.jpg",
+   "sha256": "08941c513ffd6b38f3ecf6a328388eefd034dd50e49292aee390e2eb7185997c",
+   "bytes": 1528388,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_extra_11s.jpg",
+    "git_blob": "b333234cc5ab6722bfb6db8cf455092cb3640317"
+   }
+  },
+  {
+   "file": "Galveston_1899_extra_12s.jpg",
+   "sheet": null,
+   "role": "skeleton",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-12s.jpg",
+   "sha256": "6341f5cc303d12d86b6dcd7d27c368cf8903a562dd224eadeb0ec1fdbbf22c0f",
+   "bytes": 1604933,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_extra_12s.jpg",
+    "git_blob": "1d4287b959d1b7ef0852e08c1bb333f232862e5f"
+   }
+  },
+  {
+   "file": "Galveston_1899_extra_13s.jpg",
+   "sheet": null,
+   "role": "skeleton",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-13s.jpg",
+   "sha256": "cc5cef1d4e371c879683366c8a7bbe2c836552287d99d48153148c3ce859dca5",
+   "bytes": 1498681,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_extra_13s.jpg",
+    "git_blob": "033b0c4a916ffe81f618ce31e83020ea8f3d87b7"
+   }
+  },
+  {
+   "file": "Galveston_1899_extra_14s.jpg",
+   "sheet": null,
+   "role": "skeleton",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-14s.jpg",
+   "sha256": "66e0600500f321e5607c7b55eca32b4839bf5649606eed72a7bfc7a9df5c8281",
+   "bytes": 1701099,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_extra_14s.jpg",
+    "git_blob": "923f23ed4c9fd8e3b7bbcc90f10f69b108041101"
+   }
+  },
+  {
+   "file": "Galveston_1899_extra_1c.jpg",
+   "sheet": null,
+   "role": "cover",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-1c.jpg",
+   "sha256": "922998b748bf196e9e4ae7e55317bb6f6a2f2cd52c7793b92d64eba1ae7725c3",
+   "bytes": 1661754,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_extra_1c.jpg",
+    "git_blob": "c9d8c48f84781be557c20ab9ac18e8e53cd824b3"
+   }
+  },
+  {
+   "file": "Galveston_1899_extra_1i.jpg",
+   "sheet": null,
+   "role": "index-map",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-1i.jpg",
+   "sha256": "034eea8c95fe6b6e0ffca42dff34176a64a983adb75f0d8eb52adceba7329017",
+   "bytes": 3047465,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_extra_1i.jpg",
+    "git_blob": "a17c66961bdd2bf3194526e80a3bc0e6b7fa0885"
+   }
+  },
+  {
+   "file": "Galveston_1899_extra_1k.jpg",
+   "sheet": null,
+   "role": "key",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-1k.jpg",
+   "sha256": "d2b10b2d2db0eaedd70ed32009ffe0cd9b3e41e102bf827f5f48d90b2139a5cf",
+   "bytes": 2057224,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_extra_1k.jpg",
+    "git_blob": "bc124636097658dfa335e9921fd183872f52b8bd"
+   }
+  },
+  {
+   "file": "Galveston_1899_extra_1kb.jpg",
+   "sheet": null,
+   "role": "key-b",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-1kb.jpg",
+   "sha256": "b561cc5823d5d1f9b16669d6df2e4bf7fb98e9dd47f5c3b547dd1e4e66c030da",
+   "bytes": 2695976,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_extra_1kb.jpg",
+    "git_blob": "a79ec754de7a57864b99b625aacb62d1f86ebbb5"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_01.jpg",
+   "sheet": 1,
+   "role": "sheet",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-01.jpg",
+   "sha256": "641ad2816cfd26a031a07a96c2aea17fa04f116e77d774fc1e339582717b3f5f",
+   "bytes": 1110199,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_01.jpg",
+    "git_blob": "41bae8f6de57104c7a73affbf5b908b4b8250189"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_02.jpg",
+   "sheet": 2,
+   "role": "sheet",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-02.jpg",
+   "sha256": "28d06807d679fc2bcfeef95d51e7c02b3c392f2c1488b4d3d7ee57239ea71cf7",
+   "bytes": 1345342,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_02.jpg",
+    "git_blob": "f7a4a97cce50fa88cee4b873d632070708be5028"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_03.jpg",
+   "sheet": 3,
+   "role": "sheet",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-03.jpg",
+   "sha256": "2b45007bcc11d8bca2095420831e69e9a0e675e9776c26e8a0cd22dc325048a4",
+   "bytes": 1640682,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_03.jpg",
+    "git_blob": "74e390ccdbf18b8736e96846fe4dbf925d0aee04"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_04.jpg",
+   "sheet": 4,
+   "role": "sheet",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-04.jpg",
+   "sha256": "1e06a35fdab94ddbe31065fffbb0a0f0cb9b5aa80fd669da6dbaaf6e656aa057",
+   "bytes": 1678108,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_04.jpg",
+    "git_blob": "23c7f504a734bd299f0e4ec14473bef93535021d"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_05.jpg",
+   "sheet": 5,
+   "role": "sheet",
+   "in_target_footprint": true,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-05.jpg",
+   "sha256": "01c3be6ec718f3de2ddc41fdb8103164ac57a7774c4789ac63b04bee9dbdfc7d",
+   "bytes": 1575945,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_05.jpg",
+    "git_blob": "851f4a5506dc5bab0451f0c03be6cc613a2847a9"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_06.jpg",
+   "sheet": 6,
+   "role": "sheet",
+   "in_target_footprint": true,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-06.jpg",
+   "sha256": "d2fbb867b82507cca7cb3771722c7316435fbf4ab661163656bda54ff9186138",
+   "bytes": 1391099,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_06.jpg",
+    "git_blob": "46cffb4748871d2695bcd4f8251ba0da3f1c9463"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_07.jpg",
+   "sheet": 7,
+   "role": "sheet",
+   "in_target_footprint": true,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-07.jpg",
+   "sha256": "6857e4d4dee9b8a2792a53a72e26427a7ebe473ef5ddbb352f9175eb8c4f712f",
+   "bytes": 1670656,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_07.jpg",
+    "git_blob": "52aa8bf1e557e9d2fcf0196502c65f8e219ee070"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_08.jpg",
+   "sheet": 8,
+   "role": "sheet",
+   "in_target_footprint": true,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-08.jpg",
+   "sha256": "1bcbc3daf0887a419d6faf5447b1ceefe7567546a04636f157df9f25a965695c",
+   "bytes": 1574867,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_08.jpg",
+    "git_blob": "085862a539c6355d28c6e86b5482374cabba6f51"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_09.jpg",
+   "sheet": 9,
+   "role": "sheet",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-09.jpg",
+   "sha256": "1b412a171b2f032103a95a226a78f74726c975139b076e0d6ce77c4339fc3d9b",
+   "bytes": 1587858,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_09.jpg",
+    "git_blob": "174b1ed037feca2e47d4731ad30db2ebff1e5f88"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_10.jpg",
+   "sheet": 10,
+   "role": "sheet",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-10.jpg",
+   "sha256": "ae3d7643074998c94b100d1376ef48d2817e8f134168da8b9883a730625bbb12",
+   "bytes": 1414474,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_10.jpg",
+    "git_blob": "90190f240545c4096dd3af0ec06ec943f0de1dcf"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_11.jpg",
+   "sheet": 11,
+   "role": "sheet",
+   "in_target_footprint": true,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-11.jpg",
+   "sha256": "d5da1d98938d0668b7fd99b83a7cb87e08f50057522ded7095635cf122206743",
+   "bytes": 2358949,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_11.jpg",
+    "git_blob": "a8ccef109dfd53321bbca062b64740fa6ff8c9c8"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_12.jpg",
+   "sheet": 12,
+   "role": "sheet",
+   "in_target_footprint": true,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-12.jpg",
+   "sha256": "84087b7b40394473ceb87f50946a3f76b877cc9b5950484fb5e2a7790bf9d986",
+   "bytes": 2283265,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_12.jpg",
+    "git_blob": "c7d0260ea4783a4a6958c1afc9f409817257c946"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_13.jpg",
+   "sheet": 13,
+   "role": "sheet",
+   "in_target_footprint": true,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-13.jpg",
+   "sha256": "2d81c9209c252d74de0b7bccc8162977c4f14f87609666b586aa69c922dc4e83",
+   "bytes": 2637878,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_13.jpg",
+    "git_blob": "2c0665f686a17da1e414a677e3f784664c3c2c04"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_14.jpg",
+   "sheet": 14,
+   "role": "sheet",
+   "in_target_footprint": true,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-14.jpg",
+   "sha256": "845779336e7d996d615f68aefb185c6dd43638527202d7434cd1485ce26d76e6",
+   "bytes": 2690451,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_14.jpg",
+    "git_blob": "9b961ec79b0eb51e78c517b0530af5c8e96d00c7"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_15.jpg",
+   "sheet": 15,
+   "role": "sheet",
+   "in_target_footprint": true,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-15.jpg",
+   "sha256": "450f4eaa9efca218254f09d0db45f29584c41481db7a667415ba69a5ebccd470",
+   "bytes": 2292138,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_15.jpg",
+    "git_blob": "a435654253e67f6c47e4c835f1f752cdd6bf626e"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_16.jpg",
+   "sheet": 16,
+   "role": "sheet",
+   "in_target_footprint": true,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-16.jpg",
+   "sha256": "c610a36298b8531a95620e1cfb080f231ca83852644ea3f7977810208e13ba3f",
+   "bytes": 2380252,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_16.jpg",
+    "git_blob": "75c6d5a6dd05f8a1493527ab8a4448e275cd7328"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_17.jpg",
+   "sheet": 17,
+   "role": "sheet",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-17.jpg",
+   "sha256": "100faa6a0a1f6cb1f4ba27eb2a1fc971a94b84fd6d97c00058597b307fdfa289",
+   "bytes": 2054167,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_17.jpg",
+    "git_blob": "030b234343f1dd273088e4a1ce264d96e10964f6"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_18.jpg",
+   "sheet": 18,
+   "role": "sheet",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-18.jpg",
+   "sha256": "f90fc6cbbe95bd8325be691286dc4b106da64d406cb9bc991f10e8777a3f3869",
+   "bytes": 2181881,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_18.jpg",
+    "git_blob": "790fee7a529e772f26c3d0bef565c39474a8337b"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_19.jpg",
+   "sheet": 19,
+   "role": "sheet",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-19.jpg",
+   "sha256": "484e20bd709428ceee73cd1cb0bbf44ccf139d293715ae23dcda39a82248a781",
+   "bytes": 2044565,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_19.jpg",
+    "git_blob": "5ae40e710f7eb15e93895ab5e6378edf7567c260"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_20.jpg",
+   "sheet": 20,
+   "role": "sheet",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-20.jpg",
+   "sha256": "dfe566976985bda058e2accf89bc6025f3c0ceeff1cae5924d875147552dbf26",
+   "bytes": 1808278,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_20.jpg",
+    "git_blob": "25de68abe0627d20923cbb25e920bd1bab0c43be"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_21.jpg",
+   "sheet": 21,
+   "role": "sheet",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-21.jpg",
+   "sha256": "e16bf2411040cf401d3a53480b63fdbe578a89b180a6ac0d333062d3d8ab2ffa",
+   "bytes": 1920969,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_21.jpg",
+    "git_blob": "a458c4c39409759acbc91994ba6cde802598dff7"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_22.jpg",
+   "sheet": 22,
+   "role": "sheet",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-22.jpg",
+   "sha256": "be8f54fe275bb8299ba95a19789ab47dd7b3e751ad263e60fe3e1d5bf65fef13",
+   "bytes": 1987882,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_22.jpg",
+    "git_blob": "40e6566b1016678c6128716729e0aa97f3df27f9"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_23.jpg",
+   "sheet": 23,
+   "role": "sheet",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-23.jpg",
+   "sha256": "3de15824112ee2bcdeb50365d6ded8afba4b149bd398e15584362d3b7639a0c2",
+   "bytes": 2095154,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_23.jpg",
+    "git_blob": "2511d3f31701b087c1b77a41590f1a96f5e2e79c"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_24.jpg",
+   "sheet": 24,
+   "role": "sheet",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-24.jpg",
+   "sha256": "ad06cd7b734fe7240a92c4bfc5a522b17d6a49cd0fd4a73160cf2b5a5e218458",
+   "bytes": 2139672,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_24.jpg",
+    "git_blob": "0663d6c3cc441fd766dac9c4b5ec1165d8bb5f74"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_25.jpg",
+   "sheet": 25,
+   "role": "sheet",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-25.jpg",
+   "sha256": "ca4ce45ba30c6871f2b8ce0953ca5d924d1aabed29be17bc6eb4d0827f7412a2",
+   "bytes": 1876665,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_25.jpg",
+    "git_blob": "067a4f0de9a7170c35416aafe4fe6d2fc25bb08c"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_26.jpg",
+   "sheet": 26,
+   "role": "sheet",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-26.jpg",
+   "sha256": "d613d4d35f6491ce52558e09b2aa10fe320aec6fecf9f2f7e6462a95cc904d67",
+   "bytes": 1810409,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_26.jpg",
+    "git_blob": "8c5905a47a98cc6bcc469e3ad1ed561bcfba89f6"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_27.jpg",
+   "sheet": 27,
+   "role": "sheet",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-27.jpg",
+   "sha256": "7137e5bf2803af4a964c800ffa4a07eadb0ff555c3a4248568f937a7d587cf24",
+   "bytes": 1864961,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_27.jpg",
+    "git_blob": "e5af90acb19efcd7502b69f059499136d25d784c"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_28.jpg",
+   "sheet": 28,
+   "role": "sheet",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-28.jpg",
+   "sha256": "2d67c3cbce53a03b8fd60ca84d453015c3f47be2bb5779820a4d37700a83a844",
+   "bytes": 2040307,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_28.jpg",
+    "git_blob": "b457159161d6a36821df128ab13629e1f79a2c70"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_29.jpg",
+   "sheet": 29,
+   "role": "sheet",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-29.jpg",
+   "sha256": "4bcd83a8c169cf706fcd8dc34be89853d3a924740c0742687bb23b3860406392",
+   "bytes": 1983538,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_29.jpg",
+    "git_blob": "95f3770abc013354099836e25074bc10c7d84d5a"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_30.jpg",
+   "sheet": 30,
+   "role": "sheet",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-30.jpg",
+   "sha256": "397489a445a578e4b2d7cdc6b3faaa61799acdf011a5cdbc04f18b46d673bffc",
+   "bytes": 1554544,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_30.jpg",
+    "git_blob": "2fabfb5f6293bd3f625491997627b729803261a6"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_31.jpg",
+   "sheet": 31,
+   "role": "sheet",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-31.jpg",
+   "sha256": "444ab93ea8deecdbc8ca19707731b70ef52abfb2a7b0924c55d3cd5c474b8fce",
+   "bytes": 1888822,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_31.jpg",
+    "git_blob": "46460bb872de4990f207a58b0a23cc2bcd07967c"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_32.jpg",
+   "sheet": 32,
+   "role": "sheet",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-32.jpg",
+   "sha256": "9eeeac48dd2246068d1d8c405f32d4cd93a5a23fe418673ccba5529ed461c47b",
+   "bytes": 1819943,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_32.jpg",
+    "git_blob": "124c84ce3f02eb04349bb4096d447f26654e95ae"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_33.jpg",
+   "sheet": 33,
+   "role": "sheet",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-33.jpg",
+   "sha256": "39dbe75bb1c163a884a42b0106066d487484b534743afb9ac7503d6c44e255b0",
+   "bytes": 2112616,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_33.jpg",
+    "git_blob": "35ccaded70e988fcaa9223844e68d5852b103b10"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_34.jpg",
+   "sheet": 34,
+   "role": "sheet",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-34.jpg",
+   "sha256": "99dec3a32cf713d8ac5b263d4bdeab3975ac5aed708f648d7760dc69585b97da",
+   "bytes": 2052604,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_34.jpg",
+    "git_blob": "ffeaccb07219db1a23c0e3720271c222ca0eb9db"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_35.jpg",
+   "sheet": 35,
+   "role": "sheet",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-35.jpg",
+   "sha256": "47952926cf98f98750f68fc359537233236880ea9364b1ec6ce29dd1a0e3e823",
+   "bytes": 1987693,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_35.jpg",
+    "git_blob": "5d8c84f952d1ba642802a1d54931404c5867bb25"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_36.jpg",
+   "sheet": 36,
+   "role": "sheet",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-36.jpg",
+   "sha256": "6cfb074798c07a82cd1470dea9a7c03cb746efcdc755a4bd09377dcb724e21cf",
+   "bytes": 2070185,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_36.jpg",
+    "git_blob": "d19b71bcfd6e125eb094e860eb31a391d8c29782"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_37.jpg",
+   "sheet": 37,
+   "role": "sheet",
+   "in_target_footprint": true,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-37.jpg",
+   "sha256": "8662eefc6f3725546c30b59c94f18158cb206e0be6293824f228e3a0e394e1b0",
+   "bytes": 2074363,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_37.jpg",
+    "git_blob": "38dec8d60a08316113cca5707ded429d891f80ff"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_38.jpg",
+   "sheet": 38,
+   "role": "sheet",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-38.jpg",
+   "sha256": "95ed193128644649d6862716dd29feb73c3d445671b088d6c599b35ef4589e12",
+   "bytes": 2044889,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_38.jpg",
+    "git_blob": "58fc40660ed7abd87fd14c1b420af69f0734f410"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_39.jpg",
+   "sheet": 39,
+   "role": "sheet",
+   "in_target_footprint": true,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-39.jpg",
+   "sha256": "c75948b01185980bf9e87544d4035d8e30a9e779be76aa827b1a373755233f65",
+   "bytes": 1999587,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_39.jpg",
+    "git_blob": "d88e3f64240957f5f5493fb165a5cde32d4268db"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_40.jpg",
+   "sheet": 40,
+   "role": "sheet",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-40.jpg",
+   "sha256": "13c7d2e9b0868a3e55b639403ac3482b7a04358daed1f1d2d7f7c4a821f538d3",
+   "bytes": 1968962,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_40.jpg",
+    "git_blob": "ef15bf8c4bf97aed46d9b1f974d1ea3a740f632e"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_41.jpg",
+   "sheet": 41,
+   "role": "sheet",
+   "in_target_footprint": true,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-41.jpg",
+   "sha256": "6e22197c30e26f25009bdb44a2bf5c6e7f81ff7b69a49f90207f4965f371616a",
+   "bytes": 1997266,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_41.jpg",
+    "git_blob": "85269291deebb67d8cb8329324474f1e2a67602d"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_42.jpg",
+   "sheet": 42,
+   "role": "sheet",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-42.jpg",
+   "sha256": "39fbda7c7d5ba6c684627c69f6d03e5ab0416ac73202ab83c8debb4cad1e4e8a",
+   "bytes": 2084995,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_42.jpg",
+    "git_blob": "6770ea8c1e9b2ca490fd48f94bce2762880ee65c"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_43.jpg",
+   "sheet": 43,
+   "role": "sheet",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-43.jpg",
+   "sha256": "9b5420304051983fb65de3f6000f38f90a0faa0de619c21fdab06e5a15d6275f",
+   "bytes": 2338884,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_43.jpg",
+    "git_blob": "f1a1a8849dac12010da502b00c6b440bb0fd6c67"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_44.jpg",
+   "sheet": 44,
+   "role": "sheet",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-44.jpg",
+   "sha256": "b10d49639044d5a9c8c49db51aeae095883f169056cb1e055749623fc1ac6aca",
+   "bytes": 1962317,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_44.jpg",
+    "git_blob": "6a29e2317677d15b9019e2775d90dc8a56b74a14"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_45.jpg",
+   "sheet": 45,
+   "role": "sheet",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-45.jpg",
+   "sha256": "afb1b92e64e8b7e45107d0a950108db5de12111e0f5f4867c9f10b19a5979813",
+   "bytes": 1932429,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_45.jpg",
+    "git_blob": "4bb44d45c5c24510d52a68b3bfac13195c024477"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_46.jpg",
+   "sheet": 46,
+   "role": "sheet",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-46.jpg",
+   "sha256": "e5f464a1deead5776a2691d26d1644cc378a57beec53834544e2df8abd3faaac",
+   "bytes": 2105424,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_46.jpg",
+    "git_blob": "0659afc197a90326f7b2d4b88c816d87cd4a6f91"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_47.jpg",
+   "sheet": 47,
+   "role": "sheet",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-47.jpg",
+   "sha256": "c5eecc77287e235c062821a278ffaa92630fdc564abe215d78c9cbc2454598a7",
+   "bytes": 1959640,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_47.jpg",
+    "git_blob": "c3a645c61cff939ea6f47e965436422752305c82"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_48.jpg",
+   "sheet": 48,
+   "role": "sheet",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-48.jpg",
+   "sha256": "d48a99236dcb7e7dbe0e5e18a679e6d6d9f9844a88a95ba801a399e49b5b554f",
+   "bytes": 2102793,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_48.jpg",
+    "git_blob": "e7f5e259e22e7cc1b534dbaf16015b57aad494ec"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_49.jpg",
+   "sheet": 49,
+   "role": "sheet",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-49.jpg",
+   "sha256": "60197fa26b44750148931f7f4fcfec59615c5e89f460be1fdd5cd10db55a3040",
+   "bytes": 1832469,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_49.jpg",
+    "git_blob": "97281bdf283c317fd2fe40326ec89cd654d9c61a"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_50.jpg",
+   "sheet": 50,
+   "role": "sheet",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-50.jpg",
+   "sha256": "9ce087d4db2bd6338a50417b4c9088350aeac262640b49e0fb393bd2ea5cb3be",
+   "bytes": 2053127,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_50.jpg",
+    "git_blob": "b1b35cd7e501cd68cc5b657124e05d7bc4b87326"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_51.jpg",
+   "sheet": 51,
+   "role": "sheet",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-51.jpg",
+   "sha256": "e951a8c4d8c24e25ceabc3b20001bee3e13770d13cf42aad055586ed8c6266b0",
+   "bytes": 1991547,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_51.jpg",
+    "git_blob": "94d2995ef56a9a64c518fb09ced52949e930f839"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_52.jpg",
+   "sheet": 52,
+   "role": "sheet",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-52.jpg",
+   "sha256": "77e6dcdd02457916b55da5dc54cfdb3810339da6fea81054b7fb35f139d5b050",
+   "bytes": 1816109,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_52.jpg",
+    "git_blob": "f4d5da2f736b4550211d2b33e687d64f363d57b8"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_53.jpg",
+   "sheet": 53,
+   "role": "sheet",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-53.jpg",
+   "sha256": "5b8a961f064bb563925c4d505c7450207bfc621d5231db2a3b15832048f55e06",
+   "bytes": 1947178,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_53.jpg",
+    "git_blob": "ef86337e2c2141953594e013de85f9531ef383ce"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_54.jpg",
+   "sheet": 54,
+   "role": "sheet",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-54.jpg",
+   "sha256": "3047c8887a9c1b78d7f6c4c4492431fb0156c7c6c1bc2a0c6860607339993103",
+   "bytes": 2178155,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_54.jpg",
+    "git_blob": "e3ececc752b309bec41a63394c543976dd47d5f2"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_55.jpg",
+   "sheet": 55,
+   "role": "sheet",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-55.jpg",
+   "sha256": "3d432ff9af33a9f26ae33d7f567506aba3c7078749c4e365b61295e3fe610b72",
+   "bytes": 2121217,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_55.jpg",
+    "git_blob": "1c94a2cad76c30d575b89e5172d538d9ec5d8f21"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_56.jpg",
+   "sheet": 56,
+   "role": "sheet",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-56.jpg",
+   "sha256": "22f326a88b249721fd7ef5c85b7e3e0c7fb3076a87fbf2dca754913c90e31ddb",
+   "bytes": 2046782,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_56.jpg",
+    "git_blob": "3eb56b639ed56fc996b849948fb68ccdb71a7183"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_57.jpg",
+   "sheet": 57,
+   "role": "sheet",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-57.jpg",
+   "sha256": "ac13d3ef71df98d1c8ef99ac901a302b57fda286731ed3f83316f0a02cbc48e8",
+   "bytes": 1969704,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_57.jpg",
+    "git_blob": "83de450e27da166e65acb7168a70ba67d10cc709"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_58.jpg",
+   "sheet": 58,
+   "role": "sheet",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-58.jpg",
+   "sha256": "383dc762b8e0ad03f6a421abf0f76e73c06be98a1fb52d24e8bcad9a8983b8db",
+   "bytes": 2011641,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_58.jpg",
+    "git_blob": "949057475ac95d0dddf8f3be8f90bb46df381cc7"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_59.jpg",
+   "sheet": 59,
+   "role": "sheet",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-59.jpg",
+   "sha256": "cdac2c9583c7f47ae89c832ed08fa31acf15317161e5fe85b138155cf8ac2ceb",
+   "bytes": 2140942,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_59.jpg",
+    "git_blob": "5bed6f5cfc7dc8cada3923b826d38b2e4f2ff193"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_60.jpg",
+   "sheet": 60,
+   "role": "sheet",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-60.jpg",
+   "sha256": "cc3aab32889562885c12f48d354eb05eb86e8366835c1a740e7b041d18b38204",
+   "bytes": 1592385,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_60.jpg",
+    "git_blob": "2b0cfbdad6f2d6b54b3a3ec77cc391e23785fd15"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_61.jpg",
+   "sheet": 61,
+   "role": "sheet",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-61.jpg",
+   "sha256": "6bad3c212e75f295525605eb3da6c9757d0c08431ae23b7fc27ac9cf2db0d7e4",
+   "bytes": 1996956,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_61.jpg",
+    "git_blob": "9ae1bd016bb4bdf22fb20591ba3b8a27b450b6f1"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_62.jpg",
+   "sheet": 62,
+   "role": "sheet",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-62.jpg",
+   "sha256": "5c34d83250ea07e380038b72142cf7b081d7d92e6b0b370785b3d51c97c97985",
+   "bytes": 1775626,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_62.jpg",
+    "git_blob": "0564ec9dc8b811033123c884833dfbc47735d066"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_63.jpg",
+   "sheet": 63,
+   "role": "sheet",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-63.jpg",
+   "sha256": "aa41528dbf0a6def1b59799fb434bff4780a65777eb6e66c3e69721ea5276971",
+   "bytes": 1977730,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_63.jpg",
+    "git_blob": "27bc88442b3e2b727d01963d2c01c39765759787"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_64.jpg",
+   "sheet": 64,
+   "role": "sheet",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-64.jpg",
+   "sha256": "bf29179c3400f2c197d3e38605d57be3607766eeab5a2f5783ada52067e52c7f",
+   "bytes": 1900055,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_64.jpg",
+    "git_blob": "59580b71e9ab268ceedd19183cb405a95af59ec1"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_65.jpg",
+   "sheet": 65,
+   "role": "sheet",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-65.jpg",
+   "sha256": "e1af70399fd30861b8c3982b883e907ac6c4ad4efdd568336f78b5b51b682cc8",
+   "bytes": 1535336,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_65.jpg",
+    "git_blob": "92c519fe68ab68967035598b81bdc228b031ce66"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_66.jpg",
+   "sheet": 66,
+   "role": "sheet",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-66.jpg",
+   "sha256": "40e6bc66424364ae8b377a8f7658497bdc833cdc999d09b1591c1274ee4b63e7",
+   "bytes": 1946143,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_66.jpg",
+    "git_blob": "576c75ebb77b3b424b5d7fbdbebbfc76b7a3b6bf"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_67.jpg",
+   "sheet": 67,
+   "role": "sheet",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-67.jpg",
+   "sha256": "f901ecb5e2b517cda62e33e89004076c733ee8a61c5448c07e2bb9f1e35ef427",
+   "bytes": 1794476,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_67.jpg",
+    "git_blob": "7fb58508b9924cb424824e7647807aebc08af6a1"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_68.jpg",
+   "sheet": 68,
+   "role": "sheet",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-68.jpg",
+   "sha256": "c4abba746023769176bcf36fbc68a947173f0773c15285c68ac372e1885cf58b",
+   "bytes": 1890519,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_68.jpg",
+    "git_blob": "b9482b01024470e31aca278aed94b0e4e7a276c7"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_69.jpg",
+   "sheet": 69,
+   "role": "sheet",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-69.jpg",
+   "sha256": "93fcb50a6b1e461a75b4b4f1615d2dbb8ba6ff09934e5dea4fc922cd4ff55395",
+   "bytes": 1731200,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_69.jpg",
+    "git_blob": "012a5ccb1111b3989b01369e39f6f3b41b142780"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_70.jpg",
+   "sheet": 70,
+   "role": "sheet",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-70.jpg",
+   "sha256": "ecb74585e39ad6abb758325cdc1822aeca7ffa7f5ab28ae65fb974d9ea7039db",
+   "bytes": 1330414,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_70.jpg",
+    "git_blob": "65d0f2337f2d2383b32cba6e5f0d718144226ffd"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_71.jpg",
+   "sheet": 71,
+   "role": "sheet",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-71.jpg",
+   "sha256": "2fd156ab2e1b756c756cf33efa7f14563d9e6598e9b1d16d880065c40d4f31b1",
+   "bytes": 1820052,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_71.jpg",
+    "git_blob": "3f927b549c37a937e294933ddda55ba910ff5487"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_72.jpg",
+   "sheet": 72,
+   "role": "sheet",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-72.jpg",
+   "sha256": "67b85d88441ad5999b4abc095d13da339712e860b163f1ef8ccd7c449949779d",
+   "bytes": 1551967,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_72.jpg",
+    "git_blob": "0eb48ac25e4bfaf0de5c12bf2eebd202b86098a3"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_73.jpg",
+   "sheet": 73,
+   "role": "sheet",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-73.jpg",
+   "sha256": "121b9f87f622aa69a31ef1156c8422a1d33bd85516fac2d1d72554b72646712b",
+   "bytes": 1736789,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_73.jpg",
+    "git_blob": "66820397dad72ef851b45ab6e329e30f04712693"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_74.jpg",
+   "sheet": 74,
+   "role": "sheet",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-74.jpg",
+   "sha256": "7378f81ef2952ad1a65af67c4ef92ee000a89a8bcdefd1bd42bc9260a6c28112",
+   "bytes": 1793138,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_74.jpg",
+    "git_blob": "c82355b8808084abd6ca6a1ce8cacab102f1c6ba"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_75.jpg",
+   "sheet": 75,
+   "role": "sheet",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-75.jpg",
+   "sha256": "19f33b4a9aadbd545deed8a6566035446f459e725baae2a20e368e2cf9b84d34",
+   "bytes": 1768580,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_75.jpg",
+    "git_blob": "1319bdab846612dc089d61cab7ca6ca32b71edfa"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_76.jpg",
+   "sheet": 76,
+   "role": "sheet",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-76.jpg",
+   "sha256": "a10601d3a75742f072dd9a8921d22f6b4f546e30c8455c20f5333d09704d0f98",
+   "bytes": 1637747,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_76.jpg",
+    "git_blob": "5ab83a10577a3481f631eecea169e756538789b3"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_77.jpg",
+   "sheet": 77,
+   "role": "sheet",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-77.jpg",
+   "sha256": "edbe17fbb04c32064d85d0b24b2fd9dbc580dc149f34cb3fd85b7148124a3efb",
+   "bytes": 1735248,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_77.jpg",
+    "git_blob": "8a35b49809974d369f0ddf99894919c56a4a6b33"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_78.jpg",
+   "sheet": 78,
+   "role": "sheet",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-78.jpg",
+   "sha256": "fed3d6c4ad8283fafdba1fc8bf21d44784faa5712cf6d01eaa254ea77ff88dbb",
+   "bytes": 1622153,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_78.jpg",
+    "git_blob": "2143a06a3b0b38a345fce9bfb00ad7865e33b041"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_79.jpg",
+   "sheet": 79,
+   "role": "sheet",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-79.jpg",
+   "sha256": "231f94e6f94b5f641469869719003dd02f1a42f55e62529997b2e0f147686e27",
+   "bytes": 1815764,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_79.jpg",
+    "git_blob": "781aa9d62d276d1b4f2456454d075f1fccfa5a5e"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_80.jpg",
+   "sheet": 80,
+   "role": "sheet",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-80.jpg",
+   "sha256": "beb4fef93fd0947697785e06b56e344cff0778ce631e58635e0a565401e20b3f",
+   "bytes": 1712101,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_80.jpg",
+    "git_blob": "55afe528785514e23ef6dd7a9267ff714348d444"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_81.jpg",
+   "sheet": 81,
+   "role": "sheet",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-81.jpg",
+   "sha256": "8c4285d2fd8d31755b42e07b467fdf8c9df218d2608a8217db3ea6cfcbf95c2f",
+   "bytes": 1495916,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_81.jpg",
+    "git_blob": "68e52b24550a53e15ea9cf6ff9ea80837f4455b2"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_82.jpg",
+   "sheet": 82,
+   "role": "sheet",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-82.jpg",
+   "sha256": "8ccbf44e842684a01a1c09e170c7b3ba6dc7d6f1c617553a227f8d8b718c4f45",
+   "bytes": 1197833,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_82.jpg",
+    "git_blob": "fadb346e56ca8060a28a9dc5d93394a808ff2c1a"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_83.jpg",
+   "sheet": 83,
+   "role": "sheet",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-83.jpg",
+   "sha256": "8189980100034e193bae0b94aee248a747f6c508f663fe592a25ea343ebafda0",
+   "bytes": 1761451,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_83.jpg",
+    "git_blob": "5de88671cd31d692af63500894dc94ec9d91b439"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_84.jpg",
+   "sheet": 84,
+   "role": "sheet",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-84.jpg",
+   "sha256": "0ae9fa68b8d1d4665e4d2539f12ae1ed8ba0e63827394721ac1343215ace5d48",
+   "bytes": 1651438,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_84.jpg",
+    "git_blob": "fec4e68389c94b2e5982355069cb64af071f62b8"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_85.jpg",
+   "sheet": 85,
+   "role": "sheet",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-85.jpg",
+   "sha256": "7bcccc1467af82a028cd8777d88c53985248bb2208584ac8fca95bef8172fc7a",
+   "bytes": 1468956,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_85.jpg",
+    "git_blob": "cbd4678a579db79a51e551d406a9901b938b1614"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_86.jpg",
+   "sheet": 86,
+   "role": "sheet",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-86.jpg",
+   "sha256": "9452dedb325ff9c52c8b4bce4a7e5816c0fd3f8923af6d54888a394680fe2782",
+   "bytes": 1339964,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_86.jpg",
+    "git_blob": "1ded1152874183a9db15e3996b2d5d3a35ea5774"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_87.jpg",
+   "sheet": 87,
+   "role": "sheet",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-87.jpg",
+   "sha256": "ae3b266dfe1bd4b5abb9d9fa4092215fca41a8cfe6ad63e03b854384a57c5495",
+   "bytes": 1616758,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_87.jpg",
+    "git_blob": "bac1c340c76da1308d1bed89deea912ddc805641"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_88.jpg",
+   "sheet": 88,
+   "role": "sheet",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-88.jpg",
+   "sha256": "6e1b08336f76d846f14b4d37516d51b96a1e349cfdf684e0e237ecb224b0fd2e",
+   "bytes": 1509252,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_88.jpg",
+    "git_blob": "724be5418a67321944b51076153e5a9f008d7472"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_89.jpg",
+   "sheet": 89,
+   "role": "sheet",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-89.jpg",
+   "sha256": "3e70f2c5373d7329c902659eeae794ea0ac7431e34503f6d834e0dd829920f1b",
+   "bytes": 1512987,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_89.jpg",
+    "git_blob": "f4bd77848b9b90f8f0b8ec8a6dcd15401b4ed16f"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_90.jpg",
+   "sheet": 90,
+   "role": "sheet",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-90.jpg",
+   "sha256": "f8c1d8974d01999eb591d7ed0cebd58ac86bd0b280c88c78a753cefe5399b5b3",
+   "bytes": 1545975,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_90.jpg",
+    "git_blob": "f08f54c340d8acb236c573eaed930b4db5325cc7"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_91.jpg",
+   "sheet": 91,
+   "role": "sheet",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-91.jpg",
+   "sha256": "76c76d6b1bba62c2f78f9490c4e61ba4f00aa1ed11cfb94183796e8fb5d28746",
+   "bytes": 1664355,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_91.jpg",
+    "git_blob": "854f59b84e4c197bb5f426e1ef21752f272c1ad0"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_92.jpg",
+   "sheet": 92,
+   "role": "sheet",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-92.jpg",
+   "sha256": "72f67aed34d276e96cde0254030ab0f0c296de48873366e9db0ffa93fd742118",
+   "bytes": 1480696,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_92.jpg",
+    "git_blob": "c85edb03226c75ef420ec06dd8f95fd6945331bc"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_93.jpg",
+   "sheet": 93,
+   "role": "sheet",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-93.jpg",
+   "sha256": "7c42e36114667d2ff7f3deacf47152ce6b4a31df124b22d164bdf439ea6da7db",
+   "bytes": 1713620,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_93.jpg",
+    "git_blob": "15f1ca6f66bd21375695c9d2b3a5c28f6c295694"
+   }
+  },
+  {
+   "file": "Galveston_1899_sheet_94.jpg",
+   "sheet": 94,
+   "role": "sheet",
+   "in_target_footprint": false,
+   "source_url": "http://maps.lib.utexas.edu/maps/sanborn/g-i/txu-sanborn-galveston-1899-94.jpg",
+   "sha256": "553f776b1a79d90b65ca4078e33c1d6d0b31d0501417de73f66e0b745474eaa3",
+   "bytes": 1277292,
+   "mirror": {
+    "kind": "git",
+    "repo": "sk89hdw8tz-design/claude-code",
+    "branch": "sanborn-data-1899",
+    "path": "sources/1899/Galveston_1899_sheet_94.jpg",
+    "git_blob": "2a83b1fb5fd2a8849281f1093d740becd19013bf"
+   }
+  }
+ ]
+}
