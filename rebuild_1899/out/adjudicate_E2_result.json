@@ -1,1 +1,445 @@
-{"ties": []}
+{
+ "ties": [
+  {
+   "pair": [
+    "45",
+    "43"
+   ],
+   "id": "tie-45-43-1",
+   "owner_xy": [
+    2722,
+    3799
+   ],
+   "nbr_xy": [
+    1717,
+    295
+   ],
+   "confidence": "high",
+   "note": "Intersection of the 200-block 20-ft alley centerline with the 8in W.PIPE dashed line in 15th St. Identity anchored by house numbers: 45 shows 208-220 (north side, 214 first east of alley), 43 shows 201-223 (south side, 213 first east of alley); T.H. dot sits ~35px NE of the crossing on BOTH sheets. Sheet 45 has a second identical-looking 20-ft crossing 1035px west (100-block) - do not confuse."
+  },
+  {
+   "pair": [
+    "45",
+    "43"
+   ],
+   "id": "tie-45-43-2",
+   "owner_xy": [
+    1687,
+    3799
+   ],
+   "nbr_xy": [
+    680,
+    293
+   ],
+   "confidence": "high",
+   "note": "Intersection of the 100-block 20-ft alley centerline with the 8in W.PIPE line in 15th St, 1035px west of tie-1. Anchored by house numbers 102-124 north (45, 114 first east of alley) vs 101-123 south (43, 113 first east of alley); T.H. dot NE of crossing on both. x-offset agrees with tie-1 within 2px (~-1005)."
+  },
+  {
+   "pair": [
+    "45",
+    "46"
+   ],
+   "status": "featureless",
+   "note": "Re-verified: overlap is only the Av C (Mechanic) corridor. 45 draws the WEST frontage (x~3082, houses 1224-1228/1302-1410) plus ref numeral 46; 46 draws the EAST frontage (x~305, houses 1223-1227/1301-1409) plus match-line brackets at x~100-105 and ref numeral 45. No hydrant, rail, or building drawn in the corridor on either sheet; the brackets are a drafting convention, not a measurable physical feature, so no trustworthy x tie exists. Observed for the solver: at 14th St the corridor edges agree in y almost exactly (45 y2470/2727 vs 46 bracket feet y2470/2730), suggesting y-offset ~0 between the sheets."
+  },
+  {
+   "pair": [
+    "47",
+    "45"
+   ],
+   "id": "tie-47-45-1",
+   "owner_xy": [
+    2247,
+    3873
+   ],
+   "nbr_xy": [
+    2308,
+    338
+   ],
+   "confidence": "high",
+   "note": "Red fire-alarm box disk numbered 16 in 12th St, NW of the block whose houses read 201-207 (avenue houses 1201-1203 on its west face). The printed 16 is unique - identity certain. Symbol placement slop: on 47 the disk sits level with the block corner, on 45 ~60px above it."
+  },
+  {
+   "pair": [
+    "47",
+    "45"
+   ],
+   "id": "tie-47-45-2",
+   "owner_xy": [
+    2280,
+    3874
+   ],
+   "nbr_xy": [
+    2355,
+    398
+   ],
+   "confidence": "high",
+   "note": "NW corner of the block SE of the intersection (houses 201-207 / 1201-1203), i.e. top of its west frontage line. Anchored by alarm-box 16 disk ~35-50px to its NW on both sheets. Note: this corner and tie-1 disk imply dy differing by ~59px - the disk symbol is hand-placed; trust the corner for geometry."
+  },
+  {
+   "pair": [
+    "18",
+    "19"
+   ],
+   "id": "tie-18-19-1",
+   "owner_xy": [
+    1302,
+    3845
+   ],
+   "nbr_xy": [
+    3287,
+    352
+   ],
+   "confidence": "medium",
+   "note": "Red fire-alarm circle numbered 123, east of the multi-track railroad crossing 30th St. Unique printed number - identity certain; medium because symbol placement relative to the track group differs ~60px between sheets (drafting slop). 18 is at same scale; overlap is only 19s top-right (x>2300) vs 18s bottom-left."
+  },
+  {
+   "pair": [
+    "18",
+    "19"
+   ],
+   "id": "tie-18-19-2",
+   "owner_xy": [
+    272,
+    3697
+   ],
+   "nbr_xy": [
+    2297,
+    188
+   ],
+   "confidence": "medium",
+   "note": "T.H. hydrant dot just SW of the Cotton Yard fence SW corner (18: corner 330,3645; 19 draws the yard as outline block with numeral 18, corner 2325,143). Anchored by the single dashed rail track in the avenue west of it (18 x~175, 19 x~2225) and the yard corner. Offsets from the three symbol ties scatter +-40px."
+  },
+  {
+   "pair": [
+    "18",
+    "19"
+   ],
+   "id": "tie-18-19-3",
+   "owner_xy": [
+    1218,
+    3722
+   ],
+   "nbr_xy": [
+    3270,
+    164
+   ],
+   "confidence": "medium",
+   "note": "T.H. hydrant dot immediately east of the 4-5 track railroad group in 30th St (labeled T.H. on both). Anchored by adjacency to the track group and alarm circle 123 ~180px south. Same +-50px symbol slop caveat."
+  },
+  {
+   "pair": [
+    "17",
+    "19"
+   ],
+   "id": "tie-17-19-1",
+   "owner_xy": [
+    2260,
+    3687
+   ],
+   "nbr_xy": [
+    1303,
+    178
+   ],
+   "confidence": "high",
+   "note": "T.H. hydrant dot in 30th St at the end of a dashed hydrant lateral, just SW of the Cotton Pickery block (pink, PRESS). Anchored: 19 prints the ref numeral 17 immediately west of this dot, and the 301/303 house numbers sit one lot east on both sheets at the same relative x (dx -945 to -957 across three features)."
+  },
+  {
+   "pair": [
+    "17",
+    "19"
+   ],
+   "id": "tie-17-19-2",
+   "owner_xy": [
+    2270,
+    3633
+   ],
+   "nbr_xy": [
+    1320,
+    150
+   ],
+   "confidence": "medium",
+   "note": "SW corner of the Cotton Pickery block north of 30th St: full pink building on 17, reference outline block on 19 (the outline whose SW corner sits just NE of the T.H. dot on both sheets). Medium: 19s outline is schematic, agrees with tie-1 within ~25px."
+  },
+  {
+   "pair": [
+    "19",
+    "20"
+   ],
+   "id": "tie-19-20-1",
+   "owner_xy": [
+    3250,
+    1341
+   ],
+   "nbr_xy": [
+    216,
+    1289
+   ],
+   "confidence": "medium",
+   "note": "T.H. hydrant dot in the PARTLY SHELLED avenue (Joint Tracks G.H.&H./G.C.&S.F. corridor), mid-block east of the dashed track, opposite warehouse block 502-512 (EARTH FLOOR) / west block 416-424. Only T.H. in this corridor stretch on both sheets. Medium: dy disagrees with tie-2 by ~70px (symbol slop)."
+  },
+  {
+   "pair": [
+    "19",
+    "20"
+   ],
+   "id": "tie-19-20-2",
+   "owner_xy": [
+    3245,
+    2685
+   ],
+   "nbr_xy": [
+    187,
+    2702
+   ],
+   "confidence": "medium",
+   "note": "T.H. hydrant dot at the SE corner of the rail-spur divergence (curved spur peels NE on both sheets), level with house row 501-511 north of the two facing GAS HOLDERs. WARNING: there are TWO gas holder circles, one each side of the avenue (19 west side col 3210-3212, 20 east side col 3201-3213) - do not tie them to each other."
+  },
+  {
+   "pair": [
+    "19",
+    "21"
+   ],
+   "id": "tie-19-21-1",
+   "owner_xy": [
+    2248,
+    3691
+   ],
+   "nbr_xy": [
+    2268,
+    168
+   ],
+   "confidence": "high",
+   "note": "T.H. hydrant dot just east of the 70-ft rail corridor crossing the boundary street, opposite the Gas Works RETORTS block (19, houses 402-416) / STORAGE-SHED-FACTORY row 501-513 (21). Labeled T.H. on both; only hydrant in this stretch. 21 numeral printed on 19s corridor and 19 numeral on 21 corroborate the pairing."
+  },
+  {
+   "pair": [
+    "19",
+    "21"
+   ],
+   "id": "tie-19-21-2",
+   "owner_xy": [
+    2208,
+    3795
+   ],
+   "nbr_xy": [
+    2230,
+    287
+   ],
+   "confidence": "medium",
+   "note": "Intersection of the dashed rail siding in the 70-ft corridor with the 6in W.PIPE dashed line. 19 draws a single dashed track; 21 draws the full track set (2 solid + dashed + 2 solid) - measured the dashed one on both. dx agrees with tie-1 within 2px."
+  },
+  {
+   "pair": [
+    "20",
+    "22"
+   ],
+   "id": "tie-20-22-1",
+   "owner_xy": [
+    2138,
+    3672
+   ],
+   "nbr_xy": [
+    2245,
+    205
+   ],
+   "confidence": "low",
+   "note": "T.H. hydrant dot at the 70-ft avenue/rail crossing of 33rd St (row 624 & col 3222-3228 west, Drugs store 801 east; 22 numeral on 20 and facing rows 702-712/801-809 confirm the crossing). Only hydrant at this crossing on both sheets, but 20 draws it WEST of the dashed track and 22 draws it EAST - expect ~100px slop; dx here disagrees with tie-2 by ~160px. DOWNGRADED to low: sheet 33 draws a T.H. at its west edge (25,3697) that maps exactly onto 22 (2245,205) via the 33-22 row alignment, so 22s dot belongs to the 33-side hydrant; 20s dot at (2138,3672) may be a different (west-of-track) hydrant not drawn on 22. Do not use."
+  },
+  {
+   "pair": [
+    "20",
+    "22"
+   ],
+   "id": "tie-20-22-2",
+   "owner_xy": [
+    2262,
+    3778
+   ],
+   "nbr_xy": [
+    2210,
+    287
+   ],
+   "confidence": "medium",
+   "note": "Intersection of the single dashed rail track in the 70-ft corridor with the 8in W.PIPE dashed line in 33rd St. Line intersection, but this corridor is drawn 345px wide on 20 vs 205px on 22, so treat 20-22 x-registration as +-80px; the pipe-line y (3778 vs 287) is the solid part of this tie."
+  },
+  {
+   "pair": [
+    "33",
+    "22"
+   ],
+   "id": "tie-33-22-1",
+   "owner_xy": [
+    25,
+    3697
+   ],
+   "nbr_xy": [
+    2245,
+    205
+   ],
+   "confidence": "high",
+   "note": "T.H. hydrant dot in 33rd St just east of the 70-ft rail avenue, 55-90px west of the first house of the 800-block row (802 on 33 north side, 801 Drugs on 22 south side). Labeled T.H. on both; row 802-824 (33) vs 801-823 (22) aligns lot-for-lot with dx ~ +2200."
+  },
+  {
+   "pair": [
+    "33",
+    "22"
+   ],
+   "id": "tie-33-22-2",
+   "owner_xy": [
+    90,
+    3650
+   ],
+   "nbr_xy": [
+    2290,
+    145
+   ],
+   "confidence": "medium",
+   "note": "SW corner of the 800-block north of 33rd St (802-824): real block edge on 33, reference outline on 22 (outline spans 2290-3270 vs 33s 90-1000, ~70px stretch at the east end - west corner is the anchored one, sitting just NE of the tie-1 hydrant on both sheets)."
+  },
+  {
+   "pair": [
+    "21",
+    "22"
+   ],
+   "status": "featureless",
+   "note": "Overlap is only the 80-ft NOT PAVED avenue: 21 draws the west frontage (cols 3302-3328, 3502-3518, Brewing Co block), 22 the east frontage (cols 3315-3327, 3501-3517). No object is drawn by both: the T.H. at the 33rd St crossing appears ONLY on 21 (3252,185) - 22s NW corner is blank except the 33rd St pipe dashes (starting x95, y283 on 22; y285 at x3300 on 21, usable as a y-level check). South (36th St) crossing corners are blank on both."
+  },
+  {
+   "pair": [
+    "22",
+    "23"
+   ],
+   "id": "tie-22-23-1",
+   "owner_xy": [
+    1047,
+    3849
+   ],
+   "nbr_xy": [
+    3140,
+    351
+   ],
+   "confidence": "high",
+   "note": "Red fire-alarm circle in 36th St above the NE corner of the Galveston Rope Co block. Position anchored by house rows (620-624 on 22 at x920-1050 / 621-623 on 23 at x2960-3055) and the corridor dashed rail east of it. CAUTION: digits read 192 on 22 but 123 on 23 (engraving/wear) - position match is solid, from two independent anchors. NOTE: 23 sits below BOTH 21 and 22; overlap with 22 is only 22 x0-1335 / 23 x2065-3400 (dx ~ +2015 to +2090)."
+  },
+  {
+   "pair": [
+    "22",
+    "23"
+   ],
+   "id": "tie-22-23-2",
+   "owner_xy": [
+    1013,
+    3888
+   ],
+   "nbr_xy": [
+    3095,
+    378
+   ],
+   "confidence": "medium",
+   "note": "NE corner of the Galveston Rope Co block (south side of 36th St): full drawn corner with corner-post dot on 23, reference outline bracket at the bottom edge of 22. Agrees with tie-1 within ~12px in both axes."
+  },
+  {
+   "pair": [
+    "22",
+    "24"
+   ],
+   "id": "tie-22-24-1",
+   "owner_xy": [
+    1628,
+    3888
+   ],
+   "nbr_xy": [
+    722,
+    389
+   ],
+   "confidence": "high",
+   "note": "NE corner of the block containing houses 709-711 (west edge of the 25-ft alley between 711 and 713), south side of 36th St: full block on 24, reference outline at 22s bottom edge. Anchored by the alley gap in both drawings; dx -906 / dy -3499 agrees with tie-2 within 10px. NOTE seam geometry: 24 sits below 22 shifted ~ -915px in x (22 x1335-3400 over 24 x420-2470); 23 covers the rest of 22s bottom."
+  },
+  {
+   "pair": [
+    "22",
+    "24"
+   ],
+   "id": "tie-22-24-2",
+   "owner_xy": [
+    2628,
+    3890
+   ],
+   "nbr_xy": [
+    1712,
+    389
+   ],
+   "confidence": "high",
+   "note": "NE corner of the BAKE HO (pink bakery, OVEN) block = west edge of the 20-ft alley between 811 and 813, south side of 36th St; full block on 24, reference outline gap on 22. Mount Olive Baptist Church two lots east on 24 corroborates block identity. dx -916 / dy -3501."
+  },
+  {
+   "pair": [
+    "22",
+    "31"
+   ],
+   "id": "tie-22-31-1",
+   "owner_xy": [
+    3255,
+    2497
+   ],
+   "nbr_xy": [
+    232,
+    2508
+   ],
+   "confidence": "high",
+   "note": "T.H. hydrant dot on the east side of Av I at the NE corner of one 80-ft cross-street intersection, beside store S / house 902. WARNING: rows 818-824 (22) and 901-910 (31) REPEAT identically every block along this avenue - identity fixed by the hydrant being drawn at exactly ONE crossing on both sheets (the crossings one block north have no dot on either sheet)."
+  },
+  {
+   "pair": [
+    "22",
+    "31"
+   ],
+   "id": "tie-22-31-2",
+   "owner_xy": [
+    3253,
+    3652
+   ],
+   "nbr_xy": [
+    245,
+    3655
+   ],
+   "confidence": "high",
+   "note": "SW corner of the east-side block at the 70-ft-labeled crossing one block south of tie-1 (block of houses 902-906, col 3517-3527): real frontage corner on 31, reference L-corner line on 22. Agrees with tie-1 within 15px (dx ~ +3015, dy ~ -7)."
+  },
+  {
+   "pair": [
+    "21",
+    "23"
+   ],
+   "id": "tie-21-23-1",
+   "owner_xy": [
+    2372,
+    3687
+   ],
+   "nbr_xy": [
+    1487,
+    175
+   ],
+   "confidence": "high",
+   "note": "T.H. hydrant dot in 36th St just east of the 70-ft multi-track rail corridor (5 tracks). Anchored by the printed ref numerals inside the corridor (23 on sheet 21, 21 on sheet 23) and houses 502-506 immediately NE. dx -885, dy -3512."
+  },
+  {
+   "pair": [
+    "21",
+    "23"
+   ],
+   "id": "tie-21-23-2",
+   "owner_xy": [
+    2415,
+    3640
+   ],
+   "nbr_xy": [
+    1520,
+    125
+   ],
+   "confidence": "medium",
+   "note": "SW corner of the 500-block north of 36th St (houses 502-506, frontage col 3527): real block corner on 21, reference outline corner on 23. Agrees with tie-1 within 10px (dx -895, dy -3515). Caution: each sheet dashes a DIFFERENT track of the rail group - do not tie dashed tracks to each other here."
+  }
+ ]
+}

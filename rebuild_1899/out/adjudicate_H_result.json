@@ -1,1 +1,760 @@
-{"ties": []}
+{
+ "ties": [
+  {
+   "pair": [
+    "54",
+    "60"
+   ],
+   "id": "tie-54-60-1",
+   "owner_xy": [
+    2012,
+    3610
+   ],
+   "nbr_xy": [
+    2065,
+    108
+   ],
+   "confidence": "high",
+   "note": "SE corner of block N of 27th St west of the 70-ft avenue with 6in W.PIPE (houses 2218-2224 / avenue lots 2624-2628); full block on 54, reference outline on 60; anchored by pipe line + 70ft label + house numbers"
+  },
+  {
+   "pair": [
+    "54",
+    "60"
+   ],
+   "id": "tie-54-60-2",
+   "owner_xy": [
+    2227,
+    3612
+   ],
+   "nbr_xy": [
+    2276,
+    110
+   ],
+   "confidence": "high",
+   "note": "SW corner of block N of 27th St east of same avenue (houses 2302+); reference outline on 60; T.H. hydrant nearby on 54 only"
+  },
+  {
+   "pair": [
+    "60",
+    "66"
+   ],
+   "id": "tie-60-66-1",
+   "owner_xy": [
+    2270,
+    3552
+   ],
+   "nbr_xy": [
+    2263,
+    99
+   ],
+   "confidence": "high",
+   "note": "SW corner of block N of 30th St (houses 2302-2312, west of 20-ft alley); full block on 60, reference outline on 66; anchored by house numbers + 20ft alley + 80ft street label on both"
+  },
+  {
+   "pair": [
+    "60",
+    "66"
+   ],
+   "id": "tie-60-66-2",
+   "owner_xy": [
+    2269,
+    3787
+   ],
+   "nbr_xy": [
+    2262,
+    331
+   ],
+   "confidence": "high",
+   "note": "NW corner of block S of 30th St (houses 2301-2311); reference outline on 60, full block on 66; offset consistent with tie-1 within 3px"
+  },
+  {
+   "pair": [
+    "60",
+    "66"
+   ],
+   "id": "tie-60-66-3",
+   "owner_xy": [
+    2628,
+    3789
+   ],
+   "nbr_xy": [
+    2630,
+    333
+   ],
+   "confidence": "medium",
+   "note": "NE corner of same S block at west side of 20-ft alley (house 2311); x-offset differs ~9px from tie-1/2 - reference outline slop on 60"
+  },
+  {
+   "pair": [
+    "59",
+    "60"
+   ],
+   "id": "tie-59-60-1",
+   "owner_xy": [
+    3254,
+    1363
+   ],
+   "nbr_xy": [
+    292,
+    1377
+   ],
+   "confidence": "high",
+   "note": "SW corner of block E of Avenue Q, N of 28th St (STAGE building block, houses 2102+); reference-outline sliver at u59 right border, full block on u60; anchored by 28th St + house numbers 2102/2101 vs u59 2012-2024"
+  },
+  {
+   "pair": [
+    "59",
+    "60"
+   ],
+   "id": "tie-59-60-2",
+   "owner_xy": [
+    3252,
+    1489
+   ],
+   "nbr_xy": [
+    295,
+    1502
+   ],
+   "confidence": "high",
+   "note": "NW corner of block E of Avenue Q, S of 28th St (houses 2101-2111 / avenue lots 2801+); ref outline on 59, full block on 60; offset consistent with tie-1 within 4px"
+  },
+  {
+   "pair": [
+    "60",
+    "48"
+   ],
+   "status": "featureless",
+   "note": "Overlap is the Avenue R-1/2 corridor (29th-30th). u60 draws only the WEST frontage (even lots 2902-2928, block NE139, houses 2313-2323) and its border cuts the corridor; u48 draws only the EAST frontage (odd lots 2905-2927, block SE139) with the Seawall double-line at the corridor west edge and beach/Gulf beyond - no reference outlines of the far side on either sheet. Also apparent drawing disagreement: u48 places seawall/beach where u60 draws west-frontage houses. u48 content locally rotated (seawall vertical on 48, diagonal on 60); no common point feature measurable."
+  },
+  {
+   "pair": [
+    "55",
+    "61"
+   ],
+   "id": "tie-55-61-1",
+   "owner_xy": [
+    2249,
+    3789
+   ],
+   "nbr_xy": [
+    2255,
+    344
+   ],
+   "confidence": "high",
+   "note": "NW corner of block S of 30th St, E of Avenue H/Ball (houses 801-823, Gulf City Cotton Press block); ref outline on 55, full block on 61; anchored by 70ft Ave H label, 6in pipe, T.H. hydrant (hydrant itself placed ~35px differently on the two sheets - not used)"
+  },
+  {
+   "pair": [
+    "55",
+    "61"
+   ],
+   "id": "tie-55-61-2",
+   "owner_xy": [
+    3030,
+    3786
+   ],
+   "nbr_xy": [
+    3038,
+    339
+   ],
+   "confidence": "high",
+   "note": "NE corner of same block at Avenue I/Sealy (house 823, GATE label on 61); ref outline on 55; offset agrees with tie-1 within 3px"
+  },
+  {
+   "pair": [
+    "16",
+    "61"
+   ],
+   "id": "tie-16-61-1",
+   "owner_xy": [
+    3125,
+    1474
+   ],
+   "nbr_xy": [
+    108,
+    1445
+   ],
+   "confidence": "medium",
+   "note": "Crossing of the NORTH rail of the G.H.&N. RR switch curve (into 31st St) with the EAST rail of the main track running along Avenue F/Church; both sheets draw the double track and the curve in the shared corridor; identity anchored by SWITCH label on 16 and the single curve near 31st on 61"
+  },
+  {
+   "pair": [
+    "16",
+    "61"
+   ],
+   "id": "tie-16-61-2",
+   "owner_xy": [
+    3112,
+    1493
+   ],
+   "nbr_xy": [
+    95,
+    1468
+   ],
+   "confidence": "medium",
+   "note": "Crossing of the SOUTH rail of the same switch curve with the WEST rail of the Ave F track; offset consistent with tie-1 (dx -3017, dy ~ -26); points close together - avenue corridor holds no other shared features"
+  },
+  {
+   "pair": [
+    "61",
+    "62"
+   ],
+   "id": "tie-61-62-1",
+   "owner_xy": [
+    3165,
+    1292
+   ],
+   "nbr_xy": [
+    186,
+    1291
+   ],
+   "confidence": "medium",
+   "note": "T.H. hydrant in Ave I/Sealy at 31st St, drawn on both sheets (u61 E of Cotton Press block 824, u62 W of house 902 block); y matches exactly, x placement of hydrants along Sealy scatters ~50px between sheets (see ties 2,3)"
+  },
+  {
+   "pair": [
+    "61",
+    "62"
+   ],
+   "id": "tie-61-62-2",
+   "owner_xy": [
+    3143,
+    2440
+   ],
+   "nbr_xy": [
+    196,
+    2440
+   ],
+   "confidence": "medium",
+   "note": "T.H. hydrant in Sealy at 32nd St on both sheets (u61 below house 824 row, u62 below 902); y exact, x sloppy"
+  },
+  {
+   "pair": [
+    "61",
+    "62"
+   ],
+   "id": "tie-61-62-3",
+   "owner_xy": [
+    3212,
+    145
+   ],
+   "nbr_xy": [
+    162,
+    150
+   ],
+   "confidence": "medium",
+   "note": "T.H. hydrant in Sealy at 30th St on both sheets; 6in W.PIPE dashed line along Sealy visible on both (u61 x~3140, u62 x~112, dx -3028 - likely the best x reference; hydrant dx here -3050)"
+  },
+  {
+   "pair": [
+    "61",
+    "68"
+   ],
+   "id": "tie-61-68-1",
+   "owner_xy": [
+    1137,
+    3662
+   ],
+   "nbr_xy": [
+    2117,
+    219
+   ],
+   "confidence": "medium",
+   "note": "T-junction of the 30in SUPPLY PIPE running down Ave G/Winnie with the E-W water pipe in 33rd St; both sheets draw both pipes and the junction; anchored by 30in SUPPLY PIPE labels + house numbers 623/624 vs 701-712 on both"
+  },
+  {
+   "pair": [
+    "61",
+    "68"
+   ],
+   "id": "tie-61-68-2",
+   "owner_xy": [
+    1172,
+    3663
+   ],
+   "nbr_xy": [
+    2163,
+    221
+   ],
+   "confidence": "medium",
+   "note": "Adjacent T-junction where the 6in W.PIPE tees south from the same 33rd St pipe just E of Ave G; offset consistent with tie-1 within 11px; nearby T.H. hydrant shows ~30px x placement slop between sheets (not used)"
+  },
+  {
+   "pair": [
+    "61",
+    "69"
+   ],
+   "id": "tie-61-69-1",
+   "owner_xy": [
+    2139,
+    3662
+   ],
+   "nbr_xy": [
+    140,
+    234
+   ],
+   "confidence": "medium",
+   "note": "Junction of the 16in water pipe along Ave H/Ball with the 12in W.P. in 33rd St (x-marked on 61); pipes drawn on both; anchored by 12in W.PIPE labels and 800-block house numbers E of Ave H on both"
+  },
+  {
+   "pair": [
+    "61",
+    "69"
+   ],
+   "id": "tie-61-69-2",
+   "owner_xy": [
+    2199,
+    3590
+   ],
+   "nbr_xy": [
+    247,
+    163
+   ],
+   "confidence": "medium",
+   "note": "T.H. hydrant NE of 33rd/Ave H crossing, drawn on both; x differs from tie-1 offset by ~47px (hydrant slop), y consistent"
+  },
+  {
+   "pair": [
+    "61",
+    "69"
+   ],
+   "id": "tie-61-69-3",
+   "owner_xy": [
+    3203,
+    3598
+   ],
+   "nbr_xy": [
+    1337,
+    158
+   ],
+   "confidence": "medium",
+   "note": "T.H. hydrant NE of 33rd/Ave I(Sealy) crossing on both sheets (u69 label smudged); NOTE inter-sheet scale disagreement: Ave H-to-Sealy spacing is ~1003px on 61 vs ~1130px on 69, so x offsets vary along the seam"
+  },
+  {
+   "pair": [
+    "15",
+    "67"
+   ],
+   "id": "tie-15-67-1",
+   "owner_xy": [
+    2929,
+    3818
+   ],
+   "nbr_xy": [
+    932,
+    350
+   ],
+   "confidence": "medium",
+   "note": "East rail of the curved yard track crossing the S block-face line of 33rd St (line broken at crossing on both, extrapolated <10px); anchored by house numbers 206-224/203-223 and identical 3-track pattern (curve, spur w/ bumper, straight track E)"
+  },
+  {
+   "pair": [
+    "15",
+    "67"
+   ],
+   "id": "tie-15-67-2",
+   "owner_xy": [
+    3028,
+    3762
+   ],
+   "nbr_xy": [
+    999,
+    266
+   ],
+   "confidence": "low",
+   "note": "Bumper T-bar of the short rail spur S of 33rd, drawn on both but bumper placed ~30px different along the spur axis between sheets; use only as coarse check"
+  },
+  {
+   "pair": [
+    "15",
+    "67"
+   ],
+   "id": "tie-15-67-3",
+   "owner_xy": [
+    2615,
+    3821
+   ],
+   "nbr_xy": [
+    610,
+    349
+   ],
+   "confidence": "medium",
+   "note": "East rail of the straight double track (2 blocks W of the curve group) crossing the S block-face line of 33rd (houses 208/210 - 209/211 flank it on both sheets); offset consistent with tie-1 within 8px"
+  },
+  {
+   "pair": [
+    "16",
+    "67"
+   ],
+   "id": "tie-16-67-1",
+   "owner_xy": [
+    1000,
+    3776
+   ],
+   "nbr_xy": [
+    2072,
+    300
+   ],
+   "confidence": "medium",
+   "note": "F.A. fire-alarm box circle at SW corner of 33rd and the 70-ft avenue between 300/400 blocks (Market side), drawn on both sheets; unique symbol in this area; houses 321-323 W / 401+ E on both"
+  },
+  {
+   "pair": [
+    "16",
+    "67"
+   ],
+   "id": "tie-16-67-2",
+   "owner_xy": [
+    1218,
+    3620
+   ],
+   "nbr_xy": [
+    2268,
+    128
+   ],
+   "confidence": "medium",
+   "note": "T.H. hydrant NE of same intersection in front of Gas Co RETORTS block (house 402); offset agrees with F.A. tie within ~22px (symbol slop)"
+  },
+  {
+   "pair": [
+    "16",
+    "68"
+   ],
+   "id": "tie-16-68-1",
+   "owner_xy": [
+    3150,
+    3690
+   ],
+   "nbr_xy": [
+    1152,
+    228
+   ],
+   "confidence": "high",
+   "note": "T-junction of the 8in W.PIPE in 33rd St with the water pipe running S down Ave F/Church; drawn on both sheets (70ft avenue label both); houses 524|501 flank Ave F on u16/u68"
+  },
+  {
+   "pair": [
+    "16",
+    "68"
+   ],
+   "id": "tie-16-68-2",
+   "owner_xy": [
+    3228,
+    3607
+   ],
+   "nbr_xy": [
+    1219,
+    132
+   ],
+   "confidence": "medium",
+   "note": "T.H. hydrant NE of 33rd/Ave F crossing on both sheets; offset agrees with pipe-junction tie within 13px"
+  },
+  {
+   "pair": [
+    "67",
+    "68"
+   ],
+   "id": "tie-67-68-1",
+   "owner_xy": [
+    3237,
+    1296
+   ],
+   "nbr_xy": [
+    194,
+    1308
+   ],
+   "confidence": "medium",
+   "note": "North rail of the oblique spur curve (into the Brewery block face, between 34th and 35th) crossing the EAST rail of the easternmost R.R. siding pair in Ave E/Post Office; both sheets draw sidings + curve; anchored by R.R. SIDINGS labels and Brewery block lots 3309-3327 on 68 vs 3310-3328 on 67"
+  },
+  {
+   "pair": [
+    "67",
+    "68"
+   ],
+   "id": "tie-67-68-2",
+   "owner_xy": [
+    3180,
+    1315
+   ],
+   "nbr_xy": [
+    147,
+    1328
+   ],
+   "confidence": "medium",
+   "note": "Same curve north rail crossing east rail of the next siding pair ~55px west; offset consistent with tie-1 within 10px"
+  },
+  {
+   "pair": [
+    "67",
+    "75"
+   ],
+   "id": "tie-67-75-1",
+   "owner_xy": [
+    2381,
+    3795
+   ],
+   "nbr_xy": [
+    1243,
+    341
+   ],
+   "confidence": "medium",
+   "note": "NW corner of block S of 36th St E of Ave D/Market (house 401, lots 3601-3607); ref-outline bracket on 67, full block on 75; anchored by 70ft Market label + 300/400 house numbers on both"
+  },
+  {
+   "pair": [
+    "67",
+    "75"
+   ],
+   "id": "tie-67-75-2",
+   "owner_xy": [
+    3195,
+    3597
+   ],
+   "nbr_xy": [
+    2192,
+    150
+   ],
+   "confidence": "medium",
+   "note": "T.H. hydrant on N side of 36th at Ave E/Post Office crossing (W of house 501 block), with W.PIPE down Ave E on both; WARNING: implied dx differs ~135px from tie-1 - Market-to-AveE spacing is ~990px on 67 vs ~880px on 75 (sheet-internal scale disagreement in the yard area)"
+  },
+  {
+   "pair": [
+    "68",
+    "69"
+   ],
+   "id": "tie-68-69-1",
+   "owner_xy": [
+    3210,
+    2432
+   ],
+   "nbr_xy": [
+    225,
+    2427
+   ],
+   "confidence": "medium",
+   "note": "T.H. hydrant NE of 35th/Ave H(Ball) crossing, drawn on both sheets; 6in W.PIPE dashes cross the seam just S of it on both (drawn ~15px different in y); houses 718-724|717-723 (68) vs 802-808|801-807 (69)"
+  },
+  {
+   "pair": [
+    "68",
+    "69"
+   ],
+   "id": "tie-68-69-2",
+   "owner_xy": [
+    3198,
+    140
+   ],
+   "nbr_xy": [
+    247,
+    163
+   ],
+   "confidence": "medium",
+   "note": "T.H. hydrant NE of 33rd/Ave H crossing on both sheets (same device as tie-61-69-2); offset differs from 35th-St hydrant by ~34px in x, ~30 in y - symbol placement slop, use as pair for rotation only"
+  },
+  {
+   "pair": [
+    "68",
+    "75"
+   ],
+   "id": "tie-68-75-1",
+   "owner_xy": [
+    63,
+    3600
+   ],
+   "nbr_xy": [
+    2192,
+    150
+   ],
+   "confidence": "medium",
+   "note": "T.H. hydrant on N side of 36th just E of Ave E (W of house 502 block); drawn on 68 (at its left border), 75, and 67 - hydrant x-placement scatter ~50px seen between copies"
+  },
+  {
+   "pair": [
+    "68",
+    "75"
+   ],
+   "id": "tie-68-75-2",
+   "owner_xy": [
+    75,
+    3800
+   ],
+   "nbr_xy": [
+    2226,
+    353
+   ],
+   "confidence": "medium",
+   "note": "NW corner of block S of 36th E of Ave E (houses 501-513, lots 3601+); ref-outline bracket at u68 bottom-left, full block on 75; offset agrees with hydrant tie within ~22px"
+  },
+  {
+   "pair": [
+    "68",
+    "76"
+   ],
+   "id": "tie-68-76-1",
+   "owner_xy": [
+    2196,
+    3548
+   ],
+   "nbr_xy": [
+    1197,
+    178
+   ],
+   "confidence": "medium",
+   "note": "T.H. hydrant E of 6in W.PIPE at 36th/Ave G(Winnie); hydrant + 30in SUPPLY PIPE + 6in pipe all drawn on both sheets; x agrees with pipe pair within 10px, but y placed ~90px apart relative to block faces (68 draws it N of its block line) - y weaker"
+  },
+  {
+   "pair": [
+    "68",
+    "76"
+   ],
+   "id": "tie-68-76-2",
+   "owner_xy": [
+    2085,
+    3720
+   ],
+   "nbr_xy": [
+    1095,
+    262
+   ],
+   "confidence": "low",
+   "note": "30in SUPPLY PIPE centerline in Ave G sampled mid-street (line feature, y arbitrary along pipe; x solid, dx -990 matches 6in pipe and hydrant) - only usable as x constraint; no second point feature exists on this seam (u68 south brackets are label/neat-line, not content)"
+  },
+  {
+   "pair": [
+    "62",
+    "69"
+   ],
+   "id": "tie-62-69-1",
+   "owner_xy": [
+    1140,
+    3655
+   ],
+   "nbr_xy": [
+    2102,
+    225
+   ],
+   "confidence": "medium",
+   "note": "Junction of the water pipe running down Broadway/Ave J (150ft, 6in on 62 / 10in label on 69) with the E-W pipe in 33rd St; both pipes + junction drawn on both sheets; houses 1002-1014 (62, N side) vs 1001-1015 (69, S side)"
+  },
+  {
+   "pair": [
+    "62",
+    "69"
+   ],
+   "id": "tie-62-69-2",
+   "owner_xy": [
+    1291,
+    3798
+   ],
+   "nbr_xy": [
+    2281,
+    337
+   ],
+   "confidence": "medium",
+   "note": "NW corner of block S of 33rd E of Broadway (houses 1001-1015, lots 3301-3307); ref bracket on 62, full block on 69; dx differs from junction tie by ~28px"
+  },
+  {
+   "pair": [
+    "62",
+    "69"
+   ],
+   "id": "tie-62-69-3",
+   "owner_xy": [
+    1282,
+    3595
+   ],
+   "nbr_xy": [
+    2215,
+    155
+   ],
+   "confidence": "medium",
+   "note": "T.H. hydrant N of 33rd at Broadway east curb, drawn on both; usual ~50px symbol slop vs pipe junction"
+  },
+  {
+   "pair": [
+    "69",
+    "70"
+   ],
+   "id": "tie-69-70-1",
+   "owner_xy": [
+    3102,
+    1498
+   ],
+   "nbr_xy": [
+    71,
+    1500
+   ],
+   "confidence": "high",
+   "note": "NE corner of the St. Patricks Church block (34th-35th W of Ave K, houses 1019-1023, lot 3402); full block on 69, ref-outline bracket at u70 left border; anchored by church + house numbers 1101-1107 across on 70"
+  },
+  {
+   "pair": [
+    "69",
+    "70"
+   ],
+   "id": "tie-69-70-2",
+   "owner_xy": [
+    3102,
+    1239
+   ],
+   "nbr_xy": [
+    68,
+    1265
+   ],
+   "confidence": "medium",
+   "note": "SE corner of block N of it (houses 1020-1024) same seam; u70 ref bracket corner drawn ~26px lower than u69 content - x consistent with tie-1 within 3px"
+  },
+  {
+   "pair": [
+    "69",
+    "76"
+   ],
+   "id": "tie-69-76-1",
+   "owner_xy": [
+    1325,
+    3565
+   ],
+   "nbr_xy": [
+    3245,
+    120
+   ],
+   "confidence": "medium",
+   "note": "T.H. hydrant NE of 36th/Ave I(Sealy), E of the 6in W.PIPE on both sheets (pipe dx +1930 agrees within 10px)"
+  },
+  {
+   "pair": [
+    "69",
+    "76"
+   ],
+   "id": "tie-69-76-2",
+   "owner_xy": [
+    310,
+    3790
+   ],
+   "nbr_xy": [
+    2400,
+    352
+   ],
+   "confidence": "medium",
+   "note": "NW corner of block S of 36th E of Ave H/Ball (houses 801-805); ref bracket on 69, full block on 76. WARNING: implied dx differs ~170px from tie-1; Ball-to-Sealy spacing ~925px on 69 vs ~765px on 76 - suspected drawing-width disagreement for the 800 block"
+  },
+  {
+   "pair": [
+    "69",
+    "76"
+   ],
+   "id": "tie-69-76-3",
+   "owner_xy": [
+    1140,
+    3798
+   ],
+   "nbr_xy": [
+    3132,
+    320
+   ],
+   "confidence": "low",
+   "note": "NE corner of block W of Sealy S of 36th (Baptist Church block, house 823); ref bracket end on 69 - conflicts with hydrant/pipe dx by ~70px, kept as low"
+  }
+ ]
+}

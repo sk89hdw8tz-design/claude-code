@@ -5,7 +5,7 @@ Iterative: a flagged unit with ties to already-placed units gets placed
 (full similarity fit when >=3 well-spread ties pass IRLS; otherwise
 neighbourhood pose + median-translation from the ties), then can anchor its
 own flagged neighbours on the next sweep. Updates
-out/affine_city_1899.json in place; remaining uncovered units stay flagged.
+out/affine_city_1912.json in place; remaining uncovered units stay flagged.
 """
 import json
 import os
@@ -14,14 +14,14 @@ import numpy as np
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(ROOT, "out")
-NET = json.load(open(os.path.join(OUT, "city_network.json")))
-AFFJ = json.load(open(os.path.join(OUT, "affine_city_1899.json")))
+NET = json.load(open(os.path.join(OUT, "network_1912.json")))
+AFFJ = json.load(open(os.path.join(OUT, "affine_city_1912.json")))
 AFF = AFFJ["sheets"]
-RR = json.load(open(os.path.join(OUT, "ring_report.json")))
+RR = json.load(open(os.path.join(OUT, "ring_1912_report.json")))
 FLAGGED = set(RR["flags"])
 
 ties = []
-for tag in ("E", "F", "E2", "F2"):
+for tag in ("G", "H"):
     _p = os.path.join(OUT, f"adjudicate_{tag}_result.json")
     if not os.path.exists(_p):
         continue
@@ -45,7 +45,7 @@ def nbr_pose(uid, solid):
             ths.append(np.degrees(np.arctan2(M[1, 0], M[0, 0])))
             scs.append(np.hypot(M[0, 0], M[1, 0]))
     th = float(np.median(ths)) if ths else 0.0
-    sc = float(np.median(scs)) if scs else 0.985
+    sc = float(np.median(scs)) if scs else 2.0
     r = np.radians(th)
     return sc * np.array([[np.cos(r), -np.sin(r)], [np.sin(r), np.cos(r)]])
 
@@ -101,7 +101,7 @@ for sweep in range(6):
             M, t_, med, kept = fit
             sc = float(np.hypot(M[0,0], M[1,0]))
             th = float(np.degrees(np.arctan2(M[1,0], M[0,0])))
-            if not (0.95 <= sc <= 1.05 and abs(th) <= 3.0 and med <= 25):
+            if not (0.90 <= sc <= 2.20 and abs(th) <= 3.0 and med <= 25):
                 fit = None
         if fit:
             M, t_, med, kept = fit
@@ -134,6 +134,6 @@ for sweep in range(6):
 
 RR["tie_placements"] = placed_now
 RR["still_flagged"] = sorted(FLAGGED - set(placed_now))
-json.dump(AFFJ, open(os.path.join(OUT, "affine_city_1899.json"), "w"), indent=1)
-json.dump(RR, open(os.path.join(OUT, "ring_report.json"), "w"), indent=1)
+json.dump(AFFJ, open(os.path.join(OUT, "affine_city_1912.json"), "w"), indent=1)
+json.dump(RR, open(os.path.join(OUT, "ring_1912_report.json"), "w"), indent=1)
 print(f"tie-placed {len(placed_now)}; still flagged: {RR['still_flagged']}")

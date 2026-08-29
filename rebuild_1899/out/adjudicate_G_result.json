@@ -1,1 +1,487 @@
-{"ties": []}
+{
+ "ties": [
+  {
+   "pair": [
+    "11",
+    "13"
+   ],
+   "id": "tie-11-13-1",
+   "owner_xy": [
+    2712,
+    3646
+   ],
+   "nbr_xy": [
+    2708,
+    97
+   ],
+   "confidence": "high",
+   "note": "SW corner of 2-sty D. row house #214, NE corner of 27th & 26xx avenue (block 686, Texas Sheet Metal Works block); wall fragment drawn on u13 above 27TH label"
+  },
+  {
+   "pair": [
+    "11",
+    "13"
+   ],
+   "id": "tie-11-13-2",
+   "owner_xy": [
+    3053,
+    3651
+   ],
+   "nbr_xy": [
+    3040,
+    99
+   ],
+   "confidence": "high",
+   "note": "SE corner of 2-sty S. building #224 same block front; u13 front line jogs up into margin at same corner; consistent with tie 1 (dy~3550)"
+  },
+  {
+   "pair": [
+    "13",
+    "14"
+   ],
+   "id": "tie-13-14-1",
+   "owner_xy": [
+    3122,
+    1484
+   ],
+   "nbr_xy": [
+    78,
+    1479
+   ],
+   "confidence": "medium",
+   "note": "T-joint (west vertical meets top bar) of platform/track structure in Mechanic Ave just south of 28th St corner; verified via 2801-2821 address run and street-28 front lines on both sheets"
+  },
+  {
+   "pair": [
+    "13",
+    "14"
+   ],
+   "id": "tie-13-14-2",
+   "owner_xy": [
+    3208,
+    1534
+   ],
+   "nbr_xy": [
+    157,
+    1524
+   ],
+   "confidence": "medium",
+   "note": "T-joint of second goalpost structure ~50ft SE of tie 1 in Mechanic Ave; offsets consistent with tie 1 (dx~-3047)"
+  },
+  {
+   "pair": [
+    "13",
+    "15"
+   ],
+   "id": "tie-13-15-1",
+   "owner_xy": [
+    1790,
+    3565
+   ],
+   "nbr_xy": [
+    1797,
+    122
+   ],
+   "confidence": "high",
+   "note": "SW corner of pink Trinity & Brazos Valley RR freight house (#118-120) at 30th St; fragment redrawn on u15 top with same yellow platform strips"
+  },
+  {
+   "pair": [
+    "13",
+    "15"
+   ],
+   "id": "tie-13-15-2",
+   "owner_xy": [
+    1748,
+    3558
+   ],
+   "nbr_xy": [
+    1758,
+    113
+   ],
+   "confidence": "medium",
+   "note": "Junction of building #114 front line with dashed concrete-platform west edge, just W of T&BV depot; consistent with tie 1 (dy~-3445)"
+  },
+  {
+   "pair": [
+    "12",
+    "14"
+   ],
+   "id": "tie-12-14-1",
+   "owner_xy": [
+    1727,
+    3655
+   ],
+   "nbr_xy": [
+    1666,
+    96
+   ],
+   "confidence": "high",
+   "note": "T.H. hydrant dot in 27th St at 12in W.PIPE alley (between #412 and #414, blocks 506/507); dot drawn on both sheets"
+  },
+  {
+   "pair": [
+    "12",
+    "14"
+   ],
+   "id": "tie-12-14-2",
+   "owner_xy": [
+    732,
+    3668
+   ],
+   "nbr_xy": [
+    668,
+    102
+   ],
+   "confidence": "high",
+   "note": "T.H. hydrant dot in 27th St east of 6in/10in W.PIPE alley near #314; consistent with tie 1 (dx-64, dy-3566)"
+  },
+  {
+   "pair": [
+    "14",
+    "16"
+   ],
+   "id": "tie-14-16-1",
+   "owner_xy": [
+    1210,
+    3589
+   ],
+   "nbr_xy": [
+    1230,
+    145
+   ],
+   "confidence": "high",
+   "note": "T.H. hydrant dot in 30th St just E of 29xx avenue (SW of M&P East Yard #402 corner); dot on both sheets"
+  },
+  {
+   "pair": [
+    "14",
+    "16"
+   ],
+   "id": "tie-14-16-2",
+   "owner_xy": [
+    1237,
+    3549
+   ],
+   "nbr_xy": [
+    1263,
+    105
+   ],
+   "confidence": "high",
+   "note": "SW corner of Merchants & Planters East Yard block front (#402) at NE corner of 30th & avenue; consistent with tie 1 (dx+26, dy-3444)"
+  },
+  {
+   "pair": [
+    "14",
+    "55"
+   ],
+   "status": "featureless",
+   "note": "Church (F) Ave band is blank on both sheets (no pipes, hydrants, tracks). Only shared symbol is an FA fire-alarm circle at 27th/Church, but u14 places it at (2967,98) NW quadrant while u55 places it at (140,262) SW quadrant - inconsistent placement, unusable (would imply ~100px contradiction vs block-line alignment). No reliable physical tie found along entire seam."
+  },
+  {
+   "pair": [
+    "15",
+    "16"
+   ],
+   "id": "tie-15-16-1",
+   "owner_xy": [
+    3165,
+    3058
+   ],
+   "nbr_xy": [
+    168,
+    3070
+   ],
+   "confidence": "medium",
+   "note": "Elbow of dashed water-pipe branch (hydrant service) meeting the N-S pipe main in Mechanic Ave opposite #3214 (block 632/571 stretch); both sheets draw dot+branch+main"
+  },
+  {
+   "pair": [
+    "15",
+    "16"
+   ],
+   "id": "tie-15-16-2",
+   "owner_xy": [
+    3097,
+    3053
+   ],
+   "nbr_xy": [
+    70,
+    3070
+   ],
+   "confidence": "low",
+   "note": "T.H. hydrant dot feeding that branch; u15 draws it on its block front line, u16 draws it mid-avenue (~30px inconsistent with elbow tie) - placement disagreement between sheets"
+  },
+  {
+   "pair": [
+    "15",
+    "67"
+   ],
+   "id": "tie-15-67-1",
+   "owner_xy": [
+    652,
+    3812
+   ],
+   "nbr_xy": [
+    613,
+    346
+   ],
+   "confidence": "medium",
+   "note": "East corner of 20-ft rail corridor gap in south front line of 33rd (between #209 and #211); u67 draws rails in corridor, u15 only lane edges"
+  },
+  {
+   "pair": [
+    "15",
+    "67"
+   ],
+   "id": "tie-15-67-2",
+   "owner_xy": [
+    600,
+    3812
+   ],
+   "nbr_xy": [
+    551,
+    347
+   ],
+   "confidence": "low",
+   "note": "West corner of same corridor gap; dx differs ~10px from tie 1 - front-line end ambiguous against rail lines. NOTE: track x-positions further east disagree between sheets (u15 pair at 1400/1730 vs u67 at 1630) - curving yard tracks, do not use as ties"
+  },
+  {
+   "pair": [
+    "16",
+    "61"
+   ],
+   "id": "tie-16-61-1",
+   "owner_xy": [
+    3118,
+    2409
+   ],
+   "nbr_xy": [
+    98,
+    2390
+   ],
+   "confidence": "high",
+   "note": "End-of-track bumper bar of the N-S spur in Church Ave just N of 32nd St (opposite #3128/#3123); both sheets draw the T-shaped terminal"
+  },
+  {
+   "pair": [
+    "16",
+    "61"
+   ],
+   "id": "tie-16-61-2",
+   "owner_xy": [
+    3230,
+    1440
+   ],
+   "nbr_xy": [
+    215,
+    1497
+   ],
+   "confidence": "low",
+   "note": "G.H.&N switch curve crossing Church Ave N of 31st: u16 and u61 draw the diagonal ~60-90px apart in y where their drawn segments should meet (u16 rail end at edge vs u61 rail start) - suspected drawing disagreement; low-confidence midpoint-of-claims tie only"
+  },
+  {
+   "pair": [
+    "16",
+    "67"
+   ],
+   "id": "tie-16-67-1",
+   "owner_xy": [
+    1233,
+    3608
+   ],
+   "nbr_xy": [
+    1258,
+    133
+   ],
+   "confidence": "high",
+   "note": "T.H. hydrant dot in 33rd St NW of gas-works block #402 corner, at 6in W.PIPE junction; dot on both sheets"
+  },
+  {
+   "pair": [
+    "16",
+    "67"
+   ],
+   "id": "tie-16-67-2",
+   "owner_xy": [
+    1258,
+    3577
+   ],
+   "nbr_xy": [
+    1292,
+    102
+   ],
+   "confidence": "medium",
+   "note": "SW corner of gas-works (Retorts/Gasometer) block front at #402, 33rd St north side; corner fragment redrawn on u67 above street"
+  },
+  {
+   "pair": [
+    "16",
+    "68"
+   ],
+   "id": "tie-16-68-1",
+   "owner_xy": [
+    3148,
+    3690
+   ],
+   "nbr_xy": [
+    163,
+    235
+   ],
+   "confidence": "medium",
+   "note": "Tee junction where N-S 6in W.PIPE of the 70-ft avenue (E of #524) meets E-W 8in W.PIPE in 33rd St; both sheets draw the dashed cross. Only one shared feature on this seam: u16 also has a T.H. dot at (3223,3608) that u68 omits, and u68's #501 block corner falls beyond u16's content edge"
+  },
+  {
+   "pair": [
+    "17",
+    "18"
+   ],
+   "status": "featureless",
+   "note": "Ave C (Mechanic) band between u17 east edge and u18 west edge is blank on both sheets along its whole run (7th-9th St): no pipes, tracks, hydrants or shared fragments; each sheet stops at its own block line and draws nothing in the avenue. The 9th St streetcar track on u17 ends at x~2900 before reaching the avenue."
+  },
+  {
+   "pair": [
+    "17",
+    "21"
+   ],
+   "id": "tie-17-21-1",
+   "owner_xy": [
+    2698,
+    3630
+   ],
+   "nbr_xy": [
+    2705,
+    152
+   ],
+   "confidence": "high",
+   "note": "T.H. hydrant dot in 9th St at 20-ft alley (8in W.PIPE) between #212 and #214, block 608/609; dot+dashed pipe on both sheets"
+  },
+  {
+   "pair": [
+    "17",
+    "21"
+   ],
+   "id": "tie-17-21-2",
+   "owner_xy": [
+    2683,
+    3600
+   ],
+   "nbr_xy": [
+    2700,
+    100
+   ],
+   "confidence": "medium",
+   "note": "SW corner of dwelling #214 at north side of 9th (east corner of alley opening); u21 redraws the block-front fragment with the alley gap"
+  },
+  {
+   "pair": [
+    "18",
+    "19"
+   ],
+   "id": "tie-18-19-1",
+   "owner_xy": [
+    3229,
+    2678
+   ],
+   "nbr_xy": [
+    85,
+    2678
+   ],
+   "confidence": "medium",
+   "note": "North hook corner of long N-S fence/lot line drawn inside Church Ave (unopened stretch between 8th and 9th); both sheets draw the same line with end tick"
+  },
+  {
+   "pair": [
+    "18",
+    "19"
+   ],
+   "id": "tie-18-19-2",
+   "owner_xy": [
+    3222,
+    3592
+   ],
+   "nbr_xy": [
+    90,
+    3595
+   ],
+   "confidence": "medium",
+   "note": "South hook corner of the same avenue fence line just N of 9th St; consistent with tie 1 (dx~-3138)"
+  },
+  {
+   "pair": [
+    "18",
+    "22"
+   ],
+   "id": "tie-18-22-1",
+   "owner_xy": [
+    1592,
+    3602
+   ],
+   "nbr_xy": [
+    1662,
+    105
+   ],
+   "confidence": "medium",
+   "note": "West corner of 20-ft alley opening (8/10in W.PIPE alley) in north block-front of 9th St, SE corner of #412, block 488; pipe centerlines agree (dx+71 vs +70)"
+  },
+  {
+   "pair": [
+    "18",
+    "22"
+   ],
+   "id": "tie-18-22-2",
+   "owner_xy": [
+    1648,
+    3639
+   ],
+   "nbr_xy": [
+    1740,
+    166
+   ],
+   "confidence": "low",
+   "note": "T.H. hydrant dot in 9th St E of the alley pipe; placement differs ~22px from corner+pipe alignment - sheets disagree on symbol position"
+  },
+  {
+   "pair": [
+    "19",
+    "20"
+   ],
+   "status": "featureless",
+   "note": "Ave I (Sealy) band between u19 and u20 is blank on both sheets for its full run 7th-9th St: no pipes, tracks, hydrants, or cross-avenue fragments; each sheet draws only its own block front line. No measurable shared feature."
+  },
+  {
+   "pair": [
+    "19",
+    "23"
+   ],
+   "id": "tie-19-23-1",
+   "owner_xy": [
+    1706,
+    3632
+   ],
+   "nbr_xy": [
+    1720,
+    137
+   ],
+   "confidence": "high",
+   "note": "T.H. hydrant dot in 9th St E of 6in W.PIPE alley (blocks 308/309, between #712 and #714); agrees with alley-corner mapping within ~12px (pipe dashes themselves drawn ~40px apart - ignore pipe)"
+  },
+  {
+   "pair": [
+    "19",
+    "23"
+   ],
+   "id": "tie-19-23-2",
+   "owner_xy": [
+    1700,
+    3593
+   ],
+   "nbr_xy": [
+    1690,
+    93
+   ],
+   "confidence": "medium",
+   "note": "East corner of the 20-ft alley opening in the north block-front of 9th St (SW corner of #714, block 308); u23 redraws the front-line fragment with gap"
+  }
+ ]
+}

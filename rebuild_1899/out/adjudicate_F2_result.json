@@ -1,1 +1,420 @@
-{"ties": []}
+{
+ "ties": [
+  {
+   "pair": [
+    "60",
+    "61"
+   ],
+   "id": "tie-60-61-1",
+   "owner_xy": [
+    143,
+    3672
+   ],
+   "nbr_xy": [
+    2187,
+    177
+   ],
+   "confidence": "high",
+   "note": "T.H. hydrant dot on north side of 15th St at the west avenue mouth; identified on both sheets by the T.H. label, the adjacent 6-inch W.PIPE dashed line, and the 1502 corner of block 47NW just east. Measured dot center."
+  },
+  {
+   "pair": [
+    "60",
+    "61"
+   ],
+   "id": "tie-60-61-2",
+   "owner_xy": [
+    1010,
+    3653
+   ],
+   "nbr_xy": [
+    3122,
+    132
+   ],
+   "confidence": "low",
+   "note": "SE corner of block 47NW (house 1512 end / avenue with side numbers 1422-1428) on 60, matched to the north-margin outline corner on 61 (west side of avenue with 70-ft label, above 1523). Margin outline on 61 appears schematic: implied dx disagrees with the hydrant tie by ~68 px, so low."
+  },
+  {
+   "pair": [
+    "60",
+    "62"
+   ],
+   "id": "tie-60-62-1",
+   "owner_xy": [
+    2690,
+    3700
+   ],
+   "nbr_xy": [
+    1757,
+    153
+   ],
+   "confidence": "high",
+   "note": "T.H. hydrant dot, north side of 15th St just east of the 20-ft alley/6-in pipe lane of block 72NW (houses 1712|1714). Same relative position to alley and pipe on both sheets; dot center measured."
+  },
+  {
+   "pair": [
+    "60",
+    "62"
+   ],
+   "id": "tie-60-62-2",
+   "owner_xy": [
+    3044,
+    3650
+   ],
+   "nbr_xy": [
+    2118,
+    128
+   ],
+   "confidence": "medium",
+   "note": "SE corner of block 72NW at the avenue (side numbers 1422-1428 on 60, house 1724 at corner), matched to the corresponding north-margin outline corner on 62. Implied offset agrees with hydrant tie within ~25 px; margin redraw slightly schematic, hence medium."
+  },
+  {
+   "pair": [
+    "61",
+    "62"
+   ],
+   "id": "tie-61-62-1",
+   "owner_xy": [
+    3167,
+    2521
+   ],
+   "nbr_xy": [
+    110,
+    2503
+   ],
+   "confidence": "high",
+   "note": "T.H. hydrant dot at NW corner of Avenue N1/2 / 17th St. Both sheets print AVENUE N-1/2 along this corridor; dot sits just north of the 6-in W.PIPE dash line along 17th on both. Side-number parity (even 1602-1626 on 61 west side, odd 1601-1627 on 62 east side) confirms one shared avenue."
+  },
+  {
+   "pair": [
+    "61",
+    "62"
+   ],
+   "id": "tie-61-62-2",
+   "owner_xy": [
+    3226,
+    2643
+   ],
+   "nbr_xy": [
+    209,
+    2637
+   ],
+   "confidence": "low",
+   "note": "6-in W.PIPE dashed line along 17th St crossing the seam; y read where the line crosses each sheet's nominal seam x. LINE feature (horizontal): constrains y only; x placed at nominal seam line."
+  },
+  {
+   "pair": [
+    "59",
+    "60"
+   ],
+   "id": "tie-59-60-1",
+   "owner_xy": [
+    3150,
+    3689
+   ],
+   "nbr_xy": [
+    143,
+    3672
+   ],
+   "confidence": "high",
+   "note": "T.H. hydrant dot at NW corner of Avenue N / 15th St, west of the G&W RR track that runs down this avenue. On 59 anchored by house 1424 block corner and G.&W. R.R. (Not Used) label; on 60 by the 6-in W.P. pipe and the 1502 corner of block 47NW. Same labeled dot on both."
+  },
+  {
+   "pair": [
+    "59",
+    "60"
+   ],
+   "id": "tie-59-60-2",
+   "owner_xy": [
+    3224,
+    3802
+   ],
+   "nbr_xy": [
+    209,
+    3742
+   ],
+   "confidence": "low",
+   "note": "6-in water pipe dashed line along 15th St crossing the Avenue N seam; y read at each sheet's nominal seam x. LINE feature: y-only. NOTE: implied dy (-60) disagrees with hydrant tie (-17) by ~43 px - sheets draw this corner slightly differently."
+  },
+  {
+   "pair": [
+    "59",
+    "61"
+   ],
+   "id": "tie-59-61-1",
+   "owner_xy": [
+    2128,
+    3706
+   ],
+   "nbr_xy": [
+    1152,
+    187
+   ],
+   "confidence": "high",
+   "note": "T.H. hydrant dot on north side of 15th St at the mouth of the avenue between the 1324 and 1402 blocks (slot 13). On both sheets the dot sits ~92 px above the 6-in W.PIPE dash line and just east of the block-1324 corner; on 61 it is directly under the printed 59 sheet numeral."
+  },
+  {
+   "pair": [
+    "59",
+    "61"
+   ],
+   "id": "tie-59-61-2",
+   "owner_xy": [
+    3150,
+    3689
+   ],
+   "nbr_xy": [
+    2187,
+    177
+   ],
+   "confidence": "high",
+   "note": "T.H. hydrant dot at NW corner of Avenue N / 15th St (west of the G&W RR track drawn down Avenue N on both sheets). Same physical dot also ties 59-60 and 60-61; offsets agree with tie-59-61-1 within ~13 px."
+  },
+  {
+   "pair": [
+    "58",
+    "61"
+   ],
+   "id": "tie-58-61-1",
+   "owner_xy": [
+    3092,
+    1295
+   ],
+   "nbr_xy": [
+    105,
+    1300
+   ],
+   "confidence": "medium",
+   "note": "SE corner of 58's block west of Avenue M at 16th St (side numbers 1522-1528, front row 1216-1224), matched to the foot of the sliver line 61 redraws along its left edge. Identified by the corner store 1223/1602 diagonally across 16th on 58. dy agrees with the 18th-St corner tie within 3 px; x of the schematic sliver may be off ~40 px."
+  },
+  {
+   "pair": [
+    "58",
+    "61"
+   ],
+   "id": "tie-58-61-2",
+   "owner_xy": [
+    3062,
+    3650
+   ],
+   "nbr_xy": [
+    120,
+    3652
+   ],
+   "confidence": "medium",
+   "note": "SE corner of 58's block west of Avenue M at 18th St (side numbers 1714-1728, front row 1216-1224 on 18th), matched to the foot tick of 61's left-edge sliver at (120,3652), opposite 61's own 1302 block corner and the 70-ft avenue label. dy consistent with tie-58-61-1; sliver x schematic."
+  },
+  {
+   "pair": [
+    "61",
+    "63"
+   ],
+   "id": "tie-61-63-1",
+   "owner_xy": [
+    2089,
+    3864
+   ],
+   "nbr_xy": [
+    2189,
+    377
+   ],
+   "confidence": "medium",
+   "note": "Red circled outlot disc '21' printed at the avenue-slot-14 / 18th St intersection; the identical red medallion appears on both sheets (61 in its south margin, 63 beside its 1423/1501 block corners). Distinctive single symbol; medium because block-front alignment near this avenue disagrees with the disc by ~100 px in x - the two sheets draw this avenue differently."
+  },
+  {
+   "pair": [
+    "61",
+    "63"
+   ],
+   "id": "tie-61-63-2",
+   "owner_xy": [
+    2600,
+    3900
+   ],
+   "nbr_xy": [
+    2600,
+    378
+   ],
+   "confidence": "low",
+   "note": "North front line of the blocks south of 18th St (61 draws it as its south margin outline, 63 as its own 1501-1515 block front). LINE feature (horizontal): y only, x placed arbitrarily at 2600 on both. Implied dy -3522 vs red-disc dy -3487: ~35 px tension."
+  },
+  {
+   "pair": [
+    "62",
+    "64"
+   ],
+   "id": "tie-62-64-1",
+   "owner_xy": [
+    1293,
+    3701
+   ],
+   "nbr_xy": [
+    1318,
+    168
+   ],
+   "confidence": "high",
+   "note": "T.H. hydrant dot on the north side of 18th St just SW of the 1702 block corner (avenue with dashed utility line to the west). Labeled T.H. on both sheets; on 62 next to its own 1702-1712 row, on 64 in the north margin above its 1701-1711 row. 18TH ST labels give consistent dy (-3533)."
+  },
+  {
+   "pair": [
+    "62",
+    "64"
+   ],
+   "id": "tie-62-64-2",
+   "owner_xy": [
+    1320,
+    3843
+   ],
+   "nbr_xy": [
+    1352,
+    378
+   ],
+   "confidence": "medium",
+   "note": "NW corner of the 1701-1711 block south of 18th (64's own block corner with side numbers 1801-1803; 62 redraws it as its south margin outline corner). dx agrees with the hydrant tie within 7 px; margin y is drawn ~70 px too far north (systematic margin compression) - trust x more than y."
+  },
+  {
+   "pair": [
+    "63",
+    "64"
+   ],
+   "id": "tie-63-64-1",
+   "owner_xy": [
+    3096,
+    1308
+   ],
+   "nbr_xy": [
+    95,
+    1300
+   ],
+   "confidence": "medium",
+   "note": "SE corner of 63's block west of Avenue N1/2 at 19th St (front row 1518-1524, side numbers 1826/1828), matched to the foot tick of the sliver line 64 draws along its left edge. Avenue identity fixed by side-number parity (63 even 18xx, 64 odd 1809-1827) and N1/2 labels. Sliver x schematic (+-40)."
+  },
+  {
+   "pair": [
+    "63",
+    "64"
+   ],
+   "id": "tie-63-64-2",
+   "owner_xy": [
+    3105,
+    2497
+   ],
+   "nbr_xy": [
+    140,
+    2470
+   ],
+   "confidence": "medium",
+   "note": "SE corner of 63's block west of Avenue N1/2 at 20th St (front row 1518-1524 of the next block, side numbers 1922-1928), matched to 64's sliver foot tick at the same street. dy consistent with tie-63-64-1 within ~20 px; sliver x schematic."
+  },
+  {
+   "pair": [
+    "64",
+    "65"
+   ],
+   "status": "featureless",
+   "note": "Avenue P corridor (slot 18) carries no shared drawn point objects: no hydrants, pipes, rails, or margin slivers on either sheet from 18th to 21st St; each sheet stops its ink at its own block line. 65's corner stores (1901/1801, 1902/2027) are not redrawn on 64. Only the horizontal street block-front lines cross the seam; those were already recorded as low line-ties (tie-64-65-1/2 in adjudicate_F_result) and remain the only evidence."
+  },
+  {
+   "pair": [
+    "64",
+    "68"
+   ],
+   "id": "tie-64-68-1",
+   "owner_xy": [
+    1275,
+    3693
+   ],
+   "nbr_xy": [
+    1278,
+    134
+   ],
+   "confidence": "high",
+   "note": "T.H. hydrant dot on the north side of 21st (Centre) St, ~60 px east of the double-dash utility line running down the avenue between the 1624 and 1701 blocks (slot 16). Anchored by the 1701/2027 corner store S adjacent on both sheets."
+  },
+  {
+   "pair": [
+    "64",
+    "68"
+   ],
+   "id": "tie-64-68-2",
+   "owner_xy": [
+    1131,
+    3848
+   ],
+   "nbr_xy": [
+    1159,
+    334
+   ],
+   "confidence": "medium",
+   "note": "Red circled outlot disc south of 21st St, west of the same avenue utility line (~90 px on 64, ~55 px on 68). 68 clearly reads 73; the digit on 64 is smudged (73 vs 78) but position matches the hydrant tie within ~45 px. Medium due to digit ambiguity and margin sloppiness."
+  },
+  {
+   "pair": [
+    "28",
+    "71a"
+   ],
+   "id": "tie-28-71a-1",
+   "owner_xy": [
+    3322,
+    2452
+   ],
+   "nbr_xy": [
+    265,
+    1349
+   ],
+   "confidence": "medium",
+   "note": "T.H. hydrant in Avenue J just north of 44th St. 71a draws it in place (dot+T.H.+pipe dash crossing 44th); 28 draws it at the end of a dotted 140-ft arrow from its 924 block corner (edge annotation), so 28's x is schematic and y is ~level with its block corner. Same sole hydrant at this crossing; avenue identity fixed by AV. J. OR labels on both edges and side numbers 4302-4328 (28, even) vs 4301-4327 (71a, odd)."
+  },
+  {
+   "pair": [
+    "28",
+    "71a"
+   ],
+   "id": "tie-28-71a-2",
+   "owner_xy": [
+    3225,
+    2460
+   ],
+   "nbr_xy": [
+    230,
+    1300
+   ],
+   "confidence": "low",
+   "note": "North front line of 44th St (bottom line of the 914-924 block on 28, of the 1002-1012 block on 71a) projected across Avenue J. LINE feature: y only, x at nominal seam. Implied dy (-1160) differs from the hydrant tie (-1103) by ~57 px - the sheets place the hydrant row differently relative to the block line."
+  },
+  {
+   "pair": [
+    "72",
+    "76"
+   ],
+   "id": "tie-72-76-1",
+   "owner_xy": [
+    2020,
+    3735
+   ],
+   "nbr_xy": [
+    1105,
+    148
+   ],
+   "confidence": "medium",
+   "note": "SE corner of 72's 1602-1624 block at the 70-ft avenue on 27th St north side (side numbers 2622-2628), matched to 76's north-margin outline corner west of its avenue gap. Anchored by matching 16xx/17xx house-number rows (row overlap gives dx ~-950). Margin y sketchy; see tension with tie-72-76-2."
+  },
+  {
+   "pair": [
+    "72",
+    "76"
+   ],
+   "id": "tie-72-76-2",
+   "owner_xy": [
+    2245,
+    3737
+   ],
+   "nbr_xy": [
+    1300,
+    215
+   ],
+   "confidence": "medium",
+   "note": "SW corner of 72's 1702-1712 block (side numbers 2621-2627) matched to the east corner of 76's margin gap. dx consistent with tie-72-76-1 within 30 px, but the two margin segments are drawn at different y (148 vs 215) - 76's margin outline is schematic in y."
+  }
+ ]
+}
