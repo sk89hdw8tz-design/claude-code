@@ -52,7 +52,12 @@ for p in sorted(glob.glob(os.path.join(ROOT, "out", "relocate", "result_*.json")
 def find_reloc(fid, pair):
     for key in ((fid, tuple(pair)), (fid, ())):
         if key in reloc:
-            return reloc[key]
+            r = reloc[key]
+            # A low-confidence relocation, a not-found, or a line-crossing
+            # with a pinned coordinate is not an independent measurement.
+            if r.get("status") == "not-found" or r.get("confidence") == "low":
+                return None
+            return r
     return None
 
 def close(p, q, tol=12):
@@ -63,8 +68,19 @@ counts = defaultdict(int)
 for f in lm["features"]:
     fid, pair = f["id"], [f["sheet_a"], f["sheet_b"]]
     rec = {"id": fid, "pair": pair, "schematic": bool(f.get("schematic"))}
-    if fid.startswith("dash-"):
+    if fid.startswith("dash-") or fid.startswith("corridor-"):
         rec.update(status="excluded-dash")
+    elif fid.startswith("width70"):
+        # Italic width annotations are TEXT, which the seed prompt bans as
+        # landmarks; the pair 15|16 labels imply a 4.5-degree rotation over
+        # 890 px, i.e. at least one is measured on a different glyph.
+        rec.update(status="excluded-text-label")
+    elif "alarm" in fid:
+        # Fire-alarm boxes are drafted symbols, not surveyed objects: both
+        # alarm features deviate 40-60 px from their pair's consensus (and
+        # group C's relocation note flags the placement difference for
+        # alarm-box-212 explicitly). Excluded as unshared drafting.
+        rec.update(status="excluded-alarm-symbol")
     else:
         R = find_reloc(fid, pair)
         M = mver.get(fid, {})
@@ -93,13 +109,48 @@ for f in lm["features"]:
     out.append(rec)
 
 for r in news:
-    out.append({"id": r["id"], "pair": r.get("pair") or [r.get("sheet_a"), r.get("sheet_b")],
+    pr = r.get("pair") or [r.get("sheet_a"), r.get("sheet_b")]
+    if isinstance(pr, str):
+        pr = pr.split("|")
+    if ("a_xy" not in r or "b_xy" not in r or not pr or None in pr
+            or r.get("confidence") == "low"):
+        counts["agent-new-unusable"] += 1
+        continue
+    pr = [str(x) for x in pr]
+    out.append({"id": r["id"], "pair": pr,
                 "schematic": False, "status": "agent-new",
                 "a_xy": r["a_xy"], "b_xy": r["b_xy"]})
     counts["agent-new"] += 1
 
-# fit/gate split per pair over usable, non-schematic features
+# within-pair consistency: with >=3 usable features, fit a per-pair
+# similarity and evict features >15 px off the pair's own consensus
+# (wrong-object or drafting-difference survivors).
+import numpy as np
 KEEP = {"confirmed", "adopted-R", "adopted-L", "matcher-only"}
+by_pair0 = defaultdict(list)
+for r in out:
+    if r["status"] in KEEP and not r["schematic"]:
+        by_pair0[tuple(r["pair"])].append(r)
+for pair, rows in by_pair0.items():
+    if len(rows) < 3:
+        continue
+    A = np.array([r["a_xy"] for r in rows], float)
+    B = np.array([r["b_xy"] for r in rows], float)
+    ca, cb = A.mean(0), B.mean(0)
+    H = (A - ca).T @ (B - cb)
+    U, S, Vt = np.linalg.svd(H)
+    R = Vt.T @ U.T
+    if np.linalg.det(R) < 0:
+        Vt[-1] *= -1; R = Vt.T @ U.T
+    s = S.sum() / ((A - ca) ** 2).sum()
+    pred = s * (R @ (A - ca).T).T + cb
+    res = np.hypot(*(pred - B).T)
+    for r, e in zip(rows, res):
+        if e > 15:
+            r["status"] = "excluded-pair-outlier"
+            r["pair_residual_px"] = round(float(e), 1)
+            counts["excluded-pair-outlier"] += 1
+
 by_pair = defaultdict(list)
 for r in out:
     if r["status"] in KEEP and not r["schematic"]:

@@ -1,0 +1,1308 @@
+{
+ "rules": "Consolidate three independent landmark measurements into landmarks_v2.\n\nSources per feature:\n  L  the original locator            (SEED landmarks.json, single-measured)\n  M  the edge-template matcher       (r1_measurements.json verification;\n                                      confirms L's a_xy against ink on B)\n  R  the blind relocation agents     (result_A..D.json, description-only)\n\nRules:\n  - dash-* features are EXCLUDED outright: group B's relocation established\n    the dashed centreline rows are per-sheet drafting conventions, not\n    shared physical points.\n  - CONFIRMED: R agrees with L within 12 px on both sheets -> consensus =\n    mean(L, R) per sheet.\n  - ADOPTED-R: R disagrees with L, but M's ink match sides with R (within\n    12 px on sheet B) -> take R.\n  - ADOPTED-L: R disagrees with L, M sides with L -> take L.\n  - DISPUTED: three-way disagreement or R not-found and M weak -> excluded.\n  - Schematic features stay excluded from pass/fail but are carried for\n    reporting.\n\nThe kept set is split per pair, alternating by id order: FIT half (solver\nconstraints) and GATE half (landmark_check hold-out). New agent-found\nfeatures (new: true) go straight to the FIT half (single-source).\nWrites out/landmarks_v2.json.\n",
+ "counts": {
+  "confirmed": 27,
+  "adopted-R": 1,
+  "excluded-text-label": 4,
+  "matcher-only": 4,
+  "unverified": 15,
+  "excluded-alarm-symbol": 3,
+  "adopted-L": 3,
+  "disputed": 11,
+  "excluded-dash": 9,
+  "agent-new-unusable": 6,
+  "excluded-pair-outlier": 2
+ },
+ "features": [
+  {
+   "id": "blk-corner-n80",
+   "pair": [
+    "11",
+    "12"
+   ],
+   "schematic": false,
+   "status": "confirmed",
+   "a_xy": [
+    3099.5,
+    153.0
+   ],
+   "b_xy": [
+    106.0,
+    140.0
+   ],
+   "split": "fit"
+  },
+  {
+   "id": "blk323-ne-corner",
+   "pair": [
+    "11",
+    "12"
+   ],
+   "schematic": false,
+   "status": "confirmed",
+   "a_xy": [
+    3098.5,
+    401.5
+   ],
+   "b_xy": [
+    103.5,
+    387.5
+   ],
+   "split": "gate"
+  },
+  {
+   "id": "red-disc-7",
+   "pair": [
+    "11",
+    "12"
+   ],
+   "schematic": false,
+   "status": "confirmed",
+   "a_xy": [
+    3135.5,
+    2531.0
+   ],
+   "b_xy": [
+    123.5,
+    2481.0
+   ],
+   "split": "gate"
+  },
+  {
+   "id": "blk324-se-corner",
+   "pair": [
+    "11",
+    "12"
+   ],
+   "schematic": false,
+   "status": "adopted-R",
+   "a_xy": [
+    3092,
+    3696
+   ],
+   "b_xy": [
+    68,
+    3640
+   ],
+   "split": "fit"
+  },
+  {
+   "id": "red-disc-214",
+   "pair": [
+    "13",
+    "14"
+   ],
+   "schematic": false,
+   "status": "confirmed",
+   "a_xy": [
+    3273.0,
+    2670.5
+   ],
+   "b_xy": [
+    210.5,
+    2632.0
+   ],
+   "split": "fit"
+  },
+  {
+   "id": "width70-top",
+   "pair": [
+    "13",
+    "14"
+   ],
+   "schematic": false,
+   "status": "excluded-text-label"
+  },
+  {
+   "id": "width70-bottom",
+   "pair": [
+    "13",
+    "14"
+   ],
+   "schematic": false,
+   "status": "excluded-text-label"
+  },
+  {
+   "id": "red-disc-124",
+   "pair": [
+    "15",
+    "16"
+   ],
+   "schematic": false,
+   "status": "confirmed",
+   "a_xy": [
+    3280.0,
+    2812.0
+   ],
+   "b_xy": [
+    198.5,
+    2732.0
+   ],
+   "split": "fit"
+  },
+  {
+   "id": "width70-top",
+   "pair": [
+    "15",
+    "16"
+   ],
+   "schematic": false,
+   "status": "excluded-text-label"
+  },
+  {
+   "id": "width70-bottom",
+   "pair": [
+    "15",
+    "16"
+   ],
+   "schematic": false,
+   "status": "excluded-text-label"
+  },
+  {
+   "id": "blk682-nw-corner",
+   "pair": [
+    "06",
+    "13"
+   ],
+   "schematic": true,
+   "status": "matcher-only",
+   "a_xy": [
+    3216,
+    311
+   ],
+   "b_xy": [
+    279,
+    1556
+   ]
+  },
+  {
+   "id": "blk682-sw-corner",
+   "pair": [
+    "06",
+    "13"
+   ],
+   "schematic": true,
+   "status": "matcher-only",
+   "a_xy": [
+    3212,
+    1233
+   ],
+   "b_xy": [
+    228,
+    2519
+   ]
+  },
+  {
+   "id": "blk683-nw-corner",
+   "pair": [
+    "06",
+    "13"
+   ],
+   "schematic": true,
+   "status": "unverified"
+  },
+  {
+   "id": "blk684-nw-corner",
+   "pair": [
+    "06",
+    "15"
+   ],
+   "schematic": true,
+   "status": "unverified"
+  },
+  {
+   "id": "blk684-sw-corner",
+   "pair": [
+    "06",
+    "15"
+   ],
+   "schematic": true,
+   "status": "matcher-only",
+   "a_xy": [
+    3210,
+    3568
+   ],
+   "b_xy": [
+    287,
+    1256
+   ]
+  },
+  {
+   "id": "blk679-nw-corner",
+   "pair": [
+    "07",
+    "11"
+   ],
+   "schematic": true,
+   "status": "unverified"
+  },
+  {
+   "id": "blk680-nw-corner",
+   "pair": [
+    "07",
+    "11"
+   ],
+   "schematic": true,
+   "status": "unverified"
+  },
+  {
+   "id": "blk680-sw-corner",
+   "pair": [
+    "07",
+    "11"
+   ],
+   "schematic": true,
+   "status": "unverified"
+  },
+  {
+   "id": "blk681-nw-corner",
+   "pair": [
+    "07",
+    "13"
+   ],
+   "schematic": true,
+   "status": "unverified"
+  },
+  {
+   "id": "blk681-sw-corner",
+   "pair": [
+    "07",
+    "13"
+   ],
+   "schematic": true,
+   "status": "unverified"
+  },
+  {
+   "id": "blk682-nw-corner-07",
+   "pair": [
+    "07",
+    "13"
+   ],
+   "schematic": true,
+   "status": "matcher-only",
+   "a_xy": [
+    3252,
+    3820
+   ],
+   "b_xy": [
+    279,
+    1556
+   ]
+  },
+  {
+   "id": "blk678-nw-corner",
+   "pair": [
+    "08",
+    "11"
+   ],
+   "schematic": true,
+   "status": "unverified"
+  },
+  {
+   "id": "blk678-sw-corner",
+   "pair": [
+    "08",
+    "11"
+   ],
+   "schematic": true,
+   "status": "unverified"
+  },
+  {
+   "id": "rail19th-dashdot-x",
+   "pair": [
+    "08",
+    "11"
+   ],
+   "schematic": true,
+   "status": "unverified"
+  },
+  {
+   "id": "w-corner-1802",
+   "pair": [
+    "12",
+    "41"
+   ],
+   "schematic": false,
+   "status": "confirmed",
+   "a_xy": [
+    3104.5,
+    399.5
+   ],
+   "b_xy": [
+    120.0,
+    393.0
+   ],
+   "split": "fit"
+  },
+  {
+   "id": "w-corner-1902",
+   "pair": [
+    "12",
+    "41"
+   ],
+   "schematic": false,
+   "status": "confirmed",
+   "a_xy": [
+    3095.0,
+    1566.0
+   ],
+   "b_xy": [
+    109.5,
+    1569.5
+   ],
+   "split": "gate"
+  },
+  {
+   "id": "w-corner-2002",
+   "pair": [
+    "12",
+    "41"
+   ],
+   "schematic": false,
+   "status": "confirmed",
+   "a_xy": [
+    3083.0,
+    2723.0
+   ],
+   "b_xy": [
+    100.0,
+    2733.5
+   ],
+   "split": "fit"
+  },
+  {
+   "id": "alarmbox-64",
+   "pair": [
+    "14",
+    "39"
+   ],
+   "schematic": false,
+   "status": "excluded-alarm-symbol"
+  },
+  {
+   "id": "e-corner-2101",
+   "pair": [
+    "14",
+    "39"
+   ],
+   "schematic": false,
+   "status": "confirmed",
+   "a_xy": [
+    3308.5,
+    388.0
+   ],
+   "b_xy": [
+    303.0,
+    378.5
+   ],
+   "split": "fit"
+  },
+  {
+   "id": "e-corner-2201",
+   "pair": [
+    "14",
+    "39"
+   ],
+   "schematic": false,
+   "status": "confirmed",
+   "a_xy": [
+    3295.5,
+    1562.5
+   ],
+   "b_xy": [
+    295.0,
+    1549.5
+   ],
+   "split": "gate"
+  },
+  {
+   "id": "e-corner-2401",
+   "pair": [
+    "16",
+    "37"
+   ],
+   "schematic": false,
+   "status": "confirmed",
+   "a_xy": [
+    3320.5,
+    300.5
+   ],
+   "b_xy": [
+    269.0,
+    351.5
+   ],
+   "split": "fit"
+  },
+  {
+   "id": "e-corner-2501",
+   "pair": [
+    "16",
+    "37"
+   ],
+   "schematic": false,
+   "status": "confirmed",
+   "a_xy": [
+    3308.5,
+    1597.0
+   ],
+   "b_xy": [
+    259.0,
+    1648.0
+   ],
+   "split": "gate"
+  },
+  {
+   "id": "e-corner-2601",
+   "pair": [
+    "16",
+    "37"
+   ],
+   "schematic": false,
+   "status": "confirmed",
+   "a_xy": [
+    3299.5,
+    2759.5
+   ],
+   "b_xy": [
+    254.5,
+    2816.0
+   ],
+   "split": "fit"
+  },
+  {
+   "id": "th-hydrant-19th",
+   "pair": [
+    "08",
+    "07"
+   ],
+   "schematic": false,
+   "status": "confirmed",
+   "a_xy": [
+    1944.9,
+    3678.7
+   ],
+   "b_xy": [
+    1928.7,
+    94.7
+   ],
+   "split": "fit"
+  },
+  {
+   "id": "blk-se-corner-1828",
+   "pair": [
+    "08",
+    "07"
+   ],
+   "schematic": false,
+   "status": "adopted-L",
+   "a_xy": [
+    3058,
+    3674.5
+   ],
+   "b_xy": [
+    3038.5,
+    81.5
+   ],
+   "split": "fit"
+  },
+  {
+   "id": "blk-sw-corner-east-of-tracks",
+   "pair": [
+    "08",
+    "07"
+   ],
+   "schematic": false,
+   "status": "adopted-L",
+   "a_xy": [
+    3268.6,
+    3673.8
+   ],
+   "b_xy": [
+    3254.4,
+    84.5
+   ],
+   "split": "gate"
+  },
+  {
+   "id": "hides-ne-corner",
+   "pair": [
+    "08",
+    "07"
+   ],
+   "schematic": false,
+   "status": "disputed",
+   "detail": {
+    "L": [
+     [
+      3057.2,
+      3916.5
+     ],
+     [
+      3034.6,
+      321.2
+     ]
+    ],
+    "R": [
+     [
+      3006,
+      3924
+     ],
+     [
+      3000,
+      322
+     ]
+    ],
+    "M_b": [
+     3244.09,
+     231.4
+    ]
+   }
+  },
+  {
+   "id": "th-hydrant-e-of-alley-114",
+   "pair": [
+    "11",
+    "13"
+   ],
+   "schematic": false,
+   "status": "confirmed",
+   "a_xy": [
+    655.0,
+    3710.5
+   ],
+   "b_xy": [
+    734.5,
+    180.0
+   ],
+   "split": "fit"
+  },
+  {
+   "id": "th-hydrant-214",
+   "pair": [
+    "11",
+    "13"
+   ],
+   "schematic": false,
+   "status": "disputed",
+   "detail": {
+    "L": [
+     [
+      1707,
+      3685
+     ],
+     [
+      1771,
+      182
+     ]
+    ],
+    "R": [
+     [
+      1734,
+      3676
+     ],
+     [
+      1780,
+      136
+     ]
+    ],
+    "M_b": [
+     1776.0,
+     219.92
+    ]
+   }
+  },
+  {
+   "id": "ne-corner-211",
+   "pair": [
+    "11",
+    "13"
+   ],
+   "schematic": false,
+   "status": "disputed",
+   "detail": {
+    "L": [
+     [
+      1627,
+      3892
+     ],
+     [
+      1689,
+      337
+     ]
+    ],
+    "R": [
+     [
+      1627,
+      3894
+     ],
+     [
+      1673,
+      344
+     ]
+    ],
+    "M_b": [
+     1688.89,
+     472.91
+    ]
+   }
+  },
+  {
+   "id": "th-hydrant-414",
+   "pair": [
+    "12",
+    "14"
+   ],
+   "schematic": false,
+   "status": "disputed",
+   "detail": {
+    "L": [
+     [
+      723,
+      3713
+     ],
+     [
+      716,
+      170
+     ]
+    ],
+    "R": [
+     [
+      683,
+      3700
+     ],
+     [
+      733,
+      98
+     ]
+    ],
+    "M_b": [
+     519.87,
+     468.97
+    ]
+   }
+  },
+  {
+   "id": "th-hydrant-514",
+   "pair": [
+    "12",
+    "14"
+   ],
+   "schematic": false,
+   "status": "disputed",
+   "detail": {
+    "L": [
+     [
+      1722,
+      3719
+     ],
+     [
+      1730,
+      184
+     ]
+    ],
+    "R": [
+     [
+      1691,
+      3703
+     ],
+     [
+      1751,
+      102
+     ]
+    ],
+    "M_b": [
+     1750.26,
+     353.05
+    ]
+   }
+  },
+  {
+   "id": "th-hydrant-614",
+   "pair": [
+    "12",
+    "14"
+   ],
+   "schematic": false,
+   "status": "disputed",
+   "detail": {
+    "L": [
+     [
+      2724,
+      3719
+     ],
+     [
+      2741,
+      184
+     ]
+    ],
+    "R": [
+     [
+      2711,
+      3704
+     ],
+     [
+      2744,
+      93
+     ]
+    ],
+    "M_b": [
+     2584.65,
+     226.56
+    ]
+   }
+  },
+  {
+   "id": "th-hydrant-714-block",
+   "pair": [
+    "41",
+    "39"
+   ],
+   "schematic": false,
+   "status": "confirmed",
+   "a_xy": [
+    729.0,
+    3704.5
+   ],
+   "b_xy": [
+    733.5,
+    188.5
+   ],
+   "split": "fit"
+  },
+  {
+   "id": "fire-alarm-box-71",
+   "pair": [
+    "41",
+    "39"
+   ],
+   "schematic": false,
+   "status": "excluded-alarm-symbol"
+  },
+  {
+   "id": "th-hydrant-914",
+   "pair": [
+    "41",
+    "39"
+   ],
+   "schematic": false,
+   "status": "unverified"
+  },
+  {
+   "id": "th_hydrant_dot",
+   "pair": [
+    "07",
+    "06"
+   ],
+   "schematic": false,
+   "status": "excluded-pair-outlier",
+   "a_xy": [
+    2354.5,
+    3698.0
+   ],
+   "b_xy": [
+    2335.5,
+    155.5
+   ],
+   "pair_residual_px": 21.2
+  },
+  {
+   "id": "pier22_whse_se_corner",
+   "pair": [
+    "07",
+    "06"
+   ],
+   "schematic": false,
+   "status": "confirmed",
+   "a_xy": [
+    1975.0,
+    3871.0
+   ],
+   "b_xy": [
+    1950.5,
+    355.0
+   ],
+   "split": "fit"
+  },
+  {
+   "id": "pier22_apron_se_corner",
+   "pair": [
+    "07",
+    "06"
+   ],
+   "schematic": false,
+   "status": "confirmed",
+   "a_xy": [
+    2016.5,
+    3916.0
+   ],
+   "b_xy": [
+    1994.0,
+    406.5
+   ],
+   "split": "fit"
+  },
+  {
+   "id": "pier22_apron_sw_corner",
+   "pair": [
+    "07",
+    "06"
+   ],
+   "schematic": false,
+   "status": "confirmed",
+   "a_xy": [
+    1703.5,
+    3912.0
+   ],
+   "b_xy": [
+    1670.0,
+    410.0
+   ],
+   "split": "gate"
+  },
+  {
+   "id": "block_lot13_nw_corner",
+   "pair": [
+    "07",
+    "06"
+   ],
+   "schematic": false,
+   "status": "excluded-pair-outlier",
+   "a_xy": [
+    2664,
+    3823
+   ],
+   "b_xy": [
+    2633,
+    308
+   ],
+   "pair_residual_px": 15.9
+  },
+  {
+   "id": "th-hydrant-114",
+   "pair": [
+    "13",
+    "15"
+   ],
+   "schematic": false,
+   "status": "confirmed",
+   "a_xy": [
+    696.0,
+    3689.0
+   ],
+   "b_xy": [
+    744.5,
+    123.0
+   ],
+   "split": "fit"
+  },
+  {
+   "id": "th-hydrant-214",
+   "pair": [
+    "13",
+    "15"
+   ],
+   "schematic": false,
+   "status": "confirmed",
+   "a_xy": [
+    1734.0,
+    3675.0
+   ],
+   "b_xy": [
+    1777.5,
+    135.0
+   ],
+   "split": "gate"
+  },
+  {
+   "id": "th-hydrant-314",
+   "pair": [
+    "13",
+    "15"
+   ],
+   "schematic": false,
+   "status": "confirmed",
+   "a_xy": [
+    2731.0,
+    3673.0
+   ],
+   "b_xy": [
+    2786.0,
+    138.0
+   ],
+   "split": "fit"
+  },
+  {
+   "id": "alarm-box-212",
+   "pair": [
+    "13",
+    "15"
+   ],
+   "schematic": false,
+   "status": "excluded-alarm-symbol"
+  },
+  {
+   "id": "th-hydrant-414",
+   "pair": [
+    "14",
+    "16"
+   ],
+   "schematic": false,
+   "status": "confirmed",
+   "a_xy": [
+    684.0,
+    3699.5
+   ],
+   "b_xy": [
+    733.5,
+    98.0
+   ],
+   "split": "fit"
+  },
+  {
+   "id": "th-hydrant-514",
+   "pair": [
+    "14",
+    "16"
+   ],
+   "schematic": false,
+   "status": "confirmed",
+   "a_xy": [
+    1691.5,
+    3702.5
+   ],
+   "b_xy": [
+    1751.5,
+    102.5
+   ],
+   "split": "gate"
+  },
+  {
+   "id": "th-hydrant-614",
+   "pair": [
+    "14",
+    "16"
+   ],
+   "schematic": false,
+   "status": "confirmed",
+   "a_xy": [
+    2711.5,
+    3704.0
+   ],
+   "b_xy": [
+    2745.0,
+    93.0
+   ],
+   "split": "fit"
+  },
+  {
+   "id": "th-hydrant-714",
+   "pair": [
+    "39",
+    "37"
+   ],
+   "schematic": false,
+   "status": "unverified"
+  },
+  {
+   "id": "th-hydrant-814",
+   "pair": [
+    "39",
+    "37"
+   ],
+   "schematic": false,
+   "status": "unverified"
+  },
+  {
+   "id": "th-hydrant-914",
+   "pair": [
+    "39",
+    "37"
+   ],
+   "schematic": false,
+   "status": "unverified"
+  },
+  {
+   "id": "junction-22nd-0713",
+   "pair": [
+    "07",
+    "13"
+   ],
+   "schematic": false,
+   "status": "disputed",
+   "detail": {
+    "L": [
+     [
+      3127,
+      3577
+     ],
+     [
+      142,
+      1317
+     ]
+    ],
+    "R": [
+     [
+      3127,
+      3733
+     ],
+     [
+      142,
+      1470
+     ]
+    ],
+    "M_b": [
+     158.13,
+     1103.25
+    ]
+   }
+  },
+  {
+   "id": "junction-21st-0711",
+   "pair": [
+    "07",
+    "11"
+   ],
+   "schematic": false,
+   "status": "unverified"
+  },
+  {
+   "id": "junction-20th-0711",
+   "pair": [
+    "07",
+    "11"
+   ],
+   "schematic": false,
+   "status": "disputed",
+   "detail": {
+    "L": [
+     [
+      3127,
+      1357
+     ],
+     [
+      107,
+      2572
+     ]
+    ],
+    "R": [
+     [
+      3127,
+      1398
+     ],
+     [
+      107,
+      2575
+     ]
+    ],
+    "M_b": [
+     161.94,
+     2534.99
+    ]
+   }
+  },
+  {
+   "id": "junction-19th-0811",
+   "pair": [
+    "08",
+    "11"
+   ],
+   "schematic": false,
+   "status": "confirmed",
+   "a_xy": [
+    3147.0,
+    3806.0
+   ],
+   "b_xy": [
+    107.0,
+    1437.5
+   ],
+   "split": "fit"
+  },
+  {
+   "id": "junction-25th-0615",
+   "pair": [
+    "06",
+    "15"
+   ],
+   "schematic": false,
+   "status": "disputed",
+   "detail": {
+    "L": [
+     [
+      3093,
+      3691
+     ],
+     [
+      143,
+      1466
+     ]
+    ],
+    "R": [
+     [
+      3093,
+      3652
+     ],
+     [
+      143,
+      1468
+     ]
+    ],
+    "M_b": [
+     197.08,
+     1510.97
+    ]
+   }
+  },
+  {
+   "id": "corridor-strand-24th",
+   "pair": [
+    "13",
+    "15"
+   ],
+   "schematic": false,
+   "status": "excluded-dash"
+  },
+  {
+   "id": "corridor-mechanic-24th",
+   "pair": [
+    "13",
+    "15"
+   ],
+   "schematic": false,
+   "status": "excluded-dash"
+  },
+  {
+   "id": "dash-19th-aveD",
+   "pair": [
+    "11",
+    "12"
+   ],
+   "schematic": false,
+   "status": "excluded-dash"
+  },
+  {
+   "id": "dash-20th-aveD",
+   "pair": [
+    "11",
+    "12"
+   ],
+   "schematic": false,
+   "status": "excluded-dash"
+  },
+  {
+   "id": "dash-22nd-aveD",
+   "pair": [
+    "13",
+    "14"
+   ],
+   "schematic": false,
+   "status": "excluded-dash"
+  },
+  {
+   "id": "dash-23rd-aveD",
+   "pair": [
+    "13",
+    "14"
+   ],
+   "schematic": false,
+   "status": "excluded-dash"
+  },
+  {
+   "id": "dash-25th-aveD",
+   "pair": [
+    "15",
+    "16"
+   ],
+   "schematic": false,
+   "status": "excluded-dash"
+  },
+  {
+   "id": "dash-20th-aveG",
+   "pair": [
+    "12",
+    "41"
+   ],
+   "schematic": false,
+   "status": "excluded-dash"
+  },
+  {
+   "id": "dash-22nd-aveG",
+   "pair": [
+    "14",
+    "39"
+   ],
+   "schematic": false,
+   "status": "excluded-dash"
+  },
+  {
+   "id": "junction-dash-19th",
+   "pair": [
+    "07",
+    "11"
+   ],
+   "schematic": false,
+   "status": "disputed",
+   "detail": {
+    "L": [
+     [
+      3134.0,
+      241.8
+     ],
+     [
+      104.6,
+      1540.6
+     ]
+    ],
+    "R": [
+     [
+      3127,
+      236
+     ],
+     [
+      107,
+      1438
+     ]
+    ],
+    "M_b": [
+     336.0,
+     1209.0
+    ]
+   }
+  },
+  {
+   "id": "junction-dash-20th",
+   "pair": [
+    "07",
+    "11"
+   ],
+   "schematic": false,
+   "status": "disputed",
+   "detail": {
+    "L": [
+     [
+      3134.0,
+      1397.9
+     ],
+     [
+      104.6,
+      2696.2
+     ]
+    ],
+    "R": [
+     [
+      3127,
+      1398
+     ],
+     [
+      107,
+      2575
+     ]
+    ],
+    "M_b": [
+     168.77,
+     2575.93
+    ]
+   }
+  }
+ ]
+}

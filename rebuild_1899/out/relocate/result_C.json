@@ -194,6 +194,37 @@
    ],
    "confidence": "high",
    "note": "NW corner of block E of Winnie at 21st (ticks 2101-2123, top ticks 701/703/705, '70'' numeral W of corner on both sheets). Sheet39 full corner vertex; sheet14 open-bracket vertex (vertical drop at left end of horizontal stroke)."
+  },
+  {
+   "id": "dash-22nd-aveD",
+   "a_xy": [
+    3243,
+    1453
+   ],
+   "b_xy": [
+    265,
+    1461
+   ],
+   "confidence": "low",
+   "note": "Interpreted as the 12'' W. PIPE dash row of the 22nd St corridor crossing the Av D seam. y = dark-row profile center (13: rows 1451-1455 over x3143-3243; 14: rows 1459-1463 over x600-820 and x265-365); x pinned to seam-hint line. Line-crossing observable - only y informative."
+  },
+  {
+   "id": "dash-23rd-aveD",
+   "status": "not-found",
+   "note": "The 23rd St corridor near Av D carries no drawn dash centerline/pipe row on either sheet (only WOOD BLOCK PAVED text and block-outline dashes); the 'slot 3' composite dash-row of the original NCC measurement cannot be identified from content alone. Inspected 4 crops + row profiles on both sheets."
+  },
+  {
+   "id": "dash-22nd-aveG",
+   "a_xy": [
+    3139,
+    1464
+   ],
+   "b_xy": [
+    267,
+    1451
+   ],
+   "confidence": "low",
+   "note": "Double-dashed 80' line (unopened 22nd St) crossing the Winnie/Av G seam. y = dark-row profile center (14: rows 1461-1466 over x3040-3140; 39: rows 1448-1453 over x267-380); x pinned to seam-hint line. Line-crossing observable - only y informative."
   }
  ]
 }
