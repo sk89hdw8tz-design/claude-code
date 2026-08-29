@@ -1,0 +1,21 @@
+{
+ "year": 1899,
+ "consolidated_utc": "2026-08-29",
+ "built_by": "rebuild_1899/ in this session (fresh code; legacy pipeline firewalled per SEED_1899)",
+ "sources": "UT Austin PCL scans via branch sanborn-data-1899 (CI-fetched; SHA256SUMS verified)",
+ "seed": "sanborn/SEED_1899 on branch claude/new-session-fxmhgv (constants, surveys, landmarks, guard tools)",
+ "chain": [
+  "measure.py (dense edge-NCC, mutual consistency)",
+  "4 blind relocation agents -> consolidate.py -> controls/landmarks_v2.json",
+  "solve2.py (full-affine bundle, gauge sheet 13) -> transforms.json",
+  "gate.py (held-out landmarks; median 2.7 px; HQ-4 for 2 symbol outliers)",
+  "cuts_1899.py -> seams/{cuts,masks}.json",
+  "qc_run.py -> qc/ (guard metrics, proof panels)"
+ ],
+ "known_limitations": [
+  "east of Avenue A the wharf sheets draw schematic placeholders; the surveyed downtown drawing is authoritative (seed asterisk); cuts near Ave A disclosed",
+  "6 pairs solved landmark-only (dense matching weak/disagreeing; see qc/r1_measurements.json dense_flags)",
+  "4 pairs lack a held-out numeric gate; covered by qc/proof seam panels",
+  "renders are raw-scan tone (no flat-field/water tint; prior master's tone treatment not part of this recipe)"
+ ]
+}

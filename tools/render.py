@@ -35,6 +35,8 @@ def main():
                     help="render at 1/N scale (QC previews)")
     ap.add_argument("--out", default=None)
     ap.add_argument("--dry-run", action="store_true")
+    ap.add_argument("--dzi", action="store_true",
+                    help="also write a DeepZoom pyramid next to --out")
     a = ap.parse_args()
 
     r = Recipe(a.year)
@@ -91,6 +93,11 @@ def main():
     Image.fromarray(cv2.cvtColor(canvas, cv2.COLOR_BGR2RGB)).save(
         out, compression="tiff_lzw")
     print(f"wrote {out}")
+    if a.dzi:
+        import pyvips
+        base = os.path.splitext(out)[0]
+        pyvips.Image.new_from_file(out).dzsave(base, suffix=".jpg[Q=85]")
+        print(f"wrote {base}.dzi + {base}_files/")
 
 if __name__ == "__main__":
     main()

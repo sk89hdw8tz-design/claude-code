@@ -14,12 +14,12 @@ byte-deterministically on any machine:
 | piece | 1912 | 1899 |
 |---|---|---|
 | `inventory.json` (URL + sha256 + git mirror per source file) | ✅ 129 files | ✅ 102 files |
-| `transforms.json` (per-sheet solve into the mosaic frame) | ✅ frozen prior solve | 🔄 rebuild in progress |
-| `seams/` (cuts + per-sheet ownership polygons) | ✅ frozen (D-018/19/23) | 🔄 generator ready |
-| `controls/` (verified correspondences) | ✅ 23 pairs | 🔄 3-source landmark consolidation |
-| `grid.json` + `intersections/blocks/sheets.geojson` | ✅ | ✅ (grid is frame-exact; sheets pending solve) |
-| QC scores | ✅ prior run1 + reviews | 🔄 |
-| provenance | ✅ `provenance.json` | 🔄 |
+| `transforms.json` (per-sheet solve into the mosaic frame) | ✅ frozen prior solve | ✅ full-affine rebuild, gated |
+| `seams/` (cuts + per-sheet ownership polygons) | ✅ frozen (D-018/19/23) | ✅ 19 min-ink cuts + ownership |
+| `controls/` (verified correspondences) | ✅ 23 pairs | ✅ landmarks_v2 (3-source) |
+| `grid.json` + `intersections/blocks/sheets.geojson` | ✅ | ✅ |
+| QC scores | ✅ prior run1 + reviews | ✅ gate + guard metrics + proof panels |
+| provenance | ✅ `provenance.json` | ✅ `provenance.json` |
 
 ## Tools
 
@@ -32,7 +32,12 @@ byte-deterministically on any machine:
   (21st × Ave C) both clean.
 - **`tools/render.py`** — whole-mosaic or rect render from the recipe;
   prints disk needs first; `--dry-run` stops there; `--downsample N` for
-  QC previews. Full 1912 at 1/1 is 24,849×21,582 px (~536 MP, ~1.6 GB
+  QC previews; `--dzi` writes a DeepZoom tile pyramid of the render via
+  libvips. Web-viewer tiles were NOT generated in the cloud: a
+  150-ppi-equivalent set for both years (~250 MB) would push the repository
+  toward its size budget, so run
+  `python3 tools/render.py --year YYYY --all --downsample 2 --dzi --out t.tif`
+  locally instead (addendum §A.4 path). Full 1912 at 1/1 is 24,849×21,582 px (~536 MP, ~1.6 GB
   uncompressed canvas + ~111 MB sources) — run that locally, not in the
   cloud VM (addendum §E). A 1/8 preview renders correctly in-cloud.
 - **`tools/reciplib.py`** — the shared recipe loader (hash-verified lazy
@@ -66,7 +71,7 @@ The wharf band (sheet 5's two panels) has its own joint transforms
 16th–28th and leaves the pier band to `render.py` regions — noted as a
 limitation.
 
-## 1899 — registration rebuild (in progress)
+## 1899 — registration rebuild
 
 Source: UT Austin PCL scans (public domain), 12 sheets: wharf 06/07/08,
 downtown 11–16, 37/39/41. The prior build's registration was never
