@@ -60,11 +60,15 @@ Row/col per the key maps; 1899 wharf column sits 0.67 rows high of the inland gr
 
 | landmark | pair | step px |
 |---|---|---|
-| th-hydrant-514 (symbol) | 14\|16 | 16.3 — HQ-4 |
-| red-disc-7 (symbol) | 11\|12 | 14.3 — HQ-4 |
-| blk-sw-corner-east-of-tracks | 08\|07 | 7.7 |
-| pier22 corners | 07\|06 | ≤5.6 |
-| all remaining structural | — | ≤3.6 |
+| th-hydrant-514 (symbol) | 14\|16 | 19.7 — HQ-4 |
+| pier22_apron_sw (wharf drawing disagreement) | 07\|06 | 19.4 |
+| th-hydrant-314 (symbol) | 13\|15 | 13.7 |
+| e-corner-2101 | 14\|39 | 8.6 |
+| red-disc-7 (symbol) | 11\|12 | 6.7 |
+| all remaining structural | — | ≤5.9 |
+
+(rev2 rigid-similarity solve; the earlier 2.7 px median was the overfit
+affine's illusion — see REPORT.md.)
 
 ## Active agents
 

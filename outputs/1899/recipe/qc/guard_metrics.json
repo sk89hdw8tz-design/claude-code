@@ -7,10 +7,10 @@
  ],
  "note": "extent approximates the prior build's 11449x7632 delivered canvas. The prior build tinted the bay (its 20 white px / 98.98% coverage count tinted water); this recipe ships no water tint, so the comparable numbers are the footprint-scoped ones.",
  "footprint_scoped": {
-  "responsibility_area_px": 84965300,
-  "coverage_pct_within_footprint": 99.675,
-  "pure_white_px_within_footprint": 276153,
-  "pure_black_pct_within_footprint": 0.0088
+  "responsibility_area_px": 85235172,
+  "coverage_pct_within_footprint": 99.685,
+  "pure_white_px_within_footprint": 269035,
+  "pure_black_pct_within_footprint": 0.0092
  },
- "whole_extent_raw_output": "{\n \"size\": [\n  11449,\n  7632\n ],\n \"megapixels\": 87.4,\n \"pure_white_px\": 2533616,\n \"pure_black_px\": 7465,\n \"pure_black_pct\": 0.0085,\n \"coverage_pct\": 97.1,\n \"row_tone_max_jump\": 12.95\n}\n\nvs baseline:\n  coverage_pct                98.98 ->         97.1  REGRESSED\n  pure_white_px                  20 ->      2533616  REGRESSED\n  pure_black_pct              0.007 ->       0.0085  REGRESSED\n\nREGRESSED: ['coverage_pct', 'pure_white_px', 'pure_black_pct'] \u2014 reject this change\n"
+ "whole_extent_raw_output": "{\n \"size\": [\n  11228,\n  7632\n ],\n \"megapixels\": 85.7,\n \"pure_white_px\": 569565,\n \"pure_black_px\": 7816,\n \"pure_black_pct\": 0.0091,\n \"coverage_pct\": 99.34,\n \"row_tone_max_jump\": 24.45\n}\n\nvs baseline:\n  coverage_pct                98.98 ->        99.34  OK\n  pure_white_px                  20 ->       569565  REGRESSED\n  pure_black_pct              0.007 ->       0.0091  REGRESSED\n\nREGRESSED: ['pure_white_px', 'pure_black_pct'] \u2014 reject this change\n"
 }

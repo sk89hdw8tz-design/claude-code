@@ -1,6 +1,6 @@
 {
- "matches_total": 110,
- "matches_live": 106,
+ "matches_total": 160,
+ "matches_live": 155,
  "fit_landmark_ids": [
   "blk-corner-n80",
   "blk324-se-corner",
@@ -8,142 +8,116 @@
   "red-disc-124",
   "w-corner-1802",
   "w-corner-2002",
-  "alarmbox-64",
-  "e-corner-2201",
+  "e-corner-2101",
   "e-corner-2401",
   "e-corner-2601",
   "th-hydrant-19th",
   "blk-se-corner-1828",
   "th-hydrant-e-of-alley-114",
-  "fire-alarm-box-71",
-  "th_hydrant_dot",
-  "pier22_apron_sw_corner",
-  "block_lot13_nw_corner",
-  "th-hydrant-214",
-  "alarm-box-212",
+  "th-hydrant-714-block",
+  "pier22_whse_se_corner",
+  "pier22_apron_se_corner",
+  "th-hydrant-114",
+  "th-hydrant-314",
   "th-hydrant-414",
   "th-hydrant-614",
   "junction-19th-0811"
  ],
  "residuals_live": {
-  "median": 7.115100479249534,
-  "p90": 42.085236355928075,
-  "max": 77.87409343016832
+  "median": 14.258770703415246,
+  "p90": 38.45833696565747,
+  "max": 50.55708543977349
  },
  "pairs": {
-  "06|13": {
-   "n_total": 2,
-   "n_live": 1,
-   "median_step": 3.5788896223232487,
-   "max_step": 3.5788896223232487
-  },
-  "06|15": {
-   "n_total": 5,
-   "n_live": 5,
-   "median_step": 5.083675427124967,
-   "max_step": 39.17291613170471
-  },
   "07|06": {
-   "n_total": 3,
-   "n_live": 3,
-   "median_step": 3.368142494529959,
-   "max_step": 19.035319962192236
-  },
-  "07|11": {
-   "n_total": 5,
-   "n_live": 3,
-   "median_step": 61.738346761820125,
-   "max_step": 62.39701714798172
-  },
-  "07|13": {
-   "n_total": 3,
-   "n_live": 3,
-   "median_step": 18.708121958218353,
-   "max_step": 44.736111666766796
+   "n_total": 14,
+   "n_live": 14,
+   "median_step": 27.361720853496436,
+   "max_step": 41.93990010685693
   },
   "08|07": {
    "n_total": 19,
    "n_live": 19,
-   "median_step": 9.824244537900666,
-   "max_step": 41.96795528853751
+   "median_step": 7.996355137801261,
+   "max_step": 41.24016707739261
   },
   "08|11": {
    "n_total": 1,
    "n_live": 1,
-   "median_step": 1.3462136478638347,
-   "max_step": 1.3462136478638347
+   "median_step": 0.00840401429900948,
+   "max_step": 0.00840401429900948
   },
   "11|12": {
-   "n_total": 2,
-   "n_live": 2,
-   "median_step": 0.055136359626083535,
-   "max_step": 0.062367338675384784
+   "n_total": 17,
+   "n_live": 17,
+   "median_step": 15.698139090185139,
+   "max_step": 47.88122620873869
   },
   "11|13": {
-   "n_total": 1,
-   "n_live": 1,
-   "median_step": 0.32929810598408465,
-   "max_step": 0.32929810598408465
+   "n_total": 10,
+   "n_live": 10,
+   "median_step": 18.96668629766521,
+   "max_step": 44.26347766905739
   },
   "12|14": {
    "n_total": 13,
    "n_live": 13,
-   "median_step": 4.516743982725037,
-   "max_step": 29.529367798506847
+   "median_step": 7.774546444221473,
+   "max_step": 29.447869985349833
   },
   "12|41": {
    "n_total": 11,
    "n_live": 11,
-   "median_step": 5.414895946766428,
-   "max_step": 28.76547640072199
+   "median_step": 5.785270402769298,
+   "max_step": 22.751203093603433
   },
   "13|14": {
-   "n_total": 6,
-   "n_live": 6,
-   "median_step": 3.5091424737278842,
-   "max_step": 33.98638535615589
+   "n_total": 10,
+   "n_live": 5,
+   "median_step": 37.925461429199586,
+   "max_step": 44.71065697557718
   },
   "13|15": {
-   "n_total": 2,
-   "n_live": 2,
-   "median_step": 1.3873067253130102,
-   "max_step": 1.5669836171166271
+   "n_total": 13,
+   "n_live": 13,
+   "median_step": 29.141783219240125,
+   "max_step": 36.064107294974164
   },
   "14|16": {
    "n_total": 13,
    "n_live": 13,
-   "median_step": 9.514062382476572,
-   "max_step": 22.99527416075392
+   "median_step": 15.380004826408612,
+   "max_step": 31.001787444541097
   },
   "14|39": {
-   "n_total": 8,
-   "n_live": 8,
-   "median_step": 21.041963865556347,
-   "max_step": 77.87409343016832
+   "n_total": 7,
+   "n_live": 7,
+   "median_step": 8.717438583595513,
+   "max_step": 20.89498881621606
   },
   "15|16": {
    "n_total": 1,
    "n_live": 1,
-   "median_step": 0.03848559856645548,
-   "max_step": 0.03848559856645548
+   "median_step": 2.465774912868952,
+   "max_step": 2.465774912868952
   },
   "16|37": {
    "n_total": 4,
    "n_live": 4,
-   "median_step": 8.266228705159875,
-   "max_step": 20.125254628596792
+   "median_step": 3.9519579853050546,
+   "max_step": 11.585878784817792
   },
   "39|37": {
    "n_total": 10,
-   "n_live": 9,
-   "median_step": 42.202517423318646,
-   "max_step": 58.18320996738949
+   "n_live": 10,
+   "median_step": 25.21929728931393,
+   "max_step": 50.55708543977349
   },
   "41|39": {
-   "n_total": 1,
-   "n_live": 1,
-   "median_step": 0.04345541843631071,
-   "max_step": 0.04345541843631071
+   "n_total": 17,
+   "n_live": 17,
+   "median_step": 11.60991046855868,
+   "max_step": 26.600391852613413
   }
  }
 }

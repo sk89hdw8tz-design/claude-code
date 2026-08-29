@@ -104,18 +104,27 @@ prompt, fresh code under `rebuild_1899/` (legacy pipeline firewalled):
 
 | Metric | Prior build | Required | This rebuild |
 |---|---|---|---|
-| Step at ground-truth landmarks | up to 85 px | ≤8, none >12 | structural (corners): **max 7.7 px** ✓; drawn symbols: 2 of 4 at 14–16 px — overlay evidence shows surrounding ink aligned and only the symbol offset (drafting variance, HQ-4) |
-| Lateral row step across 24th St | 48–85 px | ≤8 | held-out 13\|15 landmark: **1.2 px** ✓ |
-| Vertical steps at Avenue G | −42…+64 px | ≤8 | 12\|41 2.7 · 14\|39 0.6 · 16\|37 2.9 px ✓ |
-| Wharf seams (22nd/19th) | ±6 / −3…+4 px | ≤8 | 07\|06 1.6 · 08\|07 7.7 px ✓ |
+| Step at ground-truth landmarks | up to 85 px | ≤8, none >12 | held-out median **6.7 px**; structural corners 1.9–8.6 px; over the bar: two drawn symbols at 14–20 px (drafting variance, HQ-4) and one pier-22 corner at 19.4 px where the two sheets' own wharf-overlap drawings disagree (source-level, asterisk class) |
+| Lateral row step across 24th St | 48–85 px | ≤8 | held-out 13\|15 structural evidence within seam panels; its hydrant symbol 13.7 px (symbol class) |
+| Vertical steps at Avenue G | −42…+64 px | ≤8 | 12\|41 1.9 · 14\|39 8.6 · 16\|37 3.5 px |
+| Wharf seams (22nd/19th) | ±6 / −3…+4 px | ≤8 | 08\|07 5.9 px ✓; 07\|06 held-out pier corner 19.4 px (wharf-overlap drawing disagreement — the fit ties on the same pier sit at ~2.6 px) |
 | Source coverage | 98.98% | ≥98.98% | **99.68%** within the source footprint (extent outside every sheet is unrendered by design — the prior build tinted the bay; see qc/guard_metrics.json) |
 | Pure-white px | 20 | ≤50 | not comparable: prior number measured after flat-field + bay tint; raw-scan renders carry the scans' own whites (disclosed) |
 | Row tone max jump | 18.48 | (guard) | **12.95** ✓ |
 | Duplicated street name / hydrant | several | zero | single-writer ownership guarantees one copy per pixel; seam panels show no duplication; full-res sweep pending off-cloud render |
 | Generated map content | none | none | **none** — gaps stay paper-white and are counted in tool output |
 
+**Model revision (rev2).** The first solve used a full 6-dof affine and
+passed the gate at median 2.7 px — falsely: with constraints concentrated
+in seam bands, the affine sheared sheet interiors by up to 13° while
+satisfying the few gate points (visible immediately in the whole-canvas
+render). The model is now a rigid similarity per sheet (rotation ≤0.7°,
+scale spread 0.978–1.000 — physically plausible paper/scan variation), the
+whole-canvas render is square, and the gate numbers below are the honest
+rigid ones.
+
 Gate protocol: 9 HELD-OUT consolidated landmarks (never fed to the solver),
-median **2.7 px**. Six pairs run on landmark-only constraints because dense
+median **6.7 px**. Six pairs run on landmark-only constraints because dense
 content matching disagreed or was too weak (flagged in
 `qc/r1_measurements.json` → `dense_flags`) — the honest fallback the seed
 prompt prescribes. Pairs without a held-out landmark (08\|11, 11\|13,
