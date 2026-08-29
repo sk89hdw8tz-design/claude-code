@@ -1,6 +1,6 @@
 # Galveston Sanborn mosaics — status
 
-**Updated:** 2026-08-29 (Stage 1 gate) · **Branch:** `claude/galveston-setup-part-a-mk5z1l` · **Ledger:** `state/ledger.json`
+**Updated:** 2026-08-29 (Stage 4 partial: 1912 tools live) · **Branch:** `claude/galveston-setup-part-a-mk5z1l` · **Ledger:** `state/ledger.json`
 
 ## Headline
 
@@ -18,9 +18,9 @@
 ```
 Stage 0  inventory + environment   ██████████ done
 Stage 1  consolidate 1912 recipe   ██████████ done
-Stage 2  register 1899             ░░░░░░░░░░ next
+Stage 2  register 1899             ████░░░░░░ in progress (landmark relocation: 2/4 agent groups done)
 Stage 3  QC + human queue          ░░░░░░░░░░
-Stage 4  indexes + render/crop     ░░░░░░░░░░
+Stage 4  indexes + render/crop     ██████░░░░ 1912 done (grid, 3 geojsons, crop.py + render.py verified)
 ```
 
 ## Sheet grid (target footprint)
@@ -47,7 +47,11 @@ and is consolidated in Stage 1.
 
 | agent | task |
 |---|---|
-| orchestrator | Stage 2: 1899 registration rebuild per SEED_1899 |
+| orchestrator | 1912 indexes + tools; 1899 solve pending relocations |
+| measurer A | wharf + Avenue A landmarks (running) |
+| measurer B | ✅ 16/16 located (dash-* features condemned as unshared) |
+| measurer C | center seams (running) |
+| measurer D | ✅ 12/13 located |
 
 ## ETA
 

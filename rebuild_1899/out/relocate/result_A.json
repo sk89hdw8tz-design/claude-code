@@ -129,6 +129,71 @@
    ],
    "confidence": "high",
    "note": "10in W PIPE double-dash row crossing Ave A; 07 row y=3733, 13 row y=1470; only dashed row at this crossing on both"
+  },
+  {
+   "id": "junction-20th-0711",
+   "a_xy": [
+    3127,
+    1398
+   ],
+   "b_xy": [
+    107,
+    2575
+   ],
+   "confidence": "high",
+   "note": "double-dash 6in W PIPE row crossing Ave A on both sheets; only dashed row at crossing"
+  },
+  {
+   "id": "junction-21st-0711",
+   "a_xy": [
+    3127,
+    2558
+   ],
+   "b_xy": [
+    107,
+    3712
+   ],
+   "confidence": "low",
+   "note": "07 row measured (double-dash at Centre/21st). Sheet 11: 21st corridor truncated by margin note text; no dash row drawn near x107 - b_y extrapolated from street spacing (19th y1438, 20th y2575) and T.H. dot at y3700"
+  },
+  {
+   "id": "junction-19th-0811",
+   "a_xy": [
+    3147,
+    3807
+   ],
+   "b_xy": [
+    107,
+    1438
+   ],
+   "confidence": "medium",
+   "note": "single dash-dot row just south of 19TH ST label on 08; single dashed row on 11 at y1438; no double-dash pipe row at this crossing"
+  },
+  {
+   "id": "junction-dash-19th",
+   "a_xy": [
+    3127,
+    236
+   ],
+   "b_xy": [
+    107,
+    1438
+   ],
+   "confidence": "medium",
+   "note": "same physical 19th dash row measured on 07 (LIMITS dash-dot line y236 at Ave A) and 11"
+  },
+  {
+   "id": "junction-dash-20th",
+   "a_xy": [
+    3127,
+    1398
+   ],
+   "b_xy": [
+    107,
+    2575
+   ],
+   "confidence": "high",
+   "note": "same row as junction-20th-0711 (double-dash pipe row, dash period ~23px)"
   }
  ]
 }

@@ -90,6 +90,58 @@
    ],
    "confidence": "medium",
    "note": "Red-pixel centroid of alarm circle '212' (sheet13 n=855, sheet15 n=637; numeral verified both sheets). Medium: symbol placement relative to block corners visibly differs between sheets (schematic), as the description warns."
+  },
+  {
+   "id": "corridor-strand-24th",
+   "a_xy": [
+    1251,
+    3738
+   ],
+   "b_xy": [
+    1288,
+    340
+   ],
+   "confidence": "low",
+   "note": "Line-crossing, not a point: reported x = east kerb (dashed Strand frontage) profiled over y3450-3640 (13) / y360-560 (15); y pinned to seam-hint line. Only x is informative. Kerb x-offsets between sheets vary 13-46px across W/E kerbs, consistent with the NCC-step description; do not use for tight registration."
+  },
+  {
+   "id": "corridor-mechanic-24th",
+   "a_xy": [
+    2259,
+    3738
+   ],
+   "b_xy": [
+    2297,
+    340
+   ],
+   "confidence": "low",
+   "note": "Same method as corridor-strand-24th: x = east kerb dashed frontage of Mechanic corridor (13: 2259, 15: 2297), y pinned to seam-hint line. Line-crossing observable; only x informative."
+  },
+  {
+   "id": "th-hydrant-414",
+   "a_xy": [
+    683,
+    3700
+   ],
+   "b_xy": [
+    733,
+    98
+   ],
+   "confidence": "high",
+   "note": "T.H. dot just E of alley dashes, S of '414' (Model Laundry Washing & Ironing block on 14); label right of dot on both sheets. Dot centroids: sheet14 n=321, sheet16 n=252."
+  },
+  {
+   "id": "th-hydrant-514",
+   "a_xy": [
+    1691,
+    3703
+   ],
+   "b_xy": [
+    1751,
+    102
+   ],
+   "confidence": "high",
+   "note": "T.H. dot E of alley dash-dot line below '514' (Eng.&Dynamo/Servants Ho. block); on sheet16 immediately right of big '14.' numeral. Dot centroids: sheet14 n=350, sheet16 n=259."
   }
  ]
 }

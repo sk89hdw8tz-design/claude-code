@@ -168,6 +168,45 @@
    ],
    "confidence": "medium",
    "note": "Sheet 13: NE corner of yellow bldg 211 (dashed front line y~344, solid east edge x~1673, circle just inside), 27px west of alley. Sheet 11: top-right corner of schematic south-side outline rectangle, 28px west of alley. Schematic on 11, so vertical placement is approximate (~45px south of what the hydrant pair implies)."
+  },
+  {
+   "id": "th-hydrant-414",
+   "a_xy": [
+    720,
+    3716
+   ],
+   "b_xy": [
+    716,
+    171
+   ],
+   "confidence": "high",
+   "note": "T.H. dot in 21st St SW of yellow 414 frontage (8''/tick marks at its west edge), east of 20-ft alley (sheet 12); on sheet 14 below north-block corner, above WOOD BLOCK PAVED. Dot centroids."
+  },
+  {
+   "id": "th-hydrant-514",
+   "a_xy": [
+    1727,
+    3722
+   ],
+   "b_xy": [
+    1723,
+    189
+   ],
+   "confidence": "high",
+   "note": "T.H. dot south of SW corner of yellow 514 (circle in its SE corner), east of double-dashed alley (sheet 12); on sheet 14 just above the C of CENTRE. Dot centroids."
+  },
+  {
+   "id": "th-hydrant-614",
+   "a_xy": [
+    2711,
+    3722
+   ],
+   "b_xy": [
+    2724,
+    186
+   ],
+   "confidence": "high",
+   "note": "T.H. dot south of SW corner of yellow 614 frontage, east of dashed alley (sheet 12); on sheet 14 SE of compass-rose rays, below north-block outline corner. Dot centroids."
   }
  ]
 }
