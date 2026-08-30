@@ -62,6 +62,18 @@ def main():
                 str(f["properties"]["unit"]), ha="center", va="center",
                 fontsize=5.5, color="#1a1a1a")
 
+    # unclaimed holes in the tiling, if the audit has been run
+    gaps = os.path.join(rec, "..", "qc", "gaps.geojson")
+    ngaps = 0
+    if os.path.exists(gaps):
+        for f in json.load(open(gaps))["features"]:
+            ring = f["geometry"]["coordinates"][0]
+            ax.add_patch(MplPolygon(ring, closed=True, facecolor="#d62728",
+                                    edgecolor="#7a1216", linewidth=1.0,
+                                    hatch="//", alpha=0.95, zorder=5,
+                                    label=None if ngaps else "gap (no sheet claims it)"))
+            ngaps += 1
+
     ax.autoscale_view()
     ax.set_aspect("equal")
     ax.invert_yaxis()          # mosaic frame is image coords: +y is down
@@ -76,7 +88,8 @@ def main():
         head += f", {len(unver)} carried over unverified ({', '.join(unver)})"
     ax.set_title(f"Galveston {a.year} — full-city coverage\n"
                  f"{head}  ({tally})"
-                 + (f"\nnot placed: {', '.join(missing)}" if missing else ""),
+                 + (f"\nnot placed: {', '.join(missing)}" if missing else "")
+                 + (f"\n{ngaps} unclaimed gaps in the tiling" if ngaps else ""),
                  fontsize=11)
     ax.legend(loc="upper right", fontsize=8, framealpha=0.9)
     ax.grid(True, linewidth=0.3, alpha=0.3)

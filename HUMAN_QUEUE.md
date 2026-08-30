@@ -76,6 +76,33 @@ and `render.py`'s disk estimate no longer indexes the inventory with a
 at the dimensions `units.json` expects, and both years now dry-run and
 render full-city.
 
+## HQ-8 · 1912 is missing sheet 72 — OPEN
+
+The Stage 4 tiling audit (`tools/tiling.py`) found the 1912 city mosaic is one
+connected piece with effectively no double-ownership (2,638 px² overlap on a
+2.86-billion-px² union, i.e. the single-writer rule holds), but it is **not**
+gap-free: 11 interior holes remain after fixable ones were closed, and the
+largest is decisive.
+
+That hole spans x 19028..23360, y 22465..29043 — 3437 × 5684 px, sitting
+exactly between unit 71 (centre x 16350) and unit 73 (centre x 24402), at the
+same latitude. A 1912 sheet is ~3287 px wide. **It is the footprint of sheet
+72**, which has a pct:50 scan in the inventory (`pct50/sheet_0072.jpg`,
+hash-pinned) but was never placed as a unit. Of the 98 scanned sheet numbers,
+only 1–6 (title/index/key) and 72 are unplaced — 72 is the only ordinary city
+sheet missing.
+
+So the "92/92 units placed" headline is really 92 of 93 city sheets, and the
+gap is not a source gap: **the scan exists and is already downloaded.** What
+it needs is a registration pass to solve its transform from its neighbours,
+the same tie-based placement the other 92 got. Recommend doing that before
+1912 is called done; the second-largest hole (2.26M px² at [9309, 19687], a
+121 px-wide strip) should be re-checked afterwards, as it may be spread
+between columns rather than missing ground.
+
+Until then the 1912 mosaic has a city-block-sized white hole in it, which is
+disclosed in `outputs/1912/coverage.png` and `outputs/1912/qc/gaps.geojson`.
+
 ## HQ-7 · 1899 unit `71a` is drawn but unverified — OPEN
 
 `71a` is the one 1899 unit the adjudicators could not tie (no shared ground
