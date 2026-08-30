@@ -45,6 +45,17 @@ byte-deterministically on any machine:
   fetch, transform/ownership access, address lookup). For 1912 it rebuilds a
   missing pct:50 working image from `recipe/working_sources.json` rather than
   assuming the scratch dir survived (HQ-6).
+- **`tools/lookup.py`** — modern address → block, sheet, pixel bounds, and an
+  optional preview PNG (`--preview`). Parses a free-form address ("2314 Strand
+  St, Galveston, TX"): on an avenue the hundred-block is the lower cross
+  street, so no geocoder is needed for a block-level answer. It reports the
+  frontage point plus both flanking blocks, because the house number alone
+  does not say which side of the avenue the lot is on, and it says so rather
+  than guessing a lot. Addresses given on a numbered street are marked LOW
+  confidence (the hundred-block→avenue mapping has shifted since 1912).
+  lat/lng is reported as unavailable: the mosaic frame has no EPSG:3857 solve.
+  Smoke-tested on Strand/Postoffice/Mechanic/Market/Sealy in the 2000–2500
+  blocks — all resolve to the expected downtown sheets (11, 13–16, 37).
 - **`tools/coverage.py`** — writes `outputs/{year}/coverage.png`: every unit
   drawn in the mosaic frame, coloured by how its transform was obtained
   (frozen master core vs. fitted vs. tie-placed), with the headline count
