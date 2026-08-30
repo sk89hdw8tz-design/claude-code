@@ -25,6 +25,31 @@ import numpy as np
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from reciplib import Recipe  # noqa: E402
 
+def save(canvas, out):
+    """Write the BGR canvas as a tiled, pyramidal TIFF.
+
+    Streams through libvips off the existing buffer: converting to RGB with
+    cv2.cvtColor and handing that to Pillow allocates two more copies of the
+    whole canvas, which OOMs at gigapixel sizes.
+    """
+    H, W = canvas.shape[:2]
+    try:
+        import pyvips
+        v = pyvips.Image.new_from_memory(canvas.data, W, H, 3, "uchar")
+        v = v[2].bandjoin([v[1], v[0]])                 # BGR -> RGB, lazily
+        v.tiffsave(out, compression="lzw", tile=True, tile_width=512,
+                   tile_height=512, pyramid=True, bigtiff=True)
+        return
+    except ImportError:
+        pass
+    import cv2
+    from PIL import Image
+    Image.MAX_IMAGE_PIXELS = None
+    if not cv2.imwrite(out, canvas):                     # BGR, no extra copy
+        Image.fromarray(cv2.cvtColor(canvas, cv2.COLOR_BGR2RGB)).save(
+            out, compression="tiff_lzw")
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--year", type=int, required=True, choices=(1899, 1912))
@@ -85,13 +110,15 @@ def main():
         shifted = ((poly - np.array([x0, y0])) / d).astype(np.int32)
         cv2.fillPoly(mask, [shifted], 255)
         mask &= cv2.inRange(covered, 0, 0)
-        canvas[mask > 0] = warped[mask > 0]
+        # in-place masked copy: boolean fancy-indexing would allocate two more
+        # full-canvas temporaries, which is what OOMs a gigapixel render
+        cv2.copyTo(warped, mask, canvas)
         covered |= mask
-        print(f"  sheet {sheet} composited")
+        del warped, mask
+        print(f"  sheet {sheet} composited", flush=True)
+    del covered
     out = a.out or f"render_{a.year}.tif"
-    from PIL import Image
-    Image.fromarray(cv2.cvtColor(canvas, cv2.COLOR_BGR2RGB)).save(
-        out, compression="tiff_lzw")
+    save(canvas, out)
     print(f"wrote {out}")
     if a.dzi:
         import pyvips

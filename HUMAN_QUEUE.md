@@ -84,21 +84,33 @@ connected piece with effectively no double-ownership (2,638 px² overlap on a
 gap-free: 11 interior holes remain after fixable ones were closed, and the
 largest is decisive.
 
-That hole spans x 19028..23360, y 22465..29043 — 3437 × 5684 px, sitting
-exactly between unit 71 (centre x 16350) and unit 73 (centre x 24402), at the
-same latitude. A 1912 sheet is ~3287 px wide. **It is the footprint of sheet
-72**, which has a pct:50 scan in the inventory (`pct50/sheet_0072.jpg`,
-hash-pinned) but was never placed as a unit. Of the 98 scanned sheet numbers,
-only 1–6 (title/index/key) and 72 are unplaced — 72 is the only ordinary city
-sheet missing.
+That hole spans x 19028..22465, y 23360..29043 — 3437 px wide — and sits
+between unit 71 (coverage ends x 19539) and unit 73 (coverage begins x 21091).
+Neither of them, nor any other placed sheet, maps that ground: the strip they
+leave between them is ~1550 px ≈ **268 ft of Galveston that is in no sheet on
+the mosaic**, widening to ~3400 px at some latitudes.
 
-So the "92/92 units placed" headline is really 92 of 93 city sheets, and the
-gap is not a source gap: **the scan exists and is already downloaded.** What
-it needs is a registration pass to solve its transform from its neighbours,
-the same tie-based placement the other 92 got. Recommend doing that before
-1912 is called done; the second-largest hole (2.26M px² at [9309, 19687], a
-121 px-wide strip) should be re-checked afterwards, as it may be spread
-between columns rather than missing ground.
+**Sheet 72 is the missing sheet.** It has a pct:50 scan in the inventory
+(`pct50/sheet_0072.jpg`, hash-pinned, already downloaded) but was never placed
+as a unit. Of the 98 scanned sheet numbers, only 1–6 (title/index/key sheets)
+and 72 are unplaced — 72 is the only ordinary city sheet missing. A 1912 sheet
+is ~6,500 px wide in the mosaic frame, so 72 would span the gap and overlap
+both neighbours comfortably.
+
+So the "92/92 units placed" headline is really 92 of 93 city sheets, and this
+is not a source gap: **the scan exists and is on disk.** What it needs is a
+registration pass to solve its transform from its neighbours, the same
+tie-based placement the other 92 got.
+
+(Correction, recorded because the wrong version was committed first: the hole
+was initially called "the footprint of sheet 72" by comparing its 3437 px
+width against a sheet's 3287 px *native working-image* width. Those are
+different frames — in mosaic pixels a sheet is ~6,500 px. The missing-sheet
+conclusion stands on the inventory check, not on that comparison.)
+
+The second-largest hole (2.26M px² at [9309, 19687], a 121 px-wide strip)
+is a different animal — a long thin strip, i.e. columns spread apart rather
+than ground nobody mapped — and should be re-checked after 72 is placed.
 
 Until then the 1912 mosaic has a city-block-sized white hole in it, which is
 disclosed in `outputs/1912/coverage.png` and `outputs/1912/qc/gaps.geojson`.
