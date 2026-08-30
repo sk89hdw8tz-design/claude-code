@@ -21,6 +21,23 @@ size moved the reported median across seams from 36 px to 99 px — a number
 that swings 3× on a tuning knob is not a measurement, and shipping it as a
 seam grade would be worse than having no number.
 
+**What settled it.** A full sweep was run anyway (132 adjacent pairs, 87
+measurable) and checked against seams inspected by eye in the rendered
+mosaic. It fails in both directions:
+
+- *False positives.* It reported ~96 px on 9|11 and ~103 px on 10|43, both
+  frozen core seams. `../human/HQ9_09-10_core_control_clean.jpg` shows the
+  core rendering cleanly — one street label, lot numbers continuous, nothing
+  doubled.
+- *False negative, the decisive one.* Seam 75|76 came back **"no-signal"**.
+  That is the single worst defect found in the whole 1912 mosaic: the Avenue F
+  / Church label is drawn twice, ~86 ft apart, with the cut between the two
+  copies (`../human/HQ9_75-76_duplicated_street_label.jpg`).
+
+A metric that misses the worst defect in the mosaic while flagging good seams
+is not a screening tool either, so its output is not kept. The seams were
+graded by eye off the rendered mosaic instead — see HQ-9.
+
 What *is* well posed for this mosaic, and is used instead:
 
 - **`../tiling_audit.json`** (`tools/tiling.py`) — exact polygon geometry, not

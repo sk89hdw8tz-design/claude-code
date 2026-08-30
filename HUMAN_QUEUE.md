@@ -76,6 +76,38 @@ and `render.py`'s disk estimate no longer indexes the inventory with a
 at the dimensions `units.json` expects, and both years now dry-run and
 render full-city.
 
+## HQ-9 · 1912 outer ring is not print-ready; the frozen core is — OPEN
+
+With the 150 ppi city render available, seams were graded by eye off the
+rendered mosaic (the photometric metric having failed audit — see
+`outputs/1912/qc/seams/README.md`). Five seams were sampled: one frozen core
+seam as a control and four from the tie-placed outer ring. Crops are in
+`outputs/1912/qc/human/`.
+
+| seam | tier | verdict |
+|---|---|---|
+| 9\|10 | frozen core | **clean** — "AVE. C OR MECHANIC" once, lot numbers continuous across, nothing doubled |
+| 75\|76 | outer | **gross** — "AVE. F OR CHURCH" drawn twice, ~86 ft apart, cut between the copies |
+| 57\|58 | outer | **defect** — a diagonal cut runs straight through a dwelling, leaving half of it blank |
+| 79\|80 | outer | **moderate** — the cross street steps by ~10 ft across the cut |
+| 83\|84 | outer | **minor** — a letter of "AVE. G OR WINNIE" doubled, ~10 ft |
+
+Four of four outer-ring seams sampled show visible defects; the core seam is
+clean. On the brief's own rubric (§6 seam-grader) 75\|76 and 57\|58 score 1–2
+— "gross misplacement" and "a building split" — which are escalation cases,
+and 57\|58 also violates non-negotiable §2.5, that seams follow street
+centrelines so no building footprint is ever split.
+
+**What this means commercially.** The frozen 13-sheet core — the footprint
+your two 27×40 masters already cover — renders correctly and crops from it
+are saleable. The 79-sheet city expansion around it is not yet: it would need
+the registration rework its ties never got. `tools/crop.py` will happily cut
+from the ring today, so treat ring crops as drafts until this is closed.
+
+A five-seam sample is not a census. What it establishes is that the ring's
+defect rate is high enough to find immediately, not that every ring seam is
+bad. A full visual pass over the 132 seams is the next QC step.
+
 ## HQ-8 · 1912 is missing sheet 72 — OPEN
 
 The Stage 4 tiling audit (`tools/tiling.py`) found the 1912 city mosaic is one

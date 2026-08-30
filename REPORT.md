@@ -61,11 +61,34 @@ byte-deterministically on any machine:
   (frozen master core vs. fitted vs. tie-placed), with the headline count
   separating verified placements from anything carried over unverified.
 
+- **`tools/publish.py`** — render a year full-city, then write the §5 web
+  deliverables: a tiled/overviewed COG (deflate, predictor 2, 512 px blocks)
+  and a `vips dzsave` DeepZoom pyramid. `--downsample 2` is the ~150
+  ppi-equivalent the brief caps web tiles at.
+- **`tools/tiling.py`** — the Stage 4 gate as exact polygon geometry: is the
+  city one connected piece, is any ground unclaimed, does any pixel have two
+  owners. **`tools/fillgaps.py`** closes holes a neighbour's scan can supply
+  (ownership only, never pixels).
+
 Both years were rendered full-city at 1/8 in-cloud on 2026-08-30 as an
 end-to-end check of the recipes: 1899 → 3795×5945, 1912 → 2547×5687. The
 1899 render shows a continuous street grid through the core with visible
 white wedges between some outer sheets (real registration spread, not
 missing sheets) and `71a` isolated to the south (HQ-7).
+
+**1912 published at 150 ppi (2026-08-30), in-cloud.** 20370×45493 (927 MP):
+`outputs/1912/mosaic/1912_fullcity_150ppi.tif` (828 MB COG, opens under both
+`gdalinfo` and `vips`) and a 19-level DeepZoom pyramid (141 MB, 19,576
+tiles). Neither is committed: the COG exceeds GitHub's 100 MB per-file limit,
+and the tile set will be superseded once HQ-8 (sheet 72) and HQ-9 (ring
+seams) are closed. Both regenerate with one command now that the renderer
+handles gigapixel output — `python3 tools/publish.py --year 1912`.
+
+Full 300 ppi is **not** reachable in a 15 GB container: the renderer holds
+the whole canvas plus a full-canvas warp per sheet, so 1912 at 1/1 (3.7 GP)
+needs ~22 GB. Print-resolution output comes from `crop.py` per address, which
+is what the product actually needs; a full-city 300 ppi TIFF would require
+either a larger machine or a strip-wise renderer.
 
 Determinism note: renders are deterministic for a given recipe + tool
 version (fixed interpolation, integer-labeled ownership, no
@@ -135,7 +158,7 @@ prompt, fresh code under `rebuild_1899/` (legacy pipeline firewalled):
 | Source coverage | 98.98% | ≥98.98% | **99.68%** within the source footprint (extent outside every sheet is unrendered by design — the prior build tinted the bay; see qc/guard_metrics.json) |
 | Pure-white px | 20 | ≤50 | not comparable: prior number measured after flat-field + bay tint; raw-scan renders carry the scans' own whites (disclosed) |
 | Row tone max jump | 18.48 | (guard) | **12.95** ✓ |
-| Duplicated street name / hydrant | several | zero | single-writer ownership guarantees one copy per pixel; seam panels show no duplication; full-res sweep pending off-cloud render |
+| Duplicated street name / hydrant | several | zero in the frozen core; **present in the outer ring** | single-writer ownership guarantees one copy per *pixel*, but it cannot prevent two misregistered sheets from each drawing their own copy of a label on their own side of the cut. The 2026-08-30 render sweep found exactly that at seam 75\|76 (~86 ft apart) and 83\|84 — see HQ-9. The core seams remain clean. |
 | Generated map content | none | none | **none** — gaps stay paper-white and are counted in tool output |
 
 **Model revision (rev2).** The first solve used a full 6-dof affine and

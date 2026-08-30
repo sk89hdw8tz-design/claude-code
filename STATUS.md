@@ -95,7 +95,18 @@ extents at 1/2: 1899 → 15180×23783 (~1.1 GB canvas, 178 MB sources);
 `outputs/1899/coverage.png` — 89/90 placed, `71a` carried over unverified.
 `outputs/1912/coverage.png` — 92/92 placed.
 
+## 1912 published (2026-08-30)
+
+150 ppi COG + 19-level DZI built and verified in-cloud (20370×45493, 927 MP).
+Stage 4 tiling gate: one connected piece, no double ownership — but 11
+unclaimed holes remain, dominated by missing sheet 72 (HQ-8). Seams graded by
+eye: frozen core clean, 4 of 4 sampled outer-ring seams defective (HQ-9).
+
 ## Human queue
 
-See `HUMAN_QUEUE.md` — 1 open item (HQ-7: 1899 `71a` drawn but unverified
-and visibly misplaced). HQ-1..HQ-4 resolved, HQ-6 fixed.
+See `HUMAN_QUEUE.md` — 3 open items:
+- **HQ-9** 1912 outer ring not print-ready (core is); ring seams need rework.
+- **HQ-8** 1912 missing sheet 72 — scanned, hash-pinned, never placed.
+- **HQ-7** 1899 `71a` drawn but unverified and visibly misplaced.
+
+HQ-1..HQ-4 resolved, HQ-6 fixed.
