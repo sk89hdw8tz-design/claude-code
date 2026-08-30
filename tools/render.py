@@ -56,7 +56,7 @@ def main():
     from shapely.geometry import Polygon, box
     rect = box(x0, y0, x1, y1)
     involved = [(s, p) for s, p in own if Polygon(p).intersects(rect)]
-    src_bytes = sum(r.items_by_file[r.sheet_file(s)]["bytes"] for s, _ in involved)
+    src_bytes = sum(r.source_bytes(s) for s, _ in involved)
     out_bytes = W * H * 3
     print(f"extent: ({x0:.0f},{y0:.0f})..({x1:.0f},{y1:.0f}) mosaic px, "
           f"output {W}x{H} at 1/{d} scale")

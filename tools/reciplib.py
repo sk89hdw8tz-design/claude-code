@@ -12,6 +12,7 @@ source URL second. Every byte is verified against the inventory hash.
 import hashlib
 import json
 import os
+import shutil
 import subprocess
 
 import numpy as np
@@ -42,14 +43,53 @@ class Recipe:
         self.own_city = json.load(open(opath)) if os.path.exists(opath) else None
         if self.own_city:
             self.masks = self.own_city
+        # unit -> hash-pinned source for the working images the city
+        # transforms were solved against (1912; see working_sources.json)
+        wpath = os.path.join(self.dir, "working_sources.json")
+        self.working = json.load(open(wpath)) if os.path.exists(wpath) else None
         self.cache = os.path.join(REPO, "work", "sheets", str(year))
         os.makedirs(self.cache, exist_ok=True)
+
+    # ---------------- working images ----------------
+    def materialize(self, unit, path):
+        """Rebuild a working image from its hash-pinned source.
+
+        The 1912 city transforms were solved at pct:50 scale: the 13 archival
+        core sheets halved, every other sheet's pct50 scan as-is. Rebuilding
+        keeps a clean clone renderable without the scratch dir.
+        """
+        spec = (self.working or {}).get("units", {}).get(str(unit))
+        if spec is None:
+            raise RuntimeError(
+                f"no working-source mapping for unit {unit}; cannot rebuild "
+                f"{path} (expected outputs/{self.year}/recipe/working_sources.json)")
+        src = self.fetch(spec["file"])
+        os.makedirs(os.path.dirname(path), exist_ok=True)
+        if spec["op"] == "copy":
+            shutil.copyfile(src, path)
+            return path
+        if spec["op"] != "half":
+            raise RuntimeError(f"unknown working-source op {spec['op']!r}")
+        from PIL import Image
+        Image.MAX_IMAGE_PIXELS = None
+        with Image.open(src) as im:
+            im = im.convert("RGB")
+            # BOX over an exact factor of 2 == the area-average the solve used
+            im.resize((im.width // 2, im.height // 2), Image.BOX).save(
+                path, quality=92)
+        return path
 
     # ---------------- fetching ----------------
     def fetch(self, file):
         """Return a local path to the named source file, hash-verified."""
         if file.startswith("LOCAL:"):
-            return file[6:]
+            path = os.path.join(REPO, file[6:])
+            if not os.path.exists(path):
+                # scratch working copy absent (fresh clone): rebuild it from
+                # the hash-pinned source recorded in working_sources.json
+                unit = os.path.splitext(os.path.basename(path))[0].lstrip("u")
+                self.materialize(unit, path)
+            return path
         it = self.items_by_file[file]
         dst = os.path.join(self.cache, it["sha256"] + os.path.splitext(file)[1])
         if os.path.exists(dst):
@@ -81,6 +121,14 @@ class Recipe:
         with open(dst, "wb") as f:
             f.write(data)
         return dst
+
+    def source_bytes(self, sheet):
+        """Download size of a unit's source, for disk estimates."""
+        f = self.sheet_file(sheet)
+        if f.startswith("LOCAL:"):
+            spec = (self.working or {}).get("units", {}).get(str(sheet))
+            return spec["bytes"] if spec else 0
+        return self.items_by_file[f]["bytes"]
 
     # ---------------- geometry ----------------
     def sheet_matrix(self, sheet):

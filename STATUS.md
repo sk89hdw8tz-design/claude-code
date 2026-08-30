@@ -81,10 +81,21 @@ affine's illusion — see REPORT.md.)
 
 ## ETA
 
-All cloud stages complete. Remaining: HUMAN_QUEUE answers (HQ-1..4) and the
-off-cloud full-resolution renders/DZI (single commands, documented in
-REPORT.md).
+All cloud stages complete. HQ-1..4 closed 2026-08-30 under delegated
+authority; HQ-6 (1912 recipe not renderable from a clean clone) found and
+fixed in the same pass. Remaining: HQ-7 (`71a`), and the off-cloud
+full-resolution renders/DZI (single commands, documented in REPORT.md).
+
+Both years verified end-to-end in-cloud at 1/8 on 2026-08-30. Full-city
+extents at 1/2: 1899 → 15180×23783 (~1.1 GB canvas, 178 MB sources);
+1912 → 20370×45493 (~2.8 GB canvas, 205 MB sources).
+
+## Coverage
+
+`outputs/1899/coverage.png` — 89/90 placed, `71a` carried over unverified.
+`outputs/1912/coverage.png` — 92/92 placed.
 
 ## Human queue
 
-See `HUMAN_QUEUE.md` — 4 open items (Part B; 1899 scope; 1912 D-019/D-023; 1899 symbol-variance adjudication HQ-4 with PNGs).
+See `HUMAN_QUEUE.md` — 1 open item (HQ-7: 1899 `71a` drawn but unverified
+and visibly misplaced). HQ-1..HQ-4 resolved, HQ-6 fixed.

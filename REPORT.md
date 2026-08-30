@@ -1,10 +1,11 @@
 # Galveston Sanborn wharf/downtown mosaics — production report
 
 **Branch:** `claude/galveston-setup-part-a-mk5z1l` · **Governing spec:** cloud
-addendum (recipe-first; renders are reproductions). Part B's text was not
-available in the cloud session; stage structure was reconstructed from the
-addendum plus the prior-work branches, with open questions in
-`HUMAN_QUEUE.md`.
+addendum (recipe-first; renders are reproductions), reconciled 2026-08-30
+against the original brief, now committed at `PART_B_BRIEF.md`. That
+reconciliation closed HQ-1..4, added the missing `coverage.png` deliverable,
+and found and fixed HQ-6 — the 1912 city recipe could not render from a
+clean clone. Remaining open item: HQ-7 (`71a`).
 
 ## What the product is
 
@@ -41,7 +42,19 @@ byte-deterministically on any machine:
   uncompressed canvas + ~111 MB sources) — run that locally, not in the
   cloud VM (addendum §E). A 1/8 preview renders correctly in-cloud.
 - **`tools/reciplib.py`** — the shared recipe loader (hash-verified lazy
-  fetch, transform/ownership access, address lookup).
+  fetch, transform/ownership access, address lookup). For 1912 it rebuilds a
+  missing pct:50 working image from `recipe/working_sources.json` rather than
+  assuming the scratch dir survived (HQ-6).
+- **`tools/coverage.py`** — writes `outputs/{year}/coverage.png`: every unit
+  drawn in the mosaic frame, coloured by how its transform was obtained
+  (frozen master core vs. fitted vs. tie-placed), with the headline count
+  separating verified placements from anything carried over unverified.
+
+Both years were rendered full-city at 1/8 in-cloud on 2026-08-30 as an
+end-to-end check of the recipes: 1899 → 3795×5945, 1912 → 2547×5687. The
+1899 render shows a continuous street grid through the core with visible
+white wedges between some outer sheets (real registration spread, not
+missing sheets) and `71a` isolated to the south (HQ-7).
 
 Determinism note: renders are deterministic for a given recipe + tool
 version (fixed interpolation, integer-labeled ownership, no
