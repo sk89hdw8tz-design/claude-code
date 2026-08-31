@@ -236,3 +236,50 @@ axes. Options, roughly in order of promise:
     constraint than snapping each sheet to a global lattice.
   - Treat the ~2 degree southern bend explicitly rather than hoping a single
     linear index model absorbs it.
+
+## HQ-12 · How the master was actually built, and what recreating it costs
+
+Answering "do whatever will recreate what we did in the initial map". The
+method is recorded in `outputs/1912/recipe/controls/pair_*.json`, and it is
+not what either of my attempts assumed.
+
+**What the original did.** For each adjacent pair it identified ONE shared
+corridor — a street or avenue centreline visible on both sheets — recorded
+that line's position on each sheet in raster pixels, and constrained the two
+sheets to agree on it. The identity of the corridor was established
+semantically, from the printed address runs: each control carries a
+`why_not_one_block_off` field arguing the case, e.g. for 10|12, *"the 24th St
+300/400-block transition happens across this avenue: printed runs '324' west
+and '402' east on sheet 10; '323' west and '401' east on sheet 12."* Twenty
+three such pairs produced the frozen core.
+
+**Why that method, and not an easier one.** Adjacent 1912 sheets barely share
+mapped ground. Measuring every pair: the shared-scan band along the seam has a
+median width of 494 ft but 45 of 132 pairs are under 300 ft and 12 are under
+100 ft. The two pairs that matter most here are the thinnest of all —
+**75|76 shares 47 ft** and the clean core pair **9|10 shares 84 ft**. Below a
+street's width there is no 2-D patch to correlate, which is why:
+  - `tools/pairfit.py` (area cross-correlation over the shared band) cannot
+    measure these pairs at all — it reports "no overlap" once no-data regions
+    are excluded, and before that exclusion it peaked at the search boundary,
+    returning the same wrong shift for a broken pair and a good one alike;
+  - a 1-D corridor constraint works fine on 47 ft of shared ground, because it
+    needs only the centreline to be readable on both sheets, not an area.
+
+That the clean 9|10 also shares only 84 ft is the proof: thin overlap is not
+what breaks a seam. Having no identified constraint across it is.
+
+**What recreating it costs.** 132 adjacent pairs, 23 already done (the core).
+So roughly **109 ring pairs** need the same treatment: for each, identify the
+shared corridor on both sheets, justify its identity against the printed
+address runs, record the line on each sheet, then re-solve the network from
+those constraints with the core frozen. This is per-pair semantic work on the
+images — it is exactly the `registration-engineer` role in the brief (§6), one
+task per pair, emitting a control file in the existing schema.
+
+The key maps shortcut part of it: they already name which streets and avenues
+each sheet covers (all 92 units for streets, 91 for avenues), so the candidate
+corridor for each pair is known before anyone looks at a scan. What the key
+map cannot settle is which *detected* line is that corridor when detection
+misses one — the failure that produced the one-block error in HQ-11 — and that
+is precisely what reading the address runs resolves.
