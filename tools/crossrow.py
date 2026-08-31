@@ -19,15 +19,39 @@ import json
 import os
 import sys
 
+import re
+
 import numpy as np
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from reciplib import Recipe, px_per_ft            # noqa: E402
 from netsolve import load_controls                # noqa: E402
+from paircrops import keymap                      # noqa: E402
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-REDUNDANCY = 2          # controls per component join, so one bad call shows up
-MIN_SHARE_FT = 500.0    # x-overlap worth asking about: more than one block
+REDUNDANCY = 2      # controls per component join, so one bad call shows up
+MIN_AVENUES = 2     # avenues both sheets contain: fewer is not worth asking
+AVNAME = {Recipe.avenue_slot(n): n for n in
+          [c for c in "ABCDEFGHIJKL"] +
+          [f"{c}{h}" for c in "MNOPQRST" for h in ("", " 1/2")]}
+
+
+def coverage(year):
+    """Per sheet, from the key maps: the street numbers it spans and the
+    avenue slots it contains. The key maps are read off the printed index, so
+    unlike the sheets' current footprints they do not depend on the placement
+    this is trying to correct — using the footprints here would be circular,
+    and it proposed pairs four avenues apart."""
+    out = {}
+    for u, e in keymap(year).items():
+        try:
+            st = sorted(int(re.sub(r"[^0-9]", "", str(v))) for v in e["streets"])
+            av = {Recipe.avenue_slot(str(v)) for v in e["avenues"]}
+        except Exception:
+            continue
+        if len(st) == 2 and av:
+            out[u] = (st, av)
+    return out
 
 
 def footprints(r):
@@ -84,25 +108,31 @@ def main():
     print(f"{len(have)} avenue(x) controls -> {ncomp} x-components "
           f"(core frozen as one)")
 
-    # stacked pairs: overlapping in x, one above the other in y
+    # stacked pairs, decided from the key maps: different street rows that
+    # touch, and at least MIN_AVENUES avenues printed on both sheets
+    cov = coverage(a.year)
+    print(f"{len(cov)} sheets have a usable key map"
+          + (f"; no key map for {sorted(set(units)-set(cov), key=str)}"
+             if set(units) - set(cov) else ""))
     cand = []
     for i, ua in enumerate(units):
         for ub in units[i + 1:]:
-            ax0, ay0, ax1, ay1 = fp[ua]
-            bx0, by0, bx1, by1 = fp[ub]
-            share = min(ax1, bx1) - max(ax0, bx0)
-            if share < MIN_SHARE_FT * ppf:
+            if ua not in cov or ub not in cov:
                 continue
-            gap = max(ay0, by0) - min(ay1, by1)      # <0 means they overlap in y
-            if gap > 200 * ppf:
-                continue                              # rows too far apart
-            if min(ay1, by1) - max(ay0, by0) > 0.6 * min(ay1 - ay0, by1 - by0):
-                continue                              # side by side, not stacked
+            (as0, as1), aav = cov[ua]
+            (bs0, bs1), bav = cov[ub]
+            if (as0, as1) == (bs0, bs1):
+                continue                      # same row: already chained in x
+            if min(as1, bs1) < max(as0, bs0):
+                continue                      # rows do not touch
+            shared = aav & bav
+            if len(shared) < MIN_AVENUES:
+                continue
             if tuple(sorted((ua, ub))) in have:
                 continue
-            cand.append((-share, ua, ub))
+            cand.append((-len(shared), ua, ub, sorted(shared)))
     cand.sort()
-    print(f"{len(cand)} stacked pairs share >= {MIN_SHARE_FT:.0f} ft of avenue band")
+    print(f"{len(cand)} stacked pairs share >= {MIN_AVENUES} printed avenues")
 
     # a redundant spanning set: every join made REDUNDANCY times over
     picked, joins = [], collections.Counter()
@@ -115,18 +145,19 @@ def main():
         for ua, ub in [(p[1], p[2]) for p in picked]:
             if joins[tuple(sorted((ua, ub)))] > _:
                 d2.union(ua, ub)
-        for share, ua, ub in cand:
+        for share, ua, ub, shared in cand:
             k = tuple(sorted((ua, ub)))
             if joins[k]:
                 continue
             if d2.union(ua, ub):
-                picked.append((share, ua, ub))
+                picked.append((share, ua, ub, shared))
                 joins[k] += 1
     print(f"picked {len(picked)} pairs to commission")
-    for share, ua, ub in picked:
-        print(f"   {ua:>3}|{ub:<3}  shares {-share/ppf:6.0f} ft of avenue band")
+    for share, ua, ub, shared in picked:
+        print(f"   {ua:>3}|{ub:<3}  shares {-share} avenues: "
+              + ", ".join(AVNAME[i] for i in shared))
 
-    out = [[ua, ub, round(-s / ppf, 1)] for s, ua, ub in picked]
+    out = [[ua, ub, [AVNAME[i] for i in shared]] for _s, ua, ub, shared in picked]
     p = os.path.join(REPO, "work", "crossrow_pairs.json")
     os.makedirs(os.path.dirname(p), exist_ok=True)
     json.dump(out, open(p, "w"), indent=1)
@@ -135,8 +166,9 @@ def main():
     if a.prepare:
         import paircrops
         n = 0
-        for ua, ub, _ in out:
-            if paircrops.build(a.year, ua, ub, force_axis="avenue"):
+        for ua, ub, _av in out:
+            if paircrops.build(a.year, ua, ub, force_axis="avenue",
+                               avenues=_av, crossrow=True):
                 n += 1
         print(f"prepared {n} tasks under work/paircrops/*_x/")
     return 0

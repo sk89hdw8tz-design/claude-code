@@ -38,7 +38,8 @@ def keymap(year):
     return km
 
 
-def build(year, ua, ub, outdir=None, force_axis=None):
+def build(year, ua, ub, outdir=None, force_axis=None, avenues=None,
+          crossrow=False):
     import cv2
     from shapely.geometry import Polygon
     r = Recipe(int(year))
@@ -80,7 +81,11 @@ def build(year, ua, ub, outdir=None, force_axis=None):
     natural = vertical
     if force_axis in ("avenue", "street"):
         vertical = (force_axis == "avenue")
-    crossed = bool(vertical != natural)
+    # crossrow says outright that this is a stacked pair being asked for the
+    # avenue it crosses. Do not infer that from the footprints: the placement
+    # they come from is the sheared one, and on the worst pairs -- 57|63, the
+    # one that exposed the shear -- it even gets the seam's orientation wrong.
+    crossed = bool(crossrow or vertical != natural)
     axis = "avenue" if vertical else "street"
     outdir = outdir or os.path.join(
         REPO, "work", "paircrops",
@@ -89,7 +94,8 @@ def build(year, ua, ub, outdir=None, force_axis=None):
     os.makedirs(outdir, exist_ok=True)
 
     info = {"pair": [ua, ub], "axis": axis,
-            "seam_is": "vertical (sheets side by side)" if natural
+            "seam_is": "horizontal (sheets one above the other)" if crossrow
+                       else "vertical (sheets side by side)" if natural
                        else "horizontal (sheets one above the other)",
             "keymap": {ua: km.get(ua, {}), ub: km.get(ub, {})},
             "candidates": {}}
@@ -123,7 +129,14 @@ def build(year, ua, ub, outdir=None, force_axis=None):
             else W // 2
         # one near-native crop per candidate: address digits stay readable,
         # which a whole-sheet view does not allow
-        for i, (dd, v, m) in enumerate(scored[:3 if crossed else 2]):
+        if crossrow or (crossed and vertical):
+            # detection's columns are mostly lot lines and mid-block alleys, so
+            # do not trust it to have proposed the avenues at all: tile the
+            # sheet's whole width instead and let the ruler carry the answer
+            picks = [(0.0, W * f, 0.0) for f in (0.25, 0.5, 0.75)]
+        else:
+            picks = scored[:3 if crossed else 2]
+        for i, (dd, v, m) in enumerate(picks):
             p = int(round(v))
             if vertical:
                 a0, a1 = max(0, p - 780), min(W, p + 780)
@@ -153,8 +166,12 @@ def build(year, ua, ub, outdir=None, force_axis=None):
                 if big:
                     cv2.putText(crop, str(g), (40, gy + 10),
                                 cv2.FONT_HERSHEY_SIMPLEX, 0.85, (0, 150, 0), 2)
-            cv2.putText(crop, f"sheet {uid}  cand #{i+1} at native "
-                        f"{'x' if vertical else 'y'}={p}  (green ruler = native px)",
+            label = (f"sheet {uid}  view {i+1} of 3, centred at native x={p}"
+                     f"  (RED = position marker only, NOT a proposed avenue)"
+                     if crossrow or (crossed and vertical) else
+                     f"sheet {uid}  cand #{i+1} at native "
+                     f"{'x' if vertical else 'y'}={p}")
+            cv2.putText(crop, label + "  (green ruler = native px)",
                         (60, 100), cv2.FONT_HERSHEY_SIMPLEX, 1.0, (200, 0, 0), 3)
             ch, cw = crop.shape[:2]
             sc = min(1.0, 1500.0 / max(ch, cw))
@@ -163,6 +180,8 @@ def build(year, ua, ub, outdir=None, force_axis=None):
                         [cv2.IMWRITE_JPEG_QUALITY, 92])
 
     info["crossed"] = crossed
+    if avenues:
+        info["avenues_on_both_sheets"] = list(avenues)
     if crossed and vertical:
         info["why"] = ("these two sheets are one above the other; their rows are "
                        "tied in y already, but nothing ties them in x. Identify "
