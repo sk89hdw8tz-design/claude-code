@@ -1,0 +1,14 @@
+{
+ "pair": [
+  72,
+  73
+ ],
+ "axis": "avenue",
+ "observer": "agent-sheet72",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "Ave P 1/2",
+ "a_native": 3126,
+ "b_native": 155,
+ "why_not_one_block_off": "Both plates letter 'AVENUE P-1/2' in the corridor and both print '70' inside it (sheet 72 at native (3135,362), sheet 73 at native (163,332)). The 33rd St frontage steps 1900 -> 2000 across it: sheet 72's last block east carries '1919 1921 1923' at its margin and Avenue P-1/2's WEST face carries the even run '3302 3304 3306 3308 3310 3312 3314 3316 3318' (3300 block = 33rd-34th); sheet 73's first block west carries the fresh '2001 2003 2005' on 33rd St and Avenue P-1/2's EAST face carries the odd run '3301 3303 3305 3307 3309 3311 3313 3315 3317 3319 3321 3323'. Odd against even = the two faces of one avenue, and the same 3300 avenue-block on both. One avenue west on sheet 72 is the 1800/1900 change (Ave P, faces 2022.3/2232.2, centre 2127); one avenue east on sheet 73 is the 2000/2100 change (Ave Q, faces 1052.6/1258.4, centre 1155). Detection's candidates (72: 2546/1501/456; 73: 748/1759/2771) all fall inside blocks and were rejected. MEASUREMENT: sheet 72 draws BOTH street lines of this avenue - native x=3020.8 and x=3231.7, 210.9 px = the printed 70 ft - giving centre 3126; the east line doubles as the sheet's east neat line carrying the adjoining-sheet numeral '73'. Sheet 73 draws only the east face, native x=259.5, minus half its own drafted avenue width (Ave Q-1/2 measures 211.0 px, so 104-105 px) -> 155; sheet 73's own avenue grid (Ave Q 1155.5, Ave Q-1/2 2155.4, spacing 999.9) predicts 155.6 independently. Values at mid-height y=1949; sheet 73 is rotated about 0.13 deg (dx/dy about -0.0023).",
+ "status": "ACCEPTED"
+}

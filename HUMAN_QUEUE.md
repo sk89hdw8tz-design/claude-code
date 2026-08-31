@@ -108,7 +108,7 @@ A five-seam sample is not a census. What it establishes is that the ring's
 defect rate is high enough to find immediately, not that every ring seam is
 bad. A full visual pass over the 132 seams is the next QC step.
 
-## HQ-8 · 1912 is missing sheet 72 — OPEN
+## HQ-8 · 1912 is missing sheet 72 — RESOLVED 2026-08-31: placed
 
 The Stage 4 tiling audit (`tools/tiling.py`) found the 1912 city mosaic is one
 connected piece with effectively no double-ownership (2,638 px² overlap on a
@@ -392,3 +392,44 @@ reabsorbed every hole that a neighbour actually covers (those holes are
 bounded by cut lines, so filling them keeps boundaries on streets); the 6 that
 remain are true source gaps where no sheet maps the ground, still dominated by
 missing sheet 72 (HQ-8).
+
+
+## HQ-15 · Sheet 72 placed — the mosaic's largest hole is closed
+
+Registered as the 93rd unit and solved in from four agent-identified controls.
+
+Its scan was fetched hash-verified from the git mirror (`pct50/sheet_0072.jpg`,
+sha256 confirmed) at 3327×3898, identical to its neighbours. Its scale came
+from its own corridor pitch — 1.9436 against neighbours' 1.9429 — with
+rotation seeded from sheets 71 and 73 and translation left to the controls.
+
+Its coverage was not in the key map, so it was inferred from the neighbours
+(71 ends at Avenue O, 73 starts at P½) and then **confirmed against the plate
+itself** by the agent: streets 33rd–36th, avenues O, O½, P, P½, with O and P½
+printed 70' at the west and east edges and 33rd/36th printed 80'.
+
+| pair | corridor | a_native | b_native |
+|---|---|---|---|
+| 71_72 | Ave O | 3187 | 120 |
+| 72_73 | Ave P½ | 3126 | 155 |
+| 65_72 | 33rd St | 3664 | 227 |
+| 72_80 | 36th St | 3669 | 233 |
+
+Both axes are pinned, and the two street controls cross-check: 65→72 and
+72→80 give sheet pitches of 3437 and 3436 px. Address runs pin every corridor
+(33rd St goes 1619→1701 across Ave O and 1919→2001 across Ave P½).
+
+**Result.** 154 controls, residuals unchanged at median 0.0 ft / 90th 4.8 ft.
+The hole at ~[20400, 27400] — 8.58M px² when first found, still 4.2M after the
+ring solve — is gone. Remaining gaps: 7 holes totalling 23.2M px² (0.74%),
+none of them a missing sheet; the largest is a long thin 334 px strip at
+[18119, 5693], i.e. a seam spread rather than unmapped ground.
+
+Two things this did not fix, and one it caused:
+- Sheets 82, 89 and 99 now form a second disjoint piece (3.1% of area). The
+  street cut had the city in one piece before sheet 72 was solved in; adding
+  its constraints moved sheets 70 and 71 by 740 ft and the south-east group
+  no longer touches the main body.
+- The agent noted sheet 72 and sheet 80 disagree by ~6 px on 36th St west of
+  Avenue P, where each runs blocks onto the platted centreline and draws only
+  a 40' roadway. It measured east of Avenue P instead; recorded in the file.

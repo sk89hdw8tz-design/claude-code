@@ -1,0 +1,14 @@
+{
+ "pair": [
+  65,
+  72
+ ],
+ "axis": "street",
+ "observer": "agent-sheet72",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "33rd St",
+ "a_native": 3664,
+ "b_native": 227,
+ "why_not_one_block_off": "Both plates print '33RD ST.' in the corridor and both print '80' beside the 8-inch W.Pipe laid down it; sheet 65 carries the adjoining-sheet numerals '72' and '73' below the line, sheet 72 carries '64' and '65' above it. The avenue frontage steps 3200 -> 3300 across it. Sheet 65's blocks immediately NORTH carry the 32nd-33rd hundred - read '3227' on the Avenue O-1/2 face and '3228' on the Avenue P face at the very bottom of the plate - and their south frontage on 33rd St reads '1802 1804 1806 1808 1810 1812 | 1814 1816 1818 1820 1822 1824' (1800 block, Ave O-1/2 to Ave P) and then '1902 1904 1906 1908' east of Avenue P (1900 block). Sheet 72's blocks immediately SOUTH carry the 33rd-34th hundred - '3301 3303 3305 3307' down the Avenue O face and '3302 3304 3306 3308 3310 3312 3314 3316 3318' down the Avenue P-1/2 face - with north frontage on 33rd St reading '1701 1703 ... 1725 1727' (1700 block, Ave O to Ave O-1/2) and '1919 1921 1923' (1900 block). One street north on sheet 65 is 32nd (faces 2397.7/2638.1, labelled '32ND ST.'); one street south on sheet 72 is 34th (faces 1249.5/1491.0 in the east half, unopened in the west outlot half). Detection's candidates (65: 2975/1821/668; 72: 854/2045/3237) all fall on block-interior lot lines and were rejected. MEASUREMENT: both plates draw both street lines. Sheet 65: north face 3544.1, south line 3784.7, 240.6 px = the printed 80 ft -> centre 3664. Sheet 72: north line 106.5 (doubling as the neat line under the '64'/'65' numerals), south face 347.2, 240.7 px -> centre 227. Values at the sheet's horizontal mid (x=1663). Cross-check: this pairing puts sheet 72's y=0 at sheet 65's y=3437, and the independent 72_80 control puts sheet 80's y=0 at sheet 72's y=3436 - the same vertical sheet pitch to 1 px.",
+ "status": "ACCEPTED"
+}

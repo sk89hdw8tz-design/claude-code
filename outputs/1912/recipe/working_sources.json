@@ -821,6 +821,19 @@
    "sha256": "1d23b0ea09b0cec683507b3f0ec2eb86959f233cca5192a8a93eff9aaf612a26",
    "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0071/full/pct:50/0/default.jpg"
   },
+  "72": {
+   "bytes": 991587,
+   "file": "pct50/sheet_0072.jpg",
+   "mirror": {
+    "branch": "claude/galveston-1912-source-data",
+    "kind": "git",
+    "path": "galveston_1912_sources/pct50/sheet_0072.jpg",
+    "repo": "sk89hdw8tz-design/claude-code"
+   },
+   "op": "copy",
+   "sha256": "7bcc12fff84a2a35dce9a970fcecaff9cc2c6559e12b00e1ea42a11f6f2854b6",
+   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0072/full/pct:50/0/default.jpg"
+  },
   "73": {
    "bytes": 950038,
    "file": "pct50/sheet_0073.jpg",

@@ -1,0 +1,14 @@
+{
+ "pair": [
+  71,
+  72
+ ],
+ "axis": "avenue",
+ "observer": "agent-sheet72",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "Ave O",
+ "a_native": 3187,
+ "b_native": 120,
+ "why_not_one_block_off": "Both plates letter 'AVENUE O' in this corridor and both print '70' beside the 6-inch W.Pipe drawn down it. The 33rd St frontage changes hundred exactly across it: sheet 71's last block east (outlot 37 S.E.) carries the 1600 run, read '1619 1621 1623' right at its east margin, and Avenue O's WEST face carries the even avenue run '3302 3304 3306 3308 3310 3312 3314 3316 3318 3320 3322 3324' (3300 block = 33rd-34th); sheet 72's first block west carries the fresh 1700 run, read '1701 1703 1705 1707 1709 1711 1713 1715 1717 1719 1721 1723 1725' along 33rd St, with Avenue O's EAST face carrying the odd avenue run '3301 3303 3305 3307' plus 33rd-St corner address '3301'. Odd against even = the two faces of one avenue. One avenue west on sheet 71 is the 1500/1600 change (Ave N-1/2, faces 2087.0/2297.4); one avenue east on sheet 72 is the 1700/1800 change (Ave O-1/2, drawn unopened as a single platted centreline at native x=1125). Detection's candidates (71: 2764/1721/678; 72: 456/1501/2546) all fall inside blocks and were rejected. MEASUREMENT: neither plate draws both faces - the corridor straddles the sheet edge on each. Sheet 71 draws only the west face, native x=3082.6 at mid-height, plus half the printed 70 ft (its own fully-drawn Ave N-1/2 measures 210.4 px = 70 ft, so 105 px) -> 3187 (its own block/avenue grid predicts 3187 independently). Sheet 72 draws only the east face, native x=225.4, minus 105 px (its Ave P measures 209.9 px and Ave P-1/2 210.9 px) -> 120; the 6-inch water pipe drawn on the avenue centreline sits at x=121.0, confirming to 1 px. Values are line positions at the sheet's vertical mid-height (y=1949); both plates carry a small rotation (dx/dy about +0.0006 on 71, +0.0007 on 72), so a face wanders about 1 px per 1500 px of y.",
+ "status": "ACCEPTED"
+}

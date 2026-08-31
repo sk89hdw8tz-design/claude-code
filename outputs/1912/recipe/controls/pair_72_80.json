@@ -1,0 +1,14 @@
+{
+ "pair": [
+  72,
+  80
+ ],
+ "axis": "street",
+ "observer": "agent-sheet72",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "36th St",
+ "a_native": 3669,
+ "b_native": 233,
+ "why_not_one_block_off": "Both plates print '36TH ST.' in the corridor; sheet 80 prints '80' twice inside it (native x about 2290 and 3005), sheet 72 adds 'Not Opened' east of Avenue P. The avenue frontage steps 3500 -> 3600 across it: sheet 72's blocks immediately NORTH carry the 35th-36th hundred, read '3525 3527 3529 3531' and '3526 3528 3530 3532' either side of Avenue P-1/2, while sheet 80's blocks immediately SOUTH carry '3602 3604' on the same Avenue P-1/2 face (its last 35xx numbers, 3534 3536, are printed inside the street belonging to the off-sheet block north). The street's own frontage confirms the avenue position: sheet 80 reads '2001 2003 2005 2007 2009 2011 | 2013 2015 2017 2019 2021 2023' - the 2000 block, Ave P-1/2 to Ave Q - and sheet 72 reads '1702 1704 1706 1708 1710 1712 | 1714 1716 1718 1720 1722 1724 1726 1728 1730' at its west end, the 1700 block, Ave O to Ave O-1/2. One street north on sheet 72 is 35th (faces 2401.1/2643.7, labelled '35TH ST.'); one street south on sheet 80 is 37th (faces 1254.7/1496.9, labelled '37TH ST.'). Detection's candidates (72: 3237/2045/854; 80: 682/1833/2985) all fall on block-interior lot lines and were rejected. MEASUREMENT: taken east of Avenue P where both plates draw the full 80-ft right of way. Sheet 72's dashed platted lines sit at y=3546.5 and y=3786.8 measured at x=2720 (238.3 px, 79 ft); carried to the sheet's horizontal mid (x=1663) with the plate's own rotation (dy/dx about -0.0019) that is centre 3669, and sheet 72's street grid (33rd 227, 35th 2522) predicts 3670 independently. Sheet 80's lines sit at y=110.2 and y=350.3 at x=2720 (240.1 px); carried to x=1663 that is centre 233, and its grid (37th 1375.8, 38th 2522.8, 39th 3666.6) predicts 231. Uncertainty about 2 px on each. PLATE FEATURE, recorded not reconciled: WEST of Avenue P both plates treat 36th St differently from the platted 80 ft - sheet 72 runs its blocks south to y=3670, i.e. onto the platted centreline, and draws only a 40-ft roadway below it ('40' printed twice, at native x about 245 and 1005), while sheet 80 runs its blocks north to y=230, also on the centreline. The two are mutually inconsistent by about 6 px there, so the control is read from the east half only.",
+ "status": "ACCEPTED"
+}

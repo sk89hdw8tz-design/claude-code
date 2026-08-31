@@ -45,9 +45,22 @@ def build(year, ua, ub, outdir=None):
     det = json.load(open(os.path.join(r.dir, "corridors.json")))
     km = keymap(year)
     own = dict(r.ownership())
-    if ua not in own or ub not in own or ua not in det or ub not in det:
+    if ua not in det or ub not in det:
         return None
-    pa, pb = Polygon(own[ua]), Polygon(own[ub])
+
+    def region(u):
+        # a newly added sheet has no ownership region yet; its footprint is
+        # the right stand-in for deciding seam orientation and candidate order
+        if u in own:
+            return Polygon(own[u])
+        e = r.units[u]["extent"]
+        M, t = r.sheet_matrix(u)
+        return Polygon([tuple(M @ np.array(c, float) + t) for c in
+                        ((e[0], e[1]), (e[2], e[1]), (e[2], e[3]), (e[0], e[3]))])
+
+    if ua not in r.units or ub not in r.units:
+        return None
+    pa, pb = region(ua), region(ub)
     shared = pa.boundary.intersection(pb.boundary)
     if not shared.is_empty and shared.length > 200:
         x0, y0, x1, y1 = shared.bounds
