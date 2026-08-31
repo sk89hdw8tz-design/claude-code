@@ -190,3 +190,49 @@ reduction of the sheets' native 50 ft/in drawing scale. `crop.py` already
 defaults to `--scale-ft-per-in 100`, which matches the masters, not the brief.
 Worth confirming which you want as the default for new crops, since asking for
 50 ft/in gives prints at twice the size of your existing masters.
+
+## HQ-11 · Lattice re-solve attempted for 1912 — NOT APPLIED, it made seams worse
+
+Milestone 2's core step was tried and did not work yet. Recording it so the
+next attempt does not repeat it. Nothing was applied: `transforms_city.json`
+is untouched and the run's output sits in `transforms_lattice.json` for
+inspection only.
+
+**What worked.** Corridor detection is solid. A matched comb at the known
+pitch finds street and avenue corridors in 88 of 92 sheets, and the detected
+spacings come out at a median of 1158 px (streets) and 1015 px (avenues)
+against expected values of 1158 and 1015 — the detector is reading the real
+grid, including on sparse outer sheets where simple thresholding failed.
+Detections are cached in `corridors.json`. Absolute correspondence also
+exists: the transcribed key maps (`rebuild_1899/out/keymap_1912_*.json`)
+give street bounds for all 92 units and avenue bounds for 91.
+
+**What failed.** Two ways of deciding *which* lattice line a detected corridor
+is, both degraded the target seam 75|76:
+
+1. Snapping each corridor to the nearest lattice line through the sheet's
+   current transform. Circular — a badly placed sheet snaps a whole block
+   wrong. Median sheet move 111 ft, and the 75|76 overlay got worse.
+2. Taking the index from the key map instead. Better founded, but ordinal
+   matching misassigns whenever detection is imperfect: core unit 9's
+   corridors sit at avenue slots −1, 0, 1 (the leftmost is a wharf edge, not
+   an avenue) while its key map says A, B, C = 0, 1, 2, so everything shifted
+   one block. Corrections blew up to 5,454 ft.
+3. Snapping to the absolute index from `grid.json`'s fitted model, restricted
+   to the key map's range ±1, fixed the blow-up (median move 91 ft) but the
+   75|76 ink agreement still fell from 0.114 to 0.028.
+
+**Where the next attempt should start.** The weak link is the avenue index
+model, not the detector. `grid.json` covers only 9 streets and 11 avenue slots
+— all in the core — so its fitted model is extrapolated far outside its
+support, and only 60 of 88 units end up with usable correspondence on both
+axes. Options, roughly in order of promise:
+  - Extend the corridor index outward one ring at a time from the core,
+    re-fitting the model as each ring is pinned, rather than extrapolating the
+    core fit across the whole island in one step.
+  - Use the shared-avenue constraint directly: the key map says 75 covers
+    C–F and 76 covers F–I, so their Avenue F corridors must coincide. Solving
+    those equalities between neighbours is a stronger and more local
+    constraint than snapping each sheet to a global lattice.
+  - Treat the ~2 degree southern bend explicitly rather than hoping a single
+    linear index model absorbs it.
