@@ -507,3 +507,78 @@ along its length, is what would open address lookup to the whole city.
 Note also that `crop.py` reports "unowned-sliver fallback (disclosed)" where a
 crop crosses one of the remaining hairline gaps; the fallback is disclosed in
 its output rather than silently filled.
+
+---
+
+## HQ-18 · The 1912 rows are sheared east-west, and the corridor detector never finds avenues
+
+Two findings, both from extending the grid city-wide. The first blocks that
+work; the second is a standing caveat on how every control was proposed.
+
+### The shear
+
+Sheets 57 and 63 cover the identical avenue band — L, M, M½, N — one street
+row apart. Their y differs by the correct 1,225 ft. Their x differs by
+**1,643 ft**, and the same "AVENUE M" renders at two positions across the row
+boundary. It is not a drafting disagreement; it is missing constraint.
+
+The control network only ever asked two questions. Sheets side by side share
+an avenue, which pins a row internally in x. Sheets stacked share a street,
+which pins a column in y. **Nothing ties one row to the next in x.** Counted
+out: the 56 avenue controls leave **26 independent x-components** with the
+frozen core treated as one rigid body. `tools/gridfit.py` measures the
+consequence — streets fit a 399.5 ft pitch with a 28.8 ft residual, avenues a
+334.6 ft pitch with a **329.2 ft** residual, and the observed avenue sequence
+is non-monotonic (M½ west of L, O west of N).
+
+The fix is to ask stacked pairs the other question: they abut along a street
+but *cross* every avenue in their band. `tools/crossrow.py` selects those
+pairs and picks a doubly-redundant spanning set, so every component join is
+made twice and a bad call surfaces as a contradiction rather than a shear.
+
+**Selecting those pairs from the sheets' footprints was wrong and circular** —
+it tests overlap under the transforms being corrected, and it proposed pairs
+four avenues apart. Observers rejected 15 of them outright. Selection now
+reads the printed key maps, which do not depend on the placement.
+
+### The detector finds alleys, not avenues
+
+Every observer, independently, reported the same thing: of the candidate lines
+`recipe/corridors.json` proposes, **none** was an avenue. They sit inside the
+blocks, roughly 400 native px east of the roadway, on the mid-block alley or
+the rear-lot line. The separator is quantitative and clean:
+
+| | width between faces | printed |
+|---|---|---|
+| avenue (accepted) | 206–211 px = 69–71 ft | lettered name, hundred-block break |
+| detector candidate | ~60 px = 20 ft | dashed, `6" W. PIPE`, no name, no break |
+
+Every accepted cross-row coordinate is therefore a ruler-read roadway centre,
+not a proposed candidate.
+
+**What this means for the existing 154 controls.** They were proposed by the
+same detector. A uniform bias cancels in the sheet-to-sheet offset, which is
+all netsolve uses, so registration is not necessarily wrong. But a control
+that took the alley on one sheet and the avenue on the other would be off by
+about 400 px (~70 ft) and would not be visible in the residuals. That is worth
+a pass over the accepted controls, checking each reported coordinate against
+the 70 ft width test. **Not yet done.**
+
+### Cross-validation actually observed
+
+The accepted controls corroborate each other without being asked to. Where two
+observers on different batches read the same corridor on the same sheet:
+Ave D on sheet 28 → 1176.8 / 1176.6. Ave P on sheet 53 → 1162.0 / 1162.0.
+Ave O on sheet 58 → 2121.1 / 2117.8. Ave N on sheet 86 → 1169.2 / 1167.1.
+Ave I on sheet 84 → 2173.4 / 2173.1. Ave H on sheet 23 → 2163.1 / 2166.2.
+That is 0–5 native px, under two feet on the ground.
+
+Two accepted controls deliberately pair a ~1170 reading against a ~2173 one —
+86|94 on Ave N, 90|98 on Ave T. That is a full avenue block apart in native
+pixels, and it is the point: those plates' grids are offset by one block, so
+matching by near-equal native x would have tied Ave N to Ave M½. Both are
+argued from the hundred-block runs.
+
+**Nothing here needs a decision.** It is recorded because the shear was
+present in the published COG and tiles, and because the detector caveat
+outlives this pass.
