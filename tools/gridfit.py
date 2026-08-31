@@ -35,10 +35,18 @@ AVENUE_RE = re.compile(r"\bave?\.?\s*([a-t])\s*(1/2|½)?", re.I)
 
 
 def ground_index(slot):
-    """Slots count every named corridor, so south of Avenue M they step by a
-    half block. This maps a slot to units of ONE full avenue pitch, which is
-    what the pitch fit needs."""
-    return slot if slot <= 12 else 12 + (slot - 12) / 2.0
+    """Slots in units of one avenue pitch.
+
+    This used to halve every slot south of Avenue M, on the assumption that a
+    "1/2" avenue sits half a block from its neighbour. The plates say
+    otherwise, in three independent places: on sheet 57 Ave M reads 1191.7 and
+    Ave M 1/2 reads 2199.8, 1008 px apart; on sheet 90 Ave S 1/2 and Ave T are
+    998 px apart; on sheet 96 Ave P 1/2 and Ave Q are 987 px apart. Every one
+    is a full lattice step, the same ~1000 px that separates Ave C from Ave D
+    downtown. South of Broadway the outlot district simply names every
+    corridor it has, and the halves are naming, not spacing.
+    """
+    return slot
 
 
 def parse(axis, corridor):

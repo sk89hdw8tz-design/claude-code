@@ -12,6 +12,7 @@ source URL second. Every byte is verified against the inventory hash.
 import hashlib
 import json
 import os
+import re
 import shutil
 import subprocess
 
@@ -173,7 +174,26 @@ class Recipe:
         """
         if isinstance(avenue, int):
             return avenue
-        s = str(avenue).strip().lower().replace("avenue", "").replace("av.", "").strip()
+        s = str(avenue).strip().lower()
+        # strip a leading Ave/Av./Avenue token wherever it appears; the old
+        # code only stripped "avenue" and "av.", so "Ave M 1/2" -- the form the
+        # controls actually use -- fell through to the letter tests as "a" and
+        # raised.
+        s = re.sub(r"\bave?(?:nue)?\.?", " ", s)
+        # key maps letter some corridors both ways: 'STRAND OR. AVENUE "B"'.
+        # Take the quoted letter when there is one, and match an alias
+        # anywhere in the string -- the old code read the leading word's first
+        # letter, so that example silently parsed as Avenue S.
+        q = re.search(r'"\s*([a-t])\s*"', s)
+        if q:
+            return Recipe.avenue_slot(q.group(1))
+        for name, slot in (("broadway", 9), ("water", 0), ("strand", 1),
+                           ("mechanic", 2), ("market", 3), ("post office", 4),
+                           ("postoffice", 5 - 1), ("church", 5), ("winnie", 6),
+                           ("ball", 7), ("sealy", 8)):
+            if name in s:
+                return slot
+        s = s.replace("or.", "").replace(" or ", " ").strip(' ."\'')
         if s.isdigit():
             return int(s)
         if s.startswith("broadway"):
