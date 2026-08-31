@@ -466,3 +466,44 @@ Sheet 82 now shares a real edge with 81, and 89 with 88 — both in the main
 body. The 10.48M px² strip that was the largest hole is gone; it was
 over-clipped ground, not missing coverage. Remaining gaps are 8 holes
 totalling 9.8 acres, none of them a missing sheet.
+
+## HQ-17 · COG and tiles regenerated — and address lookup still stops at downtown
+
+Rebuilt from the finished recipe (93 sheets, control-solved, street-cut):
+
+| artifact | value |
+|---|---|
+| COG | `outputs/1912/mosaic/1912_fullcity_150ppi.tif`, 24317 × 45816 (1.114 gigapixels), 915 MB |
+| | DEFLATE, 512 × 512 tiles, 7 internal overview levels; opens under `gdalinfo` and `vips` |
+| DZI | `outputs/1912/tiles/`, 17 levels, 23,233 tiles, 201 MB |
+| flat render | 1,018 MB intermediate (scratch) |
+
+Peak memory 10 GB of 14 GB available. Neither artifact is committed — the COG
+is over GitHub's 100 MB file cap — but both rebuild with
+`python3 tools/publish.py --year 1912`.
+
+`crop.py` was smoke-tested at the confirmed 100 ft/in and produced a clean
+print-ready 16 × 20 at 300 dpi over the downtown core.
+
+**But the smoke test also found the address layer is still core-only.** A crop
+anywhere in the ring fails outright:
+
+    python3 tools/crop.py --year 1912 --street 34 --avenue P ...
+    KeyError: '18'
+
+`recipe/grid.json` indexes **streets 18–26 and avenue slots 0–10** — the
+frozen core, and nothing else. The city spans **streets 7–52 and avenue slots
+0–27**. So `lookup.py` and `crop.py` can only serve downtown addresses, and
+newly placed sheet 72 (avenue slot 18, streets 33–36) is unreachable by
+address even though its pixels are now in the mosaic.
+
+This is the brief's §1(a) — "look up any modern Galveston address and find its
+lot" — still unmet outside downtown. The material to fix it now exists:
+`recipe/corridor_index.json` holds 33 named corridors located in the mosaic
+frame, derived from the 154 verified controls. Extending `grid.json` from it,
+allowing for the ~2° island bend that makes a street's mosaic coordinate vary
+along its length, is what would open address lookup to the whole city.
+
+Note also that `crop.py` reports "unowned-sliver fallback (disclosed)" where a
+crop crosses one of the remaining hairline gaps; the fallback is disclosed in
+its output rather than silently filled.
