@@ -38,7 +38,7 @@ def keymap(year):
     return km
 
 
-def build(year, ua, ub, outdir=None):
+def build(year, ua, ub, outdir=None, force_axis=None):
     import cv2
     from shapely.geometry import Polygon
     r = Recipe(int(year))
@@ -73,12 +73,23 @@ def build(year, ua, ub, outdir=None):
         kb = np.array([pb.centroid.x, pb.centroid.y])
         vertical = abs(kb[0] - ka[0]) >= abs(kb[1] - ka[1])
         ca = (ka + kb) / 2.0
+    # A pair stacked one above the other is normally asked for the STREET they
+    # share. It also crosses every avenue in its band, and nothing else pins the
+    # two rows together in x, so the same pair can be asked for an AVENUE
+    # instead; force_axis says which question this task is.
+    natural = vertical
+    if force_axis in ("avenue", "street"):
+        vertical = (force_axis == "avenue")
+    crossed = bool(vertical != natural)
     axis = "avenue" if vertical else "street"
-    outdir = outdir or os.path.join(REPO, "work", "paircrops", f"{ua}_{ub}")
+    outdir = outdir or os.path.join(
+        REPO, "work", "paircrops",
+        f"{ua}_{ub}" + ("_x" if crossed and vertical else
+                        "_y" if crossed else ""))
     os.makedirs(outdir, exist_ok=True)
 
     info = {"pair": [ua, ub], "axis": axis,
-            "seam_is": "vertical (sheets side by side)" if vertical
+            "seam_is": "vertical (sheets side by side)" if natural
                        else "horizontal (sheets one above the other)",
             "keymap": {ua: km.get(ua, {}), ub: km.get(ub, {})},
             "candidates": {}}
@@ -102,15 +113,23 @@ def build(year, ua, ub, outdir=None):
 
         img = cv2.imread(r.fetch(r.sheet_file(uid)), cv2.IMREAD_COLOR)
         H, W = img.shape[:2]
+        # native coordinate of the seam on this sheet, so a crossed question
+        # shows the ground the two sheets actually share
+        Mi = np.linalg.inv(M)
+        seam_native = Mi @ (ca - t)
+        cy = int(np.clip(seam_native[1], 1100, H - 1100)) if crossed and vertical \
+            else H // 2
+        cx = int(np.clip(seam_native[0], 1100, W - 1100)) if crossed and not vertical \
+            else W // 2
         # one near-native crop per candidate: address digits stay readable,
         # which a whole-sheet view does not allow
-        for i, (dd, v, m) in enumerate(scored[:2]):
+        for i, (dd, v, m) in enumerate(scored[:3 if crossed else 2]):
             p = int(round(v))
             if vertical:
                 a0, a1 = max(0, p - 780), min(W, p + 780)
-                b0, b1 = max(0, H // 2 - 1100), min(H, H // 2 + 1100)
+                b0, b1 = max(0, cy - 1100), min(H, cy + 1100)
             else:
-                a0, a1 = max(0, W // 2 - 1100), min(W, W // 2 + 1100)
+                a0, a1 = max(0, cx - 1100), min(W, cx + 1100)
                 b0, b1 = max(0, p - 780), min(H, p + 780)
             crop = img[b0:b1, a0:a1].copy()
             if vertical:
@@ -143,8 +162,16 @@ def build(year, ua, ub, outdir=None):
                         cv2.resize(crop, (int(cw * sc), int(ch * sc))),
                         [cv2.IMWRITE_JPEG_QUALITY, 92])
 
+    info["crossed"] = crossed
+    if crossed and vertical:
+        info["why"] = ("these two sheets are one above the other; their rows are "
+                       "tied in y already, but nothing ties them in x. Identify "
+                       "the AVENUE (north-south corridor) that is the same line "
+                       "on both.")
     info["return"] = {
-        "file": f"outputs/{year}/recipe/controls/pair_{ua}_{ub}.json",
+        "file": (f"outputs/{year}/recipe/controls/pair_{ua}_{ub}"
+                 + ("_x" if crossed and vertical else "_y" if crossed else "")
+                 + ".json"),
         "schema": {"pair": [int(ua) if ua.isdigit() else ua,
                             int(ub) if ub.isdigit() else ub],
                    "axis": axis,
@@ -164,10 +191,13 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--year", required=True, choices=["1912", "1899"])
     ap.add_argument("--pair", nargs=2)
+    ap.add_argument("--axis", choices=["avenue", "street"],
+                    help="ask for this corridor axis even when the seam's "
+                         "orientation would suggest the other one")
     ap.add_argument("--all", action="store_true")
     a = ap.parse_args()
     if a.pair:
-        d = build(a.year, a.pair[0], a.pair[1])
+        d = build(a.year, a.pair[0], a.pair[1], force_axis=a.axis)
         print(d or "no shared boundary")
         return 0
     from shapely.geometry import Polygon

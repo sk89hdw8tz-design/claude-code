@@ -32,7 +32,9 @@ def load_controls(r):
     out = []
     cdir = os.path.join(r.dir, "controls")
     for fn in sorted(os.listdir(cdir)):
-        m = re.match(r"pair_(\w+)_(\w+)\.json$", fn)
+        # ..._x / ..._y marks a control taken across the seam's own
+        # orientation: a stacked pair asked for the avenue it shares.
+        m = re.match(r"pair_([0-9]+[a-z]?)_([0-9]+[a-z]?)(?:_[xy])?\.json$", fn)
         if not m:
             continue
         try:
