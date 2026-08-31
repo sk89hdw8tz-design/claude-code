@@ -1,0 +1,14 @@
+{
+ "pair": [
+  53,
+  59
+ ],
+ "axis": "avenue",
+ "observer": "crossrow-agent-7",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs. All proposed candidates were rejected as mid-block lines; the reported value is the AVENUE P roadway centreline (midpoint of the two facing block lines) read off the native-pixel ruler at mid-sheet.",
+ "a_native": 1162.0,
+ "b_native": 1145.8,
+ "corridor": "Ave P",
+ "why_not_one_block_off": "Both sheets letter this roadway AVENUE P in the roadway itself (sheet 53 label at native x~1162, sheet 59 at ~1146), and on both it is the divide between the 1800 and 1900 hundred-blocks of the numbered cross-streets. Sheet 53, 25th St (Rosenberg Av): west face 1812/1814/1816/1818/1820/1822/1824 and 1813/1815/1817/1819/1821/1823, east face 1902/1904/1906/1908/1910/1912/1914/1916 and 1901/1903/1905/1907/1909/1911/1913. Sheet 59, 28th St: west face 1813/1815/1817/1819/1821/1823, east face 1902/1904/1906/1908/1910/1912 and 1901/1903/1905/1907/1909/1911. The avenue's own house numbers run continuously across the shared 27th St seam: Ave P carries 2400s, 2500s and 2600s on sheet 53 (streets 24th-27th) and 2700s, 2800s and 2900s on sheet 59 (streets 27th-30th) - the numbers immediately flanking 28th St on sheet 59 read 2731 to the east and 2801/2802 to the west. One block off is excluded in both directions. To the north, Avenue O 1/2 is the 1700|1800 divide (its east block line lies at ~268 on sheet 53 and ~248 on sheet 59, the roadway running off the west margin of both sheets). To the south, Avenue P 1/2 is the 1900|2000 divide, at ~2162.2 on sheet 53 and ~2153.2 on sheet 59 - about 1000 px away, far outside any reading error. Note also that the dot-dash fire-limits line runs along Avenue P on sheet 59, matching the key map's description of that sheet, which independently identifies the corridor. The detection candidates (sheet 53: 736, 1756, 2776; sheet 59: 734, 1750, 2767) were all discarded: each falls in a block interior at or near a 20 ft mid-block alley (drawn alley centrelines on sheet 53 are ~661, ~1663, ~2660 and on sheet 59 ~643, ~1651, ~2656), carries no avenue name, is about 60 px (~20 ft) wide against the avenue's ~211 px (~70 ft), and shows the same hundred-block on both sides.",
+ "status": "ACCEPTED"
+}

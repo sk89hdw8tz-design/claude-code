@@ -1,0 +1,14 @@
+{
+ "pair": [
+  22,
+  28
+ ],
+ "axis": "avenue",
+ "observer": "crossrow-agent-3",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs",
+ "a_native": 1191.4,
+ "b_native": 1176.8,
+ "corridor": "Ave D (Market)",
+ "why_not_one_block_off": "Chosen line is the corridor lettered 'AVE. D. OR MARKET' in its own roadway on BOTH sheets (lettering falls at native x~1195 on sheet 22 and ~1179 on sheet 28, inside the measured corridor). Measured block-face to block-face: sheet 22 1087.2-1295.1 (207.9 px) and sheet 28 1072.6-1281.0 (208.4 px); at this sheet's printed scale of feet (~2.97 px/ft) that is 70 ft, i.e. a full avenue, not an alley. ADDRESS RUNS. Sheet 22, the 10th-St and 11th-St runs: west of the line they end '...319 321 323' / '320 322 324' (300 block), east of it they restart '401 403 405 407 409 411' / '402 404 406 408 410 412' (400 block). Sheet 28, the 13th-St run: west of the line the 300 block ends '...315 317 319 321 323', east of it '401 403 405 407 409 411' / '402 404 406 408 410 412'. The 300/400 hundred-block change therefore happens across this exact corridor on both sheets. ONE BLOCK EAST is excluded: that corridor is lettered 'AVE. E. OR POST OFFICE' (native 2196.9 on sheet 22, 2181.0 on sheet 28) and carries the 400/500 change ('...422 424' west, '501 503 505' / '502 504 506' east). ONE BLOCK WEST is excluded: 'AVE. C. OR MECHANIC' (native ~187 on sheet 22, ~172 on sheet 28), which takes the 200/300 change. Avenue frontage numbers also fix the row and prove the sheets abut at 12th St: Ave D carries 901-927/902-928 (9th-10th) and 1101-1127/1102-1128 (11th-12th) on sheet 22, continuing as 1201-1227/1202-1228 (12th-13th) and 1301-1321/1302-1322 (13th-14th) on sheet 28. CANDIDATES REJECTED. Sheet 22 cand#1 (native 1689) is the mid-block ALLEY: faces at 1665.2/1725.3, only 60.1 px = 20 ft apart, drawn dashed with a '10 in. W. PIPE' running down it, no avenue name, and flanked by 402-412 on the west and 414-424 on the east - the SAME 400 block, so it is not a hundred-block boundary. Sheet 28 cand#1 (native 1492) is not a corridor at all: it falls inside the block (that block's alley is at 1678.7). The reported line is therefore NOT one of the proposed candidates on either sheet. CROSS-CHECK: Ave D gives a sheet22->sheet28 offset of +14.6 px and the independent Ave E gives +15.9 px; the two agree to 1.3 px, which would not happen if either identification were a block off (one block = ~1005 px).",
+ "status": "ACCEPTED"
+}

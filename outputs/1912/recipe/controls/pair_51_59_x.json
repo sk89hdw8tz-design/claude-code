@@ -1,0 +1,14 @@
+{
+ "pair": [
+  51,
+  59
+ ],
+ "axis": "avenue",
+ "observer": "crossrow-agent-0",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs",
+ "a_native": null,
+ "b_native": null,
+ "corridor": "none - sheets share no avenue",
+ "why_not_one_block_off": "No corridor is shared, so no position could honestly be recorded, and the 'one block off' question never arises - any pairing would be at least three avenues wrong. Sheet 51 draws avenues L, M, M 1/2 and N over streets 24TH-27TH: its cand1 crop letters 'AVENUE M' (roadway native 1036.9-1248.7, center ~1143) and 'AVENUE M 1/2' (center ~2145). Sheet 51's address runs along 26TH/27TH ST are 1224 west of Ave M, 1301-1323 / 1302-1332 between Ave M and Ave M 1/2, and 1401-1408 / 1402-1408 east of Ave M 1/2; its avenue faces carry 2510-2528 / 2511-2527 (25TH-26TH) and 2601-2627 / 2602-2628 (26TH-27TH). Sheet 59 draws avenues O 1/2, P, P 1/2 and Q over streets 27TH-30TH: its cand1 crop letters 'AVENUE P' (roadway native 1039.0-1250.7, center ~1145) and 'AVENUE P 1/2' (center ~2153), with Ave Q at its east margin (center ~3156). Sheet 59's address runs along 27TH/28TH ST are 1823/1824 west of Ave P, 1901-1923 / 1902-1924 between Ave P and Ave P 1/2, and 2001-2007 / 2002-2008 east of Ave P 1/2; its avenue faces carry 2701-2731 / 2702-2732 (27TH-28TH) and 2801-2821 / 2802-2822 (28TH-29TH). So sheet 51's hundred-blocks run 12xx-14xx and sheet 59's run 18xx-20xx: the avenues N 1/2, O and O 1/2, with the 15xx, 16xx and 17xx blocks, lie between them and are on neither plate - the two sheets are a full plate-width apart in x as well as one row apart in y. The margin references agree that they are not vertically adjacent: sheet 51's south margin prints '57', not 59, and sheet 59's north margin prints '53', not 51. The detector's near-seam candidates are in any case both mid-block: sheet 51 x=1770 sits inside the 1300 block just east of the alley, and sheet 59 x=1750 sits inside the 1900 block just east of its dashed 20-ft alley (native 1618.4-1680.1). Reported UNRESOLVED rather than forcing a control between plates that share no corridor.",
+ "status": "UNRESOLVED"
+}

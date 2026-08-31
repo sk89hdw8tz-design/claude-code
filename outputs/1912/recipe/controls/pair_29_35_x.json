@@ -1,0 +1,15 @@
+{
+ "pair": [
+  29,
+  35
+ ],
+ "axis": "avenue",
+ "observer": "crossrow-agent-10",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs",
+ "a_native": 2154.2,
+ "b_native": 2162.1,
+ "corridor": "Ave H (Ball)",
+ "why_not_one_block_off": "PRINTED NAME: both plates letter this corridor AVE. H OR BALL down the roadway and print 70' in it - sheet 29 at native x~2154, sheet 35 at native x~2162. CROSS-STREET RUNS ON THE SEAM STREET ITSELF (15th St, which is sheet 29's south edge and sheet 35's north edge, so both plates letter the same frontage): on sheet 29 the run west of the line ends 712 714 716 718 720 722 724 and the run east of it begins 802 804 806 808 810 812 (then a 20-ft alley, then 814 816); on sheet 35 the run west ends 713 715 717 719 721 723 and the run east begins 801 803 805 807 809 811 (then the 20-ft alley, then 813 815). The same 700|800 hundred-block transition on the same street - this is literally the Ball & 15th intersection read off both plates. ONE AVENUE WEST is AVE. G OR WINNIE (native ~1145 on 29, ~1152 on 35), which carries the 600|700 transition; ONE AVENUE EAST is AVE. I OR SEALY (native ~3156 on 29, ~3163 on 35), which carries the 800|900 transition. Neither shows 700|800, so neither can be this line. NOTE ON THE PROPOSED CANDIDATES (none is an avenue): 29's 726/1746/2767 and 35's 738/1753/2768 all land inside the block interiors, on lot lines roughly 100 px EAST of the 20-ft mid-block alleys - e.g. on sheet 29 x=1746 falls between street numbers 714 and 716, while the actual alley (dashed 6-in. W. PIPE, printed 20') is at x~1648. The 70-ft avenue corridors on 29 are Church ~138, Winnie 1039.0/1250.5 -> 1145, Ball 2048.0/2260.0 -> 2154, Sealy ~3156; on 35 Winnie 1047.5/1260.5 -> 1154, Ball 2056.6/2268.0 -> 2162, Sealy ~3163.",
+ "status": "ACCEPTED",
+ "measurement_note": "Native x = raster x of the archival sheet scan work/sheets/1912w/u<unit>.jpg (3327x3898), origin top-left. Value is the midpoint of the two block-face lines bounding the 70-ft roadway, measured in the block row ADJACENT TO THE 15th St SEAM (sheet 29 y 2700-3380: centres 2154.0, 2154.3; sheet 35 y 380-1120: centres 2162.0, 2162.2). The two plates are skewed in OPPOSITE senses (29's Ball drifts 2145.8 at top -> 2154.3 at bottom; 35's drifts 2162.2 at top -> 2142.8 at bottom), so the near-seam reading matters. Cross-check: the same near-seam offset is obtained from the neighbouring avenue - Winnie reads 1145.1 (29) vs 1152.4 (35), b-a = +7.3, against Ball's +7.9 - so the control is consistent to under a pixel."
+}

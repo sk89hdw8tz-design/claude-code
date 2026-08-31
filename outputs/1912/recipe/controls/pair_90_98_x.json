@@ -1,0 +1,14 @@
+{
+ "pair": [
+  90,
+  98
+ ],
+ "axis": "avenue",
+ "observer": "crossrow-agent-4",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs",
+ "a_native": 1171.5,
+ "b_native": 2173.3,
+ "corridor": "Ave T",
+ "why_not_one_block_off": "The corridor is lettered 'AVENUE T' vertically inside its own roadway on both sheets: sheet 90 block faces at native 1066.2 and 1276.8 (width 208 px = 69 ft, with 70' printed beside that corridor), sheet 98 faces at native 2068.8 and 2278.6 (width 208 px = 69 ft, also printed 70'). Address runs identify it as the same physical line on each. Sheet 90: the column west of it carries the 2600 block on both its streets - 2601 2603 2605 2607 2609 2611 2613 2615 2617 2619 2621 2623 and 2602..2624 along 41ST and 42ND ST - and the column east of it opens the 2700 block (2701 2703 2705 2707 / 2702 2704 2706 2708, continuing 2710..2730). Sheet 98: the same corridor carries 2601..2623 / 2602..2624 (2600 block) on its west face along 42ND and 43RD ST and 2701..2707 / 2702..2708 (2700 block) on its east face. One block WEST is excluded because that corridor is separately lettered 'AVENUE S 1/2' on both sheets (centres native 173.1 on sheet 90, 1176.9 on sheet 98) and its own west face carries the 2500 block (2523/2524), so it divides 2500 from 2600, not 2600 from 2700. One block EAST is excluded because Avenue T 1/2 is platted but unopened here: on sheet 90 the block (S.E. 183 / N.E. 183) runs on undivided past it and the numbering simply steps 2728 2730 then 2802 2804 at native ~2251, with the sheet's south margin lettering 'Av. T 1/2' at native ~2165 and 'AVENUE U' next east at ~3156 - a different, separately lettered line. The sheets are stacked and not offset by a block: sheet 90's south margin prints the adjoining plate '98' and sheet 98's north margin prints '90', and the 2600-block column continues across the shared 42ND ST seam through the two halves of block 158 - 'S.E. 158' immediately north of 42ND ST on sheet 90 and 'S.W. 158' immediately south of it on sheet 98, with 'S.W. 159' next north and 'S.E. 157' next south. The sheet-to-sheet x offset measured on Avenue T (1001.8 px, sheet 98's frame beginning one avenue further west at Avenue S) is reproduced by Avenue S 1/2 (1003.8 px), agreeing to 2 px where a one-block error would be ~1000 px. NOTE: neither reported coordinate is one of the proposed candidates. The candidates (90: 768/1764/2761, 98: 768/1769/2771) sit inside the blocks, not on the lettered avenues; the values reported here are ruler-read avenue centres.",
+ "status": "ACCEPTED"
+}

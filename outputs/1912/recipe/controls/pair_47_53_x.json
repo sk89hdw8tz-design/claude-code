@@ -1,0 +1,14 @@
+{
+ "pair": [
+  47,
+  53
+ ],
+ "axis": "avenue",
+ "observer": "crossrow-agent-7",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs. All proposed candidates were rejected as mid-block lines; the reported value is the AVENUE P roadway centreline (midpoint of the two facing block lines) read off the native-pixel ruler at mid-sheet.",
+ "a_native": 1183.4,
+ "b_native": 1162.0,
+ "corridor": "Ave P",
+ "why_not_one_block_off": "Both sheets letter this roadway AVENUE P in the roadway itself (sheet 47 label at native x~1184, sheet 53 at ~1162), and on both it is the divide between the 1800 and 1900 hundred-blocks of the numbered cross-streets. Sheet 47, 23rd (Tremont) St: west face 1818/1820/1822/1824 and 1817/1819/1821/1823, east face 1902/1904/1906/1908/1910/1912 and 1901/1903/1905/1907/1909/1911; the same avenue divides 1821-1823 from 1901-1903 on 22nd St. Sheet 53, 25th St (Rosenberg Av): west face 1812/1814/1816/1818/1820/1822/1824 and 1813/1815/1817/1819/1821/1823, east face 1902/1904/1906/1908/1910/1912/1914/1916 and 1901/1903/1905/1907/1909/1911/1913. The avenue's own house numbers confirm the two sheets are reading one continuous line across the 24th St seam: Ave P carries 2200s and 2300s on sheet 47 (streets 22nd-24th) and 2400s, 2500s and 2600s on sheet 53 (streets 24th-27th), meeting exactly at 24th St. One block off is excluded in both directions. To the north, Avenue O 1/2 is the 1700|1800 divide (sheet 47 centreline ~176.7; on sheet 53 only its east block line survives at ~268, the roadway running off the west margin). To the south, Avenue P 1/2 is the 1900|2000 divide - on sheet 47 its west face reads 1921/1923 and its east face 2001/2003/2005 - and it lies at ~2197.0 on sheet 47 and ~2162.2 on sheet 53, about 1010 px away, far outside any reading error. The detection candidates (sheet 47: 574, 1585, 2596; sheet 53: 736, 1756, 2776) were all discarded: each falls in a block interior near the 20 ft mid-block alley (drawn alley centrelines on sheet 47 are ~681, ~1690, ~2697 and on sheet 53 ~661, ~1663, ~2660), carries no avenue name, is about 60 px (~20 ft) wide against the avenue's ~211 px (~70 ft), and has the same hundred-block on both sides (e.g. sheet 47 x=1585 sits inside block NE 92 with no address change).",
+ "status": "ACCEPTED"
+}

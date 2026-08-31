@@ -1,0 +1,14 @@
+{
+ "pair": [
+  52,
+  58
+ ],
+ "axis": "avenue",
+ "observer": "crossrow-agent-1",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs",
+ "a_native": 2186.7,
+ "b_native": 2117.8,
+ "corridor": "Ave O",
+ "why_not_one_block_off": "Ave O is lettered 'AVENUE O' in the roadway on BOTH sheets and is the 1600/1700 hundred-block break on 27th St, the street the two sheets share. Sheet 52 (north side of 27th, even): 1614 1616 1618 1620 1622 1624 west of the corridor, 1702 1704 1706 1708 east of it. Sheet 58 (south side of 27th, odd): 1613 1617 1619 1621 1623 west, 1701 1703 1705 1707 east. Its own frontage reads 2508-2628 / 2507-2627 on sheet 52 and 2702-2822 / 2701-2827 on sheet 58, i.e. the 25th-26th/26th-27th and 27th-28th/28th-29th segments of the same avenue. Printed width 70' beside the corridor on both sheets; measured 210.3 px (sheet 52) and 212.2 px (sheet 58) at 3.0 px/ft. ONE BLOCK WEST is excluded twice over: the next lettered corridor west is 'AVENUE N' (printed 70', with its 8 in. water pipe drawn down the middle) and it carries the 1400/1500 break - sheet 52's cand3 crop shows the run east of Ave N starting at 1502 and sheet 58's shows 1501; and the intervening 1500/1600 break (\u20261528 | 1602 on sheet 52, \u20261527 | 1601 on sheet 58) falls on the platted but UNOPENED Ave N 1/2 line, which is drawn as no roadway at all where it crosses the outlots (Ursuline Academy in outlot 41 on sheet 52, Garten Verein in outlot 40 on sheet 58) - it is not a candidate for a 70 ft corridor. ONE BLOCK EAST would be Ave O 1/2 / the 1700-1800 break, which lies beyond the block east of the chosen line. The proposed candidates (1784 on sheet 52, 1720 on sheet 58) were REJECTED: both fall inside an outlot quarter (S.E./S.W. 41 on sheet 52; the Garten Verein dancing pavilion in S.E. 40 on sheet 58) with no corridor, no avenue name and no address break. Reported value is the avenue centerline on the block adjoining the shared 27th St seam: sheet 52 casings 2081.5 and 2291.8, sheet 58 casings 2011.7 and 2223.9. Corroboration: Ave N's east casing gives a sheet-to-sheet offset of 65.9 px against Ave O's 68.9 px, over a 1900 px baseline.",
+ "status": "ACCEPTED"
+}

@@ -1,0 +1,14 @@
+{
+ "pair": [
+  30,
+  36
+ ],
+ "axis": "avenue",
+ "observer": "crossrow-agent-1",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs",
+ "a_native": 2215.2,
+ "b_native": 2198.3,
+ "corridor": "Ave K",
+ "why_not_one_block_off": "Ave K is lettered 'AVENUE K' in the roadway on BOTH sheets and is the 1000/1100 hundred-block break on the cross streets. Sheet 30: 14th St reads 1002 1004 1006 1008 1010 1012 | 1014 1016 1018 1020 1022 1024 west of the corridor and 1102 1104 1106 1108 1110 east; 15th St reads 1001-1011 | 1013-1023 west and 1101 1103 1105 1107 1109 east. Its own frontage is 1301-1328 (13th-14th) and 1401-1428 (14th-15th). Sheet 36: 15th St 1001-1011 | 1013-1023 west, 1101-1109 east; 16th St 1002-1012 | 1014-1024 west, 1102-1110 east; own frontage 1501-1528 (15th-16th) and 1601-1622 (16th-17th) - consecutive segments of one avenue across the shared 15th St seam. Printed 70' on both; measured 214.0 px (sheet 30) and 212.9 px (sheet 36). ONE BLOCK WEST is excluded because it is Broadway, lettered 'AVE. J OR BROADWAY' and printed 150' / '150 ft wide' on both sheets (a ~455 px roadway, not ~213 px), carrying the 900/1000 break. ONE BLOCK EAST is Avenue L, the 1100/1200 break, beyond the 1101-1110 block. The proposed candidates (1862 on sheet 30, 1815 on sheet 36) were REJECTED: both sit inside the block east of the mid-block 20 ft alley (printed 20', dashed, labelled 6 IN. W. PIPE; measured 1683.6-1745.2 on sheet 30 and 1663.8-1724.6 on sheet 36), which has no avenue name and no hundred-block change across it. Reported value is the avenue centerline on the block adjoining the 15th St seam: sheet 30 casings 2108.2 and 2322.2, sheet 36 casings 2091.8 and 2304.7. Corroboration: Broadway's east casing gives a sheet-to-sheet offset of 24.8 px against Ave K's 16.9 px - an ~0.9 percent plate scale difference over the 900 px baseline, an order of magnitude smaller than the ~1000 px a one-block misidentification would produce.",
+ "status": "ACCEPTED"
+}

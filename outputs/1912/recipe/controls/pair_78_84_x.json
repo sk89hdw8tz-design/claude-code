@@ -1,0 +1,14 @@
+{
+ "pair": [
+  78,
+  84
+ ],
+ "axis": "avenue",
+ "observer": "crossrow-agent-10",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs",
+ "a_native": null,
+ "b_native": null,
+ "corridor": null,
+ "why_not_one_block_off": "UNRESOLVED - not a one-block ambiguity: these two sheets share NO avenue at all, so no avenue control can be drawn from this pair. PRINTED EVIDENCE. Sheet 78 letters its four north-south corridors AVENUE L (west edge, native ~166), AVENUE M (~1165), AVENUE M 1/2 (~2165) and AVENUE N (east edge, ~3165). Sheet 84 letters its four AVE. G OR WINNIE (west edge, ~166), AVE. H OR BALL (~1168), AVE. I OR SEALY (~2170) and AVE. J OR BROADWAY (east edge, ~3170). No avenue name appears on both plates. ADDRESS RUNS ON THE SHARED STREET: 39th St is sheet 78's south frontage and sheet 84's north frontage, so both plates letter 39th St - but different segments of it. Sheet 78 runs 1202 1204 1206 1208 | 1210-1224 (the 1200 block, Ave L to Ave M), then 70', then 1302 1304 1306 1308 1310 1312 | 1314... (the 1300 block, M to M 1/2), then the 1400 block (M 1/2 to N). Sheet 84 runs 701 703 705 707 709 711 | 713-723 (the 700 block, Winnie to Ball), then 70', then 801 803 805 807 809 811 | 813... (the 800 block), then the 900 block (Sealy to Broadway). The 1000 and 1100 blocks (Broadway to Ave K to Ave L) lie between the two sheets and are printed on NEITHER, so the bands are disjoint with a two-avenue gap. SHEET-INDEX CORROBORATION: sheet 78's bottom margin gives its southern continuations as sheets 85 and 86, not 84; sheet 84's top margin gives its northern continuation as sheet 76, and its east margin as 85. Sheet 84 sits three sheet-columns west of sheet 78, so the two abut only in the street (y) direction of the key map and overlap in x nowhere. The proposed candidates (78: 486/1524/2563; 84: 552/1569/2586) sit at near-equal native x purely because every plate is drawn on the same ~999-px avenue lattice; matching them would tie Ave M on sheet 78 to Ave H (Ball) on sheet 84 - a false control roughly two avenues plus the whole inter-sheet gap wrong, which would shear the mosaic badly. Refer this pair back for re-pairing (78 should be paired with 85 or 86; 84 with 76).",
+ "status": "UNRESOLVED"
+}

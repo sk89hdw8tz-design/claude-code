@@ -1,0 +1,14 @@
+{
+ "pair": [
+  58,
+  64
+ ],
+ "axis": "avenue",
+ "observer": "crossrow-agent-3",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs",
+ "a_native": 2121.1,
+ "b_native": 2172.6,
+ "corridor": "Ave O",
+ "why_not_one_block_off": "Chosen line is the corridor lettered 'AVENUE O' in its own roadway on BOTH sheets. Faces: sheet 58 2015.5-2226.7 (211.2 px) and sheet 64 2068.6-2276.5 (207.9 px) = 70 ft at the printed scale of feet. ADDRESS RUNS. Sheet 58, the 29th-St run: west of the line it ends '1616 1618 1620 1622 1624', east of it it restarts '1702 1704 1706 1708 1710 1712'. Sheet 64, the 31st-St run: the identical break, '...1616 1618 1620 1622 1624' west and '1702 1704 1706 1708 1710 1712' east. Avenue O is thus the 1600/1700 hundred-block line on both sheets. ONE CORRIDOR WEST is excluded: it is lettered 'AVENUE N 1/2', measures only ~40 ft between faces (sheet 58 1014.5/1139.1 = 124.6 px), and takes the 1500/1600 change. ONE CORRIDOR EAST is excluded: it is lettered 'AVENUE O 1/2' (centre 3121.2 on sheet 58, 3172.8 on sheet 64) and takes the 1700/1800 change. The avenue sequence printed left-to-right is identical on both sheets - N, N 1/2, O, O 1/2 - so the letter alone fixes the line. Outlot quarter numbering agrees: the quarters flanking Ave O are N.W./S.W. 40 (west) and N.E./N.W. 65 (east) on sheet 58, and S.E./N.E. 38 (west) and N.W. 64 / N.E. 63 (east) on sheet 64. Sheet 58's bottom margin prints '64' and sheet 64's top margin prints '58', confirming the stacked pair meeting at 30th St. CANDIDATES REJECTED. Sheet 58 cand#1 (native 1720) and sheet 64 cand#1 (native 1755) both fall INSIDE the block between Ave N 1/2 and Ave O and are not corridors at all (sheet 58's alley in that block is at 1545.9, faces 1515.2/1576.6 = 61.4 px = 20 ft; sheet 64's is at 1670.5, 59.7 px). The reported line is therefore NOT one of the proposed candidates on either sheet. CROSS-CHECK: Ave O gives a sheet58->sheet64 offset of +51.5 px and the independent Ave O 1/2 gives +51.6 px - agreement to 0.1 px, versus ~1000 px for a one-corridor error.",
+ "status": "ACCEPTED"
+}

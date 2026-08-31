@@ -1,0 +1,14 @@
+{
+ "pair": [
+  31,
+  37
+ ],
+ "axis": "avenue",
+ "observer": "crossrow-agent-7",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs. All proposed candidates were rejected as mid-block lines; the reported value is the AVENUE M roadway centreline (midpoint of the two facing block lines) read off the native-pixel ruler at mid-sheet.",
+ "a_native": 1147.7,
+ "b_native": 1152.7,
+ "corridor": "Ave M",
+ "why_not_one_block_off": "Both sheets letter this roadway AVENUE M in the roadway itself (sheet 31 label at native x~1148, sheet 37 at ~1153), and on both it is the divide between the 1200 and 1300 hundred-blocks of the numbered cross-streets. Sheet 31, 13th St: west face 1214/1216/1218/1220/1222/1224 and 1213/1215/1217/1219/1221/1223, east face 1302/1304/1306/1308/1310/1312 and 1301/1303/1305/1307/1309/1311. Sheet 37, 16th St: west face 1214/1216/1218/1220/1222/1224 and 1213/1215/1217/1219/1221/1223, east face 1302/1304/1306/1308/1310/1312 and 1301/1303/1305/1307/1309/1311. The avenue's own house numbers run continuously across the shared 15th St seam: the numbers flanking 13th St on sheet 31 read 1228 and 1302 (streets 12th-15th), and those flanking 16th St on sheet 37 read 1528 and 1601/1602 (streets 15th-18th). One block off is excluded in both directions. To the south, Avenue M 1/2 is the 1300|1400 divide - verified on both sheets, where its west face reads 1314/1316/1318/1320/1322/1324 and 1313/1315/1317/1319/1321/1323 and its east face 1402/1404/1406/1408/1410/1412 and 1401/1403/1405/1407/1409/1411 - and it lies at ~2153.5 on sheet 31 and ~2161.0 on sheet 37, about 1005 px away, far outside any reading error. To the north, Avenue L is the 1100|1200 divide and lies near the west margin of both sheets (label at native x~150), about 1000 px on the other side. The detection candidates (sheet 31: 768, 1757, 2747; sheet 37: 920, 1859, 2799) were all discarded: each falls in a block interior at or near a 20 ft mid-block alley (drawn alley centrelines on sheet 31 are ~643, ~1651, ~2655), carries no avenue name, is about 60 px (~20 ft) wide against the avenue's ~211 px (~70 ft), and shows the same hundred-block on both sides. Note both scans carry a slight tilt (Avenue M drifts about 16 px across sheet 31 and about 25 px across sheet 37 from top to bottom), so the value recorded is the mid-sheet centreline.",
+ "status": "ACCEPTED"
+}

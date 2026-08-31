@@ -1,0 +1,14 @@
+{
+ "pair": [
+  19,
+  23
+ ],
+ "axis": "avenue",
+ "observer": "crossrow-agent-4",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs",
+ "a_native": 2205.6,
+ "b_native": 2166.2,
+ "corridor": "Ave H (Ball)",
+ "why_not_one_block_off": "The chosen corridor is lettered in its own roadway on BOTH sheets: 'AVE. H. OR BALL' is printed vertically inside the roadway I measured on sheet 19 (block faces at native 2098.1 and 2313.9, width 214 native px = 71 ft, matching the 70' printed beside that corridor) and inside the roadway on sheet 23 (faces at native 2057.8 and 2273.8, width 214 px = 71 ft, also printed 70'). Address runs pin the same physical line. Sheet 19: the block column west of it carries the 700 block on both its streets - 702 704 706 708 710 712 714 716 718 720 722 724 along 8TH ST and 701..723 / 702..724 along 9TH ST - while the column east of it starts the 800 block (801 803 805 807 / 802 804 806 808). Sheet 23: the same corridor has 701..723 / 702..724 (700 block) on its west face along 9TH and 10TH ST and 801..807 / 802..808 (800 block) on its east face. One block WEST is excluded because that corridor is separately lettered 'AVE. G. OR WINNIE' on both sheets (centres native 1196.9 on sheet 19, 1159.0 on sheet 23, ~1009 px away) and carries the 600 block on its own west face (618 620 622 624 on sheet 19, 623 on sheet 23) - it separates the 600 from the 700 block, not the 700 from the 800. One block EAST is excluded because it is lettered 'AVE. I. OR SEALY' (visible on sheet 19 cand2 at ~3205 and sheet 23 cand3 at ~3174) and separates the 800 from the 900 block. Independent confirmation that the sheets are not offset by a block: the block column between Ave G and Ave H runs continuously across the shared 9TH ST seam with consecutive Galveston block numbers - 307 (7th-8th) and 308 (8th-9th) on sheet 19, then 309 (9th-10th) and 310, Sherman Park (10th-11th) on sheet 23 - and the two independently measured avenues give the same sheet-to-sheet x offset (Ave H 39.4 px, Ave G 37.9 px), agreeing to 1.5 px where a one-block error would be ~1010 px. NOTE: neither reported coordinate is one of the proposed candidates. All three candidates on each sheet (19: 574/1594/2615, 23: 728/1751/2774) sit inside the blocks near the 20-ft mid-block alley (sheet 19 alley faces native 1672.7-1731.5, sheet 23 alley 1626-1687, each labelled 20' with a 6\" W.PIPE), not on any avenue; the values reported here are ruler-read avenue centres.",
+ "status": "ACCEPTED"
+}

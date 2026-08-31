@@ -1,0 +1,14 @@
+{
+ "pair": [
+  84,
+  92
+ ],
+ "axis": "avenue",
+ "observer": "crossrow-agent-2",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs",
+ "a_native": 2173.4,
+ "b_native": 2128.0,
+ "corridor": "Ave I (Sealy)",
+ "why_not_one_block_off": "The chosen corridor is lettered in its own roadway on BOTH sheets: 'AVE. I OR SEALY' is printed vertically inside the roadway I measured on sheet 84 (block-face casings at native 2068.3 and 2278.4, width 210.1 native px = 70.0 ft, matching the 70' printed beside it) and inside the roadway on sheet 92 (casings 2023.4 and 2232.7, width 209.3 px = 69.8 ft). Address runs pin it as the same physical line. Sheet 84: the column west of it carries the 800 block on both its street faces - 802 804 806 808 810 812 | 814 816 818 820 822 824 along 41ST ST and again along 42ND ST, with the avenue frontages reading 4001-4027 / 4002-4028 (40th-41st, block 280) and 4101-4127 / 4102-4128 (41st-42nd, block 281) - while the column east of it starts the 900 block (901 903 905 907 / 902 904 906 908). Sheet 92: the same corridor has 801-823 / 802-824 (800 block) on its west face along 42ND and 43RD ST (blocks 282, 283) and 901 903 905 907 / 902 904 906 908 (900 block) on its east face. ONE BLOCK WEST is excluded because that corridor is separately lettered 'AVE. H OR BALL' on both sheets (centres native 1168.5 on sheet 84, 1129.9 on sheet 92, about 1005 px west) and it separates the 700 from the 800 block (7xx runs 717 719 721 723 / 718 720 722 724 on sheet 84, 723 / 724 on sheet 92), not the 800 from the 900. ONE BLOCK EAST is excluded because it is lettered 'AVE. J OR BROADWAY' and is printed 150' wide - a roadway of about 455 px, not 210 - visible on the sheet 84 cand2 crop at native ~3172 where it forms sheet 84's east boundary with the fire-limit dash line; it separates the 900 from the 1000 block. NOTE: neither reported coordinate is a proposed candidate. Sheet 84's candidates (552 / 1569 / 2586) and sheet 92's (720 / 1728 / 2737) all sit inside the blocks about the 20-ft mid-block alley - measured alley faces native 1641.1-1702.1 on sheet 84 and 1598.0-1656.0 on sheet 92, each labelled 20' - which carries no avenue name and no hundred-block change across it; the values reported here are ruler-read avenue centres. Corroboration: Ave I re-read independently on sheet 84's cand2 crop gives ~2172, matching the 2173.4 read off the cand1 crop to 1.4 px, and the two lettered avenues give sheet-to-sheet x offsets of 45.4 px (Ave I) and 38.6 px (Ave H); the 6.8 px spread is a small scale difference between the sheets (Ave H-to-Ave I span 1004.9 px on sheet 84 vs 998.1 px on sheet 92), far below the ~1000 px a one-block error would produce.",
+ "status": "ACCEPTED"
+}

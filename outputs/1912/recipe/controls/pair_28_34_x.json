@@ -1,0 +1,14 @@
+{
+ "pair": [
+  28,
+  34
+ ],
+ "axis": "avenue",
+ "observer": "crossrow-agent-0",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs",
+ "a_native": 1176.6,
+ "b_native": 1173.4,
+ "corridor": "Ave D (Market)",
+ "why_not_one_block_off": "Both crops letter the corridor inside the roadway I measured: 'AVE. D OR MARKET' is printed in it on sheet 28 (roadway native 1073.0-1280.3, width 207.4 px) and on sheet 34 (native 1069.5-1274.9, width 205.4 px), ~207 px = the printed 70' avenue width. The one-block-east alternative is lettered 'AVE. E OR POST OFFICE' in the same two crops (sheet 28 center 2180.9, sheet 34 center 2178.7), ~1004 px east, so the two named corridors cannot be confused; measuring Ave E instead gives a cross-sheet shift of -2.2 px against Ave D's -3.2 px, i.e. the two independent avenues agree to 1.0 px, which excludes a one-block (~1004 px) misidentification. The address runs step by hundred-block across Ave D on both sheets: sheet 28 prints 313-323 / 314-324 on the block faces west of it and 401-411 / 402-412 east of it along 14TH and 15TH ST; sheet 34 prints 317-323 / 318-324 west and 401-411 / 402-412 east along 15TH and 16TH ST. The 400/500 step falls at Ave E instead (413-423 / 414-424 remain west of it on both plates), so Ave E is excluded. The avenue-face numbers step in lockstep with the streets - sheet 28's Ave D faces carry 1301-1327 / 1310-1328 (13TH-14TH) then 1401-1427 / 1402-1428 (14TH-15TH), sheet 34's carry 1501-1527 / 1502-1528 (15TH-16TH) then 1601-1621 / 1602-1622 (16TH-17TH) - and the shared 15TH ST frontage is the same physical 400 block seen from both sides: sheet 28 prints the even run 402-424 along its south edge, sheet 34 the odd run 401-423 along its north edge. Sheet 28's south margin prints the adjoining plate number '34' and sheet 34's north margin prints '28', confirming the two plates are vertically adjacent in the same avenue column. NOTE: neither reported coordinate is a detection candidate - all three candidates on each sheet (28: 472/1492/2513, 34: 558/1573/2588) sit mid-block near the dashed 20-ft alley (sheet 28 alley native 1650.1-1708.9, sheet 34 alley 1645.8-1706.1), not on any avenue; the reported values are ruler-read avenue-roadway centers. NOTE ALSO: this control asks for a large correction. The two plates' native grids are in fact nearly aligned (Ave D 1176.6 vs 1173.4, Ave E 2180.9 vs 2178.7), but the current mosaic placement implied by the supplied candidate mosaic coordinates puts sheet 34 about 1070 native px - one full block - west of that, so accepting this control moves sheet 34 by roughly a block. The identity is nevertheless pinned by the printed avenue names and the 300/400 address step on both plates, not by proximity.",
+ "status": "ACCEPTED"
+}

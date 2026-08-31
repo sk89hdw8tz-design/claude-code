@@ -1,0 +1,14 @@
+{
+ "pair": [
+  25,
+  31
+ ],
+ "axis": "avenue",
+ "observer": "crossrow-agent-0",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs",
+ "a_native": 1114.8,
+ "b_native": 1152.6,
+ "corridor": "Ave M",
+ "why_not_one_block_off": "Both crops letter the corridor inside the roadway I measured: 'AVENUE M' is printed in it on sheet 25 (roadway native 1010.2-1217.5, width 207.3 px) and on sheet 31 (native 1047.0-1255.7, width 208.6 px), both ~208 px = the printed 70' avenue width at this sheet's 2.98 px/ft. The one-block-east alternative is lettered 'AVENUE M 1/2' in the same two crops (sheet 25 center 2120.3, sheet 31 center 2155.8), ~1005 px east, so the two lettered corridors cannot be confused; measuring Ave M 1/2 instead gives a cross-sheet shift of +35.5 px against Ave M's +37.8 px, i.e. the two independent avenues agree to 2.3 px, which excludes a one-block (~1005 px) misidentification. The address runs step by hundred-block across Ave M on both sheets: sheet 25 prints 1224 on the block face west of it and 1302-1312 / 1314-1324 east of it along 11TH and 12TH ST; sheet 31 prints 1223/1224 west and 1301-1311 / 1313-1323 east along 12TH and 13TH ST. East of Ave M 1/2 the runs are 1402-1408 (sheet 25) and 1401-1407 (sheet 31), so the 13xx/14xx step happens at Ave M 1/2 and the 12xx/13xx step at Ave M, pinning which is which. The avenue-face numbers step in lockstep with the streets - sheet 25's Ave M faces carry 1002-1027 (10TH-11TH) then 1101-1127 (11TH-12TH), sheet 31's carry 1201-1227 (12TH-13TH) - and the shared 12TH ST frontage is the same physical 1300 block seen from both sides: sheet 25 prints the even run 1302-1324 along its south edge, sheet 31 the odd run 1301-1323 along its north edge. Sheet 25's south margin prints the adjoining plate number '31' and sheet 31's north margin prints '25', confirming the two plates are vertically adjacent in the same avenue column. NOTE: neither reported coordinate is a detection candidate - all three candidates on each sheet (25: 736/1723/2710, 31: 768/1757/2747) sit mid-block just east of the dashed 20-ft alley (sheet 25 alley native 1585.5-1647.3, sheet 31 alley 1622.4-1682.7, both labelled 6\" W. PIPE and 20'), not on any avenue; the reported values are ruler-read avenue-roadway centers.",
+ "status": "ACCEPTED"
+}

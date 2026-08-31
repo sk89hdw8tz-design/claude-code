@@ -1,0 +1,14 @@
+{
+ "pair": [
+  18,
+  22
+ ],
+ "axis": "avenue",
+ "observer": "crossrow-agent-3",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs",
+ "a_native": 1120.7,
+ "b_native": 1191.4,
+ "corridor": "Ave D (Market)",
+ "why_not_one_block_off": "Chosen line is the corridor lettered 'AVE. D. OR MARKET' in its own roadway on BOTH sheets (lettering at native x~1120 on sheet 18 and ~1195 on sheet 22, inside the measured corridor). Faces: sheet 18 1015.7-1225.6 (209.9 px) and sheet 22 1087.2-1295.1 (207.9 px) = 70 ft at the printed scale, a full avenue and not the 20 ft alley. ADDRESS RUNS. Sheet 18, the 9th-St run: west of the line '...321 323' / '322 324' (300 block), east of it '401 403 405 407 409 411' / '402 404 406 408 410 412' (400 block); east of the next avenue, '501 503 505 507' (500 block). Sheet 22, the 9th-St and 10th-St runs: west '319 321 323' / '320 322 324', east '401 403 405 407 409 411' / '402 404 406 408 410 412'. Same 300/400 change across the same corridor on both. ONE BLOCK EAST is excluded: 'AVE. E. OR POST OFFICE' (native 2124.5 on sheet 18, 2196.9 on sheet 22) carries the 400/500 change. ONE BLOCK WEST is excluded: 'AVE. C. OR MECHANIC' (~117 on sheet 18, ~187 on sheet 22), the 200/300 change. Ave D frontage numbers prove the sheets abut at 9th St: 701-727/702-728 (7th-8th) and 801-827/802-828 (8th-9th) on sheet 18, continuing 901-927/902-928 (9th-10th) on sheet 22; sheet 18's bottom margin prints '22' and sheet 22's top margin prints '18'. CANDIDATES REJECTED. Sheet 18 cand#1 (native 1724) is not a corridor - it cuts through the St Mary's Infirmary block; the real mid-block alley there is at 1622.6 (faces 1592.1/1653.0, 60.9 px = 20 ft, dashed, labelled '8 in. W. PIPE', with 401-411 west and 413-423 east, i.e. the same 400 block). Sheet 22 cand#1 (native 1689) is likewise the 20 ft alley (1665.2/1725.3, '10 in. W. PIPE', 402-412 west / 414-424 east). The reported line is therefore NOT one of the proposed candidates on either sheet. CROSS-CHECK: Ave D gives a sheet18->sheet22 offset of +70.7 px and the independent Ave E gives +72.4 px; they agree to 1.7 px, versus ~1004 px for a one-block error.",
+ "status": "ACCEPTED"
+}

@@ -1,0 +1,11 @@
+{
+ "pair": [23, 29],
+ "axis": "avenue",
+ "observer": "crossrow-agent-5",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs",
+ "a_native": 2163.1,
+ "b_native": 2149.4,
+ "corridor": "Ave H (Ball)",
+ "why_not_one_block_off": "Both crops letter the corridor in its own roadway: 'AVE. H OR BALL' is printed inside the roadway I measured on each sheet (sheet 23 roadway native 2054.7-2272.3, sheet 29 native 2040.9-2257.0, both ~213 native px = 69 ft, the printed 70' avenue width). The one-block-west alternative is visible in the same two crops as 'AVE. G OR WINNIE' (sheet 23 center 1154.0, sheet 29 center 1137.6), ~1010 px west, so the two lettered corridors cannot be confused. The block column between Ave G and Ave H runs continuously across the seam with consecutive Galveston block numbers - 310 (Sherman Park, 10th-11th) and 311 (Henry Rosenberg Free School, 11th-12th) on sheet 23, then 312 (12th-13th) and 313 (13th-14th) on sheet 29 - and the address runs on that column's faces step by hundred-block in step with the streets: 1001-1027 / 1101-1127 on sheet 23's Ave G face and 1201-1227 / 1301-1321 on sheet 29's, with 1002-1028 / 1102-1128 then 1202-1228 / 1302-1322 on the Ave H face. The shared 12TH ST frontage (702-724 at the foot of block 311, 701-723 at the head of block 312) confirms the columns are the same one, so the avenue one block east (Ave I / Sealy) or west (Ave F / Church) is excluded. NOTE: neither reported coordinate is a detection candidate - all three candidates on each sheet (23: 728/1751/2774, 29: 726/1746/2767) sit mid-block near the 20-ft alley (sheet 23 alley native 1626.7-1687.0, sheet 29 alley 1610.0-1671.7), not on an avenue; the reported values are ruler-read avenue centers.",
+ "status": "ACCEPTED"
+}

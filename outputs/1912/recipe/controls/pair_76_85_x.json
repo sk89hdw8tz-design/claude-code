@@ -1,0 +1,14 @@
+{
+ "pair": [
+  76,
+  85
+ ],
+ "axis": "avenue",
+ "observer": "crossrow-agent-2",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs",
+ "a_native": null,
+ "b_native": null,
+ "corridor": null,
+ "why_not_one_block_off": "UNRESOLVED because these two sheets have NO avenue in common - there is no line that is the same physical avenue on both, so no honest x control can be drawn. Sheet 76's avenue band runs Ave F to Ave I. Its cand2 crop letters 'AVE. F OR CHURCH' hard against the sheet's west border (neighbour sheet 75 beyond it) with the 600 block immediately east (601 603 605 | 613 615 617 619 621 623 / 602 604 606 608 610 612 | 614 616 618 620 622 624, block 397/398, Galveston Bagging Co.), then 'AVE. G OR WINNIE' with the 700 block east of it (701 703 705 707 / 702 704 706 708). Its cand3 crop letters 'AVE. H OR BALL' and 'AVE. I OR SEALY' with the 800 block between them (802 804 806 808 810 812 | 814 816 818 820 822 824, blocks 277 and 278, 37xx and 38xx avenue frontages), and the sheet's east border - with neighbour sheet 77 lettered beyond it - falls immediately east of Sealy. So the easternmost avenue on sheet 76 is Ave I, the 800/900 break. Sheet 85's westernmost avenue is lettered 'AVENUE K' hard against its own west border, beside the '85' sheet number (cand2 crop), with the 1100 block immediately east of it (1101 1103 1105 1107 1109 1111 | 1113 1115 1117 1119 1121 1123 / 1102-1124, block 99, 39xx avenue frontages) and 'AVENUE L' beyond that; south of the two uncoloured Cemetery tracts the same border column fronts the 1000 block (1001 1003 1005 1007 1009 1011 | 1013 1015 1017 1019 1021 1023), so on the most generous reading sheet 85 begins at Broadway (Ave J), the 900/1000 break. Ave I (800/900) and Ave K (1000/1100) are two block-columns apart, and even the most generous reading of sheet 85's west edge as Ave J leaves it one full column east of sheet 76's Ave I; the 900 block that would have to lie between them is printed on neither sheet. This matches the key-map coverage given in task.json, which puts sheet 76 at x 1925-2280 (F..I) and sheet 85 at x 2430-2925 (J..M 1/2) - disjoint avenue bands with a gap between them, so the two sheets are diagonal rather than stacked neighbours even though they share the 39TH ST seam in y. The proposed candidates cannot rescue the pair: they are mid-block 20-ft alleys on both sheets (sheet 76 cand3 at 2778 falls between 812 and 814 beside the printed 20'; sheet 85 cand2 at 670 falls between 1111 and 1113 beside the printed 20'), and pairing any candidate on sheet 76 with any candidate on sheet 85 would tie together avenues at least one whole block column - about 1000 native px - apart, shearing the mosaic rather than correcting it.",
+ "status": "UNRESOLVED"
+}

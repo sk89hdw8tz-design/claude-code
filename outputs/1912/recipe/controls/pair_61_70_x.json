@@ -1,0 +1,14 @@
+{
+ "pair": [
+  61,
+  70
+ ],
+ "axis": "avenue",
+ "observer": "crossrow-agent-4",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs",
+ "a_native": null,
+ "b_native": null,
+ "corridor": "(none - sheets share no avenue)",
+ "why_not_one_block_off": "No shared corridor exists, so no control can honestly be reported. The two sheets cover disjoint avenue bands and the premise that every avenue in the band crosses both sheets is false for this pair. Sheet 61 runs from Avenue F to Avenue I: its west margin letters 'AVE. F. OR CHURCH' (centre native ~152, with the adjoining plate '60' printed at that margin) and its east margin letters 'AVE. I. OR SEALY' (centre native ~3159, adjoining plate '62'), with 'AVE. G. OR WINNIE' at ~1152 and 'AVE. H. OR BALL' at ~2152 between them; its address runs are correspondingly 600 (618-624), 700 (701-724) and 800 (801-824) block, and its south margin prints the adjoining plate '68'. Sheet 70 runs from Avenue K to Avenue M 1/2: its west margin letters 'AVENUE K' (centre native ~151, adjoining plate '69'), then 'AVENUE L' at ~1180, 'AVENUE M' at ~2178 and 'AVENUE M 1/2' at ~3163 at its east margin (adjoining plate '71'); its address runs are 1100 (1101-1124), 1200 (1201-1224) and 1300 (1301-1324) block, and its north margin prints the adjoining plates '62' and '63'. The lowest-lettered avenue on sheet 70 (K) is therefore two corridors east of the highest-lettered avenue on sheet 61 (I), with Avenue J (Broadway) lying between them and appearing on neither sheet; the sheets are not even edge-adjacent (61's south neighbour is plate 68, 70's north neighbours are plates 62 and 63). The detection candidates are consequently different physical streets: on sheet 61 the candidates 398/1434/2470 sit in the blocks between Avenues F-G, G-H and H-I, while on sheet 70 the candidates 538/1572/2607 sit between Avenues K-L, L-M and M-M 1/2. Any pairing of them would tie two unrelated corridors together and shear the map, so none is recorded.",
+ "status": "UNRESOLVED"
+}

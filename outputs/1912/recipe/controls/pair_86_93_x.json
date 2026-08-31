@@ -1,0 +1,14 @@
+{
+ "pair": [
+  86,
+  93
+ ],
+ "axis": "avenue",
+ "observer": "crossrow-agent-7",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs. No corridor is common to the two sheets, so no control is recorded.",
+ "a_native": null,
+ "b_native": null,
+ "corridor": "(none - sheets are not adjacent and share no avenue)",
+ "why_not_one_block_off": "These two sheets have no avenue in common, so no honest identification is possible and none is recorded. Sheet 86 draws four avenues, lettered in their roadways AVENUE M 1/2 (centreline native x ~168.5), AVENUE N (~1167.1), AVENUE N 1/2 (~2168.0) and AVENUE O (west block line 3055.1, centreline ~3160, east face running off the sheet's east neatline); its three block columns carry the 1400, 1500 and 1600 hundred-blocks (e.g. 1401-1423, 1501-1523, 1601-1623 along 40th St). Sheet 93 draws AVE. J OR BROADWAY (~133), AVENUE K (~1171.7), AVENUE L (~2169.2) and AVENUE M (west block line at 3053.1, centreline ~3158, its east block face running off the sheet's east neatline at ~3300); its block columns carry the 1000, 1100 and 1200 hundred-blocks (1101-1123 between K and L, 1201-1223 between L and M along 43rd St). Sheet 93's easternmost corridor is therefore Avenue M, the 1200|1300 divide, while sheet 86's westernmost is Avenue M 1/2, the 1300|1400 divide: they are adjacent but distinct lines with the whole 1300 block between them, and that intervening block lies on neither sheet. The marginal plate references confirm the sheets are not stacked at all: sheet 86's south margin, across 42nd St, reads 94 and 95, not 93; sheet 93's north margin, across 42nd St, reads 85; and the roadway east of Avenue M on sheet 93 is marked 94. Sheets 86 and 93 are diagonal neighbours meeting only near the 42nd St / Avenue M corner. Pairing the detection candidates (sheet 86: 508, 1548, 2589; sheet 93: 722, 1747, 2772) would tie two different avenues together and shear the mosaic by roughly one block (~1010 px, ~330 ft), so no coordinates are given. If an x tie is wanted for sheet 93 it should be solved against sheet 85 (directly north, sharing the same J-M avenue band) or sheet 94 (directly east, sharing Avenue M).",
+ "status": "UNRESOLVED"
+}

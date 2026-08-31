@@ -1,0 +1,14 @@
+{
+ "pair": [
+  21,
+  27
+ ],
+ "axis": "avenue",
+ "observer": "crossrow-agent-2",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs",
+ "a_native": 2156.7,
+ "b_native": 2180.8,
+ "corridor": "Ave B (Strand)",
+ "why_not_one_block_off": "The chosen corridor is lettered 'AVE. B. OR STRAND' vertically inside the roadway I measured on BOTH sheets. Sheet 21: casings at native 2035.3 and 2278.1, width 242.8 native px = 80.9 ft, matching the 80' printed beside that corridor; sheet 27: casings 2061.2 and 2300.4, width 239.2 px = 79.7 ft, also printed 80'. The 80-ft width is itself a discriminator here, since the neighbouring Water St corridor measures 70 ft on both sheets. Address runs pin the same physical line. Sheet 21: the column west of Strand carries the 100 block on both street faces - 102 104 106 108 110 112 | 114 116 118 120 122 124 along 11TH ST and again along 12TH ST, with 101 103 105 107 109 111 | 113 115 117 119 121 123 on the facing side (blocks 670, 10th-11th, and 671, 11th-12th) - while the column east of it starts the 200 block (201 203 205 207 / 202 204 206 208). Sheet 27: the same corridor has 101-123 / 102-124 (100 block) on its west face along 12TH and 13TH ST (blocks 672, 673) and 201 203 205 207 / 202 204 206 208 (200 block) on its east face. ONE BLOCK WEST is excluded because that corridor is separately lettered 'AVE. A. OR WATER' on both sheets (centres native 1133.2 on sheet 21, 1157.6 on sheet 27, about 1023 px west), measures 70 ft not 80 (212.5 px on sheet 21, 211.6 px on sheet 27, printed 70'), carries four parallel rail lines drawn in its roadway, and separates the wharf-front blocks from the 100 block rather than the 100 from the 200. ONE BLOCK EAST is excluded because the 200-block run (201-208) lies between Strand and it, so that corridor is the 200/300 break (Ave C or Mechanic), not the 100/200 break. NOTE: neither reported coordinate is a proposed candidate - the candidate lists are identical on the two sheets (748 / 1763 / 2778) and cand1 falls inside the 100 block on a lot line east of the 20-ft mid-block alley (measured alley faces native 1607.1-1668.1 on sheet 21, labelled 20' with a 6\" W. PIPE on both sheets), with no avenue name and no hundred-block change across it; the reported values are ruler-read avenue centres. Corroboration: the two independently measured lettered avenues give the same sheet-to-sheet x offset - Strand -24.1 px and Water -24.4 px, agreeing to 0.3 px, where a one-block error would be about 1023 px - and the shared 12TH ST seam runs block 671 (11th-12th) on sheet 21 straight into block 672 (12th-13th) on sheet 27 in the same column.",
+ "status": "ACCEPTED"
+}

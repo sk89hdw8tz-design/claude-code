@@ -1,0 +1,15 @@
+{
+ "pair": [
+  86,
+  94
+ ],
+ "axis": "avenue",
+ "observer": "crossrow-agent-10",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs",
+ "a_native": 1169.2,
+ "b_native": 2172.9,
+ "corridor": "Ave N",
+ "why_not_one_block_off": "PRINTED NAME: the corridor is lettered AVENUE N in the roadway on BOTH sheets - sheet 86 at native x~1169 (8-in. W. PIPE main dashed down its centre), sheet 94 at native x~2173 (AVENUE N.). AVENUE-FACE RUNS: on 86 its west face carries 4002-4028 (even) and its east face 4001-4027 (odd), i.e. the 40th-41st segment of Ave N; on 94 its west face carries 4302-4330 and its east face 4301-4329, the 43rd-45th segment. CROSS-STREET RUNS (the hundred-block test): on sheet 86 along 42nd St the run west of the line ends 1420 1422 1424 and the run east of it begins 1502 1504 1506 (and along 41st St, ...1424 | 1501 1503 1505); on sheet 94 along 42nd St the run west ends 1419 1421 1423 and the run east begins 1501 1503 1505. Identical 1400|1500 transition on both plates. ONE BLOCK WEST is AVENUE M 1/2 - on 94 at native ~1174, where the runs go 1300|1400; ONE BLOCK EAST is AVENUE N 1/2 - on 86 at native ~2168, where the runs go 1500|1600. Neither shows a 1400|1500 transition, so neither can be this line. NOTE ON THE PROPOSED CANDIDATES (rejected, and none is the avenue): sheet 94's whole grid sits one full avenue-block (~999 native px) west of sheet 86's in native coordinates, so matching candidate 86:1548 to candidate 94:1552 by equal native x would tie Ave N on 86 to Ave M 1/2 on 94 - exactly one block off. In any case the candidates are not corridors: on 86, x=1548 falls in open block interior between street numbers 1508 and 1510, and x=508 between 1408 and 1410. The real 70-ft avenue corridors on 86 (block-face edge pairs) are M 1/2 ~170, N 1064.0/1273.0 -> 1169, N 1/2 ~2168, O ~3168; the 20-ft mid-block alleys are at ~670/1668/2666. On 94 they are M ~176, M 1/2 1069.0/1279.5 -> 1174, N 2067.0/2278.7 -> 2173, N 1/2 ~3171.",
+ "status": "ACCEPTED",
+ "measurement_note": "Native x = raster x of the archival sheet scan work/sheets/1912w/u<unit>.jpg (3327x3898), origin top-left; verified against the supplied crops (the task's red line at native 1548 on sheet 86 falls between street numbers 1508 and 1510 in both renderings). Value is the midpoint of the two block-face lines bounding the 70-ft roadway, measured in the block row ADJACENT TO THE 42nd St SEAM (sheet 86 y 2700-3380: centres 1168.5, 1169.8; sheet 94 y 300-1150: centres 2173.0, 2172.7). Each plate carries a small skew, so the corridor centre drifts ~6 px over the full sheet height (86: 1163.3 at top -> 1169.8 at bottom; 94: 2173.0 at top -> 2165.5 at bottom); the near-seam reading is the one that registers the seam. Drafted roadway width 209 px (86) / 212 px (94) against a printed 70'."
+}

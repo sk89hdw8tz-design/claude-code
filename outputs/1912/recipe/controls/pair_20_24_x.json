@@ -1,0 +1,14 @@
+{
+ "pair": [
+  20,
+  24
+ ],
+ "axis": "avenue",
+ "observer": "crossrow-agent-1",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs",
+ "a_native": 2290.6,
+ "b_native": 2194.0,
+ "corridor": "Ave K",
+ "why_not_one_block_off": "Ave K is lettered 'AVENUE K.' in the roadway on BOTH sheets and is the 1000/1100 hundred-block break on the cross streets. Sheet 20: the block faces west of it read 1002 1004 1006 1008 1010 1012 | 1014 1016 1018 1020 1022 1024 on 8th St and 1001 1003 ... 1011 | 1013 1015 ... 1023 on 9th St (the 1000 block); the first run east of it is 1101/1102. Its own frontage carries 709-728 (7th-8th) and 801-828 (8th-9th). Sheet 24: west faces 1001-1011 | 1013-1023 and 1002-1012 | 1014-1024 on 9th and 10th St, first run east 1101 1103 1105 1107 / 1102 1104 1106 1108; own frontage 901-928 (9th-10th) and 1001-1022 (10th-11th). ONE BLOCK WEST is excluded because it is Broadway, lettered 'AVE. J OR BROADWAY' and printed 150' / '150 ft wide' on both sheets (a 455 px roadway, not 210 px), and it carries the 900/1000 break. ONE BLOCK EAST is excluded because it is lettered 'AVENUE L.' and carries the 1100/1200 break (sheet 20 cand3 crop shows 1101-1111 / 1102-1112 and 1113-1123 / 1114-1124 between K and L). The proposed candidates (1682 on sheet 20, 1808 on sheet 24) were REJECTED: both lie inside the block, beside the mid-block 20 ft alley (drawn dashed, labelled '6 IN. PIPE' / '6 W. PIPE', printed 20', measured 1757.3-1818.5 native on sheet 20) with no avenue name and no hundred-block change across it. Reported value is the avenue centerline read off the green native-pixel ruler on the block adjoining the shared 9th St seam: sheet 20 casings 2185.1 and 2396.1 (width 211 px = 70 ft, printed 70'), sheet 24 casings 2086.4 and 2301.6 (width 215 px). Both reads reproduced independently on the cand1 and cand3 crops to better than 0.5 px. Corroboration: Broadway's east casing gives a sheet-to-sheet offset of 94.9 px against Ave K's 96.5 px.",
+ "status": "ACCEPTED"
+}

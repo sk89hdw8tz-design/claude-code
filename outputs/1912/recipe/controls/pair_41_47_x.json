@@ -1,0 +1,14 @@
+{
+ "pair": [
+  41,
+  47
+ ],
+ "axis": "avenue",
+ "observer": "crossrow-agent-3",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs",
+ "a_native": null,
+ "b_native": null,
+ "corridor": "none - sheets share no avenue",
+ "why_not_one_block_off": "UNRESOLVED - these two sheets share NO avenue, so no avenue x-control can be read from them. The premise that every avenue in the band crosses both sheets does not hold for this pair. PRINTED EVIDENCE. Sheet 41 letters exactly four avenues in their roadways, left to right: 'AVENUE L' (~159), 'AVENUE M' (1156.7), 'AVENUE M 1/2' (2166.4) and 'AVENUE N' (3173.9, its easternmost, only ~153 px inside the 3327 px sheet edge). Sheet 47 letters, left to right: 'AVENUE O 1/2' (175.7, its westernmost), 'AVENUE P' (1184.1), 'AVENUE P 1/2' (2196.3) and 'AVENUE Q' (3191.2). The two lettered sets are disjoint: between sheet 41's easternmost avenue (N) and sheet 47's westernmost (O 1/2) lie Avenue N 1/2 and Avenue O, and NEITHER of those appears on EITHER sheet - roughly two full avenue-blocks of city are covered by neither. There is therefore no line that is the same physical avenue on both, and any pairing of a sheet-41 corridor with a sheet-47 corridor would be at least three blocks off. The address runs confirm the separation rather than resolving it: sheet 41's numbered-street runs across its avenues are in the 1300-1600 range while sheet 47's are in the 1900-2000 range. The sheets do abut in the STREET (y) direction - sheet 41 covers 18th to 21st/Center St and sheet 47 covers 21st/Center to 24th - but they sit in different columns, which the margins state outright: sheet 41's bottom margin prints '45' (the sheet directly below it is 45, not 47) and sheet 47's top margin prints '26' (the sheet directly above it is 26, not 41). Sheet 41's side margins print 40 (W) and 42 (E); sheet 47's print 46 (W) and 54 (E). So 41 and 47 are not a stacked pair in the same column and cannot be tied in x to each other. For the record, the proposed candidates are all mid-block alleys or non-corridors: sheet 41's 866/1833/2801 sit at its 20 ft alleys (655.0, 1663.4, 2667.8) or inside blocks, and sheet 47's 574/1585/2596 likewise. Reporting any of these as a shared line would shear the map, so no coordinate is given.",
+ "status": "UNRESOLVED"
+}

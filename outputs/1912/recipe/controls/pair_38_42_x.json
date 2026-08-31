@@ -1,0 +1,14 @@
+{
+ "pair": [
+  38,
+  42
+ ],
+ "axis": "avenue",
+ "observer": "crossrow-agent-4",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs",
+ "a_native": 2196.7,
+ "b_native": 2178.9,
+ "corridor": "Ave O",
+ "why_not_one_block_off": "The corridor is lettered 'AVENUE O' vertically inside its own roadway on both sheets: sheet 38 block faces at native 2088.3 and 2306.5 (width 215 px = 71 ft, and 70' is printed beside that corridor), sheet 42 faces at native 2072.3 and 2285.1 (width 212 px = 70 ft, also printed 70'). Address runs identify it as the same physical line. Sheet 38: the column west of it carries the 1600 block on both its streets - 1602 1604 1606 1608 1610 1612 1614 1616 1618 1620 1622 1624 along 17TH ST and 1601..1623 along 18TH ST - and the column east of it opens the 1700 block (1701 1703 1705 1707 / 1702 1704 1706 1708). Sheet 42: the same corridor carries 1601..1623 / 1602..1624 (1600 block) on its west face along 18TH and 19TH ST and 1701..1707 / 1702..1708 (1700 block) on its east face. One block WEST is excluded because that corridor is separately lettered 'AVENUE N 1/2' on both sheets (centres native ~1186.7 on sheet 38, ~1173.5 on sheet 42, ~1010 px away) and its own west face carries the 1500 block (1523/1524), so it divides 1500 from 1600, not 1600 from 1700. One block EAST is excluded because the next corridor east lies beyond native ~3190, at the sheets' east margin, and the 1700-block faces read continuously up to it. Further confirmation that the sheets are not offset by a block: the 1600-block column continues across the shared 18TH ST seam with the outlot-45 quarters meeting there - 'S.E. 45' immediately north of 18TH ST on sheet 38 and 'S.W. 45' immediately south of it on sheet 42, with 'S.W. 46' next north on sheet 38 and 'S.E. 44' next south on sheet 42 - and the sheet-to-sheet x offset measured on Avenue O (17.8 px) is reproduced by Avenue N 1/2 (~13 px, its west face being fainter) where a one-block error would be ~1010 px. NOTE: neither reported coordinate is one of the proposed candidates. All three candidates on each sheet (38: 800/1794/2789, 42: 778/1777/2776) fall inside the blocks beside the 20-ft mid-block alley (sheet 38 alley faces native 1662-1723, sheet 42 alley 1701-1707 region, each printed 20'), not on an avenue; the values reported here are ruler-read avenue centres.",
+ "status": "ACCEPTED"
+}

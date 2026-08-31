@@ -1,0 +1,14 @@
+{
+ "pair": [
+  90,
+  97
+ ],
+ "axis": "avenue",
+ "observer": "crossrow-agent-0",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs",
+ "a_native": null,
+ "b_native": null,
+ "corridor": "none - sheets share no avenue",
+ "why_not_one_block_off": "No corridor is shared, so no position could honestly be recorded, and the 'one block off' question never arises - any pairing would be at least two avenues wrong. Sheet 90 draws avenues S 1/2, T and T 1/2 over streets 39TH-42ND: its cand2 crop letters 'AVENUE S 1/2' (roadway center native ~172) and 'AVENUE T' (center ~1172), its cand1 crop letters 'AVENUE T' again and carries 'Av. T 1/2' in the south margin (center ~2174). Sheet 90's address runs along 41ST/42ND ST are 2601-2623 / 2602-2624 in the block between Ave S 1/2 and Ave T, 2701-2729 / 2702-2730 between Ave T and Ave T 1/2, and 2801-2807 / 2802-2808 east of Ave T 1/2; its avenue faces carry 4001-4027 / 4002-4028 (40TH-41ST) and 4101-4127 / 4102-4128 (41ST-42ND). Sheet 97 draws avenues Q 1/2, R, R 1/2 and S over streets 42ND-45TH: its cand1 crop letters 'AVENUE R' (roadway native 1032.8-1243.1, center ~1138) and 'AVENUE R 1/2' (center ~2136), with Ave S at its east margin (center ~3132) and Ave Q 1/2 at its west margin (~150). Sheet 97's address runs along 42ND/43RD ST are 2223/2224 west of Ave R, 2301-2323 / 2302-2324 between Ave R and Ave R 1/2, and 2401-2408 east of Ave R 1/2; its avenue faces carry 4201-4227 / 4202-4228 (42ND-43RD) and 4301-4321 (43RD-44TH). So sheet 97's hundred-blocks run 22xx-24xx and sheet 90's run 26xx-28xx: the 25xx block, between Ave S (sheet 97's east limit) and Ave S 1/2 (sheet 90's west limit), is on neither plate, and no avenue crosses both. The margin references agree that the two plates are not vertically adjacent: sheet 90's south margin prints '98', not 97, and sheet 97's north margin prints '89', not 90 - the rows are offset in x, so 90 and 97 are diagonal neighbours meeting at most at a corner. The detector's near-seam candidates are in any case both mid-block: sheet 90 x=1764 sits inside the 2700 block between the 2714 and 2716 frontages, and sheet 97 x=1735 sits inside the 2300 block just east of its dashed 20-ft alley (native 1607.8-1666.6). Reported UNRESOLVED rather than forcing a control between plates that share no corridor.",
+ "status": "UNRESOLVED"
+}

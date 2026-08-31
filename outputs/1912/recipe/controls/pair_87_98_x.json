@@ -1,0 +1,14 @@
+{
+ "pair": [
+  87,
+  98
+ ],
+ "axis": "avenue",
+ "observer": "crossrow-agent-9",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs",
+ "a_native": null,
+ "b_native": null,
+ "corridor": "none - sheets share no avenue",
+ "why_not_one_block_off": "No corridor is shared, so no position could honestly be recorded. The two sheets lie in different avenue columns of the mosaic, several blocks apart, and are not vertically adjacent either. Sheet 87 draws avenues O, O 1/2, P and P 1/2 over streets 39TH-42ND: crop cand1 letters 'AVENUE O 1/2' and 'AVENUE P.' flanking the 1800 block of 41ST/42ND ST (1802-1824 / 1801-1823) with the 1900 block (1902-1908) east of Ave P, and crop cand3 shows its east margin lettered 'AVENUE P 1/2' with neighbour plate '88' beyond and the 1900 block (1902-1924) as its last hundred; avenue-face numbers run 4001-4027 and 4101-4127. Its south margin reference reads '95' and '96', not 98. Sheet 98 draws avenues S, S 1/2, T and T 1/2 over streets 42ND-45TH: crop cand1 letters 'AVENUE S.' and 'AVENUE S 1/2' flanking the 2500 block of 42ND/43RD ST (2501-2511 / 2502-2512) with the 2600 block (2601-2607 / 2602-2608) east of Ave S 1/2; avenue-face numbers run 4201-4227 and 4301-4321. Its north margin reference reads '89' and its west neighbour '97', not 87. So sheet 87's hundred-blocks run 1700-1900 and sheet 98's run 2500-2700: the avenues Q, Q 1/2, R and R 1/2 (hundred-blocks 2000-2400) lie between them and are on neither sheet. There is no avenue that crosses both plates, so no 'one block off' question even arises - any pairing of a sheet 87 line with a sheet 98 line would be at least four avenues wrong. The detector's near-seam candidates (sheet 87 x=1750, sheet 98 x=768) are in any case both mid-block: sheet 87 x=1750 sits inside the 1800 block just east of its 20 ft alley, and sheet 98 x=768 sits inside the 2500 block between the 2514 and 2516 frontages. Reported UNRESOLVED rather than forcing a control between plates that share no corridor.",
+ "status": "UNRESOLVED"
+}

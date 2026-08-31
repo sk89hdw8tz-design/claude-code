@@ -1,0 +1,14 @@
+{
+ "pair": [
+  83,
+  91
+ ],
+ "axis": "avenue",
+ "observer": "crossrow-agent-1",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs",
+ "a_native": 1665.0,
+ "b_native": 1664.2,
+ "corridor": "Ave F (Church)",
+ "why_not_one_block_off": "Ave F is lettered 'AVE. F OR CHURCH' down the roadway on BOTH sheets and is the 500/600 hundred-block break on the cross streets. Sheet 83: 41st St reads 501 503 505 507 509 511 | 513 515 517 519 521 523 west of the corridor and 601 603 605 607 east of it; 42nd St reads 502 504 506 508 510 512 | 514 516 518 520 522 524 west and 602 604 606 608 east. Sheet 91 repeats exactly that pattern on 42nd and 43rd St (501-511 | 513-523 west, 601-607 east; 514-524 west, 602-608 east). The corridor's own frontage is 4001-4027 / 4101-4128 on sheet 83 (40th-41st, 41st-42nd) and 4201-4228 / 4301-4320 on sheet 91 (42nd-43rd, 43rd-44th) - consecutive segments of one avenue across the shared 42nd St seam. Printed 70' on both; measured 211.3 px (sheet 83) and 210.4 px (sheet 91). ONE BLOCK WEST is excluded because it is lettered 'AVE. E OR POST OFFICE' (also 70', with a 6 in. water pipe and the railroad fan running in it) and carries the 400/500 break - the run west of it reads 423/424 on both sheets. ONE BLOCK EAST is Ave G (Winnie), the 600/700 break, beyond the 601-607 block. The proposed candidates (1761 on both sheets) were REJECTED: they sit inside the block just east of the mid-block 20 ft alley (printed 20', dashed, labelled 6 W. PIPE, measured 1683-1745 native), which carries no avenue name and no hundred-block change (512 | 514 continue in the same hundred). Reported value is the avenue centerline on the block adjoining the 42nd St seam: sheet 83 casings 1559.3 and 1770.6, sheet 91 casings 1559.0 and 1769.4. NOTE the two sheets land within 0.8 px of each other in native x - the ~90 px separation in the current mosaic is the shear being corrected. Corroboration: Ave E's east casing reads 768.1 (sheet 83) vs 769.5 (sheet 91), a 1.4 px offset, agreeing with Ave F's 0.8 px.",
+ "status": "ACCEPTED"
+}

@@ -1,0 +1,14 @@
+{
+ "pair": [
+  84,
+  95
+ ],
+ "axis": "avenue",
+ "observer": "crossrow-agent-2",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs",
+ "a_native": null,
+ "b_native": null,
+ "corridor": null,
+ "why_not_one_block_off": "UNRESOLVED because these two sheets have NO avenue in common - their avenue bands do not overlap at all, so no line is the same physical avenue on both and no x control can honestly be drawn. Sheet 84's band runs Ave G to Ave J. Its cand1 crop letters 'AVE. H OR BALL' and 'AVE. I OR SEALY' flanking the 800 block (802 804 806 808 810 812 | 814 816 818 820 822 824 along 41ST and 42ND ST, avenue frontages 4001-4028 and 4101-4128, blocks 280 and 281), and its cand2 crop letters 'AVE. I OR SEALY' and 'AVE. J OR BROADWAY' flanking the 900 block (901 903 905 907 909 911 | 913 915 917 919 921 923 / 902-924, blocks 220 and 221), with Broadway printed 150' wide and carrying the fire-limit dash line along sheet 84's east border. The highest avenue on sheet 84 is therefore Broadway, the 900/1000 break. Sheet 95's band runs Ave N 1/2 to Ave P. Its cand2 crop letters 'AVENUE N 1/2' hard against the sheet's west border beside the '95' sheet number, with the 1600 block immediately east (1601 1603 1605 1607 1609 1611 | 1613 1615 1617 1619 1621 1623 / 1602-1624, outlot quarters SW 33 / SE 32), and its cand1 crop letters 'AVENUE O' and 'AVENUE O 1/2' flanking the 1700 block (1701 1703 1705 1707 1709 1711 | 1713 1715 1717 1719 1721 1723 / 1702-1724, outlot quarters NW 58 / NE 57), with the 1800 block beginning east of Ave O 1/2. The lowest avenue on sheet 95 is therefore Ave N 1/2, the 1500/1600 break. Broadway and Ave N 1/2 are five or six avenue columns apart (Aves K, L, M, M 1/2 and N lie between them, none of which is printed on either sheet). This matches the key-map coverage given in task.json, which puts sheet 84 at x 2045-2430 (G..J) and sheet 95 at x 3230-3590 (N 1/2..P) - widely disjoint bands; although the two sheets occupy adjacent key-map rows in y (42ND ST), they sit in entirely different avenue columns and are not stacked neighbours at all. The proposed candidates are mid-block 20-ft alleys on both sheets besides (sheet 84 cand1 1569 and cand2 2586 fall between 812|814 and 912|914; sheet 95 cand1 1562 falls between 1711|1713 and cand2 522 between 1611|1613, each beside a printed 20'), so pairing any of them would tie avenues five or more block columns - some 5000 native px - apart.",
+ "status": "UNRESOLVED"
+}

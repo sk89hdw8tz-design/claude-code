@@ -1,0 +1,11 @@
+{
+ "pair": [68, 77],
+ "axis": "avenue",
+ "observer": "crossrow-agent-5",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs",
+ "a_native": null,
+ "b_native": null,
+ "corridor": null,
+ "why_not_one_block_off": "NO AVENUE IS COMMON TO THESE TWO SHEETS, so no x control can be read from this pair. Printed evidence: sheet 68 letters its corridors 'AVE. E OR POST OFF.', 'AVE. F OR CHURCH', 'AVE. G OR WINNIE' and 'AVE. H OR BALL', with the map content ending at native ~3280 - Ave H's roadway (west face native 3061.1) runs off the sheet edge, so Ave H is the last corridor on the plate and no Ave I appears. Sheet 77 letters 'AVE. I OR SEALY', 'AVE. J OR BROADWAY 150 ft wide', 'AVENUE K' and 'AVENUE L'; its content starts at native ~30 with only Ave I's east face on the plate (native 209.7), and Ave H would fall near native -800, off the sheet. The two bands (E-H and I-L) are adjacent but disjoint. Block numbers confirm it independently: Galveston blocks run block = C - 60*(avenue column) + (street), verified on sheet 23/29 where the Ave G-H column gives blocks 310-313 at 10th-14th. Sheet 68 prints 453-455 (34xx/35xx addresses, Ave E-F column), 393-395 (Ave F-G) and 333-335 (Ave G-H); sheet 77 prints 216-218 (Ave I-J), 156-158 (Ave J-K) and 96-98 (Ave K-L) - four avenue columns apart, with the intervening Ave H-I column (blocks 273-278) on neither plate. The printed sheet-edge indices agree: sheet 68's south margin reads 75 and 76 (not 77) and its east margin 69; sheet 77's north margin reads 69, its west margin 76, its east margin 78. So 68 and 77 are diagonal neighbours meeting only near the 68/69/76/77 corner, not a stacked pair, and the premise that every avenue in the band crosses both sheets fails here. The detection candidates are in any case all mid-block: on sheet 68 they sit just east of the 20-ft alleys (block 335 alley native 2637.6-2694.9 vs candidate 2778), and on sheet 77 candidate 1518 is a lot line ~160 px west of block 156's alley. To tie 68 to 77 in x, chain through a sheet that genuinely shares a corridor - 68-69 (side by side, Ave H) then 69-77 (stacked), or 68-76 (stacked) then 76-77 (side by side).",
+ "status": "UNRESOLVED"
+}
