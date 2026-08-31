@@ -1,7 +1,14 @@
-{"pair": [81, 82], "axis": "avenue", "observer": "agent-batch3",
+{
+ "pair": [
+  81,
+  82
+ ],
+ "axis": "avenue",
+ "observer": "agent-fix81",
  "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
  "corridor": "Ave R 1/2",
- "a_native": 3150.0, "b_native": 172.0,
- "why_not_one_block_off": "Sheet 81 covers Q/Q 1/2/R/R 1/2 and sheet 82 covers R 1/2/S/S 1/2/T, so Ave R 1/2 is the only shared corridor; both plates print 'AVENUE R 1/2' in this gutter (twice each, in the 36th-37th and 38th-39th bands) and each prints the other's number beside it ('82' on sheet 81, '81' on sheet 82). The cross-street run changes hundred-block exactly here: sheet 81's block west of the avenue reads 2315/2317/2319/2321/2323/2325 with evens 2316/2318/2320/2322/2324; sheet 82's block east of it reads 2401/2403/2405/2407/2409 with 2402/2404/2406/2408/2410. One corridor west on sheet 81 the change is 21xx->22xx at Ave Q 1/2 (2123 west, 2201/2203/2205 east; faces 1040/1254) and 22xx->23xx at Ave R (2221/2223 west, 2301/2303/2305 east; faces 2048/2260). The avenue frontage runs interlock: sheet 81's east block face carries evens 3602,3604,3606...3628 and sheet 82's west block face the odds 3601,3603,3605...3627, the two sides of the same 36th-37th segment.",
- "note": "Detection candidates (81: 740/1750/2760; 82: 2596/1586/576) are mid-block lines. '70'' is printed mid-avenue on both plates - native x 3154 on sheet 81, native x 171 on sheet 82 - and matches the face-derived centres (sheet 81 west face 3041 + 105 = 3146; sheet 82 east face 278 - 105 = 173); 3150 / 172 recorded. Avenue width 70' confirmed on both plates from Ave Q 1/2 (214 px) and Ave R (212 px) on sheet 81 and Ave S (208 px) on sheet 82. CAUTION: over native y ~1500-2400 the 'Negro Recreation Park' block (SE 135) is drafted straight across this right-of-way on both plates, so the corridor has no faces in that band; both readings were taken in the 36th-37th band above it. Avenue-to-avenue pitch on sheet 81 is ~1005 px (Q 148, Q 1/2 1147, R 2154), consistent with R 1/2 at ~3155.",
- "status": "ACCEPTED"}
+ "a_native": 3153.0,
+ "b_native": 181.5,
+ "why_not_one_block_off": "Sheet 82 letters 'AVENUE R 1/2' at its west margin with a printed 70' bracket, its east face carrying avenue numbers '3601 3603 ... 3627' and the 36th St run beginning '2401 2403 2405 2407 2409 2411'. Sheet 81's east corridor carries the matching 2300 side: avenue numbers '3602 3604' and 36th St run ending '2317 2319 2321 2323', with '70' ' lettered in the corridor. So the 2300/2400 change lands on this avenue on both plates; Ave R one west is 2200/2300, Ave S one east 2400/2500. Faces: sheet 81 x=3048/3260; sheet 82 x=77 (west line of the 70' bracket) / 286 (block face).",
+ "status": "ACCEPTED"
+}

@@ -1,0 +1,14 @@
+{
+ "pair": [
+  17,
+  18
+ ],
+ "axis": "avenue",
+ "observer": "agent-fix17",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed labels",
+ "corridor": "Ave C (Mechanic)",
+ "a_native": 3168.8,
+ "b_native": 119.5,
+ "why_not_one_block_off": "The two plates name each other in the margin: sheet 17 prints '18' in its east margin beside the vertical legend 'MECHANIC' (and, one block-row down, 'AVE. C OR'); sheet 18 prints '17' in its west margin beside the same vertical legend 'MECHANIC'. The same 700-block of Mechanic is drafted on both, split by parity across the corridor: sheet 17 carries the EVEN west-side run 704,706,708,710,712,714,716,718,720,722,724,726 (block 607, between 7TH ST. and the 80'-wide 8th St) while sheet 18 carries the ODD east-side run 703,705,707,709,711,713,715,717,719,721,723,725 at the same native y (both runs span y~1620-2360). The cross-street hundreds also step exactly once across this line: 8th St reads 214-224 / 213-223 west of it on sheet 17 and 302-312, 301-311 east of it on sheet 18, i.e. the 200/300 transition. One block west on sheet 17 is Ave B, labelled 'AVE. B OR STRAND' with the 100/200 transition; one block east on sheet 18 is 'AVE. D OR MARKET' with the 300/400 transition (401-407 / 402-408). NOTE: the key-map note supplied for sheet 17 ('isolated SW outlot sheet, outlots 6 and 7, 50TH-52ND') does not describe this plate at all - the raster work/sheets/1912w/u17.jpg is a downtown wharf-district plate covering 7TH-9TH streets from the wharf front to Ave C, with 'Located 3 Miles W of P.O.', Sealy Hospital, University Hall and Seawall Blvd printed on it. The key-map entry is mis-assigned; the printed evidence, not the key map, was used. MEASUREMENT: neither plate draws both curbs of Mechanic (each is cut inside the corridor), so each value is the corridor CENTRELINE = the drafted block face plus half the printed 70' avenue width, using that plate's own scale. Sheet 17: west (near) face of Mechanic at x=3062.7 (ink profile over y1600-2400, peak 3062/3063); scale from the printed 80' 8th St, faces at y=2438.8 and 2681.2 -> 242.4 px = 3.030 px/ft, so 35' = 106.1 px -> centre 3168.8. Sheet 18: east (near) face at x=225.0 (profile peak 224/225/226 over the same y band); 8th St faces at y=2446.6 and 2687.7 -> 241.1 px = 3.014 px/ft, 35' = 105.5 px -> centre 119.5. The two plates' independent scales agree to 0.5%.",
+ "status": "ACCEPTED"
+}

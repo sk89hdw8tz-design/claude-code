@@ -1,0 +1,14 @@
+{
+ "pair": [
+  74,
+  81
+ ],
+ "axis": "avenue",
+ "observer": "agent-fix81",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "Ave R 1/2",
+ "a_native": 1166.5,
+ "b_native": 3153.0,
+ "why_not_one_block_off": "The 2300/2400 change sits on this avenue. Sheet 81 east block face prints avenue numbers '3602 3604' with 36th St run ending '2317 2319 2321 2323' (2300 block, R to R 1/2) and '70' ' lettered in the corridor. Sheet 74, 34th-35th row: west face prints '3336 3402', east face '3401' with the 34th St run beginning '2401 2403 2405 2407 2409'. So sheet 81 shows the 2300 side and sheet 74 the 2400 side of the same avenue. Ave R one block west would show 2200/2300 and Ave S one east 2400/2500. Faces: sheet 74 x=1063/1270, sheet 81 x=3048/3260 (both ~209-212 px = 70').",
+ "status": "ACCEPTED"
+}

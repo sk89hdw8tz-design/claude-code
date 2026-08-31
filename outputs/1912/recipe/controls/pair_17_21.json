@@ -1,0 +1,14 @@
+{
+ "pair": [
+  17,
+  21
+ ],
+ "axis": "street",
+ "observer": "agent-fix17",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed labels",
+ "corridor": "9th St",
+ "a_native": 3717.3,
+ "b_native": 215.2,
+ "why_not_one_block_off": "Both plates print the corridor name in full: '9TH ST.' spans the bottom strip of sheet 17 and the top strip of sheet 21, and the plates name each other in the margin - sheet 17 prints '21' below its 9TH ST. legend, sheet 21 prints '17' above its own. The same block frontages appear on both sides of the street with opposite parity: sheet 17 draws the north (even) faces 6,8,10,12 | 14,16,18,20,22,24 west of Ave A, then 102,104,106,108,110,112,114,116,118,120,122,124 (block 668, Negro Ward / Ward School No 2), then 202,204,206,208,210,212 | 214,216,218,220,222,224; sheet 21 draws the matching south (odd) faces 3,5,7,9,11 | 13,15,17,19,21,23, then 101,103,105,107,109,111,113,115,117,119,121,123 (Lecture Hall block), then 201,203,205,207,209,211 | 213,215,217,219,221,223. Identical hundred-blocks in identical left-to-right order, odd against even, pins the corridor to 9th St and not to 8th (which on sheet 17 lies 915 px north, bounded by the 200-block runs 214-224 / 213-223) or 10th (which on sheet 21 lies 905 px south). MEASUREMENT: neither plate draws both curbs (sheet 17 is cut just past the north face, sheet 21 just above the south face), so each value is the corridor CENTRELINE = drafted face +/- half the printed 80' street width on that plate's own scale. Sheet 17: 9th St north face y=3596.1 (row-ink profile x1350-1750); scale from 8th St, faces 2438.8/2681.2 = 242.4 px per 80' = 3.030 px/ft, 40' = 121.2 -> centre 3717.3. Sheet 21: 9th St south face y=338.0; scale from 10th St, faces 1243.0/1488.5 = 245.5 px per 80' = 3.069 px/ft, 40' = 122.8 -> centre 215.2. Block depth checks: 9th-to-10th on sheet 21 = 295 ft, 8th-to-9th on sheet 17 = 302 ft, both the standard Galveston ~300 ft block. NOTE: the supplied key-map note for sheet 17 (SW outlots, 50TH-52ND) does not match this raster, which is a downtown wharf-district plate covering 7TH-9TH; the printed labels were used instead.",
+ "status": "ACCEPTED"
+}

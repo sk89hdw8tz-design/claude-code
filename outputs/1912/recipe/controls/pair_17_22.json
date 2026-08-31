@@ -1,0 +1,14 @@
+{
+ "pair": [
+  17,
+  22
+ ],
+ "axis": "street",
+ "observer": "agent-fix17",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed labels",
+ "corridor": "9th St",
+ "a_native": 3717.3,
+ "b_native": 223.0,
+ "why_not_one_block_off": "Both plates print '9TH ST.' across the strip in question, so the corridor identity is read directly, not inferred. These two sheets are DIAGONAL neighbours, not edge-adjacent: sheet 22's top margin prints '18', not '17' (sheet 18 is the plate directly above 22), and sheet 17's bottom margin prints '21'. Consistently, the 9th St frontages they draw do not overlap - sheet 17 carries the north-side even runs 6-24, 102-124 and 202-224 (wharf front through Ave C), while sheet 22 carries the south-side odd runs 301-323, 401-423 and 501-521 (Mechanic east to Church). They therefore share the 9th St LINE but no common block face; this control constrains the seam-normal (y) coordinate only and should carry no weight in x. Not one street off: the next corridor south on sheet 22 is 10th St, 906 px away (faces 1250.0/1492.0), and the next north on sheet 17 is 8th St, 915 px away. MEASUREMENT: centrelines, face plus half the printed 80' width on each plate's own scale. Sheet 17: north face y=3596.1, scale 3.030 px/ft (8th St 242.4 px per 80'), 40' = 121.2 -> 3717.3. Sheet 22: 9th St south face y=344.0, scale from 10th St 242.0 px per 80' = 3.025 px/ft, 40' = 121.0 -> 223.0. Sheet 22's centreline sits 7.8 px south of sheet 21's independent read of the same street (215.2), the same order of plate-to-plate y disagreement seen between sheets 17 and 18. NOTE: the supplied key-map note for sheet 17 (SW outlots, 50TH-52ND) does not describe this raster, which is a downtown wharf-district plate covering 7TH-9TH streets; printed labels were used instead.",
+ "status": "ACCEPTED"
+}

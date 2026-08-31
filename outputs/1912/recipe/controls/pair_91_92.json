@@ -1,0 +1,15 @@
+{
+ "pair": [
+  91,
+  92
+ ],
+ "axis": "avenue",
+ "observer": "agent-fix91",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "Ave G (Winnie)",
+ "a_native": 3177.8,
+ "b_native": 121.4,
+ "why_not_one_block_off": "Both sheets print the corridor's name along it - 'AVE. G OR WINNIE' on sheet 91's east edge and again on sheet 92's west edge - and each carries the other's sheet index beside it (sheet 91 shows '92' east of the line, sheet 92 shows '91' west of it). The address runs give the hundred-block change: sheet 91's block 403 (west flank) carries the 600 runs 601 603 605 607 609 611 | 613 615 617 619 621 623 with Ave G frontage numbers 4302-4328, while sheet 92's block 343 (east flank) carries the 700 runs 701 703 705 707 709 711 | 713 715 717 719 721 723 with Ave G frontage numbers 4301-4327. The 600/700 change therefore falls on this corridor. Ave F one block west (named 'AVE. F OR CHURCH' on sheet 91) bounds the 500/600 change, and Ave H one block east on sheet 92 ('AVE. H OR BALL') bounds the 700/800 change - sheet 92 shows 801 803 805 807 immediately east of it. Both plates annotate this corridor 80', wider than the 70' avenues either side.",
+ "measurement": "Sheet 91 cand1 (red at x=2778, 0.6815 crop px/native): block 403 east face - the west curb of Ave G - at crop cols 721/722, centre 721.5 = native 3057.5; the east curb falls past the sheet's neatline (black scan bar begins native ~3281). Sheet 92 cand1 (red at x=720, 0.6805): block 343 west face - the east curb of Ave G - at crop cols 163/164, centre 163.5 = native 241.7; its west curb lies at/beyond the sheet's left neatline (native ~44). With no curb pair on either plate the centreline is curb + half width, using the printed 80' and the 70' avenues measured on the same plates: Ave F on sheet 91 spans crop 42 to 185.5 = 210.4 native px and Ave H on sheet 92 spans crop 697 to 840.5 = 210.9 native px, so 80' = 240.6 native px and half-width = 120.3. Sheet 91 centre = 3057.5 + 120.3 = 3177.8; sheet 92 centre = 241.7 - 120.3 = 121.4. Cross-check: the implied opposite curbs (3298 on sheet 91, 1.1 on sheet 92) land within ~20-45 px of each plate's own neatline, i.e. each sheet is drawn out to roughly the far curb of Ave G, as expected. Residual uncertainty on this control is about +/-20 px, larger than the two 42nd St controls. Detection candidates 91#1 (2778) and 92#1 (720) both fall in block interiors and are rejected.",
+ "status": "ACCEPTED"
+}

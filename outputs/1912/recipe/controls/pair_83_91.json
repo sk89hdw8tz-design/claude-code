@@ -1,0 +1,15 @@
+{
+ "pair": [
+  83,
+  91
+ ],
+ "axis": "street",
+ "observer": "agent-fix91",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "42nd St",
+ "a_native": 3658.5,
+ "b_native": 228.3,
+ "why_not_one_block_off": "Both sheets print '42ND ST.' in this corridor and each carries the other's sheet index across it (sheet 83 shows '91' below the line, sheet 91 shows '83' above it). Address runs are complementary halves of one street: sheet 83's north-side (even) runs read 502 504 506 508 510 512 | 514 516 518 520 522 524 | 602 604 606 608 610 612, sheet 91's south-side (odd) runs read 501 503 505 507 509 511 | 513 515 517 519 521 523 | 601 603 605 607 609 611. The cross-numbering makes the hundred-block change explicit: lot numbers on sheet 83 north of the line end 4126/4128, and on sheet 91 south of it begin 4201/4202 - the 4100/4200 transition sits exactly on this corridor. One block north (41st St, sheet 83 cand2) shows the 4000/4100 transition with runs 501-523 odd above and 502-524 even below; one block south (43rd St, sheet 91 cand2) shows the 4200/4300 transition. Blocks 461/401 (north) abut 462/402 (south).",
+ "measurement": "Green-ruler tick spacing = 100 native px on every crop. Sheet 83 (cand1, red at y=3646, 0.6805 crop px/native): full-width drafted lines at crop rows 456.5 and 620.5 = native 3538.0 (north curb) and 3779.0 (south curb), width 241.0, centre 3658.5. Sheet 91 (cand1, red at y=664, 0.681): lines at crop rows 72.5 and 236 = native 108.2 (north curb) and 348.3 (south curb), width 240.1, centre 228.3. Widths agree to 1 px and match 43rd St measured 242.5 native px on sheet 91 cand2. Detection candidate 83#1 (3646) fell inside the corridor but off centre; candidate 91#1 (664) was a block-462 interior lot line and is rejected.",
+ "status": "ACCEPTED"
+}

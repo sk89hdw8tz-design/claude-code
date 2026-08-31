@@ -102,9 +102,20 @@ Stage 4 tiling gate: one connected piece, no double ownership — but 11
 unclaimed holes remain, dominated by missing sheet 72 (HQ-8). Seams graded by
 eye: frozen core clean, 4 of 4 sampled outer-ring seams defective (HQ-9).
 
+## 1912 ring re-registered (2026-08-31)
+
+150 shared-corridor controls (137 + 13 fix-ups) identified by 21 Opus agents
+from printed address runs, the method that built the master. netsolve.py fits
+a translation per sheet with the core frozen: residuals median 0.0 ft, 90th
+4.8 ft, worst 33.6 ft; all 80 ring sheets constrained. Seam 75|76's duplicated
+street label is closed; the street grid runs continuously across seams; the
+largest coverage hole fell 8.58M -> 4.22M px². Every sheet's transform scale
+verified correct to 0.05%. Cuts re-made by Voronoi and still need to follow
+street centrelines (§2.5) before ring crops are print-ready.
+
 ## Human queue
 
-See `HUMAN_QUEUE.md` — 3 open items:
+See `HUMAN_QUEUE.md` — open items:
 - **HQ-9** 1912 outer ring not print-ready (core is); ring seams need rework.
 - **HQ-8** 1912 missing sheet 72 — scanned, hash-pinned, never placed.
 - **HQ-7** 1899 `71a` drawn but unverified and visibly misplaced.

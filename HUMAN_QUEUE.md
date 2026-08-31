@@ -312,22 +312,35 @@ Three agents independently found pairs the old mosaic had a **full block**
 wrong (40|41, 44|45, 50|51, 66|74).
 
 **What it did not fix, and the honest caveats.**
-- Sheets moved a median of 227 ft and up to 1,458 ft. Those are large, but
-  they are what the address runs say, and the residuals confirm the controls
-  agree with each other.
-- The mosaic union grew 12% and now splits into 3 disjoint pieces with more
-  small holes (23 vs 8), though less total gap area. The likely cause is that
-  **this solve adjusts translation only**. An agent measured sheet 41's
-  transform scale at 2.099 px/native against sheet 40's 2.007 — a 4.6%
-  difference on plates whose measured avenue pitch is identical — so some
-  sheets carry a wrong scale that no translation can reconcile, and the
-  network absorbs it by spreading. Solving scale and rotation per sheet from
-  the same controls is the next step.
-- Sheet 72 is still missing (HQ-8) and is the largest remaining hole.
+- Sheets moved a median of 225 ft and up to 2,486 ft. Those are large, but they
+  are what the address runs say, and the controls agree with each other.
+- **Correction to an earlier version of this entry.** It blamed the mosaic's
+  12% growth on some sheets carrying a wrong transform scale, citing sheet 41
+  at 2.099 px/native against sheet 40's 2.007. That was wrong. Measuring every
+  sheet's own corridor pitch against the known block pitch shows **every scale
+  is correct to within 0.05%** — sheet 41's corridors really are spaced 1103
+  native px against 40's 1154, and its scale is 4.6% larger to match. Nothing
+  needs rescaling.
+  The growth is instead the ring being *un-compressed*: sheet footprint
+  overlap fell from 37.5% to 29.9% of sheet area, and the bounding box grew
+  13% in x but only 0.7% in y. Since adjacent sheets actually share a median
+  of only 494 ft of ground along a seam, a 37.5% areal overlap was far too
+  much — the old ring was packed too tightly, and the avenue direction is
+  where it shows.
+- The mosaic still splits into 3 pieces, but only sheets 91 and 99 are
+  detached now (2.5% of area between them), against 89-sheet fragmentation
+  before the fix-up controls.
+- Sheet 72 is still missing (HQ-8) and is the largest remaining hole,
+  though it has shrunk from 8.58M to 4.22M px² as its neighbours moved right.
 - Ownership was re-cut by Voronoi (`tools/recut.py`) since the old cuts no
-  longer matched where sheets are. Those cuts do not follow street centrelines
-  the way §2.5 requires — that needs redoing from the new corridor index
-  before the ring is print-ready.
+  longer matched where sheets are. Those cuts do **not** follow street
+  centrelines as §2.5 requires — that must be redone from the corridor index
+  before ring crops are print-ready.
+- **The key map for sheet 17 is wrong.** It describes an isolated SW-outlot
+  plate covering 50th–52nd. The raster is a downtown wharf-district plate
+  covering 7th–9th Streets, printing Sealy Hospital, University Hall and
+  Seawall Blvd, with margins naming sheets 18 and 21. Anything else derived
+  from that key-map row should be treated as suspect.
 
 Previous state is recoverable: `transforms_city.json.pre_controls` and
 `seams/ownership_city.json.pre_recut`.

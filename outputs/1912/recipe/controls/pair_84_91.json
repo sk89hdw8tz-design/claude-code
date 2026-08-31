@@ -1,0 +1,15 @@
+{
+ "pair": [
+  84,
+  91
+ ],
+ "axis": "street",
+ "observer": "agent-fix91",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "42nd St",
+ "a_native": 3666.3,
+ "b_native": 228.3,
+ "why_not_one_block_off": "Sheet 84 (avenues G-J) and sheet 91 (avenues D-G) share only the 42nd St line, and both print '42ND ST.' on it. Sheet 84's block 281/221 south frontage carries the even runs 802 804 806 808 810 812 | 814 816 818 820 822 824 | 902 904 906 908 910 912, with its lot numbers running 4101-4128 down to the corridor; sheet 91's north frontage south of the line begins 4201/4202, so the 4100/4200 hundred-block change falls on this corridor. One block north on sheet 84 (41st St, visible in the same crop) shows the 4000/4100 change with runs 801-823 odd below it and 802-824 even above it, so the line chosen is not 41st. Sheet 84 blocks 341/281/221 and sheet 91 blocks 522/462/402 meet at 42nd and Ave G.",
+ "measurement": "Sheet 84 cand1 (red at y=2975, 0.682 crop px/native): block 281 south face - the north curb of 42nd - at crop rows 918-921, centre 919.5 = native 3546.1. The south curb lies below the crop, so the centreline is taken as north curb + half the street width measured on the same sheet: 41st St curbs at crop 136.5 and 300.5 = 164.0 crop = 240.5 native px, matching the 240-242 px measured directly for 42nd and 43rd on sheets 83 and 91. Centre = 3546.1 + 120.2 = 3666.3, which sits 8 px south of sheet 83's 3658.5 for the same line - the expected small plate-to-plate difference between two sheets in the same row. Sheet 91 value 228.3 is the directly measured two-curb centre from pair 83_91. Detection candidate 84#1 (2975) is a lot line inside block 281 and is rejected.",
+ "status": "ACCEPTED"
+}

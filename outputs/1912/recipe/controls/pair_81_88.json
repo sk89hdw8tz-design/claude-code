@@ -1,0 +1,14 @@
+{
+ "pair": [
+  81,
+  88
+ ],
+ "axis": "street",
+ "observer": "agent-fix81",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "39th St",
+ "a_native": 3652.0,
+ "b_native": 230.0,
+ "why_not_one_block_off": "39th St is sheet 81's south trim edge and sheet 88's north trim edge, lettered '39TH ST.' on both. The 3800/3900 avenue-address change happens across it: sheet 81's blocks stop with frontage numbers '3821 3823 3825 3827' immediately north of the corridor, sheet 88's blocks resume with '3901 3903 3905 3907' immediately south of it. The cross-street runs also agree: sheet 81 prints '2102 2104 ... 2124' and '2202 2204 ... 2212' along the north side, sheet 88 prints '2001 2003 ... 2023' and '2101 2103 ... 2109' along the south side, i.e. the same Q / Q 1/2 blocks. 38th St one block north and 40th St one south are both fully drawn a full block pitch (~1141-1150 px) away: sheet 81's 38th centre is 2503, sheet 88's 40th centre is 1369. Both plates draw the whole 80' opening: sheet 81 faces y=3532/3772, sheet 88 faces y=110/349 (239-241 px = printed 80').",
+ "status": "ACCEPTED"
+}

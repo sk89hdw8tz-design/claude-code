@@ -1,0 +1,14 @@
+{
+ "pair": [
+  80,
+  81
+ ],
+ "axis": "avenue",
+ "observer": "agent-fix81",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "Ave Q",
+ "a_native": 3165.0,
+ "b_native": 144.0,
+ "why_not_one_block_off": "Ave Q is sheet 80's east trim edge and sheet 81's west trim edge; both letter 'AVENUE Q' in the margin beside it. The 2000/2100 change happens across it: sheet 80's easternmost blocks print '2001 2003 2005 2007 2009 2011 | 2013 2015 2017 2019 2021 2025' (P 1/2 to Q), sheet 81's westernmost block prints '2101 2103 2105 2107 2109 2111 | 2113 ... 2123' (Q to Q 1/2), with Ave Q frontage numbers '3701 3703 ... 3727' on sheet 81. Ave P 1/2 one block west carries 1900/2000, Ave Q 1/2 one east carries 2100/2200. Only one face of the 70' corridor survives the trim on each plate, so the centre is the drawn face offset by half the corridor width measured on the same plate: sheet 80 west face x=3059 + 106; sheet 81 east face x=250 - 106. Cross-check by avenue pitch on each plate: sheet 80 Ave P=1168, Ave P 1/2=2166.5 (pitch 998.5) gives Q=3165; sheet 81 Ave Q 1/2=1145, Ave R=2151.5 (pitch ~1003) gives Q=144.",
+ "status": "ACCEPTED"
+}

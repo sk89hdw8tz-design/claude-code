@@ -1,0 +1,14 @@
+{
+ "pair": [
+  81,
+  89
+ ],
+ "axis": "avenue",
+ "observer": "agent-fix81",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "Ave R 1/2",
+ "a_native": 3153.0,
+ "b_native": 1165.0,
+ "why_not_one_block_off": "Sheet 89 letters 'AVENUE R 1/2' at x~1165 with west face numbers '4002 4004' and east face '4001', the 40th St run west of it ending '2319 2321 2323' and east of it beginning '2401 2403 2405 2407 2409 2411'. Sheet 81 shows the same 2300/2400 avenue: west face numbers '3602 3604', 36th St run ending '2317 2319 2321 2323', printed '70' ' in the corridor. Ave R one block west is the 2200/2300 change (and is sheet 89's trimmed west margin, only its east face drawn at x=266); Ave S one block east is 2400/2500 (sheet 89 centre 2166). Faces: sheet 81 x=3048/3260; sheet 89 x=1062.5/1272.5 (~210 px = 70').",
+ "status": "ACCEPTED"
+}
