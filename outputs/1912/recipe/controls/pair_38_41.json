@@ -1,0 +1,14 @@
+{
+ "pair": [
+  38,
+  41
+ ],
+ "axis": "street",
+ "observer": "agent-batch9",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "18th St",
+ "a_native": 3659,
+ "b_native": 233,
+ "why_not_one_block_off": "'18TH ST.' is printed in the corridor on both plates (sheet 38 lower margin, sheet 41 upper margin beside the '37' sheet reference); both print '70'. The avenue address columns change hundred across it: sheet 38's blocks run 1702,1704,...,1728 (17th-18th) and terminate at its south face; sheet 41's blocks begin 1802,1804,1806,... / 1801,1803,1805,... (18th-19th) at its north face. The line one block north on sheet 38 is 17th St, labelled '17TH ST.' with the 1601-1628 run beyond it, so 1728|1802 pins this corridor. Detection's sheet-38 candidate (native y=2967) falls on a mid-block lot line inside the 1700 block and was rejected.",
+ "status": "ACCEPTED"
+}

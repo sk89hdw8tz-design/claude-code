@@ -1,0 +1,14 @@
+{
+ "pair": [
+  30,
+  35
+ ],
+ "axis": "street",
+ "observer": "agent-batch9",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "15th St",
+ "a_native": 3650,
+ "b_native": 234,
+ "why_not_one_block_off": "'15TH ST.' is printed in the corridor on both plates (sheet 30 bottom margin next to the '36' sheet reference, sheet 35 top margin next to '29'), with '70' width annotations on both. The avenue address columns change hundred-block across it: sheet 30's blocks end with the 1400 run 1402,1404,...,1428 (14th-15th) at its south face, while sheet 35's blocks begin with the 1500 run 1501,1502,1504,...,1522 (15th-16th) at its north face. 14th St would show the 1300/1400 change and 16th the 1500/1600 change, so this cannot be one block off.",
+ "status": "ACCEPTED"
+}

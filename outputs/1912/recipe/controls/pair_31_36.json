@@ -1,0 +1,14 @@
+{
+ "pair": [
+  31,
+  36
+ ],
+ "axis": "street",
+ "observer": "agent-batch12",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "15th St",
+ "a_native": 3677,
+ "b_native": 216,
+ "why_not_one_block_off": "Both sheets letter '15TH ST.' in the corridor; sheet 31 covers 12th-15th and sheet 36 covers 15th-18th, so 15th is the only shared street. North of it (sheet 31) the avenue frontages read 1424 1426 1428 (14th-15th = 1400 block) and the 15th St frontage is even: 1210 1212 ... 1224 then 1302 1304 ... 1324 across Ave M 1/2, with '70' printed in that avenue. South of it (sheet 36) the avenue frontages restart at 1501 1503 1505 / 1504 1506 1509 (1500 block) and the 15th St frontage is odd: 913 915 ... 923, 1001 ... 1011, 1013 ... 1023. The 1400/1500 turn happens at this corridor, not at 14th or 16th. Line taken as the midpoint of the block-face rules y=3556/3797 (sheet 31) and y=95/337 (sheet 36), both 240-242 px = the printed 80 ft street.",
+ "status": "ACCEPTED"
+}

@@ -1,0 +1,14 @@
+{
+ "pair": [
+  62,
+  64
+ ],
+ "axis": "avenue",
+ "observer": "agent-batch10",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "none shared - sheets are not adjacent",
+ "a_native": null,
+ "b_native": null,
+ "why_not_one_block_off": "sheet 62's east margin is Avenue L (its last drawn avenues are 'AVENUE K' and 'AVENUE L', with the adjoining-sheet number '63' printed beyond the east edge); sheet 64's west margin is Avenue N ('AVENUE N' printed at its west edge with '63' beyond it to the west). Key maps agree: 62 = I, J, K, L and 64 = N, N 1/2, O, O 1/2. The two sheets are therefore NOT adjacent - sheet 63 (avenues L to N) lies between them - and they share no avenue corridor. Address runs confirm the gap: sheet 62's edge blocks carry 1101 1103 ... 1124 and 3101-3128/3201-3214, while sheet 64's edge blocks carry 1501 1503 ... 1530 / 1601-1608 and 3101-3131/3201-3211. cand#1 on sheet 62 (x=2710) is a lot line inside the 1113-1124 block; cand#1 on sheet 64 (x=736) is a lot line inside the 1513-1528 block. No shared corridor exists to measure.",
+ "status": "UNRESOLVED"
+}

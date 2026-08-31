@@ -1,0 +1,15 @@
+{
+ "pair": [
+  26,
+  42
+ ],
+ "axis": "avenue",
+ "observer": "agent-batch3",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "Ave O 1/2",
+ "a_native": 163.5,
+ "b_native": 3173.5,
+ "why_not_one_block_off": "Both plates print AVENUE O 1/2 in this gutter, sheet 26 at its west edge and sheet 42 at its east edge, and each prints the other's sheet number beside it ('42' on sheet 26, '26' on sheet 42). The cross-street (19th/20th) hundred-block run changes exactly here: sheet 42 west of this avenue runs 1701/1703/1705/1707/1709/1711 with 1702/1704/1706/1708/1710/1712, then 1713-1723 with 1714/1716/1718/1720/1722/1724 against the avenue; sheet 26 east of it starts fresh at 1801/1803/1805/1807/1809/1811 with 1802/1804/1806/1808/1810/1812, then 1813-1823 / 1814-1824. One block west on sheet 42 the change is 16xx->17xx at Avenue O (1623/1624 beyond it); one block east on sheet 26 the change is 18xx->19xx at Avenue P (1901/1903/1905/1907, 1902/1904/1906). The avenue frontage runs also interlock: sheet 42's east block face carries the evens 1902,1904,1906...1922 and sheet 26's west block face the odds 1901,1903,1905...1921, the two sides of the same 19th-20th segment of Ave O 1/2.",
+ "note": "Detection candidates (26: 764/1770/2776; 42: 2776/1777/778) are mid-block/alley lines; the shared avenue is cut by the sheet edge on both plates and was not proposed. Centres are the drafted avenue centre: sheet 26 east face 269 minus half of the 211 px avenue width (70' printed mid-avenue) measured at Avenue O on sheet 42 (faces 2072/2283); sheet 42 west face 3068 plus the same half-width.",
+ "status": "ACCEPTED"
+}

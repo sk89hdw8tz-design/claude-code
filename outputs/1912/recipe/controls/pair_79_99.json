@@ -1,0 +1,14 @@
+{
+ "pair": [
+  79,
+  99
+ ],
+ "axis": "avenue",
+ "observer": "agent-batch9",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "none shared",
+ "a_native": null,
+ "b_native": null,
+ "why_not_one_block_off": "Sheet 79's eastern corridors are labelled 'AVENUE O' and 'AVENUE O 1/2' (the latter with the adjoining-sheet numeral '80' beside it); sheet 99's western corridor is labelled 'AVENUE S 1/2' with the adjoining-sheet numeral '74' beside it, and its seaward bound is Seawall Blvd and the Gulf of Mexico shoreline rather than an avenue. The key maps share no letter (79: N, N 1/2, O, O 1/2; 99: S 1/2, T, T 1/2), and the crops are not even in the same street band (sheet 79 shows the 3700/3800 avenue blocks with cross-street runs 1701-1724; sheet 99 shows 34th/35th St with the 3401-3428 run and '35TH ST.' printed). There is no corridor drawn by both sheets, so no control is recorded.",
+ "status": "UNRESOLVED"
+}

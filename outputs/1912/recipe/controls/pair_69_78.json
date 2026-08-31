@@ -1,0 +1,14 @@
+{
+ "pair": [
+  69,
+  78
+ ],
+ "axis": "street",
+ "observer": "agent-batch11",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "36th St",
+ "a_native": 3655,
+ "b_native": 233,
+ "why_not_one_block_off": "Both plates print '36TH ST.' - sheet 69 at the foot of its 3500 block (avenue columns 3502 3504 ... 3526 3528, with '35TH ST.' printed one block north), sheet 78 at the head of its 3600 block (columns 3601 3603 ... 3617 and 3602 3604 ... 3610). The 3500/3600 hundred-block change falls exactly on this corridor, which fixes it as 36th and not 35th or 37th. The two sheets draw different lateral stretches of it (69 carries the 800-1000 runs 814-824 / 902-924 / 1002-1014, 78 the 1200-1400 runs 1213-1223 / 1313-1323 / 1401-1411), so no cross-sheet address pairing is available, but the printed street names and the hundred-block flip are unambiguous. Row-profile faces: sheet 69 north face 3549, sheet 78 south face 339; centers taken 106 px inside (printed 70').",
+ "status": "ACCEPTED"
+}

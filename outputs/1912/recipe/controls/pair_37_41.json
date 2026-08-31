@@ -1,0 +1,6 @@
+{"pair": [37, 41], "axis": "street", "observer": "agent-batch8",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "18th St",
+ "a_native": 3669, "b_native": 218,
+ "why_not_one_block_off": "Sheet 37 covers 15th-18th, sheet 41 covers 18th-21st, so 18th is the only shared street. Sheet 37's crop prints '17TH ST' (native y~2522) and the block south of it (17/NE20/SE20) carries the 1700-block avenue numbers 1701,1703,...,1728; the south face of that block, at the bottom of the crop, prints the even cross runs '1214 1216 1218 1220 1222 1224', '1302 1304 ... 1312', '1314 1316 ... 1324', '1402 1404 ... 1412'. Sheet 41's crop opens with '18TH ST' and the block immediately below it (18/N.W.20/S.W.20) carries the 1800-block avenue numbers 1802,1804,...,1822 and the matching odd cross runs '1213 1215 1217 1219 1221 1223', '1301 1303 ... 1311', '1313 1315 ... 1323', '1401 1403 ... 1411'. Even-north / odd-south across one 70 ft corridor, with the 1700/1800 hundred-block change on it, fixes it as 18th and not 17th or 19th. Sheet 37's detection candidate (2803) is a block-interior line; both positions read off the green native ruler.",
+ "status": "ACCEPTED"}

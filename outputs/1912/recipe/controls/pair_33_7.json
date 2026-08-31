@@ -1,0 +1,15 @@
+{
+ "pair": [
+  33,
+  7
+ ],
+ "axis": "street",
+ "observer": "agent-anchorA",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "18th St",
+ "a_native": 3669.0,
+ "b_native": 195.5,
+ "why_not_one_block_off": "sheet 33 (north) prints '18TH ST.' in the corridor at its bottom margin with neighbour '7' and '80'' rotated in the corridor; north-side evens read '2 4 6 8 10 12', '14 16 18 20 22 24' (Ave A-B), '102 104 106 108 110 112', '114 116 118 120 122 124' (Ave B-C), then '202' east of Mechanic. sheet 7 (south) prints '18TH ST.' at its top margin with neighbour '33'; south-side odds read '1 3 5 7 9 11', '13 15 17 19 21 23', '101 103 105 107 109 111', '113 115 117 119 121 123', then '201 203' - the exact odd complement of sheet 33's evens. Evens on the north side and odds on the south side interlock one-for-one and the hundred-block changes fall on the avenues named in each key map, so the read line is the shared corridor and not the block-pitch (~1160-1180 px) neighbour street.",
+ "status": "ACCEPTED",
+ "note": "Reported value is the drafted corridor CENTRELINE in that sheet's own working-raster pixels (work/sheets/1912w/u<N>.jpg, the same pixels the green rulers label), following the pair_33_34 convention. sheet 33 has both faces (sheet-wide means N 3547.3 / S 3790.1, drafted width 242.8); sheet 7's north face is off the page top, so its centre is the drafted south face (sheet-wide mean 316.5) minus 121 px = half the drafted 80' width measured on 19th St on the same plate. full A-C overlap; sheet-wide means used. The drafted 80' corridor measures 239-245 px on these plates; centreline sigma ~3 px, plus ~2 px where a half-width had to be supplied. Each plate's frontage tilts 8-13 px across the sheet, so the reading window was matched to the two plates' shared avenue. Detection's candidates were all block-interior or siding lines (e.g. sheet 11 cand1 y=3558 falls inside the Pattern & Casting warehouse, 200 px north of the corridor centre) and none were used."
+}

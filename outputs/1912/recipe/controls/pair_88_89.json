@@ -1,0 +1,14 @@
+{
+ "pair": [
+  88,
+  89
+ ],
+ "axis": "avenue",
+ "observer": "agent-batch6",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "Ave R",
+ "a_native": 3151,
+ "b_native": 163,
+ "why_not_one_block_off": "Sheet 88's east edge prints 'AVENUE R' with the neighbour sheet number 89 beside it; the block against it carries the even Ave R frontage 4002-4028 and street numbers 2202-2224 / 2201-2223. Sheet 89's west edge prints 'AVENUE R' with sheet number 88 beside it, and its first block carries the odd frontage 4001-4027 with street numbers 2302-2324 / 2301-2323. Even/odd faces of one avenue plus the 2200/2300 hundred-block change; 'AVENUE Q' (sheet 88) and 'AVENUE R 1/2' / 'AVENUE S' (sheet 89) are labelled separately, so this is not one corridor off. Width printed 80'.",
+ "status": "ACCEPTED"
+}

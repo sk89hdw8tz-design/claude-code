@@ -1,0 +1,14 @@
+{
+ "pair": [
+  85,
+  94
+ ],
+ "axis": "street",
+ "observer": "agent-batch11",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "42nd St",
+ "a_native": 3675,
+ "b_native": 220,
+ "why_not_one_block_off": "Sheet 85's frontage above the corridor ends '1302 1304 1306 1308 1310 1312' (even, north side of 42nd) and sheet 94's frontage below it begins '1311 1313 1315 1317 1319 1321 1323' (odd, south side) - the same 1300 block, even north / odd south. The avenue columns change hundred across it: 4101 4103 ... 4127 and 4102 ... 4128 on sheet 85 (the 41st-42nd block, with '41ST ST.' printed above), 4201 4203 ... 4227 and 4202 ... 4228 on sheet 94 (the 42nd-43rd block, with '43RD ST.' printed below). Both faces of the corridor were resolved on both plates by row ink profile: sheet 85 3555 and 3795, sheet 94 99 and 340; drafted width 240/241 px = 80 ft, centers 3675 and 219.5.",
+ "status": "ACCEPTED"
+}

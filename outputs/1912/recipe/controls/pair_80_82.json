@@ -1,0 +1,14 @@
+{
+ "pair": [
+  80,
+  82
+ ],
+ "axis": "avenue",
+ "observer": "agent-batch10",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "none shared - sheets are not adjacent",
+ "a_native": null,
+ "b_native": null,
+ "why_not_one_block_off": "sheet 80's east margin is Avenue Q ('AVENUE Q' printed at the east edge with the adjoining-sheet number '81' beyond it); sheet 82's west margin is Avenue R 1/2 (label 'R 1/2' at its west edge with '81' printed to the west). Key maps agree: 80 = O 1/2, P, P 1/2, Q and 82 = R 1/2, S, S 1/2, T. Sheet 81 lies between them, so the two sheets share no avenue corridor. Address runs confirm the gap: sheet 80's edge blocks carry 3701-3728 / 2013 2015 ... 2024 near 38TH ST., while sheet 82's edge blocks carry 3701-3732 / 2401 2403 ... 2424 by the NEGRO RECREATION PARK. Both candidate lines (sheet 80 x=2578, sheet 82 x=576) are block-interior lot lines. No shared corridor exists to measure.",
+ "status": "UNRESOLVED"
+}

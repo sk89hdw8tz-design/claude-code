@@ -1,0 +1,6 @@
+{"pair": [60, 74], "axis": "street", "observer": "agent-batch8",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "none - sheets are not adjacent along a street",
+ "a_native": null, "b_native": null,
+ "why_not_one_block_off": "There is no shared street corridor. Sheet 60's crop runs from '29TH ST' down to its south margin at '30TH ST', and the neighbour sheet number printed across that margin is '66', not 74. Sheet 74's crop opens at its north margin on '33RD ST', and the neighbour sheet numbers printed above that margin are '66' and '48'. So sheet 66's row lies between them: sheet 60 covers 27th-30th (block runs 2201-2223 / 2301-2311, blocks NE 114, SE 114, NE 139) and sheet 74 covers 33rd-36th (block runs 2401-2411 / 2501-2513, blocks NE 137, SE 137, NE 162). The 2200/2300 and 2400/2500 address runs confirm the two sheets sit three streets apart, so no street is drawn by both and no horizontal control can be placed on this pair.",
+ "status": "UNRESOLVED"}

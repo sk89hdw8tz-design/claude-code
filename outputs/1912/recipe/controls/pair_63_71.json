@@ -1,0 +1,14 @@
+{
+ "pair": [
+  63,
+  71
+ ],
+ "axis": "street",
+ "observer": "agent-batch2",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "33rd St",
+ "a_native": 3645,
+ "b_native": 202,
+ "why_not_one_block_off": "Both sheets print '33RD ST.' at the seam. Sheet 63 (north): outlot 13 N.W./S.W. with avenue frontages 3201-3228 (32nd-33rd) and 33rd-St runs '1302 1304 1306 1308 1310 1312', '1314 1316 ... 1324', '1402 1404 ... 1412'; '32ND ST.' with the 3100-block above. Sheet 71 (south): outlot 37 N.E./S.E. with avenue frontages 3301-3330 (33rd-34th) and 33rd-St runs '1501 1503 ... 1511', '1513 1515 ... 1523', '1601 1603 ... 1611'; '34TH ST.' (40') printed below. 3200/3300 change pins it. Detection's candidates were block-interior lines and were rejected.",
+ "status": "ACCEPTED"
+}

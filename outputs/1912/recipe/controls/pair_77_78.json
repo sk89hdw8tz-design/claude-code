@@ -1,0 +1,14 @@
+{
+ "pair": [
+  77,
+  78
+ ],
+ "axis": "avenue",
+ "observer": "agent-batch4",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "Ave L",
+ "a_native": 3202,
+ "b_native": 138,
+ "why_not_one_block_off": "Both plates print 'AVENUE L' in this corridor; sheet 77's east margin reads 78 and sheet 78's west margin reads 77, and the same F.A. fire-alarm box symbol is drawn in the corridor on both plates. Sheet 77's block 97 fronts it with the EVEN run 3702, 3704, 3706, 3708, 3710, 3712, 3714, 3716; sheet 78's block 37 fronts it with the ODD run 3701, 3703, 3705, 3707, 3709, 3711, 3713, 3715. The 37th St cross-run changes hundred-block across it: sheet 77 ends ...1119, 1121, 1123 and sheet 78 begins 1201, 1203, 1205. One corridor west on sheet 77 is 'AVENUE K' (faces 2094/2307, centre 2200); one east on sheet 78 is 'AVENUE M' (faces 1032/1243, centre 1137). a_native = west face 3096 + 106; b_native = east face 244 - 106.",
+ "status": "ACCEPTED"
+}

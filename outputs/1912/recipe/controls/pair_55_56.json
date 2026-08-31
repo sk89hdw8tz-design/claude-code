@@ -1,0 +1,14 @@
+{
+ "pair": [
+  55,
+  56
+ ],
+ "axis": "avenue",
+ "observer": "agent-batch6",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "Ave I (Sealy)",
+ "a_native": 3159,
+ "b_native": 114,
+ "why_not_one_block_off": "Sheet 55's east edge prints 'AVE. I OR SEALY'; its last block column carries the even Sealy frontage 2802-2828 with street numbers 802-824 / 801-823. Sheet 56's west edge prints 'AVE. I OR SEALY' and its first block column carries the odd frontage 2801-2827 with street numbers 902-924 / 901-923. Even/odd faces of one avenue plus the 800/900 change; 'AVE. H OR BALL' (sheet 55) and 'AVE. J OR BROADWAY 150ft wide' (sheet 56) are the neighbouring corridors and are separately labelled.",
+ "status": "ACCEPTED"
+}

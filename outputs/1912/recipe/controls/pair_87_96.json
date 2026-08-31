@@ -1,0 +1,14 @@
+{
+ "pair": [
+  87,
+  96
+ ],
+ "axis": "street",
+ "observer": "agent-batch4",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "42nd St",
+ "a_native": 3669,
+ "b_native": 230,
+ "why_not_one_block_off": "Sheet 87's south edge and sheet 96's north edge are 42nd St: sheet 87's bottom margin reads 95/96 with '42ND ST.' printed, sheet 96's top margin reads 87/88 with '42ND ST.' printed. The avenue frontage numbers change hundred-block across it: sheet 87's bottom block row carries 4125, 4127 (the 4100 block, 41st-42nd) while sheet 96's top block row carries 4201, 4203 and 4202, 4204 (the 4200 block, 42nd-43rd). '80' is printed in the corridor on both plates. a_native = midpoint of the faces 3549 and 3789, cross-checked against sheet 87's 41st St centre 2523 (faces 2402/2644) plus the 1140 px street pitch; b_native = midpoint of the faces 110 and 351, cross-checked against sheet 96's 43rd St centre 1371 (faces 1250/1492).",
+ "status": "ACCEPTED"
+}

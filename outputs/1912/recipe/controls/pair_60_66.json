@@ -1,0 +1,14 @@
+{
+ "pair": [
+  60,
+  66
+ ],
+ "axis": "street",
+ "observer": "agent-batch7",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "30th St",
+ "a_native": 3670,
+ "b_native": 225,
+ "why_not_one_block_off": "Sheet 60 prints 29TH ST and, at its lower margin, 30TH ST (adjoining-sheet number 66); the blocks north of it carry the 2900 avenue run (2901 2903 ... 2936, Beach Base Ball Park grand stand and bleachers) with quarter-blocks NE 114, SE 114, NE 139, and the 2800 run (2801 ... 2828, NW 115, SW 115, NW 140) lies north of 29th on the same sheet. Sheet 66 prints 30TH ST at its top edge with the 3000 run immediately south (3001 3003 ... 3028) and quarter-blocks NW 114, SW 114, NW 139; 31ST ST and the 3100 run (3101 ... 3128, SE 113, NE 138) lie one block below. Beach Base Ball Park straddles the seam on both sheets.",
+ "status": "ACCEPTED"
+}

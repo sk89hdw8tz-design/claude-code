@@ -1,0 +1,14 @@
+{
+ "pair": [
+  62,
+  70
+ ],
+ "axis": "street",
+ "observer": "agent-batch11",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "33rd St",
+ "a_native": 3651,
+ "b_native": 238,
+ "why_not_one_block_off": "Sheet 62's last frontage above the corridor reads '1102 1104 1106 1108 1110 1112 1114' (even, north side of 33rd) and sheet 70's first frontage below it reads '1109 1111 1113 1115 1117 1119 1121 1123' (odd, south side) - the same 1100 block, even north / odd south. The avenue-side runs change hundred across it: 3216-3228 on sheet 62, 3302-3310 / 3301-3311 on sheet 70. Both plates print '33RD ST.' in the corridor and sheet 70 prints '34TH ST.' one block south. Row-profile faces: sheet 62 north face 3545 (south face beyond the neatline, center = +106 for the printed 70'); sheet 70 south face 344 (center = -106).",
+ "status": "ACCEPTED"
+}

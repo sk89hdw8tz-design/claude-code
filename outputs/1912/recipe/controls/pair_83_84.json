@@ -1,0 +1,14 @@
+{
+ "pair": [
+  83,
+  84
+ ],
+ "axis": "avenue",
+ "observer": "agent-batch6",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "Ave G (Winnie)",
+ "a_native": 3174,
+ "b_native": 172,
+ "why_not_one_block_off": "Sheet 83's east edge prints 'AVE. G OR WINNIE' with sheet 84 beside it; its last block column carries the even Ave G frontage 4002-4028 and street numbers 602-624 / 601-623. Sheet 84's west edge prints 'AVE. G OR WINNIE' with sheet 83 named, and its first block column carries the odd frontage 4001-4027 with street numbers 702-724 / 701-723. Even/odd faces of one avenue plus the 600/700 change; 'AVE. F OR CHURCH' (sheet 83) and 'AVE. H OR BALL' (sheet 84) are the adjacent corridors and are labelled separately. Corridor width printed 80'.",
+ "status": "ACCEPTED"
+}

@@ -1,0 +1,15 @@
+{
+ "pair": [
+  33,
+  34
+ ],
+ "axis": "avenue",
+ "observer": "agent-batch3",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "Ave C (Mechanic)",
+ "a_native": 3203.0,
+ "b_native": 174.5,
+ "why_not_one_block_off": "Sheet 33 covers Water/Strand/Mechanic, sheet 34 covers Mechanic/Market/Post Office/Church, so Mechanic is the only shared avenue; both plates print 'AVE. C OR MECHANIC' in this gutter and each prints the other's number beside it ('34' on sheet 33, '33' on sheet 34). The cross-street hundred-block run confirms the side: on sheet 33 the block against this avenue reads 201/203/205/207/209/211 and 213/215/217/219/221/223 with evens 202-212 and 214/216/218/220/222/224; on sheet 34 the block on the far side starts a new hundred at 301/303/305/307/309/311 with 302/304/306/308/310/312, then 313-323 / 314-324. One avenue west on sheet 33 the change is 1xx->2xx at Ave B (Strand) (117/119/121/123, 118/120/122/124 beyond it); one avenue east on sheet 34 the change is 3xx->4xx at Ave D (Market) (401/402 beyond it). The avenue frontage runs interlock across the same gutter: sheet 33's east block face carries evens 1602,1604,1606...1618 and sheet 34's west block face the odds 1601,1603,1605...1617, the two sides of the 16th-17th segment of Mechanic.",
+ "note": "Detection candidates (33: 2576/1561/546; 34: 558/1573/2588) are mid-block lines. Centres are the drafted avenue centre: sheet 33 west face 3096 + 107; sheet 34 east face 281.5 - 107, where 214 px = the drafted 70' avenue width was measured on Ave D (Market) on sheet 34 (faces 1069/1283). Cross-check: the block between the avenue and the next one measures 788.5 px on sheet 33 (Strand east face 2307.5 to Mechanic west face 3096) and 787.5 px on sheet 34 (Mechanic east face 281.5 to Market west face 1069).",
+ "status": "ACCEPTED"
+}

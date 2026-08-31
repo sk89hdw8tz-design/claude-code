@@ -1,0 +1,14 @@
+{
+ "pair": [
+  80,
+  89
+ ],
+ "axis": "street",
+ "observer": "agent-batch12",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "39th St",
+ "a_native": 3673,
+ "b_native": 217,
+ "why_not_one_block_off": "Sheet 80 covers 36th-39th and sheet 89 covers 39th-42nd; both letter '39TH ST.' in the corridor. North of it (sheet 80) the avenue frontages read 3825 3827 / 3826 3828 (38th-39th = 3800 block) and the even street frontage 1810 1812 ... 1824, 1902 1904 ... 1924, with '70' printed in the avenue and '20' for the alley. South of it (sheet 89) they restart at 3901 3903 3905 / 3902 3904 3906 (3900 block) with the odd frontage 2309 2311 ... 2323, 2401 2403 ... 2423. The 3800/3900 turn is exactly across this corridor. Midpoint of block-face rules y=3553/3793 (80) and y=99/335 (89).",
+ "status": "ACCEPTED"
+}

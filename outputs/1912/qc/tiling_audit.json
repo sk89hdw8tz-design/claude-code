@@ -1,109 +1,352 @@
 {
  "year": 1912,
  "regions": 92,
- "union_area_px2": 2855628182.7,
- "sum_of_regions_px2": 2855630820.6,
- "overlap_area_px2": 2637.9,
- "overlap_fraction": 1e-06,
- "disjoint_pieces": 1,
+ "union_area_px2": 3201599872.7,
+ "sum_of_regions_px2": 3201600084.4,
+ "overlap_area_px2": 211.7,
+ "overlap_fraction": 0.0,
+ "disjoint_pieces": 3,
  "interior_gaps": [
   {
-   "area_px2": 8581227.7,
-   "width_px": 1002.5,
+   "area_px2": 5686239.9,
+   "width_px": 710.8,
    "kind": "hole",
    "centroid": [
-    20329.8,
-    26171.2
+    20650.7,
+    27498.2
    ]
   },
   {
-   "area_px2": 2255160.1,
+   "area_px2": 571603.4,
+   "width_px": 148.8,
+   "kind": "hole",
+   "centroid": [
+    6806.0,
+    24842.5
+   ]
+  },
+  {
+   "area_px2": 406357.7,
+   "width_px": 34.5,
+   "kind": "hole",
+   "centroid": [
+    20997.5,
+    17501.3
+   ]
+  },
+  {
+   "area_px2": 398544.9,
+   "width_px": 40.4,
+   "kind": "hole",
+   "centroid": [
+    29028.6,
+    16887.3
+   ]
+  },
+  {
+   "area_px2": 397747.6,
+   "width_px": 191.7,
+   "kind": "hole",
+   "centroid": [
+    21425.5,
+    -17347.8
+   ]
+  },
+  {
+   "area_px2": 305538.5,
+   "width_px": 114.7,
+   "kind": "hole",
+   "centroid": [
+    13125.6,
+    -24299.2
+   ]
+  },
+  {
+   "area_px2": 265956.8,
+   "width_px": 153.5,
+   "kind": "hole",
+   "centroid": [
+    1003.8,
+    24836.8
+   ]
+  },
+  {
+   "area_px2": 235585.8,
+   "width_px": 114.5,
+   "kind": "hole",
+   "centroid": [
+    10111.3,
+    -32349.3
+   ]
+  },
+  {
+   "area_px2": 221993.0,
+   "width_px": 19.8,
+   "kind": "hairline",
+   "centroid": [
+    14161.0,
+    -17541.3
+   ]
+  },
+  {
+   "area_px2": 212642.5,
+   "width_px": 50.6,
+   "kind": "hole",
+   "centroid": [
+    10088.2,
+    -25797.5
+   ]
+  },
+  {
+   "area_px2": 211352.3,
+   "width_px": 144.5,
+   "kind": "hole",
+   "centroid": [
+    25648.4,
+    17857.1
+   ]
+  },
+  {
+   "area_px2": 210889.2,
+   "width_px": 25.2,
+   "kind": "hairline",
+   "centroid": [
+    13676.5,
+    17975.8
+   ]
+  },
+  {
+   "area_px2": 199276.9,
+   "width_px": 24.2,
+   "kind": "hairline",
+   "centroid": [
+    14683.8,
+    31614.7
+   ]
+  },
+  {
+   "area_px2": 181963.2,
+   "width_px": 122.0,
+   "kind": "hole",
+   "centroid": [
+    2146.3,
+    -16841.8
+   ]
+  },
+  {
+   "area_px2": 165093.1,
+   "width_px": 122.5,
+   "kind": "hole",
+   "centroid": [
+    -1470.0,
+    -17674.5
+   ]
+  },
+  {
+   "area_px2": 165010.7,
+   "width_px": 53.3,
+   "kind": "hole",
+   "centroid": [
+    21572.4,
+    -3853.1
+   ]
+  },
+  {
+   "area_px2": 161322.8,
    "width_px": 121.4,
    "kind": "hole",
    "centroid": [
-    9308.9,
-    19687.1
+    -3863.9,
+    -16807.0
    ]
   },
   {
-   "area_px2": 407884.0,
-   "width_px": 48.2,
+   "area_px2": 131989.8,
+   "width_px": 96.6,
    "kind": "hole",
    "centroid": [
-    106.1,
-    24305.0
+    9080.3,
+    17387.7
    ]
   },
   {
-   "area_px2": 179666.4,
-   "width_px": 15.2,
+   "area_px2": 128849.2,
+   "width_px": 69.1,
+   "kind": "hole",
+   "centroid": [
+    3281.3,
+    17449.6
+   ]
+  },
+  {
+   "area_px2": 125540.1,
+   "width_px": 25.8,
    "kind": "hairline",
    "centroid": [
-    6612.4,
-    38088.1
+    13515.0,
+    44450.2
    ]
   },
   {
-   "area_px2": 135130.4,
-   "width_px": 65.3,
+   "area_px2": 111895.4,
+   "width_px": 40.5,
    "kind": "hole",
    "centroid": [
-    10886.7,
-    36635.2
+    23627.5,
+    4023.5
    ]
   },
   {
-   "area_px2": 102796.7,
-   "width_px": 33.3,
+   "area_px2": 108080.2,
+   "width_px": 90.6,
    "kind": "hole",
    "centroid": [
-    2910.8,
-    31753.7
+    8225.9,
+    -17026.8
    ]
   },
   {
-   "area_px2": 87685.6,
-   "width_px": 86.5,
+   "area_px2": 91554.2,
+   "width_px": 11.0,
+   "kind": "hairline",
+   "centroid": [
+    25803.2,
+    38422.4
+   ]
+  },
+  {
+   "area_px2": 55015.6,
+   "width_px": 70.7,
    "kind": "hole",
    "centroid": [
-    857.8,
-    30877.6
+    659.9,
+    30886.4
    ]
   },
   {
-   "area_px2": 34794.7,
-   "width_px": 43.8,
+   "area_px2": 51769.0,
+   "width_px": 18.8,
+   "kind": "hairline",
+   "centroid": [
+    9663.8,
+    -30897.6
+   ]
+  },
+  {
+   "area_px2": 50579.1,
+   "width_px": 65.4,
    "kind": "hole",
    "centroid": [
-    10270.0,
-    -24117.8
+    25707.7,
+    23870.7
    ]
   },
   {
-   "area_px2": 24109.8,
+   "area_px2": 36644.2,
+   "width_px": 4.7,
+   "kind": "hairline",
+   "centroid": [
+    23546.9,
+    10195.4
+   ]
+  },
+  {
+   "area_px2": 28099.2,
+   "width_px": 22.7,
+   "kind": "hairline",
+   "centroid": [
+    13764.1,
+    31228.0
+   ]
+  },
+  {
+   "area_px2": 22644.3,
+   "width_px": 4.1,
+   "kind": "hairline",
+   "centroid": [
+    19072.8,
+    38285.7
+   ]
+  },
+  {
+   "area_px2": 21705.2,
+   "width_px": 8.1,
+   "kind": "hairline",
+   "centroid": [
+    8994.7,
+    32040.9
+   ]
+  },
+  {
+   "area_px2": 20196.0,
+   "width_px": 44.9,
+   "kind": "hole",
+   "centroid": [
+    8661.5,
+    37668.6
+   ]
+  },
+  {
+   "area_px2": 18567.5,
+   "width_px": 35.9,
+   "kind": "hole",
+   "centroid": [
+    4269.6,
+    -17705.8
+   ]
+  },
+  {
+   "area_px2": 16804.3,
+   "width_px": 30.3,
+   "kind": "hole",
+   "centroid": [
+    2475.6,
+    24460.2
+   ]
+  },
+  {
+   "area_px2": 15127.5,
+   "width_px": 9.5,
+   "kind": "hairline",
+   "centroid": [
+    19048.7,
+    44548.4
+   ]
+  },
+  {
+   "area_px2": 15043.9,
+   "width_px": 12.3,
+   "kind": "hairline",
+   "centroid": [
+    8329.7,
+    24501.5
+   ]
+  },
+  {
+   "area_px2": 8910.2,
    "width_px": 6.4,
    "kind": "hairline",
    "centroid": [
-    3564.8,
-    -25606.1
+    20448.9,
+    37631.8
    ]
   },
   {
-   "area_px2": 15690.3,
-   "width_px": 8.3,
+   "area_px2": 6352.5,
+   "width_px": 7.0,
    "kind": "hairline",
    "centroid": [
-    3605.9,
-    -23700.1
+    3572.9,
+    -31555.7
    ]
   },
   {
-   "area_px2": 14511.5,
-   "width_px": 8.2,
+   "area_px2": 6154.1,
+   "width_px": 0.9,
    "kind": "hairline",
    "centroid": [
-    3524.6,
-    -18122.4
+    15605.9,
+    3065.7
    ]
   }
  ],

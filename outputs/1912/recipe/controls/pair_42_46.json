@@ -1,0 +1,14 @@
+{
+ "pair": [
+  42,
+  46
+ ],
+ "axis": "street",
+ "observer": "agent-batch2",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "21st St (Center)",
+ "a_native": 3660,
+ "b_native": 222,
+ "why_not_one_block_off": "Both sheets print '21ST OR CENTER ST.' at the seam. Sheet 42 (north): outlots 44/69 with avenue frontages 2001-2028 (20th-21st) and 21st-St runs '1512 1514 ... 1524', '1602 1604 ... 1612', '1614 1616 ... 1624', '1702 1704 ... 1712'. Sheet 46 (south): outlots 43/68 with avenue frontages 2101-2128 (21st-22nd) and 21st-St runs '1611 1613 ... 1623', '1601 1603 ... 1611', '1701 1703 ... 1711'; '22ND ST.' printed below. 2000/2100 change pins it.",
+ "status": "ACCEPTED"
+}

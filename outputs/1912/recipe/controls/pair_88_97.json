@@ -1,0 +1,14 @@
+{
+ "pair": [
+  88,
+  97
+ ],
+ "axis": "street",
+ "observer": "agent-batch7",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "42nd St",
+ "a_native": 3666,
+ "b_native": 208,
+ "why_not_one_block_off": "Sheet 88 prints 40TH ST, 41ST ST and, at its lower margin, 42ND ST with adjoining-sheet number 97; the blocks between 41st and 42nd carry the 4100 avenue run (4101 4103 4105 ... 4127 / 4102 4104 ... 4128, Woolam's Lake dance pavilion) with quarter-blocks S.E. 83, N.E. 108, S.E. 108, while the 40th-41st blocks carry the 4000 run (4001 ... 4028) with S.W. 84, N.W. 109, S.W. 109 (St. Mary Orphan Asylum). Sheet 97 shows the 4200 run immediately south of its top edge (4201 4203 ... 4227 / 4202 ... 4228) with quarter-blocks S.W. 108, N.W. 133, S.W. 133, and 43RD ST with the 4300 run (4301 ... 4328, N.E. 132, S.E. 132) one block below. The 4100/4200 change is at 42nd St.",
+ "status": "ACCEPTED"
+}

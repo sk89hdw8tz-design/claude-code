@@ -1,0 +1,14 @@
+{
+ "pair": [
+  32,
+  37
+ ],
+ "axis": "street",
+ "observer": "agent-batch2",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "15th St",
+ "a_native": 3666,
+ "b_native": 212,
+ "why_not_one_block_off": "Both sheets print '15TH ST.' at the seam. Sheet 32 (north): outlot 47 N.W./S.W. with avenue frontages 1401-1428 (14th-15th) and 15th-St runs '1508 1510 1512', '1514 1516 ... 1524', '1602 1604 ... 1612', '1614 ... 1624'; '14TH ST.' above. Sheet 37 (south): outlot 21 N.E./S.E. with avenue frontages 1501-1528 (15th-16th) and 15th-St runs '1213 1215 ... 1223', '1301 ... 1311', '1313 ... 1323', '1401 ... 1411'; '16TH ST.' below. 1400/1500 avenue-block change identifies 15th. The two sheets cover different avenue ranges (32 is east of Ave N, 37 west of it), so only the corridor line itself is common.",
+ "status": "ACCEPTED"
+}

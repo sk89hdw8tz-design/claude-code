@@ -1,0 +1,14 @@
+{
+ "pair": [
+  45,
+  47
+ ],
+ "axis": "avenue",
+ "observer": "agent-batch4",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "(none - sheets are not adjacent)",
+ "a_native": null,
+ "b_native": null,
+ "why_not_one_block_off": "No shared corridor exists. Sheet 45 draws Avenues L, M, M-1/2 and N, and its east margin plate reference reads 46; sheet 47 draws Avenues O-1/2, P, P-1/2 and Q, and its west margin plate reference reads 46. Sheet 46 lies between them, carrying Avenue O and the remainder of N, so 45 and 47 have no corridor in common. Sheet 45's easternmost labelled corridor is 'AVENUE N' (label at native x ~3145, sheet ends at 3327); sheet 47's westernmost is 'AVENUE O-1/2' (label at native x ~136). The detection candidates (45 x=2759, 47 x=574) are Avenue M-1/2 and Avenue P respectively - two different streets - so no honest identification can be made and none is recorded.",
+ "status": "UNRESOLVED"
+}

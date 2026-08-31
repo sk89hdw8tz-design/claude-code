@@ -1,0 +1,14 @@
+{
+ "pair": [
+  24,
+  30
+ ],
+ "axis": "street",
+ "observer": "agent-batch12",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "12th St",
+ "a_native": 3671,
+ "b_native": 219,
+ "why_not_one_block_off": "Both sheets print '12TH ST.' in this corridor (sheet 24 key map covers 9th-12th, sheet 30 covers 12th-15th, so 12th is the only street they share). Sheet 24's last block north of it carries avenue-frontage numbers 1126/1127/1128 (11th-12th = 1100 block) and its 12th St frontage runs even: 914 916 918 920 922 924, 1002 1004 ... 1024, 1102 ... 1112. Sheet 30's first block south of it carries 1201/1202/1204 (12th-13th = 1200 block) and the odd south frontage 913 915 917 919 921 923, 1001 ... 1011, 1013 ... 1023. The even/odd frontages face each other across the same corridor and the hundred-block turns from 11xx to 12xx exactly here; 11th St one block north shows the 10xx/11xx turn instead. Detection's candidates (sheet 24 y=2933/1810/688) all fell inside block interiors; the corridor was read off the green native ruler and then refined to the midpoint of the two block-face rules at y=3551 and y=3790 (239 px = 80 ft, the printed street width).",
+ "status": "ACCEPTED"
+}

@@ -1,0 +1,14 @@
+{
+ "pair": [
+  96,
+  97
+ ],
+ "axis": "avenue",
+ "observer": "agent-batch12",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "Ave Q 1/2",
+ "a_native": 3164,
+ "b_native": 149,
+ "why_not_one_block_off": "Sheet 96 covers avenues P-Q 1/2 and sheet 97 covers Q 1/2-S, so Avenue Q 1/2 is the shared corridor; both sheets letter 'AVENUE Q 1/2' in it and both print '70' as its width. Sheet 96's east frontage on it is even -- 4204 4206 ... 4228 -- and sheet 97's west frontage is odd -- 4205 4207 ... 4227 -- the two faces of one avenue. The cross-street numbers turn across it: sheet 96 ends 2123 2125 2127 2129 and sheet 97 begins 2201 2203 / 2202 2204, the 2100/2200 change. Block faces read x=3061 (96) and x=252 (97); with the printed 70 ft = 206 px (Ave P 84/292, P 1/2 1081/1284, Q 2072/2280 on sheet 96; R 1032/1241, R 1/2 2029/2238, S 3027/3238 on sheet 97) the centre lies 103 px inside each face.",
+ "status": "ACCEPTED"
+}

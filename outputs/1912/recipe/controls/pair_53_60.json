@@ -1,0 +1,14 @@
+{
+ "pair": [
+  53,
+  60
+ ],
+ "axis": "street",
+ "observer": "agent-batch4",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "27th St",
+ "a_native": 3721,
+ "b_native": 226,
+ "why_not_one_block_off": "Sheet 53's south edge and sheet 60's north edge are the same street: sheet 53's bottom margin plate reference reads 59/'27TH ST.' and sheet 60's top margin reads 54 with '27TH ST.' printed across it. The avenue frontage numbers change hundred-block across it: sheet 53's bottom block row carries 2623, 2625, 2627 (the 2600 block, 26th-27th) while sheet 60's top block row carries 2701, 2703, 2705 and 2702, 2704 (the 2700 block, 27th-28th). '80' is printed in the corridor on both plates. a_native = north face 3601 + 120, cross-checked against sheet 53's 26th St centre 2577 (faces 2458/2696) plus the 1145 px street pitch; b_native = midpoint of faces 105 and 347, cross-checked against sheet 60's 28th St centre 1371 (faces 1249/1493) less the same pitch.",
+ "status": "ACCEPTED"
+}

@@ -1,0 +1,14 @@
+{
+ "pair": [
+  79,
+  80
+ ],
+ "axis": "avenue",
+ "observer": "agent-batch7",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "Ave O 1/2",
+ "a_native": 3095,
+ "b_native": 146,
+ "why_not_one_block_off": "Sheet 79 prints AVENUE N-1/2, AVENUE O and, at its east margin, AVENUE O-1/2 with adjoining-sheet number 80; the block between O and O-1/2 (NE 60) carries the 1700 cross-street run 1701 1703 1705 1707 1709 1711 | 1713 1715 1717 1719 1721 1723 and 1702 ... 1712 | 1714 ... 1724, while the block west of Avenue O (SE 35) carries the 1600 run (1601 ... 1623 / 1602 ... 1624). Sheet 80 prints AVENUE O-1/2 at its west margin with adjoining-sheet number 79, and the first block east (SE 60, Fire Dept. Hose Co. No. 7) carries the fresh 1800 run 1801 1803 ... 1811 | 1813 1815 ... 1823 and 1802 ... 1812 | 1814 ... 1824; AVENUE P with the 1900 run lies one avenue further east. The 1700/1800 change is at Avenue O-1/2.",
+ "status": "ACCEPTED"
+}

@@ -1,0 +1,14 @@
+{
+ "pair": [
+  25,
+  31
+ ],
+ "axis": "street",
+ "observer": "agent-batch2",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "12th St",
+ "a_native": 3672,
+ "b_native": 220,
+ "why_not_one_block_off": "Both sheets print '12TH ST.' at the seam. Sheet 25 (north): block 23 N.E./S.E. with avenue frontages 1101-1128 (11th-12th) and 12th-St runs '1214 1216 1218 1220 1222 1224', '1302 1304 ... 1312', '1402 1404 ... 1412'; '11TH ST.' with the 1000-block lies above. Sheet 31 (south): block 23 N.W./S.W. with avenue frontages 1201-1228 (12th-13th) and 12th-St runs '1213 1215 ... 1223', '1301 1303 ... 1311', '1401 1403 ... 1411'; '13TH ST.' with the 1300-block lies below. The 1100/1200 change pins the line.",
+ "status": "ACCEPTED"
+}

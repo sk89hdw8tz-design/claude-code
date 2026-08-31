@@ -1,0 +1,14 @@
+{
+ "pair": [
+  95,
+  96
+ ],
+ "axis": "avenue",
+ "observer": "agent-batch11",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "Ave P",
+ "a_native": 3135,
+ "b_native": 188,
+ "why_not_one_block_off": "Sheet 95's east edge prints 'AVENUE P' with the marginal sheet reference '96', and its last block face carries the Avenue-P frontage column 4302 4304 ... 4332 4334; the 43rd St frontage immediately west of it runs 1719-1729 / 1801-1811 / 1813-1823, so the block west of Avenue P is the 1800 block. Sheet 96's west edge prints 'AVENUE P' with the marginal '95', and the block immediately east of it carries 4301 4303 ... 4333 with 43rd St frontages 1901 1903 1905 1907 1909 1911 and 1902 1904 ... 1912 - the 1900 block. 1800 west / 1900 east of the avenue pins the identity; the next avenue east on sheet 96 (between the 1900 and 2000 runs) is P 1/2 and the one after, labelled 'AVENUE Q', separates 2000 from 2100, so the shared line cannot be P 1/2. The detector's candidates (x=1562 / x=1556 and x=2603 / x=2599) are mid-block lines well inside each plate. Column-profile faces: sheet 95 west face 3029 with the neatline at 3248; sheet 96 east face 293.5 with the neatline at 82 (drafted width 211.5 px = 70 ft, as measured for the sibling avenues); centers taken 106 px inside the measured block face.",
+ "status": "ACCEPTED"
+}

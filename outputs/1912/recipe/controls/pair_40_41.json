@@ -1,0 +1,15 @@
+{
+ "pair": [
+  40,
+  41
+ ],
+ "axis": "avenue",
+ "observer": "agent-anchorB",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "Ave L",
+ "a_native": 3232,
+ "b_native": 143,
+ "why_not_one_block_off": "Sheet 40's east margin prints 'AVENUE L' vertically with the adjoining-sheet numeral '41' beside it; the block immediately west of that gutter carries the even 18th/19th-St runs 1102 1104 1106 1108 1110 1112 and 1114 1116 1118 1120 1122 1124 with Ave L frontages 1802 1804 ... 1828, and 'AVENUE K' is separately printed one block west (its two faces measured at native 2159/2372, centre 2213). Sheet 41's west margin prints 'AVENUE L.' with the adjoining-sheet numeral '40', and the first block east of it carries the odd runs 1201 1203 1205 1207 1209 1211 / 1213 1215 1217 1219 1221 1223 with Ave L frontages 1901 1903 ... 1927; 'AVENUE M.' is separately printed one block east (faces 1052/1263, centre 1158). Even facades west / odd facades east of the same 80 ft gutter, with 'AVENUE K' and 'AVENUE M' both labelled on the far sides, fixes this as Avenue L and not one avenue off.",
+ "note": "Positions are the drafted avenue centreline. Each plate draws only its own half of Ave L (the scan edge cuts the gutter), so the centreline was taken as the measured property face plus/minus half the drafted 80 ft width: sheet 40 west face 3111 + 121; sheet 41 east face 264 - 121. The 80 ft half-width 121 px was calibrated from Ave M on sheet 41 (211 px = 70 ft printed) and from the 18th/21st St widths (242 px = 80 ft). Avenue pitch cross-checks: Ave K centre 2213 to Ave L centre 3232 = 1019 px on sheet 40; Ave L 143 to Ave M 1158 = 1015 px on sheet 41. WARNING: this position disagrees with the sheets' current mosaic placement by about 1090 native px, i.e. roughly one full avenue block; detection's candidates (40: 2727, 41: 866) are block-interior lines. Note also that the mosaic scale implied by sheet 41's candidate list (2.099 mosaic px per native px) differs from sheet 40's (2.007) even though both plates draw the same avenue pitch in native px, so sheet 41's current transform looks independently suspect.",
+ "status": "ACCEPTED"
+}

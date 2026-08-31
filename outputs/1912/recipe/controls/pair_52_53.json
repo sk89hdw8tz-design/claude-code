@@ -1,0 +1,14 @@
+{
+ "pair": [
+  52,
+  53
+ ],
+ "axis": "avenue",
+ "observer": "agent-batch12",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "Ave O 1/2",
+ "a_native": 3182,
+ "b_native": 165,
+ "why_not_one_block_off": "Sheet 52 covers avenues N-O 1/2 and sheet 53 covers O 1/2-Q, so Avenue O 1/2 is the only shared avenue; both sheets letter 'AVENUE O 1/2' in it and both print its width '70' inside the corridor. Sheet 52's east frontage on it is even -- 2502 2504 2506 ... 2528 -- and sheet 53's west frontage is odd -- 2501 2503 2505 ... 2527 -- i.e. the two sides of one avenue. The cross-street numbering turns across it: sheet 52 ends at 1722 1724 while sheet 53 begins 1801 1803, the 1700/1800 hundred-block change. Sheet 52's block face reads x=3079 and sheet 53's x=268; with the printed 70 ft = 206 px (measured on Ave O 2085/2291, Ave P 1058/1268, Ave P 1/2 2059/2264) the centre lies 103 px inside each face. Sheet 53's value also matches grid extrapolation from Ave P (164.5).",
+ "status": "ACCEPTED"
+}

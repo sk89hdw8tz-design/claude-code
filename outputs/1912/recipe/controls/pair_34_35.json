@@ -1,0 +1,14 @@
+{
+ "pair": [
+  34,
+  35
+ ],
+ "axis": "avenue",
+ "observer": "agent-batch4",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "Ave F (Church)",
+ "a_native": 3180,
+ "b_native": 138,
+ "why_not_one_block_off": "Both plates print 'AVE. F. OR CHURCH' in this corridor; sheet 34's east margin reads 35 and sheet 35's west margin reads 34. The 16th/17th St address runs change hundred-block across it: sheet 34's blocks 435/436/437 carry 501, 503, 505, 507, 509, 511 and 502, 504, 506, 508, 510, 512, while sheet 35's blocks 375/376/377 carry 601, 603, 605, 607, 609, 611 and 602, 604, 606, 608, 610, 612. One corridor west on sheet 34 is 'AVE. E. OR POST OFFICE' (faces 2073/2286, centre 2179); one east on sheet 35 is 'AVE. G. OR WINNIE' (faces 1040/1252, centre 1146). a_native = west face 3073 + 106; b_native = east face 243 - 106, corroborated by Ave G centre 1146 less the 1000 px avenue pitch measured on sheet 35 itself.",
+ "status": "ACCEPTED"
+}

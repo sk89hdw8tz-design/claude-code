@@ -1,0 +1,14 @@
+{
+ "pair": [
+  50,
+  51
+ ],
+ "axis": "avenue",
+ "observer": "agent-anchorC",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "Ave L",
+ "a_native": 3206,
+ "b_native": 143,
+ "why_not_one_block_off": "Sheet 50's east margin prints 'AVENUE L' with adjoining sheet no. 51; its last block frontage reads 1113 1115 1117 1119 1121 1123 (side numbers 2502-2528). Sheet 51's west margin prints 'AVENUE L' with adjoining sheet no. 50; its first block frontage reads 1201 1203 1205 1207 1209 1211 (side numbers 2501-2527). The 1100/1200 change is at this corridor. One block west on sheet 50 is the printed 'AVENUE K' (1000/1100 change, frontage 1013-1023 then 1101-1111); one block east on sheet 51 is 'AVENUE M' (frontage 1301 1303 1305 1307). Position recorded is the corridor centreline in that sheet's native raster px, obtained by reading the drawn block-face line off the green native-pixel ruler and adding half the corridor width measured on the same sheet (80 ft streets = 241-246 px, 70 ft avenues = 209-214 px, 20 ft alleys = 60 px, all at ~3.0 px/ft).",
+ "status": "ACCEPTED"
+}

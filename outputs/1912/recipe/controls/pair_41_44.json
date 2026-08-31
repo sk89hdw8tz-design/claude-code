@@ -1,0 +1,15 @@
+{
+ "pair": [
+  41,
+  44
+ ],
+ "axis": "street",
+ "observer": "agent-anchorB",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "21st St (Center)",
+ "a_native": 3675,
+ "b_native": 227,
+ "why_not_one_block_off": "sheet 41 south edge prints '21ST OR CENTER ST.' with adjoining-sheet numeral '45'; even runs read 1214 1216 1218 1220 1222 1224 | 1302 1304 1306 1308 1310 1312 | 1314 1316 1318 1320 1322 1324 | 1402 1404 1406 1408 1410 1412, blocks 20/N.W.19/S.W.19, avenue frontages above are the 20xx run (2002...2028). sheet 44 north edge prints '21ST OR CENTER ST.' with adjoining-sheet numeral '40'; odd runs read 913 915 917 919 921 923 | 1001 1003 1005 1007 1009 1011 | 1013 1015 1017 1019 1021 1023 | 1101 1103 1105 1107 1109 1111, block numbers 201/141/81, avenue frontages below start 21xx (2101...2127); '22ND ST.' is printed at the foot of the same crop, one block further south",
+ "note": "Corridor position recorded as the 21st St (Center) centreline, midway between the two drafted street faces read off the green native ruler (drafted width 240-243 native px). Detection's candidates are block-interior lines. Sheets 41 and 44 are diagonal neighbours across Ave L; they share no address run, so identity rests on the printed corridor name, the adjoining-sheet numerals, and the 20xx/21xx change on each plate.",
+ "status": "ACCEPTED"
+}

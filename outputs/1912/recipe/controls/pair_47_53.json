@@ -1,0 +1,14 @@
+{
+ "pair": [
+  47,
+  53
+ ],
+ "axis": "street",
+ "observer": "agent-batch7",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "24th St",
+ "a_native": 3676,
+ "b_native": 208,
+ "why_not_one_block_off": "Sheet 47 prints 22ND ST, 23RD OR TREMONT ST and, at its lower margin, 24TH ST with adjoining-sheet number 53; the blocks just north of 24th carry the 2300 avenue run (2302 2304 ... 2328 / 2301 2303 ... 2327, Ridgeway Hotel, Interstate Garage) and quarter-blocks SE 67, NE 92, SE 92. Sheet 53 shows the 2400 run immediately south of its top edge (2402 2404 ... 2428 / 2401 2403 ... 2427, Public School) with quarter-blocks SW 67, NW 92, SW 92, and 25TH ST OR ROSENBERG AV with the 2500 run one block below. The 2300/2400 change falls on 24th St.",
+ "status": "ACCEPTED"
+}

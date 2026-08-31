@@ -1,0 +1,14 @@
+{
+ "pair": [
+  59,
+  66
+ ],
+ "axis": "street",
+ "observer": "agent-batch6",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "30th St",
+ "a_native": 3647,
+ "b_native": 233,
+ "why_not_one_block_off": "Sheet 59's bottom margin prints '30TH ST.' (sheet 65 below); its last block row carries 2901-2928 with cross numbers 1814-1824, 1901-1924, 2001-2012, and the row above is labelled '29TH ST.'. Sheet 66's top prints '30TH ST.' with sheet 60 above, and its first block row carries 3001-3028 with cross numbers 2113-2124, 2202-2224, 2301-2312; the next street south is '31ST ST.'. The 2900/3000 hundred-block change lands on this corridor.",
+ "status": "ACCEPTED"
+}

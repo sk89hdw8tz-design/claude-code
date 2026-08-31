@@ -1,0 +1,14 @@
+{
+ "pair": [
+  15,
+  16
+ ],
+ "axis": "avenue",
+ "observer": "agent-batch4",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "Ave C (Mechanic)",
+ "a_native": 3200,
+ "b_native": 155,
+ "why_not_one_block_off": "Both plates print 'AVE. C. OR MECHANIC' in this corridor and each carries the other's plate numeral beside it (sheet 15's east margin reads 16; sheet 16's west margin reads 15). Sheet 15's block 631 fronts the corridor with the EVEN run 3102, 3104, 3106, 3108, 3110, 3112, 3114, 3116, 3118, 3120, 3122, 3124, 3126, 3128; sheet 16's block 571 fronts it with the ODD run 3101, 3103, 3105, 3107, 3109, 3111, 3113, 3115, 3117, 3119, 3121, 3123, 3125, 3127 - opposite faces of the same 3100 block of Mechanic. One corridor east on sheet 16 is 'AVE. D. OR MARKET' (measured centre 1159), one west on sheet 15 is 'AVE. B. OR STRAND'. Detection's proposals (sheet 15 x=2756, sheet 16 x=744) both fall inside block interiors / the Santa Fe and G.C.&S.F. sidings, not in a street; the corridor was read off the ruler instead. a_native = west face 3094 + half of the drafted 70' width (211 px); b_native = east face 261 - 105.",
+ "status": "ACCEPTED"
+}

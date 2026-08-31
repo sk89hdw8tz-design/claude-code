@@ -1,0 +1,14 @@
+{
+ "pair": [
+  85,
+  86
+ ],
+ "axis": "avenue",
+ "observer": "agent-batch10",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "Ave M 1/2",
+ "a_native": 3195,
+ "b_native": 167,
+ "why_not_one_block_off": "Key maps: sheet 85 = avenues J, K, L, M, M 1/2 and sheet 86 = M 1/2, N, N 1/2, O, so the shared corridor is Avenue M 1/2, and both sheets print 'AVENUE M 1/2' in it - sheet 85 down its east margin next to the adjoining sheet number '86', sheet 86 down its west margin next to '85'. Not one block off: the lot runs west of the corridor on sheet 85 are 1301 1303 1305 1307 1309 1311 / 1313 1315 1317 1319 1321 1323 (and 1302 1304 ... 1312 / 1314 1316 ... 1324), while east of it on sheet 86 they are 1401 1403 1405 1407 1409 1411 / 1413 1415 1417 1419 1421 1423 (and 1402 1404 ... 1412 / 1414 1416 ... 1424) - the 13xx->14xx change happens across this corridor. Avenue M, one corridor west on sheet 85, is drawn with its east face at x=2092 and is labelled 'AVENUE M'; Avenue N, one corridor east on sheet 86, has its west face at x=1065 and is labelled 'AVENUE N'. Sheet 85 cand#1 (x=2755) is a block-interior lot line and was rejected. Positions off the green ruler: sheet 85 west face x=3090 and east face x=3282-3304 at the sheet margin, center 3195 (drafted width 214 px); sheet 86 west face x=62.4 and east face x=272.5, center 167 (drafted width 210 px).",
+ "status": "ACCEPTED"
+}

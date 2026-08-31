@@ -1,0 +1,14 @@
+{
+ "pair": [
+  57,
+  59
+ ],
+ "axis": "avenue",
+ "observer": "agent-batch12",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "(none shared)",
+ "a_native": null,
+ "b_native": null,
+ "why_not_one_block_off": "UNRESOLVED: these two sheets do not share an avenue. Sheet 57 draws AVENUE L (x=187), M (1193), M 1/2 (2207) and N at its east edge (~3198); sheet 59 draws AVENUE O 1/2 at its west edge (~140), P (1136), P 1/2 (2134) and Q (~3133). The neighbour numbers printed in the margins confirm the gap: sheet 57's east margin reads '58' and sheet 59's west margin reads '58', so sheet 58 lies between them. They do share the horizontal streets 27th-30th, but the requested axis for this pair is 'avenue' (an x coordinate) and no avenue is common to both, so no x control can be recorded without inventing one.",
+ "status": "UNRESOLVED"
+}

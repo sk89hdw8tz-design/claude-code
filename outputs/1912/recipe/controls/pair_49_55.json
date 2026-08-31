@@ -1,0 +1,14 @@
+{
+ "pair": [
+  49,
+  55
+ ],
+ "axis": "street",
+ "observer": "agent-anchorC",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "27th St",
+ "a_native": 3742,
+ "b_native": 219,
+ "why_not_one_block_off": "Sheet 49's bottom margin prints '27TH ST.' with adjoining sheet no. 55; its north frontage reads 614 616 618 620 622 624 | 702-712 | 714-724 | 802-812 with avenue-side numbers 2610-2628, i.e. the 26th-27th hundred. Sheet 55's top margin prints '27TH ST.' with adjoining sheet no. 49; its south frontage reads the matching odd run 613 615 617 619 621 623 | 701-711 | 713-723 | 801-811 with avenue-side numbers 2702-2718, i.e. the 27th-28th hundred. Odd/even faces of the same street; 26xx north, 27xx south. The next street south on sheet 55 is the printed '28TH ST.' with the 28xx run, so I am not one block south. Position recorded is the corridor centreline in that sheet's native raster px, obtained by reading the drawn block-face line off the green native-pixel ruler and adding half the corridor width measured on the same sheet (80 ft streets = 241-246 px, 70 ft avenues = 209-214 px, 20 ft alleys = 60 px, all at ~3.0 px/ft).",
+ "status": "ACCEPTED"
+}

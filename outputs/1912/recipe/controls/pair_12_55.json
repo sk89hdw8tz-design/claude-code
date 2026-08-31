@@ -1,0 +1,15 @@
+{
+ "pair": [
+  12,
+  55
+ ],
+ "axis": "street",
+ "observer": "agent-anchorA",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "27th St",
+ "a_native": 3740.5,
+ "b_native": 226.9,
+ "why_not_one_block_off": "sheet 12 (north) prints '27TH ST.' with neighbour '14' and '80'' rotated in the corridor; north-side evens read '302 304 306 308 310 312', '314 316 318 320 322 324' (Ave C-D), '402 404 406 408 410 412', '414 416 418 420 422 424' (Ave D-E), then '502 504' east of Ave E; Ave F frontage closes 2624/2626/2628. sheet 55 (south) prints '27TH ST.' at its top margin with neighbour '49'; south-side odds read '601 603 605 607 609 611', '613 615 617 619 621 623', '701 703 705 707 709 711', '713 715 717 719 721 723', then '801 803' - the odd complement of sheet 49's evens. Evens on the north side and odds on the south side interlock one-for-one and the hundred-block changes fall on the avenues named in each key map, so the read line is the shared corridor and not the block-pitch (~1160-1180 px) neighbour street.",
+ "status": "ACCEPTED",
+ "note": "Reported value is the drafted corridor CENTRELINE in that sheet's own working-raster pixels (work/sheets/1912w/u<N>.jpg, the same pixels the green rulers label), following the pair_33_34 convention. sheet 12 north face 3620.5 at its Ave F (east) edge + 120 px half-width; sheet 55 faces N 107.0 / S 346.8 at its Ave F (west) edge. overlap is Ave F (Church) only. The drafted 80' corridor measures 239-245 px on these plates; centreline sigma ~3 px, plus ~2 px where a half-width had to be supplied. Each plate's frontage tilts 8-13 px across the sheet, so the reading window was matched to the two plates' shared avenue. Detection's candidates were all block-interior or siding lines (e.g. sheet 11 cand1 y=3558 falls inside the Pattern & Casting warehouse, 200 px north of the corridor centre) and none were used."
+}

@@ -1,0 +1,14 @@
+{
+ "pair": [
+  31,
+  32
+ ],
+ "axis": "avenue",
+ "observer": "agent-batch11",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "Ave N",
+ "a_native": 3149,
+ "b_native": 251,
+ "why_not_one_block_off": "Sheet 31's east block face carries the Avenue-N frontage '1302 1304 1306 ... 1326 1328' (even) and is labelled 'AVENUE N.' in the corridor; sheet 32's west block face carries '1301 1303 1305 ... 1325 1327' (odd) under its own 'AVENUE N.' label, with 'AVENUE M 1/2' one block west on sheet 31 and 'AVENUE N 1/2' one block east on sheet 32. Even/odd faces of one avenue, and the printed letter labels on both plates, rule out a one-avenue error; the detector's candidates (x=2747 / x=664) are the 20 ft mid-block alleys, not the avenue. Faces measured by column ink profile: sheet 31 west face 3043.5 (east face under the scan gutter, center = face + 106); sheet 32 faces 145.0 and 356.5 (drafted width 211.5 px = 70 ft).",
+ "status": "ACCEPTED"
+}

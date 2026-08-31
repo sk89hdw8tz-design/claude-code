@@ -1,0 +1,15 @@
+{
+ "pair": [
+  14,
+  55
+ ],
+ "axis": "avenue",
+ "observer": "agent-batch3",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "Ave F (Church)",
+ "a_native": 3154.0,
+ "b_native": 142.0,
+ "why_not_one_block_off": "Sheet 14 keymap runs C-D-E-F, sheet 55 runs F-G-H-I, so the only shared avenue is F. On sheet 14 the 28xx band shows the cross-street run going 4xx west of Ave E (416/418/420/422/424 and 413-423) to 5xx east of it (501/503/505/507/509/511, 502-512), and the 5xx run continues to the sheet's east edge (513/515/517/519/521/523 and 520/522/524) where the block face stops at native x=3049 with only open avenue paper beyond. On sheet 55 the westernmost block starts a fresh 6xx run (601/603/605/607/609/611 and 602/604/606/608/610/612) against its west block face at native x=249, and the next avenue east (Ave G, faces 1041/1254) begins the 7xx run (701/703/705/707, 702/704/706/708). The 5xx->6xx hundred-block change is the Ave F crossing; the 6xx->7xx change is Ave G, one block east, so this is not one block off. Both plates print the neighbour sheet number in this same gutter: '55' beside AVE. F OR CHURCH on sheet 14, '14' beside AVE. F OR CHURCH on sheet 55. Both plates also carry the same 28xx avenue-address band (2801-2821 / 2802-2822) at this y, i.e. the 28th-29th St segment.",
+ "note": "Detection candidates (14: 2469/1445/422; 55: 740/1757/2774) all fall in block interiors, ~700 px off the avenue pitch of ~1007 px; Ave F is cut by the sheet edge on both plates and was not proposed. Centre lines are the drafted avenue centre: sheet 14 west face 3049 + half of the 210 px avenue width (70' printed mid-avenue; 80' labels on these plates belong to the numbered streets) measured at Ave E (faces 2040/2250); sheet 55 east face 249 - half of the 213 px avenue width measured at Ave G (faces 1041/1254).",
+ "status": "ACCEPTED"
+}

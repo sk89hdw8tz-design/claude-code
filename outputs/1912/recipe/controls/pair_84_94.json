@@ -1,0 +1,14 @@
+{
+ "pair": [
+  84,
+  94
+ ],
+ "axis": "street",
+ "observer": "agent-batch9",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "42nd St",
+ "a_native": 3647,
+ "b_native": 234,
+ "why_not_one_block_off": "'42ND ST.' is printed in the corridor on both plates (sheet 84 bottom margin, sheet 94 top margin between the '85' and '86' sheet references); both print '70'. The avenue address columns change hundred across it: sheet 84's blocks run 4102,4104,...,4128 / 4101,4103,...,4127 (41st-42nd) and end at its south face; sheet 94's begin 4201,4202,4203,...,4228 (42nd-43rd) at its north face, with '43RD ST.' labelled below them. Sheet 84 labels '41ST ST.' one block north with the 4002-4028 run beyond, so 4128|4202 fixes this line.",
+ "status": "ACCEPTED"
+}

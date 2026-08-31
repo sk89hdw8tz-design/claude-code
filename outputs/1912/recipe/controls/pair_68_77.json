@@ -1,0 +1,14 @@
+{
+ "pair": [
+  68,
+  77
+ ],
+ "axis": "street",
+ "observer": "agent-batch9",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "36th St",
+ "a_native": 3640,
+ "b_native": 237,
+ "why_not_one_block_off": "'36TH ST.' is printed in the corridor on both plates (sheet 68 bottom margin, sheet 77 top margin beside the '69'/'70' sheet references); both print '70'. The avenue address columns change hundred across it: sheet 68's blocks run 3502,3504,...,3528 / 3501,3503,...,3527 (35th-36th) and end at its south face; sheet 77's begin 3601,3602,3603,...,3618 (36th-37th) at its north face. Sheet 68 also labels '35TH ST.' one block north with the 3402-3428 run beyond it, so 3528|3602 cannot be one block off. Detection's sheet-68 candidate (native y=2969) lies on a mid-block lot line in the 3500 block and was rejected.",
+ "status": "ACCEPTED"
+}

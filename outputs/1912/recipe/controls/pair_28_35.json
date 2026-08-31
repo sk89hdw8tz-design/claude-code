@@ -1,0 +1,14 @@
+{
+ "pair": [
+  28,
+  35
+ ],
+ "axis": "street",
+ "observer": "agent-batch7",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "15th St",
+ "a_native": 3669,
+ "b_native": 212,
+ "why_not_one_block_off": "Sheet 28 prints 15TH ST across its lower margin (adjoining-sheet number 34/35 below it) with the 1400 avenue run immediately north (1402 1404 ... 1428 / 1401 1403 ... 1427) and blocks 554, 494, 434; 14TH ST with the 1300 run (1302 ... 1328) is one block north on the same sheet. Sheet 35 prints 15TH ST at its top edge with the 1500 run immediately south (1502 1504 ... 1522 / 1501 1503 ... 1521) and blocks 375, 315, 255, and 16TH ST with the 1600 run (1602 ... 1628) one block below. The 1400/1500 change is at this line.",
+ "status": "ACCEPTED"
+}

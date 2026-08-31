@@ -1,0 +1,14 @@
+{
+ "pair": [
+  14,
+  16
+ ],
+ "axis": "street",
+ "observer": "agent-batch2",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "30th St",
+ "a_native": 3668,
+ "b_native": 222,
+ "why_not_one_block_off": "Both sheets print '30TH ST.' at the seam. Sheet 14 (north): avenue frontages 2901-2928 (29th-30th block) and 30th-St runs '312 314 316 318 320 322 324' and '402 404 ... 424', '502 504 ... 512'; its next street north is printed '29TH ST.' with the 2800-block. Sheet 16 (south): avenue frontages 3001-3018 (30th-31st block) and 30th-St runs '401 403 405 ... 423' and '501 503 ... 511'. The 2900/3000 avenue hundred-block change happens exactly across this line, so it cannot be 29th or 31st. Sheet 14 draws only the north face (native y=3574) plus a 70' corridor; sheet 16 draws the south face at native y=311; centres reported.",
+ "status": "ACCEPTED"
+}

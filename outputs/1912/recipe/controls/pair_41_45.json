@@ -1,0 +1,14 @@
+{
+ "pair": [
+  41,
+  45
+ ],
+ "axis": "street",
+ "observer": "agent-batch12",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "21st (Center) St",
+ "a_native": 3676,
+ "b_native": 220,
+ "why_not_one_block_off": "Both sheets letter '21ST OR CENTER ST.' in the corridor; sheet 41 covers 18th-21st and sheet 45 covers 21st-24th. North of it (sheet 41) the Ave M/M 1/2 frontages read 2023 2025 2027 and 2024 2026 2028 (2000 block) and the street frontage is even: 1210 1212 ... 1224, 1302 1304 ... 1324, with '70' printed in Ave M 1/2 and '20' for the alleys. South of it (sheet 45) they restart at 2101 2103 2105 / 2102 2104 2106 (2100 block) with the odd frontage 1209 1211 ... 1223, 1301 1303 ... 1323 ('THE GALVESTON ORPHANS HOME' block). The 2000/2100 turn is exactly across this corridor. Midpoint of block-face rules y=3556/3796 (41) and y=99/340 (45).",
+ "status": "ACCEPTED"
+}

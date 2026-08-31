@@ -1,0 +1,14 @@
+{
+ "pair": [
+  23,
+  24
+ ],
+ "axis": "avenue",
+ "observer": "agent-batch10",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "Ave I (Sealy)",
+ "a_native": 3174,
+ "b_native": 93,
+ "why_not_one_block_off": "Key maps: sheet 23 = Church/Winnie/Ball/Sealy, sheet 24 = Sealy/Broadway/K/L, so the shared corridor is Ave I or Sealy, and sheet 23 prints 'AVE. I OR SEALY' down its east margin while sheet 24 prints the same name down its west margin. Not one block off: sheet 23's easternmost block carries the 800 run (813 815 817 819 821 823 on the north side, 814 816 818 820 822 824 on the south) while sheet 24's westernmost block carries the 900 run (901 903 905 907 909 911 / 902 904 906 908 910 912), i.e. the 8xx->9xx hundred-block change happens across this one corridor. Sheet 23's cand#1 (x=2774) is a block-interior lot line inside the 802-824 block and was rejected; Ave H or Ball, one block west, is drawn at x=2059-2273 (center 2165) with its own 700/800 break. Positions read off the green native ruler: sheet 23 Sealy faces at x=3066 and x=3282 (center 3174); sheet 24 east face at x=199.7 with the same drafted 214 px avenue width (block Sealy->Broadway measures 794 px on sheet 24 and 794 px on sheet 23, so the two rasters share a scale), giving center x=93; sheet 24's raster begins essentially at the west face of Sealy.",
+ "status": "ACCEPTED"
+}

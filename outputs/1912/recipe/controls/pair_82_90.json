@@ -1,0 +1,14 @@
+{
+ "pair": [
+  82,
+  90
+ ],
+ "axis": "street",
+ "observer": "agent-batch4",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "39th St",
+ "a_native": 3670,
+ "b_native": 214,
+ "why_not_one_block_off": "Sheet 82's south edge and sheet 90's north edge are 39th St: sheet 82's bottom margin reads 89/90 with '39TH ST.' printed, sheet 90's top margin reads 82 with '39TH ST.' printed. The avenue frontage numbers change hundred-block across it: sheet 82's bottom block row carries 3825, 3827 and 3826, 3828 (the 3800 block, 38th-39th) while sheet 90's top block row carries 3901, 3903, 3905 and 3902, 3904, 3906 (the 3900 block, 39th-40th). '80' is printed in the corridor on both plates. a_native = midpoint of the faces 3550 and 3790; b_native = midpoint of the faces 95 and 334, cross-checked against sheet 90's 40th St centre 1358 (faces 1237/1479) less the ~1140 px street pitch.",
+ "status": "ACCEPTED"
+}

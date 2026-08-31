@@ -1,0 +1,14 @@
+{
+ "pair": [
+  80,
+  99
+ ],
+ "axis": "street",
+ "observer": "agent-batch2",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "38th St",
+ "a_native": 2519,
+ "b_native": 2513,
+ "why_not_one_block_off": "Both key maps span 36th-39th, so several streets are common; 38th St was chosen because it is fully drawn with both faces and printed '38TH ST.' on each sheet. Sheet 80: avenue frontages 3701-3733 north of the line (37th-38th block) and 3801+ south of it, with 38th-St runs '1814 1816 ... 1824 / 2002 2004 ... 2012' north and '1811 1813 ... 1823' south; '37TH ST.' with the 3600-block lies above. Sheet 99: block 185 N.E. with frontages 3701-3728 north of the line and 3801-3808 south, 38th-St runs '2702 2704 ... 2712 / 2714 2716 ... 2724' north and '2701 2703 ... 2711 / 2713 2715 ... 2723' south; '37TH ST.' above. The 3700/3800 change pins it on both plates. Detection's candidates (native 1833 / 2135) were block-interior lines and were rejected.",
+ "status": "ACCEPTED"
+}

@@ -1,0 +1,15 @@
+{
+ "pair": [
+  37,
+  40
+ ],
+ "axis": "street",
+ "observer": "agent-anchorB",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "18th St",
+ "a_native": 3669,
+ "b_native": 217,
+ "why_not_one_block_off": "sheet 37's 18th St position is the already-accepted value from pair_37_41 (3669); it is confirmed here by 15th St = 212 (pair_32_37) plus three block pitches of 1153 native px measured on this sheet's own ruler (17TH ST centre reads 2516 on the cand#1 crop), giving 3671. Sheet 37's 17th-St crop shows the 1700-block avenue frontages 1701...1728 and even cross runs 1214 1216 1218 1220 1222 1224 | 1302 ... 1312 | 1314 ... 1324 | 1402 ... 1412 on the block whose south face is 18th St. sheet 40 north edge prints '18TH == ST.' with adjoining-sheet numeral '36'; 18th-St odd runs read 913 915 917 919 921 923 | 1001 1003 1005 1007 1009 1011 | 1013 1015 1017 1019 1021 1023 | 1101 1103 1105 1107 1109 1111, block numbers 198/138/78, avenue frontages below start 18xx (1801...1819)",
+ "note": "Corridor position recorded as the 18th St centreline, midway between the two drafted street faces read off the green native ruler (drafted width 240-243 native px = 80 ft on every plate). Detection's candidates are block-interior/lot lines; the corridor sits at each sheet's edge. Sheets 37 and 40 are diagonal neighbours across Ave L. Sheet 37 value adopted from the accepted pair_37_41 control and independently confirmed against pair_32_37 (15th St = 212) with this sheet's measured 1153 px block pitch.",
+ "status": "ACCEPTED"
+}

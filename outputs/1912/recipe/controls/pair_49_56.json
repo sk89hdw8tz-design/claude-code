@@ -1,0 +1,14 @@
+{
+ "pair": [
+  49,
+  56
+ ],
+ "axis": "street",
+ "observer": "agent-anchorC",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "27th St",
+ "a_native": 3742,
+ "b_native": 226,
+ "why_not_one_block_off": "Sheet 49's bottom margin prints '27TH ST.'; north frontage 614-624 | 702-724 | 802-812, avenue-side numbers 2610-2628 (26th-27th hundred). Sheet 56's top margin prints '27TH ST.' with adjoining sheet no. 50; south frontage 913 915 917 919 921 923 | 1001-1011 | 1013-1023 | 1101-1111 with avenue-side numbers 2702-2722 (27th-28th hundred). Sheets 49 and 56 are diagonal neighbours (49 ends at the 8xx block, 56 begins at the 9xx block) but 27th St is one straight corridor across both. Next street south on 56 is the printed '28TH ST.' with the 28xx run. Position recorded is the corridor centreline in that sheet's native raster px, obtained by reading the drawn block-face line off the green native-pixel ruler and adding half the corridor width measured on the same sheet (80 ft streets = 241-246 px, 70 ft avenues = 209-214 px, 20 ft alleys = 60 px, all at ~3.0 px/ft).",
+ "status": "ACCEPTED"
+}

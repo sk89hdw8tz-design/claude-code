@@ -1,0 +1,14 @@
+{
+ "pair": [
+  86,
+  96
+ ],
+ "axis": "street",
+ "observer": "agent-batch2",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "42nd St",
+ "a_native": 3648,
+ "b_native": 230,
+ "why_not_one_block_off": "Both sheets print '42ND ST.' at the seam. Sheet 86 (north): outlots 8 S.E./33 N.E./S.E. with avenue frontages 4101-4128 (41st-42nd) and 42nd-St runs '1414 1416 ... 1424', '1502 1504 ... 1512', '1514 1516 ... 1524', '1602 1604 ... 1612'; '41ST ST.' with the 4000-block above. Sheet 96 (south): blocks 83 N.W./S.W. with avenue frontages 4201-4228 (42nd-43rd) and 42nd-St runs '1913 1915 ... 1923', '2001 2003 ... 2011', '2013 2015 ... 2023', '2101 2103 ... 2111'; '43RD ST.' printed below. 4100/4200 change pins it.",
+ "status": "ACCEPTED"
+}

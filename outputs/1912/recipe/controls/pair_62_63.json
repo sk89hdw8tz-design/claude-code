@@ -1,0 +1,14 @@
+{
+ "pair": [
+  62,
+  63
+ ],
+ "axis": "avenue",
+ "observer": "agent-batch9",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "Ave L",
+ "a_native": 3170,
+ "b_native": 179,
+ "why_not_one_block_off": "Both sheets print 'AVENUE L' along this corridor (sheet 62 at its east edge beside the '63' sheet reference, sheet 63 at its west edge beside the '62' reference). The cross-street runs change hundred across it: sheet 62's blocks carry 1101,1103,...,1123 and 1102,1104,...,1124 (Ave K to Ave L), sheet 63's carry 1201,1203,...,1223 and 1202,1204,...,1224 (Ave L to Ave M), so 1124|1202 straddle this line. The avenue frontage numbers confirm opposite faces of the same block: even 3102,3104,...,3128 on sheet 62's east face, odd 3101,3103,...,3113 on sheet 63's west face. One corridor west on sheet 62 is 'AVENUE K'; one east on sheet 63 is 'AVENUE M'.",
+ "status": "ACCEPTED"
+}

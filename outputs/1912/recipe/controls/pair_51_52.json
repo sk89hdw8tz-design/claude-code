@@ -1,0 +1,14 @@
+{
+ "pair": [
+  51,
+  52
+ ],
+ "axis": "street",
+ "observer": "agent-batch10",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "26th St",
+ "a_native": 2593,
+ "b_native": 2592,
+ "why_not_one_block_off": "NOTE ON THE PAIR: the key maps give sheet 51 = 24th-27th / avenues L, M, M 1/2, N and sheet 52 = 24th-27th / avenues N, N 1/2, O, O 1/2, i.e. the two sheets are side by side and their only shared *avenue* is Ave N, which lies outside both supplied crops. The crops do, however, both show 26th St, a horizontal corridor drawn on both sheets, and the task's declared axis is 'street', so the control is recorded on 26th St. Identity: both sheets print the street name - sheet 51 prints '26TH ST.' directly below the chosen line, sheet 52 prints '26TH' beside it - and sheet 52 prints '25TH ST. OR ROSENBERG AV.' one block north at y=1560, so the chosen line is not 25th. Not one block off: on sheet 51 the block north of the line carries the 25xx avenue run (2501 2503 ... 2527, with 2514, 2514 1/2, 2520 1/2, 2521 1/2 dwellings) and the block south carries 2601 2603 ... 2617 next to THE CENTRAL HIGH SCHOOL (NEGRO); on sheet 52 the same 25xx->26xx change appears in its east column (2501 2503 ... 2527 above, 2601 2603 2606 below). Sheet 52's cand#1 (y=2129) is the N.E.41/S.E.41 outlot-quarter division line, not a street, and was rejected. Faces off the green ruler: sheet 51 y=2475.4 and y=2707/2716 (center 2593, and the printed '26TH ST.' label falls at 2594); sheet 52 y=2471.5 and y=2712.8 (center 2592). Both give the printed 70 ft width.",
+ "status": "ACCEPTED"
+}

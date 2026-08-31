@@ -1,0 +1,14 @@
+{
+ "pair": [
+  80,
+  88
+ ],
+ "axis": "street",
+ "observer": "agent-batch11",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "39th St",
+ "a_native": 3663,
+ "b_native": 242,
+ "why_not_one_block_off": "Sheet 80's easternmost frontage above the corridor reads '2002 2004 2006 2008 2010 2012 2014 2016' (even, north side of 39th); sheet 88's westernmost frontage below it reads '2009 2011 2013 2015 2017 2019 2021 2023' (odd, south side) - the same 2000 block, even north / odd south. The avenue columns flip 3802-3828 (sheet 80) to 3902-3928 / 3901-3929 (sheet 88) across the line, and both plates print '39TH ST.' with sheet 80 printing '38TH ST.' one block north. Row-profile faces: sheet 80 north face 3557, sheet 88 south face 348; centers 106 px inside (printed 70').",
+ "status": "ACCEPTED"
+}

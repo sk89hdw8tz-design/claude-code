@@ -1,0 +1,14 @@
+{
+ "pair": [
+  94,
+  96
+ ],
+ "axis": "avenue",
+ "observer": "agent-batch10",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "none shared - sheets are not adjacent",
+ "a_native": null,
+ "b_native": null,
+ "why_not_one_block_off": "sheet 94's east margin is Avenue N 1/2 (its drawn avenues are 'AVENUE N' and the partly-cut 'AVEN...' at the east edge, with the adjoining-sheet number '95' printed beyond); sheet 96's west margin is Avenue P ('AVENUE P' printed at its west edge with '95' to the west). Key maps agree: 94 = M, M 1/2, N, N 1/2 and 96 = P, P 1/2, Q, Q 1/2. Sheet 95 lies between them, so there is no shared avenue. Address runs confirm the gap: sheet 94's edge block is the N.E./N.W. quarter of outlot 32 with runs 1501 1503 ... 1523 and 4301-4335/4401-4411, while sheet 96's edge block is the N.E./N.W. quarter of outlot 82 with runs 1901 1903 ... 1931 and 4801-4835/4401-4419. Both candidates (sheet 94 x=2593, sheet 96 x=514) fall in empty block interiors. No shared corridor exists to measure.",
+ "status": "UNRESOLVED"
+}

@@ -1,0 +1,14 @@
+{
+ "pair": [
+  45,
+  50
+ ],
+ "axis": "street",
+ "observer": "agent-anchorC",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "24th St",
+ "a_native": 3670,
+ "b_native": 158,
+ "why_not_one_block_off": "Sheet 45's bottom margin prints '24TH ST.' (adjoining sheet no. 51); north frontage 1214 1216 1218 1220 1222 1224 | 1302-1332 | 1402-1416 with avenue-side numbers 2302-2328 (23rd-24th hundred), and the street above it is the printed '23RD OR TREMONT ST.' with 22xx side numbers. Sheet 50's top margin prints '24TH ST.' (adjoining sheet no. 44); south frontage 913 915 917 919 921 923 | 1001-1010 | 1013-1023 | 1101-1111 with avenue-side numbers 2402-2422 (24th-25th hundred). 23xx above, 24xx below. Position recorded is the corridor centreline in that sheet's native raster px, obtained by reading the drawn block-face line off the green native-pixel ruler and adding half the corridor width measured on the same sheet (80 ft streets = 241-246 px, 70 ft avenues = 209-214 px, 20 ft alleys = 60 px, all at ~3.0 px/ft).",
+ "status": "ACCEPTED"
+}

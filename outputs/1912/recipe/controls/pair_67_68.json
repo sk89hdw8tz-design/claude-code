@@ -1,0 +1,14 @@
+{
+ "pair": [
+  67,
+  68
+ ],
+ "axis": "avenue",
+ "observer": "agent-batch7",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "Ave E (Post Office)",
+ "a_native": 3148,
+ "b_native": 142,
+ "why_not_one_block_off": "Sheet 67 prints AVE. C OR MECHANIC, AVE. D OR MARKET and, at its east margin, AVE. E OR POST OFFICE with adjoining-sheet number 68; the block between D and E (block 514, cotton concentration sheds, Anchor Milling Co.) carries the 400 cross-street run 401 403 405 407 409 411 | 413 415 417 419 421 423 and 402 404 406 408 410 412 | 414 416 418 420 422 424. Sheet 68 prints AVE. E OR POST OFFICE at its west margin with adjoining-sheet number 67, and the first block east (block 454, Galveston Brewing Co.) carries the fresh 500 run 501 503 505 507 509 511 | 513 515 517 519 521 523 and 502 ... 524. AVE. F OR CHURCH with the 600 run and AVE. G OR WINNIE with the 700 run lie further east on sheet 68, so this is not one avenue off. Both detection candidates (67: x=2464, 68: x=744) fall on railroad sidings / block interiors; the corridor was read off the green native ruler at each sheet's edge.",
+ "status": "ACCEPTED"
+}

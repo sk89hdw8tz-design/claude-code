@@ -1,0 +1,14 @@
+{
+ "pair": [
+  27,
+  28
+ ],
+ "axis": "avenue",
+ "observer": "agent-batch4",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "Ave C (Mechanic)",
+ "a_native": 3200,
+ "b_native": 171,
+ "why_not_one_block_off": "Both plates print 'AVE. C. OR MECHANIC' here, sheet 27's east margin reads 28 and sheet 28's west margin reads 27. Sheet 27's block 613/614 east frontage carries the EVEN run 1302, 1304, 1306, 1308, 1310, 1312, 1314, 1316, 1318; sheet 28's block 553 west frontage carries the ODD run 1301, 1303, 1305, 1307, 1309, 1311, 1313, 1315, 1317 - the two faces of the same 1300 block of Mechanic. The 13th St cross-run also changes hundred-block across it: sheet 27 ends ...219, 221, 223 while sheet 28 begins 301, 303, 305. One corridor east on sheet 28 is 'AVE. D. OR MARKET' (faces 1072/1283). a_native = west face 3094 + 106; b_native = midpoint of the two faces 66 and 277 (70' = 211 px).",
+ "status": "ACCEPTED"
+}

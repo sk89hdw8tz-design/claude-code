@@ -1,0 +1,14 @@
+{
+ "pair": [
+  21,
+  22
+ ],
+ "axis": "avenue",
+ "observer": "agent-batch9",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "Ave C (Mechanic)",
+ "a_native": 3180,
+ "b_native": 190,
+ "why_not_one_block_off": "Both sheets print 'AVE. C. OR MECHANIC' along this corridor. Sheet 21 draws its WEST face, carrying the even Mechanic run 1002,1004,1006,1008,1010,1012 (down to 1028) with the cross-street corner number 223; sheet 22 draws the EAST face with the odd run 1001,1003,1005,1007,1009,1011 (to 1027) and corner number 301. Odd/even opposite faces of the same 1000-block fix the identity. The cross-street hundred also turns here: sheet 21's block runs 202,204,...,224 and sheet 22's runs 302,304,...,324, so 224|302 straddle this line and not the alley one half-block west (detection's candidate 1, native x=2778 on sheet 21, sits in that block interior). One block west is Ave B (Strand), labelled as such on sheet 21 at native x~2160.",
+ "status": "ACCEPTED"
+}

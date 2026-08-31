@@ -1,0 +1,15 @@
+{
+ "pair": [
+  14,
+  49
+ ],
+ "axis": "street",
+ "observer": "agent-anchorA",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "27th St",
+ "a_native": 198.0,
+ "b_native": 3740.0,
+ "why_not_one_block_off": "sheet 14 (south) prints '27TH ST.' at its top margin with neighbour '12'; south-side odds read '301 303 305 307 309 311', '313 315 317 319 321 323', '401 403 405 407 409 411', '413 415 417 419 421 423', then '501 503' - the exact odd complement of sheet 12's evens, with the 300/400/500 change at Ave D and Ave E. sheet 49 (north) prints '27TH ST.' with neighbour '55' and '80'' rotated in the corridor; north-side evens read '602 604 606 608 610 612', '614 616 618 620 622 624', '702 704 706 708 710 712', '714 716 718 720 722 724', then '802 804'. Evens on the north side and odds on the south side interlock one-for-one and the hundred-block changes fall on the avenues named in each key map, so the read line is the shared corridor and not the block-pitch (~1160-1180 px) neighbour street.",
+ "status": "ACCEPTED",
+ "note": "Reported value is the drafted corridor CENTRELINE in that sheet's own working-raster pixels (work/sheets/1912w/u<N>.jpg, the same pixels the green rulers label), following the pair_33_34 convention. sheet 14 faces N 77.0 / S 318.5 at its Ave F (east) edge; sheet 49 north face 3619.6 at its Ave F (west) edge + 120.5 px half-width (sheet 49's 26th St drafted 241 px). overlap is Ave F (Church) only; sheet 49 south face falls off the page bottom. The drafted 80' corridor measures 239-245 px on these plates; centreline sigma ~3 px, plus ~2 px where a half-width had to be supplied. Each plate's frontage tilts 8-13 px across the sheet, so the reading window was matched to the two plates' shared avenue. Detection's candidates were all block-interior or siding lines (e.g. sheet 11 cand1 y=3558 falls inside the Pattern & Casting warehouse, 200 px north of the corridor centre) and none were used."
+}

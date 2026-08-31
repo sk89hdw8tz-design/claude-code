@@ -1,0 +1,15 @@
+{
+ "pair": [
+  34,
+  8
+ ],
+ "axis": "street",
+ "observer": "agent-anchorB",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "18th St",
+ "a_native": 3663,
+ "b_native": 211,
+ "why_not_one_block_off": "sheet 34 south edge prints '18TH == ST.' with adjoining-sheet numeral '8'; 18th-St even runs read 312 314 316 318 320 322 324 | 402 404 406 408 410 412 | 414 416 418 420 422 424 | 502 504 506 508 510 512 514, block numbers 557/497/437, and the avenue frontages above the corridor are the 17xx run (1712...1728). sheet 8 north edge prints '18TH == ST.' with adjoining-sheet numeral '34'; 18th-St odd runs read 309 311 313 315 317 319 321 323 | 401 403 405 407 409 411 | 413 415 417 419 421 423 | 501 503 505 507 509 511, block numbers 558/498/438, and the avenue frontages below the corridor start the 18xx run (1802...1820)",
+ "note": "Corridor position recorded as the 18th St centreline, midway between the two drafted street faces read off the green native ruler (drafted width 240-243 native px = 80 ft on every plate). Detection's candidates are block-interior/lot lines; the corridor sits at each sheet's edge.",
+ "status": "ACCEPTED"
+}

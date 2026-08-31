@@ -283,3 +283,51 @@ corridor for each pair is known before anyone looks at a scan. What the key
 map cannot settle is which *detected* line is that corridor when detection
 misses one — the failure that produced the one-block error in HQ-11 — and that
 is precisely what reading the address runs resolves.
+
+## HQ-13 · 1912 ring re-registered from 137 shared-corridor controls — APPLIED
+
+The master's own method, run at scale. 18 Opus agents identified the shared
+corridor for every ring pair: which street or avenue two sheets both draw, its
+position in each sheet's native pixels, and the printed address runs proving
+the identity is not one block off — the same `why_not_one_block_off` reasoning
+as the original 23 core controls.
+
+**Result: 146 controls written, 137 ACCEPTED, 9 correctly refused.** The nine
+refusals are all cases where the two sheets are genuinely not adjacent (an
+intervening sheet lies between them, each plate printing the other's number in
+its margin) — my pair list was built from ownership cuts, which was the wrong
+criterion; the agents caught it.
+
+`tools/netsolve.py` solved a translation per sheet from those controls with
+the 12 core sheets frozen. **Control residuals: median 0.0 ft, 90th percentile
+5.1 ft, worst 33.6 ft.** 77 of 80 ring sheets are now constrained; 17, 81 and
+91 have no usable control and were left where they were.
+
+**What it fixed.** Seam 75|76 — the worst defect in the mosaic, "AVE. F OR
+CHURCH" drawn twice ~86 ft apart — is now nearly coincident, ink agreement
+0.116 → 0.207. Across the render the street grid runs continuously through
+sheet boundaries instead of stepping at every seam. Total unclaimed gap area
+fell from 12.1M to 10.0M px² and the largest hole from 8.58M to 5.69M px².
+Three agents independently found pairs the old mosaic had a **full block**
+wrong (40|41, 44|45, 50|51, 66|74).
+
+**What it did not fix, and the honest caveats.**
+- Sheets moved a median of 227 ft and up to 1,458 ft. Those are large, but
+  they are what the address runs say, and the residuals confirm the controls
+  agree with each other.
+- The mosaic union grew 12% and now splits into 3 disjoint pieces with more
+  small holes (23 vs 8), though less total gap area. The likely cause is that
+  **this solve adjusts translation only**. An agent measured sheet 41's
+  transform scale at 2.099 px/native against sheet 40's 2.007 — a 4.6%
+  difference on plates whose measured avenue pitch is identical — so some
+  sheets carry a wrong scale that no translation can reconcile, and the
+  network absorbs it by spreading. Solving scale and rotation per sheet from
+  the same controls is the next step.
+- Sheet 72 is still missing (HQ-8) and is the largest remaining hole.
+- Ownership was re-cut by Voronoi (`tools/recut.py`) since the old cuts no
+  longer matched where sheets are. Those cuts do not follow street centrelines
+  the way §2.5 requires — that needs redoing from the new corridor index
+  before the ring is print-ready.
+
+Previous state is recoverable: `transforms_city.json.pre_controls` and
+`seams/ownership_city.json.pre_recut`.

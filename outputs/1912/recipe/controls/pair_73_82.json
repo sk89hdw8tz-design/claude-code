@@ -1,0 +1,14 @@
+{
+ "pair": [
+  73,
+  82
+ ],
+ "axis": "street",
+ "observer": "agent-batch2",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "36th St",
+ "a_native": 3642,
+ "b_native": 226,
+ "why_not_one_block_off": "Both sheets print '36TH ST.' at the seam. Sheet 73 (north): block 111 N.E./S.E. with avenue frontages 3501-3528 (35th-36th) and 36th-St runs '2012 2014 ... 2024', '2102 2104 ... 2112', '2114 2116 ... 2124', '2202 2204 ... 2212'; '35TH ST.' above. Sheet 82 (south): blocks 136/161 with avenue frontages 3601-3628 (36th-37th) and 36th-St runs '2409 2411 ... 2423', '2501 2503 ... 2511', '2513 2515 ... 2523', '2601 2603 ... 2611'; '37TH ST.' printed below. 3500/3600 change pins it. The sheets cover different avenue ranges (73: P1/2-R, 82: R1/2-T), so only the 36th St line is common.",
+ "status": "ACCEPTED"
+}

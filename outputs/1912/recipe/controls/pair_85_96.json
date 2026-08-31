@@ -1,0 +1,14 @@
+{
+ "pair": [
+  85,
+  96
+ ],
+ "axis": "street",
+ "observer": "agent-batch12",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "42nd St",
+ "a_native": 3674,
+ "b_native": 230,
+ "why_not_one_block_off": "Sheet 85 covers 39th-42nd and sheet 96 covers 42nd-45th; both letter '42ND ST.' in the corridor. North of it (sheet 85) the avenue frontages read 4125 4127 / 4126 4128 (41st-42nd = 4100 block) and the even street frontage 1202 1204 ... 1224, 1302 1304 ... 1318, with '70' in the avenue and '20' alleys. South of it (sheet 96) they restart at 4201 4203 / 4202 4204 (4200 block) with the odd frontage 1907 1909 ... 1923, 2001 2003 ... 2023. The 4100/4200 turn is at this corridor. Measured on the eastern half of sheet 85 only, to keep the lower-left inset panel (its own 39th/40th St labels and Broadway-to-K blocks) out of the profile; midpoint of block-face rules y=3554/3793 (85) and y=110/350 (96).",
+ "status": "ACCEPTED"
+}

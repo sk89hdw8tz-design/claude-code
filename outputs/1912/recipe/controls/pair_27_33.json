@@ -1,0 +1,6 @@
+{"pair": [27, 33], "axis": "street", "observer": "agent-batch5",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "15th St",
+ "a_native": 3684, "b_native": 213,
+ "why_not_one_block_off": "Sheet 27 prints '14TH ST.' (block faces at native y 2407 and 2651, a 244 px = 80 ft corridor) and '15TH ST.' at its bottom edge; sheet 33 prints '15TH ST.' at its top with the adjoining-sheet numeral '27' above it. The avenue-frontage hundred-block changes across it: sheet 27 carries the 1400 run (1401 1402 1404 ... 1426 1428) between 14th and 15th, sheet 33 carries the 1500 run (1501 1503 ... 1521 1523) between 15th and 16th. Cross-street numbers repeat on both faces of 15th St - 102 104 ... 124 and 202 204 ... 212 on sheet 27's south block faces, 101 103 ... 111, 113 ... 123 and 201 203 ... 211 on sheet 33's north block faces - and the block numerals step 734/674/614 (sheet 27) to 735/675/615 (sheet 33) across the same line. Sheet 27's north face of the corridor is at native y 3562, centre 3684 (half of the measured 244 px width). Sheet 33 draws the whole corridor: north face at native y 91 (its neatline) and south face at 335, centre 213. The proposed candidates (2983 on 27, 264 on 33) both fell inside block interiors, not on the corridor centre.",
+ "status": "ACCEPTED"}

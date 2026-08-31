@@ -1,0 +1,15 @@
+{
+ "pair": [
+  11,
+  14
+ ],
+ "axis": "street",
+ "observer": "agent-anchorA",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "27th St",
+ "a_native": 3750.2,
+ "b_native": 201.6,
+ "why_not_one_block_off": "sheet 11 (north of the corridor) prints '27TH ST.' in the corridor at its bottom margin with the neighbour plate number '13'; its 27th-St north-side evens read '102 104 106 108 110 112' in the Ave A-B block and the Ave B frontage closes with 2625/2626/2627/2628 (the 26th-27th segment). sheet 14 (south) prints '27TH ST.' at its top margin with neighbour '12'; south-side odds read '301 303 305 307 309 311', '313 315 317 319 321 323', '401 403 405 407 409 411', '413 415 417 419 421 423', then '501 503' - the exact odd complement of sheet 12's evens, with the 300/400/500 change at Ave D and Ave E. Evens on the north side and odds on the south side interlock one-for-one and the hundred-block changes fall on the avenues named in each key map, so the read line is the shared corridor and not the block-pitch (~1160-1180 px) neighbour street.",
+ "status": "ACCEPTED",
+ "note": "Reported value is the drafted corridor CENTRELINE in that sheet's own working-raster pixels (work/sheets/1912w/u<N>.jpg, the same pixels the green rulers label), following the pair_33_34 convention. sheet 11 north face 3630.2 at its Ave C (east) edge + 120 px half-width; sheet 14 faces N 80.8 / S 322.4 at its Ave C (west) edge. overlap is Ave C (Mechanic) only: sheet 11 east edge vs sheet 14 west edge. The drafted 80' corridor measures 239-245 px on these plates; centreline sigma ~3 px, plus ~2 px where a half-width had to be supplied. Each plate's frontage tilts 8-13 px across the sheet, so the reading window was matched to the two plates' shared avenue. Detection's candidates were all block-interior or siding lines (e.g. sheet 11 cand1 y=3558 falls inside the Pattern & Casting warehouse, 200 px north of the corridor centre) and none were used."
+}

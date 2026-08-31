@@ -1,0 +1,14 @@
+{
+ "pair": [
+  69,
+  77
+ ],
+ "axis": "street",
+ "observer": "agent-batch10",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "36th St",
+ "a_native": 3670,
+ "b_native": 221,
+ "why_not_one_block_off": "Sheet 69 covers 33rd-36th, sheet 77 covers 36th-39th, so the shared corridor is 36th St; both sheets print '36TH ST.' beside the line (sheet 77 also prints the adjoining sheet number '69' just north of it). Not one block off: sheet 69's cand#1 (y=2957) is a mid-block lot line and was rejected; 35th St, the street one block north, is drawn at y=2399-2640 and is labelled '35TH ST.', with the 34xx run (3424 1/2, 3427, 3428) above it and the 35xx run (3501 3503 ... 3528) below. Across the chosen line the numbers change 35xx->36xx: sheet 69's last block reads 3517 3519 3521 3523 3525 3527 and frontage 814 816 818 820 822 824 / 902 904 906 908 910 912, sheet 77's first block reads 3601 3603 3605 ... 3618 with frontage 1001 1003 1005 1007 1009 1011 / 1013 1015 1017 1019 1021 1023 beside the BROADWAY BAPTIST CHURCH. Positions: sheet 69 north face y=3549 plus half the 241 px (70 ft) width = 3670, matching its '36TH ST.' label at y=3673; sheet 77 faces y=101.3 and y=341.7, center 221, matching its label at y=223.",
+ "status": "ACCEPTED"
+}

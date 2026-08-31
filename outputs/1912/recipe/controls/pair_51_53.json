@@ -1,0 +1,14 @@
+{
+ "pair": [
+  51,
+  53
+ ],
+ "axis": "avenue",
+ "observer": "agent-batch11",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "none - sheets are not adjacent",
+ "a_native": null,
+ "b_native": null,
+ "why_not_one_block_off": "No corridor is shared, so no position could be recorded. Sheet 51's key map lists avenues L, M, M 1/2, N and its eastern margin is printed 'AVENUE N' with the neighbour reference '52'; sheet 53's key map lists O 1/2, P, P 1/2, Q and its western margin is printed 'AVENUE O 1/2', also with the neighbour reference '52'. Sheet 52, carrying avenues N 1/2 and O, lies between them, so 51 and 53 have no common avenue. The detector's near-seam candidates are sheet 51 x=2781 (the 20 ft alley in block S.E.16, between the 1416 and 1418 frontages) and sheet 53 x=736 (the 20 ft alley in block S.E.66, between 1811 and 1813) - both block-interior alleys, and in any case one is on the wrong side of the missing sheet. Reported UNRESOLVED rather than forcing a control between non-adjacent plates.",
+ "status": "UNRESOLVED"
+}

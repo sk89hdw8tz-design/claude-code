@@ -1,0 +1,14 @@
+{
+ "pair": [
+  19,
+  23
+ ],
+ "axis": "street",
+ "observer": "agent-batch7",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "9th St",
+ "a_native": 3705,
+ "b_native": 214,
+ "why_not_one_block_off": "Sheet 19 prints 8TH ST and, at its lower margin, 9TH ST (with adjoining-sheet number 23); the blocks just north of that line carry the 800 avenue-address run (802 804 806 808 810 812 / 801 803 805 807 809 811) and block numbers 368, 308, 248. Sheet 23 prints 9TH ST at its top edge with the 900 run immediately south (901 903 905 ... 910 912 912-1/2, 'MATTRESS FACTORY' at 910-1/2) and block numbers 369, 309, 249 - the 800/900 hundred-block change and the +1 block-number step both fall on this corridor. 10TH ST with the 1000 run (1001 1003 ... 1022-1/2, Sherman Park block 310) lies one block further south on sheet 23, so this is not one street off.",
+ "status": "ACCEPTED"
+}

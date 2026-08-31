@@ -1,0 +1,14 @@
+{
+ "pair": [
+  28,
+  34
+ ],
+ "axis": "street",
+ "observer": "agent-batch6",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "15th St",
+ "a_native": 3691,
+ "b_native": 210,
+ "why_not_one_block_off": "Sheet 28's bottom margin prints '15TH ==== ST.' and sheet number 34 beneath it; its last block row has 1402-1428 / 1401-1427 with cross numbers 314-324, 402-424, 502-512. Sheet 34's top margin prints '15TH ==== ST.' with sheet 28 above; its first block row has 1502-1522 / 1501-1521 with cross numbers 313-323, 401-423, 501-511. The 1400/1500 change is exactly across this line; block numbers 554/494/434 sit north of it and 555/495/435 south.",
+ "status": "ACCEPTED"
+}

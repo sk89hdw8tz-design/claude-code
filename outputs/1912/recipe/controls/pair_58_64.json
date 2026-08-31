@@ -1,0 +1,14 @@
+{
+ "pair": [
+  58,
+  64
+ ],
+ "axis": "street",
+ "observer": "agent-batch2",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "30th St",
+ "a_native": 3676,
+ "b_native": 211,
+ "why_not_one_block_off": "Both sheets print '30TH ST.' (80') at the seam. Sheet 58 (north): outlots 39/64 with avenue frontages 2901-2932 (29th-30th) and 30th-St runs '1702 1704 1706 1708 1710 1712 / 1714 1716'; '29TH ST.' with the 2800-block above. Sheet 64 (south): avenue frontages 3001-3028 (30th-31st) and 30th-St runs '1701 1703 1705 1707 1709 1711 / 1713'; '31ST ST.' printed below. 2900/3000 change pins the line.",
+ "status": "ACCEPTED"
+}

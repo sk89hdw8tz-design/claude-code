@@ -1,0 +1,14 @@
+{
+ "pair": [
+  57,
+  58
+ ],
+ "axis": "street",
+ "observer": "agent-batch11",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "29th St",
+ "a_native": 2522,
+ "b_native": 2528,
+ "why_not_one_block_off": "Both plates print '28TH ST.' and '29TH ST.' Across the chosen corridor the avenue-side runs change hundred: sheet 57's column reads 2801 2803 ... 2827 above the line and the 2900 block below; sheet 58 likewise ends 2827 above and starts 2901 2903 2905 below. The 29th St frontages themselves read 1212-1224 west of Avenue M and 1302-1324 east of it on sheet 57, and 1513-1523 / 1601-1609 / 1611-1623 with 1701-1712 at Avenue O on sheet 58 - different avenue blocks of the one street. Both faces measured by row ink profile: sheet 57 2400.0 and 2645.0 (center 2522.5); sheet 58 2408.0 and 2649.0 (center 2528.5); drafted width 245/241 px = 80 ft on both.",
+ "status": "ACCEPTED"
+}

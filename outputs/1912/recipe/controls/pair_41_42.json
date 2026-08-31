@@ -1,0 +1,14 @@
+{
+ "pair": [
+  41,
+  42
+ ],
+ "axis": "avenue",
+ "observer": "agent-batch11",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "Ave N",
+ "a_native": 3164,
+ "b_native": 168,
+ "why_not_one_block_off": "Sheet 41's east block face is the Avenue-N side of the 19th-20th block, frontage '1902 1904 ... 1926 1928' (even), labelled 'AVENUE N.'; sheet 42's west block face is the opposite side of the same block row, '1901 1903 ... 1925 1927' (odd), also labelled 'AVENUE N.', with 'AVENUE M 1/2' west on 41 and 'AVENUE N 1/2' east on 42. The block just north shows the 1800 run (1802-1828 / 1817-1827), confirming the hundred-block position. Candidates x=2801 / x=778 are the 20 ft interior alleys of blocks S.E.19 and N.E.44, not the avenue. Column-profile faces: sheet 41 west face 3058.5 (center = +105); sheet 42 faces 63.0 and 273.5 (width 210.5 px = 70 ft).",
+ "status": "ACCEPTED"
+}

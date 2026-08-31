@@ -1,0 +1,14 @@
+{
+ "pair": [
+  59,
+  60
+ ],
+ "axis": "avenue",
+ "observer": "agent-batch4",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "Ave Q",
+ "a_native": 3156,
+ "b_native": 184,
+ "why_not_one_block_off": "Both plates print 'AVENUE Q' in this corridor; sheet 59's east margin reads 60 and sheet 60's west margin reads 59. Sheet 59's block SE 90 fronts it with the EVEN run 2708, 2710, 2712, 2714, 2716, 2718, 2720, 2722, 2724, 2726; sheet 60's block NE 115 fronts it with the ODD run 2705, 2707, 2709, 2711, 2713, 2715, 2717, 2719, 2721, 2723, 2725 - opposite faces of the same 2700 block. One corridor west on sheet 59 is 'AVENUE P-1/2' (faces 2048/2259, centre 2153); one east on sheet 60 is 'AVENUE Q-1/2' (centre 1180). a_native = west face 3048 + 107; b_native = east face 291 - 107.",
+ "status": "ACCEPTED"
+}

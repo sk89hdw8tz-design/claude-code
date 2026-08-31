@@ -1,0 +1,14 @@
+{
+ "pair": [
+  56,
+  58
+ ],
+ "axis": "avenue",
+ "observer": "agent-batch9",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
+ "corridor": "none shared",
+ "a_native": null,
+ "b_native": null,
+ "why_not_one_block_off": "Sheet 56's easternmost corridor is labelled 'AVENUE L' with the adjoining-sheet numeral '57' printed beside it; sheet 58's westernmost corridor is labelled 'AVENUE N' with the same adjoining-sheet numeral '57' beside it. Sheet 57 therefore lies between them (Ave L to Ave N), and the two plates share no avenue: sheet 56's key map lists I, J, K, L and sheet 58's lists N, N 1/2, O, O 1/2, with no letter in common. Sheet 56 draws only the west half of Ave L (block face at native x~3065, cross-street run 1102-1124 / 1101-1123) and sheet 58 only the east half of Ave N (avenue column 2717-2827, cross-street run 1502-1530). No shared corridor exists to measure, so no control is recorded.",
+ "status": "UNRESOLVED"
+}
