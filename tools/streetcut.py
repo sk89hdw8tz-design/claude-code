@@ -110,7 +110,17 @@ def main():
         for v in feet:
             if v == u or not feet[u].intersects(feet[v]):
                 continue
+            # the cut's ORIENTATION comes from how the two sheets are stacked,
+            # not from whichever axis their control happens to be on. Diagonal
+            # neighbours (e.g. 81 spans streets 36-39, 89 spans 39-42) often
+            # share only an avenue; cutting them left/right on that avenue
+            # splits a vertical relationship the wrong way and strands ground
+            # that neither region then claims.
+            d = cen[v] - cen[u]
+            want = "x" if abs(d[0]) >= abs(d[1]) else "y"
             key = (u, v) if (u, v) in cuts else ((v, u) if (v, u) in cuts else None)
+            if key and cuts[key][0] != want:
+                key = None            # control is on the wrong axis for this seam
             if key:
                 axis, coord, _ = cuts[key]
                 k = 0 if axis == "x" else 1
@@ -121,11 +131,10 @@ def main():
                 g = g.intersection(half_plane(axis, coord, cen[u][k] < cen[v][k]))
                 stats["control"] += 1
             else:
-                # no control for this neighbour: fall back to the bisector so
-                # the tiling still closes, and count it
-                d = cen[v] - cen[u]
+                # no usable control for this neighbour: fall back to the
+                # bisector so the tiling still closes, and count it
                 mid = (cen[u] + cen[v]) / 2
-                axis = "x" if abs(d[0]) >= abs(d[1]) else "y"
+                axis = want
                 k = 0 if axis == "x" else 1
                 g = g.intersection(half_plane(axis, mid[k], cen[u][k] < mid[k]))
                 stats["bisector"] += 1

@@ -1,21 +1,12 @@
 {
  "year": 1912,
  "regions": 93,
- "union_area_px2": 3150695728.8,
- "sum_of_regions_px2": 3150695728.8,
+ "union_area_px2": 3222831820.3,
+ "sum_of_regions_px2": 3222831820.3,
  "overlap_area_px2": 0.0,
  "overlap_fraction": 0.0,
- "disjoint_pieces": 2,
+ "disjoint_pieces": 1,
  "interior_gaps": [
-  {
-   "area_px2": 10480191.5,
-   "width_px": 334.1,
-   "kind": "hole",
-   "centroid": [
-    18119.3,
-    5692.6
-   ]
-  },
   {
    "area_px2": 4078975.7,
    "width_px": 270.5,
@@ -26,12 +17,12 @@
    ]
   },
   {
-   "area_px2": 2903548.6,
-   "width_px": 171.5,
+   "area_px2": 2910978.2,
+   "width_px": 153.8,
    "kind": "hole",
    "centroid": [
-    11908.4,
-    31363.9
+    11935.4,
+    31363.3
    ]
   },
   {
@@ -53,6 +44,15 @@
    ]
   },
   {
+   "area_px2": 1062115.0,
+   "width_px": 39.9,
+   "kind": "hole",
+   "centroid": [
+    15151.2,
+    3495.8
+   ]
+  },
+  {
    "area_px2": 907218.6,
    "width_px": 35.4,
    "kind": "hole",
@@ -68,6 +68,15 @@
    "centroid": [
     14901.0,
     24392.9
+   ]
+  },
+  {
+   "area_px2": 576372.6,
+   "width_px": 59.6,
+   "kind": "hole",
+   "centroid": [
+    25094.3,
+    37968.5
    ]
   },
   {

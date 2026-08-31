@@ -433,3 +433,36 @@ Two things this did not fix, and one it caused:
 - The agent noted sheet 72 and sheet 80 disagree by ~6 px on 36th St west of
   Avenue P, where each runs blocks onto the platted centreline and draws only
   a 40' roadway. It measured east of Avenue P instead; recorded in the file.
+
+## HQ-16 · 82/89/99 detachment fixed — the city is one piece
+
+The three sheets were never mis-placed. All nine of their controls were
+satisfied (residuals 0–4.3 ft), their scales matched their own corridor pitch,
+and 99's 57% footprint overlap with 82 is exactly right — those two share two
+avenues (S½ and T), so half a sheet of overlap is expected.
+
+The fault was in the cut. `streetcut.py` took the cut's ORIENTATION from
+whichever axis a pair's control happened to be on. Sheets 81 and 89 are
+diagonal neighbours — 81 spans streets 36–39, 89 spans 39–42 — and share only
+an avenue, so their one control is Ave R½. Cutting on that split them
+left/right when they are stacked vertically, which stranded 2,335 px of 89's
+west side claimed by neither region and left the group hanging off the mosaic
+by a degenerate point contact.
+
+Fix: the orientation now comes from how the two sheets are actually stacked
+(the sign of their centre offset), and a control is used only when its axis
+matches that orientation; otherwise the pair falls back to a bisector. Three
+pairs moved from control to bisector as a result.
+
+| | before | after |
+|---|---|---|
+| disjoint pieces | 2 | **1** |
+| overlap | 0 | **0** |
+| interior holes | 7 | 8 |
+| gap area | 0.737% | **0.447%** |
+| largest hole | 10.48M px² | **4.08M px²** |
+
+Sheet 82 now shares a real edge with 81, and 89 with 88 — both in the main
+body. The 10.48M px² strip that was the largest hole is gone; it was
+over-clipped ground, not missing coverage. Remaining gaps are 8 holes
+totalling 9.8 acres, none of them a missing sheet.
