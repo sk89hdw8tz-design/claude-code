@@ -1,0 +1,14 @@
+{
+ "pair": [
+  67,
+  75
+ ],
+ "axis": "avenue",
+ "observer": "crossrow2-agent-0",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs",
+ "a_native": 2179.5,
+ "b_native": 1129.0,
+ "corridor": "Ave D (Market)",
+ "why_not_one_block_off": "Chosen line is the corridor lettered vertically 'AVE. D OR MARKET' inside its own roadway on BOTH sheets, with '70'' written in that roadway on both. Block-face lines: sheet 67 west face 2072.0 / east face 2286.3 -> centre 2179.5 (view 2) and 2181 (view 3, 36TH ST corner of block 575 at native 2076 and the 402-404 block corner at 2287); sheet 75 west face 1024.5 / east face 1234.9 -> centre 1130.7 (view 1), re-read 1127.2 (view 2). Widths 210-214 px = the printed 70 ft; the 20 ft alleys on these plates are dashed, pipe-labelled and ~60 px. ADDRESS RUNS. Sheet 67 (35TH-36TH ST frontages, blocks 574/575): west of the line 313 315 317 319 321 323 / 314..324 = 300 block; east 401 403 405 / 402 404 = 400 block, continuing on view 3 as 401..423 / 402..424. Sheet 75 (36TH-37TH ST frontages, blocks 576/577 and 516): west 313 315 317 319 321 323 / 314..324 = 300 block; east 401 403 405 407 409 411 / 402..412 = 400 block. Same 300/400 change on both sheets. ONE BLOCK WEST EXCLUDED: that corridor is lettered 'AVE. C OR MECHANIC' on both sheets (sheet 67 centre 1180.5, measured twice: 1180.2 on view 2 and 1180.9 on view 1) and carries the 200/300 change - sheet 67 view 1 reads 201..223 / 202..224 (blocks 634/635) west of it and 301 303 305 307 309 east. On sheet 75 the whole block west of Ave C (636-638, Strand to C) is uncoloured/uncovered, so its west street line is not even drawn - a further reason not to use Ave C as the control here. ONE BLOCK EAST EXCLUDED: that corridor is lettered 'AVE. E OR POST OFFICE' on both sheets (sheet 67 ~3184, sheet 75 ~2139.7) and carries the 400/500 change - sheet 75 view 2 reads 414..424 immediately west of it and 501 503 505 immediately east. NOT MATCHED BY EQUAL NATIVE X: sheet 67's Ave C sits at 1180.5 and sheet 75's Ave D at 1129.0 - only ~51 px apart. Matching on native x would have tied Ave C to Ave D and sheared the map by a full block; the printed names and the 300/400 break are what decide it. Likewise the current mosaic x was not used. CANDIDATES REJECTED: sheet 67's 1447/2464/430 and sheet 75's 726/1743/2760 are not corridor centres; the red marker in each view sits inside a block or on the dashed mid-block alley. CROSS-CHECK: three corridors give the same sheet 67 -> sheet 75 offset - Ave C +1048.5, Ave D +1050.5, Ave E +1044 px (mean ~1048), against ~999 px per block, i.e. sheet 75 is framed one avenue further west than sheet 67 and the residual is small and consistent.",
+ "status": "ACCEPTED"
+}

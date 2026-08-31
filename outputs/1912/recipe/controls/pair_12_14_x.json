@@ -1,0 +1,14 @@
+{
+ "pair": [
+  12,
+  14
+ ],
+ "axis": "avenue",
+ "observer": "crossrow2-agent-0",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs",
+ "a_native": 2203.2,
+ "b_native": 2143.9,
+ "corridor": "Ave E (Post Office)",
+ "why_not_one_block_off": "Chosen line is the corridor lettered vertically 'AVE. E OR POST OFFICE' inside its own roadway on BOTH sheets, with '70'' written in the same roadway on both. Block-face lines read off the green native ruler: sheet 12 west face 2100.0 / east face 2306.5 (206.5 px = 70 ft) -> centre 2203.2 (re-read on view 2 as 2204.2 and on view 3 as 2202.2); sheet 14 west face 2038.5 / east face 2249.3 (210.8 px) -> centre 2143.9 (view 2 2143.7, view 3 2144.1). The 20 ft mid-block alleys on these plates are dashed, carry a water-pipe size ('6\" W PIPE', '10\" W PIPE') and measure ~60 px, so the reported line is a full named avenue, not an alley. ADDRESS RUNS. Sheet 12 (25TH-26TH ST frontages): west of the line 413 415 417 419 421 423 / 414 416 418 420 422 424 = 400 block; east of it 501 503 505 507 509 511 / 502 504 506 508 510 512 (Brush Elec. Light & Power Co. block) = 500 block. Sheet 14 (27TH-28TH ST frontages): west 415 417 419 421 423 / 416 418 420 422 424 = 400 block; east 501 503 505 507 509 511 / 502 504 506 508 510 512, then 513 515 517 519 521 523 = 500 block. The same 400/500 change occurs across this corridor on both sheets. ONE BLOCK WEST EXCLUDED: that corridor is lettered 'AVE. D OR MARKET' on both sheets (sheet 12 centre 1197.5, sheet 14 centre 1136) and carries the 300/400 change - sheet 12 view 1 reads 301..312 / 313..324 west of it and 401..410 east; sheet 14 view 1 reads 301..312 / 313..324 west and 401..412 east. ONE BLOCK EAST EXCLUDED: that corridor is lettered 'AVE. F OR CHURCH' on both sheets (sheet 12 centre ~3196.6, sheet 14 ~3147) and the block immediately WEST of it still reads 513..524, i.e. it carries the 500/600 change, not 400/500. NOT MATCHED BY PROXIMITY OR BY EQUAL NATIVE X: both plates are framed on the same avenue lattice (~1005 px), so sheet 12 Ave D (1197.5) is also within ~60 px of sheet 14 Ave D (1136) and sheet 12 Ave E (2203.2) within ~59 px of sheet 14 Ave E - every avenue pairs 'closely' in native x. Only the printed name and the 400/500 break decide it. CANDIDATES REJECTED: sheet 12's 236/1252/2269 and sheet 14's 422/1445/2469 sit ~55-70 px (sheet 12) and ~300-325 px (sheet 14) east of the avenue centres and are not corridors; the red marker in each view lands inside a block or on the dashed mid-block alley. CROSS-CHECK: three corridors give the same sheet 12 -> sheet 14 offset - Ave D +61, Ave E +59.3, Ave F +50 px, against ~1005 px for a one-block error.",
+ "status": "ACCEPTED"
+}

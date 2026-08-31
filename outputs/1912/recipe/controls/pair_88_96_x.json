@@ -1,0 +1,14 @@
+{
+ "pair": [
+  88,
+  96
+ ],
+ "axis": "avenue",
+ "observer": "crossrow2-agent-0",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs",
+ "a_native": 1170.0,
+ "b_native": 2177.3,
+ "corridor": "Ave Q",
+ "why_not_one_block_off": "Chosen line is the corridor lettered vertically 'AVENUE Q' inside its own roadway on BOTH sheets, with '70'' written in that roadway on both. Block-face lines: sheet 88 west face 1061.6 / east face 1274.9 -> centre 1170.9 (view 1) and 1169.1 (view 2) -> 1170.0; sheet 96 west face 2071.9 / east face 2284.1 -> centre 2178.9 (view 2) and 2175.7 (view 3) -> 2177.3. Widths 144-145 img px = ~212 native px = the printed 70 ft; the dashed 8\" W PIPE line runs down the middle of the roadway on both sheets, and the true 20 ft mid-block alleys (labelled 20' at the block ends) are ~60 px. ADDRESS RUNS. Sheet 88 (41ST-42ND ST frontages, blocks S.E. 83 / S.W. 84): west of the line 2001 2003 2005 2007 2009 2011 / 2002 2004 2006 2008 2010 2012 and 2013..2023 / 2014..2024 = 2000 block; east of it 2101 2103 2105 2107 2109 / 2102 2104 2106 2108 2110 = 2100 block. Sheet 96 (42ND-43RD ST frontages, blocks S.W. 83 / N.W. 83): west 2001..2011 / 2002..2012 and 2013..2023 / 2014..2024 = 2000 block; east 2101 2103 / 2102 2104, and on view 3 2101..2111 / 2102..2112 and 2113..2123 / 2114..2124 = 2100 block. Same 2000/2100 change on both sheets. ONE BLOCK WEST EXCLUDED: that corridor is lettered 'AVENUE P 1/2' on both sheets (sheet 88 view 1 at the left margin, sheet 96 centre ~1190.6 read on two views) and carries the 1900/2000 change - sheet 96 view 1 reads 1901..1923 / 1902..1924 west of it and 2001 2003 2005 2007 2009 east. ONE BLOCK EAST EXCLUDED: that corridor is 'AVENUE Q 1/2' (sheet 96 view 3 ~3176.6; on sheet 88 it is the closed line through the Woolam's Lake property at ~2174, where the frontage runs 2128 2130 then 2202 2204 2206) and it carries the 2100/2200 change, not 2000/2100. NOT MATCHED BY EQUAL NATIVE X: sheet 88's Ave Q sits at 1170.0 and sheet 96's Ave P 1/2 at ~1190.6 - only ~21 px apart. Matching on near-equal native x would have tied Ave Q to Ave P 1/2, a full-block error; sheet 96 is simply framed one avenue further west than sheet 88. Current mosaic coordinates were not used either. CANDIDATES REJECTED: sheet 88's 574/1569/2565 and sheet 96's 2599/1556/514 are not corridor centres; the red marker in each view lands inside a block. CROSS-CHECK: the sheet 88 -> sheet 96 offset is -1007.3 px at Ave Q and about -1002.6 px at Ave Q 1/2, consistent to ~5 px, against ~1005 px per block.",
+ "status": "ACCEPTED"
+}

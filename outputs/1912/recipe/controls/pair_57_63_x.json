@@ -1,0 +1,14 @@
+{
+ "pair": [
+  57,
+  63
+ ],
+ "axis": "avenue",
+ "observer": "crossrow2-agent-0",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs",
+ "a_native": 2199.8,
+ "b_native": 2183.3,
+ "corridor": "Ave M 1/2",
+ "why_not_one_block_off": "Chosen line is the corridor lettered vertically 'AVENUE M 1/2' inside its own roadway on BOTH sheets, with '70'' written in that roadway on both (sheet 57 view 3). Block-face lines: sheet 57 west face 2094.9 / east face 2305.1 -> centre 2200.1 (view 3) and 2199.4 (view 2) -> 2199.8; sheet 63 west face 2078.2 / east face 2287.0 -> centre 2182.6 (view 3) and 2183.9 (view 2) -> 2183.3. Widths 143 img px = 210 native px = the printed 70 ft; the dashed, pipe-labelled 20 ft mid-block alleys measure ~60 px. ADDRESS RUNS. Sheet 57 (28TH-29TH and 29TH-30TH ST frontages): west of the line 1301 1303 1305 1307 1309 1311 / 1302 1304 1306 1308 1310 1312, and 1313..1323 / 1314..1324 = 1300 block; east of it 1401 1403 / 1402 1404, and on view 3 1401..1411 / 1402..1412 and 1413..1423 / 1414..1424 = 1400 block. Sheet 63 (30TH-31ST and 31ST-32ND ST frontages): west 1301..1311 / 1302..1312 and 1313..1323 / 1314..1324 = 1300 block; east 1401 1403 / 1402 1404, and on view 3 1401..1411 / 1402..1412 and 1413..1423 / 1414..1424 = 1400 block. Same 1300/1400 change on both sheets. ONE BLOCK WEST EXCLUDED: that corridor is lettered 'AVENUE M' on both sheets (sheet 57 centre 1194.5 from two views, sheet 63 centre 1189.4 from two views) and carries the 1200/1300 change - both sheets read 1201..1223 / 1202..1224 west of it and 1301 1303 1305 1307 1309 east. ONE BLOCK EAST EXCLUDED: that corridor is lettered 'AVENUE N' on both sheets (sheet 57 ~3191, sheet 63 ~3177) and the block immediately WEST of it still reads 1413..1424, i.e. it carries the 1400/1500 change. NOT MATCHED BY EQUAL NATIVE X OR BY MOSAIC PROXIMITY: sheets 57 and 63 are framed almost identically, so EVERY avenue on 57 sits within ~5-17 px of the same avenue on 63 AND sheet 57's Ave M (1194.5) sits within ~5 px of sheet 63's Ave M (1189.4); equal-x reasoning is uninformative here and would equally have supported a one-block error. The identification rests on the printed 'AVENUE M 1/2' lettering and the 1300/1400 break. CANDIDATES REJECTED: sheet 57's 698/1706/2715 and sheet 63's 2555/1513/472 are not corridor centres (they fall ~490-530 px from the avenue centres, i.e. near the mid-block alleys); the red marker in each view lands inside a block. NOTE ON RESIDUAL SCALE: the two plates are not at identical scale - the M -> M 1/2 lattice step is 1005.3 px on sheet 57 and 993.9 px on sheet 63 (1.1% difference), so the 57-63 x offset reads +5.1 px at Ave M and +16.5 px at Ave M 1/2. Ave M 1/2 is reported because it is the tighter read (two views agreeing to 0.7 px on sheet 57 and 1.3 px on sheet 63).",
+ "status": "ACCEPTED"
+}
