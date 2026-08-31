@@ -344,3 +344,51 @@ wrong (40|41, 44|45, 50|51, 66|74).
 
 Previous state is recoverable: `transforms_city.json.pre_controls` and
 `seams/ownership_city.json.pre_recut`.
+
+## HQ-14 · 1912 seams re-cut on street centrelines — APPLIED
+
+Closes the §2.5 breach recorded in HQ-9 and HQ-13. The Voronoi cut that
+followed the control solve drew boundaries as bisectors between sheet centres,
+which is what let a diagonal cut run through a dwelling at seam 57|58.
+
+`tools/streetcut.py` uses the controls as the cut geometry. Each control names
+the corridor two adjacent sheets share and gives its position on both, so the
+seam between that pair IS that corridor's centreline. A sheet's region becomes
+the intersection of the half-planes its controls put it on, clipped to the
+ground it covers — convex, so one clean ring per sheet, every controlled
+boundary on a street or avenue centreline, and buildings (which sit inside
+blocks, between corridors) never split.
+
+A single straight line per named street was deliberately not used: the
+corridor index built from the controls shows a street's mosaic coordinate
+varying by up to 1,122 ft along its length (the ~2° island bend), so each
+pair's own reading is used instead. That index is saved as
+`recipe/corridor_index.json`.
+
+**Result.** 134 of 316 region boundaries are now cut on a named street or
+avenue centreline; the remaining 182 are bisectors between sheets that have no
+control (mostly diagonal or corner overlaps rather than true seams). Seam
+57|58 is now a perfectly straight horizontal line — bounding box 1433 × 0 px —
+running down the street, with the water mains and the printed 80' width
+visible in the corridor and no footprint split.
+
+| | tie-placed | Voronoi re-cut | street cut |
+|---|---|---|---|
+| overlap | 0.0001% | 0.0000% | **0** |
+| disjoint pieces | 1 | 3 | **1** |
+| interior gaps | 8 holes | 28 holes | **6 holes** |
+| gap area | 0.42% | 0.31% | 0.70% |
+| seams on street centrelines | no | no | **134** |
+
+One bug found and fixed mid-way, worth recording: assigning half-plane sides
+by comparing each sheet's centre to the cut line gives both sheets the same
+side whenever the corridor lies at one sheet's far edge, which produced 1.35%
+double-owned area. Sides must be assigned by which sheet lies lower on that
+axis. After the fix, overlap is exactly zero.
+
+Gap area is higher than the Voronoi cut because convex clipping trims a
+sheet's outer margin where a third sheet's cut reaches it. `tools/fillgaps.py`
+reabsorbed every hole that a neighbour actually covers (those holes are
+bounded by cut lines, so filling them keeps boundaries on streets); the 6 that
+remain are true source gaps where no sheet maps the ground, still dominated by
+missing sheet 72 (HQ-8).

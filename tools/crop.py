@@ -34,7 +34,8 @@ def main():
     ap.add_argument("--width-in", type=float, default=8.0)
     ap.add_argument("--height-in", type=float, default=10.0)
     ap.add_argument("--scale-ft-per-in", type=float, default=100.0,
-                    help="ground feet per printed inch (Sanborn native: 100)")
+                    help="ground feet per printed inch; 100 matches the 27x40 masters "
+                         "(the sheets are DRAWN at 50, the masters print at ~99)")
     ap.add_argument("--dpi", type=int, default=300)
     ap.add_argument("--out", default=None)
     ap.add_argument("--pdf", action="store_true", help="also write a PDF")
