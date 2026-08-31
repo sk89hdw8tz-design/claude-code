@@ -1,0 +1,14 @@
+{
+ "pair": [
+  80,
+  90
+ ],
+ "axis": "avenue",
+ "observer": "crossrow-agent-8",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs",
+ "a_native": null,
+ "b_native": null,
+ "corridor": null,
+ "why_not_one_block_off": "UNRESOLVED because sheets 80 and 90 share NO avenue - they are not a stacked pair, so no line on one sheet is the same physical line on the other, and any control written here would shear the map. The printed evidence is decisive. Sheet 80's avenue band, read off its own lettering, runs from Avenue O 1/2 in the west to AVENUE Q at the east margin ('AVENUE Q' is lettered at native ~3164 in cand#2, with the sheet's printed area ending at ~3282); the block immediately west of Avenue Q carries the 2000 block ('2001 2003 2005 2007 2009 2011' / '2002 2004 ... 2024' along 38TH ST), and 'AVENUE P' and 'AVE. P 1/2.' are lettered further west. Sheet 90's avenue band starts at AVENUE S 1/2 at its WEST margin ('AVENUE S 1/2' is lettered at native ~149 in cand#2, with the printed area starting at ~30) and runs east through 'AVENUE T'; the block immediately east of Avenue S 1/2 carries the 2600 block ('2601 2603 2605 2607 2609 2611' / '2602 2604 ... 2624' along 40TH ST). So sheet 80 stops at the 2000/2100 block boundary and sheet 90 begins at the 2500/2600 boundary: the 2100, 2200, 2300, 2400 and 2500 blocks lie between them and appear on neither sheet. There is no avenue in common, hence no candidate line on sheet 80 can be matched to any candidate line on sheet 90. The sheets' own continuation numbers confirm it. Sheet 80 prints '88' in its south margin (and '87' at the south-west) - the sheet below sheet 80 is 88, not 90 - and prints '81' at its east margin. Sheet 90 prints '82' in its north margin - the sheet above sheet 90 is 82 - and prints '89' in Avenue S 1/2 at its west margin. Sheets 80 and 90 are therefore in adjacent rows but about two sheet-widths apart in the avenue direction (the key map rects agree: sheet 80 x 3430-3760, sheet 90 x 4405-4735, disjoint), i.e. diagonal neighbours that do not touch. The candidate lines were compared anyway and none is even a corridor: sheet 80 cand#1 (native 1568) runs inside the block between Avenue P and Ave P 1/2, and sheet 90 cand#2 (native 768) runs through the interior of block 159 S.E./S.W. Reporting any pairing of them would be a guess, so no coordinates are given.",
+ "status": "UNRESOLVED"
+}

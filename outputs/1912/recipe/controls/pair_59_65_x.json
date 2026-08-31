@@ -1,0 +1,14 @@
+{
+ "pair": [
+  59,
+  65
+ ],
+ "axis": "avenue",
+ "observer": "crossrow-agent-8",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs",
+ "a_native": 2153.4,
+ "b_native": 2168.8,
+ "corridor": "Ave P 1/2",
+ "why_not_one_block_off": "The chosen line is the centre of the corridor lettered 'AVENUE P 1/2' in its own roadway on BOTH sheets, with '70'' printed in that same roadway on both. Sheet 59: block faces read off the green ruler at native 2048.2 and 2258.5 (width 210.3 px = 70 ft at this sheet's scale); centre 2153.4. Sheet 65: faces at native 2063.1 and 2274.4 (width 211.3 px); centre 2168.8. ADDRESS RUNS. Sheet 59, the 29TH ST and 30TH ST runs: west of the line the block ends '...1914 1916 1918 1920 1922 1924' and '1913 1915 1917 1919 1921 1923' (1900 block); east of it the next run begins '2002 2004 2006 2008' and '2001 2003 2005 2007' (2000 block). The corridor's own frontage numbers are 2810-2828 on its west face and 2809-2827 on its east face - the 2800 block, between 28TH and 29TH ST, inside sheet 59's street range (27-30). Sheet 65: exactly the same 1900/2000 change across the same lettered corridor - '...1914 1916 1918 1920 1922 1924' / '1913 1915 1917 1919 1921 1923' to the west, '2001 2003 2005 2007' / '2002 2004 2006 2008' to the east - with frontage numbers 3002-3020 and 3001-3019, the 3000 block between 30TH and 31ST ST, inside sheet 65's street range (30-33). Both sheets therefore show the same avenue at different hundred-blocks of the avenue itself, which is what a stacked pair must show. ONE BLOCK WEST is excluded: that corridor is separately lettered 'AVENUE P' on both sheets (measured centres native 1146.6 on sheet 59, 1163.3 on sheet 65, about 1007 px away) and it carries the 1800-to-1900 change, not 1900-to-2000. ONE BLOCK EAST is excluded: it is lettered 'AVENUE Q' (sheet 59 cand#2 shows its faces at 3047.1/3258.9) and carries the 2000-to-2100 change. ALLEY EXCLUDED. The 20 ft mid-block alley of this block is at native 1620.8/1681.7 on sheet 59 (61 px wide, dashed, labelled '6\" W PIPE' and '20''), and it does NOT separate hundred-blocks: the runs 1902-1912 and 1914-1924 on either side of it are both the 1900 block. CANDIDATES REJECTED. Sheet 59 cand#1 (native 1750) and sheet 65 cand#1 (native 1765) are not corridors - each runs inside the block just east of that alley, through lot lines and buildings. The reported values are ruler-read avenue centres and are NOT among the proposed candidates. CROSS-CHECK: Ave P 1/2 gives a sheet59->sheet65 offset of +15.4 px, and Avenue P measured independently gives +16.7 px; they agree to 1.3 px, where a one-block error would be ~1007 px.",
+ "status": "ACCEPTED"
+}
