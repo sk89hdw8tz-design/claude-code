@@ -29,12 +29,36 @@ from reciplib import Recipe                       # noqa: E402
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
-def keymap(year):
-    km = {}
-    for f in glob.glob(os.path.join(REPO, "rebuild_1899", "out",
-                                    f"keymap_{year}_*.json")):
+def keymap(year, warn=True):
+    """Key-map coverage per sheet, merged over the quadrant files.
+
+    Two sheets are claimed by two files each, with contradictory coverage:
+    17 (NW: 8th-9th, Water/Strand/Mechanic vs SW: 50th-52nd, no avenues) and
+    32 (NW: 12th-15th, N/N 1/2/O vs NE: 21st-26th, no avenues). Both are
+    settled against the plates themselves -- u17 letters Water, Strand and
+    Mechanic and prints 21 in its bottom margin; u32 prints 25 and 12TH ST.
+    in its top margin -- and in both the NW entry is the right one.
+
+    Merging by iteration order silently took the loser, and since both losing
+    entries carry no avenues at all, it dropped those sheets from any
+    selection that needs avenue coverage. Prefer the entry that names avenues,
+    and say so rather than picking one quietly.
+    """
+    km, src = {}, {}
+    for f in sorted(glob.glob(os.path.join(REPO, "rebuild_1899", "out",
+                                           f"keymap_{year}_*.json"))):
         for e in json.load(open(f)).get("results", []):
-            km[str(e["sheet"])] = e
+            u = str(e["sheet"])
+            if u in km:
+                keep = len(e.get("avenues") or []) > len(km[u].get("avenues") or [])
+                if warn:
+                    print(f"keymap: sheet {u} claimed by {src[u]} and "
+                          f"{os.path.basename(f)}; keeping "
+                          f"{os.path.basename(f) if keep else src[u]}",
+                          file=sys.stderr)
+                if not keep:
+                    continue
+            km[u], src[u] = e, os.path.basename(f)
     return km
 
 

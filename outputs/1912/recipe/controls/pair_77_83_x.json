@@ -1,0 +1,14 @@
+{
+ "pair": [
+  77,
+  83
+ ],
+ "axis": "avenue",
+ "observer": "crossrow-agent-6",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs",
+ "a_native": null,
+ "b_native": null,
+ "corridor": "none - sheets share no avenue",
+ "why_not_one_block_off": "UNRESOLVED - these two sheets share NO avenue, so no avenue x-control can be read from them; the premise that every avenue in the band crosses both sheets does not hold for this pair. PRINTED EVIDENCE. Sheet 77 letters exactly four avenues in their roadways, west to east: 'AVE. I OR SEALY' (its westernmost, at the very west edge of the plate, cand2, with 70' printed in it), 'AVE. J OR BROADWAY' (printed 150'), 'AVENUE K' and 'AVENUE L' (its easternmost, cand3, with sheet 78 printed in the east margin). Sheet 83 letters, west to east: 'AVE. D OR MARKET' (its westernmost, cand3, beside the plate's own numeral 83 in the corner), 'AVE. E OR POST OFFICE', 'AVE. F OR CHURCH' and 'AVE. G OR WINNIE' (its easternmost, cand2, with sheet 84 printed in the east margin). The two lettered sets are disjoint: between sheet 83's easternmost avenue (G / Winnie) and sheet 77's westernmost (I / Sealy) lies Avenue H (Ball) and the whole 800-block column, and that column appears on NEITHER plate. There is therefore no line that is the same physical avenue on both, and any pairing of a sheet-77 corridor with a sheet-83 corridor would be at least two blocks off. The address runs confirm the separation rather than resolving it: sheet 77's cross-street runs are 901-924 (Sealy-Broadway), 1001-1024 (Broadway-K, blocks 157/158, 4th District Public School) and 1101-1124 (K-L, blocks 97/98); sheet 83's are 401-424 (Market-Post Office, blocks 519/520), 501-524 (Post Office-Church, blocks 459/460) and 601-624 (Church-Winnie, blocks 399/400, Galveston Bagging Co. and Seaboard Rice Milling Co.). No hundred-block is common to the two plates. The margins also show they are not a stacked pair in the same column: sheet 77's bottom margin prints 84 and 85 (not 83) and its side margins print 76 (W) and 78 (E); sheet 83's top margin prints 75 and 76 (not 77) and its east margin prints 84. They share only the 39TH ST line (sheet 77's south edge, sheet 83's north edge) but sit in different columns, so they do not even abut. For the record the proposed candidates are all mid-block lot lines or alleys: sheet 77's 1518 falls inside the 1000 block between street numbers 1007 and 1009 (with the 20-ft alley to its west), 484 inside the 900 block, 2553 inside the 1100 block; sheet 83's 1761 lands in the railroad yard west of block 459 between 512 and 514, and 744 / 2778 likewise fall inside block interiors. Reporting any of these as a shared line would shear the map, so no coordinate is given.",
+ "status": "UNRESOLVED"
+}
