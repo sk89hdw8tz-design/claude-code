@@ -31,7 +31,6 @@ from netsolve import load_controls               # noqa: E402
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 STREET_RE = re.compile(r"(\d+)\s*(?:st|nd|rd|th)\b", re.I)
-AVENUE_RE = re.compile(r"\bave?\.?\s*([a-t])\s*(1/2|½)?", re.I)
 
 
 def ground_index(slot):
@@ -55,10 +54,26 @@ def parse(axis, corridor):
     if axis == "y":
         m = STREET_RE.search(s)
         return ("street", int(m.group(1))) if m else None
-    m = AVENUE_RE.search(s)
-    if not m:
+    # Do not re-implement the avenue vocabulary here. The regex that used to
+    # live at this line matched "Ave" INSIDE "Avenue K" and then read the "n"
+    # of "nue" as the letter, so every "Avenue K" control was filed under
+    # Ave N -- which is how Ave N came to show a 479 ft scatter where no other
+    # avenue exceeded 70 ft.
+    # avenue_slot is deliberately permissive -- it has to swallow the key
+    # maps' lettering -- so a corridor field that names no avenue at all still
+    # resolves ("none shared" reads as Ave N). Require positive evidence first.
+    t = s.strip().lower()
+    named = any(w in t for w in ("ave", "broadway", "water", "strand",
+                                 "mechanic", "market", "post office",
+                                 "church", "winnie", "ball", "sealy"))
+    if not (named or re.fullmatch(r"[a-t](\s*(1/2|½))?", t)):
         return None
-    return ("avenue", Recipe.avenue_slot(m.group(1) + ("1/2" if m.group(2) else "")))
+    if any(w in t for w in ("none", "not ", "share", "unresolved", "?")):
+        return None
+    try:
+        return ("avenue", Recipe.avenue_slot(s))
+    except Exception:
+        return None
 
 
 def robust_line(idx, val):

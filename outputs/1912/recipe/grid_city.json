@@ -521,7 +521,7 @@
    "source": "fitted block pitch"
   },
   "42": {
-   "y": 44914.2,
+   "y": 44914.3,
    "n": 26,
    "spread": 107.1,
    "sheets": [
@@ -785,10 +785,12 @@
    "source": "core (verified frontage midlines)"
   },
   "11": {
-   "x": 14929.8,
-   "n": 16,
-   "spread": 9833.3,
+   "x": 15394.9,
+   "n": 20,
+   "spread": 631.8,
    "sheets": [
+    "20",
+    "25",
     "30",
     "31",
     "36",
@@ -804,20 +806,36 @@
     "62",
     "63",
     "77",
-    "78"
+    "78",
+    "85",
+    "93"
    ],
    "source": "controls (named corridor)"
   },
   "12": {
-   "x": 16498.4,
-   "n": 0,
-   "source": "fitted block pitch"
+   "x": 17345.1,
+   "n": 8,
+   "spread": 128.1,
+   "sheets": [
+    "25",
+    "31",
+    "37",
+    "51",
+    "57",
+    "85",
+    "94"
+   ],
+   "source": "controls (named corridor)"
   },
   "13": {
-   "x": 9589.5,
-   "n": 4,
-   "spread": 227.2,
+   "x": 19494.2,
+   "n": 8,
+   "spread": 320.2,
    "sheets": [
+    "37",
+    "41",
+    "57",
+    "63",
     "70",
     "71",
     "85",
@@ -826,9 +844,9 @@
    "source": "controls (named corridor)"
   },
   "14": {
-   "x": 20381.1,
-   "n": 12,
-   "spread": 10317.2,
+   "x": 21453.7,
+   "n": 14,
+   "spread": 547.4,
    "sheets": [
     "31",
     "32",
@@ -841,20 +859,28 @@
     "63",
     "64",
     "78",
-    "79"
+    "79",
+    "86",
+    "94"
    ],
    "source": "controls (named corridor)"
   },
   "15": {
-   "x": 19407.8,
+   "x": 23318.4,
    "n": 0,
    "source": "fitted block pitch"
   },
   "16": {
-   "x": 15489.0,
-   "n": 4,
-   "spread": 320.9,
+   "x": 25491.8,
+   "n": 12,
+   "spread": 748.3,
    "sheets": [
+    "38",
+    "42",
+    "46",
+    "52",
+    "58",
+    "64",
     "71",
     "72",
     "86",
@@ -863,9 +889,9 @@
    "source": "controls (named corridor)"
   },
   "17": {
-   "x": 17447.1,
-   "n": 10,
-   "spread": 11372.9,
+   "x": 27454.7,
+   "n": 12,
+   "spread": 594.2,
    "sheets": [
     "26",
     "42",
@@ -876,25 +902,33 @@
     "64",
     "65",
     "79",
-    "80"
+    "80",
+    "87",
+    "95"
    ],
    "source": "controls (named corridor)"
   },
   "18": {
-   "x": 12296.2,
-   "n": 2,
-   "spread": 0.0,
+   "x": 29548.0,
+   "n": 8,
+   "spread": 503.2,
    "sheets": [
+    "26",
+    "47",
+    "53",
+    "59",
     "95",
     "96"
    ],
    "source": "controls (named corridor)"
   },
   "19": {
-   "x": 21444.7,
-   "n": 4,
-   "spread": 93.8,
+   "x": 31369.5,
+   "n": 6,
+   "spread": 292.2,
    "sheets": [
+    "59",
+    "65",
     "72",
     "73",
     "87",
@@ -903,9 +937,9 @@
    "source": "controls (named corridor)"
   },
   "20": {
-   "x": 23489.8,
-   "n": 8,
-   "spread": 944.4,
+   "x": 33451.0,
+   "n": 10,
+   "spread": 426.6,
    "sheets": [
     "53",
     "54",
@@ -914,14 +948,16 @@
     "65",
     "66",
     "80",
-    "81"
+    "81",
+    "88",
+    "96"
    ],
    "source": "controls (named corridor)"
   },
   "21": {
-   "x": 21797.6,
+   "x": 35246.8,
    "n": 4,
-   "spread": 7411.6,
+   "spread": 269.3,
    "sheets": [
     "73",
     "81",
@@ -931,9 +967,9 @@
    "source": "controls (named corridor)"
   },
   "22": {
-   "x": 27488.1,
+   "x": 37323.0,
    "n": 2,
-   "spread": 0.0,
+   "spread": 33.6,
    "sheets": [
     "88",
     "89"
@@ -941,9 +977,9 @@
    "source": "controls (named corridor)"
   },
   "23": {
-   "x": 29540.5,
+   "x": 39432.0,
    "n": 10,
-   "spread": 1014.9,
+   "spread": 86.8,
    "sheets": [
     "48",
     "60",
@@ -956,27 +992,39 @@
    "source": "controls (named corridor)"
   },
   "24": {
-   "x": 28136.2,
-   "n": 0,
-   "source": "fitted block pitch"
+   "x": 41415.2,
+   "n": 2,
+   "spread": 7.3,
+   "sheets": [
+    "89",
+    "98"
+   ],
+   "source": "controls (named corridor)"
   },
   "25": {
-   "x": 29106.0,
-   "n": 0,
-   "source": "fitted block pitch"
-  },
-  "26": {
-   "x": 35567.0,
+   "x": 43430.4,
    "n": 2,
-   "spread": 0.0,
+   "spread": 18.9,
    "sheets": [
     "82",
+    "90"
+   ],
+   "source": "controls (named corridor)"
+  },
+  "26": {
+   "x": 45446.6,
+   "n": 6,
+   "spread": 19.9,
+   "sheets": [
+    "82",
+    "90",
+    "98",
     "99"
    ],
    "source": "controls (named corridor)"
   },
   "27": {
-   "x": 31045.6,
+   "x": 47579.2,
    "n": 0,
    "source": "fitted block pitch"
   }
@@ -989,10 +1037,10 @@
    "of": 24
   },
   "avenue": {
-   "pitch_ft": 334.6,
-   "residual_ft": 329.2,
-   "kept": 27,
-   "of": 29
+   "pitch_ft": 348.8,
+   "residual_ft": 22.8,
+   "kept": 37,
+   "of": 37
   }
  }
 }

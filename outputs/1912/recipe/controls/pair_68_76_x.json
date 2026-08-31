@@ -1,0 +1,15 @@
+{
+ "pair": [
+  68,
+  76
+ ],
+ "axis": "avenue",
+ "observer": "crossrow2-agent-3",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs",
+ "a_native": 2169.4,
+ "b_native": 1162.6,
+ "corridor": "Ave G (Winnie)",
+ "why_not_one_block_off": "PRINTED NAME: the corridor is lettered AVE. G OR WINNIE down the roadway on BOTH sheets - sheet 68 at native x~2169, sheet 76 at native x~1163 - and the roadway width 70' is printed inside the corridor on both. AVENUE-FACE RUNS: on 68 its west face carries 3510-3528 (even) and its east face 3509-3527 (odd), i.e. the 35th-36th segment of Ave G; on 76 its west face carries 3606-3626 and its east face 3607-3625, the 36th-37th segment. CROSS-STREET RUNS (the hundred-block test): on sheet 68 along 35th St the run west of the line ends 620 622 624 (odd side 619 621 623) and the run east of it begins 702 704 706 (701 703 705); the same 600|700 transition repeats along 36th St, the seam street. On sheet 76 along 36th St the run west of the line ends 619 621 623 and the run east begins 701 703 705, and along 37th St ...621 623 | 701 703 705. Identical 600|700 transition on both plates. ONE BLOCK WEST is AVE F (Church) - lettered AVE. F OR CHURCH on 68 at native ~1169.5 and on 76 at ~169 - where the runs go 500|600, not 600|700. ONE BLOCK EAST is AVE H (Ball) - lettered AVE. H OR BALL on 68 at ~3165 and on 76 at ~2165.6 - where the runs go 700|800. Neither shows a 600|700 break, so neither can be this line. NOTE ON EQUAL-NATIVE-X (rejected): sheet 76's whole grid sits ~1006 px WEST of sheet 68's in native coordinates (68: E ~173, F 1169.5, G 2169.4, H ~3165; 76: F ~169, G 1162.6, H 2165.6, I ~3158), so matching by equal or near-equal native x would tie Ave G on 68 to Ave H on 76 - exactly one block off. The proposed candidates are the SAME three values on both sheets (744, 1761, 2778), which is itself that artefact, and none of them is a corridor: on 68 they fall in block interiors 74-112 px east of the 20-ft mid-block alleys (alley centres 670.0, 1668.6, 2666.1), and likewise on 76 (alley centres ~665, 1661.3, 2664.3).",
+ "status": "ACCEPTED",
+ "measurement_note": "Native x = raster x of work/sheets/1912w/u<unit>.jpg (3327x3898), origin top-left; the supplied crops' green ruler reproduces it (view centres 832/1664/2495 = 25/50/75% of 3327). Value is the midpoint of the two block-face lines bounding the 70-ft roadway, measured in the block row ADJACENT to the 36th St seam: sheet 68 the 35th-36th row (faces 2064.7 / 2274.0 at y=3100, width 209.3), sheet 76 the 36th-37th row (faces 1059.0 / 1266.1 at y=770, width 207.1). Each face was fitted as a line over the full block row with sigma-clipping (rms ~1.2-1.5 px) and evaluated at the row's mid-height; plate skew is small here (|slope| <= 0.004 px/row). Cross-check: the mid-block alley centres mirror correctly about the corridors on both plates. The red marker in the crops (native 832/1664/2495) is not an avenue - on 68 view 2 it lands on the 20-ft alley at 1668.6, as warned."
+}
