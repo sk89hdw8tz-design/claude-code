@@ -207,6 +207,26 @@ class Recipe:
         return x, y
 
 def px_per_ft(recipe):
+    """Mosaic pixels per ground foot.
+
+    1912 is verified against the master's own print manifest: its
+    map_rect_canvas_xyxy and map_rect_mosaic_xyxy are both 22882x14489, so the
+    mosaic frame IS the print frame at 1:1, and 22882 px over a 40 in page at
+    5.7966 px/ft works out to ~99 ft/in. (Note that is ~100 ft/in, not the
+    50 ft/in the brief states -- the master is a half-scale reduction of the
+    sheets' native drawing scale.) At 5.7966 the corridor grid gives block
+    pitches of 350.4 ft (avenues) and 399.5 ft (streets), and a street the
+    sheet labels 80' measures 76 ft.
+
+    1899 was wrong: it assumed an avenue pitch of 262 ft, which is the block
+    face, not the centre-to-centre pitch. Galveston's geometry is the same in
+    both years, so the 1899 mosaic's 1006 px avenue pitch and 1169 px street
+    pitch correspond to the 350.4/399.5 ft above, giving 2.871 and 2.926.
+    Cross-check: an 80'-labelled street measures 84 ft at 2.90 and an
+    implausible 63 ft at the old 3.84. The old value made every 1899 crop
+    cover 1.34x the ground asked for, so crops printed at 1.34x the requested
+    ft/in.
+    """
     if recipe.year == 1912:
-        return 5.7966                        # kappa from the 1912 solve
-    return 1006.0 / 262.0                    # 1899: avenue pitch over ~262 ft
+        return 5.7966
+    return 2.8985                            # mean of the avenue/street solves

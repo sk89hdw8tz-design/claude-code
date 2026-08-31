@@ -160,3 +160,33 @@ Options: (a) drop `71a` from the city layer and log the sheet as placed-only-
 by-prior-guess, (b) leave it and disclose it, or (c) place it by hand from
 two control points. Recommend (a) until someone can do (c) — a visibly
 misplaced sheet is worse in a saleable product than an honest gap.
+
+## HQ-10 · 1899 crops printed at the wrong scale — FIXED; and the masters are ~100 ft/in, not 50
+
+Found while establishing ground units for the lattice work (a lattice is
+meaningless without a verified foot).
+
+`reciplib.px_per_ft` returned `1006/262` for 1899, on the assumption that the
+avenue pitch is 262 ft. 262 ft is the **block face**, not the centre-to-centre
+pitch. Every 1899 crop therefore covered 1.34x the ground requested, and
+printed at 1.34x the requested ft/in — a request for 100 ft/in came out at
+~134. That is the brief's Stage 6 gate (a ruler on the scale bar) failing.
+
+1912 was verified correct at 5.7966 and left alone. The proof is the master's
+own `print_composition.json`: `map_rect_canvas_xyxy` and
+`map_rect_mosaic_xyxy` are both 22882 x 14489, so the mosaic frame IS the
+print frame at 1:1. Corrected 1899 to 2.8985 px/ft, derived from the same
+Galveston geometry (block pitch 350.4 ft across avenues, 399.5 ft across
+streets) and cross-checked three ways: avenue pitch gives 2.871, street pitch
+gives 2.926, and a street the sheet labels 80' measures 84 ft at the new value
+versus an implausible 63 ft at the old one. After the fix `lookup.py` reports
+1899 blocks as 347 x 403 ft against 1912's 344-358 x 399 ft — the same city,
+finally agreeing. Before, 1899 read 262 x 304 ft.
+
+**Separately, for the owner.** The brief (§2.2) says the masters print at
+50 ft/in. They do not. That same manifest puts 22882 mosaic px across a 40 in
+page, which at 5.7966 px/ft is **~99 ft/in** — the masters are a half-scale
+reduction of the sheets' native 50 ft/in drawing scale. `crop.py` already
+defaults to `--scale-ft-per-in 100`, which matches the masters, not the brief.
+Worth confirming which you want as the default for new crops, since asking for
+50 ft/in gives prints at twice the size of your existing masters.
