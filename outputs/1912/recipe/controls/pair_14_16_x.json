@@ -1,0 +1,14 @@
+{
+ "pair": [
+  14,
+  16
+ ],
+ "axis": "avenue",
+ "observer": "crossrow-agent-11",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs",
+ "a_native": 1134.1,
+ "b_native": 1159.9,
+ "corridor": "Ave D (Market)",
+ "why_not_one_block_off": "Chosen line is the corridor lettered vertically 'AVE. D. OR MARKET' inside its own roadway on BOTH sheets. Measured block-face lines: sheet 14 native 1028.2 and 1240.0 (211.8 px apart) -> centre 1134.1; sheet 16 native 1054.1 and 1265.7 (211.6 px) -> centre 1159.9. 211.7 px is the 70' printed beside the avenues in the sheet margins; the 20 ft mid-block alleys on these plates measure ~58 px (sheet 14: 604.9/663.3, 1611.1/1668.8, 2618.4/2678.5), so the reported line is a full avenue and not an alley. ADDRESS RUNS. Sheet 14, along 28TH ST and 29TH ST: west of the line '... 319 321 323' / '320 322 324' (300 block), east of it '401 403 405 407 409 411' / '402 404 406 408 410 412 ... 424' (400 block). Sheet 16, along 31ST ST and 32ND ST: west '319 321 323' / '320 322 324' (300 block), east '401 403 405 ...' / '402 404 406 408 ...' (400 block). The same 300/400 change occurs across this corridor on both sheets. The avenue's own frontage numbers prove the two sheets are stacked one block row apart in latitude, not shifted in longitude: Ave D frontage on sheet 14 reads 2701-2727/2702-2728 (27th-28th), 2801-2827/2802-2828 (28th-29th), 2901-2927/2902-2928 (29th-30th) and continues on sheet 16 as 3001-3023/3002-3024 (30th-31st), 3101-3127/3102-3128, 3201-3223/3202-3224; sheet 14's bottom margin prints '16' and sheet 16's top margin prints '14', and both sheets label the shared seam 30TH ST. ONE BLOCK WEST is excluded: that corridor is lettered 'AVE. C. OR MECHANIC' on both sheets (east face 237.1 on sheet 14, 261.6 on sheet 16) and carries the 200/300 change. ONE BLOCK EAST is excluded: it is lettered 'AVE. E. OR POST OFFICE' on both sheets (faces 2038.4/2251.0 -> centre 2144.7 on sheet 14; 2068.9/2275.9 -> centre 2172.4 on sheet 16) and carries the 400/500 change. CANDIDATES REJECTED: none of the six proposed candidates is a corridor at all. Sheet 14's 422/1445/2469 lie ~180-210 px west of the 20 ft alleys and 291/311/324 px east of the Ave C/D/E centres; sheet 16's 744/1760/2777 lie inside block interiors (Merchants & Planters compress yards) 588/600/605 px east of the Ave C/D/E centres. The values reported here are ruler-read avenue centres, not candidates. CROSS-CHECK: four independent corridors give the same sheet-14 -> sheet-16 x offset - Ave C east face +24.6, Ave D centre +25.8, Ave E centre +27.7, Ave F west face +25.4 px (mean +25.9, spread 1.5 px) - against ~1011 px for a one-block error.",
+ "status": "ACCEPTED"
+}

@@ -1,0 +1,14 @@
+{
+ "pair": [
+  69,
+  78
+ ],
+ "axis": "avenue",
+ "observer": "crossrow-agent-11",
+ "method": "candidate lines proposed by corridor detection; identity decided from printed address runs",
+ "a_native": null,
+ "b_native": null,
+ "corridor": "none - sheets share no avenue",
+ "why_not_one_block_off": "UNRESOLVED - these two sheets share NO avenue, so no avenue x-control can be read from them. The task's premise that every avenue in the band crosses both sheets does not hold for this pair. PRINTED EVIDENCE. Sheet 69 letters exactly four avenues in their own roadways, west to east: 'AVE. H OR BALL' (east face 214.8, at the west margin), 'AVE. I OR SEALY' (faces 1007.2/1216.4, centre 1111.8), 'AVE. J OR BROADWAY 150 ft wide' (faces ~2008.7/2308.3, centre ~2158.5) and 'AVENUE K' (west face 3093.8, centre ~3199; its east face is off the paper). Sheet 69's east margin prints the neighbour plate '70'. Sheet 78 letters four avenues: 'AVENUE L' (east face 243.8, at the west margin, centre ~139), 'AVENUE M' (faces 1032.6/1242.2, centre 1137.4), 'AVENUE M 1/2' (faces 2036.9/2247.1, centre 2142.0) and 'AVENUE N' (west face 3037.2, centre ~3142). Sheet 78's west margin prints the neighbour plate '77'. So the easternmost corridor on sheet 69 is Avenue K and the westernmost on sheet 78 is Avenue L - different lines, one full block apart. ADDRESS RUNS CONFIRM IT. Sheet 69's easternmost block column (blocks 153/154/155, between Broadway and Avenue K) carries the 1000 block: '1001 1003 1005 1007 1009 1011 1013 1015 1017 1019 1021 1023' / '1002 ... 1024' along 34TH, 35TH and 36TH ST. Sheet 78's westernmost block column (blocks 36/37/38, between Avenue L and Avenue M) carries the 1200 block: '1201 1203 1205 1207 1209 1211 1213 1215 1217 1219 1221 1223' / '1202 ... 1224' along 37TH, 38TH and 39TH ST. The 1100 block - the column between Avenue K and Avenue L, which is what would have to appear on both sheets for them to share a corridor - is printed on NEITHER sheet; it lies on plates 70 and 77, which sit between these two. The sheets are also offset in latitude: sheet 69 covers 33RD-36TH ST and sheet 78 covers 36TH-39TH ST, so they abut in y only, and in x they do not overlap at all (in sheet-69 coordinates Avenue L would fall at ~4200 native px, well beyond the 3327 px plate width; in sheet-78 coordinates Avenue K would fall at ~-780). CANDIDATES REJECTED. All six proposed candidates (sheet 69: 1733, 698, 2769; sheet 78: 2563, 1524, 486) are block-interior lines, and in any case pairing any line on 69 with any line on 78 would be pairing two different physical corridors. Reporting any number here would shear the mosaic by a full block, so nothing is reported.",
+ "status": "UNRESOLVED"
+}
