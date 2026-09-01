@@ -2,26 +2,26 @@
  "project": {
   "map": "Galveston Sanborn 1912 full-city mosaic",
   "year": 1912,
-  "stage": "seam census",
+  "stage": "seam census round 2",
   "status": "WORKING",
   "start_time": "2026-09-01T22:05Z",
-  "last_update": "2026-09-01T22:49Z",
-  "git_commit": "7ffc27b",
+  "last_update": "2026-09-01T23:11Z",
+  "git_commit": "6a91805",
   "objective": "Finish the 1912 full-city mosaic to print-ready quality: seams re-cut from controls and the plates' own lattices, core cuts restored, registration re-solved on plate evidence, complete seam census, final deliverables."
  },
  "progress": {
-  "overall_pct": 45,
-  "stage_pct": 45,
-  "tasks_done": 6,
+  "overall_pct": 62,
+  "stage_pct": 20,
+  "tasks_done": 7,
   "tasks_total": 11,
-  "current_task": "complete seam census",
-  "next_task": "correction round",
+  "current_task": "seam census round 2 (crops re-rendering)",
+  "next_task": "final render (publish COG+DZI)",
   "blockers": []
  },
  "eta": {
-  "range": "3-6 hours remaining",
+  "range": "2-4 hours remaining",
   "confidence": "MEDIUM",
-  "reason": "171 band-seam crops rendering (~8 s each); grading by subagents; one full-city publish (~25 min at 1/2)"
+  "reason": "crops ~25 min, grading ~15 min, publish ~30 min, docs"
  },
  "tasks": [
   {
@@ -86,22 +86,22 @@
   {
    "name": "complete seam census",
    "status": "ACTIVE",
-   "pct": 45,
+   "pct": 60,
    "weight": 20,
    "deps": [
     "seam/source ownership"
    ],
-   "accept": "every seam reviewed from programmatic crops with a recorded verdict"
+   "accept": "round 1 done (144 seams: 62/66/15/1/0 at scores 1-5) and diagnostic; round 2 on the rescaled, cross-tied placement in progress"
   },
   {
    "name": "correction round",
-   "status": "NOT STARTED",
-   "pct": 0,
+   "status": "ACTIVE",
+   "pct": 70,
    "weight": 14,
    "deps": [
     "complete seam census"
    ],
-   "accept": "every actionable census failure fixed and its seam re-checked"
+   "accept": "plate scales fixed from the plates own blocks (78 plates, up to 8%); 77 cross-axis ties; 319 controls, residual median 2.3 ft max 25.1; grid fit 11.4/8.9 ft"
   },
   {
    "name": "full-city QC",
@@ -137,15 +137,15 @@
  "kpi": {
   "sheets_placed": "93/93 inland units (sheet 72 in sheets_city.geojson now); wharf sheet 5 (2 panels) still outside the city ownership",
   "registration_components": 1,
-  "controls_accepted": 242,
+  "controls_accepted": 319,
   "controls_audited": "all 242 width-tested against plate lattices (widthcheck.py); 50 avenue controls framing-checked (ctlcheck.py, 3 flagged on composite plates)",
   "controls_questionable": 21,
   "seams_total": 252,
-  "seams_reviewed": 0,
-  "seams_passed": 0,
-  "seams_failed": 0,
-  "seams_remaining": 171,
-  "duplicated_road_failures": "NOT MEASURED",
+  "seams_reviewed": 144,
+  "seams_passed": 1,
+  "seams_failed": 143,
+  "seams_remaining": "144 (round 2)",
+  "duplicated_road_failures": "round 1: 58 misplacement, 112 step, 73 duplicated label (before the scale fix)",
   "duplicated_label_failures": "NOT MEASURED",
   "split_building_failures": "NOT MEASURED",
   "rail_utility_discontinuities": "NOT MEASURED",
@@ -153,12 +153,12 @@
   "ownership_gaps": 0,
   "source_gaps": 1,
   "unresolved_defects": "UNKNOWN",
-  "qc_pass_rate": null,
+  "qc_pass_rate": 0.7,
   "final_render_status": "NOT STARTED",
   "seams_band": 171,
   "seams_corner": 81,
   "seams_on_controls": 171,
-  "registration": "re-solved 2026-09-01 with 38 lattice ties; observer-control residual median 3.7 ft, tie residual median 4.1 ft, max 14.4 ft"
+  "registration": "plate scales from block depths (platescale.py); 319 controls; residual median 2.3 ft, 90th 7.8, max 25.1; grid pitches 399.5/348.3 ft, residuals 11.4/8.9 ft"
  },
  "agents": [],
  "tokens_cost": "not available",
@@ -197,6 +197,10 @@
   {
    "t": "2026-09-01T22:49Z",
    "event": "seams re-cut (streetcut v2), core masks restored, registration re-solved with 38 lattice ties, tiling gate 1 piece / 0 overlap / 1 source hole; commit 7ffc27b (session 019xkiTH5CzPb2j6nmj9Wg2t)"
+  },
+  {
+   "t": "2026-09-01T23:11Z",
+   "event": "census round 1 graded (ring failed: scale errors up to 8% and unpinned along-seam direction); plate scales fixed, 77 cross ties, re-solved; commit 6a91805"
   }
  ]
 }
