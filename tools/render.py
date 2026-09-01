@@ -25,20 +25,32 @@ import numpy as np
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from reciplib import Recipe  # noqa: E402
 
-def save(canvas, out):
+NATIVE_PPI = 300.0    # what the plates scan and the masters print at
+
+
+def save(canvas, out, ppi=None):
     """Write the BGR canvas as a tiled, pyramidal TIFF.
 
     Streams through libvips off the existing buffer: converting to RGB with
     cv2.cvtColor and handing that to Pillow allocates two more copies of the
     whole canvas, which OOMs at gigapixel sizes.
+
+    ppi is written into the TIFF resolution tags. Without it libvips falls
+    back to its default 1 pixel/mm and the file claims 25.4 ppi -- the first
+    published COG said that, six times finer than the 150 ppi it actually is,
+    which would mis-scale anything printed or measured from it.
     """
     H, W = canvas.shape[:2]
     try:
         import pyvips
         v = pyvips.Image.new_from_memory(canvas.data, W, H, 3, "uchar")
         v = v[2].bandjoin([v[1], v[0]])                 # BGR -> RGB, lazily
+        kw = {}
+        if ppi:
+            v = v.copy(xres=ppi / 25.4, yres=ppi / 25.4)   # libvips is px/mm
+            kw = {"resunit": "inch"}
         v.tiffsave(out, compression="lzw", tile=True, tile_width=512,
-                   tile_height=512, pyramid=True, bigtiff=True)
+                   tile_height=512, pyramid=True, bigtiff=True, **kw)
         return
     except ImportError:
         pass
@@ -56,6 +68,9 @@ def main():
     ap.add_argument("--all", action="store_true", help="full mosaic extent")
     ap.add_argument("--rect", nargs=4, type=float,
                     metavar=("X0", "Y0", "X1", "Y1"), help="mosaic-frame rect")
+    ap.add_argument("--ppi", type=float, default=None,
+                    help="resolution to record in the TIFF tags; defaults to "
+                         "the plates' ~300 ppi divided by --downsample")
     ap.add_argument("--downsample", type=int, default=1,
                     help="render at 1/N scale (QC previews)")
     ap.add_argument("--out", default=None)
@@ -138,7 +153,7 @@ def main():
         print(f"  sheet {sheet} composited", flush=True)
     del covered
     out = a.out or f"render_{a.year}.tif"
-    save(canvas, out)
+    save(canvas, out, ppi=a.ppi if a.ppi else NATIVE_PPI / d)
     print(f"wrote {out}")
     if a.dzi:
         import pyvips

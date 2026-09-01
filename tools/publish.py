@@ -62,6 +62,7 @@ def main():
 
     if not (a.skip_render and os.path.exists(flat)):
         run([sys.executable, "tools/render.py", "--year", a.year, "--all",
+             "--ppi", str(ppi),
              "--downsample", str(a.downsample), "--out", flat])
     print(f"flat render: {mb(flat):.0f} MB", flush=True)
 
