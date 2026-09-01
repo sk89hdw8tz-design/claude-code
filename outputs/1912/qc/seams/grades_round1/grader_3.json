@@ -1,0 +1,138 @@
+[
+ {
+  "seam": "12_14",
+  "score": 1,
+  "defects": [
+   "step",
+   "duplicated-label"
+  ],
+  "offset_ft": 17,
+  "reason": "Every N-S block face along 27th St is stepped: block 566/567, 506/507 and 446/447 corners and the 6-inch/10-inch pipe in the side street all sit 47-55 px (16-19 ft) further east on plate 14 than on plate 12. '27TH ST.' is printed by both plates and both halves show, offset ~55 px, reading as a ghosted double label.",
+  "furniture": "north arrow and 'Scale of Feet' bar in the 27th St roadway at the cut; 70' width notes"
+ },
+ {
+  "seam": "19_20",
+  "score": 1,
+  "defects": [
+   "misplacement",
+   "doubled-lines"
+  ],
+  "offset_ft": 168,
+  "reason": "Cross streets do not line up: plate 19's 84-ft cross street runs y=869-1113 (100% px) while plate 20's runs y=383-628 and 1551-1795, so the 700-block faces (702-728 west, 701-729 east) that should face each other are ~486 px (168 ft) apart, and the 8-inch pipe run in the cross street is drawn twice ~165 ft apart. Same scale both sides, so this is a placement error, not a source difference.",
+  "furniture": "'AVE ... OR SEALY' label and 70'/80' notes in the roadway"
+ },
+ {
+  "seam": "26_42",
+  "score": 1,
+  "defects": [
+   "misplacement",
+   "step",
+   "tone"
+  ],
+  "offset_ft": 40,
+  "reason": "19th St and 20th St continue across the cut but plate 42's block edges sit 107 px (37 ft) lower than plate 26's at x=900 and ~115 px (40 ft) at the cut; plate 42 is also rotated about 4 deg relative to plate 26 (its block lines climb 31 px over 400 px). House numbers 1704-1724 / 1802-1812 are visibly out of register. Left plate slightly greyer.",
+  "furniture": "80' width notes; SW/SE/NE/NW quarter-block labels"
+ },
+ {
+  "seam": "32_38",
+  "score": 1,
+  "defects": [
+   "misplacement",
+   "gap",
+   "duplicated-label",
+   "doubled-lines",
+   "tone"
+  ],
+  "offset_ft": 65,
+  "reason": "Gross displacement on both axes: 15th St is 411 px (142 ft) wide at the cut instead of 80 ft, i.e. ~62 ft of extra ground, and every N-S line (alleys, block 47/46 edges) is 180-190 px (~64 ft) further east on plate 38 than on plate 32. '15TH ST.' is printed on both sides at different places and the 6-inch pipe run in 15th St is drawn twice. Top plate is noticeably greyer.",
+  "furniture": "compass rose and 'Scale of Feet' bar at the cut on the right; clipped sheet number '38' just above the cut"
+ },
+ {
+  "seam": "41_45",
+  "score": 1,
+  "defects": [
+   "step",
+   "misplacement"
+  ],
+  "offset_ft": 30,
+  "reason": "Relative scale/rotation error: the step grows steadily along the seam, from +22 px (8 ft, plate 45 east) at the alley by 1212/1214, through 0 at block 20/21's east face, to -57/-69 px (20-24 ft, plate 45 west) at block 19/18's faces and -89 px (~30 ft) at the alley between 1412 and 1414. The east end of the crop clearly does not line up.",
+  "furniture": "north arrow and scale bar in the roadway at the cut, right of centre; 70' width notes"
+ },
+ {
+  "seam": "50_56",
+  "score": 1,
+  "defects": [
+   "step",
+   "duplicated-label"
+  ],
+  "offset_ft": 24,
+  "reason": "Offset changes sign along 27th St (relative rotation/scale): block 206/207 west face -17 px (6 ft), block 146/147 east face +41 px (14 ft), block 86/87 west face +50 px (17 ft), the 8-inch pipe run and 20' alley by 1112/1114 +67-70 px (~24 ft). '27TH ST.' is printed by both plates ~35 px apart so it reads as a ghosted double label.",
+  "furniture": "compass rose and 'Scale of Feet' bar in the roadway at the cut; 150' and 70' width notes"
+ },
+ {
+  "seam": "57_58",
+  "score": 3,
+  "defects": [
+   "step",
+   "gap"
+  ],
+  "offset_ft": 4,
+  "reason": "Block faces register well (block bottoms at 1695/1694 px, block tops 1940/1935, under 2 ft) and the 40' side street vs long block 40 is a genuine source difference. But the pipe run in the 80' cross street steps 11 px (~4 ft) at the cut (12-inch pipe on plate 57, 10-inch on 58), and the vertical 'AVENUE' label and '8\" W. PIPE' label sitting on the centreline are sliced lengthwise with only the plate-57 halves showing. Roadway at the cut measures ~60 ft.",
+  "furniture": "sheet number '57' reassembled from both plates' halves across the cut; T.H. dots; 80' notes"
+ },
+ {
+  "seam": "63_70",
+  "score": 2,
+  "defects": [
+   "step",
+   "duplicated-label",
+   "gap"
+  ],
+  "offset_ft": 12,
+  "reason": "Plate 70 sits 23-37 px (8-13 ft) west of plate 63: block 32/33 west face -37 px, alley by 1312/1314 -23 px, block corner 1324/1323 ~12-16 ft. The 10-inch pipe along 33rd St is drawn by plate 63 at y~802 and by plate 70 at y~815 (4 ft step) with no pipe at all for ~400 ft between them. '33RD ST.' appears on both sides of the cut ~345 ft apart. The doubled 6-inch pipe and '70'' at the west end belong to a vertical seam with a third plate, not this one.",
+  "furniture": "compass rose and scale bar at the cut; clipped large sheet number on plate 70 at right; 70'/80' notes"
+ },
+ {
+  "seam": "69_77",
+  "score": 1,
+  "defects": [
+   "step"
+  ],
+  "offset_ft": 21,
+  "reason": "Consistent 57-68 px (20-23 ft) eastward shift of plate 77 along the whole seam: block 215/216 both faces, the 20' alley by 912/914, block 155/156 both faces and the 10-inch pipe in the 150' street all jog at the cut. House numbers 902-924 over 901-923 are visibly out of register.",
+  "furniture": "'Scale of Feet' bar and compass rose in 27th St at the cut; 70' and 150' notes"
+ },
+ {
+  "seam": "77_78",
+  "score": 2,
+  "defects": [
+   "step",
+   "duplicated-label",
+   "doubled-lines"
+  ],
+  "offset_ft": 8,
+  "reason": "Plate 78 sits 17-27 px (6-9 ft) lower than plate 77: block 97/37 top edges 774 vs 799 px, block bottoms 535 vs 562, next block 1902 vs 1922. 'AVENUE L' is printed by both plates side by side ~50 px apart and both T.H. dots at the intersection show, ~75 px apart.",
+  "furniture": "sheet-reference numbers '78' (from plate 77) and '7' (from plate 78) side by side at the cut; FA box on plate 77; 80' notes"
+ },
+ {
+  "seam": "83_91",
+  "score": 2,
+  "defects": [
+   "step"
+  ],
+  "offset_ft": 9,
+  "reason": "Plate 91 is 20-26 px (7-9 ft) east of plate 83 along the whole seam: block 521/522 corner, the 6-inch pipe and rail tracks in the 70' street, block 461/462 and 401/402 faces and the 20' alley by 612/614 all jog. The '43RD ST' label straddling the cut is garbled, its top half offset from its bottom half. Diagonal tracks at far left continue within ~2-3 ft.",
+  "furniture": "north arrow and scale bar in the roadway at the cut, top right; 70' notes; brown stain on plate 91 (product)"
+ },
+ {
+  "seam": "90_98",
+  "score": 3,
+  "defects": [
+   "gap",
+   "tone"
+  ],
+  "offset_ft": 2,
+  "reason": "Block 158 and 183 faces register within 0-6 px (under 2 ft) and the 70' avenue after 2723 on plate 98 against continuous lots 2724-2730 on plate 90 reads as a source-plate T-intersection, not a seam error. But both '42ND ST.' labels on the centreline are beheaded (only the plate-98 lower halves survive) and the compass rose at left is clipped; the bottom-right corner beyond x~2300 is a blank white patch from the next plate east. Plate 98 is darker and stained.",
+  "furniture": "clipped large sheet number right of centre; partial scale bar at top right; 70' notes"
+ }
+]

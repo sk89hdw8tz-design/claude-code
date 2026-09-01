@@ -95,7 +95,7 @@ extents at 1/2: 1899 → 15180×23783 (~1.1 GB canvas, 178 MB sources);
 ## Coverage
 
 `outputs/1899/coverage.png` — 89/90 placed, `71a` carried over unverified.
-`outputs/1912/coverage.png` — 92/92 placed.
+`outputs/1912/coverage.png` — 93/93 placed (sheet 72 added 2026-08-31); one source gap at 84|85.
 
 ## 1912 row shear found and fixed (2026-09-01)
 

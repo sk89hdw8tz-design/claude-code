@@ -782,3 +782,68 @@ sheet-level evidence (HQ-22), which is what that plan allowed. The dashboard
 has been updated to the real state. If the other session pushes a
 competing re-cut, rebase and re-run `streetcut → fillgaps → tiling`; the
 gate numbers above are the check.
+
+## HQ-24 · Seam census, round 1 — 144 band seams graded; the ring failed
+
+Every band seam of the city mosaic was rendered at 100% and 50%
+(`tools/seamcrops.py`, `outputs/1912/qc/seams/`) and graded by twelve
+graders on the brief's §6 rubric, one grader per twelve seams
+(`qc/seams/grades_round1.json`, per-grader reports in `grades_round1/`).
+
+| score | 5 | 4 | 3 | 2 | 1 |
+|---|---|---|---|---|---|
+| seams | 0 | 1 | 15 | 66 | 62 |
+
+Largest visible offset per seam: median 16 ft, 90th percentile 54 ft, worst
+220 ft (94|95). Defect counts: step 112, duplicated label 73, misplacement
+58, tone 33, gap 24, doubled lines 14, split building 2.
+
+**What the graders actually saw** was consistent and diagnostic. The
+offset at a seam *grows along it* — "40|41: 27 ft at the north end shrinking
+to 2 ft at the south"; "57|63: 7 ft in the west, 22 ft in the east";
+"70|78: 21 ft east at the left, 12 ft the other way at the right" — which is
+not a translation error. It is the two plates being at different scales.
+And a stacked pair's cross streets are shifted *along* the seam by a
+constant amount (8|34: 66 ft; 38|42: 24 ft; 42|46: 55 ft) — the direction
+that a street control does not pin.
+
+The 1912 core (the master) is exempt: 9|10, 10|43 and the other core-core
+seams are the master's own cuts and were not in the census. Every core-ring
+seam was, and failed with the ring.
+
+## HQ-25 · The ring plates' scales were wrong by up to 8%; fixed from the plates — APPLIED
+
+HQ-13 recorded that "every scale is correct to within 0.05%". It is not.
+The plates' own street chains give every block face-to-face, and the frozen
+core — the accepted master — says what a block is in mosaic pixels: 314.6 ft
+between street faces, 274.6 ft between avenue faces, each to ±0.7% over 70
+core blocks. Measured against that, 49 of the 81 ring plates were more than
+1% off and the worst — 79 (+8.1%), 37 (+7.3%), 30 (+5.8%), 41, 24 (+4.4%) —
+were 40–60 ft wrong across a plate. `tools/platescale.py` sets each ring
+plate's scale from its own blocks (rotation untouched, the plate rescaled
+about its centre; 78 plates changed, three with no clean chain kept as
+they were), and `netsolve` re-solved translations.
+
+The scale fix alone dropped the control residuals from median 3.7 ft /
+max 33.8 to **2.1 / 15.9** — the 15th/18th St cluster that HQ-22 could not
+close was a scale problem — and the city grid fit from 21.6 ft (streets) and
+28.5 ft (avenues) residual to **11.4 and 8.9 ft**, with pitches of 399.5 and
+348.3 ft, which is Galveston's plat.
+
+Then the direction along each seam was pinned. A stacked pair shares every
+avenue in its band and a side-by-side pair every street; `latticeties.py
+--cross` reads the corridor nearest the middle of the overlap on both plates,
+pairing each corridor with its nearest counterpart under the current
+placement (within 0.45 of a block). 77 cross-axis ties, none contradicting
+the observers: after the re-solve, observer controls median 2.5 ft / max
+25.1, cross ties 1.9 / 24.6, seam ties 3.0 / 11.4 (319 controls in all).
+Sheets 48 and 74 — the two east-end outliers that only ever touched each
+other — moved 144 ft; everything else a median of 6 ft.
+
+Tiling gate after the re-cut: one piece, 386 px² overlap, the one 84|85
+source hole. Seam census round 2 follows on the re-rendered crops.
+
+**Owner's note.** This changes the placement of 78 ring sheets by up to
+170 ft (sheet 20). The core did not move. The state before it is commit
+3f7c092; `recipe/plates/plate_scales.json` records every plate's old and new
+scale.

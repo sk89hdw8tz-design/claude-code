@@ -1,465 +1,241 @@
 {
  "generated_by": "tools/netsolve.py",
  "note": "translation per sheet from shared-corridor controls; core frozen; rotation and scale unchanged",
- "controls_used": 242,
+ "controls_used": 319,
  "residual_ft": {
-  "median": 4.373727427968706,
-  "max": 33.76646662438153
+  "median": 2.3085815635592826,
+  "max": 25.136228015655874
  },
  "residuals": [
   {
-   "pair": "37|41",
+   "pair": "71|79",
    "axis": "y",
-   "corridor": "18th St",
-   "file": "pair_37_41.json",
-   "residual_ft": 33.8
+   "corridor": "36th St",
+   "file": "pair_71_79.json",
+   "residual_ft": 25.1
+  },
+  {
+   "pair": "53|54",
+   "axis": "y",
+   "corridor": "?",
+   "file": "pair_53_54_y.json",
+   "residual_ft": 24.6
+  },
+  {
+   "pair": "54|60",
+   "axis": "y",
+   "corridor": "27th St",
+   "file": "pair_54_60.json",
+   "residual_ft": 24.6
   },
   {
    "pair": "30|36",
    "axis": "y",
    "corridor": "15th St",
    "file": "pair_30_36.json",
-   "residual_ft": 32.0
-  },
-  {
-   "pair": "31|36",
-   "axis": "y",
-   "corridor": "15th St",
-   "file": "pair_31_36.json",
-   "residual_ft": 30.4
+   "residual_ft": 16.7
   },
   {
    "pair": "30|35",
    "axis": "y",
    "corridor": "15th St",
    "file": "pair_30_35.json",
-   "residual_ft": 29.6
-  },
-  {
-   "pair": "31|37",
-   "axis": "y",
-   "corridor": "15th St",
-   "file": "pair_31_37.json",
-   "residual_ft": 28.0
-  },
-  {
-   "pair": "61|62",
-   "axis": "x",
-   "corridor": "Ave I",
-   "file": "pair_61_62.json",
-   "residual_ft": 27.0
-  },
-  {
-   "pair": "55|61",
-   "axis": "x",
-   "corridor": "Ave G (Winnie)",
-   "file": "pair_55_61_x.json",
-   "residual_ft": 22.0
-  },
-  {
-   "pair": "26|47",
-   "axis": "x",
-   "corridor": "Ave P",
-   "file": "pair_26_47_x.json",
-   "residual_ft": 21.7
-  },
-  {
-   "pair": "26|42",
-   "axis": "x",
-   "corridor": "Ave O 1/2",
-   "file": "pair_26_42.json",
-   "residual_ft": 21.7
-  },
-  {
-   "pair": "40|41",
-   "axis": "x",
-   "corridor": "Ave L",
-   "file": "pair_40_41.json",
-   "residual_ft": 21.7
-  },
-  {
-   "pair": "62|63",
-   "axis": "x",
-   "corridor": "Ave L",
-   "file": "pair_62_63.json",
-   "residual_ft": 21.6
-  },
-  {
-   "pair": "41|44",
-   "axis": "y",
-   "corridor": "21st St (Center)",
-   "file": "pair_41_44.json",
-   "residual_ft": 21.5
-  },
-  {
-   "pair": "87|96",
-   "axis": "y",
-   "corridor": "42nd St",
-   "file": "pair_87_96.json",
-   "residual_ft": 20.0
-  },
-  {
-   "pair": "55|56",
-   "axis": "x",
-   "corridor": "Ave I (Sealy)",
-   "file": "pair_55_56.json",
-   "residual_ft": 19.7
-  },
-  {
-   "pair": "86|96",
-   "axis": "y",
-   "corridor": "42nd St",
-   "file": "pair_86_96.json",
-   "residual_ft": 19.4
-  },
-  {
-   "pair": "38|42",
-   "axis": "x",
-   "corridor": "Ave O",
-   "file": "pair_38_42_x.json",
-   "residual_ft": 18.7
-  },
-  {
-   "pair": "37|38",
-   "axis": "x",
-   "corridor": "Ave N",
-   "file": "pair_37_38.json",
-   "residual_ft": 18.7
+   "residual_ft": 14.6
   },
   {
    "pair": "37|41",
    "axis": "x",
    "corridor": "Ave M 1/2",
    "file": "pair_37_41_x.json",
-   "residual_ft": 18.7
+   "residual_ft": 13.4
   },
   {
-   "pair": "14|16",
-   "axis": "x",
-   "corridor": "Ave D (Market)",
-   "file": "pair_14_16_x.json",
-   "residual_ft": 17.9
-  },
-  {
-   "pair": "41|45",
-   "axis": "y",
-   "corridor": "21st (Center) St",
-   "file": "pair_41_45.json",
-   "residual_ft": 16.5
-  },
-  {
-   "pair": "56|57",
+   "pair": "40|41",
    "axis": "x",
    "corridor": "Ave L",
-   "file": "pair_56_57.json",
-   "residual_ft": 15.9
-  },
-  {
-   "pair": "12|14",
-   "axis": "x",
-   "corridor": "Ave E (Post Office)",
-   "file": "pair_12_14_x.json",
-   "residual_ft": 15.3
-  },
-  {
-   "pair": "57|63",
-   "axis": "y",
-   "corridor": "30th St",
-   "file": "pair_57_63.json",
-   "residual_ft": 15.2
-  },
-  {
-   "pair": "87|88",
-   "axis": "x",
-   "corridor": "Ave P 1/2",
-   "file": "pair_87_88.json",
-   "residual_ft": 15.1
-  },
-  {
-   "pair": "95|96",
-   "axis": "x",
-   "corridor": "Ave P",
-   "file": "pair_95_96.json",
-   "residual_ft": 15.1
-  },
-  {
-   "pair": "47|53",
-   "axis": "x",
-   "corridor": "Ave P",
-   "file": "pair_47_53_x.json",
-   "residual_ft": 15.0
-  },
-  {
-   "pair": "78|85",
-   "axis": "y",
-   "corridor": "39th St",
-   "file": "pair_78_85.json",
-   "residual_ft": 14.2
-  },
-  {
-   "pair": "57|63",
-   "axis": "x",
-   "corridor": "Ave M 1/2",
-   "file": "pair_57_63_x.json",
-   "residual_ft": 13.8
-  },
-  {
-   "pair": "74|81",
-   "axis": "x",
-   "corridor": "Ave R 1/2",
-   "file": "pair_74_81.json",
-   "residual_ft": 12.9
-  },
-  {
-   "pair": "66|74",
-   "axis": "x",
-   "corridor": "Ave R 1/2",
-   "file": "pair_66_74.json",
-   "residual_ft": 12.9
-  },
-  {
-   "pair": "65|66",
-   "axis": "x",
-   "corridor": "Ave Q",
-   "file": "pair_65_66.json",
-   "residual_ft": 12.9
+   "file": "pair_40_41.json",
+   "residual_ft": 12.2
   },
   {
    "pair": "69|78",
    "axis": "y",
    "corridor": "36th St",
    "file": "pair_69_78.json",
-   "residual_ft": 12.6
+   "residual_ft": 11.6
   },
   {
-   "pair": "69|77",
+   "pair": "71|72",
    "axis": "y",
-   "corridor": "36th St",
-   "file": "pair_69_77.json",
-   "residual_ft": 12.6
-  },
-  {
-   "pair": "68|77",
-   "axis": "y",
-   "corridor": "36th St",
-   "file": "pair_68_77.json",
-   "residual_ft": 12.6
-  },
-  {
-   "pair": "85|93",
-   "axis": "y",
-   "corridor": "42nd St",
-   "file": "pair_85_93.json",
-   "residual_ft": 12.6
-  },
-  {
-   "pair": "84|93",
-   "axis": "y",
-   "corridor": "42nd St",
-   "file": "pair_84_93.json",
-   "residual_ft": 12.6
-  },
-  {
-   "pair": "79|86",
-   "axis": "y",
-   "corridor": "39th St",
-   "file": "pair_79_86.json",
-   "residual_ft": 12.6
-  },
-  {
-   "pair": "66|73",
-   "axis": "y",
-   "corridor": "33rd St",
-   "file": "pair_66_73.json",
-   "residual_ft": 12.6
-  },
-  {
-   "pair": "59|65",
-   "axis": "x",
-   "corridor": "Ave P 1/2",
-   "file": "pair_59_65_x.json",
-   "residual_ft": 12.2
-  },
-  {
-   "pair": "53|59",
-   "axis": "x",
-   "corridor": "Ave P",
-   "file": "pair_53_59_x.json",
-   "residual_ft": 11.2
-  },
-  {
-   "pair": "84|93",
-   "axis": "x",
-   "corridor": "Ave J (Broadway)",
-   "file": "pair_84_93_x.json",
-   "residual_ft": 10.3
+   "corridor": "?",
+   "file": "pair_71_72_y.json",
+   "residual_ft": 11.6
   },
   {
    "pair": "92|93",
    "axis": "x",
    "corridor": "Ave J",
    "file": "pair_92_93.json",
-   "residual_ft": 10.3
+   "residual_ft": 11.4
   },
   {
-   "pair": "35|8",
-   "axis": "y",
-   "corridor": "18th St",
-   "file": "pair_35_8.json",
-   "residual_ft": 10.3
-  },
-  {
-   "pair": "63|71",
-   "axis": "y",
-   "corridor": "33rd St",
-   "file": "pair_63_71.json",
-   "residual_ft": 10.3
-  },
-  {
-   "pair": "80|87",
+   "pair": "78|86",
    "axis": "y",
    "corridor": "39th St",
-   "file": "pair_80_87.json",
-   "residual_ft": 10.2
-  },
-  {
-   "pair": "16|61",
-   "axis": "x",
-   "corridor": "Ave F (Church)",
-   "file": "pair_16_61.json",
-   "residual_ft": 10.1
-  },
-  {
-   "pair": "84|92",
-   "axis": "x",
-   "corridor": "Ave I (Sealy)",
-   "file": "pair_84_92_x.json",
-   "residual_ft": 10.0
-  },
-  {
-   "pair": "52|58",
-   "axis": "x",
-   "corridor": "Ave O",
-   "file": "pair_52_58_x.json",
-   "residual_ft": 9.5
-  },
-  {
-   "pair": "71|79",
-   "axis": "y",
-   "corridor": "36th St",
-   "file": "pair_71_79.json",
-   "residual_ft": 9.4
-  },
-  {
-   "pair": "58|65",
-   "axis": "y",
-   "corridor": "30th St",
-   "file": "pair_58_65.json",
-   "residual_ft": 9.3
-  },
-  {
-   "pair": "57|58",
-   "axis": "y",
-   "corridor": "29th St",
-   "file": "pair_57_58.json",
-   "residual_ft": 9.3
+   "file": "pair_78_86.json",
+   "residual_ft": 11.1
   },
   {
    "pair": "45|50",
    "axis": "y",
    "corridor": "24th St",
    "file": "pair_45_50.json",
-   "residual_ft": 9.3
+   "residual_ft": 11.0
   },
   {
-   "pair": "76|84",
-   "axis": "y",
-   "corridor": "39th St",
-   "file": "pair_76_84.json",
-   "residual_ft": 9.3
+   "pair": "84|92",
+   "axis": "x",
+   "corridor": "Ave I (Sealy)",
+   "file": "pair_84_92_x.json",
+   "residual_ft": 10.6
   },
   {
-   "pair": "68|76",
-   "axis": "y",
-   "corridor": "36th St",
-   "file": "pair_68_76.json",
-   "residual_ft": 9.3
-  },
-  {
-   "pair": "86|87",
+   "pair": "38|42",
    "axis": "x",
    "corridor": "Ave O",
-   "file": "pair_86_87.json",
-   "residual_ft": 8.8
+   "file": "pair_38_42_x.json",
+   "residual_ft": 10.4
   },
   {
-   "pair": "94|95",
+   "pair": "37|38",
    "axis": "x",
-   "corridor": "Ave N 1/2",
-   "file": "pair_94_95.json",
-   "residual_ft": 8.8
+   "corridor": "Ave N",
+   "file": "pair_37_38.json",
+   "residual_ft": 10.4
   },
   {
-   "pair": "88|96",
+   "pair": "59|66",
+   "axis": "y",
+   "corridor": "30th St",
+   "file": "pair_59_66.json",
+   "residual_ft": 10.3
+  },
+  {
+   "pair": "79|86",
+   "axis": "y",
+   "corridor": "39th St",
+   "file": "pair_79_86.json",
+   "residual_ft": 10.0
+  },
+  {
+   "pair": "89|98",
+   "axis": "y",
+   "corridor": "42nd St",
+   "file": "pair_89_98.json",
+   "residual_ft": 9.7
+  },
+  {
+   "pair": "84|93",
    "axis": "x",
-   "corridor": "Ave Q",
-   "file": "pair_88_96_x.json",
+   "corridor": "Ave J (Broadway)",
+   "file": "pair_84_93_x.json",
+   "residual_ft": 9.6
+  },
+  {
+   "pair": "72|80",
+   "axis": "y",
+   "corridor": "36th St",
+   "file": "pair_72_80.json",
+   "residual_ft": 9.5
+  },
+  {
+   "pair": "53|60",
+   "axis": "y",
+   "corridor": "27th St",
+   "file": "pair_53_60.json",
+   "residual_ft": 9.5
+  },
+  {
+   "pair": "53|59",
+   "axis": "y",
+   "corridor": "27th St",
+   "file": "pair_53_59.json",
+   "residual_ft": 9.2
+  },
+  {
+   "pair": "44|51",
+   "axis": "y",
+   "corridor": "24th St",
+   "file": "pair_44_51.json",
+   "residual_ft": 9.1
+  },
+  {
+   "pair": "45|51",
+   "axis": "y",
+   "corridor": "24th St",
+   "file": "pair_45_51.json",
    "residual_ft": 8.7
   },
   {
-   "pair": "58|64",
-   "axis": "x",
-   "corridor": "Ave O",
-   "file": "pair_58_64_x.json",
-   "residual_ft": 8.5
-  },
-  {
-   "pair": "70|78",
+   "pair": "40|45",
    "axis": "y",
-   "corridor": "36th St",
-   "file": "pair_70_78.json",
-   "residual_ft": 8.4
+   "corridor": "21st St (Center)",
+   "file": "pair_40_45.json",
+   "residual_ft": 8.6
   },
   {
-   "pair": "29|30",
-   "axis": "x",
-   "corridor": "Ave I",
-   "file": "pair_29_30.json",
-   "residual_ft": 8.4
-  },
-  {
-   "pair": "35|40",
+   "pair": "62|70",
    "axis": "y",
-   "corridor": "18th St",
-   "file": "pair_35_40.json",
-   "residual_ft": 8.3
+   "corridor": "33rd St",
+   "file": "pair_62_70.json",
+   "residual_ft": 8.2
   },
   {
-   "pair": "80|88",
+   "pair": "69|70",
    "axis": "y",
-   "corridor": "39th St",
-   "file": "pair_80_88.json",
-   "residual_ft": 8.3
-  },
-  {
-   "pair": "35|39",
-   "axis": "y",
-   "corridor": "18th St",
-   "file": "pair_35_39.json",
+   "corridor": "?",
+   "file": "pair_69_70_y.json",
    "residual_ft": 8.1
   },
   {
-   "pair": "63|64",
-   "axis": "x",
-   "corridor": "Ave N",
-   "file": "pair_63_64.json",
-   "residual_ft": 7.8
+   "pair": "17|18",
+   "axis": "y",
+   "corridor": "?",
+   "file": "pair_17_18_y.json",
+   "residual_ft": 8.1
   },
   {
-   "pair": "16|67",
+   "pair": "89|98",
    "axis": "x",
-   "corridor": "Ave D (Market)",
-   "file": "pair_16_67_x.json",
+   "corridor": "Ave S",
+   "file": "pair_89_98_x.json",
+   "residual_ft": 8.0
+  },
+  {
+   "pair": "84|93",
+   "axis": "y",
+   "corridor": "42nd St",
+   "file": "pair_84_93.json",
+   "residual_ft": 8.0
+  },
+  {
+   "pair": "78|79",
+   "axis": "y",
+   "corridor": "?",
+   "file": "pair_78_79_y.json",
+   "residual_ft": 8.0
+  },
+  {
+   "pair": "57|63",
+   "axis": "y",
+   "corridor": "30th St",
+   "file": "pair_57_63.json",
+   "residual_ft": 8.0
+  },
+  {
+   "pair": "68|77",
+   "axis": "y",
+   "corridor": "36th St",
+   "file": "pair_68_77.json",
    "residual_ft": 7.8
   },
   {
@@ -467,769 +243,1273 @@
    "axis": "y",
    "corridor": "30th St",
    "file": "pair_60_66.json",
+   "residual_ft": 7.7
+  },
+  {
+   "pair": "23|29",
+   "axis": "y",
+   "corridor": "12th St",
+   "file": "pair_23_29.json",
    "residual_ft": 7.6
   },
   {
-   "pair": "53|60",
-   "axis": "y",
-   "corridor": "27th St",
-   "file": "pair_53_60.json",
-   "residual_ft": 7.6
-  },
-  {
-   "pair": "89|97",
-   "axis": "y",
-   "corridor": "42nd St",
-   "file": "pair_89_97.json",
-   "residual_ft": 7.6
-  },
-  {
-   "pair": "73|82",
-   "axis": "y",
-   "corridor": "36th St",
-   "file": "pair_73_82.json",
-   "residual_ft": 7.6
-  },
-  {
-   "pair": "50|57",
-   "axis": "y",
-   "corridor": "27th St",
-   "file": "pair_50_57.json",
-   "residual_ft": 7.4
-  },
-  {
-   "pair": "47|53",
-   "axis": "y",
-   "corridor": "24th St",
-   "file": "pair_47_53.json",
-   "residual_ft": 7.4
-  },
-  {
-   "pair": "47|51",
-   "axis": "y",
-   "corridor": "24th St",
-   "file": "pair_47_51.json",
-   "residual_ft": 7.4
-  },
-  {
-   "pair": "76|77",
+   "pair": "87|88",
    "axis": "x",
-   "corridor": "Ave I",
-   "file": "pair_76_77.json",
-   "residual_ft": 7.4
-  },
-  {
-   "pair": "77|78",
-   "axis": "x",
-   "corridor": "Ave L",
-   "file": "pair_77_78.json",
-   "residual_ft": 7.4
-  },
-  {
-   "pair": "78|79",
-   "axis": "x",
-   "corridor": "Ave N",
-   "file": "pair_78_79.json",
-   "residual_ft": 7.4
-  },
-  {
-   "pair": "79|80",
-   "axis": "x",
-   "corridor": "Ave O 1/2",
-   "file": "pair_79_80.json",
-   "residual_ft": 7.4
-  },
-  {
-   "pair": "80|81",
-   "axis": "x",
-   "corridor": "Ave Q",
-   "file": "pair_80_81.json",
-   "residual_ft": 7.4
-  },
-  {
-   "pair": "78|86",
-   "axis": "y",
-   "corridor": "39th St",
-   "file": "pair_78_86.json",
-   "residual_ft": 6.8
-  },
-  {
-   "pair": "46|47",
-   "axis": "x",
-   "corridor": "Ave O 1/2",
-   "file": "pair_46_47.json",
-   "residual_ft": 6.7
-  },
-  {
-   "pair": "29|35",
-   "axis": "x",
-   "corridor": "Ave H (Ball)",
-   "file": "pair_29_35_x.json",
-   "residual_ft": 6.6
-  },
-  {
-   "pair": "87|97",
-   "axis": "y",
-   "corridor": "42nd St",
-   "file": "pair_87_97.json",
-   "residual_ft": 6.5
-  },
-  {
-   "pair": "88|89",
-   "axis": "x",
-   "corridor": "Ave R",
-   "file": "pair_88_89.json",
-   "residual_ft": 6.4
-  },
-  {
-   "pair": "96|97",
-   "axis": "x",
-   "corridor": "Ave Q 1/2",
-   "file": "pair_96_97.json",
-   "residual_ft": 6.4
+   "corridor": "Ave P 1/2",
+   "file": "pair_87_88.json",
+   "residual_ft": 7.5
   },
   {
    "pair": "97|98",
    "axis": "x",
    "corridor": "Ave S",
    "file": "pair_97_98.json",
-   "residual_ft": 6.4
+   "residual_ft": 7.4
   },
   {
-   "pair": "87|95",
-   "axis": "x",
-   "corridor": "Ave O 1/2",
-   "file": "pair_87_95_x.json",
-   "residual_ft": 6.2
-  },
-  {
-   "pair": "86|94",
-   "axis": "x",
-   "corridor": "Ave N",
-   "file": "pair_86_94_x.json",
-   "residual_ft": 5.9
-  },
-  {
-   "pair": "37|40",
+   "pair": "18|19",
    "axis": "y",
-   "corridor": "18th St",
-   "file": "pair_37_40.json",
-   "residual_ft": 5.8
+   "corridor": "?",
+   "file": "pair_18_19_y.json",
+   "residual_ft": 7.1
   },
   {
-   "pair": "46|52",
+   "pair": "88|89",
    "axis": "x",
-   "corridor": "Ave O",
-   "file": "pair_46_52_x.json",
-   "residual_ft": 5.7
+   "corridor": "Ave R",
+   "file": "pair_88_89.json",
+   "residual_ft": 7.1
   },
   {
-   "pair": "12|55",
+   "pair": "40|41",
    "axis": "y",
-   "corridor": "27th St",
-   "file": "pair_12_55.json",
-   "residual_ft": 5.7
+   "corridor": "?",
+   "file": "pair_40_41_y.json",
+   "residual_ft": 6.8
   },
   {
-   "pair": "44|51",
-   "axis": "y",
-   "corridor": "24th St",
-   "file": "pair_44_51.json",
-   "residual_ft": 5.6
-  },
-  {
-   "pair": "69|70",
-   "axis": "x",
-   "corridor": "Ave K",
-   "file": "pair_69_70.json",
-   "residual_ft": 5.5
-  },
-  {
-   "pair": "68|69",
-   "axis": "x",
-   "corridor": "Ave H (Ball)",
-   "file": "pair_68_69.json",
-   "residual_ft": 5.5
-  },
-  {
-   "pair": "70|71",
-   "axis": "x",
-   "corridor": "Ave M 1/2",
-   "file": "pair_70_71.json",
-   "residual_ft": 5.5
-  },
-  {
-   "pair": "71|72",
-   "axis": "x",
-   "corridor": "Ave O",
-   "file": "pair_71_72.json",
-   "residual_ft": 5.5
-  },
-  {
-   "pair": "72|73",
-   "axis": "x",
-   "corridor": "Ave P 1/2",
-   "file": "pair_72_73.json",
-   "residual_ft": 5.5
-  },
-  {
-   "pair": "73|81",
-   "axis": "x",
-   "corridor": "Ave Q 1/2",
-   "file": "pair_73_81.json",
-   "residual_ft": 5.5
-  },
-  {
-   "pair": "56|62",
-   "axis": "x",
-   "corridor": "Ave K",
-   "file": "pair_56_62_x.json",
-   "residual_ft": 5.4
-  },
-  {
-   "pair": "23|24",
-   "axis": "x",
-   "corridor": "Ave I (Sealy)",
-   "file": "pair_23_24.json",
-   "residual_ft": 5.3
-  },
-  {
-   "pair": "30|31",
-   "axis": "x",
-   "corridor": "Ave L",
-   "file": "pair_30_31.json",
-   "residual_ft": 5.3
-  },
-  {
-   "pair": "82|89",
+   "pair": "80|88",
    "axis": "y",
    "corridor": "39th St",
-   "file": "pair_82_89.json",
-   "residual_ft": 5.3
-  },
-  {
-   "pair": "22|23",
-   "axis": "x",
-   "corridor": "Ave F",
-   "file": "pair_22_23.json",
-   "residual_ft": 5.2
-  },
-  {
-   "pair": "59|65",
-   "axis": "y",
-   "corridor": "30th St",
-   "file": "pair_59_65.json",
-   "residual_ft": 5.2
-  },
-  {
-   "pair": "61|68",
-   "axis": "x",
-   "corridor": "Ave G (Winnie)",
-   "file": "pair_61_68_x.json",
-   "residual_ft": 5.1
-  },
-  {
-   "pair": "89|98",
-   "axis": "x",
-   "corridor": "Ave S",
-   "file": "pair_89_98_x.json",
-   "residual_ft": 5.0
-  },
-  {
-   "pair": "81|88",
-   "axis": "y",
-   "corridor": "39th St",
-   "file": "pair_81_88.json",
-   "residual_ft": 5.0
-  },
-  {
-   "pair": "73|81",
-   "axis": "y",
-   "corridor": "36th St",
-   "file": "pair_73_81_y.json",
-   "residual_ft": 5.0
-  },
-  {
-   "pair": "59|66",
-   "axis": "y",
-   "corridor": "30th St",
-   "file": "pair_59_66.json",
-   "residual_ft": 5.0
-  },
-  {
-   "pair": "63|70",
-   "axis": "y",
-   "corridor": "33rd St",
-   "file": "pair_63_70.json",
-   "residual_ft": 4.9
-  },
-  {
-   "pair": "67|68",
-   "axis": "x",
-   "corridor": "Ave E (Post Office)",
-   "file": "pair_67_68.json",
-   "residual_ft": 4.9
-  },
-  {
-   "pair": "49|55",
-   "axis": "x",
-   "corridor": "Ave G (Winnie)",
-   "file": "pair_49_55_x.json",
-   "residual_ft": 4.9
-  },
-  {
-   "pair": "25|31",
-   "axis": "x",
-   "corridor": "Ave M",
-   "file": "pair_25_31_x.json",
-   "residual_ft": 4.9
-  },
-  {
-   "pair": "34|39",
-   "axis": "y",
-   "corridor": "18th St",
-   "file": "pair_34_39.json",
-   "residual_ft": 4.7
-  },
-  {
-   "pair": "20|24",
-   "axis": "x",
-   "corridor": "Ave K",
-   "file": "pair_20_24_x.json",
-   "residual_ft": 4.6
-  },
-  {
-   "pair": "20|25",
-   "axis": "x",
-   "corridor": "Ave L",
-   "file": "pair_20_25_x.json",
-   "residual_ft": 4.6
-  },
-  {
-   "pair": "33|7",
-   "axis": "y",
-   "corridor": "18th St",
-   "file": "pair_33_7.json",
-   "residual_ft": 4.5
-  },
-  {
-   "pair": "68|76",
-   "axis": "x",
-   "corridor": "Ave G (Winnie)",
-   "file": "pair_68_76_x.json",
-   "residual_ft": 4.5
-  },
-  {
-   "pair": "28|34",
-   "axis": "y",
-   "corridor": "15th St",
-   "file": "pair_28_34.json",
-   "residual_ft": 4.4
-  },
-  {
-   "pair": "84|91",
-   "axis": "y",
-   "corridor": "42nd St",
-   "file": "pair_84_91.json",
-   "residual_ft": 4.4
-  },
-  {
-   "pair": "83|91",
-   "axis": "y",
-   "corridor": "42nd St",
-   "file": "pair_83_91.json",
-   "residual_ft": 4.4
-  },
-  {
-   "pair": "75|83",
-   "axis": "y",
-   "corridor": "39th St",
-   "file": "pair_75_83.json",
-   "residual_ft": 4.4
-  },
-  {
-   "pair": "67|75",
-   "axis": "y",
-   "corridor": "36th St",
-   "file": "pair_67_75.json",
-   "residual_ft": 4.4
-  },
-  {
-   "pair": "16|67",
-   "axis": "y",
-   "corridor": "33rd St",
-   "file": "pair_16_67.json",
-   "residual_ft": 4.4
-  },
-  {
-   "pair": "14|16",
-   "axis": "y",
-   "corridor": "30th St",
-   "file": "pair_14_16.json",
-   "residual_ft": 4.4
-  },
-  {
-   "pair": "42|45",
-   "axis": "y",
-   "corridor": "21st St (Center)",
-   "file": "pair_42_45.json",
-   "residual_ft": 4.3
-  },
-  {
-   "pair": "38|42",
-   "axis": "y",
-   "corridor": "18th St",
-   "file": "pair_38_42.json",
-   "residual_ft": 4.3
-  },
-  {
-   "pair": "38|41",
-   "axis": "y",
-   "corridor": "18th St",
-   "file": "pair_38_41.json",
-   "residual_ft": 4.3
-  },
-  {
-   "pair": "72|80",
-   "axis": "y",
-   "corridor": "36th St",
-   "file": "pair_72_80.json",
-   "residual_ft": 4.2
-  },
-  {
-   "pair": "65|72",
-   "axis": "y",
-   "corridor": "33rd St",
-   "file": "pair_65_72.json",
-   "residual_ft": 4.2
-  },
-  {
-   "pair": "52|53",
-   "axis": "x",
-   "corridor": "Ave O 1/2",
-   "file": "pair_52_53.json",
-   "residual_ft": 3.8
-  },
-  {
-   "pair": "34|35",
-   "axis": "x",
-   "corridor": "Ave F (Church)",
-   "file": "pair_34_35.json",
-   "residual_ft": 3.6
-  },
-  {
-   "pair": "14|49",
-   "axis": "y",
-   "corridor": "27th St",
-   "file": "pair_14_49.json",
-   "residual_ft": 3.5
-  },
-  {
-   "pair": "62|70",
-   "axis": "y",
-   "corridor": "33rd St",
-   "file": "pair_62_70.json",
-   "residual_ft": 3.5
-  },
-  {
-   "pair": "90|98",
-   "axis": "y",
-   "corridor": "42nd St",
-   "file": "pair_90_98.json",
-   "residual_ft": 3.5
-  },
-  {
-   "pair": "45|51",
-   "axis": "y",
-   "corridor": "24th St",
-   "file": "pair_45_51.json",
-   "residual_ft": 3.4
-  },
-  {
-   "pair": "55|61",
-   "axis": "y",
-   "corridor": "30th St",
-   "file": "pair_55_61.json",
-   "residual_ft": 3.3
-  },
-  {
-   "pair": "61|68",
-   "axis": "y",
-   "corridor": "33rd St",
-   "file": "pair_61_68.json",
-   "residual_ft": 3.3
-  },
-  {
-   "pair": "82|90",
-   "axis": "x",
-   "corridor": "Ave S 1/2",
-   "file": "pair_82_90_x.json",
-   "residual_ft": 3.3
-  },
-  {
-   "pair": "79|87",
-   "axis": "y",
-   "corridor": "39th St",
-   "file": "pair_79_87.json",
-   "residual_ft": 3.2
-  },
-  {
-   "pair": "33|8",
-   "axis": "y",
-   "corridor": "18th St",
-   "file": "pair_33_8.json",
-   "residual_ft": 3.1
-  },
-  {
-   "pair": "41|42",
-   "axis": "x",
-   "corridor": "Ave N",
-   "file": "pair_41_42.json",
-   "residual_ft": 3.1
-  },
-  {
-   "pair": "35|36",
-   "axis": "x",
-   "corridor": "Ave I (Sealy)",
-   "file": "pair_35_36.json",
-   "residual_ft": 3.1
-  },
-  {
-   "pair": "85|86",
-   "axis": "x",
-   "corridor": "Ave M 1/2",
-   "file": "pair_85_86.json",
-   "residual_ft": 3.0
-  },
-  {
-   "pair": "28|35",
-   "axis": "y",
-   "corridor": "15th St",
-   "file": "pair_28_35.json",
-   "residual_ft": 3.0
-  },
-  {
-   "pair": "67|75",
-   "axis": "x",
-   "corridor": "Ave D (Market)",
-   "file": "pair_67_75_x.json",
-   "residual_ft": 2.9
-  },
-  {
-   "pair": "85|94",
-   "axis": "x",
-   "corridor": "Ave M",
-   "file": "pair_85_94_x.json",
-   "residual_ft": 2.8
-  },
-  {
-   "pair": "30|36",
-   "axis": "x",
-   "corridor": "Ave K",
-   "file": "pair_30_36_x.json",
-   "residual_ft": 2.6
-  },
-  {
-   "pair": "14|55",
-   "axis": "x",
-   "corridor": "Ave F (Church)",
-   "file": "pair_14_55.json",
-   "residual_ft": 2.6
-  },
-  {
-   "pair": "56|62",
-   "axis": "y",
-   "corridor": "30th St",
-   "file": "pair_56_62.json",
-   "residual_ft": 2.5
-  },
-  {
-   "pair": "22|28",
-   "axis": "x",
-   "corridor": "Ave D (Market)",
-   "file": "pair_22_28_x.json",
-   "residual_ft": 2.5
-  },
-  {
-   "pair": "80|90",
-   "axis": "y",
-   "corridor": "39th St",
-   "file": "pair_80_90.json",
-   "residual_ft": 2.4
-  },
-  {
-   "pair": "25|31",
-   "axis": "y",
-   "corridor": "12th St",
-   "file": "pair_25_31.json",
-   "residual_ft": 2.4
-  },
-  {
-   "pair": "25|30",
-   "axis": "y",
-   "corridor": "12th St",
-   "file": "pair_25_30.json",
-   "residual_ft": 2.4
-  },
-  {
-   "pair": "21|22",
-   "axis": "x",
-   "corridor": "Ave C (Mechanic)",
-   "file": "pair_21_22.json",
-   "residual_ft": 2.3
-  },
-  {
-   "pair": "82|90",
-   "axis": "y",
-   "corridor": "39th St",
-   "file": "pair_82_90.json",
-   "residual_ft": 2.3
-  },
-  {
-   "pair": "33|34",
-   "axis": "x",
-   "corridor": "Ave C (Mechanic)",
-   "file": "pair_33_34.json",
-   "residual_ft": 2.3
-  },
-  {
-   "pair": "27|33",
-   "axis": "x",
-   "corridor": "Ave A (Water)",
-   "file": "pair_27_33_x.json",
-   "residual_ft": 2.3
-  },
-  {
-   "pair": "88|98",
-   "axis": "y",
-   "corridor": "42nd St",
-   "file": "pair_88_98.json",
-   "residual_ft": 2.2
-  },
-  {
-   "pair": "21|27",
-   "axis": "x",
-   "corridor": "Ave B (Strand)",
-   "file": "pair_21_27_x.json",
-   "residual_ft": 2.2
-  },
-  {
-   "pair": "50|51",
-   "axis": "x",
-   "corridor": "Ave L",
-   "file": "pair_50_51.json",
-   "residual_ft": 2.1
-  },
-  {
-   "pair": "51|57",
-   "axis": "x",
-   "corridor": "Ave M",
-   "file": "pair_51_57_x.json",
-   "residual_ft": 2.1
-  },
-  {
-   "pair": "82|99",
-   "axis": "x",
-   "corridor": "Ave T",
-   "file": "pair_82_99.json",
-   "residual_ft": 2.0
-  },
-  {
-   "pair": "90|99",
-   "axis": "x",
-   "corridor": "Ave T",
-   "file": "pair_90_99_x.json",
-   "residual_ft": 2.0
-  },
-  {
-   "pair": "50|56",
-   "axis": "x",
-   "corridor": "Ave J (Broadway)",
-   "file": "pair_50_56_x.json",
-   "residual_ft": 1.6
+   "file": "pair_80_88.json",
+   "residual_ft": 6.8
   },
   {
    "pair": "22|28",
    "axis": "y",
    "corridor": "12th St",
    "file": "pair_22_28.json",
-   "residual_ft": 1.5
+   "residual_ft": 6.7
   },
   {
-   "pair": "17|22",
+   "pair": "35|8",
+   "axis": "y",
+   "corridor": "18th St",
+   "file": "pair_35_8.json",
+   "residual_ft": 6.5
+  },
+  {
+   "pair": "19|20",
+   "axis": "y",
+   "corridor": "?",
+   "file": "pair_19_20.json",
+   "residual_ft": 6.3
+  },
+  {
+   "pair": "20|24",
    "axis": "y",
    "corridor": "9th St",
-   "file": "pair_17_22.json",
-   "residual_ft": 1.5
+   "file": "pair_20_24.json",
+   "residual_ft": 6.3
+  },
+  {
+   "pair": "63|64",
+   "axis": "x",
+   "corridor": "Ave N",
+   "file": "pair_63_64.json",
+   "residual_ft": 6.1
+  },
+  {
+   "pair": "80|89",
+   "axis": "y",
+   "corridor": "39th St",
+   "file": "pair_80_89.json",
+   "residual_ft": 6.0
+  },
+  {
+   "pair": "62|63",
+   "axis": "x",
+   "corridor": "Ave L",
+   "file": "pair_62_63.json",
+   "residual_ft": 6.0
+  },
+  {
+   "pair": "47|53",
+   "axis": "y",
+   "corridor": "24th St",
+   "file": "pair_47_53.json",
+   "residual_ft": 5.9
+  },
+  {
+   "pair": "29|35",
+   "axis": "y",
+   "corridor": "15th St",
+   "file": "pair_29_35.json",
+   "residual_ft": 5.9
+  },
+  {
+   "pair": "85|93",
+   "axis": "y",
+   "corridor": "42nd St",
+   "file": "pair_85_93.json",
+   "residual_ft": 5.8
+  },
+  {
+   "pair": "79|87",
+   "axis": "y",
+   "corridor": "39th St",
+   "file": "pair_79_87.json",
+   "residual_ft": 5.8
+  },
+  {
+   "pair": "50|51",
+   "axis": "y",
+   "corridor": "?",
+   "file": "pair_50_51_y.json",
+   "residual_ft": 5.6
+  },
+  {
+   "pair": "14|16",
+   "axis": "x",
+   "corridor": "Ave D (Market)",
+   "file": "pair_14_16_x.json",
+   "residual_ft": 5.5
+  },
+  {
+   "pair": "97|98",
+   "axis": "y",
+   "corridor": "?",
+   "file": "pair_97_98_y.json",
+   "residual_ft": 5.3
+  },
+  {
+   "pair": "59|60",
+   "axis": "y",
+   "corridor": "?",
+   "file": "pair_59_60_y.json",
+   "residual_ft": 5.3
+  },
+  {
+   "pair": "68|69",
+   "axis": "x",
+   "corridor": "Ave H (Ball)",
+   "file": "pair_68_69.json",
+   "residual_ft": 5.2
+  },
+  {
+   "pair": "28|34",
+   "axis": "y",
+   "corridor": "15th St",
+   "file": "pair_28_34.json",
+   "residual_ft": 5.1
+  },
+  {
+   "pair": "63|71",
+   "axis": "y",
+   "corridor": "33rd St",
+   "file": "pair_63_71.json",
+   "residual_ft": 5.0
+  },
+  {
+   "pair": "90|98",
+   "axis": "y",
+   "corridor": "42nd St",
+   "file": "pair_90_98.json",
+   "residual_ft": 5.0
+  },
+  {
+   "pair": "47|51",
+   "axis": "y",
+   "corridor": "24th St",
+   "file": "pair_47_51.json",
+   "residual_ft": 5.0
+  },
+  {
+   "pair": "36|39",
+   "axis": "y",
+   "corridor": "18th St",
+   "file": "pair_36_39.json",
+   "residual_ft": 4.9
+  },
+  {
+   "pair": "64|65",
+   "axis": "x",
+   "corridor": "Ave O 1/2",
+   "file": "pair_64_65.json",
+   "residual_ft": 4.9
+  },
+  {
+   "pair": "81|88",
+   "axis": "y",
+   "corridor": "39th St",
+   "file": "pair_81_88.json",
+   "residual_ft": 4.9
+  },
+  {
+   "pair": "57|58",
+   "axis": "y",
+   "corridor": "29th St",
+   "file": "pair_57_58.json",
+   "residual_ft": 4.9
+  },
+  {
+   "pair": "33|7",
+   "axis": "y",
+   "corridor": "18th St",
+   "file": "pair_33_7.json",
+   "residual_ft": 4.8
+  },
+  {
+   "pair": "84|94",
+   "axis": "y",
+   "corridor": "42nd St",
+   "file": "pair_84_94.json",
+   "residual_ft": 4.8
+  },
+  {
+   "pair": "85|94",
+   "axis": "y",
+   "corridor": "42nd St",
+   "file": "pair_85_94.json",
+   "residual_ft": 4.8
+  },
+  {
+   "pair": "70|71",
+   "axis": "y",
+   "corridor": "?",
+   "file": "pair_70_71_y.json",
+   "residual_ft": 4.8
+  },
+  {
+   "pair": "61|62",
+   "axis": "x",
+   "corridor": "Ave I",
+   "file": "pair_61_62.json",
+   "residual_ft": 4.8
+  },
+  {
+   "pair": "12|14",
+   "axis": "x",
+   "corridor": "Ave E (Post Office)",
+   "file": "pair_12_14_x.json",
+   "residual_ft": 4.7
+  },
+  {
+   "pair": "36|40",
+   "axis": "y",
+   "corridor": "18th St",
+   "file": "pair_36_40.json",
+   "residual_ft": 4.7
+  },
+  {
+   "pair": "95|96",
+   "axis": "x",
+   "corridor": "Ave P",
+   "file": "pair_95_96.json",
+   "residual_ft": 4.6
+  },
+  {
+   "pair": "35|40",
+   "axis": "y",
+   "corridor": "18th St",
+   "file": "pair_35_40.json",
+   "residual_ft": 4.6
+  },
+  {
+   "pair": "41|42",
+   "axis": "x",
+   "corridor": "Ave N",
+   "file": "pair_41_42.json",
+   "residual_ft": 4.6
   },
   {
    "pair": "17|21",
    "axis": "y",
    "corridor": "9th St",
    "file": "pair_17_21.json",
-   "residual_ft": 1.5
+   "residual_ft": 4.5
   },
   {
-   "pair": "21|27",
+   "pair": "51|57",
    "axis": "y",
-   "corridor": "12th St",
-   "file": "pair_21_27.json",
-   "residual_ft": 1.5
+   "corridor": "27th St",
+   "file": "pair_51_57.json",
+   "residual_ft": 4.5
+  },
+  {
+   "pair": "82|89",
+   "axis": "y",
+   "corridor": "39th St",
+   "file": "pair_82_89.json",
+   "residual_ft": 4.4
+  },
+  {
+   "pair": "56|62",
+   "axis": "y",
+   "corridor": "30th St",
+   "file": "pair_56_62.json",
+   "residual_ft": 4.4
+  },
+  {
+   "pair": "42|46",
+   "axis": "x",
+   "corridor": "?",
+   "file": "pair_42_46_x.json",
+   "residual_ft": 4.4
+  },
+  {
+   "pair": "86|87",
+   "axis": "x",
+   "corridor": "Ave O",
+   "file": "pair_86_87.json",
+   "residual_ft": 4.3
+  },
+  {
+   "pair": "35|39",
+   "axis": "y",
+   "corridor": "18th St",
+   "file": "pair_35_39.json",
+   "residual_ft": 4.3
+  },
+  {
+   "pair": "8|34",
+   "axis": "x",
+   "corridor": "?",
+   "file": "pair_8_34.json",
+   "residual_ft": 4.3
+  },
+  {
+   "pair": "12|55",
+   "axis": "y",
+   "corridor": "27th St",
+   "file": "pair_12_55.json",
+   "residual_ft": 4.2
+  },
+  {
+   "pair": "41|45",
+   "axis": "y",
+   "corridor": "21st (Center) St",
+   "file": "pair_41_45.json",
+   "residual_ft": 4.2
+  },
+  {
+   "pair": "96|97",
+   "axis": "x",
+   "corridor": "Ave Q 1/2",
+   "file": "pair_96_97.json",
+   "residual_ft": 4.2
+  },
+  {
+   "pair": "87|88",
+   "axis": "y",
+   "corridor": "?",
+   "file": "pair_87_88_y.json",
+   "residual_ft": 4.2
+  },
+  {
+   "pair": "23|24",
+   "axis": "y",
+   "corridor": "?",
+   "file": "pair_23_24_y.json",
+   "residual_ft": 4.2
+  },
+  {
+   "pair": "67|68",
+   "axis": "x",
+   "corridor": "Ave E (Post Office)",
+   "file": "pair_67_68.json",
+   "residual_ft": 4.1
+  },
+  {
+   "pair": "73|82",
+   "axis": "y",
+   "corridor": "36th St",
+   "file": "pair_73_82.json",
+   "residual_ft": 4.1
+  },
+  {
+   "pair": "36|37",
+   "axis": "x",
+   "corridor": "Ave L",
+   "file": "pair_36_37.json",
+   "residual_ft": 4.1
+  },
+  {
+   "pair": "46|52",
+   "axis": "x",
+   "corridor": "Ave O",
+   "file": "pair_46_52_x.json",
+   "residual_ft": 4.1
+  },
+  {
+   "pair": "59|65",
+   "axis": "y",
+   "corridor": "30th St",
+   "file": "pair_59_65.json",
+   "residual_ft": 4.0
+  },
+  {
+   "pair": "38|42",
+   "axis": "y",
+   "corridor": "18th St",
+   "file": "pair_38_42.json",
+   "residual_ft": 4.0
+  },
+  {
+   "pair": "69|77",
+   "axis": "y",
+   "corridor": "36th St",
+   "file": "pair_69_77.json",
+   "residual_ft": 3.9
+  },
+  {
+   "pair": "62|69",
+   "axis": "x",
+   "corridor": "?",
+   "file": "pair_62_69.json",
+   "residual_ft": 3.9
+  },
+  {
+   "pair": "76|77",
+   "axis": "x",
+   "corridor": "Ave I",
+   "file": "pair_76_77.json",
+   "residual_ft": 3.9
+  },
+  {
+   "pair": "28|29",
+   "axis": "x",
+   "corridor": "Ave F",
+   "file": "pair_28_29.json",
+   "residual_ft": 3.9
+  },
+  {
+   "pair": "62|71",
+   "axis": "y",
+   "corridor": "33rd St",
+   "file": "pair_62_71.json",
+   "residual_ft": 3.8
+  },
+  {
+   "pair": "80|90",
+   "axis": "y",
+   "corridor": "39th St",
+   "file": "pair_80_90.json",
+   "residual_ft": 3.8
+  },
+  {
+   "pair": "35|36",
+   "axis": "y",
+   "corridor": "?",
+   "file": "pair_35_36_y.json",
+   "residual_ft": 3.8
   },
   {
    "pair": "27|33",
    "axis": "y",
    "corridor": "15th St",
    "file": "pair_27_33.json",
-   "residual_ft": 1.5
+   "residual_ft": 3.8
   },
   {
-   "pair": "76|84",
-   "axis": "x",
-   "corridor": "Ave H (Ball)",
-   "file": "pair_76_84_x.json",
-   "residual_ft": 1.5
+   "pair": "34|7",
+   "axis": "y",
+   "corridor": "18th St",
+   "file": "pair_34_7.json",
+   "residual_ft": 3.7
   },
   {
-   "pair": "75|83",
+   "pair": "38|41",
+   "axis": "y",
+   "corridor": "18th St",
+   "file": "pair_38_41.json",
+   "residual_ft": 3.7
+  },
+  {
+   "pair": "16|61",
+   "axis": "y",
+   "corridor": "?",
+   "file": "pair_16_61_y.json",
+   "residual_ft": 3.7
+  },
+  {
+   "pair": "16|61",
    "axis": "x",
-   "corridor": "Ave E (Post Office)",
-   "file": "pair_75_83_x.json",
-   "residual_ft": 1.4
+   "corridor": "Ave F (Church)",
+   "file": "pair_16_61.json",
+   "residual_ft": 3.6
+  },
+  {
+   "pair": "87|96",
+   "axis": "y",
+   "corridor": "42nd St",
+   "file": "pair_87_96.json",
+   "residual_ft": 3.6
+  },
+  {
+   "pair": "34|35",
+   "axis": "y",
+   "corridor": "?",
+   "file": "pair_34_35_y.json",
+   "residual_ft": 3.6
+  },
+  {
+   "pair": "78|85",
+   "axis": "y",
+   "corridor": "39th St",
+   "file": "pair_78_85.json",
+   "residual_ft": 3.5
+  },
+  {
+   "pair": "17|22",
+   "axis": "y",
+   "corridor": "9th St",
+   "file": "pair_17_22.json",
+   "residual_ft": 3.5
+  },
+  {
+   "pair": "61|68",
+   "axis": "y",
+   "corridor": "33rd St",
+   "file": "pair_61_68.json",
+   "residual_ft": 3.4
+  },
+  {
+   "pair": "77|78",
+   "axis": "x",
+   "corridor": "Ave L",
+   "file": "pair_77_78.json",
+   "residual_ft": 3.4
+  },
+  {
+   "pair": "41|45",
+   "axis": "x",
+   "corridor": "?",
+   "file": "pair_41_45_x.json",
+   "residual_ft": 3.3
+  },
+  {
+   "pair": "44|45",
+   "axis": "y",
+   "corridor": "?",
+   "file": "pair_44_45_y.json",
+   "residual_ft": 3.3
+  },
+  {
+   "pair": "25|30",
+   "axis": "y",
+   "corridor": "12th St",
+   "file": "pair_25_30.json",
+   "residual_ft": 3.3
+  },
+  {
+   "pair": "89|97",
+   "axis": "x",
+   "corridor": "?",
+   "file": "pair_89_97_x.json",
+   "residual_ft": 3.2
+  },
+  {
+   "pair": "53|59",
+   "axis": "x",
+   "corridor": "Ave P",
+   "file": "pair_53_59_x.json",
+   "residual_ft": 3.2
+  },
+  {
+   "pair": "52|58",
+   "axis": "x",
+   "corridor": "Ave O",
+   "file": "pair_52_58_x.json",
+   "residual_ft": 3.2
+  },
+  {
+   "pair": "68|76",
+   "axis": "y",
+   "corridor": "36th St",
+   "file": "pair_68_76.json",
+   "residual_ft": 3.2
+  },
+  {
+   "pair": "24|30",
+   "axis": "y",
+   "corridor": "12th St",
+   "file": "pair_24_30.json",
+   "residual_ft": 3.2
+  },
+  {
+   "pair": "11|14",
+   "axis": "y",
+   "corridor": "27th St",
+   "file": "pair_11_14.json",
+   "residual_ft": 3.1
+  },
+  {
+   "pair": "73|81",
+   "axis": "y",
+   "corridor": "36th St",
+   "file": "pair_73_81_y.json",
+   "residual_ft": 3.1
+  },
+  {
+   "pair": "28|29",
+   "axis": "y",
+   "corridor": "?",
+   "file": "pair_28_29_y.json",
+   "residual_ft": 3.1
+  },
+  {
+   "pair": "30|36",
+   "axis": "x",
+   "corridor": "Ave K",
+   "file": "pair_30_36_x.json",
+   "residual_ft": 3.1
+  },
+  {
+   "pair": "15|16",
+   "axis": "y",
+   "corridor": "?",
+   "file": "pair_15_16_y.json",
+   "residual_ft": 3.1
+  },
+  {
+   "pair": "13|15",
+   "axis": "y",
+   "corridor": "30th St",
+   "file": "pair_13_15.json",
+   "residual_ft": 3.1
+  },
+  {
+   "pair": "21|27",
+   "axis": "y",
+   "corridor": "12th St",
+   "file": "pair_21_27.json",
+   "residual_ft": 3.0
+  },
+  {
+   "pair": "63|70",
+   "axis": "y",
+   "corridor": "33rd St",
+   "file": "pair_63_70.json",
+   "residual_ft": 3.0
+  },
+  {
+   "pair": "59|65",
+   "axis": "x",
+   "corridor": "Ave P 1/2",
+   "file": "pair_59_65_x.json",
+   "residual_ft": 2.9
+  },
+  {
+   "pair": "87|95",
+   "axis": "x",
+   "corridor": "Ave O 1/2",
+   "file": "pair_87_95_x.json",
+   "residual_ft": 2.9
+  },
+  {
+   "pair": "56|57",
+   "axis": "x",
+   "corridor": "Ave L",
+   "file": "pair_56_57.json",
+   "residual_ft": 2.9
   },
   {
    "pair": "75|76",
    "axis": "x",
    "corridor": "Ave F (Church)",
    "file": "pair_75_76.json",
-   "residual_ft": 1.4
+   "residual_ft": 2.9
   },
   {
-   "pair": "81|89",
-   "axis": "x",
-   "corridor": "Ave R 1/2",
-   "file": "pair_81_89.json",
-   "residual_ft": 1.4
+   "pair": "14|55",
+   "axis": "y",
+   "corridor": "?",
+   "file": "pair_14_55_y.json",
+   "residual_ft": 2.8
   },
   {
-   "pair": "90|98",
+   "pair": "72|80",
    "axis": "x",
-   "corridor": "Ave T",
-   "file": "pair_90_98_x.json",
-   "residual_ft": 1.4
+   "corridor": "?",
+   "file": "pair_72_80_x.json",
+   "residual_ft": 2.8
   },
   {
-   "pair": "81|82",
+   "pair": "33|8",
+   "axis": "y",
+   "corridor": "18th St",
+   "file": "pair_33_8.json",
+   "residual_ft": 2.8
+  },
+  {
+   "pair": "42|46",
+   "axis": "y",
+   "corridor": "21st St (Center)",
+   "file": "pair_42_46.json",
+   "residual_ft": 2.8
+  },
+  {
+   "pair": "49|55",
+   "axis": "y",
+   "corridor": "27th St",
+   "file": "pair_49_55.json",
+   "residual_ft": 2.7
+  },
+  {
+   "pair": "52|57",
+   "axis": "y",
+   "corridor": "27th St",
+   "file": "pair_52_57.json",
+   "residual_ft": 2.7
+  },
+  {
+   "pair": "51|52",
+   "axis": "y",
+   "corridor": "26th St",
+   "file": "pair_51_52.json",
+   "residual_ft": 2.7
+  },
+  {
+   "pair": "50|57",
+   "axis": "y",
+   "corridor": "27th St",
+   "file": "pair_50_57.json",
+   "residual_ft": 2.7
+  },
+  {
+   "pair": "37|41",
+   "axis": "y",
+   "corridor": "18th St",
+   "file": "pair_37_41.json",
+   "residual_ft": 2.7
+  },
+  {
+   "pair": "56|62",
    "axis": "x",
-   "corridor": "Ave R 1/2",
-   "file": "pair_81_82.json",
-   "residual_ft": 1.4
+   "corridor": "Ave K",
+   "file": "pair_56_62_x.json",
+   "residual_ft": 2.7
+  },
+  {
+   "pair": "50|56",
+   "axis": "x",
+   "corridor": "Ave J (Broadway)",
+   "file": "pair_50_56_x.json",
+   "residual_ft": 2.6
+  },
+  {
+   "pair": "33|34",
+   "axis": "x",
+   "corridor": "Ave C (Mechanic)",
+   "file": "pair_33_34.json",
+   "residual_ft": 2.6
+  },
+  {
+   "pair": "27|33",
+   "axis": "x",
+   "corridor": "Ave A (Water)",
+   "file": "pair_27_33_x.json",
+   "residual_ft": 2.6
+  },
+  {
+   "pair": "79|80",
+   "axis": "x",
+   "corridor": "Ave O 1/2",
+   "file": "pair_79_80.json",
+   "residual_ft": 2.6
+  },
+  {
+   "pair": "80|87",
+   "axis": "y",
+   "corridor": "39th St",
+   "file": "pair_80_87.json",
+   "residual_ft": 2.6
+  },
+  {
+   "pair": "22|23",
+   "axis": "y",
+   "corridor": "?",
+   "file": "pair_22_23_y.json",
+   "residual_ft": 2.6
+  },
+  {
+   "pair": "50|55",
+   "axis": "y",
+   "corridor": "27th St",
+   "file": "pair_50_55.json",
+   "residual_ft": 2.6
+  },
+  {
+   "pair": "37|40",
+   "axis": "y",
+   "corridor": "18th St",
+   "file": "pair_37_40.json",
+   "residual_ft": 2.5
+  },
+  {
+   "pair": "58|65",
+   "axis": "y",
+   "corridor": "30th St",
+   "file": "pair_58_65.json",
+   "residual_ft": 2.5
+  },
+  {
+   "pair": "87|97",
+   "axis": "y",
+   "corridor": "42nd St",
+   "file": "pair_87_97.json",
+   "residual_ft": 2.4
+  },
+  {
+   "pair": "55|56",
+   "axis": "x",
+   "corridor": "Ave I (Sealy)",
+   "file": "pair_55_56.json",
+   "residual_ft": 2.4
+  },
+  {
+   "pair": "58|59",
+   "axis": "y",
+   "corridor": "?",
+   "file": "pair_58_59_y.json",
+   "residual_ft": 2.4
+  },
+  {
+   "pair": "47|53",
+   "axis": "x",
+   "corridor": "Ave P",
+   "file": "pair_47_53_x.json",
+   "residual_ft": 2.4
+  },
+  {
+   "pair": "60|66",
+   "axis": "x",
+   "corridor": "?",
+   "file": "pair_60_66_x.json",
+   "residual_ft": 2.4
+  },
+  {
+   "pair": "59|60",
+   "axis": "x",
+   "corridor": "Ave Q",
+   "file": "pair_59_60.json",
+   "residual_ft": 2.4
+  },
+  {
+   "pair": "85|86",
+   "axis": "y",
+   "corridor": "?",
+   "file": "pair_85_86_y.json",
+   "residual_ft": 2.4
+  },
+  {
+   "pair": "55|61",
+   "axis": "x",
+   "corridor": "Ave G (Winnie)",
+   "file": "pair_55_61_x.json",
+   "residual_ft": 2.3
+  },
+  {
+   "pair": "67|75",
+   "axis": "x",
+   "corridor": "Ave D (Market)",
+   "file": "pair_67_75_x.json",
+   "residual_ft": 2.3
+  },
+  {
+   "pair": "88|97",
+   "axis": "y",
+   "corridor": "42nd St",
+   "file": "pair_88_97.json",
+   "residual_ft": 2.3
+  },
+  {
+   "pair": "92|93",
+   "axis": "y",
+   "corridor": "?",
+   "file": "pair_92_93_y.json",
+   "residual_ft": 2.2
+  },
+  {
+   "pair": "25|31",
+   "axis": "y",
+   "corridor": "12th St",
+   "file": "pair_25_31.json",
+   "residual_ft": 2.2
+  },
+  {
+   "pair": "28|35",
+   "axis": "y",
+   "corridor": "15th St",
+   "file": "pair_28_35.json",
+   "residual_ft": 2.2
+  },
+  {
+   "pair": "85|96",
+   "axis": "y",
+   "corridor": "42nd St",
+   "file": "pair_85_96.json",
+   "residual_ft": 2.2
+  },
+  {
+   "pair": "34|39",
+   "axis": "y",
+   "corridor": "18th St",
+   "file": "pair_34_39.json",
+   "residual_ft": 2.1
+  },
+  {
+   "pair": "77|78",
+   "axis": "y",
+   "corridor": "?",
+   "file": "pair_77_78_y.json",
+   "residual_ft": 2.1
+  },
+  {
+   "pair": "48|60",
+   "axis": "y",
+   "corridor": "?",
+   "file": "pair_48_60_y.json",
+   "residual_ft": 2.1
+  },
+  {
+   "pair": "48|74",
+   "axis": "y",
+   "corridor": "33rd St",
+   "file": "pair_48_74.json",
+   "residual_ft": 2.1
+  },
+  {
+   "pair": "66|74",
+   "axis": "y",
+   "corridor": "?",
+   "file": "pair_66_74_y.json",
+   "residual_ft": 2.1
+  },
+  {
+   "pair": "12|13",
+   "axis": "y",
+   "corridor": "27th St",
+   "file": "pair_12_13.json",
+   "residual_ft": 2.1
+  },
+  {
+   "pair": "29|35",
+   "axis": "x",
+   "corridor": "Ave H (Ball)",
+   "file": "pair_29_35_x.json",
+   "residual_ft": 2.1
+  },
+  {
+   "pair": "55|56",
+   "axis": "y",
+   "corridor": "?",
+   "file": "pair_55_56_y.json",
+   "residual_ft": 2.1
+  },
+  {
+   "pair": "30|31",
+   "axis": "x",
+   "corridor": "Ave L",
+   "file": "pair_30_31.json",
+   "residual_ft": 2.0
+  },
+  {
+   "pair": "58|59",
+   "axis": "x",
+   "corridor": "Ave O 1/2",
+   "file": "pair_58_59.json",
+   "residual_ft": 2.0
+  },
+  {
+   "pair": "11|13",
+   "axis": "y",
+   "corridor": "27th St",
+   "file": "pair_11_13.json",
+   "residual_ft": 2.0
+  },
+  {
+   "pair": "45|46",
+   "axis": "y",
+   "corridor": "?",
+   "file": "pair_45_46_y.json",
+   "residual_ft": 2.0
+  },
+  {
+   "pair": "78|79",
+   "axis": "x",
+   "corridor": "Ave N",
+   "file": "pair_78_79.json",
+   "residual_ft": 2.0
+  },
+  {
+   "pair": "27|28",
+   "axis": "x",
+   "corridor": "Ave C (Mechanic)",
+   "file": "pair_27_28.json",
+   "residual_ft": 2.0
   },
   {
    "pair": "50|56",
    "axis": "y",
    "corridor": "27th St",
    "file": "pair_50_56.json",
+   "residual_ft": 1.9
+  },
+  {
+   "pair": "80|81",
+   "axis": "y",
+   "corridor": "?",
+   "file": "pair_80_81_y.json",
+   "residual_ft": 1.9
+  },
+  {
+   "pair": "31|36",
+   "axis": "y",
+   "corridor": "15th St",
+   "file": "pair_31_36.json",
+   "residual_ft": 1.9
+  },
+  {
+   "pair": "79|86",
+   "axis": "x",
+   "corridor": "?",
+   "file": "pair_79_86_x.json",
+   "residual_ft": 1.9
+  },
+  {
+   "pair": "14|16",
+   "axis": "y",
+   "corridor": "30th St",
+   "file": "pair_14_16.json",
+   "residual_ft": 1.9
+  },
+  {
+   "pair": "65|72",
+   "axis": "y",
+   "corridor": "33rd St",
+   "file": "pair_65_72.json",
+   "residual_ft": 1.9
+  },
+  {
+   "pair": "70|78",
+   "axis": "y",
+   "corridor": "36th St",
+   "file": "pair_70_78.json",
+   "residual_ft": 1.9
+  },
+  {
+   "pair": "82|90",
+   "axis": "x",
+   "corridor": "Ave S 1/2",
+   "file": "pair_82_90_x.json",
+   "residual_ft": 1.9
+  },
+  {
+   "pair": "16|67",
+   "axis": "x",
+   "corridor": "Ave D (Market)",
+   "file": "pair_16_67_x.json",
+   "residual_ft": 1.8
+  },
+  {
+   "pair": "85|94",
+   "axis": "x",
+   "corridor": "Ave M",
+   "file": "pair_85_94_x.json",
+   "residual_ft": 1.8
+  },
+  {
+   "pair": "49|56",
+   "axis": "y",
+   "corridor": "27th St",
+   "file": "pair_49_56.json",
+   "residual_ft": 1.8
+  },
+  {
+   "pair": "33|34",
+   "axis": "y",
+   "corridor": "?",
+   "file": "pair_33_34_y.json",
+   "residual_ft": 1.7
+  },
+  {
+   "pair": "72|73",
+   "axis": "x",
+   "corridor": "Ave P 1/2",
+   "file": "pair_72_73.json",
+   "residual_ft": 1.7
+  },
+  {
+   "pair": "73|81",
+   "axis": "x",
+   "corridor": "Ave Q 1/2",
+   "file": "pair_73_81.json",
+   "residual_ft": 1.7
+  },
+  {
+   "pair": "94|95",
+   "axis": "x",
+   "corridor": "Ave N 1/2",
+   "file": "pair_94_95.json",
+   "residual_ft": 1.7
+  },
+  {
+   "pair": "76|77",
+   "axis": "y",
+   "corridor": "?",
+   "file": "pair_76_77_y.json",
+   "residual_ft": 1.7
+  },
+  {
+   "pair": "34|8",
+   "axis": "y",
+   "corridor": "18th St",
+   "file": "pair_34_8.json",
+   "residual_ft": 1.7
+  },
+  {
+   "pair": "84|92",
+   "axis": "y",
+   "corridor": "42nd St",
+   "file": "pair_84_92.json",
+   "residual_ft": 1.7
+  },
+  {
+   "pair": "42|45",
+   "axis": "y",
+   "corridor": "21st St (Center)",
+   "file": "pair_42_45.json",
+   "residual_ft": 1.7
+  },
+  {
+   "pair": "93|94",
+   "axis": "x",
+   "corridor": "Ave M",
+   "file": "pair_93_94.json",
+   "residual_ft": 1.6
+  },
+  {
+   "pair": "70|71",
+   "axis": "x",
+   "corridor": "Ave M 1/2",
+   "file": "pair_70_71.json",
+   "residual_ft": 1.6
+  },
+  {
+   "pair": "44|45",
+   "axis": "x",
+   "corridor": "Ave L",
+   "file": "pair_44_45.json",
+   "residual_ft": 1.6
+  },
+  {
+   "pair": "81|82",
+   "axis": "x",
+   "corridor": "Ave R 1/2",
+   "file": "pair_81_82.json",
+   "residual_ft": 1.6
+  },
+  {
+   "pair": "51|57",
+   "axis": "x",
+   "corridor": "Ave M",
+   "file": "pair_51_57_x.json",
+   "residual_ft": 1.6
+  },
+  {
+   "pair": "29|30",
+   "axis": "x",
+   "corridor": "Ave I",
+   "file": "pair_29_30.json",
+   "residual_ft": 1.6
+  },
+  {
+   "pair": "86|94",
+   "axis": "x",
+   "corridor": "Ave N",
+   "file": "pair_86_94_x.json",
+   "residual_ft": 1.5
+  },
+  {
+   "pair": "35|36",
+   "axis": "x",
+   "corridor": "Ave I (Sealy)",
+   "file": "pair_35_36.json",
+   "residual_ft": 1.5
+  },
+  {
+   "pair": "21|22",
+   "axis": "y",
+   "corridor": "?",
+   "file": "pair_21_22_y.json",
+   "residual_ft": 1.5
+  },
+  {
+   "pair": "26|47",
+   "axis": "x",
+   "corridor": "Ave P",
+   "file": "pair_26_47_x.json",
+   "residual_ft": 1.5
+  },
+  {
+   "pair": "26|42",
+   "axis": "x",
+   "corridor": "Ave O 1/2",
+   "file": "pair_26_42.json",
+   "residual_ft": 1.5
+  },
+  {
+   "pair": "36|37",
+   "axis": "y",
+   "corridor": "?",
+   "file": "pair_36_37_y.json",
+   "residual_ft": 1.5
+  },
+  {
+   "pair": "80|99",
+   "axis": "y",
+   "corridor": "38th St",
+   "file": "pair_80_99.json",
+   "residual_ft": 1.4
+  },
+  {
+   "pair": "28|34",
+   "axis": "x",
+   "corridor": "Ave D (Market)",
+   "file": "pair_28_34_x.json",
+   "residual_ft": 1.4
+  },
+  {
+   "pair": "86|96",
+   "axis": "y",
+   "corridor": "42nd St",
+   "file": "pair_86_96.json",
+   "residual_ft": 1.4
+  },
+  {
+   "pair": "29|30",
+   "axis": "y",
+   "corridor": "?",
+   "file": "pair_29_30_y.json",
+   "residual_ft": 1.4
+  },
+  {
+   "pair": "56|57",
+   "axis": "y",
+   "corridor": "?",
+   "file": "pair_56_57_y.json",
    "residual_ft": 1.4
   },
   {
@@ -1237,209 +1517,454 @@
    "axis": "y",
    "corridor": "27th St",
    "file": "pair_12_14.json",
+   "residual_ft": 1.4
+  },
+  {
+   "pair": "79|80",
+   "axis": "y",
+   "corridor": "?",
+   "file": "pair_79_80_y.json",
    "residual_ft": 1.3
   },
   {
-   "pair": "28|34",
+   "pair": "76|84",
+   "axis": "y",
+   "corridor": "39th St",
+   "file": "pair_76_84.json",
+   "residual_ft": 1.3
+  },
+  {
+   "pair": "57|63",
    "axis": "x",
-   "corridor": "Ave D (Market)",
-   "file": "pair_28_34_x.json",
+   "corridor": "Ave M 1/2",
+   "file": "pair_57_63_x.json",
    "residual_ft": 1.3
   },
   {
-   "pair": "49|55",
-   "axis": "y",
-   "corridor": "27th St",
-   "file": "pair_49_55.json",
+   "pair": "65|66",
+   "axis": "x",
+   "corridor": "Ave Q",
+   "file": "pair_65_66.json",
    "residual_ft": 1.3
   },
   {
-   "pair": "80|99",
+   "pair": "16|67",
    "axis": "y",
-   "corridor": "38th St",
-   "file": "pair_80_99.json",
-   "residual_ft": 1.2
+   "corridor": "33rd St",
+   "file": "pair_16_67.json",
+   "residual_ft": 1.3
+  },
+  {
+   "pair": "81|89",
+   "axis": "x",
+   "corridor": "Ave R 1/2",
+   "file": "pair_81_89.json",
+   "residual_ft": 1.3
+  },
+  {
+   "pair": "71|79",
+   "axis": "x",
+   "corridor": "?",
+   "file": "pair_71_79_x.json",
+   "residual_ft": 1.3
   },
   {
    "pair": "90|99",
-   "axis": "y",
-   "corridor": "39th St",
-   "file": "pair_90_99.json",
-   "residual_ft": 1.2
-  },
-  {
-   "pair": "89|98",
-   "axis": "y",
-   "corridor": "42nd St",
-   "file": "pair_89_98.json",
-   "residual_ft": 1.2
-  },
-  {
-   "pair": "49|56",
-   "axis": "y",
-   "corridor": "27th St",
-   "file": "pair_49_56.json",
-   "residual_ft": 1.2
-  },
-  {
-   "pair": "83|84",
    "axis": "x",
-   "corridor": "Ave G (Winnie)",
-   "file": "pair_83_84.json",
+   "corridor": "Ave T",
+   "file": "pair_90_99_x.json",
    "residual_ft": 1.2
   },
   {
-   "pair": "34|7",
-   "axis": "y",
-   "corridor": "18th St",
-   "file": "pair_34_7.json",
+   "pair": "82|99",
+   "axis": "x",
+   "corridor": "Ave T",
+   "file": "pair_82_99.json",
    "residual_ft": 1.2
   },
   {
-   "pair": "51|52",
-   "axis": "y",
-   "corridor": "26th St",
-   "file": "pair_51_52.json",
-   "residual_ft": 1.2
-  },
-  {
-   "pair": "52|57",
-   "axis": "y",
-   "corridor": "27th St",
-   "file": "pair_52_57.json",
-   "residual_ft": 1.2
-  },
-  {
-   "pair": "50|55",
-   "axis": "y",
-   "corridor": "27th St",
-   "file": "pair_50_55.json",
-   "residual_ft": 1.1
-  },
-  {
-   "pair": "85|94",
-   "axis": "y",
-   "corridor": "42nd St",
-   "file": "pair_85_94.json",
-   "residual_ft": 1.1
-  },
-  {
-   "pair": "84|94",
-   "axis": "y",
-   "corridor": "42nd St",
-   "file": "pair_84_94.json",
-   "residual_ft": 1.1
-  },
-  {
-   "pair": "80|89",
-   "axis": "y",
-   "corridor": "39th St",
-   "file": "pair_80_89.json",
-   "residual_ft": 1.1
-  },
-  {
-   "pair": "28|29",
-   "axis": "x",
-   "corridor": "Ave F",
-   "file": "pair_28_29.json",
-   "residual_ft": 1.1
-  },
-  {
-   "pair": "44|45",
-   "axis": "x",
-   "corridor": "Ave L",
-   "file": "pair_44_45.json",
-   "residual_ft": 1.0
-  },
-  {
-   "pair": "45|46",
-   "axis": "x",
-   "corridor": "Ave N",
-   "file": "pair_45_46.json",
-   "residual_ft": 1.0
-  },
-  {
-   "pair": "88|97",
-   "axis": "y",
-   "corridor": "42nd St",
-   "file": "pair_88_97.json",
-   "residual_ft": 1.0
-  },
-  {
-   "pair": "36|39",
-   "axis": "y",
-   "corridor": "18th St",
-   "file": "pair_36_39.json",
-   "residual_ft": 1.0
-  },
-  {
-   "pair": "58|59",
-   "axis": "x",
-   "corridor": "Ave O 1/2",
-   "file": "pair_58_59.json",
-   "residual_ft": 0.9
-  },
-  {
-   "pair": "62|71",
-   "axis": "y",
-   "corridor": "33rd St",
-   "file": "pair_62_71.json",
-   "residual_ft": 0.9
-  },
-  {
-   "pair": "34|8",
-   "axis": "y",
-   "corridor": "18th St",
-   "file": "pair_34_8.json",
-   "residual_ft": 0.9
-  },
-  {
-   "pair": "64|65",
-   "axis": "x",
-   "corridor": "Ave O 1/2",
-   "file": "pair_64_65.json",
-   "residual_ft": 0.7
-  },
-  {
-   "pair": "23|29",
+   "pair": "76|84",
    "axis": "x",
    "corridor": "Ave H (Ball)",
-   "file": "pair_23_29_x.json",
-   "residual_ft": 0.7
+   "file": "pair_76_84_x.json",
+   "residual_ft": 1.2
   },
   {
-   "pair": "36|40",
+   "pair": "61|68",
+   "axis": "x",
+   "corridor": "Ave G (Winnie)",
+   "file": "pair_61_68_x.json",
+   "residual_ft": 1.2
+  },
+  {
+   "pair": "63|70",
+   "axis": "x",
+   "corridor": "?",
+   "file": "pair_63_70_x.json",
+   "residual_ft": 1.2
+  },
+  {
+   "pair": "58|64",
+   "axis": "x",
+   "corridor": "Ave O",
+   "file": "pair_58_64_x.json",
+   "residual_ft": 1.2
+  },
+  {
+   "pair": "24|25",
+   "axis": "x",
+   "corridor": "Ave L",
+   "file": "pair_24_25.json",
+   "residual_ft": 1.2
+  },
+  {
+   "pair": "45|51",
+   "axis": "x",
+   "corridor": "?",
+   "file": "pair_45_51_x.json",
+   "residual_ft": 1.1
+  },
+  {
+   "pair": "22|23",
+   "axis": "x",
+   "corridor": "Ave F",
+   "file": "pair_22_23.json",
+   "residual_ft": 1.1
+  },
+  {
+   "pair": "31|37",
+   "axis": "x",
+   "corridor": "Ave M",
+   "file": "pair_31_37_x.json",
+   "residual_ft": 1.1
+  },
+  {
+   "pair": "82|90",
    "axis": "y",
-   "corridor": "18th St",
-   "file": "pair_36_40.json",
-   "residual_ft": 0.7
+   "corridor": "39th St",
+   "file": "pair_82_90.json",
+   "residual_ft": 1.1
+  },
+  {
+   "pair": "78|85",
+   "axis": "x",
+   "corridor": "?",
+   "file": "pair_78_85_x.json",
+   "residual_ft": 1.1
+  },
+  {
+   "pair": "66|74",
+   "axis": "x",
+   "corridor": "Ave R 1/2",
+   "file": "pair_66_74.json",
+   "residual_ft": 1.1
+  },
+  {
+   "pair": "74|81",
+   "axis": "x",
+   "corridor": "Ave R 1/2",
+   "file": "pair_74_81.json",
+   "residual_ft": 1.1
+  },
+  {
+   "pair": "13|14",
+   "axis": "y",
+   "corridor": "?",
+   "file": "pair_13_14_y.json",
+   "residual_ft": 1.1
+  },
+  {
+   "pair": "41|44",
+   "axis": "y",
+   "corridor": "21st St (Center)",
+   "file": "pair_41_44.json",
+   "residual_ft": 1.0
+  },
+  {
+   "pair": "24|25",
+   "axis": "y",
+   "corridor": "?",
+   "file": "pair_24_25_y.json",
+   "residual_ft": 1.0
+  },
+  {
+   "pair": "31|37",
+   "axis": "y",
+   "corridor": "15th St",
+   "file": "pair_31_37.json",
+   "residual_ft": 1.0
+  },
+  {
+   "pair": "82|89",
+   "axis": "x",
+   "corridor": "?",
+   "file": "pair_82_89_x.json",
+   "residual_ft": 1.0
+  },
+  {
+   "pair": "21|22",
+   "axis": "x",
+   "corridor": "Ave C (Mechanic)",
+   "file": "pair_21_22.json",
+   "residual_ft": 1.0
   },
   {
    "pair": "19|23",
    "axis": "x",
    "corridor": "Ave H (Ball)",
    "file": "pair_19_23_x.json",
-   "residual_ft": 0.6
+   "residual_ft": 0.9
   },
   {
    "pair": "18|19",
    "axis": "x",
    "corridor": "Ave F",
    "file": "pair_18_19.json",
-   "residual_ft": 0.6
+   "residual_ft": 0.9
   },
   {
-   "pair": "85|96",
+   "pair": "18|22",
    "axis": "y",
-   "corridor": "42nd St",
-   "file": "pair_85_96.json",
-   "residual_ft": 0.6
+   "corridor": "9th St",
+   "file": "pair_18_22.json",
+   "residual_ft": 0.9
   },
   {
-   "pair": "11|14",
+   "pair": "25|31",
+   "axis": "x",
+   "corridor": "Ave M",
+   "file": "pair_25_31_x.json",
+   "residual_ft": 0.9
+  },
+  {
+   "pair": "85|86",
+   "axis": "x",
+   "corridor": "Ave M 1/2",
+   "file": "pair_85_86.json",
+   "residual_ft": 0.9
+  },
+  {
+   "pair": "46|47",
+   "axis": "x",
+   "corridor": "Ave O 1/2",
+   "file": "pair_46_47.json",
+   "residual_ft": 0.9
+  },
+  {
+   "pair": "52|53",
+   "axis": "x",
+   "corridor": "Ave O 1/2",
+   "file": "pair_52_53.json",
+   "residual_ft": 0.9
+  },
+  {
+   "pair": "66|73",
+   "axis": "y",
+   "corridor": "33rd St",
+   "file": "pair_66_73.json",
+   "residual_ft": 0.8
+  },
+  {
+   "pair": "14|49",
    "axis": "y",
    "corridor": "27th St",
-   "file": "pair_11_14.json",
+   "file": "pair_14_49.json",
+   "residual_ft": 0.8
+  },
+  {
+   "pair": "19|23",
+   "axis": "y",
+   "corridor": "9th St",
+   "file": "pair_19_23.json",
+   "residual_ft": 0.8
+  },
+  {
+   "pair": "84|91",
+   "axis": "y",
+   "corridor": "42nd St",
+   "file": "pair_84_91.json",
+   "residual_ft": 0.8
+  },
+  {
+   "pair": "46|47",
+   "axis": "y",
+   "corridor": "?",
+   "file": "pair_46_47_y.json",
+   "residual_ft": 0.8
+  },
+  {
+   "pair": "91|92",
+   "axis": "x",
+   "corridor": "Ave G (Winnie)",
+   "file": "pair_91_92.json",
+   "residual_ft": 0.8
+  },
+  {
+   "pair": "83|91",
+   "axis": "x",
+   "corridor": "Ave F (Church)",
+   "file": "pair_83_91_x.json",
+   "residual_ft": 0.8
+  },
+  {
+   "pair": "67|68",
+   "axis": "y",
+   "corridor": "?",
+   "file": "pair_67_68_y.json",
+   "residual_ft": 0.8
+  },
+  {
+   "pair": "35|39",
+   "axis": "x",
+   "corridor": "?",
+   "file": "pair_35_39_x.json",
+   "residual_ft": 0.8
+  },
+  {
+   "pair": "90|99",
+   "axis": "y",
+   "corridor": "39th St",
+   "file": "pair_90_99.json",
+   "residual_ft": 0.8
+  },
+  {
+   "pair": "27|28",
+   "axis": "y",
+   "corridor": "?",
+   "file": "pair_27_28_y.json",
+   "residual_ft": 0.7
+  },
+  {
+   "pair": "65|72",
+   "axis": "x",
+   "corridor": "?",
+   "file": "pair_65_72_x.json",
+   "residual_ft": 0.7
+  },
+  {
+   "pair": "14|55",
+   "axis": "x",
+   "corridor": "Ave F (Church)",
+   "file": "pair_14_55.json",
+   "residual_ft": 0.7
+  },
+  {
+   "pair": "69|70",
+   "axis": "x",
+   "corridor": "Ave K",
+   "file": "pair_69_70.json",
+   "residual_ft": 0.7
+  },
+  {
+   "pair": "88|89",
+   "axis": "y",
+   "corridor": "?",
+   "file": "pair_88_89_y.json",
+   "residual_ft": 0.7
+  },
+  {
+   "pair": "89|90",
+   "axis": "y",
+   "corridor": "?",
+   "file": "pair_89_90.json",
+   "residual_ft": 0.7
+  },
+  {
+   "pair": "30|31",
+   "axis": "y",
+   "corridor": "?",
+   "file": "pair_30_31_y.json",
+   "residual_ft": 0.7
+  },
+  {
+   "pair": "82|99",
+   "axis": "y",
+   "corridor": "?",
+   "file": "pair_82_99_y.json",
+   "residual_ft": 0.7
+  },
+  {
+   "pair": "41|42",
+   "axis": "y",
+   "corridor": "?",
+   "file": "pair_41_42_y.json",
+   "residual_ft": 0.6
+  },
+  {
+   "pair": "21|27",
+   "axis": "x",
+   "corridor": "Ave B (Strand)",
+   "file": "pair_21_27_x.json",
+   "residual_ft": 0.6
+  },
+  {
+   "pair": "90|98",
+   "axis": "x",
+   "corridor": "Ave T",
+   "file": "pair_90_98_x.json",
+   "residual_ft": 0.6
+  },
+  {
+   "pair": "49|55",
+   "axis": "x",
+   "corridor": "Ave G (Winnie)",
+   "file": "pair_49_55_x.json",
+   "residual_ft": 0.6
+  },
+  {
+   "pair": "18|22",
+   "axis": "x",
+   "corridor": "Ave D (Market)",
+   "file": "pair_18_22_x.json",
+   "residual_ft": 0.6
+  },
+  {
+   "pair": "88|98",
+   "axis": "y",
+   "corridor": "42nd St",
+   "file": "pair_88_98.json",
+   "residual_ft": 0.6
+  },
+  {
+   "pair": "89|97",
+   "axis": "y",
+   "corridor": "42nd St",
+   "file": "pair_89_97.json",
+   "residual_ft": 0.6
+  },
+  {
+   "pair": "83|84",
+   "axis": "y",
+   "corridor": "?",
+   "file": "pair_83_84_y.json",
+   "residual_ft": 0.6
+  },
+  {
+   "pair": "45|46",
+   "axis": "x",
+   "corridor": "Ave N",
+   "file": "pair_45_46.json",
+   "residual_ft": 0.6
+  },
+  {
+   "pair": "75|83",
+   "axis": "x",
+   "corridor": "Ave E (Post Office)",
+   "file": "pair_75_83_x.json",
+   "residual_ft": 0.6
+  },
+  {
+   "pair": "91|92",
+   "axis": "y",
+   "corridor": "?",
+   "file": "pair_91_92_y.json",
+   "residual_ft": 0.5
+  },
+  {
+   "pair": "69|77",
+   "axis": "x",
+   "corridor": "?",
+   "file": "pair_69_77_x.json",
    "residual_ft": 0.5
   },
   {
@@ -1447,84 +1972,203 @@
    "axis": "x",
    "corridor": "Avenue K",
    "file": "pair_24_30_x.json",
-   "residual_ft": 0.4
+   "residual_ft": 0.5
   },
   {
-   "pair": "31|37",
+   "pair": "36|40",
    "axis": "x",
-   "corridor": "Ave M",
-   "file": "pair_31_37_x.json",
-   "residual_ft": 0.4
+   "corridor": "?",
+   "file": "pair_36_40_x.json",
+   "residual_ft": 0.5
   },
   {
-   "pair": "36|37",
-   "axis": "x",
-   "corridor": "Ave L",
-   "file": "pair_36_37.json",
-   "residual_ft": 0.4
+   "pair": "67|75",
+   "axis": "y",
+   "corridor": "36th St",
+   "file": "pair_67_75.json",
+   "residual_ft": 0.5
   },
   {
-   "pair": "18|22",
+   "pair": "22|28",
    "axis": "x",
    "corridor": "Ave D (Market)",
-   "file": "pair_18_22_x.json",
-   "residual_ft": 0.4
+   "file": "pair_22_28_x.json",
+   "residual_ft": 0.5
   },
   {
-   "pair": "40|45",
-   "axis": "y",
-   "corridor": "21st St (Center)",
-   "file": "pair_40_45.json",
-   "residual_ft": 0.4
-  },
-  {
-   "pair": "51|57",
-   "axis": "y",
-   "corridor": "27th St",
-   "file": "pair_51_57.json",
-   "residual_ft": 0.4
-  },
-  {
-   "pair": "91|92",
-   "axis": "x",
-   "corridor": "Ave G (Winnie)",
-   "file": "pair_91_92.json",
-   "residual_ft": 0.3
-  },
-  {
-   "pair": "83|91",
-   "axis": "x",
-   "corridor": "Ave F (Church)",
-   "file": "pair_83_91_x.json",
-   "residual_ft": 0.3
-  },
-  {
-   "pair": "24|25",
+   "pair": "50|51",
    "axis": "x",
    "corridor": "Ave L",
-   "file": "pair_24_25.json",
-   "residual_ft": 0.2
+   "file": "pair_50_51.json",
+   "residual_ft": 0.5
   },
   {
-   "pair": "53|59",
+   "pair": "68|69",
    "axis": "y",
-   "corridor": "27th St",
-   "file": "pair_53_59.json",
-   "residual_ft": 0.2
+   "corridor": "?",
+   "file": "pair_68_69_y.json",
+   "residual_ft": 0.5
+  },
+  {
+   "pair": "88|96",
+   "axis": "x",
+   "corridor": "Ave Q",
+   "file": "pair_88_96_x.json",
+   "residual_ft": 0.4
+  },
+  {
+   "pair": "23|24",
+   "axis": "x",
+   "corridor": "Ave I (Sealy)",
+   "file": "pair_23_24.json",
+   "residual_ft": 0.4
+  },
+  {
+   "pair": "71|72",
+   "axis": "x",
+   "corridor": "Ave O",
+   "file": "pair_71_72.json",
+   "residual_ft": 0.4
+  },
+  {
+   "pair": "65|66",
+   "axis": "y",
+   "corridor": "?",
+   "file": "pair_65_66_y.json",
+   "residual_ft": 0.4
   },
   {
    "pair": "17|18",
    "axis": "x",
    "corridor": "Ave C (Mechanic)",
    "file": "pair_17_18.json",
-   "residual_ft": 0.2
+   "residual_ft": 0.3
   },
   {
    "pair": "17|21",
    "axis": "x",
    "corridor": "Ave B (Strand)",
    "file": "pair_17_21_x.json",
+   "residual_ft": 0.3
+  },
+  {
+   "pair": "75|83",
+   "axis": "y",
+   "corridor": "39th St",
+   "file": "pair_75_83.json",
+   "residual_ft": 0.3
+  },
+  {
+   "pair": "80|87",
+   "axis": "x",
+   "corridor": "?",
+   "file": "pair_80_87_x.json",
+   "residual_ft": 0.3
+  },
+  {
+   "pair": "37|38",
+   "axis": "y",
+   "corridor": "?",
+   "file": "pair_37_38_y.json",
+   "residual_ft": 0.3
+  },
+  {
+   "pair": "55|61",
+   "axis": "y",
+   "corridor": "30th St",
+   "file": "pair_55_61.json",
+   "residual_ft": 0.3
+  },
+  {
+   "pair": "83|91",
+   "axis": "y",
+   "corridor": "42nd St",
+   "file": "pair_83_91.json",
+   "residual_ft": 0.3
+  },
+  {
+   "pair": "70|78",
+   "axis": "x",
+   "corridor": "?",
+   "file": "pair_70_78_x.json",
+   "residual_ft": 0.3
+  },
+  {
+   "pair": "23|29",
+   "axis": "x",
+   "corridor": "Ave H (Ball)",
+   "file": "pair_23_29_x.json",
    "residual_ft": 0.2
+  },
+  {
+   "pair": "20|25",
+   "axis": "x",
+   "corridor": "Ave L",
+   "file": "pair_20_25_x.json",
+   "residual_ft": 0.2
+  },
+  {
+   "pair": "20|24",
+   "axis": "x",
+   "corridor": "Ave K",
+   "file": "pair_20_24_x.json",
+   "residual_ft": 0.2
+  },
+  {
+   "pair": "83|84",
+   "axis": "x",
+   "corridor": "Ave G (Winnie)",
+   "file": "pair_83_84.json",
+   "residual_ft": 0.2
+  },
+  {
+   "pair": "68|76",
+   "axis": "x",
+   "corridor": "Ave G (Winnie)",
+   "file": "pair_68_76_x.json",
+   "residual_ft": 0.2
+  },
+  {
+   "pair": "34|35",
+   "axis": "x",
+   "corridor": "Ave F (Church)",
+   "file": "pair_34_35.json",
+   "residual_ft": 0.2
+  },
+  {
+   "pair": "75|76",
+   "axis": "y",
+   "corridor": "?",
+   "file": "pair_75_76_y.json",
+   "residual_ft": 0.2
+  },
+  {
+   "pair": "81|82",
+   "axis": "y",
+   "corridor": "?",
+   "file": "pair_81_82_y.json",
+   "residual_ft": 0.2
+  },
+  {
+   "pair": "72|73",
+   "axis": "y",
+   "corridor": "?",
+   "file": "pair_72_73_y.json",
+   "residual_ft": 0.2
+  },
+  {
+   "pair": "26|47",
+   "axis": "y",
+   "corridor": "21st St",
+   "file": "pair_26_47.json",
+   "residual_ft": 0.1
+  },
+  {
+   "pair": "26|42",
+   "axis": "y",
+   "corridor": "?",
+   "file": "pair_26_42_y.json",
+   "residual_ft": 0.1
   },
   {
    "pair": "85|93",
@@ -1534,94 +2178,24 @@
    "residual_ft": 0.1
   },
   {
-   "pair": "93|94",
-   "axis": "x",
-   "corridor": "Ave M",
-   "file": "pair_93_94.json",
+   "pair": "86|87",
+   "axis": "y",
+   "corridor": "?",
+   "file": "pair_86_87_y.json",
    "residual_ft": 0.1
   },
   {
-   "pair": "27|28",
+   "pair": "80|81",
    "axis": "x",
-   "corridor": "Ave C (Mechanic)",
-   "file": "pair_27_28.json",
+   "corridor": "Ave Q",
+   "file": "pair_80_81.json",
    "residual_ft": 0.1
-  },
-  {
-   "pair": "12|13",
-   "axis": "y",
-   "corridor": "27th St",
-   "file": "pair_12_13.json",
-   "residual_ft": 0.0
-  },
-  {
-   "pair": "11|13",
-   "axis": "y",
-   "corridor": "27th St",
-   "file": "pair_11_13.json",
-   "residual_ft": 0.0
-  },
-  {
-   "pair": "59|60",
-   "axis": "x",
-   "corridor": "Ave Q",
-   "file": "pair_59_60.json",
-   "residual_ft": 0.0
-  },
-  {
-   "pair": "15|16",
-   "axis": "x",
-   "corridor": "Ave C (Mechanic)",
-   "file": "pair_15_16.json",
-   "residual_ft": 0.0
-  },
-  {
-   "pair": "48|60",
-   "axis": "x",
-   "corridor": "Ave R 1/2",
-   "file": "pair_48_60.json",
-   "residual_ft": 0.0
-  },
-  {
-   "pair": "84|92",
-   "axis": "y",
-   "corridor": "42nd St",
-   "file": "pair_84_92.json",
-   "residual_ft": 0.0
-  },
-  {
-   "pair": "53|54",
-   "axis": "x",
-   "corridor": "Ave Q",
-   "file": "pair_53_54.json",
-   "residual_ft": 0.0
-  },
-  {
-   "pair": "13|14",
-   "axis": "x",
-   "corridor": "Ave C (Mechanic)",
-   "file": "pair_13_14.json",
-   "residual_ft": 0.0
   },
   {
    "pair": "31|32",
    "axis": "x",
    "corridor": "Ave N",
    "file": "pair_31_32.json",
-   "residual_ft": 0.0
-  },
-  {
-   "pair": "54|60",
-   "axis": "y",
-   "corridor": "27th St",
-   "file": "pair_54_60.json",
-   "residual_ft": 0.0
-  },
-  {
-   "pair": "26|47",
-   "axis": "y",
-   "corridor": "21st St",
-   "file": "pair_26_47.json",
    "residual_ft": 0.0
   },
   {
@@ -1632,10 +2206,17 @@
    "residual_ft": 0.0
   },
   {
-   "pair": "42|46",
-   "axis": "y",
-   "corridor": "21st St (Center)",
-   "file": "pair_42_46.json",
+   "pair": "48|60",
+   "axis": "x",
+   "corridor": "Ave R 1/2",
+   "file": "pair_48_60.json",
+   "residual_ft": 0.0
+  },
+  {
+   "pair": "15|16",
+   "axis": "x",
+   "corridor": "Ave C (Mechanic)",
+   "file": "pair_15_16.json",
    "residual_ft": 0.0
   },
   {
@@ -1646,59 +2227,17 @@
    "residual_ft": 0.0
   },
   {
-   "pair": "24|30",
-   "axis": "y",
-   "corridor": "12th St",
-   "file": "pair_24_30.json",
+   "pair": "13|14",
+   "axis": "x",
+   "corridor": "Ave C (Mechanic)",
+   "file": "pair_13_14.json",
    "residual_ft": 0.0
   },
   {
-   "pair": "29|35",
-   "axis": "y",
-   "corridor": "15th St",
-   "file": "pair_29_35.json",
-   "residual_ft": 0.0
-  },
-  {
-   "pair": "20|24",
-   "axis": "y",
-   "corridor": "9th St",
-   "file": "pair_20_24.json",
-   "residual_ft": 0.0
-  },
-  {
-   "pair": "23|29",
-   "axis": "y",
-   "corridor": "12th St",
-   "file": "pair_23_29.json",
-   "residual_ft": 0.0
-  },
-  {
-   "pair": "19|23",
-   "axis": "y",
-   "corridor": "9th St",
-   "file": "pair_19_23.json",
-   "residual_ft": 0.0
-  },
-  {
-   "pair": "18|22",
-   "axis": "y",
-   "corridor": "9th St",
-   "file": "pair_18_22.json",
-   "residual_ft": 0.0
-  },
-  {
-   "pair": "13|15",
-   "axis": "y",
-   "corridor": "30th St",
-   "file": "pair_13_15.json",
-   "residual_ft": 0.0
-  },
-  {
-   "pair": "48|74",
-   "axis": "y",
-   "corridor": "33rd St",
-   "file": "pair_48_74.json",
+   "pair": "53|54",
+   "axis": "x",
+   "corridor": "Ave Q",
+   "file": "pair_53_54.json",
    "residual_ft": 0.0
   }
  ],
@@ -1760,343 +2299,343 @@
   "13": {
    "m": [
     [
-     1.9963198847960655,
-     -0.000341760358026022
+     1.988735981330872,
+     -0.0003404620302463716
     ],
     [
-     0.000341760358026022,
-     1.9963198847960655
+     0.0003404620302463716,
+     1.988735981330872
     ]
    ],
    "t": [
-    -9163.248073144741,
-    10150.000140793778
+    -9219.05262188989,
+    10163.60566103987
    ],
-   "moved_ft": 8.727191685467789,
+   "moved_ft": 2.1145541291330616,
    "source": "control-solved"
   },
   "14": {
    "m": [
     [
-     1.9842651016084412,
-     -0.0004354402172218375
+     1.993641726325817,
+     -0.0004374978855749382
     ],
     [
-     0.00043544021722148466,
-     1.984265101608441
+     0.0004374978855745837,
+     1.9936417263258168
     ]
    ],
    "t": [
-    -3068.729859418967,
-    10169.508189681013
+    -3149.878857944843,
+    10183.156036292126
    ],
-   "moved_ft": 8.739780050704336,
+   "moved_ft": 0.9269212443473922,
    "source": "control-solved"
   },
   "15": {
    "m": [
     [
-     1.9963198847960655,
-     -0.000341760358026022
+     1.9996391391232564,
+     -0.00034232859839465217
     ],
     [
-     0.000341760358026022,
-     1.9963198847960655
+     0.00034232859839465217,
+     1.9996391391232564
     ]
    ],
    "t": [
-    -9110.681860919958,
-    17034.309092632844
+    -9261.22283705047,
+    17037.023264077845
    ],
-   "moved_ft": 19.059766742802434,
+   "moved_ft": 5.233604348461703,
    "source": "control-solved"
   },
   "16": {
    "m": [
     [
-     1.9977968532926342,
-     -0.02005009672646504
+     1.9951631131196812,
+     -0.02002366423652841
     ],
     [
-     0.02005009672646496,
-     1.9977968532926342
+     0.02002366423652833,
+     1.9951631131196812
     ]
    ],
    "t": [
-    -2993.705083768974,
-    16946.299971817807
+    -3133.2689451499596,
+    17031.19584268298
    ],
-   "moved_ft": 19.151799039763905,
+   "moved_ft": 1.7799011908530482,
    "source": "control-solved"
   },
   "17": {
    "m": [
     [
-     2.0005529364812515,
-     -0.005245608241220771
+     2.0007291854030624,
+     -0.005246070379852496
     ],
     [
-     0.005245608241220771,
-     2.0005529364812515
+     0.005246070379852496,
+     2.0007291854030624
     ]
    ],
    "t": [
-    -9522.000069713029,
-    -38501.515983755264
+    -9171.543329538403,
+    -38511.77705280743
    ],
-   "moved_ft": 2.1859859767252967,
+   "moved_ft": 17.846207230945197,
    "source": "control-solved"
   },
   "18": {
    "m": [
     [
-     1.9900747163821,
-     -0.01435904100640952
+     2.007755645024498,
+     -0.014486614698652164
     ],
     [
-     0.01435904100640952,
-     1.9900747163821
+     0.014486614698652164,
+     2.007755645024498
     ]
    ],
    "t": [
-    -3403.7956304553213,
-    -38484.31298862917
+    -3055.4622875899,
+    -38594.428795373526
    ],
-   "moved_ft": 2.1859890231392556,
+   "moved_ft": 15.012392424818293,
    "source": "control-solved"
   },
   "19": {
    "m": [
     [
-     1.9900747163821,
-     -0.014359041006409518
+     2.0029567697050226,
+     -0.014451989241160661
     ],
     [
-     0.014359041006409518,
-     1.9900747163821
+     0.014451989241160661,
+     2.0029567697050226
     ]
    ],
    "t": [
-    2425.5896426295844,
-    -38407.040676555305
+    2824.624624755075,
+    -38510.61323403534
    ],
-   "moved_ft": 2.1859961616105044,
+   "moved_ft": 18.753672474665578,
    "source": "control-solved"
   },
   "20": {
    "m": [
     [
-     2.0264941197424227,
-     -0.009282213293317583
+     1.9974280298938223,
+     -0.009149078120138925
     ],
     [
-     0.009282213293317583,
-     2.0264941197424227
+     0.009149078120138925,
+     1.9974280298938223
     ]
    ],
    "t": [
-    8551.66139610531,
-    -39387.735235394255
+    8815.972058880263,
+    -38447.455807335486
    ],
-   "moved_ft": 2.1859904912012316,
+   "moved_ft": 15.418946434341077,
    "source": "control-solved"
   },
   "21": {
    "m": [
     [
-     2.0005529364812515,
-     -0.005245608241220885
+     2.004027090653727,
+     -0.005254717748610609
     ],
     [
-     0.005245608241220772,
-     2.0005529364812515
+     0.005254717748610496,
+     2.004027090653727
     ]
    ],
    "t": [
-    -9546.5113022555,
-    -31503.85263535743
+    -9202.348387750102,
+    -31532.05609743082
    ],
-   "moved_ft": 2.185986084459136,
+   "moved_ft": 15.317633534451561,
    "source": "control-solved"
   },
   "22": {
    "m": [
     [
-     1.979555203595129,
-     -0.023376330726482365
+     2.0013426493116158,
+     -0.023633616068072693
     ],
     [
-     0.023376330726483017,
-     1.979555203595129
+     0.023633616068073352,
+     2.0013426493116158
     ]
    ],
    "t": [
-    -3511.9584174607667,
-    -31527.98872977484
+    -3168.349379591234,
+    -31571.82964338722
    ],
-   "moved_ft": 2.1859883248362157,
+   "moved_ft": 15.576262117911677,
    "source": "control-solved"
   },
   "23": {
    "m": [
     [
-     1.9848200802115679,
-     -0.018879715470106435
+     2.0029477295250726,
+     -0.019052146646409508
     ],
     [
-     0.018879715470106435,
-     1.9848200802115679
+     0.019052146646409508,
+     2.0029477295250726
     ]
    ],
    "t": [
-    2520.6682405550164,
-    -31466.085491492788
+    2907.0203567923854,
+    -31521.20867178118
    ],
-   "moved_ft": 2.185993983279167,
+   "moved_ft": 17.98728511730924,
    "source": "control-solved"
   },
   "24": {
    "m": [
     [
-     2.062900333099268,
-     -0.0040135682770199195
+     1.9729674543833222,
+     -0.003838595330783049
     ],
     [
-     0.0040135682770199195,
-     2.062900333099268
+     0.003838595330783049,
+     1.9729674543833222
     ]
    ],
    "t": [
-    8630.437562934152,
-    -32388.08842737859
+    9053.574445633705,
+    -31497.04159759772
    ],
-   "moved_ft": 2.1859903048822162,
+   "moved_ft": 12.308647086187333,
    "source": "control-solved"
   },
   "25": {
    "m": [
     [
-     2.05728168214383,
-     -0.016437089334565134
+     2.002037766968977,
+     -0.015995706330574185
     ],
     [
-     0.016437089334565134,
-     2.05728168214383
+     0.015995706330574185,
+     2.002037766968977
     ]
    ],
    "t": [
-    15033.052182627436,
-    -32376.710702248114
+    15179.087627288023,
+    -31588.56263819776
    ],
-   "moved_ft": 2.185988016876634,
+   "moved_ft": 11.234196734228684,
    "source": "control-solved"
   },
   "26": {
    "m": [
     [
-     2.0131680911119223,
-     0.1504915279303937
+     2.0006564927180595,
+     0.1495562411217776
     ],
     [
-     -0.15049152793039355,
-     2.0131680911119227
+     -0.14955624112177746,
+     2.00065649271806
     ]
    ],
    "t": [
-    27025.00868681427,
-    -10597.229778206245
+    26867.551726654143,
+    -10520.359219407765
    ],
-   "moved_ft": 4.812839940161397,
+   "moved_ft": 7.963824545037665,
    "source": "control-solved"
   },
   "27": {
    "m": [
     [
-     2.0005529364812515,
-     -0.005245608241220771
+     2.0018272804554242,
+     -0.005248949672047805
     ],
     [
-     0.005245608241220771,
-     2.0005529364812515
+     0.005248949672047805,
+     2.0018272804554242
     ]
    ],
    "t": [
-    -9607.202052995151,
-    -24607.417265544347
+    -9249.57435808127,
+    -24632.08964918434
    ],
-   "moved_ft": 2.1859868791496084,
+   "moved_ft": 14.460885079466417,
    "source": "control-solved"
   },
   "28": {
    "m": [
     [
-     1.9900747163821,
-     -0.01435904100640952
+     2.003485438211217,
+     -0.014455803757619144
     ],
     [
-     0.01435904100640952,
-     1.9900747163821
+     0.014455803757619144,
+     2.003485438211217
     ]
    ],
    "t": [
-    -3527.2915459618544,
-    -24643.653922496113
+    -3156.7836355421214,
+    -24657.34439386651
    ],
-   "moved_ft": 2.185988443756867,
+   "moved_ft": 13.616108858456567,
    "source": "control-solved"
   },
   "29": {
    "m": [
     [
-     1.9900747163821,
-     -0.014359041006409518
+     1.9832008951332414,
+     -0.014309444134306884
     ],
     [
-     0.014359041006409518,
-     1.9900747163821
+     0.014309444134306884,
+     1.9832008951332414
     ]
    ],
    "t": [
-    2524.358466948545,
-    -24649.82469281393
+    2966.7951680468186,
+    -24592.93563230406
    ],
-   "moved_ft": 2.185991451787473,
+   "moved_ft": 13.58056177611519,
    "source": "control-solved"
   },
   "30": {
    "m": [
     [
-     2.1408647879384186,
-     0.012033033176396373
+     2.0164963334313684,
+     0.011334002696932237
     ],
     [
-     -0.012033033176396429,
-     2.1408647879384186
+     -0.011334002696932289,
+     2.0164963334313684
     ]
    ],
    "t": [
-    8420.912586990036,
-    -25257.337171599327
+    8916.725943387628,
+    -24652.062121581082
    ],
-   "moved_ft": 2.1859849137167107,
+   "moved_ft": 11.428626025168693,
    "source": "control-solved"
   },
   "31": {
    "m": [
     [
-     2.0515884169459326,
-     -0.028792841347055977
+     1.9982914903331828,
+     -0.02804485021025135
     ],
     [
-     0.028792841347055557,
-     2.051588416945933
+     0.02804485021025094,
+     1.998291490333183
     ]
    ],
    "t": [
-    15014.105393069201,
-    -25280.632977971873
+    15136.568327274792,
+    -24683.906062002465
    ],
-   "moved_ft": 2.1859806113368037,
+   "moved_ft": 10.643139919704515,
    "source": "control-solved"
   },
   "32": {
@@ -2111,118 +2650,118 @@
     ]
    ],
    "t": [
-    21020.802901434592,
-    -25469.03092840466
+    20976.89169742734,
+    -24901.57934329829
    ],
-   "moved_ft": 2.185987379014992,
+   "moved_ft": 10.682216947516546,
    "source": "control-solved"
   },
   "33": {
    "m": [
     [
-     2.0005529364812515,
-     -0.005245608241220771
+     2.0106556256834525,
+     -0.005272098292431698
     ],
     [
-     0.005245608241220771,
-     2.0005529364812515
+     0.005272098292431698,
+     2.0106556256834525
     ]
    ],
    "t": [
-    -9603.956762893027,
-    -17671.971113469153
+    -9258.644327444063,
+    -17707.44496505721
    ],
-   "moved_ft": 2.1859875109674256,
+   "moved_ft": 14.291985153173565,
    "source": "control-solved"
   },
   "34": {
    "m": [
     [
-     2.000552499874973,
-     -0.005409557613613934
+     2.0104688970370654,
+     -0.005436371867062004
     ],
     [
-     0.005409557613613934,
-     2.000552499874973
+     0.005436371867062004,
+     2.0104688970370654
     ]
    ],
    "t": [
-    -3558.121837893285,
-    -17677.859326376827
+    -3184.3314716559025,
+    -17699.26396787988
    ],
-   "moved_ft": 2.1859882688282712,
+   "moved_ft": 14.830458335576074,
    "source": "control-solved"
   },
   "35": {
    "m": [
     [
-     2.000552499874973,
-     -0.005409557613613934
+     1.9879151682953162,
+     -0.005375385866925573
     ],
     [
-     0.005409557613613934,
-     2.000552499874973
+     0.005375385866925573,
+     1.9879151682953162
     ]
    ],
    "t": [
-    2506.9382406660084,
-    -17768.483739283558
+    2935.694256052036,
+    -17700.072777616446
    ],
-   "moved_ft": 2.1859877275734654,
+   "moved_ft": 12.473725495636765,
    "source": "control-solved"
   },
   "36": {
    "m": [
     [
-     2.0740151509678184,
-     0.004663568490087527
+     2.0128526669841866,
+     0.004526040356337662
     ],
     [
-     -0.004663568490087527,
-     2.0740151509678184
+     -0.004526040356337662,
+     2.0128526669841866
     ]
    ],
    "t": [
-    8603.20257851346,
-    -17953.30019239212
+    8989.855104832339,
+    -17705.838636942783
    ],
-   "moved_ft": 2.18597896313087,
+   "moved_ft": 10.991994334536171,
    "source": "control-solved"
   },
   "37": {
    "m": [
     [
-     2.1610444557262656,
-     0.02401423667187133
+     2.002327261377802,
+     0.02225051901262564
     ],
     [
-     -0.024014236671871428,
-     2.161044455726265
+     -0.02225051901262573,
+     2.0023272613778014
     ]
    ],
    "t": [
-    14772.188234891259,
-    -18269.4618418051
+    15017.450829753272,
+    -17671.296149930244
    ],
-   "moved_ft": 2.1859693130840463,
+   "moved_ft": 9.322578945592463,
    "source": "control-solved"
   },
   "38": {
    "m": [
     [
-     2.042031861050267,
-     0.018142954829073115
+     2.0067508837563888,
+     0.017829491954385566
     ],
     [
-     -0.018142954829073115,
-     2.042031861050267
+     -0.017829491954385566,
+     2.0067508837563888
     ]
    ],
    "t": [
-    21338.900631563785,
-    -17961.566874357657
+    21124.12647123976,
+    -17681.57991082156
    ],
-   "moved_ft": 2.6232088272166534,
+   "moved_ft": 8.771452485456146,
    "source": "control-solved"
   },
   "39": {
@@ -2264,37 +2803,37 @@
   "41": {
    "m": [
     [
-     2.0986532363599717,
-     -0.02974450921582073
+     2.0067989352895155,
+     -0.028442645212102907
     ],
     [
-     0.029744509215821245,
-     2.0986532363599726
+     0.0284426452121034,
+     2.0067989352895164
     ]
    ],
    "t": [
-    15100.096223536457,
-    -11083.25451349097
+    15166.115633840409,
+    -10862.21642924887
    ],
-   "moved_ft": 1.748813162977362,
+   "moved_ft": 7.284412069931857,
    "source": "control-solved"
   },
   "42": {
    "m": [
     [
-     2.032610459771947,
-     0.01353163928464121
+     1.9990849994611073,
+     0.013308451199783702
     ],
     [
-     -0.013531639284640615,
-     2.0326104597719468
+     -0.013308451199783116,
+     1.9990849994611068
     ]
    ],
    "t": [
-    21296.594350992316,
-    -10852.489463609654
+    21124.858883200188,
+    -10743.03854892356
    ],
-   "moved_ft": 3.0604097101603975,
+   "moved_ft": 8.076615903650223,
    "source": "control-solved"
   },
   "43": {
@@ -2336,73 +2875,73 @@
   "45": {
    "m": [
     [
-     1.9936106296274847,
-     -0.011957700132082954
+     2.0102713201646045,
+     -0.012057631150946721
     ],
     [
-     0.011957700132083237,
-     1.993610629627485
+     0.012057631150947006,
+     2.010271320164605
     ]
    ],
    "t": [
-    15173.20042185225,
-    -3873.4000376136155
+    15174.711808372082,
+    -3924.510643168455
    ],
-   "moved_ft": 3.040996640685673,
+   "moved_ft": 2.500495227360049,
    "source": "control-solved"
   },
   "46": {
    "m": [
     [
-     2.0295270460940698,
-     0.013511112163246658
+     2.014271600355566,
+     0.013409552522112567
     ],
     [
-     -0.013511112163246658,
-     2.0295270460940698
+     -0.013409552522112567,
+     2.014271600355566
     ]
    ],
    "t": [
-    21024.316550375836,
-    -3863.7243320921375
+    21071.466206401263,
+    -3889.6224909011485
    ],
-   "moved_ft": 6.081729240563692,
+   "moved_ft": 3.7394666278054856,
    "source": "control-solved"
   },
   "47": {
    "m": [
     [
-     2.0090054328100284,
-     -0.0023423833174601185
+     1.997882927500783,
+     -0.0023294151241146695
     ],
     [
-     0.0023423833174605487,
-     2.0090054328100284
+     0.002329415124115097,
+     1.997882927500783
     ]
    ],
    "t": [
-    27169.210896448534,
-    -3912.1756238225985
+    27125.70154326268,
+    -3877.9884456867794
    ],
-   "moved_ft": 6.560532326515839,
+   "moved_ft": 6.865792858335094,
    "source": "control-solved"
   },
   "48": {
    "m": [
     [
-     1.9237456124990073,
-     0.012641183409423636
+     2.001790944069094,
+     0.013154029465688393
     ],
     [
-     -0.012641183409423053,
-     1.9237456124990069
+     -0.013154029465687788,
+     2.0017909440690937
     ]
    ],
    "t": [
-    38983.65713664097,
-    9614.06714728883
+    39109.40697961587,
+    10246.239165242057
    ],
-   "moved_ft": 11.143249801711747,
+   "moved_ft": 143.66891363680924,
    "source": "control-solved"
   },
   "49": {
@@ -2444,19 +2983,19 @@
   "51": {
    "m": [
     [
-     2.009936486033449,
-     0.0020810493765234406
+     2.0146892155638554,
+     0.0020859702607875772
     ],
     [
-     -0.0020810493765234406,
-     2.009936486033449
+     -0.0020859702607875772,
+     2.0146892155638554
     ]
    ],
    "t": [
-    15107.491055721444,
-    3109.1557957602886
+    15091.939442963298,
+    3087.806329174859
    ],
-   "moved_ft": 4.454923392258504,
+   "moved_ft": 3.1366117025028393,
    "source": "control-solved"
   },
   "52": {
@@ -2471,208 +3010,208 @@
     ]
    ],
    "t": [
-    20917.87558783744,
-    3113.8636366415735
+    20941.09530408891,
+    3095.6609377047034
    ],
-   "moved_ft": 8.651229141080428,
+   "moved_ft": 2.513510819584278,
    "source": "control-solved"
   },
   "53": {
    "m": [
     [
-     1.9907990971016196,
-     0.03338202605286457
+     2.0109713100770676,
+     0.03372027682868154
     ],
     [
-     -0.03338202605286421,
-     1.9907990971016194
+     -0.03372027682868117,
+     2.0109713100770676
     ]
    ],
    "t": [
-    27076.788942901414,
-    3182.881993024704
+    27069.21153220273,
+    3182.303302733833
    ],
-   "moved_ft": 8.796725592857479,
+   "moved_ft": 11.593470778835453,
    "source": "control-solved"
   },
   "54": {
    "m": [
     [
-     1.9933375549291739,
-     -0.012589680044526754
+     2.0353064165960926,
+     -0.012854750322720696
     ],
     [
-     0.012589680044526064,
-     1.993337554929174
+     0.012854750322719991,
+     2.0353064165960926
     ]
    ],
    "t": [
-    33383.442737242454,
-    3024.9928147279425
+    33438.22984609357,
+    3183.5486272549992
    ],
-   "moved_ft": 8.80788361854147,
+   "moved_ft": 26.799415709585226,
    "source": "control-solved"
   },
   "55": {
    "m": [
     [
-     1.9968157662124884,
-     -0.002296320959190728
+     2.012522980175362,
+     -0.002314384120171199
     ],
     [
-     0.002296320959190728,
-     1.9968157662124884
+     0.002314384120171199,
+     2.012522980175362
     ]
    ],
    "t": [
-    2894.612382542395,
-    10139.07581751079
+    2851.8357105057885,
+    10127.008459313403
    ],
-   "moved_ft": 7.124621008075233,
+   "moved_ft": 1.5249637836299004,
    "source": "control-solved"
   },
   "56": {
    "m": [
     [
-     2.0906665536287248,
-     -0.0024293467186221143
+     2.011579645991453,
+     -0.0023374480276419094
     ],
     [
-     0.002429346718622653,
-     2.090666553628725
+     0.0023374480276424276,
+     2.0115796459914534
     ]
    ],
    "t": [
-    8850.326012514346,
-    10117.842833176588
+    8966.024596535179,
+    10139.284473188458
    ],
-   "moved_ft": 6.640309060091095,
+   "moved_ft": 0.8288481480302116,
    "source": "control-solved"
   },
   "57": {
    "m": [
     [
-     2.013282790379104,
-     0.020298260396168635
+     2.008775169349688,
+     0.020252813792313692
     ],
     [
-     -0.020298260396168704,
-     2.013282790379104
+     -0.02025281379231376,
+     2.008775169349688
     ]
    ],
    "t": [
-    14963.825796261783,
-    10218.411983120917
+    14937.784744371515,
+    10191.965486945286
    ],
-   "moved_ft": 8.918513439468471,
+   "moved_ft": 1.4959534357685516,
    "source": "control-solved"
   },
   "58": {
    "m": [
     [
-     2.009936486033449,
-     0.002081049376523441
+     2.0084470750060572,
+     0.002079507269142696
     ],
     [
-     -0.002081049376523441,
-     2.009936486033449
+     -0.002079507269142696,
+     2.0084470750060572
     ]
    ],
    "t": [
-    21113.194679946384,
-    10130.299802843625
+    21175.83436548701,
+    10178.726541021988
    ],
-   "moved_ft": 11.075443961679042,
+   "moved_ft": 2.957543901301635,
    "source": "control-solved"
   },
   "59": {
    "m": [
     [
-     1.9976176505306957,
-     -0.006902821550128658
+     2.0088652693573277,
+     -0.006941687999673435
     ],
     [
-     0.006902821550128986,
-     1.997617650530696
+     0.006941687999673765,
+     2.0088652693573277
     ]
    ],
    "t": [
-    27114.65767089985,
-    10067.379901507706
+    27164.72689788368,
+    10190.589790111831
    ],
-   "moved_ft": 11.16166804159005,
+   "moved_ft": 5.539451063681755,
    "source": "control-solved"
   },
   "60": {
    "m": [
     [
-     1.995479628555198,
-     -0.00974930139988525
+     2.018725818575241,
+     -0.009862875154115203
     ],
     [
-     0.00974930139988525,
-     1.995479628555198
+     0.009862875154115203,
+     2.018725818575241
     ]
    ],
    "t": [
-    33057.51864273369,
-    10023.855152335755
+    33125.23739371671,
+    10191.60502556273
    ],
-   "moved_ft": 11.163282924320074,
+   "moved_ft": 3.117035743550521,
    "source": "control-solved"
   },
   "61": {
    "m": [
     [
-     1.9596609269428844,
-     -0.008219435235281132
+     2.006187044934988,
+     -0.008414580430211219
     ],
     [
-     0.008219435235281132,
-     1.9596609269428844
+     0.008414580430211219,
+     2.006187044934988
     ]
    ],
    "t": [
-    3051.0219397444384,
-    17069.322949098663
+    2858.9023250675177,
+    17083.827266995897
    ],
-   "moved_ft": 26.378348469804692,
+   "moved_ft": 5.238902692231988,
    "source": "control-solved"
   },
   "62": {
    "m": [
     [
-     1.9214562587770827,
-     0.0031649989186830524
+     1.984565819767438,
+     0.0032689522048328827
     ],
     [
-     -0.0031649989186828937,
-     1.921456258777083
+     -0.003268952204832719,
+     1.9845658197674383
     ]
    ],
    "t": [
-    9222.342433296588,
-    17411.33673489144
+    9042.512306781151,
+    17139.904046445485
    ],
-   "moved_ft": 24.72215591081779,
+   "moved_ft": 3.263223112725995,
    "source": "control-solved"
   },
   "63": {
    "m": [
     [
-     1.9494427849607932,
-     0.0063037221250120505
+     2.0101338573090226,
+     0.0064999728990812865
     ],
     [
-     -0.00630372212501195,
-     1.949442784960793
+     -0.0064999728990811825,
+     2.0101338573090226
     ]
    ],
    "t": [
-    15083.70205475876,
-    17274.419450102516
+    15002.314176628124,
+    17084.766298658513
    ],
-   "moved_ft": 15.781264080214896,
+   "moved_ft": 2.503030561589348,
    "source": "control-solved"
   },
   "64": {
@@ -2687,100 +3226,100 @@
     ]
    ],
    "t": [
-    21037.8296044362,
-    17066.16849954874
+    21139.980179635593,
+    17109.12274420957
    ],
-   "moved_ft": 13.436199787740069,
+   "moved_ft": 3.0441466619980053,
    "source": "control-solved"
   },
   "65": {
    "m": [
     [
-     2.007132175978374,
-     -0.006468163077837184
+     2.003688613700397,
+     -0.006457065890193432
     ],
     [
-     0.006468163077837073,
-     2.0071321759783745
+     0.006457065890193321,
+     2.0036886137003975
     ]
    ],
    "t": [
-    26991.94290513335,
-    16989.746613343672
+    27127.268824709627,
+    17102.023532770778
    ],
-   "moved_ft": 13.5846729663266,
+   "moved_ft": 6.902861578690246,
    "source": "control-solved"
   },
   "66": {
    "m": [
     [
-     1.9983311250968119,
-     -0.027958202967481624
+     1.9936044928332146,
+     -0.02789207371466728
     ],
     [
-     0.02795820296748148,
-     1.9983311250968117
+     0.027892073714667134,
+     1.9936044928332144
     ]
    ],
    "t": [
-    32992.132035457136,
-    16823.287448746836
+    33199.25487613013,
+    17077.22217944365
    ],
-   "moved_ft": 16.158527745749076,
+   "moved_ft": 3.5709128394595715,
    "source": "control-solved"
   },
   "67": {
    "m": [
     [
-     1.9970826808083026,
-     -0.010192162121400486
+     2.0113884796611914,
+     -0.01026517212874068
     ],
     [
-     0.010192162121400486,
-     1.9970826808083026
+     0.01026517212874068,
+     2.0113884796611914
     ]
    ],
    "t": [
-    -5022.495924976808,
-    23872.85587254573
+    -5230.832417740588,
+    23977.50624465498
    ],
-   "moved_ft": 22.32834512851568,
+   "moved_ft": 2.363403900933317,
    "source": "control-solved"
   },
   "68": {
    "m": [
     [
-     1.9970826808083026,
-     -0.010192162121400488
+     2.0003513803838,
+     -0.010208844012600974
     ],
     [
-     0.010192162121400488,
-     1.9970826808083026
+     0.010208844012600974,
+     2.0003513803838
     ]
    ],
    "t": [
-    1009.2482670511492,
-    23838.24038803802
+    840.8369420381555,
+    24022.897274496016
    ],
-   "moved_ft": 25.94246916242987,
+   "moved_ft": 5.914089092343306,
    "source": "control-solved"
   },
   "69": {
    "m": [
     [
-     1.961460528051329,
-     -0.008633814314615941
+     2.00334617080324,
+     -0.008818183490949871
     ],
     [
-     0.008633814314615941,
-     1.961460528051329
+     0.008818183490949871,
+     2.00334617080324
     ]
    ],
    "t": [
-    7123.865616147461,
-    24026.369521272893
+    6958.6833669141315,
+    23990.039605406368
    ],
-   "moved_ft": 31.816238787252672,
+   "moved_ft": 9.397467986260905,
    "source": "control-solved"
   },
   "7": {
@@ -2804,181 +3343,181 @@
   "70": {
    "m": [
     [
-     1.963260041492052,
-     -0.009048940252107496
+     2.010286127428874,
+     -0.009265690062595857
     ],
     [
-     0.009048940252107993,
-     1.963260041492052
+     0.009265690062596364,
+     2.010286127428874
     ]
    ],
    "t": [
-    13081.000003842506,
-    23959.109100469315
+    13013.492859008074,
+    23933.844705903524
    ],
-   "moved_ft": 43.56765379257044,
+   "moved_ft": 7.339068378288582,
    "source": "control-solved"
   },
   "71": {
    "m": [
     [
-     1.9470767620923475,
-     -0.014833973967009468
+     2.0016772365722724,
+     -0.015249952439348279
     ],
     [
-     0.01483397396701011,
-     1.947076762092347
+     0.015249952439348938,
+     2.001677236572272
     ]
    ],
    "t": [
-    19004.47732034215,
-    24011.28793834585
+    19054.61824932566,
+    23942.135672103366
    ],
-   "moved_ft": 37.87814853171986,
+   "moved_ft": 9.673291927190206,
    "source": "control-solved"
   },
   "72": {
    "m": [
     [
-     1.9434949783330064,
-     -0.020929687428826553
+     2.008847334908714,
+     -0.021633473346009617
     ],
     [
-     0.020929687428826553,
-     1.9434949783330064
+     0.021633473346009617,
+     2.008847334908714
     ]
    ],
    "t": [
-    25020.52123524825,
-    23854.400497795865
+    25207.569279583488,
+    23951.43384523379
    ],
-   "moved_ft": 32.34153676511939,
+   "moved_ft": 13.907365838410614,
    "source": "control-solved"
   },
   "73": {
    "m": [
     [
-     2.006948217218376,
-     -0.02793317714235449
+     2.0126868752634515,
+     -0.028013049134246067
     ],
     [
-     0.02793317714235449,
-     2.006948217218376
+     0.028013049134246067,
+     2.0126868752634515
     ]
    ],
    "t": [
-    30830.508303908817,
-    23684.974199459633
+    31177.72153921551,
+    23997.849289207523
    ],
-   "moved_ft": 26.822334344223016,
+   "moved_ft": 4.877353516010445,
    "source": "control-solved"
   },
   "74": {
    "m": [
     [
-     1.9983331475566466,
-     -0.027813270577307012
+     1.9770702880844357,
+     -0.027517329100045854
     ],
     [
-     0.027813270577307012,
-     1.9983331475566466
+     0.027517329100045854,
+     1.9770702880844357
     ]
    ],
    "t": [
-    36965.895457434395,
-    16191.331088647034
+    37250.55147918005,
+    17102.871183065363
    ],
-   "moved_ft": 18.701669967945616,
+   "moved_ft": 141.54468815698831,
    "source": "control-solved"
   },
   "75": {
    "m": [
     [
-     1.9970826808083026,
-     -0.01019216212140049
+     2.010636353283457,
+     -0.010261333632692764
     ],
     [
-     0.01019216212140049,
-     1.9970826808083026
+     0.010261333632692764,
+     2.010636353283457
     ]
    ],
    "t": [
-    -2907.8829148366717,
-    30714.47191258541
+    -3130.40907429617,
+    30896.7773978527
    ],
-   "moved_ft": 21.802982519045493,
+   "moved_ft": 1.8148269461108966,
    "source": "control-solved"
   },
   "76": {
    "m": [
     [
-     1.9970826808083026,
-     -0.01019216212140049
+     2.0161604188683926,
+     -0.010289525841534175
     ],
     [
-     0.01019216212140049,
-     1.9970826808083026
+     0.010289525841534175,
+     2.0161604188683926
     ]
    ],
    "t": [
-    3045.756267220619,
-    30676.50447381848
+    2837.77689840167,
+    30904.03321366442
    ],
-   "moved_ft": 24.28609214820353,
+   "moved_ft": 5.632680238202489,
    "source": "control-solved"
   },
   "77": {
    "m": [
     [
-     1.963260041492052,
-     -0.009048940252107994
+     2.0139435563976775,
+     -0.009282547664501145
     ],
     [
-     0.009048940252107994,
-     1.963260041492052
+     0.009282547664501145,
+     2.0139435563976775
     ]
    ],
    "t": [
-    9188.909957282836,
-    30717.294541887266
+    8970.857819903516,
+    30873.608580075725
    ],
-   "moved_ft": 50.719930970169294,
+   "moved_ft": 3.775324335527375,
    "source": "control-solved"
   },
   "78": {
    "m": [
     [
-     1.955186313719819,
-     -0.009011727311041263
+     2.012502934071235,
+     -0.009275907634610905
     ],
     [
-     0.009011727311041263,
-     1.955186313719819
+     0.009275907634610905,
+     2.012502934071235
     ]
    ],
    "t": [
-    15248.018554249724,
-    30812.384796607832
+    15122.314606697404,
+    30909.786788026006
    ],
-   "moved_ft": 44.07954599573812,
+   "moved_ft": 1.2901896594372884,
    "source": "control-solved"
   },
   "79": {
    "m": [
     [
-     1.8678938128146658,
-     -0.006995252226378725
+     2.0200222566540855,
+     -0.007564972425761825
     ],
     [
-     0.0069952522263786,
-     1.8678938128146656
+     0.00756497242576169,
+     2.020022256654085
     ]
    ],
    "t": [
-    21196.085877649108,
-    31018.212859425326
+    21178.19141371636,
+    30921.068268556515
    ],
-   "moved_ft": 35.9781640565736,
+   "moved_ft": 3.874510883722603,
    "source": "control-solved"
   },
   "8": {
@@ -3002,181 +3541,181 @@
   "80": {
    "m": [
     [
-     2.0105032392158106,
-     -0.02798265677433869
+     1.997542172274457,
+     -0.027802261597362703
     ],
     [
-     0.02798265677433869,
-     2.0105032392158106
+     0.027802261597362703,
+     1.997542172274457
     ]
    ],
    "t": [
-    26767.225930536686,
-    30480.655395469388
+    27162.77358051883,
+    30901.4729472025
    ],
-   "moved_ft": 28.66236131888312,
+   "moved_ft": 5.929111303200228,
    "source": "control-solved"
   },
   "81": {
    "m": [
     [
-     2.0105032392158106,
-     -0.027982656774338685
+     2.0161593047257353,
+     -0.028061379223907647
     ],
     [
-     0.027982656774338685,
-     2.0105032392158106
+     0.028061379223907647,
+     2.0161593047257353
     ]
    ],
    "t": [
-    32883.59377398403,
-    30555.10953640288
+    33194.66904873236,
+    30898.507190541277
    ],
-   "moved_ft": 21.309911872299192,
+   "moved_ft": 2.4449447137781166,
    "source": "control-solved"
   },
   "82": {
    "m": [
     [
-     2.0105032392158106,
-     -0.027982656774338685
+     1.99783347098262,
+     -0.027806315961270374
     ],
     [
-     0.027982656774338685,
-     2.0105032392158106
+     0.027806315961270374,
+     1.99783347098262
     ]
    ],
    "t": [
-    38849.802325027966,
-    30495.917148604727
+    39179.171917364794,
+    30900.80410692564
    ],
-   "moved_ft": 18.328695344623497,
+   "moved_ft": 3.4473511238888026,
    "source": "control-solved"
   },
   "83": {
    "m": [
     [
-     1.9970826808083026,
-     -0.010192162121400491
+     2.019542826609187,
+     -0.010306788045240685
     ],
     [
-     0.010192162121400491,
-     1.9970826808083026
+     0.010306788045240685,
+     2.019542826609187
     ]
    ],
    "t": [
-    -957.1665633951179,
-    37580.05291762142
+    -1181.9411668924572,
+    37834.2980205685
    ],
-   "moved_ft": 19.060353281232466,
+   "moved_ft": 1.604920941096766,
    "source": "control-solved"
   },
   "84": {
    "m": [
     [
-     1.9970826808083026,
-     -0.010192162121400491
+     2.007906267693821,
+     -0.010247400571632115
     ],
     [
-     0.010192162121400491,
-     1.9970826808083026
+     0.010247400571632115,
+     2.007906267693821
     ]
    ],
    "t": [
-    5044.954344982338,
-    37513.769988397224
+    4881.297250975207,
+    37855.01267754297
    ],
-   "moved_ft": 18.879654551373186,
+   "moved_ft": 4.0565871961410975,
    "source": "control-solved"
   },
   "85": {
    "m": [
     [
-     1.94792940027514,
-     0.00297556815201178
+     2.0185788617812466,
+     0.0030834890487263424
     ],
     [
-     -0.0029755681520117847,
-     1.9479294002751402
+     -0.003083489048726347,
+     2.0185788617812466
     ]
    ],
    "t": [
-    13075.212336546678,
-    37620.767669693094
+    12942.271358044458,
+    37809.339109134155
    ],
-   "moved_ft": 15.261662292520363,
+   "moved_ft": 4.4127969976031025,
    "source": "control-solved"
   },
   "86": {
    "m": [
     [
-     1.9515548657773005,
-     -0.0075259877640044825
+     2.016009482549323,
+     -0.0077745509305678934
     ],
     [
-     0.0075259877640044825,
-     1.9515548657773005
+     0.0077745509305678934,
+     2.016009482549323
     ]
    ],
    "t": [
-    18976.154399227864,
-    37531.92909267341
+    19081.198775510315,
+    37848.646758091
    ],
-   "moved_ft": 3.0569748109152455,
+   "moved_ft": 2.3093387363318154,
    "source": "control-solved"
   },
   "87": {
    "m": [
     [
-     2.0332333661949242,
-     -0.008067498670424817
+     1.9894464349721077,
+     -0.007893760124080211
     ],
     [
-     0.0080674986704248,
-     2.0332333661949242
+     0.007893760124080194,
+     1.9894464349721077
     ]
    ],
    "t": [
-    24807.7461092769,
-    37418.242910989975
+    25198.544525186368,
+    37874.8206419312
    ],
-   "moved_ft": 2.727869942199294,
+   "moved_ft": 6.206643563781634,
    "source": "control-solved"
   },
   "88": {
    "m": [
     [
-     2.0403014939104227,
-     0.004753431449771932
+     2.010657080862,
+     0.004684366811180539
     ],
     [
-     -0.004753431449771476,
-     2.0403014939104227
+     -0.00468436681118009,
+     2.010657080862
     ]
    ],
    "t": [
-    30722.689566414283,
-    37453.73072743173
+    31112.688331821642,
+    37825.08994257965
    ],
-   "moved_ft": 7.4170937394042875,
+   "moved_ft": 3.4559989932050352,
    "source": "control-solved"
   },
   "89": {
    "m": [
     [
-     2.0483665113568694,
-     0.01637531893693743
+     1.9872439715185417,
+     0.015886685150679487
     ],
     [
-     -0.016375318936936792,
-     2.048366511356869
+     -0.01588668515067887,
+     1.9872439715185413
     ]
    ],
    "t": [
-    36758.02712838884,
-    37488.380622874814
+    37143.44848244751,
+    37914.74071351191
    ],
-   "moved_ft": 14.022082330371884,
+   "moved_ft": 4.130995359861526,
    "source": "control-solved"
   },
   "9": {
@@ -3200,181 +3739,181 @@
   "90": {
    "m": [
     [
-     2.0381384268427976,
-     0.007326780953357436
+     2.0084351742126163,
+     0.007220002521256189
     ],
     [
-     -0.007326780953357436,
-     2.0381384268427976
+     -0.007220002521256189,
+     2.0084351742126163
     ]
    ],
    "t": [
-    42800.97686356874,
-    37483.87336028448
+    43116.904780713914,
+    37854.93957859392
    ],
-   "moved_ft": 16.34774507098063,
+   "moved_ft": 4.62331290575552,
    "source": "control-solved"
   },
   "91": {
    "m": [
     [
-     1.9970826808083026,
-     -0.010192162121400493
+     2.015079748539332,
+     -0.010284010613096507
     ],
     [
-     0.010192162121400493,
-     1.9970826808083026
+     0.010284010613096507,
+     2.015079748539332
     ]
    ],
    "t": [
-    -943.7089271280158,
-    44405.09310891172
+    -1155.6608149440776,
+    44761.22801485941
    ],
-   "moved_ft": 17.888302171556983,
+   "moved_ft": 2.309212571933684,
    "source": "control-solved"
   },
   "92": {
    "m": [
     [
-     2.013119169439517,
-     -0.03160859296809879
+     2.020568679324662,
+     -0.03172555997598682
     ],
     [
-     0.031608592968098904,
-     2.0131191694395176
+     0.03172555997598693,
+     2.0205686793246627
     ]
    ],
    "t": [
-    5201.4436068133155,
-    44346.51313852089
+    5048.901548401893,
+    44735.34273037192
    ],
-   "moved_ft": 16.94891468130622,
+   "moved_ft": 2.594542990586226,
    "source": "control-solved"
   },
   "93": {
    "m": [
     [
-     1.9805997589639572,
-     -0.01403521950432966
+     2.017416014126048,
+     -0.014296112307223696
     ],
     [
-     0.01403521950432966,
-     1.9805997589639572
+     0.014296112307223696,
+     2.017416014126048
     ]
    ],
    "t": [
-    11149.188326683692,
-    44375.406407584254
+    11020.020362744704,
+    44775.44719372439
    ],
-   "moved_ft": 15.47805848467256,
+   "moved_ft": 5.264286259595103,
    "source": "control-solved"
   },
   "94": {
    "m": [
     [
-     1.9515548657773005,
-     -0.0075259877640044825
+     2.0223787949047165,
+     -0.007799113584527778
     ],
     [
-     0.0075259877640044825,
-     1.9515548657773005
+     0.007799113584527778,
+     2.0223787949047165
     ]
    ],
    "t": [
-    17051.362884247625,
-    44338.749370656384
+    17035.013229454886,
+    44736.63641389311
    ],
-   "moved_ft": 12.341452454486921,
+   "moved_ft": 4.175506034876246,
    "source": "control-solved"
   },
   "95": {
    "m": [
     [
-     1.951554015197543,
-     -0.007743409922655665
+     2.0223779134565465,
+     -0.008024426216475445
     ],
     [
-     0.007743409922655665,
-     1.951554015197543
+     0.008024426216475445,
+     2.0223779134565465
     ]
    ],
    "t": [
-    23004.40811412488,
-    43083.158098079184
+    23141.17343370752,
+    42944.65484976758
    ],
-   "moved_ft": 1.1101613457994692,
+   "moved_ft": 1.7176807707119852,
    "source": "control-solved"
   },
   "96": {
    "m": [
     [
-     1.9474372253891663,
-     -0.03512415979150218
+     2.0298024638324574,
+     -0.03660970692936651
     ],
     [
-     0.03512415979150226,
-     1.9474372253891663
+     0.0366097069293666,
+     2.0298024638324574
     ]
    ],
    "t": [
-    28897.09410034463,
-    44269.602930670764
+    29128.68745999074,
+    44680.13908078495
    ],
-   "moved_ft": 7.818217281360486,
+   "moved_ft": 4.7816391725297995,
    "source": "control-solved"
   },
   "97": {
    "m": [
     [
-     2.03119225274342,
-     -0.007886134147441744
+     2.024835594925937,
+     -0.007861454328871961
     ],
     [
-     0.007886134147442297,
-     2.03119225274342
+     0.007861454328872513,
+     2.024835594925937
     ]
    ],
    "t": [
-    34740.053586044174,
-    44495.955329863355
+    35169.038138780175,
+    44740.97137443554
    ],
-   "moved_ft": 9.793940254594235,
+   "moved_ft": 7.313531073522796,
    "source": "control-solved"
   },
   "98": {
    "m": [
     [
-     2.027870570777623,
-     -0.0016314461143267806
+     2.006035119676861,
+     -0.001613879232906311
     ],
     [
-     0.0016314461143270979,
-     2.027870570777623
+     0.0016138792329066247,
+     2.006035119676861
     ]
    ],
    "t": [
-    40790.94237895996,
-    44481.64290334495
+    41123.63380840545,
+    44739.899310926434
    ],
-   "moved_ft": 13.374229441635743,
+   "moved_ft": 3.0377014649262017,
    "source": "control-solved"
   },
   "99": {
    "m": [
     [
-     2.01831226228318,
-     -0.010417119030237943
+     2.0217811881044256,
+     -0.01043502320386968
     ],
     [
-     0.010417119030237943,
-     2.01831226228318
+     0.01043502320386968,
+     2.0217811881044256
     ]
    ],
    "t": [
-    41611.56258391525,
-    30509.469344753248
+    41890.65127384625,
+    30873.221378356935
    ],
-   "moved_ft": 17.342562714737877,
+   "moved_ft": 5.63674319871783,
    "source": "control-solved"
   }
  }
