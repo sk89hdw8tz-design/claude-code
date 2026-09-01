@@ -2,7 +2,7 @@
  "project": "Galveston Sanborn wharf/downtown mosaics, 1899 + 1912",
  "branch": "claude/galveston-setup-part-a-mk5z1l",
  "governing_spec": "Cloud addendum (Part B brief unavailable in this cloud session; stage structure reconstructed from the addendum and prior-work branches). Ambiguities go to HUMAN_QUEUE.md, not guessed.",
- "updated_utc": "2026-08-29T22:10:00Z",
+ "updated_utc": "2026-09-01T22:54:00Z",
  "environment": {
   "network": "restricted proxy: pypi/apt/github reachable; loc.gov, tile.loc.gov, maps.lib.utexas.edu, texashistory.unt.edu blocked (CONNECT 403)",
   "source_fetch_path": "GitHub Actions CI runners (full egress) commit sources to data branches; sessions read them via git",
@@ -116,8 +116,20 @@
    "state": "92/92 units placed ({'core': 12, 'tie-translation': 34, 'tie-fit': 4, 'fit': 33, 'tie-single': 9}); city recipe exported"
   },
   "7_remaining": {
-   "status": "open",
-   "state": "1912 city-wide corridor grid from transcribed keymap spans; panel-split 1912 sheets 48/85/93/99; city QC pass"
+   "status": "done",
+   "state": "1912 city-wide corridor grid (grid_city.json, gridfit); sheet 72 placed; row shear fixed (106 cross-row avenue controls); seams re-cut"
+  },
+  "8_1912_finish": {
+   "status": "in progress (seam census)",
+   "outputs": [
+    "tools/{faces,widthcheck,latticeties,seamcrops,sheetsgeo}.py",
+    "outputs/1912/recipe/plates/lattice.json",
+    "outputs/1912/recipe/qc/control_widthcheck.json",
+    "outputs/1912/qc/seams/ (144 band-seam crops + grades/)",
+    "outputs/1912/qc/tiling_audit.json"
+   ],
+   "state": "seams re-cut on controls with overlap-only trimming and the master DP masks restored for the core (HQ-20); every accepted control width-tested against the plates own lattices, 83|91 alley read corrected (HQ-21); 38 lattice ties for the uncontrolled seams and a re-solve, sheets moved median 9 ft max 95 ft (HQ-22); tiling gate 1 piece / 455 px2 overlap / 1 source hole 0.245%; 144 band seams rendered at 100% and 50% and graded by 12 grader agents on the brief s rubric",
+   "gate": "every band seam graded; seams <4 reworked or escalated; COG+DZI republished"
   }
  },
  "disk": {

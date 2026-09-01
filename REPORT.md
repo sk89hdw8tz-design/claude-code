@@ -66,9 +66,29 @@ byte-deterministically on any machine:
   and a `vips dzsave` DeepZoom pyramid. `--downsample 2` is the ~150
   ppi-equivalent the brief caps web tiles at.
 - **`tools/tiling.py`** — the Stage 4 gate as exact polygon geometry: is the
-  city one connected piece, is any ground unclaimed, does any pixel have two
-  owners. **`tools/fillgaps.py`** closes holes a neighbour's scan can supply
-  (ownership only, never pixels).
+  city one connected piece, is any ground unclaimed (holes, and since HQ-20
+  inlets — channels open to the exterior), does any pixel have two owners.
+  **`tools/fillgaps.py`** closes gaps a neighbour's scan can supply, splitting
+  a gap between sheets when no single one covers it (ownership only, never
+  pixels).
+- **`tools/faces.py`** — reads every street and avenue on a plate from its
+  own ink: block faces are long rules, a street is two rules a roadway apart
+  with little ink between, consecutive streets are a block apart; a dynamic
+  programme over the rule spikes picks the chain. Validated against the
+  observers' 483 control coordinates at 2 px median. Cached in
+  `recipe/plates/lattice.json`; plates whose chain is doubtful are flagged
+  `weak` and never used for placement.
+- **`tools/widthcheck.py`** — HQ-18's test: every accepted control coordinate
+  against the plate's own corridor centre (`recipe/qc/control_widthcheck.json`).
+- **`tools/latticeties.py`** — a control for every seam that had none, from
+  the plates' readings; identity from the current placement (within 0.45 of
+  a block) and the key maps. **`tools/streetcut.py`** cuts each seam on its
+  control's corridor, trimming a sheet only inside its overlap with the
+  neighbour, with the master's DP masks as the core's base.
+- **`tools/seamcrops.py`** — every band seam as a 100% and 50% crop with the
+  cut marked, plus `qc/seams/index.json`; the graders work from these.
+- **`tools/sheetsgeo.py`** — rewrites `recipe/sheets_city.geojson` from the
+  live transforms (footprint, tier, scale, rotation per unit).
 
 Both years were rendered full-city at 1/8 in-cloud on 2026-08-30 as an
 end-to-end check of the recipes: 1899 → 3795×5945, 1912 → 2547×5687. The
@@ -95,6 +115,40 @@ version (fixed interpolation, integer-labeled ownership, no
 machine-dependent state). They are NOT pixel-identical to the uploaded
 8-27-26 masters, which were produced by the prior pipeline with flat-field
 and water treatment; parity with those masters is tracked in HUMAN_QUEUE.
+
+## 1912 — finishing pass (2026-09-01)
+
+Three things were wrong with the city mosaic after the row-shear fix, and
+each is now closed with a measurement rather than a judgement
+(`HUMAN_QUEUE.md` HQ-20..22):
+
+1. **The seams.** The white band at 57|63 was unclaimed ground, not plate
+   margin: the first street cut intersected whole half-planes, so diagonal
+   neighbours' cuts reached across entire sheets and left channels nobody
+   owned, which the hole audit could not see. It had also replaced the 27×40
+   master's own min-ink cuts on the 12 core sheets with bisector boxes.
+   `streetcut.py` now trims only inside each pair's overlap and keeps the
+   master's masks. Gate: one piece, 455 px² double ownership, one hole
+   (the 84|85 source gap, 0.245%).
+2. **The controls.** Every one of the 242 accepted controls was checked
+   against the plate's own lattice reading. One pair (83|91) had read the
+   mid-block alley as Avenue F on both plates — exactly the trap HQ-18
+   predicted — and three observer reads were 15–19 ft past the street's
+   centre; all four are corrected in place with the observer's value kept.
+3. **The uncontrolled seams.** 38 seams had never had a constraint; the
+   plates' lattices supplied one for each, and the network was re-solved
+   with the core frozen. Sheets moved a median of 9 ft (max 95 ft, sheet
+   68, whose y had never been pinned). Three side-by-side pairs (61|62,
+   69|70, 76|77) had been drawing the same avenue twice, 80 ft apart.
+
+The 144 band seams were then rendered at 100% and 50% and graded on the
+brief's §6 rubric by twelve graders (`outputs/1912/qc/seams/grades/`); the
+tally and the correction round are in HQ-24.
+
+Still outside the product: the wharf sheet 5 (two panels with their own
+joint transforms) is not in the city ownership, and the mosaic frame has no
+EPSG:3857 solve (the geocoders and OSM are unreachable from this VM), so
+`lookup.py` reports mosaic coordinates rather than lat/lng.
 
 ## 1912 — consolidated from the accepted prior build
 

@@ -1,6 +1,6 @@
 # Galveston Sanborn mosaics — status
 
-**Updated:** 2026-09-01 (1912 row shear fixed; seams re-cut; grid city-wide) · **Branch:** `claude/galveston-setup-part-a-mk5z1l` · **Ledger:** `state/ledger.json`
+**Updated:** 2026-09-01 (1912 seams re-cut from the plates' lattices; core cuts restored; registration re-solved; seam census) · **Branch:** `claude/galveston-setup-part-a-mk5z1l` · **Ledger:** `state/ledger.json`
 
 ## Headline
 
@@ -9,8 +9,8 @@
 | Sources inventoried | **102/102** (UT PCL, sha256 ✅) | **129/129** (LOC IIIF, sha256 ✅) |
 | Target sheets | 13 (of which 13 in repo) | 13 + 1 context (18 archival JP2s in repo) |
 | Registration | ✅ full-affine rebuild, gated | ✅ solved affines (prior accepted run) |
-| Seams | ✅ 19 min-ink cuts + ownership | ✅ cuts + masks frozen |
-| QC | ✅ gate + guard metrics + proof panels | ✅ prior run1 + 2 reviewer reports |
+| Seams | ✅ 19 min-ink cuts + ownership | ✅ core DP masks + 171 control-cut ring seams; 1 piece / 0 overlap / 1 source hole |
+| QC | ✅ gate + guard metrics + proof panels | ✅ prior run1 + reviews; 144 band-seam crops graded (see below) |
 | Recipe consolidated | ⬜ | ✅ (hash-verified vs freeze) |
 
 ## Stage bars
@@ -22,7 +22,8 @@ Stage 2  register 1899             ██████████ done (HQ-4 awa
 Stage 3  QC + human queue          ██████████ done (HQ-4 awaiting answer)
 Stage 4  indexes + render/crop     ██████████ done (both years; DZI deferred off-cloud)
 Stage 5  1899 city-wide (90 units)  ██████████ 89/90 placed (71a: no shared ground)
-Stage 6  1912 full volume           ██████████ 92/92 placed; city recipe exported
+Stage 6  1912 full volume           ██████████ 93/93 placed; city recipe exported
+Stage 7  1912 finish                ████████░░ seams re-cut, controls audited, re-solved; census + publish
 ```
 
 ## Sheet grid (target footprint)
@@ -41,22 +42,21 @@ Row/col per the key maps; 1899 wharf column sits 0.67 rows high of the inland gr
 
 ## Worst ten seams
 
-### 1912 (consolidated QA)
+### 1912 (control residuals and the seam census)
 
-| seam | across RMS px* | mask tiling |
-|---|---|---|
-| 12\|49 | 108.71 | PASS |
-| 11\|12 | 62.09 | PASS |
-| 7\|9 | 34.52 | PASS |
-| 9\|10 | 28.53 | PASS |
-| 10\|43 | 26.97 | PASS |
-| 44\|50 | 23.86 | PASS |
-| 43\|49 | 20.38 | PASS |
-| 39\|43 | 20.12 | PASS |
-| 7\|8 | 17.05 | PASS |
-| 8\|39 | 14.96 | PASS |
+Registration: 242 controls (133 observer-read, 38 read from the plates'
+own lattices, 71 core/cross-row), core frozen. Residuals after the re-solve:
+observer controls median 3.7 ft (90th 12.6), lattice ties median 4.1 ft
+(max 14.4). Worst residuals are the pre-existing 15th/18th St cluster on
+30/31/35/36/37/41 (28–34 ft; a scale mismatch translation cannot close).
 
-\*across = drafted frontage separation vs. default street width — absorbs the plates' drafted-width disagreement, **not** seam misregistration (source: prior QA run1, consolidated). All 17 seams PASS mask tiling; worst gap 0.001 px.
+Tiling gate (`tools/tiling.py`): 93 regions, **one connected piece, 455 px²
+double ownership, one unclaimed hole** — the 84|85 source gap, 9.7M px²
+(0.245% of the union), ground no 1912 plate maps.
+
+Seam census: 144 band seams rendered at 100% and 50%
+(`outputs/1912/qc/seams/`, `tools/seamcrops.py`) and graded on the brief's
+rubric by twelve graders — see `qc/seams/grades/` and HQ-24 for the tally.
 
 ### 1899 (held-out landmark gate, worst first)
 
@@ -76,8 +76,10 @@ affine's illusion — see REPORT.md.)
 
 | agent | task |
 |---|---|
-| orchestrator | city recipes exported; 1912 city grid outstanding |
+| orchestrator | 1912 seam census, correction round, publish |
+| seam graders (12) | 144 band seams, brief §6 rubric |
 | adjudicators (6 batches) | ✅ finished — 227 landmark-anchored ties |
+| cross-row observers (15) | ✅ finished — 106 avenue controls |
 
 ## ETA
 
@@ -133,11 +135,9 @@ overlap, 8 interior holes.** Address lookup extended to streets 7-46 and all
 ## Human queue
 
 See `HUMAN_QUEUE.md` — open items:
-- **HQ-19** plate margins bleed in where a cut lands on a centreline; 8 holes
-  remain, of which the two largest are genuine source gaps (25% and 37% of
-  that ground is on any plate).
-- **HQ-18** the existing 154 controls were proposed by a detector that finds
-  alleys, not avenues; a width-test pass over them is not yet done.
+- **HQ-24** seam census verdicts below 4, if any remain after the correction round.
 - **HQ-7** 1899 `71a` drawn but unverified and visibly misplaced.
+- Wharf sheet 5 (two panels) is still outside the 1912 city ownership.
 
-HQ-1..HQ-4 resolved; HQ-6, HQ-8, HQ-9 and HQ-17 fixed.
+HQ-1..HQ-4 resolved; HQ-6, HQ-8, HQ-9, HQ-17, HQ-18, HQ-19 fixed (HQ-20..22
+record how). HQ-23 notes a second session on this branch.

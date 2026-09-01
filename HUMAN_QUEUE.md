@@ -656,3 +656,129 @@ three sheets, with no single sheet reaching the 98% bar `fillgaps` requires
 before it will assign one. Splitting those between covering sheets, on the
 same half-plane logic the cuts use, would close them without breaking the
 single-writer rule. **Not done.**
+
+---
+
+## HQ-20 · 1912 seams re-cut from the plates themselves; the core's own cuts restored — APPLIED
+
+Closes HQ-19's two defects, and corrects its diagnosis of the first.
+
+**The "margin bleed" was unclaimed ground, not margin.** The white band through
+30th St at 57|63 was measured against the ownership polygons: at x = 20,000
+sheet 57 owned down to y = 17,516 and sheet 63 from y = 17,688, and nothing
+owned the 172 px between. The band was an *inlet* — a channel of unclaimed
+ground open to the exterior — which `tiling.py` never counted because it only
+looked for interior rings. It arose because the first `streetcut.py`
+intersected each sheet with whole half-planes, so a diagonal neighbour's cut
+reached across the entire sheet and two such cuts did not meet. The ring
+plates also turn out to have no continuous neatline to trim to: their border
+is a set of brackets a few px inside the paper edge, and their plate numbers
+and north arrows sit in the roadway — exactly as the accepted master shows
+them at 9|10 (`qc/human/HQ9_09-10_core_control_clean.jpg`, plate number
+"10" in Mechanic). Nothing in `units.json` was trimmed.
+
+**What changed.** `streetcut.py` is rewritten on three points:
+- a sheet is trimmed only inside its overlap with each neighbour —
+  region(u) = base(u) − ∪ (base(u) ∩ base(v) ∩ v's side) — so a cut can only
+  remove ground the neighbour keeps;
+- the 12 frozen core sheets keep the 27×40 master's min-ink DP masks
+  (`seams/masks.json`) as their base. The earlier city cut had silently
+  replaced them with 5-vertex bisector boxes (IoU 0.92–0.96 against the
+  master's regions); the master's cuts are the accepted product and are back;
+- a seam with no control is cut on the corridor the two plates themselves
+  show (HQ-22), not on a bisector.
+
+`tiling.py` now reports inlets (closing the union by 700 px and reading what
+the closed shape contains that the union does not). `fillgaps.py` splits a
+gap between the sheets whose paper covers it when no single sheet does.
+
+**Gate after the re-cut and re-solve:** 93 regions, one connected piece,
+455 px² double ownership (0.0000%), **one** unclaimed hole — the 84|85 source
+gap, 9.66M px² (1,154 px ≈ 200 ft wide, 0.245% of the union), where no 1912
+plate maps the ground. The previous state had 8 holes and the uncounted
+inlets. Of the 252 seams, 171 are true band seams and every one of them is
+cut on a control — 133 observer-read, 38 lattice-read — and 81 are corner
+contacts cut at the overlap midpoint.
+
+A polygon-export bug found on the way is worth recording: a difference can
+leave a notch attached to the ring at a single point, which GEOS represents
+as a hole touching the exterior; exporting exteriors only brought the notch
+back as double ownership (1.9M px² at 77|84). A 1 px opening before export
+fixes it, and the audit's overlap figure is the check.
+
+## HQ-21 · Width test over every accepted control — DONE (closes HQ-18's open item)
+
+`tools/faces.py` reads every corridor on a plate from its own ink: block
+faces are long rules, a street is two rules a roadway apart with little ink
+between them, and consecutive streets are a block apart. A dynamic programme
+over the rule spikes picks the chain, so the 25th St boulevard (359–364 px,
+~125 ft) and the stained outlot plates read correctly. `tools/widthcheck.py`
+compares every accepted control coordinate against that reading.
+
+| | value |
+|---|---|
+| control coordinates checked | 483 (242 controls) |
+| offset to the plate's corridor centre, median | **2.0 px** |
+| 90th percentile | 19 px |
+| flagged beyond 30 px | 21 |
+
+**The trap HQ-18 predicted was real once.** 83|91 "Ave F" had been read at
+native x ≈ 1,665 on *both* plates — the west lot line of blocks 459–461, the
+mid-block alley, 500 px west of the lettered roadway. The equal offset
+cancelled in the solve, so registration was unaffected, but the corridor
+named Ave F in the grid and the seam cut both sat on the alley. Corrected to
+the plates' roadway (83: 2,170; 91: 2,164) from the `AVE. F OR CHURCH`
+lettering and the block faces either side of it.
+
+Three observer reads were 45–54 px (15–19 ft) past the street's centre
+(47|53 on 53, 78|86 on 86, 79|87 on 87 — all at a plate's top edge, between
+the street label and the block face) and are corrected from the plate. Each
+correction is recorded inside the control file with the observer's original
+value. The remaining flags are on plates whose chain is itself flagged weak
+(the composites 85/93/99, the rail yard 75, the wharf plates 13/15/17); there
+the observers' reads stand.
+
+## HQ-22 · Registration re-solved with 38 plate-read ties — APPLIED
+
+With every corridor readable on every plate, the 38 seams that never had an
+observer control got one from the plates (`tools/latticeties.py`): the
+shared corridor's centre in each plate's native pixels, identity settled by
+the current placement (the two readings must fall within 0.45 of a block of
+each other; a block is 350–400 ft, and every one fell within 106 ft) and
+the key maps' coverage lists. Only plates whose chain is not flagged weak
+contribute, and only corridors whose faces were actually measured, not the
+one extrapolated past the plate's edge (that extrapolation was 100 px off on
+sheet 71).
+
+What the plates said about the placement they had: median 20 ft apart,
+90th percentile 45 ft, worst 106 ft (61|68 and 68|76 — sheet 68's y had never
+been constrained). Three side-by-side pairs, **61|62, 69|70 and 76|77**, were
+80 ft apart: each plate draws the full avenue (I, K, I) and they had been
+placed with the two copies side by side, the same defect class as HQ-9's
+75|76.
+
+`netsolve.py` re-solved with the core frozen: observer controls median
+3.7 ft, lattice ties median 4.1 ft / max 14.4 ft; sheets moved a median of
+9 ft, at most 95 ft (68). The worst residuals (28–34 ft) are the pre-existing
+15th/18th St cluster on sheets 30/31/35/36/37/41, where HQ-13 already noted
+a scale mismatch that translation alone cannot close. `grid_city.json` was
+refit: streets 397.9 ft pitch (21.6 ft residual), avenues 346.9 ft (28.5 ft).
+`sheets_city.geojson` is now written from the live transforms (it had been
+frozen at the city export and lacked sheet 72); coverage.png shows 93/93.
+
+**The owner can overturn this.** The state before it is in git (commit
+25d14c2) and `transforms_city.json.pre_controls`; the 38 tie files carry
+`"observer": "lattice (tools/faces.py)"` and can be deleted and the solve
+re-run.
+
+## HQ-23 · Two sessions were working on this branch at once — NOTE
+
+Commit 25d14c2 (session `018fqghgw6FGFRhXhgNu9MJF`, 22:14 UTC) added a
+dashboard whose plan freezes the registration and lists a neatline trim as
+the next task. This session (`019xkiTH5CzPb2j6nmj9Wg2t`) started at the same
+time from the same tip and did the work above. The two are reconciled here:
+the neatline trim is a misdiagnosis (HQ-20), and the registration moved on
+sheet-level evidence (HQ-22), which is what that plan allowed. The dashboard
+has been updated to the real state. If the other session pushes a
+competing re-cut, rebase and re-run `streetcut → fillgaps → tiling`; the
+gate numbers above are the check.
