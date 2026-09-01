@@ -16,3 +16,6 @@ outputs/*/tiles/
 # the COG is over GitHub's 100 MB file cap; rebuild with tools/publish.py
 outputs/*/mosaic/*.tif
 outputs/*/tiles/
+
+# transcript HTML is an intermediate; the PDF is the deliverable
+outputs/transcript/*.html
