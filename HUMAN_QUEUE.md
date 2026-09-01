@@ -582,3 +582,77 @@ argued from the hundred-block runs.
 **Nothing here needs a decision.** It is recorded because the shear was
 present in the published COG and tiles, and because the detector caveat
 outlives this pass.
+
+---
+
+## HQ-19 · 1912 seams re-cut after the shear fix — APPLIED, with two defects left
+
+`streetcut.py --apply` then `fillgaps.py --apply`, against the corrected
+placement. Stage 4 gate: **93 regions, one connected piece, 0 px² overlap, 8
+interior holes.** Seams: 136 from controls, 143 from bisectors.
+
+The direct test passes. A crop across the 57|63 seam — the pair whose 1,643 ft
+disagreement exposed the shear — now runs Avenue K, M and M½ straight through
+30th St with no step.
+
+### Loading all the controls needed a fix
+
+`streetcut.load_cuts` keyed cuts by pair alone, and its filename regex was the
+pre-`_x` one, so it saw 154 of the 204 controls. Once the cross-row files
+parsed, a worse bug appeared: a stacked pair now carries **two** controls, the
+street it abuts along and the avenue it crosses, and the second overwrote the
+first. Since a stacked pair's avenue control is on the wrong axis to cut with,
+the good street cut was then discarded and the seam fell back to a bisector.
+Cuts are now keyed by pair **and** axis, and the caller asks for the axis the
+seam's own geometry calls for.
+
+### Negative result: snapping uncontrolled seams to the grid
+
+143 seams have no control and fall back to a bisector between sheet centres,
+which is an arbitrary line that can run through a building — what §2.5
+forbids. With the city grid now solved, snapping those to the nearest corridor
+centreline looked like a clear improvement. It is not: every setting made the
+tiling worse.
+
+| snap limit | seams on a centreline | disjoint pieces |
+|---|---|---|
+| off (bisectors) | 136 | **2** |
+| 0.1 block | 248 | 3 |
+| 0.2 block | 265 | 8 |
+| 0.3 block | 275 | 8 |
+| 0.5 block | 279 | 8 |
+
+A seam that moves to reach a corridor trims its sheet away from a *different*
+neighbour's seam, and the east-end sheets (17–32) come apart. Constraining the
+snap to fall between the two sheet centres changed nothing — they already did.
+The code is kept, defaulted off, behind `--snap-blocks`.
+
+### Defect 1 — plate margins bleed in at centreline cuts
+
+Visible at the 57|58 seam: the mosaic shows a grey vertical band carrying
+sheet 57's **printed plate margin** — its border rule and the "57" plate
+number. The cut itself is right, on Avenue N's centreline at x=21,536 against
+the grid's 21,536. The problem is that each plate's drawn margin sits exactly
+at the corridor where it will be cut, so a centreline cut necessarily includes
+one sheet's margin instead of the neighbour's map content.
+
+The fix is to trim each sheet's `extent` in `units.json` to the neat line, so
+a footprint covers map area only. The extents are unchanged by this pass, so
+the mechanism predates it. **Not done.**
+
+### Defect 2 — 8 holes, and a correction
+
+Two of the eight are large: 16.1M px² (11 acres) at [14699, 41989] and 11.8M
+px² (8 acres) at [11207, 26881].
+
+**I first reported these as over-trimming and I was wrong.** That reading came
+from testing whether each hole's *centroid* fell inside a sheet footprint,
+which it did. Measuring the polygons properly, the two holes are only **25%
+and 37% covered by any sheet at all** — they are genuine source gaps, ground
+that no 1912 plate maps. `fillgaps` was right to refuse them.
+
+Of the six smaller holes, four are 82–100% covered but by a *union* of two or
+three sheets, with no single sheet reaching the 98% bar `fillgaps` requires
+before it will assign one. Splitting those between covering sheets, on the
+same half-plane logic the cuts use, would close them without breaking the
+single-writer rule. **Not done.**
