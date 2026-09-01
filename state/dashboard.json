@@ -2,72 +2,201 @@
  "project": {
   "map": "Galveston Sanborn 1912 full-city mosaic",
   "year": 1912,
-  "stage": "repository/current-state audit",
+  "stage": "seam census",
   "status": "WORKING",
   "start_time": "2026-09-01T22:05Z",
-  "last_update": "2026-09-01T22:15Z",
-  "git_commit": "9d75f2b",
-  "objective": "Finish the 1912 full-city mosaic to print-ready quality without re-solving registration: margins, composite plates, ownership gaps, complete seam census, final deliverables."
+  "last_update": "2026-09-01T22:49Z",
+  "git_commit": "7ffc27b",
+  "objective": "Finish the 1912 full-city mosaic to print-ready quality: seams re-cut from controls and the plates' own lattices, core cuts restored, registration re-solved on plate evidence, complete seam census, final deliverables."
  },
  "progress": {
-  "overall_pct": 5,
-  "stage_pct": 70,
-  "tasks_done": 0,
+  "overall_pct": 45,
+  "stage_pct": 45,
+  "tasks_done": 6,
   "tasks_total": 11,
-  "current_task": "repository/current-state audit",
-  "next_task": "neatline/margin cleanup",
+  "current_task": "complete seam census",
+  "next_task": "correction round",
   "blockers": []
  },
  "eta": {
-  "range": "8-14 hours remaining",
-  "confidence": "LOW",
-  "reason": "initial estimate; seam census of ~280 seams and two full-city renders dominate; render duration on this VM not yet measured this run"
+  "range": "3-6 hours remaining",
+  "confidence": "MEDIUM",
+  "reason": "171 band-seam crops rendering (~8 s each); grading by subagents; one full-city publish (~25 min at 1/2)"
  },
  "tasks": [
-  {"name": "repository/current-state audit", "status": "ACTIVE", "pct": 70, "weight": 3, "deps": [], "accept": "state files, recipe, tools and master understood; toolchain and 93 working images materialised"},
-  {"name": "control confidence audit", "status": "NOT STARTED", "pct": 0, "weight": 6, "deps": ["repository/current-state audit"], "accept": "every accepted control passes width/framing checks or is explained; no registration change without sheet-level evidence"},
-  {"name": "neatline/margin cleanup", "status": "NOT STARTED", "pct": 0, "weight": 10, "deps": ["repository/current-state audit"], "accept": "every unit's footprint trimmed to its neatline; no border rule, plate number or margin text renders inside mapped ground"},
-  {"name": "abnormal/composite plate handling", "status": "NOT STARTED", "pct": 0, "weight": 8, "deps": ["neatline/margin cleanup"], "accept": "sheets 26, 85, 99 (and 48, 93, 5 if composite) split into panels or masked; no panel placed by another panel's geometry"},
-  {"name": "ownership-gap resolution", "status": "NOT STARTED", "pct": 0, "weight": 6, "deps": ["neatline/margin cleanup", "abnormal/composite plate handling"], "accept": "every hole classified SOURCE or OWNERSHIP; all ownership holes assigned; source holes documented"},
-  {"name": "seam/source ownership", "status": "NOT STARTED", "pct": 0, "weight": 8, "deps": ["neatline/margin cleanup"], "accept": "seams re-cut on corrected footprints; one authentic owner per overlap; tiling audit 1 piece / 0 overlap"},
-  {"name": "complete seam census", "status": "NOT STARTED", "pct": 0, "weight": 20, "deps": ["seam/source ownership"], "accept": "every seam reviewed from programmatic crops with a recorded verdict"},
-  {"name": "correction round", "status": "NOT STARTED", "pct": 0, "weight": 14, "deps": ["complete seam census"], "accept": "every actionable census failure fixed and its seam re-checked"},
-  {"name": "full-city QC", "status": "NOT STARTED", "pct": 0, "weight": 8, "deps": ["correction round"], "accept": "overview-scale review plus representative 1:1 detail review pass; core visually equivalent to the accepted master"},
-  {"name": "final render", "status": "NOT STARTED", "pct": 0, "weight": 10, "deps": ["full-city QC"], "accept": "full-quality COG/TIFF plus print master and preview regenerated from the final recipe"},
-  {"name": "final deliverable verification", "status": "NOT STARTED", "pct": 0, "weight": 7, "deps": ["final render"], "accept": "every deliverable opens, dimensions and resolution tags correct, sources at full available quality"}
+  {
+   "name": "repository/current-state audit",
+   "status": "PASSED",
+   "pct": 100,
+   "weight": 3,
+   "deps": [],
+   "accept": "state files, recipe, tools and master understood; toolchain and 93 working images materialised"
+  },
+  {
+   "name": "control confidence audit",
+   "status": "PASSED",
+   "pct": 100,
+   "weight": 6,
+   "deps": [
+    "repository/current-state audit"
+   ],
+   "accept": "widthcheck.py: 483 control coordinates vs the plates' own lattices, median 2 px; 83|91 (alley read as Ave F on both plates) and three observer reads corrected; 21 flags remain on weak-lattice plates (composites 85/93/99, rail yard 75)"
+  },
+  {
+   "name": "neatline/margin cleanup",
+   "status": "PASSED",
+   "pct": 100,
+   "weight": 10,
+   "deps": [
+    "repository/current-state audit"
+   ],
+   "accept": "RESOLVED AS MISDIAGNOSIS: ring plates have no continuous neatline; the \"margin bleed\" at 57|63 was unclaimed ground (an inlet the hole audit missed). Fixed by trimming only inside overlaps (streetcut.py); brackets/plate numbers inside the paper are what the master shows too."
+  },
+  {
+   "name": "abnormal/composite plate handling",
+   "status": "NOT STARTED",
+   "pct": 0,
+   "weight": 8,
+   "deps": [
+    "neatline/margin cleanup"
+   ],
+   "accept": "sheets 26, 85, 99 (and 48, 93, 5 if composite) split into panels or masked; no panel placed by another panel's geometry"
+  },
+  {
+   "name": "ownership-gap resolution",
+   "status": "PASSED",
+   "pct": 100,
+   "weight": 6,
+   "deps": [
+    "neatline/margin cleanup",
+    "abnormal/composite plate handling"
+   ],
+   "accept": "every hole classified SOURCE or OWNERSHIP; all ownership holes assigned; source holes documented"
+  },
+  {
+   "name": "seam/source ownership",
+   "status": "PASSED",
+   "pct": 100,
+   "weight": 8,
+   "deps": [
+    "neatline/margin cleanup"
+   ],
+   "accept": "seams re-cut on corrected footprints; one authentic owner per overlap; tiling audit 1 piece / 0 overlap"
+  },
+  {
+   "name": "complete seam census",
+   "status": "ACTIVE",
+   "pct": 45,
+   "weight": 20,
+   "deps": [
+    "seam/source ownership"
+   ],
+   "accept": "every seam reviewed from programmatic crops with a recorded verdict"
+  },
+  {
+   "name": "correction round",
+   "status": "NOT STARTED",
+   "pct": 0,
+   "weight": 14,
+   "deps": [
+    "complete seam census"
+   ],
+   "accept": "every actionable census failure fixed and its seam re-checked"
+  },
+  {
+   "name": "full-city QC",
+   "status": "NOT STARTED",
+   "pct": 0,
+   "weight": 8,
+   "deps": [
+    "correction round"
+   ],
+   "accept": "overview-scale review plus representative 1:1 detail review pass; core visually equivalent to the accepted master"
+  },
+  {
+   "name": "final render",
+   "status": "NOT STARTED",
+   "pct": 0,
+   "weight": 10,
+   "deps": [
+    "full-city QC"
+   ],
+   "accept": "full-quality COG/TIFF plus print master and preview regenerated from the final recipe"
+  },
+  {
+   "name": "final deliverable verification",
+   "status": "NOT STARTED",
+   "pct": 0,
+   "weight": 7,
+   "deps": [
+    "final render"
+   ],
+   "accept": "every deliverable opens, dimensions and resolution tags correct, sources at full available quality"
+  }
  ],
  "kpi": {
-  "sheets_placed": "93/93 inland units; wharf sheet 5 (2 panels) not yet in the city ownership",
+  "sheets_placed": "93/93 inland units (sheet 72 in sheets_city.geojson now); wharf sheet 5 (2 panels) still outside the city ownership",
   "registration_components": 1,
-  "controls_accepted": 204,
-  "controls_audited": "46 cross-row via ctlcheck (45 pass); 154 pre-existing not width-tested",
-  "controls_questionable": 3,
-  "seams_total": 279,
+  "controls_accepted": 242,
+  "controls_audited": "all 242 width-tested against plate lattices (widthcheck.py); 50 avenue controls framing-checked (ctlcheck.py, 3 flagged on composite plates)",
+  "controls_questionable": 21,
+  "seams_total": 252,
   "seams_reviewed": 0,
   "seams_passed": 0,
   "seams_failed": 0,
-  "seams_remaining": 279,
+  "seams_remaining": 171,
   "duplicated_road_failures": "NOT MEASURED",
   "duplicated_label_failures": "NOT MEASURED",
   "split_building_failures": "NOT MEASURED",
   "rail_utility_discontinuities": "NOT MEASURED",
-  "plate_margin_intrusions": "NOT MEASURED (>=1 known at 57|58)",
-  "ownership_gaps": 4,
-  "source_gaps": 2,
+  "plate_margin_intrusions": "0 by construction (misdiagnosis; see HUMAN_QUEUE HQ-20)",
+  "ownership_gaps": 0,
+  "source_gaps": 1,
   "unresolved_defects": "UNKNOWN",
   "qc_pass_rate": null,
-  "final_render_status": "NOT STARTED"
+  "final_render_status": "NOT STARTED",
+  "seams_band": 171,
+  "seams_corner": 81,
+  "seams_on_controls": 171,
+  "registration": "re-solved 2026-09-01 with 38 lattice ties; observer-control residual median 3.7 ft, tie residual median 4.1 ft, max 14.4 ft"
  },
  "agents": [],
  "tokens_cost": "not available",
  "decisions": {
-  "frozen": ["1912 registration (transforms_city.json) is frozen; moves only on sheet-level evidence", "core 12-sheet placement = accepted master", "no blending, inpainting, or fabricated content"],
-  "accepted": ["row shear fixed via 106 avenue controls (HQ-18)", "seams cut on street centrelines from controls, bisectors elsewhere (HQ-14/19)", "1899 out of scope this run"],
-  "risks": ["composite plates 26/85/99 carry panels with their own origins", "154 detector-proposed controls may pair alley with avenue (~70 ft) undetected", "full-city render at 1/2 needs ~10 GB of 15 GB RAM", "wharf sheet 5 absent from the city recipe"],
-  "human_judgment": ["print scale for the full-city master (100 vs 200 ft/in)", "HQ-7 1899 71a (out of scope)"]
+  "frozen": [
+   "core 12-sheet placement = accepted master (masks.json restored as the core's ownership base)",
+   "no blending, inpainting, or fabricated content"
+  ],
+  "accepted": [
+   "row shear fixed via 106 avenue controls (HQ-18)",
+   "seams cut on street centrelines from controls, bisectors elsewhere (HQ-14/19)",
+   "1899 out of scope this run",
+   "registration re-solved on sheet-level evidence: 38 controls read from the plates' own street chains (faces.py), validated against 483 observer coordinates at 2 px median; 61|62, 69|70, 76|77 had been drawing the same avenue twice 80 ft apart",
+   "seams: 171 band seams on a control (observer or lattice), 81 corner contacts on the overlap midpoint; trimming only inside overlaps"
+  ],
+  "risks": [
+   "composite plates 85/93/99 carry panels with their own origins; their lattices are flagged weak and their controls are the observers' reads",
+   "full-city render at 1/2 needs ~10 GB of 15 GB RAM",
+   "wharf sheet 5 absent from the city recipe",
+   "TWO SESSIONS on this branch (018fqghgw6FGFRhXhgNu9MJF and 019xkiTH5CzPb2j6nmj9Wg2t): rebase before pushing"
+  ],
+  "human_judgment": [
+   "print scale for the full-city master (100 vs 200 ft/in)",
+   "HQ-7 1899 71a (out of scope)"
+  ]
  },
  "milestones": [
-  {"t": "2026-09-01T22:05Z", "event": "run started; toolchain installed; source branch fetched"},
-  {"t": "2026-09-01T22:14Z", "event": "all 93 working images materialised; master PDF inspected as quality reference"}
+  {
+   "t": "2026-09-01T22:05Z",
+   "event": "run started; toolchain installed; source branch fetched"
+  },
+  {
+   "t": "2026-09-01T22:14Z",
+   "event": "all 93 working images materialised; master PDF inspected as quality reference"
+  },
+  {
+   "t": "2026-09-01T22:49Z",
+   "event": "seams re-cut (streetcut v2), core masks restored, registration re-solved with 38 lattice ties, tiling gate 1 piece / 0 overlap / 1 source hole; commit 7ffc27b (session 019xkiTH5CzPb2j6nmj9Wg2t)"
+  }
  ]
 }
