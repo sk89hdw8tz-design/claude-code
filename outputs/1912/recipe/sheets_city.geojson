@@ -243,33 +243,33 @@
     "file": 13,
     "year": 1912,
     "tier": "control",
-    "how": "shared-corridor control",
-    "scale_px_per_native": 1.98874,
-    "rotation_deg": 0.01
+    "how": "shared-corridor lines, similarity solve",
+    "scale_px_per_native": 1.99048,
+    "rotation_deg": 0.036
    },
    "geometry": {
     "type": "Polygon",
     "coordinates": [
      [
       [
-       -9139.52,
-       10243.17
+       -9167.79,
+       10227.09
       ],
       [
-       -2684.08,
-       10244.27
+       -2706.7,
+       10231.2
       ],
       [
-       -2685.38,
-       17835.28
+       -2711.54,
+       17828.86
       ],
       [
-       -9140.82,
-       17834.17
+       -9172.63,
+       17824.75
       ],
       [
-       -9139.52,
-       10243.17
+       -9167.79,
+       10227.09
       ]
      ]
     ]
@@ -282,33 +282,33 @@
     "file": 14,
     "year": 1912,
     "tier": "control",
-    "how": "shared-corridor control",
-    "scale_px_per_native": 1.99364,
-    "rotation_deg": 0.013
+    "how": "shared-corridor lines, similarity solve",
+    "scale_px_per_native": 1.99149,
+    "rotation_deg": 0.087
    },
    "geometry": {
     "type": "Polygon",
     "coordinates": [
      [
       [
-       -3070.15,
-       10262.92
+       -3089.63,
+       10251.92
       ],
       [
-       3403.2,
-       10264.34
+       3376.72,
+       10261.72
       ],
       [
-       3401.53,
-       17876.06
+       3365.19,
+       17865.21
       ],
       [
-       -3071.82,
-       17874.64
+       -3101.16,
+       17855.41
       ],
       [
-       -3070.15,
-       10262.92
+       -3089.63,
+       10251.92
       ]
      ]
     ]
@@ -321,33 +321,33 @@
     "file": 15,
     "year": 1912,
     "tier": "control",
-    "how": "shared-corridor control",
-    "scale_px_per_native": 1.99964,
-    "rotation_deg": 0.01
+    "how": "shared-corridor lines, similarity solve",
+    "scale_px_per_native": 2.00176,
+    "rotation_deg": 0.117
    },
    "geometry": {
     "type": "Polygon",
     "coordinates": [
      [
       [
-       -9181.25,
-       17117.02
+       -9254.57,
+       17086.57
       ],
       [
-       -2688.42,
-       17118.13
+       -2754.87,
+       17099.87
       ],
       [
-       -2689.73,
-       24752.76
+       -2770.5,
+       24742.56
       ],
       [
-       -9182.56,
-       24751.64
+       -9270.2,
+       24729.27
       ],
       [
-       -9181.25,
-       17117.02
+       -9254.57,
+       17086.57
       ]
      ]
     ]
@@ -360,33 +360,33 @@
     "file": 16,
     "year": 1912,
     "tier": "control",
-    "how": "shared-corridor control",
-    "scale_px_per_native": 1.99526,
-    "rotation_deg": 0.575
+    "how": "shared-corridor lines, similarity solve",
+    "scale_px_per_native": 2.00049,
+    "rotation_deg": 0.187
    },
    "geometry": {
     "type": "Polygon",
     "coordinates": [
      [
       [
-       -3054.26,
-       17111.8
+       -3154.4,
+       17105.62
       ],
       [
-       3424.03,
-       17176.82
+       3341.17,
+       17126.82
       ],
       [
-       3347.58,
-       24794.35
+       3316.24,
+       24764.67
       ],
       [
-       -3130.71,
-       24729.34
+       -3179.33,
+       24743.47
       ],
       [
-       -3054.26,
-       17111.8
+       -3154.4,
+       17105.62
       ]
      ]
     ]
@@ -399,33 +399,33 @@
     "file": 17,
     "year": 1912,
     "tier": "control",
-    "how": "shared-corridor control",
-    "scale_px_per_native": 2.00074,
-    "rotation_deg": 0.15
+    "how": "shared-corridor lines, similarity solve",
+    "scale_px_per_native": 1.98497,
+    "rotation_deg": 0.425
    },
    "geometry": {
     "type": "Polygon",
     "coordinates": [
      [
       [
-       -9091.72,
-       -38431.54
+       -8961.06,
+       -38483.67
       ],
       [
-       -2595.36,
-       -38414.5
+       -2516.04,
+       -38435.9
       ],
       [
-       -2615.39,
-       -30775.72
+       -2572.21,
+       -30857.5
       ],
       [
-       -9111.75,
-       -30792.75
+       -9017.22,
+       -30905.27
       ],
       [
-       -9091.72,
-       -38431.54
+       -8961.06,
+       -38483.67
       ]
      ]
     ]
@@ -438,33 +438,33 @@
     "file": 18,
     "year": 1912,
     "tier": "control",
-    "how": "shared-corridor control",
-    "scale_px_per_native": 2.00781,
-    "rotation_deg": 0.413
+    "how": "shared-corridor lines, similarity solve",
+    "scale_px_per_native": 2.01518,
+    "rotation_deg": 0.507
    },
    "geometry": {
     "type": "Polygon",
     "coordinates": [
      [
       [
-       -2975.73,
-       -38513.54
+       -2903.74,
+       -38595.46
       ],
       [
-       3543.45,
-       -38466.5
+       3639.31,
+       -38537.6
       ],
       [
-       3488.14,
-       -30800.89
+       3571.28,
+       -30843.93
       ],
       [
-       -3031.04,
-       -30847.93
+       -2971.77,
+       -30901.79
       ],
       [
-       -2975.73,
-       -38513.54
+       -2903.74,
+       -38595.46
       ]
      ]
     ]
@@ -477,33 +477,33 @@
     "file": 19,
     "year": 1912,
     "tier": "control",
-    "how": "shared-corridor control",
-    "scale_px_per_native": 2.00301,
-    "rotation_deg": 0.413
+    "how": "shared-corridor lines, similarity solve",
+    "scale_px_per_native": 1.99261,
+    "rotation_deg": 0.513
    },
    "geometry": {
     "type": "Polygon",
     "coordinates": [
      [
       [
-       2904.16,
-       -38429.92
+       3003.95,
+       -38451.13
       ],
       [
-       9407.77,
-       -38382.99
+       9473.68,
+       -38393.22
       ],
       [
-       9352.59,
-       -30735.7
+       9405.59,
+       -30785.75
       ],
       [
-       2848.99,
-       -30782.63
+       2935.86,
+       -30843.66
       ],
       [
-       2904.16,
-       -38429.92
+       3003.95,
+       -38451.13
       ]
      ]
     ]
@@ -516,33 +516,33 @@
     "file": 20,
     "year": 1912,
     "tier": "control",
-    "how": "shared-corridor control",
-    "scale_px_per_native": 1.99745,
-    "rotation_deg": 0.262
+    "how": "shared-corridor lines, similarity solve",
+    "scale_px_per_native": 2.00997,
+    "rotation_deg": 0.346
    },
    "geometry": {
     "type": "Polygon",
     "coordinates": [
      [
       [
-       8895.5,
-       -38367.19
+       8962.79,
+       -38404.33
       ],
       [
-       15381.15,
-       -38337.49
+       15489.03,
+       -38364.88
       ],
       [
-       15346.22,
-       -30711.31
+       15442.65,
+       -30690.97
       ],
       [
-       8860.57,
-       -30741.01
+       8916.4,
+       -30730.42
       ],
       [
-       8895.5,
-       -38367.19
+       8962.79,
+       -38404.33
       ]
      ]
     ]
@@ -555,33 +555,33 @@
     "file": 21,
     "year": 1912,
     "tier": "control",
-    "how": "shared-corridor control",
-    "scale_px_per_native": 2.00403,
-    "rotation_deg": 0.15
+    "how": "shared-corridor lines, similarity solve",
+    "scale_px_per_native": 2.00154,
+    "rotation_deg": 0.269
    },
    "geometry": {
     "type": "Polygon",
     "coordinates": [
      [
       [
-       -9122.4,
-       -31451.68
+       -9074.37,
+       -31534.5
       ],
       [
-       -2615.32,
-       -31434.62
+       -2575.43,
+       -31503.98
       ],
       [
-       -2635.38,
-       -23783.25
+       -2611.33,
+       -23862.18
       ],
       [
-       -9142.46,
-       -23800.31
+       -9110.26,
+       -23892.7
       ],
       [
-       -9122.4,
-       -31451.68
+       -9074.37,
+       -31534.5
       ]
      ]
     ]
@@ -594,33 +594,33 @@
     "file": 22,
     "year": 1912,
     "tier": "control",
-    "how": "shared-corridor control",
-    "scale_px_per_native": 2.00148,
-    "rotation_deg": 0.677
+    "how": "shared-corridor lines, similarity solve",
+    "scale_px_per_native": 1.9961,
+    "rotation_deg": 0.269
    },
    "geometry": {
     "type": "Polygon",
     "coordinates": [
      [
       [
-       -3089.24,
-       -31490.83
+       -3085.77,
+       -31512.33
       ],
       [
-       3409.12,
-       -31414.09
+       3395.51,
+       -31481.92
       ],
       [
-       3318.89,
-       -23772.97
+       3359.75,
+       -23860.88
       ],
       [
-       -3179.47,
-       -23849.7
+       -3121.53,
+       -23891.29
       ],
       [
-       -3089.24,
-       -31490.83
+       -3085.77,
+       -31512.33
       ]
      ]
     ]
@@ -633,33 +633,33 @@
     "file": 23,
     "year": 1912,
     "tier": "control",
-    "how": "shared-corridor control",
-    "scale_px_per_native": 2.00304,
-    "rotation_deg": 0.545
+    "how": "shared-corridor lines, similarity solve",
+    "scale_px_per_native": 2.01083,
+    "rotation_deg": 0.258
    },
    "geometry": {
     "type": "Polygon",
     "coordinates": [
      [
       [
-       2986.38,
-       -31440.33
+       2978.1,
+       -31484.16
       ],
       [
-       9489.95,
-       -31378.47
+       9507.2,
+       -31454.72
       ],
       [
-       9417.21,
-       -23731.21
+       9472.58,
+       -23777.45
       ],
       [
-       2913.64,
-       -23793.07
+       2943.48,
+       -23806.9
       ],
       [
-       2986.38,
-       -31440.33
+       2978.1,
+       -31484.16
       ]
      ]
     ]
@@ -672,33 +672,33 @@
     "file": 24,
     "year": 1912,
     "tier": "control",
-    "how": "shared-corridor control",
-    "scale_px_per_native": 1.97297,
-    "rotation_deg": 0.111
+    "how": "shared-corridor lines, similarity solve",
+    "scale_px_per_native": 1.98566,
+    "rotation_deg": 0.244
    },
    "geometry": {
     "type": "Polygon",
     "coordinates": [
      [
       [
-       9132.34,
-       -31417.97
+       9166.49,
+       -31443.9
       ],
       [
-       15538.56,
-       -31405.51
+       15613.87,
+       -31416.46
       ],
       [
-       15523.91,
-       -23872.72
+       15581.61,
+       -23835.29
       ],
       [
-       9117.68,
-       -23885.18
+       9134.23,
+       -23862.72
       ],
       [
-       9132.34,
-       -31417.97
+       9166.49,
+       -31443.9
       ]
      ]
     ]
@@ -711,33 +711,33 @@
     "file": 25,
     "year": 1912,
     "tier": "control",
-    "how": "shared-corridor control",
-    "scale_px_per_native": 2.0021,
-    "rotation_deg": 0.458
+    "how": "shared-corridor lines, similarity solve",
+    "scale_px_per_native": 1.99781,
+    "rotation_deg": 0.303
    },
    "geometry": {
     "type": "Polygon",
     "coordinates": [
      [
       [
-       15258.53,
-       -31507.84
+       15313.13,
+       -31449.11
       ],
       [
-       21759.15,
-       -31455.9
+       21799.94,
+       -31414.81
       ],
       [
-       21698.07,
-       -23812.12
+       21759.62,
+       -23787.26
       ],
       [
-       15197.46,
-       -23864.06
+       15272.81,
+       -23821.56
       ],
       [
-       15258.53,
-       -31507.84
+       15313.13,
+       -31449.11
       ]
      ]
     ]
@@ -750,33 +750,33 @@
     "file": 26,
     "year": 1912,
     "tier": "control",
-    "how": "shared-corridor control",
-    "scale_px_per_native": 2.00624,
-    "rotation_deg": -4.275
+    "how": "shared-corridor lines, similarity solve",
+    "scale_px_per_native": 1.9937,
+    "rotation_deg": -0.904
    },
    "geometry": {
     "type": "Polygon",
     "coordinates": [
      [
       [
-       26953.56,
-       -10446.32
+       27118.55,
+       -10665.23
       ],
       [
-       33449.69,
-       -10931.92
+       33591.3,
+       -10767.31
       ],
       [
-       34020.7,
-       -3293.42
+       33711.33,
+       -3156.3
       ],
       [
-       27524.57,
-       -2807.81
+       27238.58,
+       -3054.22
       ],
       [
-       26953.56,
-       -10446.32
+       27118.55,
+       -10665.23
       ]
      ]
     ]
@@ -789,33 +789,33 @@
     "file": 27,
     "year": 1912,
     "tier": "control",
-    "how": "shared-corridor control",
-    "scale_px_per_native": 2.00183,
-    "rotation_deg": 0.15
+    "how": "shared-corridor lines, similarity solve",
+    "scale_px_per_native": 2.00811,
+    "rotation_deg": 0.29
    },
    "geometry": {
     "type": "Polygon",
     "coordinates": [
      [
       [
-       -9169.71,
-       -24551.81
+       -9172.42,
+       -24627.52
       ],
       [
-       -2669.78,
-       -24534.76
+       -2652.17,
+       -24594.51
       ],
       [
-       -2689.82,
-       -16891.79
+       -2690.99,
+       -16927.64
       ],
       [
-       -9189.75,
-       -16908.83
+       -9211.24,
+       -16960.65
       ],
       [
-       -9169.71,
-       -24551.81
+       -9172.42,
+       -24627.52
       ]
      ]
     ]
@@ -828,33 +828,33 @@
     "file": 28,
     "year": 1912,
     "tier": "control",
-    "how": "shared-corridor control",
-    "scale_px_per_native": 2.00354,
-    "rotation_deg": 0.413
+    "how": "shared-corridor lines, similarity solve",
+    "scale_px_per_native": 2.00202,
+    "rotation_deg": 0.185
    },
    "geometry": {
     "type": "Polygon",
     "coordinates": [
      [
       [
-       -3077.22,
-       -24576.63
+       -3094.8,
+       -24598.64
       ],
       [
-       3428.09,
-       -24529.69
+       3405.73,
+       -24577.61
       ],
       [
-       3372.9,
-       -16880.38
+       3381.01,
+       -16933.93
       ],
       [
-       -3132.41,
-       -16927.32
+       -3119.53,
+       -16954.95
       ],
       [
-       -3077.22,
-       -24576.63
+       -3094.8,
+       -24598.64
       ]
      ]
     ]
@@ -867,33 +867,33 @@
     "file": 29,
     "year": 1912,
     "tier": "control",
-    "how": "shared-corridor control",
-    "scale_px_per_native": 1.98325,
-    "rotation_deg": 0.413
+    "how": "shared-corridor lines, similarity solve",
+    "scale_px_per_native": 2.00408,
+    "rotation_deg": 0.025
    },
    "geometry": {
     "type": "Polygon",
     "coordinates": [
      [
       [
-       3045.55,
-       -24513.04
+       2997.22,
+       -24563.97
       ],
       [
-       9485.0,
-       -24466.57
+       9504.47,
+       -24561.1
       ],
       [
-       9430.37,
-       -16894.71
+       9501.1,
+       -16909.52
       ],
       [
-       2990.92,
-       -16941.17
+       2993.84,
+       -16912.39
       ],
       [
-       3045.55,
-       -24513.04
+       2997.22,
+       -24563.97
       ]
      ]
     ]
@@ -906,33 +906,33 @@
     "file": 30,
     "year": 1912,
     "tier": "control",
-    "how": "shared-corridor control",
-    "scale_px_per_native": 2.01653,
-    "rotation_deg": -0.322
+    "how": "shared-corridor lines, similarity solve",
+    "scale_px_per_native": 2.00793,
+    "rotation_deg": 0.066
    },
    "geometry": {
     "type": "Polygon",
     "coordinates": [
      [
       [
-       8997.84,
-       -24571.86
+       9066.71,
+       -24571.43
       ],
       [
-       15545.4,
-       -24608.66
+       15586.46,
+       -24563.87
       ],
       [
-       15588.68,
-       -16909.67
+       15577.57,
+       -16897.59
       ],
       [
-       9041.11,
-       -16872.87
+       9057.82,
+       -16905.15
       ],
       [
-       8997.84,
-       -24571.86
+       9066.71,
+       -24571.43
       ]
      ]
     ]
@@ -945,33 +945,33 @@
     "file": 31,
     "year": 1912,
     "tier": "control",
-    "how": "shared-corridor control",
-    "scale_px_per_native": 1.99849,
-    "rotation_deg": 0.804
+    "how": "shared-corridor lines, similarity solve",
+    "scale_px_per_native": 2.00955,
+    "rotation_deg": 0.349
    },
    "geometry": {
     "type": "Polygon",
     "coordinates": [
      [
       [
-       15215.38,
-       -24602.85
+       15193.99,
+       -24554.16
       ],
       [
-       21703.83,
-       -24511.79
+       21718.88,
+       -24514.4
       ],
       [
-       21596.76,
-       -16882.31
+       21672.14,
+       -16842.07
       ],
       [
-       15108.3,
-       -16973.38
+       15147.24,
+       -16881.83
       ],
       [
-       15215.38,
-       -24602.85
+       15193.99,
+       -24554.16
       ]
      ]
     ]
@@ -984,33 +984,33 @@
     "file": 32,
     "year": 1912,
     "tier": "control",
-    "how": "shared-corridor control",
-    "scale_px_per_native": 2.05157,
-    "rotation_deg": 1.678
+    "how": "shared-corridor lines, similarity solve",
+    "scale_px_per_native": 2.05087,
+    "rotation_deg": 0.77
    },
    "geometry": {
     "type": "Polygon",
     "coordinates": [
      [
       [
-       21056.52,
-       -24817.15
+       21040.32,
+       -24672.67
       ],
       [
-       27715.11,
-       -24622.09
+       27698.91,
+       -24583.23
       ],
       [
-       27485.74,
-       -16792.55
+       27593.73,
+       -16753.69
       ],
       [
-       20827.15,
-       -16987.62
+       20935.14,
+       -16843.14
       ],
       [
-       21056.52,
-       -24817.15
+       21040.32,
+       -24672.67
       ]
      ]
     ]
@@ -1023,33 +1023,33 @@
     "file": 33,
     "year": 1912,
     "tier": "control",
-    "how": "shared-corridor control",
-    "scale_px_per_native": 2.01066,
-    "rotation_deg": 0.15
+    "how": "shared-corridor lines, similarity solve",
+    "scale_px_per_native": 2.011,
+    "rotation_deg": 0.286
    },
    "geometry": {
     "type": "Polygon",
     "coordinates": [
      [
       [
-       -9178.43,
-       -17626.81
+       -9199.15,
+       -17657.87
       ],
       [
-       -2649.83,
-       -17609.69
+       -2669.53,
+       -17625.32
       ],
       [
-       -2669.96,
-       -9933.01
+       -2707.8,
+       -9947.43
       ],
       [
-       -9198.56,
-       -9950.12
+       -9237.42,
+       -9979.98
       ],
       [
-       -9178.43,
-       -17626.81
+       -9199.15,
+       -17657.87
       ]
      ]
     ]
@@ -1062,33 +1062,33 @@
     "file": 34,
     "year": 1912,
     "tier": "control",
-    "how": "shared-corridor control",
-    "scale_px_per_native": 2.01048,
-    "rotation_deg": 0.155
+    "how": "shared-corridor lines, similarity solve",
+    "scale_px_per_native": 2.01396,
+    "rotation_deg": 0.026
    },
    "geometry": {
     "type": "Polygon",
     "coordinates": [
      [
       [
-       -3104.13,
-       -17618.63
+       -3131.44,
+       -17625.53
       ],
       [
-       3423.86,
-       -17600.98
+       3407.9,
+       -17622.52
       ],
       [
-       3403.11,
-       -9925.01
+       3404.36,
+       -9933.22
       ],
       [
-       -3124.89,
-       -9942.66
+       -3134.97,
+       -9936.22
       ],
       [
-       -3104.13,
-       -17618.63
+       -3131.44,
+       -17625.53
       ]
      ]
     ]
@@ -1101,33 +1101,33 @@
     "file": 35,
     "year": 1912,
     "tier": "control",
-    "how": "shared-corridor control",
-    "scale_px_per_native": 1.98792,
-    "rotation_deg": 0.155
+    "how": "shared-corridor lines, similarity solve",
+    "scale_px_per_native": 2.01131,
+    "rotation_deg": -0.153
    },
    "geometry": {
     "type": "Polygon",
     "coordinates": [
      [
       [
-       3015.0,
-       -17620.34
+       2971.51,
+       -17652.96
       ],
       [
-       9469.76,
-       -17602.89
+       9502.2,
+       -17670.37
       ],
       [
-       9449.23,
-       -10013.03
+       9522.68,
+       -9991.23
       ],
       [
-       2994.47,
-       -10030.48
+       2991.99,
+       -9973.81
       ],
       [
-       3015.0,
-       -17620.34
+       2971.51,
+       -17652.96
       ]
      ]
     ]
@@ -1140,33 +1140,33 @@
     "file": 36,
     "year": 1912,
     "tier": "control",
-    "how": "shared-corridor control",
-    "scale_px_per_native": 2.01286,
-    "rotation_deg": -0.129
+    "how": "shared-corridor lines, similarity solve",
+    "scale_px_per_native": 1.99514,
+    "rotation_deg": 0.104
    },
    "geometry": {
     "type": "Polygon",
     "coordinates": [
      [
       [
-       9070.55,
-       -17625.51
+       9133.77,
+       -17589.48
       ],
       [
-       15606.28,
-       -17640.2
+       15611.97,
+       -17577.77
       ],
       [
-       15623.56,
-       -9955.13
+       15598.19,
+       -9960.34
       ],
       [
-       9087.83,
-       -9940.43
+       9119.99,
+       -9972.06
       ],
       [
-       9070.55,
-       -17625.51
+       9133.77,
+       -17589.48
       ]
      ]
     ]
@@ -1179,33 +1179,33 @@
     "file": 37,
     "year": 1912,
     "tier": "control",
-    "how": "shared-corridor control",
-    "scale_px_per_native": 2.00245,
-    "rotation_deg": -0.637
+    "how": "shared-corridor lines, similarity solve",
+    "scale_px_per_native": 1.99476,
+    "rotation_deg": -0.012
    },
    "geometry": {
     "type": "Polygon",
     "coordinates": [
      [
       [
-       15098.43,
-       -17592.09
+       15143.46,
+       -17573.62
       ],
       [
-       21599.99,
-       -17664.34
+       21620.45,
+       -17574.96
       ],
       [
-       21684.94,
-       -10019.46
+       21622.02,
+       -9958.97
       ],
       [
-       15183.39,
-       -9947.21
+       15145.04,
+       -9957.63
       ],
       [
-       15098.43,
-       -17592.09
+       15143.46,
+       -17573.62
       ]
      ]
     ]
@@ -1218,33 +1218,33 @@
     "file": 38,
     "year": 1912,
     "tier": "control",
-    "how": "shared-corridor control",
-    "scale_px_per_native": 2.00683,
-    "rotation_deg": -0.509
+    "how": "shared-corridor lines, similarity solve",
+    "scale_px_per_native": 1.96465,
+    "rotation_deg": 0.064
    },
    "geometry": {
     "type": "Polygon",
     "coordinates": [
      [
       [
-       21205.11,
-       -17602.02
+       21251.91,
+       -17467.71
       ],
       [
-       27721.03,
-       -17659.92
+       27631.11,
+       -17460.63
       ],
       [
-       27789.1,
-       -9998.14
+       27622.78,
+       -9959.62
       ],
       [
-       21273.18,
-       -9940.25
+       21243.58,
+       -9966.7
       ],
       [
-       21205.11,
-       -17602.02
+       21251.91,
+       -17467.71
       ]
      ]
     ]
@@ -1335,33 +1335,33 @@
     "file": 41,
     "year": 1912,
     "tier": "control",
-    "how": "shared-corridor control",
-    "scale_px_per_native": 2.007,
-    "rotation_deg": 0.812
+    "how": "shared-corridor lines, similarity solve",
+    "scale_px_per_native": 1.99145,
+    "rotation_deg": -0.219
    },
    "geometry": {
     "type": "Polygon",
     "coordinates": [
      [
       [
-       15245.25,
-       -10780.81
+       15189.54,
+       -10680.02
       ],
       [
-       21761.33,
-       -10688.45
+       21655.74,
+       -10704.75
       ],
       [
-       21652.73,
-       -3026.5
+       21684.82,
+       -3101.44
       ],
       [
-       15136.66,
-       -3118.85
+       15218.63,
+       -3076.71
       ],
       [
-       15245.25,
-       -10780.81
+       15189.54,
+       -10680.02
       ]
      ]
     ]
@@ -1374,33 +1374,33 @@
     "file": 42,
     "year": 1912,
     "tier": "control",
-    "how": "shared-corridor control",
-    "scale_px_per_native": 1.99913,
-    "rotation_deg": -0.381
+    "how": "shared-corridor lines, similarity solve",
+    "scale_px_per_native": 1.99283,
+    "rotation_deg": -0.101
    },
    "geometry": {
     "type": "Polygon",
     "coordinates": [
      [
       [
-       21205.35,
-       -10663.61
+       21182.8,
+       -10657.35
       ],
       [
-       27696.38,
-       -10706.82
+       27653.49,
+       -10668.74
       ],
       [
-       27747.2,
-       -3074.31
+       27666.89,
+       -3060.15
       ],
       [
-       21256.17,
-       -3031.1
+       21196.2,
+       -3048.75
       ],
       [
-       21205.35,
-       -10663.61
+       21182.8,
+       -10657.35
       ]
      ]
     ]
@@ -1491,33 +1491,33 @@
     "file": 45,
     "year": 1912,
     "tier": "control",
-    "how": "shared-corridor control",
-    "scale_px_per_native": 2.01031,
-    "rotation_deg": 0.344
+    "how": "shared-corridor lines, similarity solve",
+    "scale_px_per_native": 1.99832,
+    "rotation_deg": 0.056
    },
    "geometry": {
     "type": "Polygon",
     "coordinates": [
      [
       [
-       15254.64,
-       -3843.62
+       15248.8,
+       -3801.59
       ],
       [
-       21781.99,
-       -3804.47
+       21737.35,
+       -3795.24
       ],
       [
-       21735.96,
-       3870.75
+       21729.89,
+       3834.36
       ],
       [
-       15208.6,
-       3831.6
+       15241.33,
+       3828.01
       ],
       [
-       15254.64,
-       -3843.62
+       15248.8,
+       -3801.59
       ]
      ]
     ]
@@ -1530,33 +1530,33 @@
     "file": 46,
     "year": 1912,
     "tier": "control",
-    "how": "shared-corridor control",
-    "scale_px_per_native": 2.01432,
-    "rotation_deg": -0.381
+    "how": "shared-corridor lines, similarity solve",
+    "scale_px_per_native": 2.00874,
+    "rotation_deg": -0.062
    },
    "geometry": {
     "type": "Polygon",
     "coordinates": [
      [
       [
-       21152.57,
-       -3809.59
+       21162.64,
+       -3824.12
       ],
       [
-       27692.91,
-       -3853.13
+       27685.03,
+       -3831.16
       ],
       [
-       27744.11,
-       3837.36
+       27693.31,
+       3838.22
       ],
       [
-       21203.77,
-       3880.9
+       21170.92,
+       3845.26
       ],
       [
-       21152.57,
-       -3809.59
+       21162.64,
+       -3824.12
       ]
      ]
     ]
@@ -1569,33 +1569,33 @@
     "file": 47,
     "year": 1912,
     "tier": "control",
-    "how": "shared-corridor control",
-    "scale_px_per_native": 1.99788,
-    "rotation_deg": 0.067
+    "how": "shared-corridor lines, similarity solve",
+    "scale_px_per_native": 2.00635,
+    "rotation_deg": -0.236
    },
    "geometry": {
     "type": "Polygon",
     "coordinates": [
      [
       [
-       27205.52,
-       -3797.98
+       27172.73,
+       -3829.92
       ],
       [
-       33692.65,
-       -3790.42
+       33687.31,
+       -3856.78
       ],
       [
-       33683.76,
-       3837.5
+       33718.89,
+       3803.41
       ],
       [
-       27196.63,
-       3829.94
+       27204.31,
+       3830.27
       ],
       [
-       27205.52,
-       -3797.98
+       27172.73,
+       -3829.92
       ]
      ]
     ]
@@ -1608,33 +1608,33 @@
     "file": 48,
     "year": 1912,
     "tier": "control",
-    "how": "shared-corridor control",
-    "scale_px_per_native": 2.00183,
-    "rotation_deg": -0.376
+    "how": "shared-corridor lines, similarity solve",
+    "scale_px_per_native": 2.00448,
+    "rotation_deg": 0.264
    },
    "geometry": {
     "type": "Polygon",
     "coordinates": [
      [
       [
-       39190.0,
-       10325.78
+       39208.5,
+       10402.81
       ],
       [
-       45689.82,
-       10283.07
+       45716.97,
+       10432.75
       ],
       [
-       45740.04,
-       17925.91
+       45681.76,
+       18085.77
       ],
       [
-       39240.23,
-       17968.62
+       39173.29,
+       18055.83
       ],
       [
-       39190.0,
-       10325.78
+       39208.5,
+       10402.81
       ]
      ]
     ]
@@ -1725,33 +1725,33 @@
     "file": 51,
     "year": 1912,
     "tier": "control",
-    "how": "shared-corridor control",
-    "scale_px_per_native": 2.01469,
-    "rotation_deg": -0.059
+    "how": "shared-corridor lines, similarity solve",
+    "scale_px_per_native": 1.99862,
+    "rotation_deg": 0.151
    },
    "geometry": {
     "type": "Polygon",
     "coordinates": [
      [
       [
-       15172.61,
-       3168.31
+       15195.69,
+       3192.64
       ],
       [
-       21714.31,
-       3161.54
+       21685.19,
+       3209.73
       ],
       [
-       21722.27,
-       10853.62
+       21665.11,
+       10840.44
       ],
       [
-       15180.57,
-       10860.39
+       15175.6,
+       10823.36
       ],
       [
-       15172.61,
-       3168.31
+       15195.69,
+       3192.64
       ]
      ]
     ]
@@ -1764,33 +1764,33 @@
     "file": 52,
     "year": 1912,
     "tier": "control",
-    "how": "shared-corridor control",
-    "scale_px_per_native": 2.02957,
-    "rotation_deg": -1.066
+    "how": "shared-corridor lines, similarity solve",
+    "scale_px_per_native": 2.0183,
+    "rotation_deg": -0.293
    },
    "geometry": {
     "type": "Polygon",
     "coordinates": [
      [
       [
-       21023.78,
-       3175.32
+       21113.14,
+       3157.23
       ],
       [
-       27612.65,
-       3052.67
+       27666.46,
+       3123.74
       ],
       [
-       27756.87,
-       10800.24
+       27705.83,
+       10829.5
       ],
       [
-       21167.99,
-       10922.88
+       21152.51,
+       10862.98
       ],
       [
-       21023.78,
-       3175.32
+       21113.14,
+       3157.23
       ]
      ]
     ]
@@ -1803,33 +1803,33 @@
     "file": 53,
     "year": 1912,
     "tier": "control",
-    "how": "shared-corridor control",
-    "scale_px_per_native": 2.01125,
-    "rotation_deg": -0.961
+    "how": "shared-corridor lines, similarity solve",
+    "scale_px_per_native": 2.04535,
+    "rotation_deg": -0.152
    },
    "geometry": {
     "type": "Polygon",
     "coordinates": [
      [
       [
-       27151.0,
-       3261.39
+       27201.93,
+       3221.81
       ],
       [
-       33680.62,
-       3151.9
+       33843.16,
+       3204.19
       ],
       [
-       33809.37,
-       10829.79
+       33863.88,
+       11013.32
       ],
       [
-       27279.74,
-       10939.28
+       27222.65,
+       11030.93
       ],
       [
-       27151.0,
-       3261.39
+       27201.93,
+       3221.81
       ]
      ]
     ]
@@ -1842,33 +1842,33 @@
     "file": 54,
     "year": 1912,
     "tier": "control",
-    "how": "shared-corridor control",
-    "scale_px_per_native": 2.03535,
-    "rotation_deg": 0.362
+    "how": "shared-corridor lines, similarity solve",
+    "scale_px_per_native": 1.97366,
+    "rotation_deg": -0.082
    },
    "geometry": {
     "type": "Polygon",
     "coordinates": [
      [
       [
-       33519.13,
-       3265.48
+       33597.87,
+       3518.29
       ],
       [
-       40127.77,
-       3307.21
+       40006.35,
+       3509.1
       ],
       [
-       40078.69,
-       11078.01
+       40017.15,
+       11044.54
       ],
       [
-       33470.05,
-       11036.27
+       33608.68,
+       11053.73
       ],
       [
-       33519.13,
-       3265.48
+       33597.87,
+       3518.29
       ]
      ]
     ]
@@ -1881,33 +1881,33 @@
     "file": 55,
     "year": 1912,
     "tier": "control",
-    "how": "shared-corridor control",
-    "scale_px_per_native": 2.01252,
-    "rotation_deg": 0.066
+    "how": "shared-corridor lines, similarity solve",
+    "scale_px_per_native": 2.00782,
+    "rotation_deg": 0.224
    },
    "geometry": {
     "type": "Polygon",
     "coordinates": [
      [
       [
-       2932.24,
-       10207.6
+       2916.89,
+       10199.82
       ],
       [
-       9466.91,
-       10215.12
+       9436.24,
+       10225.34
       ],
       [
-       9458.07,
-       17898.93
+       9406.23,
+       17891.15
       ],
       [
-       2923.41,
-       17891.41
+       2886.88,
+       17865.63
       ],
       [
-       2932.24,
-       10207.6
+       2916.89,
+       10199.82
       ]
      ]
     ]
@@ -1920,33 +1920,33 @@
     "file": 56,
     "year": 1912,
     "tier": "control",
-    "how": "shared-corridor control",
-    "scale_px_per_native": 2.01158,
-    "rotation_deg": 0.067
+    "how": "shared-corridor lines, similarity solve",
+    "scale_px_per_native": 2.01735,
+    "rotation_deg": 0.172
    },
    "geometry": {
     "type": "Polygon",
     "coordinates": [
      [
       [
-       9046.39,
-       10219.84
+       9018.09,
+       10207.68
       ],
       [
-       15577.99,
-       10227.43
+       15568.4,
+       10227.31
       ],
       [
-       15569.07,
-       17907.64
+       15545.32,
+       17929.52
       ],
       [
-       9037.47,
-       17900.05
+       8995.01,
+       17909.89
       ],
       [
-       9046.39,
-       10219.84
+       9018.09,
+       10207.68
       ]
      ]
     ]
@@ -1959,33 +1959,33 @@
     "file": 57,
     "year": 1912,
     "tier": "control",
-    "how": "shared-corridor control",
-    "scale_px_per_native": 2.00888,
-    "rotation_deg": -0.578
+    "how": "shared-corridor lines, similarity solve",
+    "scale_px_per_native": 2.01498,
+    "rotation_deg": 0.135
    },
    "geometry": {
     "type": "Polygon",
     "coordinates": [
      [
       [
-       15018.95,
-       10271.51
+       15039.98,
+       10235.43
       ],
       [
-       21541.44,
-       10205.75
+       21582.61,
+       10250.87
       ],
       [
-       21618.76,
-       17875.25
+       21564.46,
+       17944.05
       ],
       [
-       15096.27,
-       17941.01
+       15021.83,
+       17928.61
       ],
       [
-       15018.95,
-       10271.51
+       15039.98,
+       10235.43
       ]
      ]
     ]
@@ -1998,33 +1998,33 @@
     "file": 58,
     "year": 1912,
     "tier": "control",
-    "how": "shared-corridor control",
-    "scale_px_per_native": 2.00845,
-    "rotation_deg": -0.059
+    "how": "shared-corridor lines, similarity solve",
+    "scale_px_per_native": 2.00957,
+    "rotation_deg": 0.456
    },
    "geometry": {
     "type": "Polygon",
     "coordinates": [
      [
       [
-       21256.26,
-       10258.98
+       21309.58,
+       10257.38
       ],
       [
-       27777.68,
-       10252.23
+       27834.46,
+       10309.27
       ],
       [
-       27785.62,
-       17920.48
+       27773.44,
+       17981.58
       ],
       [
-       21264.19,
-       17927.23
+       21248.56,
+       17929.69
       ],
       [
-       21256.26,
-       10258.98
+       21309.58,
+       10257.38
       ]
      ]
     ]
@@ -2037,33 +2037,33 @@
     "file": 59,
     "year": 1912,
     "tier": "control",
-    "how": "shared-corridor control",
-    "scale_px_per_native": 2.00888,
-    "rotation_deg": 0.198
+    "how": "shared-corridor lines, similarity solve",
+    "scale_px_per_native": 2.00464,
+    "rotation_deg": 0.504
    },
    "geometry": {
     "type": "Polygon",
     "coordinates": [
      [
       [
-       27244.8,
-       10271.22
+       27296.56,
+       10334.2
       ],
       [
-       33767.59,
-       10293.76
+       33805.39,
+       10391.43
       ],
       [
-       33741.09,
-       17963.61
+       33738.1,
+       18044.86
       ],
       [
-       27218.3,
-       17941.07
+       27229.27,
+       17987.64
       ],
       [
-       27244.8,
-       10271.22
+       27296.56,
+       10334.2
       ]
      ]
     ]
@@ -2076,33 +2076,33 @@
     "file": 60,
     "year": 1912,
     "tier": "control",
-    "how": "shared-corridor control",
-    "scale_px_per_native": 2.01875,
-    "rotation_deg": 0.28
+    "how": "shared-corridor lines, similarity solve",
+    "scale_px_per_native": 1.99941,
+    "rotation_deg": 0.423
    },
    "geometry": {
     "type": "Polygon",
     "coordinates": [
      [
       [
-       33205.59,
-       10272.75
+       33251.66,
+       10381.99
       ],
       [
-       39760.39,
-       10304.77
+       39743.58,
+       10429.96
       ],
       [
-       39722.74,
-       18012.27
+       39687.17,
+       18063.52
       ],
       [
-       33167.94,
-       17980.24
+       33195.25,
+       18015.55
       ],
       [
-       33205.59,
-       10272.75
+       33251.66,
+       10381.99
       ]
      ]
     ]
@@ -2115,33 +2115,33 @@
     "file": 61,
     "year": 1912,
     "tier": "control",
-    "how": "shared-corridor control",
-    "scale_px_per_native": 2.0062,
-    "rotation_deg": 0.24
+    "how": "shared-corridor lines, similarity solve",
+    "scale_px_per_native": 2.00788,
+    "rotation_deg": 0.217
    },
    "geometry": {
     "type": "Polygon",
     "coordinates": [
      [
       [
-       2938.81,
-       17164.41
+       2863.11,
+       17149.35
       ],
       [
-       9452.9,
-       17191.73
+       9382.63,
+       17174.08
       ],
       [
-       9420.78,
-       24851.36
+       9353.56,
+       24840.1
       ],
       [
-       2906.69,
-       24824.03
+       2834.03,
+       24815.37
       ],
       [
-       2938.81,
-       17164.41
+       2863.11,
+       17149.35
       ]
      ]
     ]
@@ -2154,33 +2154,33 @@
     "file": 62,
     "year": 1912,
     "tier": "control",
-    "how": "shared-corridor control",
-    "scale_px_per_native": 1.98457,
-    "rotation_deg": -0.094
+    "how": "shared-corridor lines, similarity solve",
+    "scale_px_per_native": 2.01275,
+    "rotation_deg": 0.255
    },
    "geometry": {
     "type": "Polygon",
     "coordinates": [
      [
       [
-       9122.03,
-       17219.16
+       9048.11,
+       17188.35
       ],
       [
-       15565.91,
-       17208.54
+       15583.44,
+       17217.41
       ],
       [
-       15578.39,
-       24785.61
+       15549.27,
+       24902.0
       ],
       [
-       9134.51,
-       24796.23
+       9013.94,
+       24872.94
       ],
       [
-       9122.03,
-       17219.16
+       9048.11,
+       17188.35
       ]
      ]
     ]
@@ -2193,33 +2193,33 @@
     "file": 63,
     "year": 1912,
     "tier": "control",
-    "how": "shared-corridor control",
-    "scale_px_per_native": 2.01014,
-    "rotation_deg": -0.185
+    "how": "shared-corridor lines, similarity solve",
+    "scale_px_per_native": 2.01078,
+    "rotation_deg": 0.223
    },
    "geometry": {
     "type": "Polygon",
     "coordinates": [
      [
       [
-       15082.98,
-       17164.91
+       15072.24,
+       17210.87
       ],
       [
-       21609.88,
-       17143.81
+       21601.2,
+       17236.24
       ],
       [
-       21634.7,
-       24818.5
+       21571.38,
+       24913.35
       ],
       [
-       15107.8,
-       24839.6
+       15042.42,
+       24887.99
       ],
       [
-       15082.98,
-       17164.91
+       15072.24,
+       17210.87
       ]
      ]
     ]
@@ -2232,33 +2232,33 @@
     "file": 64,
     "year": 1912,
     "tier": "control",
-    "how": "shared-corridor control",
-    "scale_px_per_native": 1.99175,
-    "rotation_deg": 0.501
+    "how": "shared-corridor lines, similarity solve",
+    "scale_px_per_native": 2.0127,
+    "rotation_deg": 0.386
    },
    "geometry": {
     "type": "Polygon",
     "coordinates": [
      [
       [
-       21218.95,
-       17189.49
+       21144.81,
+       17223.16
       ],
       [
-       27685.91,
-       17246.0
+       27679.89,
+       17267.18
       ],
       [
-       27619.46,
-       24850.21
+       27628.12,
+       24951.49
       ],
       [
-       21152.5,
-       24793.69
+       21093.04,
+       24907.47
       ],
       [
-       21218.95,
-       17189.49
+       21144.81,
+       17223.16
       ]
      ]
     ]
@@ -2271,33 +2271,33 @@
     "file": 65,
     "year": 1912,
     "tier": "control",
-    "how": "shared-corridor control",
-    "scale_px_per_native": 2.0037,
-    "rotation_deg": 0.185
+    "how": "shared-corridor lines, similarity solve",
+    "scale_px_per_native": 1.99824,
+    "rotation_deg": 0.488
    },
    "geometry": {
     "type": "Polygon",
     "coordinates": [
      [
       [
-       27207.16,
-       17182.43
+       27207.18,
+       17235.83
       ],
       [
-       33713.14,
-       17203.4
+       33695.22,
+       17291.07
       ],
       [
-       33688.48,
-       24853.48
+       33630.27,
+       24920.06
       ],
       [
-       27182.51,
-       24832.51
+       27142.23,
+       24864.82
       ],
       [
-       27207.16,
-       17182.43
+       27207.18,
+       17235.83
       ]
      ]
     ]
@@ -2310,33 +2310,33 @@
     "file": 66,
     "year": 1912,
     "tier": "control",
-    "how": "shared-corridor control",
-    "scale_px_per_native": 1.9938,
-    "rotation_deg": 0.802
+    "how": "shared-corridor lines, similarity solve",
+    "scale_px_per_native": 2.01211,
+    "rotation_deg": 0.555
    },
    "geometry": {
     "type": "Polygon",
     "coordinates": [
      [
       [
-       33277.88,
-       17158.08
+       33213.0,
+       17251.32
       ],
       [
-       39751.12,
-       17248.65
+       39746.02,
+       17314.6
       ],
       [
-       39644.63,
-       24860.23
+       39671.61,
+       24996.48
       ],
       [
-       33171.39,
-       24769.66
+       33138.6,
+       24933.2
       ],
       [
-       33277.88,
-       17158.08
+       33213.0,
+       17251.32
       ]
      ]
     ]
@@ -2349,33 +2349,33 @@
     "file": 67,
     "year": 1912,
     "tier": "control",
-    "how": "shared-corridor control",
-    "scale_px_per_native": 2.01141,
-    "rotation_deg": 0.292
+    "how": "shared-corridor lines, similarity solve",
+    "scale_px_per_native": 2.01096,
+    "rotation_deg": 0.221
    },
    "geometry": {
     "type": "Polygon",
     "coordinates": [
      [
       [
-       -5150.79,
-       24058.37
+       -5256.93,
+       24037.25
       ],
       [
-       1380.19,
-       24091.7
+       1272.61,
+       24062.46
       ],
       [
-       1341.0,
-       31771.18
+       1242.96,
+       31740.24
       ],
       [
-       -5189.98,
-       31737.85
+       -5286.57,
+       31715.03
       ],
       [
-       -5150.79,
-       24058.37
+       -5256.93,
+       24037.25
       ]
      ]
     ]
@@ -2388,33 +2388,33 @@
     "file": 68,
     "year": 1912,
     "tier": "control",
-    "how": "shared-corridor control",
-    "scale_px_per_native": 2.00038,
-    "rotation_deg": 0.292
+    "how": "shared-corridor lines, similarity solve",
+    "scale_px_per_native": 2.01136,
+    "rotation_deg": 0.199
    },
    "geometry": {
     "type": "Polygon",
     "coordinates": [
      [
       [
-       920.44,
-       24103.32
+       789.89,
+       24070.1
       ],
       [
-       7415.58,
-       24136.47
+       7320.75,
+       24092.82
       ],
       [
-       7376.61,
-       31773.81
+       7294.02,
+       31772.16
       ],
       [
-       881.47,
-       31740.66
+       763.17,
+       31749.43
       ],
       [
-       920.44,
-       24103.32
+       789.89,
+       24070.1
       ]
      ]
     ]
@@ -2427,33 +2427,33 @@
     "file": 69,
     "year": 1912,
     "tier": "control",
-    "how": "shared-corridor control",
-    "scale_px_per_native": 2.00337,
-    "rotation_deg": 0.252
+    "how": "shared-corridor lines, similarity solve",
+    "scale_px_per_native": 2.01732,
+    "rotation_deg": 0.294
    },
    "geometry": {
     "type": "Polygon",
     "coordinates": [
      [
       [
-       7038.46,
-       24070.53
+       6925.42,
+       24049.58
       ],
       [
-       13543.33,
-       24099.16
+       13475.59,
+       24083.17
       ],
       [
-       13509.66,
-       31747.93
+       13436.1,
+       31785.21
       ],
       [
-       7004.8,
-       31719.3
+       6885.94,
+       31751.62
       ],
       [
-       7038.46,
-       24070.53
+       6925.42,
+       24049.58
       ]
      ]
     ]
@@ -2466,33 +2466,33 @@
     "file": 70,
     "year": 1912,
     "tier": "control",
-    "how": "shared-corridor control",
-    "scale_px_per_native": 2.01031,
-    "rotation_deg": 0.264
+    "how": "shared-corridor lines, similarity solve",
+    "scale_px_per_native": 2.01549,
+    "rotation_deg": 0.236
    },
    "geometry": {
     "type": "Polygon",
     "coordinates": [
      [
       [
-       13093.53,
-       24014.63
+       13012.95,
+       24080.03
       ],
       [
-       19620.93,
-       24044.71
+       19557.19,
+       24107.01
       ],
       [
-       19585.56,
-       31719.98
+       19525.47,
+       31802.08
       ],
       [
-       13058.16,
-       31689.9
+       12981.23,
+       31775.1
       ],
       [
-       13093.53,
-       24014.63
+       13012.95,
+       24080.03
       ]
      ]
     ]
@@ -2505,33 +2505,33 @@
     "file": 71,
     "year": 1912,
     "tier": "control",
-    "how": "shared-corridor control",
-    "scale_px_per_native": 2.00174,
-    "rotation_deg": 0.437
+    "how": "shared-corridor lines, similarity solve",
+    "scale_px_per_native": 1.97846,
+    "rotation_deg": 0.311
    },
    "geometry": {
     "type": "Polygon",
     "coordinates": [
      [
       [
-       19134.08,
-       24022.81
+       19064.67,
+       24164.85
       ],
       [
-       25633.52,
-       24072.33
+       25488.65,
+       24199.7
       ],
       [
-       25575.3,
-       31714.73
+       25447.68,
+       31753.36
       ],
       [
-       19075.85,
-       31665.22
+       19023.7,
+       31718.52
       ],
       [
-       19134.08,
-       24022.81
+       19064.67,
+       24164.85
       ]
      ]
     ]
@@ -2544,33 +2544,33 @@
     "file": 72,
     "year": 1912,
     "tier": "control",
-    "how": "shared-corridor control",
-    "scale_px_per_native": 2.00896,
-    "rotation_deg": 0.617
+    "how": "shared-corridor lines, similarity solve",
+    "scale_px_per_native": 2.02826,
+    "rotation_deg": 0.605
    },
    "geometry": {
     "type": "Polygon",
     "coordinates": [
      [
       [
-       25287.06,
-       24032.65
+       25149.26,
+       24070.28
       ],
       [
-       31809.79,
-       24102.9
+       31734.64,
+       24139.83
       ],
       [
-       31727.19,
-       31772.68
+       31652.86,
+       31883.28
       ],
       [
-       25204.46,
-       31702.43
+       25067.48,
+       31813.73
       ],
       [
-       25287.06,
-       24032.65
+       25149.26,
+       24070.28
       ]
      ]
     ]
@@ -2583,33 +2583,33 @@
     "file": 73,
     "year": 1912,
     "tier": "control",
-    "how": "shared-corridor control",
-    "scale_px_per_native": 2.01288,
-    "rotation_deg": 0.797
+    "how": "shared-corridor lines, similarity solve",
+    "scale_px_per_native": 2.01185,
+    "rotation_deg": 0.626
    },
    "geometry": {
     "type": "Polygon",
     "coordinates": [
      [
       [
-       31257.11,
-       24079.48
+       31173.59,
+       24214.99
       ],
       [
-       37792.3,
-       24170.44
+       37705.68,
+       24286.3
       ],
       [
-       37685.35,
-       31854.87
+       37621.82,
+       31967.1
       ],
       [
-       31150.15,
-       31763.92
+       31089.73,
+       31895.78
       ],
       [
-       31257.11,
-       24079.48
+       31173.59,
+       24214.99
       ]
      ]
     ]
@@ -2622,33 +2622,33 @@
     "file": 74,
     "year": 1912,
     "tier": "control",
-    "how": "shared-corridor control",
-    "scale_px_per_native": 1.97726,
-    "rotation_deg": 0.797
+    "how": "shared-corridor lines, similarity solve",
+    "scale_px_per_native": 1.97981,
+    "rotation_deg": 0.535
    },
    "geometry": {
     "type": "Polygon",
     "coordinates": [
      [
       [
-       37328.53,
-       17183.05
+       37324.33,
+       17321.69
       ],
       [
-       43748.08,
-       17272.4
+       43752.5,
+       17381.74
       ],
       [
-       43643.02,
-       24820.86
+       43681.9,
+       24940.34
       ],
       [
-       37223.47,
-       24731.51
+       37253.72,
+       24880.29
       ],
       [
-       37328.53,
-       17183.05
+       37324.33,
+       17321.69
       ]
      ]
     ]
@@ -2661,33 +2661,33 @@
     "file": 75,
     "year": 1912,
     "tier": "control",
-    "how": "shared-corridor control",
-    "scale_px_per_native": 2.01066,
-    "rotation_deg": 0.292
+    "how": "shared-corridor lines, similarity solve",
+    "scale_px_per_native": 2.00558,
+    "rotation_deg": 0.303
    },
    "geometry": {
     "type": "Polygon",
     "coordinates": [
      [
       [
-       -3050.39,
-       30977.61
+       -3166.5,
+       30958.74
       ],
       [
-       3478.14,
-       31010.93
+       3345.52,
+       30993.17
       ],
       [
-       3438.96,
-       38687.54
+       3305.03,
+       38650.36
       ],
       [
-       -3089.57,
-       38654.22
+       -3206.99,
+       38615.93
       ],
       [
-       -3050.39,
-       30977.61
+       -3166.5,
+       30958.74
       ]
      ]
     ]
@@ -2700,33 +2700,33 @@
     "file": 76,
     "year": 1912,
     "tier": "control",
-    "how": "shared-corridor control",
-    "scale_px_per_native": 2.01619,
-    "rotation_deg": 0.292
+    "how": "shared-corridor lines, similarity solve",
+    "scale_px_per_native": 2.00487,
+    "rotation_deg": 0.295
    },
    "geometry": {
     "type": "Polygon",
     "coordinates": [
      [
       [
-       2918.01,
-       30985.09
+       2801.06,
+       31015.36
       ],
       [
-       9464.48,
-       31018.5
+       9310.77,
+       31048.92
       ],
       [
-       9425.2,
-       38716.2
+       9271.3,
+       38703.4
       ],
       [
-       2878.73,
-       38682.79
+       2761.59,
+       38669.84
       ],
       [
-       2918.01,
-       30985.09
+       2801.06,
+       31015.36
       ]
      ]
     ]
@@ -2739,33 +2739,33 @@
     "file": 77,
     "year": 1912,
     "tier": "control",
-    "how": "shared-corridor control",
-    "scale_px_per_native": 2.01396,
-    "rotation_deg": 0.264
+    "how": "shared-corridor lines, similarity solve",
+    "scale_px_per_native": 2.01147,
+    "rotation_deg": 0.433
    },
    "geometry": {
     "type": "Polygon",
     "coordinates": [
      [
       [
-       9051.04,
-       30954.54
+       8929.95,
+       31016.3
       ],
       [
-       15590.32,
-       30984.68
+       15461.02,
+       31065.65
       ],
       [
-       15554.88,
-       38673.91
+       15402.99,
+       38745.23
       ],
       [
-       9015.6,
-       38643.77
+       8871.92,
+       38695.88
       ],
       [
-       9051.04,
-       30954.54
+       8929.95,
+       31016.3
       ]
      ]
     ]
@@ -2778,33 +2778,33 @@
     "file": 78,
     "year": 1912,
     "tier": "control",
-    "how": "shared-corridor control",
-    "scale_px_per_native": 2.01252,
-    "rotation_deg": 0.264
+    "how": "shared-corridor lines, similarity solve",
+    "scale_px_per_native": 2.0194,
+    "rotation_deg": 0.464
    },
    "geometry": {
     "type": "Polygon",
     "coordinates": [
      [
       [
-       15202.44,
-       30990.66
+       15089.3,
+       31069.69
       ],
       [
-       21737.04,
-       31020.78
+       21646.07,
+       31122.79
       ],
       [
-       21701.63,
-       38704.51
+       21583.64,
+       38832.59
       ],
       [
-       15167.03,
-       38674.39
+       15026.87,
+       38779.5
       ],
       [
-       15202.44,
-       30990.66
+       15089.3,
+       31069.69
       ]
      ]
     ]
@@ -2817,33 +2817,33 @@
     "file": 79,
     "year": 1912,
     "tier": "control",
-    "how": "shared-corridor control",
-    "scale_px_per_native": 2.02004,
-    "rotation_deg": 0.215
+    "how": "shared-corridor lines, similarity solve",
+    "scale_px_per_native": 1.98837,
+    "rotation_deg": 0.087
    },
    "geometry": {
     "type": "Polygon",
     "coordinates": [
      [
       [
-       21258.69,
-       31002.17
+       21151.22,
+       31180.04
       ],
       [
-       27817.7,
-       31026.74
+       27607.44,
+       31189.8
       ],
       [
-       27788.82,
-       38739.18
+       27595.97,
+       38781.38
       ],
       [
-       21229.81,
-       38714.62
+       21139.75,
+       38771.62
       ],
       [
-       21258.69,
-       31002.17
+       21151.22,
+       31180.04
       ]
      ]
     ]
@@ -2856,33 +2856,33 @@
     "file": 80,
     "year": 1912,
     "tier": "control",
-    "how": "shared-corridor control",
-    "scale_px_per_native": 1.99774,
-    "rotation_deg": 0.797
+    "how": "shared-corridor lines, similarity solve",
+    "scale_px_per_native": 2.01587,
+    "rotation_deg": 0.171
    },
    "geometry": {
     "type": "Polygon",
     "coordinates": [
      [
       [
-       27241.56,
-       30982.49
+       27022.22,
+       31105.36
       ],
       [
-       33727.58,
-       31072.76
+       33567.72,
+       31124.92
       ],
       [
-       33621.43,
-       38699.38
+       33544.72,
+       38821.47
       ],
       [
-       27135.41,
-       38609.1
+       26999.22,
+       38801.91
       ],
       [
-       27241.56,
-       30982.49
+       27022.22,
+       31105.36
       ]
      ]
     ]
@@ -2895,33 +2895,33 @@
     "file": 81,
     "year": 1912,
     "tier": "control",
-    "how": "shared-corridor control",
-    "scale_px_per_native": 2.01635,
-    "rotation_deg": 0.797
+    "how": "shared-corridor lines, similarity solve",
+    "scale_px_per_native": 2.00469,
+    "rotation_deg": 0.408
    },
    "geometry": {
     "type": "Polygon",
     "coordinates": [
      [
       [
-       33274.19,
-       30980.28
+       33130.4,
+       31165.59
       ],
       [
-       39820.66,
-       31071.39
+       39639.45,
+       31211.96
       ],
       [
-       39713.52,
-       38769.09
+       39584.92,
+       38865.66
       ],
       [
-       33167.05,
-       38677.97
+       33075.87,
+       38819.29
       ],
       [
-       33274.19,
-       30980.28
+       33130.4,
+       31165.59
       ]
      ]
     ]
@@ -2934,33 +2934,33 @@
     "file": 82,
     "year": 1912,
     "tier": "control",
-    "how": "shared-corridor control",
-    "scale_px_per_native": 1.99803,
-    "rotation_deg": 0.797
+    "how": "shared-corridor lines, similarity solve",
+    "scale_px_per_native": 1.99725,
+    "rotation_deg": 0.389
    },
    "geometry": {
     "type": "Polygon",
     "coordinates": [
      [
       [
-       39257.97,
-       30981.83
+       39089.49,
+       31195.21
       ],
       [
-       45744.94,
-       31072.12
+       45574.4,
+       31239.22
       ],
       [
-       45638.77,
-       38699.84
+       45522.65,
+       38864.53
       ],
       [
-       39151.81,
-       38609.56
+       39037.74,
+       38820.52
       ],
       [
-       39257.97,
-       30981.83
+       39089.49,
+       31195.21
       ]
      ]
     ]
@@ -2973,33 +2973,33 @@
     "file": 83,
     "year": 1912,
     "tier": "control",
-    "how": "shared-corridor control",
-    "scale_px_per_native": 2.01957,
-    "rotation_deg": 0.292
+    "how": "shared-corridor lines, similarity solve",
+    "scale_px_per_native": 2.01944,
+    "rotation_deg": 0.237
    },
    "geometry": {
     "type": "Polygon",
     "coordinates": [
      [
       [
-       -1101.57,
-       37915.49
+       -1267.72,
+       37886.88
       ],
       [
-       5455.88,
-       37948.96
+       5289.35,
+       37913.99
       ],
       [
-       5416.53,
-       45659.57
+       5257.46,
+       45624.14
       ],
       [
-       -1140.92,
-       45626.11
+       -1299.6,
+       45597.03
       ],
       [
-       -1101.57,
-       37915.49
+       -1267.72,
+       37886.88
       ]
      ]
     ]
@@ -3012,33 +3012,33 @@
     "file": 84,
     "year": 1912,
     "tier": "control",
-    "how": "shared-corridor control",
-    "scale_px_per_native": 2.00793,
-    "rotation_deg": 0.292
+    "how": "shared-corridor lines, similarity solve",
+    "scale_px_per_native": 1.99795,
+    "rotation_deg": -0.064
    },
    "geometry": {
     "type": "Polygon",
     "coordinates": [
      [
       [
-       4961.2,
-       37935.74
+       4789.1,
+       37957.86
       ],
       [
-       11480.88,
-       37969.01
+       11276.42,
+       37950.59
       ],
       [
-       11441.75,
-       45635.2
+       11284.97,
+       45578.74
       ],
       [
-       4922.08,
-       45601.92
+       4797.64,
+       45586.01
       ],
       [
-       4961.2,
-       37935.74
+       4789.1,
+       37957.86
       ]
      ]
     ]
@@ -3051,33 +3051,33 @@
     "file": 85,
     "year": 1912,
     "tier": "control",
-    "how": "shared-corridor control",
-    "scale_px_per_native": 2.01858,
-    "rotation_deg": -0.088
+    "how": "shared-corridor lines, similarity solve",
+    "scale_px_per_native": 2.00474,
+    "rotation_deg": 0.28
    },
    "geometry": {
     "type": "Polygon",
     "coordinates": [
      [
       [
-       13023.14,
-       37889.96
+       12915.22,
+       37985.68
       ],
       [
-       19577.46,
-       37879.95
+       19424.55,
+       38017.47
       ],
       [
-       19589.24,
-       45586.88
+       19387.17,
+       45671.5
       ],
       [
-       13034.91,
-       45596.89
+       12877.84,
+       45639.7
       ],
       [
-       13023.14,
-       37889.96
+       12915.22,
+       37985.68
       ]
      ]
     ]
@@ -3090,33 +3090,33 @@
     "file": 86,
     "year": 1912,
     "tier": "control",
-    "how": "shared-corridor control",
-    "scale_px_per_native": 2.01602,
-    "rotation_deg": 0.221
+    "how": "shared-corridor lines, similarity solve",
+    "scale_px_per_native": 2.02371,
+    "rotation_deg": 0.243
    },
    "geometry": {
     "type": "Polygon",
     "coordinates": [
      [
       [
-       19161.53,
-       37929.6
+       18980.34,
+       38021.51
       ],
       [
-       25707.51,
-       37954.84
+       25551.26,
+       38049.33
       ],
       [
-       25677.83,
-       45651.97
+       25518.54,
+       45775.77
       ],
       [
-       19131.84,
-       45626.72
+       18947.62,
+       45747.95
       ],
       [
-       19161.53,
-       37929.6
+       18980.34,
+       38021.51
       ]
      ]
     ]
@@ -3129,33 +3129,33 @@
     "file": 87,
     "year": 1912,
     "tier": "control",
-    "how": "shared-corridor control",
-    "scale_px_per_native": 1.98946,
-    "rotation_deg": 0.227
+    "how": "shared-corridor lines, similarity solve",
+    "scale_px_per_native": 1.99562,
+    "rotation_deg": 0.208
    },
    "geometry": {
     "type": "Polygon",
     "coordinates": [
      [
       [
-       25277.81,
-       37954.71
+       25088.98,
+       38070.3
       ],
       [
-       31737.54,
-       37980.35
+       31568.71,
+       38093.86
       ],
       [
-       31707.4,
-       45576.05
+       31541.01,
+       45713.08
       ],
       [
-       25247.67,
-       45550.42
+       25061.28,
+       45689.52
       ],
       [
-       25277.81,
-       37954.71
+       25088.98,
+       38070.3
       ]
      ]
     ]
@@ -3168,33 +3168,33 @@
     "file": 88,
     "year": 1912,
     "tier": "control",
-    "how": "shared-corridor control",
-    "scale_px_per_native": 2.01066,
-    "rotation_deg": -0.133
+    "how": "shared-corridor lines, similarity solve",
+    "scale_px_per_native": 2.02331,
+    "rotation_deg": 0.132
    },
    "geometry": {
     "type": "Polygon",
     "coordinates": [
      [
       [
-       31193.3,
-       37905.33
+       31007.53,
+       38024.22
       ],
       [
-       37721.91,
-       37890.12
+       37577.19,
+       38039.33
       ],
       [
-       37739.79,
-       45566.81
+       37559.42,
+       45764.3
       ],
       [
-       31211.19,
-       45582.02
+       30989.76,
+       45749.19
       ],
       [
-       31193.3,
-       37905.33
+       31007.53,
+       38024.22
       ]
      ]
     ]
@@ -3207,33 +3207,33 @@
     "file": 89,
     "year": 1912,
     "tier": "control",
-    "how": "shared-corridor control",
-    "scale_px_per_native": 1.98731,
-    "rotation_deg": -0.458
+    "how": "shared-corridor lines, similarity solve",
+    "scale_px_per_native": 2.00688,
+    "rotation_deg": 0.215
    },
    "geometry": {
     "type": "Polygon",
     "coordinates": [
      [
       [
-       37223.57,
-       37993.6
+       37057.71,
+       38100.86
       ],
       [
-       43676.15,
-       37942.01
+       43574.02,
+       38125.27
       ],
       [
-       43736.81,
-       45529.31
+       43545.31,
+       45787.5
       ],
       [
-       37284.23,
-       45580.89
+       37029.0,
+       45763.09
       ],
       [
-       37223.57,
-       37993.6
+       37057.71,
+       38100.86
       ]
      ]
     ]
@@ -3246,33 +3246,33 @@
     "file": 90,
     "year": 1912,
     "tier": "control",
-    "how": "shared-corridor control",
-    "scale_px_per_native": 2.00845,
-    "rotation_deg": -0.206
+    "how": "shared-corridor lines, similarity solve",
+    "scale_px_per_native": 1.99889,
+    "rotation_deg": 0.045
    },
    "geometry": {
     "type": "Polygon",
     "coordinates": [
      [
       [
-       43197.53,
-       37934.99
+       43052.9,
+       38134.04
       ],
       [
-       49718.92,
-       37911.54
+       49543.29,
+       38139.16
       ],
       [
-       49746.49,
-       45579.75
+       49537.28,
+       45770.92
       ],
       [
-       43225.1,
-       45603.19
+       43046.88,
+       45765.8
       ],
       [
-       43197.53,
-       37934.99
+       43052.9,
+       38134.04
       ]
      ]
     ]
@@ -3285,33 +3285,33 @@
     "file": 91,
     "year": 1912,
     "tier": "control",
-    "how": "shared-corridor control",
-    "scale_px_per_native": 2.01511,
-    "rotation_deg": 0.292
+    "how": "shared-corridor lines, similarity solve",
+    "scale_px_per_native": 2.01191,
+    "rotation_deg": 0.256
    },
    "geometry": {
     "type": "Polygon",
     "coordinates": [
      [
       [
-       -1075.47,
-       44842.24
+       -1279.11,
+       44808.46
       ],
       [
-       5467.49,
-       44875.63
+       5253.51,
+       44837.7
       ],
       [
-       5428.23,
-       52569.21
+       5219.13,
+       52519.11
       ],
       [
-       -1114.73,
-       52535.82
+       -1313.49,
+       52489.87
       ],
       [
-       -1075.47,
-       44842.24
+       -1279.11,
+       44808.46
       ]
      ]
     ]
@@ -3324,33 +3324,33 @@
     "file": 92,
     "year": 1912,
     "tier": "control",
-    "how": "shared-corridor control",
-    "scale_px_per_native": 2.02082,
-    "rotation_deg": 0.9
+    "how": "shared-corridor lines, similarity solve",
+    "scale_px_per_native": 2.04145,
+    "rotation_deg": 0.144
    },
    "geometry": {
     "type": "Polygon",
     "coordinates": [
      [
       [
-       5128.46,
-       44817.43
+       4849.4,
+       44817.89
       ],
       [
-       11689.24,
-       44920.45
+       11477.95,
+       44834.55
       ],
       [
-       11568.11,
-       52634.98
+       11458.36,
+       52628.77
       ],
       [
-       5007.33,
-       52531.97
+       4829.8,
+       52612.1
       ],
       [
-       5128.46,
-       44817.43
+       4849.4,
+       44817.89
       ]
      ]
     ]
@@ -3363,33 +3363,33 @@
     "file": 93,
     "year": 1912,
     "tier": "control",
-    "how": "shared-corridor control",
-    "scale_px_per_native": 2.01747,
-    "rotation_deg": 0.406
+    "how": "shared-corridor lines, similarity solve",
+    "scale_px_per_native": 2.01431,
+    "rotation_deg": 0.53
    },
    "geometry": {
     "type": "Polygon",
     "coordinates": [
      [
       [
-       11100.15,
-       44856.72
+       10919.52,
+       44872.69
       ],
       [
-       17650.69,
-       44903.14
+       17459.69,
+       44933.25
       ],
       [
-       17596.11,
-       52605.63
+       17388.48,
+       52623.54
       ],
       [
-       11045.56,
-       52559.21
+       10848.31,
+       52562.98
       ],
       [
-       11100.15,
-       44856.72
+       10919.52,
+       44872.69
       ]
      ]
     ]
@@ -3402,33 +3402,33 @@
     "file": 94,
     "year": 1912,
     "tier": "control",
-    "how": "shared-corridor control",
-    "scale_px_per_native": 2.02239,
-    "rotation_deg": 0.221
+    "how": "shared-corridor lines, similarity solve",
+    "scale_px_per_native": 2.02024,
+    "rotation_deg": 0.47
    },
    "geometry": {
     "type": "Polygon",
     "coordinates": [
      [
       [
-       17115.6,
-       44817.84
+       16929.63,
+       44924.88
       ],
       [
-       23682.26,
-       44843.17
+       23489.11,
+       44978.63
       ],
       [
-       23652.48,
-       52564.61
+       23425.9,
+       52691.63
       ],
       [
-       17085.82,
-       52539.29
+       16866.42,
+       52637.87
       ],
       [
-       17115.6,
-       44817.84
+       16929.63,
+       44924.88
       ]
      ]
     ]
@@ -3441,33 +3441,33 @@
     "file": 95,
     "year": 1912,
     "tier": "control",
-    "how": "shared-corridor control",
-    "scale_px_per_native": 2.02239,
-    "rotation_deg": 0.227
+    "how": "shared-corridor lines, similarity solve",
+    "scale_px_per_native": 2.0159,
+    "rotation_deg": 0.428
    },
    "geometry": {
     "type": "Polygon",
     "coordinates": [
      [
       [
-       23221.75,
-       43025.87
+       23050.01,
+       43025.89
       ],
       [
-       29788.41,
-       43051.93
+       29595.46,
+       43074.78
       ],
       [
-       29757.77,
-       50773.37
+       29537.98,
+       50771.28
       ],
       [
-       23191.11,
-       50747.31
+       22992.53,
+       50722.39
       ],
       [
-       23221.75,
-       43025.87
+       23050.01,
+       43025.89
       ]
      ]
     ]
@@ -3480,33 +3480,33 @@
     "file": 96,
     "year": 1912,
     "tier": "control",
-    "how": "shared-corridor control",
-    "scale_px_per_native": 2.03013,
-    "rotation_deg": 1.033
+    "how": "shared-corridor lines, similarity solve",
+    "scale_px_per_native": 2.02346,
+    "rotation_deg": 0.374
    },
    "geometry": {
     "type": "Polygon",
     "coordinates": [
      [
       [
-       29208.42,
-       44762.8
+       28967.36,
+       44938.73
       ],
       [
-       35799.18,
-       44881.67
+       35537.4,
+       44981.65
       ],
       [
-       35659.41,
-       52631.45
+       35486.93,
+       52707.06
       ],
       [
-       29068.64,
-       52512.58
+       28916.89,
+       52664.14
       ],
       [
-       29208.42,
-       44762.8
+       28967.36,
+       44938.73
       ]
      ]
     ]
@@ -3519,33 +3519,33 @@
     "file": 97,
     "year": 1912,
     "tier": "control",
-    "how": "shared-corridor control",
-    "scale_px_per_native": 2.02485,
-    "rotation_deg": 0.222
+    "how": "shared-corridor lines, similarity solve",
+    "scale_px_per_native": 2.00632,
+    "rotation_deg": 0.283
    },
    "geometry": {
     "type": "Polygon",
     "coordinates": [
      [
       [
-       35249.72,
-       44822.28
+       35070.02,
+       45024.29
       ],
       [
-       41824.36,
-       44847.81
+       41584.47,
+       45056.5
       ],
       [
-       41794.34,
-       52578.63
+       41546.59,
+       52716.55
       ],
       [
-       35219.7,
-       52553.1
+       35032.14,
+       52684.33
       ],
       [
-       35249.72,
-       44822.28
+       35070.02,
+       45024.29
       ]
      ]
     ]
@@ -3558,33 +3558,33 @@
     "file": 98,
     "year": 1912,
     "tier": "control",
-    "how": "shared-corridor control",
-    "scale_px_per_native": 2.00604,
-    "rotation_deg": 0.046
+    "how": "shared-corridor lines, similarity solve",
+    "scale_px_per_native": 2.02422,
+    "rotation_deg": 0.067
    },
    "geometry": {
     "type": "Polygon",
     "coordinates": [
      [
       [
-       41203.81,
-       44820.21
+       40988.73,
+       45010.72
       ],
       [
-       47717.41,
-       44825.45
+       47561.35,
+       45018.38
       ],
       [
-       47711.24,
-       52484.49
+       47552.35,
+       52746.83
       ],
       [
-       41197.65,
-       52479.25
+       40979.72,
+       52739.17
       ],
       [
-       41203.81,
-       44820.21
+       40988.73,
+       45010.72
       ]
      ]
     ]
@@ -3597,33 +3597,33 @@
     "file": 99,
     "year": 1912,
     "tier": "control",
-    "how": "shared-corridor control",
-    "scale_px_per_native": 2.02181,
-    "rotation_deg": 0.296
+    "how": "shared-corridor lines, similarity solve",
+    "scale_px_per_native": 2.02262,
+    "rotation_deg": 0.277
    },
    "geometry": {
     "type": "Polygon",
     "coordinates": [
      [
       [
-       41971.11,
-       30954.51
+       41820.6,
+       31155.54
       ],
       [
-       48535.83,
-       30988.39
+       48387.96,
+       31187.26
       ],
       [
-       48495.99,
-       38707.55
+       48350.66,
+       38909.52
       ],
       [
-       41931.26,
-       38673.67
+       41783.3,
+       38877.8
       ],
       [
-       41971.11,
-       30954.51
+       41820.6,
+       31155.54
       ]
      ]
     ]

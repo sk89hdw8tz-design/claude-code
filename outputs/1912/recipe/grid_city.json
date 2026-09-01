@@ -4,19 +4,19 @@
  "source": "frozen core entries from verified frontage midlines; the rest measured from named shared-corridor controls and filled on the fitted block pitch (tools/gridfit.py)",
  "streets": {
   "7": {
-   "y": -35804.2,
+   "y": -35883.0,
    "n": 0,
    "source": "fitted block pitch"
   },
   "8": {
-   "y": -33488.6,
+   "y": -33561.8,
    "n": 0,
    "source": "fitted block pitch"
   },
   "9": {
-   "y": -31065.7,
+   "y": -31146.3,
    "n": 10,
-   "spread": 118.6,
+   "spread": 152.2,
    "sheets": [
     "17",
     "18",
@@ -30,19 +30,19 @@
    "source": "controls (named corridor)"
   },
   "10": {
-   "y": -28857.5,
+   "y": -28919.2,
    "n": 0,
    "source": "fitted block pitch"
   },
   "11": {
-   "y": -26541.9,
+   "y": -26597.9,
    "n": 0,
    "source": "fitted block pitch"
   },
   "12": {
-   "y": -24200.6,
+   "y": -24210.2,
    "n": 12,
-   "spread": 123.0,
+   "spread": 67.2,
    "sheets": [
     "21",
     "22",
@@ -58,19 +58,19 @@
    "source": "controls (named corridor)"
   },
   "13": {
-   "y": -21910.8,
+   "y": -21955.4,
    "n": 0,
    "source": "fitted block pitch"
   },
   "14": {
-   "y": -19595.2,
+   "y": -19634.1,
    "n": 0,
    "source": "fitted block pitch"
   },
   "15": {
-   "y": -17280.6,
+   "y": -17276.6,
    "n": 18,
-   "spread": 96.9,
+   "spread": 130.7,
    "sheets": [
     "27",
     "28",
@@ -87,12 +87,12 @@
    "source": "controls (named corridor)"
   },
   "16": {
-   "y": -14964.1,
+   "y": -14991.6,
    "n": 0,
    "source": "fitted block pitch"
   },
   "17": {
-   "y": -12648.5,
+   "y": -12670.3,
    "n": 0,
    "source": "fitted block pitch"
   },
@@ -382,9 +382,9 @@
    "source": "core (verified frontage midlines)"
   },
   "27": {
-   "y": 10587.5,
+   "y": 10587.0,
    "n": 32,
-   "spread": 243.8,
+   "spread": 243.4,
    "sheets": [
     "11",
     "12",
@@ -405,14 +405,14 @@
    "source": "controls (named corridor)"
   },
   "28": {
-   "y": 12822.7,
+   "y": 12863.7,
    "n": 0,
    "source": "fitted block pitch"
   },
   "29": {
-   "y": 15238.5,
+   "y": 15263.7,
    "n": 2,
-   "spread": 28.2,
+   "spread": 38.7,
    "sheets": [
     "57",
     "58"
@@ -420,9 +420,9 @@
    "source": "controls (named corridor)"
   },
   "30": {
-   "y": 17531.8,
+   "y": 17561.1,
    "n": 20,
-   "spread": 140.0,
+   "spread": 202.8,
    "sheets": [
     "13",
     "14",
@@ -444,19 +444,19 @@
    "source": "controls (named corridor)"
   },
   "31": {
-   "y": 19769.4,
+   "y": 19827.5,
    "n": 0,
    "source": "fitted block pitch"
   },
   "32": {
-   "y": 22085.0,
+   "y": 22148.8,
    "n": 0,
    "source": "fitted block pitch"
   },
   "33": {
-   "y": 24418.8,
+   "y": 24476.9,
    "n": 18,
-   "spread": 6885.4,
+   "spread": 6882.5,
    "sheets": [
     "16",
     "48",
@@ -476,19 +476,19 @@
    "source": "controls (named corridor)"
   },
   "34": {
-   "y": 26716.1,
+   "y": 26791.3,
    "n": 0,
    "source": "fitted block pitch"
   },
   "35": {
-   "y": 29031.7,
+   "y": 29112.6,
    "n": 0,
    "source": "fitted block pitch"
   },
   "36": {
-   "y": 31366.3,
+   "y": 31448.8,
    "n": 20,
-   "spread": 210.7,
+   "spread": 266.4,
    "sheets": [
     "67",
     "68",
@@ -509,14 +509,14 @@
    "source": "controls (named corridor)"
   },
   "37": {
-   "y": 33662.8,
+   "y": 33755.2,
    "n": 0,
    "source": "fitted block pitch"
   },
   "38": {
-   "y": 35975.4,
+   "y": 36142.9,
    "n": 2,
-   "spread": 8.2,
+   "spread": 60.8,
    "sheets": [
     "80",
     "99"
@@ -524,9 +524,9 @@
    "source": "controls (named corridor)"
   },
   "39": {
-   "y": 38288.8,
+   "y": 38424.8,
    "n": 28,
-   "spread": 126.6,
+   "spread": 226.3,
    "sheets": [
     "75",
     "76",
@@ -548,19 +548,19 @@
    "source": "controls (named corridor)"
   },
   "40": {
-   "y": 40609.5,
+   "y": 40719.0,
    "n": 0,
    "source": "fitted block pitch"
   },
   "41": {
-   "y": 42925.1,
+   "y": 43040.3,
    "n": 0,
    "source": "fitted block pitch"
   },
   "42": {
-   "y": 45203.9,
+   "y": 45330.5,
    "n": 32,
-   "spread": 116.4,
+   "spread": 234.3,
    "sheets": [
     "83",
     "84",
@@ -581,22 +581,22 @@
    "source": "controls (named corridor)"
   },
   "43": {
-   "y": 47556.2,
+   "y": 47682.8,
    "n": 0,
    "source": "fitted block pitch"
   },
   "44": {
-   "y": 49871.8,
+   "y": 50004.1,
    "n": 0,
    "source": "fitted block pitch"
   },
   "45": {
-   "y": 52187.3,
+   "y": 52325.4,
    "n": 0,
    "source": "fitted block pitch"
   },
   "46": {
-   "y": 54502.9,
+   "y": 54646.6,
    "n": 0,
    "source": "fitted block pitch"
   }
@@ -843,9 +843,9 @@
    "source": "core (verified frontage midlines)"
   },
   "11": {
-   "x": 15379.1,
+   "x": 15391.4,
    "n": 22,
-   "spread": 128.3,
+   "spread": 313.2,
    "sheets": [
     "20",
     "24",
@@ -872,9 +872,9 @@
    "source": "controls (named corridor)"
   },
   "12": {
-   "x": 17373.8,
+   "x": 17357.7,
    "n": 10,
-   "spread": 24.0,
+   "spread": 278.0,
    "sheets": [
     "25",
     "31",
@@ -888,9 +888,9 @@
    "source": "controls (named corridor)"
   },
   "13": {
-   "x": 19396.9,
+   "x": 19289.4,
    "n": 8,
-   "spread": 159.4,
+   "spread": 202.7,
    "sheets": [
     "37",
     "41",
@@ -904,9 +904,9 @@
    "source": "controls (named corridor)"
   },
   "14": {
-   "x": 21426.5,
+   "x": 21419.3,
    "n": 14,
-   "spread": 115.8,
+   "spread": 262.8,
    "sheets": [
     "31",
     "32",
@@ -926,9 +926,9 @@
    "source": "controls (named corridor)"
   },
   "15": {
-   "x": 23417.7,
+   "x": 23220.0,
    "n": 2,
-   "spread": 10.0,
+   "spread": 13.8,
    "sheets": [
     "94",
     "95"
@@ -936,9 +936,9 @@
    "source": "controls (named corridor)"
   },
   "16": {
-   "x": 25450.4,
+   "x": 25453.2,
    "n": 12,
-   "spread": 162.9,
+   "spread": 214.6,
    "sheets": [
     "38",
     "42",
@@ -954,9 +954,9 @@
    "source": "controls (named corridor)"
   },
   "17": {
-   "x": 27460.3,
+   "x": 27429.4,
    "n": 14,
-   "spread": 94.7,
+   "spread": 254.3,
    "sheets": [
     "26",
     "42",
@@ -976,9 +976,9 @@
    "source": "controls (named corridor)"
   },
   "18": {
-   "x": 29471.7,
+   "x": 29481.1,
    "n": 8,
-   "spread": 56.9,
+   "spread": 265.6,
    "sheets": [
     "26",
     "47",
@@ -990,9 +990,9 @@
    "source": "controls (named corridor)"
   },
   "19": {
-   "x": 31450.3,
+   "x": 31365.1,
    "n": 6,
-   "spread": 65.0,
+   "spread": 255.8,
    "sheets": [
     "59",
     "65",
@@ -1004,9 +1004,9 @@
    "source": "controls (named corridor)"
   },
   "20": {
-   "x": 33475.6,
+   "x": 33426.1,
    "n": 10,
-   "spread": 151.8,
+   "spread": 421.4,
    "sheets": [
     "53",
     "54",
@@ -1022,9 +1022,9 @@
    "source": "controls (named corridor)"
   },
   "21": {
-   "x": 35456.9,
+   "x": 35294.0,
    "n": 4,
-   "spread": 31.2,
+   "spread": 121.2,
    "sheets": [
     "73",
     "81",
@@ -1034,9 +1034,9 @@
    "source": "controls (named corridor)"
   },
   "22": {
-   "x": 37477.9,
+   "x": 37291.7,
    "n": 2,
-   "spread": 40.9,
+   "spread": 2.9,
    "sheets": [
     "88",
     "89"
@@ -1044,9 +1044,9 @@
    "source": "controls (named corridor)"
   },
   "23": {
-   "x": 39496.9,
+   "x": 39413.8,
    "n": 10,
-   "spread": 17.8,
+   "spread": 218.1,
    "sheets": [
     "48",
     "60",
@@ -1059,9 +1059,9 @@
    "source": "controls (named corridor)"
   },
   "24": {
-   "x": 41471.0,
+   "x": 41265.5,
    "n": 4,
-   "spread": 46.6,
+   "spread": 46.2,
    "sheets": [
     "89",
     "97",
@@ -1070,9 +1070,9 @@
    "source": "controls (named corridor)"
   },
   "25": {
-   "x": 43485.4,
+   "x": 43332.8,
    "n": 2,
-   "spread": 10.8,
+   "spread": 30.9,
    "sheets": [
     "82",
     "90"
@@ -1080,9 +1080,9 @@
    "source": "controls (named corridor)"
   },
   "26": {
-   "x": 45478.1,
+   "x": 45316.1,
    "n": 6,
-   "spread": 15.4,
+   "spread": 32.9,
    "sheets": [
     "82",
     "90",
@@ -1092,21 +1092,21 @@
    "source": "controls (named corridor)"
   },
   "27": {
-   "x": 47598.0,
+   "x": 47457.6,
    "n": 0,
    "source": "fitted block pitch"
   }
  },
  "fit": {
   "street": {
-   "pitch_ft": 399.5,
-   "residual_ft": 11.4,
+   "pitch_ft": 400.5,
+   "residual_ft": 11.2,
    "kept": 24,
    "of": 24
   },
   "avenue": {
-   "pitch_ft": 348.3,
-   "residual_ft": 8.9,
+   "pitch_ft": 347.3,
+   "residual_ft": 15.6,
    "kept": 38,
    "of": 38
   }
