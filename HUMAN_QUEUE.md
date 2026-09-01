@@ -860,3 +860,43 @@ pull toward the centreline), so the seam runs between the label and the
 block face and one plate's label survives whole. 144 seams cut on such a
 path; the tiling gate is unchanged (one piece, 498 px² overlap, the 84|85
 hole). `--straight` restores the old behaviour.
+
+## HQ-26 · Seam census round 2, and the similarity solve — APPLIED
+
+Round 2 graded the same 144 band seams after the plate rescale, the
+cross-axis ties and the min-ink cuts (`qc/seams/grades_round2.json`):
+
+| score | 5 | 4 | 3 | 2 | 1 |
+|---|---|---|---|---|---|
+| round 1 | 0 | 1 | 15 | 66 | 62 |
+| round 2 | 10 | 14 | 33 | 70 | 17 |
+
+Median visible offset 8 ft (was 16). Grader after grader described the
+same residual: "at the middle the faces line up within 1–2 ft, toward the
+north end the cross street is 13 ft out" (24|25, 23|24, 40|41, 73|81,
+81|82…). An offset that tapers along a seam is a rotation between the two
+plates, and a translation-only solve cannot touch it. Twelve of the
+seventeen 1s are on plates whose lattice is flagged weak or that the
+observers identified as composites (26, 32, 52–54, 85, 93–96, 99).
+
+`tools/netsolve2.py` solves a similarity per ring sheet. Every control is a
+line — the plate's street runs the length of the shared band — so sampling
+it at both ends of the overlap makes rotation observable; with
+M = [[a, −b], [b, a]] the constraint is linear in (a, b, tx, ty) of both
+plates. The core is frozen and each plate is damped toward the scale and
+rotation it has, so a plate with three controls cannot swing.
+
+| line residual at the band ends | before | after |
+|---|---|---|
+| median | 4.7 ft | **1.1 ft** |
+| 90th percentile | 12.6 ft | **4.0 ft** |
+| worst | 51.3 ft | **12.9 ft** |
+
+Scale changes: median 0.4%, largest 3.0% (sheet 54, three controls, one
+clean lattice axis). Rotations: median 0.23°, largest 3.4° — sheet 26, which
+had been carried at −4.3° when every other plate sits within ±1.7°.
+
+`grid_city.json` refit: streets 400.5 ft pitch / 11.2 ft residual, avenues
+347.3 ft / 15.6 ft. Tiling gate: one piece, 492 px² overlap, the 84|85
+source hole (0.251%). Round 3 of the census follows on the re-rendered
+crops; the state before this solve is commit 10dc96a.
