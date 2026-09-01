@@ -9,7 +9,7 @@
 | Sources inventoried | **102/102** (UT PCL, sha256 ✅) | **129/129** (LOC IIIF, sha256 ✅) |
 | Target sheets | 13 (of which 13 in repo) | 13 + 1 context (18 archival JP2s in repo) |
 | Registration | ✅ full-affine rebuild, gated | ✅ solved affines (prior accepted run) |
-| Seams | ✅ 19 min-ink cuts + ownership | ✅ core DP masks + 171 control-cut ring seams; 1 piece / 0 overlap / 1 source hole |
+| Seams | ✅ 19 min-ink cuts + ownership | ✅ core DP masks + 144 min-ink ring seams on controls; 1 piece / 0 overlap / 1 source hole |
 | QC | ✅ gate + guard metrics + proof panels | ✅ prior run1 + reviews; 144 band-seam crops graded (see below) |
 | Recipe consolidated | ⬜ | ✅ (hash-verified vs freeze) |
 
@@ -23,7 +23,7 @@ Stage 3  QC + human queue          ██████████ done (HQ-4 awa
 Stage 4  indexes + render/crop     ██████████ done (both years; DZI deferred off-cloud)
 Stage 5  1899 city-wide (90 units)  ██████████ 89/90 placed (71a: no shared ground)
 Stage 6  1912 full volume           ██████████ 93/93 placed; city recipe exported
-Stage 7  1912 finish                ████████░░ seams re-cut, controls audited, re-solved; census + publish
+Stage 7  1912 finish                █████████░ scales fixed, 319 controls, min-ink seams; census round 2 + publish
 ```
 
 ## Sheet grid (target footprint)
@@ -44,19 +44,22 @@ Row/col per the key maps; 1899 wharf column sits 0.67 rows high of the inland gr
 
 ### 1912 (control residuals and the seam census)
 
-Registration: 242 controls (133 observer-read, 38 read from the plates'
-own lattices, 71 core/cross-row), core frozen. Residuals after the re-solve:
-observer controls median 3.7 ft (90th 12.6), lattice ties median 4.1 ft
-(max 14.4). Worst residuals are the pre-existing 15th/18th St cluster on
-30/31/35/36/37/41 (28–34 ft; a scale mismatch translation cannot close).
+Registration: **319 controls** (133 observer-read, 71 core/cross-row, 38
+seam ties and 77 cross-axis ties read from the plates' own lattices), core
+frozen, every ring plate's scale set from its own block depths against the
+core's (HQ-25). Residuals after the re-solve: observer controls median
+2.5 ft (max 25.1), lattice ties median 1.9–3.0 ft (max 24.6). City grid fit:
+streets 399.5 ft pitch / 11.4 ft residual, avenues 348.3 ft / 8.9 ft.
 
-Tiling gate (`tools/tiling.py`): 93 regions, **one connected piece, 455 px²
+Tiling gate (`tools/tiling.py`): 93 regions, **one connected piece, 498 px²
 double ownership, one unclaimed hole** — the 84|85 source gap, 9.7M px²
-(0.245% of the union), ground no 1912 plate maps.
+(0.246% of the union), ground no 1912 plate maps. Every band seam is cut on
+a min-ink path inside its roadway (HQ-25 addendum).
 
 Seam census: 144 band seams rendered at 100% and 50%
 (`outputs/1912/qc/seams/`, `tools/seamcrops.py`) and graded on the brief's
-rubric by twelve graders — see `qc/seams/grades/` and HQ-24 for the tally.
+rubric by twelve graders per round. Round 1 (before the scale fix): 62 / 66 /
+15 / 1 / 0 at scores 1–5 (HQ-24). Round 2 (after): see HQ-26.
 
 ### 1899 (held-out landmark gate, worst first)
 

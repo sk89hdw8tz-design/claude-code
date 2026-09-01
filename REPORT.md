@@ -142,8 +142,28 @@ each is now closed with a measurement rather than a judgement
    69|70, 76|77) had been drawing the same avenue twice, 80 ft apart.
 
 The 144 band seams were then rendered at 100% and 50% and graded on the
-brief's §6 rubric by twelve graders (`outputs/1912/qc/seams/grades/`); the
-tally and the correction round are in HQ-24.
+brief's §6 rubric by twelve graders. Round 1 failed the ring outright
+(62 seams at score 1, 66 at 2; HQ-24) and said why: offsets that grow along
+a seam, and cross streets shifted along a seam by a constant. Those are a
+scale mismatch between plates and an unpinned direction, and both were
+measured and fixed (HQ-25):
+
+4. **The scales.** Against the core's block depths (314.6 ft between street
+   faces, 274.6 ft between avenue faces, ±0.7%), 49 of 81 ring plates were
+   more than 1% off and the worst 8%. `tools/platescale.py` sets each from
+   its own blocks. Control residuals fell to median 2.1 ft / max 15.9 on the
+   existing controls and the city grid fit to 11.4 / 8.9 ft with pitches of
+   399.5 / 348.3 ft — Galveston's plat.
+5. **The direction along each seam.** 77 cross-axis ties from the plates
+   (`latticeties.py --cross`); 319 controls, residual median 2.3 ft, 90th
+   7.8, max 25.1.
+6. **The cut.** A straight centreline cut halves both plates' street labels;
+   every band seam is now a min-ink path inside its roadway, as the master's
+   cuts were.
+
+Round 2 of the census, on the corrected recipe, is in HQ-26. A 16×20 in
+crop at 30th St and Avenue M, spanning six ring sheets and two seams, is at
+`outputs/1912/preview/1912_crop_30th_AveM_16x20.jpg`.
 
 Still outside the product: the wharf sheet 5 (two panels with their own
 joint transforms) is not in the city ownership, and the mosaic frame has no
