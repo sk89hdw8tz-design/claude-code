@@ -27,6 +27,7 @@ import numpy as np
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from reciplib import Recipe, px_per_ft           # noqa: E402
 from netsolve import load_controls               # noqa: E402
+from paircrops import keymap                     # noqa: E402
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -104,6 +105,17 @@ def main():
     ppf = px_per_ft(r)
     old = json.load(open(os.path.join(r.dir, "grid.json")))
 
+    km_streets = []
+    for u, e in keymap(str(r.year), warn=False).items():
+        if u not in r.units:
+            continue      # sheet 1 is the index plate, not a placed unit; its
+                          # '43RD-49TH' stretched the grid seven streets past
+                          # the last mosaic pixel
+        for v in e.get("streets") or []:
+            t = re.sub(r"[^0-9]", "", str(v))
+            if t:
+                km_streets.append(int(t))
+
     obs = {"street": {}, "avenue": {}}
     for ua, ub, ax, ma, mb, corridor, fn in load_controls(r):
         p = parse(ax, corridor)
@@ -124,7 +136,14 @@ def main():
     for kind, field, section, index_of in (
             ("street", "y", "streets", lambda k: float(k)),
             ("avenue", "x", "avenues", ground_index)):
-        core = {k: v for k, v in old.get(section, {}).items()}
+        # Only the VERIFIED entries anchor the fit. Taking everything in the
+        # existing file made this non-idempotent: a second run re-ingested its
+        # own fitted entries as anchors and relabelled them "core (verified
+        # frontage midlines)", which is both wrong and self-reinforcing. The
+        # original core file carries no "source" key at all; anything this
+        # tool wrote does.
+        core = {k: v for k, v in old.get(section, {}).items()
+                if str(v.get("source", "core")).startswith("core")}
         idx, val = [], []
         for key, samples in obs[kind].items():
             v = float(np.median([s[0] for s in samples]))
@@ -143,9 +162,15 @@ def main():
         print(f"{kind:>7}: pitch {pitch:7.1f} ft, fit residual "
               f"{sd/ppf:6.1f} ft over {n}/{len(idx)} corridors")
 
-        span = (range(min(min(obs[kind], default=99), min(map(int, core), default=99)),
-                      max(max(obs[kind], default=0), max(map(int, core), default=0)) + 1)
-                if kind == "street" else range(0, 28))
+        # Span the streets the SHEETS cover, not just the ones a control
+        # happened to name. Controls reach streets 9-42; the key maps show
+        # plates as far out as 7 and 49, and an address on one of those was
+        # still a KeyError -- the very failure this file exists to fix.
+        if kind == "street":
+            ends = [int(k) for k in core] + list(obs[kind]) + km_streets
+            span = range(min(ends), max(ends) + 1)
+        else:
+            span = range(0, 28)
         sect = {}
         for key in span:
             k = str(key)

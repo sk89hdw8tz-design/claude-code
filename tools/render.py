@@ -103,18 +103,38 @@ def main():
         img = cv2.imread(path, cv2.IMREAD_COLOR)
         M, t = r.sheet_matrix(sheet)
         A = np.hstack([M / d, ((t - np.array([x0, y0])) / d).reshape(2, 1)])
-        warped = cv2.warpAffine(img, A, (W, H), flags=cv2.INTER_LANCZOS4 if d == 1
+        # Warp into the sheet's OWN window, not the whole canvas. A sheet
+        # covers a few percent of a city-wide mosaic, so a full-canvas warp
+        # allocated a second canvas-sized buffer per sheet -- 4 GB each at 1/2
+        # on the city -- for the sake of a 50 MB footprint.
+        shifted = ((poly - np.array([x0, y0])) / d).astype(np.int32)
+        wx0 = max(0, int(shifted[:, 0].min()) - 2)
+        wy0 = max(0, int(shifted[:, 1].min()) - 2)
+        wx1 = min(W, int(shifted[:, 0].max()) + 3)
+        wy1 = min(H, int(shifted[:, 1].max()) + 3)
+        if wx1 <= wx0 or wy1 <= wy0:
+            print(f"  sheet {sheet} outside the render rect", flush=True)
+            continue
+        ww, wh = wx1 - wx0, wy1 - wy0
+        Aw = A.copy()
+        Aw[:, 2] -= np.array([wx0, wy0], float)
+        warped = cv2.warpAffine(img, Aw, (ww, wh),
+                                flags=cv2.INTER_LANCZOS4 if d == 1
                                 else cv2.INTER_AREA,
                                 borderValue=(255, 255, 255))
-        mask = np.zeros((H, W), np.uint8)
-        shifted = ((poly - np.array([x0, y0])) / d).astype(np.int32)
-        cv2.fillPoly(mask, [shifted], 255)
-        mask &= cv2.inRange(covered, 0, 0)
-        # in-place masked copy: boolean fancy-indexing would allocate two more
-        # full-canvas temporaries, which is what OOMs a gigapixel render
-        cv2.copyTo(warped, mask, canvas)
-        covered |= mask
-        del warped, mask
+        mask = np.zeros((wh, ww), np.uint8)
+        cv2.fillPoly(mask, [shifted - np.array([wx0, wy0], np.int32)], 255)
+        sub_cov = covered[wy0:wy1, wx0:wx1]
+        mask &= cv2.inRange(sub_cov, 0, 0)
+        # write through the canvas view. cv2.copyTo will not take a
+        # column-sliced numpy view as its destination -- it is not contiguous
+        # -- and the fancy-index temporaries it used to avoid are now bounded
+        # by the sheet window rather than the whole canvas.
+        sub = canvas[wy0:wy1, wx0:wx1]
+        m = mask.astype(bool)
+        sub[m] = warped[m]
+        sub_cov |= mask
+        del warped, mask, sub, m, sub_cov
         print(f"  sheet {sheet} composited", flush=True)
     del covered
     out = a.out or f"render_{a.year}.tif"

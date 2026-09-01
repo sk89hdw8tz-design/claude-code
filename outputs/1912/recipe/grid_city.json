@@ -3,6 +3,16 @@
  "avenue_slots": "A=0 B=1 C=2 D=3 E=4 F=5 G=6 H=7 I=8 J=9(Broadway) K=10",
  "source": "frozen core entries from verified frontage midlines; the rest measured from named shared-corridor controls and filled on the fitted block pitch (tools/gridfit.py)",
  "streets": {
+  "7": {
+   "y": -35874.6,
+   "n": 0,
+   "source": "fitted block pitch"
+  },
+  "8": {
+   "y": -33559.1,
+   "n": 0,
+   "source": "fitted block pitch"
+  },
   "9": {
    "y": -31270.3,
    "n": 10,
@@ -541,6 +551,26 @@
     "98"
    ],
    "source": "controls (named corridor)"
+  },
+  "43": {
+   "y": 47482.8,
+   "n": 0,
+   "source": "fitted block pitch"
+  },
+  "44": {
+   "y": 49798.3,
+   "n": 0,
+   "source": "fitted block pitch"
+  },
+  "45": {
+   "y": 52113.8,
+   "n": 0,
+   "source": "fitted block pitch"
+  },
+  "46": {
+   "y": 54429.2,
+   "n": 0,
+   "source": "fitted block pitch"
   }
  },
  "avenues": {
