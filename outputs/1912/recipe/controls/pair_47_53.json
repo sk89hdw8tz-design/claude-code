@@ -8,7 +8,16 @@
  "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
  "corridor": "24th St",
  "a_native": 3676,
- "b_native": 208,
+ "b_native": 154.0,
  "why_not_one_block_off": "Sheet 47 prints 22ND ST, 23RD OR TREMONT ST and, at its lower margin, 24TH ST with adjoining-sheet number 53; the blocks just north of 24th carry the 2300 avenue run (2302 2304 ... 2328 / 2301 2303 ... 2327, Ridgeway Hotel, Interstate Garage) and quarter-blocks SE 67, NE 92, SE 92. Sheet 53 shows the 2400 run immediately south of its top edge (2402 2404 ... 2428 / 2401 2403 ... 2427, Public School) with quarter-blocks SW 67, NW 92, SW 92, and 25TH ST OR ROSENBERG AV with the 2500 run one block below. The 2300/2400 change falls on 24th St.",
- "status": "ACCEPTED"
+ "status": "ACCEPTED",
+ "corrections": [
+  {
+   "field": "b_native",
+   "observer_value": 208,
+   "value": 154.0,
+   "by": "widthcheck (tools/widthcheck.py) + plate crop, 2026-09-01",
+   "why": "sheet 53: the observer's 208 sits between the '24TH ST.' label row (native ~160) and the 1901-block face (~277); the roadway centre from the plate's faces (32, 277) is 154, where the label and the 6\" pipe run are printed"
+  }
+ ]
 }

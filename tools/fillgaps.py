@@ -1,17 +1,25 @@
 #!/usr/bin/env python3
-"""Close tiling holes that a neighbouring sheet can actually supply.
+"""Close tiling gaps that a neighbouring sheet can actually supply.
 
     python3 tools/fillgaps.py --year 1912 [--apply]
 
-A hole in the ownership tiling renders as a white gash. Some holes are real
+A gap in the ownership tiling renders as a white gash. Some gaps are real
 source gaps — no sheet maps that ground, and nothing can fix that here. The
 rest are bookkeeping: a neighbour's scan does cover the ground, but no region
-claims it. This assigns each such hole to the adjoining unit that (a) can
-supply the pixels and (b) shares the most boundary with it.
+claims it. This assigns such ground to adjoining units whose paper covers it.
 
-This changes only WHICH sheet writes a pixel. It does not touch pixels, and
-it cannot invent coverage: a hole no sheet covers is left alone and reported.
-Dry-run by default; --apply rewrites seams/ownership_city.json.
+Two cases (HQ-19 defect 2):
+  * one sheet covers essentially the whole gap: it takes the whole gap;
+  * no single sheet does, but a union of adjoining sheets does: the gap is
+    split between them, each taking the part its own paper covers, in order
+    of how much of the gap each covers. The boundary between the parts is
+    then a paper edge, not a bisector, which is still not a building.
+
+Gaps are both interior holes and inlets (channels open to the exterior), as
+tools/tiling.py finds them. This changes only WHICH sheet writes a pixel. It
+does not touch pixels, and it cannot invent coverage: ground no sheet covers
+is left alone and reported. Dry-run by default; --apply rewrites
+seams/ownership_city.json.
 """
 import argparse
 import json
@@ -25,6 +33,9 @@ from reciplib import Recipe                      # noqa: E402
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MIN_AREA = 50.0 * 50.0
+CLOSE_PX = 700.0        # same inlet closing as tiling.py
+FULL = 0.98             # one sheet covering this much takes the whole gap
+PART_MIN = 0.02         # a split part smaller than this share is ignored
 
 
 def main():
@@ -33,13 +44,12 @@ def main():
     ap.add_argument("--apply", action="store_true")
     a = ap.parse_args()
 
-    from shapely.geometry import Polygon, Point
+    from shapely.geometry import Polygon
     from shapely.ops import unary_union
 
     r = Recipe(int(a.year))
     regions = {u: Polygon(p).buffer(0) for u, p in r.ownership()}
 
-    # what ground each sheet can actually supply
     supply = {}
     for u, info in r.units.items():
         e = info.get("extent")
@@ -49,49 +59,86 @@ def main():
         supply[u] = Polygon([tuple(M @ np.array(c, float) + t) for c in
                              ((e[0], e[1]), (e[2], e[1]),
                               (e[2], e[3]), (e[0], e[3]))]).buffer(0)
+    paper = unary_union(list(supply.values()))
 
     union = unary_union(list(regions.values()))
-    holes = []
+    gaps = []
     for poly in getattr(union, "geoms", [union]):
         for ring in poly.interiors:
             hp = Polygon(ring)
             if hp.area > MIN_AREA:
-                holes.append(hp)
-    holes.sort(key=lambda h: -h.area)
-    print(f"{len(holes)} holes over {MIN_AREA:.0f} px^2", flush=True)
+                gaps.append(("hole", hp))
+    closed = union.buffer(CLOSE_PX).buffer(-CLOSE_PX)
+    extra = closed.difference(union).intersection(paper)
+    for g in getattr(extra, "geoms", [extra]):
+        if g.is_empty or g.area <= MIN_AREA or g.geom_type != "Polygon":
+            continue
+        if any(h.intersects(g) and h.intersection(g).area > 0.5 * g.area for _, h in gaps):
+            continue
+        gaps.append(("inlet", g))
+    gaps.sort(key=lambda h: -h[1].area)
+    print(f"{len(gaps)} gaps over {MIN_AREA:.0f} px^2 "
+          f"({sum(1 for k, _ in gaps if k == 'hole')} holes, "
+          f"{sum(1 for k, _ in gaps if k == 'inlet')} inlets)", flush=True)
 
     filled, unfixable, assign = [], [], {}
-    for hp in holes:
+    for kind, hp in gaps:
         cands = []
         for u, poly in regions.items():
             if not poly.buffer(1.0).intersects(hp):
                 continue
             sup = supply.get(u)
-            # the sheet must cover essentially all of the hole to fill it
-            if sup is None or sup.intersection(hp).area < 0.98 * hp.area:
+            if sup is None:
                 continue
-            shared = poly.buffer(1.0).intersection(hp.boundary).length
-            cands.append((shared, u))
-        if not cands:
-            c = hp.centroid
-            unfixable.append({"area_px2": round(hp.area, 1),
-                              "centroid": [round(c.x, 1), round(c.y, 1)]})
-            continue
-        cands.sort(reverse=True)
-        u = cands[0][1]
-        assign.setdefault(u, []).append(hp)
+            cov = sup.intersection(hp)
+            if cov.area > PART_MIN * hp.area:
+                cands.append((cov.area, u, cov))
+        cands.sort(key=lambda c: -c[0])
         c = hp.centroid
-        filled.append({"area_px2": round(hp.area, 1), "to_unit": u,
-                       "centroid": [round(c.x, 1), round(c.y, 1)]})
+        rec = {"kind": kind, "area_px2": round(hp.area, 1),
+               "centroid": [round(c.x, 1), round(c.y, 1)]}
+        if not cands:
+            unfixable.append(dict(rec, covered_fraction=0.0))
+            continue
+        if cands[0][0] >= FULL * hp.area:
+            u = cands[0][1]
+            assign.setdefault(u, []).append(hp)
+            filled.append(dict(rec, to=[[u, 1.0]]))
+            continue
+        # split: each candidate takes what its paper covers of what is left
+        left, parts = hp, []
+        for area, u, cov in cands:
+            piece = left.intersection(cov)
+            if piece.is_empty or piece.area < PART_MIN * hp.area:
+                continue
+            pieces = [p for p in getattr(piece, "geoms", [piece])
+                      if p.geom_type == "Polygon" and p.area > MIN_AREA / 4]
+            if not pieces:
+                continue
+            for p in pieces:
+                assign.setdefault(u, []).append(p)
+            got = sum(p.area for p in pieces)
+            parts.append([u, round(got / hp.area, 3)])
+            left = left.difference(piece)
+            if left.area < PART_MIN * hp.area:
+                break
+        covered = 1.0 - left.area / hp.area
+        if parts:
+            filled.append(dict(rec, to=parts, covered_fraction=round(covered, 3)))
+        if left.area > MIN_AREA:
+            unfixable.append(dict(rec, area_px2=round(left.area, 1),
+                                  covered_fraction=round(covered, 3),
+                                  note="remainder after split" if parts else None))
 
-    print(f"\nfillable by a neighbour : {len(filled)}")
+    print(f"\nassigned to neighbours : {len(filled)}")
     for f in filled:
-        print(f"    {f['area_px2']:>11,.0f} px^2 -> unit {f['to_unit']:<4} "
-              f"at {f['centroid']}")
-    print(f"\ntrue source gaps        : {len(unfixable)} "
+        print(f"    {f['kind']:<5} {f['area_px2']:>11,.0f} px^2 at {f['centroid']} -> "
+              + ", ".join(f"unit {u} ({s:.0%})" for u, s in f["to"]))
+    print(f"\ntrue source gaps       : {len(unfixable)} "
           f"(no sheet maps this ground; nothing to assign)")
     for f in unfixable:
-        print(f"    {f['area_px2']:>11,.0f} px^2 at {f['centroid']}")
+        print(f"    {f['kind']:<5} {f['area_px2']:>11,.0f} px^2 at {f['centroid']}"
+              f"  (covered {f['covered_fraction']:.0%})")
 
     if not a.apply:
         print("\ndry run — pass --apply to write the ownership file")
@@ -106,17 +153,18 @@ def main():
     by_unit = {str(reg.get("unit", reg.get("sheet"))): reg
                for reg in doc["regions"]}
     for u, hs in assign.items():
-        merged = unary_union([regions[u]] + hs)
+        merged = unary_union([regions[u]] + [h.buffer(0.01) for h in hs]).buffer(0)
         if merged.geom_type != "Polygon":       # keep the largest part
             merged = max(merged.geoms, key=lambda g: g.area)
         by_unit[u]["polygon_mosaic"]["exterior"] = [
             [round(x, 3), round(y, 3)] for x, y in merged.exterior.coords]
         by_unit[u]["gap_filled"] = [f["area_px2"] for f in filled
-                                    if f["to_unit"] == u]
+                                    if any(t[0] == u for t in f["to"])]
     doc["gap_fill"] = {
         "tool": "tools/fillgaps.py",
-        "note": ("holes in the tiling assigned to an adjoining unit whose scan "
-                 "covers that ground; ownership only, no pixel change"),
+        "note": ("gaps in the tiling assigned to adjoining units whose paper "
+                 "covers that ground, split between several where no single "
+                 "one does; ownership only, no pixel change"),
         "filled": filled, "left_as_source_gaps": unfixable,
     }
     json.dump(doc, open(path, "w"), indent=1)

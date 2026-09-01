@@ -1,0 +1,18 @@
+{
+ "pair": [
+  46,
+  47
+ ],
+ "axis": "avenue",
+ "observer": "lattice (tools/faces.py)",
+ "method": "corridor centre = midpoint of the two block faces read off the plate's own street chain; identity from the current placement (the two readings are within 21 ft, a block is 346 ft) and the key maps' coverage",
+ "a_native": 3168.0,
+ "b_native": 176.5,
+ "corridor": "Ave O 1/2",
+ "roadway_px": [
+  206,
+  211
+ ],
+ "disagreement_before_ft": 21.2,
+ "status": "ACCEPTED"
+}

@@ -143,6 +143,10 @@ def main():
            "controls_used": len(rows),
            "residual_ft": {"median": float(np.median(np.abs(res))/ppf),
                            "max": float(np.abs(res).max()/ppf)},
+           "residuals": [{"pair": t[0], "axis": t[1], "corridor": t[2],
+                          "file": os.path.basename(t[3]),
+                          "residual_ft": round(float(abs(rv)) / ppf, 1)}
+                         for t, rv in sorted(zip(tags, res), key=lambda z: -abs(z[1]))],
            "sheets": {}}
     for u in units:
         M, t = r.sheet_matrix(u)
