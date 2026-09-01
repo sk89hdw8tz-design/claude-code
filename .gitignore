@@ -6,3 +6,9 @@ __pycache__/
 rebuild_1899/out/peek/
 outputs/*/mosaic/
 outputs/*/tiles/
+
+# gridfit/streetcut/netsolve keep a .pre_* backup of what they replaced;
+# git already holds that history
+*.pre_city
+*.pre_recut
+*.pre_controls
