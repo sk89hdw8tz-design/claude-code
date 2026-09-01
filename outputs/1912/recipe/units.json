@@ -4,1489 +4,2526 @@
    "file": 7,
    "region": null,
    "extent": [
-    40,
-    40,
-    3286,
-    3857
+    76,
+    84,
+    3245,
+    3822
    ],
    "streets": [
     18,
     21
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u7.jpg"
+   "source_image": "work/sheets/1912w/u7.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3286,
+    3857
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "left",
+    "right",
+    "bottom"
+   ]
   },
   "8": {
    "file": 8,
    "region": null,
    "extent": [
-    40,
-    40,
-    3286,
-    3857
+    78,
+    103,
+    3244,
+    3785
    ],
    "streets": [
     18,
     21
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u8.jpg"
+   "source_image": "work/sheets/1912w/u8.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3286,
+    3857
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "left",
+    "right"
+   ]
   },
   "9": {
    "file": 9,
    "region": null,
    "extent": [
-    40,
-    40,
-    3286,
-    3857
+    78,
+    99,
+    3244,
+    3795
    ],
    "streets": [
     21,
     24
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u9.jpg"
+   "source_image": "work/sheets/1912w/u9.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3286,
+    3857
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "left",
+    "right"
+   ]
   },
   "10": {
    "file": 10,
    "region": null,
    "extent": [
-    40,
-    40,
-    3286,
-    3857
+    115,
+    109,
+    3243,
+    3798
    ],
    "streets": [
     21,
     24
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u10.jpg"
+   "source_image": "work/sheets/1912w/u10.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3286,
+    3857
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "right"
+   ]
   },
   "11": {
    "file": 11,
    "region": null,
    "extent": [
-    40,
-    40,
-    3286,
-    3857
+    80,
+    89,
+    3241,
+    3827
    ],
    "streets": [
     24,
     27
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u11.jpg"
+   "source_image": "work/sheets/1912w/u11.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3286,
+    3857
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "left",
+    "top",
+    "right",
+    "bottom"
+   ]
   },
   "12": {
    "file": 12,
    "region": null,
    "extent": [
-    40,
-    40,
-    3286,
-    3857
+    90,
+    85,
+    3242,
+    3822
    ],
    "streets": [
     24,
     27
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u12.jpg"
-  },
-  "13": {
-   "file": 13,
-   "region": null,
-   "extent": [
+   "source_image": "work/sheets/1912w/u12.jpg",
+   "extent_scan": [
     40,
     40,
     3286,
     3857
    ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "top",
+    "right",
+    "bottom"
+   ]
+  },
+  "13": {
+   "file": 13,
+   "region": null,
+   "extent": [
+    80,
+    91,
+    3224,
+    3826
+   ],
    "streets": [
     27,
     30
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u13.jpg"
+   "source_image": "work/sheets/1912w/u13.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3286,
+    3857
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "left",
+    "top",
+    "bottom"
+   ]
   },
   "14": {
    "file": 14,
    "region": null,
    "extent": [
-    40,
-    40,
-    3287,
-    3858
+    81,
+    86,
+    3241,
+    3822
    ],
    "streets": [
     27,
     30
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u14.jpg"
+   "source_image": "work/sheets/1912w/u14.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3287,
+    3858
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "right",
+    "bottom"
+   ]
   },
   "15": {
    "file": 15,
    "region": null,
    "extent": [
-    40,
-    40,
-    3287,
-    3858
+    79,
+    90,
+    3239,
+    3803
    ],
    "streets": [
     30,
     33
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u15.jpg"
+   "source_image": "work/sheets/1912w/u15.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3287,
+    3858
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "left",
+    "top"
+   ]
   },
   "16": {
    "file": 16,
    "region": null,
    "extent": [
-    40,
-    40,
-    3287,
-    3858
+    84,
+    110,
+    3240,
+    3801
    ],
    "streets": [
     30,
     33
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u16.jpg"
+   "source_image": "work/sheets/1912w/u16.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3287,
+    3858
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "left",
+    "right"
+   ]
   },
   "17": {
    "file": 17,
    "region": null,
    "extent": [
-    40,
-    40,
-    3287,
-    3858
+    79,
+    89,
+    3241,
+    3823
    ],
    "streets": [
     8,
     9
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u17.jpg"
+   "source_image": "work/sheets/1912w/u17.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3287,
+    3858
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "left",
+    "top",
+    "right",
+    "bottom"
+   ]
   },
   "18": {
    "file": 18,
    "region": null,
    "extent": [
-    40,
-    40,
-    3287,
-    3858
+    83,
+    90,
+    3224,
+    3824
    ],
    "streets": [
     7,
     9
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u18.jpg"
+   "source_image": "work/sheets/1912w/u18.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3287,
+    3858
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "left",
+    "top"
+   ]
   },
   "19": {
    "file": 19,
    "region": null,
    "extent": [
-    40,
-    40,
-    3287,
-    3858
+    97,
+    90,
+    3239,
+    3816
    ],
    "streets": [
     7,
     9
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u19.jpg"
+   "source_image": "work/sheets/1912w/u19.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3287,
+    3858
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "top",
+    "right"
+   ]
   },
   "20": {
    "file": 20,
    "region": null,
    "extent": [
-    40,
-    40,
-    3287,
-    3858
+    86,
+    91,
+    3239,
+    3804
    ],
    "streets": [
     7,
     9
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u20.jpg"
+   "source_image": "work/sheets/1912w/u20.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3287,
+    3858
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "left",
+    "top",
+    "right"
+   ]
   },
   "21": {
    "file": 21,
    "region": null,
    "extent": [
-    40,
-    40,
-    3287,
-    3858
+    79,
+    107,
+    3241,
+    3789
    ],
    "streets": [
     9,
     12
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u21.jpg"
+   "source_image": "work/sheets/1912w/u21.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3287,
+    3858
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "left",
+    "right"
+   ]
   },
   "22": {
    "file": 22,
    "region": null,
    "extent": [
-    40,
-    40,
-    3287,
-    3858
+    96,
+    112,
+    3238,
+    3784
    ],
    "streets": [
     9,
     12
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u22.jpg"
+   "source_image": "work/sheets/1912w/u22.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3287,
+    3858
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "right"
+   ]
   },
   "23": {
    "file": 23,
    "region": null,
    "extent": [
-    40,
-    40,
-    3287,
-    3858
+    79,
+    99,
+    3239,
+    3780
    ],
    "streets": [
     9,
     12
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u23.jpg"
+   "source_image": "work/sheets/1912w/u23.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3287,
+    3858
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "left",
+    "right"
+   ]
   },
   "24": {
    "file": 24,
    "region": null,
    "extent": [
-    40,
-    40,
-    3287,
-    3858
+    83,
+    108,
+    3238,
+    3775
    ],
    "streets": [
     9,
     12
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u24.jpg"
+   "source_image": "work/sheets/1912w/u24.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3287,
+    3858
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "left",
+    "right"
+   ]
   },
   "25": {
    "file": 25,
    "region": null,
    "extent": [
-    40,
-    40,
-    3287,
-    3858
+    80,
+    83,
+    3239,
+    3783
    ],
    "streets": [
     9,
     12
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u25.jpg"
+   "source_image": "work/sheets/1912w/u25.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3287,
+    3858
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "left",
+    "top",
+    "right"
+   ]
   },
   "26": {
    "file": 26,
    "region": null,
    "extent": [
-    40,
-    40,
-    3287,
-    3858
+    84,
+    92,
+    3238,
+    3779
    ],
    "streets": [
     17,
     21
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u26.jpg"
+   "source_image": "work/sheets/1912w/u26.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3287,
+    3858
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "left",
+    "top",
+    "right"
+   ]
   },
   "27": {
    "file": 27,
    "region": null,
    "extent": [
-    40,
-    40,
-    3287,
-    3858
+    121,
+    109,
+    3236,
+    3789
    ],
    "streets": [
     12,
     15
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u27.jpg"
+   "source_image": "work/sheets/1912w/u27.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3287,
+    3858
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "right"
+   ]
   },
   "28": {
    "file": 28,
    "region": null,
    "extent": [
-    40,
-    40,
-    3287,
-    3858
+    77,
+    104,
+    3237,
+    3787
    ],
    "streets": [
     12,
     15
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u28.jpg"
+   "source_image": "work/sheets/1912w/u28.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3287,
+    3858
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "right"
+   ]
   },
   "29": {
    "file": 29,
    "region": null,
    "extent": [
-    40,
-    40,
-    3287,
-    3858
+    80,
+    99,
+    3237,
+    3818
    ],
    "streets": [
     12,
     15
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u29.jpg"
+   "source_image": "work/sheets/1912w/u29.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3287,
+    3858
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "left",
+    "right",
+    "bottom"
+   ]
   },
   "30": {
    "file": 30,
    "region": null,
    "extent": [
-    40,
-    40,
-    3287,
-    3858
+    84,
+    107,
+    3236,
+    3776
    ],
    "streets": [
     12,
     15
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u30.jpg"
+   "source_image": "work/sheets/1912w/u30.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3287,
+    3858
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "left",
+    "right"
+   ]
   },
   "31": {
    "file": 31,
    "region": null,
    "extent": [
-    40,
-    40,
-    3287,
-    3858
+    82,
+    102,
+    3245,
+    3788
    ],
    "streets": [
     12,
     15
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u31.jpg"
+   "source_image": "work/sheets/1912w/u31.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3287,
+    3858
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "left"
+   ]
   },
   "32": {
    "file": 32,
    "region": null,
    "extent": [
-    40,
-    40,
-    3287,
-    3858
+    84,
+    92,
+    3235,
+    3818
    ],
    "streets": [
     12,
     15
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u32.jpg"
+   "source_image": "work/sheets/1912w/u32.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3287,
+    3858
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "left",
+    "top",
+    "right",
+    "bottom"
+   ]
   },
   "33": {
    "file": 33,
    "region": null,
    "extent": [
-    40,
-    40,
-    3287,
-    3858
+    109,
+    100,
+    3236,
+    3781
    ],
    "streets": [
     15,
     18
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u33.jpg"
+   "source_image": "work/sheets/1912w/u33.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3287,
+    3858
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "right"
+   ]
   },
   "34": {
    "file": 34,
    "region": null,
    "extent": [
-    40,
-    40,
-    3287,
-    3858
+    73,
+    100,
+    3236,
+    3818
    ],
    "streets": [
     15,
     18
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u34.jpg"
+   "source_image": "work/sheets/1912w/u34.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3287,
+    3858
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "right",
+    "bottom"
+   ]
   },
   "35": {
    "file": 35,
    "region": null,
    "extent": [
-    40,
-    40,
-    3287,
-    3858
+    82,
+    107,
+    3236,
+    3794
    ],
    "streets": [
     15,
     18
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u35.jpg"
+   "source_image": "work/sheets/1912w/u35.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3287,
+    3858
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "left",
+    "right"
+   ]
   },
   "36": {
    "file": 36,
    "region": null,
    "extent": [
-    40,
-    40,
-    3287,
-    3858
+    87,
+    107,
+    3234,
+    3785
    ],
    "streets": [
     15,
     18
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u36.jpg"
+   "source_image": "work/sheets/1912w/u36.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3287,
+    3858
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "left",
+    "right"
+   ]
   },
   "37": {
    "file": 37,
    "region": null,
    "extent": [
-    40,
-    40,
-    3287,
-    3858
+    81,
+    106,
+    3235,
+    3781
    ],
    "streets": [
     15,
     18
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u37.jpg"
+   "source_image": "work/sheets/1912w/u37.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3287,
+    3858
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "left",
+    "right"
+   ]
   },
   "38": {
    "file": 38,
    "region": null,
    "extent": [
-    40,
-    40,
-    3287,
-    3858
+    89,
+    94,
+    3234,
+    3791
    ],
    "streets": [
     15,
     18
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u38.jpg"
+   "source_image": "work/sheets/1912w/u38.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3287,
+    3858
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "top",
+    "right"
+   ]
   },
   "39": {
    "file": 39,
    "region": null,
    "extent": [
-    40,
-    40,
-    3286,
-    3857
+    82,
+    119,
+    3235,
+    3803
    ],
    "streets": [
     18,
     21
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u39.jpg"
+   "source_image": "work/sheets/1912w/u39.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3286,
+    3857
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "left",
+    "right"
+   ]
   },
   "40": {
    "file": 40,
    "region": null,
    "extent": [
-    40,
-    40,
-    3286,
-    3857
+    86,
+    106,
+    3233,
+    3781
    ],
    "streets": [
     18,
     21
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u40.jpg"
+   "source_image": "work/sheets/1912w/u40.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3286,
+    3857
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "left",
+    "right"
+   ]
   },
   "41": {
    "file": 41,
    "region": null,
    "extent": [
-    40,
-    40,
-    3287,
-    3858
+    83,
+    105,
+    3234,
+    3780
    ],
    "streets": [
     18,
     21
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u41.jpg"
+   "source_image": "work/sheets/1912w/u41.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3287,
+    3858
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "left",
+    "right"
+   ]
   },
   "42": {
    "file": 42,
    "region": null,
    "extent": [
-    40,
-    40,
-    3287,
-    3858
+    74,
+    100,
+    3234,
+    3817
    ],
    "streets": [
     18,
     21
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u42.jpg"
+   "source_image": "work/sheets/1912w/u42.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3287,
+    3858
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "right",
+    "bottom"
+   ]
   },
   "43": {
    "file": 43,
    "region": null,
    "extent": [
-    40,
-    40,
-    3286,
-    3857
+    86,
+    103,
+    3235,
+    3782
    ],
    "streets": [
     21,
     24
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u43.jpg"
+   "source_image": "work/sheets/1912w/u43.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3286,
+    3857
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "left"
+   ]
   },
   "44": {
    "file": 44,
    "region": null,
    "extent": [
+    88,
+    118,
+    3233,
+    3788
+   ],
+   "streets": [
+    21,
+    24
+   ],
+   "avenue_slots": null,
+   "source_image": "work/sheets/1912w/u44.jpg",
+   "extent_scan": [
     40,
     40,
     3286,
     3857
    ],
-   "streets": [
-    21,
-    24
-   ],
-   "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u44.jpg"
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "left",
+    "right"
+   ]
   },
   "45": {
    "file": 45,
    "region": null,
    "extent": [
-    40,
-    40,
-    3287,
-    3858
+    84,
+    110,
+    3229,
+    3782
    ],
    "streets": [
     21,
     24
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u45.jpg"
+   "source_image": "work/sheets/1912w/u45.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3287,
+    3858
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "left"
+   ]
   },
   "46": {
    "file": 46,
    "region": null,
    "extent": [
-    40,
-    40,
-    3287,
-    3858
+    89,
+    118,
+    3233,
+    3813
    ],
    "streets": [
     21,
     24
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u46.jpg"
+   "source_image": "work/sheets/1912w/u46.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3287,
+    3858
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "left",
+    "right",
+    "bottom"
+   ]
   },
   "47": {
    "file": 47,
    "region": null,
    "extent": [
-    40,
-    40,
-    3287,
-    3858
+    79,
+    108,
+    3234,
+    3788
    ],
    "streets": [
     21,
     24
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u47.jpg"
+   "source_image": "work/sheets/1912w/u47.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3287,
+    3858
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "right"
+   ]
   },
   "48": {
    "file": 48,
    "region": null,
    "extent": [
-    40,
-    40,
-    3287,
-    3858
+    90,
+    93,
+    3232,
+    3813
    ],
    "streets": [
     28,
     33
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u48.jpg"
+   "source_image": "work/sheets/1912w/u48.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3287,
+    3858
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "left",
+    "top",
+    "right",
+    "bottom"
+   ]
   },
   "49": {
    "file": 49,
    "region": null,
    "extent": [
-    40,
-    40,
-    3286,
-    3857
+    83,
+    94,
+    3254,
+    3817
    ],
    "streets": [
     24,
     27
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u49.jpg"
+   "source_image": "work/sheets/1912w/u49.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3286,
+    3857
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "left",
+    "top",
+    "bottom"
+   ]
   },
   "50": {
    "file": 50,
    "region": null,
    "extent": [
+    90,
+    94,
+    3232,
+    3812
+   ],
+   "streets": [
+    24,
+    27
+   ],
+   "avenue_slots": null,
+   "source_image": "work/sheets/1912w/u50.jpg",
+   "extent_scan": [
     40,
     40,
     3286,
     3857
    ],
-   "streets": [
-    24,
-    27
-   ],
-   "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u50.jpg"
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "left",
+    "top",
+    "right",
+    "bottom"
+   ]
   },
   "51": {
    "file": 51,
    "region": null,
    "extent": [
-    40,
-    40,
-    3287,
-    3858
+    82,
+    96,
+    3233,
+    3819
    ],
    "streets": [
     24,
     27
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u51.jpg"
+   "source_image": "work/sheets/1912w/u51.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3287,
+    3858
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "left",
+    "top",
+    "right",
+    "bottom"
+   ]
   },
   "52": {
    "file": 52,
    "region": null,
    "extent": [
-    40,
-    40,
-    3287,
-    3858
+    85,
+    95,
+    3233,
+    3812
    ],
    "streets": [
     24,
     27
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u52.jpg"
+   "source_image": "work/sheets/1912w/u52.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3287,
+    3858
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "top",
+    "right",
+    "bottom"
+   ]
   },
   "53": {
    "file": 53,
    "region": null,
    "extent": [
-    40,
-    40,
-    3287,
-    3858
+    85,
+    84,
+    3232,
+    3812
    ],
    "streets": [
     24,
     27
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u53.jpg"
+   "source_image": "work/sheets/1912w/u53.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3287,
+    3858
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "left",
+    "top",
+    "right",
+    "bottom"
+   ]
   },
   "54": {
    "file": 54,
    "region": null,
    "extent": [
-    40,
-    40,
-    3287,
-    3858
+    89,
+    95,
+    3233,
+    3812
    ],
    "streets": [
     22,
     27
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u54.jpg"
+   "source_image": "work/sheets/1912w/u54.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3287,
+    3858
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "left",
+    "top",
+    "right",
+    "bottom"
+   ]
   },
   "55": {
    "file": 55,
    "region": null,
    "extent": [
-    40,
-    40,
-    3287,
-    3858
+    84,
+    108,
+    3250,
+    3775
    ],
    "streets": [
     27,
     30
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u55.jpg"
+   "source_image": "work/sheets/1912w/u55.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3287,
+    3858
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "left"
+   ]
   },
   "56": {
    "file": 56,
    "region": null,
    "extent": [
-    40,
-    40,
-    3287,
-    3858
+    90,
+    118,
+    3232,
+    3782
    ],
    "streets": [
     27,
     30
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u56.jpg"
+   "source_image": "work/sheets/1912w/u56.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3287,
+    3858
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "left",
+    "right"
+   ]
   },
   "57": {
    "file": 57,
    "region": null,
    "extent": [
-    40,
-    40,
-    3287,
-    3858
+    90,
+    109,
+    3231,
+    3813
    ],
    "streets": [
     27,
     30
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u57.jpg"
+   "source_image": "work/sheets/1912w/u57.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3287,
+    3858
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "right",
+    "bottom"
+   ]
   },
   "58": {
    "file": 58,
    "region": null,
    "extent": [
-    40,
-    40,
-    3287,
-    3858
+    90,
+    117,
+    3217,
+    3811
    ],
    "streets": [
     27,
     30
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u58.jpg"
+   "source_image": "work/sheets/1912w/u58.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3287,
+    3858
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "left",
+    "bottom"
+   ]
   },
   "59": {
    "file": 59,
    "region": null,
    "extent": [
-    40,
-    40,
-    3287,
-    3858
+    86,
+    111,
+    3253,
+    3775
    ],
    "streets": [
     27,
     30
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u59.jpg"
+   "source_image": "work/sheets/1912w/u59.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3287,
+    3858
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "left"
+   ]
   },
   "60": {
    "file": 60,
    "region": null,
    "extent": [
-    40,
-    40,
-    3287,
-    3858
+    90,
+    115,
+    3231,
+    3810
    ],
    "streets": [
     27,
     30
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u60.jpg"
+   "source_image": "work/sheets/1912w/u60.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3287,
+    3858
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "left",
+    "right",
+    "bottom"
+   ]
   },
   "61": {
    "file": 61,
    "region": null,
    "extent": [
-    40,
-    40,
-    3287,
-    3858
+    88,
+    105,
+    3232,
+    3776
    ],
    "streets": [
     30,
     33
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u61.jpg"
+   "source_image": "work/sheets/1912w/u61.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3287,
+    3858
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "left",
+    "right"
+   ]
   },
   "62": {
    "file": 62,
    "region": null,
    "extent": [
-    40,
-    40,
-    3287,
-    3858
+    84,
+    105,
+    3226,
+    3768
    ],
    "streets": [
     30,
     33
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u62.jpg"
+   "source_image": "work/sheets/1912w/u62.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3287,
+    3858
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "left",
+    "right"
+   ]
   },
   "63": {
    "file": 63,
    "region": null,
    "extent": [
-    40,
-    40,
-    3287,
-    3858
+    83,
+    91,
+    3231,
+    3810
    ],
    "streets": [
     30,
     33
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u63.jpg"
+   "source_image": "work/sheets/1912w/u63.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3287,
+    3858
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "right",
+    "bottom"
+   ]
   },
   "64": {
    "file": 64,
    "region": null,
    "extent": [
-    40,
-    40,
-    3287,
-    3858
+    78,
+    95,
+    3228,
+    3773
    ],
    "streets": [
     30,
     33
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u64.jpg"
+   "source_image": "work/sheets/1912w/u64.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3287,
+    3858
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "top",
+    "right"
+   ]
   },
   "65": {
    "file": 65,
    "region": null,
    "extent": [
-    40,
-    40,
-    3287,
-    3858
+    89,
+    106,
+    3232,
+    3777
    ],
    "streets": [
     30,
     33
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u65.jpg"
+   "source_image": "work/sheets/1912w/u65.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3287,
+    3858
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "left",
+    "right"
+   ]
   },
   "66": {
    "file": 66,
    "region": null,
    "extent": [
-    40,
-    40,
-    3287,
-    3858
+    68,
+    95,
+    3228,
+    3772
    ],
    "streets": [
     30,
     33
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u66.jpg"
+   "source_image": "work/sheets/1912w/u66.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3287,
+    3858
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "top",
+    "right"
+   ]
   },
   "67": {
    "file": 67,
    "region": null,
    "extent": [
-    40,
-    40,
-    3287,
-    3858
+    87,
+    108,
+    3207,
+    3773
    ],
    "streets": [
     33,
     36
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u67.jpg"
+   "source_image": "work/sheets/1912w/u67.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3287,
+    3858
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "left"
+   ]
   },
   "68": {
    "file": 68,
    "region": null,
    "extent": [
-    40,
-    40,
-    3287,
-    3858
+    90,
+    108,
+    3229,
+    3809
    ],
    "streets": [
     33,
     36
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u68.jpg"
+   "source_image": "work/sheets/1912w/u68.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3287,
+    3858
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "left",
+    "right",
+    "bottom"
+   ]
   },
   "69": {
    "file": 69,
    "region": null,
    "extent": [
-    40,
-    40,
-    3287,
-    3858
+    86,
+    114,
+    3229,
+    3772
    ],
    "streets": [
     33,
     36
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u69.jpg"
+   "source_image": "work/sheets/1912w/u69.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3287,
+    3858
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "left",
+    "right"
+   ]
   },
   "70": {
    "file": 70,
    "region": null,
    "extent": [
-    40,
-    40,
-    3287,
-    3858
+    88,
+    118,
+    3227,
+    3808
    ],
    "streets": [
     33,
     36
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u70.jpg"
+   "source_image": "work/sheets/1912w/u70.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3287,
+    3858
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "right",
+    "bottom"
+   ]
   },
   "71": {
    "file": 71,
    "region": null,
    "extent": [
-    40,
-    40,
-    3287,
-    3858
+    89,
+    97,
+    3230,
+    3808
    ],
    "streets": [
     33,
     36
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u71.jpg"
+   "source_image": "work/sheets/1912w/u71.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3287,
+    3858
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "left",
+    "right",
+    "bottom"
+   ]
   },
   "73": {
    "file": 73,
    "region": null,
    "extent": [
-    40,
-    40,
-    3287,
-    3858
+    85,
+    89,
+    3229,
+    3807
    ],
    "streets": [
     33,
     36
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u73.jpg"
+   "source_image": "work/sheets/1912w/u73.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3287,
+    3858
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "left",
+    "right",
+    "bottom"
+   ]
   },
   "74": {
    "file": 74,
    "region": null,
    "extent": [
-    40,
-    40,
-    3287,
-    3858
+    80,
+    117,
+    3226,
+    3768
    ],
    "streets": [
     33,
     36
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u74.jpg"
+   "source_image": "work/sheets/1912w/u74.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3287,
+    3858
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "right"
+   ]
   },
   "75": {
    "file": 75,
    "region": null,
    "extent": [
-    40,
-    40,
-    3287,
-    3858
+    89,
+    114,
+    3231,
+    3808
    ],
    "streets": [
     36,
     39
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u75.jpg"
+   "source_image": "work/sheets/1912w/u75.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3287,
+    3858
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "left",
+    "right",
+    "bottom"
+   ]
   },
   "76": {
    "file": 76,
    "region": null,
    "extent": [
-    40,
-    40,
-    3287,
-    3858
+    72,
+    107,
+    3227,
+    3807
    ],
    "streets": [
     36,
     39
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u76.jpg"
+   "source_image": "work/sheets/1912w/u76.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3287,
+    3858
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "right",
+    "bottom"
+   ]
   },
   "77": {
    "file": 77,
    "region": null,
    "extent": [
-    40,
-    40,
-    3287,
-    3858
+    89,
+    111,
+    3229,
+    3781
    ],
    "streets": [
     36,
     39
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u77.jpg"
+   "source_image": "work/sheets/1912w/u77.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3287,
+    3858
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "left",
+    "right"
+   ]
   },
   "78": {
    "file": 78,
    "region": null,
    "extent": [
-    40,
-    40,
-    3287,
-    3858
+    89,
+    98,
+    3234,
+    3767
    ],
    "streets": [
     36,
     39
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u78.jpg"
+   "source_image": "work/sheets/1912w/u78.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3287,
+    3858
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "left",
+    "top"
+   ]
   },
   "79": {
    "file": 79,
    "region": null,
    "extent": [
-    40,
-    40,
-    3287,
-    3858
+    90,
+    94,
+    3213,
+    3777
    ],
    "streets": [
     36,
     39
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u79.jpg"
+   "source_image": "work/sheets/1912w/u79.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3287,
+    3858
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "left",
+    "top"
+   ]
   },
   "80": {
    "file": 80,
    "region": null,
    "extent": [
-    40,
-    40,
-    3287,
-    3858
+    85,
+    98,
+    3226,
+    3779
    ],
    "streets": [
     36,
     39
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u80.jpg"
+   "source_image": "work/sheets/1912w/u80.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3287,
+    3858
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "top",
+    "right"
+   ]
   },
   "81": {
    "file": 81,
    "region": null,
    "extent": [
-    40,
-    40,
-    3287,
-    3858
+    88,
+    101,
+    3226,
+    3762
    ],
    "streets": [
     36,
     39
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u81.jpg"
+   "source_image": "work/sheets/1912w/u81.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3287,
+    3858
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "left",
+    "right"
+   ]
   },
   "82": {
    "file": 82,
    "region": null,
    "extent": [
-    40,
-    40,
-    3287,
-    3858
+    89,
+    117,
+    3224,
+    3768
    ],
    "streets": [
     36,
     39
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u82.jpg"
+   "source_image": "work/sheets/1912w/u82.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3287,
+    3858
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "left",
+    "right"
+   ]
   },
   "83": {
    "file": 83,
    "region": null,
    "extent": [
-    40,
-    40,
-    3287,
-    3858
+    105,
+    95,
+    3228,
+    3768
    ],
    "streets": [
     39,
     42
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u83.jpg"
+   "source_image": "work/sheets/1912w/u83.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3287,
+    3858
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "top",
+    "right"
+   ]
   },
   "84": {
    "file": 84,
    "region": null,
    "extent": [
-    40,
-    40,
-    3287,
-    3858
+    72,
+    104,
+    3225,
+    3769
    ],
    "streets": [
     39,
     42
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u84.jpg"
+   "source_image": "work/sheets/1912w/u84.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3287,
+    3858
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "right"
+   ]
   },
   "85": {
    "file": 85,
    "region": null,
    "extent": [
-    40,
-    40,
-    3287,
-    3858
+    90,
+    123,
+    3227,
+    3812
    ],
    "streets": [
     39,
     42
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u85.jpg"
+   "source_image": "work/sheets/1912w/u85.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3287,
+    3858
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "left",
+    "right",
+    "bottom"
+   ]
   },
   "86": {
    "file": 86,
    "region": null,
    "extent": [
-    40,
-    40,
-    3287,
-    3858
+    75,
+    102,
+    3224,
+    3805
    ],
    "streets": [
     39,
     42
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u86.jpg"
+   "source_image": "work/sheets/1912w/u86.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3287,
+    3858
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "right",
+    "bottom"
+   ]
   },
   "87": {
    "file": 87,
    "region": null,
    "extent": [
-    40,
-    40,
-    3287,
-    3858
+    90,
+    113,
+    3247,
+    3771
    ],
    "streets": [
     39,
     42
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u87.jpg"
+   "source_image": "work/sheets/1912w/u87.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3287,
+    3858
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "left"
+   ]
   },
   "88": {
    "file": 88,
    "region": null,
    "extent": [
-    40,
-    40,
-    3287,
-    3858
+    90,
+    119,
+    3224,
+    3778
    ],
    "streets": [
     39,
     42
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u88.jpg"
+   "source_image": "work/sheets/1912w/u88.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3287,
+    3858
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "left",
+    "right"
+   ]
   },
   "89": {
    "file": 89,
    "region": null,
    "extent": [
-    40,
-    40,
-    3287,
-    3858
+    80,
+    108,
+    3224,
+    3773
    ],
    "streets": [
     39,
     42
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u89.jpg"
+   "source_image": "work/sheets/1912w/u89.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3287,
+    3858
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "left",
+    "right"
+   ]
   },
   "90": {
    "file": 90,
    "region": null,
    "extent": [
-    40,
-    40,
-    3287,
-    3858
+    77,
+    102,
+    3224,
+    3763
    ],
    "streets": [
     39,
     42
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u90.jpg"
+   "source_image": "work/sheets/1912w/u90.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3287,
+    3858
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "right"
+   ]
   },
   "91": {
    "file": 91,
    "region": null,
    "extent": [
-    40,
-    40,
-    3287,
-    3858
+    122,
+    115,
+    3228,
+    3780
    ],
    "streets": [
     42,
     45
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u91.jpg"
+   "source_image": "work/sheets/1912w/u91.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3287,
+    3858
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "right"
+   ]
   },
   "92": {
    "file": 92,
    "region": null,
    "extent": [
-    40,
-    40,
-    3287,
-    3858
+    95,
+    116,
+    3225,
+    3770
    ],
    "streets": [
     42,
     45
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u92.jpg"
+   "source_image": "work/sheets/1912w/u92.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3287,
+    3858
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "left",
+    "right"
+   ]
   },
   "93": {
    "file": 93,
    "region": null,
    "extent": [
-    40,
-    40,
-    3287,
-    3858
+    90,
+    100,
+    3226,
+    3771
    ],
    "streets": [
     42,
     46
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u93.jpg"
+   "source_image": "work/sheets/1912w/u93.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3287,
+    3858
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "left",
+    "top",
+    "right"
+   ]
   },
   "94": {
    "file": 94,
    "region": null,
    "extent": [
-    40,
-    40,
-    3287,
-    3858
+    77,
+    107,
+    3225,
+    3771
    ],
    "streets": [
     42,
     45
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u94.jpg"
+   "source_image": "work/sheets/1912w/u94.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3287,
+    3858
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "right"
+   ]
   },
   "95": {
    "file": 95,
    "region": null,
    "extent": [
-    40,
-    40,
-    3287,
-    3858
+    92,
+    91,
+    3237,
+    3806
    ],
    "streets": [
     42,
     45
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u95.jpg"
+   "source_image": "work/sheets/1912w/u95.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3287,
+    3858
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "left",
+    "bottom"
+   ]
   },
   "96": {
    "file": 96,
    "region": null,
    "extent": [
-    40,
-    40,
-    3287,
-    3858
+    92,
+    118,
+    3224,
+    3776
    ],
    "streets": [
     42,
     45
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u96.jpg"
+   "source_image": "work/sheets/1912w/u96.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3287,
+    3858
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "right"
+   ]
   },
   "97": {
    "file": 97,
    "region": null,
    "extent": [
-    40,
-    40,
-    3287,
-    3858
+    95,
+    93,
+    3226,
+    3760
    ],
    "streets": [
     42,
     45
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u97.jpg"
+   "source_image": "work/sheets/1912w/u97.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3287,
+    3858
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "left"
+   ]
   },
   "98": {
    "file": 98,
    "region": null,
    "extent": [
-    40,
-    40,
-    3287,
-    3858
+    83,
+    102,
+    3223,
+    3761
    ],
    "streets": [
     42,
     45
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u98.jpg"
+   "source_image": "work/sheets/1912w/u98.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3287,
+    3858
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "right"
+   ]
   },
   "99": {
    "file": 99,
    "region": null,
    "extent": [
-    40,
-    40,
-    3287,
-    3858
+    98,
+    103,
+    3219,
+    3804
    ],
    "streets": [
     33,
     39
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u99.jpg"
+   "source_image": "work/sheets/1912w/u99.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3287,
+    3858
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "left",
+    "top",
+    "right",
+    "bottom"
+   ]
   },
   "72": {
    "file": 72,
    "region": null,
    "extent": [
-    40,
-    40,
-    3287,
-    3858
+    90,
+    115,
+    3224,
+    3808
    ],
    "streets": [
     33,
     36
    ],
    "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u72.jpg"
+   "source_image": "work/sheets/1912w/u72.jpg",
+   "extent_scan": [
+    40,
+    40,
+    3287,
+    3858
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "left",
+    "bottom"
+   ]
   }
  }
 }
