@@ -1,6 +1,6 @@
 # Galveston Sanborn mosaics — status
 
-**Updated:** 2026-08-29 (Stage 4 partial: 1912 tools live) · **Branch:** `claude/galveston-setup-part-a-mk5z1l` · **Ledger:** `state/ledger.json`
+**Updated:** 2026-09-01 (1912 row shear fixed; seams re-cut; grid city-wide) · **Branch:** `claude/galveston-setup-part-a-mk5z1l` · **Ledger:** `state/ledger.json`
 
 ## Headline
 
@@ -95,29 +95,49 @@ extents at 1/2: 1899 → 15180×23783 (~1.1 GB canvas, 178 MB sources);
 `outputs/1899/coverage.png` — 89/90 placed, `71a` carried over unverified.
 `outputs/1912/coverage.png` — 92/92 placed.
 
-## 1912 published (2026-08-30)
+## 1912 row shear found and fixed (2026-09-01)
 
-150 ppi COG + 19-level DZI built and verified in-cloud (20370×45493, 927 MP).
-Stage 4 tiling gate: one connected piece, no double ownership — but 11
-unclaimed holes remain, dominated by missing sheet 72 (HQ-8). Seams graded by
-eye: frozen core clean, 4 of 4 sampled outer-ring seams defective (HQ-9).
+The published mosaic was sheared east-west from one sheet row to the next:
+sheets 57 and 63 cover the same avenue band one street row apart, their y
+differed by the correct 1,225 ft and their x by **1,643 ft**. Structural, not
+drafting. The control network only asked two questions -- side-by-side sheets
+share an avenue (pins a row in x), stacked sheets share a street (pins a
+column in y) -- so nothing tied one row to the next in x. With the core frozen
+as one rigid body the 56 avenue controls left **26 independent x-components**.
 
-## 1912 ring re-registered (2026-08-31)
+A stacked pair abuts along a street but *crosses* every avenue in its band, so
+it can be asked the other question. 45 such pairs went to 15 Opus observers,
+who read each shared avenue's centreline off a native-pixel ruler and argued
+identity from the printed lettering and hundred-block address runs.
 
-150 shared-corridor controls (137 + 13 fix-ups) identified by 21 Opus agents
-from printed address runs, the method that built the master. netsolve.py fits
-a translation per sheet with the core frozen: residuals median 0.0 ft, 90th
-4.8 ft, worst 33.6 ft; all 80 ring sheets constrained. Seam 75|76's duplicated
-street label is closed; the street grid runs continuously across seams; the
-largest coverage hole fell 8.58M -> 4.22M px². Every sheet's transform scale
-verified correct to 0.05%. Cuts re-made by Voronoi and still need to follow
-street centrelines (§2.5) before ring crops are print-ready.
+| | before | after |
+|---|---|---|
+| avenue(x) controls | 56 | **106** |
+| independent x-components | 26 | **1** |
+| control residual, median | — | 2.1 ft (90th 10.0, max 33.6) |
+| avenue index | non-monotonic | **monotonic, all 26 slots** |
+| worst per-avenue scatter | 479 ft | **66 ft** |
+| city-wide avenue pitch fit | 334.6 ft, residual 329.2 | **348.8 ft, residual 22.8** |
+
+`ctlcheck.py` re-checks every accepted control against evidence it was not
+fitted to -- the key maps predict the framing shift between two plates, so a
+control that took the right corridor on one sheet and its neighbour on the
+other is off by a whole block. **45 of 46 pass.** The three that ever flagged
+are all on the two plates observers independently identified as composites
+(sheet 85's inset panel, sheet 99's two out-of-register beach strips).
+
+Seams re-cut against the corrected placement: **one connected piece, 0 px²
+overlap, 8 interior holes.** Address lookup extended to streets 7-46 and all
+28 avenue slots.
 
 ## Human queue
 
 See `HUMAN_QUEUE.md` — open items:
-- **HQ-9** 1912 outer ring not print-ready (core is); ring seams need rework.
-- **HQ-8** 1912 missing sheet 72 — scanned, hash-pinned, never placed.
+- **HQ-19** plate margins bleed in where a cut lands on a centreline; 8 holes
+  remain, of which the two largest are genuine source gaps (25% and 37% of
+  that ground is on any plate).
+- **HQ-18** the existing 154 controls were proposed by a detector that finds
+  alleys, not avenues; a width-test pass over them is not yet done.
 - **HQ-7** 1899 `71a` drawn but unverified and visibly misplaced.
 
-HQ-1..HQ-4 resolved, HQ-6 fixed.
+HQ-1..HQ-4 resolved; HQ-6, HQ-8, HQ-9 and HQ-17 fixed.
