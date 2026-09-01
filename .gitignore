@@ -12,3 +12,7 @@ outputs/*/tiles/
 *.pre_city
 *.pre_recut
 *.pre_controls
+
+# the COG is over GitHub's 100 MB file cap; rebuild with tools/publish.py
+outputs/*/mosaic/*.tif
+outputs/*/tiles/
