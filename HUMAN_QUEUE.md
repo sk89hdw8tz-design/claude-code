@@ -847,3 +847,16 @@ source hole. Seam census round 2 follows on the re-rendered crops.
 170 ft (sheet 20). The core did not move. The state before it is commit
 3f7c092; `recipe/plates/plate_scales.json` records every plate's old and new
 scale.
+
+**Addendum — the cut itself.** With the plates placed to a few feet, the
+round-2 crops showed the last defect the straight centreline cut makes on
+its own: both plates print the street name at the centre of the roadway, and
+a straight line through the middle of both left half of each — a ghosted
+"27TH ST." at 12|14. The master's cuts never did that because they were
+min-ink paths. `streetcut.py` now cuts every band seam the same way: inside
+a ±320 px band about the control line, a dynamic programme finds the path
+that crosses the least ink on *both* plates (Gaussian-blurred, with a weak
+pull toward the centreline), so the seam runs between the label and the
+block face and one plate's label survives whole. 144 seams cut on such a
+path; the tiling gate is unchanged (one piece, 498 px² overlap, the 84|85
+hole). `--straight` restores the old behaviour.

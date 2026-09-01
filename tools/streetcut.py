@@ -86,6 +86,111 @@ def load_cuts(r):
     return out
 
 
+_gray = {}
+
+
+def gray(r, u):
+    """Grey working image, cached (a handful at a time)."""
+    if u not in _gray:
+        import cv2
+        if len(_gray) > 24:
+            _gray.pop(next(iter(_gray)))
+        _gray[u] = cv2.imread(r.fetch(r.sheet_file(u)), 0)
+    return _gray[u]
+
+
+DP_SCALE = 4           # mosaic px per cost cell (0.69 ft)
+DP_HALF = 320.0        # px either side of the control line the path may wander
+DP_PULL = 1.0          # cost per cell of distance from the control line (ink is 0-255)
+
+
+def dp_cut(r, u, v, axis, coord, O):
+    """Min-ink path through the shared roadway, as the master's cuts were made.
+
+    A straight centreline cut slices through whatever both plates print at
+    the centre of the street -- the street name, the plate number, the
+    north arrow -- and the census read the result as ghosted lettering
+    (12|14: half of each plate's "27TH ST."). The cut is therefore a path
+    that stays inside the roadway band about the control line and crosses
+    as little ink as possible on BOTH plates, so it runs between the label
+    and the block face and one plate's label survives whole.
+
+    Returns a shapely LineString in mosaic px along the seam axis, or None.
+    """
+    import cv2
+    from shapely.geometry import LineString
+    b = O.bounds
+    if axis == "y":
+        x0, x1 = b[0], b[2]
+        y0, y1 = max(b[1], coord - DP_HALF), min(b[3], coord + DP_HALF)
+    else:
+        y0, y1 = b[1], b[3]
+        x0, x1 = max(b[0], coord - DP_HALF), min(b[2], coord + DP_HALF)
+    W, H = int((x1 - x0) / DP_SCALE) + 1, int((y1 - y0) / DP_SCALE) + 1
+    if W < 8 or H < 8:
+        return None
+    cost = np.zeros((H, W), np.float32)
+    for w_ in (u, v):
+        M, t = r.sheet_matrix(w_)
+        A = np.hstack([M / DP_SCALE, ((t - np.array([x0, y0])) / DP_SCALE).reshape(2, 1)])
+        g = cv2.warpAffine(gray(r, w_), A, (W, H), flags=cv2.INTER_AREA, borderValue=255)
+        cost += cv2.GaussianBlur((255 - g).astype(np.float32), (0, 0), 1.5)
+    mask = np.zeros((H, W), np.uint8)
+    ring = np.array([((px - x0) / DP_SCALE, (py - y0) / DP_SCALE)
+                     for px, py in np.array(O.exterior.coords)], np.int32)
+    cv2.fillPoly(mask, [ring], 1)
+    cost = np.where(mask == 1, cost, BIG)
+    # pull toward the control line
+    if axis == "y":
+        cost += DP_PULL * np.abs((y0 + np.arange(H) * DP_SCALE - coord) / DP_SCALE)[:, None]
+    else:
+        cost += DP_PULL * np.abs((x0 + np.arange(W) * DP_SCALE - coord) / DP_SCALE)[None, :]
+        cost = cost.T                              # march along the seam
+    Hc, Wc = cost.shape
+    dp = cost.copy()
+    back = np.zeros_like(dp, np.int8)
+    for x in range(1, Wc):
+        prev = dp[:, x - 1]
+        st = np.vstack([np.roll(prev, 1), prev, np.roll(prev, -1)])
+        st[0, 0] = BIG * 2
+        st[2, -1] = BIG * 2
+        ch = st.argmin(axis=0)
+        dp[:, x] += st[ch, np.arange(Hc)]
+        back[:, x] = ch - 1
+    yend = int(dp[:, -1].argmin())
+    path = [yend]
+    for x in range(Wc - 1, 0, -1):
+        path.append(int(path[-1]) + int(back[path[-1], x]))
+    path = path[::-1]
+    pts = []
+    for x, y in enumerate(path):
+        if axis == "y":
+            pts.append((x0 + x * DP_SCALE, y0 + y * DP_SCALE))
+        else:
+            pts.append((x0 + y * DP_SCALE, y0 + x * DP_SCALE))
+    # extend straight past both ends so the side polygons close cleanly
+    c = np.array(pts, float)
+    d0 = c[0] - c[1]
+    d1 = c[-1] - c[-2]
+    d0 /= (np.linalg.norm(d0) + 1e-9)
+    d1 /= (np.linalg.norm(d1) + 1e-9)
+    c = np.vstack([c[0] + d0 * 20000, c, c[-1] + d1 * 20000])
+    return LineString(c).simplify(1.0)
+
+
+def side_polygons(line, axis):
+    """(low_side, high_side) polygons split by the extended path."""
+    from shapely.geometry import Polygon
+    c = np.array(line.coords)
+    if axis == "y":
+        low = Polygon(np.vstack([c, [[c[-1][0], -BIG], [c[0][0], -BIG]]]))
+        high = Polygon(np.vstack([c, [[c[-1][0], BIG], [c[0][0], BIG]]]))
+    else:
+        low = Polygon(np.vstack([c, [[-BIG, c[-1][1]], [-BIG, c[0][1]]]]))
+        high = Polygon(np.vstack([c, [[BIG, c[-1][1]], [BIG, c[0][1]]]]))
+    return low.buffer(0), high.buffer(0)
+
+
 def half_plane(axis, coord, keep_low):
     from shapely.geometry import box
     if axis == "x":
@@ -120,6 +225,8 @@ def main():
     ap.add_argument("--year", required=True, choices=["1912"])
     ap.add_argument("--apply", action="store_true")
     ap.add_argument("--debug-unit", default=None)
+    ap.add_argument("--straight", action="store_true",
+                    help="straight centreline cuts instead of min-ink paths")
     a = ap.parse_args()
 
     from shapely.geometry import Polygon
@@ -156,7 +263,7 @@ def main():
 
     units = sorted(feet, key=lambda k: int("".join(c for c in k if c.isdigit())))
     seams, loss = [], {u: [] for u in units}
-    stats = {"control": 0, "lattice": 0, "midpoint": 0, "core-core": 0}
+    stats = {"control": 0, "lattice": 0, "midpoint": 0, "core-core": 0, "dp": 0}
     for i, u in enumerate(units):
         for v in units[i + 1:]:
             if not base[u].intersects(base[v]):
@@ -197,9 +304,22 @@ def main():
             stats[how] += 1
             lower = u if cen[u][k] < cen[v][k] else v
             upper = v if lower == u else u
-            loss[lower].append(O.intersection(half_plane(axis, coord, False)))
-            loss[upper].append(O.intersection(half_plane(axis, coord, True)))
+            path = None
+            if band and not a.straight:
+                try:
+                    path = dp_cut(r, u, v, axis, coord, O)
+                except Exception as ex:          # fall back to the straight line
+                    print(f"  dp cut failed on {u}|{v}: {ex}", flush=True)
+            if path is not None:
+                low_side, high_side = side_polygons(path, axis)
+                loss[lower].append(O.intersection(high_side))
+                loss[upper].append(O.intersection(low_side))
+                stats["dp"] += 1
+            else:
+                loss[lower].append(O.intersection(half_plane(axis, coord, False)))
+                loss[upper].append(O.intersection(half_plane(axis, coord, True)))
             seams.append({"pair": [u, v], "axis": axis, "coord": round(coord, 2),
+                          "cut": "min-ink path" if path is not None else "straight",
                           "how": how, "corridor": corridor, "kind": "band" if band else "corner",
                           "overlap_px2": round(O.area), "span_px": round(span),
                           "lattice_disagreement_px": None if resid is None else round(resid, 1),
@@ -234,8 +354,8 @@ def main():
 
     print(f"seams: {stats['control']} on a control, {stats['lattice']} on the "
           f"plates' lattice, {stats['midpoint']} at the overlap midpoint "
-          f"(corner contacts); {stats['core-core']} core-core pairs kept the "
-          f"master's cuts", flush=True)
+          f"(corner contacts); {stats['dp']} cut on a min-ink path; "
+          f"{stats['core-core']} core-core pairs kept the master's cuts", flush=True)
     res = [s["lattice_disagreement_ft"] for s in seams if s["lattice_disagreement_ft"] is not None]
     if res:
         print(f"lattice seams: the two plates' readings of the shared corridor "
