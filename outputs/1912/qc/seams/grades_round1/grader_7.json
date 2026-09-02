@@ -1,0 +1,133 @@
+[
+ {
+  "seam": "14_55",
+  "score": 2,
+  "defects": [
+   "step"
+  ],
+  "offset_ft": 6,
+  "reason": "Ave F (Church) cut. Blocks 447/448 on plate 14 and 387/388 on plate 55 line up in plan, but every cross-street block face steps ~18 px (about 6 ft) at the cut (447 bottom y=537 vs 387 bottom y=555; 448 top 780 vs 795; same 18 px at each lot line down to block 449/389), and the water main in the avenue below block 448 jogs the same 6 ft where the 10-inch run (plate 14) meets the 16-inch run (plate 55). The vertical 'AVE. F OR CHURCH' label straddles the cut and is sheared by the same 6 ft, so the F/OR letters read broken. Exceeds the 2 ft band; escalate per rubric (5-15 ft).",
+  "furniture": "'80\\'' width notes printed in the roadway on both sides at slightly different heights; plate 55 paper noticeably warmer/yellower than plate 14 (tone step, acceptable)"
+ },
+ {
+  "seam": "21_27",
+  "score": 3,
+  "defects": [
+   "gap"
+  ],
+  "offset_ft": 2,
+  "reason": "12th St cut. Registration is very good: block 731/732, 671/672 and 611/612 edges agree within 2-5 px (under 2 ft), the 6-inch pipe in the alley at x~670 and the 8-inch pipe at x~2283 run straight through the cut. The defect is the street name: plate 21's '12TH ... ST' label straddles the cut and only its upper half survives, the lower half of every letter is sliced off and plate 27 prints nothing there, so the name reads as half-letters. Rework the label.",
+  "furniture": "north arrow and 'Scale of Feet' bar from plate 27 in the roadway at far left; 'Southern Oil Co. Ware Ho.' etc. unaffected"
+ },
+ {
+  "seam": "28_29",
+  "score": 2,
+  "defects": [
+   "step"
+  ],
+  "offset_ft": 7,
+  "reason": "Ave F (Church) cut. Blocks 432/433/434 (plate 28) vs 372/373/374 (plate 29): every block face and lot line is ~19 px (about 6.5-7 ft) higher on the plate 29 side (432 bottom y=556 vs 372 bottom y=537; 433 top 798 vs 779; 433 bottom 1704 vs 1687; 434 top 1948 vs 1929). Plan alignment of the avenue itself is fine and no building is cut, but the block corners visibly jog at the cut and the 'AVE. F OR CHURCH' label that straddles the cut is sheared by the same amount. 5-15 ft band; escalate.",
+  "furniture": "sheet pointer '28' printed in the roadway by plate 29, its '2' sliced by the cut and only the '8' fully visible; '80\\'' width notes both sides"
+ },
+ {
+  "seam": "35_39",
+  "score": 1,
+  "defects": [
+   "misplacement",
+   "duplicated-label",
+   "gap"
+  ],
+  "offset_ft": 77,
+  "reason": "18th St cut, gross misplacement. The cross avenues do not line up: block 317 (plate 35) left edge at x=730 vs block 318 (plate 39) at x=952, the 20-ft alley with 6-inch pipe at x=1097-1154 vs 1322-1381, block 257 left edge 1738 vs 258 at 1962 - a consistent ~222 px = 77 ft shift along the street, so every avenue kinks by a full street width at the cut. '18TH ST' is printed twice: plate 35's copy sits on the cut with its lower half sliced off at x~1000-1260 and plate 39's full '18TH ST.' sits directly below and ~70 ft east. House numbers 702-724 face 701-723 offset by three lots.",
+  "furniture": "north arrow and 'Scale of Feet' in the roadway; 'SEE' pointers not visible"
+ },
+ {
+  "seam": "45_51",
+  "score": 2,
+  "defects": [
+   "step",
+   "gap"
+  ],
+  "offset_ft": 12,
+  "reason": "24th St cut. Cross-street block edges are offset along the street: block 23 right edge x=631 vs block 24 at 656 (8 ft), alley pipe 207/266 vs 228/288 (7 ft), big block 1302 left edge 842 vs 1301 at 867 (9 ft), growing to ~36-40 px (12-14 ft) at the alley near x~1850, i.e. a small rotation/scale mismatch between plates 45 and 51. The '24TH ST' label from plate 45 straddles the cut and only the top halves of the letters survive. Lot spacing differs between the two frontages (plate 51 lots narrower), which is content, not seam.",
+  "furniture": "'Scale of Feet' bar (plate 45) and north arrow (plate 51) both in the roadway near the cut; T.H. dots"
+ },
+ {
+  "seam": "52_58",
+  "score": 2,
+  "defects": [
+   "misplacement",
+   "gap"
+  ],
+  "offset_ft": 20,
+  "reason": "27th St, midpoint cut (no control). Street width agrees (210 px = 72 ft both sides) but the whole bottom plate is shifted ~58 px = 20 ft west along the street: block 41 right edge x=1684 (plate 52) vs block 40 right edge 1626 (plate 58); block 66 left edge 1897 vs 65 at 1838; alley 2267/2325 vs 2215/2265. The avenue between blocks 41/66 and 40/65 therefore jogs 20 ft at the cut, clearly visible at the two block corners. Plate 58's '27TH ST.' label sits just under the cut with the tops of its letters clipped. Offset exceeds the 5-15 ft band; escalate.",
+  "furniture": "north arrow of plate 58 in the roadway at x~1200; mostly empty ground (Academy / Garden Verein) so few features to compare"
+ },
+ {
+  "seam": "59_60",
+  "score": 2,
+  "defects": [
+   "step"
+  ],
+  "offset_ft": 7,
+  "reason": "Ave Q cut. Block SW 90 top (plate 59) y=811 vs NW 115 top (plate 60) y=790, SW 90 bottom 1715 vs 1693, SE 89 top 1958 vs 1938, lot lines likewise: a consistent ~21 px = 7 ft step in every cross-street block face at the cut. The 'AVENUE Q' label and the sheet pointer digits straddling the cut are sheared by the same amount (the Q reads as two half-glyphs). Separately, plate 60 draws 28th St only 40 ft wide beside the Cotton Exposition auditorium where plate 59 shows 80 ft, so the north block face jumps ~35 ft at the cut - plate content, but a buyer will see it. The 8-inch main in the avenue south of SW 90 ends at the Ave Q main on plate 59 and is not drawn on plate 60 (content).",
+  "furniture": "'80\\'' and '40\\'' width notes and '28TH ST.' label in the roadway on plate 60; plate 60 paper slightly darker"
+ },
+ {
+  "seam": "65_72",
+  "score": 1,
+  "defects": [
+   "misplacement",
+   "step",
+   "duplicated-label"
+  ],
+  "offset_ft": 30,
+  "reason": "33rd St cut against the re-placed sheet 72. Along-street offset grows from 66 px (23 ft) at the block 1824/1823 corner (x=1192 vs 1126) to 74 px at 1902/1901 (1405 vs 1331), 85 px at the 1912|1914 alley and 102 px (35 ft) at the 1924/1923 corner (2200 vs 2098): a rotation/scale mismatch, so every avenue kinks 23-35 ft at the cut and the 6-inch pipe (plate 65) and 8-inch pipe (plate 72) in the same avenue are 25 ft apart. Plate 72 also draws no cross street between 1727 and 1801 where plate 65 has a 70-ft avenue. '33RD ST' is printed by both plates on the cut with each copy half-sliced (plate 65's at x~1640-1920, plate 72's fragments at x~400-500). A third plate intrudes above and below the cut at x>2195 with its block faces ~45 ft off.",
+  "furniture": "'70\\'' and '20\\'' width notes both sides; 'S.W. 63' / 'S.E. 62' / 'N.W. 88' / 'N.E. 87' outlot labels"
+ },
+ {
+  "seam": "71_79",
+  "score": 1,
+  "defects": [
+   "misplacement",
+   "doubled-lines",
+   "duplicated-label"
+  ],
+  "offset_ft": 48,
+  "reason": "36th St cut. Plate 71 draws the south (NW 36 / SW 36) block face at y~781 immediately above the cut, plate 79 draws the same block face at y~920: the street's south building line is drawn twice, 139 px = 48 ft apart, with '36TH ST.' printed twice one above the other (plate 71 at y~667, plate 79 at y~813, 50 ft apart) and the '80' width notes duplicated. Along the street the NW 36 corner is also off 29-69 px (10-24 ft: 1282 vs 1311, 307 vs 376). The top half further contains a second 36th St frontage from another sheet (block face at y~650-662, and a 40-ft-wide rendering at x>2240), and at the far west two 8-inch pipes run side by side ~16 ft apart. Gross: whole street face doubled.",
+  "furniture": "large sheet pointer '79' printed in the roadway at x~1190 just above the cut; 'N.E. 36' / 'S.E. 36' / 'N.W. 36' / 'S.W. 36' outlot labels"
+ },
+ {
+  "seam": "79_86",
+  "score": 1,
+  "defects": [
+   "misplacement",
+   "doubled-lines",
+   "step"
+  ],
+  "offset_ft": 30,
+  "reason": "39th St cut. Plates 79 and 86 are rotated/scaled against each other: at the east end the block 1624/1623 corner and the 1702/1701 corner agree within 5 px, but the offset grows westward - alley 1692/1748 vs 1682/1740 (3 ft), 1354 vs 1326 (10 ft), 1156 vs 1120 (12 ft), block 1512/1511 corner 763 vs 705 (20 ft), block 1502/1501 corner 425 vs 347 (27 ft) and the vertical 8-inch pipe in the western avenue 340 vs 248 (32 ft). The 6-inch main in 39th St is drawn twice: plate 79's dashed run at y~770 and plate 86's at y~825, 19 ft apart. '39TH ST.' appears twice along the street (x~580-930 from plate 86, x~1550-1860 from plate 79), which is plausible spacing but sits on the seam. A third sheet intrudes at the top-left (x<315) with its block face 60 px lower than plate 79's.",
+  "furniture": "'Scale of Feet' (plate 79) and north arrow (plate 86) in the roadway; brown stain on plate 86 right of centre is the product"
+ },
+ {
+  "seam": "86_87",
+  "score": 2,
+  "defects": [
+   "step"
+  ],
+  "offset_ft": 22,
+  "reason": "Ave O cut. Registration diverges down the seam: block SE 34 bottom y=692 (plate 86) vs NE 59 bottom 699 (2 ft), SW 34 top 929 vs NW 59 top 946 (6 ft), SW 34 bottom 1810 vs NW 59 bottom 1868 (20 ft), the 8-inch main in the avenue below 1928 vs 1990 (21 ft step at the cut), next block top 2046 vs 2114 (23 ft). Lot spacing is 126 px on plate 86 vs 131 px on plate 87, i.e. a ~4% scale mismatch. The lower block corners and the pipe visibly jog at the cut; above the 5-15 ft band, escalate.",
+  "furniture": "'80\\'' width notes both sides; 'SE 34 / SW 34 / N.E. 59 / N.W. 59' outlot labels; foxing stains at the top are the product"
+ },
+ {
+  "seam": "93_94",
+  "score": 2,
+  "defects": [
+   "misplacement",
+   "gap"
+  ],
+  "offset_ft": 21,
+  "reason": "Ave M cut, city blocks (plate 93) against outlots (plate 94). The avenue between blocks 42/43 and outlots 8/NE 7 is drawn 60 px = 21 ft higher on plate 94: block 42 bottom y=524 vs outlot 8 bottom 466, block 43 top 765 vs NE 7 top 702, so both block corners at the cut jog 21 ft. The vertical 'AVENUE M' label straddles the cut and only the plate 93 halves of the letters survive; plate 94's side is blank. Little other content on the outlot side to compare. Above the 5-15 ft band; escalate.",
+  "furniture": "sheet pointer '93' split by the cut (the '9' on plate 93's side, part of the '3' on plate 94's); '80\\'' width notes both sides; 'N.E. 7 / N.W. 7' outlot labels"
+ }
+]

@@ -1,0 +1,19 @@
+{
+ "pair": [
+  53,
+  54
+ ],
+ "axis": "street",
+ "observer": "lattice (tools/faces.py)",
+ "method": "corridor centre = midpoint of the two block faces read off the plate's own street chain; identity from the current placement (the two readings are within 57 ft, a block is 402 ft); a cross-axis tie: the corridor both plates draw across their shared band",
+ "a_native": 1361.5,
+ "b_native": 1236.5,
+ "corridor": "?",
+ "roadway_px": [
+  363,
+  275
+ ],
+ "disagreement_before_ft": 57.3,
+ "cross_axis": true,
+ "status": "ACCEPTED"
+}

@@ -1,0 +1,3882 @@
+{
+ "tool": "tools/widthcheck.py",
+ "tolerance_px": 30.0,
+ "controls": [
+  {
+   "file": "pair_11_13.json",
+   "pair": "11|13",
+   "axis": "y",
+   "corridor": "27th St",
+   "a": {
+    "unit": "11",
+    "native": 3759.0,
+    "lattice": 3760,
+    "offset": -1.0
+   },
+   "b": {
+    "unit": "13",
+    "native": 217.6,
+    "lattice": 216,
+    "offset": 1.6
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_11_14.json",
+   "pair": "11|14",
+   "axis": "y",
+   "corridor": "27th St",
+   "a": {
+    "unit": "11",
+    "native": 3750.2,
+    "lattice": 3760,
+    "offset": -9.8
+   },
+   "b": {
+    "unit": "14",
+    "native": 201.6,
+    "lattice": 196,
+    "offset": 5.6
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_12_13.json",
+   "pair": "12|13",
+   "axis": "y",
+   "corridor": "27th St",
+   "a": {
+    "unit": "12",
+    "native": 3748.2,
+    "lattice": 3750,
+    "offset": -1.8
+   },
+   "b": {
+    "unit": "13",
+    "native": 214.4,
+    "lattice": 216,
+    "offset": -1.6
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_12_14.json",
+   "pair": "12|14",
+   "axis": "y",
+   "corridor": "27th St",
+   "a": {
+    "unit": "12",
+    "native": 3744.9,
+    "lattice": 3750,
+    "offset": -5.1
+   },
+   "b": {
+    "unit": "14",
+    "native": 198.5,
+    "lattice": 196,
+    "offset": 2.5
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_12_14_x.json",
+   "pair": "12|14",
+   "axis": "x",
+   "corridor": "Ave E (Post Office)",
+   "a": {
+    "unit": "12",
+    "native": 2203.2,
+    "lattice": 2208,
+    "offset": -4.8
+   },
+   "b": {
+    "unit": "14",
+    "native": 2143.9,
+    "lattice": 2145,
+    "offset": -1.1
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_12_55.json",
+   "pair": "12|55",
+   "axis": "y",
+   "corridor": "27th St",
+   "a": {
+    "unit": "12",
+    "native": 3740.5,
+    "lattice": 3750,
+    "offset": -9.5
+   },
+   "b": {
+    "unit": "55",
+    "native": 226.9,
+    "lattice": 220,
+    "offset": 6.9
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_13_14.json",
+   "pair": "13|14",
+   "axis": "x",
+   "corridor": "Ave C (Mechanic)",
+   "a": {
+    "unit": "13",
+    "native": 3182.0,
+    "lattice": 2983,
+    "offset": 199.0
+   },
+   "b": {
+    "unit": "14",
+    "native": 130.0,
+    "lattice": 135,
+    "offset": -5.0
+   },
+   "verdict": "OFF-CORRIDOR"
+  },
+  {
+   "file": "pair_14_16.json",
+   "pair": "14|16",
+   "axis": "y",
+   "corridor": "30th St",
+   "a": {
+    "unit": "14",
+    "native": 3668.0,
+    "lattice": 3664,
+    "offset": 4.0
+   },
+   "b": {
+    "unit": "16",
+    "native": 222.0,
+    "lattice": 223,
+    "offset": -1.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_14_16_x.json",
+   "pair": "14|16",
+   "axis": "x",
+   "corridor": "Ave D (Market)",
+   "a": {
+    "unit": "14",
+    "native": 1134.1,
+    "lattice": 1134,
+    "offset": 0.1
+   },
+   "b": {
+    "unit": "16",
+    "native": 1159.9,
+    "lattice": 1160,
+    "offset": -0.1
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_14_49.json",
+   "pair": "14|49",
+   "axis": "y",
+   "corridor": "27th St",
+   "a": {
+    "unit": "14",
+    "native": 198.0,
+    "lattice": 196,
+    "offset": 2.0
+   },
+   "b": {
+    "unit": "49",
+    "native": 3740.0,
+    "lattice": 3744,
+    "offset": -4.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_14_55.json",
+   "pair": "14|55",
+   "axis": "x",
+   "corridor": "Ave F (Church)",
+   "a": {
+    "unit": "14",
+    "native": 3154.0,
+    "lattice": 3156,
+    "offset": -2.0
+   },
+   "b": {
+    "unit": "55",
+    "native": 142.0,
+    "lattice": 145,
+    "offset": -3.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_15_16.json",
+   "pair": "15|16",
+   "axis": "x",
+   "corridor": "Ave C (Mechanic)",
+   "a": {
+    "unit": "15",
+    "native": 3200.0,
+    "lattice": 3008,
+    "offset": 192.0
+   },
+   "b": {
+    "unit": "16",
+    "native": 155.0,
+    "lattice": 96,
+    "offset": 59.0
+   },
+   "verdict": "OFF-CORRIDOR"
+  },
+  {
+   "file": "pair_16_61.json",
+   "pair": "16|61",
+   "axis": "x",
+   "corridor": "Ave F (Church)",
+   "a": {
+    "unit": "16",
+    "native": 3160.0,
+    "lattice": 3182,
+    "offset": -22.0
+   },
+   "b": {
+    "unit": "61",
+    "native": 155.0,
+    "lattice": 142,
+    "offset": 13.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_16_67_x.json",
+   "pair": "16|67",
+   "axis": "x",
+   "corridor": "Ave D (Market)",
+   "a": {
+    "unit": "16",
+    "native": 1159.8,
+    "lattice": 1160,
+    "offset": -0.2
+   },
+   "b": {
+    "unit": "67",
+    "native": 2189.1,
+    "lattice": 2190,
+    "offset": -0.9
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_17_18.json",
+   "pair": "17|18",
+   "axis": "x",
+   "corridor": "Ave C (Mechanic)",
+   "a": {
+    "unit": "17",
+    "native": 3168.8,
+    "lattice": 3166,
+    "offset": 2.8
+   },
+   "b": {
+    "unit": "18",
+    "native": 119.5,
+    "lattice": 122,
+    "offset": -2.5
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_17_21.json",
+   "pair": "17|21",
+   "axis": "y",
+   "corridor": "9th St",
+   "a": {
+    "unit": "17",
+    "native": 3717.3,
+    "lattice": 3718,
+    "offset": -0.7
+   },
+   "b": {
+    "unit": "21",
+    "native": 215.2,
+    "lattice": 218,
+    "offset": -2.8
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_17_21_x.json",
+   "pair": "17|21",
+   "axis": "x",
+   "corridor": "Ave B (Strand)",
+   "a": {
+    "unit": "17",
+    "native": 2147.7,
+    "lattice": 2149,
+    "offset": -1.3
+   },
+   "b": {
+    "unit": "21",
+    "native": 2160.5,
+    "lattice": 2160,
+    "offset": 0.5
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_17_22.json",
+   "pair": "17|22",
+   "axis": "y",
+   "corridor": "9th St",
+   "a": {
+    "unit": "17",
+    "native": 3717.3,
+    "lattice": 3718,
+    "offset": -0.7
+   },
+   "b": {
+    "unit": "22",
+    "native": 223.0,
+    "lattice": 222,
+    "offset": 1.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_18_22.json",
+   "pair": "18|22",
+   "axis": "y",
+   "corridor": "9th St",
+   "a": {
+    "unit": "18",
+    "native": 3700.0,
+    "lattice": 3716,
+    "offset": -16.0
+   },
+   "b": {
+    "unit": "22",
+    "native": 198.0,
+    "lattice": 222,
+    "offset": -24.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_18_22_x.json",
+   "pair": "18|22",
+   "axis": "x",
+   "corridor": "Ave D (Market)",
+   "a": {
+    "unit": "18",
+    "native": 1120.7,
+    "lattice": 1120,
+    "offset": 0.7
+   },
+   "b": {
+    "unit": "22",
+    "native": 1191.4,
+    "lattice": 1194,
+    "offset": -2.6
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_19_23.json",
+   "pair": "19|23",
+   "axis": "y",
+   "corridor": "9th St",
+   "a": {
+    "unit": "19",
+    "native": 3705.0,
+    "lattice": 3706,
+    "offset": -1.0
+   },
+   "b": {
+    "unit": "23",
+    "native": 214.0,
+    "lattice": 210,
+    "offset": 4.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_19_23_x.json",
+   "pair": "19|23",
+   "axis": "x",
+   "corridor": "Ave H (Ball)",
+   "a": {
+    "unit": "19",
+    "native": 2205.6,
+    "lattice": 2205,
+    "offset": 0.6
+   },
+   "b": {
+    "unit": "23",
+    "native": 2166.2,
+    "lattice": 2167,
+    "offset": -0.8
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_20_24.json",
+   "pair": "20|24",
+   "axis": "y",
+   "corridor": "9th St",
+   "a": {
+    "unit": "20",
+    "native": 3691.0,
+    "lattice": 3692,
+    "offset": -1.0
+   },
+   "b": {
+    "unit": "24",
+    "native": 237.0,
+    "lattice": 212,
+    "offset": 25.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_20_24_x.json",
+   "pair": "20|24",
+   "axis": "x",
+   "corridor": "Ave K",
+   "a": {
+    "unit": "20",
+    "native": 2290.6,
+    "lattice": 2293,
+    "offset": -2.4
+   },
+   "b": {
+    "unit": "24",
+    "native": 2194.0,
+    "lattice": 2202,
+    "offset": -8.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_20_25_x.json",
+   "pair": "20|25",
+   "axis": "x",
+   "corridor": "Ave L",
+   "a": {
+    "unit": "20",
+    "native": 3291.7,
+    "lattice": 3289,
+    "offset": 2.7
+   },
+   "b": {
+    "unit": "25",
+    "native": 111.8,
+    "lattice": 114,
+    "offset": -2.2
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_21_22.json",
+   "pair": "21|22",
+   "axis": "x",
+   "corridor": "Ave C (Mechanic)",
+   "a": {
+    "unit": "21",
+    "native": 3180.0,
+    "lattice": 3177,
+    "offset": 3.0
+   },
+   "b": {
+    "unit": "22",
+    "native": 190.0,
+    "lattice": 187,
+    "offset": 3.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_21_27_x.json",
+   "pair": "21|27",
+   "axis": "x",
+   "corridor": "Ave B (Strand)",
+   "a": {
+    "unit": "21",
+    "native": 2156.7,
+    "lattice": 2160,
+    "offset": -3.3
+   },
+   "b": {
+    "unit": "27",
+    "native": 2180.8,
+    "lattice": 2186,
+    "offset": -5.2
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_22_28_x.json",
+   "pair": "22|28",
+   "axis": "x",
+   "corridor": "Ave D (Market)",
+   "a": {
+    "unit": "22",
+    "native": 1191.4,
+    "lattice": 1194,
+    "offset": -2.6
+   },
+   "b": {
+    "unit": "28",
+    "native": 1176.8,
+    "lattice": 1178,
+    "offset": -1.2
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_23_24.json",
+   "pair": "23|24",
+   "axis": "x",
+   "corridor": "Ave I (Sealy)",
+   "a": {
+    "unit": "23",
+    "native": 3174.0,
+    "lattice": 3166,
+    "offset": 8.0
+   },
+   "b": {
+    "unit": "24",
+    "native": 93.0,
+    "lattice": 92,
+    "offset": 1.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_23_29.json",
+   "pair": "23|29",
+   "axis": "y",
+   "corridor": "12th St",
+   "a": {
+    "unit": "23",
+    "native": 3655.0,
+    "lattice": 3668,
+    "offset": -13.0
+   },
+   "b": {
+    "unit": "29",
+    "native": 224.0,
+    "lattice": 204,
+    "offset": 20.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_23_29_x.json",
+   "pair": "23|29",
+   "axis": "x",
+   "corridor": "Ave H (Ball)",
+   "a": {
+    "unit": "23",
+    "native": 2158.8,
+    "lattice": 2167,
+    "offset": -8.2
+   },
+   "b": {
+    "unit": "29",
+    "native": 2144.8,
+    "lattice": 2154,
+    "offset": -9.2
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_24_30.json",
+   "pair": "24|30",
+   "axis": "y",
+   "corridor": "12th St",
+   "a": {
+    "unit": "24",
+    "native": 3671.0,
+    "lattice": 3679,
+    "offset": -8.0
+   },
+   "b": {
+    "unit": "30",
+    "native": 219.0,
+    "lattice": 216,
+    "offset": 3.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_24_30_x.json",
+   "pair": "24|30",
+   "axis": "x",
+   "corridor": "Avenue K",
+   "a": {
+    "unit": "24",
+    "native": 2209.8,
+    "lattice": 2202,
+    "offset": 7.8
+   },
+   "b": {
+    "unit": "30",
+    "native": 2213.8,
+    "lattice": 2216,
+    "offset": -2.2
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_25_30.json",
+   "pair": "25|30",
+   "axis": "y",
+   "corridor": "12th St",
+   "a": {
+    "unit": "25",
+    "native": 3670.0,
+    "lattice": 3670,
+    "offset": 0.0
+   },
+   "b": {
+    "unit": "30",
+    "native": 217.0,
+    "lattice": 216,
+    "offset": 1.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_25_31.json",
+   "pair": "25|31",
+   "axis": "y",
+   "corridor": "12th St",
+   "a": {
+    "unit": "25",
+    "native": 3672.0,
+    "lattice": 3670,
+    "offset": 2.0
+   },
+   "b": {
+    "unit": "31",
+    "native": 220.0,
+    "lattice": 212,
+    "offset": 8.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_25_31_x.json",
+   "pair": "25|31",
+   "axis": "x",
+   "corridor": "Ave M",
+   "a": {
+    "unit": "25",
+    "native": 1114.8,
+    "lattice": 1116,
+    "offset": -1.2
+   },
+   "b": {
+    "unit": "31",
+    "native": 1152.6,
+    "lattice": 1153,
+    "offset": -0.4
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_26_42.json",
+   "pair": "26|42",
+   "axis": "x",
+   "corridor": "Ave O 1/2",
+   "a": {
+    "unit": "26",
+    "native": 163.5,
+    "lattice": 164,
+    "offset": -0.5
+   },
+   "b": {
+    "unit": "42",
+    "native": 3173.5,
+    "lattice": 3178,
+    "offset": -4.5
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_26_47_x.json",
+   "pair": "26|47",
+   "axis": "x",
+   "corridor": "Ave P",
+   "a": {
+    "unit": "26",
+    "native": 1168.0,
+    "lattice": 1168,
+    "offset": 0.0
+   },
+   "b": {
+    "unit": "47",
+    "native": 1184.2,
+    "lattice": 1185,
+    "offset": -0.8
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_27_28.json",
+   "pair": "27|28",
+   "axis": "x",
+   "corridor": "Ave C (Mechanic)",
+   "a": {
+    "unit": "27",
+    "native": 3200.0,
+    "lattice": 3197,
+    "offset": 3.0
+   },
+   "b": {
+    "unit": "28",
+    "native": 171.0,
+    "lattice": 172,
+    "offset": -1.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_27_33.json",
+   "pair": "27|33",
+   "axis": "y",
+   "corridor": "15th St",
+   "a": {
+    "unit": "27",
+    "native": 3684.0,
+    "lattice": 3684,
+    "offset": 0.0
+   },
+   "b": {
+    "unit": "33",
+    "native": 213.0,
+    "lattice": 210,
+    "offset": 3.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_27_33_x.json",
+   "pair": "27|33",
+   "axis": "x",
+   "corridor": "Ave A (Water)",
+   "a": {
+    "unit": "27",
+    "native": 1165.8,
+    "lattice": 1166,
+    "offset": -0.2
+   },
+   "b": {
+    "unit": "33",
+    "native": 1157.6,
+    "lattice": 1160,
+    "offset": -2.4
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_28_34.json",
+   "pair": "28|34",
+   "axis": "y",
+   "corridor": "15th St",
+   "a": {
+    "unit": "28",
+    "native": 3691.0,
+    "lattice": 3684,
+    "offset": 7.0
+   },
+   "b": {
+    "unit": "34",
+    "native": 210.0,
+    "lattice": 210,
+    "offset": 0.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_28_34_x.json",
+   "pair": "28|34",
+   "axis": "x",
+   "corridor": "Ave D (Market)",
+   "a": {
+    "unit": "28",
+    "native": 1176.6,
+    "lattice": 1178,
+    "offset": -1.4
+   },
+   "b": {
+    "unit": "34",
+    "native": 1173.4,
+    "lattice": 1174,
+    "offset": -0.6
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_28_35.json",
+   "pair": "28|35",
+   "axis": "y",
+   "corridor": "15th St",
+   "a": {
+    "unit": "28",
+    "native": 3669.0,
+    "lattice": 3684,
+    "offset": -15.0
+   },
+   "b": {
+    "unit": "35",
+    "native": 212.0,
+    "lattice": 218,
+    "offset": -6.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_29_35_x.json",
+   "pair": "29|35",
+   "axis": "x",
+   "corridor": "Ave H (Ball)",
+   "a": {
+    "unit": "29",
+    "native": 2154.2,
+    "lattice": 2154,
+    "offset": 0.2
+   },
+   "b": {
+    "unit": "35",
+    "native": 2162.1,
+    "lattice": 2162,
+    "offset": 0.1
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_30_31.json",
+   "pair": "30|31",
+   "axis": "x",
+   "corridor": "Ave L",
+   "a": {
+    "unit": "30",
+    "native": 3192.0,
+    "lattice": 3211,
+    "offset": -19.0
+   },
+   "b": {
+    "unit": "31",
+    "native": 141.0,
+    "lattice": 141,
+    "offset": 0.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_30_35.json",
+   "pair": "30|35",
+   "axis": "y",
+   "corridor": "15th St",
+   "a": {
+    "unit": "30",
+    "native": 3650.0,
+    "lattice": 3666,
+    "offset": -16.0
+   },
+   "b": {
+    "unit": "35",
+    "native": 234.0,
+    "lattice": 218,
+    "offset": 16.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_30_36.json",
+   "pair": "30|36",
+   "axis": "y",
+   "corridor": "15th St",
+   "a": {
+    "unit": "30",
+    "native": 3693.0,
+    "lattice": 3666,
+    "offset": 27.0
+   },
+   "b": {
+    "unit": "36",
+    "native": 195.0,
+    "lattice": 216,
+    "offset": -21.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_30_36_x.json",
+   "pair": "30|36",
+   "axis": "x",
+   "corridor": "Ave K",
+   "a": {
+    "unit": "30",
+    "native": 2215.2,
+    "lattice": 2216,
+    "offset": -0.8
+   },
+   "b": {
+    "unit": "36",
+    "native": 2198.3,
+    "lattice": 2198,
+    "offset": 0.3
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_31_32.json",
+   "pair": "31|32",
+   "axis": "x",
+   "corridor": "Ave N",
+   "a": {
+    "unit": "31",
+    "native": 3149.0,
+    "lattice": 3148,
+    "offset": 1.0
+   },
+   "b": {
+    "unit": "32",
+    "native": 251.0,
+    "lattice": 247,
+    "offset": 4.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_31_36.json",
+   "pair": "31|36",
+   "axis": "y",
+   "corridor": "15th St",
+   "a": {
+    "unit": "31",
+    "native": 3677.0,
+    "lattice": 3676,
+    "offset": 1.0
+   },
+   "b": {
+    "unit": "36",
+    "native": 216.0,
+    "lattice": 216,
+    "offset": 0.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_31_37.json",
+   "pair": "31|37",
+   "axis": "y",
+   "corridor": "15th St",
+   "a": {
+    "unit": "31",
+    "native": 3676.0,
+    "lattice": 3676,
+    "offset": 0.0
+   },
+   "b": {
+    "unit": "37",
+    "native": 211.0,
+    "lattice": 211,
+    "offset": 0.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_31_37_x.json",
+   "pair": "31|37",
+   "axis": "x",
+   "corridor": "Ave M",
+   "a": {
+    "unit": "31",
+    "native": 1147.7,
+    "lattice": 1153,
+    "offset": -5.3
+   },
+   "b": {
+    "unit": "37",
+    "native": 1152.7,
+    "lattice": 1149,
+    "offset": 3.7
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_32_37.json",
+   "pair": "32|37",
+   "axis": "y",
+   "corridor": "15th St",
+   "a": {
+    "unit": "32",
+    "native": 3666.0,
+    "lattice": null,
+    "offset": null
+   },
+   "b": {
+    "unit": "37",
+    "native": 212.0,
+    "lattice": 211,
+    "offset": 1.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_33_34.json",
+   "pair": "33|34",
+   "axis": "x",
+   "corridor": "Ave C (Mechanic)",
+   "a": {
+    "unit": "33",
+    "native": 3203.0,
+    "lattice": 3198,
+    "offset": 5.0
+   },
+   "b": {
+    "unit": "34",
+    "native": 174.5,
+    "lattice": 172,
+    "offset": 2.5
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_33_7.json",
+   "pair": "33|7",
+   "axis": "y",
+   "corridor": "18th St",
+   "a": {
+    "unit": "33",
+    "native": 3669.0,
+    "lattice": 3671,
+    "offset": -2.0
+   },
+   "b": {
+    "unit": "7",
+    "native": 195.5,
+    "lattice": 194,
+    "offset": 1.5
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_33_8.json",
+   "pair": "33|8",
+   "axis": "y",
+   "corridor": "18th St",
+   "a": {
+    "unit": "33",
+    "native": 3661.2,
+    "lattice": 3671,
+    "offset": -9.8
+   },
+   "b": {
+    "unit": "8",
+    "native": 218.4,
+    "lattice": 210,
+    "offset": 8.4
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_34_35.json",
+   "pair": "34|35",
+   "axis": "x",
+   "corridor": "Ave F (Church)",
+   "a": {
+    "unit": "34",
+    "native": 3180.0,
+    "lattice": 3176,
+    "offset": 4.0
+   },
+   "b": {
+    "unit": "35",
+    "native": 138.0,
+    "lattice": 129,
+    "offset": 9.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_34_39.json",
+   "pair": "34|39",
+   "axis": "y",
+   "corridor": "18th St",
+   "a": {
+    "unit": "34",
+    "native": 3651.7,
+    "lattice": 3662,
+    "offset": -10.3
+   },
+   "b": {
+    "unit": "39",
+    "native": 236.3,
+    "lattice": 232,
+    "offset": 4.3
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_34_7.json",
+   "pair": "34|7",
+   "axis": "y",
+   "corridor": "18th St",
+   "a": {
+    "unit": "34",
+    "native": 3661.5,
+    "lattice": 3662,
+    "offset": -0.5
+   },
+   "b": {
+    "unit": "7",
+    "native": 195.0,
+    "lattice": 194,
+    "offset": 1.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_34_8.json",
+   "pair": "34|8",
+   "axis": "y",
+   "corridor": "18th St",
+   "a": {
+    "unit": "34",
+    "native": 3663.0,
+    "lattice": 3662,
+    "offset": 1.0
+   },
+   "b": {
+    "unit": "8",
+    "native": 211.0,
+    "lattice": 210,
+    "offset": 1.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_35_36.json",
+   "pair": "35|36",
+   "axis": "x",
+   "corridor": "Ave I (Sealy)",
+   "a": {
+    "unit": "35",
+    "native": 3155.0,
+    "lattice": 3165,
+    "offset": -10.0
+   },
+   "b": {
+    "unit": "36",
+    "native": 103.0,
+    "lattice": 105,
+    "offset": -2.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_35_39.json",
+   "pair": "35|39",
+   "axis": "y",
+   "corridor": "18th St",
+   "a": {
+    "unit": "35",
+    "native": 3681.0,
+    "lattice": 3685,
+    "offset": -4.0
+   },
+   "b": {
+    "unit": "39",
+    "native": 230.0,
+    "lattice": 232,
+    "offset": -2.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_35_40.json",
+   "pair": "35|40",
+   "axis": "y",
+   "corridor": "18th St",
+   "a": {
+    "unit": "35",
+    "native": 3681.0,
+    "lattice": 3685,
+    "offset": -4.0
+   },
+   "b": {
+    "unit": "40",
+    "native": 217.0,
+    "lattice": 214,
+    "offset": 3.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_35_8.json",
+   "pair": "35|8",
+   "axis": "y",
+   "corridor": "18th St",
+   "a": {
+    "unit": "35",
+    "native": 3681.0,
+    "lattice": 3685,
+    "offset": -4.0
+   },
+   "b": {
+    "unit": "8",
+    "native": 211.0,
+    "lattice": 210,
+    "offset": 1.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_36_37.json",
+   "pair": "36|37",
+   "axis": "x",
+   "corridor": "Ave L",
+   "a": {
+    "unit": "36",
+    "native": 3181.0,
+    "lattice": 3196,
+    "offset": -15.0
+   },
+   "b": {
+    "unit": "37",
+    "native": 182.0,
+    "lattice": 147,
+    "offset": 35.0
+   },
+   "verdict": "OFF-CORRIDOR"
+  },
+  {
+   "file": "pair_36_39.json",
+   "pair": "36|39",
+   "axis": "y",
+   "corridor": "18th St",
+   "a": {
+    "unit": "36",
+    "native": 3673.0,
+    "lattice": 3674,
+    "offset": -1.0
+   },
+   "b": {
+    "unit": "39",
+    "native": 230.0,
+    "lattice": 232,
+    "offset": -2.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_36_40.json",
+   "pair": "36|40",
+   "axis": "y",
+   "corridor": "18th St",
+   "a": {
+    "unit": "36",
+    "native": 3673.0,
+    "lattice": 3674,
+    "offset": -1.0
+   },
+   "b": {
+    "unit": "40",
+    "native": 217.0,
+    "lattice": 214,
+    "offset": 3.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_37_38.json",
+   "pair": "37|38",
+   "axis": "x",
+   "corridor": "Ave N",
+   "a": {
+    "unit": "37",
+    "native": 3211.0,
+    "lattice": 3172,
+    "offset": 39.0
+   },
+   "b": {
+    "unit": "38",
+    "native": 135.0,
+    "lattice": 188,
+    "offset": -53.0
+   },
+   "verdict": "OFF-CORRIDOR"
+  },
+  {
+   "file": "pair_37_40.json",
+   "pair": "37|40",
+   "axis": "y",
+   "corridor": "18th St",
+   "a": {
+    "unit": "37",
+    "native": 3669.0,
+    "lattice": 3680,
+    "offset": -11.0
+   },
+   "b": {
+    "unit": "40",
+    "native": 217.0,
+    "lattice": 214,
+    "offset": 3.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_37_41.json",
+   "pair": "37|41",
+   "axis": "y",
+   "corridor": "18th St",
+   "a": {
+    "unit": "37",
+    "native": 3669.0,
+    "lattice": 3680,
+    "offset": -11.0
+   },
+   "b": {
+    "unit": "41",
+    "native": 218.0,
+    "lattice": 188,
+    "offset": 30.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_37_41_x.json",
+   "pair": "37|41",
+   "axis": "x",
+   "corridor": "Ave M 1/2",
+   "a": {
+    "unit": "37",
+    "native": 2148.7,
+    "lattice": 2172,
+    "offset": -23.3
+   },
+   "b": {
+    "unit": "41",
+    "native": 2157.8,
+    "lattice": 2169,
+    "offset": -11.2
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_38_41.json",
+   "pair": "38|41",
+   "axis": "y",
+   "corridor": "18th St",
+   "a": {
+    "unit": "38",
+    "native": 3659.0,
+    "lattice": 3680,
+    "offset": -21.0
+   },
+   "b": {
+    "unit": "41",
+    "native": 233.0,
+    "lattice": 188,
+    "offset": 45.0
+   },
+   "verdict": "OFF-CORRIDOR"
+  },
+  {
+   "file": "pair_38_42.json",
+   "pair": "38|42",
+   "axis": "y",
+   "corridor": "18th St",
+   "a": {
+    "unit": "38",
+    "native": 3682.0,
+    "lattice": 3680,
+    "offset": 2.0
+   },
+   "b": {
+    "unit": "42",
+    "native": 210.0,
+    "lattice": 210,
+    "offset": 0.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_38_42_x.json",
+   "pair": "38|42",
+   "axis": "x",
+   "corridor": "Ave O",
+   "a": {
+    "unit": "38",
+    "native": 2196.7,
+    "lattice": 2200,
+    "offset": -3.3
+   },
+   "b": {
+    "unit": "42",
+    "native": 2178.9,
+    "lattice": 2180,
+    "offset": -1.1
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_40_41.json",
+   "pair": "40|41",
+   "axis": "x",
+   "corridor": "Ave L",
+   "a": {
+    "unit": "40",
+    "native": 3232.0,
+    "lattice": 3211,
+    "offset": 21.0
+   },
+   "b": {
+    "unit": "41",
+    "native": 143.0,
+    "lattice": 162,
+    "offset": -19.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_40_45.json",
+   "pair": "40|45",
+   "axis": "y",
+   "corridor": "21st St (Center)",
+   "a": {
+    "unit": "40",
+    "native": 3669.0,
+    "lattice": 3670,
+    "offset": -1.0
+   },
+   "b": {
+    "unit": "45",
+    "native": 217.0,
+    "lattice": 220,
+    "offset": -3.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_41_42.json",
+   "pair": "41|42",
+   "axis": "x",
+   "corridor": "Ave N",
+   "a": {
+    "unit": "41",
+    "native": 3164.0,
+    "lattice": 3163,
+    "offset": 1.0
+   },
+   "b": {
+    "unit": "42",
+    "native": 168.0,
+    "lattice": 167,
+    "offset": 1.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_41_44.json",
+   "pair": "41|44",
+   "axis": "y",
+   "corridor": "21st St (Center)",
+   "a": {
+    "unit": "41",
+    "native": 3675.0,
+    "lattice": 3682,
+    "offset": -7.0
+   },
+   "b": {
+    "unit": "44",
+    "native": 227.0,
+    "lattice": 230,
+    "offset": -3.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_41_45.json",
+   "pair": "41|45",
+   "axis": "y",
+   "corridor": "21st (Center) St",
+   "a": {
+    "unit": "41",
+    "native": 3676.0,
+    "lattice": 3682,
+    "offset": -6.0
+   },
+   "b": {
+    "unit": "45",
+    "native": 220.0,
+    "lattice": 220,
+    "offset": 0.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_42_45.json",
+   "pair": "42|45",
+   "axis": "y",
+   "corridor": "21st St (Center)",
+   "a": {
+    "unit": "42",
+    "native": 3657.0,
+    "lattice": 3662,
+    "offset": -5.0
+   },
+   "b": {
+    "unit": "45",
+    "native": 219.0,
+    "lattice": 220,
+    "offset": -1.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_42_46.json",
+   "pair": "42|46",
+   "axis": "y",
+   "corridor": "21st St (Center)",
+   "a": {
+    "unit": "42",
+    "native": 3660.0,
+    "lattice": 3662,
+    "offset": -2.0
+   },
+   "b": {
+    "unit": "46",
+    "native": 222.0,
+    "lattice": 226,
+    "offset": -4.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_44_45.json",
+   "pair": "44|45",
+   "axis": "x",
+   "corridor": "Ave L",
+   "a": {
+    "unit": "44",
+    "native": 3210.0,
+    "lattice": 3208,
+    "offset": 2.0
+   },
+   "b": {
+    "unit": "45",
+    "native": 130.0,
+    "lattice": 134,
+    "offset": -4.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_44_51.json",
+   "pair": "44|51",
+   "axis": "y",
+   "corridor": "24th St",
+   "a": {
+    "unit": "44",
+    "native": 3675.0,
+    "lattice": 3674,
+    "offset": 1.0
+   },
+   "b": {
+    "unit": "51",
+    "native": 168.0,
+    "lattice": 168,
+    "offset": 0.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_45_46.json",
+   "pair": "45|46",
+   "axis": "x",
+   "corridor": "Ave N",
+   "a": {
+    "unit": "45",
+    "native": 3136.5,
+    "lattice": 3136,
+    "offset": 0.5
+   },
+   "b": {
+    "unit": "46",
+    "native": 176.5,
+    "lattice": 178,
+    "offset": -1.5
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_45_50.json",
+   "pair": "45|50",
+   "axis": "y",
+   "corridor": "24th St",
+   "a": {
+    "unit": "45",
+    "native": 3670.0,
+    "lattice": 3670,
+    "offset": 0.0
+   },
+   "b": {
+    "unit": "50",
+    "native": 158.0,
+    "lattice": 156,
+    "offset": 2.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_45_51.json",
+   "pair": "45|51",
+   "axis": "y",
+   "corridor": "24th St",
+   "a": {
+    "unit": "45",
+    "native": 3670.0,
+    "lattice": 3670,
+    "offset": 0.0
+   },
+   "b": {
+    "unit": "51",
+    "native": 168.0,
+    "lattice": 168,
+    "offset": 0.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_46_52_x.json",
+   "pair": "46|52",
+   "axis": "x",
+   "corridor": "Ave O",
+   "a": {
+    "unit": "46",
+    "native": 2175.3,
+    "lattice": 2176,
+    "offset": -0.7
+   },
+   "b": {
+    "unit": "52",
+    "native": 2188.5,
+    "lattice": 2188,
+    "offset": 0.5
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_47_51.json",
+   "pair": "47|51",
+   "axis": "y",
+   "corridor": "24th St",
+   "a": {
+    "unit": "47",
+    "native": 3649.0,
+    "lattice": 3676,
+    "offset": -27.0
+   },
+   "b": {
+    "unit": "51",
+    "native": 179.0,
+    "lattice": 168,
+    "offset": 11.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_47_53.json",
+   "pair": "47|53",
+   "axis": "y",
+   "corridor": "24th St",
+   "a": {
+    "unit": "47",
+    "native": 3676.0,
+    "lattice": 3676,
+    "offset": 0.0
+   },
+   "b": {
+    "unit": "53",
+    "native": 208.0,
+    "lattice": 154,
+    "offset": 54.0
+   },
+   "verdict": "OFF-CORRIDOR"
+  },
+  {
+   "file": "pair_47_53_x.json",
+   "pair": "47|53",
+   "axis": "x",
+   "corridor": "Ave P",
+   "a": {
+    "unit": "47",
+    "native": 1183.4,
+    "lattice": 1185,
+    "offset": -1.6
+   },
+   "b": {
+    "unit": "53",
+    "native": 1162.0,
+    "lattice": 1160,
+    "offset": 2.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_48_60.json",
+   "pair": "48|60",
+   "axis": "x",
+   "corridor": "Ave R 1/2",
+   "a": {
+    "unit": "48",
+    "native": 185.0,
+    "lattice": 180,
+    "offset": 5.0
+   },
+   "b": {
+    "unit": "60",
+    "native": 3170.0,
+    "lattice": 3171,
+    "offset": -1.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_49_55.json",
+   "pair": "49|55",
+   "axis": "y",
+   "corridor": "27th St",
+   "a": {
+    "unit": "49",
+    "native": 3742.0,
+    "lattice": 3744,
+    "offset": -2.0
+   },
+   "b": {
+    "unit": "55",
+    "native": 219.0,
+    "lattice": 220,
+    "offset": -1.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_49_55_x.json",
+   "pair": "49|55",
+   "axis": "x",
+   "corridor": "Ave G (Winnie)",
+   "a": {
+    "unit": "49",
+    "native": 1152.3,
+    "lattice": 1153,
+    "offset": -0.7
+   },
+   "b": {
+    "unit": "55",
+    "native": 1146.9,
+    "lattice": 1147,
+    "offset": -0.1
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_49_56.json",
+   "pair": "49|56",
+   "axis": "y",
+   "corridor": "27th St",
+   "a": {
+    "unit": "49",
+    "native": 3742.0,
+    "lattice": 3744,
+    "offset": -2.0
+   },
+   "b": {
+    "unit": "56",
+    "native": 226.0,
+    "lattice": 228,
+    "offset": -2.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_50_51.json",
+   "pair": "50|51",
+   "axis": "x",
+   "corridor": "Ave L",
+   "a": {
+    "unit": "50",
+    "native": 3206.0,
+    "lattice": 3199,
+    "offset": 7.0
+   },
+   "b": {
+    "unit": "51",
+    "native": 143.0,
+    "lattice": 146,
+    "offset": -3.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_50_55.json",
+   "pair": "50|55",
+   "axis": "y",
+   "corridor": "27th St",
+   "a": {
+    "unit": "50",
+    "native": 3735.0,
+    "lattice": 3736,
+    "offset": -1.0
+   },
+   "b": {
+    "unit": "55",
+    "native": 219.0,
+    "lattice": 220,
+    "offset": -1.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_50_56.json",
+   "pair": "50|56",
+   "axis": "y",
+   "corridor": "27th St",
+   "a": {
+    "unit": "50",
+    "native": 3735.0,
+    "lattice": 3736,
+    "offset": -1.0
+   },
+   "b": {
+    "unit": "56",
+    "native": 226.0,
+    "lattice": 228,
+    "offset": -2.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_50_56_x.json",
+   "pair": "50|56",
+   "axis": "x",
+   "corridor": "Ave J (Broadway)",
+   "a": {
+    "unit": "50",
+    "native": 1153.5,
+    "lattice": 1152,
+    "offset": 1.5
+   },
+   "b": {
+    "unit": "56",
+    "native": 1154.5,
+    "lattice": 1153,
+    "offset": 1.5
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_50_57.json",
+   "pair": "50|57",
+   "axis": "y",
+   "corridor": "27th St",
+   "a": {
+    "unit": "50",
+    "native": 3735.0,
+    "lattice": 3736,
+    "offset": -1.0
+   },
+   "b": {
+    "unit": "57",
+    "native": 221.0,
+    "lattice": 221,
+    "offset": 0.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_51_52.json",
+   "pair": "51|52",
+   "axis": "y",
+   "corridor": "26th St",
+   "a": {
+    "unit": "51",
+    "native": 2593.0,
+    "lattice": 2596,
+    "offset": -3.0
+   },
+   "b": {
+    "unit": "52",
+    "native": 2592.0,
+    "lattice": 2584,
+    "offset": 8.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_51_57_x.json",
+   "pair": "51|57",
+   "axis": "x",
+   "corridor": "Ave M",
+   "a": {
+    "unit": "51",
+    "native": 1133.8,
+    "lattice": 1153,
+    "offset": -19.2
+   },
+   "b": {
+    "unit": "57",
+    "native": 1191.7,
+    "lattice": 1193,
+    "offset": -1.3
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_52_53.json",
+   "pair": "52|53",
+   "axis": "x",
+   "corridor": "Ave O 1/2",
+   "a": {
+    "unit": "52",
+    "native": 3182.0,
+    "lattice": 3182,
+    "offset": 0.0
+   },
+   "b": {
+    "unit": "53",
+    "native": 165.0,
+    "lattice": 165,
+    "offset": 0.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_52_57.json",
+   "pair": "52|57",
+   "axis": "y",
+   "corridor": "27th St",
+   "a": {
+    "unit": "52",
+    "native": 3739.0,
+    "lattice": 2584,
+    "offset": 1155.0
+   },
+   "b": {
+    "unit": "57",
+    "native": 222.0,
+    "lattice": 221,
+    "offset": 1.0
+   },
+   "verdict": "OFF-CORRIDOR"
+  },
+  {
+   "file": "pair_52_58_x.json",
+   "pair": "52|58",
+   "axis": "x",
+   "corridor": "Ave O",
+   "a": {
+    "unit": "52",
+    "native": 2186.7,
+    "lattice": 2188,
+    "offset": -1.3
+   },
+   "b": {
+    "unit": "58",
+    "native": 2117.8,
+    "lattice": 2122,
+    "offset": -4.2
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_53_54.json",
+   "pair": "53|54",
+   "axis": "x",
+   "corridor": "Ave Q",
+   "a": {
+    "unit": "53",
+    "native": 3206.0,
+    "lattice": 3162,
+    "offset": 44.0
+   },
+   "b": {
+    "unit": "54",
+    "native": 83.0,
+    "lattice": 120,
+    "offset": -37.0
+   },
+   "verdict": "OFF-CORRIDOR"
+  },
+  {
+   "file": "pair_53_59.json",
+   "pair": "53|59",
+   "axis": "y",
+   "corridor": "27th St",
+   "a": {
+    "unit": "53",
+    "native": 3716.5,
+    "lattice": 3724,
+    "offset": -7.5
+   },
+   "b": {
+    "unit": "59",
+    "native": 224.5,
+    "lattice": 218,
+    "offset": 6.5
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_53_59_x.json",
+   "pair": "53|59",
+   "axis": "x",
+   "corridor": "Ave P",
+   "a": {
+    "unit": "53",
+    "native": 1162.0,
+    "lattice": 1160,
+    "offset": 2.0
+   },
+   "b": {
+    "unit": "59",
+    "native": 1145.8,
+    "lattice": 1146,
+    "offset": -0.2
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_53_60.json",
+   "pair": "53|60",
+   "axis": "y",
+   "corridor": "27th St",
+   "a": {
+    "unit": "53",
+    "native": 3721.0,
+    "lattice": 3724,
+    "offset": -3.0
+   },
+   "b": {
+    "unit": "60",
+    "native": 226.0,
+    "lattice": 227,
+    "offset": -1.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_54_60.json",
+   "pair": "54|60",
+   "axis": "y",
+   "corridor": "27th St",
+   "a": {
+    "unit": "54",
+    "native": 3735.0,
+    "lattice": 3486,
+    "offset": 249.0
+   },
+   "b": {
+    "unit": "60",
+    "native": 226.0,
+    "lattice": 227,
+    "offset": -1.0
+   },
+   "verdict": "OFF-CORRIDOR"
+  },
+  {
+   "file": "pair_55_56.json",
+   "pair": "55|56",
+   "axis": "x",
+   "corridor": "Ave I (Sealy)",
+   "a": {
+    "unit": "55",
+    "native": 3159.0,
+    "lattice": 3146,
+    "offset": 13.0
+   },
+   "b": {
+    "unit": "56",
+    "native": 114.0,
+    "lattice": 108,
+    "offset": 6.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_55_61.json",
+   "pair": "55|61",
+   "axis": "y",
+   "corridor": "30th St",
+   "a": {
+    "unit": "55",
+    "native": 3670.0,
+    "lattice": 3670,
+    "offset": 0.0
+   },
+   "b": {
+    "unit": "61",
+    "native": 208.0,
+    "lattice": 214,
+    "offset": -6.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_55_61_x.json",
+   "pair": "55|61",
+   "axis": "x",
+   "corridor": "Ave G (Winnie)",
+   "a": {
+    "unit": "55",
+    "native": 1143.4,
+    "lattice": 1147,
+    "offset": -3.6
+   },
+   "b": {
+    "unit": "61",
+    "native": 1156.2,
+    "lattice": 1156,
+    "offset": 0.2
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_56_57.json",
+   "pair": "56|57",
+   "axis": "x",
+   "corridor": "Ave L",
+   "a": {
+    "unit": "56",
+    "native": 3184.0,
+    "lattice": 3198,
+    "offset": -14.0
+   },
+   "b": {
+    "unit": "57",
+    "native": 202.0,
+    "lattice": 189,
+    "offset": 13.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_56_62.json",
+   "pair": "56|62",
+   "axis": "y",
+   "corridor": "30th St",
+   "a": {
+    "unit": "56",
+    "native": 3671.0,
+    "lattice": 3671,
+    "offset": 0.0
+   },
+   "b": {
+    "unit": "62",
+    "native": 211.0,
+    "lattice": 206,
+    "offset": 5.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_56_62_x.json",
+   "pair": "56|62",
+   "axis": "x",
+   "corridor": "Ave K",
+   "a": {
+    "unit": "56",
+    "native": 2198.5,
+    "lattice": 2199,
+    "offset": -0.5
+   },
+   "b": {
+    "unit": "62",
+    "native": 2176.6,
+    "lattice": 2179,
+    "offset": -2.4
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_57_58.json",
+   "pair": "57|58",
+   "axis": "y",
+   "corridor": "29th St",
+   "a": {
+    "unit": "57",
+    "native": 2522.0,
+    "lattice": 2522,
+    "offset": 0.0
+   },
+   "b": {
+    "unit": "58",
+    "native": 2528.0,
+    "lattice": 2530,
+    "offset": -2.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_57_63_x.json",
+   "pair": "57|63",
+   "axis": "x",
+   "corridor": "Ave M 1/2",
+   "a": {
+    "unit": "57",
+    "native": 2199.8,
+    "lattice": 2200,
+    "offset": -0.2
+   },
+   "b": {
+    "unit": "63",
+    "native": 2183.3,
+    "lattice": 2182,
+    "offset": 1.3
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_58_59.json",
+   "pair": "58|59",
+   "axis": "x",
+   "corridor": "Ave O 1/2",
+   "a": {
+    "unit": "58",
+    "native": 3120.0,
+    "lattice": 3120,
+    "offset": 0.0
+   },
+   "b": {
+    "unit": "59",
+    "native": 141.0,
+    "lattice": 145,
+    "offset": -4.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_58_64.json",
+   "pair": "58|64",
+   "axis": "y",
+   "corridor": "30th St",
+   "a": {
+    "unit": "58",
+    "native": 3676.0,
+    "lattice": 3676,
+    "offset": 0.0
+   },
+   "b": {
+    "unit": "64",
+    "native": 211.0,
+    "lattice": 216,
+    "offset": -5.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_58_64_x.json",
+   "pair": "58|64",
+   "axis": "x",
+   "corridor": "Ave O",
+   "a": {
+    "unit": "58",
+    "native": 2121.1,
+    "lattice": 2122,
+    "offset": -0.9
+   },
+   "b": {
+    "unit": "64",
+    "native": 2172.6,
+    "lattice": 2172,
+    "offset": 0.6
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_58_65.json",
+   "pair": "58|65",
+   "axis": "y",
+   "corridor": "30th St",
+   "a": {
+    "unit": "58",
+    "native": 3664.0,
+    "lattice": 3676,
+    "offset": -12.0
+   },
+   "b": {
+    "unit": "65",
+    "native": 217.5,
+    "lattice": 218,
+    "offset": -0.5
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_59_60.json",
+   "pair": "59|60",
+   "axis": "x",
+   "corridor": "Ave Q",
+   "a": {
+    "unit": "59",
+    "native": 3156.0,
+    "lattice": 3156,
+    "offset": 0.0
+   },
+   "b": {
+    "unit": "60",
+    "native": 184.0,
+    "lattice": 188,
+    "offset": -4.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_59_65.json",
+   "pair": "59|65",
+   "axis": "y",
+   "corridor": "30th St",
+   "a": {
+    "unit": "59",
+    "native": 3669.0,
+    "lattice": 3670,
+    "offset": -1.0
+   },
+   "b": {
+    "unit": "65",
+    "native": 218.0,
+    "lattice": 218,
+    "offset": 0.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_59_65_x.json",
+   "pair": "59|65",
+   "axis": "x",
+   "corridor": "Ave P 1/2",
+   "a": {
+    "unit": "59",
+    "native": 2153.4,
+    "lattice": 2154,
+    "offset": -0.6
+   },
+   "b": {
+    "unit": "65",
+    "native": 2168.8,
+    "lattice": 2169,
+    "offset": -0.2
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_59_66.json",
+   "pair": "59|66",
+   "axis": "y",
+   "corridor": "30th St",
+   "a": {
+    "unit": "59",
+    "native": 3647.0,
+    "lattice": 3670,
+    "offset": -23.0
+   },
+   "b": {
+    "unit": "66",
+    "native": 233.0,
+    "lattice": 214,
+    "offset": 19.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_60_66.json",
+   "pair": "60|66",
+   "axis": "y",
+   "corridor": "30th St",
+   "a": {
+    "unit": "60",
+    "native": 3670.0,
+    "lattice": 3668,
+    "offset": 2.0
+   },
+   "b": {
+    "unit": "66",
+    "native": 225.0,
+    "lattice": 214,
+    "offset": 11.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_61_68_x.json",
+   "pair": "61|68",
+   "axis": "x",
+   "corridor": "Ave G (Winnie)",
+   "a": {
+    "unit": "61",
+    "native": 1148.2,
+    "lattice": 1156,
+    "offset": -7.8
+   },
+   "b": {
+    "unit": "68",
+    "native": 2165.7,
+    "lattice": 2168,
+    "offset": -2.3
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_62_63.json",
+   "pair": "62|63",
+   "axis": "x",
+   "corridor": "Ave L",
+   "a": {
+    "unit": "62",
+    "native": 3170.0,
+    "lattice": 3174,
+    "offset": -4.0
+   },
+   "b": {
+    "unit": "63",
+    "native": 179.0,
+    "lattice": 178,
+    "offset": 1.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_62_70.json",
+   "pair": "62|70",
+   "axis": "y",
+   "corridor": "33rd St",
+   "a": {
+    "unit": "62",
+    "native": 3651.0,
+    "lattice": 3678,
+    "offset": -27.0
+   },
+   "b": {
+    "unit": "70",
+    "native": 238.0,
+    "lattice": 220,
+    "offset": 18.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_62_71.json",
+   "pair": "62|71",
+   "axis": "y",
+   "corridor": "33rd St",
+   "a": {
+    "unit": "62",
+    "native": 3664.0,
+    "lattice": 3678,
+    "offset": -14.0
+   },
+   "b": {
+    "unit": "71",
+    "native": 208.0,
+    "lattice": 204,
+    "offset": 4.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_63_64.json",
+   "pair": "63|64",
+   "axis": "x",
+   "corridor": "Ave N",
+   "a": {
+    "unit": "63",
+    "native": 3183.0,
+    "lattice": 3177,
+    "offset": 6.0
+   },
+   "b": {
+    "unit": "64",
+    "native": 172.0,
+    "lattice": 53,
+    "offset": 119.0
+   },
+   "verdict": "OFF-CORRIDOR"
+  },
+  {
+   "file": "pair_63_71.json",
+   "pair": "63|71",
+   "axis": "y",
+   "corridor": "33rd St",
+   "a": {
+    "unit": "63",
+    "native": 3645.0,
+    "lattice": 3650,
+    "offset": -5.0
+   },
+   "b": {
+    "unit": "71",
+    "native": 202.0,
+    "lattice": 204,
+    "offset": -2.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_64_65.json",
+   "pair": "64|65",
+   "axis": "x",
+   "corridor": "Ave O 1/2",
+   "a": {
+    "unit": "64",
+    "native": 3162.5,
+    "lattice": 3168,
+    "offset": -5.5
+   },
+   "b": {
+    "unit": "65",
+    "native": 159.0,
+    "lattice": 156,
+    "offset": 3.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_65_66.json",
+   "pair": "65|66",
+   "axis": "x",
+   "corridor": "Ave Q",
+   "a": {
+    "unit": "65",
+    "native": 3169.0,
+    "lattice": 3166,
+    "offset": 3.0
+   },
+   "b": {
+    "unit": "66",
+    "native": 164.0,
+    "lattice": 165,
+    "offset": -1.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_65_72.json",
+   "pair": "65|72",
+   "axis": "y",
+   "corridor": "33rd St",
+   "a": {
+    "unit": "65",
+    "native": 3664.0,
+    "lattice": 3665,
+    "offset": -1.0
+   },
+   "b": {
+    "unit": "72",
+    "native": 227.0,
+    "lattice": 224,
+    "offset": 3.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_66_73.json",
+   "pair": "66|73",
+   "axis": "y",
+   "corridor": "33rd St",
+   "a": {
+    "unit": "66",
+    "native": 3672.0,
+    "lattice": 3678,
+    "offset": -6.0
+   },
+   "b": {
+    "unit": "73",
+    "native": 201.0,
+    "lattice": 198,
+    "offset": 3.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_66_74.json",
+   "pair": "66|74",
+   "axis": "x",
+   "corridor": "Ave R 1/2",
+   "a": {
+    "unit": "66",
+    "native": 3189.0,
+    "lattice": 3172,
+    "offset": 17.0
+   },
+   "b": {
+    "unit": "74",
+    "native": 1163.0,
+    "lattice": 1170,
+    "offset": -7.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_67_68.json",
+   "pair": "67|68",
+   "axis": "x",
+   "corridor": "Ave E (Post Office)",
+   "a": {
+    "unit": "67",
+    "native": 3148.0,
+    "lattice": 3186,
+    "offset": -38.0
+   },
+   "b": {
+    "unit": "68",
+    "native": 142.0,
+    "lattice": 142,
+    "offset": 0.0
+   },
+   "verdict": "OFF-CORRIDOR"
+  },
+  {
+   "file": "pair_67_75_x.json",
+   "pair": "67|75",
+   "axis": "x",
+   "corridor": "Ave D (Market)",
+   "a": {
+    "unit": "67",
+    "native": 2179.5,
+    "lattice": 2190,
+    "offset": -10.5
+   },
+   "b": {
+    "unit": "75",
+    "native": 1129.0,
+    "lattice": 1080,
+    "offset": 49.0
+   },
+   "verdict": "OFF-CORRIDOR"
+  },
+  {
+   "file": "pair_68_69.json",
+   "pair": "68|69",
+   "axis": "x",
+   "corridor": "Ave H (Ball)",
+   "a": {
+    "unit": "68",
+    "native": 3171.0,
+    "lattice": 3163,
+    "offset": 8.0
+   },
+   "b": {
+    "unit": "69",
+    "native": 126.0,
+    "lattice": 111,
+    "offset": 15.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_68_76_x.json",
+   "pair": "68|76",
+   "axis": "x",
+   "corridor": "Ave G (Winnie)",
+   "a": {
+    "unit": "68",
+    "native": 2169.4,
+    "lattice": 2168,
+    "offset": 1.4
+   },
+   "b": {
+    "unit": "76",
+    "native": 1162.6,
+    "lattice": 1164,
+    "offset": -1.4
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_68_77.json",
+   "pair": "68|77",
+   "axis": "y",
+   "corridor": "36th St",
+   "a": {
+    "unit": "68",
+    "native": 3640.0,
+    "lattice": 3662,
+    "offset": -22.0
+   },
+   "b": {
+    "unit": "77",
+    "native": 237.0,
+    "lattice": 220,
+    "offset": 17.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_69_77.json",
+   "pair": "69|77",
+   "axis": "y",
+   "corridor": "36th St",
+   "a": {
+    "unit": "69",
+    "native": 3670.0,
+    "lattice": 3669,
+    "offset": 1.0
+   },
+   "b": {
+    "unit": "77",
+    "native": 221.0,
+    "lattice": 220,
+    "offset": 1.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_69_78.json",
+   "pair": "69|78",
+   "axis": "y",
+   "corridor": "36th St",
+   "a": {
+    "unit": "69",
+    "native": 3655.0,
+    "lattice": 3669,
+    "offset": -14.0
+   },
+   "b": {
+    "unit": "78",
+    "native": 233.0,
+    "lattice": 220,
+    "offset": 13.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_70_71.json",
+   "pair": "70|71",
+   "axis": "x",
+   "corridor": "Ave M 1/2",
+   "a": {
+    "unit": "70",
+    "native": 3127.0,
+    "lattice": 3176,
+    "offset": -49.0
+   },
+   "b": {
+    "unit": "71",
+    "native": 133.0,
+    "lattice": 195,
+    "offset": -62.0
+   },
+   "verdict": "OFF-CORRIDOR"
+  },
+  {
+   "file": "pair_71_72.json",
+   "pair": "71|72",
+   "axis": "x",
+   "corridor": "Ave O",
+   "a": {
+    "unit": "71",
+    "native": 3187.0,
+    "lattice": 3186,
+    "offset": 1.0
+   },
+   "b": {
+    "unit": "72",
+    "native": 120.0,
+    "lattice": 122,
+    "offset": -2.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_71_79.json",
+   "pair": "71|79",
+   "axis": "y",
+   "corridor": "36th St",
+   "a": {
+    "unit": "71",
+    "native": 3779.0,
+    "lattice": 3658,
+    "offset": 121.0
+   },
+   "b": {
+    "unit": "79",
+    "native": 224.0,
+    "lattice": 220,
+    "offset": 4.0
+   },
+   "verdict": "OFF-CORRIDOR"
+  },
+  {
+   "file": "pair_72_73.json",
+   "pair": "72|73",
+   "axis": "x",
+   "corridor": "Ave P 1/2",
+   "a": {
+    "unit": "72",
+    "native": 3126.0,
+    "lattice": 3125,
+    "offset": 1.0
+   },
+   "b": {
+    "unit": "73",
+    "native": 155.0,
+    "lattice": 151,
+    "offset": 4.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_72_80.json",
+   "pair": "72|80",
+   "axis": "y",
+   "corridor": "36th St",
+   "a": {
+    "unit": "72",
+    "native": 3669.0,
+    "lattice": 3671,
+    "offset": -2.0
+   },
+   "b": {
+    "unit": "80",
+    "native": 233.0,
+    "lattice": 230,
+    "offset": 3.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_73_81.json",
+   "pair": "73|81",
+   "axis": "x",
+   "corridor": "Ave Q 1/2",
+   "a": {
+    "unit": "73",
+    "native": 2154.0,
+    "lattice": 2159,
+    "offset": -5.0
+   },
+   "b": {
+    "unit": "81",
+    "native": 1145.0,
+    "lattice": 1144,
+    "offset": 1.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_73_82.json",
+   "pair": "73|82",
+   "axis": "y",
+   "corridor": "36th St",
+   "a": {
+    "unit": "73",
+    "native": 3642.0,
+    "lattice": 3648,
+    "offset": -6.0
+   },
+   "b": {
+    "unit": "82",
+    "native": 226.0,
+    "lattice": 218,
+    "offset": 8.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_74_81.json",
+   "pair": "74|81",
+   "axis": "x",
+   "corridor": "Ave R 1/2",
+   "a": {
+    "unit": "74",
+    "native": 1166.5,
+    "lattice": 1170,
+    "offset": -3.5
+   },
+   "b": {
+    "unit": "81",
+    "native": 3153.0,
+    "lattice": 3148,
+    "offset": 5.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_75_76.json",
+   "pair": "75|76",
+   "axis": "x",
+   "corridor": "Ave F (Church)",
+   "a": {
+    "unit": "75",
+    "native": 3143.0,
+    "lattice": 3146,
+    "offset": -3.0
+   },
+   "b": {
+    "unit": "76",
+    "native": 166.0,
+    "lattice": 166,
+    "offset": 0.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_75_83_x.json",
+   "pair": "75|83",
+   "axis": "x",
+   "corridor": "Ave E (Post Office)",
+   "a": {
+    "unit": "75",
+    "native": 2140.3,
+    "lattice": 2082,
+    "offset": 58.3
+   },
+   "b": {
+    "unit": "83",
+    "native": 1167.7,
+    "lattice": 1154,
+    "offset": 13.7
+   },
+   "verdict": "OFF-CORRIDOR"
+  },
+  {
+   "file": "pair_76_84_x.json",
+   "pair": "76|84",
+   "axis": "x",
+   "corridor": "Ave H (Ball)",
+   "a": {
+    "unit": "76",
+    "native": 2170.1,
+    "lattice": 2168,
+    "offset": 2.1
+   },
+   "b": {
+    "unit": "84",
+    "native": 1164.8,
+    "lattice": 1165,
+    "offset": -0.2
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_77_78.json",
+   "pair": "77|78",
+   "axis": "x",
+   "corridor": "Ave L",
+   "a": {
+    "unit": "77",
+    "native": 3202.0,
+    "lattice": 3199,
+    "offset": 3.0
+   },
+   "b": {
+    "unit": "78",
+    "native": 138.0,
+    "lattice": 141,
+    "offset": -3.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_78_79.json",
+   "pair": "78|79",
+   "axis": "x",
+   "corridor": "Ave N",
+   "a": {
+    "unit": "78",
+    "native": 3138.0,
+    "lattice": 3144,
+    "offset": -6.0
+   },
+   "b": {
+    "unit": "79",
+    "native": 121.0,
+    "lattice": 125,
+    "offset": -4.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_78_86.json",
+   "pair": "78|86",
+   "axis": "y",
+   "corridor": "39th St",
+   "a": {
+    "unit": "78",
+    "native": 3623.0,
+    "lattice": 3657,
+    "offset": -34.0
+   },
+   "b": {
+    "unit": "86",
+    "native": 253.0,
+    "lattice": 208,
+    "offset": 45.0
+   },
+   "verdict": "OFF-CORRIDOR"
+  },
+  {
+   "file": "pair_79_80.json",
+   "pair": "79|80",
+   "axis": "x",
+   "corridor": "Ave O 1/2",
+   "a": {
+    "unit": "79",
+    "native": 3095.0,
+    "lattice": 3122,
+    "offset": -27.0
+   },
+   "b": {
+    "unit": "80",
+    "native": 146.0,
+    "lattice": 168,
+    "offset": -22.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_79_87.json",
+   "pair": "79|87",
+   "axis": "y",
+   "corridor": "39th St",
+   "a": {
+    "unit": "79",
+    "native": 3668.0,
+    "lattice": 3666,
+    "offset": 2.0
+   },
+   "b": {
+    "unit": "87",
+    "native": 254.0,
+    "lattice": 212,
+    "offset": 42.0
+   },
+   "verdict": "OFF-CORRIDOR"
+  },
+  {
+   "file": "pair_80_81.json",
+   "pair": "80|81",
+   "axis": "x",
+   "corridor": "Ave Q",
+   "a": {
+    "unit": "80",
+    "native": 3165.0,
+    "lattice": 3163,
+    "offset": 2.0
+   },
+   "b": {
+    "unit": "81",
+    "native": 144.0,
+    "lattice": 148,
+    "offset": -4.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_80_88.json",
+   "pair": "80|88",
+   "axis": "y",
+   "corridor": "39th St",
+   "a": {
+    "unit": "80",
+    "native": 3663.0,
+    "lattice": 3678,
+    "offset": -15.0
+   },
+   "b": {
+    "unit": "88",
+    "native": 242.0,
+    "lattice": 230,
+    "offset": 12.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_80_89.json",
+   "pair": "80|89",
+   "axis": "y",
+   "corridor": "39th St",
+   "a": {
+    "unit": "80",
+    "native": 3673.0,
+    "lattice": 3678,
+    "offset": -5.0
+   },
+   "b": {
+    "unit": "89",
+    "native": 217.0,
+    "lattice": 210,
+    "offset": 7.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_80_90.json",
+   "pair": "80|90",
+   "axis": "y",
+   "corridor": "39th St",
+   "a": {
+    "unit": "80",
+    "native": 3677.0,
+    "lattice": 3678,
+    "offset": -1.0
+   },
+   "b": {
+    "unit": "90",
+    "native": 213.0,
+    "lattice": 214,
+    "offset": -1.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_80_99.json",
+   "pair": "80|99",
+   "axis": "y",
+   "corridor": "38th St",
+   "a": {
+    "unit": "80",
+    "native": 2519.0,
+    "lattice": 2526,
+    "offset": -7.0
+   },
+   "b": {
+    "unit": "99",
+    "native": 2513.0,
+    "lattice": 2516,
+    "offset": -3.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_81_82.json",
+   "pair": "81|82",
+   "axis": "x",
+   "corridor": "Ave R 1/2",
+   "a": {
+    "unit": "81",
+    "native": 3153.0,
+    "lattice": 3148,
+    "offset": 5.0
+   },
+   "b": {
+    "unit": "82",
+    "native": 181.5,
+    "lattice": 182,
+    "offset": -0.5
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_81_88.json",
+   "pair": "81|88",
+   "axis": "y",
+   "corridor": "39th St",
+   "a": {
+    "unit": "81",
+    "native": 3652.0,
+    "lattice": 3656,
+    "offset": -4.0
+   },
+   "b": {
+    "unit": "88",
+    "native": 230.0,
+    "lattice": 230,
+    "offset": 0.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_81_89.json",
+   "pair": "81|89",
+   "axis": "x",
+   "corridor": "Ave R 1/2",
+   "a": {
+    "unit": "81",
+    "native": 3153.0,
+    "lattice": 3148,
+    "offset": 5.0
+   },
+   "b": {
+    "unit": "89",
+    "native": 1165.0,
+    "lattice": 1168,
+    "offset": -3.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_82_90.json",
+   "pair": "82|90",
+   "axis": "y",
+   "corridor": "39th St",
+   "a": {
+    "unit": "82",
+    "native": 3670.0,
+    "lattice": 3670,
+    "offset": 0.0
+   },
+   "b": {
+    "unit": "90",
+    "native": 214.0,
+    "lattice": 214,
+    "offset": 0.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_82_90_x.json",
+   "pair": "82|90",
+   "axis": "x",
+   "corridor": "Ave S 1/2",
+   "a": {
+    "unit": "82",
+    "native": 2185.3,
+    "lattice": 2189,
+    "offset": -3.7
+   },
+   "b": {
+    "unit": "90",
+    "native": 173.8,
+    "lattice": 174,
+    "offset": -0.2
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_82_99.json",
+   "pair": "82|99",
+   "axis": "x",
+   "corridor": "Ave T",
+   "a": {
+    "unit": "82",
+    "native": 3179.0,
+    "lattice": 3175,
+    "offset": 4.0
+   },
+   "b": {
+    "unit": "99",
+    "native": 1787.0,
+    "lattice": 2254,
+    "offset": -467.0
+   },
+   "verdict": "OFF-CORRIDOR"
+  },
+  {
+   "file": "pair_83_84.json",
+   "pair": "83|84",
+   "axis": "x",
+   "corridor": "Ave G (Winnie)",
+   "a": {
+    "unit": "83",
+    "native": 3174.0,
+    "lattice": 3174,
+    "offset": 0.0
+   },
+   "b": {
+    "unit": "84",
+    "native": 172.0,
+    "lattice": 169,
+    "offset": 3.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_83_91.json",
+   "pair": "83|91",
+   "axis": "y",
+   "corridor": "42nd St",
+   "a": {
+    "unit": "83",
+    "native": 3658.5,
+    "lattice": 3656,
+    "offset": 2.5
+   },
+   "b": {
+    "unit": "91",
+    "native": 228.3,
+    "lattice": 226,
+    "offset": 2.3
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_83_91_x.json",
+   "pair": "83|91",
+   "axis": "x",
+   "corridor": "Ave F (Church)",
+   "a": {
+    "unit": "83",
+    "native": 1665.0,
+    "lattice": 2106,
+    "offset": -441.0
+   },
+   "b": {
+    "unit": "91",
+    "native": 1664.2,
+    "lattice": 2164,
+    "offset": -499.8
+   },
+   "verdict": "OFF-CORRIDOR"
+  },
+  {
+   "file": "pair_84_91.json",
+   "pair": "84|91",
+   "axis": "y",
+   "corridor": "42nd St",
+   "a": {
+    "unit": "84",
+    "native": 3666.3,
+    "lattice": 3672,
+    "offset": -5.7
+   },
+   "b": {
+    "unit": "91",
+    "native": 228.3,
+    "lattice": 226,
+    "offset": 2.3
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_84_92.json",
+   "pair": "84|92",
+   "axis": "y",
+   "corridor": "42nd St",
+   "a": {
+    "unit": "84",
+    "native": 3665.0,
+    "lattice": 3672,
+    "offset": -7.0
+   },
+   "b": {
+    "unit": "92",
+    "native": 224.0,
+    "lattice": 224,
+    "offset": 0.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_84_92_x.json",
+   "pair": "84|92",
+   "axis": "x",
+   "corridor": "Ave I (Sealy)",
+   "a": {
+    "unit": "84",
+    "native": 2173.4,
+    "lattice": 2168,
+    "offset": 5.4
+   },
+   "b": {
+    "unit": "92",
+    "native": 2128.0,
+    "lattice": 2128,
+    "offset": 0.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_84_93.json",
+   "pair": "84|93",
+   "axis": "y",
+   "corridor": "42nd St",
+   "a": {
+    "unit": "84",
+    "native": 3658.0,
+    "lattice": 3672,
+    "offset": -14.0
+   },
+   "b": {
+    "unit": "93",
+    "native": 184.0,
+    "lattice": 226,
+    "offset": -42.0
+   },
+   "verdict": "OFF-CORRIDOR"
+  },
+  {
+   "file": "pair_84_93_x.json",
+   "pair": "84|93",
+   "axis": "x",
+   "corridor": "Ave J (Broadway)",
+   "a": {
+    "unit": "84",
+    "native": 3211.0,
+    "lattice": 3168,
+    "offset": 43.0
+   },
+   "b": {
+    "unit": "93",
+    "native": 129.3,
+    "lattice": 177,
+    "offset": -47.7
+   },
+   "verdict": "OFF-CORRIDOR"
+  },
+  {
+   "file": "pair_84_94.json",
+   "pair": "84|94",
+   "axis": "y",
+   "corridor": "42nd St",
+   "a": {
+    "unit": "84",
+    "native": 3647.0,
+    "lattice": 3672,
+    "offset": -25.0
+   },
+   "b": {
+    "unit": "94",
+    "native": 234.0,
+    "lattice": 218,
+    "offset": 16.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_85_86.json",
+   "pair": "85|86",
+   "axis": "x",
+   "corridor": "Ave M 1/2",
+   "a": {
+    "unit": "85",
+    "native": 3195.0,
+    "lattice": 3184,
+    "offset": 11.0
+   },
+   "b": {
+    "unit": "86",
+    "native": 167.0,
+    "lattice": 168,
+    "offset": -1.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_85_93_x.json",
+   "pair": "85|93",
+   "axis": "x",
+   "corridor": "Ave L",
+   "a": {
+    "unit": "85",
+    "native": 1194.1,
+    "lattice": 1188,
+    "offset": 6.1
+   },
+   "b": {
+    "unit": "93",
+    "native": 2164.0,
+    "lattice": 2170,
+    "offset": -6.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_85_94.json",
+   "pair": "85|94",
+   "axis": "y",
+   "corridor": "42nd St",
+   "a": {
+    "unit": "85",
+    "native": 3675.0,
+    "lattice": 3674,
+    "offset": 1.0
+   },
+   "b": {
+    "unit": "94",
+    "native": 220.0,
+    "lattice": 218,
+    "offset": 2.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_85_94_x.json",
+   "pair": "85|94",
+   "axis": "x",
+   "corridor": "Ave M",
+   "a": {
+    "unit": "85",
+    "native": 2196.9,
+    "lattice": 2198,
+    "offset": -1.1
+   },
+   "b": {
+    "unit": "94",
+    "native": 174.3,
+    "lattice": 174,
+    "offset": 0.3
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_85_96.json",
+   "pair": "85|96",
+   "axis": "y",
+   "corridor": "42nd St",
+   "a": {
+    "unit": "85",
+    "native": 3674.0,
+    "lattice": 3674,
+    "offset": 0.0
+   },
+   "b": {
+    "unit": "96",
+    "native": 230.0,
+    "lattice": 230,
+    "offset": 0.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_86_87.json",
+   "pair": "86|87",
+   "axis": "x",
+   "corridor": "Ave O",
+   "a": {
+    "unit": "86",
+    "native": 3166.0,
+    "lattice": 3158,
+    "offset": 8.0
+   },
+   "b": {
+    "unit": "87",
+    "native": 146.0,
+    "lattice": 147,
+    "offset": -1.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_86_94_x.json",
+   "pair": "86|94",
+   "axis": "x",
+   "corridor": "Ave N",
+   "a": {
+    "unit": "86",
+    "native": 1169.2,
+    "lattice": 1168,
+    "offset": 1.2
+   },
+   "b": {
+    "unit": "94",
+    "native": 2172.9,
+    "lattice": 2172,
+    "offset": 0.9
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_86_96.json",
+   "pair": "86|96",
+   "axis": "y",
+   "corridor": "42nd St",
+   "a": {
+    "unit": "86",
+    "native": 3648.0,
+    "lattice": 3648,
+    "offset": 0.0
+   },
+   "b": {
+    "unit": "96",
+    "native": 230.0,
+    "lattice": 230,
+    "offset": 0.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_87_88.json",
+   "pair": "87|88",
+   "axis": "x",
+   "corridor": "Ave P 1/2",
+   "a": {
+    "unit": "87",
+    "native": 3131.0,
+    "lattice": 3148,
+    "offset": -17.0
+   },
+   "b": {
+    "unit": "88",
+    "native": 166.0,
+    "lattice": 177,
+    "offset": -11.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_87_95_x.json",
+   "pair": "87|95",
+   "axis": "x",
+   "corridor": "Ave O 1/2",
+   "a": {
+    "unit": "87",
+    "native": 1149.8,
+    "lattice": 1150,
+    "offset": -0.2
+   },
+   "b": {
+    "unit": "95",
+    "native": 2140.2,
+    "lattice": 2139,
+    "offset": 1.2
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_87_96.json",
+   "pair": "87|96",
+   "axis": "y",
+   "corridor": "42nd St",
+   "a": {
+    "unit": "87",
+    "native": 3669.0,
+    "lattice": 3669,
+    "offset": 0.0
+   },
+   "b": {
+    "unit": "96",
+    "native": 230.0,
+    "lattice": 230,
+    "offset": 0.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_87_97.json",
+   "pair": "87|97",
+   "axis": "y",
+   "corridor": "42nd St",
+   "a": {
+    "unit": "87",
+    "native": 3666.0,
+    "lattice": 3669,
+    "offset": -3.0
+   },
+   "b": {
+    "unit": "97",
+    "native": 204.0,
+    "lattice": 204,
+    "offset": 0.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_88_89.json",
+   "pair": "88|89",
+   "axis": "x",
+   "corridor": "Ave R",
+   "a": {
+    "unit": "88",
+    "native": 3151.0,
+    "lattice": 2163,
+    "offset": 988.0
+   },
+   "b": {
+    "unit": "89",
+    "native": 163.0,
+    "lattice": 154,
+    "offset": 9.0
+   },
+   "verdict": "OFF-CORRIDOR"
+  },
+  {
+   "file": "pair_88_96_x.json",
+   "pair": "88|96",
+   "axis": "x",
+   "corridor": "Ave Q",
+   "a": {
+    "unit": "88",
+    "native": 1170.0,
+    "lattice": 1170,
+    "offset": 0.0
+   },
+   "b": {
+    "unit": "96",
+    "native": 2177.3,
+    "lattice": 2176,
+    "offset": 1.3
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_88_97.json",
+   "pair": "88|97",
+   "axis": "y",
+   "corridor": "42nd St",
+   "a": {
+    "unit": "88",
+    "native": 3666.0,
+    "lattice": 3666,
+    "offset": 0.0
+   },
+   "b": {
+    "unit": "97",
+    "native": 208.0,
+    "lattice": 204,
+    "offset": 4.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_88_98.json",
+   "pair": "88|98",
+   "axis": "y",
+   "corridor": "42nd St",
+   "a": {
+    "unit": "88",
+    "native": 3670.0,
+    "lattice": 3666,
+    "offset": 4.0
+   },
+   "b": {
+    "unit": "98",
+    "native": 228.0,
+    "lattice": 208,
+    "offset": 20.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_89_98.json",
+   "pair": "89|98",
+   "axis": "y",
+   "corridor": "42nd St",
+   "a": {
+    "unit": "89",
+    "native": 3648.0,
+    "lattice": 3664,
+    "offset": -16.0
+   },
+   "b": {
+    "unit": "98",
+    "native": 225.0,
+    "lattice": 208,
+    "offset": 17.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_89_98_x.json",
+   "pair": "89|98",
+   "axis": "x",
+   "corridor": "Ave S",
+   "a": {
+    "unit": "89",
+    "native": 2150.8,
+    "lattice": 2171,
+    "offset": -20.2
+   },
+   "b": {
+    "unit": "98",
+    "native": 186.8,
+    "lattice": 164,
+    "offset": 22.8
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_90_98_x.json",
+   "pair": "90|98",
+   "axis": "x",
+   "corridor": "Ave T",
+   "a": {
+    "unit": "90",
+    "native": 1171.5,
+    "lattice": 1168,
+    "offset": 3.5
+   },
+   "b": {
+    "unit": "98",
+    "native": 2173.3,
+    "lattice": 2170,
+    "offset": 3.3
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_90_99_x.json",
+   "pair": "90|99",
+   "axis": "x",
+   "corridor": "Ave T",
+   "a": {
+    "unit": "90",
+    "native": 1167.4,
+    "lattice": 1168,
+    "offset": -0.6
+   },
+   "b": {
+    "unit": "99",
+    "native": 1779.7,
+    "lattice": 2254,
+    "offset": -474.3
+   },
+   "verdict": "OFF-CORRIDOR"
+  },
+  {
+   "file": "pair_91_92.json",
+   "pair": "91|92",
+   "axis": "x",
+   "corridor": "Ave G (Winnie)",
+   "a": {
+    "unit": "91",
+    "native": 3177.8,
+    "lattice": 3159,
+    "offset": 18.8
+   },
+   "b": {
+    "unit": "92",
+    "native": 121.4,
+    "lattice": 137,
+    "offset": -15.6
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_95_96.json",
+   "pair": "95|96",
+   "axis": "x",
+   "corridor": "Ave P",
+   "a": {
+    "unit": "95",
+    "native": 3135.0,
+    "lattice": 3137,
+    "offset": -2.0
+   },
+   "b": {
+    "unit": "96",
+    "native": 188.0,
+    "lattice": 188,
+    "offset": 0.0
+   },
+   "verdict": "on-corridor"
+  },
+  {
+   "file": "pair_96_97.json",
+   "pair": "96|97",
+   "axis": "x",
+   "corridor": "Ave Q 1/2",
+   "a": {
+    "unit": "96",
+    "native": 3164.0,
+    "lattice": 3170,
+    "offset": -6.0
+   },
+   "b": {
+    "unit": "97",
+    "native": 149.0,
+    "lattice": 149,
+    "offset": 0.0
+   },
+   "verdict": "on-corridor"
+  }
+ ]
+}

@@ -1,6 +1,23 @@
-{"pair": [79, 87], "axis": "street", "observer": "agent-batch8",
+{
+ "pair": [
+  79,
+  87
+ ],
+ "axis": "street",
+ "observer": "agent-batch8",
  "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
  "corridor": "39th St",
- "a_native": 3668, "b_native": 254,
+ "a_native": 3668,
+ "b_native": 212.0,
  "why_not_one_block_off": "Sheet 79's crop is bounded by '38TH ST' at the top and '39TH ST' at the bottom, with the neighbour sheet numbers '86' and '87' printed immediately south of the 39th St line - so 39th is the seam. The avenue-direction house numbers prove the hundred-block: sheet 79's blocks N.W.35 / S.W.35 / N.W.60 carry the 3800 runs 3801,3803,...,3827 and 3802,3804,...,3828, while sheet 87's blocks N.E.59 / S.E.59 / N.E.84, immediately south of its top margin, carry the 3900 runs 3901,3903,...,3927 and 3902,3904,...,3928. One block further south sheet 87 prints '40TH ST' and the 4000 runs begin, so the line taken is 39th, not 40th. The two sheets also overlap in the 1700 cross-run: sheet 79's east block prints '1701 1703 ... 1711 / 1702 1704 ... 1712' and sheet 87's west block prints '1713 1715 ... 1723 / 1714 1716 ... 1724'. Corridor width 70 ft; centres read off the green native rulers from the block frontage lines, since detection's candidates (3237 / 1010) both fall inside blocks.",
- "status": "ACCEPTED"}
+ "status": "ACCEPTED",
+ "corrections": [
+  {
+   "field": "b_native",
+   "observer_value": 254,
+   "value": 212.0,
+   "by": "widthcheck (tools/widthcheck.py) + plate crop, 2026-09-01",
+   "why": "sheet 87: the observer's 254 sits below the '39TH ST.' label row (~212); centre from the faces is 212"
+  }
+ ]
+}

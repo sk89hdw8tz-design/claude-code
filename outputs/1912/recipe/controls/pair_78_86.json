@@ -8,7 +8,16 @@
  "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
  "corridor": "39th St",
  "a_native": 3623,
- "b_native": 253,
+ "b_native": 208.0,
  "why_not_one_block_off": "Sheet 78's bottom margin prints '39TH ==== ST.' with sheets 85 and 86 named below; its last block row carries 3802-3828 / 3801-3827 with cross numbers 1214-1224, 1302-1312, 1402-1412. Sheet 86's top margin prints '39TH ST.' with sheets 78 and 79 named above, and its first block row carries 3902-3928 / 3901-3927 with cross numbers 1413-1423, 1501-1512, 1601-1611; the next street south is '40TH ST.' opening the 4000-block (4001-4005). The 3800/3900 change is exactly this corridor.",
- "status": "ACCEPTED"
+ "status": "ACCEPTED",
+ "corrections": [
+  {
+   "field": "b_native",
+   "observer_value": 253,
+   "value": 208.0,
+   "by": "widthcheck (tools/widthcheck.py) + plate crop, 2026-09-01",
+   "why": "sheet 86: the observer's 253 sits between the '39TH ST.' label row (~210) and the 1401-block face (~330); centre from the faces is 208"
+  }
+ ]
 }

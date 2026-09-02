@@ -19,3 +19,7 @@ outputs/*/tiles/
 
 # transcript HTML is an intermediate; the PDF is the deliverable
 outputs/transcript/*.html
+
+# seam crops: the 50% set is committed (the graders' evidence); the 100% set
+# is 4x the bytes and regenerates with tools/seamcrops.py
+outputs/*/qc/seams/seam_*_100.jpg

@@ -1,0 +1,141 @@
+[
+ {
+  "seam": "16_67",
+  "score": 2,
+  "defects": [
+   "step",
+   "tone"
+  ],
+  "offset_ft": 15,
+  "reason": "Cut runs along 33RD ST. Block faces jog: block 572/573 east face and the 402/401 block west face are ~45 px (15 ft) further east on plate 67 than on plate 16, the 424/423 face ~7 ft, the 502/501 face lines up (~0) - a shift that tapers west to east, so the two plates are not at quite the same scale. Plate 16's '33RD ST' name is sliced by the cut (only the top halves of the letters survive). Top-left corner of the crop is a third, greyer plate.",
+  "furniture": "north arrow and scale bar from plate 67 in the roadway; clipped '33RD ST' label; T.H. and FA symbols; 6in pipe dashes"
+ },
+ {
+  "seam": "23_24",
+  "score": 1,
+  "defects": [
+   "misplacement",
+   "duplicated-label",
+   "tone"
+  ],
+  "offset_ft": 140,
+  "reason": "Gross misplacement along AVE. I: the cross street between the 9xx and 10xx blocks (block 249/250 on plate 23, block 190 on plate 24) sits ~415 px (about 140 ft) further north on the plate 24 side; house numbers 928 (left) and 927 (right) are 145 ft apart across the cut. 'AVE. I OR SEALY' is printed on both sides at different heights, and the blocks are ~4% longer on the right.",
+  "furniture": "clipped adjacent-sheet numerals ('2' left of the cut, '3' right); '80'' width notes both sides"
+ },
+ {
+  "seam": "29_35",
+  "score": 2,
+  "defects": [
+   "step",
+   "duplicated-label"
+  ],
+  "offset_ft": 12,
+  "reason": "Cut along 15TH ST. All block faces (624/623, 702/701, 724/723, 802/801, 812/811, 814/813) and the 12in pipe run continue across the cut but shifted 28-40 px (10-14 ft) east on plate 35; street widths otherwise match. '15TH ST' from plate 29 is cut through the middle and only the bottom half of plate 35's 'ST.' shows, so the name reads as two mismatched halves.",
+  "furniture": "scale bar and north arrow in the roadway; FA fire-alarm symbol; T.H. hydrants; 70' and 20' notes"
+ },
+ {
+  "seam": "37_38",
+  "score": 1,
+  "defects": [
+   "misplacement",
+   "doubled-lines",
+   "duplicated-label"
+  ],
+  "offset_ft": 35,
+  "reason": "Along AVENUE N. The cross street between the 14xx/15xx and 16xx blocks is ~100 px (about 35 ft) further south on plate 38 than on plate 37; the next cross street is off by ~10 ft (plate 38's block is ~6% shorter). The 6in water pipe in the avenue is drawn twice, two parallel dashed runs about 19 ft apart, one from each plate; 'AVENUE N' is printed on both sides side by side.",
+  "furniture": "clipped adjacent-sheet numerals ('3' left, '7' right); '80'' width notes"
+ },
+ {
+  "seam": "47_53",
+  "score": 1,
+  "defects": [
+   "misplacement",
+   "step"
+  ],
+  "offset_ft": 27,
+  "reason": "Along 24TH ST. Every block face jogs at the cut: 1824/1823 and 1902/1901 faces are 56-61 px (19-21 ft) further west on plate 53, the 1924/1923 and 2002/2001 faces 78-80 px (27 ft); street widths match (70') so the whole lower plate is displaced west, more so toward the east end. Plate 47's '24TH ST' and 'Scale of Feet' text are sliced through by the cut.",
+  "furniture": "scale bar in the roadway on plate 47; T.H. hydrants; 6in pipe dashes"
+ },
+ {
+  "seam": "54_60",
+  "score": 1,
+  "defects": [
+   "misplacement",
+   "step"
+  ],
+  "offset_ft": 30,
+  "reason": "Along 27TH ST. Block faces 2202/2201, the 2212/2213 alley, 2224/2223, the 6in pipe run and the 2302/2301 face are all 81-90 px (28-31 ft) further west on plate 60. The avenue between 2124 and 2202 is shown 70' wide on plate 54 and 35' on plate 60, so that street visibly narrows at the cut. '27TH ST' from plate 54 is sliced by the cut; the diagonal rail line at the east edge also mis-meets.",
+  "furniture": "scale bar and north arrow in the roadway on plate 60; 'AVENUE R' label; T.H. hydrant"
+ },
+ {
+  "seam": "61_62",
+  "score": 1,
+  "defects": [
+   "misplacement",
+   "duplicated-label",
+   "tone"
+  ],
+  "offset_ft": 50,
+  "reason": "Along AVE. I. Cross streets do not line up: block 270/271 faces on plate 61 are 140-155 px (48-53 ft) north of the matching 210/211 faces on plate 62, and the 271/272 street is off by ~120-130 px (42-45 ft). 'AVE. I OR SEALY' and the '80'' note appear on both sides at different heights.",
+  "furniture": "adjacent-sheet numerals ('61' whole on the right, clipped '6' on the left); T.H. hydrants"
+ },
+ {
+  "seam": "67_68",
+  "score": 2,
+  "defects": [
+   "step"
+  ],
+  "offset_ft": 10,
+  "reason": "Along AVE. E OR POST OFFICE. Block 513/453 faces meet within ~6 ft, but the 514/454 and 515/455 faces are 22-28 px (8-10 ft) further north on plate 68; the curved R.R. siding that crosses the cut steps about 10 ft where it meets the straight sidings. Street name printed once, pipes (8in and 6in) drawn only on the plate 68 side, no doubling.",
+  "furniture": "clipped adjacent-sheet numerals near the top; '80'' width notes; T.H. hydrant"
+ },
+ {
+  "seam": "73_81",
+  "score": 1,
+  "defects": [
+   "misplacement",
+   "step",
+   "gap",
+   "tone"
+  ],
+  "offset_ft": 24,
+  "reason": "Along 26TH ST. Block faces 2102/2101, the 2112/2113 alley, 2124/2123, 2202/2201, the 2212/2213 alley and 2224/2223 are all 65-80 px (22-28 ft) further east on plate 81; the 6in pipe run in the western cross street is 90 px (31 ft) off. Plate 73's '26TH ST' is sliced by the cut. Bottom-left corner is a third, stained plate with a thin white strip along the cut (x 120-190); top-right shows plate 73's blank margin instead of the 2301 block (a neighbouring join, but visible here).",
+  "furniture": "north arrow in the roadway at the east end; 70' and 20' notes; T.H. hydrant"
+ },
+ {
+  "seam": "81_82",
+  "score": 2,
+  "defects": [
+   "step",
+   "duplicated-label"
+  ],
+  "offset_ft": 19,
+  "reason": "Along an avenue (R\u00bd area). The 2324/2402 block bottoms, the 8in pipe run, the 2325/2401 block tops, the NE/SE 135 division line and the block bottom by the park all continue across the cut but 46-57 px (16-19 ft) higher on plate 82, growing slightly toward the south. At the bottom of the crop both plates' 'AVENUE R\u00bd' labels are cut in half by the seam and sit ~45 ft apart, reading as a garbled label.",
+  "furniture": "'AVENUE' label near the top on plate 82; 70' and 80' notes"
+ },
+ {
+  "seam": "87_95",
+  "score": 2,
+  "defects": [
+   "split-building",
+   "step",
+   "gap",
+   "tone"
+  ],
+  "offset_ft": 19,
+  "reason": "This cut runs mid-block through block 58 (side numbers 4121 above, 4123 below; NE/SE quarters above, NW/SW below), not down a street. A small X-marked building on plate 87 at the 4121 lot (x~600-645 full-res) and another at x~350-460 are cut off at the seam with nothing continuing below. Block 58's west face jogs 56 px (19 ft) east on plate 95, the interior alley lines 44 px (15 ft), the 1813/1814 lines line up, and the east end is ~6 ft the other way. Third-plate patches at both ends of the cut with small white notches at top-left and bottom-right.",
+  "furniture": "quarter labels NE/NW/SE/SW 58; 'AVENUE O\u00bd' and '43RD ST' labels; dashed pipe"
+ },
+ {
+  "seam": "96_97",
+  "score": 1,
+  "defects": [
+   "misplacement",
+   "step",
+   "tone"
+  ],
+  "offset_ft": 32,
+  "reason": "Along an avenue between the 21xx and 22xx blocks. The 2124/2202 block bottoms, the 8in pipe run and the 2125/2201 block tops are each ~92-95 px (about 32 ft) further south on plate 97, so the cross street and pipe visibly jog at the cut. Mostly vacant ground, heavily stained on plate 97 (paper tones differ strongly), which makes the seam itself obvious but is not scored.",
+  "furniture": "adjacent-sheet numeral '96' right of the cut with a clipped '9' left of it; 'AVENUE' label on plate 97; 70' and 80' notes"
+ }
+]

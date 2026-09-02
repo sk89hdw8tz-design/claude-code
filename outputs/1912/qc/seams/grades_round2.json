@@ -1,0 +1,1706 @@
+{
+ "round": 2,
+ "note": "census after the plate rescale, cross-axis ties and min-ink cuts, before the similarity solve (HQ-26)",
+ "tally": {
+  "1": 17,
+  "2": 70,
+  "3": 33,
+  "4": 14,
+  "5": 10
+ },
+ "seams": [
+  {
+   "seam": "7_33",
+   "score": 3,
+   "defects": [
+    "step"
+   ],
+   "offset_ft": 4,
+   "reason": "18TH ST. cut: curved rail lines, the 124/1802 and 1727/1801 block corners and the 6-inch pipe that turns down the west side all continue within about 1 ft; but the double block-edge line at the west end (block 737/738, beside the '20'' note) jogs about 12 px = 4 ft at the cut, visible at 100% and findable at 50%. No doubled content, no gap; tone of the two plates matches closely.",
+   "furniture": "'18TH ST.' label and '6\"W. PIPE' lettering in the roadway; 70'/80' width notes",
+   "grader": "grader_0"
+  },
+  {
+   "seam": "17_21",
+   "score": 3,
+   "defects": [
+    "step"
+   ],
+   "offset_ft": 6.5,
+   "reason": "9TH ST. cut: the plates are rotated slightly relative to each other. West block corners (12/14, 13/15) step about 3 ft, the curved rail tracks beside Ave. A step about 3 ft, and at the east end the 8-inch pipe run and the 212/214 vs 211/213 block corner step about 19 px = 6.5 ft. No doubled lettering; hospital and lecture-hall blocks otherwise read cleanly.",
+   "furniture": "north arrow and 'Scale of Feet' caption printed inside the 9th St roadway; 70'/80' width notes",
+   "grader": "grader_0"
+  },
+  {
+   "seam": "24_25",
+   "score": 2,
+   "defects": [
+    "step"
+   ],
+   "offset_ft": 9,
+   "reason": "AVENUE L cut (vertical): plates disagree by a rotation/scale. At the middle of the crop the 1114-1124 / 1202-1212 block faces line up within 1-2 ft, but toward the north end the cross street (with its 6-inch pipe run and the two '80'' notes) sits 25-27 px = 9 ft higher on plate 25 than on plate 24: block-face lines and the pipe dashes visibly step at the cut. Nothing doubled, no gap.",
+   "furniture": "plate number 25 and the 'AVENUE L' label with bracket inside the roadway; 80' width notes",
+   "grader": "grader_0"
+  },
+  {
+   "seam": "30_36",
+   "score": 5,
+   "defects": [
+    "none"
+   ],
+   "offset_ft": 1,
+   "reason": "15TH ST. cut: every block corner checked (914/913, 924/923, 1002/1001, 1012/1011, 1014/1013, 1102/1101, 1114/1113) lines up within 2-6 px (under 2 ft); the 6-inch pipe at the west end and the 8/6-inch pipe at the east end run straight through the cut; house numbering and 20'/150' notes continue. No doubled content, no tone step worth mentioning.",
+   "furniture": "'Scale of Feet' bar with figures and the north arrow printed in the 15th St roadway; '15TH ST.' label",
+   "grader": "grader_0"
+  },
+  {
+   "seam": "38_42",
+   "score": 2,
+   "defects": [
+    "step"
+   ],
+   "offset_ft": 16,
+   "reason": "18TH ST. cut: the whole lower plate (42) sits about 45 px = 15-16 ft west of the upper plate (38). Every cross street steps: 1524/1602 vs 1523/1601 (36-38 px), 1624/1702 vs 1623/1701 (43-46 px), 1712/1714 vs 1711/1713 (49 px), and the 6-inch pipe in the 1624/1702 cross street jogs about 20 ft. Grid otherwise complete, nothing doubled, no gap. Borderline 1; escalate.",
+   "furniture": "north arrow, 'Scale of Feet' caption and '18TH ST.' label in the roadway; 70' width notes",
+   "grader": "grader_0"
+  },
+  {
+   "seam": "48_74",
+   "score": 4,
+   "defects": [
+    "tone",
+    "gap"
+   ],
+   "offset_ft": 2,
+   "reason": "33RD ST. cut: block corners 2402/2401, 2412-2414/2411-2413, 2502/2501 and 2524/2523 line up within 3-7 px (1-2 ft) and the tented-city block reads cleanly. Detractors are cosmetic: a greyer third plate intrudes at the north-west corner with its own '70'' note beside plate 48's, plate 74 is darker and stained at the south-east, two '80'' notes sit side by side at the plate-48 corner, and a hairline white sliver about 65 px long shows on the cut just east of the west tick. At the east edge plate 74's black neatline strip and blank paper beyond Ave. S 1/2 are visible (mosaic edge, not this seam).",
+   "furniture": "north arrow in the roadway; doubled 70'/80' width notes; 'AVE. S 1/2' label; plate neatline at the east edge",
+   "grader": "grader_0"
+  },
+  {
+   "seam": "55_61",
+   "score": 2,
+   "defects": [
+    "step",
+    "tone"
+   ],
+   "offset_ft": 13,
+   "reason": "30TH ST. cut: the cross-street block corners step 12-17 px = 4-6 ft (624/702 vs 623/701; 724/802 vs 723/801), and the 16-inch water main that runs down the west cross street continues on plate 61 about 38 px = 13 ft east of where plate 55 draws it, so the dashed run jogs visibly before diving toward the water-works. The 16-inch pipe at the east cross street jogs about 7 ft. Plate 61 is a little greyer. Nothing doubled.",
+   "furniture": "compass rose and north arrow in the roadway; '30TH ST.' label; 70' width notes",
+   "grader": "grader_0"
+  },
+  {
+   "seam": "62_63",
+   "score": 2,
+   "defects": [
+    "duplicated-label",
+    "tone"
+   ],
+   "offset_ft": 2,
+   "reason": "AVENUE L cut (vertical): geometry is good - 1122-1124/1202-1204 and 1121-1123/1201-1203 block faces line up within 5-7 px (under 2.5 ft) and the school block reads cleanly. But the street name is printed twice side by side: plate 62's 'AVENUE L' sits immediately west of the cut and plate 63's 'AVENUE L' immediately east of it, about 45 px (15 ft) apart, reading as a doubled/ghosted label with the plate number 63 clipped between them. Plate 63 is whiter than plate 62. Escalate for the duplicated label.",
+   "furniture": "plate number 63 (clipped by the cut) beside the labels; 80' width notes",
+   "grader": "grader_0"
+  },
+  {
+   "seam": "68_69",
+   "score": 4,
+   "defects": [
+    "tone"
+   ],
+   "offset_ft": 1.5,
+   "reason": "AVE. H (BALL) cut (vertical): 722-724/802-804 and 721-723/801-803 block faces line up within 5 px (under 2 ft) at both cross streets, the 6-inch pipe run in the south cross street is continuous, and only one 'AVE. H OR BALL' label is present. Findable only because plate 68 (west) is distinctly greyer than plate 69 (east).",
+   "furniture": "plate number 69 printed inside the 'AVE. H OR BALL' label; 80' width notes",
+   "grader": "grader_0"
+  },
+  {
+   "seam": "75_83",
+   "score": 2,
+   "defects": [
+    "step",
+    "gap",
+    "tone"
+   ],
+   "offset_ft": 9,
+   "reason": "39TH ST. cut through the rail yard: the many parallel tracks do not carry across - profile correlation and the 100% crop show the track lines jogging about 23-28 px = 8-10 ft at the cut for the whole west half, with a kink visible even at 50%. At the south-west corner plate 75 extends about 180 px below the cut west of plate 83's edge and below that the paper is blank white (no plate); the 602/601 block corner at the east end steps about 6 ft. The yellow building sitting across the cut at the '39TH' label is drawn on both plates and joins cleanly. Plate 83 is heavily brown-stained (product).",
+   "furniture": "north arrow and '80'' note at the east end; '39TH' labels; 20'/55'/70' width notes; 'Scale of Feet' bar on plate 75",
+   "grader": "grader_0"
+  },
+  {
+   "seam": "82_89",
+   "score": 2,
+   "defects": [
+    "doubled-lines",
+    "step"
+   ],
+   "offset_ft": 17,
+   "reason": "39TH ST. cut: the street grid is right - block corners 2402/2401, 2424/2423, 2502/2501, 2512-2514/2511-2513 and 2602/2601 line up within 2 px. But the 8-inch water main is drawn in different places by the two plates: plate 82's run (with its '80'' note) sits about 24 px = 8 ft north of plate 89's, both show side by side for about 75 px (26 ft) east of the middle, and at the west end plate 89's dashes with a second '80'' note run about 50 px = 17 ft south of plate 82's. Reads as a doubled, jogging pipe line with two width notes.",
+   "furniture": "north arrow; '39TH ST.' label printed twice along the street (one per block); 8\"W PIPE lettering and doubled 80' notes; greyer third plate at the north-west corner",
+   "grader": "grader_0"
+  },
+  {
+   "seam": "88_96",
+   "score": 2,
+   "defects": [
+    "step",
+    "gap"
+   ],
+   "offset_ft": 8,
+   "reason": "42ND ST. cut (midpoint seam, no control): plate 96 sits east of plate 88 by an amount growing eastward - 2002/2001 corner 14 px (5 ft), 2012-2014/2011-2013 cross street 17-22 px (6-8 ft), the 8-inch pipe and the 2102/2101 corner 24-25 px (8-9 ft). A hairline white sliver about 130 px long lies on the cut next to the greyer third plate at the west end, and the second '42ND' label east of the middle has lost its 'ST.' to the cut. Plate 96 carries a large brown stain (product). Nothing doubled.",
+   "furniture": "north arrow and '80'' note in the roadway; '42ND ST.' and '42ND' labels; 70'/20' width notes",
+   "grader": "grader_0"
+  },
+  {
+   "seam": "8_34",
+   "score": 4,
+   "defects": [
+    "tone"
+   ],
+   "offset_ft": 1.5,
+   "reason": "18th St: the 6-inch pipes at 314/313 and 514/513 and the 12-inch pipe at 414/413 run through the cut with no visible jog (under 1.5 ft); block corners on the two plates agree within about 1.5-3 ft. Only a faint paper-tone band along the roadway betrays the cut, found only by hunting.",
+   "furniture": "north arrow and the 'Scale of Feet' caption of a scale bar in the roadway; 70'/20' width notes",
+   "grader": "grader_1"
+  },
+  {
+   "seam": "18_19",
+   "score": 3,
+   "defects": [
+    "step",
+    "tone"
+   ],
+   "offset_ft": 4.4,
+   "reason": "Ave F or Church: the AVE F OR CHURCH label is single and intact, but the 8-inch water pipe crossing the avenue at the south cross-street steps about 4.4 ft at the cut (plate 19 lower), and the block corners 602/604 and 601/603 sit 2.5-4.5 ft south of their plate-18 counterparts at both cross-streets.",
+   "furniture": "80' width notes on both sides of the cut",
+   "grader": "grader_1"
+  },
+  {
+   "seam": "24_30",
+   "score": 2,
+   "defects": [
+    "step",
+    "tone"
+   ],
+   "offset_ft": 9,
+   "reason": "12th St: the 6-inch pipe and block corner at 914/913 (west end) step about 9 ft at the cut (plate 30 west of plate 24); the offset shrinks to about 4.6 ft at the 1012/1013 pipe and to nil at the 1112/1113 pipe, i.e. a scale/rotation mismatch rather than a plain shift. The roadway also shows a jagged tone band along the cut.",
+   "furniture": "12TH ST label, north arrow, 150'/70'/20' width notes in the roadway",
+   "grader": "grader_1"
+  },
+  {
+   "seam": "31_32",
+   "score": 1,
+   "defects": [
+    "misplacement",
+    "step",
+    "tone"
+   ],
+   "offset_ft": 35,
+   "reason": "Avenue N: the street grid does not line up. The 13th St cross-street with its 6-inch pipe lands about 35 ft (100 px at 100%) further south on plate 31 than on plate 32 (block corners 1424/1502 and 1423/1501), and the southern cross-street about 22-24 ft; the plates also differ slightly in scale. Gross misplacement.",
+   "furniture": "AVENUE N label at the cut, 80' width notes",
+   "grader": "grader_1"
+  },
+  {
+   "seam": "40_41",
+   "score": 2,
+   "defects": [
+    "step",
+    "tone"
+   ],
+   "offset_ft": 9.5,
+   "reason": "Avenue L: plate 41 sits about 9-10 ft north of plate 40 all along the cut: block corners 1124/1202 and 1123/1201 are 25-30 px apart at both cross-streets and the 6-inch water pipe on the south cross-street jogs about 9 ft where it crosses the seam.",
+   "furniture": "plate number 41 and AVENUE L label in the roadway, 80' width notes",
+   "grader": "grader_1"
+  },
+  {
+   "seam": "49_55",
+   "score": 3,
+   "defects": [
+    "step"
+   ],
+   "offset_ft": 4,
+   "reason": "27th St: label single and intact, but the 6-inch pipe runs at 612/613, 712/713 and 812/813 each jog 3.4-4.5 ft at the cut (plate 55 east of plate 49, growing toward the east end) and the block corners show the same 3-4 ft disagreement.",
+   "furniture": "north arrow, 70'/20' width notes",
+   "grader": "grader_1"
+  },
+  {
+   "seam": "56_57",
+   "score": 2,
+   "defects": [
+    "step"
+   ],
+   "offset_ft": 6.5,
+   "reason": "Avenue L: the AVENUE L label is single and intact, but the 12-inch water main crossing the avenue at the south cross-street steps about 6-7 ft at the cut (plate 57 lower), and block corners 1124/1202 and 1123/1201 differ by 3.5-6 ft at both cross-streets.",
+   "furniture": "AVENUE L label, 80' width notes",
+   "grader": "grader_1"
+  },
+  {
+   "seam": "62_69",
+   "score": 2,
+   "defects": [
+    "duplicated-label",
+    "doubled-lines",
+    "step",
+    "tone"
+   ],
+   "offset_ft": 10,
+   "reason": "33rd St: '33RD ST.' is printed twice (about 380 ft apart, at different heights, one from each plate) and the 12-inch water main is drawn twice side by side at the east end, about 10 ft apart with the cut between the copies. The 6-inch pipe at 1002/1001 jogs about 9 ft and the block corner 902/901 about 11 ft, tapering to about 5 ft at the east end; the cut wanders with visible gray tone patches. A third plate's corner (with its own 6-inch pipe) shows at top-left.",
+   "furniture": "north arrow, 80'/70'/150' width notes",
+   "grader": "grader_1"
+  },
+  {
+   "seam": "68_76",
+   "score": 3,
+   "defects": [
+    "step",
+    "tone"
+   ],
+   "offset_ft": 5,
+   "reason": "36th St: the 3-inch supply pipe and 6-inch water pipe at 624/701 jog 4.4-5 ft at the cut and block corners 602/601 and 702/701 differ 4-6 ft (plate 76 east of plate 68). Pronounced paper-tone step with a jagged blend edge along the roadway.",
+   "furniture": "36TH ST label; north arrow at the east end; 70' and 80' width notes appear twice near the east cross-street, one per plate",
+   "grader": "grader_1"
+  },
+  {
+   "seam": "76_77",
+   "score": 3,
+   "defects": [
+    "step",
+    "tone"
+   ],
+   "offset_ft": 4.7,
+   "reason": "Ave I or Sealy: label and plate number intact; block corners 824/902 and 823/901 at both cross-streets sit 13-15 px (about 4.5-5 ft) higher on plate 77 than on plate 76. No pipe run crosses the cut to check.",
+   "furniture": "AVE. I OR SEALY label and half of a plate number in the roadway, 80'/20' width notes",
+   "grader": "grader_1"
+  },
+  {
+   "seam": "82_99",
+   "score": 2,
+   "defects": [
+    "step",
+    "tone"
+   ],
+   "offset_ft": 6.5,
+   "reason": "Avenue T: the 37th St block corners 2622/2702 and 2621/2701 sit about 6-7 ft lower on plate 99 than on plate 82; the 8-inch pipe along 37th St on plate 99 stops dead at the cut (plate 82 does not carry it). Plate 99 is a sparse outer sheet (blocks 160/161 drawn without lot lines, no 38th St), so the street grid of plate 82 simply ends at the seam; the actual tone boundary sits about 55 ft west of the marked centreline.",
+   "furniture": "plate number 82 and AVENUE T label, 80'/20' width notes, compass rose on plate 99, railroad double line alongside the cut",
+   "grader": "grader_1"
+  },
+  {
+   "seam": "89_90",
+   "score": 3,
+   "defects": [
+    "step",
+    "tone"
+   ],
+   "offset_ft": 3.5,
+   "reason": "Avenue S 1/2: at the north cross-street (40th) block corners 2524/2602 and 2523/2601 align within 1-2 ft, but at the south cross-street the corners differ 3-4 ft (plate 90 lower), a slight rotation mismatch. Plate 90's paper is noticeably whiter.",
+   "furniture": "plate number 9(0) and AVENUE S 1/2 label, 80' width notes",
+   "grader": "grader_1"
+  },
+  {
+   "seam": "16_67",
+   "score": 3,
+   "defects": [
+    "step",
+    "tone"
+   ],
+   "offset_ft": 7,
+   "reason": "33RD ST: east faces of blocks 572/573 and 512/513 and the rail lines at the right continue across the cut within ~2 ft, but the 6-in water main drawn along 33RD is carried ~7 ft further north on plate 16 than on plate 67, so the dashed run jogs where it changes plates east of the 33RD label; the cut edge is ragged from x\u22481100 to 1800 and plate 67 is visibly greyer, giving a tone band in the roadway.",
+   "furniture": "FA alarm-box symbol, 80' width notes and 6-in/8-in pipe labels in the roadway; west edge of block 573 is drawn ~25 ft east of 572's because of the railway spur, not a seam fault",
+   "grader": "grader_10"
+  },
+  {
+   "seam": "23_24",
+   "score": 2,
+   "defects": [
+    "step"
+   ],
+   "offset_ft": 10,
+   "reason": "AVE. I OR SEALY: every cross street steps at the cut - the 249/189 and 250/190 block faces sit ~7 ft lower on plate 23 than on plate 24 at the top of the crop, growing to ~13 ft at the 251/191 face at the bottom (rotation or scale mismatch); house-number rows 814-824 vs 902-912 visibly out of line. Escalate.",
+   "furniture": "plate number 23 and the AVE. I OR SEALY name in the roadway, 80' width notes",
+   "grader": "grader_10"
+  },
+  {
+   "seam": "29_35",
+   "score": 2,
+   "defects": [
+    "step",
+    "duplicated-label"
+   ],
+   "offset_ft": 7,
+   "reason": "15TH ST: a uniform ~7 ft east-west shift - the 374/375, 314/315 and 254/255 block faces and all three N-S 6-in and 12-in pipe runs (x 614, 714, 814) resume ~21 px east of where they leave plate 29; the street name is doubled, reading '15TH ST' from plate 29 with a second 'ST.' from plate 35 just below it. Escalate.",
+   "furniture": "Scale of Feet bar and north arrow in the roadway, FA alarm symbol at 802",
+   "grader": "grader_10"
+  },
+  {
+   "seam": "37_38",
+   "score": 2,
+   "defects": [
+    "duplicated-label",
+    "doubled-lines",
+    "step"
+   ],
+   "offset_ft": 8,
+   "reason": "AVENUE N: the street name is printed twice side by side ('N AVENUE' from each plate, ~22 ft apart) and the 6-in water main is drawn twice as two parallel dashed runs either side of the cut from the SW21/NW46 block down to the 80' note; cross streets line up at the top (SE21/NE46) but the south face of SW21 sits ~8 ft higher than NW46's. Escalate.",
+   "furniture": "cut adjacent-sheet numerals '3' and '7' in the roadway beside each AVENUE label",
+   "grader": "grader_10"
+  },
+  {
+   "seam": "47_53",
+   "score": 3,
+   "defects": [
+    "step",
+    "tone"
+   ],
+   "offset_ft": 10,
+   "reason": "24TH ST: the 6-in pipe run (down at 1808, east along 24TH, down at 2402) and the NW/NE 92 west face are continuous within ~2 ft, but the east faces of SE67/SW67 and NE92/NW92 and the west face of SE92/SW92 resume ~8-10 ft further west on plate 53, so three N-S block-face lines jog at the cut; the far-right 2013 face lines up, so this is a block-width difference between the plates rather than a pure shift. Plate 47 is slightly warmer. Rework.",
+   "furniture": "70' width notes and T.H. hydrant dot in the roadway",
+   "grader": "grader_10"
+  },
+  {
+   "seam": "54_60",
+   "score": 1,
+   "defects": [
+    "misplacement",
+    "step"
+   ],
+   "offset_ft": 32,
+   "reason": "Street south of NW/SW 116: the Exposition block's east face lines up within ~7 ft, but everything east of it is ~30 ft out - block 2201-2211 begins 31 ft west of 2202-2212, AVENUE R with its 6-in main resumes ~33 ft west of where it leaves plate 54, and block 2301 likewise; plate 60 draws the street between 2123 and 2201 as 35' where plate 54 draws it 70'. The avenue visibly continues at a different position. Escalate.",
+   "furniture": "Scale of Feet caption and north arrow in the roadway",
+   "grader": "grader_10"
+  },
+  {
+   "seam": "61_62",
+   "score": 3,
+   "defects": [
+    "duplicated-label"
+   ],
+   "offset_ft": 4,
+   "reason": "AVE. I OR SEALY: cross streets (270/210, 271/211, 272/212 faces) continuous within 1-4 ft, but the street name is doubled - 'AVE. I' printed by plate 61 sits immediately beside plate 62's 'AVE. I OR SEALY' so the roadway reads 'AVE. I AVE. I OR SEALY'. Rework.",
+   "furniture": "plate number 61 in the roadway, 80' width notes",
+   "grader": "grader_10"
+  },
+  {
+   "seam": "67_68",
+   "score": 4,
+   "defects": [
+    "step",
+    "tone"
+   ],
+   "offset_ft": 3,
+   "reason": "AVE. E OR POST OFFICE / R.R. sidings: the curved G.H.&H. tracks cross the cut without a kink, the vertical siding lines and 8-in/6-in pipe labels are continuous, blocks 514/454 and 515/455 line up within 1 ft; only the 513/453 south face differs by ~3 ft and a small ragged notch of plate 67 shows in the roadway at the 80' note. Plate 68 paper is slightly lighter.",
+   "furniture": "cut adjacent-sheet numeral fragment beside 'OR' in the roadway, R.R. SIDINGS label",
+   "grader": "grader_10"
+  },
+  {
+   "seam": "73_81",
+   "score": 2,
+   "defects": [
+    "step",
+    "gap"
+   ],
+   "offset_ft": 18,
+   "reason": "Street south of NE/SE 111: all N-S block faces (2102/2101, 2114/2113, 2202/2201, 2214/2213) resume 16-19 ft further east on plate 81, shrinking to ~11 ft at the 2301 face on the right, and the 6-in main at the far left steps ~24 ft; a T.H. hydrant dot at the left is sliced in half by the cut. Also note a blank white area at the top-right corner beyond plate 73's east edge (x>1860, above the cut) where the neighbouring sheet should supply ground - belongs to the 73/74 join but is visible here. Escalate.",
+   "furniture": "compass rose / north arrow in the roadway at the right, 70' and 80' width notes",
+   "grader": "grader_10"
+  },
+  {
+   "seam": "81_82",
+   "score": 2,
+   "defects": [
+    "step",
+    "tone"
+   ],
+   "offset_ft": 15,
+   "reason": "AVENUE (R 1/2 area): plate 82 sits high relative to plate 81 - the 8-in main along the cross street steps ~9 ft, the 136 block south faces and NE/SE 135 north faces ~10 ft, growing to ~17 ft at the south face of block 135; the cut edge is jagged and plate 82 is noticeably lighter, so a pale strip shows along the roadway. Escalate.",
+   "furniture": "cut plate numeral '1' in the roadway, 70'/80' width notes",
+   "grader": "grader_10"
+  },
+  {
+   "seam": "87_95",
+   "score": 1,
+   "defects": [
+    "misplacement",
+    "gap"
+   ],
+   "offset_ft": 150,
+   "reason": "The cut does not run down a street: NE/SE 58 (lots 4101-4117) from plate 87 butt directly onto NW/SW 58 (lots 4213-4227) from plate 95 with the block-face lines running straight through, so the whole of 42ND ST and the lots either side of it (4119-4127, 4201-4211, roughly 150 ft of ground) are missing between 41ST and 43RD; at the far right the plate corner is stepped with a blank white patch beside the 19xx block. Escalate.",
+   "furniture": "none in the cut line; AVENUE label and 70'/80' notes are genuine roadway text",
+   "grader": "grader_10"
+  },
+  {
+   "seam": "96_97",
+   "score": 2,
+   "defects": [
+    "step",
+    "tone"
+   ],
+   "offset_ft": 18,
+   "reason": "AVENUE between 108/107: plate 97 sits ~18 ft higher than plate 96 - the 2104-2112 vs 2202-2212 block south faces, the 8-in main along the cross street and the NE107/SE107 north faces all step ~50 px at the cut; the lower two-thirds of the crop is empty lots so nothing else to check. Plate 96 is greyer, plate 97 warmer with foxing. Borderline gross; escalate.",
+   "furniture": "cut plate numeral '6' in the roadway, 70'/80' width notes",
+   "grader": "grader_10"
+  },
+  {
+   "seam": "17_18",
+   "score": 2,
+   "defects": [
+    "step",
+    "duplicated-label"
+   ],
+   "offset_ft": 11,
+   "reason": "Vertical cut down Mechanic (Ave C). Every block face steps across the cut: left block line at y=902 vs right y=871 at full res (30 px = ~10 ft), same 30 px at every block, and the double line of Seawall Blvd jogs ~35 px (~12 ft) where it crosses. The roadway width note is printed twice, '70'' and '70' one above the other at the 7th St corner, one from each plate.",
+   "furniture": "plate number 17 and the MECHANIC / AVE. C OR name in the roadway",
+   "grader": "grader_11"
+  },
+  {
+   "seam": "23_29",
+   "score": 2,
+   "defects": [
+    "step"
+   ],
+   "offset_ft": 15,
+   "reason": "Horizontal cut along 12th St. The 20-ft alley between 612 and 614 (with its 6-in pipe) lands ~45 px (~15 ft) further east on the lower plate than on the upper; the offset shrinks eastward (block corner 724/723 ~5 ft, alley 812/814 ~7 ft), so the two plates are also slightly out of scale or rotation. No doubled content.",
+   "furniture": "Scale of Feet bar and north arrow lie in the roadway and are cut through by the seam",
+   "grader": "grader_11"
+  },
+  {
+   "seam": "30_31",
+   "score": 3,
+   "defects": [
+    "step"
+   ],
+   "offset_ft": 2.5,
+   "reason": "Vertical cut down Avenue L. Street grid and numbering continue correctly (1104-1124 / 1202-1212, 1103-1123 / 1201-1211) and the St Luth Baptist Church block lines up, but the cross-street block faces sit consistently 7-9 px (~2.5-3 ft) lower on the left plate than on the right, measured at five block lines. Nothing doubled.",
+   "furniture": "AVENUE L name and plate number 30 in the roadway",
+   "grader": "grader_11"
+  },
+  {
+   "seam": "37_41",
+   "score": 2,
+   "defects": [
+    "step"
+   ],
+   "offset_ft": 15,
+   "reason": "Horizontal cut along 18th St. The whole lower plate sits ~35-50 px (~12-17 ft) east of the upper: the 1212/1214 alley pipe steps 45 px, block corners 1224/1223, 1302/1301, 1324/1323, 1402/1401 all step 30-45 px, and the 1412/1414 alley steps ~50 px. Clearly visible at 50%.",
+   "furniture": "18TH ST name and north arrow in the roadway",
+   "grader": "grader_11"
+  },
+  {
+   "seam": "48_60",
+   "score": 5,
+   "defects": [
+    "tone"
+   ],
+   "offset_ft": 0,
+   "reason": "Vertical cut west of the 31st/32nd St blocks (NW140 / SE138 side). Block faces 2314-2324 / 2402-2412 and 2313-2323 / 2401-2411 align within 1-3 px (under 1 ft) at every cross street; nothing doubled or missing. Right plate is slightly lighter paper, giving a faint tone edge.",
+   "furniture": "plate number 4, '31ST ST.' and '32ND' names in the roadway",
+   "grader": "grader_11"
+  },
+  {
+   "seam": "55_56",
+   "score": 3,
+   "defects": [
+    "step"
+   ],
+   "offset_ft": 5,
+   "reason": "Vertical cut down Ave I (Sealy). Numbering and blocks continue (822/824 to 902/904, 821/823 to 901/903) and the lower block faces line up, but the 16-in water main crossing the avenue steps 15 px (~5 ft) at the cut (left run at y=1803, right at y=1818) and the upper block face is ~14 px (~4-5 ft) higher on the left plate. No doubled content.",
+   "furniture": "AVE. I OR SEALY name and plate number 55 in the roadway",
+   "grader": "grader_11"
+  },
+  {
+   "seam": "61_68",
+   "score": 2,
+   "defects": [
+    "doubled-lines",
+    "step",
+    "gap"
+   ],
+   "offset_ft": 10,
+   "reason": "Horizontal cut along 33rd St. The 8-in water main is drawn twice, two parallel dashed runs ~30 px (~10 ft) apart, one from each plate, with pipe labels ('8\"W.P.' and '8\"W. PIPE') doubled near 33rd/802; block corners 602/601, 624/623 and 724/723 step 25-60 px (8-10 ft); a thin bright-white sliver runs along the cut west of the 601 block. The street name appears at both 6xx and 7xx blocks, one per plate.",
+   "furniture": "33RD ST name (twice) and north arrow in the roadway; 30-in supply pipe label in the alley",
+   "grader": "grader_11"
+  },
+  {
+   "seam": "67_75",
+   "score": 2,
+   "defects": [
+    "step",
+    "gap"
+   ],
+   "offset_ft": 10,
+   "reason": "Horizontal cut along 36th St. The curved rail tracks and the 3527/301 and 402-424/401-423 block faces continue with small steps (2-5 ft), but the 6-in pipe and 70-ft note in Mechanic Ave jog ~30 px (~10 ft) at the cut; there are small white notches along the cut near the '80'' note and at the 424/423 corner, and the lower-left corner of the crop (west of Mechanic, south of 36th) is blank white where no plate covers it. The '36TH' name appears once per plate.",
+   "furniture": "36TH / 36TH ST names and north arrow in the roadway",
+   "grader": "grader_11"
+  },
+  {
+   "seam": "75_76",
+   "score": 4,
+   "defects": [
+    "step"
+   ],
+   "offset_ft": 2,
+   "reason": "Vertical cut down Ave F (Church) beside the R.R. sidings. Block faces 514-524 / 602-604 and 505-523 / 601-611 align within ~5 px (under 2 ft); the 6-in main crossing the avenue steps ~7 px (~2 ft); Southern Compress and Galveston Bagging blocks continuous. The left plate notes the avenue as 70 ft and the right as 80 ft, which is in the originals.",
+   "furniture": "AVE. F OR CHURCH name, plate number 75 and R.R. SIDINGS lettering in the roadway",
+   "grader": "grader_11"
+  },
+  {
+   "seam": "81_88",
+   "score": 2,
+   "defects": [
+    "step",
+    "duplicated-label"
+   ],
+   "offset_ft": 15,
+   "reason": "Horizontal cut along the unnamed avenue between blocks 110 and 109. At the west end the 2024/2102 street and its pipe land ~40-45 px (~14-15 ft) further east on the lower plate; the offset tapers to ~3 ft at the 2224/2223 and 2302/2301 corners, so the plates differ slightly in scale or rotation. The '70'' width note is printed twice side by side at the 2301 corner where the cut steps. Upper plate is lighter; lower plate is stained.",
+   "furniture": "'Scale of Feet' title in the roadway with its bar cut off by the seam",
+   "grader": "grader_11"
+  },
+  {
+   "seam": "88_89",
+   "score": 5,
+   "defects": [
+    "tone"
+   ],
+   "offset_ft": 0,
+   "reason": "Vertical cut down Avenue R beside the orphan asylum. Block faces 2204-2224 / 2302-2312 and 2203-2223 / 2301-2311 align within 2-3 px; the left plate has no cross street opposite the 2302/2301 street because block 109 is a double block in the original, so nothing is missing. Left plate is darker and heavily foxed, giving a visible tone edge but no geometric fault.",
+   "furniture": "AVENUE R name and plate number 88 in the roadway",
+   "grader": "grader_11"
+  },
+  {
+   "seam": "97_98",
+   "score": 2,
+   "defects": [
+    "step"
+   ],
+   "offset_ft": 9,
+   "reason": "Vertical cut down Avenue S. The 8-in water main crossing the avenue steps 27 px (~9 ft) at the cut (left run at y=590, right at y=563), and the block faces 2422-2424 / 2502-2504 and 2421-2423 / 2501-2503 are 15-24 px (5-8 ft) lower on the left plate. Numbering and the drugstore corner continue correctly; nothing doubled.",
+   "furniture": "AVENUE S name and plate number 9 in the roadway",
+   "grader": "grader_11"
+  },
+  {
+   "seam": "11_13",
+   "score": 2,
+   "defects": [
+    "duplicated-label",
+    "step",
+    "tone"
+   ],
+   "offset_ft": 7,
+   "reason": "Street name '27TH' printed twice side by side on the cut (about 45 ft apart, x 490-710 at full res) with only one 'ST.'; the parallel wharf/terminal track lines and the 746/747 block edge continue across 27th St shifted about 6-8 ft (16-23 px); the 10-inch pipe run at the right end jogs about 18 ft at the cut. Building footprints are not split.",
+   "furniture": "north arrow and 'Scale of Feet' in the roadway; 70' width notes; plate lettering 'AVE. B OR STRAND EXTD.'",
+   "grader": "grader_2"
+  },
+  {
+   "seam": "18_22",
+   "score": 2,
+   "defects": [
+    "step"
+   ],
+   "offset_ft": 9,
+   "reason": "9TH ST. label single and clean, but all three 20-ft alleys with their 6/8/10-inch pipe runs (at 314/313, 414/413, 514/513) continue across the cut shifted a consistent 25-27 px, about 9 ft, so every alley and pipe line has a visible jog at the seam. No buildings split, no doubled lines, tone matched.",
+   "furniture": "north arrow in the roadway between 424 and 502; 70' and 20' width notes",
+   "grader": "grader_2"
+  },
+  {
+   "seam": "25_31",
+   "score": 2,
+   "defects": [
+    "step"
+   ],
+   "offset_ft": 15,
+   "reason": "12TH ST. label single, but the 20-ft alleys and their 6-inch pipe runs at 1212/1214 vs 1211/1213, 1312/1314 vs 1311/1313 and 1412/1414 vs 1413 all continue across the cut shifted 38-50 px, about 13-17 ft: each alley line and pipe run visibly jogs at the seam. No building split, tone matched.",
+   "furniture": "north arrow with '100' scale mark in the roadway near 1301; 70' and 20' width notes",
+   "grader": "grader_2"
+  },
+  {
+   "seam": "31_37",
+   "score": 2,
+   "defects": [
+    "step",
+    "doubled-lines"
+   ],
+   "offset_ft": 10,
+   "reason": "15TH ST. label clean, but the alleys and 6/8-inch pipe runs at 1212/1214 vs 1211/1213, 1312/1314 vs 1311/1313 and 1412/1414 vs 1413 are shifted about 28-30 px (10 ft) across the cut, and the E-W pipe run in the street is drawn twice, as two parallel dashed runs about 12 ft apart, one from each plate, at the left and right alleys. No building split.",
+   "furniture": "'Scale of Feet' and north-arrow tip in the roadway; 70' and 20' width notes",
+   "grader": "grader_2"
+  },
+  {
+   "seam": "41_42",
+   "score": 4,
+   "defects": [
+    "tone"
+   ],
+   "offset_ft": 1,
+   "reason": "Block faces of 1424/1502 and 1421-1423/1501-1503 at both cross streets line up within about 1 ft; AVENUE N. label whole; house numbers continue. Only findable by the 8-inch pipe run drawn down the avenue centre on plate 41 that stops at the cut, and a faint paper-tone difference.",
+   "furniture": "'AVENUE N.' name and 80' width notes in the roadway",
+   "grader": "grader_2"
+  },
+  {
+   "seam": "50_51",
+   "score": 4,
+   "defects": [
+    "tone"
+   ],
+   "offset_ft": 1,
+   "reason": "Block faces at 1124/1202, 1123/1201 and 1123/1201 (lower street) align within about 1 ft; the 12-inch pipe run across the upper street continues with about a 2 ft jog; house numbers continue. A slight vertical tone line along the avenue centre is the only tell.",
+   "furniture": "plate number 51 and 'AVENUE L' in the roadway; 80' and 120' width notes; F.A. hydrant mark",
+   "grader": "grader_2"
+  },
+  {
+   "seam": "56_62",
+   "score": 3,
+   "defects": [
+    "step"
+   ],
+   "offset_ft": 5,
+   "reason": "30TH ST. label whole; 1002/1001 block edge and the alley pipe at 924/923 align within about 2 ft, but the 6-inch pipe run at the 1101/1102 alley continues across the cut shifted about 16 px, roughly 5 ft. No building split, no doubled lines, tone matched.",
+   "furniture": "north arrow in the roadway near 921; 70', 20' and 150'/160' notes",
+   "grader": "grader_2"
+  },
+  {
+   "seam": "63_64",
+   "score": 2,
+   "defects": [
+    "step",
+    "tone"
+   ],
+   "offset_ft": 10,
+   "reason": "Block faces at 1424/1502, 1421-1423/1501 and the lower 1423/1501 street all continue across the avenue shifted 22-32 px along the seam, about 8-11 ft, so every cross street steps at the cut. AVENUE N. label whole, no building split. Note the original plate 38 side shows block NE 38 extending to a 40' street where plate 13 shows 80'; that is the source content, not the seam.",
+   "furniture": "plate number 63 and 'AVENUE N.' in the roadway; 80' and 40' width notes; F.A. hydrant mark",
+   "grader": "grader_2"
+  },
+  {
+   "seam": "69_70",
+   "score": 3,
+   "defects": [
+    "step",
+    "tone"
+   ],
+   "offset_ft": 5,
+   "reason": "AVENUE K label whole and St. Patrick's Church intact; block faces step across the avenue by about 5-6 ft at the upper cross street (1024/1102 and 1023/1101) and 2-3 ft at the lower one, the 8-inch pipe run jogs about 2 ft; right plate is slightly lighter.",
+   "furniture": "plate number 70 and 'AVENUE K' in the roadway; 80' width notes",
+   "grader": "grader_2"
+  },
+  {
+   "seam": "76_84",
+   "score": 2,
+   "defects": [
+    "doubled-lines",
+    "step",
+    "tone"
+   ],
+   "offset_ft": 12,
+   "reason": "The E-W 8-inch and 6-inch pipe runs along 39th St are drawn twice, two parallel dashed runs about 6-12 ft apart at the cut, at both the 702/701 and 902/901 ends; the N-S pipe runs and the 902/901 block edge continue across the cut shifted about 11-14 ft; visible tone patch on the right end. No building split; 39TH ST. name appears twice but about 350 ft apart, which is the original repeat.",
+   "furniture": "north arrow and second '39TH' name in the roadway; 70', 80' and 20' width notes",
+   "grader": "grader_2"
+  },
+  {
+   "seam": "83_84",
+   "score": 3,
+   "defects": [
+    "step",
+    "tone"
+   ],
+   "offset_ft": 3,
+   "reason": "'AVE. G OR WINNIE' label whole, Seaboard Rice Milling block intact; block faces at 624/702 align, but the lower cross street's 623/701 block face steps about 3-4 ft at the cut; right plate is slightly lighter.",
+   "furniture": "'AVE. G OR WINNIE' name and 80' width notes in the roadway",
+   "grader": "grader_2"
+  },
+  {
+   "seam": "89_97",
+   "score": 2,
+   "defects": [
+    "duplicated-label",
+    "step",
+    "tone"
+   ],
+   "offset_ft": 8,
+   "reason": "Strong tone step (lower right plate much darker) with a jagged darker patch in the roadway above the cut at the left end in which the 70' width note is printed twice side by side; block edges align at 2302/2301 but step about 4 ft at 2424/2423 and about 8 ft at 2502/2501, so the plates are rotated relative to each other. No building split; '42ND' appears twice but about 340 ft apart, the original repeat.",
+   "furniture": "north arrow and second '42ND' name in the roadway; 70' and 80' width notes",
+   "grader": "grader_2"
+  },
+  {
+   "seam": "12_14",
+   "score": 2,
+   "defects": [
+    "step",
+    "tone"
+   ],
+   "offset_ft": 8,
+   "reason": "27TH ST. runs across the cut and house numbers 314-324/313-323, 402-424/401-423, 502-512/501-511 face each other correctly, but the lower plate (14) sits about 18-25 px (6-9 ft) east of the upper plate: the 10-in. and 12-in. W. pipe runs in the three alleys (x~260, x~1266, x~2262 above vs x~278, x~1283, x~2287 below) and the block-edge lines at 314/313 and 514/513 all jog 5-8 ft at the cut; not visible at 50% but clear at 100%. Lower plate slightly lighter.",
+   "furniture": "27TH ST. name, north arrow (tail sliced by the mask) and 'Scale of Feet' inside the roadway; 70'/20' width notes on both plates",
+   "grader": "grader_3"
+  },
+  {
+   "seam": "19_20",
+   "score": 3,
+   "defects": [
+    "step",
+    "duplicated-label",
+    "tone"
+   ],
+   "offset_ft": 3.5,
+   "reason": "Vertical cut down the avenue between blocks 246/186 and 247/187. The 7TH-street block edges (824 | 902) are about 9-13 px (3-4.5 ft) higher on plate 19 than on plate 20 at the north street; the two southern streets and the 8-in. W. pipe run line up within 1 ft. The '8\" W. PIPE' label is printed on both sides of the cut about 85 ft apart along one run. Plate 19 is greyer than plate 20 and shows a lighter vertical band along its edge.",
+   "furniture": "80' (plate 19) and 70' (plate 20) width notes for the same avenue on either side of the cut; T.H. dots",
+   "grader": "grader_3"
+  },
+  {
+   "seam": "26_42",
+   "score": 1,
+   "defects": [
+    "misplacement",
+    "gap"
+   ],
+   "offset_ft": 34,
+   "reason": "Gross misplacement along the vertical cut: 19TH ST. between NW70/NE69 on plate 26 spans y~493-667 while the same street between SW70/SE69 on plate 42 spans y~573-750 (house numbers 1714-1724/1713-1723 vs 1802-1812/1801-1811); 20TH ST. shows the same ~100 px (34 ft) shift (1417/1590 vs 1497/1670). The avenue between the plates also scales only ~56 ft wide against printed 80' notes, and the mask edge is ragged with a thin white sliver at y~1000-1300.",
+   "furniture": "AVENUE label with a large glyph on the cut line; 80' width notes on both plates; T.H. dots",
+   "grader": "grader_3"
+  },
+  {
+   "seam": "32_38",
+   "score": 1,
+   "defects": [
+    "misplacement"
+   ],
+   "offset_ft": 28,
+   "reason": "Gross misplacement across 15TH ST.: every cross street and alley on plate 38 sits 65-85 px (23-29 ft) east of its continuation on plate 47/38-side: alley 144/208 vs 233/292, 70' street 582 vs 664, alley 798 vs 872, block 1614-1624 vs 1613-1623 edges 1169/1231 vs 1246/1300, AVENUE O edge 1606 vs 1672. The Seawall diagonal also kinks at the cut. Empty lots so no building split, but the street grid clearly does not line up.",
+   "furniture": "15TH ST. name, 80' width note and the 'AVENUE O' label in the roadway; NW47/SW47/NE46/SE46 block labels",
+   "grader": "grader_3"
+  },
+  {
+   "seam": "41_45",
+   "score": 2,
+   "defects": [
+    "step"
+   ],
+   "offset_ft": 9,
+   "reason": "Along the '... OR CENTER' avenue the lower plate (45) is displaced about 20-25 px east: 6-in. W. pipe in the west alley 200 vs 228 (~9 ft), block edges 1224|1223 (~10 ft), 1402|1401 (~8 ft), east 20' alley 2140/2183 vs 2167/2202 (~8 ft); the 1324|1323 corner differs by only ~2 ft, so the offset is not uniform. Streets and lettering otherwise continuous; no building cut.",
+   "furniture": "'OR CENTER' street name (first half of the name absent), fragment 'of' and north arrow from 'Scale of Feet' inside the roadway; 70'/20' width notes",
+   "grader": "grader_3"
+  },
+  {
+   "seam": "50_56",
+   "score": 2,
+   "defects": [
+    "duplicated-label",
+    "step",
+    "tone"
+   ],
+   "offset_ft": 6,
+   "reason": "Street name doubled: '27TH' printed twice, stacked one above the other at x~1150-1250 (one from each plate) with a single 'ST.'. West alley (6-in. pipe) aligns within 1 ft, but the lower plate drifts east: 6-in. pipe alley 1270/1304 vs 1289/1317 (~5 ft) and the 8-in. W. pipe alley 2308 vs 2325 with house numbers 1112|1114 vs 1111|1113 shifted ~6-8 ft. Slight tone step, lower plate lighter.",
+   "furniture": "north arrow (partly masked) and 'Scale of Feet' bar in the roadway; 150'/20'/70' width notes; T.H. dots",
+   "grader": "grader_3"
+  },
+  {
+   "seam": "57_58",
+   "score": 2,
+   "defects": [
+    "step"
+   ],
+   "offset_ft": 10,
+   "reason": "Vertical cut down the avenue beside plate number. At the southern cross street the block edges on plate 57 (SW15 bottom y~1685, SE14 top y~1920, numbers 1414-1424/1413-1423) sit 27-35 px (9-12 ft) north of the same edges on plate 58 (NW40 bottom y~1712, NE39 top y~1955, numbers 1502-1512/1501-1511); the 12-in. W. pipe on the left and the 10-in. W. pipe on the right meet at the cut offset ~10 ft. Block 40 (garden) legitimately has no cross street opposite the SE15/SW15 street. Mask edge is ragged around the avenue lettering.",
+   "furniture": "large plate number (5?7) and 'N AVENUE' label on the cut, 80' width notes on both plates, 55'/70' notes, T.H. dot",
+   "grader": "grader_3"
+  },
+  {
+   "seam": "63_70",
+   "score": 3,
+   "defects": [
+    "duplicated-label",
+    "step",
+    "gap"
+   ],
+   "offset_ft": 3,
+   "reason": "33RD ST. name appears twice on the cut line: '33RD ST.' at x~650-950 and a second '33RD' at x~1660-1740 (its 'ST.' missing). Cross streets, alleys and the 6-in./8-in. W. pipes line up within about 5-9 px (2-3 ft; block 32|33 corner 424 vs 415). A small white sliver sits on the cut where the 12-in. W. pipe dashes end at x~240-300, and the mask edge is ragged around the north arrow and scale bar at the east end. Plate 70 is slightly darker/yellower.",
+   "furniture": "north arrow, scale bar and 80' notes in the roadway east of 33RD; 70'/20' width notes on both plates",
+   "grader": "grader_3"
+  },
+  {
+   "seam": "69_77",
+   "score": 2,
+   "defects": [
+    "step",
+    "gap",
+    "duplicated-label",
+    "tone"
+   ],
+   "offset_ft": 12,
+   "reason": "Along 36TH ST. the lower plate (77) is displaced east by a varying amount: west alley 6-in. pipe 206 vs 236 (~10 ft), 902|901 block edge ~4 ft, 10-in. W. pipe 1246 vs 1266 (~7 ft), 1024|1023 corner ~10 ft, 1102|1101 corner ~14 ft. The street name is mangled ('36_ ST.' with the 'TH' masked out) and small white slivers sit on the cut at x~400-480 (east) and x~110-150 (west); the mask edge steps and the greyer plate 77 shows as a tone step at the west end.",
+   "furniture": "'Scale of Feet' bar and north arrow on the cut line; 150'/70'/80' width notes ('70' 70' side by side on plate 69)",
+   "grader": "grader_3"
+  },
+  {
+   "seam": "77_78",
+   "score": 4,
+   "defects": [
+    "tone"
+   ],
+   "offset_ft": 1,
+   "reason": "Vertical cut down AVENUE L beside plate number 77. Both cross streets line up: block edges 1124|1202 at y~530/535 and 1123|1201 at y~780/775, southern street 1698/1937 vs 1693/1936; house numbers 3701-3727/3628-3626 continue correctly and no building is touched. Only a faint lighter/darker strip along the avenue betrays the join; plate 78 slightly lighter.",
+   "furniture": "plate number 77, 'AVENUE L' label and a red-ringed F.A. symbol on the cut; 80' width notes on both plates; T.H. dots",
+   "grader": "grader_3"
+  },
+  {
+   "seam": "83_91",
+   "score": 2,
+   "defects": [
+    "step"
+   ],
+   "offset_ft": 11,
+   "reason": "Across 42ND ST. the rail-yard block 521|522 (lots 406-424/403-423) aligns within ~2 ft, but everything east of it on plate 91 is 30-40 px too far east: 6-in. W. pipe 790 vs 830 (~14 ft), block 461|462 west edge 676 vs 706 and lot lines 502|501 (~10-12 ft), 70' street 2082/2089 vs 2093/2101, block 401|402 edge 2265 vs 2291 (~9 ft). Rail tracks bend slightly at the cut. Brown stain on plate 91 is product.",
+   "furniture": "42ND ST. name, 'Scale of' and north arrow in the roadway; 70'/20' width notes; 6\" W. PIPE labels on both plates",
+   "grader": "grader_3"
+  },
+  {
+   "seam": "90_98",
+   "score": 1,
+   "defects": [
+    "misplacement",
+    "gap",
+    "tone"
+   ],
+   "offset_ft": 60,
+   "reason": "Shared streets align within 1 ft (block 158 edges 308|305, 1099|1094, block 183 west edge 1307|1304), but at the east end the plates contradict: plate 98 shows NW183 ending at lot 2723 with a 70' cross street at x~2090-2310, while plate 90 above draws lots 2724-2730 and 2802-2806 across that same span with a continuous block face and no street. Plate 98 ends at x~2310 and plate 90 at y~1010, leaving a white uncovered corner (~65 x 200 ft) at the lower right beside the 'AVENUE O' glyph. Small white notches on the cut at x~110-150 and x~300-320; plate 98 is heavily stained and darker.",
+   "furniture": "north arrow, scale bar ('50 40 30 20 10') and the large 'O' of AVENUE O in the roadway; 80'/70'/20' width notes",
+   "grader": "grader_3"
+  },
+  {
+   "seam": "13_14",
+   "score": 3,
+   "defects": [
+    "step",
+    "tone"
+   ],
+   "offset_ft": 4,
+   "reason": "Blocks 627/567 and 628/568 line up and both cross streets are continuous; the 12-in pipe on the lower cross street meets with a ~4 ft vertical jog at the cut, and the 4-in pipe running down Ave. C on the cut line itself shows a horizontal jog of ~4-5 ft where the two plates' renderings meet. Right plate (14) is slightly paler.",
+   "furniture": "'AVE. C OR MECHANIC' lettering with the big district numeral '3' on the cut line; 80' width notes on both sides; F.A. symbol near 302",
+   "grader": "grader_4"
+  },
+  {
+   "seam": "19_23",
+   "score": 2,
+   "defects": [
+    "step",
+    "tone"
+   ],
+   "offset_ft": 8,
+   "reason": "Uniform lateral step: all three cross streets and their pipes (6-in pipes in the alleys at both ends and the 6-in pipe mid-crop) continue below 9th St. about 7-10 ft further right than above it; block faces of 368/369, 308/309 and 248/249 all show the same shift. Bottom plate (23) slightly warmer in tone.",
+   "furniture": "'9TH ST.' label and north arrow straddle the cut; 70' and 20' width notes in the roadway",
+   "grader": "grader_4"
+  },
+  {
+   "seam": "26_47",
+   "score": 1,
+   "defects": [
+    "misplacement",
+    "step",
+    "tone"
+   ],
+   "offset_ft": 35,
+   "reason": "Grid does not line up across 21st/Center St: the 20 ft alley with the 8-in pipe (between 1812 and 1814 above, 1811 and 1813 below) and the 70 ft street between blocks 69/94 and 68/93 continue below the cut roughly 35 ft further left than above; block 94's west face vs block 93's west face differ by the same amount. Plate 26 (top) is noticeably whiter than plate 47.",
+   "furniture": "'21ST OR CENTER ST.' label, scale of feet bar and north arrow lie on the cut",
+   "grader": "grader_4"
+  },
+  {
+   "seam": "33_34",
+   "score": 5,
+   "defects": [
+    "tone"
+   ],
+   "offset_ft": 0,
+   "reason": "Blocks 615/555, 616/556 and 617/557 register exactly; both cross streets and the 10-in pipe on the lower one are continuous through the cut with no visible jog; 'AVE. C OR MECHANIC' lettering intact. Right plate (34) is a shade lighter; each plate carries its own '10\" W. PIPE' label, as in the originals.",
+   "furniture": "'AVE. C OR MECHANIC' lettering with district numeral '3' on the cut line; 80' width notes",
+   "grader": "grader_4"
+  },
+  {
+   "seam": "42_46",
+   "score": 2,
+   "defects": [
+    "step"
+   ],
+   "offset_ft": 10,
+   "reason": "Lateral step of roughly 10 ft: the 6-in pipe in the street between blocks 44/69 (above) and 43/68 (below) continues about 10 ft further left below the cut, and the 70 ft street between blocks 44 and 43's halves shows the same shift; 20 ft alley at 1612/1614 vs 1611/1613 shifted similarly. Tone closely matched.",
+   "furniture": "'21ST OR CENTER' label, north arrow and F.A. symbol on the cut; 70' and 20' width notes",
+   "grader": "grader_4"
+  },
+  {
+   "seam": "51_52",
+   "score": 4,
+   "defects": [
+    "step"
+   ],
+   "offset_ft": 2,
+   "reason": "Blocks 17/42 and 16/41 register; the water main on the upper cross street (labelled 12-in on plate 51, 10-in on plate 52) meets at the cut with a jog of about 2 ft, findable only by hunting. Ursuline Academy block on the right has no cross street mid-crop, which matches the lot numbering (2501-2613 continuous). Tones matched.",
+   "furniture": "'AVENUE N' lettering on the cut line; 120' and 80' width notes; T.H. symbol",
+   "grader": "grader_4"
+  },
+  {
+   "seam": "57_63",
+   "score": 3,
+   "defects": [
+    "step"
+   ],
+   "offset_ft": 5,
+   "reason": "30th St. cut: the 8-in pipe in the alley of block 14, block 14's east face and the street to block 14/SE-SW 14 continue within 2-4 ft; the 70 ft street between blocks 29/30 and 14 is drawn ~5 ft narrower below the cut and block 14's west block-edge line jogs up to ~14 ft while its buildings and lot numbers (2927 vs 2935/3001) jog only ~5 ft, so the line discrepancy is probably source drafting, but a reader sees the jog. Small white notch at the far left margin at the cut. Tones matched.",
+   "furniture": "'30TH ST.' label and 70'/20'/40' width notes in the roadway",
+   "grader": "grader_4"
+  },
+  {
+   "seam": "64_65",
+   "score": 2,
+   "defects": [
+    "step"
+   ],
+   "offset_ft": 39,
+   "reason": "Avenue O 1/2 cut: upper cross street and block 63's north face register exactly and the far face of the lower cross street lines up (1705-1723 vs 1801-1811), but block 63's south face steps ~39 ft at the cut - plate 64 prints the lower street as 40' with lots 3102-3132, plate 65 prints it as 80' with lots 3101-3127. This is the two source plates disagreeing rather than registration, but a buyer sees a 39 ft jog in the block face; escalate for a decision.",
+   "furniture": "'AVENUE O 1/2' lettering with district numeral '6' on the cut line; 80' and 40' width notes",
+   "grader": "grader_4"
+  },
+  {
+   "seam": "70_71",
+   "score": 2,
+   "defects": [
+    "misplacement"
+   ],
+   "offset_ft": 35,
+   "reason": "Avenue M 1/2 cut: lower cross street, its 8-in pipe and blocks NW 12/SW 12 and 11 register within ~2 ft, but the 80 ft street between NE 12 and NW 12 on plate 70 does not exist on plate 71 - there the SE 12/SW 12 (cotton yard) block runs straight through with lots 3331-3335 and a single lot line about 35 ft from either street edge. The street therefore ends dead at the avenue centreline. Lot numbers show this is the source plates disagreeing, not a registration error; escalate. Left plate (70) yellower at top.",
+   "furniture": "'AVENUE M 1/2' lettering with district numeral on the cut line; 80' width notes; T.H. symbols",
+   "grader": "grader_4"
+  },
+  {
+   "seam": "78_79",
+   "score": 5,
+   "defects": [
+    "tone"
+   ],
+   "offset_ft": 0,
+   "reason": "Blocks SW 11/NW 36, SE 10/NE 35 and SW 10/NW 35 register exactly; both cross streets (80') continuous with block faces meeting within a pixel; house numbers 1404-1424 / 1502-1520 continue. Plate 78 (left) is darker and more foxed at the top than plate 79.",
+   "furniture": "'AVENUE N' lettering with district numeral '8' on the cut line; 80' and 20' width notes; T.H. symbols",
+   "grader": "grader_4"
+  },
+  {
+   "seam": "84_92",
+   "score": 1,
+   "defects": [
+    "misplacement",
+    "doubled-lines",
+    "step"
+   ],
+   "offset_ft": 18,
+   "reason": "42nd St. cut: every cross street and block face continues below the cut roughly 15-20 ft further right than above (block 341/342 east face 15 ft, block 281/282 faces 15-17 ft, block 221/222 west face ~19 ft, 20 ft alleys 20+ ft), growing slightly toward the right; the 8-in water main along 42nd St. is drawn twice side by side, once on each plate about 9 ft apart, both labelled. Tones matched apart from staining lower right.",
+   "furniture": "'42ND ST.' label, scale of feet and north arrow on the cut; 70' and 20' width notes",
+   "grader": "grader_4"
+  },
+  {
+   "seam": "90_99",
+   "score": 2,
+   "defects": [
+    "gap",
+    "tone"
+   ],
+   "offset_ft": 2,
+   "reason": "Three plates meet here. Block 185/184 west face and the 70 ft street to block 160/159 register within ~2 ft, and the seawall diagonal continues. Above the cut the top-right corner (landward of Seawall Blvd, beyond plate 90's neatline) is a blank white rectangle with a hard edge - unmapped area that a buyer will see as a hole; check whether a neighbouring plate should cover it. The double rail line down the street west of block 185 stops dead at the cut. Plate 99 shows block 184 undivided where plate 90 has a 70' street between NW 185 and SW 185 (lot numbers 2729/2801 continuous, so likely source). Clear tone boundary at the third plate on the top left and heavy staining lower right.",
+   "furniture": "'ST.' label, scale of feet, north arrow and part of a second 'Scale of Feet' from the third plate on the cut; big plate numeral '9' at far right; 70' and 80' width notes",
+   "grader": "grader_4"
+  },
+  {
+   "seam": "13_15",
+   "score": 2,
+   "defects": [
+    "step",
+    "tone"
+   ],
+   "offset_ft": 6.5,
+   "reason": "30TH ST. cut; block corners (lot 2928/3002 line, 3001 block edge) align within ~2 ft, but the group of five straight N-S terminal-yard rail lines west of the Trinity & Brazos Valley platform (lots 8-18 / 7-17) all jog ~19 px at full res (~6.5 ft) west at the cut; the rails near 202/201 continue within ~2 ft. Slight tone step, lower plate lighter.",
+   "furniture": "north arrow and 'Scale of Feet' in the roadway; 70'/80' width notes",
+   "grader": "grader_5"
+  },
+  {
+   "seam": "20_24",
+   "score": 1,
+   "defects": [
+    "misplacement",
+    "step",
+    "tone"
+   ],
+   "offset_ft": 60,
+   "reason": "9TH ST. cut; blocks 128/129 (1002-1012 / 1001-1011) and 68/69 (1102 / 1101) align within ~3 ft, but the west block (188 / 189): the 20' alley with its 6-in water pipe and the whole 914-924 / 913-923 block face continue ~170 px (~60 ft) further east on the plate-24 side, so the alley and the west face of the 150' street do not meet. Rest of the seam clean.",
+   "furniture": "'Scale of Feet.', north arrow and a cut-through scale bar in the roadway; 150'/70'/20' width notes",
+   "grader": "grader_5"
+  },
+  {
+   "seam": "27_28",
+   "score": 5,
+   "defects": [
+    "none"
+   ],
+   "offset_ft": 0,
+   "reason": "AVE. C OR MECHANIC cut; block 613/553 and 614/554 corner lines, lot lines 1228/1227 and 1302/1301, and the 80' cross-avenue continue within ~2 ft; 'AVE. C OR MECHANIC' printed once; no pipe runs at the cut; paper tone nearly identical.",
+   "furniture": "80' width notes only",
+   "grader": "grader_5"
+  },
+  {
+   "seam": "34_35",
+   "score": 2,
+   "defects": [
+    "step",
+    "tone"
+   ],
+   "offset_ft": 9,
+   "reason": "AVE. F OR CHURCH cut; near the top (lots 1528/602) the block lines are within ~2 ft, but the offset grows southward: at the 80' cross-avenue the 12-in W. pipe run steps ~27 px (~9 ft), and the 1628/524 and 601/521 block faces are ~8 ft apart (plate-35 side higher). Label printed once. Plate 34 buildings are the orange-tinted printing, plate 35 yellow.",
+   "furniture": "80' width notes",
+   "grader": "grader_5"
+  },
+  {
+   "seam": "44_45",
+   "score": 2,
+   "defects": [
+    "step",
+    "tone"
+   ],
+   "offset_ft": 7.5,
+   "reason": "AVENUE L cut; at 22ND ST. the 10-in W. pipe run steps ~22 px (~7.5 ft, plate-44 side lower) and the 1123/1201 block face is ~5 ft lower on the plate-44 side; the 1124/1202 block line above 22ND ST. and the 2228/1202 line further south are within ~2 ft. Slight tone difference.",
+   "furniture": "plate number 45 in the roadway; 80' width notes",
+   "grader": "grader_5"
+  },
+  {
+   "seam": "51_57",
+   "score": 2,
+   "defects": [
+    "step",
+    "tone"
+   ],
+   "offset_ft": 28,
+   "reason": "27TH ST. cut; alley pipe and blocks 1213-1223 / 1214-1224 and 1301-1311 / 1302-1312 continue within ~3 ft and the 1401/1402 block edge matches, but the east edge of the 1323/1324 block sits ~80 px (~28 ft) further east on the plate-57 side (the 70' street is drawn ~45 ft wide there), so the block-corner lines do not meet. Faint tone edge along the cut.",
+   "furniture": "north arrow, 'Scale of Feet' and scale bar in the roadway; FA box; 70' width notes",
+   "grader": "grader_5"
+  },
+  {
+   "seam": "58_59",
+   "score": 5,
+   "defects": [
+    "none"
+   ],
+   "offset_ft": 0,
+   "reason": "AVENUE O 1/2 cut; 28TH ST., the 1724/1802 and 1723/1801 block faces, 2828/1802 line and the 8-in W. pipe run all continue within ~2 ft; label printed once; paper tone practically identical.",
+   "furniture": "FA box; 80' width notes",
+   "grader": "grader_5"
+  },
+  {
+   "seam": "64_71",
+   "score": 2,
+   "defects": [
+    "step",
+    "gap",
+    "tone"
+   ],
+   "offset_ft": 17,
+   "reason": "33RD ST. cut; the west half (alley pipe, 1501/1502, 1513/1514 blocks) is within ~3 ft, but eastward the block faces diverge: 1601 edge ~8 ft west of 1602, the 1623/1624 block corner ~50 px (~17 ft) apart, the 6-in alley pipe ~9 ft and the 1701/1702 edge ~10 ft. A small white notch (~65x15 px) in the roadway at the 1623 corner where the mask leaves nothing drawn. Strong tone step, plate 71 grey, with a wavy edge.",
+   "furniture": "'Scale of', north arrow and 33RD label in the roadway; FA box; 70'/80' width notes",
+   "grader": "grader_5"
+  },
+  {
+   "seam": "70_78",
+   "score": 2,
+   "defects": [
+    "step",
+    "duplicated-label",
+    "tone"
+   ],
+   "offset_ft": 43,
+   "reason": "36TH ST. cut; house numbers 1201-1223 / 1202-1224 and 1401/1402 align within ~5 ft, but block-edge lines do not meet: the 1212/1213 line vs the 10' alley ~9-19 ft, the east edge of the 3529 block ~19 ft, and the west edge of the 1402 block sits ~125 px (~43 ft) west of the 1401 edge (plate-70 side). An orphan 'ST.' from the second plate stands after 'Scale of Feet.', 160 ft east of the '36TH ST.' label. Strong tone step (plate 78 grey) with a stepped mask edge at the west end.",
+   "furniture": "'Scale of Feet.' in the roadway; plate number 35; 70'/80'/40' width notes",
+   "grader": "grader_5"
+  },
+  {
+   "seam": "78_85",
+   "score": 4,
+   "defects": [
+    "tone"
+   ],
+   "offset_ft": 1.5,
+   "reason": "Cut along the street between blocks 38/10 and 39/9; alley pipes at 1212/1213 and 1312/1313, the 1214, 1224, 1302, 1314, 1324 and 1402 block edges and the 6-in W. pipe run all continue within ~1-2 ft. Only the tone step (plate 85 grey) with its wavy mask edge gives the seam away.",
+   "furniture": "70' width notes; T.H. poles",
+   "grader": "grader_5"
+  },
+  {
+   "seam": "85_86",
+   "score": 3,
+   "defects": [
+    "duplicated-label",
+    "tone"
+   ],
+   "offset_ft": 3.5,
+   "reason": "AVENUE M 1/2 cut; block lines 1324/1402, 4028/4027 and the 10-in W. pipe continue within ~2 ft (1323/1401 face ~3.5 ft), but the FA fire-alarm box at the 80' cross-avenue is drawn on both plates and both survive, two FA circles ~38 ft apart either side of the cut. Faint tone edge.",
+   "furniture": "plate number 86 in the roadway; 80' width notes",
+   "grader": "grader_5"
+  },
+  {
+   "seam": "91_92",
+   "score": 2,
+   "defects": [
+    "duplicated-label",
+    "doubled-lines",
+    "tone"
+   ],
+   "offset_ft": 26,
+   "reason": "AVE. G OR WINNIE cut; block faces 624/702, 623/701 and the curving rail line cross cleanly (within ~2 ft), but the street name is printed twice side by side ('AVE G OR WINNIE' from plate 91 and 'AVE. G OR WINNIE' from plate 92 with the plate number 91 between) and the 6-in W. pipe running along the avenue is drawn twice, ~75 px (~26 ft) apart, one each side of the cut. Slight tone difference.",
+   "furniture": "plate number 91 in the roadway; 80' width notes",
+   "grader": "grader_5"
+  },
+  {
+   "seam": "14_16",
+   "score": 2,
+   "defects": [
+    "step"
+   ],
+   "offset_ft": 11,
+   "reason": "Cut along 30TH ST. Plate 16 (below) sits about 30-35 px (10-13 ft) east of plate 14: the west face of block 509 (house nos 2909-2927) continues below as block 510 (3001-3021) shifted ~10 ft, the 6-inch W. PIPE run in the 70' street west of it jogs ~10 ft at the cut, the east face of block 569/570 and the 8-inch pipe / rail lines by block 449/450 jog ~9-12 ft. No building split, no doubled lettering; lettering of 30TH ST. intact.",
+   "furniture": "30TH ST. label, 70' width notes, T.H. dots and 6\"/8\" W. PIPE labels in the roadway; no plate number in the crop",
+   "grader": "grader_6"
+  },
+  {
+   "seam": "21_22",
+   "score": 3,
+   "defects": [
+    "step"
+   ],
+   "offset_ft": 5,
+   "reason": "Cut along AVE. C OR MECHANIC. Plate 22 (right) sits 13-17 px (4.5-5.5 ft) north of plate 21: the block faces of 609/549, 610/550 (both ends) and 611/551 all step ~5 ft at the cut, and the 8-inch W. PIPE dashed run across the cut is visibly higher on the right side. House numbers 206-224 / 302-320 run on without duplication; no building split; lettering intact.",
+   "furniture": "plate number 2 and the AVE. C OR MECHANIC label in the roadway, 80' width notes, T.H. dots",
+   "grader": "grader_6"
+  },
+  {
+   "seam": "27_33",
+   "score": 4,
+   "defects": [
+    "step"
+   ],
+   "offset_ft": 3,
+   "reason": "Cut along 15TH ST. Block faces 734/735, 674/675 and the rail lines and 6-inch pipe by them match within about 1 ft; the offset grows slightly toward the east end: the west face of block 614/615 steps ~3 ft and lot lines near 213/214 at the right edge about 4 ft (slight relative rotation). House numbers 102-124 / 101-123 continue; nothing doubled; 15TH ST. lettering intact.",
+   "furniture": "15TH ST. label, north arrow and a fragment of the 'Feet' scale bar in the roadway right of centre, an 8\"W.PIPE label at the left edge on the cut, 70'/80'/20' width notes",
+   "grader": "grader_6"
+  },
+  {
+   "seam": "35_36",
+   "score": 4,
+   "defects": [
+    "step"
+   ],
+   "offset_ft": 3.5,
+   "reason": "Cut along AVE. I OR SEALY. Block faces 255/195 and the north face of 256/196 are exact (0-1 ft); the offset grows southward: south face of 256/196 ~3 ft, north face of 257/197 ~3.5 ft, and the 12-inch W. PIPE (left) meets the 10-inch W. PIPE (right) with a ~3.5 ft jog at the cut. House numbers 814-824 / 902-912 continue, no doubling, no split buildings. Faint tone difference only.",
+   "furniture": "plate number 35 and the AVE. I OR SEALY label in the roadway, 80' width notes, T.H. dots",
+   "grader": "grader_6"
+  },
+  {
+   "seam": "45_46",
+   "score": 3,
+   "defects": [
+    "step"
+   ],
+   "offset_ft": 4.5,
+   "reason": "Cut along AVENUE N. Every block face steps about 12-13 px (4-4.5 ft): south face of S.E.18 vs N.E.43, south face of S.W.18 vs N.W.43, north face of S.E.17 vs the block below it. The 10-inch W. PIPE on plate 45 meets the 8-inch pipe on plate 46 ~9 ft lower at the Avenue N main (different pipes, drawn so on the source). Note the source plates disagree on the cross street: 22ND ST. is 40' on plate 45 and the street between N.E.43 and N.W.43 is 80' on plate 46, so the block depths differ across the cut; this is content, not registration. No doubled lettering, no split buildings.",
+   "furniture": "plate number 5 and the AVENUE N label in the roadway, Scale of Feet bar in the 80' street on the right plate, 40'/60'/70'/80'/20' width notes",
+   "grader": "grader_6"
+  },
+  {
+   "seam": "52_53",
+   "score": 1,
+   "defects": [
+    "misplacement",
+    "step"
+   ],
+   "offset_ft": 18,
+   "reason": "Cut along AVENUE O 1/2. Plate 53 (right) sits 50-60 px (17-21 ft) south of plate 52: the south face of block 67 (1706-1724) continues as S.W.67 (1802-1822) ~17 ft lower, the 8-inch W. PIPE run jogs ~20 ft, both faces of N.E.66/S.E.66 step ~18 ft, and the north face of N.W.66/S.W.66 across 26TH ST. steps ~15 ft. The street grid visibly does not line up; escalate. No building split, no doubled lettering.",
+   "furniture": "plate number 5 and the AVENUE O 1/2 label in the roadway; two compass roses (one per plate) in the 120' cross street at the top; 80'/120' width notes",
+   "grader": "grader_6"
+  },
+  {
+   "seam": "58_64",
+   "score": 4,
+   "defects": [
+    "step"
+   ],
+   "offset_ft": 3,
+   "reason": "Cut along 30TH ST. Block faces match within about 2-3 ft with mixed sign (west face of S.E.39/S.W.39 ~3 ft, east face ~3 ft the other way, west face of N.E.64/N.W.64 ~2 ft, 6-inch W. PIPE continuous), so a slight scale difference rather than a shift. AVENUE N 1/2 (40') north of the cut does not continue south on plate 64 (Ballinger's Lane lots run to the S.W.39 line) - source content. House numbers 2909-2932 / 3001-3020 continue; no doubling; lettering intact.",
+   "furniture": "30TH ST. and AVENUE N 1/2 labels, compass rose inside the empty block S.W.39 on plate 64, 40'/80'/70'/50'/20' width notes",
+   "grader": "grader_6"
+  },
+  {
+   "seam": "65_66",
+   "score": 3,
+   "defects": [
+    "step"
+   ],
+   "offset_ft": 5.5,
+   "reason": "Cut along AVENUE Q. Plate 66 (right) sits 15-18 px (5.2-6.2 ft) north of plate 65 uniformly: south face of S.W.89 vs N.W.114, both faces of S.E.88 vs N.E.113, north face of S.W.88 vs N.W.113 all step ~5.5 ft; the 6-inch W. PIPE on the right ends at the cut against the Avenue Q main. At the 3/2 boundary. House numbers 2014-2024 / 2102-2112 continue; nothing doubled; no split buildings.",
+   "furniture": "plate number 6 and the AVENUE Q label in the roadway, 80' width notes, T.H. dots",
+   "grader": "grader_6"
+  },
+  {
+   "seam": "71_72",
+   "score": 2,
+   "defects": [
+    "step"
+   ],
+   "offset_ft": 8,
+   "reason": "Cut along AVENUE O. Alignment is good at the top (34TH ST. north face vs the N.E.62 alley line within 1.5 ft) but drifts southward: south face of S.W.37 vs N.W.62 steps ~7 ft, the 8-inch W. PIPE run jogs ~8 ft, north face of S.E.36 vs N.E.61 steps ~8.5 ft (relative rotation/scale). Note 34TH ST. (40') on plate 71 faces only a 20' alley line on plate 72 - source content. No doubled lettering, no split buildings.",
+   "furniture": "plate number 7 and the AVENUE O label in the roadway, Scale of Feet bar at lower left on plate 71, 34TH ST. label, 40'/80'/20' width notes",
+   "grader": "grader_6"
+  },
+  {
+   "seam": "79_80",
+   "score": 2,
+   "defects": [
+    "step"
+   ],
+   "offset_ft": 9,
+   "reason": "Cut along AVENUE O 1/2. Plate 80 (right) sits north of plate 79 by 16-18 px (5.5-6 ft) at the south face of N.W.61/S.E.61 and the north face of N.E.60/S.E.60, growing to 27 px (9 ft) at the south face of N.E.60/S.E.60; the 8-inch W. PIPE run jogs ~2.5 ft. The source plates disagree on the cross street below: 80' on plate 79 (N.E.60/N.W.60) versus 38TH ST. 40' on plate 80 (S.E.60/S.W.60), so the lower block faces do not correspond. No doubling, no split buildings.",
+   "furniture": "plate number 9 and the AVENUE O 1/2 label in the roadway, 38TH ST. label, 80'/40'/20'/17' width notes",
+   "grader": "grader_6"
+  },
+  {
+   "seam": "85_93",
+   "score": 1,
+   "defects": [
+    "misplacement",
+    "step",
+    "gap"
+   ],
+   "offset_ft": 23,
+   "reason": "Cut along 42ND ST., which only exists east of the cemetery; west of it the cut runs through the CEMETERY block. Blocks 41/42 line up well (faces within 2 ft) but the cemetery's west and east boundary lines step ~23 ft at the cut (plate 93 draws them further east), the heavy rail line running down the east side of the cemetery on plate 85 ends dead at the cut with no continuation, and a different heavy line starts at the cut along AVENUE K on plate 93. 42ND ST. between blocks 41 and 42 measures ~93 ft against its 80' note (~10-13 ft of extra white roadway across the cut). Top-left corner above the cut is blank plate margin where plate 93 shows lots 1019-1023. Escalate.",
+   "furniture": "42ND ST. label plus a second '42ND' with an 80' note along the street, 70'/80'/20' width notes, north arrow inside the cemetery block on plate 85",
+   "grader": "grader_6"
+  },
+  {
+   "seam": "92_93",
+   "score": 1,
+   "defects": [
+    "misplacement",
+    "step",
+    "tone"
+   ],
+   "offset_ft": 28,
+   "reason": "Cut along BROADWAY (AVE. J). Plate 93 (right) sits ~24 px (8 ft) north of plate 92 at the north and south faces of 223/163 and the north face of 224/164, and the 6-inch W. PIPE run jogs ~8 ft; the rail line along 46TH ST. is a thin double line on plate 92 and a heavy line on plate 93, stepping ~6 ft. Worse, the north face of 46TH ST. steps ~28 ft (block 222 face at 906-924 versus the 1002-1022 face): plate 93 draws 46TH ST. ~105 ft wide against 85 ft on plate 92, both marked 80'. Plate 92 paper is markedly yellower and foxed than plate 93. Escalate.",
+   "furniture": "plate number 2 and the AVE. J OR BROADWAY lettering in the roadway (printed twice along the avenue on the source), '0' plate marks by 46TH ST. on plate 93, 46TH ST. label, 80'/150' notes",
+   "grader": "grader_6"
+  },
+  {
+   "seam": "14_55",
+   "score": 2,
+   "defects": [
+    "step",
+    "tone"
+   ],
+   "offset_ft": 6,
+   "reason": "Cut runs down AVE. F OR CHURCH between blocks 447/448/449 (west) and 387/388/389 (east). The cross-street block faces step progressively along the seam: 447/387 south face ~3 ft, 448/388 north face ~2.5 ft, 448/388 south face ~4 ft, and the 449/389 north face (Freight Depot / Moore & Goodman lumber yard) ~6 ft (18 px at full res) - the two plates are slightly rotated relative to each other. The 10-inch/16-inch pipe run at the 80' street continues with only a small jog; the AVE. F OR CHURCH name sits on the cut but its letters are whole. East plate's upper blocks print in the orange building tint, slight paper tone difference.",
+   "furniture": "AVE. F OR CHURCH street name on the centreline; 80' width notes and 10\"W PIPE / 16\"W PIPE labels either side of the cut",
+   "grader": "grader_7"
+  },
+  {
+   "seam": "21_27",
+   "score": 3,
+   "defects": [
+    "step"
+   ],
+   "offset_ft": 4,
+   "reason": "12TH ST cut. Blocks 671/672 and 611/612 faces, the rails and the 6-inch pipe runs continue within about 1-1.5 ft. At the west end the block 731/732 faces (Southern Oil Co. warehouse block) are offset about 4 ft (11-15 px). The north-arrow compass rose is bisected by the cut: only its lower half survives, the upper half is blank roadway, which a buyer would spot next to the 'Scale of Feet' text.",
+   "furniture": "Scale of Feet text and a half-cut compass rose in the roadway; 12TH ST name; 70'/80' width notes; F.A. box symbol",
+   "grader": "grader_7"
+  },
+  {
+   "seam": "28_29",
+   "score": 3,
+   "defects": [
+    "step"
+   ],
+   "offset_ft": 4.5,
+   "reason": "AVE. F OR CHURCH cut between blocks 432/433/434 and 372/373/374. Upper block faces line up within 1-2.5 ft, the AVE. F OR CHURCH name is intact on the centreline, but the 434/374 north face (521-523 / 601-603 corner with the S. store at 601) steps about 4.5 ft (13 px) - the offset grows toward the south end of the seam. Faint ragged lighter strip along the cut in the roadway.",
+   "furniture": "plate number 28 and the AVE. F OR CHURCH name in the roadway; 80' width notes",
+   "grader": "grader_7"
+  },
+  {
+   "seam": "35_39",
+   "score": 2,
+   "defects": [
+    "step",
+    "gap",
+    "tone"
+   ],
+   "offset_ft": 12,
+   "reason": "18TH ST cut. The north-south block faces are shifted east on the south plate and the shift grows from west to east: 377/378 east face ~6 ft, 317/318 west face ~5.5 ft, 317/318 east face and 257/258 west face ~9 ft, 258 alley ~12-14 ft (up to 40 px). The 6-inch and 16-inch pipe runs step by the same amounts. The compass rose in the roadway is cut through its middle leaving only the lower ticks beside a white wedge of blank roadway; the arrow needle from the other plate lies beside it. Top plate paper slightly greyer.",
+   "furniture": "18TH ST name, half-cut compass rose and north-arrow needle, Scale of Feet text, 70'/80' width notes in the roadway",
+   "grader": "grader_7"
+  },
+  {
+   "seam": "45_51",
+   "score": 3,
+   "defects": [
+    "step",
+    "tone"
+   ],
+   "offset_ft": 4,
+   "reason": "24TH ST cut. Block 23/24 west face and its 20' alley pipe step ~2.5-3.5 ft, block 23/24 east face and block 17 (SE/NW) west face ~3.5-4.5 ft (11-13 px). The 6-inch pipe run along the north side ends cleanly at the cut. Lot lines of block 17 north and south are different layouts so nothing to compare there. The north plate is slightly darker so the cut reads as a tone edge across the roadway.",
+   "furniture": "24TH ST name, north arrow, Scale of Feet text and T.H. symbol in the roadway; 70' width notes",
+   "grader": "grader_7"
+  },
+  {
+   "seam": "52_58",
+   "score": 2,
+   "defects": [
+    "step"
+   ],
+   "offset_ft": 14,
+   "reason": "27TH ST cut between NW/SW 41 and NW 66 (north) and Garden Verein NE/SE 40 and NE 65 (south). The north-south street between 41/66 and 40/65 is shifted about 12-15 ft: SW41 east face 1690 px vs SE40 east face 1649 px (41 px = 14 ft), NW66 west face vs NE65 west face 42 px, the 66/65 alley 36-44 px. The 27TH ST name and the compass rose read whole, so the cut evidently wanders around them.",
+   "furniture": "compass rose, 27TH ST name and Scale of Feet in the roadway; 70' width notes",
+   "grader": "grader_7"
+  },
+  {
+   "seam": "59_60",
+   "score": 3,
+   "defects": [
+    "step"
+   ],
+   "offset_ft": 5.5,
+   "reason": "AVENUE Q cut between blocks SE/SW 90 and SE 89 (west) and NE/NW 115 and NE 114 (east, Auditorium and Band Stand park). The 90/115 north face steps ~3.5 ft, the 90/115 south face ~3 ft, and the 89/114 north face (2021-2023 / 2101-2103) ~5.5 ft (16 px) - borderline for a 2, offset growing to the south. The 8-inch pipe ends at the avenue pipe on the centreline as drawn. The apparent 40-ft jog in the 28TH ST north face is on the source plates (the auditorium block extends into a 40' street on the east plate against 80' on the west) and is not counted.",
+   "furniture": "plate-number fragment 9 and the AVENUE Q name on the centreline; 28TH ST name; 80'/40' width notes",
+   "grader": "grader_7"
+  },
+  {
+   "seam": "65_72",
+   "score": 2,
+   "defects": [
+    "step",
+    "gap",
+    "tone"
+   ],
+   "offset_ft": 12,
+   "reason": "70' street cut with the 8-inch pipe run, blocks SW63/NW88 north and SE62/NE87 south. The south plate is shifted east and the shift grows eastward: 63/62 east face ~10 ft, 88/87 west face 9.5 ft, 88/87 alley ~10 ft, 88/87 east face 10 ft, next block west face 14.5 ft (42 px). A white notch and a thin white strip of blank roadway show along the cut east of the 88/87 corner and at the far west end where the pipe run is interrupted. North plate paper is greyer. The absence of a cross street between the 1727/1801 lots on the south side is on the source plate (SE 62 is one undivided quarter-outlot).",
+   "furniture": "8\"W PIPE and 6\"W PIPE labels, 70'/80'/20' width notes in the roadway",
+   "grader": "grader_7"
+  },
+  {
+   "seam": "71_79",
+   "score": 2,
+   "defects": [
+    "step",
+    "split-building",
+    "gap",
+    "tone"
+   ],
+   "offset_ft": 13,
+   "reason": "36TH ST cut with NE/SE 36 north and NW/SW 36 south. North-south faces are shifted 9-15 ft east on the south plate and the shift grows eastward: west block faces 8.5-10 ft, SW36 west face 10 ft, the 6-inch/8-inch pipe and 36 east face 13-15 ft, next block 14.5 ft (42 px). On the 1610-1624 face of SE 36 the dwellings next to the cut are drawn on both plates and abut at the seam with their halves offset (the D at about 1612 shows a dashed upper half from the north plate over a solid lower half from the south plate). A thin white strip runs along the cut west of block 36 and the seam edge is ragged. 36TH ST is named three times at three heights near the cut (two north, one south). North plate paper is greyer.",
+   "furniture": "36TH ST names, 80'/70'/40'/20' width notes, 6\"W PIPE label in the roadway",
+   "grader": "grader_7"
+  },
+  {
+   "seam": "79_86",
+   "score": 2,
+   "defects": [
+    "step",
+    "gap",
+    "tone"
+   ],
+   "offset_ft": 12,
+   "reason": "39TH ST cut with NW/SW 35 north and NE/SE 34 south. Block faces, alleys and the 6-inch/8-inch pipes step 3-6 ft (9-17 px) across most of the seam, growing to about 12 ft (35 px) at the 1701 block on the east end. Between the north arrow and the east end a jagged white strip of blank roadway lies along the cut, the 6-inch pipe run along the street is interrupted there, and a black fragment of a second arrow needle from the other plate shows near 1140 px; the street name reads only '39TH' with the 'ST.' lost. The doubled '70' 70'' note south of the cut at the east end looks like both plates' width notes. North plate paper is greyer.",
+   "furniture": "39TH street name, north arrow (plus a needle fragment), 70'/80'/20' width notes, T.H. symbols",
+   "grader": "grader_7"
+  },
+  {
+   "seam": "86_87",
+   "score": 3,
+   "defects": [
+    "step"
+   ],
+   "offset_ft": 4.5,
+   "reason": "AVENUE O cut between SE/SW 34 and NE/NW 59. The 8-inch pipe run at the 80' street continues cleanly through the cut (labelled once on each plate), the 34/59 south face and the lower block faces line up within 1.5 ft, the 34/59 north face within ~2 ft, but the SE34/NE59 south face (1626-1624 / 1702-1704) steps about 4.5 ft (13 px). Foxing and stains are on the source. Slight lighter vertical strip along the cut in the roadway.",
+   "furniture": "plate-number fragment 8 and the AVENUE O name on the centreline; 8\"W PIPE labels and 80' width notes",
+   "grader": "grader_7"
+  },
+  {
+   "seam": "93_94",
+   "score": 2,
+   "defects": [
+    "step"
+   ],
+   "offset_ft": 13.5,
+   "reason": "AVENUE M cut between blocks 42/43/44 (west, lots 1206-1224) and quarter-outlot NE/NW 7 (east, lots 1302-1312). The 80' cross street between 42 and 43 continues on the east side between the 1302 and 1301 blocks but both of its faces sit about 13.5 ft (39-41 px) further north on the east plate - a rigid shift along the seam. Caveat: the two sides are different grids (the 43/44 street has no counterpart on outlot 7, only a lot line), so a source-map offset is possible; worth checking against the plates before re-solving. The adjoining-sheet numbers in the roadway are both clipped by the cut, leaving a '9' and a '3' on different baselines.",
+   "furniture": "clipped adjoining-sheet numbers 9 and 3 and the AVENUE M name on the centreline; 80'/20' width notes",
+   "grader": "grader_7"
+  },
+  {
+   "seam": "15_16",
+   "score": 4,
+   "defects": [
+    "step",
+    "tone"
+   ],
+   "offset_ft": 2,
+   "reason": "Ave. C / Mechanic cut: block faces of 630/570, 631/571 and 632/572 and the house-number rows (210-224 vs 302-322, 206-224 vs 302-320) continue across with only a 1-3 ft vertical step; the curving Santa Fe/Texas City rail track and the 80' roadway lines carry across cleanly. Plate 16 paper is very slightly lighter than plate 15.",
+   "furniture": "'AVE. C OR MECHANIC' lettering and 80' width notes in the roadway",
+   "grader": "grader_8"
+  },
+  {
+   "seam": "22_23",
+   "score": 3,
+   "defects": [
+    "step"
+   ],
+   "offset_ft": 4.5,
+   "reason": "Ave. F / Church cut: the cross-street block faces (514-524 vs 602-612, 513-523 vs 601-611, and the lower pair) and the T.H. hydrant dots on the plate 23 side sit 10-16 px (3.5-5.5 ft) higher than on the plate 22 side, consistently down the whole seam; no doubling, no building split. Rework.",
+   "furniture": "plate number 22 and 'AVE. F OR CHURCH' lettering in the roadway",
+   "grader": "grader_8"
+  },
+  {
+   "seam": "28_34",
+   "score": 2,
+   "defects": [
+    "step"
+   ],
+   "offset_ft": 6,
+   "reason": "15th St cut: at the west end the block edges of 554/555 line up within 1 ft, but the offset grows eastward (494/495 ~2 ft, 434/435 ~5 ft) and at the east end the 6-inch water pipe and 20' alley beside 512/514 step about 20 px (~7 ft) at the cut; the 10-inch pipe at 412/414 steps ~2 ft. Looks like a small rotation between the plates. Escalate.",
+   "furniture": "Scale of Feet bar and north arrow in the 15th St roadway; 70' width notes",
+   "grader": "grader_8"
+  },
+  {
+   "seam": "36_37",
+   "score": 5,
+   "defects": [
+    "tone"
+   ],
+   "offset_ft": 0.5,
+   "reason": "Avenue L cut: block faces of 75/15, 76/16 and 77/17 and house numbers 1114-1124 / 1202-1212 match within 1-2 px; the 10-inch water pipe runs straight across the cut. Paper tone of the two plates is practically identical.",
+   "furniture": "plate number 3 and 'AVENUE L' lettering in the roadway; 80' width notes",
+   "grader": "grader_8"
+  },
+  {
+   "seam": "46_47",
+   "score": 3,
+   "defects": [
+    "step"
+   ],
+   "offset_ft": 5,
+   "reason": "Avenue O 1/2 cut: block faces of N.E./S.E. 68, N.W./S.W. 68 and 67 sit 8-13 px (3-4.5 ft) lower on the plate 47 side, and the 8-inch water pipe run north of block 68 jogs about 6 ft at the cut (left run higher than right run). No doubling, no building split. Rework.",
+   "furniture": "plate number 4 and 'AVENUE O1/2' lettering in the roadway; 80' width notes; both plates print their own '8\"W. PIPE' label",
+   "grader": "grader_8"
+  },
+  {
+   "seam": "53_54",
+   "score": 1,
+   "defects": [
+    "misplacement",
+    "step",
+    "duplicated-label"
+   ],
+   "offset_ft": 30,
+   "reason": "Gross misplacement: 25th St / Rosenberg and its 8-inch water pipe continue on the plate 54 side about 75-100 px (25-34 ft) lower than on the plate 53 side, and every block face along the avenue (2014-2024 vs 2102-2112, 2013-2023 vs 2101-2111, both lower blocks) is displaced by the same amount, growing slightly toward the bottom. Both plates' 'AVENUE Q' labels appear, one above the other, at different heights. Escalate.",
+   "furniture": "plate numbers 5 and 53 in the roadway; two 'AVENUE Q' labels; 80' width notes",
+   "grader": "grader_8"
+  },
+  {
+   "seam": "59_65",
+   "score": 3,
+   "defects": [
+    "step"
+   ],
+   "offset_ft": 4,
+   "reason": "30th St cut: east half is clean (block edges of 89 and the 2002/2014 alley match within 1 ft) but the offset grows westward - the 1902/1914 block edge and the 6-inch pipe in the 1812/1902 alley step about 8-13 px (3-4.5 ft) at the cut. No doubling or building split. Rework.",
+   "furniture": "Scale of Feet bar and north arrow in the 30th St roadway; 70' and 20' width notes",
+   "grader": "grader_8"
+  },
+  {
+   "seam": "66_73",
+   "score": 2,
+   "defects": [
+    "step",
+    "gap",
+    "tone"
+   ],
+   "offset_ft": 12,
+   "reason": "33rd St cut: at the west end the north-south street beside N.W. 113 / N.E. 112 and its 6-inch water pipe step 26-48 px (9-17 ft) eastward on the plate 73 side, and the cut path is ragged there (white notch beside the scale bar). At the east end plate 73 stops about 60 ft short of the crop edge: plate 66 shows through with its own lower block line ~10 ft above plate 73's, and below that the corner (about 60 x 90 ft) is blank white with nothing drawn - if that corner should be covered this is a 1. Plate 73 is noticeably greyer than plate 66. Escalate.",
+   "furniture": "Scale of Feet bar and north arrow in the 33rd St roadway; 70' and 80' width notes",
+   "grader": "grader_8"
+  },
+  {
+   "seam": "72_73",
+   "score": 2,
+   "defects": [
+    "step"
+   ],
+   "offset_ft": 10,
+   "reason": "Avenue P 1/2 cut: 34th St and every block face (N.E./S.W. 87, N.W. 87 vs S.W. 87, N.E./S.E. 86, house rows 1914-1924 vs 2002-2012) continue on the plate 73 side 25-33 px (9-11 ft) higher than on the plate 72 side, and the 8-inch water pipe south of block 87 jogs about 9 ft at the cut. No doubling or building split. Escalate.",
+   "furniture": "'AVENUE P1/2' lettering with a '7' in the roadway; 80' width notes; each plate prints its own '34TH ST.'",
+   "grader": "grader_8"
+  },
+  {
+   "seam": "80_81",
+   "score": 2,
+   "defects": [
+    "step"
+   ],
+   "offset_ft": 11,
+   "reason": "Avenue O cut: block faces of S.W. 86 / N.W. 111, S.E. 85 / N.E. 110 and the 38th St blocks continue on the plate 81 side 24-43 px (8-15 ft) higher than on plate 80, and the 8-inch water pipe run steps about 12-17 ft (left run below right run) at the cut. No doubling or building split; the brown foxing on plate 80 is the product. Escalate.",
+   "furniture": "'AVENUE O' lettering (with a Q-like glyph) in the roadway; 80' and 20' width notes; each plate prints its own '8\"W. PIPE' label",
+   "grader": "grader_8"
+  },
+  {
+   "seam": "86_94",
+   "score": 1,
+   "defects": [
+    "misplacement",
+    "gap",
+    "tone"
+   ],
+   "offset_ft": 80,
+   "reason": "The 86/94 join itself along 42nd St is good (block edges of SE/SW 8 and NE/NW 33 match within 2 ft), but at the east end a third, brown-stained plate piece intrudes on both sides of the cut with a dark torn edge and a ragged white notch: its block face 1602-1604 and 80' street sit a full street width (~80 ft) below 42nd St and its 'AVENUE' label lands where plates 86/94 draw a block. Gross misplacement / doubled street at the east end - escalate (probably a neighbouring seam's placement).",
+   "furniture": "Scale of Feet bar and north arrow in the 42nd St roadway; 'AVENUE M1/2' lettering; 70', 20' and 80' width notes",
+   "grader": "grader_8"
+  },
+  {
+   "seam": "94_95",
+   "score": 1,
+   "defects": [
+    "misplacement",
+    "gap"
+   ],
+   "offset_ft": 290,
+   "reason": "Gross misplacement: on the plate 94 side an 80' street (block faces 1514-1524 / 1513-1523) separates N.W. 33 from N.E. 32, but on the plate 95 side nothing crosses at that height - plate 95 shows one unbroken outline from its 1601-1611 face at the top to its 1602-1612 face at the bottom (~715 ft) with SE 32 above SW 32, i.e. block 32's S half sits about one block (~290 ft) too high relative to its N half. Mostly empty, unsubdivided ground, so hard to read, but the grid does not line up. Escalate.",
+   "furniture": "Scale of Feet bar at the bottom of the plate 95 side; 80' and 20' width notes",
+   "grader": "grader_8"
+  },
+  {
+   "seam": "16_61",
+   "score": 3,
+   "defects": [
+    "step",
+    "tone"
+   ],
+   "offset_ft": 2.8,
+   "reason": "AVE. F (Church) continuous and the 3012-3128 / 3013-3127 numbering carries across; the G.H.&N. R.R. switch curve crosses the cut without a kink. But every block face on plate 16 (450, 451, 452 and their lot lines) sits 5-10 px (about 2-3.5 ft, typically 2.8 ft) further south than its continuation on plate 61 (e.g. 450/390 faces at y=548 vs 540, 451 lot lines 1218/1277 vs 1208/1270). No doubling, no gap; plate 16 paper is clearly darker/greyer than plate 61.",
+   "furniture": "AVE. F OR CHURCH label and 80'/20' width notes sit on the cut line; the cut wanders around the letters and keeps them whole",
+   "grader": "grader_9"
+  },
+  {
+   "seam": "22_28",
+   "score": 2,
+   "defects": [
+    "step"
+   ],
+   "offset_ft": 8,
+   "reason": "12TH ST continuous, but plate 28 sits 20-32 px (7-11 ft, growing toward the east end) to the right of plate 22: the 551/491 street corners go 867 -> 890, the 10-inch pipe at x~1257 jogs 28 px, the 491/431 20-ft alley (1237-1290) resumes at 1255-1315, and the 6-inch pipe at x~525 jogs 17 px. No doubled content, no gap.",
+   "furniture": "Scale of Feet bar and north arrow in the roadway; 12TH ST label with the 8\" W.P. / 10\" W.P. notes",
+   "grader": "grader_9"
+  },
+  {
+   "seam": "29_30",
+   "score": 2,
+   "defects": [
+    "step",
+    "tone"
+   ],
+   "offset_ft": 5.5,
+   "reason": "AVE. F OR SEALY continuous, University of St. Mary and Sacred Heart blocks intact, numbering 1302-1328 / 1301-1327 carries across. The two plates are relatively rotated about 1 degree: the 252/192 block faces at the north end are offset 16 px (5.5 ft, plate 29 lower), the 254/194 faces in the middle align within 2 px, and the lot lines at the south end are offset 13-18 px (6 ft the other way). Plate 29 paper noticeably darker than plate 30.",
+   "furniture": "plate number 29 and the AVE. F OR SEALY label in the roadway, 80' notes",
+   "grader": "grader_9"
+  },
+  {
+   "seam": "36_40",
+   "score": 5,
+   "defects": [
+    "none"
+   ],
+   "offset_ft": 0,
+   "reason": "18TH ST continuous; block corners 197/198, 137/138 and 77/78 and the 6-inch pipe runs crossing at x~190 and x~1285 align within 1-3 px; house numbers 908-924/907-923, 1002-1012/1001-1011, 1102-1118/1101-1117 continue; no doubling, no gap, tone matches.",
+   "furniture": "18TH ST label and scale bar in the roadway, 70' and 150' notes at the corners",
+   "grader": "grader_9"
+  },
+  {
+   "seam": "46_52",
+   "score": 1,
+   "defects": [
+    "misplacement",
+    "step"
+   ],
+   "offset_ft": 19,
+   "reason": "Street grid does not line up across 24TH ST: the 70-ft street between blocks 42 and 67 continues 55 px (about 19 ft) further left on plate 52 than on plate 46 (block faces at x=1667/1878 above the cut vs 1612/1824 below), a jog of a quarter of the street width, clearly visible. AVENUE N 1/2 (80 ft on plate 46 between N.E. 42 and S.E. 42) has no continuation on plate 52, where the N.W./S.W. 42 boundary is a single lot line at x~700; the S.W. 42 corner numbering runs 2336 then 2402 with no street between. Slight tone step (plate 52 darker).",
+   "furniture": "two 24TH ST labels (one from each plate), 60'/70'/10' width notes in the roadway",
+   "grader": "grader_9"
+  },
+  {
+   "seam": "53_59",
+   "score": 2,
+   "defects": [
+    "step"
+   ],
+   "offset_ft": 8,
+   "reason": "27TH ST continuous, but plate 59 sits 20-25 px (7-8 ft) to the left of plate 53: the 6-inch pipe crossing at x~710 resumes at x~690 with a visible jog, the 1912|1914 alley (1182-1240) continues as 1911|1913 at 1157-1218, and every block corner (S.W. 66, N.W./S.W. 91 vs S.E. 65, N.E./S.E. 90) is shifted 14-27 px. The street measures about 245 px (85 ft) face to face, wider than the 70' cross streets, so a thin strip of blank road may also be present. No doubled content.",
+   "furniture": "Scale of Feet bar, half of a north arrow cut by the seam, and 27TH ST label in the roadway; 70'/20' notes",
+   "grader": "grader_9"
+  },
+  {
+   "seam": "60_66",
+   "score": 2,
+   "defects": [
+    "step"
+   ],
+   "offset_ft": 6,
+   "reason": "30TH ST continuous and numbering 2104-2124/2103-2123, 2931/3001, 2302-2312/2301-2311 carries across, but plate 66 sits 10-17 px to the right: the Beach Base Ball Park west line (2931 -> 3001) jogs 17 px (about 6 ft) at the cut, the park east line 12 px (4 ft), and the NE/NW 114 alley line 13 px. The plate 60 north arrow is cut in half by the seam and a stray fragment of the plate 66 arrow sits just below it. BEACH BASE BALL PARK is lettered on both plates (original, one label per plate).",
+   "furniture": "Scale of Feet bar, two 30TH ST labels, north arrow fragments, 80'/54'/35'/20' notes in the roadway",
+   "grader": "grader_9"
+  },
+  {
+   "seam": "66_74",
+   "score": 5,
+   "defects": [
+    "none"
+   ],
+   "offset_ft": 0.5,
+   "reason": "AVENUE R 1/2 continuous; the 34TH ST and 35TH ST block corners (139/137, N.E. 138/S.W. 137, N.W. 138/S.E. 136; 2324/2402 corners) align within 1-4 px on both crossings; numbering 3316-3328/3315-3327, 3402-3416/3401-3415, 3504-3520/3503-3519 continues; no doubling, no gap; paper tone matches, the brownish stain on plate 66 at the top is original.",
+   "furniture": "AVENUE R 1/2, 34TH ST and 35TH ST labels, 80' and 40' notes",
+   "grader": "grader_9"
+  },
+  {
+   "seam": "72_80",
+   "score": 2,
+   "defects": [
+    "step",
+    "doubled-lines"
+   ],
+   "offset_ft": 12,
+   "reason": "36TH ST (NOT OPENED): plate 80 sits 33-36 px (about 12 ft) to the right of plate 72 - the block 86 west face (3531 -> 3533 column) goes 1137 -> 1171, the 8-inch W. pipe 1240 -> 1276, the block 86 east face 2133 -> 2166. The cut wanders, so the S.E. 61 face line carrying 1722-1730 and the plate 80 face line below it are both drawn, 15 px apart, over x 240-345, and lots 3529/3531 (plate 72) and 3533/3535 (plate 80) both appear inside the unopened street strip with a jagged tone boundary between them.",
+   "furniture": "36TH ST NOT OPENED label and large north arrow in the roadway, 70'/40'/17' notes",
+   "grader": "grader_9"
+  },
+  {
+   "seam": "80_87",
+   "score": 2,
+   "defects": [
+    "doubled-lines",
+    "step"
+   ],
+   "offset_ft": 6,
+   "reason": "39TH ST continuous, but the 6-inch water pipe along the street is drawn twice, 30 px apart, from both plates (side by side over x 930-1340 and again at the left end where the 8-inch pipe labels from both plates appear one above the other); the 8-inch pipe crossing at x~1110 jogs 17 px (6 ft) and the block corners (1355 -> 1372, 1146 -> 1164) shift 15-20 px, plate 87 to the right. The wandering cut leaves visible jagged tone edges in the roadway.",
+   "furniture": "Scale of Feet bar and arrow, two 39TH ST labels, 80'/70' width notes",
+   "grader": "grader_9"
+  },
+  {
+   "seam": "87_88",
+   "score": 3,
+   "defects": [
+    "step",
+    "tone"
+   ],
+   "offset_ft": 3.8,
+   "reason": "AVENUE P 1/2 continuous, numbering 3928/3927, 4028/4027, 1922-1924/2002 carries across; at 40TH ST the block corners are offset 11 px (3.8 ft, plate 87 lower), 10 px at the next lot line, tapering to 0 at the south end (slight relative rotation). No doubling or gap; plate 87 paper distinctly darker than plate 88.",
+   "furniture": "40TH ST and AVENUE P 1/2 labels, a sheet reference 7 and 35'/80'/70'/20' notes in the roadway",
+   "grader": "grader_9"
+  },
+  {
+   "seam": "95_96",
+   "score": 1,
+   "defects": [
+    "misplacement",
+    "tone"
+   ],
+   "offset_ft": 300,
+   "reason": "Gross misplacement along the seam: plate 96 is about one block (roughly 900 px, 300 ft) out of position relative to plate 95. Opposite plate 95's 4302-4336 (SE 57) the cut shows plate 96's 4203-4227 (NW 83); the 80-ft cross street between NW 83 and NE 82 (y 875-1120) dead-ends at the cut with SE 57 running unbroken on the other side, while the streets at the 1823 and 1824 corners of plate 95 have no counterpart on plate 96; 4301 ends up opposite 4334. Jagged tone edge along the whole cut, plate 95 paper darker.",
+   "furniture": "80' and 70' width notes in the roadway",
+   "grader": "grader_9"
+  }
+ ]
+}

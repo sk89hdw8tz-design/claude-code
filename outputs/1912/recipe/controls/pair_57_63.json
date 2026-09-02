@@ -1,0 +1,18 @@
+{
+ "pair": [
+  57,
+  63
+ ],
+ "axis": "street",
+ "observer": "lattice (tools/faces.py)",
+ "method": "corridor centre = midpoint of the two block faces read off the plate's own street chain; identity from the current placement (the two readings are within 41 ft, a block is 396 ft) and the key maps' coverage",
+ "a_native": 3669.5,
+ "b_native": 203.5,
+ "corridor": "30th St",
+ "roadway_px": [
+  239,
+  245
+ ],
+ "disagreement_before_ft": 40.9,
+ "status": "ACCEPTED"
+}
