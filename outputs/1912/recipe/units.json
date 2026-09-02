@@ -6172,12 +6172,31 @@
     3287,
     3858
    ],
-   "extent_source": "tools/neatline.py: inner edge of the border rule",
    "extent_fallback_sides": [
     "left",
     "top",
     "right",
     "bottom"
+   ],
+   "furniture_native": [
+    {
+     "kind": "plate number and title",
+     "box": [
+      3085,
+      75,
+      3260,
+      225
+     ]
+    },
+    {
+     "kind": "scale bar",
+     "box": [
+      2180,
+      3640,
+      2830,
+      3730
+     ]
+    }
    ]
   },
   "6": {
@@ -6214,6 +6233,35 @@
     "left",
     "top",
     "bottom"
+   ],
+   "furniture_native": [
+    {
+     "kind": "plate number and title",
+     "box": [
+      3070,
+      80,
+      3235,
+      230
+     ]
+    },
+    {
+     "kind": "edge numeral/glyph",
+     "box": [
+      1645,
+      95,
+      1695,
+      175
+     ]
+    },
+    {
+     "kind": "scale bar",
+     "box": [
+      450,
+      3705,
+      1090,
+      3795
+     ]
+    }
    ]
   },
   "3": {
@@ -6280,6 +6328,15 @@
       68,
       171,
       220
+     ]
+    },
+    {
+     "kind": "scale bar",
+     "box": [
+      430,
+      3690,
+      1070,
+      3770
      ]
     }
    ]

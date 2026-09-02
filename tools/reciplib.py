@@ -162,11 +162,17 @@ class Recipe:
             return np.array(s["m"], float), np.array(s["t"], float)
         raise ValueError(f"unknown transform format for sheet {sheet}")
 
-    def footprint_native(self, unit):
+    def footprint_native(self, unit, furniture=True):
         """Shapely polygon of the ground a unit's scan actually maps, in its
         own pixels: the neatline-trimmed extent, minus any `exclude_native`
         polygons (a parent plate's inset frame), or the `region_native`
-        polygon for a panel unit."""
+        polygon for a panel unit. With `furniture` the `furniture_native`
+        boxes (plate number and title, stray edge numerals) are cut out too
+        -- of a panel as well, since a panel shares its parent's scan -- so
+        the seams can hand that ground to a neighbour that maps it. The
+        renderer's last-resort fallback asks with furniture=False: where no
+        plate maps the ground under a title, the title stays on its own
+        paper rather than leaving a white hole."""
         from shapely.geometry import Polygon, box
         u = self.units[str(unit)]
         if u.get("region_native"):
@@ -176,15 +182,22 @@ class Recipe:
             g = box(e[0], e[1], e[2], e[3])
         for ex in u.get("exclude_native") or []:
             g = g.difference(Polygon(ex).buffer(0))
+        if furniture:
+            src = u
+            if u.get("panel_of"):
+                src = self.units[str(u["panel_of"])]
+            for f in src.get("furniture_native") or []:
+                b = f["box"]
+                g = g.difference(box(b[0] - 6, b[1] - 6, b[2] + 6, b[3] + 6))
         if g.geom_type != "Polygon":
             g = max(g.geoms, key=lambda p: p.area)
         return g
 
-    def footprint(self, unit):
+    def footprint(self, unit, furniture=True):
         """footprint_native mapped into the mosaic frame."""
         from shapely.affinity import affine_transform
         M, t = self.sheet_matrix(unit)
-        return affine_transform(self.footprint_native(unit),
+        return affine_transform(self.footprint_native(unit, furniture),
                                 [M[0, 0], M[0, 1], M[1, 0], M[1, 1], t[0], t[1]])
 
     def ownership(self):

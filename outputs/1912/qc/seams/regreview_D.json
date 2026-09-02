@@ -1,0 +1,329 @@
+[
+ {
+  "seam": "13_15",
+  "verdict": "registration",
+  "feature": "Ave A block faces (749/750 east, 689/690 west) and the Galveston Wharf Co. terminal tracks along 30th St; Strand (689/690 east) and Ave C (629/630) faces",
+  "step_ft": 13,
+  "direction": "plate 15 west of plate 13 at Ave A, shrinking to ~0 at Ave C (Mechanic)",
+  "varies_along_seam": true,
+  "plate_to_move": "15",
+  "why_this_plate": "Plate 13 is held by 6 controls (5b_13 x, 13_14 x, 11/12/13_14 y, all <0.3 ft) and its Ave A-Ave C span (1050->3074 = 2024 px) times its scale 1.9905 is within 0.3% of plate 14's; plate 15 draws the same span 1.2% longer (1049->3098 = 2049 px) AND carries a 0.57% larger solved scale (2.0018), so pinned at Ave C by pair_15_16 it lands 76 mosaic px (13 ft) west at Ave A. Plate 15 has only one x control (15_16) plus the wharfplace tie 4_15 which was derived from 15's current placement, so its x-scale was never observed.",
+  "proposed_ties": [
+   {
+    "file": "pair_13_15_x.json",
+    "action": "add",
+    "axis": "avenue",
+    "corridor": "Ave A",
+    "a": 13,
+    "b": 15,
+    "a_native": 943.5,
+    "b_native": 943.25,
+    "faces": {
+     "13": [
+      837,
+      1050
+     ],
+     "15": [
+      835,
+      1049
+     ]
+    },
+    "why_not_one_block_off": "Both plates cover A-C (key maps; 15's letters are not printed, identity by column continuation 749/689/629 -> 750/690/630). Ave A is the 0/100 hundred-block break on both: sheet 13 block 749 fronts 30th St with 2 4 6 ... 24 and block 689 with 102 104 ... 124; sheet 15 block 750 fronts 30th/31st with 1 3 ... 23 and block 690 with 101 103 ... 123; '70'' printed in the roadway on both. One block east is Strand (Ave B), 80' (13: 1792/2043, 250 px) with the 100/200 break (689: 102-124, 629: 202-224); it is also drawn wider than 70'. Faces read off the native rasters at rows 2700-3500 (13) and 400-1200 (15); 13's 837/1050 agree with lattice.json, 15's lattice x chain (pitch 935, weak) is wrong and was not used."
+   }
+  ],
+  "dry_run": "scratch copy with the tie added: translation-only 15 moves (+5,+1) ft, residuals 13_15_x +9.5 / 4_15 -4.7 / 15_16 +4.7 ft (rigid shift cannot fit); --similarity 15: scale 2.0018->1.9993 (-0.12%), rotation +0.12->+0.40 deg, residuals median 3.1 max 6.9 ft (13_15_x +6.5/+6.9, 4_15 -6.2/-3.1) - the damping and the placement-derived 4_15 tie stop it shrinking the ~1.2% it needs. Current real controls: 15 moves (0,+1) ft, residuals <=1.8 ft (it has no x observation at the west end).",
+  "confidence": "medium",
+  "note": "Genuine differential x-scale (~1.8% over Ave A-C) between 13 and 15, not a translation. Re-solve 15 with the Ave A tie and with pair_4_15 dropped or re-read after the move (it was placed from 15's neatline under the current transform). The 30th St y tie (13_15) is good (1.6 ft)."
+ },
+ {
+  "seam": "56_57",
+  "verdict": "registration",
+  "feature": "Ave L roadway between blocks 87/88/89 (lots 1113-1124, frontage 2802-2832) and 27/28/29 (lots 1201-1212, frontage 2801-2827)",
+  "step_ft": 8,
+  "direction": "plate 57 too far west (overlaps 56): Ave L renders 189 native px = 65 ft against the 206-213 px (71-73 ft) every plate draws for a 70' avenue (label says 80')",
+  "varies_along_seam": false,
+  "plate_to_move": "57",
+  "why_this_plate": "pair_56_57.json (agent-batch8) put the corridor centre at 3184/202 using half-widths borrowed from Ave K and Ave M; the plates' own faces are sheet 56 block-88 east face 3088 (paper trimmed at 3304, no east face) and sheet 57 block-27 west face 295 with the avenue's west face also drawn at 82 (213 px roadway). Centres from the faces: 56 = 3088+106.5 = 3194.5, 57 = (82+295)/2 = 188.5, i.e. the accepted values overlap the plates by 24 px (8 ft). 57's other x ties (51_57_x, 57_63_x; seams graded 5) and 56's (50_56_x, 56_62_x, 55_56) each absorb only ~2-3 ft, so the correction has to be split with most of it on 57.",
+  "proposed_ties": [
+   {
+    "file": "pair_56_57.json",
+    "action": "replace",
+    "axis": "avenue",
+    "corridor": "Ave L",
+    "a": 56,
+    "b": 57,
+    "a_native": 3194.5,
+    "b_native": 188.5,
+    "faces": {
+     "56": [
+      3088,
+      null
+     ],
+     "57": [
+      82,
+      295
+     ]
+    },
+    "why_not_one_block_off": "Unchanged identity argument of the existing control: 56 covers I-L, 57 covers L-N (key maps), both print 'AVENUE L' at the seam with the other's sheet number; the 1100/1200 hundred-block break (1113-1124 | 1201-1212 on 28th/29th St) falls on this corridor; frontages 2802-2832 even (56) / 2801-2827 odd (57). Only the centre values change: read from the plates' own block faces (u56 x=3088 over rows 2700-3500; u57 x=82 and 295 over the same rows) with a 213 px roadway instead of a borrowed half-width."
+   }
+  ],
+  "dry_run": "scratch copy with the replaced tie: 57 free -> moves (+3,0) ft, residuals 57_58 -7.0 (y, pre-existing), 57_63_x +5.3, 56_57 +4.4, 51_57_x +0.9; 56 free -> (-2,-1) ft, 56_57 +4.9, 50_56_x +4.4; 56+57 free together -> 56 (-2,-1), 57 (+2,-1) ft. Current real controls: 57 moves (0,0), residuals max 7.0 ft (57_58 y).",
+  "confidence": "high",
+  "note": "The 4-5 ft that remains after the re-solve is the row 50/51-56/57-62/63 x-chain tension; the 16in/12in pipe in 28th St and the y tie are fine. Grader's 14 ft is measured against the 80' label; against the drawn 70' standard it is 8 ft."
+ },
+ {
+  "seam": "87_96",
+  "verdict": "ok",
+  "feature": "42nd St between S.E./N.E. 83 (plate 87) and N.W. 83 (plate 96); the left strip in the crop is plate 95 (S.E./S.W. 58, lots 4218-4228 over 4302-4316 = its 43rd St) at its OLD position, one street row (~340 ft) too far north",
+  "step_ft": 0,
+  "direction": "87|96 itself: 96's 42nd St centre 230 vs 87's 3669, residual +0.9 ft",
+  "varies_along_seam": false,
+  "plate_to_move": null,
+  "why_this_plate": "The grader's 'misplacement' is plate 95, not 96: 95's 43rd St (y 680-890 in the crop) sat 150 px south of 87's 42nd St, i.e. 95 was ~990 native px (~340 ft) too far north. pair_87_95_y.json (42nd St, 87: 3669 / 95: 202.5, faces 87 [3549,3789], 95 [80,325], both re-measured here: u87 south row 3547.5, u95 84.5/325) has since been added and 95 re-solved (transforms_city.json 'translation re-solved locally'); dry-run on 95 now gives move (0,0) ft with 87_95_y at -0.2 ft.",
+  "proposed_ties": [],
+  "dry_run": "localsolve 96: move (+3,-4) ft, residuals median 1.4 max 5.6 ft (85_96 -5.6, 86_96 +3.0, 87_96 +0.9); localsolve 95: move (0,0), residuals median 2.6 max 5.9 ft (87_95_x +5.9, 95_96 +3.4, 87_95_y -0.2).",
+  "confidence": "high",
+  "note": "Crop predates the 95 fix and must be re-rendered; the 87|96 step is sub-threshold. The 'Scale of Feet' caption in the roadway is furniture."
+ },
+ {
+  "seam": "84_92",
+  "verdict": "cut-only",
+  "feature": "42nd St corridor, blocks 281/282 and 221/222, the 8in W. pipe drawn by both plates 15 px apart vertically",
+  "step_ft": 4,
+  "direction": "plate 92's pipe/faces ~4 ft south of plate 84's (84_92 y residual +4.4 ft)",
+  "varies_along_seam": false,
+  "plate_to_move": null,
+  "why_this_plate": "Block faces align within ~4 ft; the doubled pipe is ownership (both plates paint their own run in the shared roadway), fixed by the cut. Note for the 92_93 entry: plate 92's solved scale (2.0414) is 2% above its neighbours (84: 1.998, 93: 2.014), which is why 84_92_x carries -8.8 ft; a similarity re-solve of 92 (see 92_93) brings 84_92_x to +2.2/+2.6 ft.",
+  "proposed_ties": [],
+  "dry_run": "localsolve 92: move (0,+1) ft, residuals 84_92_x -8.3, 92_93_y -7.3, 92_93 -6.8, 84_92 -1.6 ft.",
+  "confidence": "high",
+  "note": "Move the cut ~15 px south along that stretch (grader's hint) so only one pipe run survives."
+ },
+ {
+  "seam": "92_93",
+  "verdict": "registration",
+  "feature": "Ave J (Broadway) roadway between blocks 223/224 (plate 92, west face native 3012) and 163/164 (plate 93, east face native 279)",
+  "step_ft": 25,
+  "direction": "plate 93 too far west: Broadway renders 459 mosaic px = 79 ft here, against 101-105 ft (300-304 native px) everywhere else in the mosaic (84|85b 101 ft, plates 23/24/56 draw 302-304 px) and the 150' label",
+  "varies_along_seam": false,
+  "plate_to_move": "93 (and 92: similarity re-solve of both)",
+  "why_this_plate": "pair_92_93.json is a lattice tie (3116/177) that assumed a 206-px (70 ft) roadway on both sides of the cut; the plates only draw a west face (92: 3012, paper at 3302) and an east face (93: 279, paper at 20), so the tie collapses Broadway to 79 ft. The accepted 84_93_x (Broadway, 302 px convention: 84 3211 / 93 129.3) already disagrees with it by 17 ft, which the solver split (92_93 -10.4, 84_93_x +7.9 on 93). With the corrected tie a translation of either plate fails (91_92 or 93_94 jump to 11-13 ft), but a similarity solve shows the real cause: 92's scale 2.0414 (-0.8..-1.2%) and 93's +0.53 deg rotation.",
+  "proposed_ties": [
+   {
+    "file": "pair_92_93.json",
+    "action": "replace",
+    "axis": "avenue",
+    "corridor": "Ave J (Broadway)",
+    "a": 92,
+    "b": 93,
+    "a_native": 3163.0,
+    "b_native": 128.0,
+    "faces": {
+     "92": [
+      3012,
+      null
+     ],
+     "93": [
+      null,
+      279
+     ]
+    },
+    "why_not_one_block_off": "Only Broadway is shared: 92 covers G-J (its east boundary is Broadway with the fire-limit line), 93 covers J-M (block 163/164 west face is Broadway, lettered 'AVE. J OR BROADWAY' / 150' on both, 6in W. pipe crossing in 43rd St). Hundred-blocks: 92's blocks 223/224 front 43rd/44th with 913-923 / 914-924 (900 block), 93's 163/164 with 1001-1011 / 1002-1012 (1000 block); one block west on 92 is Ave I (2128 centre, 800/900 break, per pair_84_92_x), one block east on 93 is Ave K (1168, 1000/1100 break, per pair_85_93_x). Centres use the same 302-px Broadway width as pair_84_93_x (84's 3059.5 west face -> 3211; 93's 279 east face -> 128 ~ 129.3), so the two Broadway ties agree instead of fighting."
+   }
+  ],
+  "dry_run": "scratch copy with the replaced tie: 93 translation -> (+12,-6) ft but 92_93 +14.8 / 93_94 +10.8; 92 translation -> (-11,+1) ft but 91_92 +12.7; 92+93 --similarity -> 92 scale 2.0414->2.0251 (-0.80%), rot +0.14->+0.19 deg, centre (-8,-4) ft; 93 scale 2.0143->1.9987 (-0.77%), rot +0.53->+0.34 deg, centre (+6,-6) ft, all residuals <=3.2 ft; 84+92+93 --similarity (with the 84_93 y fix from the 84_85b entry) residuals <=3.6 ft. Current real controls: 93 moves (+3,-3) ft, residuals 92_93 -10.4, 84_93_x +7.9.",
+  "confidence": "medium",
+  "note": "Visually only a 10 px pipe jog (grader score 3) because no block face crosses the cut; the defect is the 25 ft-narrow Broadway. Hinges on the 302-px Broadway convention (plates 23, 24, 56 and 84_93_x). 92_93b (gap south of Broadway) is coverage."
+ },
+ {
+  "seam": "84_85b",
+  "verdict": "registration",
+  "feature": "Ave J (Broadway) corridor: 39th and 40th St faces of blocks 219/220 (plate 84) against block 159 / Cemetery (inset panel 85b); two 10in pipe runs",
+  "step_ft": 15,
+  "direction": "panel 85b (= plate 85) 15 ft SOUTH of plate 84 (39th St 15.2 ft, 40th 15.7 ft, 42nd St on the main plates 13 ft)",
+  "varies_along_seam": false,
+  "plate_to_move": "84 (south ~7 ft) after fixing its 42nd St ties; the rest sits in 93's rotation",
+  "why_this_plate": "85b is placed from 85's own geometry and is consistent with 85 to 1 ft (my re-read of the inset shift: 39th 351/2016.5, 40th 1253/2923 and 1496.5/3166 -> dy -1666..-1670 vs the -1658 used, i.e. the panel could go 10 px north but that is 3 ft). The 15 ft is plate 84 vs plate 85, which never share a control. 85 agrees with 78, 86, 94, 96 (<=6 ft); 84 agrees with 76, 83, 91, 92 (<=2.5 ft before the dry-run move). They meet only through 93 (84_93 and 85_93 at 42nd St): pair_84_93.json (3658/184) is 28 px off the two plates' faces (84: [3549,3794] -> 3671.5; 93: [103,348] -> 225.5), pair_84_94.json (3647/234) is 31 ft off, and 93 carries a +0.53 deg rotation (its 42nd St rises 9 ft west->east). Broadway width here is 101 ft (84 west face 3059.5 -> 85b east face 236), the same ~302-px convention as 84_93_x, so x is fine; the two 10in pipes are ownership, not a step.",
+  "proposed_ties": [
+   {
+    "file": "pair_84_93.json",
+    "action": "replace",
+    "axis": "street",
+    "corridor": "42nd St",
+    "a": 84,
+    "b": 93,
+    "a_native": 3671.5,
+    "b_native": 225.5,
+    "faces": {
+     "84": [
+      3549,
+      3794
+     ],
+     "93": [
+      103,
+      348
+     ]
+    },
+    "why_not_one_block_off": "Identity as in the existing control (84's 41ST/42ND labels with the 4100 avenue runs 4101-4128 above the line, 93's 42ND top margin with 4201-4225 / 43RD ST below); only the centres change, to the midpoints of the plates' own block-face pairs (84's lattice chain [3549,3794]; 93's [103,348], the row that carries block 42's 1201-1211 frontage). The old 184 on 93 sits inside block 42, not on the street."
+   },
+   {
+    "file": "pair_84_94.json",
+    "action": "reject",
+    "axis": "street",
+    "corridor": "42nd St",
+    "a": 84,
+    "b": 94,
+    "a_native": 3647,
+    "b_native": 234,
+    "faces": {
+     "84": [
+      3549,
+      3794
+     ],
+     "94": [
+      95,
+      340
+     ]
+    },
+    "why_not_one_block_off": "Diagonal pair; its values (3647 on 84, 234 on 94) are 24 px / 16 px off both plates' face centres (3671.5 / 217.5) and it is violated by 31 ft in the current solve, dragging 84 south by 5 ft in every dry-run. Re-read from faces or drop; 84_92 / 84_93 already pin 84's 42nd St."
+   }
+  ],
+  "dry_run": "scratch copy with 84_93 replaced: 84 translation -> (-1,+7) ft, residuals 84_94 -24.6 (still bogus), 83_84_y -9.1, 76_84 -7.5, 84_92 +6.1; 84+93 --similarity -> 84 rot -0.06->-0.16 deg centre (+3,0), 93 rot +0.53->+0.57, residuals <=6.3 ft; 84+92+93 --similarity (with the 92_93 Broadway fix) -> 84 (-1,+1) ft, 92 scale -0.89%, 93 rot +0.53->+0.34 deg, residuals <=3.6 ft. Current real controls: 84 moves (-1,+5) ft driven by 84_94 (-26.2 ft).",
+  "confidence": "low",
+  "note": "No panel change needed for 85b in x; in y at most shift_native [-943,-1668] (10 native px, 3 ft) to match my re-read of the inset's 39th/40th faces. The gap below the Cemetery and the wood-yard edge are coverage/cut problems. Which of 84 (north) or 85 (south) is off cannot be settled from this seam; the 84-93-85 loop closes only if 93's rotation is re-solved."
+ },
+ {
+  "seam": "85_93",
+  "verdict": "cut-only",
+  "feature": "42nd St between blocks 41 / N.E. 8 (plate 85) and 42 / N.W. 8 (plate 93); doubled '42ND ST' label and 85's scale bar in the roadway",
+  "step_ft": 3,
+  "direction": "85 ~3-5 ft south of 93 (85_93 residual +5.6 ft on 85, +4.4 on 93)",
+  "varies_along_seam": false,
+  "plate_to_move": null,
+  "why_this_plate": "Block faces align within ~3 ft in the crop (1212/1201, 1312/1301 columns); the lattice tie 85_93 (3674/225.5) matches the plates' faces. Part of the same 84-92-93-85 loop as 84_85b; a similarity re-solve of 93 lowers 85_93 to <=1.1 ft.",
+  "proposed_ties": [],
+  "dry_run": "localsolve 85: move (-2,+4) ft, residuals 78_85_x +10.7 (x), 85_96 -6.1, 85_93 +5.6 ft; localsolve 93: (+3,-3) ft, 85_93 +4.4 ft.",
+  "confidence": "high",
+  "note": "Move the cut ~40 px north so 93 owns the roadway (grader's hint); nothing to register."
+ },
+ {
+  "seam": "90_98",
+  "verdict": "cut-only",
+  "feature": "42nd St between S.E. 158 / N.E. 183 and S.W. 158 / N.W. 183; unpainted canvas south-east of 42nd St east of N.W. 183",
+  "step_ft": 1,
+  "direction": "none visible (2602/2601, 2624/2623, 2702/2701 columns continuous; 90_98 y residual -0.2 on 90, +4.2 on 98)",
+  "varies_along_seam": false,
+  "plate_to_move": null,
+  "why_this_plate": "Registration is fine on both axes (90_98_x Ave T +0.2 ft on 98); the defect is ownership - no unit covers the ground east of N.W. 183 below 42nd St (plate 98's key map says the grid east of T 1/2 is uncovered).",
+  "proposed_ties": [],
+  "dry_run": "localsolve 98: move (+1,-2) ft, residuals median 1.5 max 4.2 ft (90_98 +4.2, 89_98 -4.2); localsolve 90: (+2,-2) ft, max 3.8 ft.",
+  "confidence": "high",
+  "note": "Coverage gap; extend 98 (or the plate east of it) as the grader says. Stain on 98 is tone."
+ },
+ {
+  "seam": "82_90",
+  "verdict": "cut-only",
+  "feature": "39th St between NW 160 / NE 159 and SW 160 / SE 159 (lots 2514-2524, 2602-2624, 2702-2720); white bar on the cut, clipped scale caption, cut compass rose",
+  "step_ft": 0,
+  "direction": "none (rows align; 82_90 residual -0.6 ft on 90, -7.9 on 82 only after the dry-run move of 82)",
+  "varies_along_seam": false,
+  "plate_to_move": null,
+  "why_this_plate": "Both the 39th St tie (agent-batch4, faces 3550/3790 and 95/334) and Ave S 1/2 (crossrow2) are face-based and satisfied; the defects are a ~10 px unpainted strip on the cut and furniture.",
+  "proposed_ties": [],
+  "dry_run": "localsolve 90: move (+2,-2) ft, residuals median 2.1 max 3.8 ft (90_98_x +3.8, 80_90 -3.7, 82_90 -0.6).",
+  "confidence": "high",
+  "note": "Shift the cut ~10 px and clear of 90's scale bar / compass (grader's hint)."
+ },
+ {
+  "seam": "82_99",
+  "verdict": "cut-only",
+  "feature": "Ave T corridor between SW 161 / SE 160 (plate 82, west face 3073) and NW 186 / NE 185 (plate 99, east face 1893); 37th/38th St crossings; 82_99a: 36th St between NE/SE 161 and NW/SW 161",
+  "step_ft": 0,
+  "direction": "Ave T renders 423 mosaic px = 73 ft (212 native px, the drawn 70' standard): no x step. On 82_99a the 36th St north face of panel 99a sits 42 mosaic px = 7 ft north of where plate 82 draws it (82: 100/339, 239 px roadway; 99a: 3354.5 shifted to 110.5), the south faces agree to 5 ft",
+  "varies_along_seam": false,
+  "plate_to_move": null,
+  "why_this_plate": "pair_82_99 (Ave T, 3179/1787) is face-based and satisfied (+1.3 ft on 99, -3.2 on 82). Panel 99a's shift [526,-3244] reproduces its own plate: Ave T east face 1367+526 = 1893 = 99's, 36th St from 99's south face 349 minus 239; so 99a is consistent with 99 to 1-2 px and needs no change. The 7 ft at 36th St is plate 82 vs 99/73/74: 82's north-neighbour ties (73_82, 74_82_y, 81_82_y) want it 7-16 ft north while 82_90 / 82_99_y hold it, i.e. a ~4 ft N-S scale disagreement inside 82 (82 draws 36th->38th 12 px longer than 99); the 82 similarity dry-run only changes scale +0.25%.",
+  "proposed_ties": [],
+  "dry_run": "localsolve 82: move (-3,-5) ft, residuals 73_82 -10.9, 82_90 -7.9, 82_99_y -7.9, 74_82_y -5.3 ft (before the move: 73_82 -16, 74_82_y -10, 82_90/82_99_y -3); --similarity 82: scale +0.25%, centre (0,-2) ft, residuals <=1.2 ft. localsolve 99: (-2,-4) ft, max 6.3 ft (80_99).",
+  "confidence": "medium",
+  "note": "82_99: shift the cut ~60 px west so only 99's 'AVENUE T' label and numeral show (grader). 82_99a: the white corner east of N.E. 186 is coverage; the 7 ft 36th St disagreement is sub-threshold for a move and belongs to 82's north edge (73/74), not to panel 99a - no panel shift proposed."
+ },
+ {
+  "seam": "26_42",
+  "verdict": "ok",
+  "feature": "Ave O 1/2 between NW/NE 70-69 (1714-1724) and SW/SE 70-69 (1802-1812); 19th and 20th St crossings",
+  "step_ft": 1,
+  "direction": "none visible (19th St faces and 8in pipe continuous; 26_42 x +4.1 / y -4.0 ft on 26 after its dry-run move)",
+  "varies_along_seam": false,
+  "plate_to_move": null,
+  "why_this_plate": "The Ave O 1/2 tie is fully argued (agent-batch3, 1700/1800 break, both sheets print the other's number). The cross-axis lattice y tie (26_42_y, 'disagreement_before' 50 ft) looks alarming but the crop shows the 19th/20th St crossings aligned within a few px, so the 50 ft was the pre-solve state, not the plate.",
+  "proposed_ties": [],
+  "dry_run": "localsolve 26: move (+6,+5) ft, residuals all 4.0-4.1 ft (26 is over-determined only by 42 and 47 and the solver splits them); localsolve 42: (0,-1) ft, max 7.7 ft (26_42_y).",
+  "confidence": "high",
+  "note": "Cosmetic: shift the cut ~40 px west so the 'AVENUE O 1/2' label lies wholly in one plate. Do not move 26 for the 4 ft split."
+ },
+ {
+  "seam": "19_20",
+  "verdict": "source-disagreement",
+  "feature": "Ave I (Sealy) roadway between blocks 246/247/248 (lots 813-823, plate 19) and 186/187/188 (lots 901-911, plate 20)",
+  "step_ft": 57,
+  "direction": "plate 20 west of plate 19: Ave I renders 16 ft wide (19's block-248 east face 3103 -> 9072 mosaic; 20's block-188 west face 152 -> 9164) instead of the 73-75 ft drawn on 23/24",
+  "varies_along_seam": false,
+  "plate_to_move": null,
+  "why_this_plate": "Not a placement error: plate 20 draws Broadway 455.5 native px = 158 ft (188 east face 942.5, 128 west face 1398, label 150') while plates 24 (988->1292, 304 px = 105 ft), 23 (302 px) and 56 (304 px) draw it ~105 ft under the same 150' label. Plate 20 is pinned east of Broadway by pair_20_24_x (Ave K, -0.3 ft) and pair_20_25_x (Ave L, +0.3 ft), where it matches 24 to 0.2 ft (Broadway east face) and 1.5 ft (Ave K), so its whole west column (186/187/188 + Ave I) lands 54-57 ft west of 19/23. A rigid move of 20 east by ~55 ft would fix 19_20 / 20_23 / 20_24-west and break 20_24-east (2 columns), 20_25 (Ave L, whole seam) and 20_24_x by the same amount; a similarity solve does not help (rotation/scale residuals <=1.4 ft, scale +0.10%).",
+  "proposed_ties": [
+   {
+    "file": "(new panel) units.json 20c",
+    "action": "add",
+    "axis": "avenue",
+    "corridor": "Ave I (Sealy)",
+    "a": 19,
+    "b": "20c",
+    "a_native": 3209.0,
+    "b_native": 46.0,
+    "faces": {
+     "19": [
+      3103,
+      null
+     ],
+     "20": [
+      null,
+      152
+     ]
+    },
+    "why_not_one_block_off": "Only if a panel split is accepted: give plate 20 a detached west panel '20c' = native x 86..1170 (everything west of Broadway's centre line (942.5+1398)/2) with shift_native [+152, 0] (455.5-303 = the Broadway excess), and tie it to 19 on Ave I: 19's block-248 east face 3103 + 106 = 3209; 20c's block-188 west face 152 - 106 = 46 (panel coords, i.e. 198 after the shift). Identity: sheet 19 covers Church-Sealy and prints 'AVE. I OR SEALY' at its east margin; sheet 20 covers Sealy-L; the 800/900 break (813-823 | 901-911 on 7th/8th/9th St) is on this corridor on both; the next avenue east on 20 is Broadway (150', 455 px) with the 900/1000 break. Not a rigid-plate control; without the panel, no tie should be added."
+   }
+  ],
+  "dry_run": "localsolve 20: move (-6,-4) ft, residuals 20_24 -5.0, 19_20 -5.0 (y), 20_24_x -0.3, 20_25_x +0.3 ft; --similarity 20: scale +0.10%, rotation +0.35->+0.36 deg, centre (0,0) ft, residuals <=1.4 ft. Plate 20 has no x control on its west side at all.",
+  "confidence": "high",
+  "note": "Explained entirely by the Broadway width disagreement (455 vs 303 px). The 57 ft cannot be removed by moving plate 20 rigidly; either split 20 at Broadway (west panel +152 native px east) or accept the step and hide it by cutting the 19|20 seam so that plate 20's west column is not painted (19 does not cover the I-J column, so that is not available). Doubled 80'/70' and '8in W.PIPE' labels are consequences."
+ },
+ {
+  "seam": "20_23",
+  "verdict": "source-disagreement",
+  "feature": "Corner at 9th St / Ave I: blocks 248 (plate 19) and 188 (plate 20) above, 249/189 (plate 23) below; 6in W. pipe in the 188/189 alley jumps from x~1576 to ~1735 (crop px)",
+  "step_ft": 54,
+  "direction": "plate 20's block 188 54 ft west of plate 23's block 189 (188 east face 942.5 -> 10733 mosaic vs 189 east face on 24 988 -> 11047; on 23 the 249 east / 189 west faces 3066/3281 give a 74.6 ft Ave I vs 16 ft above the cut)",
+  "varies_along_seam": false,
+  "plate_to_move": null,
+  "why_this_plate": "Same cause as 19_20: plate 20 draws Broadway 158 ft, plates 23 and 24 draw it 104-105 ft; 20 is registered on its east side (Ave K/L with 24/25, and its Broadway east face coincides with 23's 129 west face at crop x 2464 to 0.5 px). Plate 23 is clean with 19 (9th St, score 5), 24 (Ave I, score 5) and 29; plate 24 with 25 and 30.",
+  "proposed_ties": [],
+  "dry_run": "localsolve 23: move (+1,0) ft, residuals median 2.6 max 7.1 ft (19_23_x +7.1); localsolve 20: (-6,-4) ft, max 5.0 ft.",
+  "confidence": "high",
+  "note": "See 19_20: only a panel split of plate 20 at Broadway (west part +152 native px) removes it; no rigid move recommended."
+ },
+ {
+  "seam": "20_24",
+  "verdict": "source-disagreement",
+  "feature": "9th St corridor: west half (block 188 over 189, 6in W. pipe in the alley at crop x 270 above / 400 below) steps; east half (128/129, 68/69, Ave K) is clean",
+  "step_ft": 54,
+  "direction": "plate 20's block 188 54 ft west of plate 24's block 189 (188 east face 942.5 -> 10733 vs 189 east face 988 -> 11047 mosaic); east of Broadway the plates agree to 0.2 ft (Broadway east face 1398 vs 1292) and 1.5 ft (Ave K 2294 vs 2194)",
+  "varies_along_seam": true,
+  "plate_to_move": null,
+  "why_this_plate": "The step is confined to one block column because it is the Broadway roadway width: 455.5 px (158 ft) on plate 20 vs 304 px (105 ft) on plate 24, both labelled 150'. Plate 24 agrees with 23 (302 px) and 56 (304 px) and with its neighbours 25/30 (scores 3-4); the grader's 'stretch/warp at the west end' is exactly this 152-px excess inside Broadway, not a scale error of 24 (24 --similarity: scale +0.05%, rotation +0.24->+0.25 deg, residuals <=2.3 ft).",
+  "proposed_ties": [],
+  "dry_run": "localsolve 24: move (+1,0) ft, residuals median 2.7 max 6.2 ft (24_30_x +6.2, 20_24_x +5.4, 23_24_y -4.2); localsolve 20: (-6,-4) ft, max 5.0 ft.",
+  "confidence": "high",
+  "note": "Fix (if any) is the plate-20 west panel described under 19_20; alternatively cut 20|24 so that 24 owns the whole 9th St roadway west of Broadway and the 54 ft step is buried mid-Broadway (it will still show in the 19|20 seam)."
+ }
+]

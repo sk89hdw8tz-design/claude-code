@@ -1,0 +1,252 @@
+[
+ {
+  "seam": "52_53",
+  "verdict": "registration",
+  "feature": "26th St block faces (NE/NW 66 vs SE/SW 66), 25th St faces and the 8in W. pipe crossing Ave O 1/2",
+  "step_ft": 24,
+  "direction": "plate 53 south of 52",
+  "varies_along_seam": true,
+  "plate_to_move": "53",
+  "why_this_plate": "Through the current transforms the step is 9 ft at 24th St, 15-17 ft at 25th, 24-25 ft at 26th and 27 ft at 27th: it grows along the seam, i.e. a scale error, not a translation. Plate 53 is placed at scale 2.0454 while every neighbour sits at 1.999-2.018 (52: 2.0183, 47: 2.0064, 59: 2.0046, 60: 1.9994) although all plates draw 24th-S-face to 27th-N-face as the same 3318-3328 native px; 53's 24th->27th span in the mosaic is 6801 px against 6652 on plate 51 (155 px = 27 ft over-stretched). 52 agrees with 46/47 at 24th (75-79 ft roadway) and with 57/58 at 27th (82 ft) within a few ft and its similarity dry-run is clean (max 1.6 ft); 53 meets 52 nowhere. The stretch is what the city solve needed to make 53 satisfy 47 at 24th, the 59/60 row at 27th (which sits 19-30 ft further south at Ave Q than 57 does at Ave N) and the bad lattice tie pair_53_54_y at 25th at the same time.",
+  "proposed_ties": [
+   {
+    "file": "pair_52_53_y.json",
+    "action": "add",
+    "axis": "street",
+    "corridor": "26th St",
+    "a": 52,
+    "b": 53,
+    "a_native": 2588.75,
+    "b_native": 2576.75,
+    "faces": {
+     "52": [
+      2469,
+      2708.5
+     ],
+     "53": [
+      2457,
+      2696.5
+     ]
+    },
+    "why_not_one_block_off": "Cross-axis tie. Both plates print '26TH ST.' in this roadway (52's label sits at native y~2594) and both draw it 80' (240 px). The avenue frontage hundred-block changes across it on both: 52's NE 66 carries 2502-2528 above and NW 66 2602-2628 below; 53's SE 66 carries 2501-2527 above and SW 66 2601-2627 below. One block north is the 120' '25TH ST. OR ROSENBERG AV.' (faces 1200/1562 on 52, 1179/1542 on 53, 361-363 px wide), one block south is the plate edge (27th, only the north face drawn at 3619/3601), so no other 80' corridor can be confused with it."
+   },
+   {
+    "file": "pair_53_54_y.json",
+    "action": "reject",
+    "axis": "street",
+    "corridor": "25th St (Rosenberg Av)",
+    "a": 53,
+    "b": 54,
+    "a_native": 1361.5,
+    "b_native": 1236.5,
+    "faces": {
+     "53": [
+      1179,
+      1542
+     ],
+     "54": [
+      1099,
+      1374
+     ]
+    },
+    "why_not_one_block_off": "Lattice tie whose 54 side is not a street: plate 54's lattice pair [1099,1374] is 275 px wide (neither 80' = 243 nor 120' = 363) and does not exist on the plate; the measured Rosenberg faces on 54 are 1195/1556.5 (361.5 px = 120'). The tie is 139 native px (48 ft) wrong and is what pulled 54 south and bent 53's/54's scales (see 53_54)."
+   }
+  ],
+  "dry_run": "translation: 8 controls, residuals median 2.5 ft, max 7.1 ft (pair_53_54_y +7.1, pair_53_60 -6.2); plate 53 moves (-2, +0) ft. --similarity: median 1.8, max 4.6 ft; scale 2.0454 -> 2.0474, rotation -0.152 -> -0.123 deg, centre moves (0, 0) ft. Neither dry-run can fix the seam: the point/line controls as they stand are satisfied by the stretched placement, so the fix needs the bad 53_54_y tie removed (and the 27th St row re-examined) before re-solving 53 with --similarity.",
+  "confidence": "high",
+  "note": "Cause is certain (scale 2.045 vs 2.00), remedy less so: with 47 held at 24th and 59/60 held at 27th a re-solved 53 will stretch again, because that row's 27th St is 19-30 ft further south at Ave Q than under plate 52; the 26th St tie to 52 is the local evidence that should be given weight."
+ },
+ {
+  "seam": "53_54",
+  "verdict": "registration",
+  "feature": "25th St (Rosenberg Av) block faces SW 92/SE 91 vs NW 117/NE 116, 26th St faces SE 91/SW 91 vs NE 116/NW 116, the 8in W. pipe crossing Ave Q",
+  "step_ft": 40,
+  "direction": "plate 54 south of 53",
+  "varies_along_seam": true,
+  "plate_to_move": "54",
+  "why_this_plate": "Through the transforms 54 sits south of 53 by 55 ft at 24th, 40-45 ft at 25th (the grader's 90 px crop reading is 27-31 ft; measured on the crop it is ~116 px = 40 ft), 25-28 ft at 26th and 15 ft at 27th: a scale mismatch (54 at 1.9737, 53 at 2.0454) on top of an offset. Plate 54 has only three controls: pair_53_54 (x), pair_54_60 (y, 27th) and pair_53_54_y (y, 25th), and the last is a lattice tie whose 54 value (1236.5, from a spurious 275-px 'street' [1099,1374]) is 139 px = 48 ft north of 54's real Rosenberg centre 1375.75 (faces 1195/1556.5). Holding that tie and the 27th St tie at once is exactly what forces 54 to 1.9737 and drags 53 to 2.0454. 53 is at least right against 47 (24th, 0-7 ft) and 59 (27th, 77-88 ft roadway); 54 agrees with nobody in y. The inset panel in 54's top-right (23rd-24th, blocks NW 118/NE 117 with 23rd or Tremont St) is the likely source of the phantom lattice line.",
+  "proposed_ties": [
+   {
+    "file": "pair_53_54_y.json",
+    "action": "replace",
+    "axis": "street",
+    "corridor": "25th St (Rosenberg Av)",
+    "a": 53,
+    "b": 54,
+    "a_native": 1360.5,
+    "b_native": 1375.75,
+    "faces": {
+     "53": [
+      1179,
+      1542
+     ],
+     "54": [
+      1195,
+      1556.5
+     ]
+    },
+    "why_not_one_block_off": "Cross-axis tie on the one 120' street both plates draw: 53 faces 1179/1542 (363 px), 54 faces 1195/1556.5 (361.5 px), both printed '25TH ST. OR ROSENBERG AV.'. 53's north frontage reads 2013-2023 / 2014-2024 and 54's 2101-2111 / 2102-2112, the 2000/2100 change across Ave Q (pair_53_54's argument). 24th St (80', 53: 32/276, 54: north face off-plate, south 292.5) and 26th St (80', 53: 2457/2696.5, 54: 2468.5/2708.5) are both 240 px wide, so a 363-px corridor cannot be confused with either neighbour."
+   },
+   {
+    "file": "pair_53_54.json",
+    "action": "replace",
+    "axis": "avenue",
+    "corridor": "Ave Q",
+    "a": 53,
+    "b": 54,
+    "a_native": 3140,
+    "b_native": 124,
+    "faces": {
+     "53": [
+      3039,
+      3242
+     ],
+     "54": [
+      21,
+      227
+     ]
+    },
+    "why_not_one_block_off": "Same identity as the accepted control (both print 'AVENUE Q', 2000/2100 change on 25th St), but the accepted values 3206/83 sit 167 px east of 53's block face (3039, NW 116/117 west face, 0.87 dark over 2750-3590) and 140 px west of 54's block face (227, NW 117 east face), which draws the avenue 307 px = 106 ft wide; plate 60 draws Ave Q 85/291.5 = 206 px = 71 ft and 54's own lattice gives 206 px. Centres at 101 px (70') inside each face: 53 = 3140, 54 = 126 -> 124 using the 223 top-band reading. Effect: 54 moves ~107 native px (37 ft) west, which is exactly the offset measured between 54 and 60 at Ave Q, Ave Q 1/2 east face and Ave R (37/38/33 ft)."
+   }
+  ],
+  "dry_run": "translation on 54: 3 controls, residuals median 6.0 ft, max 6.0 ft (pair_53_54_y +6.0, pair_54_60 +6.0, pair_53_54 x 0.0); move (-0, +1) ft. --similarity on 54: median 1.7, max 6.1 ft; scale 1.9737 -> 1.9649, rotation -0.082 -> -0.116 deg, centre moves (-2, +1) ft. Both are clean only because the bad tie is still in the set; with the corrected 25th St tie 54 wants ~47 ft north at 25th while pair_54_60 holds its 27th St, so 54 must be re-solved with --similarity after the replacement (its scale should return to ~2.00).",
+  "confidence": "high",
+  "note": "After the fix there will still be a ~15 ft residual at 25th between 53 and 52 (53's own over-scale, see 52_53); the two plates' drawings agree, this is entirely placement."
+ },
+ {
+  "seam": "53_60",
+  "verdict": "cut-only",
+  "feature": "Ave Q at 27th St: the crop is the four-corner 53 | 54 over 59 | 60; SW 91 (53) / SE 90 (59) east faces align, the 80-px jog is NW 116's west face on plate 54 against NE 115's west face on plate 60",
+  "step_ft": 35,
+  "direction": "plate 54 east of 60 (53 and 59 agree)",
+  "varies_along_seam": false,
+  "plate_to_move": "54",
+  "why_this_plate": "The 53/60 pair shares 27th St only across the width of Ave Q (mosaic x 33172-33750) and there 53's 27th north face (3601 -> mosaic 10488) and 60's south face (347 -> 10996) give a 77-88 ft roadway: no step. The block-face jog and the paired 6in pipes / T.H. dots the grader saw are plate 54's Ave Q east face (native 227 -> mosaic 33967) against plate 60's (291.5 -> 33753): 214 px = 37 ft, with 54 east. 53's Ave Q west face (3039 -> 33356) and 59's (3047 -> 33296) agree within 10 ft, and 59/60 draw Ave Q 79 ft wide in the mosaic, 53/54 draw it 105 ft: plate 54 is the odd one out, held by the single x control pair_53_54 whose values are off the block faces (see 53_54).",
+  "proposed_ties": [
+   {
+    "file": "pair_53_54.json",
+    "action": "replace",
+    "axis": "avenue",
+    "corridor": "Ave Q",
+    "a": 53,
+    "b": 54,
+    "a_native": 3140,
+    "b_native": 124,
+    "faces": {
+     "53": [
+      3039,
+      3242
+     ],
+     "54": [
+      21,
+      227
+     ]
+    },
+    "why_not_one_block_off": "See 53_54: same printed name and 2000/2100 address change; values re-read 101 px inside the measured faces instead of the observer's 3206/83, which draw a 106-ft avenue."
+   }
+  ],
+  "dry_run": "translation on 60: 7 controls, residuals median 3.5 ft, max 7.7 ft (pair_54_60 +7.7, pair_60_66_x +6.3, pair_59_60_y -5.4, pair_53_60 -3.5); move (-3, -3) ft. translation on 54: median 6.0, max 6.0 ft, move (-0, +1) ft. Neither moves anything in x because 54's only x control is the mis-read one; 60 is consistent with 59, 66 and 48.",
+  "confidence": "high",
+  "note": "Not a 53/60 problem: leave 53 and 60; fix 54's Ave Q tie. Furniture (Scale of Feet, north arrow) is cut placement."
+ },
+ {
+  "seam": "54_60",
+  "verdict": "registration",
+  "feature": "27th St cut: Ave Q east face (NW 116 / NE 115), Ave Q 1/2, the 20' alley, Ave R with its 6in W. pipe and block NW 141 / NE 140 all jog east-west",
+  "step_ft": 37,
+  "direction": "plate 54 east of 60",
+  "varies_along_seam": false,
+  "plate_to_move": "54",
+  "why_this_plate": "The offset is the same at every corridor (Ave Q east face 37 ft, Ave Q 1/2 east face 38 ft, Ave R west face 33 ft, per the transforms), so it is a translation of the whole plate, not the drawing difference. 60 agrees with 59 on Ave Q (79 ft roadway, pair_59_60 residual 3 ft) and with 66/48 on its other sides; 54 has one x control (pair_53_54) read 66 px east of 53's face and 41 px west of its own, i.e. 107 px = 37 ft too far east, which matches the jog. The grader's source point is real but secondary: 54 draws NW 116 as 790 px (272 ft) with a 70' Ave Q 1/2, 60 draws NE 115 as 890 px (307 ft) with a 35' Ave Q 1/2 (1182/1284); the Ave Q -> Ave R distance agrees within 8 px (1789 vs 1781), so after the 37-ft move only the Q 1/2 west face / block 116-115 boundary will still jog ~35 ft, and Ave Q, the Q 1/2 east face, the alley, Ave R and its pipe will align.",
+  "proposed_ties": [
+   {
+    "file": "pair_53_54.json",
+    "action": "replace",
+    "axis": "avenue",
+    "corridor": "Ave Q",
+    "a": 53,
+    "b": 54,
+    "a_native": 3140,
+    "b_native": 124,
+    "faces": {
+     "53": [
+      3039,
+      3242
+     ],
+     "54": [
+      21,
+      227
+     ]
+    },
+    "why_not_one_block_off": "See 53_54. Cross-check against 60: with 54 moved 214 mosaic px west its Ave R west face lands at 37284 vs 60's 37315 (5 ft) and its Ave Q 1/2 east face at 35742 vs 60's 35738 (1 ft)."
+   }
+  ],
+  "dry_run": "translation on 54: 3 controls, residuals median 6.0 ft, max 6.0 ft (53_54_y +6.0, 54_60 +6.0, 53_54 x 0.0); move (-0, +1) ft. translation on 60: median 3.5, max 7.7 ft; move (-3, -3) ft. No x movement is possible for 54 until its Ave Q value is corrected.",
+  "confidence": "high",
+  "note": "Registration for 33-38 ft of the jog (plate 54); the Ave Q 1/2 width (70' vs 35') and block 116/115 depth are a genuine source disagreement that survives the move; ownership of that one boundary could be given to one plate as the grader suggests."
+ },
+ {
+  "seam": "46_52",
+  "verdict": "source-disagreement",
+  "feature": "Outlot 42 at 24th St: Avenue N 1/2 (70') between NE 42 and SE 42 on plate 46 has no continuation on plate 52 (NW 42 / SW 42 abut); the quarter street between NE 42 and NW 42 reads ~28 ft",
+  "step_ft": 6,
+  "direction": "plate 52 north of 46 (residual only)",
+  "varies_along_seam": false,
+  "plate_to_move": "none",
+  "why_this_plate": "x: Ave O aligns (46 faces 2070/2281 -> mosaic 25241/25664; 52 faces 2082.5/2293 -> 25236/25661, 1 ft) and the 46_52_x control already says 52 has no N 1/2 corridor south of 24th (the Ursuline / outlot 41-42 ground is drawn straight across it); on 52 the NW 42 / SW 42 division is a single lot line under 46's avenue centre. That is the plates disagreeing, not placement. y: both plates draw the outlot-42 quarters the same way: the NE/SE 42 south face lies 41 ft south of the 24th St north face at block 67 (46: 3674 vs 3555; 52 draws the same line at 179 vs 57) and NW 42's north face ~6 ft south of the 24th south face, so the quarter street is only ~33 ft as drawn, labelled 40'. Through the transforms 52's 24th south face (300.5 -> mosaic 3650-3682) sits 4-8 ft north of 46's (3789 -> 3700-3706), giving a 75-79 ft 24th St at block 67 (crop reads ~69 ft); 52's 24th also matches 45 and 47 (24th St 82-86 ft against 47/53), and its dry run is clean. Nothing here justifies the 25-ft shift; 25 ft south would break 24th St at 45/47/52 and 26th at 51.",
+  "proposed_ties": [],
+  "dry_run": "translation on 52: 5 controls, residuals median 0.7 ft, max 0.8 ft; move (-2, +1) ft. translation on 46: 7 controls, median 1.7 ft, max 3.1 ft (pair_42_46 +3.1); move (+1, -1) ft.",
+  "confidence": "medium",
+  "note": "If a 46_52 y tie is wanted, use 24th St itself (46 faces 3548.5/3789 -> 3668.75; 52 faces 57/299 -> 178), a cross-axis tie; it would move 52 only ~4-8 ft south. Giving outlot 42 to one plate is the only cure for the missing N 1/2."
+ },
+ {
+  "seam": "52_57",
+  "verdict": "source-disagreement",
+  "feature": "Ave N at 27th St corner: SW 16's east face (plate 51, lot 1424) vs SE 15 Base Ball Park's east face (plate 57, lot 1423); Ave N is 84 ft between 51 and 52 and 66 ft between 57 and 58; two 8in pipes and paired 70'/80' numerals",
+  "step_ft": 21,
+  "direction": "plate 57's block face east of plate 51's; relative to plate 52's own west face of Ave N, 51 is 11 ft west and 57 is 10 ft east",
+  "varies_along_seam": false,
+  "plate_to_move": "none",
+  "why_this_plate": "52 and 57 themselves only share 27th St across Ave N and pair_52_57 (27th) has a 0.3 ft residual; the jog is between 51 and 57. 52 draws both faces of Ave N (78.5/288.5, 72 ft) and 58 draws its east face (222), and those two agree in the mosaic within 3 ft. Against 52's west face, 51's face (3037) is 62 mosaic px = 11 ft west and 57's (3136-3145) is 58 px = 10 ft east. But 51 and 57 are held together at Ave M by pair_51_57_x with a 3.7 ft residual, and the two plates draw different distances from Ave M's east face to the block face at Ave N: 1797 px on 51 (fits the 785 + 210 + 785 grid) against 1838 px on 57 -- the Base Ball Park block is drawn ~42 px (15 ft) deeper on plate 57. So the 21 ft cannot be removed at both M and N: it is mostly the drawings. Moving 57 west 18 ft, as the grader suggests, would put a 15-20 ft step on Ave M at 51_57 and unbalance 56_57 / 57_63.",
+  "proposed_ties": [
+   {
+    "file": "pair_51_52_x.json",
+    "action": "add",
+    "axis": "avenue",
+    "corridor": "Ave N",
+    "a": 51,
+    "b": 52,
+    "a_native": 3138,
+    "b_native": 183.5,
+    "faces": {
+     "51": [
+      3037,
+      3239
+     ],
+     "52": [
+      78.5,
+      288.5
+     ]
+    },
+    "why_not_one_block_off": "Optional, worth ~11 ft only. 51 draws the west face at 3037 (only face on the plate; centre taken 101 px inside for the printed 70'); 52 draws both faces 78.5/288.5. Both plates print 'AVENUE N' in the roadway (52 with the adjoining numeral 1); 51's frontages are 1402-1424 (1400 block) and 52's 1502-1528 (1500 block), the 1400/1500 change; 51's next avenue west is 'AVENUE M 1/2' at 2041/2269 and 52 has no corridor east of N until Ave O at 2082 (the Ursuline superblock), so nothing else can match."
+   }
+  ],
+  "dry_run": "translation on 57: 9 controls, residuals median 2.5 ft, max 7.0 ft (pair_57_58 -7.0, pair_51_57_x +3.7); move (-0, -0) ft. translation on 51: 9 controls, median 3.7, max 10.6 ft (pair_47_51 -10.6, pair_44_51 +6.7); move (-0, -3) ft. Neither wants to move in x.",
+  "confidence": "medium",
+  "note": "Duplicate pipe run and numerals are cut placement (the corner cut leaves both plates' Ave N drawings visible); a cut down the avenue centre removes them."
+ },
+ {
+  "seam": "51_52",
+  "verdict": "ok",
+  "feature": "Ave N between SW 17 / SE 16 and NW 42 / NE 41 (Ursuline Academy)",
+  "step_ft": 1,
+  "direction": "none at 24th-26th; 51 drifts to 11 ft west of 52's west face by 27th",
+  "varies_along_seam": true,
+  "plate_to_move": "none",
+  "why_this_plate": "51's Ave N west face (3037-3054) and 52's (78.5) coincide at the top of the seam (mosaic 21185 vs 21189) and separate to 62 px = 11 ft at 27th because the two plates carry different rotations (+0.151 vs -0.293 deg); the graded crops at 24th-26th are right to score 5. The 11 ft at the bottom is the 51 side of the 52_57 corner story.",
+  "proposed_ties": [],
+  "dry_run": "translation on 52: median 0.7 ft, max 0.8 ft, move (-2, +1) ft; on 51: median 3.7, max 10.6 ft, move (-0, -3) ft.",
+  "confidence": "high",
+  "note": "No action."
+ }
+]

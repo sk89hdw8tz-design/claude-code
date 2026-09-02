@@ -1,6 +1,27 @@
-{"pair": [56, 57], "axis": "avenue", "observer": "agent-batch8",
+{
+ "pair": [
+  56,
+  57
+ ],
+ "axis": "avenue",
+ "observer": "agent-batch8",
  "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
  "corridor": "Ave L",
- "a_native": 3184, "b_native": 202,
+ "a_native": 3194.5,
+ "b_native": 188.5,
  "why_not_one_block_off": "Sheet 56 covers I/J/K/L and sheet 57 covers L/M/M1-2/N, so Avenue L is the only shared corridor; both crops print it - 'AVENUE L' at sheet 56's right margin next to the neighbour sheet number 57, and 'AVENUE L' at sheet 57's left margin next to the neighbour sheet number 56. The cross-street runs give the hundred-block: sheet 56's block 88 (between AVENUE K and AVENUE L) prints '1101 1103 1105 1107 1109 1111 / 1113 1115 1117 1119 1121 1123' and '1102 1104 ... 1112 / 1114 1116 ... 1124', while sheet 57's block 28 (between AVENUE L and AVENUE M) prints '1201 1203 1205 1207 1209 1211 / 1213 ... 1223' and '1202 1204 ... 1212 / 1214 ... 1224'. The 1100/1200 change falls on this corridor, not on K or M. The avenue frontages face even-to-odd: sheet 56's east column reads 2802,2804,...,2832 and sheet 57's west column reads 2801,2803,...,2827. Detection's candidates (2789 / 698) both sit inside blocks; centres read off the green native rulers, half-widths taken from the fully drawn Avenue K (sheet 56) and Avenue M (sheet 57).",
- "status": "ACCEPTED"}
+ "status": "ACCEPTED",
+ "a_native_previous": 3184,
+ "b_native_previous": 202,
+ "faces": {
+  "56": [
+   3088,
+   null
+  ],
+  "57": [
+   82,
+   295
+  ]
+ },
+ "revision": "centres re-read from the plates' own faces (56 east face 3088; 57 faces 82/295); previous values used half-widths borrowed from Aves K/M and drew Ave L 65 ft (review D)"
+}

@@ -158,7 +158,7 @@ def main():
     fallback = 0
     for sheet, poly in involved:
         try:
-            fp = r.footprint(sheet)
+            fp = r.footprint(sheet, furniture=False)
         except Exception:
             continue
         fpts = ((np.array(fp.exterior.coords) - np.array([x0, y0])) / d).astype(np.int32)

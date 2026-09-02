@@ -10,5 +10,7 @@
  "a_native": 3647,
  "b_native": 234,
  "why_not_one_block_off": "'42ND ST.' is printed in the corridor on both plates (sheet 84 bottom margin, sheet 94 top margin between the '85' and '86' sheet references); both print '70'. The avenue address columns change hundred across it: sheet 84's blocks run 4102,4104,...,4128 / 4101,4103,...,4127 (41st-42nd) and end at its south face; sheet 94's begin 4201,4202,4203,...,4228 (42nd-43rd) at its north face, with '43RD ST.' labelled below them. Sheet 84 labels '41ST ST.' one block north with the 4002-4028 run beyond, so 4128|4202 fixes this line.",
- "status": "ACCEPTED"
+ "status": "REJECTED",
+ "rejected_by": "session 018fqghgw6, review D (84_85b)",
+ "reason": "Diagonal pair; its values (3647 on 84, 234 on 94) are 24 px / 16 px off both plates' face centres (3671.5 / 217.5) and it is violated by 31 ft in the current solve, dragging 84 south by 5 ft in every dry-run. Re-read from faces or drop; 84_92 / 84_93 already pin 84's 42nd St."
 }

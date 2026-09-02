@@ -1,0 +1,24 @@
+{
+ "pair": [
+  35,
+  36
+ ],
+ "axis": "street",
+ "corridor": "16th St",
+ "observer": "session 018fqghgw6, review B",
+ "a_native": 1372.0,
+ "b_native": 1368.0,
+ "faces": {
+  "35": [
+   1250,
+   1494
+  ],
+  "36": [
+   1247,
+   1489
+  ]
+ },
+ "why_not_one_block_off": "Cross-axis tie in the shared Ave I band. 16th St is the street between blocks 255 and 256 (35) and 195 and 196 (36): 35_36 grader reads lot rows 814-824/813-823 north and south of it, 36 side 902-912/901-911; avenue frontage 1601-1629 lies south of it and 1501-1527 north of it on both sheets. Faces by ink profile at 35 x 2400-3000 (1250/1494) and 36 x 300-900 (1247/1489), both 242-244 px = 80'. 15th (3664/219 via 30_36; 31_36) and 17th (2534/2524.5, existing lattice tie) bracket it.",
+ "cross_axis": true,
+ "status": "ACCEPTED"
+}

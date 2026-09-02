@@ -7,8 +7,21 @@
  "observer": "agent-batch2",
  "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
  "corridor": "Ave Q",
- "a_native": 3206,
- "b_native": 83,
+ "a_native": 3140,
+ "b_native": 124,
  "why_not_one_block_off": "Both sheets print 'AVENUE Q' at the seam, 80' wide. Sheet 53 (west) shows its east block face with Ave-Q frontages 2502 2504 ... 2528 (25th-26th block) and 25th-St runs ending '2013 2015 2017 2019 2021 2023 / 2014 2016 ... 2024' (2000 hundred-block, i.e. Ave P 1/2-Q). Sheet 54 (east) shows the opposite face with frontages 2501 2503 ... 2527 and 25th-St runs starting '2101 2103 ... 2111 / 2102 2104 ... 2112' then '2113 ... 2123' at Ave Q 1/2. The 2000/2100 change on 25th St happens across this avenue, so it is Q and not P 1/2 or Q 1/2 (Q 1/2 is separately labelled on sheet 54 one block east).",
- "status": "ACCEPTED"
+ "status": "ACCEPTED",
+ "a_native_previous": 3206,
+ "b_native_previous": 83,
+ "faces": {
+  "53": [
+   3039,
+   3242
+  ],
+  "54": [
+   21,
+   227
+  ]
+ },
+ "revision": "values re-read 101 px inside the measured block faces (53 west face 3039, 54 east face 227); the previous 3206/83 drew Ave Q 106 ft wide and held 54 37 ft east of 60 (review A, 53_54/54_60)"
 }

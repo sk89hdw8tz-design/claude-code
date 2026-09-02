@@ -1,0 +1,24 @@
+{
+ "pair": [
+  31,
+  32
+ ],
+ "axis": "street",
+ "corridor": "14th St",
+ "observer": "session 018fqghgw6, review B",
+ "a_native": 2520.0,
+ "b_native": 2522.5,
+ "faces": {
+  "31": [
+   2398,
+   2642
+  ],
+  "32": [
+   2401,
+   2644
+  ]
+ },
+ "why_not_one_block_off": "Same argument as 13th: NE47/NW47 on 32 with 1502-1512 south of the line, SE22/SW22 on 31; both 243-244 px wide; 12th/13th/15th tied separately.",
+ "cross_axis": true,
+ "status": "ACCEPTED"
+}

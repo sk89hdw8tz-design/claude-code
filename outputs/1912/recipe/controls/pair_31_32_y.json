@@ -1,0 +1,24 @@
+{
+ "pair": [
+  31,
+  32
+ ],
+ "axis": "street",
+ "corridor": "13th St",
+ "observer": "session 018fqghgw6, review B",
+ "a_native": 1362.5,
+ "b_native": 1363.5,
+ "faces": {
+  "31": [
+   1240,
+   1485
+  ],
+  "32": [
+   1241,
+   1486
+  ]
+ },
+ "why_not_one_block_off": "13TH ST. lettered on both (32 prints it in the crop, with 1502-1512 / 1501-1511 runs south and north of it and the NW48/NE47 outlot quarters); on 31 the SE22/SW23 quarters with 1414-1424 / 1413-1423 runs. Both 245 px wide (80'). The next streets (12th at 213/216, 14th at 2520/2522) are tied separately, so one block off is excluded by pitch.",
+ "cross_axis": true,
+ "status": "ACCEPTED"
+}

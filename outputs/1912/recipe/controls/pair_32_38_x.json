@@ -1,0 +1,24 @@
+{
+ "pair": [
+  32,
+  38
+ ],
+ "axis": "avenue",
+ "corridor": "Ave N 1/2",
+ "observer": "session 018fqghgw6, review B",
+ "a_native": 1265.0,
+ "b_native": 1190.0,
+ "faces": {
+  "32": [
+   1160,
+   1370
+  ],
+  "38": [
+   1086,
+   1294
+  ]
+ },
+ "why_not_one_block_off": "Lettered AVENUE N 1/2 vertically in its own roadway on both sheets; it is the 1500/1600 break on 15th St (32: 1508-1524 west of it, 1602-1624 east; 38: 1501-1523 / 1601-1623). Ave N one block west is the 1400/1500 break and printed 70' on 32 / 80' on 38; Ave O one block east is lettered and is the 1600/1700 break. Faces by ink profile: 32 at y 3000-3500 (below the inset panel) 1160/1370, 38 at y 300-800 1086/1294 (both ~208 px = 70').",
+ "cross_axis": false,
+ "status": "ACCEPTED"
+}

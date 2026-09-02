@@ -106,7 +106,7 @@ DP_DILATE = 13         # cells (~52 mosaic px, 9 ft): merges lettering and both 
 DP_SIDE = 120.0        # px: side candidates run between the lot-number column at the block face and the street name at the centre
 
 
-def dp_cut(r, u, v, axis, coord, O):
+def dp_cut(r, u, v, axis, coord, O, lower=None):
     """Min-ink path through the shared roadway, as the master's cuts were made.
 
     A straight centreline cut slices through whatever both plates print at
@@ -132,11 +132,13 @@ def dp_cut(r, u, v, axis, coord, O):
     if W < 8 or H < 8:
         return None
     cost = np.zeros((H, W), np.float32)
+    raw = {}
     for w_ in (u, v):
         M, t = r.sheet_matrix(w_)
         A = np.hstack([M / DP_SCALE, ((t - np.array([x0, y0])) / DP_SCALE).reshape(2, 1)])
         g = cv2.warpAffine(gray(r, w_), A, (W, H), flags=cv2.INTER_AREA, borderValue=255)
         ink = (255 - g).astype(np.float32)
+        raw[w_] = ink.copy()
         # thicken the ink: a street name is letters with gaps, and two plates'
         # copies of it sit a registration error apart; without this the path
         # threads the gap between the copies and both survive (57|58 test).
@@ -153,10 +155,25 @@ def dp_cut(r, u, v, axis, coord, O):
     # letter the street name in the roadway; a path that zigzags round each
     # label on its cheaper side leaves both (or neither) showing, whereas a
     # path that keeps to ONE side of the roadway shows exactly one plate's
-    # label (76|84 test). The candidate crossing the least ink wins; ties go
-    # to the centreline.
+    # label (76|84 test). Candidates are scored by the ink left VISIBLE in
+    # the band (the lower unit's ink on the low side plus the upper unit's
+    # on the high side): the block faces and pipes are drawn by both plates
+    # and cost the same whichever side shows them, so the difference between
+    # candidates is the duplicated lettering, and the candidate that hides
+    # one copy wins (57|58, 76|84 tests). Ink the path itself crosses is
+    # charged on top so a label is not sliced in half.
     ink_only = cost.copy()
     best = None
+    low_u = lower if lower in (u, v) else u
+    high_u = v if low_u == u else u
+    inkL = np.where(mask == 1, raw[low_u], 0.0)
+    inkH = np.where(mask == 1, raw[high_u], 0.0)
+    if axis != "y":
+        inkL, inkH = inkL.T, inkH.T          # rows = across the seam, cols = along it
+    cumL = np.cumsum(inkL, axis=0)           # low-side ink up to and including row y
+    totH = inkH.sum(axis=0)
+    cumH = np.cumsum(inkH, axis=0)
+    CROSS_W = 8.0                            # a crossed cell counts like an 8-cell column of visible ink
     # the band is the plates' overlap, often narrower than the roadway once
     # footprints stop at the neatline (57|58 overlap by 21 ft): keep the side
     # targets inside it
@@ -188,7 +205,9 @@ def dp_cut(r, u, v, axis, coord, O):
         path = path[::-1]
         io = ink_only if axis == "y" else ink_only.T
         ink_sum = float(sum(io[y, x] for x, y in enumerate(path)))
-        score = ink_sum * (1.0 if off == 0.0 else 1.05)
+        cols = np.arange(len(path)); rows = np.array(path)
+        visible = float(cumL[rows, cols].sum() + (totH[cols] - cumH[rows, cols]).sum())
+        score = visible + CROSS_W * ink_sum * (1.0 if off == 0.0 else 1.05)
         if best is None or score < best[0]:
             best = (score, path)
     path = best[1]
@@ -347,7 +366,7 @@ def main():
             path = None
             if band and not a.straight:
                 try:
-                    path = dp_cut(r, u, v, axis, coord, O)
+                    path = dp_cut(r, u, v, axis, coord, O, lower)
                 except Exception as ex:          # fall back to the straight line
                     print(f"  dp cut failed on {u}|{v}: {ex}", flush=True)
             if path is not None:

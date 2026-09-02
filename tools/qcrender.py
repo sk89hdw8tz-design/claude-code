@@ -55,7 +55,7 @@ def render(r, x0, y0, x1, y1, d, labels=False, outline=False):
     for sheet, poly in own:
         if sheet not in polys:
             continue
-        fp = r.footprint(sheet)
+        fp = r.footprint(sheet, furniture=False)
         fpts = ((np.array(fp.exterior.coords) - np.array([x0, y0])) / d).astype(np.int32)
         wx0 = max(0, int(fpts[:, 0].min()) - 2); wy0 = max(0, int(fpts[:, 1].min()) - 2)
         wx1 = min(W, int(fpts[:, 0].max()) + 3); wy1 = min(H, int(fpts[:, 1].max()) + 3)

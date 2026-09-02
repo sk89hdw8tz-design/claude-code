@@ -7,8 +7,21 @@
  "observer": "agent-batch10",
  "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
  "corridor": "15th St",
- "a_native": 3693,
- "b_native": 195,
+ "a_native": 3664.0,
+ "b_native": 219.0,
  "why_not_one_block_off": "Sheet 30 covers 12th-15th, sheet 36 covers 15th-18th, so the shared corridor is 15th St, and both sheets print '15TH ST.' immediately beside the chosen line (sheet 30 also prints the adjoining-sheet number '36' just south of it, sheet 36 prints '30' just north of it). Not one block off: the lots north of the line on sheet 30 run 1402 1404 ... 1428 with 1002 1004 1006 1008 1010 1012 / 1014 1016 ... 1024 on the 15th St frontage, while the lots south of it on sheet 36 run 1501 1503 ... 1523 and 1502 1504 ... 1522 with 1001 1003 1005 1007 1009 1011 / 1013 1015 ... 1023 on the frontage - the 14xx->15xx change occurs across this corridor only. Faces read off the green ruler: sheet 30 north face y=3599 (the detection candidate) and south face y=3788, center 3693; sheet 36 north face y=94.7 and south face y=296, center 195; both give a drafted width of ~190-200 px = the printed 70 ft street.",
- "status": "ACCEPTED"
+ "status": "ACCEPTED",
+ "a_native_previous": 3693,
+ "b_native_previous": 195,
+ "faces": {
+  "30": [
+   3546,
+   3787
+  ],
+  "36": [
+   102,
+   343
+  ]
+ },
+ "revision": "centre re-read from the plates' own block faces (review B): Identity as the accepted control (15TH ST. on both, 1402-1428 north / 1501-1523 south). Position corrected: the observer used the detection candidate y=3599 as 30's north face, but the block-face rule is at 3546 (x 300-900) / 3541 (x 2400-3000), south face 3787/3781 (241 px = 80'); on 36 the faces a"
 }

@@ -1,0 +1,24 @@
+{
+ "pair": [
+  32,
+  38
+ ],
+ "axis": "street",
+ "corridor": "15th St",
+ "observer": "session 018fqghgw6, review B",
+ "a_native": 3666.0,
+ "b_native": 216.5,
+ "faces": {
+  "32": [
+   3546,
+   3786
+  ],
+  "38": [
+   96,
+   337
+  ]
+ },
+ "why_not_one_block_off": "32 covers 12th-15th, 38 covers 15th-18th (key maps), so 15th is the only shared street; both print 15TH ST. in the corridor (32 bottom margin, 38 top margin). Hundred-block: 32's SW47 frontage 1401-1428 ends at its south face; 38's SE46 frontage 1501-1523 starts at its north face; 15th St runs 1602-1624 (north, 32) face 1601-1623 (south, 38). Faces read by ink profile at x 1400-2000 (between Ave N 1/2 and Ave O, clear of 32's inset panel): 32 3546/3786 (240 px = 80'), 38 96/337 (241 px).",
+ "cross_axis": false,
+ "status": "ACCEPTED"
+}

@@ -1,0 +1,24 @@
+{
+ "pair": [
+  25,
+  32
+ ],
+ "axis": "street",
+ "corridor": "12th St",
+ "observer": "session 018fqghgw6, review B",
+ "a_native": 3667.5,
+ "b_native": 216.0,
+ "faces": {
+  "25": [
+   3547,
+   3788
+  ],
+  "32": [
+   94,
+   337
+  ]
+ },
+ "why_not_one_block_off": "25 covers 9th-12th, 32 covers 12th-15th; both print 12TH ST. beside the line (32's label at its top margin next to the adjoining numeral 25). 25's SE23 south face carries 1414-1424 (12th St even run), 32's NW48 north face carries 1501-1511 (odd 1500 run east of Ave N) and the avenue frontage restarts at 1201 (12th-13th). 25 faces 3547/3788 (241 px); on 32 only the south face (337) is drawn, the north face coincides with the neatline (~92-94), so the centre is 337-121 = 216 (cross-check: 13th St centre 1363.5 minus the 1153 px pitch = 210). The shared band is only the Ave N corridor, so this is a corner tie.",
+ "cross_axis": true,
+ "status": "ACCEPTED"
+}

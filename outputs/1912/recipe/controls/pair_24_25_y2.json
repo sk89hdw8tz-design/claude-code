@@ -1,0 +1,24 @@
+{
+ "pair": [
+  24,
+  25
+ ],
+ "axis": "street",
+ "corridor": "12th St",
+ "observer": "session 018fqghgw6, review B",
+ "a_native": 3661.0,
+ "b_native": 3667.5,
+ "faces": {
+  "24": [
+   3542,
+   3780
+  ],
+  "25": [
+   3547,
+   3788
+  ]
+ },
+ "why_not_one_block_off": "Cross-axis tie in the shared Ave L band at 24's east end. 12TH ST. printed on both; block 71 south face 1102-1124 (24) and block 11 south face 1202-1224 (25) run along it, avenue frontage 1101-1128 north / 1201-1228 south. Faces by ink profile: 24 x 2400-3000 3542/3780 (238 px), 25 x 2300-3000 3547/3788 (241 px). 11th St (2521/2517) is the existing lattice tie one block north.",
+ "cross_axis": true,
+ "status": "ACCEPTED"
+}

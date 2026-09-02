@@ -4,16 +4,21 @@
   54
  ],
  "axis": "street",
- "observer": "lattice (tools/faces.py)",
- "method": "corridor centre = midpoint of the two block faces read off the plate's own street chain; identity from the current placement (the two readings are within 57 ft, a block is 402 ft); a cross-axis tie: the corridor both plates draw across their shared band",
- "a_native": 1361.5,
- "b_native": 1236.5,
- "corridor": "?",
- "roadway_px": [
-  363,
-  275
- ],
- "disagreement_before_ft": 57.3,
+ "corridor": "25th St (Rosenberg Av)",
+ "observer": "session 018fqghgw6, review A; faces verified on crops of u53/u54",
+ "a_native": 1360.5,
+ "b_native": 1375.75,
+ "faces": {
+  "53": [
+   1179,
+   1542
+  ],
+  "54": [
+   1195,
+   1556.5
+  ]
+ },
+ "why_not_one_block_off": "Cross-axis tie on the one 120' street both plates draw: 53 faces 1179/1542 (363 px), 54 faces 1195/1556.5 (361.5 px), both printed '25TH ST. OR ROSENBERG AV.'. 53's north frontage reads 2013-2023 / 2014-2024 and 54's 2101-2111 / 2102-2112, the 2000/2100 change across Ave Q (pair_53_54's argument). 24th St (80', 53: 32/276, 54: north face off-plate, south 292.5) and 26th St (80', 53: 2457/2696.5, 54: 2468.5/2708.5) are both 240 px wide, so a 363-px corridor cannot be confused with either neighbour.",
  "cross_axis": true,
  "status": "ACCEPTED"
 }

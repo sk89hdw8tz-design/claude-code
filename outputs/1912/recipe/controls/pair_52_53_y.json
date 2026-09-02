@@ -1,0 +1,24 @@
+{
+ "pair": [
+  52,
+  53
+ ],
+ "axis": "street",
+ "corridor": "26th St",
+ "observer": "session 018fqghgw6, review A",
+ "a_native": 2588.75,
+ "b_native": 2576.75,
+ "faces": {
+  "52": [
+   2469,
+   2708.5
+  ],
+  "53": [
+   2457,
+   2696.5
+  ]
+ },
+ "why_not_one_block_off": "Cross-axis tie. Both plates print '26TH ST.' in this roadway (52's label sits at native y~2594) and both draw it 80' (240 px). The avenue frontage hundred-block changes across it on both: 52's NE 66 carries 2502-2528 above and NW 66 2602-2628 below; 53's SE 66 carries 2501-2527 above and SW 66 2601-2627 below. One block north is the 120' '25TH ST. OR ROSENBERG AV.' (faces 1200/1562 on 52, 1179/1542 on 53, 361-363 px wide), one block south is the plate edge (27th, only the north face drawn at 3619/3601), so no other 80' corridor can be confused with it.",
+ "cross_axis": true,
+ "status": "ACCEPTED"
+}

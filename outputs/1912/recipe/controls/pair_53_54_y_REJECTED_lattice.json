@@ -1,0 +1,21 @@
+{
+ "pair": [
+  53,
+  54
+ ],
+ "axis": "street",
+ "observer": "lattice (tools/faces.py)",
+ "method": "corridor centre = midpoint of the two block faces read off the plate's own street chain; identity from the current placement (the two readings are within 57 ft, a block is 402 ft); a cross-axis tie: the corridor both plates draw across their shared band",
+ "a_native": 1361.5,
+ "b_native": 1236.5,
+ "corridor": "?",
+ "roadway_px": [
+  363,
+  275
+ ],
+ "disagreement_before_ft": 57.3,
+ "cross_axis": true,
+ "status": "REJECTED",
+ "rejected_by": "session 018fqghgw6, review A (regreview_A.json 53_54)",
+ "reason": "plate 54's lattice pair [1099,1374] (275 px) is not a street: its Rosenberg Av faces are 1195/1556.5 (361.5 px = 120'); the tie was 139 native px (48 ft) wrong and bent 53/54's scales"
+}

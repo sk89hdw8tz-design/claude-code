@@ -163,21 +163,23 @@
   },
   "15": {
    "tier": "control",
-   "how": "shared-corridor lines, similarity solve",
+   "how": "shared-corridor lines, similarity solve; similarity re-solved locally from line controls (tools/localsolve.py)",
    "m": [
     [
-     2.0017536201643598,
-     -0.004094427868231869
+     1.9921417549124447,
+     -0.009762360186694075
     ],
     [
-     0.004094427868231869,
-     2.0017536201643598
+     0.009762360186694075,
+     1.9921417549124447
     ]
    ],
    "t": [
-    -9334.472156258358,
-    17006.33814770585
-   ]
+    -9271.708824790565,
+    17000.275481084645
+   ],
+   "scale": 1.992165674672177,
+   "theta_deg": 0.28077196719291464
   },
   "16": {
    "tier": "control",
@@ -325,39 +327,43 @@
   },
   "24": {
    "tier": "control",
-   "how": "shared-corridor lines, similarity solve",
+   "how": "shared-corridor lines, similarity solve; similarity re-solved locally from line controls (tools/localsolve.py)",
    "m": [
     [
-     1.985640250083447,
-     -0.008449391089565031
+     1.9870762874028913,
+     -0.00800826090744522
     ],
     [
-     0.008449391089565031,
-     1.985640250083447
+     0.00800826090744522,
+     1.9870762874028913
     ]
    ],
    "t": [
-    9087.405582267022,
-    -31523.65921751757
-   ]
+    9085.354679905786,
+    -31526.17108538451
+   ],
+   "scale": 1.9870924246752137,
+   "theta_deg": 0.2309106449344986
   },
   "25": {
    "tier": "control",
-   "how": "shared-corridor lines, similarity solve",
+   "how": "shared-corridor lines, similarity solve; similarity re-solved locally from line controls (tools/localsolve.py)",
    "m": [
     [
-     1.997786794886304,
-     -0.010560652790839516
+     1.9978903143871207,
+     -0.005097842221822191
     ],
     [
-     0.010560652790839516,
-     1.997786794886304
+     0.005097842221822191,
+     1.9978903143871207
     ]
    ],
    "t": [
-    15233.639674947539,
-    -31529.439141744762
-   ]
+    15300.747293502007,
+    -31530.413013568144
+   ],
+   "scale": 1.9978968182359134,
+   "theta_deg": 0.14619631915637615
   },
   "26": {
    "tier": "control",
@@ -451,39 +457,43 @@
   },
   "31": {
    "tier": "control",
-   "how": "shared-corridor lines, similarity solve",
+   "how": "shared-corridor lines, similarity solve; similarity re-solved locally from line controls (tools/localsolve.py)",
    "m": [
     [
-     2.0095146550789567,
-     -0.012243828801971137
+     2.0115278522490243,
+     -0.01016378752839928
     ],
     [
-     0.012243828801970728,
-     2.0095146550789567
+     0.01016378752839928,
+     2.0115278522490243
     ]
    ],
    "t": [
-    15114.097261574649,
-    -24635.02538629881
-   ]
+    15205.161513410349,
+    -24633.007412784256
+   ],
+   "scale": 2.011553529725345,
+   "theta_deg": 0.2894999305350192
   },
   "32": {
    "tier": "control",
-   "how": "shared-corridor lines, similarity solve",
+   "how": "shared-corridor lines, similarity solve; similarity re-solved locally from line controls (tools/localsolve.py)",
    "m": [
     [
-     2.0506898923079047,
-     -0.02754673292591013
+     2.0378288506235074,
+     -0.02663256129791619
     ],
     [
-     0.027546732925910006,
-     2.0506898923079047
+     0.02663256129791619,
+     2.0378288506235074
     ]
    ],
    "t": [
-    20959.389501941332,
-    -24755.80222494693
-   ]
+    21044.192045395084,
+    -24644.91343553268
+   ],
+   "scale": 2.0380028748151493,
+   "theta_deg": 0.7487608645045627
   },
   "33": {
    "tier": "control",
@@ -523,75 +533,83 @@
   },
   "35": {
    "tier": "control",
-   "how": "shared-corridor lines, similarity solve",
+   "how": "shared-corridor lines, similarity solve; similarity re-solved locally from line controls (tools/localsolve.py)",
    "m": [
     [
-     2.01130022650257,
-     0.0053626026784113455
+     2.0076991814622285,
+     0.004594155920216281
     ],
     [
-     -0.0053626026784113455,
-     2.01130022650257
+     -0.004594155920216281,
+     2.0076991814622285
     ]
    ],
    "t": [
-    2890.844136534674,
-    -17733.194444737153
-   ]
+    2892.1735569214948,
+    -17723.980291766464
+   ],
+   "scale": 2.007704437787774,
+   "theta_deg": -0.13110793073647642
   },
   "36": {
    "tier": "control",
-   "how": "shared-corridor lines, similarity solve",
+   "how": "shared-corridor lines, similarity solve; similarity re-solved locally from line controls (tools/localsolve.py)",
    "m": [
     [
-     1.9951340758276102,
-     -0.0036082072427432174
+     2.000264060217289,
+     -0.005844241173864122
     ],
     [
-     0.0036082072427432174,
-     1.9951340758276102
+     0.005844241173864122,
+     2.000264060217289
     ]
    ],
    "t": [
-    9054.107722349172,
-    -17669.431926241043
-   ]
+    9034.233152545641,
+    -17700.888160887156
+   ],
+   "scale": 2.000272597860565,
+   "theta_deg": 0.16740259826843995
   },
   "37": {
    "tier": "control",
-   "how": "shared-corridor lines, similarity solve",
+   "how": "shared-corridor lines, similarity solve; similarity re-solved locally from line controls (tools/localsolve.py)",
    "m": [
     [
-     1.9947602273198632,
-     0.0004125712641382881
+     1.9858624183308407,
+     -0.008406044880179679
     ],
     [
-     -0.0004125712641383783,
-     1.9947602273198628
+     0.008406044880179679,
+     1.9858624183308407
     ]
    ],
    "t": [
-    15063.653923441208,
-    -17653.395771139632
-   ]
+    15188.637793397284,
+    -17637.65694593883
+   ],
+   "scale": 1.9858802094107646,
+   "theta_deg": 0.24252839120456243
   },
   "38": {
    "tier": "control",
-   "how": "shared-corridor lines, similarity solve",
+   "how": "shared-corridor lines, similarity solve; similarity re-solved locally from line controls (tools/localsolve.py)",
    "m": [
     [
-     1.9646448634312716,
-     -0.002180720651504743
+     1.9676704226486452,
+     -0.006720846832937469
     ],
     [
-     0.002180720651504743,
-     1.9646448634312716
+     0.006720846832937469,
+     1.9676704226486452
     ]
    ],
    "t": [
-    21173.409303690212,
-    -17546.38513953002
-   ]
+    21166.31138082729,
+    -17555.403958901676
+   ],
+   "scale": 1.9676819005999038,
+   "theta_deg": 0.1957007923445981
   },
   "39": {
    "m": [
@@ -841,57 +859,63 @@
   },
   "52": {
    "tier": "control",
-   "how": "shared-corridor lines, similarity solve",
+   "how": "shared-corridor lines, similarity solve; similarity re-solved locally from line controls (tools/localsolve.py)",
    "m": [
     [
-     2.018269904823126,
-     0.010312720990193223
+     2.011371239177876,
+     -0.004970749974951616
     ],
     [
-     -0.01031272099019314,
-     2.0182699048231263
+     0.004970749974951616,
+     2.011371239177876
     ]
    ],
    "t": [
-    21031.99204224321,
-    3076.9118784146744
-   ]
+    21080.2424642309,
+    3118.588404311204
+   ],
+   "scale": 2.0113773813353024,
+   "theta_deg": 0.14159614556886965
   },
   "53": {
    "tier": "control",
-   "how": "shared-corridor lines, similarity solve",
+   "how": "shared-corridor lines, similarity solve; similarity re-solved locally from line controls (tools/localsolve.py)",
    "m": [
     [
-     2.045343676423151,
-     0.005425246672381014
+     2.0412574118838895,
+     -0.00754857901460885
     ],
     [
-     -0.005425246672380646,
-     2.045343676423151
+     0.00754857901460885,
+     2.0412574118838895
     ]
    ],
    "t": [
-    27119.90129288806,
-    3140.21305237534
-   ]
+    27146.933948177906,
+    3127.42235712829
+   ],
+   "scale": 2.0412713691756066,
+   "theta_deg": 0.21187908239067232
   },
   "54": {
    "tier": "control",
-   "how": "shared-corridor lines, similarity solve",
+   "how": "shared-corridor lines, similarity solve; scale 1.9737 (an artefact of the rejected lattice tie pair_53_54_y) reset to the ring median 2.004 about the plate centre (review A), translation re-solved; translation re-solved locally (tools/localsolve.py); similarity re-solved locally from line controls (tools/localsolve.py)",
    "m": [
     [
-     1.973660794791925,
-     0.002830585197632532
+     2.0216127850919166,
+     -0.008968778127937092
     ],
     [
-     -0.002830585197633236,
-     1.973660794791925
+     0.008968778127937092,
+     2.0216127850919166
     ]
    ],
    "t": [
-    33518.81011319391,
-    3439.4588138990725
-   ]
+    33308.48292143814,
+    3179.4641897855377
+   ],
+   "scale": 2.0216326797487727,
+   "theta_deg": 0.2541880258119824
   },
   "55": {
    "tier": "control",
@@ -913,7 +937,7 @@
   },
   "56": {
    "tier": "control",
-   "how": "shared-corridor lines, similarity solve",
+   "how": "shared-corridor lines, similarity solve; translation re-solved locally (tools/localsolve.py)",
    "m": [
     [
      2.017342019552362,
@@ -925,13 +949,13 @@
     ]
    ],
    "t": [
-    8937.63756148674,
-    10126.743036524109
+    8928.71451932229,
+    10122.62176031082
    ]
   },
   "57": {
    "tier": "control",
-   "how": "shared-corridor lines, similarity solve",
+   "how": "shared-corridor lines, similarity solve; translation re-solved locally (tools/localsolve.py)",
    "m": [
     [
      2.0149760155479184,
@@ -943,8 +967,8 @@
     ]
    ],
    "t": [
-    14959.575441584124,
-    10154.642573593377
+    14971.453890238265,
+    10151.718127012053
    ]
   },
   "58": {
@@ -1399,21 +1423,23 @@
   },
   "84": {
    "tier": "control",
-   "how": "shared-corridor lines, similarity solve",
+   "how": "shared-corridor lines, similarity solve; similarity re-solved locally from line controls (tools/localsolve.py)",
    "m": [
     [
-     1.9979439333616367,
-     0.0022385554790321557
+     2.0016681616868777,
+     -0.0012885112540459431
     ],
     [
-     -0.0022385554790321557,
-     1.9979439333616367
+     0.0012885112540459431,
+     2.0016681616868777
     ]
    ],
    "t": [
-    4709.090138149801,
-    37878.03110591761
-   ]
+    4706.033189288855,
+    37873.390186387056
+   ],
+   "scale": 2.0016685764062383,
+   "theta_deg": 0.036882360387101486
   },
   "85": {
    "tier": "control",
@@ -1543,39 +1569,43 @@
   },
   "92": {
    "tier": "control",
-   "how": "shared-corridor lines, similarity solve",
+   "how": "shared-corridor lines, similarity solve; similarity re-solved locally from line controls (tools/localsolve.py)",
    "m": [
     [
-     2.0414396728981368,
-     -0.005131934521686823
+     2.0232316760177813,
+     -0.0070562927587699675
     ],
     [
-     0.005131934521686934,
-     2.041439672898137
+     0.0070562927587699675,
+     2.0232316760177813
     ]
    ],
    "t": [
-    4767.946081939549,
-    44736.024766884366
-   ]
+    4753.731876050076,
+    44752.2625918391
+   ],
+   "scale": 2.0232439808656832,
+   "theta_deg": 0.19982593178051725
   },
   "93": {
    "tier": "control",
-   "how": "shared-corridor lines, similarity solve",
+   "how": "shared-corridor lines, similarity solve; similarity re-solved locally from line controls (tools/localsolve.py)",
    "m": [
     [
-     2.0142190955347163,
-     -0.01864989709988838
+     2.0002013759539206,
+     -0.011683855030436598
     ],
     [
-     0.01864989709988838,
-     2.0142190955347163
+     0.011683855030436598,
+     2.0002013759539206
     ]
    ],
    "t": [
-    10839.695543866708,
-    44791.37795540454
-   ]
+    10884.222866790855,
+    44801.33156441468
+   ],
+   "scale": 2.000235500343979,
+   "theta_deg": 0.33468028564442726
   },
   "94": {
    "tier": "control",
@@ -1755,8 +1785,8 @@
     ]
    ],
    "t": [
-    -21332.628122863203,
-    12296.991525275116
+    -21282.237037020535,
+    12280.895429552675
    ],
    "how": "tools/wharfplace.py: scale and rotation from the sheet-5 joint solve, translation from Ave A and the shared cross streets against the block plates",
    "tier": "wharf-frontage",

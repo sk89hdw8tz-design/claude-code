@@ -7,8 +7,21 @@
  "observer": "agent-batch6",
  "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
  "corridor": "Ave L",
- "a_native": 3181,
- "b_native": 182,
+ "a_native": 3214.0,
+ "b_native": 136.0,
  "why_not_one_block_off": "Sheet 36's east edge prints 'AVENUE L' vertically; its last block column carries the even Ave L frontage 1602-1628 and street numbers 1102-1124 / 1101-1123. Sheet 37's west edge prints 'AVENUE L' and its first block column carries the odd frontage 1601-1627 with street numbers 1202-1224 / 1201-1223. Even/odd facades of the same avenue plus the 1100/1200 change fix it; Avenue K (36, one block west) and Avenue M (37, one block east) are separately labelled.",
- "status": "ACCEPTED"
+ "status": "ACCEPTED",
+ "a_native_previous": 3181,
+ "b_native_previous": 182,
+ "faces": {
+  "36": [
+   3091,
+   null
+  ],
+  "37": [
+   null,
+   253
+  ]
+ },
+ "revision": "centre re-read from the plates' own block faces (review B): Same identity as the accepted control (AVENUE L lettered on both; 36's last column 1602-1628 even, 37's first column 1601-1627 odd; 1100/1200 change). Position corrected to face +/- 121 px: 36's west block face measured at native x 3090-3093 (three bands), 37's east block face at 249-269 (37 is skew"
 }

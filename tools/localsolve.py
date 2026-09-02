@@ -106,7 +106,7 @@ def similarity(r, a, ppf):
                     c -= sign * pm[k]
             rows.append(eq); rhs.append(c); tags.append((f, ua, ub, "x" if vert else "y", frac))
     # damping toward the current A, B (weight in px per unit of A,B ~ plate half-size)
-    W_DAMP = 3000.0
+    W_DAMP = float(a.damp)
     for u, i in free.items():
         M, t = r.sheet_matrix(u)
         for j, val in ((0, M[0, 0]), (1, M[1, 0])):
@@ -146,6 +146,8 @@ def main():
     ap.add_argument("--year", required=True, choices=["1912"])
     ap.add_argument("--units", nargs="+", required=True)
     ap.add_argument("--apply", action="store_true")
+    ap.add_argument("--damp", type=float, default=3000.0,
+                    help="similarity: weight holding (A,B) at their current values (px per unit)")
     ap.add_argument("--similarity", action="store_true",
                     help="solve rotation and scale too, from the controls as lines")
     a = ap.parse_args()

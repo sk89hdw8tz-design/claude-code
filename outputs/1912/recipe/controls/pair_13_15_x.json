@@ -1,0 +1,23 @@
+{
+ "pair": [
+  13,
+  15
+ ],
+ "axis": "avenue",
+ "corridor": "Ave A",
+ "observer": "session 018fqghgw6, review D",
+ "a_native": 943.5,
+ "b_native": 943.25,
+ "faces": {
+  "13": [
+   837,
+   1050
+  ],
+  "15": [
+   835,
+   1049
+  ]
+ },
+ "why_not_one_block_off": "Both plates cover A-C (key maps; 15's letters are not printed, identity by column continuation 749/689/629 -> 750/690/630). Ave A is the 0/100 hundred-block break on both: sheet 13 block 749 fronts 30th St with 2 4 6 ... 24 and block 689 with 102 104 ... 124; sheet 15 block 750 fronts 30th/31st with 1 3 ... 23 and block 690 with 101 103 ... 123; '70'' printed in the roadway on both. One block east is Strand (Ave B), 80' (13: 1792/2043, 250 px) with the 100/200 break (689: 102-124, 629: 202-224); it is also drawn wider than 70'. Faces read off the native rasters at rows 2700-3500 (13) and 400-1200 (15); 13's 837/1050 agree with lattice.json, 15's lattice x chain (pitch 935, weak) is wrong and was not used.",
+ "status": "ACCEPTED"
+}

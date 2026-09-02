@@ -6,13 +6,26 @@
  "axis": "avenue",
  "observer": "lattice (tools/faces.py)",
  "method": "corridor centre = midpoint of the two block faces read off the plate's own street chain; identity from the current placement (the two readings are within 2 ft, a block is 355 ft) and the key maps' coverage",
- "a_native": 3205.0,
- "b_native": 114.0,
+ "a_native": 3223.0,
+ "b_native": 96.0,
  "corridor": "Ave L",
  "roadway_px": [
   206,
   206
  ],
  "disagreement_before_ft": 1.6,
- "status": "ACCEPTED"
+ "status": "ACCEPTED",
+ "a_native_previous": 3205.0,
+ "b_native_previous": 114.0,
+ "faces": {
+  "24": [
+   3102,
+   null
+  ],
+  "25": [
+   null,
+   217
+  ]
+ },
+ "revision": "centre re-read from the plates' own block faces (review B): The lattice tie took the midpoints of the half-drawn strips (24: 3102-3308 -> 3205; 25: 14-217 -> 114). 24's west block face is at 3102 (block 71, 1123 frontage), 25's east block face at 217 (block 11, 1201 frontage; 24_25 grader: 1123|1201 match), both plates print 80' in the gutter; centres = 3102"
 }

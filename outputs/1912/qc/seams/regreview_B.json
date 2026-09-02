@@ -1,0 +1,812 @@
+[
+ {
+  "seam": "25_32",
+  "verdict": "registration",
+  "feature": "12th St: block NW 48 north face (plate 32) vs SW 23 / SE 23 faces (plates 31/25); plus the bare corner east of Ave N north of 12th",
+  "step_ft": 20,
+  "direction": "plate 32 north of 25 and 31 (32's NW48 face at crop y 901 vs 31's SW23 face at 958 = 57 px = 20 ft; 25 and 31 agree with each other within 1 ft)",
+  "varies_along_seam": true,
+  "plate_to_move": "32",
+  "why_this_plate": "Plate 25 agrees with 24 (Ave L), 31 (12th St, grade 5) and the grid within 1-6 ft; plate 32 disagrees with 25 and 31 by 20 ft at 12th, 14-15 ft at 13th, 5-6 ft at 14th and 0 at 15th. 32 is tied only at its south edge (32_37, 15th St) and west edge (31_32, Ave N) and was solved with scale 2.0509 (+2.5% vs the 1.995-2.007 of every neighbour) and rotation +0.77 deg (its 14th St line tilts -1.24 deg in the mosaic vs -0.2 typical), so its north end drifts north. Its lattice has no y chain (units.32.y = null) because the inset panel occupies the top right. The grader's fix hint (shift 25 south 14 ft) would break 24_25, 25_31 and 20_25.",
+  "proposed_ties": [
+   {
+    "file": "pair_25_32_y.json",
+    "action": "add",
+    "axis": "street",
+    "corridor": "12th St",
+    "a": 25,
+    "b": 32,
+    "a_native": 3667.5,
+    "b_native": 216.0,
+    "faces": {
+     "25": [
+      3547,
+      3788
+     ],
+     "32": [
+      94,
+      337
+     ]
+    },
+    "why_not_one_block_off": "25 covers 9th-12th, 32 covers 12th-15th; both print 12TH ST. beside the line (32's label at its top margin next to the adjoining numeral 25). 25's SE23 south face carries 1414-1424 (12th St even run), 32's NW48 north face carries 1501-1511 (odd 1500 run east of Ave N) and the avenue frontage restarts at 1201 (12th-13th). 25 faces 3547/3788 (241 px); on 32 only the south face (337) is drawn, the north face coincides with the neatline (~92-94), so the centre is 337-121 = 216 (cross-check: 13th St centre 1363.5 minus the 1153 px pitch = 210). The shared band is only the Ave N corridor, so this is a corner tie."
+   },
+   {
+    "file": "pair_31_32_y.json",
+    "action": "add",
+    "axis": "street",
+    "corridor": "13th St",
+    "a": 31,
+    "b": 32,
+    "a_native": 1362.5,
+    "b_native": 1363.5,
+    "faces": {
+     "31": [
+      1240,
+      1485
+     ],
+     "32": [
+      1241,
+      1486
+     ]
+    },
+    "why_not_one_block_off": "13TH ST. lettered on both (32 prints it in the crop, with 1502-1512 / 1501-1511 runs south and north of it and the NW48/NE47 outlot quarters); on 31 the SE22/SW23 quarters with 1414-1424 / 1413-1423 runs. Both 245 px wide (80'). The next streets (12th at 213/216, 14th at 2520/2522) are tied separately, so one block off is excluded by pitch."
+   },
+   {
+    "file": "pair_31_32_y2.json",
+    "action": "add",
+    "axis": "street",
+    "corridor": "14th St",
+    "a": 31,
+    "b": 32,
+    "a_native": 2520.0,
+    "b_native": 2522.5,
+    "faces": {
+     "31": [
+      2398,
+      2642
+     ],
+     "32": [
+      2401,
+      2644
+     ]
+    },
+    "why_not_one_block_off": "Same argument as 13th: NE47/NW47 on 32 with 1502-1512 south of the line, SE22/SW22 on 31; both 243-244 px wide; 12th/13th/15th tied separately."
+   }
+  ],
+  "dry_run": "localsolve --units 32 (current controls): 2 controls, residuals 0, move (0,-7) ft. With the three added y ties (scratch copy of controls, not applied): translation: 4 controls, residuals median 5.7 ft, max 11.3 (32_37 +11.3, 25_32_y +9.5), move (0,+5) ft - translation cannot fit; --similarity: 8 line samples, residuals median 3.2 ft, max 6.0 (32_37 y +6.0, 25_32_y +4.4), scale 2.0509 -> 2.0278 (-1.1%), rotation +0.770 -> +0.666 deg, centre moves (-6,+12) ft. The damping keeps it short of the ~-2.5% scale the faces imply; 32 needs a full similarity re-solve (and, since it agrees with 31/37 at 15th and Ave N, those edges should be held).",
+  "confidence": "high",
+  "note": "The white corner (x>1050, y<520) is coverage, not registration: it is the area of plate 25's inset panel 25b / plate 48 - extend ownership there. Treat lattice ties on 32 as unusable; the ties above were read from block-face ink profiles in the main sheet area (x<1160 for y<2965)."
+ },
+ {
+  "seam": "31_32",
+  "verdict": "registration",
+  "feature": "13th St block faces SW23/SE22 (31) vs NW48/NE47 (32) and the 6in W. pipe dashes crossing Ave N; also 14th St in crop b",
+  "step_ft": 14,
+  "direction": "plate 32 north of 31 (13th St faces: 31 at crop y 1034/1279, 32 at 990/1243 -> 44/36 px = 13-15 ft; 14th St: 18/11 px = 4-6 ft; 15th St: 0)",
+  "varies_along_seam": true,
+  "plate_to_move": "32",
+  "why_this_plate": "Ave N x is fine (31_32 residual 0; crop width 205 px = 68 ft against the printed 70'), the error is purely 32's y scale/rotation growing from 0 at 15th St to 20 ft at 12th St (see 25_32). 31 agrees with 30, 25 and 24 at 12th/13th.",
+  "proposed_ties": [
+   {
+    "file": "pair_31_32_y.json",
+    "action": "add",
+    "axis": "street",
+    "corridor": "13th St",
+    "a": 31,
+    "b": 32,
+    "a_native": 1362.5,
+    "b_native": 1363.5,
+    "faces": {
+     "31": [
+      1240,
+      1485
+     ],
+     "32": [
+      1241,
+      1486
+     ]
+    },
+    "why_not_one_block_off": "13TH ST. lettered on both (32 prints it in the crop, with 1502-1512 / 1501-1511 runs south and north of it and the NW48/NE47 outlot quarters); on 31 the SE22/SW23 quarters with 1414-1424 / 1413-1423 runs. Both 245 px wide (80'). The next streets (12th at 213/216, 14th at 2520/2522) are tied separately, so one block off is excluded by pitch."
+   },
+   {
+    "file": "pair_31_32_y2.json",
+    "action": "add",
+    "axis": "street",
+    "corridor": "14th St",
+    "a": 31,
+    "b": 32,
+    "a_native": 2520.0,
+    "b_native": 2522.5,
+    "faces": {
+     "31": [
+      2398,
+      2642
+     ],
+     "32": [
+      2401,
+      2644
+     ]
+    },
+    "why_not_one_block_off": "Same argument as 13th: NE47/NW47 on 32 with 1502-1512 south of the line, SE22/SW22 on 31; both 243-244 px wide; 12th/13th/15th tied separately."
+   },
+   {
+    "file": "pair_25_32_y.json",
+    "action": "add",
+    "axis": "street",
+    "corridor": "12th St",
+    "a": 25,
+    "b": 32,
+    "a_native": 3667.5,
+    "b_native": 216.0,
+    "faces": {
+     "25": [
+      3547,
+      3788
+     ],
+     "32": [
+      94,
+      337
+     ]
+    },
+    "why_not_one_block_off": "25 covers 9th-12th, 32 covers 12th-15th; both print 12TH ST. beside the line (32's label at its top margin next to the adjoining numeral 25). 25's SE23 south face carries 1414-1424 (12th St even run), 32's NW48 north face carries 1501-1511 (odd 1500 run east of Ave N) and the avenue frontage restarts at 1201 (12th-13th). 25 faces 3547/3788 (241 px); on 32 only the south face (337) is drawn, the north face coincides with the neatline (~92-94), so the centre is 337-121 = 216 (cross-check: 13th St centre 1363.5 minus the 1153 px pitch = 210). The shared band is only the Ave N corridor, so this is a corner tie."
+   }
+  ],
+  "dry_run": "Same as 25_32: --similarity with the added ties gives scale 2.0509 -> 2.0278, rotation +0.770 -> +0.666 deg, centre (-6,+12) ft, residuals median 3.2 max 6.0 ft; translation-only cannot fit (max 11.3 ft).",
+  "confidence": "high",
+  "note": "Keep pair_31_32.json (Ave N, 3149/251) - it checks out against the faces (31: 3043+106, 32: 140/353 -> 247)."
+ },
+ {
+  "seam": "32_37",
+  "verdict": "registration",
+  "feature": "Ave N at 15th St: the NW 47 west face (plate 32, top right) vs NE 46 west face (plate 38, bottom right) and the duplicated 6in W. pipe run; the 31/37 corner on the left is clean",
+  "step_ft": 15,
+  "direction": "plate 38 east of 32 and 37 (Ave N face-to-face 32|38 = 92 ft and 37|38 = 95 ft against the printed 80'), and plate 38 south of 32/37 by 15-17 ft (15th St measures 285 px = 100 ft on the 32/38 side of the crop vs 245 px = 86 ft on the 31/37 side)",
+  "varies_along_seam": false,
+  "plate_to_move": "38",
+  "why_this_plate": "Plates 32 and 37 agree with each other at the shared corner (15th St centres within 0.2 ft, Ave N centres within 8 px) and 37 agrees with 31 and 36 at 15th St. The step the grader saw is between them and plate 38, which sits 14-19 ft east and 15-17 ft south of both at 15th St while fitting 41 and 42 at 18th St: 38's transform scale is 1.9646 (its 15th->18th span is 6800 mosaic px vs 6900-6945 for every neighbour, i.e. ~2% short) and its Ave N control (37_38: 3211/135) is ~19 ft off. Moving 37 west 12 ft as hinted would break 31_37, 36_37 and 37_41.",
+  "proposed_ties": [
+   {
+    "file": "pair_37_38.json",
+    "action": "replace",
+    "axis": "avenue",
+    "corridor": "Ave N",
+    "a": 37,
+    "b": 38,
+    "a_native": 3182.0,
+    "b_native": 171.0,
+    "faces": {
+     "37": [
+      3061,
+      null
+     ],
+     "38": [
+      null,
+      292
+     ]
+    },
+    "why_not_one_block_off": "Same identity as the accepted control (AVENUE N with adjoining numerals 38/37; 1400/1500 change: SW21 runs 1401-1423 on 37, NW46 runs 1501-1523 on 38). Both plates print 80' in this gutter (crops of u37 east edge and u38 west edge). 37's west block face is at native 3061 mid-plate (3069 top, 3037 bottom: 37 is skewed), 38's east block face at 292 (three bands: 292/293/296), each plate draws about half the roadway then the neatline; centres 3061+121 = 3182 and 292-121 = 171. The accepted 3211/135 are 29 and 36 px off in opposite senses and hold 38 ~19 ft too far east of 37."
+   },
+   {
+    "file": "pair_32_38.json",
+    "action": "add",
+    "axis": "street",
+    "corridor": "15th St",
+    "a": 32,
+    "b": 38,
+    "a_native": 3666.0,
+    "b_native": 216.5,
+    "faces": {
+     "32": [
+      3546,
+      3786
+     ],
+     "38": [
+      96,
+      337
+     ]
+    },
+    "why_not_one_block_off": "32 covers 12th-15th, 38 covers 15th-18th (key maps), so 15th is the only shared street; both print 15TH ST. in the corridor (32 bottom margin, 38 top margin). Hundred-block: 32's SW47 frontage 1401-1428 ends at its south face; 38's SE46 frontage 1501-1523 starts at its north face; 15th St runs 1602-1624 (north, 32) face 1601-1623 (south, 38). Faces read by ink profile at x 1400-2000 (between Ave N 1/2 and Ave O, clear of 32's inset panel): 32 3546/3786 (240 px = 80'), 38 96/337 (241 px)."
+   },
+   {
+    "file": "pair_32_38_x.json",
+    "action": "add",
+    "axis": "avenue",
+    "corridor": "Ave N 1/2",
+    "a": 32,
+    "b": 38,
+    "a_native": 1265.0,
+    "b_native": 1190.0,
+    "faces": {
+     "32": [
+      1160,
+      1370
+     ],
+     "38": [
+      1086,
+      1294
+     ]
+    },
+    "why_not_one_block_off": "Lettered AVENUE N 1/2 vertically in its own roadway on both sheets; it is the 1500/1600 break on 15th St (32: 1508-1524 west of it, 1602-1624 east; 38: 1501-1523 / 1601-1623). Ave N one block west is the 1400/1500 break and printed 70' on 32 / 80' on 38; Ave O one block east is lettered and is the 1600/1700 break. Faces by ink profile: 32 at y 3000-3500 (below the inset panel) 1160/1370, 38 at y 300-800 1086/1294 (both ~208 px = 70')."
+   }
+  ],
+  "dry_run": "localsolve --units 38 with the replaced 37_38 and added 32_38 ties (scratch copy): translation: 7 controls, residuals median 6.6 ft, max 14.1 (38_41 -14.1, 37_38_y lattice -10.8), move (-7,-6) ft - cannot fit; --similarity: 14 samples, residuals median 2.3 ft, max 6.8 (38_41 y -6.8), scale 1.9646 -> 1.9846 (+1.0%), rotation +0.064 -> +0.041 deg, centre moves (-8,-6) ft. Damping stops short of the ~+2% the faces imply; re-solve 38 as a similarity with the lattice 37_38_y (17th) dropped or re-read.",
+  "confidence": "high",
+  "note": "The seam crop is misnamed for this defect: 32 and 37 share only the 15th/Ave N corner point and are mutually consistent; the duplicated pipe run collapses when 38 is fixed. Ave N is drawn 70' on 31/32 and 80' on 37/38/41 (printed), which is source, not registration."
+ },
+ {
+  "seam": "32_38",
+  "verdict": "registration",
+  "feature": "15th St corridor between outlot 47 (32) and 46 (38); the seawall / beach band and SEA WALL double line at the east end",
+  "step_ft": 16,
+  "direction": "plate 38 south of 32 along the whole seam (15th St block faces at crop y 626-630 vs 910-914 in both crops = 283-285 px = 99-100 ft for an 80' street); plus 38 east of 32 by ~15 ft at Ave N shrinking toward Ave O (38's x scale is also short)",
+  "varies_along_seam": false,
+  "plate_to_move": "38",
+  "why_this_plate": "32's south edge agrees with 37 and (via Ave N) 31; 38 disagrees with 32 and 37 at 15th St by 15-17 ft in y and 14-19 ft in x, while agreeing with 41/42 at 18th St - the signature of 38's low scale (1.9646). The beach-band jog of ~90 px at the east end is the same 16 ft y shift projected onto the ~45 deg seawall plus the residual x offset; it is not a source difference.",
+  "proposed_ties": [
+   {
+    "file": "pair_32_38.json",
+    "action": "add",
+    "axis": "street",
+    "corridor": "15th St",
+    "a": 32,
+    "b": 38,
+    "a_native": 3666.0,
+    "b_native": 216.5,
+    "faces": {
+     "32": [
+      3546,
+      3786
+     ],
+     "38": [
+      96,
+      337
+     ]
+    },
+    "why_not_one_block_off": "32 covers 12th-15th, 38 covers 15th-18th (key maps), so 15th is the only shared street; both print 15TH ST. in the corridor (32 bottom margin, 38 top margin). Hundred-block: 32's SW47 frontage 1401-1428 ends at its south face; 38's SE46 frontage 1501-1523 starts at its north face; 15th St runs 1602-1624 (north, 32) face 1601-1623 (south, 38). Faces read by ink profile at x 1400-2000 (between Ave N 1/2 and Ave O, clear of 32's inset panel): 32 3546/3786 (240 px = 80'), 38 96/337 (241 px)."
+   },
+   {
+    "file": "pair_32_38_x.json",
+    "action": "add",
+    "axis": "avenue",
+    "corridor": "Ave N 1/2",
+    "a": 32,
+    "b": 38,
+    "a_native": 1265.0,
+    "b_native": 1190.0,
+    "faces": {
+     "32": [
+      1160,
+      1370
+     ],
+     "38": [
+      1086,
+      1294
+     ]
+    },
+    "why_not_one_block_off": "Lettered AVENUE N 1/2 vertically in its own roadway on both sheets; it is the 1500/1600 break on 15th St (32: 1508-1524 west of it, 1602-1624 east; 38: 1501-1523 / 1601-1623). Ave N one block west is the 1400/1500 break and printed 70' on 32 / 80' on 38; Ave O one block east is lettered and is the 1600/1700 break. Faces by ink profile: 32 at y 3000-3500 (below the inset panel) 1160/1370, 38 at y 300-800 1086/1294 (both ~208 px = 70')."
+   },
+   {
+    "file": "pair_37_38.json",
+    "action": "replace",
+    "axis": "avenue",
+    "corridor": "Ave N",
+    "a": 37,
+    "b": 38,
+    "a_native": 3182.0,
+    "b_native": 171.0,
+    "faces": {
+     "37": [
+      3061,
+      null
+     ],
+     "38": [
+      null,
+      292
+     ]
+    },
+    "why_not_one_block_off": "Same identity as the accepted control (AVENUE N with adjoining numerals 38/37; 1400/1500 change: SW21 runs 1401-1423 on 37, NW46 runs 1501-1523 on 38). Both plates print 80' in this gutter (crops of u37 east edge and u38 west edge). 37's west block face is at native 3061 mid-plate (3069 top, 3037 bottom: 37 is skewed), 38's east block face at 292 (three bands: 292/293/296), each plate draws about half the roadway then the neatline; centres 3061+121 = 3182 and 292-121 = 171. The accepted 3211/135 are 29 and 36 px off in opposite senses and hold 38 ~19 ft too far east of 37."
+   }
+  ],
+  "dry_run": "As for 32_37: --similarity on 38 with these ties gives scale 1.9646 -> 1.9846, rotation +0.064 -> +0.041 deg, centre (-8,-6) ft, residuals median 2.3 max 6.8 ft (38_41 y); translation-only leaves max 14.1 ft.",
+  "confidence": "high",
+  "note": "Alternative cut north of 15th St (grader's second hint) is moot once 38 is rescaled; the compass/scale-bar furniture in the roadway is unchanged."
+ },
+ {
+  "seam": "37_41",
+  "verdict": "registration",
+  "feature": "18th St: block 17 east edge (1224) vs block 18 (1223), NE20/NW20 and SE20/SW20 faces, 6in W. pipe in 12th St and the 8in pipe alleys at Ave M and M 1/2",
+  "step_ft": 9,
+  "direction": "plate 41 east of 37 (Ave M centres 8.8 ft, Ave M 1/2 7.6 ft, Ave N ~5 ft); the 18th St width also changes along the seam (254 px at the west end of crop a to 220 px at the east end of crop b) because 37's lines are tilted ~0.5 deg relative to 41's",
+  "varies_along_seam": true,
+  "plate_to_move": "37",
+  "why_this_plate": "41 fits its other neighbours: Ave L against 40 measures 71-77 ft face-to-face (40_41 grade 4, control read as face +/- 121), Ave N against 42 grade 4, 18th St against 38/42 fine. 37 does not: Ave L against 36 measures only 58-62 ft face-to-face (37 ~20 ft too far west; 36_37 crop shows the same 180 px gap), and 31 (above it) shows the identical squeeze against 30. So the L-N column plates 25/31/37 are held ~12-20 ft too far west by three Ave L ties that were read as centres of the half-drawn roadway strips (24_25 lattice, 30_31, 36_37) while 40_41 was read correctly, and 37 additionally carries a ~0.45 deg rotation error (its native avenues tilt -0.46 deg and streets +0.38 deg, transform rotation -0.012; in the mosaic its streets tilt +0.39 deg vs -0.2 for 36/40/41). Moving 41 west 12 ft as hinted would break 40_41 and 41_42.",
+  "proposed_ties": [
+   {
+    "file": "pair_36_37.json",
+    "action": "replace",
+    "axis": "avenue",
+    "corridor": "Ave L",
+    "a": 36,
+    "b": 37,
+    "a_native": 3214.0,
+    "b_native": 136.0,
+    "faces": {
+     "36": [
+      3091,
+      null
+     ],
+     "37": [
+      null,
+      253
+     ]
+    },
+    "why_not_one_block_off": "Same identity as the accepted control (AVENUE L lettered on both; 36's last column 1602-1628 even, 37's first column 1601-1627 odd; 1100/1200 change). Position corrected to face +/- 121 px: 36's west block face measured at native x 3090-3093 (three bands), 37's east block face at 249-269 (37 is skewed ~0.45 deg in the scan, 257 at mid-plate), so centres 3214 / 136. The accepted 3181/182 are ~33 and ~46 px off and put 37 ~26 ft west of 36. On 37 the corrected centre gives L->M = 1152-136 = 1016 px (matches 1015 on 30/36/40 for the 80 ft avenue) versus 1005-1008 for the 70 ft M->M1/2->N pitches, so it is Ave L and not the alley or Ave M."
+   },
+   {
+    "file": "pair_30_31.json",
+    "action": "replace",
+    "axis": "avenue",
+    "corridor": "Ave L",
+    "a": 30,
+    "b": 31,
+    "a_native": 3230.0,
+    "b_native": 126.0,
+    "faces": {
+     "30": [
+      3107,
+      null
+     ],
+     "31": [
+      null,
+      246
+     ]
+    },
+    "why_not_one_block_off": "Same corridor as the existing control (both plates letter AVENUE L; 1100/1200 hundred-block change; 30's east column 1302-1326 even faces 31's 1301-1327 odd). Only the position changes: each plate draws just its own side of the 80 ft gutter (30: west block face at native x 3107-3109 then the neatline at ~3236; 31: east block face at 244-247, neatline at 82), so the centre is face +/- 121 px (80 ft at 3.02 px/ft, calibrated on 12th/13th St = 241 px and Ave M = 211 px on the same sheets), i.e. 30: 3230, 31: 126. The accepted values 3192/141 are the midpoints of the truncated roadway strips and put 31 ~53 native px (18 ft) too far west. Cross-check: Ave K centre on 30 = 2215 (control 24_30_x 2213.8), K->L = 1015 px = the 35+block+40 ft pitch; on 31 L->M = 1148-126 = 1022 px, M->M1/2 = 1005, M1/2->N = 997."
+   },
+   {
+    "file": "pair_24_25.json",
+    "action": "replace",
+    "axis": "avenue",
+    "corridor": "Ave L",
+    "a": 24,
+    "b": 25,
+    "a_native": 3223.0,
+    "b_native": 96.0,
+    "faces": {
+     "24": [
+      3102,
+      null
+     ],
+     "25": [
+      null,
+      217
+     ]
+    },
+    "why_not_one_block_off": "The lattice tie took the midpoints of the half-drawn strips (24: 3102-3308 -> 3205; 25: 14-217 -> 114). 24's west block face is at 3102 (block 71, 1123 frontage), 25's east block face at 217 (block 11, 1201 frontage; 24_25 grader: 1123|1201 match), both plates print 80' in the gutter; centres = 3102+121 = 3223 and 217-121 = 96. Same corridor (Ave L, 1100/1200 change; Ave K on 24 at 2202, Ave M on 25 at 1116 separately lettered)."
+   },
+   {
+    "file": "pair_37_38.json",
+    "action": "replace",
+    "axis": "avenue",
+    "corridor": "Ave N",
+    "a": 37,
+    "b": 38,
+    "a_native": 3182.0,
+    "b_native": 171.0,
+    "faces": {
+     "37": [
+      3061,
+      null
+     ],
+     "38": [
+      null,
+      292
+     ]
+    },
+    "why_not_one_block_off": "Same identity as the accepted control (AVENUE N with adjoining numerals 38/37; 1400/1500 change: SW21 runs 1401-1423 on 37, NW46 runs 1501-1523 on 38). Both plates print 80' in this gutter (crops of u37 east edge and u38 west edge). 37's west block face is at native 3061 mid-plate (3069 top, 3037 bottom: 37 is skewed), 38's east block face at 292 (three bands: 292/293/296), each plate draws about half the roadway then the neatline; centres 3061+121 = 3182 and 292-121 = 171. The accepted 3211/135 are 29 and 36 px off in opposite senses and hold 38 ~19 ft too far east of 37."
+   }
+  ],
+  "dry_run": "localsolve --units 37 with 36_37 and 37_38 replaced (scratch copy): 10 controls, residuals median 3.2 ft, max 8.2 (36_37 +8.2, 31_37_x -7.5 because 31 is still held west), move (+13,+1) ft. With the whole column free (--units 25 31 37 41 32, all three Ave L ties + 37_38 replaced): 25 (+10,-4), 31 (+17,-3), 37 (+18,-1), 41 (+4,0), 32 (+16,-8) ft, all residuals within 1.3 ft. --similarity on 37 alone: scale 1.9948 -> 1.9857, rotation -0.012 -> +0.018 deg, centre (+12,+2) ft, max 11.7 ft (37_38_y lattice) - the rotation is not recovered because the lattice y ties on 37 are inconsistent with the corrected x ties.",
+  "confidence": "medium",
+  "note": "The column shift of 16-18 ft at Ave L over-corrects Ave N by ~10-15 ft against 41/42 (31's and 37's Ave L->N spans are 6075-6079 mosaic px vs 6036 on 41, i.e. their x scale is ~0.65% high) and the Sealy-L column itself sits ~5 ft east of the core Ave K/Sealy grid; so the honest fix is a similarity re-solve of 25/31/37 with the corrected Ave L ties, not a plain translation. Expect 37 to move roughly +12 ft east and rotate +0.4 deg."
+ },
+ {
+  "seam": "37_40",
+  "verdict": "registration",
+  "feature": "18th St / Ave L corner: block 17 west face (37) vs block 18 west face (41) and the 6in W. pipe at the 1212/1214 lot line; the 77/78 side (36/40) is aligned",
+  "step_ft": 10,
+  "direction": "plate 41 east of 37 by ~10 ft at Ave L (crop: 1045 vs 1075 display px = 37 px); 18th St width 235 px on the 36/40 side vs 254 px on the 37/41 side (41's north face ~5 ft south of 37's south face relative to 36/40)",
+  "varies_along_seam": false,
+  "plate_to_move": "37",
+  "why_this_plate": "Same finding as 37_41: at this corner Ave L measures 62 ft face-to-face between 36 and 37 (18th St end) but 71-72 ft between 40 and 41, so 37 is ~20 ft and 41 ~9 ft too far west; the 10 ft jog is the difference. 41 agrees with 40 (40_41 grade 4) and 42; 37 disagrees with 36 (Ave L squeeze) and 41. The grader's hint (41 west 9 ft) would widen the 37/41 jog into a 40/41 one.",
+  "proposed_ties": [
+   {
+    "file": "pair_36_37.json",
+    "action": "replace",
+    "axis": "avenue",
+    "corridor": "Ave L",
+    "a": 36,
+    "b": 37,
+    "a_native": 3214.0,
+    "b_native": 136.0,
+    "faces": {
+     "36": [
+      3091,
+      null
+     ],
+     "37": [
+      null,
+      253
+     ]
+    },
+    "why_not_one_block_off": "Same identity as the accepted control (AVENUE L lettered on both; 36's last column 1602-1628 even, 37's first column 1601-1627 odd; 1100/1200 change). Position corrected to face +/- 121 px: 36's west block face measured at native x 3090-3093 (three bands), 37's east block face at 249-269 (37 is skewed ~0.45 deg in the scan, 257 at mid-plate), so centres 3214 / 136. The accepted 3181/182 are ~33 and ~46 px off and put 37 ~26 ft west of 36. On 37 the corrected centre gives L->M = 1152-136 = 1016 px (matches 1015 on 30/36/40 for the 80 ft avenue) versus 1005-1008 for the 70 ft M->M1/2->N pitches, so it is Ave L and not the alley or Ave M."
+   },
+   {
+    "file": "pair_30_31.json",
+    "action": "replace",
+    "axis": "avenue",
+    "corridor": "Ave L",
+    "a": 30,
+    "b": 31,
+    "a_native": 3230.0,
+    "b_native": 126.0,
+    "faces": {
+     "30": [
+      3107,
+      null
+     ],
+     "31": [
+      null,
+      246
+     ]
+    },
+    "why_not_one_block_off": "Same corridor as the existing control (both plates letter AVENUE L; 1100/1200 hundred-block change; 30's east column 1302-1326 even faces 31's 1301-1327 odd). Only the position changes: each plate draws just its own side of the 80 ft gutter (30: west block face at native x 3107-3109 then the neatline at ~3236; 31: east block face at 244-247, neatline at 82), so the centre is face +/- 121 px (80 ft at 3.02 px/ft, calibrated on 12th/13th St = 241 px and Ave M = 211 px on the same sheets), i.e. 30: 3230, 31: 126. The accepted values 3192/141 are the midpoints of the truncated roadway strips and put 31 ~53 native px (18 ft) too far west. Cross-check: Ave K centre on 30 = 2215 (control 24_30_x 2213.8), K->L = 1015 px = the 35+block+40 ft pitch; on 31 L->M = 1148-126 = 1022 px, M->M1/2 = 1005, M1/2->N = 997."
+   },
+   {
+    "file": "pair_24_25.json",
+    "action": "replace",
+    "axis": "avenue",
+    "corridor": "Ave L",
+    "a": 24,
+    "b": 25,
+    "a_native": 3223.0,
+    "b_native": 96.0,
+    "faces": {
+     "24": [
+      3102,
+      null
+     ],
+     "25": [
+      null,
+      217
+     ]
+    },
+    "why_not_one_block_off": "The lattice tie took the midpoints of the half-drawn strips (24: 3102-3308 -> 3205; 25: 14-217 -> 114). 24's west block face is at 3102 (block 71, 1123 frontage), 25's east block face at 217 (block 11, 1201 frontage; 24_25 grader: 1123|1201 match), both plates print 80' in the gutter; centres = 3102+121 = 3223 and 217-121 = 96. Same corridor (Ave L, 1100/1200 change; Ave K on 24 at 2202, Ave M on 25 at 1116 separately lettered)."
+   }
+  ],
+  "dry_run": "See 37_41: 37 alone (+13,+1) ft with 36_37/37_38 replaced; column re-solve 37 (+18,-1), 41 (+4,0) ft, residuals <= 1.3 ft; 37 also needs ~+0.4 deg rotation which only a similarity solve with consistent y ties will recover.",
+  "confidence": "medium",
+  "note": "The doubled 80' numeral at x~1080 is cut furniture and disappears once one plate owns the Ave L roadway."
+ },
+ {
+  "seam": "30_31",
+  "verdict": "registration",
+  "feature": "Ave L between blocks 72/73/74 (30) and 12/13/14 (31): the avenue is drawn 80' on both plates but measures 172-190 px face-to-face on the mosaic (57-63 ft)",
+  "step_ft": 20,
+  "direction": "plate 31 too far west (overlapping 30) by 17 ft at 12th St growing to 23 ft at 15th St (30's east block face at crop x 719-721, 31's west face at 892; 80' should be 241 px)",
+  "varies_along_seam": true,
+  "plate_to_move": "31",
+  "why_this_plate": "The accepted 30_31 control (3192/141) is the centre of each plate's truncated roadway strip, not face +/- 121, and is 53 native px (18 ft) wrong; the current placement satisfies it (residual +2 ft), so 31 sits 18-20 ft west of where 30's Ave L faces put it. 30 agrees with 24, 25, 29 and 36 (Ave K within 2-4 ft; 12th St within 1.5 ft); 31 shows the same westward error against 36 at the 15th St corner (Ave L 61 ft) and matches 37, which is equally displaced. The growth of the overlap from north to south (17 -> 23 ft) is 31's scale/rotation (transform scale 2.0096, 12th->15th span 6957 mosaic px vs 6907 on 30).",
+  "proposed_ties": [
+   {
+    "file": "pair_30_31.json",
+    "action": "replace",
+    "axis": "avenue",
+    "corridor": "Ave L",
+    "a": 30,
+    "b": 31,
+    "a_native": 3230.0,
+    "b_native": 126.0,
+    "faces": {
+     "30": [
+      3107,
+      null
+     ],
+     "31": [
+      null,
+      246
+     ]
+    },
+    "why_not_one_block_off": "Same corridor as the existing control (both plates letter AVENUE L; 1100/1200 hundred-block change; 30's east column 1302-1326 even faces 31's 1301-1327 odd). Only the position changes: each plate draws just its own side of the 80 ft gutter (30: west block face at native x 3107-3109 then the neatline at ~3236; 31: east block face at 244-247, neatline at 82), so the centre is face +/- 121 px (80 ft at 3.02 px/ft, calibrated on 12th/13th St = 241 px and Ave M = 211 px on the same sheets), i.e. 30: 3230, 31: 126. The accepted values 3192/141 are the midpoints of the truncated roadway strips and put 31 ~53 native px (18 ft) too far west. Cross-check: Ave K centre on 30 = 2215 (control 24_30_x 2213.8), K->L = 1015 px = the 35+block+40 ft pitch; on 31 L->M = 1148-126 = 1022 px, M->M1/2 = 1005, M1/2->N = 997."
+   },
+   {
+    "file": "pair_24_25.json",
+    "action": "replace",
+    "axis": "avenue",
+    "corridor": "Ave L",
+    "a": 24,
+    "b": 25,
+    "a_native": 3223.0,
+    "b_native": 96.0,
+    "faces": {
+     "24": [
+      3102,
+      null
+     ],
+     "25": [
+      null,
+      217
+     ]
+    },
+    "why_not_one_block_off": "The lattice tie took the midpoints of the half-drawn strips (24: 3102-3308 -> 3205; 25: 14-217 -> 114). 24's west block face is at 3102 (block 71, 1123 frontage), 25's east block face at 217 (block 11, 1201 frontage; 24_25 grader: 1123|1201 match), both plates print 80' in the gutter; centres = 3102+121 = 3223 and 217-121 = 96. Same corridor (Ave L, 1100/1200 change; Ave K on 24 at 2202, Ave M on 25 at 1116 separately lettered)."
+   }
+  ],
+  "dry_run": "localsolve --units 31 with 30_31 replaced (scratch copy): 8 controls, residuals median 2.3 ft, max 15.9 (30_31 +15.9, 31_37_x +11.1), move (+5,-2) ft - 31 is held by 31_37_x/31_32 to the still-misplaced 37 and 32. Column re-solve (25,31,37,41,32 with all Ave L ties + 37_38 replaced): 31 moves (+17,-3) ft, residuals <= 1.3 ft. --similarity on 31 alone (current ties): scale 2.0096 -> 2.0104, rotation +0.349 -> +0.333, no help.",
+  "confidence": "high",
+  "note": "Fix the tie regardless of the solve strategy. As with 37_41, the full column translation over-corrects at Ave N; a similarity re-solve of 25/31/37 with the corrected Ave L ties is the coherent fix (31's x-scale ~0.65% high)."
+ },
+ {
+  "seam": "30_35",
+  "verdict": "ok",
+  "feature": "15th St / Sealy corner: blocks 254/194 over 255/195; the doubled 8in W. pipe run and label east of lot 902",
+  "step_ft": 1,
+  "direction": "plate 35 vs 30 at the shared corner: +3.6 ft east, -0.5 ft north (aligned); the two pipe rows 30 px apart lie east of Sealy, i.e. on plates 30 and 36, and are the 30_36 step (15th St there measures 275 px = 91 ft vs 248 px = 82 ft west of Sealy in the same crop)",
+  "varies_along_seam": false,
+  "plate_to_move": null,
+  "why_this_plate": "The 30/35 pair itself is registered (block edges 802/801 and 914/913 align within 10 px as the grader says; the corner point differs by <1 ft in y). The defect the grader saw belongs to the 30_36 seam and is dealt with there (plate 36 north / rescaled). The accepted 30_35 control (3650/234) is 11-12 px off the block faces in opposite senses and currently pulls 35 north (residual -7/-8 ft); replacing it with the face midpoints removes that tension before any re-solve.",
+  "proposed_ties": [
+   {
+    "file": "pair_30_35.json",
+    "action": "replace",
+    "axis": "street",
+    "corridor": "15th St",
+    "a": 30,
+    "b": 35,
+    "a_native": 3661.0,
+    "b_native": 222.0,
+    "faces": {
+     "30": [
+      3541,
+      3781
+     ],
+     "35": [
+      101,
+      343
+     ]
+    },
+    "why_not_one_block_off": "Identity as accepted (15TH ST. printed on both, 1400/1500 change). Position corrected to the block-face midpoints at the shared Sealy corner: 30 east side 3541/3781 -> 3661, 35 east side 101/343 -> 222; the accepted 3650/234 are 11 and 12 px off in opposite senses (an 8 ft pull on 35 that the other ties currently resist; residual -7/-8 ft in localsolve)."
+   }
+  ],
+  "dry_run": "localsolve --units 35 (current): 12 controls, median 1.8 ft, max 8.1 (30_35 -8.1), move (0,0). With 30_35 replaced and 30_36 replaced, --units 30 35 36: 30 (0,+3), 35 (0,+1), 36 (0,-2) ft, residuals <= 1.6 ft.",
+  "confidence": "high",
+  "note": "Cut: once 36 is registered the duplicated pipe row is a plain ownership choice (give the 15th St roadway east of Sealy to one plate)."
+ },
+ {
+  "seam": "35_36",
+  "verdict": "registration",
+  "feature": "Ave I (Sealy): 16th St between blocks 255/256 vs 195/196 and 17th St between 256/257 vs 196/197, block borders and T.H. dots",
+  "step_ft": 9,
+  "direction": "plate 36 south of 35: 9 ft at 16th St (crop a faces 996/1242 vs 1023/1264 = 27/22 px), 3-4 ft at 17th St (crop b 1223/1467 vs 1234/1476), 0 at 18th St, ~11 ft at 15th St",
+  "varies_along_seam": true,
+  "plate_to_move": "36",
+  "why_this_plate": "The offset grows linearly from 18th St (where 35 and 36 both fit 40) to 15th St, so it is a y-scale mismatch, not a shift: 35's 15th->18th span is 6965 mosaic px, 36's 6900, the core sheets 39/40 give 6930-6945 and the grid pitch 6946. 36 (transform scale 1.9951, the lowest in the cluster after 38) is short by ~0.5% and 35 (2.0113) long by ~0.3%; 36 also sits 11-16 ft south of 30 along 15th St (30_36) and 7 ft south of the grid there, while 35 agrees with 29, 30 and 28 at 15th. Translating 36 north 8 ft as hinted would break 36_40/36_39 at 18th St.",
+  "proposed_ties": [
+   {
+    "file": "pair_35_36_y2.json",
+    "action": "add",
+    "axis": "street",
+    "corridor": "16th St",
+    "a": 35,
+    "b": 36,
+    "a_native": 1372.0,
+    "b_native": 1368.0,
+    "faces": {
+     "35": [
+      1250,
+      1494
+     ],
+     "36": [
+      1247,
+      1489
+     ]
+    },
+    "why_not_one_block_off": "Cross-axis tie in the shared Ave I band. 16th St is the street between blocks 255 and 256 (35) and 195 and 196 (36): 35_36 grader reads lot rows 814-824/813-823 north and south of it, 36 side 902-912/901-911; avenue frontage 1601-1629 lies south of it and 1501-1527 north of it on both sheets. Faces by ink profile at 35 x 2400-3000 (1250/1494) and 36 x 300-900 (1247/1489), both 242-244 px = 80'. 15th (3664/219 via 30_36; 31_36) and 17th (2534/2524.5, existing lattice tie) bracket it."
+   },
+   {
+    "file": "pair_30_36.json",
+    "action": "replace",
+    "axis": "street",
+    "corridor": "15th St",
+    "a": 30,
+    "b": 36,
+    "a_native": 3664.0,
+    "b_native": 219.0,
+    "faces": {
+     "30": [
+      3546,
+      3787
+     ],
+     "36": [
+      102,
+      343
+     ]
+    },
+    "why_not_one_block_off": "Identity as the accepted control (15TH ST. on both, 1402-1428 north / 1501-1523 south). Position corrected: the observer used the detection candidate y=3599 as 30's north face, but the block-face rule is at 3546 (x 300-900) / 3541 (x 2400-3000), south face 3787/3781 (241 px = 80'); on 36 the faces are 102/343 (west) and 95/336 (east), not 94.7/296 (296 is a lot line). Centres 3664 / 219. The accepted 3693/195 hold 36 about 53 native px (18 ft) too far south relative to 30."
+   }
+  ],
+  "dry_run": "localsolve --units 35 36 --similarity with the 16th St tie added and 30_36/30_35 replaced (scratch copy): 36 scale 1.9951 -> 2.0045 (+0.47%), rotation +0.104 -> +0.159 deg, centre moves (0,-3) ft; 35 scale 2.0113 -> 2.0081 (-0.16%), centre (-1,+1) ft; residuals median ~2.5 ft, max 4.7 (36_37_y lattice 17th, 30_36 -4.4). Translation-only for 35,36: 35 (0,+1), 36 (0,-2) ft, max 2.0 ft but leaves the scale gradient.",
+  "confidence": "medium",
+  "note": "Re-solve 36 as a similarity; the 17th St lattice tie 35_36_y (2534/2524.5) checks out against the faces and can stay. Paper-tone step is cosmetic."
+ },
+ {
+  "seam": "24_31",
+  "verdict": "cut-only",
+  "feature": "12th St / Ave L corner: block 71 south face (24) vs block 11 (25), 72 north face (30) vs 12 (31); the 8in W. pipe run painted by both the north and south plates",
+  "step_ft": 5,
+  "direction": "plate 24's south face is 6 ft north of plate 25's (crop y 673 vs 692); plate 30's north face 3 ft north of 31's (923 vs 931); 25/31 agree (239 px = 80'); the two pipe rows are 34 px (12 ft) apart, more than the 3-6 ft face step, so the plates also draw the run at different offsets in the roadway",
+  "varies_along_seam": false,
+  "plate_to_move": "24",
+  "why_this_plate": "Residual registration is small and confined to plate 24's east end: 24 sits 3-5 ft north of 25, 30 and 31 at Ave L although 24_30 is clean further west (grade 4), i.e. a ~0.4 deg rotation error on 24 (its 12th St line tilts -0.71 deg in the mosaic vs -0.2 to -0.3 for 25/30/31); 24 also has the known west-end scale problem (20_24). 25, 30 and 31 agree with each other. The visible defect (doubled pipe, doubled 80' numerals, arrow) is mostly cut ownership plus a source difference in where the 8in main is drawn.",
+  "proposed_ties": [
+   {
+    "file": "pair_24_25_y2.json",
+    "action": "add",
+    "axis": "street",
+    "corridor": "12th St",
+    "a": 24,
+    "b": 25,
+    "a_native": 3661.0,
+    "b_native": 3667.5,
+    "faces": {
+     "24": [
+      3542,
+      3780
+     ],
+     "25": [
+      3547,
+      3788
+     ]
+    },
+    "why_not_one_block_off": "Cross-axis tie in the shared Ave L band at 24's east end. 12TH ST. printed on both; block 71 south face 1102-1124 (24) and block 11 south face 1202-1224 (25) run along it, avenue frontage 1101-1128 north / 1201-1228 south. Faces by ink profile: 24 x 2400-3000 3542/3780 (238 px), 25 x 2300-3000 3547/3788 (241 px). 11th St (2521/2517) is the existing lattice tie one block north."
+   }
+  ],
+  "dry_run": "localsolve --units 24 (current): 8 controls, median 2.7 ft, max 6.2, move (+1,0) ft; --similarity: 16 samples, median 1.3 max 3.0 ft, scale 1.9857 -> 1.9866, rotation +0.244 -> +0.248 deg, centre (0,0) - the present ties do not see the east-end tilt, so the added 12th St tie (and a re-read of 24's west end for 20_24) is needed before a similarity solve will move it.",
+  "confidence": "low",
+  "note": "Cut fix as the grader says: move the cut ~30 px south so one plate owns the pipe run and its 80' numerals. Registration here is a 3-6 ft residual on 24, not the 7 ft the doubled pipe suggests."
+ },
+ {
+  "seam": "30_36",
+  "verdict": "registration",
+  "feature": "15th St between blocks 134/135 and 74/75: the street measures 270-276 px (95-97 ft) between the block faces against the printed 80'; the 8in/6in pipe labels and dashes painted by both plates ~30 px apart",
+  "step_ft": 15,
+  "direction": "plate 36 south of 30 (30's south face at crop y 658-664, 36's north face at 931-936, constant from the scale bar to Ave L in both crops; 11 ft by the transforms, 15 ft by the crop)",
+  "varies_along_seam": false,
+  "plate_to_move": "36",
+  "why_this_plate": "The accepted 30_36 control (3693/195) is wrong by 53 native px: the observer took the detection candidate y=3599 as 30's north face (the face rule is at 3546) and a lot line at 296 as 36's south face (the face is at 336-343); it holds 36 ~18 ft south of 30 and currently has a +6.5/+8.4 ft residual because the other ties resist it. 30 agrees with 24, 25, 29 and 35 at 12th and 15th St; 36 agrees with 40 at 18th but is short in y (see 35_36), so its north edge is the wrong one. The grader saw only the doubled labels, but the curbs do not align - the corridor is 15 ft too wide.",
+  "proposed_ties": [
+   {
+    "file": "pair_30_36.json",
+    "action": "replace",
+    "axis": "street",
+    "corridor": "15th St",
+    "a": 30,
+    "b": 36,
+    "a_native": 3664.0,
+    "b_native": 219.0,
+    "faces": {
+     "30": [
+      3546,
+      3787
+     ],
+     "36": [
+      102,
+      343
+     ]
+    },
+    "why_not_one_block_off": "Identity as the accepted control (15TH ST. on both, 1402-1428 north / 1501-1523 south). Position corrected: the observer used the detection candidate y=3599 as 30's north face, but the block-face rule is at 3546 (x 300-900) / 3541 (x 2400-3000), south face 3787/3781 (241 px = 80'); on 36 the faces are 102/343 (west) and 95/336 (east), not 94.7/296 (296 is a lot line). Centres 3664 / 219. The accepted 3693/195 hold 36 about 53 native px (18 ft) too far south relative to 30."
+   },
+   {
+    "file": "pair_35_36_y2.json",
+    "action": "add",
+    "axis": "street",
+    "corridor": "16th St",
+    "a": 35,
+    "b": 36,
+    "a_native": 1372.0,
+    "b_native": 1368.0,
+    "faces": {
+     "35": [
+      1250,
+      1494
+     ],
+     "36": [
+      1247,
+      1489
+     ]
+    },
+    "why_not_one_block_off": "Cross-axis tie in the shared Ave I band. 16th St is the street between blocks 255 and 256 (35) and 195 and 196 (36): 35_36 grader reads lot rows 814-824/813-823 north and south of it, 36 side 902-912/901-911; avenue frontage 1601-1629 lies south of it and 1501-1527 north of it on both sheets. Faces by ink profile at 35 x 2400-3000 (1250/1494) and 36 x 300-900 (1247/1489), both 242-244 px = 80'. 15th (3664/219 via 30_36; 31_36) and 17th (2534/2524.5, existing lattice tie) bracket it."
+   },
+   {
+    "file": "pair_30_35.json",
+    "action": "replace",
+    "axis": "street",
+    "corridor": "15th St",
+    "a": 30,
+    "b": 35,
+    "a_native": 3661.0,
+    "b_native": 222.0,
+    "faces": {
+     "30": [
+      3541,
+      3781
+     ],
+     "35": [
+      101,
+      343
+     ]
+    },
+    "why_not_one_block_off": "Identity as accepted (15TH ST. printed on both, 1400/1500 change). Position corrected to the block-face midpoints at the shared Sealy corner: 30 east side 3541/3781 -> 3661, 35 east side 101/343 -> 222; the accepted 3650/234 are 11 and 12 px off in opposite senses (an 8 ft pull on 35 that the other ties currently resist; residual -7/-8 ft in localsolve)."
+   }
+  ],
+  "dry_run": "localsolve --units 36 with 30_36 replaced (scratch copy): 10 controls, median 2.2 ft, max 8.8 (30_36 -8.8, 36_37_y -6.0), move (0,-2) ft - held by 31_36 and the 17th St lattice ties; --units 30 36: 30 (0,+4), 36 (0,-2) ft, max 3.4 ft; --units 35 36 --similarity (with 16th St tie): 36 scale +0.47%, centre (0,-3) ft, 35 scale -0.16%, max residual 4.7 ft. A similarity re-solve of 36 (scale up ~0.5%, anchored at 18th) plus ~3 ft south on 30 closes the gap.",
+  "confidence": "medium",
+  "note": "The doubled pipe labels then need the cut moved ~20 px so one plate owns the 15th St roadway; the tiny white notch at the east edge is ownership."
+ },
+ {
+  "seam": "31_36",
+  "verdict": "cut-only",
+  "feature": "15th St / Ave L corner: blocks 74/75 (30/36, west of Ave L) and 14/15 (31/37, east); the 8in W.P. / 6in W.P. label rows and dashed runs painted by both the north and south plates",
+  "step_ft": 4,
+  "direction": "between 31 and 36 themselves the corner is close: 36 is 3.6 ft south of 31 at 15th St (31 at 3675 vs 36 at 216: 245 px street width on the 31/37 side of the crop); the doubled labels lie in the roadway west of Ave L, i.e. on plates 30/36, and are the 30_36 defect; Ave L at the corner measures ~61 ft face-to-face (the 30_31 / 36_37 squeeze)",
+  "varies_along_seam": false,
+  "plate_to_move": "31",
+  "why_this_plate": "Nothing in the 31/36 pair needs moving on its own evidence: their shared corner agrees to 3-4 ft in y and the 31_36 control (3677/216) checks against the faces (31: 3554/3796, 36: 95/337). The visible duplication is ownership in the 15th St roadway (west of Ave L, plates 30/36) and the clipped glyph at the junction is cut furniture; the underlying x squeeze of Ave L is fixed by moving 31 (and 37) east with the corrected Ave L ties, which will change what falls on this corner.",
+  "proposed_ties": [
+   {
+    "file": "pair_30_31.json",
+    "action": "replace",
+    "axis": "avenue",
+    "corridor": "Ave L",
+    "a": 30,
+    "b": 31,
+    "a_native": 3230.0,
+    "b_native": 126.0,
+    "faces": {
+     "30": [
+      3107,
+      null
+     ],
+     "31": [
+      null,
+      246
+     ]
+    },
+    "why_not_one_block_off": "Same corridor as the existing control (both plates letter AVENUE L; 1100/1200 hundred-block change; 30's east column 1302-1326 even faces 31's 1301-1327 odd). Only the position changes: each plate draws just its own side of the 80 ft gutter (30: west block face at native x 3107-3109 then the neatline at ~3236; 31: east block face at 244-247, neatline at 82), so the centre is face +/- 121 px (80 ft at 3.02 px/ft, calibrated on 12th/13th St = 241 px and Ave M = 211 px on the same sheets), i.e. 30: 3230, 31: 126. The accepted values 3192/141 are the midpoints of the truncated roadway strips and put 31 ~53 native px (18 ft) too far west. Cross-check: Ave K centre on 30 = 2215 (control 24_30_x 2213.8), K->L = 1015 px = the 35+block+40 ft pitch; on 31 L->M = 1148-126 = 1022 px, M->M1/2 = 1005, M1/2->N = 997."
+   },
+   {
+    "file": "pair_36_37.json",
+    "action": "replace",
+    "axis": "avenue",
+    "corridor": "Ave L",
+    "a": 36,
+    "b": 37,
+    "a_native": 3214.0,
+    "b_native": 136.0,
+    "faces": {
+     "36": [
+      3091,
+      null
+     ],
+     "37": [
+      null,
+      253
+     ]
+    },
+    "why_not_one_block_off": "Same identity as the accepted control (AVENUE L lettered on both; 36's last column 1602-1628 even, 37's first column 1601-1627 odd; 1100/1200 change). Position corrected to face +/- 121 px: 36's west block face measured at native x 3090-3093 (three bands), 37's east block face at 249-269 (37 is skewed ~0.45 deg in the scan, 257 at mid-plate), so centres 3214 / 136. The accepted 3181/182 are ~33 and ~46 px off and put 37 ~26 ft west of 36. On 37 the corrected centre gives L->M = 1152-136 = 1016 px (matches 1015 on 30/36/40 for the 80 ft avenue) versus 1005-1008 for the 70 ft M->M1/2->N pitches, so it is Ave L and not the alley or Ave M."
+   }
+  ],
+  "dry_run": "Column re-solve (25,31,37,41,32 with the corrected Ave L ties): 31 (+17,-3), 37 (+18,-1) ft, residuals <= 1.3 ft; 31_36 itself keeps residual 0.3 ft.",
+  "confidence": "medium",
+  "note": "Cut as the grader says: move the cut ~30 px north east of Ave L so plate 36/37 own the pipe rows, and mask the clipped symbol. Re-grade after the Ave L column fix and the 30_36 fix, since both change this corner."
+ }
+]
