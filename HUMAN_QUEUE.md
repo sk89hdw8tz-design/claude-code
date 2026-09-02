@@ -900,3 +900,53 @@ had been carried at −4.3° when every other plate sits within ±1.7°.
 347.3 ft / 15.6 ft. Tiling gate: one piece, 492 px² overlap, the 84|85
 source hole (0.251%). Round 3 of the census follows on the re-rendered
 crops; the state before this solve is commit 10dc96a.
+
+## HQ-27 · Session 018 resumed as the only session: panels, wharf, and sheets 48/74 — APPLIED
+
+The owner stopped session 019 (HQ-23) and asked this one to carry the task
+from its head. Everything it did is kept (min-ink cuts, plate scales, the
+similarity solve; the core did not move). Added on top, all on plate
+evidence:
+
+**Neatline trim (revisits HQ-20).** `tools/neatline.py` found a rule on
+every plate — the outermost chain of dark columns that runs most of a
+side, judged against the plate's own paper level — 40–60 px inside the
+paper edge on three sides and often too faint to chain on the fourth
+(fallback: paper edge + 50). Every unit's `extent` is now inside it
+(`extent_scan` keeps the old value); the adjoining numerals and brackets
+sit inside the rule, in the roadway, and are handled by ownership as the
+master does. Tiling gate unchanged by the trim.
+
+**Composite plates split (26, 48, 85, 93, 99).** Each detached inset is
+its own unit (`26b`, `48b`, `85b`, `93b`, `99a`) whose transform is the
+parent's plus a native shift measured on the plate: the shared avenue's
+block face and the shared street's face with the printed roadway width
+(`units.json` notes carry the numbers). The parent's footprint excludes the
+inset's frame. For 99 all three observer controls were read on the right
+strip, so it keeps the unit's transform and the left strip (34th–36th,
+S½–T) is the derived panel — it lands between 74 and 82 where 74 and 99
+print each other's numbers. The ground under 85's inset (cemetery,
+40th–42nd K–L) is the one remaining hole: a source gap, 17.8M px².
+
+**Wharf plate 5 in the city.** Panels `5a`/`5b` from the archival scan
+unreduced (100 ft/in), on the master's frozen joint transforms, verified
+against sheets 7/9 (every street lines up). The core plates draw the whole
+wharf yard at 50 ft/in, so each seam with 5a/5b sits 200 native px inside
+the core plate's neatline and the min-ink path finds the pier-shed ends;
+5a|5b is cut on 22nd St (the panel break the master's controls record).
+
+**Sheets 48 and 74 were one street row north of their row.** 74's outlot
+quarters S.E. 136 / N.E. 161 sit directly above 81/82's N.W. 136 and
+N.W./S.W. 161 and beside 99's S.E. 161; 73, 81, 82 and 99 print '74' on the
+edge facing that ground; plate 48 prints 30TH ST at its top, 33RD ST at
+its bottom, '66' on its west edge and '74' on its south. Two lattice ties
+(66|74_y, 48|60_y) had taken their street identity from the placement and
+held both plates a row north (the 36M px² "hole" beside 73 was 74's
+place). Those are REJECTED in their files; three plate-read street ties
+(48|66 31st, 73|74 35th, 74|82 36th) added; `tools/localsolve.py` moved
+only 48 and 74 (~1,190 ft each; residuals ≤ 15 ft; nothing else touched).
+The same audit over every accepted tie (face index vs key-map coverage)
+flags nothing else of that class.
+
+Gate after all of it: 100 regions, one piece, ~400 px² overlap, one
+source hole. Seam census round 3 follows on this state.

@@ -2898,7 +2898,12 @@
       520
      ]
     ]
-   ]
+   ],
+   "seam_axis": {
+    "default": "x",
+    "5a": "y",
+    "5b": "y"
+   }
   },
   "5b": {
    "file": 5,
@@ -2939,7 +2944,12 @@
    "avenue_slots": null,
    "source_image": "work/sheets/1912w/u5.jpg",
    "scale_note": "plate drawn at 100 ft/in; archival scan used unreduced (working_sources op=full)",
-   "exclude_native": []
+   "exclude_native": [],
+   "seam_axis": {
+    "default": "x",
+    "5a": "y",
+    "5b": "y"
+   }
   }
  }
 }

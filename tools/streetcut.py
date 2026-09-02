@@ -274,6 +274,13 @@ def main():
                 continue
             d = cen[v] - cen[u]
             axis = "x" if abs(d[0]) >= abs(d[1]) else "y"
+            # a unit may say which way its seams run: the wharf panels are
+            # tall strips whose centres sit far from the core plates' in y,
+            # yet every seam with a core plate is the frontage line (x)
+            for a_, b_ in ((u, v), (v, u)):
+                sa = r.units[a_].get("seam_axis")
+                if isinstance(sa, dict):
+                    axis = sa.get(b_, sa.get("default", axis))
             k = 0 if axis == "x" else 1
             b = O.bounds
             span = (b[3] - b[1]) if axis == "x" else (b[2] - b[0])
