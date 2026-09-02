@@ -6,13 +6,26 @@
  "axis": "street",
  "observer": "lattice (tools/faces.py)",
  "method": "corridor centre = midpoint of the two block faces read off the plate's own street chain; identity from the current placement (the two readings are within 65 ft, a block is 396 ft) and the key maps' coverage",
- "a_native": 3684.5,
- "b_native": 219.5,
+ "a_native": 3670.0,
+ "b_native": 220.0,
  "corridor": "36th St",
  "roadway_px": [
   245,
   245
  ],
  "disagreement_before_ft": 65.3,
- "status": "ACCEPTED"
+ "status": "ACCEPTED",
+ "a_native_previous": 3684.5,
+ "b_native_previous": 219.5,
+ "faces": {
+  "70": [
+   3549,
+   3659
+  ],
+  "78": [
+   100,
+   340
+  ]
+ },
+ "revision": "centre re-read from the plates' own block faces (review C): Optional tidy-up, same defect in miniature: the lattice tie uses 70's neat line (3807) as a face. Sheet 70's K-L block north face is 3562 with the corridor printed '80'', its M-M 1/2 block is run onto the centreline rule at 3659 (matching 78's rule at 219); centre ~3670 (3549+120 at the east end). P"
 }

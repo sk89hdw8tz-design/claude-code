@@ -10,5 +10,7 @@
  "a_native": 3664,
  "b_native": 208,
  "why_not_one_block_off": "Sheet 62 covers 30th-33rd (avenues I-L) and sheet 71 covers 33rd-36th (avenues M 1/2-O); 33rd St is the only corridor both draw, and both letter '33RD ST.' in it. On sheet 62 the last block north carries avenue numbers 3227 3228 (32nd-33rd = 3200 block) and the even 33rd St frontage 1010 1012 ... 1024, 1102 1104 ... 1122; on sheet 71 the first block south carries 3302 3311 / 3301 3303 (3300 block) and the odd frontage 1509 1511 ... 1523, 1601 1603 ... 1621, with '20' alley and '25' notes. The 3200/3300 turn is at this corridor. Detection's nearest candidates (62 y=3765, 71 y=762) were both off the corridor; taken instead as the midpoint of the block-face rules y=3545/3783 (62) and y=88/327 (71), 238-239 px = 80 ft, the width printed as '80' on the neighbouring streets.",
- "status": "ACCEPTED"
+ "status": "REJECTED",
+ "rejected_by": "session 018fqghgw6, review C",
+ "reason": "Not a shared corridor: sheet 62 covers Ave I-L, sheet 71 Ave M 1/2-O; their footprints do not intersect, and localsolve evaluates the pair a plate-width apart where the 0.3 deg grid tilt alone is worth ~10 ft."
 }

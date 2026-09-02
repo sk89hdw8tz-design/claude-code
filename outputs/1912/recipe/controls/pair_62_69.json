@@ -6,7 +6,7 @@
  "axis": "avenue",
  "observer": "lattice (tools/faces.py)",
  "method": "corridor centre = midpoint of the two block faces read off the plate's own street chain; identity from the current placement (the two readings are within 10 ft, a block is 360 ft); a cross-axis tie: the corridor both plates draw across their shared band",
- "a_native": 1130.0,
+ "a_native": 1134.5,
  "b_native": 2160.0,
  "corridor": "?",
  "roadway_px": [
@@ -15,5 +15,18 @@
  ],
  "disagreement_before_ft": 10.1,
  "cross_axis": true,
- "status": "ACCEPTED"
+ "status": "ACCEPTED",
+ "a_native_previous": 1130.0,
+ "b_native_previous": 2160.0,
+ "faces": {
+  "62": [
+   983,
+   1286
+  ],
+  "69": [
+   2009,
+   2311
+  ]
+ },
+ "revision": "centre re-read from the plates' own block faces (review C): Sheet 62 prints '150'' in it with the 6in W. pipe, sheet 69 '150'' with the 10in W. pipe; block 212 (lots 902-924, west) and 152 (1002-1024, east) on 62 face 213 (901-923) and 153 (1001-1023) on 69 - the 900/1000 hundred change is on this avenue on both plates. Ave I one block west carries 800/900 ("
 }

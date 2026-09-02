@@ -165,7 +165,7 @@ def dp_cut(r, u, v, axis, coord, O, lower=None):
     # one copy wins (57|58, 76|84 tests). Ink the path itself crosses is
     # charged on top so a label is not sliced in half.
     ink_only = cost.copy()
-    best = None
+    cands = []
     low_u = lower if lower in (u, v) else u
     high_u = v if low_u == u else u
     inkL = np.where(mask == 1, raw[low_u], 0.0)
@@ -209,10 +209,28 @@ def dp_cut(r, u, v, axis, coord, O, lower=None):
         ink_sum = float(sum(io[y, x] for x, y in enumerate(path)))
         cols = np.arange(len(path)); rows = np.array(path)
         visible = float(cumL[rows, cols].sum() + (totH[cols] - cumH[rows, cols]).sum())
-        score = visible + CROSS_W * ink_sum * (1.0 if off == 0.0 else 1.05)
-        if best is None or score < best[0]:
-            best = (score, path)
-    path = best[1]
+        if os.environ.get("DP_DEBUG"):
+            print(f"    dp {u}|{v} off {off:+6.1f}: visible {visible:12.0f} crossed {ink_sum:9.0f}")
+        cands.append((off, ink_sum, visible, path))
+    # The centreline candidate weaves round each plate's label on its cheaper
+    # side and so crosses the least ink while leaving BOTH labels showing
+    # (76|84: the two '39TH ST' are 800 px apart along the street). A side
+    # candidate keeps to one side of the lettering strip, so one plate's
+    # label is hidden under the other's ownership. Prefer the side that
+    # crosses less ink; take the centreline only when both side paths cut
+    # through far more ink (a band that is not a roadway) or the band is too
+    # narrow for a side path to clear the centre strip.
+    centre = cands[0]
+    # between the two sides, the one leaving less ink visible in the band
+    # is the one whose hidden copy of the lettering was the larger
+    sides = sorted(cands[1:], key=lambda c: c[2])
+    if side >= 40.0 and sides and min(c[1] for c in sides) <= 2.0 * centre[1] + 1.0:
+        best = sides[0]
+    else:
+        best = centre
+    if os.environ.get("DP_DEBUG"):
+        print(f"    dp {u}|{v}: chose off {best[0]:+.0f} (side {side:.0f})")
+    path = best[3]
     pts = []
     for x, y in enumerate(path):
         if axis == "y":
