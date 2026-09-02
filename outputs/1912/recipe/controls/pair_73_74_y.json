@@ -1,0 +1,24 @@
+{
+ "pair": [
+  73,
+  74
+ ],
+ "axis": "street",
+ "observer": "session 018fqghgw6 (plate faces via tools/faces.py chains; identity from the plates)",
+ "method": "corridor centre = midpoint of the two block faces of the named street on each plate; identity from the printed street names, the adjoining-sheet numerals and the outlot quarter numbering",
+ "corridor": "35th St",
+ "a_native": 2501.0,
+ "b_native": 2528.0,
+ "faces_native": {
+  "73": [
+   2380,
+   2622
+  ],
+  "74": [
+   2413,
+   2643
+  ]
+ },
+ "why_not_one_block_off": "Both plates cover 33rd-36th (key maps; 73 prints '74' on its east edge; 74's blocks S.E. 136 and N.E. 161 lie between its 35th and 36th, the quarters above 81/82's N.W. 136 and N.W./S.W. 161). 35th is the third chain on both: 73 faces [2380,2622], 74 faces [2413,2643]; 34th (73 1340 / 74 1369.5) agrees within 30 px.",
+ "status": "ACCEPTED"
+}

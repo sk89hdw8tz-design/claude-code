@@ -4,10 +4,10 @@
   "11"
  ],
  "axis": "avenue",
- "corridor": "wharf frontage: sheet 11 drawn-content limit (bay-side blank band edge)",
+ "corridor": "wharf frontage: 200 native px inside sheet 11's bay-side neatline",
  "observer": "session 018fqghgw6 (plates/edge_margins.json first_content_px / ink profile)",
- "a_native": 6384.9,
- "b_native": 1250,
- "why_not_one_block_off": "Not a street: the seam between the wharf plate and sheet 11 is placed at the column where sheet 11 stops drawing (its bay-side blank band, 1250 native px), so sheet 11 owns everything it maps at 50 ft/in and the 100 ft/in wharf plate supplies only the piers and bay beyond. The panel-side coordinate is the same mosaic column through the frozen sheet-5 transform.",
+ "a_native": 5330.2,
+ "b_native": 200,
+ "why_not_one_block_off": "Not a street. Sheet 11 draws the whole wharf yard at 50 ft/in right up to its bay-side neatline (tracks, the slip, the wharf-front blocks), so it owns everything it maps; the seam sits 200 native px (~70 ft) inside its neatline, and the min-ink path within the band settles where the wharf plate's pier sheds end and the block plate's yard begins, as the master's yard cut (D-020) did. The wharf plate supplies only the piers and bay beyond.",
  "status": "ACCEPTED"
 }

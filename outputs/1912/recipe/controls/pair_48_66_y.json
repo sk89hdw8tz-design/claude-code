@@ -1,0 +1,24 @@
+{
+ "pair": [
+  48,
+  66
+ ],
+ "axis": "street",
+ "observer": "session 018fqghgw6 (plate faces via tools/faces.py chains; identity from the plates)",
+ "method": "corridor centre = midpoint of the two block faces of the named street on each plate; identity from the printed street names, the adjoining-sheet numerals and the outlot quarter numbering",
+ "corridor": "31st St",
+ "a_native": 1375.0,
+ "b_native": 1364.5,
+ "faces_native": {
+  "48": [
+   1253,
+   1497
+  ],
+  "66": [
+   1251,
+   1478
+  ]
+ },
+ "why_not_one_block_off": "Both plates cover 30th-33rd (48 prints 30TH ST at its top edge and 33RD ST at its bottom; 66's key map is 30th-33rd and it prints '48'... plate 48 prints '66' on its west edge). 31st is the second street chain on both: 48 faces [1253,1497], 66 faces [1251,1478]; 32nd (48 2529 / 66 2527) agrees to 2 px.",
+ "status": "ACCEPTED"
+}

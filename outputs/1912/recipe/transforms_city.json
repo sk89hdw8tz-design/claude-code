@@ -765,7 +765,7 @@
   },
   "48": {
    "tier": "control",
-   "how": "shared-corridor lines, similarity solve",
+   "how": "shared-corridor lines, similarity solve; translation re-solved locally (tools/localsolve.py)",
    "m": [
     [
      2.004457626551003,
@@ -777,8 +777,8 @@
     ]
    ],
    "t": [
-    39128.68571804438,
-    10322.262907887281
+    39128.434909717995,
+    17215.592685855878
    ]
   },
   "49": {
@@ -1219,7 +1219,7 @@
   },
   "74": {
    "tier": "control",
-   "how": "shared-corridor lines, similarity solve",
+   "how": "shared-corridor lines, similarity solve; translation re-solved locally (tools/localsolve.py)",
    "m": [
     [
      1.979727718682152,
@@ -1231,8 +1231,8 @@
     ]
    ],
    "t": [
-    37245.87781344359,
-    17241.762558844133
+    37157.9116504206,
+    24185.67989486669
    ]
   },
   "75": {

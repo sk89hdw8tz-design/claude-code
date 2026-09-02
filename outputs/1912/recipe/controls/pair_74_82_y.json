@@ -1,0 +1,24 @@
+{
+ "pair": [
+  74,
+  82
+ ],
+ "axis": "street",
+ "observer": "session 018fqghgw6 (plate faces via tools/faces.py chains; identity from the plates)",
+ "method": "corridor centre = midpoint of the two block faces of the named street on each plate; identity from the printed street names, the adjoining-sheet numerals and the outlot quarter numbering",
+ "corridor": "36th St",
+ "a_native": 3685.5,
+ "b_native": 217.5,
+ "faces_native": {
+  "74": [
+   3563,
+   3808
+  ],
+  "82": [
+   95,
+   340
+  ]
+ },
+ "why_not_one_block_off": "74's bottom street is 36th (key map 33rd-36th; its outlot quarters S.E. 136 and N.E. 161 end there) and 82's top street is 36th (82 prints '74' at its top edge; its N.W./S.W. 161 and S.W. 138 quarters are the southern halves of 74's outlots 161 and 136). 74 faces [3563,3808], 82 faces [95,340].",
+ "status": "ACCEPTED"
+}

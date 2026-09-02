@@ -15,5 +15,7 @@
  ],
  "disagreement_before_ft": 142.7,
  "cross_axis": true,
- "status": "ACCEPTED"
+ "status": "REJECTED",
+ "rejected_by": "session 018fqghgw6 (HQ-27)",
+ "why_rejected": "The two plates share no street: 60 covers 27th-30th and 48 covers 30th-33rd (plate 48 prints 30TH ST at its top and 33RD ST at its bottom, '66' on its west edge and '74' on its south edge). The tie matched 48's 32nd St to 60's 29th St under a placement that already had 48 one row north (chained to 74 by the 33rd St tie)."
 }
