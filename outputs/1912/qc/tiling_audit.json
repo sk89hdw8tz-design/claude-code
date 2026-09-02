@@ -1,19 +1,55 @@
 {
  "year": 1912,
- "regions": 100,
- "union_area_px2": 4062232759.0,
- "sum_of_regions_px2": 4062233040.3,
- "overlap_area_px2": 281.4,
+ "regions": 106,
+ "union_area_px2": 4537855161.8,
+ "sum_of_regions_px2": 4537856932.4,
+ "overlap_area_px2": 1770.6,
  "overlap_fraction": 0.0,
  "disjoint_pieces": 1,
  "interior_gaps": [
   {
-   "area_px2": 17789041.8,
-   "width_px": 1674.0,
+   "area_px2": 17844130.5,
+   "width_px": 1705.0,
    "kind": "hole",
    "centroid": [
-    13050.6,
-    44140.2
+    13045.0,
+    44143.3
+   ]
+  },
+  {
+   "area_px2": 183901.9,
+   "width_px": 116.8,
+   "kind": "hole",
+   "centroid": [
+    -13226.1,
+    -14621.6
+   ]
+  },
+  {
+   "area_px2": 105796.2,
+   "width_px": 39.1,
+   "kind": "inlet",
+   "centroid": [
+    20469.4,
+    -29325.4
+   ]
+  },
+  {
+   "area_px2": 90708.9,
+   "width_px": 115.3,
+   "kind": "inlet",
+   "centroid": [
+    3273.0,
+    -38236.0
+   ]
+  },
+  {
+   "area_px2": 65605.1,
+   "width_px": 73.1,
+   "kind": "inlet",
+   "centroid": [
+    49149.8,
+    38772.8
    ]
   },
   {
@@ -26,6 +62,42 @@
    ]
   },
   {
+   "area_px2": 61148.4,
+   "width_px": 76.8,
+   "kind": "inlet",
+   "centroid": [
+    -11890.3,
+    12494.3
+   ]
+  },
+  {
+   "area_px2": 56926.0,
+   "width_px": 11.9,
+   "kind": "hairline",
+   "centroid": [
+    38152.0,
+    7798.5
+   ]
+  },
+  {
+   "area_px2": 46919.8,
+   "width_px": 74.0,
+   "kind": "hole",
+   "centroid": [
+    15426.8,
+    -31185.9
+   ]
+  },
+  {
+   "area_px2": 38349.9,
+   "width_px": 71.4,
+   "kind": "inlet",
+   "centroid": [
+    -8654.8,
+    -38171.5
+   ]
+  },
+  {
    "area_px2": 36520.4,
    "width_px": 7.9,
    "kind": "hairline",
@@ -35,16 +107,79 @@
    ]
   },
   {
-   "area_px2": 14230.6,
-   "width_px": 2.8,
+   "area_px2": 32488.1,
+   "width_px": 4.7,
    "kind": "hairline",
    "centroid": [
-    -11832.2,
-    98.5
+    26229.1,
+    -18690.9
+   ]
+  },
+  {
+   "area_px2": 25360.9,
+   "width_px": 7.3,
+   "kind": "hairline",
+   "centroid": [
+    13771.8,
+    -35571.4
+   ]
+  },
+  {
+   "area_px2": 17324.6,
+   "width_px": 25.9,
+   "kind": "hairline",
+   "centroid": [
+    33641.5,
+    3172.7
+   ]
+  },
+  {
+   "area_px2": 15518.4,
+   "width_px": 3.7,
+   "kind": "hairline",
+   "centroid": [
+    -11830.9,
+    197.6
+   ]
+  },
+  {
+   "area_px2": 11456.6,
+   "width_px": 10.2,
+   "kind": "hairline",
+   "centroid": [
+    -21174.6,
+    24190.4
+   ]
+  },
+  {
+   "area_px2": 7056.6,
+   "width_px": 16.7,
+   "kind": "hairline",
+   "centroid": [
+    33751.8,
+    3549.0
+   ]
+  },
+  {
+   "area_px2": 5609.1,
+   "width_px": 17.6,
+   "kind": "hairline",
+   "centroid": [
+    -8955.2,
+    -31201.4
+   ]
+  },
+  {
+   "area_px2": 2752.3,
+   "width_px": 8.4,
+   "kind": "hairline",
+   "centroid": [
+    27501.8,
+    -17111.5
    ]
   }
  ],
- "unclaimed_area_px2": 17903389.3,
+ "unclaimed_area_px2": 18711170.4,
  "pairwise_overlaps": [],
  "min_reported_area_px2": 2500.0,
  "inlet_close_px": 700.0
