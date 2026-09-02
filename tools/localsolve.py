@@ -49,14 +49,110 @@ def point(r, u, nat, vert):
             else np.array([(e[0] + e[2]) / 2.0, nat]))
 
 
+def similarity(r, a, ppf):
+    """Solve M=[[A,-B],[B,A]], t for the free units from line controls.
+
+    A control is the plate's street/avenue line; the two plates' lines must
+    coincide along the length of their shared band, so each control is
+    sampled where the band starts and ends (through the current transforms),
+    which makes rotation and scale observable (as tools/netsolve2.py does).
+    Unknowns per free unit: (A, B, tx, ty); mosaic coordinate of a native
+    point (x, y) is A x - B y + tx (x) or B x + A y + ty (y): linear.
+    Damping keeps each free unit's (A, B) near its current values.
+    """
+    from shapely.geometry import Polygon
+    free = {u: i for i, u in enumerate(a.units)}
+    rows, rhs, tags = [], [], []
+
+    def band_samples(ua, ub):
+        fa, fb = r.footprint(ua), r.footprint(ub)
+        O = fa.intersection(fb)
+        if O.is_empty:
+            return None
+        return O.bounds
+
+    for f, ua, ub, vert, na, nb in controls(r):
+        if ua not in free and ub not in free:
+            continue
+        b = band_samples(ua, ub)
+        if b is None:
+            continue
+        k = 0 if vert else 1
+        # two sample points along the band on each plate's native line
+        for frac in (0.15, 0.85):
+            eq = np.zeros(4 * len(free)); c = 0.0
+            for u, nat, sign in ((ua, na, 1.0), (ub, nb, -1.0)):
+                M, t = r.sheet_matrix(u)
+                Minv = np.linalg.inv(M)
+                # the along-band mosaic coordinate at this fraction, taken back to native
+                if vert:
+                    ym = b[1] + frac * (b[3] - b[1])
+                    # native point on the line x=nat whose mosaic y is ym
+                    p_nat = np.array([nat, (Minv @ (np.array([0.0, ym]) - t))[1]])
+                    p_nat[1] = ((ym - t[1]) - M[1, 0] * nat) / M[1, 1]
+                else:
+                    xm = b[0] + frac * (b[2] - b[0])
+                    p_nat = np.array([((xm - t[0]) + M[0, 1] * 0) / M[0, 0], nat])
+                    p_nat[0] = ((xm - t[0]) - M[0, 1] * nat) / M[0, 0]
+                x, y = p_nat
+                if u in free:
+                    i = free[u]
+                    if vert:   # mosaic x = A x - B y + tx
+                        eq[4*i] += sign * x; eq[4*i+1] += -sign * y; eq[4*i+2] += sign
+                    else:      # mosaic y = B x + A y + ty
+                        eq[4*i] += sign * y; eq[4*i+1] += sign * x; eq[4*i+3] += sign
+                else:
+                    pm = M @ p_nat + t
+                    c -= sign * pm[k]
+            rows.append(eq); rhs.append(c); tags.append((f, ua, ub, "x" if vert else "y", frac))
+    # damping toward the current A, B (weight in px per unit of A,B ~ plate half-size)
+    W_DAMP = 3000.0
+    for u, i in free.items():
+        M, t = r.sheet_matrix(u)
+        for j, val in ((0, M[0, 0]), (1, M[1, 0])):
+            eq = np.zeros(4 * len(free)); eq[4*i+j] = W_DAMP
+            rows.append(eq); rhs.append(W_DAMP * val); tags.append(("damp", u, "", "AB"[j], 0))
+    A_, b_ = np.array(rows), np.array(rhs)
+    sol, *_ = np.linalg.lstsq(A_, b_, rcond=None)
+    res = A_ @ sol - b_
+    ctl = [(tg, rr) for tg, rr in zip(tags, res) if tg[0] != "damp"]
+    print(f"{len(ctl)} line samples touch {a.units}; residuals after (ft): median "
+          f"{np.median(np.abs([rr for _, rr in ctl]))/ppf:.1f}, max {np.abs([rr for _, rr in ctl]).max()/ppf:.1f}")
+    for (f, ua, ub, ax, frac), rr in sorted(ctl, key=lambda z: -abs(z[1]))[:12]:
+        print(f"   {f:28s} {ax} @{frac:.2f} {rr/ppf:+7.1f} ft")
+    doc = json.load(open(os.path.join(r.dir, "transforms_city.json")))
+    for u, i in free.items():
+        A, B, tx, ty = sol[4*i:4*i+4]
+        M, t = r.sheet_matrix(u)
+        s_old, s_new = float(np.hypot(M[0, 0], M[1, 0])), float(np.hypot(A, B))
+        r_old, r_new = np.degrees(np.arctan2(M[1, 0], M[0, 0])), np.degrees(np.arctan2(B, A))
+        c = np.array([1663.0, 1949.0])
+        mv = ((np.array([[A, -B], [B, A]]) @ c + np.array([tx, ty])) - (M @ c + t)) / ppf
+        print(f"unit {u}: scale {s_old:.4f} -> {s_new:.4f} ({(s_new/s_old-1)*100:+.2f}%), "
+              f"rotation {r_old:+.3f} -> {r_new:+.3f} deg, centre moves ({mv[0]:+.0f}, {mv[1]:+.0f}) ft")
+        if a.apply:
+            doc["sheets"][u]["m"] = [[float(A), float(-B)], [float(B), float(A)]]
+            doc["sheets"][u]["t"] = [float(tx), float(ty)]
+            doc["sheets"][u]["scale"] = s_new; doc["sheets"][u]["theta_deg"] = float(r_new)
+            doc["sheets"][u]["how"] = (doc["sheets"][u].get("how", "") +
+                                       "; similarity re-solved locally from line controls (tools/localsolve.py)")
+    if a.apply:
+        json.dump(doc, open(os.path.join(r.dir, "transforms_city.json"), "w"), indent=1)
+        print("applied to transforms_city.json")
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--year", required=True, choices=["1912"])
     ap.add_argument("--units", nargs="+", required=True)
     ap.add_argument("--apply", action="store_true")
+    ap.add_argument("--similarity", action="store_true",
+                    help="solve rotation and scale too, from the controls as lines")
     a = ap.parse_args()
     r = Recipe(int(a.year))
     ppf = px_per_ft(r)
+    if a.similarity:
+        return similarity(r, a, ppf)
     free = {u: i for i, u in enumerate(a.units)}
     rows, rhs, tags = [], [], []
     for f, ua, ub, vert, na, nb in controls(r):

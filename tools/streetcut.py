@@ -103,6 +103,7 @@ DP_SCALE = 4           # mosaic px per cost cell (0.69 ft)
 DP_HALF = 320.0        # px either side of the control line the path may wander
 DP_PULL = 0.2          # cost per cell of distance from the control line (ink is 0-255)
 DP_DILATE = 13         # cells (~52 mosaic px, 9 ft): merges lettering and both plates' copies of it
+DP_SIDE = 120.0        # px: side candidates run between the lot-number column at the block face and the street name at the centre
 
 
 def dp_cut(r, u, v, axis, coord, O):
@@ -147,28 +148,50 @@ def dp_cut(r, u, v, axis, coord, O):
                      for px, py in np.array(O.exterior.coords)], np.int32)
     cv2.fillPoly(mask, [ring], 1)
     cost = np.where(mask == 1, cost, BIG)
-    # pull toward the control line
-    if axis == "y":
-        cost += DP_PULL * np.abs((y0 + np.arange(H) * DP_SCALE - coord) / DP_SCALE)[:, None]
-    else:
-        cost += DP_PULL * np.abs((x0 + np.arange(W) * DP_SCALE - coord) / DP_SCALE)[None, :]
-        cost = cost.T                              # march along the seam
-    Hc, Wc = cost.shape
-    dp = cost.copy()
-    back = np.zeros_like(dp, np.int8)
-    for x in range(1, Wc):
-        prev = dp[:, x - 1]
-        st = np.vstack([np.roll(prev, 1), prev, np.roll(prev, -1)])
-        st[0, 0] = BIG * 2
-        st[2, -1] = BIG * 2
-        ch = st.argmin(axis=0)
-        dp[:, x] += st[ch, np.arange(Hc)]
-        back[:, x] = ch - 1
-    yend = int(dp[:, -1].argmin())
-    path = [yend]
-    for x in range(Wc - 1, 0, -1):
-        path.append(int(path[-1]) + int(back[path[-1], x]))
-    path = path[::-1]
+    # Three candidate paths: pulled to the control line, and pulled to a line
+    # DP_SIDE px either side of it (just inside the block faces). Both plates
+    # letter the street name in the roadway; a path that zigzags round each
+    # label on its cheaper side leaves both (or neither) showing, whereas a
+    # path that keeps to ONE side of the roadway shows exactly one plate's
+    # label (76|84 test). The candidate crossing the least ink wins; ties go
+    # to the centreline.
+    ink_only = cost.copy()
+    best = None
+    # the band is the plates' overlap, often narrower than the roadway once
+    # footprints stop at the neatline (57|58 overlap by 21 ft): keep the side
+    # targets inside it
+    across = (y1 - y0) if axis == "y" else (x1 - x0)
+    side = min(DP_SIDE, max(0.0, across / 2.0 - 3 * DP_SCALE))
+    for off in (0.0, -side, side):
+        target = coord + off
+        c = ink_only.copy()
+        if axis == "y":
+            c += DP_PULL * np.abs((y0 + np.arange(H) * DP_SCALE - target) / DP_SCALE)[:, None]
+        else:
+            c += DP_PULL * np.abs((x0 + np.arange(W) * DP_SCALE - target) / DP_SCALE)[None, :]
+            c = c.T                                   # march along the seam
+        Hc, Wc = c.shape
+        dp = c.copy()
+        back = np.zeros_like(dp, np.int8)
+        for x in range(1, Wc):
+            prev = dp[:, x - 1]
+            st = np.vstack([np.roll(prev, 1), prev, np.roll(prev, -1)])
+            st[0, 0] = BIG * 2
+            st[2, -1] = BIG * 2
+            ch = st.argmin(axis=0)
+            dp[:, x] += st[ch, np.arange(Hc)]
+            back[:, x] = ch - 1
+        yend = int(dp[:, -1].argmin())
+        path = [yend]
+        for x in range(Wc - 1, 0, -1):
+            path.append(int(path[-1]) + int(back[path[-1], x]))
+        path = path[::-1]
+        io = ink_only if axis == "y" else ink_only.T
+        ink_sum = float(sum(io[y, x] for x, y in enumerate(path)))
+        score = ink_sum * (1.0 if off == 0.0 else 1.05)
+        if best is None or score < best[0]:
+            best = (score, path)
+    path = best[1]
     pts = []
     for x, y in enumerate(path):
         if axis == "y":

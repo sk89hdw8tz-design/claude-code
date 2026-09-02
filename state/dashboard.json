@@ -2,26 +2,26 @@
  "project": {
   "map": "Galveston Sanborn 1912 full-city mosaic",
   "year": 1912,
-  "stage": "seam census round 3",
+  "stage": "correction round",
   "status": "WORKING",
   "start_time": "2026-09-01T22:05Z",
-  "last_update": "2026-09-02T16:33Z",
-  "git_commit": "3019df5",
+  "last_update": "2026-09-02T17:05Z",
+  "git_commit": "1e46039",
   "objective": "Finish the 1912 full-city mosaic to print-ready quality: session 018 carrying on from session 019 head; panels split, wharf in, 48/74 fixed; complete seam census, corrections, final deliverables."
  },
  "progress": {
-  "overall_pct": 60,
+  "overall_pct": 68,
   "stage_pct": 40,
-  "tasks_done": 6,
+  "tasks_done": 7,
   "tasks_total": 11,
-  "current_task": "seam census round 3 (all band + corner seams on the current state; subagent graders)",
-  "next_task": "correction round from the census; periphery furniture pass",
+  "current_task": "correction round: DP cut retune (one label per shared street), plate-number exclusions, panels 20b/25b/54b + 32 exclusion, registration reviews A-D (subagents)",
+  "next_task": "re-cut, re-crop affected seams, census round 4; then wharf plates 2/3/4/6; final render",
   "blockers": []
  },
  "eta": {
-  "range": "4-7 hours remaining",
+  "range": "3-6 hours remaining",
   "confidence": "MEDIUM",
-  "reason": "census crops ~30 min + grading ~30 min per round; one correction round expected; final publish ~40 min plus verification"
+  "reason": "registration reviews ~30 min; one more census round on affected seams ~40 min; publish ~40 min; wharf plates 2/3/4/6 optional +1 h"
  },
  "tasks": [
   {
@@ -85,18 +85,18 @@
   },
   {
    "name": "complete seam census",
-   "status": "ACTIVE",
-   "pct": 5,
+   "status": "PASSED",
+   "pct": 100,
    "weight": 20,
    "deps": [
     "seam/source ownership"
    ],
-   "accept": "rounds 1-2 by session 019 (144 band seams); round 3 on the current state must cover every band AND corner seam incl. panels"
+   "accept": "round 3: 230 seams graded by 12 graders from tiled crops covering every seam (33/66/40/75/16); 63 periphery windows by 3 reviewers"
   },
   {
    "name": "correction round",
    "status": "ACTIVE",
-   "pct": 60,
+   "pct": 40,
    "weight": 14,
    "deps": [
     "complete seam census"
@@ -140,20 +140,20 @@
   "controls_accepted": "319 + 5 wharf + 1 panel-break + 3 plate-read street ties; 2 lattice ties rejected (HQ-27)",
   "controls_audited": "all 242 width-tested against plate lattices (widthcheck.py); 50 avenue controls framing-checked (ctlcheck.py, 3 flagged on composite plates)",
   "controls_questionable": "21 (weak-lattice plates) + the composite-plate observer reads",
-  "seams_total": "~275 (band + corner), recount at round 3",
-  "seams_reviewed": "288 (rounds 1-2, prior state)",
-  "seams_passed": 24,
-  "seams_failed": 120,
-  "seams_remaining": "all, on the current state",
+  "seams_total": 230,
+  "seams_reviewed": 230,
+  "seams_passed": "99 (score>=4) + 40 at 3",
+  "seams_failed": "91 (score<=2) before corrections",
+  "seams_remaining": 0,
   "duplicated_road_failures": "round 1: 58 misplacement, 112 step, 73 duplicated label (before the scale fix)",
-  "duplicated_label_failures": "NOT MEASURED",
-  "split_building_failures": "NOT MEASURED",
-  "rail_utility_discontinuities": "NOT MEASURED",
-  "plate_margin_intrusions": "extents trimmed; periphery furniture pass pending",
-  "ownership_gaps": 0,
-  "source_gaps": "1 (cemetery under 85 inset, 17.8M px2)",
-  "unresolved_defects": "UNKNOWN",
-  "qc_pass_rate": 16.7,
+  "duplicated_label_failures": "55 flagged (cut placement; fix in progress)",
+  "split_building_failures": 1,
+  "rail_utility_discontinuities": "36 utility + 5 rail flagged (mostly doubled pipe labels at cuts)",
+  "plate_margin_intrusions": "93 plate-number/title boxes excluded (units.json furniture_native); 1 margin case (18_19) pending",
+  "ownership_gaps": "~30 corner slivers -> renderer sliver fallback",
+  "source_gaps": "cemetery under 85 inset; Gulf corners beyond seawall plates; wharf south of pier 28 (sheets 2/3/4/6 unplaced)",
+  "unresolved_defects": "registration steps at ~15 pairs under review",
+  "qc_pass_rate": 43.0,
   "final_render_status": "NOT STARTED",
   "seams_band": 171,
   "seams_corner": 81,
@@ -166,7 +166,7 @@
    "task": "periphery review windows 0-20",
    "status": "done",
    "start": "2026-09-02T17:05Z",
-   "end": "",
+   "end": "2026-09-02T17:25Z",
    "evidence": "outputs/1912/qc/periphery/review_0.json",
    "result": "accepted (findings being triaged)"
   },
@@ -175,125 +175,161 @@
    "task": "periphery review windows 21-41",
    "status": "done",
    "start": "2026-09-02T17:05Z",
-   "end": "",
+   "end": "2026-09-02T17:25Z",
    "evidence": "outputs/1912/qc/periphery/review_1.json",
    "result": "accepted (findings being triaged)"
   },
   {
    "id": "periphery-2",
    "task": "periphery review windows 42-62",
-   "status": "running",
+   "status": "done",
    "start": "2026-09-02T17:05Z",
-   "end": "",
+   "end": "2026-09-02T17:25Z",
    "evidence": "outputs/1912/qc/periphery/review_2.json",
    "result": "accepted (findings being triaged)"
   },
   {
    "id": "grader-00",
-   "task": "seam census round 3 batch 00 (~29 crops)",
-   "status": "running",
+   "task": "census round 3 batch 00",
+   "status": "done",
    "start": "2026-09-02T17:20Z",
-   "end": "",
+   "end": "2026-09-02T17:45Z",
    "evidence": "outputs/1912/qc/seams/grades_round3/grader_00.json",
-   "result": "pending"
+   "result": "accepted"
   },
   {
    "id": "grader-01",
-   "task": "seam census round 3 batch 01 (~29 crops)",
-   "status": "running",
+   "task": "census round 3 batch 01",
+   "status": "done",
    "start": "2026-09-02T17:20Z",
-   "end": "",
+   "end": "2026-09-02T17:45Z",
    "evidence": "outputs/1912/qc/seams/grades_round3/grader_01.json",
-   "result": "pending"
+   "result": "accepted"
   },
   {
    "id": "grader-02",
-   "task": "seam census round 3 batch 02 (~29 crops)",
-   "status": "running",
+   "task": "census round 3 batch 02",
+   "status": "done",
    "start": "2026-09-02T17:20Z",
-   "end": "",
+   "end": "2026-09-02T17:45Z",
    "evidence": "outputs/1912/qc/seams/grades_round3/grader_02.json",
-   "result": "pending"
+   "result": "accepted"
   },
   {
    "id": "grader-03",
-   "task": "seam census round 3 batch 03 (~29 crops)",
-   "status": "running",
+   "task": "census round 3 batch 03",
+   "status": "done",
    "start": "2026-09-02T17:20Z",
-   "end": "",
+   "end": "2026-09-02T17:45Z",
    "evidence": "outputs/1912/qc/seams/grades_round3/grader_03.json",
-   "result": "pending"
+   "result": "accepted"
   },
   {
    "id": "grader-04",
-   "task": "seam census round 3 batch 04 (~29 crops)",
-   "status": "running",
+   "task": "census round 3 batch 04",
+   "status": "done",
    "start": "2026-09-02T17:20Z",
-   "end": "",
+   "end": "2026-09-02T17:45Z",
    "evidence": "outputs/1912/qc/seams/grades_round3/grader_04.json",
-   "result": "pending"
+   "result": "accepted"
   },
   {
    "id": "grader-05",
-   "task": "seam census round 3 batch 05 (~29 crops)",
-   "status": "running",
+   "task": "census round 3 batch 05",
+   "status": "done",
    "start": "2026-09-02T17:20Z",
-   "end": "",
+   "end": "2026-09-02T17:45Z",
    "evidence": "outputs/1912/qc/seams/grades_round3/grader_05.json",
-   "result": "pending"
+   "result": "accepted"
   },
   {
    "id": "grader-06",
-   "task": "seam census round 3 batch 06 (~29 crops)",
-   "status": "running",
+   "task": "census round 3 batch 06",
+   "status": "done",
    "start": "2026-09-02T17:20Z",
-   "end": "",
+   "end": "2026-09-02T17:45Z",
    "evidence": "outputs/1912/qc/seams/grades_round3/grader_06.json",
-   "result": "pending"
+   "result": "accepted"
   },
   {
    "id": "grader-07",
-   "task": "seam census round 3 batch 07 (~29 crops)",
-   "status": "running",
+   "task": "census round 3 batch 07",
+   "status": "done",
    "start": "2026-09-02T17:20Z",
-   "end": "",
+   "end": "2026-09-02T17:45Z",
    "evidence": "outputs/1912/qc/seams/grades_round3/grader_07.json",
-   "result": "pending"
+   "result": "accepted"
   },
   {
    "id": "grader-08",
-   "task": "seam census round 3 batch 08 (~29 crops)",
-   "status": "running",
+   "task": "census round 3 batch 08",
+   "status": "done",
    "start": "2026-09-02T17:20Z",
-   "end": "",
+   "end": "2026-09-02T17:45Z",
    "evidence": "outputs/1912/qc/seams/grades_round3/grader_08.json",
-   "result": "pending"
+   "result": "accepted"
   },
   {
    "id": "grader-09",
-   "task": "seam census round 3 batch 09 (~29 crops)",
-   "status": "running",
+   "task": "census round 3 batch 09",
+   "status": "done",
    "start": "2026-09-02T17:20Z",
-   "end": "",
+   "end": "2026-09-02T17:45Z",
    "evidence": "outputs/1912/qc/seams/grades_round3/grader_09.json",
-   "result": "pending"
+   "result": "accepted"
   },
   {
    "id": "grader-10",
-   "task": "seam census round 3 batch 10 (~29 crops)",
-   "status": "running",
+   "task": "census round 3 batch 10",
+   "status": "done",
    "start": "2026-09-02T17:20Z",
-   "end": "",
+   "end": "2026-09-02T17:45Z",
    "evidence": "outputs/1912/qc/seams/grades_round3/grader_10.json",
-   "result": "pending"
+   "result": "accepted"
   },
   {
    "id": "grader-11",
-   "task": "seam census round 3 batch 11 (~29 crops)",
-   "status": "queued",
+   "task": "census round 3 batch 11",
+   "status": "done",
    "start": "2026-09-02T17:20Z",
-   "end": "",
+   "end": "2026-09-02T17:45Z",
    "evidence": "outputs/1912/qc/seams/grades_round3/grader_11.json",
+   "result": "accepted"
+  },
+  {
+   "id": "regreview-A",
+   "task": "registration review cluster A",
+   "status": "running",
+   "start": "2026-09-02T17:05Z",
+   "end": "",
+   "evidence": "outputs/1912/qc/seams/regreview_A.json",
+   "result": "pending"
+  },
+  {
+   "id": "regreview-B",
+   "task": "registration review cluster B",
+   "status": "running",
+   "start": "2026-09-02T17:05Z",
+   "end": "",
+   "evidence": "outputs/1912/qc/seams/regreview_B.json",
+   "result": "pending"
+  },
+  {
+   "id": "regreview-C",
+   "task": "registration review cluster C",
+   "status": "running",
+   "start": "2026-09-02T17:05Z",
+   "end": "",
+   "evidence": "outputs/1912/qc/seams/regreview_C.json",
+   "result": "pending"
+  },
+  {
+   "id": "regreview-D",
+   "task": "registration review cluster D",
+   "status": "running",
+   "start": "2026-09-02T17:05Z",
+   "end": "",
+   "evidence": "outputs/1912/qc/seams/regreview_D.json",
    "result": "pending"
   }
  ],
@@ -309,7 +345,9 @@
    "1899 out of scope this run",
    "registration re-solved on sheet-level evidence: 38 controls read from the plates' own street chains (faces.py), validated against 483 observer coordinates at 2 px median; 61|62, 69|70, 76|77 had been drawing the same avenue twice 80 ft apart",
    "seams: 171 band seams on a control (observer or lattice), 81 corner contacts on the overlap midpoint; trimming only inside overlaps",
-   "session 019 work kept in full; 48/74 moved one row on outlot-numbering evidence (HQ-27)"
+   "session 019 work kept in full; 48/74 moved one row on outlot-numbering evidence (HQ-27)",
+   "plate numbers/titles/date stamps excluded from footprints; north arrows and scale bars kept where the master kept them",
+   "19|20/20|23/20|24: Broadway drawn 108 ft on plate 24 vs 146 ft on plate 20 (both labelled 150') = source disagreement, documented"
   ],
   "risks": [
    "composite plates 85/93/99 carry panels with their own origins; their lattices are flagged weak and their controls are the observers' reads",
@@ -350,6 +388,10 @@
   {
    "t": "2026-09-02T16:33Z",
    "event": "periphery review found plate 95 ~300 ft north of its row (no y control); three plate-read street ties added and 95 re-solved locally (+336 ft); wharf plates 4 and 6 identified as unplaced 100 ft/in map sheets"
+  },
+  {
+   "t": "2026-09-02T17:05Z",
+   "event": "census round 3 complete (230 seams, 63 periphery windows); 48/74 and 95 row fixes; panels 20b/25b/54b, plate 32 inset excluded; 93 plate-number boxes excluded; DP cut retuned to keep one plate's street name"
   }
  ]
 }
