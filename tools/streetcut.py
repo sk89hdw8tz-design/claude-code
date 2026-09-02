@@ -181,13 +181,23 @@ def dp_cut(r, u, v, axis, coord, O, lower=None):
     # targets inside it
     across = (y1 - y0) if axis == "y" else (x1 - x0)
     side = min(DP_SIDE, max(0.0, across / 2.0 - 3 * DP_SCALE))
+    margin = min(40.0, 0.5 * side)     # px: a side path never comes nearer the centreline than this
     for off in (0.0, -side, side):
         target = coord + off
         c = ink_only.copy()
+        across_px = (y0 + np.arange(H) * DP_SCALE) if axis == "y" else (x0 + np.arange(W) * DP_SCALE)
+        pull = DP_PULL * np.abs((across_px - target) / DP_SCALE)
+        if off != 0.0:
+            # a side path is only worth having if it really keeps to its side:
+            # with the pull alone it drifted back through the lettering strip
+            # wherever the ink was thinner there (76|84). Forbid the far side
+            # of the centreline and its margin outright.
+            wrong = (across_px > coord - margin) if off < 0 else (across_px < coord + margin)
+            pull = pull + np.where(wrong, BIG, 0.0)
         if axis == "y":
-            c += DP_PULL * np.abs((y0 + np.arange(H) * DP_SCALE - target) / DP_SCALE)[:, None]
+            c += pull[:, None]
         else:
-            c += DP_PULL * np.abs((x0 + np.arange(W) * DP_SCALE - target) / DP_SCALE)[None, :]
+            c += pull[None, :]
             c = c.T                                   # march along the seam
         Hc, Wc = c.shape
         dp = c.copy()
@@ -223,8 +233,9 @@ def dp_cut(r, u, v, axis, coord, O, lower=None):
     centre = cands[0]
     # between the two sides, the one leaving less ink visible in the band
     # is the one whose hidden copy of the lettering was the larger
-    sides = sorted(cands[1:], key=lambda c: c[2])
-    if side >= 40.0 and sides and min(c[1] for c in sides) <= 2.0 * centre[1] + 1.0:
+    sides = [c for c in cands[1:] if c[1] < BIG / 4 and c[1] <= 2.0 * centre[1] + 1.0]
+    sides.sort(key=lambda c: c[2])
+    if side >= 40.0 and sides:
         best = sides[0]
     else:
         best = centre
