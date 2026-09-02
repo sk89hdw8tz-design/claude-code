@@ -101,7 +101,8 @@ def gray(r, u):
 
 DP_SCALE = 4           # mosaic px per cost cell (0.69 ft)
 DP_HALF = 320.0        # px either side of the control line the path may wander
-DP_PULL = 1.0          # cost per cell of distance from the control line (ink is 0-255)
+DP_PULL = 0.2          # cost per cell of distance from the control line (ink is 0-255)
+DP_DILATE = 13         # cells (~52 mosaic px, 9 ft): merges lettering and both plates' copies of it
 
 
 def dp_cut(r, u, v, axis, coord, O):
@@ -134,7 +135,13 @@ def dp_cut(r, u, v, axis, coord, O):
         M, t = r.sheet_matrix(w_)
         A = np.hstack([M / DP_SCALE, ((t - np.array([x0, y0])) / DP_SCALE).reshape(2, 1)])
         g = cv2.warpAffine(gray(r, w_), A, (W, H), flags=cv2.INTER_AREA, borderValue=255)
-        cost += cv2.GaussianBlur((255 - g).astype(np.float32), (0, 0), 1.5)
+        ink = (255 - g).astype(np.float32)
+        # thicken the ink: a street name is letters with gaps, and two plates'
+        # copies of it sit a registration error apart; without this the path
+        # threads the gap between the copies and both survive (57|58 test).
+        # Dilated, the copies merge into one blob the path must go round.
+        ink = cv2.dilate(ink, np.ones((DP_DILATE, DP_DILATE), np.uint8))
+        cost += cv2.GaussianBlur(ink, (0, 0), 1.5)
     mask = np.zeros((H, W), np.uint8)
     ring = np.array([((px - x0) / DP_SCALE, (py - y0) / DP_SCALE)
                      for px, py in np.array(O.exterior.coords)], np.int32)
@@ -227,7 +234,12 @@ def main():
     ap.add_argument("--debug-unit", default=None)
     ap.add_argument("--straight", action="store_true",
                     help="straight centreline cuts instead of min-ink paths")
+    ap.add_argument("--pull", type=float, default=None,
+                    help="override DP_PULL (cost per cell of distance from the control line)")
     a = ap.parse_args()
+    if a.pull is not None:
+        global DP_PULL
+        DP_PULL = a.pull
 
     from shapely.geometry import Polygon
     from shapely.ops import unary_union

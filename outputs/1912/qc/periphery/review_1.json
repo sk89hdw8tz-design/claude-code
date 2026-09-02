@@ -1,0 +1,143 @@
+[
+ {"window": "edge_21.jpg", "ok": false,
+  "findings": [
+   {"kind": "furniture", "what": "lone adjoining-sheet numeral 0 at foot of plate 75", "at": [0.62, 0.49], "ground": "rail yard / car shed roadway", "units": ["75"]},
+   {"kind": "gap", "what": "plate 75 roundhouse, storage and cement platform are cut by white at the left edge; yard tracks also run into white below plate 75 (x 0.45-0.77, y>0.5)", "at": [0.45, 0.3], "units": ["75"]}
+  ],
+  "note": "Left/bottom-left of the Santa Fe yard is unpainted; the drawing is clearly cut rather than ending."},
+ {"window": "edge_22.jpg", "ok": true,
+  "findings": [],
+  "note": "Plate 83 rail yard and Ave D/Market run to white at x 0.5; looks like the mosaic's western limit rather than a missing plate, so not flagged."},
+ {"window": "edge_23.jpg", "ok": true,
+  "findings": [],
+  "note": "83/91 seam at y 0.25 lines up (block edges, Ave D and Ave E continuous); west edge white as in edge_22."},
+ {"window": "edge_24.jpg", "ok": false,
+  "findings": [
+   {"kind": "gap", "what": "block outline south of 45th St (below Ave D/E, x 0.55-0.83) starts and is cut by white at y 0.57", "at": [0.7, 0.56], "units": ["91"]}
+  ],
+  "note": "Plate 91 ends at y 0.57 with a partly drawn block; may be plate bottom but reads as missing content."},
+ {"window": "edge_25.jpg", "ok": false,
+  "findings": [
+   {"kind": "furniture", "what": "scale bar (Scale of Feet)", "at": [0.53, 0.47], "ground": "blank paper below 45th St", "units": ["91"]},
+   {"kind": "furniture", "what": "scale bar (Scale of Feet)", "at": [0.93, 0.47], "ground": "blank paper below 45th St", "units": ["92"]},
+   {"kind": "furniture", "what": "lone adjoining-sheet numeral 0", "at": [0.22, 0.49], "ground": "45th St roadway", "units": ["91"]},
+   {"kind": "margin", "what": "vertical strip of plate-edge paper with pencil note between plates 91 and 92", "at": [0.72, 0.25], "units": ["91", "92"]},
+   {"kind": "misplacement", "what": "gap between block 404 (91) and block 344 (92) is about twice a normal street width (~150 ft vs 70 ft); 80' and 6in pipe labels appear on both sides", "at": [0.73, 0.4], "units": ["91", "92"]}
+  ],
+  "note": "The 91/92 seam carries an extra ~100 ft of paper as well as two scale bars along 45th St."},
+ {"window": "edge_26.jpg", "ok": false,
+  "findings": [
+   {"kind": "furniture", "what": "scale bar (Scale of Feet)", "at": [0.12, 0.46], "ground": "blank paper below 45th St", "units": ["92"]},
+   {"kind": "furniture", "what": "lone adjoining-sheet numeral 0", "at": [0.4, 0.49], "ground": "45th St roadway", "units": ["92"]},
+   {"kind": "furniture", "what": "large plate number (cut, '93'-style numeral) at top of plate 93b", "at": [0.92, 0.47], "ground": "blank paper", "units": ["93b"]},
+   {"kind": "furniture", "what": "lone numeral 0 beside Avenue K label (partly visible at right edge)", "at": [0.99, 0.29], "ground": "blank paper", "units": ["93b"]}
+  ],
+  "note": "93/93b seam at y 0.47 lines up (Ave J or Broadway and lot columns continuous)."},
+ {"window": "edge_27.jpg", "ok": false,
+  "findings": [
+   {"kind": "furniture", "what": "large plate number (cut) at top-left of plate 93b", "at": [0.4, 0.11], "ground": "blank paper", "units": ["93b"]},
+   {"kind": "furniture", "what": "scale bar (Scale of Feet)", "at": [0.72, 0.11], "ground": "blank paper below 45th St", "units": ["93"]},
+   {"kind": "furniture", "what": "lone numeral 0 right of Avenue K label", "at": [0.72, 0.29], "ground": "blank paper", "units": ["93b"]},
+   {"kind": "furniture", "what": "lone numeral 0 on 46th St", "at": [0.57, 0.48], "ground": "46th St roadway", "units": ["93b"]},
+   {"kind": "furniture", "what": "north arrow / compass", "at": [0.72, 0.47], "ground": "blank paper", "units": ["93b"]},
+   {"kind": "margin", "what": "plate 93b shows its own paper border on all four sides (x 0.38-0.73, y 0.1-0.5)", "at": [0.55, 0.3], "units": ["93b"]}
+  ],
+  "note": "Plate 93b is a small island carrying full sheet furniture (number, north arrow, 0 marks)."},
+ {"window": "edge_28.jpg", "ok": false,
+  "findings": [
+   {"kind": "furniture", "what": "scale bar (Scale of Feet, partly cut)", "at": [0.2, 0.46], "ground": "blank paper below 45th St", "units": ["93"]},
+   {"kind": "furniture", "what": "lone numeral 0 on 45th St", "at": [0.56, 0.5], "ground": "45th St roadway", "units": ["93"]},
+   {"kind": "furniture", "what": "lone numeral 0 beside Avenue K", "at": [0.21, 0.65], "ground": "blank paper", "units": ["93b"]},
+   {"kind": "furniture", "what": "north arrow / compass", "at": [0.21, 0.83], "ground": "blank paper", "units": ["93b"]},
+   {"kind": "furniture", "what": "lone numeral 0 on 46th St", "at": [0.06, 0.84], "ground": "46th St roadway", "units": ["93b"]},
+   {"kind": "margin", "what": "pencil sheet note (E.G. date) at plate 93 corner", "at": [0.88, 0.5], "units": ["93"]}
+  ],
+  "note": "93/94 seam at x 0.9 looks aligned; 93b furniture repeats from edge_27."},
+ {"window": "edge_29.jpg", "ok": false,
+  "findings": [
+   {"kind": "furniture", "what": "lone numeral 0 on 45th St", "at": [0.58, 0.5], "ground": "45th St roadway", "units": ["94"]},
+   {"kind": "furniture", "what": "scale bar (Scale of Feet, cut at right)", "at": [0.9, 0.48], "ground": "blank paper below 45th St", "units": ["94"]},
+   {"kind": "margin", "what": "plate 93 edge strip with pencil note at 93/94 seam", "at": [0.08, 0.49], "units": ["93"]}
+  ],
+  "note": "Blocks NW7/SW7 and NW32 draw consistently across the 93/94 seam."},
+ {"window": "edge_30.jpg", "ok": false,
+  "findings": [
+   {"kind": "furniture", "what": "scale bar (Scale of Feet)", "at": [0.3, 0.72], "ground": "blank paper below block 32", "units": ["94"]},
+   {"kind": "furniture", "what": "scale bar (Scale of Feet)", "at": [0.67, 0.4], "ground": "blank paper below 45th St", "units": ["95"]},
+   {"kind": "margin", "what": "pencil sheet note (E.G. 5/23/12) at plate 94 corner", "at": [0.48, 0.74], "units": ["94"]},
+   {"kind": "misplacement", "what": "plate 95 sits far north of plate 94: 95's block SW 32 bottom rule and 45th St are at y 0.35-0.40 while 94's block NW 32 bottom is at y 0.68 (step ~450-700 ft)", "at": [0.5, 0.5], "units": ["94", "95"]}
+  ],
+  "note": "The 94/95 seam is badly stepped; 95 appears shifted north by roughly half a block."},
+ {"window": "edge_31.jpg", "ok": false,
+  "findings": [
+   {"kind": "furniture", "what": "lone numeral 0 on 45th St", "at": [0.23, 0.49], "ground": "45th St roadway", "units": ["95"]},
+   {"kind": "margin", "what": "ragged paper edge strip between plates 95 and 96", "at": [0.71, 0.25], "units": ["95", "96"]},
+   {"kind": "misplacement", "what": "plate 95's 45th St is at y 0.45 while plate 96's block NE/NW 82 runs down to y 0.73 with its street below at ~y 0.76 (step ~600 ft)", "at": [0.7, 0.6], "units": ["95", "96"]}
+  ],
+  "note": "Consistent with edge_30: plate 95 is displaced north relative to both neighbours."},
+ {"window": "edge_32.jpg", "ok": false,
+  "findings": [
+   {"kind": "furniture", "what": "lone numeral 0 on 45th St", "at": [0.71, 0.5], "ground": "45th St roadway", "units": ["96"]},
+   {"kind": "furniture", "what": "scale bar (cut at right edge)", "at": [0.99, 0.48], "ground": "blank paper", "units": ["96"]},
+   {"kind": "misplacement", "what": "plate 95 fragment (top-left) shows its block bottom and 80' street at y 0.09-0.13, while plate 96's 45th St is at y 0.46", "at": [0.2, 0.15], "units": ["95", "96"]}
+  ],
+  "note": "Third view of the plate 95 offset."},
+ {"window": "edge_33.jpg", "ok": false,
+  "findings": [
+   {"kind": "furniture", "what": "scale bar (Scale of Feet)", "at": [0.24, 0.47], "ground": "blank paper below block 107", "units": ["96"]},
+   {"kind": "furniture", "what": "scale bar (Scale of Feet)", "at": [0.55, 0.47], "ground": "blank paper below block 107", "units": ["97"]},
+   {"kind": "furniture", "what": "lone numeral 0 on 45th St", "at": [0.9, 0.5], "ground": "45th St roadway", "units": ["97"]},
+   {"kind": "margin", "what": "light paper-edge strip at 96/97 seam", "at": [0.4, 0.25], "units": ["96", "97"]}
+  ],
+  "note": "NW 107 / SW 107 and 45th St line up across the 96/97 seam."},
+ {"window": "edge_34.jpg", "ok": false,
+  "findings": [
+   {"kind": "furniture", "what": "lone numeral 0 (cut at left edge)", "at": [0.03, 0.49], "ground": "street roadway", "units": ["97"]},
+   {"kind": "margin", "what": "plate-edge paper strip with dashed pipe line at 97/98 seam", "at": [0.51, 0.3], "units": ["97", "98"]}
+  ],
+  "note": "44th/45th St rows align across 97 and 98."},
+ {"window": "edge_35.jpg", "ok": false,
+  "findings": [
+   {"kind": "furniture", "what": "scale bar (Scale of Feet)", "at": [0.53, 0.47], "ground": "blank paper below 45th St", "units": ["98"]},
+   {"kind": "furniture", "what": "lone numeral 0 on 45th St", "at": [0.22, 0.49], "ground": "45th St roadway", "units": ["98"]}
+  ],
+  "note": "Otherwise clean bottom edge of plate 98."},
+ {"window": "edge_36.jpg", "ok": false,
+  "findings": [
+   {"kind": "furniture", "what": "lone numeral 0 beside Avenue T1/2 label", "at": [0.49, 0.44], "ground": "blank paper", "units": ["98"]}
+  ],
+  "note": "East edge of plate 98; stains ignored, blocks continue naturally."},
+ {"window": "edge_37.jpg", "ok": false,
+  "findings": [
+   {"kind": "furniture", "what": "scale bar (Scale of Feet)", "at": [0.35, 0.47], "ground": "blank paper below block 183", "units": ["90"]},
+   {"kind": "furniture", "what": "lone numeral 0", "at": [0.27, 0.5], "ground": "blank paper below block 183", "units": ["90"]},
+   {"kind": "furniture", "what": "lone numeral 0 (cut at bottom edge)", "at": [0.2, 0.98], "ground": "blank paper", "units": ["98"]},
+   {"kind": "misplacement", "what": "plate 98's NW 183 block starts at y 0.50, about 190 ft south of plate 90's block 183 bottom rule at y 0.41; NE and NW quarters should share an edge", "at": [0.1, 0.46], "units": ["90", "98"]}
+  ],
+  "note": "The 90/98 seam is vertically stepped by roughly one plate margin."},
+ {"window": "edge_38.jpg", "ok": false,
+  "findings": [
+   {"kind": "furniture", "what": "large plate number 90 with 'Galveston Texas' title", "at": [0.47, 0.12], "ground": "blank paper beside Seawall Blvd", "units": ["90"]},
+   {"kind": "furniture", "what": "lone numeral 0 (cut at right edge)", "at": [0.49, 0.68], "ground": "blank paper beside seawall", "units": ["90"]}
+  ],
+  "note": "White east of the seawall is the Gulf side, natural end."},
+ {"window": "edge_39.jpg", "ok": false,
+  "findings": [
+   {"kind": "furniture", "what": "large plate number 82 (adjoining sheet)", "at": [0.03, 0.15], "ground": "blank paper at plate edge", "units": ["82", "99"]},
+   {"kind": "furniture", "what": "large plate number 90 with 'Galveston Texas' title", "at": [0.67, 0.79], "ground": "blank paper beside Seawall Blvd", "units": ["90"]},
+   {"kind": "furniture", "what": "scale bar tail ('Feet 100 150') and north arrow / compass", "at": [0.05, 0.8], "ground": "blank paper", "units": ["82", "99"]},
+   {"kind": "misplacement", "what": "doubled 'AVENUE T' label: plates 82 and 99 each draw it, offset ~40 ft", "at": [0.02, 0.23], "units": ["82", "99"]}
+  ],
+  "note": "Seawall and Gulf at top right are natural; 99/90 seam at y 0.78 looks continuous."},
+ {"window": "edge_40.jpg", "ok": false,
+  "findings": [
+   {"kind": "furniture", "what": "large plate number 99", "at": [0.23, 0.48], "ground": "blank paper at top of plate 99", "units": ["99"]}
+  ],
+  "note": "99a/99 seam at y 0.5 continues the seawall and Gulf line; Gulf beyond is a natural end."},
+ {"window": "edge_41.jpg", "ok": false,
+  "findings": [
+   {"kind": "furniture", "what": "north arrow / compass rose (cut at top edge)", "at": [0.42, 0.01], "ground": "blank paper beside Gulf", "units": ["99a"]},
+   {"kind": "furniture", "what": "large plate number 99 (partly visible)", "at": [0.55, 0.97], "ground": "blank paper", "units": ["99"]}
+  ],
+  "note": "Gulf of Mexico and seawall run naturally to the right edge; stain in block 162 ignored."}
+]

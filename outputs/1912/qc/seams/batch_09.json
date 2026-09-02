@@ -1,0 +1,211 @@
+[
+{
+"seam": "16_61",
+"kind": "band",
+"axis": "x",
+"corridor": "Ave F (Church)",
+"how": "control",
+"crops": [
+"seam_16_61_a_100.jpg",
+"seam_16_61_b_100.jpg"
+]
+},
+{
+"seam": "23_24",
+"kind": "band",
+"axis": "x",
+"corridor": "Ave I (Sealy)",
+"how": "control",
+"crops": [
+"seam_23_24_a_100.jpg",
+"seam_23_24_b_100.jpg"
+]
+},
+{
+"seam": "29_30",
+"kind": "band",
+"axis": "x",
+"corridor": "Ave I",
+"how": "control",
+"crops": [
+"seam_29_30_a_100.jpg",
+"seam_29_30_b_100.jpg"
+]
+},
+{
+"seam": "36_40",
+"kind": "band",
+"axis": "y",
+"corridor": "18th St",
+"how": "control",
+"crops": [
+"seam_36_40_a_100.jpg",
+"seam_36_40_b_100.jpg"
+]
+},
+{
+"seam": "46_52",
+"kind": "band",
+"axis": "y",
+"corridor": null,
+"how": "midpoint",
+"crops": [
+"seam_46_52_a_100.jpg",
+"seam_46_52_b_100.jpg"
+]
+},
+{
+"seam": "53_54",
+"kind": "band",
+"axis": "x",
+"corridor": "Ave Q",
+"how": "control",
+"crops": [
+"seam_53_54_a_100.jpg",
+"seam_53_54_b_100.jpg"
+]
+},
+{
+"seam": "59_65",
+"kind": "band",
+"axis": "y",
+"corridor": "30th St",
+"how": "control",
+"crops": [
+"seam_59_65_a_100.jpg",
+"seam_59_65_b_100.jpg"
+]
+},
+{
+"seam": "64_71",
+"kind": "band",
+"axis": "y",
+"corridor": null,
+"how": "midpoint",
+"crops": [
+"seam_64_71_100.jpg"
+]
+},
+{
+"seam": "68_69",
+"kind": "band",
+"axis": "x",
+"corridor": "Ave H (Ball)",
+"how": "control",
+"crops": [
+"seam_68_69_a_100.jpg",
+"seam_68_69_b_100.jpg"
+]
+},
+{
+"seam": "76_84",
+"kind": "band",
+"axis": "y",
+"corridor": "39th St",
+"how": "control",
+"crops": [
+"seam_76_84_100.jpg"
+]
+},
+{
+"seam": "80_87",
+"kind": "band",
+"axis": "y",
+"corridor": "39th St",
+"how": "control",
+"crops": [
+"seam_80_87_100.jpg"
+]
+},
+{
+"seam": "84_85b",
+"kind": "band",
+"axis": "x",
+"corridor": null,
+"how": "midpoint",
+"crops": [
+"seam_84_85b_100.jpg"
+]
+},
+{
+"seam": "88_89",
+"kind": "band",
+"axis": "x",
+"corridor": "Ave R",
+"how": "control",
+"crops": [
+"seam_88_89_a_100.jpg",
+"seam_88_89_b_100.jpg"
+]
+},
+{
+"seam": "11_14",
+"kind": "corner",
+"axis": "y",
+"corridor": "27th St",
+"how": "control",
+"crops": [
+"seam_11_14_100.jpg"
+]
+},
+{
+"seam": "18_23",
+"kind": "corner",
+"axis": "y",
+"corridor": null,
+"how": "midpoint",
+"crops": [
+"seam_18_23_100.jpg"
+]
+},
+{
+"seam": "32_37",
+"kind": "corner",
+"axis": "y",
+"corridor": "15th St",
+"how": "control",
+"crops": [
+"seam_32_37_100.jpg"
+]
+},
+{
+"seam": "53_60",
+"kind": "corner",
+"axis": "y",
+"corridor": "27th St",
+"how": "control",
+"crops": [
+"seam_53_60_100.jpg"
+]
+},
+{
+"seam": "66_74",
+"kind": "corner",
+"axis": "y",
+"corridor": null,
+"how": "midpoint",
+"crops": [
+"seam_66_74_100.jpg"
+]
+},
+{
+"seam": "79_87",
+"kind": "corner",
+"axis": "y",
+"corridor": "39th St",
+"how": "control",
+"crops": [
+"seam_79_87_100.jpg"
+]
+},
+{
+"seam": "99_99a",
+"kind": "corner",
+"axis": "y",
+"corridor": null,
+"how": "midpoint",
+"crops": [
+"seam_99_99a_100.jpg"
+]
+}
+]

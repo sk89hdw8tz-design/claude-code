@@ -151,6 +151,43 @@ def main():
         sub_cov |= mask
         del warped, mask, sub, m, sub_cov
         print(f"  sheet {sheet} composited", flush=True)
+    # Second pass: ground no region claims (cut-line slivers at plate corners,
+    # notches between a min-ink path and a neighbouring cut) is painted from
+    # any plate whose trimmed footprint covers it. Nothing is invented: the
+    # pixels are that plate's own scan of that ground; the area is reported.
+    fallback = 0
+    for sheet, poly in involved:
+        try:
+            fp = r.footprint(sheet)
+        except Exception:
+            continue
+        fpts = ((np.array(fp.exterior.coords) - np.array([x0, y0])) / d).astype(np.int32)
+        wx0 = max(0, int(fpts[:, 0].min()) - 2); wy0 = max(0, int(fpts[:, 1].min()) - 2)
+        wx1 = min(W, int(fpts[:, 0].max()) + 3); wy1 = min(H, int(fpts[:, 1].max()) + 3)
+        if wx1 <= wx0 or wy1 <= wy0:
+            continue
+        sub_cov = covered[wy0:wy1, wx0:wx1]
+        mask = np.zeros((wy1 - wy0, wx1 - wx0), np.uint8)
+        cv2.fillPoly(mask, [fpts - np.array([wx0, wy0], np.int32)], 255)
+        mask &= cv2.inRange(sub_cov, 0, 0)
+        n = int(cv2.countNonZero(mask))
+        if n == 0:
+            continue
+        img = cv2.imread(r.fetch(r.sheet_file(sheet)), cv2.IMREAD_COLOR)
+        M, t = r.sheet_matrix(sheet)
+        Aw = np.hstack([M / d, ((t - np.array([x0, y0])) / d).reshape(2, 1)])
+        Aw[:, 2] -= np.array([wx0, wy0], float)
+        warped = cv2.warpAffine(img, Aw, (wx1 - wx0, wy1 - wy0),
+                                flags=cv2.INTER_LANCZOS4 if d == 1 else cv2.INTER_AREA,
+                                borderValue=(255, 255, 255))
+        m = mask.astype(bool)
+        canvas[wy0:wy1, wx0:wx1][m] = warped[m]
+        sub_cov |= mask
+        fallback += n
+        del warped, mask, m, img
+    if fallback:
+        print(f"  unowned-sliver fallback: {fallback} px at 1/{d} painted from covering "
+              f"plates (disclosed; ownership polygons unchanged)", flush=True)
     del covered
     out = a.out or f"render_{a.year}.tif"
     save(canvas, out, ppi=a.ppi if a.ppi else NATIVE_PPI / d)

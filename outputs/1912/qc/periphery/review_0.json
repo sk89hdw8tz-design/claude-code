@@ -1,0 +1,146 @@
+[
+  {"window": "edge_00.jpg", "ok": false,
+   "findings": [
+     {"kind": "furniture", "what": "plate number 9 with 'Galveston, Texas' title fragment", "at": [0.51, 0.52], "ground": "blank paper above seawall", "units": ["19"]},
+     {"kind": "furniture", "what": "compass rose", "at": [0.77, 0.56], "ground": "blank paper north of Seawall Blvd", "units": ["19"]},
+     {"kind": "furniture", "what": "adjoining-sheet numeral 0 (cut at left edge)", "at": [0.0, 0.5], "ground": "blank paper", "units": ["18"]},
+     {"kind": "furniture", "what": "adjoining-sheet numeral 0 (cut at right edge)", "at": [1.0, 0.52], "ground": "blank paper", "units": ["19"]},
+     {"kind": "margin", "what": "bare paper strip between seawall rule and plate top edge, small vertical step between plates 18 and 19 at the seam", "at": [0.5, 0.49], "ground": "blank paper", "units": ["18", "19"]}
+   ],
+   "note": "Two Seawall Blvd plates meet cleanly; the strip above the seawall carries plate title, number, compass and margin numerals."},
+  {"window": "edge_01.jpg", "ok": false,
+   "findings": [
+     {"kind": "furniture", "what": "compass rose", "at": [0.37, 0.58], "ground": "blank paper north of Seawall Blvd", "units": ["18"]},
+     {"kind": "furniture", "what": "adjoining-sheet numeral 0", "at": [0.77, 0.52], "ground": "blank paper above seawall", "units": ["18"]},
+     {"kind": "furniture", "what": "thick border rule of an inset box on plate 17", "at": [0.04, 0.72], "ground": "blank paper", "units": ["17"]},
+     {"kind": "margin", "what": "plate 17 shows mostly bare paper with only 'FLAT' / seawall lettering, hard seam and slight step against plate 18 at x=0.25", "at": [0.25, 0.53], "ground": "blank paper", "units": ["17"]}
+   ],
+   "note": "Plate 18 content is fine; the plate 17 strip on the left is largely bare paper with a rule."},
+  {"window": "edge_02.jpg", "ok": false,
+   "findings": [
+     {"kind": "furniture", "what": "large plate number 17 with 'Galveston, Texas' title", "at": [0.08, 0.52], "ground": "blank paper", "units": ["17"]},
+     {"kind": "furniture", "what": "adjoining-sheet numeral 0", "at": [0.26, 0.51], "ground": "roadway (50th St)", "units": ["17"]},
+     {"kind": "furniture", "what": "adjoining-sheet numerals 0 (three) along 51st St", "at": [0.35, 0.905], "ground": "roadway / blank paper", "units": ["17"]},
+     {"kind": "furniture", "what": "compass rose", "at": [0.55, 0.905], "ground": "blank paper", "units": ["17"]},
+     {"kind": "furniture", "what": "north arrow", "at": [0.7, 0.79], "ground": "blank paper inside inset", "units": ["17"]},
+     {"kind": "furniture", "what": "border rule of 'Union Slaughtering Co, located 3 miles W of PO' inset box", "at": [0.67, 0.7], "ground": "blank paper", "units": ["17"]}
+   ],
+   "note": "Top-left corner of plate 17: heavy plate furniture and a boxed outlying-property inset sit inside the mosaic."},
+  {"window": "edge_03.jpg", "ok": false,
+   "findings": [
+     {"kind": "furniture", "what": "large plate number 17 with 'Galveston, Texas' title", "at": [0.52, 0.09], "ground": "blank paper", "units": ["17"]},
+     {"kind": "furniture", "what": "adjoining-sheet numeral 0", "at": [0.69, 0.08], "ground": "roadway (50th St)", "units": ["17"]},
+     {"kind": "furniture", "what": "adjoining-sheet numerals 0 at left and right of 51st St", "at": [0.5, 0.47], "ground": "roadway", "units": ["17"]},
+     {"kind": "furniture", "what": "adjoining-sheet numeral 0", "at": [0.64, 0.905], "ground": "blank paper below 52nd St", "units": ["17"]},
+     {"kind": "furniture", "what": "compass rose (partly cut) and 'Located 3 M...' inset caption", "at": [0.97, 0.45], "ground": "blank paper", "units": ["17"]},
+     {"kind": "furniture", "what": "north arrow inside block 6", "at": [0.63, 0.67], "ground": "blank paper inside block", "units": ["17"]},
+     {"kind": "furniture", "what": "thick inset border rule (vertical at right, horizontal at bottom)", "at": [0.9, 0.3], "ground": "blank paper", "units": ["17"]}
+   ],
+   "note": "Same plate 17 corner seen lower down; furniture and inset rule persist."},
+  {"window": "edge_04.jpg", "ok": false,
+   "findings": [
+     {"kind": "furniture", "what": "adjoining-sheet numeral 0 with thick inset border rule", "at": [0.66, 0.05], "ground": "blank paper", "units": ["17"]},
+     {"kind": "furniture", "what": "plate-number fragment '2' cut at left edge", "at": [0.5, 0.39], "ground": "blank paper", "units": ["21"]},
+     {"kind": "furniture", "what": "adjoining-sheet numerals 0 (cut at left edge)", "at": [0.5, 0.33], "ground": "blank paper", "units": ["17", "21"]},
+     {"kind": "furniture", "what": "north arrow on 9th St at the plate seam", "at": [0.73, 0.42], "ground": "roadway", "units": ["17", "21"]}
+   ],
+   "note": "Seam between plates 17 and 21 along 9th St lines up (Ave A / Water continues); only furniture noted."},
+  {"window": "edge_05.jpg", "ok": false,
+   "findings": [
+     {"kind": "furniture", "what": "'Scale of Feet' scale bar and compass rose at 12th St seam", "at": [0.74, 0.7], "ground": "roadway (12th St)", "units": ["21", "27"]},
+     {"kind": "furniture", "what": "numeral fragment cut at left edge", "at": [0.5, 0.3], "ground": "blank paper", "units": ["21"]}
+   ],
+   "note": "Plates 21 and 27 join along 12th St with Ave A and the wharf tracks continuous."},
+  {"window": "edge_06.jpg", "ok": false,
+   "findings": [
+     {"kind": "furniture", "what": "plate-number fragment '6' cut at left edge", "at": [0.5, 0.44], "ground": "blank paper beside wharf tracks", "units": ["27"]}
+   ],
+   "note": "Plate 27 wharf-track strip; content fine apart from the numeral fragment at the left edge."},
+  {"window": "edge_07.jpg", "ok": false,
+   "findings": [
+     {"kind": "furniture", "what": "large plate number 6", "at": [0.28, 0.63], "ground": "blank paper (coal yard)", "units": ["5a"]},
+     {"kind": "misplacement", "what": "plate 5a (E.O. Flood coal yard, Wm Parr warehouse) is drawn on a rotated bearing and butts against plate 33's axis-aligned block 735 with a hard seam", "at": [0.6, 0.62], "ground": "blank paper / drawn yard", "units": ["5a", "33"]}
+   ],
+   "note": "Corner where the rotated wharf plate 5a meets the street-grid plates 27/33; the seam looks abrupt."},
+  {"window": "edge_08.jpg", "ok": false,
+   "findings": [
+     {"kind": "furniture", "what": "'Galveston, Texas' plate title", "at": [0.6, 0.54], "ground": "blank paper", "units": ["5a"]},
+     {"kind": "furniture", "what": "large plate number 5", "at": [0.57, 0.58], "ground": "blank paper", "units": ["5a"]},
+     {"kind": "margin", "what": "dark scanner/paper-edge shadow along the plate's top and left edge", "at": [0.52, 0.6], "ground": "paper edge", "units": ["5a"]}
+   ],
+   "note": "Top-left corner of the rotated wharf plate 5a with title, number and a scan shadow."},
+  {"window": "edge_09.jpg", "ok": true,
+   "findings": [],
+   "note": "Bay water between Piers 18 and 19; only a paper stain, not a defect."},
+  {"window": "edge_10.jpg", "ok": true,
+   "findings": [],
+   "note": "Galveston Bay lettering and Pier 20; natural end of the wharves."},
+  {"window": "edge_11.jpg", "ok": false,
+   "findings": [
+     {"kind": "furniture", "what": "scale bar 'Scale 100 Ft. to One Inch'", "at": [0.65, 0.35], "ground": "bay water / blank paper", "units": ["5a"]},
+     {"kind": "margin", "what": "plate 5a ends in a hard rectangular paper edge with a tone step against plate 5b", "at": [0.77, 0.5], "ground": "paper edge", "units": ["5a", "5b"]}
+   ],
+   "note": "Corner where 5a and 5b meet over the bay; the white below is bay."},
+  {"window": "edge_12.jpg", "ok": false,
+   "findings": [
+     {"kind": "furniture", "what": "scale bar 'Scale 100 Ft. to One Inch'", "at": [0.38, 0.08], "ground": "bay water / blank paper", "units": ["5a"]},
+     {"kind": "margin", "what": "plate 5a strip ends in a hard horizontal paper edge over the bay", "at": [0.3, 0.22], "ground": "paper edge", "units": ["5a"]}
+   ],
+   "note": "Piers 22-24 on 5b fine; the 5a strip at top-left carries the scale bar."},
+  {"window": "edge_13.jpg", "ok": false,
+   "findings": [
+     {"kind": "furniture", "what": "compass rose", "at": [0.55, 0.82], "ground": "bay water", "units": ["5b"]}
+   ],
+   "note": "Piers 25-26 and Mallory shed; only the compass rose on the bay."},
+  {"window": "edge_14.jpg", "ok": false,
+   "findings": [
+     {"kind": "furniture", "what": "large plate number 4", "at": [0.82, 0.75], "ground": "blank paper beside slip", "units": ["5b"]},
+     {"kind": "furniture", "what": "compass rose tail cut at top edge", "at": [0.65, 0.02], "ground": "bay water", "units": ["5b"]},
+     {"kind": "gap", "what": "tracks and 10in pipe beside the slip run into white at the plate 5b bottom edge", "at": [0.85, 0.79], "ground": "white canvas", "units": ["5b", "13"]}
+   ],
+   "note": "Pier 27-28 end of 5b; the slip and tracks stop at a hard edge with white before plate 13."},
+  {"window": "edge_15.jpg", "ok": false,
+   "findings": [
+     {"kind": "furniture", "what": "large plate number 4", "at": [0.36, 0.34], "ground": "blank paper beside slip", "units": ["5b"]},
+     {"kind": "furniture", "what": "adjoining-sheet numeral 4 on 29th St", "at": [0.51, 0.64], "ground": "roadway", "units": ["13"]},
+     {"kind": "margin", "what": "rectangular 5b piece with hard edges laid over the top-left of plate 13's wharf tracks", "at": [0.3, 0.38], "ground": "paper edge", "units": ["5b", "13"]},
+     {"kind": "gap", "what": "white canvas below the 5b piece west of the wharf tracks where the slip/yard should continue", "at": [0.25, 0.7], "ground": "white canvas", "units": ["5b", "13"]}
+   ],
+   "note": "Elevator B block on plate 13 is fine; the 5b overlap piece and the white beneath it look unfinished."},
+  {"window": "edge_16.jpg", "ok": false,
+   "findings": [
+     {"kind": "furniture", "what": "north arrow on 30th St", "at": [0.93, 0.17], "ground": "roadway", "units": ["15"]},
+     {"kind": "furniture", "what": "plate-number fragment '4' cut at left edge", "at": [0.5, 0.74], "ground": "blank paper (yard)", "units": ["15"]}
+   ],
+   "note": "Plates 13 and 15 join along 30th St with tracks continuous; round house and yard drawn."},
+  {"window": "edge_17.jpg", "ok": false,
+   "findings": [
+     {"kind": "furniture", "what": "adjoining-sheet numeral 3 on 33rd St", "at": [0.68, 0.49], "ground": "roadway", "units": ["15"]},
+     {"kind": "gap", "what": "33rd St, Ave A and the tracks run into white at plate 15's bottom edge", "at": [0.85, 0.5], "ground": "white canvas", "units": ["15"]}
+   ],
+   "note": "Plate 15 stops at a hard edge just below 33rd St with white below."},
+  {"window": "edge_18.jpg", "ok": false,
+   "findings": [
+     {"kind": "furniture", "what": "adjoining-sheet numeral 0 on 33rd St", "at": [0.35, 0.29], "ground": "roadway", "units": ["15"]},
+     {"kind": "furniture", "what": "numeral 3 fragment cut at left edge", "at": [0.01, 0.29], "ground": "blank paper", "units": ["15"]},
+     {"kind": "furniture", "what": "small scale bar on 33rd St, partly covered by plate 67", "at": [0.45, 0.27], "ground": "roadway", "units": ["15", "67"]},
+     {"kind": "furniture", "what": "numeral 0 fragment cut at left edge of plate 67", "at": [0.5, 0.86], "ground": "roadway (Ave B)", "units": ["67"]},
+     {"kind": "gap", "what": "white canvas south of 33rd St and west of Ave B/Strand; 33rd St ends at white", "at": [0.25, 0.7], "ground": "white canvas", "units": ["15", "67"]}
+   ],
+   "note": "Plates 15, 16 and 67 meet around 33rd St; blocks 632/633 line up but the lower-left quadrant is unpainted."},
+  {"window": "edge_19.jpg", "ok": false,
+   "findings": [
+     {"kind": "furniture", "what": "adjoining-sheet numeral 0 below 36th St", "at": [0.69, 0.58], "ground": "roadway", "units": ["67"]},
+     {"kind": "gap", "what": "36th St and Ave B run into white at plate 67's bottom edge west of Ave C", "at": [0.6, 0.6], "ground": "white canvas", "units": ["67", "75"]}
+   ],
+   "note": "Garbage incinerator block on 67 fine; plate 75 begins only east of Ave C so the area south-west of 36th St is white."},
+  {"window": "edge_20.jpg", "ok": false,
+   "findings": [
+     {"kind": "furniture", "what": "adjoining-sheet numeral 0 below 36th St", "at": [0.35, 0.14], "ground": "roadway", "units": ["67"]},
+     {"kind": "furniture", "what": "north arrow on 36th St", "at": [0.75, 0.12], "ground": "roadway", "units": ["75"]},
+     {"kind": "furniture", "what": "numeral 0 fragment cut at left edge", "at": [0.5, 0.65], "ground": "blank paper", "units": ["75"]},
+     {"kind": "gap", "what": "GC&SF round house (18 stalls) is cut in half by white canvas at plate 75's left edge", "at": [0.5, 0.75], "ground": "white canvas", "units": ["75"]},
+     {"kind": "gap", "what": "white canvas west of Ave C below 36th St where plate 67 ended", "at": [0.3, 0.6], "ground": "white canvas", "units": ["67", "75"]}
+   ],
+   "note": "Plates 67 and 75 align along Ave C and 36th St, but the round house and the ground west of Ave C are unpainted."}
+]

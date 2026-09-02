@@ -1,0 +1,193 @@
+[
+  {"window": "edge_42.jpg", "ok": false,
+   "findings": [
+     {"kind": "furniture", "what": "scale bar 'Scale of Feet'", "at": [0.38, 0.55], "ground": "blank paper beside the Gulf shore", "units": ["48"]},
+     {"kind": "furniture", "what": "large plate number '9' (top of the 99a title block)", "at": [0.12, 0.61], "ground": "blank paper", "units": ["99a"]},
+     {"kind": "furniture", "what": "plate date 'Aug 17 1912'", "at": [0.17, 0.61], "ground": "blank paper", "units": ["99a"]},
+     {"kind": "furniture", "what": "compass rose", "at": [0.55, 0.72], "ground": "Gulf water", "units": ["99a"]},
+     {"kind": "margin", "what": "grey paper-edge shadow strip along the bottom edge of plate 48 where it meets 99a", "at": [0.2, 0.59], "ground": "roadway / blank paper", "units": ["48", "99a"]}
+   ],
+   "note": "Surf Bath House and shore are fine; the 99a title block, its date, a scale bar and a compass rose print on blank paper and water (brown stain on 99a ignored)."},
+
+  {"window": "edge_43.jpg", "ok": true, "findings": [],
+   "note": "Plate 48 only: Seawall Blvd, Tented City and Surf Bath House; white to the right is the Gulf."},
+
+  {"window": "edge_44.jpg", "ok": false,
+   "findings": [
+     {"kind": "furniture", "what": "adjoining-sheet numeral '0'", "at": [0.1, 0.21], "ground": "blank paper in Avenue R 1/2", "units": ["48b"]},
+     {"kind": "furniture", "what": "compass rose", "at": [0.68, 0.59], "ground": "Gulf water", "units": ["48"]},
+     {"kind": "gap", "what": "small white sliver in Avenue R 1/2 at the 60/48b/66 corner", "at": [0.1, 0.16], "ground": "roadway", "units": ["60", "48b", "66"]}
+   ],
+   "note": "29th-31st St blocks line up across the 48b/48 and 60/48b seams; only a numeral, a compass and a tiny sliver are wrong."},
+
+  {"window": "edge_45.jpg", "ok": false,
+   "findings": [
+     {"kind": "furniture", "what": "adjoining-sheet numeral '0'", "at": [0.4, 0.08], "ground": "blank paper", "units": ["60"]},
+     {"kind": "furniture", "what": "plate number '48' with title 'Galveston, Texas' above it", "at": [0.73, 0.52], "ground": "blank paper beside the Gulf", "units": ["48b"]},
+     {"kind": "furniture", "what": "adjoining-sheet numeral '0'", "at": [0.49, 0.5], "ground": "blank paper", "units": ["48b"]},
+     {"kind": "furniture", "what": "small north arrow", "at": [0.39, 0.61], "ground": "blank paper", "units": ["48b"]},
+     {"kind": "furniture", "what": "adjoining-sheet numeral '0'", "at": [0.38, 0.8], "ground": "blank paper in Avenue R 1/2", "units": ["60"]}
+   ],
+   "note": "Blocks 139/140 join cleanly across 60/48b; the plate-48 title block and several stray numerals print on blank paper."},
+
+  {"window": "edge_46.jpg", "ok": false,
+   "findings": [
+     {"kind": "furniture", "what": "large plate number '54' with a thick border rule below it and up the left side", "at": [0.33, 0.15], "ground": "blank paper below 24th St", "units": ["54"]},
+     {"kind": "furniture", "what": "adjoining-sheet numeral '0'", "at": [0.44, 0.75], "ground": "blank paper", "units": ["60"]},
+     {"kind": "misplacement", "what": "Avenue R east curb and the 6-in pipe of plate 60 sit roughly 50 px (about 40-70 ft) west of the same features in plate 54 above the seam", "at": [0.15, 0.66], "ground": "roadway", "units": ["54", "60"]}
+   ],
+   "note": "Seawall line continues across the 54/60 seam but the Avenue R curb steps sideways; the 54 number and rule print on blank paper."},
+
+  {"window": "edge_47.jpg", "ok": false,
+   "findings": [
+     {"kind": "furniture", "what": "plate number '54' with 'Galveston, Texas' title", "at": [0.47, 0.33], "ground": "blank paper", "units": ["54"]},
+     {"kind": "furniture", "what": "adjoining-sheet numeral '0'", "at": [0.29, 0.33], "ground": "blank paper", "units": ["54"]},
+     {"kind": "furniture", "what": "adjoining-sheet numeral '47'", "at": [0.15, 0.61], "ground": "blank paper west of Avenue Q", "units": ["54"]},
+     {"kind": "furniture", "what": "adjoining-sheet numeral '32'", "at": [0.49, 0.61], "ground": "blank paper", "units": ["54"]},
+     {"kind": "furniture", "what": "compass rose", "at": [0.09, 0.74], "ground": "roadway / seawall", "units": ["54"]},
+     {"kind": "misplacement", "what": "Casino Pavilion / Tremont St / Avenue Q piece of plate 54 has Gulf water and a seawall drawn on both sides of Avenue Q; in edge_48 the same piece puts Tremont St between 24th and 25th St, so this piece is an inset painted at its sheet position rather than at its true location", "at": [0.3, 0.7], "ground": "drawn blocks", "units": ["54"]},
+     {"kind": "wrong-owner", "what": "bath houses over the water at the top-right of the piece duplicate the Murdoch/Breakers bath houses that plate 32 also draws (edge_54/55)", "at": [0.45, 0.4], "ground": "water", "units": ["54", "32"]}
+   ],
+   "note": "The whole visible piece is plate 54's Tremont-St corner with its title block; it is self-consistent but cannot sit where the mosaic has put it."},
+
+  {"window": "edge_48.jpg", "ok": false,
+   "findings": [
+     {"kind": "furniture", "what": "adjoining-sheet numeral '54'", "at": [0.12, 0.09], "ground": "blank paper", "units": ["47"]},
+     {"kind": "furniture", "what": "adjoining-sheet numeral '54'", "at": [0.39, 0.51], "ground": "24th St roadway", "units": ["54"]},
+     {"kind": "furniture", "what": "adjoining-sheet numeral '0'", "at": [0.98, 0.51], "ground": "blank paper", "units": ["54"]},
+     {"kind": "furniture", "what": "adjoining-sheet numeral '47'", "at": [0.83, 0.79], "ground": "blank paper", "units": ["54"]},
+     {"kind": "furniture", "what": "compass rose", "at": [0.77, 0.92], "ground": "roadway / seawall", "units": ["54"]},
+     {"kind": "misplacement", "what": "plate 54 labels 24th St at y 0.52 and 25th St/Rosenberg at y 0.92 yet its '23rd or Tremont St' label lies between them at y 0.79 on the right; the Tremont/Casino piece is displaced about one block", "at": [0.9, 0.79], "ground": "drawn blocks", "units": ["54"]},
+     {"kind": "misplacement", "what": "Rosenberg Ave and the 8-in water pipes of plate 53 sit about 45-50 px (about 35-70 ft) above/left of the same features in plate 54 (two parallel 8-in pipe lines at x 0.13 and 0.16)", "at": [0.14, 0.9], "ground": "roadway", "units": ["53", "54"]},
+     {"kind": "gap", "what": "plate 47 strip ends in a straight cut along the east side of its avenue; the avenue and the ground east of it run into white for the upper half of the window", "at": [0.14, 0.25], "ground": "roadway", "units": ["47"]}
+   ],
+   "note": "Two different plate-54 pieces disagree with each other and with 53; the 47 strip is truncated at its avenue."},
+
+  {"window": "edge_49.jpg", "ok": false,
+   "findings": [
+     {"kind": "furniture", "what": "adjoining-sheet numeral '54'", "at": [0.48, 0.53], "ground": "blank paper", "units": ["47"]},
+     {"kind": "furniture", "what": "scale bar 'Scale of Feet'", "at": [0.17, 0.92], "ground": "roadway (the street between 47 and 53)", "units": ["47", "53"]},
+     {"kind": "furniture", "what": "adjoining-sheet numeral '54'", "at": [0.75, 0.97], "ground": "24th St roadway", "units": ["54"]},
+     {"kind": "gap", "what": "plate 47 ends in a straight vertical cut on the east side of Avenue Q; the avenue and everything east of it are white for the whole height of the window", "at": [0.55, 0.45], "ground": "roadway", "units": ["47"]},
+     {"kind": "misplacement", "what": "24th St of plate 54 (centre about y 0.975) is about 70-80 px (about 60-110 ft) south of the same street in plates 47/53 (centre about y 0.92)", "at": [0.5, 0.95], "ground": "roadway", "units": ["47", "53", "54"]}
+   ],
+   "note": "Blocks 92/93 with the hotels are intact but Avenue Q is cut in half and plate 54 does not line up with 47/53 at 24th St."},
+
+  {"window": "edge_50.jpg", "ok": false,
+   "findings": [
+     {"kind": "furniture", "what": "scale bar 'Scale of Feet' with compass rose", "at": [0.18, 0.56], "ground": "roadway / blank paper", "units": ["47"]},
+     {"kind": "furniture", "what": "adjoining-sheet numeral '0'", "at": [0.49, 0.75], "ground": "blank paper beside Seawall Blvd", "units": ["47"]}
+   ],
+   "note": "Seawall and Seawall Blvd continue across the 26/47 seam; white to the right is the Gulf beach cut at the mosaic edge."},
+
+  {"window": "edge_51.jpg", "ok": true, "findings": [],
+   "note": "Plate 26 only: Hotel Galvez, Seawall Blvd and the beach; the stepped white boundary is the Gulf."},
+
+  {"window": "edge_52.jpg", "ok": false,
+   "findings": [
+     {"kind": "furniture", "what": "clipped large black numeral at the top edge (top of a plate number, probably '26')", "at": [0.46, 0.01], "ground": "blank paper", "units": ["26b"]},
+     {"kind": "furniture", "what": "compass rose", "at": [0.72, 0.58], "ground": "Gulf water", "units": ["26"]},
+     {"kind": "gap", "what": "small white sliver in Avenue O 1/2 where 38, 42 and 26b/26 meet", "at": [0.14, 0.56], "ground": "roadway", "units": ["38", "42", "26b"]}
+   ],
+   "note": "18th St, the seawall and the shore all line up across the 26b/26 seam; only a clipped numeral, a compass and a tiny sliver."},
+
+  {"window": "edge_53.jpg", "ok": false,
+   "findings": [
+     {"kind": "furniture", "what": "compass rose (clipped at the top edge)", "at": [0.3, 0.02], "ground": "roadway / blank paper", "units": ["38"]},
+     {"kind": "furniture", "what": "adjoining-sheet numeral '0'", "at": [0.49, 0.24], "ground": "blank paper", "units": ["38"]},
+     {"kind": "furniture", "what": "adjoining-sheet numeral '0'", "at": [0.6, 0.51], "ground": "blank paper", "units": ["26"]},
+     {"kind": "furniture", "what": "plate number '26' with 'Galveston, Texas' title", "at": [0.8, 0.52], "ground": "blank paper beside the Gulf", "units": ["26"]}
+   ],
+   "note": "17th St and Avenue O 1/2 continue across the 38/26 seam; the plate-26 title block prints on blank paper."},
+
+  {"window": "edge_54.jpg", "ok": false,
+   "findings": [
+     {"kind": "furniture", "what": "adjoining-sheet numeral '54'", "at": [0.09, 0.04], "ground": "blank paper between the thick seawall lines", "units": ["32"]},
+     {"kind": "furniture", "what": "thick right-angle rule (sheet border) with adjoining-sheet numeral '0' beside it", "at": [0.33, 0.47], "ground": "blank paper", "units": ["32"]},
+     {"kind": "furniture", "what": "scale bar 'Scale of Feet' and compass rose", "at": [0.3, 0.77], "ground": "roadway at the 32/38 seam", "units": ["32", "38"]},
+     {"kind": "furniture", "what": "clipped black numeral fragment at the right window edge", "at": [0.5, 0.75], "ground": "blank paper", "units": ["32"]},
+     {"kind": "misplacement", "what": "plate 32's Breakers Bath House, '24th St' and Avenue Q seawall tracks lie directly beside plate 38's Avenue O blocks at 16th-17th St; this 23rd-24th St seawall content (which plate 54 also draws, edge_47) is painted about ten blocks from its true position", "at": [0.3, 0.3], "ground": "drawn blocks / water", "units": ["32", "38"]}
+   ],
+   "note": "The bath-house piece of plate 32 does not belong next to Avenue O; it carries a border rule and stray numerals as well."},
+
+  {"window": "edge_55.jpg", "ok": false,
+   "findings": [
+     {"kind": "furniture", "what": "large plate number '32'", "at": [0.46, 0.42], "ground": "blank paper beside the Gulf", "units": ["32"]},
+     {"kind": "furniture", "what": "adjoining-sheet numeral '54'", "at": [0.08, 0.9], "ground": "blank paper between the seawall tracks", "units": ["32"]},
+     {"kind": "misplacement", "what": "Murdoch Bath House / Breakers Bath House / '23rd St' piece of plate 32 (same displaced piece as edge_54 and edge_56)", "at": [0.25, 0.75], "ground": "water", "units": ["32"]}
+   ],
+   "note": "Only the plate-32 bath-house piece is visible; it is the misplaced 23rd-St seawall inset, with its plate number and a stray '54'."},
+
+  {"window": "edge_56.jpg", "ok": false,
+   "findings": [
+     {"kind": "furniture", "what": "adjoining-sheet numeral '0'", "at": [0.28, 0.17], "ground": "blank paper beside the shore", "units": ["25"]},
+     {"kind": "furniture", "what": "thick border rule with adjoining-sheet numerals '25' (two of them)", "at": [0.29, 0.49], "ground": "blank paper in Avenue N", "units": ["25", "32"]},
+     {"kind": "furniture", "what": "adjoining-sheet numeral '0'", "at": [0.68, 0.51], "ground": "blank paper", "units": ["32"]},
+     {"kind": "furniture", "what": "compass rose", "at": [0.67, 0.72], "ground": "roadway on the 'Av. Q' tracks", "units": ["32"]},
+     {"kind": "misplacement", "what": "plate 32 draws '23rd St', 'Av. Q' streetcar tracks and Murdoch Bath House immediately east of its own 12th/13th St blocks (NW 48) and plate 31's block 23; 23rd St and Avenue Q cannot adjoin 12th St, so the bath-house piece is painted at its sheet position, not its true location", "at": [0.8, 0.7], "ground": "drawn blocks / water", "units": ["32", "31", "25"]}
+   ],
+   "note": "12th/13th St blocks join plate 31 and 25 acceptably; the 23rd-St bath-house content beside them is misplaced and the rule/numerals should not print."},
+
+  {"window": "edge_57.jpg", "ok": false,
+   "findings": [
+     {"kind": "furniture", "what": "adjoining-sheet numeral '25'", "at": [0.31, 0.09], "ground": "blank paper", "units": ["25"]},
+     {"kind": "furniture", "what": "thick L-shaped border rule (vertical at x 0.28, horizontal at y 0.27) with adjoining-sheet numeral '32' above its right end", "at": [0.38, 0.27], "ground": "blank paper", "units": ["25"]},
+     {"kind": "furniture", "what": "adjoining-sheet numeral '0'", "at": [0.49, 0.09], "ground": "blank paper", "units": ["25"]},
+     {"kind": "furniture", "what": "adjoining-sheet numeral '0'", "at": [0.49, 0.72], "ground": "blank paper beside Seawall Blvd", "units": ["25"]},
+     {"kind": "furniture", "what": "compass rose clipped at the top edge", "at": [0.2, 0.01], "ground": "roadway / blank paper", "units": ["25"]},
+     {"kind": "misplacement", "what": "Avenue N inside the ruled box (x about 0.37, with block NE 48 and 12th St) does not line up with Avenue N of the main body of the same plate (x about 0.45 at the bottom); the boxed area is a sheet inset painted at its sheet position", "at": [0.4, 0.14], "ground": "drawn blocks", "units": ["25"]},
+     {"kind": "margin", "what": "bare paper/white below the horizontal rule at the box's bottom", "at": [0.4, 0.35], "ground": "blank paper", "units": ["25"]}
+   ],
+   "note": "Main body of plate 25 (seawall, SW 24, SE 23) is fine; the ruled inset with its numerals and rule is furniture and its streets do not match the body."},
+
+  {"window": "edge_58.jpg", "ok": false,
+   "findings": [
+     {"kind": "furniture", "what": "adjoining-sheet numeral '0'", "at": [0.18, 0.51], "ground": "blank paper", "units": ["25"]},
+     {"kind": "furniture", "what": "compass rose", "at": [0.49, 0.57], "ground": "Gulf water", "units": ["25"]},
+     {"kind": "furniture", "what": "adjoining-sheet numeral '0'", "at": [0.68, 0.51], "ground": "blank paper", "units": ["25"]},
+     {"kind": "furniture", "what": "adjoining-sheet numeral '25'", "at": [0.6, 0.67], "ground": "blank paper", "units": ["25"]},
+     {"kind": "furniture", "what": "thick L-shaped border rule (vertical at x 0.56 from y 0.5 to 0.85, horizontal at y 0.85 to x 0.78) with adjoining-sheet numeral '32'", "at": [0.67, 0.85], "ground": "blank paper", "units": ["25"]},
+     {"kind": "furniture", "what": "adjoining-sheet numeral '0'", "at": [0.77, 0.68], "ground": "blank paper", "units": ["25"]},
+     {"kind": "margin", "what": "bare paper below the neatline rule, no map content", "at": [0.67, 0.93], "ground": "blank paper", "units": ["25"]},
+     {"kind": "misplacement", "what": "same ruled inset as edge_57: Seawall Blvd, Avenue N, NE 48 and 12th St inside the box sit east of the plate's own Gulf and seawall, i.e. in the water", "at": [0.7, 0.7], "ground": "drawn blocks", "units": ["25"]}
+   ],
+   "note": "Plate 25's seawall/Gulf and block NE 24 are fine; the boxed inset, its rule, numerals and blank margin should not print."},
+
+  {"window": "edge_59.jpg", "ok": false,
+   "findings": [
+     {"kind": "furniture", "what": "clipped adjoining-sheet numeral '20' at the right edge of plate 20's paint", "at": [0.49, 0.44], "ground": "Avenue L roadway", "units": ["20"]},
+     {"kind": "furniture", "what": "plate number '25' with 'Galveston, Texas' title and the thick top border rule running right from it", "at": [0.55, 0.54], "ground": "blank paper / 9th St", "units": ["25"]},
+     {"kind": "furniture", "what": "adjoining-sheet numeral '20'", "at": [0.69, 0.53], "ground": "blank paper above 9th St", "units": ["25"]},
+     {"kind": "furniture", "what": "adjoining-sheet numeral '0'", "at": [0.95, 0.53], "ground": "blank paper", "units": ["25"]},
+     {"kind": "gap", "what": "east of Avenue L between 8th and 9th St nothing is painted (white); the neighbouring plate-25 rule labels this side '20' and plate 20 draws this block (806-827, Seawall Blvd) elsewhere in edge_60/61", "at": [0.6, 0.35], "ground": "white canvas", "units": ["20", "25"]}
+   ],
+   "note": "Blocks 68/69 of 20/24 and 9th/10th St of plate 25 line up well (checked at 2x); the corner east of Avenue L north of 9th St is missing and the 25 title block prints."},
+
+  {"window": "edge_60.jpg", "ok": false,
+   "findings": [
+     {"kind": "furniture", "what": "compass rose", "at": [0.1, 0.3], "ground": "roadway / blank paper", "units": ["20"]},
+     {"kind": "furniture", "what": "adjoining-sheet numeral '0'", "at": [0.31, 0.25], "ground": "blank paper", "units": ["20"]},
+     {"kind": "furniture", "what": "plate number '20' with 'Galveston, Texas' title", "at": [0.47, 0.27], "ground": "blank paper beside the Gulf", "units": ["20"]},
+     {"kind": "furniture", "what": "thick border rule: vertical at x 0.14 (y 0.24-0.58), then diagonal, then horizontal at y 0.72, with adjoining-sheet numerals '20' (0.17,0.45) and '25' (0.36,0.72)", "at": [0.25, 0.6], "ground": "blank paper / roadway", "units": ["20"]},
+     {"kind": "furniture", "what": "adjoining-sheet numeral '0'", "at": [0.49, 0.45], "ground": "blank paper", "units": ["20"]},
+     {"kind": "misplacement", "what": "inside the rule, Avenue L and block 806-827 (8th-9th St) sit directly beside block 126 (Avenue J-K, 6th-7th St) with no Avenue K between, and the inset's '9th St' (y 0.67) is on the line of the main map's 7th St; this boxed inset is painted at its sheet position, about two streets north and one avenue east of its true place", "at": [0.3, 0.5], "ground": "drawn blocks", "units": ["20"]}
+   ],
+   "note": "Plate 20's main blocks (126/127/67) are fine; its ruled inset, title block and numerals are wrong for print."},
+
+  {"window": "edge_61.jpg", "ok": false,
+   "findings": [
+     {"kind": "furniture", "what": "adjoining-sheet numeral '0'", "at": [0.57, 0.51], "ground": "blank paper above the seawall", "units": ["20"]},
+     {"kind": "furniture", "what": "compass rose", "at": [0.7, 0.56], "ground": "blank paper / seawall", "units": ["20"]},
+     {"kind": "furniture", "what": "adjoining-sheet numeral '0'", "at": [0.92, 0.51], "ground": "blank paper", "units": ["20"]},
+     {"kind": "furniture", "what": "thick border rule down x 0.75 (y 0.5-0.85) then diagonal to the bottom edge, with adjoining-sheet numeral '20' at (0.77,0.71) and '25' at (0.96,0.98)", "at": [0.77, 0.75], "ground": "blank paper / roadway", "units": ["20"]},
+     {"kind": "misplacement", "what": "same plate-20 inset as edge_60: Avenue L, block 806-827 and its own Seawall Blvd/Gulf sit inside the rule beside block 126 and the curving main seawall; the inset's '8th St' pipe line runs at y 0.55 while the main map's 7th St is at y 0.93 below it", "at": [0.88, 0.7], "ground": "drawn blocks", "units": ["20"]}
+   ],
+   "note": "Seawall Blvd curve, blocks 186/126 and 7th St are good map content; the ruled inset and stray numerals are not."},
+
+  {"window": "edge_62.jpg", "ok": false,
+   "findings": [
+     {"kind": "furniture", "what": "adjoining-sheet numeral '0'", "at": [0.45, 0.51], "ground": "blank paper above Seawall Blvd", "units": ["19"]},
+     {"kind": "furniture", "what": "compass rose", "at": [0.22, 0.55], "ground": "blank paper / Seawall Blvd", "units": ["19"]}
+   ],
+   "note": "Blocks 366/306/246 and 7th St continue cleanly from 19 into 20; only a numeral and a compass rose sit above the boulevard."}
+]

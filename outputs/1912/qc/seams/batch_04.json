@@ -1,0 +1,193 @@
+[
+{
+"seam": "13_14",
+"kind": "band",
+"axis": "x",
+"corridor": "Ave C (Mechanic)",
+"how": "control",
+"crops": [
+"seam_13_14_a_100.jpg",
+"seam_13_14_b_100.jpg"
+]
+},
+{
+"seam": "20_24",
+"kind": "band",
+"axis": "y",
+"corridor": "9th St",
+"how": "control",
+"crops": [
+"seam_20_24_a_100.jpg",
+"seam_20_24_b_100.jpg"
+]
+},
+{
+"seam": "26_47",
+"kind": "band",
+"axis": "y",
+"corridor": "21st St",
+"how": "control",
+"crops": [
+"seam_26_47_a_100.jpg",
+"seam_26_47_b_100.jpg"
+]
+},
+{
+"seam": "33_34",
+"kind": "band",
+"axis": "x",
+"corridor": "Ave C (Mechanic)",
+"how": "control",
+"crops": [
+"seam_33_34_a_100.jpg",
+"seam_33_34_b_100.jpg"
+]
+},
+{
+"seam": "42_46",
+"kind": "band",
+"axis": "y",
+"corridor": "21st St (Center)",
+"how": "control",
+"crops": [
+"seam_42_46_a_100.jpg",
+"seam_42_46_b_100.jpg"
+]
+},
+{
+"seam": "50_56",
+"kind": "band",
+"axis": "y",
+"corridor": "27th St",
+"how": "control",
+"crops": [
+"seam_50_56_a_100.jpg",
+"seam_50_56_b_100.jpg"
+]
+},
+{
+"seam": "57_58",
+"kind": "band",
+"axis": "x",
+"corridor": null,
+"how": "midpoint",
+"crops": [
+"seam_57_58_a_100.jpg",
+"seam_57_58_b_100.jpg"
+]
+},
+{
+"seam": "62_63",
+"kind": "band",
+"axis": "x",
+"corridor": "Ave L",
+"how": "control",
+"crops": [
+"seam_62_63_a_100.jpg",
+"seam_62_63_b_100.jpg"
+]
+},
+{
+"seam": "71_72",
+"kind": "band",
+"axis": "x",
+"corridor": "Ave O",
+"how": "control",
+"crops": [
+"seam_71_72_a_100.jpg",
+"seam_71_72_b_100.jpg"
+]
+},
+{
+"seam": "79_80",
+"kind": "band",
+"axis": "x",
+"corridor": "Ave O 1/2",
+"how": "control",
+"crops": [
+"seam_79_80_a_100.jpg",
+"seam_79_80_b_100.jpg"
+]
+},
+{
+"seam": "86_94",
+"kind": "band",
+"axis": "y",
+"corridor": null,
+"how": "midpoint",
+"crops": [
+"seam_86_94_100.jpg"
+]
+},
+{
+"seam": "90_98",
+"kind": "band",
+"axis": "y",
+"corridor": "42nd St",
+"how": "control",
+"crops": [
+"seam_90_98_100.jpg"
+]
+},
+{
+"seam": "97_98",
+"kind": "band",
+"axis": "x",
+"corridor": "Ave S",
+"how": "control",
+"crops": [
+"seam_97_98_a_100.jpg",
+"seam_97_98_b_100.jpg"
+]
+},
+{
+"seam": "26_38",
+"kind": "corner",
+"axis": "y",
+"corridor": null,
+"how": "midpoint",
+"crops": [
+"seam_26_38_100.jpg"
+]
+},
+{
+"seam": "45_52",
+"kind": "corner",
+"axis": "y",
+"corridor": null,
+"how": "midpoint",
+"crops": [
+"seam_45_52_100.jpg"
+]
+},
+{
+"seam": "61_69",
+"kind": "corner",
+"axis": "y",
+"corridor": null,
+"how": "midpoint",
+"crops": [
+"seam_61_69_100.jpg"
+]
+},
+{
+"seam": "74_81",
+"kind": "corner",
+"axis": "y",
+"corridor": null,
+"how": "midpoint",
+"crops": [
+"seam_74_81_100.jpg"
+]
+},
+{
+"seam": "86_95",
+"kind": "corner",
+"axis": "y",
+"corridor": null,
+"how": "midpoint",
+"crops": [
+"seam_86_95_100.jpg"
+]
+}
+]
