@@ -69,6 +69,14 @@ class Recipe:
         if spec["op"] == "copy":
             shutil.copyfile(src, path)
             return path
+        if spec["op"] == "full":
+            # the wharf plate (sheet 5) is drawn at 100 ft/in, half the
+            # other plates' scale, so its archival scan is used unreduced
+            from PIL import Image
+            Image.MAX_IMAGE_PIXELS = None
+            with Image.open(src) as im:
+                im.convert("RGB").save(path, quality=92)
+            return path
         if spec["op"] != "half":
             raise RuntimeError(f"unknown working-source op {spec['op']!r}")
         from PIL import Image
@@ -133,7 +141,18 @@ class Recipe:
 
     # ---------------- geometry ----------------
     def sheet_matrix(self, sheet):
-        """(M, t): p_mosaic = M @ p_native + t, from the recipe transforms."""
+        """(M, t): p_mosaic = M @ p_native + t, from the recipe transforms.
+
+        A detached inset panel (units.json `panel_of` + `shift_native`) is
+        drawn on its parent plate at the parent's scale and orientation, so
+        its transform is the parent's with the native shift folded in:
+        p_mosaic = M_parent @ (p_native + shift) + t_parent. Deriving it here
+        keeps a panel attached to its plate through any later re-solve.
+        """
+        u = self.units.get(str(sheet)) or {}
+        if str(sheet) not in self.transforms["sheets"] and u.get("panel_of"):
+            M, t = self.sheet_matrix(u["panel_of"])
+            return M, t + M @ np.array(u["shift_native"], float)
         s = self.transforms["sheets"][str(sheet)]
         if "raw" in s:                       # 1912 convention
             r = s["raw"]
@@ -142,6 +161,31 @@ class Recipe:
         if "m" in s:                         # 1899 affine convention
             return np.array(s["m"], float), np.array(s["t"], float)
         raise ValueError(f"unknown transform format for sheet {sheet}")
+
+    def footprint_native(self, unit):
+        """Shapely polygon of the ground a unit's scan actually maps, in its
+        own pixels: the neatline-trimmed extent, minus any `exclude_native`
+        polygons (a parent plate's inset frame), or the `region_native`
+        polygon for a panel unit."""
+        from shapely.geometry import Polygon, box
+        u = self.units[str(unit)]
+        if u.get("region_native"):
+            g = Polygon(u["region_native"]).buffer(0)
+        else:
+            e = u["extent"]
+            g = box(e[0], e[1], e[2], e[3])
+        for ex in u.get("exclude_native") or []:
+            g = g.difference(Polygon(ex).buffer(0))
+        if g.geom_type != "Polygon":
+            g = max(g.geoms, key=lambda p: p.area)
+        return g
+
+    def footprint(self, unit):
+        """footprint_native mapped into the mosaic frame."""
+        from shapely.affinity import affine_transform
+        M, t = self.sheet_matrix(unit)
+        return affine_transform(self.footprint_native(unit),
+                                [M[0, 0], M[0, 1], M[1, 0], M[1, 1], t[0], t[1]])
 
     def ownership(self):
         """[(unit, exterior_polygon_mosaic np.ndarray)]"""

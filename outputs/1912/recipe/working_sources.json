@@ -1210,6 +1210,12 @@
    "op": "copy",
    "sha256": "fecb52c4773196c609d63d009533bc673124514ee2f3098d076f5a770870c62c",
    "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0099/full/pct:50/0/default.jpg"
+  },
+  "5": {
+   "file": "sanborn08539_004_img009_archival.jp2",
+   "op": "full",
+   "bytes": 7388980,
+   "note": "wharf plate at 100 ft/in: archival scan unreduced"
   }
  },
  "year": 1912

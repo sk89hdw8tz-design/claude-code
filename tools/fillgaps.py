@@ -52,13 +52,9 @@ def main():
 
     supply = {}
     for u, info in r.units.items():
-        e = info.get("extent")
-        if not e or u not in regions:
+        if not info.get("extent") or u not in regions:
             continue
-        M, t = r.sheet_matrix(u)
-        supply[u] = Polygon([tuple(M @ np.array(c, float) + t) for c in
-                             ((e[0], e[1]), (e[2], e[1]),
-                              (e[2], e[3]), (e[0], e[3]))]).buffer(0)
+        supply[u] = r.footprint(u).buffer(0)     # trimmed extent minus inset frames
     paper = unary_union(list(supply.values()))
 
     union = unary_union(list(regions.values()))

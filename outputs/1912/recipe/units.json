@@ -546,6 +546,33 @@
     "left",
     "top",
     "right"
+   ],
+   "exclude_native": [
+    [
+     [
+      1962,
+      87
+     ],
+     [
+      3243,
+      87
+     ],
+     [
+      3243,
+      2128
+     ],
+     [
+      2322,
+      2128
+     ],
+     [
+      1962,
+      1358
+     ]
+    ]
+   ],
+   "panels": [
+    "26b"
    ]
   },
   "27": {
@@ -1139,6 +1166,33 @@
     "top",
     "right",
     "bottom"
+   ],
+   "exclude_native": [
+    [
+     [
+      2000,
+      88
+     ],
+     [
+      3237,
+      88
+     ],
+     [
+      3237,
+      2155
+     ],
+     [
+      2075,
+      2155
+     ],
+     [
+      2000,
+      1875
+     ]
+    ]
+   ],
+   "panels": [
+    "48b"
    ]
   },
   "49": {
@@ -2122,6 +2176,29 @@
     "left",
     "right",
     "bottom"
+   ],
+   "exclude_native": [
+    [
+     [
+      85,
+      1698
+     ],
+     [
+      1203,
+      1698
+     ],
+     [
+      1203,
+      3817
+     ],
+     [
+      85,
+      3817
+     ]
+    ]
+   ],
+   "panels": [
+    "85b"
    ]
   },
   "86": {
@@ -2336,6 +2413,29 @@
     "left",
     "top",
     "right"
+   ],
+   "exclude_native": [
+    [
+     [
+      85,
+      95
+     ],
+     [
+      1158,
+      95
+     ],
+     [
+      1158,
+      1385
+     ],
+     [
+      85,
+      1385
+     ]
+    ]
+   ],
+   "panels": [
+    "93b"
    ]
   },
   "94": {
@@ -2496,6 +2596,28 @@
     "top",
     "right",
     "bottom"
+   ],
+   "region_native": [
+    [
+     1749,
+     103
+    ],
+    [
+     3219,
+     103
+    ],
+    [
+     3219,
+     3804
+    ],
+    [
+     1749,
+     3804
+    ]
+   ],
+   "note": "composite plate: two beach strips either side of a heavy divider at x~1735; this unit is the RIGHT strip (36th-39th St, Ave T-T1/2), where all three observer controls were read",
+   "panels": [
+    "99a"
    ]
   },
   "72": {
@@ -2524,6 +2646,300 @@
     "left",
     "bottom"
    ]
+  },
+  "26b": {
+   "file": 26,
+   "region": "26b",
+   "panel_of": "26",
+   "shift_native": [
+    -1957,
+    -1757
+   ],
+   "region_native": [
+    [
+     1990,
+     92
+    ],
+    [
+     3238,
+     92
+    ],
+    [
+     3238,
+     2100
+    ],
+    [
+     2308,
+     2100
+    ],
+    [
+     1990,
+     1372
+    ]
+   ],
+   "extent": [
+    1990,
+    92,
+    3238,
+    2100
+   ],
+   "streets": null,
+   "avenue_slots": null,
+   "source_image": "work/sheets/1912w/u26.jpg",
+   "note": "detached inset (17th-18th St, Ave O1/2-Seawall) drawn top-right of plate 26 inside a heavy frame; shift from Ave O1/2 east block face (main 268 / inset 2225) and 18th St north face (main 330-243 / inset 1844)"
+  },
+  "48b": {
+   "file": 48,
+   "region": "48b",
+   "panel_of": "48",
+   "shift_native": [
+    -1961,
+    -1756
+   ],
+   "region_native": [
+    [
+     2035,
+     93
+    ],
+    [
+     3232,
+     93
+    ],
+    [
+     3232,
+     2122
+    ],
+    [
+     2092,
+     2122
+    ],
+    [
+     2035,
+     1862
+    ]
+   ],
+   "extent": [
+    2035,
+    93,
+    3232,
+    2122
+   ],
+   "streets": null,
+   "avenue_slots": null,
+   "source_image": "work/sheets/1912w/u48.jpg",
+   "note": "detached inset (29th-30th St, Ave R1/2-Seawall) top-right of plate 48; shift from Ave R1/2 east block face (main 297 / inset 2258) and 30th St north face (main 348-244 / inset 1860)"
+  },
+  "85b": {
+   "file": 85,
+   "region": "85b",
+   "panel_of": "85",
+   "shift_native": [
+    -943,
+    -1658
+   ],
+   "region_native": [
+    [
+     90,
+     1730
+    ],
+    [
+     1176,
+     1730
+    ],
+    [
+     1176,
+     3812
+    ],
+    [
+     90,
+     3812
+    ]
+   ],
+   "extent": [
+    90,
+    1730,
+    1176,
+    3812
+   ],
+   "streets": null,
+   "avenue_slots": null,
+   "source_image": "work/sheets/1912w/u85.jpg",
+   "note": "detached inset (block 159, Broadway-Ave K, 39th-40th St) lower-left of plate 85 over the cemetery; shift from Ave K (main east face 295 - 209 px 70ft roadway / inset west face 1029) and 39th St south face (main 364 / inset 2018), 40th St north face (1261 / 2923)"
+  },
+  "93b": {
+   "file": 93,
+   "region": "93b",
+   "panel_of": "93",
+   "shift_native": [
+    63,
+    3486
+   ],
+   "region_native": [
+    [
+     90,
+     100
+    ],
+    [
+     1130,
+     100
+    ],
+    [
+     1130,
+     1356
+    ],
+    [
+     90,
+     1356
+    ]
+   ],
+   "extent": [
+    90,
+    100,
+    1130,
+    1356
+   ],
+   "streets": null,
+   "avenue_slots": null,
+   "source_image": "work/sheets/1912w/u93.jpg",
+   "note": "detached inset (block 12, Broadway-Ave K, 45th-46th St) top-left of plate 93; shift from Ave K west face (main 1066 / inset 1003) and 45th St (main north face 3539 + 241 px 80ft roadway / inset south face 294)"
+  },
+  "99a": {
+   "file": 99,
+   "region": "99a",
+   "panel_of": "99",
+   "shift_native": [
+    526,
+    -3244
+   ],
+   "region_native": [
+    [
+     98,
+     103
+    ],
+    [
+     1722,
+     103
+    ],
+    [
+     1722,
+     3804
+    ],
+    [
+     98,
+     3804
+    ]
+   ],
+   "extent": [
+    98,
+    103,
+    1722,
+    3804
+   ],
+   "streets": null,
+   "avenue_slots": null,
+   "source_image": "work/sheets/1912w/u99.jpg",
+   "note": "LEFT strip of plate 99 (35th-36th St, Ave S1/2-T); shift from Ave T east block face (left 1367 / right 1894) and 36th St (left north face 3354 / right south face 349 - 239 px 80ft roadway)"
+  },
+  "5a": {
+   "file": 5,
+   "region": "5a",
+   "region_native": [
+    [
+     90,
+     90
+    ],
+    [
+     3775.8,
+     90
+    ],
+    [
+     3811.7,
+     2500
+    ],
+    [
+     3837.6,
+     5000
+    ],
+    [
+     3852.5,
+     7700
+    ],
+    [
+     90,
+     7700
+    ]
+   ],
+   "extent": [
+    90,
+    90,
+    3852,
+    7700
+   ],
+   "streets": null,
+   "avenue_slots": null,
+   "source_image": "work/sheets/1912w/u5.jpg",
+   "scale_note": "plate drawn at 100 ft/in; archival scan used unreduced (working_sources op=full)",
+   "exclude_native": [
+    [
+     [
+      180,
+      150
+     ],
+     [
+      520,
+      150
+     ],
+     [
+      520,
+      520
+     ],
+     [
+      180,
+      520
+     ]
+    ]
+   ]
+  },
+  "5b": {
+   "file": 5,
+   "region": "5b",
+   "region_native": [
+    [
+     3803.8,
+     90
+    ],
+    [
+     6560,
+     90
+    ],
+    [
+     6560,
+     7700
+    ],
+    [
+     3880.5,
+     7700
+    ],
+    [
+     3865.6,
+     5000
+    ],
+    [
+     3839.7,
+     2500
+    ]
+   ],
+   "extent": [
+    3803,
+    90,
+    6560,
+    7700
+   ],
+   "streets": null,
+   "avenue_slots": null,
+   "source_image": "work/sheets/1912w/u5.jpg",
+   "scale_note": "plate drawn at 100 ft/in; archival scan used unreduced (working_sources op=full)",
+   "exclude_native": []
   }
  }
 }

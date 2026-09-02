@@ -242,10 +242,8 @@ def main():
           flush=True)
 
     def foot(u):
-        e = r.units[u]["extent"]
-        M, t = r.sheet_matrix(u)
-        return Polygon([tuple(M @ np.array(c, float) + t) for c in
-                        ((e[0], e[1]), (e[2], e[1]), (e[2], e[3]), (e[0], e[3]))])
+        # neatline-trimmed extent, minus inset frames; a panel's own region
+        return r.footprint(u)
 
     feet = {u: foot(u) for u in r.units}
     cen = {u: np.array([feet[u].centroid.x, feet[u].centroid.y]) for u in feet}
@@ -386,7 +384,8 @@ def main():
                         "source": "master DP mask" if u in core else "street-centreline cut",
                         "polygon_mosaic": {"exterior":
                             [[round(x, 3), round(y, 3)] for x, y in g.exterior.coords]}}
-                       for u, g in sorted(regions.items(), key=lambda kv: int(kv[0]))]}
+                       for u, g in sorted(regions.items(),
+                                          key=lambda kv: (int("".join(c for c in kv[0] if c.isdigit())), kv[0]))]}
     p = os.path.join(r.dir, "seams", "ownership_streetcut.json")
     json.dump(doc, open(p, "w"), indent=1)
     print(f"wrote {p}")

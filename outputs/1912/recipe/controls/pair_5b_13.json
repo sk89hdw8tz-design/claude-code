@@ -1,0 +1,13 @@
+{
+ "pair": [
+  "5b",
+  "13"
+ ],
+ "axis": "avenue",
+ "corridor": "wharf frontage: sheet 13 drawn-content limit (bay-side blank band edge)",
+ "observer": "session 018fqghgw6 (plates/edge_margins.json first_content_px / ink profile)",
+ "a_native": 5270.4,
+ "b_native": 130,
+ "why_not_one_block_off": "Not a street: the seam between the wharf plate and sheet 13 is placed at the column where sheet 13 stops drawing (its bay-side blank band, 130 native px), so sheet 13 owns everything it maps at 50 ft/in and the 100 ft/in wharf plate supplies only the piers and bay beyond. The panel-side coordinate is the same mosaic column through the frozen sheet-5 transform.",
+ "status": "ACCEPTED"
+}
