@@ -950,3 +950,62 @@ flags nothing else of that class.
 
 Gate after all of it: 100 regions, one piece, ~400 px² overlap, one
 source hole. Seam census round 3 follows on this state.
+
+## HQ-28 · Correction round: registration reviews A–D, furniture, one-label seams — APPLIED
+
+Four reviewers (subagents, `outputs/1912/qc/seams/regreview_{A,B,C,D}.json`)
+re-examined the 40 seams the round-3 census graded as stepped, reading the
+plates' own block faces, address runs and printed widths. Their verdicts
+were applied only where the evidence was on the plate:
+
+**Mis-read controls, not bad placement logic.** The steps came from control
+values: `pair_53_54_y` (lattice) had taken a 275-px non-street on plate 54
+for Rosenberg Av (real faces 1195/1556.5, 48 ft off) and bent 53/54's
+scales; five Ave L/N/Q ties (24|25, 30|31, 36|37, 37|38, 53|54) had been
+read as the centre of a half-drawn roadway strip (12–20 ft); `pair_71_79`
+used plate 71's neat line as its south block face (124 px); `pair_92_93`
+assumed a 70-ft Broadway on the 105-ft (302-px) convention; `pair_62_71`
+and `pair_84_94` tied plates that share no ground. 28 controls were
+re-read, added (cross-axis ties on 52|53 26th, 25|32 12th, 31|32 13th/14th,
+32|38 15th + Ave N½, 35|36 16th, 24|25 12th, 13|15 Ave A) or rejected; each
+file records the previous values and the reason.
+
+**Local re-solves, no city solve.** `tools/localsolve.py --similarity`
+(rotation + scale from the controls as lines, everything else fixed) on
+52/53/54, 56/57, 84/92/93, 15 (wharf 4 re-placed from it), 25/31/37/32/38,
+24, 35/36, 48/74, 70–73 and 62. Plate 54's 1.974 scale (artefact of the
+phantom tie) was reset to the ring median before its solve. Band residuals
+of all 340 accepted controls (`tools/bandresid.py`, sampled where the
+plates meet): median 1.7 ft; the >6 ft remainder are the wharf frontage
+seam positions (not feature ties), 40|41 and 71|79 (10–13 ft, plate 71's
+scale is damped short of the ~2 % its neighbours imply).
+
+**Source disagreements left as drawn.** 19|20/20|23/20|24 (plate 20 draws
+Broadway 158 ft, 23/24/56 draw 105 ft, all labelled 150'); 46|52 (Ave N½
+not drawn south of 24th on 52); 52|57 (Base Ball Park block 15 ft deeper on
+57); 79|80 (plate 80 runs S.W. 60 onto the 38th St centreline); Ave Q½
+70'/35' at 54|60.
+
+**Furniture.** `furniture_native` boxes (93 plate titles, edge numerals,
+now the wharf plates' titles/scale bars and plate 76's scale bar) are cut
+from a unit's footprint — panels inherit their parent's — so the tiling
+hands that ground to a neighbour; where nobody maps it the renderer's
+fallback keeps the plate's own paper rather than a hole. Compass roses and
+adjoining-sheet numerals stay, as on the master.
+
+**One label per shared street.** The min-ink seam weaved round each plate's
+street name on its cheaper side and showed both (57|58, 76|84). It now
+keeps to one side of the lettering strip (a side path may not come nearer
+the centreline than 40 px, or half the band), the side chosen by the ink
+left visible in the band; the centreline path is used only where the band
+is too narrow (<80 px) for a side path. Verified on 57|58 (one AVENUE N)
+and 76|84 (one 39TH ST).
+
+**Gate after pipeline 7.** 106 regions, one piece, 0.43 % unclaimed (4
+holes: cemetery under 85's inset 18.1M px²; 9th St/Ave L corner where
+plate 20's inset frame is cut diagonally and 24/25's neat lines stop short,
+54k px²; bay water at the 6/5a corner 184k px²; 47k px² at [43809,24982]),
+10 inlets, 8 hairlines under the renderer fallback.
+
+**Census round 4** on the 30 re-cut seams: see `grades_round4/` and the
+final report.
