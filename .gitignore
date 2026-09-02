@@ -26,3 +26,4 @@ outputs/*/qc/seams/seam_*_100.jpg
 # regenerable QC crops (tools/seamcrops.py, periphery windows); the index.json and grades are tracked
 outputs/1912/qc/seams/seam_*.jpg
 outputs/1912/qc/periphery/edge_*.jpg
+outputs/1912/qc/seams/seam_*.tif
