@@ -1,0 +1,342 @@
+[
+ {
+  "seam": "64_71",
+  "verdict": "registration",
+  "feature": "33rd St corner: Ave O faces (SW 38 east face / SE 37 east face) and the 6in W. pipe; Ave N faces (NW 38 / NE 37 west faces); 33rd St block faces are fine (79 ft in a fresh render)",
+  "step_ft": 15,
+  "direction": "plate 71 west of 64 at Ave O (13-19 ft), only ~5 ft at Ave N",
+  "varies_along_seam": true,
+  "plate_to_move": "71",
+  "why_this_plate": "The step grows west->east across the seam (5 ft at Ave N, 13-19 ft at Ave O), i.e. scale, not translation. Plate 71's transform scale is 1.978 against 2.013 for 64 and 2.012-2.028 for 70/72/79 while its native block pitch (997 px avenues, 1150 px streets) is normal - its scale was pulled down by the wrong 36th St tie pair_71_79.json (see 71_79). 71 agrees with 63 (-1 ft) and 64 (+4 ft) at 33rd and with 70 at Ave M 1/2 (0 ft), 72 agrees with 71 at Ave O (-1 ft) but is 14 ft west of 64 there: everything points at 71's shrink, with 72 stretched to follow it.",
+  "proposed_ties": [
+   {
+    "file": "pair_71_79.json",
+    "action": "replace",
+    "axis": "street",
+    "corridor": "36th St",
+    "a": 71,
+    "b": 79,
+    "a_native": 3655.0,
+    "b_native": 225.0,
+    "faces": {
+     "71": [
+      3535,
+      3775
+     ],
+     "79": [
+      105,
+      346
+     ]
+    },
+    "why_not_one_block_off": "Same identity argument as the existing control (1400/1500 address runs, 3500->3600 avenue-number turn). Positions corrected: on sheet 71 the block N-N 1/2 (N.E. 36, lots 1502-1524) has its true south face at y=3535 and the corridor is printed '80'' twice, so the south face/neat line at ~3775 is the SOUTH face, not the centreline; the rule at y=3644-3658 under blocks M 1/2-N (S.E. 11, 1402-1424) and N 1/2-O is the platted CENTRELINE onto which those outlot blocks are run, with '40'' printed below it. The existing tie took that centreline rule for a block face and the neat line for the centre, putting 71's 36th St 40 ft too far north. Sheet 79 draws the full 80 ft: faces 105/346 -> 225."
+   }
+  ],
+  "dry_run": "Current controls, 71 free: 8 controls, residuals median 2.1 ft, max 13.2 (71_72_y -13.2, 63_71 -5.0, 71_79 +4.7); move (-1,0) ft - the bad tie is satisfied so nothing moves. Scratch copy with pair_71_79 corrected to 3655/225, 71 free, translation: residuals median 7.0, max 29.4 (71_79 -29.4, 63_71 -13.5, 62_71 -11.3); move (-1,+8) ft. Same with --similarity: scale 1.9785->2.0030 (+1.24%), rotation 0.31->0.40 deg, centre +11 ft south, 71_79 still -17..-19 ft because the scale is damped; the neighbours' scales (2.016/2.028) say ~+2% is needed. 71+72 free, similarity: 71 +1.32%, +12 ft; 72 centre (+2,+4).",
+  "confidence": "high",
+  "note": "Fix is the 71_79 tie plus a similarity re-solve of 71 (then 72). The grader's 'shift 71 15 ft east' would break Ave N and Ave M 1/2 which are within 0-5 ft."
+ },
+ {
+  "seam": "64_72",
+  "verdict": "registration",
+  "feature": "33rd St corner at Ave O: N.E. 62 west face (lot 1701) vs N.W. 63 west face (1702) and the doubled 6in W. pipe; also 33rd St itself, which renders 70 ft wide (S.W. 38/N.W. 63 south faces vs N.E. 62 north face) against 79-82 ft at 64/71 and 65/72",
+  "step_ft": 14,
+  "direction": "plate 72 west of 64 by ~14 ft at Ave O (shrinking to ~2 ft at Ave O 1/2); 72's 33rd St face ~10 ft north of where 64's corridor puts it",
+  "varies_along_seam": true,
+  "plate_to_move": "71 then 72",
+  "why_this_plate": "72 agrees with 71 at Ave O (-1 ft, pair_71_72) and with 65 at Ave P/P 1/2 (0 ft) but is 14 ft west of 64 at O and 6 ft west of 65 at O 1/2: it was stretched (scale 2.028, the largest in the cluster) to bridge the scale-shrunk plate 71 at Ave O and the correctly placed 65 at P. Its 33rd St is fine against 65 (82 ft) and 10 ft off against 64 because 64 and 65 themselves differ by ~10 ft at 33rd (65's scale 1.998 vs 64's 2.013; 64 is held in y only by 58_64 at 30th). Fixing 71 removes the westward pull on 72's Ave O; 72 then needs a similarity re-solve.",
+  "proposed_ties": [
+   {
+    "file": "pair_71_79.json",
+    "action": "replace",
+    "axis": "street",
+    "corridor": "36th St",
+    "a": 71,
+    "b": 79,
+    "a_native": 3655.0,
+    "b_native": 225.0,
+    "faces": {
+     "71": [
+      3535,
+      3775
+     ],
+     "79": [
+      105,
+      346
+     ]
+    },
+    "why_not_one_block_off": "see 71_79"
+   }
+  ],
+  "dry_run": "72 free, current controls: 8 controls, residuals median 6.5, max 14.9 (71_72_y -14.9, 65_72_x +10.7, 72_73_y -8.7, 72_80_x +8.3); move (+1,+2) ft. --similarity: scale 2.0283->2.0299, residuals max 6.1, no move - 72 already sits at the compromise its (partly wrong) ties define. Scratch copy with 71_79 corrected, 71+72 free, similarity: 71 +1.32% scale, +12 ft; 72 centre (+2,+4) ft, rotation 0.61->0.40 deg.",
+  "confidence": "medium",
+  "note": "The grader's '72 needs 14 ft east' is what the Ave O faces show, but moving 72 alone would break Ave P/P 1/2 against 65 and 73 (currently 0-2 ft); the cause is upstream in 71's scale. The doubled 6in pipe label is a cut problem (71/72 vertical cut)."
+ },
+ {
+  "seam": "70_71",
+  "verdict": "ok",
+  "feature": "Avenue M 1/2 between N.E./N.W. 12 (lots 1313-1323) and S.E./S.W. 12 (Cotton Yard, 1401-1419)",
+  "step_ft": 0,
+  "direction": "none: 70's east face of M 1/2 (x=3178) and 71's (x=185) render on the same pixel column at 34th St (0.1 ft) and 0.6 ft further south",
+  "varies_along_seam": false,
+  "plate_to_move": null,
+  "why_this_plate": "Avenue M 1/2 is a 35 ft half-avenue here: sheet 70 prints '35'' in it (top of the corridor, native 3178,150) and so does sheet 71 ('35' at its 3301 corner and again at 3427/3502); sheet 70 draws both faces 3075/3178 = 103 px = 35 ft. The '70' the grader read as a width is the large adjoining-sheet numeral '70' printed in the roadway by sheet 71 (its west neighbour is sheet 70), sitting beside 'M 1/2'. pair_70_71.json already records the 35 ft width and the residual is -0.2 ft.",
+  "proposed_ties": [],
+  "dry_run": "70 free: 9 controls, median 3.9 ft, max 7.9 (70_78_x +7.9, 63_70_x +4.7); pair_70_71 -2.3 ft; move (-1,0) ft. 71 free: pair_70_71 -0.2 ft, pair_70_71_y -0.7 ft.",
+  "confidence": "high",
+  "note": "Not a registration defect; at most move the vertical cut a few px so the '70' sheet numeral and one '35'' survive cleanly. Shifting 71 30 ft east as the grader suggests would open a 65 ft M 1/2 that neither plate draws."
+ },
+ {
+  "seam": "71_78",
+  "verdict": "registration",
+  "feature": "36th St: the platted centreline rule of outlot 11 (plate 71 runs S.E. 11 / lots 1402-1424 onto it and prints '40''; plate 78 runs S.W. 11 / 1401-1423 onto it from the south and prints '40'') and, east of Ave N, the 36th St corridor between N.E. 36 (71, lots 1502-1512, printed 80') and N.W. 36 (79, 1501-1511, printed 80')",
+  "step_ft": 30,
+  "direction": "plate 71's 36th St is 26 ft north of 78's centreline rule and 33 ft north of 79's south face (corridor renders 113 ft instead of 80); constant along the seam",
+  "varies_along_seam": false,
+  "plate_to_move": "71",
+  "why_this_plate": "Fresh render at the current transforms: 71's centreline rule (native 3658) lands at y=352 and 78's (native 223) at y=427 - 75 px = 26 ft; 71's N.E. 36 south face (3535) at 227 and 79's N.W. 36 north face (346) at 556 = 113 ft. 71 is correct at 33rd (63_71 -1.2 ft, 64_71 +4 ft) and the 33-36 / 36-39 rows agree everywhere else at 36th (70/78 -2 ft, 72/80 -3 ft, 73/81 0 ft), so 78/79 are not the ones to move. The cause is pair_71_79.json: its a_native 3779 is 71's south face / neat line, read as the 'centre' because the observer took the centreline rule at 3658 for the block face. 71's transform scale (1.978, ~2% below its neighbours) was dragged down by the same tie.",
+  "proposed_ties": [
+   {
+    "file": "pair_71_79.json",
+    "action": "replace",
+    "axis": "street",
+    "corridor": "36th St",
+    "a": 71,
+    "b": 79,
+    "a_native": 3655.0,
+    "b_native": 225.0,
+    "faces": {
+     "71": [
+      3535,
+      3775
+     ],
+     "79": [
+      105,
+      346
+     ]
+    },
+    "why_not_one_block_off": "Identity unchanged from the existing control (1400/1500 runs across the corridor, 3500->3600 turn on the N 1/2 face). Position: on 71 the block N-N 1/2 is drawn to its true south face 3535 with '80'' printed twice below it and the south face/neat line at 3775 (240 px = 80 ft); blocks M 1/2-N and N 1/2-O are drawn onto the centreline rule at 3644-3658 with '40'' below. Centre = 3655. Sheet 79 faces 105/346 (241 px) -> 225; sheet 78 (for the record) 100/340 -> 220 at L-M and the same centreline rule at 219-223 under N.W./S.W. 11."
+   },
+   {
+    "file": "pair_70_78.json",
+    "action": "replace",
+    "axis": "street",
+    "corridor": "36th St",
+    "a": 70,
+    "b": 78,
+    "a_native": 3670.0,
+    "b_native": 220.0,
+    "faces": {
+     "70": [
+      3549,
+      3659
+     ],
+     "78": [
+      100,
+      340
+     ]
+    },
+    "why_not_one_block_off": "Optional tidy-up, same defect in miniature: the lattice tie uses 70's neat line (3807) as a face. Sheet 70's K-L block north face is 3562 with the corridor printed '80'', its M-M 1/2 block is run onto the centreline rule at 3659 (matching 78's rule at 219); centre ~3670 (3549+120 at the east end). Present residual is only -2 ft so this is not urgent."
+   }
+  ],
+  "dry_run": "71 free, current controls: nothing moves (-1,0 ft) because the wrong tie is satisfied (+4.7 ft). Scratch copy with the corrected 71_79: translation move (-1,+8) ft with 71_79 -29 ft left; --similarity: scale +1.24%, +11 ft south, rotation +0.09 deg, 71_79 -17..-19 ft left (damped scale). 78 free (current): 10 controls, median 6.8, max 17.7 (69_78 -17.7 is a tie between plates that share no ground - 69 is H-K, 78 is L-N - evaluated a plate-width apart), move (0,-4) ft.",
+  "confidence": "high",
+  "note": "The grader's reading (78 needs 33 ft south) has the wrong plate: 78 and 79 agree with each other (78_79 graded 5) and with the rest of their row. The 'far-left 60 px street' is the drafting note from the brief (blocks run onto the centreline, 40 ft drawn), not a step."
+ },
+ {
+  "seam": "71_79",
+  "verdict": "registration",
+  "feature": "36th St between N.E. 36 / S.E. 36 (plate 71, lots 1502-1524, 1602-1624) and N.W. 36 / S.W. 36 (plate 79, 1501-1523, 1601-1623): both plates print '36TH ST.' with '80'', and both copies survive because the corridor renders 113 ft wide",
+  "step_ft": 33,
+  "direction": "plate 71 north of 79 (71's north face to 79's south face = 113 ft against 80 ft on both plates); constant along the seam",
+  "varies_along_seam": false,
+  "plate_to_move": "71",
+  "why_this_plate": "Same defect as 71_78; measured in the census crop (71 face at y=566, 79 face at y=913 -> 347 px = 120 ft including the tilt) and in a fresh render (227 vs 556 px = 113 ft). Lot numbers 1502-1524 / 1501-1523 line up in x because Ave N and N 1/2 agree (71_79_x +1.2 ft), which is why the grader called it a doubled label rather than a step. The doubled '36TH ST 80'' band IS the step. 71 is right at 33rd; 79 is right against 78, 80, 86 and 87 (all within 5 ft); pair_71_79.json's a_native (3779, the neat line) is 124 px south of 71's true centre.",
+  "proposed_ties": [
+   {
+    "file": "pair_71_79.json",
+    "action": "replace",
+    "axis": "street",
+    "corridor": "36th St",
+    "a": 71,
+    "b": 79,
+    "a_native": 3655.0,
+    "b_native": 225.0,
+    "faces": {
+     "71": [
+      3535,
+      3775
+     ],
+     "79": [
+      105,
+      346
+     ]
+    },
+    "why_not_one_block_off": "see 71_78: identity as in the existing control; 71's 3535/3775 are the printed-80' faces of the N.E. 36 block, 3644-3658 is the centreline rule under the outlot blocks, 3779 is the neat line."
+   }
+  ],
+  "dry_run": "See 71_78: current controls leave 71 where it is; corrected tie -> translation (-1,+8) ft with 29 ft unresolved, similarity +1.24% scale and +11 ft with 17-19 ft unresolved under damping. 79 free (current, similarity): residuals max 6.6 (71_79 +6.6, 79_80_y +6.5) - 79 does not want to move.",
+  "confidence": "high",
+  "note": "After the re-solve the cut along 36th should be re-drawn so a single '36TH ST.' survives; the grader's 60 px cut move addresses the symptom only."
+ },
+ {
+  "seam": "74_81",
+  "verdict": "registration",
+  "feature": "Avenue R 1/2 at 36th St: west face (N.E. 136 lots 2302-2312 on 74 / N.W. 136 lots 2301-2311 on 81) and east face (S.E. 136 / S.W. 136); also 36th St itself, which renders 94 ft between 74's north face and 81's south face (80 ft printed on 74)",
+  "step_ft": 12,
+  "direction": "plate 74 east of 81 by 12-13 ft at both R 1/2 faces (constant), and ~14 ft north of 81 at 36th St",
+  "varies_along_seam": false,
+  "plate_to_move": "74",
+  "why_this_plate": "81 is consistent with 73 (Ave Q 1/2 +0.7 ft, Ave R +2.6 ft, 36th -0.4 ft), 80, 82, 88 and 89 (all within 4 ft in the similarity check). 74 is the weak plate: five ties only, transform scale 1.980 (the low outlier with 71), already moved once by hand (HQ-27), and it is squeezed in y - 7 ft south of 48 at 33rd, 7-14 ft north of 82/81 at 36th - which is a scale error. The x-step is not explained by the accepted R 1/2 tie (residual only +3.7 ft in the similarity check), so the tie's evaluation and the rendered faces disagree; the render is what the census sees.",
+  "proposed_ties": [
+   {
+    "file": "pair_74_81.json",
+    "action": "replace",
+    "axis": "avenue",
+    "corridor": "Ave R 1/2",
+    "a": 74,
+    "b": 81,
+    "a_native": 1166.5,
+    "b_native": 3153.0,
+    "faces": {
+     "74": [
+      1063,
+      1270
+     ],
+     "81": [
+      3048,
+      3260
+     ]
+    },
+    "why_not_one_block_off": "Identity exactly as agent-fix81 recorded (2300/2400 change on this avenue; sheet 81 east face prints 3602/3604 with the 36th St run ending 2317-2323, sheet 74's 34th-35th row prints 3401 and 2401-2409 east of it). Faces re-measured on the plates: 74 x=1072/1264 (column profile, 400-3400) vs the recorded 1063/1270 - within 9 px; 81 x=3045/3251 (lattice) vs recorded 3048/3260. The numbers stand; what is needed is a similarity re-solve of 74, not a new number."
+   }
+  ],
+  "dry_run": "74 free, translation: 5 controls, median 10.2, max 15.1 (74_81 +15.1, 66_74 +15.1, 74_82_y -10.2, 48_74 -6.8, 73_74_y -3.4); move (0,0) ft - it already sits at the least-squares compromise. 74 free, --similarity: scale 1.9798->1.9973 (+0.88%), rotation 0.535->0.598 deg, centre (+1,+1) ft, residuals median 3.8, max 7.0 (48_74 -7.0/-4.0, 73_74_y +4.7, 74_81 +3.9/+3.7, 66_74 +3.8, 74_82_y -1.7). 81 free, --similarity: residuals max 3.6, no move.",
+  "confidence": "medium",
+  "note": "Expect the R 1/2 step to drop to ~4 ft and the 36th St width to ~82 ft after 74's similarity re-solve; the residual 4 ft then belongs with 66_74 (30-33 row). The notch beside the north arrow is a cut/coverage fix."
+ },
+ {
+  "seam": "62_69",
+  "verdict": "registration",
+  "feature": "Broadway (Ave J, printed 150', drawn ~100 ft) faces: block 212 east / 213 east and 152 west / 153 west, the 6in and 10in W. pipes; and 33rd St itself, which renders 70 ft wide between 212's south face and 213's north face (80 ft everywhere else in the row)",
+  "step_ft": 8,
+  "direction": "plate 62 east of 69 by 7-9 ft (constant along the seam) and ~10 ft south of 69 at 33rd St",
+  "varies_along_seam": false,
+  "plate_to_move": "62",
+  "why_this_plate": "62 disagrees the same way with 61: in a fresh render Ave I is 84 ft between 61's west face and 62's east face (73 ft on 69 alone), 62's pipe label is 20 ft east of 61's (the doubled '6in W. PIPE' the 61_69 grader saw), and 62's 33rd St face is 11 ft south of 61's. 61 and 69 agree with each other (Ave I 2.8 ft, 33rd 81 ft), 69 agrees with 68 and 70 (Ave H/K within 1 ft), and 62's other neighbours 56 (30th) and 63 (Ave L) are within 1-3 ft, so 62 is the plate to move (~8 ft west, ~10 ft north). The y-error has a concrete cause: pair_62_70.json takes 33rd St as 70 ft (centre = face +/-106 px) but every plate draws it 240 px = 80 ft, so both a_native (3651) and b_native (238) are ~14 px off in opposite directions - a 28 px = 10 ft tie error. pair_62_71.json ties plates that share no ground (62 is Ave I-L, 71 is M 1/2-O). The x-error is not explained by the tie numbers (62's Broadway centre 1134.5 vs the tie's 1130; 61_62 centres 3165/80 vs 3161/82) - the solver reports 62 within 1.2 ft of all its ties while the render shows 8 ft, so one of the lattice ties (61_62, disagreement 78 ft before acceptance; 62_69 corridor '?') is being evaluated off the seam.",
+  "proposed_ties": [
+   {
+    "file": "pair_62_70.json",
+    "action": "replace",
+    "axis": "street",
+    "corridor": "33rd St",
+    "a": 62,
+    "b": 70,
+    "a_native": 3667.0,
+    "b_native": 222.0,
+    "faces": {
+     "62": [
+      3547,
+      3787
+     ],
+     "70": [
+      98,
+      343
+     ]
+    },
+    "why_not_one_block_off": "Identity as agent-batch11 recorded (1102-1114 even / 1109-1123 odd of the same 1100 block, 3216-3228 -> 3302-3310 turn, both print '33RD ST.'). Position corrected for the 80 ft corridor: 62's north face 3545-3550 (south face beyond the neat line, 3547+240=3787), centre 3667; 70's faces 98/343 (lattice, 245 px), centre 220-222."
+   },
+   {
+    "file": "pair_62_71.json",
+    "action": "reject",
+    "axis": "street",
+    "corridor": "33rd St",
+    "a": 62,
+    "b": 71,
+    "a_native": 3664,
+    "b_native": 208,
+    "faces": {},
+    "why_not_one_block_off": "Not a shared corridor: sheet 62 covers Ave I-L, sheet 71 Ave M 1/2-O; their footprints do not intersect, and localsolve evaluates the pair a plate-width apart where the 0.3 deg grid tilt alone is worth ~10 ft."
+   },
+   {
+    "file": "pair_62_69.json",
+    "action": "replace",
+    "axis": "avenue",
+    "corridor": "Broadway (Ave J)",
+    "a": 62,
+    "b": 69,
+    "a_native": 1134.5,
+    "b_native": 2160.0,
+    "faces": {
+     "62": [
+      983,
+      1286
+     ],
+     "69": [
+      2009,
+      2311
+     ]
+    },
+    "why_not_one_block_off": "Sheet 62 prints '150'' in it with the 6in W. pipe, sheet 69 '150'' with the 10in W. pipe; block 212 (lots 902-924, west) and 152 (1002-1024, east) on 62 face 213 (901-923) and 153 (1001-1023) on 69 - the 900/1000 hundred change is on this avenue on both plates. Ave I one block west carries 800/900 (824 | 902), Ave K one east 1000/1100 (1024 | 1102). Faces re-read: 62 983/1286 (303 px), 69 2009/2311 (302 px)."
+   }
+  ],
+  "dry_run": "62 free, current controls: 7 controls, median 1.7, max 7.0 (62_69 +7.0, 56_62_x +5.4); move (0,+2) ft; --similarity residuals all <=1.2 ft - the ties are satisfied, the ties are wrong. Scratch copy with 62_70 corrected (3670/220) and 62_71 rejected: translation move (0,-5) ft, residuals median 4.2 (62_69 +7.0, 56_62_x +5.4, 56_62 +4.2, 62_70 +4.2); --similarity: scale -0.31%, centre -6 ft (north), residuals max 4.4. 69 free (similarity): residuals max 1.4 ft, no move.",
+  "confidence": "medium",
+  "note": "The y fix is clear (tie read for a 70 ft street). The x fix needs the 61_62 and 62_69 lattice ties re-read at the seam; a 5-8 ft westward move of 62 would close both Broadway and Ave I. Keep the compass rose whole by moving the cut."
+ },
+ {
+  "seam": "61_69",
+  "verdict": "cut-only",
+  "feature": "33rd St corner: blocks 332/333, 272/273 (plate 61 over 69) and 212/213 (62 over 69); doubled 6in W. PIPE label and 70' numeral in the 61/62 vertical cut, two north arrows in the roadway",
+  "step_ft": 3,
+  "direction": "61's Ave I west face 2.8 ft west of 69's; 33rd St renders 81 ft between 61's and 69's faces; Ave H east face within 2 ft",
+  "varies_along_seam": false,
+  "plate_to_move": null,
+  "why_this_plate": "61 and 69 agree (fresh render: Ave I west face 478 vs 486 px, 33rd 284->520 px = 81 ft, Ave H 621 vs 614). The doubled pipe label / 70' numeral 55 px apart is not the 61/69 seam: it is plate 62's Ave I drawn ~20 ft east of plate 61's (62's pipe at x=650 vs 61's at 580 in the render), i.e. the 62 offset reported under 62_69. The compass rose and arrow are furniture in the cut.",
+  "proposed_ties": [],
+  "dry_run": "61 free: 7 controls, median 2.0, max 4.7 (55_61_x +4.7, 61_68_x +3.8); move (0,-2) ft. 69 free: median 5.4, max 15.8 (69_78 -15.8 is the no-overlap tie, 68_69_y -10.4), move (0,+6) ft; --similarity residuals max 1.4 ft.",
+  "confidence": "high",
+  "note": "Do the 61/62 vertical cut as the grader says (one pipe label), but the sliver closes for good only once 62 is moved west (62_69)."
+ },
+ {
+  "seam": "65_72",
+  "verdict": "registration",
+  "feature": "The 65/72 cut along 33rd St is clean (fresh render: 33rd = 82 ft between S.W. 63/N.W. 88 and S.E. 62/N.E. 87 faces, Ave P faces aligned within 1 ft). The defect is at the Ave P 1/2 corner: S.W. 88's west face (lot 2002, plate 65) vs S.E. 87's west face (2001, plate 73), and N.W. 88's east face (65) vs N.E. 87's east face (72); the white gap with tick marks is plate 73's neat-line margin",
+  "step_ft": 9,
+  "direction": "the plates below 33rd sit east of 65 at P 1/2: 73's east face 8.6 ft east of 65's, 72's west face 5 ft east of 65's; 73's 33rd St face is also ~5 ft south of 72's",
+  "varies_along_seam": false,
+  "plate_to_move": "72 then 73 (after 71)",
+  "why_this_plate": "65 is consistent with 64 at Ave O 1/2 (1.5 ft) and with 72 at Ave P (0.3 ft). 72 is 6 ft west of 65 at O 1/2, 0 at P and 5 ft east at P 1/2: a 1.5% scale excess (72 = 2.028 vs 65 = 1.998), which is 72 stretched to follow plate 71 at Ave O (see 64_72). 73 then follows 72 at P 1/2 (72_73 +1.7 ft) and is 9 ft east of 65 at both P 1/2 and Ave Q while agreeing with 66 at Q (3.5 ft) and 81 at Q 1/2/R. The grader's 75 px (25 ft) was not reproduced in a fresh render (9 ft); part of what they saw is the 20 ft-wide dashed outline of the store on lot 2002 projecting into the avenue.",
+  "proposed_ties": [],
+  "dry_run": "72 free: median 6.5, max 14.9 (71_72_y -14.9, 65_72_x +10.7, 72_73_y -8.7, 72_80_x +8.3), move (+1,+2) ft; --similarity: no move, residuals max 6.1. 73 free: median 6.0, max 13.7 (72_73_y -13.7, 73_82 -12.9), move (-5,+3) ft; --similarity: residuals max 2.1, no move. 65 free: median 5.8, max 12.5 (59_65_x +12.5, 65_72_x +11.3), move (0,-1) ft.",
+  "confidence": "medium",
+  "note": "No new tie; the numbers on pair_65_72_x/72_73/73_81 are fine. Order of work: fix 71 (36th St tie), re-solve 71, 72, 73 with --similarity, then extend 73's coverage over the corner holes (fix_hint)."
+ },
+ {
+  "seam": "65_73",
+  "verdict": "registration",
+  "feature": "33rd St corner at Ave Q: the 6in W. pipe jog and Ave Q faces (S.W. 88 east / N.W. 113 west above; S.E. 87 east / N.E. 112 west below); 33rd St renders 86-87 ft between 65's north face and 73's south face (80 ft against 66)",
+  "step_ft": 6,
+  "direction": "plate 73 east of 65 by 6-9 ft at Ave Q (west face 9 ft, east face vs 66 3.5 ft) and ~5 ft south of 72 at 33rd",
+  "varies_along_seam": false,
+  "plate_to_move": "73 (with 72, after 71)",
+  "why_this_plate": "73 fits its own ties to 1-2 ft (72_73, 73_81, 73_74_y, 66_73 - similarity residuals max 2.1 ft) so it is not mis-solved against them; the 6-9 ft is the accumulated eastward stretch of 72 (see 65_72) transmitted through pair_72_73 (Ave P 1/2), plus 65's own slightly low scale (1.998). Against 66 (66_73 33rd = 80 ft, Q east face 3.5 ft) it is nearly right, so the correction is small and should come from the 71->72->73 re-solve rather than a 6 ft shove of 73 alone, which would open 72/73.",
+  "proposed_ties": [],
+  "dry_run": "73 free: 7 controls, median 6.0, max 13.7 (72_73_y -13.7 [lattice 35th], 73_82 -12.9, 72_73 +6.0, 73_81 +6.0), move (-5,+3) ft; --similarity: scale -0.03%, rotation 0.63->0.57 deg, centre (0,-1) ft, residuals max 2.1.",
+  "confidence": "low",
+  "note": "The two white patches and the grey wedge are 73's margin at the corner - extend 73 (or 65) 30 px as the grader says. Registration part is small and secondary."
+ },
+ {
+  "seam": "79_80",
+  "verdict": "source-disagreement",
+  "feature": "38th St at Avenue O 1/2: N.E. 60 south face (1714-1724) / N.W. 60 north face (1713-1723) on plate 79 vs S.E. 60 south face (1802-1812) / S.W. 60 north face (1801-1811) on plate 80",
+  "step_ft": 20,
+  "direction": "plate 80's S.W. 60 north face sits 40 ft north of plate 79's N.W. 60 north face - by drafting, not placement",
+  "varies_along_seam": false,
+  "plate_to_move": null,
+  "why_this_plate": "Plate 80 runs S.W. 60 onto the platted centreline of 38th St and prints '40'' in the half-street it draws (rule at native y=2532, 122 px south of its north face 2408), while plate 79 draws the full 80 ft corridor (faces 2398/2640, prints '80''). Both plates' 38th St centres agree: in a fresh render 79's north face lands at y=278 and south face 518, 80's north face 283 and centreline rule 406 - the rule is within 3 ft of 79's centre (398). Ave O 1/2 faces align within 2 ft above and below (79 west face 489/486, 80 east face 707/709), the north faces and the 8in pipe align as the grader says. This is the brief's drafting case (blocks run onto the centreline, 40 ft roadway) at 38th St.",
+  "proposed_ties": [],
+  "dry_run": "79 free: 9 controls, median 3.5, max 5.6 (71_79 +5.6, 79_87 -5.3), move (0,-1) ft; 80 free: 12 controls, median 2.7, max 9.6 (72_80 -9.6, 80_99 -7.6), move (+1,+3) ft; pair_79_80 x -0.6 / -1.8 ft, pair_79_80_y +3.5 / +1.3 ft.",
+  "confidence": "high",
+  "note": "Owner decision as the grader says: give the 38th St corridor west of O 1/2 to plate 79 (which draws the full street) so the cut does not show 80's half-street, or accept."
+ }
+]
