@@ -10,18 +10,18 @@
   "objective": "Finish the 1912 full-city mosaic to print-ready quality: session 018 carrying on from session 019 head; panels split, wharf in, 48/74 fixed; complete seam census, corrections, final deliverables."
  },
  "progress": {
-  "overall_pct": 68,
-  "stage_pct": 40,
+  "overall_pct": 76,
+  "stage_pct": 80,
   "tasks_done": 7,
   "tasks_total": 11,
-  "current_task": "correction round: DP cut retune (one label per shared street), plate-number exclusions, panels 20b/25b/54b + 32 exclusion, registration reviews A-D (subagents)",
-  "next_task": "re-cut, re-crop affected seams, census round 4; then wharf plates 2/3/4/6; final render",
+  "current_task": "correction round: all four registration reviews applied (28 controls re-read/added/rejected, 11 local re-solves; band residual median 1.7 ft over 340 controls); pipeline 7 re-cut running with the side-constrained DP seam",
+  "next_task": "census round 4 on ~30 affected seams; periphery re-check; HQ-28; final render + print master; full-city QC",
   "blockers": []
  },
  "eta": {
-  "range": "3-6 hours remaining",
+  "range": "2-4 hours remaining",
   "confidence": "MEDIUM",
-  "reason": "registration reviews ~30 min; one more census round on affected seams ~40 min; publish ~40 min; wharf plates 2/3/4/6 optional +1 h"
+  "reason": "pipeline ~15 min; census round 4 ~40 min; fixes; publish + print master ~1 h; full-city QC ~30 min"
  },
  "tasks": [
   {
@@ -397,6 +397,10 @@
   {
    "t": "2026-09-02T17:33Z",
    "event": "registration correction round: 21 control re-reads/additions, re-solves of 52/53/54, 56/57, 84/92/93, 15 (+wharf 4), 25/31/37/32/38, 24, 35/36, 48/74; furniture boxes now honoured by footprint(); DP cut scored on visible band ink (11d23da)"
+  },
+  {
+   "t": "2026-09-02T19:12Z",
+   "event": "review C applied (71|79 36th St tie was plate 71's neat line; 62|71 rejected); 70/71/72/73/62 re-solved; DP seam now keeps to one side of the lettering strip (40645e8)"
   }
  ]
 }
