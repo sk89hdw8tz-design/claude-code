@@ -347,7 +347,8 @@
    "seams: 171 band seams on a control (observer or lattice), 81 corner contacts on the overlap midpoint; trimming only inside overlaps",
    "session 019 work kept in full; 48/74 moved one row on outlot-numbering evidence (HQ-27)",
    "plate numbers/titles/date stamps excluded from footprints; north arrows and scale bars kept where the master kept them",
-   "19|20/20|23/20|24: Broadway drawn 108 ft on plate 24 vs 146 ft on plate 20 (both labelled 150') = source disagreement, documented"
+   "19|20/20|23/20|24: Broadway drawn 108 ft on plate 24 vs 146 ft on plate 20 (both labelled 150') = source disagreement, documented",
+   "2026-09-02T17:33Z: Registration changed only on plate-face evidence (reviews A/B/D): the 53|54 lattice tie was a 275-px non-street, five Ave L/Ave N/Ave Q ties had been read as centres of half-drawn roadway strips (12-20 ft), 92|93 assumed a 70-ft Broadway. Fixes are local similarity re-solves of 2-5 plates each; no city-wide re-solve. 19|20/20|23/20|24 Broadway (plate 20 draws 158 ft vs 105 ft) and 46|52 Ave N 1/2 stay as source disagreements."
   ],
   "risks": [
    "composite plates 85/93/99 carry panels with their own origins; their lattices are flagged weak and their controls are the observers' reads",
@@ -392,6 +393,10 @@
   {
    "t": "2026-09-02T17:05Z",
    "event": "census round 3 complete (230 seams, 63 periphery windows); 48/74 and 95 row fixes; panels 20b/25b/54b, plate 32 inset excluded; 93 plate-number boxes excluded; DP cut retuned to keep one plate's street name"
+  },
+  {
+   "t": "2026-09-02T17:33Z",
+   "event": "registration correction round: 21 control re-reads/additions, re-solves of 52/53/54, 56/57, 84/92/93, 15 (+wharf 4), 25/31/37/32/38, 24, 35/36, 48/74; furniture boxes now honoured by footprint(); DP cut scored on visible band ink (11d23da)"
   }
  ]
 }

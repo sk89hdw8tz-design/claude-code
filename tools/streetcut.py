@@ -121,6 +121,8 @@ def dp_cut(r, u, v, axis, coord, O, lower=None):
     """
     import cv2
     from shapely.geometry import LineString
+    if O.geom_type != "Polygon":
+        O = max(O.geoms, key=lambda g: g.area)        # a band pinched into parts: cut the main one
     b = O.bounds
     if axis == "y":
         x0, x1 = b[0], b[2]
@@ -201,7 +203,7 @@ def dp_cut(r, u, v, axis, coord, O, lower=None):
         yend = int(dp[:, -1].argmin())
         path = [yend]
         for x in range(Wc - 1, 0, -1):
-            path.append(int(path[-1]) + int(back[path[-1], x]))
+            path.append(min(Hc - 1, max(0, int(path[-1]) + int(back[path[-1], x]))))
         path = path[::-1]
         io = ink_only if axis == "y" else ink_only.T
         ink_sum = float(sum(io[y, x] for x, y in enumerate(path)))
