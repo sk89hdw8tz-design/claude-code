@@ -1,0 +1,13 @@
+{
+ "pair": [
+  "3",
+  "67"
+ ],
+ "axis": "avenue",
+ "corridor": "wharf frontage: 200 native px inside sheet 67's bay-side neatline",
+ "observer": "session 018fqghgw6 (tools/wharfplace.py)",
+ "a_native": 4195.3,
+ "b_native": 200,
+ "why_not_one_block_off": "Not a street. Sheet 67 draws the wharf yard at 50 ft/in up to its bay-side neatline and keeps it; the 100 ft/in wharf plate supplies the piers and bay beyond. Same rule as the sheet-5 panels.",
+ "status": "ACCEPTED"
+}

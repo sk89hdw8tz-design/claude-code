@@ -1742,6 +1742,66 @@
    "tier": "core",
    "theta_deg": 0.5934874990851567,
    "scale": 1.9876123909801946
+  },
+  "4": {
+   "m": [
+    [
+     3.9750115237802257,
+     -0.04117587796793032
+    ],
+    [
+     0.04117587796793032,
+     3.9750115237802257
+    ]
+   ],
+   "t": [
+    -21332.628122863203,
+    12296.991525275116
+   ],
+   "how": "tools/wharfplace.py: scale and rotation from the sheet-5 joint solve, translation from Ave A and the shared cross streets against the block plates",
+   "tier": "wharf-frontage",
+   "theta_deg": 0.5934874990851567,
+   "scale": 3.975224781960389
+  },
+  "6": {
+   "m": [
+    [
+     3.9750115237802257,
+     -0.04117587796793032
+    ],
+    [
+     0.04117587796793032,
+     3.9750115237802257
+    ]
+   ],
+   "t": [
+    -21545.36924555523,
+    -30081.73151019954
+   ],
+   "how": "tools/wharfplace.py: scale and rotation from the sheet-5 joint solve, translation from Ave A and the shared cross streets against the block plates",
+   "tier": "wharf-frontage",
+   "theta_deg": 0.5934874990851567,
+   "scale": 3.975224781960389
+  },
+  "3": {
+   "m": [
+    [
+     3.9750115237802257,
+     -0.04117587796793032
+    ],
+    [
+     0.04117587796793032,
+     3.9750115237802257
+    ]
+   ],
+   "t": [
+    -21546.060592928876,
+    23401.5928577936
+   ],
+   "how": "tools/wharfplace.py: scale and rotation from the sheet-5 joint solve, translation from Ave A and the shared cross streets against the block plates",
+   "tier": "wharf-frontage",
+   "theta_deg": 0.5934874990851567,
+   "scale": 3.975224781960389
   }
  }
 }

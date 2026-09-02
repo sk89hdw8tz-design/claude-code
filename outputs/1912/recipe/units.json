@@ -218,6 +218,24 @@
       120,
       235
      ]
+    ],
+    [
+     [
+      1703,
+      43
+     ],
+     [
+      1813,
+      43
+     ],
+     [
+      1813,
+      162
+     ],
+     [
+      1703,
+      162
+     ]
     ]
    ],
    "furniture_native": [
@@ -228,6 +246,15 @@
       109,
       306,
       235
+     ]
+    },
+    {
+     "kind": "edge numeral/glyph",
+     "box": [
+      1703,
+      43,
+      1813,
+      162
      ]
     }
    ]
@@ -337,6 +364,24 @@
       95,
       232
      ]
+    ],
+    [
+     [
+      1674,
+      54
+     ],
+     [
+      1759,
+      54
+     ],
+     [
+      1759,
+      183
+     ],
+     [
+      1674,
+      183
+     ]
     ]
    ],
    "furniture_native": [
@@ -347,6 +392,15 @@
       85,
       268,
       232
+     ]
+    },
+    {
+     "kind": "edge numeral/glyph",
+     "box": [
+      1674,
+      54,
+      1759,
+      183
      ]
     }
    ]
@@ -1513,6 +1567,24 @@
       82,
       277
      ]
+    ],
+    [
+     [
+      1632,
+      40
+     ],
+     [
+      1717,
+      40
+     ],
+     [
+      1717,
+      177
+     ],
+     [
+      1632,
+      177
+     ]
     ]
    ],
    "furniture_native": [
@@ -1523,6 +1595,15 @@
       102,
       242,
       277
+     ]
+    },
+    {
+     "kind": "edge numeral/glyph",
+     "box": [
+      1632,
+      40,
+      1717,
+      177
      ]
     }
    ]
@@ -2055,6 +2136,24 @@
       2961,
       232
      ]
+    ],
+    [
+     [
+      1660,
+      3696
+     ],
+     [
+      1725,
+      3696
+     ],
+     [
+      1725,
+      3834
+     ],
+     [
+      1660,
+      3834
+     ]
     ]
    ],
    "furniture_native": [
@@ -2065,6 +2164,15 @@
       106,
       3164,
       232
+     ]
+    },
+    {
+     "kind": "edge numeral/glyph",
+     "box": [
+      1660,
+      3696,
+      1725,
+      3834
      ]
     }
    ]
@@ -6034,6 +6142,147 @@
    "avenue_slots": null,
    "source_image": "work/sheets/1912w/u54.jpg",
    "note": "detached inset (23rd-24th St, Ave Q-Seawall: Casino Pavilion, Gulf View Hotel, Carousel) top-right of plate 54 inside a heavy frame; shift from Ave Q east block face (main 222 / inset 2349) and 24th St south face (main 293 / inset 2246)"
+  },
+  "4": {
+   "file": 4,
+   "region": null,
+   "extent": [
+    78,
+    80,
+    3242,
+    3822
+   ],
+   "streets": null,
+   "avenue_slots": null,
+   "source_image": "work/sheets/1912w/u4.jpg",
+   "scale_note": "wharf plate drawn at 100 ft/in; pct:50 working copy",
+   "seam_axis": {
+    "default": "x",
+    "5a": "y",
+    "5b": "y",
+    "2": "y",
+    "3": "y",
+    "4": "y",
+    "6": "y"
+   },
+   "note": "piers 29-36, 28th-33rd St; abuts 13 (27th-30th) and 15 (30th-33rd) along Ave A; prints '5' at its top (sheet 5 above) and '3' at its bottom",
+   "extent_scan": [
+    40,
+    40,
+    3287,
+    3858
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "left",
+    "top",
+    "right",
+    "bottom"
+   ]
+  },
+  "6": {
+   "file": 6,
+   "region": null,
+   "extent": [
+    72,
+    88,
+    3225,
+    3833
+   ],
+   "streets": null,
+   "avenue_slots": null,
+   "source_image": "work/sheets/1912w/u6.jpg",
+   "scale_note": "wharf plate drawn at 100 ft/in; pct:50 working copy",
+   "seam_axis": {
+    "default": "x",
+    "5a": "y",
+    "5b": "y",
+    "2": "y",
+    "3": "y",
+    "4": "y",
+    "6": "y"
+   },
+   "note": "piers 10-15, 10th-16th St; abuts 21 (9th-12th), 27 (12th-15th) and 33 (15th-18th) along Ave A; prints '5' at its bottom",
+   "extent_scan": [
+    40,
+    40,
+    3287,
+    3858
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "left",
+    "top",
+    "bottom"
+   ]
+  },
+  "3": {
+   "file": 3,
+   "region": null,
+   "extent": [
+    78,
+    75,
+    3253,
+    3823
+   ],
+   "streets": null,
+   "avenue_slots": null,
+   "source_image": "work/sheets/1912w/u3.jpg",
+   "scale_note": "wharf plate drawn at 100 ft/in; pct:50 working copy",
+   "seam_axis": {
+    "default": "x",
+    "5a": "y",
+    "5b": "y",
+    "2": "y",
+    "3": "y",
+    "4": "y",
+    "6": "y"
+   },
+   "note": "piers 33-39, 33rd-39th St; abuts 67 (33rd-36th) and 75 (36th-39th) along Ave A; prints '4' at its top and '2' at its bottom",
+   "extent_scan": [
+    40,
+    40,
+    3287,
+    3858
+   ],
+   "extent_source": "tools/neatline.py: inner edge of the border rule",
+   "extent_fallback_sides": [
+    "left",
+    "top",
+    "right",
+    "bottom"
+   ],
+   "exclude_native": [
+    [
+     [
+      56,
+      68
+     ],
+     [
+      171,
+      68
+     ],
+     [
+      171,
+      220
+     ],
+     [
+      56,
+      220
+     ]
+    ]
+   ],
+   "furniture_native": [
+    {
+     "kind": "edge numeral/glyph",
+     "box": [
+      56,
+      68,
+      171,
+      220
+     ]
+    }
+   ]
   }
  }
 }
