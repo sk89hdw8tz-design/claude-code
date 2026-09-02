@@ -1,0 +1,102 @@
+[
+ {
+  "seam": "24_25",
+  "score": 5,
+  "offset_ft": 0,
+  "defects": [],
+  "worst_crop": "seam_24_25_b_100.jpg",
+  "reason": "Avenue L reads as one continuous street; block pairs 69/9, 70/10, 71/11 line up with matching house numbers and no duplicated or split buildings across the cut.",
+  "furniture": "none visible in the roadway",
+  "fix_hint": "none needed"
+ },
+ {
+  "seam": "30_36",
+  "score": 5,
+  "offset_ft": 0,
+  "defects": [],
+  "worst_crop": "seam_30_36_a_100.jpg",
+  "reason": "15th St. label and roadway are continuous across the seam; block pairs 134/74, 135/75, 194/195 match with no offset, duplicated labels, or split buildings.",
+  "furniture": "none visible in the roadway",
+  "fix_hint": "none needed"
+ },
+ {
+  "seam": "35_36",
+  "score": 5,
+  "offset_ft": 0,
+  "defects": [],
+  "worst_crop": "seam_35_36_b_100.jpg",
+  "reason": "The 'AVE. I OR SEALY' label spans the seam intact and block pairs 255/195, 256/196, 257/197 line up correctly with no duplicated buildings or streets.",
+  "furniture": "none visible in the roadway",
+  "fix_hint": "none needed"
+ },
+ {
+  "seam": "37_41",
+  "score": 5,
+  "offset_ft": 0,
+  "defects": [],
+  "worst_crop": "seam_37_41_a_100.jpg",
+  "reason": "18th St. reads as one continuous street; blocks 17/NE20 and 18/NW20 (and neighbors) match with consistent house numbering and no split or doubled buildings.",
+  "furniture": "none visible in the roadway",
+  "fix_hint": "none needed"
+ },
+ {
+  "seam": "53_54",
+  "score": 5,
+  "offset_ft": 0,
+  "defects": [],
+  "worst_crop": "seam_53_54_a_100.jpg",
+  "reason": "'25TH ST. OR ROSE...' label is whole across the cut; block pairs 92/117, 91/116 and the Elizabeth Villa/Hotel Galvez footprint on the west tile are undisturbed and match the east tile's addressing.",
+  "furniture": "none visible in the roadway",
+  "fix_hint": "none needed"
+ },
+ {
+  "seam": "57_58",
+  "score": 5,
+  "offset_ft": 0,
+  "defects": [],
+  "worst_crop": "seam_57_58_a_100.jpg",
+  "reason": "Avenue N and the ballpark/bowling-alley block boundaries continue cleanly across the seam with matching block labels (SE15/NE40, SW15/NW40) and no duplicated or stepped features.",
+  "furniture": "plate number '587' sits in the Avenue N roadway near the cut, over blank street, not over drawn content",
+  "fix_hint": "none needed"
+ },
+ {
+  "seam": "64_71",
+  "score": 5,
+  "offset_ft": 0,
+  "defects": [],
+  "worst_crop": "seam_64_71_100.jpg",
+  "reason": "33rd St. is continuous across the seam with block pairs NW38/SW38 and NE37/SE37 matching; buildings and lot lines register correctly on both sides.",
+  "furniture": "a decorative compass/north-arrow flourish sits in the 33rd St. roadway at the seam, over blank street, not over drawn content",
+  "fix_hint": "none needed"
+ },
+ {
+  "seam": "71_78",
+  "score": 3,
+  "offset_ft": 5,
+  "defects": ["misplacement"],
+  "worst_crop": "seam_71_78_100.jpg",
+  "reason": "The upper tiles (blocks S.E.11 / N.E.36, addresses 3502-3532 and 1502-1512) are rotated a few degrees relative to the lower tiles along 36th St. (blocks N.W.11 / N.W.36) -- lot lines and the street grid visibly skew across the corner seam even though house numbers and 36th St.'s label stay continuous and no building is duplicated or split.",
+  "furniture": "none visible in the roadway",
+  "fix_hint": "re-register plate 71's rotation to match plate 78's orthogonal grid before re-cutting the corner"
+ },
+ {
+  "seam": "74_82",
+  "score": 5,
+  "offset_ft": 0,
+  "defects": ["tone"],
+  "worst_crop": "seam_74_82_100.jpg",
+  "reason": "36th St. is continuous across the seam with block pairs SE136/NE161 and SW136/NW161 matching; the east tile (Avenue S½ side) is slightly grayer in paper tone than the west tile (Avenue R½ side), but no geometric defect.",
+  "furniture": "none visible in the roadway",
+  "fix_hint": "none needed; tone difference not corrected by policy"
+ },
+ {
+  "seam": "92_93",
+  "score": 4,
+  "offset_ft": 0,
+  "defects": ["tone"],
+  "worst_crop": "seam_92_93_100.jpg",
+  "reason": "Avenue J / Broadway is continuous across the seam with block pairs 223/163 and 224/164 matching correctly; the west tile is visibly more aged/browned than the east tile, a paper-tone step findable at 100% and faintly visible at 50%.",
+  "furniture": "none visible in the roadway",
+  "fix_hint": "none needed beyond tone normalization; tone alone does not require re-cutting"
+ }
+]
