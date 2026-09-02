@@ -23,3 +23,6 @@ outputs/transcript/*.html
 # seam crops: the 50% set is committed (the graders' evidence); the 100% set
 # is 4x the bytes and regenerates with tools/seamcrops.py
 outputs/*/qc/seams/seam_*_100.jpg
+# regenerable QC crops (tools/seamcrops.py, periphery windows); the index.json and grades are tracked
+outputs/1912/qc/seams/seam_*.jpg
+outputs/1912/qc/periphery/edge_*.jpg
