@@ -1,0 +1,24 @@
+{
+ "pair": [
+  95,
+  96
+ ],
+ "axis": "street",
+ "observer": "session 018fqghgw6 (plate faces via tools/faces.py chains; identity from the key maps and the plates)",
+ "method": "corridor centre = midpoint of the two block faces of the named street on each plate; identity from the printed street names and the key-map coverage (both plates 42nd-45th; 87 39th-42nd)",
+ "corridor": "43rd St",
+ "a_native": 1349.5,
+ "b_native": 1371.0,
+ "faces_native": {
+  "95": [
+   1228,
+   1471
+  ],
+  "96": [
+   1250,
+   1492
+  ]
+ },
+ "why_not_one_block_off": "Both plates cover 42nd-45th (key maps); 43rd is the second chain on both: 95 [1228,1471], 96 [1250,1492]. Cross-axis tie for a side-by-side pair.",
+ "status": "ACCEPTED"
+}

@@ -1597,7 +1597,7 @@
   },
   "95": {
    "tier": "control",
-   "how": "shared-corridor lines, similarity solve",
+   "how": "shared-corridor lines, similarity solve; translation re-solved locally (tools/localsolve.py)",
    "m": [
     [
      2.015846308196206,
@@ -1609,8 +1609,8 @@
     ]
    ],
    "t": [
-    22969.977421118638,
-    42944.654849767496
+    22970.84114392794,
+    44892.172192283004
    ]
   },
   "96": {

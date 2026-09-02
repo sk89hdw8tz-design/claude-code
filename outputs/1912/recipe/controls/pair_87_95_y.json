@@ -1,0 +1,24 @@
+{
+ "pair": [
+  87,
+  95
+ ],
+ "axis": "street",
+ "observer": "session 018fqghgw6 (plate faces via tools/faces.py chains; identity from the key maps and the plates)",
+ "method": "corridor centre = midpoint of the two block faces of the named street on each plate; identity from the printed street names and the key-map coverage (both plates 42nd-45th; 87 39th-42nd)",
+ "corridor": "42nd St",
+ "a_native": 3669.0,
+ "b_native": 202.5,
+ "faces_native": {
+  "87": [
+   3549,
+   3789
+  ],
+  "95": [
+   80,
+   325
+  ]
+ },
+ "why_not_one_block_off": "87 covers 39th-42nd (its bottom chain [3549,3789] is 42nd) and 95 covers 42nd-45th (its top chain [80,325] is 42nd); 95 sits directly below 87 (x ranges overlap by a plate width) and nothing had pinned 95's y: it sat ~300 ft north of 94/96/97/98, its row-mates, so its 45th St fell 300 ft short of theirs (periphery review edge_30-32).",
+ "status": "ACCEPTED"
+}
