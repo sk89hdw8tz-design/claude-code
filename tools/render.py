@@ -62,6 +62,20 @@ def save(canvas, out, ppi=None):
             out, compression="tiff_lzw")
 
 
+def _interior_mask(r, x0, y0, x1, y1, d, W, H):
+    """255 where the window lies inside a hole of the ownership union."""
+    import cv2
+    import numpy as np
+    m = np.zeros((H, W), np.uint8)
+    for P in r.interior_unowned():
+        pts = ((np.array(P.exterior.coords) - np.array([x0, y0])) / d).astype(np.int32)
+        cv2.fillPoly(m, [pts], 255)
+        for ring in P.interiors:
+            pts = ((np.array(ring.coords) - np.array([x0, y0])) / d).astype(np.int32)
+            cv2.fillPoly(m, [pts], 0)
+    return m
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--year", type=int, required=True, choices=(1899, 1912))
@@ -156,6 +170,7 @@ def main():
     # any plate whose trimmed footprint covers it. Nothing is invented: the
     # pixels are that plate's own scan of that ground; the area is reported.
     fallback = 0
+    interior = _interior_mask(r, x0, y0, x1, y1, d, W, H)
     for sheet, poly in involved:
         try:
             fp = r.footprint(sheet, furniture=False)
@@ -170,6 +185,7 @@ def main():
         mask = np.zeros((wy1 - wy0, wx1 - wx0), np.uint8)
         cv2.fillPoly(mask, [fpts - np.array([wx0, wy0], np.int32)], 255)
         mask &= cv2.inRange(sub_cov, 0, 0)
+        mask &= interior[wy0:wy1, wx0:wx1]
         n = int(cv2.countNonZero(mask))
         if n == 0:
             continue

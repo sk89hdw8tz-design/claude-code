@@ -208,6 +208,24 @@ class Recipe:
             out.append((uid, np.array(r["polygon_mosaic"]["exterior"], float)))
         return out
 
+    def interior_unowned(self):
+        """Polygons of ground no region claims that lies INSIDE the mosaic:
+        the holes of the union of all ownership regions.
+
+        The renderer's fallback paints only here. Ground no region claims on
+        the OUTER boundary is where the map ends -- a plate's blank margin,
+        or the paper under a title box that no neighbour maps -- and painting
+        it would put plate furniture at the edge of the finished map. Inside
+        the city a hole is worse than the plate's own paper, so there the
+        fallback still fills it from a covering plate's scan."""
+        from shapely.geometry import Polygon
+        from shapely.ops import unary_union
+        if getattr(self, "_interior_unowned", None) is None:
+            u = unary_union([Polygon(p).buffer(0) for _, p in self.ownership()])
+            geoms = [u] if u.geom_type == "Polygon" else list(u.geoms)
+            self._interior_unowned = [Polygon(r) for g in geoms for r in g.interiors]
+        return self._interior_unowned
+
     def sheet_file(self, sheet):
         """Inventory file name for a unit's source scan."""
         u = self.units.get(str(sheet))

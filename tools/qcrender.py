@@ -52,6 +52,7 @@ def render(r, x0, y0, x1, y1, d, labels=False, outline=False):
         canvas[wy0:wy1, wx0:wx1][m] = warped[m]
         sub_cov |= mask
     # unowned-sliver fallback, as tools/render.py does it
+    interior = _interior_mask(r, x0, y0, x1, y1, d, W, H)
     for sheet, poly in own:
         if sheet not in polys:
             continue
@@ -65,6 +66,7 @@ def render(r, x0, y0, x1, y1, d, labels=False, outline=False):
         mask = np.zeros((wy1 - wy0, wx1 - wx0), np.uint8)
         cv2.fillPoly(mask, [fpts - np.array([wx0, wy0], np.int32)], 255)
         mask &= cv2.inRange(sub_cov, 0, 0)
+        mask &= interior[wy0:wy1, wx0:wx1]
         if cv2.countNonZero(mask) == 0:
             continue
         img = cv2.imread(r.fetch(r.sheet_file(sheet)), cv2.IMREAD_COLOR)
@@ -87,6 +89,20 @@ def render(r, x0, y0, x1, y1, d, labels=False, outline=False):
                     cv2.putText(canvas, str(sheet), (int((c.x - x0) / d) - 20, int((c.y - y0) / d)),
                                 cv2.FONT_HERSHEY_SIMPLEX, 1.2, (255, 0, 0), 3)
     return canvas
+
+
+def _interior_mask(r, x0, y0, x1, y1, d, W, H):
+    """255 where the window lies inside a hole of the ownership union."""
+    import cv2
+    import numpy as np
+    m = np.zeros((H, W), np.uint8)
+    for P in r.interior_unowned():
+        pts = ((np.array(P.exterior.coords) - np.array([x0, y0])) / d).astype(np.int32)
+        cv2.fillPoly(m, [pts], 255)
+        for ring in P.interiors:
+            pts = ((np.array(ring.coords) - np.array([x0, y0])) / d).astype(np.int32)
+            cv2.fillPoly(m, [pts], 0)
+    return m
 
 
 def main():
