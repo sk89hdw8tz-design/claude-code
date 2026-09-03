@@ -27,3 +27,10 @@ outputs/*/qc/seams/seam_*_100.jpg
 outputs/1912/qc/seams/seam_*.jpg
 outputs/1912/qc/periphery/edge_*.jpg
 outputs/1912/qc/seams/seam_*.tif
+
+# Print deliverables: rendered from the recipe by tools/printmaster.py.
+# The wall master (271 MB), the single sheet (82 MB TIFF) and the DeepZoom
+# pyramid are too large for the repository; the recipe that produces them is
+# versioned instead. The 24 MB print PDF and the 12 MB preview are kept.
+outputs/*/print/*wallmaster*.tif
+outputs/*/print/*sheet*.tif
