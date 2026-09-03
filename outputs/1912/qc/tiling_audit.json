@@ -1,9 +1,9 @@
 {
  "year": 1912,
  "regions": 106,
- "union_area_px2": 4535981577.2,
- "sum_of_regions_px2": 4535983436.0,
- "overlap_area_px2": 1858.8,
+ "union_area_px2": 4534736973.3,
+ "sum_of_regions_px2": 4534738805.0,
+ "overlap_area_px2": 1831.7,
  "overlap_fraction": 0.0,
  "disjoint_pieces": 1,
  "interior_gaps": [
@@ -17,6 +17,15 @@
    ]
   },
   {
+   "area_px2": 665452.4,
+   "width_px": 164.9,
+   "kind": "inlet",
+   "centroid": [
+    -12548.2,
+    -1147.5
+   ]
+  },
+  {
    "area_px2": 215248.6,
    "width_px": 202.1,
    "kind": "inlet",
@@ -26,12 +35,30 @@
    ]
   },
   {
+   "area_px2": 208664.7,
+   "width_px": 68.0,
+   "kind": "inlet",
+   "centroid": [
+    -5267.7,
+    24423.9
+   ]
+  },
+  {
    "area_px2": 183901.9,
    "width_px": 116.8,
    "kind": "hole",
    "centroid": [
     -13226.1,
     -14621.6
+   ]
+  },
+  {
+   "area_px2": 115155.6,
+   "width_px": 160.9,
+   "kind": "hole",
+   "centroid": [
+    13461.7,
+    52138.4
    ]
   },
   {
@@ -62,6 +89,15 @@
    ]
   },
   {
+   "area_px2": 65107.3,
+   "width_px": 70.0,
+   "kind": "hole",
+   "centroid": [
+    37208.6,
+    38427.7
+   ]
+  },
+  {
    "area_px2": 63213.6,
    "width_px": 13.7,
    "kind": "hairline",
@@ -71,12 +107,30 @@
    ]
   },
   {
-   "area_px2": 61123.0,
-   "width_px": 76.8,
-   "kind": "inlet",
+   "area_px2": 62801.4,
+   "width_px": 49.2,
+   "kind": "hole",
+   "centroid": [
+    19245.4,
+    24496.6
+   ]
+  },
+  {
+   "area_px2": 61123.1,
+   "width_px": 13.4,
+   "kind": "hairline",
    "centroid": [
     -11890.2,
     12477.6
+   ]
+  },
+  {
+   "area_px2": 60816.6,
+   "width_px": 42.7,
+   "kind": "hole",
+   "centroid": [
+    31432.4,
+    24537.1
    ]
   },
   {
@@ -143,6 +197,15 @@
    ]
   },
   {
+   "area_px2": 39678.7,
+   "width_px": 76.7,
+   "kind": "hole",
+   "centroid": [
+    37569.6,
+    38438.2
+   ]
+  },
+  {
    "area_px2": 36520.4,
    "width_px": 7.9,
    "kind": "hairline",
@@ -170,6 +233,15 @@
    ]
   },
   {
+   "area_px2": 26224.9,
+   "width_px": 18.1,
+   "kind": "hairline",
+   "centroid": [
+    13398.5,
+    38366.4
+   ]
+  },
+  {
    "area_px2": 25360.9,
    "width_px": 7.3,
    "kind": "hairline",
@@ -188,12 +260,12 @@
    ]
   },
   {
-   "area_px2": 15518.4,
-   "width_px": 3.7,
-   "kind": "hairline",
+   "area_px2": 14071.7,
+   "width_px": 46.4,
+   "kind": "hole",
    "centroid": [
-    -11830.9,
-    197.6
+    15020.2,
+    17648.4
    ]
   },
   {
@@ -206,7 +278,7 @@
    ]
   }
  ],
- "unclaimed_area_px2": 19386882.3,
+ "unclaimed_area_px2": 20629337.1,
  "pairwise_overlaps": [],
  "min_reported_area_px2": 2500.0,
  "inlet_close_px": 700.0

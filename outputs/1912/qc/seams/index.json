@@ -3,48 +3,366 @@
  "seams": [
   {
    "pair": [
-    "12",
-    "14"
+    "3",
+    "4"
    ],
    "axis": "y",
-   "coord": 10572.13,
+   "coord": 25656.4,
    "cut": "min-ink path",
-   "how": "control",
-   "corridor": "27th St",
+   "how": "midpoint",
+   "corridor": null,
    "kind": "band",
-   "overlap_px2": 2827780,
-   "span_px": 6046,
+   "overlap_px2": 45837196,
+   "span_px": 12511,
    "lattice_disagreement_px": null,
    "lattice_disagreement_ft": null,
    "crops": [
     {
-     "crop_100": "outputs/1912/qc/seams/seam_12_14_a_100.jpg",
-     "crop_50": "outputs/1912/qc/seams/seam_12_14_a_50.jpg",
+     "crop_100": "outputs/1912/qc/seams/seam_3_4_a_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_3_4_a_50.jpg",
      "window": [
-      -2920,
-      8972,
-      2080,
-      12172
+      -21109,
+      24056,
+      -16109,
+      27256
      ]
     },
     {
-     "crop_100": "outputs/1912/qc/seams/seam_12_14_b_100.jpg",
-     "crop_50": "outputs/1912/qc/seams/seam_12_14_b_50.jpg",
+     "crop_100": "outputs/1912/qc/seams/seam_3_4_b_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_3_4_b_50.jpg",
      "window": [
-      -1995,
-      8972,
-      3005,
-      12172
+      -17371,
+      24056,
+      -12371,
+      27256
+     ]
+    },
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_3_4_c_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_3_4_c_50.jpg",
+     "window": [
+      -13632,
+      24056,
+      -8632,
+      27256
      ]
     }
    ],
-   "crop_100": "outputs/1912/qc/seams/seam_12_14_a_100.jpg",
-   "crop_50": "outputs/1912/qc/seams/seam_12_14_a_50.jpg",
+   "crop_100": "outputs/1912/qc/seams/seam_3_4_a_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_3_4_a_50.jpg",
    "window": [
-    -2920,
-    8972,
-    2080,
-    12172
+    -21109,
+    24056,
+    -16109,
+    27256
+   ]
+  },
+  {
+   "pair": [
+    "4",
+    "5b"
+   ],
+   "axis": "x",
+   "coord": -10118.28,
+   "cut": "straight",
+   "how": "midpoint",
+   "corridor": null,
+   "kind": "corner",
+   "overlap_px2": 2734085,
+   "span_px": 947,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_4_5b_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_4_5b_50.jpg",
+     "window": [
+      -11718,
+      10667,
+      -8518,
+      15667
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_4_5b_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_4_5b_50.jpg",
+   "window": [
+    -11718,
+    10667,
+    -8518,
+    15667
+   ]
+  },
+  {
+   "pair": [
+    "4",
+    "13"
+   ],
+   "axis": "x",
+   "coord": -8851.88,
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "wharf frontage: 200 native px inside sheet 13's bay-side neatline",
+   "kind": "band",
+   "overlap_px2": 2968000,
+   "span_px": 5038,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_4_13_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_4_13_50.jpg",
+     "window": [
+      -10452,
+      13136,
+      -7252,
+      18136
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_4_13_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_4_13_50.jpg",
+   "window": [
+    -10452,
+    13136,
+    -7252,
+    18136
+   ]
+  },
+  {
+   "pair": [
+    "4",
+    "15"
+   ],
+   "axis": "x",
+   "coord": -8892.42,
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "wharf frontage: 200 native px inside sheet 15's bay-side neatline",
+   "kind": "band",
+   "overlap_px2": 4691541,
+   "span_px": 7398,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_4_15_a_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_4_15_a_50.jpg",
+     "window": [
+      -10492,
+      17584,
+      -7292,
+      22584
+     ]
+    },
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_4_15_b_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_4_15_b_50.jpg",
+     "window": [
+      -10492,
+      19582,
+      -7292,
+      24582
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_4_15_a_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_4_15_a_50.jpg",
+   "window": [
+    -10492,
+    17584,
+    -7292,
+    22584
+   ]
+  },
+  {
+   "pair": [
+    "5a",
+    "6"
+   ],
+   "axis": "y",
+   "coord": -15029.14,
+   "cut": "min-ink path",
+   "how": "midpoint",
+   "corridor": null,
+   "kind": "band",
+   "overlap_px2": 2516909,
+   "span_px": 4864,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_5a_6_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_5a_6_50.jpg",
+     "window": [
+      -13819,
+      -16629,
+      -8819,
+      -13429
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_5a_6_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_5a_6_50.jpg",
+   "window": [
+    -13819,
+    -16629,
+    -8819,
+    -13429
+   ]
+  },
+  {
+   "pair": [
+    "6",
+    "21"
+   ],
+   "axis": "x",
+   "coord": -8772.28,
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "wharf frontage: 200 native px inside sheet 21's bay-side neatline",
+   "kind": "band",
+   "overlap_px2": 1287379,
+   "span_px": 4984,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_6_21_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_6_21_50.jpg",
+     "window": [
+      -10372,
+      -29022,
+      -7172,
+      -24022
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_6_21_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_6_21_50.jpg",
+   "window": [
+    -10372,
+    -29022,
+    -7172,
+    -24022
+   ]
+  },
+  {
+   "pair": [
+    "6",
+    "27"
+   ],
+   "axis": "x",
+   "coord": -8870.8,
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "wharf frontage: 200 native px inside sheet 27's bay-side neatline",
+   "kind": "band",
+   "overlap_px2": 1457288,
+   "span_px": 7027,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_6_27_a_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_6_27_a_50.jpg",
+     "window": [
+      -10471,
+      -24034,
+      -7271,
+      -19034
+     ]
+    },
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_6_27_b_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_6_27_b_50.jpg",
+     "window": [
+      -10471,
+      -22097,
+      -7271,
+      -17097
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_6_27_a_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_6_27_a_50.jpg",
+   "window": [
+    -10471,
+    -24034,
+    -7271,
+    -19034
+   ]
+  },
+  {
+   "pair": [
+    "6",
+    "33"
+   ],
+   "axis": "x",
+   "coord": -8896.68,
+   "cut": "straight",
+   "how": "control",
+   "corridor": "wharf frontage: 200 native px inside sheet 33's bay-side neatline",
+   "kind": "corner",
+   "overlap_px2": 486498,
+   "span_px": 2460,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_6_33_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_6_33_50.jpg",
+     "window": [
+      -10497,
+      -18556,
+      -7297,
+      -13556
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_6_33_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_6_33_50.jpg",
+   "window": [
+    -10497,
+    -18556,
+    -7297,
+    -13556
+   ]
+  },
+  {
+   "pair": [
+    "8",
+    "35"
+   ],
+   "axis": "y",
+   "coord": -10338.53,
+   "cut": "straight",
+   "how": "control",
+   "corridor": "18th St",
+   "kind": "corner",
+   "overlap_px2": 68698,
+   "span_px": 119,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_8_35_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_8_35_50.jpg",
+     "window": [
+      632,
+      -11939,
+      5632,
+      -8739
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_8_35_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_8_35_50.jpg",
+   "window": [
+    632,
+    -11939,
+    5632,
+    -8739
    ]
   },
   {
@@ -95,6 +413,216 @@
   },
   {
    "pair": [
+    "15",
+    "16"
+   ],
+   "axis": "x",
+   "coord": -2926.36,
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "Ave C (Mechanic)",
+   "kind": "band",
+   "overlap_px2": 1771103,
+   "span_px": 7362,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_15_16_a_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_15_16_a_50.jpg",
+     "window": [
+      -4526,
+      17615,
+      -1326,
+      22615
+     ]
+    },
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_15_16_b_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_15_16_b_50.jpg",
+     "window": [
+      -4526,
+      19563,
+      -1326,
+      24563
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_15_16_a_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_15_16_a_50.jpg",
+   "window": [
+    -4526,
+    17615,
+    -1326,
+    22615
+   ]
+  },
+  {
+   "pair": [
+    "15",
+    "67"
+   ],
+   "axis": "y",
+   "coord": 24391.83,
+   "cut": "straight",
+   "how": "midpoint",
+   "corridor": null,
+   "kind": "corner",
+   "overlap_px2": 856251,
+   "span_px": 2310,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_15_67_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_15_67_50.jpg",
+     "window": [
+      -6570,
+      22792,
+      -1570,
+      25992
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_15_67_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_15_67_50.jpg",
+   "window": [
+    -6570,
+    22792,
+    -1570,
+    25992
+   ]
+  },
+  {
+   "pair": [
+    "20",
+    "24"
+   ],
+   "axis": "y",
+   "coord": -31044.15,
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "9th St",
+   "kind": "band",
+   "overlap_px2": 2839262,
+   "span_px": 6101,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_20_24_a_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_20_24_a_50.jpg",
+     "window": [
+      9375,
+      -32644,
+      14375,
+      -29444
+     ]
+    },
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_20_24_b_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_20_24_b_50.jpg",
+     "window": [
+      10350,
+      -32644,
+      15350,
+      -29444
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_20_24_a_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_20_24_a_50.jpg",
+   "window": [
+    9375,
+    -32644,
+    14375,
+    -29444
+   ]
+  },
+  {
+   "pair": [
+    "20b",
+    "25"
+   ],
+   "axis": "y",
+   "coord": -31048.77,
+   "cut": "min-ink path",
+   "how": "midpoint",
+   "corridor": null,
+   "kind": "band",
+   "overlap_px2": 973441,
+   "span_px": 1692,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_20b_25_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_20b_25_50.jpg",
+     "window": [
+      13945,
+      -32649,
+      18945,
+      -29449
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_20b_25_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_20b_25_50.jpg",
+   "window": [
+    13945,
+    -32649,
+    18945,
+    -29449
+   ]
+  },
+  {
+   "pair": [
+    "23",
+    "24"
+   ],
+   "axis": "x",
+   "coord": 9258.68,
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "Ave I (Sealy)",
+   "kind": "band",
+   "overlap_px2": 1157586,
+   "span_px": 7287,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_23_24_a_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_23_24_a_50.jpg",
+     "window": [
+      7659,
+      -30897,
+      10859,
+      -25897
+     ]
+    },
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_23_24_b_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_23_24_b_50.jpg",
+     "window": [
+      7659,
+      -29231,
+      10859,
+      -24231
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_23_24_a_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_23_24_a_50.jpg",
+   "window": [
+    7659,
+    -30897,
+    10859,
+    -25897
+   ]
+  },
+  {
+   "pair": [
     "24",
     "25"
    ],
@@ -141,6 +669,206 @@
   },
   {
    "pair": [
+    "24",
+    "30"
+   ],
+   "axis": "y",
+   "coord": -24213.28,
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "12th St",
+   "kind": "band",
+   "overlap_px2": 2496196,
+   "span_px": 6263,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_24_30_a_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_24_30_a_50.jpg",
+     "window": [
+      9318,
+      -25813,
+      14318,
+      -22613
+     ]
+    },
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_24_30_b_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_24_30_b_50.jpg",
+     "window": [
+      10485,
+      -25813,
+      15485,
+      -22613
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_24_30_a_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_24_30_a_50.jpg",
+   "window": [
+    9318,
+    -25813,
+    14318,
+    -22613
+   ]
+  },
+  {
+   "pair": [
+    "24",
+    "31"
+   ],
+   "axis": "y",
+   "coord": -24030.97,
+   "cut": "straight",
+   "how": "midpoint",
+   "corridor": null,
+   "kind": "corner",
+   "overlap_px2": 7747,
+   "span_px": 123,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_24_31_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_24_31_50.jpg",
+     "window": [
+      12943,
+      -25631,
+      17943,
+      -22431
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_24_31_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_24_31_50.jpg",
+   "window": [
+    12943,
+    -25631,
+    17943,
+    -22431
+   ]
+  },
+  {
+   "pair": [
+    "25",
+    "25b"
+   ],
+   "axis": "x",
+   "coord": 21354.51,
+   "cut": "min-ink path",
+   "how": "midpoint",
+   "corridor": null,
+   "kind": "band",
+   "overlap_px2": 1544606,
+   "span_px": 1930,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_25_25b_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_25_25b_50.jpg",
+     "window": [
+      19755,
+      -27500,
+      22955,
+      -22500
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_25_25b_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_25_25b_50.jpg",
+   "window": [
+    19755,
+    -27500,
+    22955,
+    -22500
+   ]
+  },
+  {
+   "pair": [
+    "25",
+    "30"
+   ],
+   "axis": "y",
+   "coord": -24200.97,
+   "cut": "straight",
+   "how": "control",
+   "corridor": "12th St",
+   "kind": "corner",
+   "overlap_px2": 3953,
+   "span_px": 42,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_25_30_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_25_30_50.jpg",
+     "window": [
+      12984,
+      -25801,
+      17984,
+      -22601
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_25_30_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_25_30_50.jpg",
+   "window": [
+    12984,
+    -25801,
+    17984,
+    -22601
+   ]
+  },
+  {
+   "pair": [
+    "25",
+    "31"
+   ],
+   "axis": "y",
+   "coord": -24179.63,
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "12th St",
+   "kind": "band",
+   "overlap_px2": 2683122,
+   "span_px": 6290,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_25_31_a_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_25_31_a_50.jpg",
+     "window": [
+      15487,
+      -25780,
+      20487,
+      -22580
+     ]
+    },
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_25_31_b_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_25_31_b_50.jpg",
+     "window": [
+      16386,
+      -25780,
+      21386,
+      -22580
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_25_31_a_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_25_31_a_50.jpg",
+   "window": [
+    15487,
+    -25780,
+    20487,
+    -22580
+   ]
+  },
+  {
+   "pair": [
     "25",
     "32"
    ],
@@ -173,6 +901,196 @@
     -25778,
     23930,
     -22578
+   ]
+  },
+  {
+   "pair": [
+    "25b",
+    "32"
+   ],
+   "axis": "y",
+   "coord": -24114.98,
+   "cut": "min-ink path",
+   "how": "midpoint",
+   "corridor": null,
+   "kind": "band",
+   "overlap_px2": 712544,
+   "span_px": 1065,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_25b_32_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_25b_32_50.jpg",
+     "window": [
+      19372,
+      -25715,
+      24372,
+      -22515
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_25b_32_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_25b_32_50.jpg",
+   "window": [
+    19372,
+    -25715,
+    24372,
+    -22515
+   ]
+  },
+  {
+   "pair": [
+    "26",
+    "38"
+   ],
+   "axis": "y",
+   "coord": -10320.94,
+   "cut": "straight",
+   "how": "midpoint",
+   "corridor": null,
+   "kind": "corner",
+   "overlap_px2": 143931,
+   "span_px": 298,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_26_38_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_26_38_50.jpg",
+     "window": [
+      24859,
+      -11921,
+      29859,
+      -8721
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_26_38_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_26_38_50.jpg",
+   "window": [
+    24859,
+    -11921,
+    29859,
+    -8721
+   ]
+  },
+  {
+   "pair": [
+    "26b",
+    "38"
+   ],
+   "axis": "x",
+   "coord": 27284.46,
+   "cut": "min-ink path",
+   "how": "midpoint",
+   "corridor": null,
+   "kind": "band",
+   "overlap_px2": 1320869,
+   "span_px": 3469,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_26b_38_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_26b_38_50.jpg",
+     "window": [
+      25684,
+      -14833,
+      28884,
+      -9833
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_26b_38_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_26b_38_50.jpg",
+   "window": [
+    25684,
+    -14833,
+    28884,
+    -9833
+   ]
+  },
+  {
+   "pair": [
+    "29",
+    "35"
+   ],
+   "axis": "y",
+   "coord": -17290.32,
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "15th St",
+   "kind": "band",
+   "overlap_px2": 3253668,
+   "span_px": 6317,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_29_35_a_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_29_35_a_50.jpg",
+     "window": [
+      3076,
+      -18890,
+      8076,
+      -15690
+     ]
+    },
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_29_35_b_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_29_35_b_50.jpg",
+     "window": [
+      4372,
+      -18890,
+      9372,
+      -15690
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_29_35_a_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_29_35_a_50.jpg",
+   "window": [
+    3076,
+    -18890,
+    8076,
+    -15690
+   ]
+  },
+  {
+   "pair": [
+    "29",
+    "36"
+   ],
+   "axis": "y",
+   "coord": -17238.04,
+   "cut": "straight",
+   "how": "midpoint",
+   "corridor": null,
+   "kind": "corner",
+   "overlap_px2": 96349,
+   "span_px": 195,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_29_36_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_29_36_50.jpg",
+     "window": [
+      6881,
+      -18838,
+      11881,
+      -15638
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_29_36_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_29_36_50.jpg",
+   "window": [
+    6881,
+    -18838,
+    11881,
+    -15638
    ]
   },
   {
@@ -269,6 +1187,42 @@
   },
   {
    "pair": [
+    "30",
+    "37"
+   ],
+   "axis": "y",
+   "coord": -17244.41,
+   "cut": "straight",
+   "how": "midpoint",
+   "corridor": null,
+   "kind": "corner",
+   "overlap_px2": 23271,
+   "span_px": 128,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_30_37_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_30_37_50.jpg",
+     "window": [
+      12848,
+      -18844,
+      17848,
+      -15644
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_30_37_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_30_37_50.jpg",
+   "window": [
+    12848,
+    -18844,
+    17848,
+    -15644
+   ]
+  },
+  {
+   "pair": [
     "31",
     "32"
    ],
@@ -311,6 +1265,124 @@
     -24063,
     23112,
     -19063
+   ]
+  },
+  {
+   "pair": [
+    "31",
+    "36"
+   ],
+   "axis": "y",
+   "coord": -17239.42,
+   "cut": "straight",
+   "how": "control",
+   "corridor": "15th St",
+   "kind": "corner",
+   "overlap_px2": 24743,
+   "span_px": 170,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_31_36_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_31_36_50.jpg",
+     "window": [
+      12856,
+      -18839,
+      17856,
+      -15639
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_31_36_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_31_36_50.jpg",
+   "window": [
+    12856,
+    -18839,
+    17856,
+    -15639
+   ]
+  },
+  {
+   "pair": [
+    "31",
+    "37"
+   ],
+   "axis": "y",
+   "coord": -17213.21,
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "15th St",
+   "kind": "band",
+   "overlap_px2": 2497366,
+   "span_px": 6265,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_31_37_a_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_31_37_a_50.jpg",
+     "window": [
+      15345,
+      -18813,
+      20345,
+      -15613
+     ]
+    },
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_31_37_b_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_31_37_b_50.jpg",
+     "window": [
+      16402,
+      -18813,
+      21402,
+      -15613
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_31_37_a_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_31_37_a_50.jpg",
+   "window": [
+    15345,
+    -18813,
+    20345,
+    -15613
+   ]
+  },
+  {
+   "pair": [
+    "31",
+    "38"
+   ],
+   "axis": "y",
+   "coord": -17175.1,
+   "cut": "straight",
+   "how": "midpoint",
+   "corridor": null,
+   "kind": "corner",
+   "overlap_px2": 137702,
+   "span_px": 357,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_31_38_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_31_38_50.jpg",
+     "window": [
+      18984,
+      -18775,
+      23984,
+      -15575
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_31_38_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_31_38_50.jpg",
+   "window": [
+    18984,
+    -18775,
+    23984,
+    -15575
    ]
   },
   {
@@ -361,6 +1433,52 @@
   },
   {
    "pair": [
+    "34",
+    "35"
+   ],
+   "axis": "x",
+   "coord": 3184.41,
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "Ave F (Church)",
+   "kind": "band",
+   "overlap_px2": 1667154,
+   "span_px": 7030,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_34_35_a_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_34_35_a_50.jpg",
+     "window": [
+      1584,
+      -17138,
+      4784,
+      -12138
+     ]
+    },
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_34_35_b_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_34_35_b_50.jpg",
+     "window": [
+      1584,
+      -15451,
+      4784,
+      -10451
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_34_35_a_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_34_35_a_50.jpg",
+   "window": [
+    1584,
+    -17138,
+    4784,
+    -12138
+   ]
+  },
+  {
+   "pair": [
     "35",
     "36"
    ],
@@ -407,6 +1525,88 @@
   },
   {
    "pair": [
+    "35",
+    "39"
+   ],
+   "axis": "y",
+   "coord": -10345.02,
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "18th St",
+   "kind": "band",
+   "overlap_px2": 3726031,
+   "span_px": 6055,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_35_39_a_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_35_39_a_50.jpg",
+     "window": [
+      3188,
+      -11945,
+      8188,
+      -8745
+     ]
+    },
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_35_39_b_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_35_39_b_50.jpg",
+     "window": [
+      4245,
+      -11945,
+      9245,
+      -8745
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_35_39_a_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_35_39_a_50.jpg",
+   "window": [
+    3188,
+    -11945,
+    8188,
+    -8745
+   ]
+  },
+  {
+   "pair": [
+    "35",
+    "40"
+   ],
+   "axis": "y",
+   "coord": -10344.2,
+   "cut": "straight",
+   "how": "control",
+   "corridor": "18th St",
+   "kind": "corner",
+   "overlap_px2": 94671,
+   "span_px": 164,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_35_40_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_35_40_50.jpg",
+     "window": [
+      6787,
+      -11944,
+      11787,
+      -8744
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_35_40_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_35_40_50.jpg",
+   "window": [
+    6787,
+    -11944,
+    11787,
+    -8744
+   ]
+  },
+  {
+   "pair": [
     "36",
     "37"
    ],
@@ -449,6 +1649,52 @@
     -17136,
     17047,
     -12136
+   ]
+  },
+  {
+   "pair": [
+    "36",
+    "40"
+   ],
+   "axis": "y",
+   "coord": -10345.68,
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "18th St",
+   "kind": "band",
+   "overlap_px2": 3632125,
+   "span_px": 6240,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_36_40_a_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_36_40_a_50.jpg",
+     "window": [
+      9328,
+      -11946,
+      14328,
+      -8746
+     ]
+    },
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_36_40_b_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_36_40_b_50.jpg",
+     "window": [
+      10378,
+      -11946,
+      15378,
+      -8746
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_36_40_a_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_36_40_a_50.jpg",
+   "window": [
+    9328,
+    -11946,
+    14328,
+    -8746
    ]
   },
   {
@@ -500,6 +1746,42 @@
   {
    "pair": [
     "37",
+    "40"
+   ],
+   "axis": "y",
+   "coord": -10342.37,
+   "cut": "straight",
+   "how": "control",
+   "corridor": "18th St",
+   "kind": "corner",
+   "overlap_px2": 147124,
+   "span_px": 259,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_37_40_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_37_40_50.jpg",
+     "window": [
+      12969,
+      -11942,
+      17969,
+      -8742
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_37_40_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_37_40_50.jpg",
+   "window": [
+    12969,
+    -11942,
+    17969,
+    -8742
+   ]
+  },
+  {
+   "pair": [
+    "37",
     "41"
    ],
    "axis": "y",
@@ -545,6 +1827,442 @@
   },
   {
    "pair": [
+    "37",
+    "42"
+   ],
+   "axis": "y",
+   "coord": -10320.2,
+   "cut": "straight",
+   "how": "midpoint",
+   "corridor": null,
+   "kind": "corner",
+   "overlap_px2": 144129,
+   "span_px": 332,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_37_42_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_37_42_50.jpg",
+     "window": [
+      18906,
+      -11920,
+      23906,
+      -8720
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_37_42_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_37_42_50.jpg",
+   "window": [
+    18906,
+    -11920,
+    23906,
+    -8720
+   ]
+  },
+  {
+   "pair": [
+    "38",
+    "42"
+   ],
+   "axis": "y",
+   "coord": -10311.75,
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "18th St",
+   "kind": "band",
+   "overlap_px2": 2723335,
+   "span_px": 6189,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_38_42_a_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_38_42_a_50.jpg",
+     "window": [
+      21550,
+      -11912,
+      26550,
+      -8712
+     ]
+    },
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_38_42_b_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_38_42_b_50.jpg",
+     "window": [
+      22315,
+      -11912,
+      27315,
+      -8712
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_38_42_a_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_38_42_a_50.jpg",
+   "window": [
+    21550,
+    -11912,
+    26550,
+    -8712
+   ]
+  },
+  {
+   "pair": [
+    "45",
+    "52"
+   ],
+   "axis": "y",
+   "coord": 3496.23,
+   "cut": "straight",
+   "how": "midpoint",
+   "corridor": null,
+   "kind": "corner",
+   "overlap_px2": 135297,
+   "span_px": 365,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_45_52_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_45_52_50.jpg",
+     "window": [
+      18784,
+      1896,
+      23784,
+      5096
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_45_52_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_45_52_50.jpg",
+   "window": [
+    18784,
+    1896,
+    23784,
+    5096
+   ]
+  },
+  {
+   "pair": [
+    "46",
+    "52"
+   ],
+   "axis": "y",
+   "coord": 3532.45,
+   "cut": "min-ink path",
+   "how": "midpoint",
+   "corridor": null,
+   "kind": "band",
+   "overlap_px2": 2602936,
+   "span_px": 6313,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_46_52_a_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_46_52_a_50.jpg",
+     "window": [
+      21316,
+      1932,
+      26316,
+      5132
+     ]
+    },
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_46_52_b_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_46_52_b_50.jpg",
+     "window": [
+      22340,
+      1932,
+      27340,
+      5132
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_46_52_a_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_46_52_a_50.jpg",
+   "window": [
+    21316,
+    1932,
+    26316,
+    5132
+   ]
+  },
+  {
+   "pair": [
+    "46",
+    "53"
+   ],
+   "axis": "y",
+   "coord": 3523.88,
+   "cut": "straight",
+   "how": "midpoint",
+   "corridor": null,
+   "kind": "corner",
+   "overlap_px2": 41519,
+   "span_px": 267,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_46_53_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_46_53_50.jpg",
+     "window": [
+      24828,
+      1924,
+      29828,
+      5124
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_46_53_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_46_53_50.jpg",
+   "window": [
+    24828,
+    1924,
+    29828,
+    5124
+   ]
+  },
+  {
+   "pair": [
+    "47",
+    "53"
+   ],
+   "axis": "y",
+   "coord": 3453.02,
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "24th St",
+   "kind": "band",
+   "overlap_px2": 2146910,
+   "span_px": 6294,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_47_53_a_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_47_53_a_50.jpg",
+     "window": [
+      27317,
+      1853,
+      32317,
+      5053
+     ]
+    },
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_47_53_b_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_47_53_b_50.jpg",
+     "window": [
+      28488,
+      1853,
+      33488,
+      5053
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_47_53_a_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_47_53_a_50.jpg",
+   "window": [
+    27317,
+    1853,
+    32317,
+    5053
+   ]
+  },
+  {
+   "pair": [
+    "47",
+    "54"
+   ],
+   "axis": "y",
+   "coord": 3518.12,
+   "cut": "straight",
+   "how": "midpoint",
+   "corridor": null,
+   "kind": "corner",
+   "overlap_px2": 36229,
+   "span_px": 126,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_47_54_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_47_54_50.jpg",
+     "window": [
+      31049,
+      1918,
+      36049,
+      5118
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_47_54_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_47_54_50.jpg",
+   "window": [
+    31049,
+    1918,
+    36049,
+    5118
+   ]
+  },
+  {
+   "pair": [
+    "47",
+    "54b"
+   ],
+   "axis": "x",
+   "coord": 33456.8,
+   "cut": "min-ink path",
+   "how": "midpoint",
+   "corridor": null,
+   "kind": "band",
+   "overlap_px2": 1010764,
+   "span_px": 4043,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_47_54b_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_47_54b_50.jpg",
+     "window": [
+      31857,
+      -1090,
+      35057,
+      3910
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_47_54b_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_47_54b_50.jpg",
+   "window": [
+    31857,
+    -1090,
+    35057,
+    3910
+   ]
+  },
+  {
+   "pair": [
+    "48",
+    "48b"
+   ],
+   "axis": "y",
+   "coord": 17695.37,
+   "cut": "min-ink path",
+   "how": "midpoint",
+   "corridor": null,
+   "kind": "band",
+   "overlap_px2": 1291662,
+   "span_px": 2379,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_48_48b_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_48_48b_50.jpg",
+     "window": [
+      37975,
+      16095,
+      42975,
+      19295
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_48_48b_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_48_48b_50.jpg",
+   "window": [
+    37975,
+    16095,
+    42975,
+    19295
+   ]
+  },
+  {
+   "pair": [
+    "48",
+    "60"
+   ],
+   "axis": "y",
+   "coord": 17689.43,
+   "cut": "straight",
+   "how": "midpoint",
+   "corridor": null,
+   "kind": "corner",
+   "overlap_px2": 172977,
+   "span_px": 317,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_48_60_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_48_60_50.jpg",
+     "window": [
+      36803,
+      16089,
+      41803,
+      19289
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_48_60_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_48_60_50.jpg",
+   "window": [
+    36803,
+    16089,
+    41803,
+    19289
+   ]
+  },
+  {
+   "pair": [
+    "48",
+    "66"
+   ],
+   "axis": "x",
+   "coord": 39418.61,
+   "cut": "min-ink path",
+   "how": "midpoint",
+   "corridor": null,
+   "kind": "band",
+   "overlap_px2": 2457455,
+   "span_px": 7037,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_48_66_a_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_48_66_a_50.jpg",
+     "window": [
+      37819,
+      17783,
+      41019,
+      22783
+     ]
+    },
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_48_66_b_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_48_66_b_50.jpg",
+     "window": [
+      37819,
+      19623,
+      41019,
+      24623
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_48_66_a_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_48_66_a_50.jpg",
+   "window": [
+    37819,
+    17783,
+    41019,
+    22783
+   ]
+  },
+  {
+   "pair": [
     "48",
     "74"
    ],
@@ -577,6 +2295,288 @@
     23062,
     44012,
     26262
+   ]
+  },
+  {
+   "pair": [
+    "48",
+    "99a"
+   ],
+   "axis": "y",
+   "coord": 24837.2,
+   "cut": "min-ink path",
+   "how": "midpoint",
+   "corridor": null,
+   "kind": "band",
+   "overlap_px2": 341386,
+   "span_px": 2510,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_48_99a_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_48_99a_50.jpg",
+     "window": [
+      42301,
+      23237,
+      47301,
+      26437
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_48_99a_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_48_99a_50.jpg",
+   "window": [
+    42301,
+    23237,
+    47301,
+    26437
+   ]
+  },
+  {
+   "pair": [
+    "48b",
+    "60"
+   ],
+   "axis": "x",
+   "coord": 39420.23,
+   "cut": "min-ink path",
+   "how": "midpoint",
+   "corridor": null,
+   "kind": "band",
+   "overlap_px2": 1383501,
+   "span_px": 4088,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_48b_60_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_48b_60_50.jpg",
+     "window": [
+      37820,
+      13243,
+      41020,
+      18243
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_48b_60_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_48b_60_50.jpg",
+   "window": [
+    37820,
+    13243,
+    41020,
+    18243
+   ]
+  },
+  {
+   "pair": [
+    "49",
+    "56"
+   ],
+   "axis": "y",
+   "coord": 10588.03,
+   "cut": "straight",
+   "how": "control",
+   "corridor": "27th St",
+   "kind": "corner",
+   "overlap_px2": 34151,
+   "span_px": 73,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_49_56_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_49_56_50.jpg",
+     "window": [
+      6645,
+      8988,
+      11645,
+      12188
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_49_56_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_49_56_50.jpg",
+   "window": [
+    6645,
+    8988,
+    11645,
+    12188
+   ]
+  },
+  {
+   "pair": [
+    "50",
+    "56"
+   ],
+   "axis": "y",
+   "coord": 10587.53,
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "27th St",
+   "kind": "band",
+   "overlap_px2": 2857903,
+   "span_px": 6267,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_50_56_a_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_50_56_a_50.jpg",
+     "window": [
+      9179,
+      8988,
+      14179,
+      12188
+     ]
+    },
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_50_56_b_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_50_56_b_50.jpg",
+     "window": [
+      10261,
+      8988,
+      15261,
+      12188
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_50_56_a_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_50_56_a_50.jpg",
+   "window": [
+    9179,
+    8988,
+    14179,
+    12188
+   ]
+  },
+  {
+   "pair": [
+    "50",
+    "57"
+   ],
+   "axis": "y",
+   "coord": 10595.7,
+   "cut": "straight",
+   "how": "control",
+   "corridor": "27th St",
+   "kind": "corner",
+   "overlap_px2": 72334,
+   "span_px": 375,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_50_57_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_50_57_50.jpg",
+     "window": [
+      12798,
+      8996,
+      17798,
+      12196
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_50_57_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_50_57_50.jpg",
+   "window": [
+    12798,
+    8996,
+    17798,
+    12196
+   ]
+  },
+  {
+   "pair": [
+    "51",
+    "52"
+   ],
+   "axis": "x",
+   "coord": 21404.65,
+   "cut": "min-ink path",
+   "how": "midpoint",
+   "corridor": null,
+   "kind": "band",
+   "overlap_px2": 2423219,
+   "span_px": 7442,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_51_52_a_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_51_52_a_50.jpg",
+     "window": [
+      19805,
+      3576,
+      23005,
+      8576
+     ]
+    },
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_51_52_b_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_51_52_b_50.jpg",
+     "window": [
+      19805,
+      5715,
+      23005,
+      10715
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_51_52_a_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_51_52_a_50.jpg",
+   "window": [
+    19805,
+    3576,
+    23005,
+    8576
+   ]
+  },
+  {
+   "pair": [
+    "51",
+    "57"
+   ],
+   "axis": "y",
+   "coord": 10604.97,
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "27th St",
+   "kind": "band",
+   "overlap_px2": 2238103,
+   "span_px": 6222,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_51_57_a_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_51_57_a_50.jpg",
+     "window": [
+      15379,
+      9005,
+      20379,
+      12205
+     ]
+    },
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_51_57_b_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_51_57_b_50.jpg",
+     "window": [
+      16448,
+      9005,
+      21448,
+      12205
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_51_57_a_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_51_57_a_50.jpg",
+   "window": [
+    15379,
+    9005,
+    20379,
+    12205
    ]
   },
   {
@@ -627,6 +2627,52 @@
   },
   {
    "pair": [
+    "52",
+    "58"
+   ],
+   "axis": "y",
+   "coord": 10607.46,
+   "cut": "min-ink path",
+   "how": "midpoint",
+   "corridor": null,
+   "kind": "band",
+   "overlap_px2": 2108198,
+   "span_px": 6158,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_52_58_a_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_52_58_a_50.jpg",
+     "window": [
+      21479,
+      9007,
+      26479,
+      12207
+     ]
+    },
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_52_58_b_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_52_58_b_50.jpg",
+     "window": [
+      22318,
+      9007,
+      27318,
+      12207
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_52_58_a_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_52_58_a_50.jpg",
+   "window": [
+    21479,
+    9007,
+    26479,
+    12207
+   ]
+  },
+  {
+   "pair": [
     "53",
     "54"
    ],
@@ -669,6 +2715,160 @@
     3547,
     35142,
     8547
+   ]
+  },
+  {
+   "pair": [
+    "53",
+    "58"
+   ],
+   "axis": "y",
+   "coord": 10686.78,
+   "cut": "straight",
+   "how": "midpoint",
+   "corridor": null,
+   "kind": "corner",
+   "overlap_px2": 77254,
+   "span_px": 401,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_53_58_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_53_58_50.jpg",
+     "window": [
+      25021,
+      9087,
+      30021,
+      12287
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_53_58_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_53_58_50.jpg",
+   "window": [
+    25021,
+    9087,
+    30021,
+    12287
+   ]
+  },
+  {
+   "pair": [
+    "53",
+    "59"
+   ],
+   "axis": "y",
+   "coord": 10729.52,
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "27th St",
+   "kind": "band",
+   "overlap_px2": 2504214,
+   "span_px": 6333,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_53_59_a_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_53_59_a_50.jpg",
+     "window": [
+      27688,
+      9130,
+      32688,
+      12330
+     ]
+    },
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_53_59_b_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_53_59_b_50.jpg",
+     "window": [
+      28457,
+      9130,
+      33457,
+      12330
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_53_59_a_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_53_59_a_50.jpg",
+   "window": [
+    27688,
+    9130,
+    32688,
+    12330
+   ]
+  },
+  {
+   "pair": [
+    "54",
+    "54b"
+   ],
+   "axis": "y",
+   "coord": 3580.27,
+   "cut": "min-ink path",
+   "how": "midpoint",
+   "corridor": null,
+   "kind": "band",
+   "overlap_px2": 773236,
+   "span_px": 1956,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_54_54b_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_54_54b_50.jpg",
+     "window": [
+      32077,
+      1980,
+      37077,
+      5180
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_54_54b_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_54_54b_50.jpg",
+   "window": [
+    32077,
+    1980,
+    37077,
+    5180
+   ]
+  },
+  {
+   "pair": [
+    "54",
+    "59"
+   ],
+   "axis": "y",
+   "coord": 10709.29,
+   "cut": "straight",
+   "how": "midpoint",
+   "corridor": null,
+   "kind": "corner",
+   "overlap_px2": 99294,
+   "span_px": 282,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_54_59_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_54_59_50.jpg",
+     "window": [
+      31064,
+      9109,
+      36064,
+      12309
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_54_59_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_54_59_50.jpg",
+   "window": [
+    31064,
+    9109,
+    36064,
+    12309
    ]
   },
   {
@@ -719,6 +2919,88 @@
   },
   {
    "pair": [
+    "55",
+    "56"
+   ],
+   "axis": "x",
+   "coord": 9155.6,
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "Ave I (Sealy)",
+   "kind": "band",
+   "overlap_px2": 1829323,
+   "span_px": 7363,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_55_56_a_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_55_56_a_50.jpg",
+     "window": [
+      7556,
+      10764,
+      10756,
+      15764
+     ]
+    },
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_55_56_b_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_55_56_b_50.jpg",
+     "window": [
+      7556,
+      12651,
+      10756,
+      17651
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_55_56_a_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_55_56_a_50.jpg",
+   "window": [
+    7556,
+    10764,
+    10756,
+    15764
+   ]
+  },
+  {
+   "pair": [
+    "55",
+    "62"
+   ],
+   "axis": "y",
+   "coord": 17508.74,
+   "cut": "straight",
+   "how": "midpoint",
+   "corridor": null,
+   "kind": "corner",
+   "overlap_px2": 83968,
+   "span_px": 197,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_55_62_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_55_62_50.jpg",
+     "window": [
+      6764,
+      15909,
+      11764,
+      19109
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_55_62_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_55_62_50.jpg",
+   "window": [
+    6764,
+    15909,
+    11764,
+    19109
+   ]
+  },
+  {
+   "pair": [
     "56",
     "57"
    ],
@@ -765,6 +3047,52 @@
   },
   {
    "pair": [
+    "56",
+    "62"
+   ],
+   "axis": "y",
+   "coord": 17529.49,
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "30th St",
+   "kind": "band",
+   "overlap_px2": 2670738,
+   "span_px": 6290,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_56_62_a_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_56_62_a_50.jpg",
+     "window": [
+      9268,
+      15929,
+      14268,
+      19129
+     ]
+    },
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_56_62_b_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_56_62_b_50.jpg",
+     "window": [
+      10151,
+      15929,
+      15151,
+      19129
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_56_62_a_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_56_62_a_50.jpg",
+   "window": [
+    9268,
+    15929,
+    14268,
+    19129
+   ]
+  },
+  {
+   "pair": [
     "57",
     "58"
    ],
@@ -794,9 +3122,9 @@
      "crop_50": "outputs/1912/qc/seams/seam_57_58_b_50.jpg",
      "window": [
       19816,
-      12566,
+      12592,
       23016,
-      17566
+      17592
      ]
     }
    ],
@@ -807,6 +3135,262 @@
     10723,
     23016,
     15723
+   ]
+  },
+  {
+   "pair": [
+    "57",
+    "62"
+   ],
+   "axis": "y",
+   "coord": 17579.07,
+   "cut": "straight",
+   "how": "midpoint",
+   "corridor": null,
+   "kind": "corner",
+   "overlap_px2": 37169,
+   "span_px": 314,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_57_62_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_57_62_50.jpg",
+     "window": [
+      12798,
+      15979,
+      17798,
+      19179
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_57_62_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_57_62_50.jpg",
+   "window": [
+    12798,
+    15979,
+    17798,
+    19179
+   ]
+  },
+  {
+   "pair": [
+    "57",
+    "63"
+   ],
+   "axis": "y",
+   "coord": 17554.04,
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "30th St",
+   "kind": "band",
+   "overlap_px2": 3111605,
+   "span_px": 6316,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_57_63_a_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_57_63_a_50.jpg",
+     "window": [
+      15445,
+      15954,
+      20445,
+      19154
+     ]
+    },
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_57_63_b_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_57_63_b_50.jpg",
+     "window": [
+      16306,
+      15954,
+      21306,
+      19154
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_57_63_a_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_57_63_a_50.jpg",
+   "window": [
+    15445,
+    15954,
+    20445,
+    19154
+   ]
+  },
+  {
+   "pair": [
+    "57",
+    "64"
+   ],
+   "axis": "y",
+   "coord": 17592.19,
+   "cut": "straight",
+   "how": "midpoint",
+   "corridor": null,
+   "kind": "corner",
+   "overlap_px2": 128180,
+   "span_px": 251,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_57_64_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_57_64_50.jpg",
+     "window": [
+      18878,
+      15992,
+      23878,
+      19192
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_57_64_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_57_64_50.jpg",
+   "window": [
+    18878,
+    15992,
+    23878,
+    19192
+   ]
+  },
+  {
+   "pair": [
+    "58",
+    "64"
+   ],
+   "axis": "y",
+   "coord": 17589.37,
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "30th St",
+   "kind": "band",
+   "overlap_px2": 3049668,
+   "span_px": 6212,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_58_64_a_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_58_64_a_50.jpg",
+     "window": [
+      21460,
+      15989,
+      26460,
+      19189
+     ]
+    },
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_58_64_b_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_58_64_b_50.jpg",
+     "window": [
+      22532,
+      15989,
+      27532,
+      19189
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_58_64_a_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_58_64_a_50.jpg",
+   "window": [
+    21460,
+    15989,
+    26460,
+    19189
+   ]
+  },
+  {
+   "pair": [
+    "61",
+    "62"
+   ],
+   "axis": "x",
+   "coord": 9116.71,
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "Ave I",
+   "kind": "band",
+   "overlap_px2": 995590,
+   "span_px": 7346,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_61_62_a_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_61_62_a_50.jpg",
+     "window": [
+      7517,
+      17641,
+      10717,
+      22641
+     ]
+    },
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_61_62_b_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_61_62_b_50.jpg",
+     "window": [
+      7517,
+      19440,
+      10717,
+      24440
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_61_62_a_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_61_62_a_50.jpg",
+   "window": [
+    7517,
+    17641,
+    10717,
+    22641
+   ]
+  },
+  {
+   "pair": [
+    "62",
+    "63"
+   ],
+   "axis": "x",
+   "coord": 15322.69,
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "Ave L",
+   "kind": "band",
+   "overlap_px2": 2069740,
+   "span_px": 7067,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_62_63_a_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_62_63_a_50.jpg",
+     "window": [
+      13723,
+      17644,
+      16923,
+      22644
+     ]
+    },
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_62_63_b_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_62_63_b_50.jpg",
+     "window": [
+      13723,
+      19475,
+      16923,
+      24475
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_62_63_a_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_62_63_a_50.jpg",
+   "window": [
+    13723,
+    17644,
+    16923,
+    22644
    ]
   },
   {
@@ -829,9 +3413,9 @@
      "crop_100": "outputs/1912/qc/seams/seam_62_69_100.jpg",
      "crop_50": "outputs/1912/qc/seams/seam_62_69_50.jpg",
      "window": [
-      8686,
+      8692,
       22839,
-      13686,
+      13692,
       26039
      ]
     }
@@ -839,9 +3423,9 @@
    "crop_100": "outputs/1912/qc/seams/seam_62_69_100.jpg",
    "crop_50": "outputs/1912/qc/seams/seam_62_69_50.jpg",
    "window": [
-    8686,
+    8692,
     22839,
-    13686,
+    13692,
     26039
    ]
   },
@@ -851,13 +3435,13 @@
     "70"
    ],
    "axis": "y",
-   "coord": 24460.46,
+   "coord": 24473.4,
    "cut": "straight",
    "how": "control",
    "corridor": "33rd St",
    "kind": "corner",
-   "overlap_px2": 992932,
-   "span_px": 2309,
+   "overlap_px2": 942447,
+   "span_px": 2315,
    "lattice_disagreement_px": null,
    "lattice_disagreement_ft": null,
    "crops": [
@@ -865,20 +3449,184 @@
      "crop_100": "outputs/1912/qc/seams/seam_62_70_100.jpg",
      "crop_50": "outputs/1912/qc/seams/seam_62_70_50.jpg",
      "window": [
-      11808,
-      22860,
-      16808,
-      26060
+      11806,
+      22873,
+      16806,
+      26073
      ]
     }
    ],
    "crop_100": "outputs/1912/qc/seams/seam_62_70_100.jpg",
    "crop_50": "outputs/1912/qc/seams/seam_62_70_50.jpg",
    "window": [
-    11808,
-    22860,
-    16808,
-    26060
+    11806,
+    22873,
+    16806,
+    26073
+   ]
+  },
+  {
+   "pair": [
+    "63",
+    "64"
+   ],
+   "axis": "x",
+   "coord": 21380.51,
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "Ave N",
+   "kind": "band",
+   "overlap_px2": 2099895,
+   "span_px": 7404,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_63_64_a_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_63_64_a_50.jpg",
+     "window": [
+      19781,
+      17635,
+      22981,
+      22635
+     ]
+    },
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_63_64_b_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_63_64_b_50.jpg",
+     "window": [
+      19781,
+      19488,
+      22981,
+      24488
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_63_64_a_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_63_64_a_50.jpg",
+   "window": [
+    19781,
+    17635,
+    22981,
+    22635
+   ]
+  },
+  {
+   "pair": [
+    "63",
+    "70"
+   ],
+   "axis": "y",
+   "coord": 24490.66,
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "33rd St",
+   "kind": "band",
+   "overlap_px2": 2190447,
+   "span_px": 4302,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_63_70_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_63_70_50.jpg",
+     "window": [
+      14758,
+      22891,
+      19758,
+      26091
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_63_70_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_63_70_50.jpg",
+   "window": [
+    14758,
+    22891,
+    19758,
+    26091
+   ]
+  },
+  {
+   "pair": [
+    "63",
+    "71"
+   ],
+   "axis": "y",
+   "coord": 24502.23,
+   "cut": "straight",
+   "how": "control",
+   "corridor": "33rd St",
+   "kind": "corner",
+   "overlap_px2": 1145931,
+   "span_px": 2355,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_63_71_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_63_71_50.jpg",
+     "window": [
+      17639,
+      22902,
+      22639,
+      26102
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_63_71_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_63_71_50.jpg",
+   "window": [
+    17639,
+    22902,
+    22639,
+    26102
+   ]
+  },
+  {
+   "pair": [
+    "64",
+    "65"
+   ],
+   "axis": "x",
+   "coord": 27409.91,
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "Ave O 1/2",
+   "kind": "band",
+   "overlap_px2": 1873350,
+   "span_px": 7017,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_64_65_a_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_64_65_a_50.jpg",
+     "window": [
+      25810,
+      17755,
+      29010,
+      22755
+     ]
+    },
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_64_65_b_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_64_65_b_50.jpg",
+     "window": [
+      25810,
+      19608,
+      29010,
+      24608
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_64_65_a_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_64_65_a_50.jpg",
+   "window": [
+    25810,
+    17755,
+    29010,
+    22755
    ]
   },
   {
@@ -887,13 +3635,13 @@
     "71"
    ],
    "axis": "y",
-   "coord": 24528.09,
+   "coord": 24535.44,
    "cut": "min-ink path",
    "how": "midpoint",
    "corridor": null,
    "kind": "band",
-   "overlap_px2": 1892977,
-   "span_px": 4281,
+   "overlap_px2": 1909686,
+   "span_px": 4258,
    "lattice_disagreement_px": null,
    "lattice_disagreement_ft": null,
    "crops": [
@@ -901,20 +3649,20 @@
      "crop_100": "outputs/1912/qc/seams/seam_64_71_100.jpg",
      "crop_50": "outputs/1912/qc/seams/seam_64_71_50.jpg",
      "window": [
-      20721,
-      22928,
-      25721,
-      26128
+      20711,
+      22935,
+      25711,
+      26135
      ]
     }
    ],
    "crop_100": "outputs/1912/qc/seams/seam_64_71_100.jpg",
    "crop_50": "outputs/1912/qc/seams/seam_64_71_50.jpg",
    "window": [
-    20721,
-    22928,
-    25721,
-    26128
+    20711,
+    22935,
+    25711,
+    26135
    ]
   },
   {
@@ -923,13 +3671,13 @@
     "72"
    ],
    "axis": "y",
-   "coord": 24529.94,
+   "coord": 24531.28,
    "cut": "straight",
    "how": "midpoint",
    "corridor": null,
    "kind": "corner",
-   "overlap_px2": 1097396,
-   "span_px": 2263,
+   "overlap_px2": 1128458,
+   "span_px": 2268,
    "lattice_disagreement_px": null,
    "lattice_disagreement_ft": null,
    "crops": [
@@ -937,20 +3685,292 @@
      "crop_100": "outputs/1912/qc/seams/seam_64_72_100.jpg",
      "crop_50": "outputs/1912/qc/seams/seam_64_72_50.jpg",
      "window": [
-      23882,
-      22930,
-      28882,
-      26130
+      23875,
+      22931,
+      28875,
+      26131
      ]
     }
    ],
    "crop_100": "outputs/1912/qc/seams/seam_64_72_100.jpg",
    "crop_50": "outputs/1912/qc/seams/seam_64_72_50.jpg",
    "window": [
-    23882,
-    22930,
-    28882,
-    26130
+    23875,
+    22931,
+    28875,
+    26131
+   ]
+  },
+  {
+   "pair": [
+    "65",
+    "72"
+   ],
+   "axis": "y",
+   "coord": 24511.4,
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "33rd St",
+   "kind": "band",
+   "overlap_px2": 1735044,
+   "span_px": 4356,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_65_72_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_65_72_50.jpg",
+     "window": [
+      26885,
+      22911,
+      31885,
+      26111
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_65_72_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_65_72_50.jpg",
+   "window": [
+    26885,
+    22911,
+    31885,
+    26111
+   ]
+  },
+  {
+   "pair": [
+    "65",
+    "73"
+   ],
+   "axis": "y",
+   "coord": 24547.62,
+   "cut": "straight",
+   "how": "midpoint",
+   "corridor": null,
+   "kind": "corner",
+   "overlap_px2": 802040,
+   "span_px": 2276,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_65_73_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_65_73_50.jpg",
+     "window": [
+      29798,
+      22948,
+      34798,
+      26148
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_65_73_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_65_73_50.jpg",
+   "window": [
+    29798,
+    22948,
+    34798,
+    26148
+   ]
+  },
+  {
+   "pair": [
+    "66",
+    "73"
+   ],
+   "axis": "y",
+   "coord": 24586.54,
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "33rd St",
+   "kind": "band",
+   "overlap_px2": 1820681,
+   "span_px": 4370,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_66_73_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_66_73_50.jpg",
+     "window": [
+      32904,
+      22987,
+      37904,
+      26187
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_66_73_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_66_73_50.jpg",
+   "window": [
+    32904,
+    22987,
+    37904,
+    26187
+   ]
+  },
+  {
+   "pair": [
+    "66",
+    "74"
+   ],
+   "axis": "y",
+   "coord": 24621.36,
+   "cut": "straight",
+   "how": "midpoint",
+   "corridor": null,
+   "kind": "corner",
+   "overlap_px2": 851074,
+   "span_px": 2255,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_66_74_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_66_74_50.jpg",
+     "window": [
+      36007,
+      23021,
+      41007,
+      26221
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_66_74_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_66_74_50.jpg",
+   "window": [
+    36007,
+    23021,
+    41007,
+    26221
+   ]
+  },
+  {
+   "pair": [
+    "69",
+    "70"
+   ],
+   "axis": "x",
+   "coord": 13265.37,
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "Ave K",
+   "kind": "band",
+   "overlap_px2": 1883344,
+   "span_px": 7353,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_69_70_a_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_69_70_a_50.jpg",
+     "window": [
+      11665,
+      24472,
+      14865,
+      29472
+     ]
+    },
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_69_70_b_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_69_70_b_50.jpg",
+     "window": [
+      11665,
+      26443,
+      14865,
+      31443
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_69_70_a_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_69_70_a_50.jpg",
+   "window": [
+    11665,
+    24472,
+    14865,
+    29472
+   ]
+  },
+  {
+   "pair": [
+    "70",
+    "71"
+   ],
+   "axis": "x",
+   "coord": 19184.48,
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "Ave M 1/2",
+   "kind": "band",
+   "overlap_px2": 2179131,
+   "span_px": 7066,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_70_71_a_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_70_71_a_50.jpg",
+     "window": [
+      17584,
+      24664,
+      20784,
+      29664
+     ]
+    },
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_70_71_b_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_70_71_b_50.jpg",
+     "window": [
+      17584,
+      26486,
+      20784,
+      31486
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_70_71_a_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_70_71_a_50.jpg",
+   "window": [
+    17584,
+    24664,
+    20784,
+    29664
+   ]
+  },
+  {
+   "pair": [
+    "70",
+    "77"
+   ],
+   "axis": "y",
+   "coord": 31441.42,
+   "cut": "straight",
+   "how": "midpoint",
+   "corridor": null,
+   "kind": "corner",
+   "overlap_px2": 1109634,
+   "span_px": 2283,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_70_77_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_70_77_50.jpg",
+     "window": [
+      11652,
+      29841,
+      16652,
+      33041
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_70_77_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_70_77_50.jpg",
+   "window": [
+    11652,
+    29841,
+    16652,
+    33041
    ]
   },
   {
@@ -959,13 +3979,13 @@
     "78"
    ],
    "axis": "y",
-   "coord": 31434.66,
+   "coord": 31432.35,
    "cut": "min-ink path",
    "how": "control",
    "corridor": "36th St",
    "kind": "band",
-   "overlap_px2": 2057238,
-   "span_px": 4224,
+   "overlap_px2": 2160121,
+   "span_px": 4209,
    "lattice_disagreement_px": null,
    "lattice_disagreement_ft": null,
    "crops": [
@@ -973,20 +3993,66 @@
      "crop_100": "outputs/1912/qc/seams/seam_70_78_100.jpg",
      "crop_50": "outputs/1912/qc/seams/seam_70_78_50.jpg",
      "window": [
-      14621,
-      29835,
-      19621,
-      33035
+      14644,
+      29832,
+      19644,
+      33032
      ]
     }
    ],
    "crop_100": "outputs/1912/qc/seams/seam_70_78_100.jpg",
    "crop_50": "outputs/1912/qc/seams/seam_70_78_50.jpg",
    "window": [
-    14621,
-    29835,
-    19621,
-    33035
+    14644,
+    29832,
+    19644,
+    33032
+   ]
+  },
+  {
+   "pair": [
+    "71",
+    "72"
+   ],
+   "axis": "x",
+   "coord": 25306.15,
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "Ave O",
+   "kind": "band",
+   "overlap_px2": 1268346,
+   "span_px": 7434,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_71_72_a_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_71_72_a_50.jpg",
+     "window": [
+      23706,
+      24529,
+      26906,
+      29529
+     ]
+    },
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_71_72_b_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_71_72_b_50.jpg",
+     "window": [
+      23706,
+      26482,
+      26906,
+      31482
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_71_72_a_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_71_72_a_50.jpg",
+   "window": [
+    23706,
+    24529,
+    26906,
+    29529
    ]
   },
   {
@@ -995,13 +4061,13 @@
     "78"
    ],
    "axis": "y",
-   "coord": 31497.5,
+   "coord": 31483.6,
    "cut": "straight",
    "how": "midpoint",
    "corridor": null,
    "kind": "corner",
-   "overlap_px2": 1185056,
-   "span_px": 2480,
+   "overlap_px2": 1198515,
+   "span_px": 2461,
    "lattice_disagreement_px": null,
    "lattice_disagreement_ft": null,
    "crops": [
@@ -1009,20 +4075,20 @@
      "crop_100": "outputs/1912/qc/seams/seam_71_78_100.jpg",
      "crop_50": "outputs/1912/qc/seams/seam_71_78_50.jpg",
      "window": [
-      17653,
-      29898,
-      22653,
-      33098
+      17680,
+      29884,
+      22680,
+      33084
      ]
     }
    ],
    "crop_100": "outputs/1912/qc/seams/seam_71_78_100.jpg",
    "crop_50": "outputs/1912/qc/seams/seam_71_78_50.jpg",
    "window": [
-    17653,
-    29898,
-    22653,
-    33098
+    17680,
+    29884,
+    22680,
+    33084
    ]
   },
   {
@@ -1031,12 +4097,12 @@
     "79"
    ],
    "axis": "y",
-   "coord": 31513.1,
+   "coord": 31477.96,
    "cut": "min-ink path",
    "how": "control",
    "corridor": "36th St",
    "kind": "band",
-   "overlap_px2": 2005115,
+   "overlap_px2": 2187628,
    "span_px": 4142,
    "lattice_disagreement_px": null,
    "lattice_disagreement_ft": null,
@@ -1045,20 +4111,256 @@
      "crop_100": "outputs/1912/qc/seams/seam_71_79_100.jpg",
      "crop_50": "outputs/1912/qc/seams/seam_71_79_50.jpg",
      "window": [
-      20732,
-      29913,
-      25732,
-      33113
+      20730,
+      29878,
+      25730,
+      33078
      ]
     }
    ],
    "crop_100": "outputs/1912/qc/seams/seam_71_79_100.jpg",
    "crop_50": "outputs/1912/qc/seams/seam_71_79_50.jpg",
    "window": [
-    20732,
-    29913,
-    25732,
-    33113
+    20730,
+    29878,
+    25730,
+    33078
+   ]
+  },
+  {
+   "pair": [
+    "72",
+    "73"
+   ],
+   "axis": "x",
+   "coord": 31373.86,
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "Ave P 1/2",
+   "kind": "band",
+   "overlap_px2": 2547661,
+   "span_px": 7175,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_72_73_a_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_72_73_a_50.jpg",
+     "window": [
+      29774,
+      24665,
+      32974,
+      29665
+     ]
+    },
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_72_73_b_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_72_73_b_50.jpg",
+     "window": [
+      29774,
+      26529,
+      32974,
+      31529
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_72_73_a_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_72_73_a_50.jpg",
+   "window": [
+    29774,
+    24665,
+    32974,
+    29665
+   ]
+  },
+  {
+   "pair": [
+    "72",
+    "79"
+   ],
+   "axis": "y",
+   "coord": 31500.46,
+   "cut": "straight",
+   "how": "midpoint",
+   "corridor": null,
+   "kind": "corner",
+   "overlap_px2": 1188022,
+   "span_px": 2284,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_72_79_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_72_79_50.jpg",
+     "window": [
+      23758,
+      29900,
+      28758,
+      33100
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_72_79_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_72_79_50.jpg",
+   "window": [
+    23758,
+    29900,
+    28758,
+    33100
+   ]
+  },
+  {
+   "pair": [
+    "72",
+    "80"
+   ],
+   "axis": "y",
+   "coord": 31496.14,
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "36th St",
+   "kind": "band",
+   "overlap_px2": 2420154,
+   "span_px": 4428,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_72_80_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_72_80_50.jpg",
+     "window": [
+      26770,
+      29896,
+      31770,
+      33096
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_72_80_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_72_80_50.jpg",
+   "window": [
+    26770,
+    29896,
+    31770,
+    33096
+   ]
+  },
+  {
+   "pair": [
+    "73",
+    "74"
+   ],
+   "axis": "x",
+   "coord": 37395.42,
+   "cut": "min-ink path",
+   "how": "midpoint",
+   "corridor": null,
+   "kind": "band",
+   "overlap_px2": 1988910,
+   "span_px": 7265,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_73_74_a_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_73_74_a_50.jpg",
+     "window": [
+      35795,
+      24619,
+      38995,
+      29619
+     ]
+    },
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_73_74_b_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_73_74_b_50.jpg",
+     "window": [
+      35795,
+      26515,
+      38995,
+      31515
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_73_74_a_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_73_74_a_50.jpg",
+   "window": [
+    35795,
+    24619,
+    38995,
+    29619
+   ]
+  },
+  {
+   "pair": [
+    "73",
+    "80"
+   ],
+   "axis": "y",
+   "coord": 31527.43,
+   "cut": "straight",
+   "how": "midpoint",
+   "corridor": null,
+   "kind": "corner",
+   "overlap_px2": 1141796,
+   "span_px": 2265,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_73_80_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_73_80_50.jpg",
+     "window": [
+      29853,
+      29927,
+      34853,
+      33127
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_73_80_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_73_80_50.jpg",
+   "window": [
+    29853,
+    29927,
+    34853,
+    33127
+   ]
+  },
+  {
+   "pair": [
+    "73",
+    "81"
+   ],
+   "axis": "y",
+   "coord": 31517.48,
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "36th St",
+   "kind": "band",
+   "overlap_px2": 2113298,
+   "span_px": 4294,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_73_81_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_73_81_50.jpg",
+     "window": [
+      32988,
+      29917,
+      37988,
+      33117
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_73_81_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_73_81_50.jpg",
+   "window": [
+    32988,
+    29917,
+    37988,
+    33117
    ]
   },
   {
@@ -1135,6 +4437,52 @@
   },
   {
    "pair": [
+    "74",
+    "99a"
+   ],
+   "axis": "x",
+   "coord": 43278.71,
+   "cut": "min-ink path",
+   "how": "midpoint",
+   "corridor": null,
+   "kind": "band",
+   "overlap_px2": 3445072,
+   "span_px": 7026,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_74_99a_a_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_74_99a_a_50.jpg",
+     "window": [
+      41679,
+      24794,
+      44879,
+      29794
+     ]
+    },
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_74_99a_b_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_74_99a_b_50.jpg",
+     "window": [
+      41679,
+      26466,
+      44879,
+      31466
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_74_99a_a_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_74_99a_a_50.jpg",
+   "window": [
+    41679,
+    24794,
+    44879,
+    29794
+   ]
+  },
+  {
+   "pair": [
     "76",
     "84"
    ],
@@ -1144,7 +4492,7 @@
    "how": "control",
    "corridor": "39th St",
    "kind": "band",
-   "overlap_px2": 2179081,
+   "overlap_px2": 1859355,
    "span_px": 4305,
    "lattice_disagreement_px": null,
    "lattice_disagreement_ft": null,
@@ -1171,17 +4519,181 @@
   },
   {
    "pair": [
+    "77",
+    "78"
+   ],
+   "axis": "x",
+   "coord": 15252.47,
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "Ave L",
+   "kind": "band",
+   "overlap_px2": 1260011,
+   "span_px": 7383,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_77_78_a_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_77_78_a_50.jpg",
+     "window": [
+      13652,
+      31439,
+      16852,
+      36439
+     ]
+    },
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_77_78_b_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_77_78_b_50.jpg",
+     "window": [
+      13652,
+      33265,
+      16852,
+      38265
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_77_78_a_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_77_78_a_50.jpg",
+   "window": [
+    13652,
+    31439,
+    16852,
+    36439
+   ]
+  },
+  {
+   "pair": [
+    "77",
+    "84"
+   ],
+   "axis": "y",
+   "coord": 38321.3,
+   "cut": "straight",
+   "how": "midpoint",
+   "corridor": null,
+   "kind": "corner",
+   "overlap_px2": 875186,
+   "span_px": 2189,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_77_84_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_77_84_50.jpg",
+     "window": [
+      7638,
+      36721,
+      12638,
+      39921
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_77_84_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_77_84_50.jpg",
+   "window": [
+    7638,
+    36721,
+    12638,
+    39921
+   ]
+  },
+  {
+   "pair": [
+    "78",
+    "79"
+   ],
+   "axis": "x",
+   "coord": 21302.72,
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "Ave N",
+   "kind": "band",
+   "overlap_px2": 1885473,
+   "span_px": 7015,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_78_79_a_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_78_79_a_50.jpg",
+     "window": [
+      19703,
+      31582,
+      22903,
+      36582
+     ]
+    },
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_78_79_b_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_78_79_b_50.jpg",
+     "window": [
+      19703,
+      33352,
+      22903,
+      38352
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_78_79_a_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_78_79_a_50.jpg",
+   "window": [
+    19703,
+    31582,
+    22903,
+    36582
+   ]
+  },
+  {
+   "pair": [
+    "78",
+    "85"
+   ],
+   "axis": "y",
+   "coord": 38385.96,
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "39th St",
+   "kind": "band",
+   "overlap_px2": 1820484,
+   "span_px": 4184,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_78_85_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_78_85_50.jpg",
+     "window": [
+      14645,
+      36786,
+      19645,
+      39986
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_78_85_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_78_85_50.jpg",
+   "window": [
+    14645,
+    36786,
+    19645,
+    39986
+   ]
+  },
+  {
+   "pair": [
     "78",
     "86"
    ],
    "axis": "y",
-   "coord": 38353.37,
+   "coord": 38350.02,
    "cut": "straight",
    "how": "control",
    "corridor": "39th St",
    "kind": "corner",
-   "overlap_px2": 1180541,
-   "span_px": 2433,
+   "overlap_px2": 1159192,
+   "span_px": 2432,
    "lattice_disagreement_px": null,
    "lattice_disagreement_ft": null,
    "crops": [
@@ -1189,20 +4701,502 @@
      "crop_100": "outputs/1912/qc/seams/seam_78_86_100.jpg",
      "crop_50": "outputs/1912/qc/seams/seam_78_86_50.jpg",
      "window": [
-      17696,
-      36753,
-      22696,
-      39953
+      17686,
+      36750,
+      22686,
+      39950
      ]
     }
    ],
    "crop_100": "outputs/1912/qc/seams/seam_78_86_100.jpg",
    "crop_50": "outputs/1912/qc/seams/seam_78_86_50.jpg",
    "window": [
-    17696,
-    36753,
-    22696,
-    39953
+    17686,
+    36750,
+    22686,
+    39950
+   ]
+  },
+  {
+   "pair": [
+    "79",
+    "80"
+   ],
+   "axis": "x",
+   "coord": 27247.97,
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "Ave O 1/2",
+   "kind": "band",
+   "overlap_px2": 2701114,
+   "span_px": 7376,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_79_80_a_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_79_80_a_50.jpg",
+     "window": [
+      25648,
+      31498,
+      28848,
+      36498
+     ]
+    },
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_79_80_b_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_79_80_b_50.jpg",
+     "window": [
+      25648,
+      33410,
+      28848,
+      38410
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_79_80_a_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_79_80_a_50.jpg",
+   "window": [
+    25648,
+    31498,
+    28848,
+    36498
+   ]
+  },
+  {
+   "pair": [
+    "79",
+    "86"
+   ],
+   "axis": "y",
+   "coord": 38381.56,
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "39th St",
+   "kind": "band",
+   "overlap_px2": 1727340,
+   "span_px": 4199,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_79_86_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_79_86_50.jpg",
+     "window": [
+      20822,
+      36782,
+      25822,
+      39982
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_79_86_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_79_86_50.jpg",
+   "window": [
+    20822,
+    36782,
+    25822,
+    39982
+   ]
+  },
+  {
+   "pair": [
+    "79",
+    "87"
+   ],
+   "axis": "y",
+   "coord": 38407.6,
+   "cut": "straight",
+   "how": "control",
+   "corridor": "39th St",
+   "kind": "corner",
+   "overlap_px2": 781781,
+   "span_px": 2291,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_79_87_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_79_87_50.jpg",
+     "window": [
+      23861,
+      36808,
+      28861,
+      40008
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_79_87_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_79_87_50.jpg",
+   "window": [
+    23861,
+    36808,
+    28861,
+    40008
+   ]
+  },
+  {
+   "pair": [
+    "80",
+    "81"
+   ],
+   "axis": "x",
+   "coord": 33317.94,
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "Ave Q",
+   "kind": "band",
+   "overlap_px2": 1727149,
+   "span_px": 6976,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_80_81_a_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_80_81_a_50.jpg",
+     "window": [
+      31718,
+      31651,
+      34918,
+      36651
+     ]
+    },
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_80_81_b_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_80_81_b_50.jpg",
+     "window": [
+      31718,
+      33428,
+      34918,
+      38428
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_80_81_a_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_80_81_a_50.jpg",
+   "window": [
+    31718,
+    31651,
+    34918,
+    36651
+   ]
+  },
+  {
+   "pair": [
+    "80",
+    "87"
+   ],
+   "axis": "y",
+   "coord": 38432.42,
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "39th St",
+   "kind": "band",
+   "overlap_px2": 1792088,
+   "span_px": 4385,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_80_87_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_80_87_50.jpg",
+     "window": [
+      26831,
+      36832,
+      31831,
+      40032
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_80_87_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_80_87_50.jpg",
+   "window": [
+    26831,
+    36832,
+    31831,
+    40032
+   ]
+  },
+  {
+   "pair": [
+    "80",
+    "88"
+   ],
+   "axis": "y",
+   "coord": 38425.86,
+   "cut": "straight",
+   "how": "control",
+   "corridor": "39th St",
+   "kind": "corner",
+   "overlap_px2": 1085994,
+   "span_px": 2324,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_80_88_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_80_88_50.jpg",
+     "window": [
+      29733,
+      36826,
+      34733,
+      40026
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_80_88_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_80_88_50.jpg",
+   "window": [
+    29733,
+    36826,
+    34733,
+    40026
+   ]
+  },
+  {
+   "pair": [
+    "83",
+    "84"
+   ],
+   "axis": "x",
+   "coord": 5046.59,
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "Ave G (Winnie)",
+   "kind": "band",
+   "overlap_px2": 2249825,
+   "span_px": 7336,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_83_84_a_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_83_84_a_50.jpg",
+     "window": [
+      3447,
+      38369,
+      6647,
+      43369
+     ]
+    },
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_83_84_b_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_83_84_b_50.jpg",
+     "window": [
+      3447,
+      40418,
+      6647,
+      45418
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_83_84_a_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_83_84_a_50.jpg",
+   "window": [
+    3447,
+    38369,
+    6647,
+    43369
+   ]
+  },
+  {
+   "pair": [
+    "83",
+    "92"
+   ],
+   "axis": "y",
+   "coord": 45214.77,
+   "cut": "straight",
+   "how": "midpoint",
+   "corridor": null,
+   "kind": "corner",
+   "overlap_px2": 88746,
+   "span_px": 197,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_83_92_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_83_92_50.jpg",
+     "window": [
+      2538,
+      43615,
+      7538,
+      46815
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_83_92_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_83_92_50.jpg",
+   "window": [
+    2538,
+    43615,
+    7538,
+    46815
+   ]
+  },
+  {
+   "pair": [
+    "84",
+    "85b"
+   ],
+   "axis": "x",
+   "coord": 11132.68,
+   "cut": "min-ink path",
+   "how": "midpoint",
+   "corridor": null,
+   "kind": "band",
+   "overlap_px2": 174515,
+   "span_px": 3767,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_84_85b_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_84_85b_50.jpg",
+     "window": [
+      9533,
+      37832,
+      12733,
+      42832
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_84_85b_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_84_85b_50.jpg",
+   "window": [
+    9533,
+    37832,
+    12733,
+    42832
+   ]
+  },
+  {
+   "pair": [
+    "84",
+    "92"
+   ],
+   "axis": "y",
+   "coord": 45214.4,
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "42nd St",
+   "kind": "band",
+   "overlap_px2": 2520541,
+   "span_px": 6213,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_84_92_a_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_84_92_a_50.jpg",
+     "window": [
+      5130,
+      43614,
+      10130,
+      46814
+     ]
+    },
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_84_92_b_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_84_92_b_50.jpg",
+     "window": [
+      6159,
+      43614,
+      11159,
+      46814
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_84_92_a_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_84_92_a_50.jpg",
+   "window": [
+    5130,
+    43614,
+    10130,
+    46814
+   ]
+  },
+  {
+   "pair": [
+    "85",
+    "93"
+   ],
+   "axis": "y",
+   "coord": 45279.22,
+   "cut": "straight",
+   "how": "control",
+   "corridor": "42nd St",
+   "kind": "corner",
+   "overlap_px2": 1127846,
+   "span_px": 2126,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_85_93_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_85_93_50.jpg",
+     "window": [
+      13607,
+      43679,
+      18607,
+      46879
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_85_93_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_85_93_50.jpg",
+   "window": [
+    13607,
+    43679,
+    18607,
+    46879
+   ]
+  },
+  {
+   "pair": [
+    "91",
+    "92"
+   ],
+   "axis": "x",
+   "coord": 5001.14,
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "Ave G (Winnie)",
+   "kind": "band",
+   "overlap_px2": 1366786,
+   "span_px": 7374,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_91_92_a_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_91_92_a_50.jpg",
+     "window": [
+      3401,
+      45414,
+      6601,
+      50414
+     ]
+    },
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_91_92_b_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_91_92_b_50.jpg",
+     "window": [
+      3401,
+      47363,
+      6601,
+      52363
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_91_92_a_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_91_92_a_50.jpg",
+   "window": [
+    3401,
+    45414,
+    6601,
+    50414
    ]
   },
   {
@@ -1239,6 +5233,124 @@
     47459,
     12729,
     52459
+   ]
+  },
+  {
+   "pair": [
+    "92",
+    "93b"
+   ],
+   "axis": "y",
+   "coord": 52365.24,
+   "cut": "straight",
+   "how": "midpoint",
+   "corridor": null,
+   "kind": "corner",
+   "overlap_px2": 7876,
+   "span_px": 106,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_92_93b_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_92_93b_50.jpg",
+     "window": [
+      8699,
+      50765,
+      13699,
+      53965
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_92_93b_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_92_93b_50.jpg",
+   "window": [
+    8699,
+    50765,
+    13699,
+    53965
+   ]
+  },
+  {
+   "pair": [
+    "93",
+    "93b"
+   ],
+   "axis": "y",
+   "coord": 52168.11,
+   "cut": "min-ink path",
+   "how": "midpoint",
+   "corridor": null,
+   "kind": "band",
+   "overlap_px2": 628244,
+   "span_px": 2082,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_93_93b_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_93_93b_50.jpg",
+     "window": [
+      9740,
+      50568,
+      14740,
+      53768
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_93_93b_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_93_93b_50.jpg",
+   "window": [
+    9740,
+    50568,
+    14740,
+    53768
+   ]
+  },
+  {
+   "pair": [
+    "93",
+    "94"
+   ],
+   "axis": "x",
+   "coord": 17172.06,
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "Ave M",
+   "kind": "band",
+   "overlap_px2": 2495103,
+   "span_px": 7321,
+   "lattice_disagreement_px": null,
+   "lattice_disagreement_ft": null,
+   "crops": [
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_93_94_a_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_93_94_a_50.jpg",
+     "window": [
+      15572,
+      45300,
+      18772,
+      50300
+     ]
+    },
+    {
+     "crop_100": "outputs/1912/qc/seams/seam_93_94_b_100.jpg",
+     "crop_50": "outputs/1912/qc/seams/seam_93_94_b_50.jpg",
+     "window": [
+      15572,
+      47383,
+      18772,
+      52383
+     ]
+    }
+   ],
+   "crop_100": "outputs/1912/qc/seams/seam_93_94_a_100.jpg",
+   "crop_50": "outputs/1912/qc/seams/seam_93_94_a_50.jpg",
+   "window": [
+    15572,
+    45300,
+    18772,
+    50300
    ]
   }
  ]
