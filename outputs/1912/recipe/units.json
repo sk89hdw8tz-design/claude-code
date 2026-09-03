@@ -7173,7 +7173,6 @@
     3287,
     3858
    ],
-   "extent_source": "tools/neatline.py: inner edge of the border rule",
    "extent_fallback_sides": [
     "left",
     "top",
@@ -7239,32 +7238,11 @@
     3287,
     3858
    ],
-   "extent_source": "tools/neatline.py: inner edge of the border rule",
    "extent_fallback_sides": [
     "left",
     "top",
     "right",
     "bottom"
-   ],
-   "exclude_native": [
-    [
-     [
-      56,
-      68
-     ],
-     [
-      171,
-      68
-     ],
-     [
-      171,
-      220
-     ],
-     [
-      56,
-      220
-     ]
-    ]
    ],
    "furniture_native": [
     {

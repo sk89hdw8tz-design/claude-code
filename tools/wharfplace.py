@@ -47,6 +47,7 @@ WHARF = {
           "streets": {"67": {"33": 235, "34": 807, "35": 1386, "36": 1966}, "75": {"36": 1966, "37": 2544, "38": 3117, "39": 3691}},
           "ave_a_chain": {"67": None, "75": None},  # 67 begins at Ave B and 75 at Ave C: neither draws Ave A
           "ave_a_from": ("4", 3005),               # Ave A's line continues from sheet 4 (its 33rd St, native y 3005)
+          "street_from": ("4", 235.0, 3005.0),     # 33rd St is drawn on both: sheet 3 at native y 235, sheet 4 at 3005
           "note": "piers 33-39, 33rd-39th St; abuts 67 (33rd-36th) and 75 (36th-39th) along Ave A; prints '4' at its top and '2' at its bottom"},
 }
 
@@ -71,6 +72,13 @@ def main():
     th = np.arctan2(t5["b"], t5["a"])
     M = s * np.array([[np.cos(th), -np.sin(th)], [np.sin(th), np.cos(th)]])
 
+    # unknowns: [k, tx, ty] where the mosaic point is k * R @ p_native + t and
+    # R is the sheet-5 rotation. Scale was taken from the sheet-5 solve, but a
+    # wharf plate's own cross streets can disagree with the block plates'
+    # spacing by half a percent, which shows as a residual that grows along
+    # the plate (sheet 3: +6.5 ft at 33rd to -11.9 at 39th). Eight street
+    # equations constrain one scale comfortably.
+    R = M / s
     rows, rhs, tags = [], [], []
     xa = float(spec["ave_a"])
     for bp, streets in spec["streets"].items():
@@ -90,10 +98,24 @@ def main():
             sy_nat = (fy[i][0] + fy[i][1]) / 2.0
             # the block plate's street y at (its Ave A, or its extent centre)
             p = Mb @ np.array([ax_nat if ax_nat is not None else (e[0] + e[2]) / 2.0, sy_nat]) + tb
-            q = M @ np.array([xa, float(yw)])               # wharf point without t
+            q = R @ np.array([xa, float(yw)])               # unit-scale wharf point
             for k in ((0, 1) if ax_nat is not None else (1,)):
-                row = np.zeros(2); row[k] = 1.0
-                rows.append(row); rhs.append(p[k] - q[k]); tags.append((bp, st, "xy"[k]))
+                row = np.zeros(3); row[0] = q[k]; row[1 + k] = 1.0
+                rows.append(row); rhs.append(p[k]); tags.append((bp, st, "xy"[k]))
+    if spec.get("street_from"):
+        # the shared cross street of an already-placed wharf sheet: without it
+        # each wharf plate follows only the block plates behind it, and where
+        # those rows disagree the two wharf plates step at their common street
+        # (3|4 stood 19 ft apart at 33rd St). One equation, weighted like the
+        # others, so the step is shared rather than pushed onto one plate.
+        wu, y_self, y_other = spec["street_from"]
+        Mw, tw = r.sheet_matrix(wu)
+        ew = r.units[wu]["extent"]
+        p = Mw @ np.array([(ew[0] + ew[2]) / 2.0, float(y_other)]) + tw
+        e_self = [40, 40, 3287, 3858]
+        q = R @ np.array([(e_self[0] + e_self[2]) / 2.0, float(y_self)])
+        row = np.zeros(3); row[0] = q[1]; row[2] = 1.0
+        rows.append(row); rhs.append(p[1]); tags.append((wu, "33rd St", "y"))
     if spec.get("ave_a_from"):
         # Ave A continues from an already-placed wharf sheet: its native Ave A x at the shared street
         wu, yw_ref = spec["ave_a_from"]
@@ -101,15 +123,17 @@ def main():
         p = Mw @ np.array([float(WHARF[wu]["ave_a"]), float(yw_ref)]) + tw
         st0 = list(spec["streets"].values())[0]
         yw = float(list(st0.values())[0])
-        q = M @ np.array([xa, yw])
-        row = np.zeros(2); row[0] = 1.0
-        rows.append(row); rhs.append(p[0] - q[0]); tags.append((wu, "AveA", "x"))
+        q = R @ np.array([xa, yw])
+        row = np.zeros(3); row[0] = q[0]; row[1] = 1.0
+        rows.append(row); rhs.append(p[0]); tags.append((wu, "Ave A", "x"))
     A, b = np.array(rows), np.array(rhs)
-    t, *_ = np.linalg.lstsq(A, b, rcond=None)
-    res = A @ t - b
-    print(f"sheet {a.sheet}: scale {s:.4f} (pct50), rotation {np.degrees(th):+.3f} deg, "
-          f"t = {t.round(1).tolist()}; {len(rows)} equations, residual median "
-          f"{np.median(np.abs(res))/ppf:.1f} ft, max {np.abs(res).max()/ppf:.1f} ft")
+    sol, *_ = np.linalg.lstsq(A, b, rcond=None)
+    res = A @ sol - b
+    k, t = float(sol[0]), sol[1:]
+    M = k * R
+    print(f"sheet {a.sheet}: scale {s:.4f} -> {k:.4f} ({(k/s-1)*100:+.2f}%), "
+          f"rotation {np.degrees(th):+.3f} deg, t = {t.round(1).tolist()}; {len(rows)} equations, "
+          f"residual median {np.median(np.abs(res))/ppf:.1f} ft, max {np.abs(res).max()/ppf:.1f} ft")
     for (bp, st, ax), rr in zip(tags, res):
         print(f"   plate {bp} {st}th St {ax}: {rr/ppf:+6.1f} ft")
     if not a.apply:
@@ -119,15 +143,21 @@ def main():
     W = json.load(open(os.path.join(r.dir, "working_sources.json")))
     T = json.load(open(os.path.join(r.dir, "transforms_city.json")))
     u = a.sheet
-    U["units"][u] = {"file": int(u), "region": None, "extent": [40, 40, 3287, 3858], "streets": None,
+    prev = U["units"].get(u, {})
+    U["units"][u] = {"file": int(u), "region": None,
+                     # a re-run must not undo the neatline trim or the furniture boxes
+                     "extent": prev.get("extent", [40, 40, 3287, 3858]), "streets": None,
                      "avenue_slots": None, "source_image": f"work/sheets/1912w/u{u}.jpg",
                      "scale_note": "wharf plate drawn at 100 ft/in; pct:50 working copy",
                      "seam_axis": {"default": "x", "5a": "y", "5b": "y", "2": "y", "3": "y", "4": "y", "6": "y"},
                      "note": spec["note"]}
+    for k in ("extent_scan", "extent_fallback_sides", "furniture_native"):
+        if k in prev:
+            U["units"][u][k] = prev[k]
     W["units"][u] = {"file": spec["file"], "op": "copy", "bytes": r.items_by_file[spec["file"]]["bytes"]}
     T["sheets"][u] = {"m": M.tolist(), "t": [float(t[0]), float(t[1])],
-                      "how": "tools/wharfplace.py: scale and rotation from the sheet-5 joint solve, translation from Ave A and the shared cross streets against the block plates",
-                      "tier": "wharf-frontage", "theta_deg": float(np.degrees(th)), "scale": s}
+                      "how": "tools/wharfplace.py: rotation from the sheet-5 joint solve; scale and translation from Ave A and the shared cross streets against the block plates (and, for sheet 3, its 33rd St against sheet 4)",
+                      "tier": "wharf-frontage", "theta_deg": float(np.degrees(th)), "scale": float(k)}
     json.dump(U, open(os.path.join(r.dir, "units.json"), "w"), indent=1)
     json.dump(W, open(os.path.join(r.dir, "working_sources.json"), "w"), indent=1)
     json.dump(T, open(os.path.join(r.dir, "transforms_city.json"), "w"), indent=1)

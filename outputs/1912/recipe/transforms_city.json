@@ -1800,62 +1800,62 @@
   "4": {
    "m": [
     [
-     3.9750115237802257,
-     -0.04117587796793032
+     3.97217264768528,
+     -0.04114647095490601
     ],
     [
-     0.04117587796793032,
-     3.9750115237802257
+     0.04114647095490601,
+     3.97217264768528
     ]
    ],
    "t": [
-    -21282.237037020535,
-    12280.895429552675
+    -21273.485206291305,
+    12285.962814976552
    ],
-   "how": "tools/wharfplace.py: scale and rotation from the sheet-5 joint solve, translation from Ave A and the shared cross streets against the block plates",
+   "how": "tools/wharfplace.py: rotation from the sheet-5 joint solve; scale and translation from Ave A and the shared cross streets against the block plates (and, for sheet 3, its 33rd St against sheet 4)",
    "tier": "wharf-frontage",
    "theta_deg": 0.5934874990851567,
-   "scale": 3.975224781960389
+   "scale": 3.9723857535605895
   },
   "6": {
    "m": [
     [
-     3.9750115237802257,
-     -0.04117587796793032
+     4.022198039330588,
+     -0.04166466804926971
     ],
     [
-     0.04117587796793032,
-     3.9750115237802257
+     0.04166466804926971,
+     4.022198039330588
     ]
    ],
    "t": [
-    -21545.36924555523,
-    -30081.73151019954
+    -21696.24633591273,
+    -30181.416177192918
    ],
-   "how": "tools/wharfplace.py: scale and rotation from the sheet-5 joint solve, translation from Ave A and the shared cross streets against the block plates",
+   "how": "tools/wharfplace.py: rotation from the sheet-5 joint solve; scale and translation from Ave A and the shared cross streets against the block plates (and, for sheet 3, its 33rd St against sheet 4)",
    "tier": "wharf-frontage",
    "theta_deg": 0.5934874990851567,
-   "scale": 3.975224781960389
+   "scale": 4.022413829053207
   },
   "3": {
    "m": [
     [
-     3.9750115237802257,
-     -0.04117587796793032
+     4.011088418763818,
+     -0.04154958702925488
     ],
     [
-     0.04117587796793032,
-     3.9750115237802257
+     0.04154958702925488,
+     4.011088418763818
     ]
    ],
    "t": [
-    -21546.060592928876,
-    23401.5928577936
+    -21608.47687822669,
+    23323.956696971505
    ],
-   "how": "tools/wharfplace.py: scale and rotation from the sheet-5 joint solve, translation from Ave A and the shared cross streets against the block plates",
+   "how": "tools/wharfplace.py: rotation from the sheet-5 joint solve; scale and translation from Ave A and the shared cross streets against the block plates (and, for sheet 3, its 33rd St against sheet 4)",
    "tier": "wharf-frontage",
    "theta_deg": 0.5934874990851567,
-   "scale": 3.975224781960389
+   "scale": 4.011303612458614
   }
  }
 }
