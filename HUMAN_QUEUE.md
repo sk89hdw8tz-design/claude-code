@@ -1075,3 +1075,18 @@ neatline.
 **Gate.** 106 regions, one piece, 1,026 px² double ownership (0.00002%),
 0.455% unclaimed (10 holes, 5 inlets, 9 hairlines under the renderer's
 disclosed fallback). 333 accepted controls, band-residual median 1.6 ft.
+
+## HQ-30 · Review record persisted — APPLIED
+
+The round-5 census, periphery review and interior review (HQ-29) existed
+only in Workflow subagent journals, never under `qc/`. New
+`tools/journalq.py` reads each journal (last result per agentId) and merges
+scores/findings with their adjudication or confirmation passes into durable
+per-seam / per-window JSON.
+
+`outputs/1912/qc/seams/census_round5.json`: 249 seams, 203×5 / 38×4 / 5×3 /
+3×2 / 0×1 — reproduces HQ-29 exactly. `outputs/1912/qc/periphery/review_round2.json`:
+63 windows, 30 confirms, 18 confirmed. `outputs/1912/qc/interior/review_round1.json`:
+33 windows, 21 clean, 23 checks, 16 confirmed. `outputs/1912/qc/interior/win_*.jpg`
+and `windows.json` were copied to `qc/interior/round1/` before this ran, per
+plan rule 9.

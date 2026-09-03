@@ -1,0 +1,3154 @@
+{
+  "workflow": "wf_dfa33c97-301",
+  "kind": "census",
+  "seams": {
+    "11_13": {
+      "seam": "11_13",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "27th St band between plate 11 (block 746, McDonough Iron Works) and plate 13 (block 747, Wm J. Lemp Brewing Co.). Address numbers (2609-2627 north, 101-111 south), property lines and the wharf company's terminal-track fan cross the street cleanly with no step, duplicate label, or gap in either crop.",
+      "worst_crop": "seam_11_13_a_100.jpg",
+      "fix_hint": "none needed",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "ad5cac4c2fce4259d",
+      "diagnoses": []
+    },
+    "11_14": {
+      "seam": "11_14",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Corner tile spanning blocks 566/506/446 (north) and 567/507/447 (south) across 27th St. The 'ST.' label is only interrupted by the scale-bar legend graphic, not duplicated; building footprints and lot numbering (e.g. 2609-2628 / 401-423) line up across the street with no offset.",
+      "worst_crop": "seam_11_14_100.jpg",
+      "fix_hint": "none needed",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "ad5cac4c2fce4259d",
+      "diagnoses": []
+    },
+    "12_14": {
+      "seam": "12_14",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "27th St band continuing east of 11_13, blocks 566/506/446 (Seaboard Lumber & Milling / Planing Mill, cooling tower) north vs 567/507/447 south. Lumber shed footprint and lot lines cross the seam without duplication or offset in both crops; no doubled labels.",
+      "worst_crop": "seam_12_14_a_100.jpg",
+      "fix_hint": "none needed",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "ad5cac4c2fce4259d",
+      "diagnoses": []
+    },
+    "13_14": {
+      "seam": "13_14",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Ave C (Mechanic) vertical corridor between plate 13 (block 627, J.J. Kane Boiler Shop / block 628, Shippers Press) west of the avenue and plate 14 (blocks 301-323, Wm Schardt Builders Supplies / Cooperage Co.) east of it. Street label appears once each side, lot depth numbering (2701-2827 west, 301-324 east) and the parallel water-pipe lines run continuously across the corridor in both crops.",
+      "worst_crop": "seam_13_14_a_100.jpg",
+      "fix_hint": "none needed",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "ad5cac4c2fce4259d",
+      "diagnoses": []
+    },
+    "13_15": {
+      "seam": "13_15",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "30th St band crossing the Galveston Wharf Co./Trinity & Brazos Valley RR terminal yard (blocks 749/689 north, 750/690 south, then 629/630 further east). Rail lines, the concrete platform, and lot numbering (101-124) continue through the street with no track jog, duplicate label, or gap in either crop; mostly open rail-yard ground, consistent with a control seam.",
+      "worst_crop": "seam_13_15_a_100.jpg",
+      "fix_hint": "none needed",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "ad5cac4c2fce4259d",
+      "diagnoses": []
+    },
+    "13_16": {
+      "seam": "13_16",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Corner tile at the Southern Compress block (629) over Shipper's Press South Yard (569) and RR depot (630) over Cooperage Co. Wood Yard (570). The stacked unnamed cross-streets (80' width, marked '202'/'201' etc.) align top-to-bottom with no split buildings, doubled labels, or white gaps; pink cotton-floor hatching and fence lines continue cleanly across each band.",
+      "worst_crop": "seam_13_16_100.jpg",
+      "fix_hint": "none needed",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "ad5cac4c2fce4259d",
+      "diagnoses": []
+    },
+    "16_61": {
+      "seam": "16_61",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Ave F (Church) reads continuous across the cut: west-side addresses 502-524 (blocks 450/451, GH&N RR cotton yard with rail spur) meet east-side 601-623 (blocks 390/391/392, Waples Lumber Co sheds, P. Levine Cotton Pickery) with matching 80' street width both sides; rail lines correctly terminate inside the cotton yard rather than needing to cross the avenue. No duplicated street, label, or building.",
+      "worst_crop": "seam_16_61_a_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "ae0217c4ea9938702",
+      "diagnoses": []
+    },
+    "16_67": {
+      "seam": "16_67",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "33rd St. label and roadway are continuous across the cut; block 572/573 (Galveston Gas Co. coal shed, gasometers, wood elevator/sawing shop) meets block 512/513 (GH&HRR freight depots) with matching addresses 301-423 and an unbroken 6\" water-pipe dash line. The compass rose sitting in the street is original 1912 plate content, not a stitching artifact, and does not obscure or duplicate any feature.",
+      "worst_crop": "seam_16_67_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "ae0217c4ea9938702",
+      "diagnoses": []
+    },
+    "16_68": {
+      "seam": "16_68",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Corner cut through blank bay-side/seawall-lot area into the Mechanic/7th St. grid (blocks 18/546/547/607) reads cleanly; no duplicated labels, offsets, or clipped buildings at the transition.",
+      "worst_crop": "seam_16_68_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "ae0217c4ea9938702",
+      "diagnoses": []
+    },
+    "17_18": {
+      "seam": "17_18",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Ave C (Mechanic) is continuous through blocks 18/546/547/608/548 across both crops; building footprints and addresses on both sides of the street line up, and the 'MECHANIC' label appears once per block as normal Sanborn per-block labeling, not a duplication.",
+      "worst_crop": "seam_17_18_b_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "ae0217c4ea9938702",
+      "diagnoses": []
+    },
+    "17_21": {
+      "seam": "17_21",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "9th St. is continuous past the Sealy Hospital complex (blocks 668/669: Ward No.1, Ward No.2, Negro Ward, Lecture Hall) matching blocks 608/609/548/549 across the street; hospital buildings sit entirely within their own plate and are not split by the seam.",
+      "worst_crop": "seam_17_21_a_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "ae0217c4ea9938702",
+      "diagnoses": []
+    },
+    "17_22": {
+      "seam": "17_22",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Corner at 9th St./Ave B reads as one continuous map: addresses (block 608/548 to 609/549) and the 8\" water-pipe run continue unbroken across the cut with no duplicated or clipped features.",
+      "worst_crop": "seam_17_22_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "ae0217c4ea9938702",
+      "diagnoses": []
+    },
+    "14_16": {
+      "seam": "14_16",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Band seam along 30th St between blocks 509/510 (Merchants & Planters East Yard cotton warehouses / Compress). Curbs, address runs (402-424 north, 401-423 south), and pipe labels align continuously across both tiles with no step, duplication, or clipped feature.",
+      "worst_crop": "seam_14_16_a_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a9f45fbbc7f8210f4",
+      "diagnoses": []
+    },
+    "14_49": {
+      "seam": "14_49",
+      "score": 3,
+      "defects": [
+        "furniture"
+      ],
+      "reason": "The 27th St crossing between blocks 446/386 and 447/387 itself reads cleanly (normal 500s->600s address jump, no offset). But in the unnamed avenue at the corner, two separate 'Scale of Feet' ruler bars (one from each source plate) sit side by side inside the mapped ground where the street should read as one continuous blank right-of-way -- plate-margin furniture per brief item 5.",
+      "fix_hint": "Mask or crop one plate's printed scale-bar legend out of the avenue area so only one (or neither) shows in the mosaic.",
+      "furniture": "duplicate 'Scale of Feet' ruler bars from both source plates, side by side in the avenue",
+      "worst_crop": "seam_14_49_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a9f45fbbc7f8210f4",
+      "diagnoses": [
+        {
+          "seam": "14_49",
+          "agree": false,
+          "category": "cut-placement",
+          "revised_score": 3,
+          "reason": "The score of 3 happens to land about right, but the stated finding is wrong on both counts. (1) The crop is a FOUR-plate junction, not a two-plate seam: per the mosaic's own ownership polygons, plate 12 owns the top-left, 49 the top-right, 14 the bottom-left, 55 the bottom-right. The 14/49 contact is only a ~15 ft x 10 ft island of plate-14 paper dropped inside the 27th St / avenue crossing (mosaic x 3145-3235, y 10653-10709), and it contains no drawn content at all - only a hard-edged tone step against plate 49's near-white patch, which by brief item 8 cannot pull the score below 4 on its own. (2) The two \"Scale of Feet\" ruler bars are genuinely present, but they are NOT side by side in the avenue and neither is at this cut: the left legend (text rows 775-798, bar 833-850, x 70-680) belongs entirely to plate 12 and sits in the 500 block of 27th St; the right legend (text 795-818, bar 852-871, x ~1450-2100) belongs entirely to plate 49 and sits in the 600 block, ~1500 px (~525 ft) away and in a different block. One scale legend per Sanborn sheet, printed in the open roadway, is normal source content; two appearing in a long street because two sheets were tiled is inherent to the whole mosaic, not a defect the 14_49 cut created. The grader's \"duplicate scale bars in the avenue\" is a mis-read of geometry. What the grader MISSED is a real clipped feature a few pixels from the 14/49 corner: a rotated italic annotation on plate 12 in the 70 ft avenue at mosaic x 3085-3131, y 10563-10625 (crop x 1235-1258, y 793-824) is sliced flat on its right edge (vertical 12|49 boundary at crop x~1257) and again along its bottom (horizontal boundary at crop y~824), leaving only \"F.\" and the stub of the next glyph hanging against plate 49's blank paper - brief item 2, \"a label cut in half with the other half missing\". Around it the intersection is a confetti of four plates' paper with stair-step edges. Everything else reads cleanly: block faces 446/447 and 386/387 line up across 27th St with no jog, addresses run 502-524 / 501-523 then 602-624 / 601-623 with the normal block change, and the 20 ft alley with its 10\" W. PIPE dashes carries straight through the cut. So: a small clipped label plus an isolated foreign-plate wedge in open roadway - a 3, for cut placement, not furniture.",
+          "fix": "Two re-cuts, both local to this junction, no re-registration needed. (a) Move the vertical Ave F / 12|49 ownership boundary about 12-15 mosaic px (~4-5 ft) east of mosaic x 3131, and drop the horizontal 12|49 boundary at that x from y~10625 down to about y~10650, so plate 12 keeps its \"F.\" annotation whole instead of having it sliced on two sides. (b) Delete the isolated plate-14 island at mosaic x 3145-3235, y 10653-10709 and hand that whole crossing to a single neighbour (plate 49 above the 27th St centreline, or 55 - either works, the ground there is blank roadway), so the intersection is one plate's paper instead of four patches with stair-step tone edges. Do NOT mask either \"Scale of Feet\" legend as the original fix_hint suggests: they are authentic printed content of plates 12 and 49, they sit in different blocks of 27th St, and erasing them would be a redraw of the source in a mosaic whose stated policy is untouched scan pixels.",
+          "agentId": "a88073ddd69cb63e8"
+        }
+      ]
+    },
+    "14_55": {
+      "seam": "14_55",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Band seam along Ave F (Church) between blocks 448/388 (north) and 449/389 (south). Building footprints (Lumber Shed, Southern Pacific RR Freight Depot, Moore & Goodman Lumber/Planing Mill), address runs, and the water-pipe size transition (10\" to 16\") are all continuous with no step or split; label duplication across tiles a/b is expected overlap, not a mosaic defect.",
+      "worst_crop": "seam_14_55_b_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a9f45fbbc7f8210f4",
+      "diagnoses": []
+    },
+    "14_61": {
+      "seam": "14_61",
+      "score": 4,
+      "defects": [
+        "tone"
+      ],
+      "reason": "Corner seam near blocks 449/389 (Southern Pacific RR Freight / Lumber Shed & Planing Mill) and 450/390 (Galveston Houston & Northern RR Cotton Yard / vacant lot). Building footprints and address runs continue without offset or splitting. A grayish, unevenly-edged tonal band runs along the plate corner, consistent with scan/gutter edge darkening rather than a coverage gap; per policy this caps the score at 4 without lowering further.",
+      "worst_crop": "seam_14_61_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a9f45fbbc7f8210f4",
+      "diagnoses": []
+    },
+    "15_16": {
+      "seam": "15_16",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Band seam along Ave C (Mechanic) between the Santa Fe rail yard/Freight Depot (west, blocks 630-632) and Cooperage Co./Guffey Oil Co./Prudential Oil Co. (east, blocks 570-572). Address runs (200s to 300s) and street width (80') are consistent on both sides with no duplication or offset.",
+      "worst_crop": "seam_15_16_a_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a9f45fbbc7f8210f4",
+      "diagnoses": []
+    },
+    "15_67": {
+      "seam": "15_67",
+      "score": 2,
+      "defects": [
+        "gap"
+      ],
+      "reason": "Corner seam near 33rd St / blocks 632-633. A hard-edged rectangular gray patch overlays the entire interior of block 632 (Santa Fe rail spur block), and an adjoining sharp-edged blank white void clips straight through the '33RD ST.' street label, splitting 'ST' from '33RD' with missing content between them, and removes coverage below. This reads as unpainted/missing canvas at the plate corner rather than genuine map content or ordinary paper tone.",
+      "fix_hint": "Investigate why plates 15/67 fail to contribute pixels over block 632 and the area just south of 33rd St at this corner; fill from source scans instead of leaving blank/placeholder fill.",
+      "worst_crop": "seam_15_67_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a9f45fbbc7f8210f4",
+      "diagnoses": [
+        {
+          "seam": "15_67",
+          "agree": true,
+          "category": "coverage-gap",
+          "reason": "Score 2 stands (white gap), but the grader's diagnosis is wrong in two places. (1) The \"hard-edged gray patch over block 632\" is not a defect at all: block 632 is 99% plate 15's own paper (the 15|16 boundary is ~800 mosaic px further east, in Ave C or Mechanic), and a median-brightness profile across the crop drifts smoothly 175 -> 150 -> 175 with no step anywhere inside the block. It is scan illumination/foxing on one plate, and no cut runs through it. (2) The white is real but is NOT the two plates \"failing to contribute pixels\". Two separate voids: (a) the hard-edged rectangle punched through 33rd St just east of Ave B/Strand is plate 15's \"Scale of Feet\" legend box (units.json furniture_native [1829,3590,2477,3767] -> mosaic -5665..-4372 x 24170..24529) cut out as furniture, with nothing to fill it: west of x=-5191 plate 67's sheet does not reach, and from x=-5164 to -4841 plate 67's OWN \"plate number and title\" box ([87,108,247,283] -> mosaic -5164..-4841 x 24174..24528) is cut out on the same ground. Both plates print furniture over the same 220 ft of 33rd St, so neither maps it; east of -4841 plate 67 does supply pixels and the map resumes. (b) The large void filling the lower-left is unmapped city, not a seam artifact: the two blocks between Ave A (Water) and Ave B (Strand) from 33rd to 36th St (~570 x 1150 ft) are covered by no placed sheet \u2014 sheets 3/4 end at Ave A (their extents are full-scan fallbacks, so nothing is being clipped), 15 ends at 33rd St, 67's west neatline is at Strand. It sits on the mosaic's outer boundary, which is why tiling.py never listed it as an interior hole. The seam itself is excellent: the Strand roadway lines, the block 632/633 west faces and the mid-block alley all cross 33rd St within ~1 ft, address runs pair correctly (200/202..222 even above, 201..221 odd below), nothing duplicated or split. Only tone steps and a ragged scan edge otherwise.",
+          "fix": "Not fixable by re-cutting 15|67 or by re-registering either plate \u2014 do not touch the cut. Two real actions: (1) Source the missing strip: blocks between Ave A/Water and Ave B/Strand, 33rd\u201336th St. outputs/1912/recipe/units.json records for unit 3 \"abuts 67 (33rd-36th) ... along Ave A\", but plate 67's scan begins at Strand, so either an unplaced scan maps those blocks (check the inventory's unplaced numbers the way HQ-8/HQ-15 found sheet 72) or the note is wrong and the 1912 atlas leaves them unmapped; either way record it as a true source gap \u2014 tiling.py currently hides it because it opens onto the mosaic's outer boundary instead of being an interior hole. (2) For the rectangle in 33rd St, choose paper over a hole: extend the fallback in reciplib.interior_unowned()/qcrender._interior_mask() so an unowned furniture cut-out that is enclosed by mapped ground on its landward sides is filled from the plate whose footprint(furniture=False) covers it, even when it touches the outer boundary. That paints plate 15's scale-bar legend into the roadway rather than leaving white; the truncated lot numbers 118\u2013124 and the clipped \"33RD ST.\" are lost either way because plate 15's own legend is printed over them and plate 67's title block sits on the same ground. If policy prefers white to a legend in the street, leave it and log it as a known source gap rather than chasing it as a seam defect.",
+          "revised_score": 2,
+          "agentId": "a4301cf904cea0bde"
+        }
+      ]
+    },
+    "18_19": {
+      "seam": "18_19",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Ave F (Church) control band across blocks 426/366, 427/367, 428/368: lot numbering runs continuously across the cut (511\u2192513, 511\u2192601, 524\u2192602 pattern) with no duplicated or offset lot lines, no split buildings, and matching '80/70 ft' block-depth labels on both flanks. A compass rose sits in blank street space, not over drawn content. Reads as one map.",
+      "worst_crop": "seam_18_19_a_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a013e8e92bf564226",
+      "diagnoses": []
+    },
+    "18_22": {
+      "seam": "18_22",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "9th St control band across blocks 548/488/428 and 549/489/429: the '9TH ST.' label prints once, lot numbers on the two flanks (402-424 vs 401-423, 502-524 vs 501-517) are the normal odd/even street-facing pairs with no doubling or step, and no building is split by the cut. A pink-tinted masonry lot (488) and the plate's north-arrow rose both fall on blank ground/street, not over content.",
+      "worst_crop": "seam_18_22_a_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a013e8e92bf564226",
+      "diagnoses": []
+    },
+    "18_23": {
+      "seam": "18_23",
+      "score": 4,
+      "defects": [
+        "tone"
+      ],
+      "reason": "Corner seam at blocks 428/368 meeting 429/369 near 9th St: streets, lot numbers (612\u2192614, 612\u2192602) and buildings all match with no offset, duplication, or split footprints. However a visible paper-tone/shadow band runs the full height of the crop right along the join, with the plate-23 side reading distinctly grayer than the plate-18 side. Per policy this tone-only difference is reported but does not drop the score below 4.",
+      "worst_crop": "seam_18_23_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a013e8e92bf564226",
+      "diagnoses": []
+    },
+    "19_20": {
+      "seam": "19_20",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Midpoint band seam near Seawall Blvd/9th St crossing blocks 246/186 and 247/187: the 'SEAWALL BLVD.' label prints intact once, on the plate-20 side, with no truncated or duplicated lettering; lot numbers step cleanly across the cut (824\u2192901, 811\u2192813) with no offset. A brownish smudge near street level reads as foxing/staining (excluded per brief), not a stitching defect.",
+      "worst_crop": "seam_19_20_a_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a013e8e92bf564226",
+      "diagnoses": []
+    },
+    "19_23": {
+      "seam": "19_23",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "9th St control band across blocks 368/308-248 and 369/309-249: single '9TH ST.' label with directional arrow, lot numbers continue without duplication across the cut (612\u2192614, 612\u2192701, 623\u2192902/601), and buildings flanking the street on both plates match with no split footprints or offset.",
+      "worst_crop": "seam_19_23_a_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a013e8e92bf564226",
+      "diagnoses": []
+    },
+    "20_20b": {
+      "seam": "20_20b",
+      "score": 2,
+      "defects": [
+        "gap"
+      ],
+      "reason": "Midpoint band seam near the Avenue O/Seawall Blvd corner just north of 9th St: between block 68 (addresses 1101-1124, off 'Avenue L/O') and the Seawall-corner block (805-827 / 1202-1212), there is a large jagged, unruled white area with no block-boundary lines or lot numbers in it. Every other vacant lot on these plates still carries ruled boundaries and printed lot numbers, so this blank notch reads as missing/unpainted canvas at the plate 20/20b join rather than genuine vacant ground \u2014 a mosaic gap, not a source disagreement.",
+      "worst_crop": "seam_20_20b_100.jpg",
+      "fix_hint": "Check plate 20b's source-tile coverage for the block bounded by Avenue O, the Seawall Blvd corner triangle, and 9th St; the mosaic currently leaves it blank instead of pulling content from either source scan.",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a013e8e92bf564226",
+      "diagnoses": [
+        {
+          "seam": "20_20b",
+          "agree": true,
+          "category": "coverage-gap",
+          "revised_score": 2,
+          "reason": "Score 2 is right, but the grader's diagnosis is wrong on two counts. (1) 20b is not an adjoining sheet: recipe/units.json records it as {\"file\":20,\"region\":\"20b\",\"panel_of\":\"20\",\"note\":\"detached inset (8th-9th St, Ave L-Seawall) top-right of plate 20 inside a heavy frame\"}. This seam joins plate 20's main map to the inset printed on the same sheet, so there is no \"plate 20b source tile\" to re-fetch. (2) The blank is not an unruled city block. Mapping the crop window [13675,-35030,16875,-30030] at 2 mosaic px/crop px: plate 20's east neatline (units.json extent x=3239) lands at crop x=858 (top) to 836 (bottom), and the inset's placed footprint is the pentagon (761,699)-(1815,706)-(1807,2148)-(1072,2144)-(755,1675). The white wedge sits between plate 20's neatline and the inset's chamfered SW corner, at crop x836-985 / y1797-2017 \u2014 i.e. in the roadway/intersection of the avenue (bold \"AVENUE ... L.\" label) with 9TH ST., between the \"70'\" and \"80'\" width figures. No lot lines or lot numbers belong there; roadway is blank on both plates. Size ~52 x 77 ft. It is already logged by the pipeline itself: gaps.geojson rank 16 (54204 px2, centroid 15429,-31166) and ownership_city.json gap_fill.left_as_source_gaps with covered_fraction 0.0 \u2014 no adjoining unit's paper covers that ground, so it cannot be filled from any scan. A second, much larger white area at top right of the crop (right of x=847, above y=699) is the same phenomenon at the atlas edge: east of plate 20's neatline and north of the inset frame, containing only the seawall run and Gulf water; it is not even an enclosed hole (absent from gaps.geojson). SEPARATE, GENUINELY FIXABLE FINDING the grader missed: a row-by-row tone scan (plate 20 paper ~144, inset ~163) puts the min-ink cut at crop x~820 but bulging east to x 840-848 in two bands, y1300-1372 and y1486-1540. In the second band it keeps a bold plate-20 letter fragment at x822-838, y1480-1545, sitting in the same rows as, and ~55 crop px (~20 ft) west of, the inset's complete bold \"AVENUE\" at x882-913 \u2014 a clipped duplicate of the avenue name, brief item 2. On its own that fragment is a \"minor doubled letter\" (3); the gap is what holds the seam at 2. Also noted, not scored: the 6\" W. PIPE steps ~3.5 ft across the cut near crop y820; a clear paper-tone step (144 vs 163). No split or duplicated buildings, no duplicated roadway \u2014 the cut runs down the middle of the avenue, and the avenue measures 216 crop px (~76 ft) face to face against a printed 70', so registration of the inset is good to ~5 ft. Worst (and only) crop: seam_20_20b_100.jpg.",
+          "fix": "Nothing to re-cut for the white areas: the 1912 source does not draw that ground on either the main map (east of plate 20's neatline) or the inset (west/north of its frame), and the pipeline already measured covered_fraction 0.0. Accept it as a source coverage gap \u2014 keep it in gaps.geojson rank 16 / left_as_source_gaps and, if the white is objectionable in print, fill only with neutral paper tone (no invented linework), never by stretching the inset. Do NOT chase \"plate 20b's source-tile coverage\" as the grader suggests; 20b is a panel of sheet 20 and has no separate scan. The one real re-cut: in the band crop y1480-1545 (mosaic y approx -32070 to -31940) force the min-ink path back to x<=818 (mosaic x<=15311) instead of letting it bulge to 840-848 \u2014 the inset's left edge is at crop x755, so there is ~60 px of overlap to work in \u2014 which drops plate 20's clipped avenue-letter fragment and leaves only the inset's complete \"AVENUE ... L.\". Optionally apply the same rule to the y1300-1372 bulge so the label corridor is owned end-to-end by one plate.",
+          "agentId": "a02e66a56f488408f"
+        }
+      ]
+    },
+    "22_23": {
+      "seam": "22_23",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Ave F (Church) between plates 22 and 23: blocks 429/369, 430/370, 431/371 align with matching 80 ft street width on both sides, house numbering runs continuously across the cut (e.g. 516-524 to 601-612), and the 6\" W. Pipe line is unbroken. Reads as one continuous map.",
+      "worst_crop": "seam_22_23_a_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a3e5edf426519c34c",
+      "diagnoses": []
+    },
+    "22_28": {
+      "seam": "22_28",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "12th St between plates 22 and 28: blocks 551/491/431 continuing to 552/492/432, consistent 70 ft street width, house numbering continuous across the seam, no jog in block faces or buildings.",
+      "worst_crop": "seam_22_28_a_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a3e5edf426519c34c",
+      "diagnoses": []
+    },
+    "23_24": {
+      "seam": "23_24",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Ave I (Sealy) between plates 23 and 24: blocks 249/189, 250/190, 251/191 with matching 80 ft street width both sides; 'Sacred Heart Academy (R.C.)' label sits whole and undivided on the plate 24 side; addressing continuous.",
+      "worst_crop": "seam_23_24_b_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a3e5edf426519c34c",
+      "diagnoses": []
+    },
+    "23_28": {
+      "seam": "23_28",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Corner seam at the 12th St intersection (plates 23/28) near blocks 371/251/311/252. A decorative compass rose sits in the open roadway at the intersection, which is normal Sanborn intersection ornament (not over drawn ground content) per the brief's guidance, not a defect. Street widths and house numbering are continuous with no offset.",
+      "worst_crop": "seam_23_28_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a3e5edf426519c34c",
+      "diagnoses": []
+    },
+    "23_29": {
+      "seam": "23_29",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "12th St corridor continuing past blocks 371/251 to 252/192 (plates 23/29): addressing and water-pipe labels run continuously, 70 ft/20 ft widths match on both sides, no split or duplicated buildings.",
+      "worst_crop": "seam_23_29_b_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a3e5edf426519c34c",
+      "diagnoses": []
+    },
+    "23_30": {
+      "seam": "23_30",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Corner seam at 12th St (plates 23/30) near blocks 251/191 to 252/192: addressing 801-823 continues to 901-924 without duplication, street widths consistent, no visible offset or gap.",
+      "worst_crop": "seam_23_30_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a3e5edf426519c34c",
+      "diagnoses": []
+    },
+    "20_23": {
+      "seam": "20_23",
+      "score": 2,
+      "defects": [
+        "gap"
+      ],
+      "reason": "Corner crop where sheets 20 and 23 meet (blocks 248/188 above, 249/189 below, near the 9th St intersection). A distinct gray, hard/jagged-edged wedge of unpainted canvas roughly 50-70 ft across sits right at the seam crossing, over the street/water-pipe intersection, where neither plate's drawing extends to fill the corner. This is a coverage void, not paper tone or foxing (the edges are crisp and geometric, not a soft stain gradient). Street grid, house numbers (802-824/814-824 and 902-924) and the water-pipe centerline otherwise line up fine on both sides.",
+      "worst_crop": "seam_20_23_100.jpg",
+      "fix_hint": "Fill or feather the void at the 20/23 corner with adjoining plate content or a matched paper tone; no other correction needed.",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a24a03c241a9f3900",
+      "diagnoses": [
+        {
+          "seam": "20_23",
+          "agree": false,
+          "category": "cut-placement",
+          "reason": "The \"gap\" is not real. There is no unpainted canvas anywhere in seam_20_23_100.jpg: no pixel in the crop exceeds 235 brightness, and the \"gray wedge\" at the corner samples 148/144/133 RGB with std ~2, exactly matching sheet 23's own blank roadway elsewhere in the crop (147/143/134). Four sheets meet here (index.json/sheets_city.geojson: 19 upper-left, 20 upper-right, 23 lower-left, 24 lower-right) and each scan has its own paper tone - 19 = 159/156/149, 20 = 172/168/157, 23 = 148/144/133 - so three tones butt at the staircase cuts and read as a void. The wedge is 9th St / the 70 ft avenue ground drawn by sheet 23, contiguous with block 249's east frontage line at crop x=1155. Tone only, which the brief caps at 4.\n\nThere IS a smaller real defect on the 20/23 contact, which the grader missed. The 20/23 cut is the horizontal line at world y=-31087 (crop y=800), running down 9th St about 10 ft north of its fitted centreline (grid_city.json street 9 = -31146.3). It bisects the street-dimension lettering: at crop x=1216-1240, y=775-801 the top ~40% of sheet 20's italic dimension label (reads like \"80'\") is stranded above the cut with sheet 23's blank roadway below and no continuation - a clipped label. The same cut leaves a second set of glyph tops from sheet 19 at crop x=1128-1160 (that pair is on the 19/23 contact). Per the rubric a clipped feature is a 2, so the score lands right but for the wrong cause and the wrong category: cut-placement, not coverage-gap.\n\nSeparately, and NOT chargeable to this pair: the avenue between the 248/249 and 188/189 block columns measures 204 px (70 ft, matching its own \"70'\" label) south of the seam (block 249 E at x=1155, block 189 W at x=1359) but only ~42 px (~14 ft) north of it (block 188 W at x=1197), while both sheets agree on the next block east at x=2450. That ~55 ft disagreement about where the 188/189 column sits is a source/registration problem on seams 19_20 and 20_24 (grid_city.json records avenue 8 with a 447 px / 77 ft spread across plates), and it is visible in this crop but does not cross the 20/23 contact, which is blank roadway on both sides.",
+          "revised_score": 2,
+          "fix": "Do not inpaint or tone-match anything - there is nothing to fill. Re-cut: move the 20/23 (and the collinear 19/23) cut from y=-31087 north to about y=-31150, i.e. onto the fitted 9th St centreline, roughly 60-65 world px (~11 ft, ~30 crop px). That puts the whole of sheets 19/20's dimension lettering above the cut where it is discarded and hands the roadway from crop y~770 down to sheet 23 whole; sheet 20 keeps block 188's south face (crop y=656) and its 902-924 numbers (y~690), sheet 23 keeps block 249's north face (y=906) and its 801-823 numbers (y~890), so nothing else is lost. Before committing, check sheet 23's own 9th St dimension label: if it sits just south of the new line, jog the staircase around it so exactly one plate's label survives intact rather than trading one clipped label for another. The ~55 ft avenue offset seen in the upper part of this crop should be logged against seams 19_20 and 20_24, not fixed here.",
+          "agentId": "a795c27da33c91d9f"
+        }
+      ]
+    },
+    "20_24": {
+      "seam": "20_24",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "9th St band between sheets 20 and 24 reads as one continuous street from the 800/900-block (blocks 188/189, 128/129) down to the 1100-block (68/69) and the triangular waterfront block near the Seawall. House numbers (802-924, 801-925, 1002-1024, 1001-1023, 1102-1128) and the '9TH' 'ST.' labels line up with no doubling, offset, or split buildings. The open lots near the seawall are labeled '150 ft' frontages on the original plate (genuine undeveloped parcels), not mosaic gaps.",
+      "worst_crop": "seam_20_24_a_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a24a03c241a9f3900",
+      "diagnoses": []
+    },
+    "20b_25": {
+      "seam": "20b_25",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Corner crop carrying blocks 731 (Southern Oil Co. Ware Ho., addresses 1102-1128) and 671 above, 732 and 672 below, with a 12th St label and compass rose at the plate corner. House numbers, the water-pipe dashed line and hydrant markers continue cleanly across the cut. The compass rose sits in open street space, not over any drawn building, so it is normal plate furniture rather than a defect.",
+      "worst_crop": "seam_20b_25_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a24a03c241a9f3900",
+      "diagnoses": []
+    },
+    "21_22": {
+      "seam": "21_22",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Ave C (Mechanic) reads as one street across both crops: blocks 671/611 and 672/612 (crop a), then 611/551 and 612/552 (crop b). House numbers and building rows match on both sides of the cut. The brick-colored (pink) dwelling at 1213 1/2 in block 552 is standard Sanborn masonry shading, not a mosaic artifact, and the printed 'Scale of Feet' ruler sits in the sheet's own bottom margin rather than over mapped ground.",
+      "worst_crop": "seam_21_22_b_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a24a03c241a9f3900",
+      "diagnoses": []
+    },
+    "21_27": {
+      "seam": "21_27",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Ave C (Mechanic) is continuous through blocks 609/549 and 610/550 in both crops. House numbers (205-228/301-327 in crop a, 206-224/301-324 in crop b) and the Fire Dept. Hose Co. No. 4 building at Ave C match cleanly across the seam with no offset, doubled label, or split building.",
+      "worst_crop": "seam_21_27_a_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a24a03c241a9f3900",
+      "diagnoses": []
+    },
+    "21_28": {
+      "seam": "21_28",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Corner crop at blocks 611/551 above and 612/552 below is a clean continuation of the same block grid seen at the 21_22 seam, including the brick dwelling at 1213 1/2 and the plate's own printed scale bar sitting in the margin. No gap, offset, or duplicated content at the cut.",
+      "worst_crop": "seam_21_28_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a24a03c241a9f3900",
+      "diagnoses": []
+    },
+    "24_25": {
+      "seam": "24_25",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Avenue L (80 ft) control band between plate 24 (blocks 69/70/71, addresses 1105-1128) and plate 25 (blocks 9/10/11, addresses 1201-1224). Lot lines, address sequences, the 6\" W. PIPE dashed main, and the vertical 'AVENUE L' street label all run continuously across the cut with no step, no duplicated building, and no duplicated label (the repeated 'AVENUE L' text is the normal along-street repetition of a long street name, not a doubled label).",
+      "worst_crop": "seam_24_25_b_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a44f7c79287e4a489",
+      "diagnoses": []
+    },
+    "24_30": {
+      "seam": "24_30",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "12th St control band between plate 24 (blocks 191/131/71 north, 192/132/72 south) and plate 30. Street label '12TH ST.' appears once, block numbering and address runs (e.g. 1101-1128, 1201-1226) are consistent on both sides, and the 6\" W. PIPE lines cross the street without jogging. No split buildings, no offset, no gap.",
+      "worst_crop": "seam_24_30_a_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a44f7c79287e4a489",
+      "diagnoses": []
+    },
+    "24_31": {
+      "seam": "24_31",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Corner crop at 12th St where plate 24 (blocks 71/72) meets plate 31 (blocks 11/12). Address ranges (1100s/1200s on the left, matching 1100s/1200s pattern on the right) and the 8\" W. PIPE crossing line read continuously; a compass rose sits in the open street pavement at the block corner, not over any drawn building, so it is not a furniture defect per the brief's guidance on non-overlapping plate marks.",
+      "worst_crop": "seam_24_31_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a44f7c79287e4a489",
+      "diagnoses": []
+    },
+    "25_25b": {
+      "seam": "25_25b",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Panel-break stitch of plate 25 near the Seawall, joining blocks SW24/SE23/SW23 to the triangular Seawall Blvd/Avenue N corner blocks (NE48/NW48). The diagonal street bend near block SE23 (addresses 1102-1128) resolves entirely on one side of the scan-tile join, Avenue N and 12th St meet the triangular block cleanly, and address parity (evens 1116-1128 west of Ave N vs. odds 1121-1127 east of it) is consistent. The ragged tile edge itself is an unpainted-scan artifact per the brief (pixels untouched/not blended) rather than a mapped-content gap, and no street, building, or label is duplicated or missing.",
+      "worst_crop": "seam_25_25b_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a44f7c79287e4a489",
+      "diagnoses": []
+    },
+    "25_30": {
+      "seam": "25_30",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Corner crop at 12th St, same intersection of blocks 71/72 (plate 25) and 11/12 (plate 30/31 area) as seam 24_31. Streets, address runs, and the 8\" W. PIPE line are continuous with no step or duplication; the compass rose again sits in the open street, not over drawn content.",
+      "worst_crop": "seam_25_30_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a44f7c79287e4a489",
+      "diagnoses": []
+    },
+    "25_31": {
+      "seam": "25_31",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "12th St control band linking blocks 11/NE23/SE23 (north side) to 12/NW23/SW23 (south side) across plates 25 and 31. Address runs (1200s, 1300s, 1400s, 1000s) and the 6\" W. PIPE alley lines are continuous with no offset or duplicate label; a north arrow sits in the open roadway at the crossing, which is normal plate furniture placement, not drawn over any building or block content.",
+      "worst_crop": "seam_25_31_a_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a44f7c79287e4a489",
+      "diagnoses": []
+    },
+    "25_32": {
+      "seam": "25_32",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Corner seam at 12th St / Avenue N, joining NE48+SE23 (north) to NW48+SW23 (south). 12th St. label appears once, street width (80') consistent on both sides, Avenue N (70') and the diagonal Seawall Blvd/shoreline line run through without any jog. House-number frontage runs (1401-1423 north face vs 1402-1424 south face of 12th St, and 1201-1220 vs 1501-1511 flanking the diagonal) tie cleanly with no duplicated or split building footprints. Water-pipe dashes along the 20' alley (Avenue N) continue without a break. Reads as one continuous map.",
+      "worst_crop": "seam_25_32_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a6eca92cfd8f48ddf",
+      "diagnoses": []
+    },
+    "25b_32": {
+      "seam": "25b_32",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Seam runs along 18th St at the Avenue N corner (block 70), joining NE70/SE70 (north, addresses 1701-1728) to NW70/SW70 (south, 1801-1823). Single '18TH ST.' label, matching 80'/70' width call-outs on both sides, and the triangular SE70/NE70 parcel (1814-1820) lines up with the block below with no offset. No duplicated lettering, no split or doubled buildings, no gap.",
+      "worst_crop": "seam_25b_32_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a6eca92cfd8f48ddf",
+      "diagnoses": []
+    },
+    "26_26b": {
+      "seam": "26_26b",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Internal panel-join (sheet 26 to its own 26b panel) crossing 18th St and continuing down through the NW70/NE69/SE69/SW69 blocks along Avenue O 1/2. Streets and lot lines tie continuously across the join; a hatched sliver near lot 1727/1725 (SE70) is a normal reserve-strip hatch present on both sides, not a torn edge. No duplicated names, no split buildings, no white gap.",
+      "worst_crop": "seam_26_26b_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a6eca92cfd8f48ddf",
+      "diagnoses": []
+    },
+    "26_38": {
+      "seam": "26_38",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Small corner overlap at the same 18th St / Avenue N vicinity (NE70/SE70 above, NW70 'WOOD YARD' block below). Street and property lines are continuous with a single '18TH ST.' label and matching 70'/80' width figures; no doubled features or gaps at the crop's red-tick line.",
+      "worst_crop": "seam_26_38_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a6eca92cfd8f48ddf",
+      "diagnoses": []
+    },
+    "26_42": {
+      "seam": "26_42",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Long vertical band down Avenue O 1/2 from 18th St through 19th and 20th St, joining the NW70/NE69/SE69 blocks (west/east) down to NW69/SW69. Avenue O 1/2 label appears once; the small '42' numeral in the roadway is the adjoining-plate index number sitting in the street, not over drawn content, so it's not a defect per the brief. Lot-line frontage numbers (1714-1724 vs 1801-1927, 2001-2027) tie across the avenue with no step, no split buildings, no gap; the 8\" W. Pipe dashes run unbroken down the block.",
+      "worst_crop": "seam_26_42_a_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a6eca92cfd8f48ddf",
+      "diagnoses": []
+    },
+    "26_47": {
+      "seam": "26_47",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Band along 21st St, which this plate pair itself labels in two halves ('21ST OR' west / 'CENTER ST.' east) forming one continuous historical dual street name, not a duplicated label. Joins SW69/NW94 (the Fire-Proof/'Admittance Refused' public building, block 94) on the north to SE68/NE93 on the south. Street width (80') and building footprint of the NW94 structure stop cleanly at the curb with no split; house-number runs (1901-1923, 2001-2011) continue without doubling. No gap, no offset.",
+      "worst_crop": "seam_26_47_a_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a6eca92cfd8f48ddf",
+      "diagnoses": []
+    },
+    "26b_38": {
+      "seam": "26b_38",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Single crop covering blocks NW71/NE70 (left plate) against SW71/SE70 with Seawall Blvd and the Gulf (right plate), joined along a jagged block-boundary cut typical of the triangular seawall-front sub-blocks. The wide blank area at upper-middle is 17th St.'s pavement (streets are left undrawn on Sanborn plates), not a white-canvas gap. No duplicated streets, labels, or buildings; lot lines and address runs (1701-1728, 1801-1812, 1621-1636) read as one continuous block pattern across the cut.",
+      "worst_crop": "seam_26b_38_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a19724a31ef4887c0",
+      "diagnoses": []
+    },
+    "27_28": {
+      "seam": "27_28",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Ave. C (Mechanic) control band between blocks 612/613 (west side, addresses 201-224/206-224) and 552/553 (east side, addresses 301-320/301-327), continuing to 614/554. The avenue's 80' width and curb lines run straight through both crop tiles with no jog. 'AVE. C OR MECHANIC' and the '27' block marker each appear once per block face, which is normal repeated plate signage, not duplication. No split buildings or gaps at the seam.",
+      "worst_crop": "seam_27_28_a_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a19724a31ef4887c0",
+      "diagnoses": []
+    },
+    "27_33": {
+      "seam": "27_33",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "15th St. control band through blocks 734/674 and 735/675, continuing to 614/615. Address runs (1409-1428 west side, 102-124/114-124 fronting on the cross avenue) line up across both tiles with no offset. The '15TH ST' label and the surveyor's compass/protractor symbol in the roadway each appear once, sitting in the street pavement (not over drawn content), consistent with normal plate furniture. No split buildings, duplicate labels, or gaps.",
+      "worst_crop": "seam_27_33_a_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a19724a31ef4887c0",
+      "diagnoses": []
+    },
+    "27_34": {
+      "seam": "27_34",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Corner crop at the 15th St. intersection covering blocks 614/554 above and 615/555 below (Wagon Yard / Livery labeled once each). Street lines and the single compass symbol at the intersection are continuous and unduplicated across the cut; no step in the curb lines, no doubled lettering, no split structures.",
+      "worst_crop": "seam_27_34_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a19724a31ef4887c0",
+      "diagnoses": []
+    },
+    "28_29": {
+      "seam": "28_29",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Ave. F (Church) control band between blocks 432/433 (west, addresses 505-524) and 372/373 (east, addresses 601-612), continuing to 434/374. The 80' avenue width and orange-tinted hazard buildings near 512-524/602-612 are drawn once each and align across the seam with no offset. 'AVE. F OR CHURCH' and the '28' block marker appear once per block face as expected; no split or doubled buildings.",
+      "worst_crop": "seam_28_29_a_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a19724a31ef4887c0",
+      "diagnoses": []
+    },
+    "28_34": {
+      "seam": "28_34",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "15th St. control band through blocks 554/494 and 555/495 (with the pink-tinted cross-shaped building at 414-424 appearing once). The horizontal '15TH ST' cross-line holds a constant height across the full crop width with no vertical jog, and the flanking blocks' address runs (302-324, 402-424, 301-323, 401-423) read as one continuous grid. No duplicated street name, no split buildings, no gaps.",
+      "worst_crop": "seam_28_34_a_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a19724a31ef4887c0",
+      "diagnoses": []
+    },
+    "29_30": {
+      "seam": "29_30",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Ave I (Sealy) crosses cleanly between block 252/253 (addresses 802-824) on the left and block 192/193 (University of St. Mary / Sacred Heart R.C. Church, addresses 901-924) on the right. Street width reads 80' consistently on both sides, the 'AVE. I OR SEALY' label appears once (not duplicated), and all building footprints stop cleanly at the street edge with no crossing or split footprints.",
+      "worst_crop": "seam_29_30_a_100.jpg",
+      "offset_ft": 0,
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a16bc837c9b98f97c",
+      "diagnoses": []
+    },
+    "29_35": {
+      "seam": "29_35",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "15th St crosses cleanly between block 374/375 (addresses 601-624, 1409-1519) and block 314/315 (Bakery/University of St. Mary chapel complex, addresses 701-723, 1409-1519). Street width reads 20' consistently both sides, the water-pipe dash line is unbroken across the cut, and the plate's 'Scale of Feet' legend sits only in the open street bed, not over drawn content.",
+      "worst_crop": "seam_29_35_a_100.jpg",
+      "offset_ft": 0,
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a16bc837c9b98f97c",
+      "diagnoses": []
+    },
+    "29_36": {
+      "seam": "29_36",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Corner join near block 194/195 (mixed-material brick/iron building complex with 'IRON' and '2 1/2 B' labels, STUCCO house at 913) and block 134/135 (St. Paul M.E. Church, Negro, at 1001-1012). The multi-color building coding (blue/pink/gray sections) is standard Sanborn material shading, not a plate-graft artifact; footprints and address numerals appear once each with no duplication.",
+      "worst_crop": "seam_29_36_100.jpg",
+      "offset_ft": 0,
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a16bc837c9b98f97c",
+      "diagnoses": []
+    },
+    "30_31": {
+      "seam": "30_31",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Ave L (80') crosses cleanly between block 72/73 (addresses 1105-1124) and block 12/13 (Bakery at 1208-1212, St. Luth. Baptist Church Negro/Sunday School at 1301-1305). No offset or duplicated labels; the tan/orange discoloration on several block-72 buildings is uneven and blotchy in the manner of paper foxing/staining rather than a uniform plate-tone step, so it is not scored as a defect per policy.",
+      "worst_crop": "seam_30_31_a_100.jpg",
+      "offset_ft": 0,
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a16bc837c9b98f97c",
+      "diagnoses": []
+    },
+    "30_36": {
+      "seam": "30_36",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "15th St crosses cleanly between block 194/195 and block 134/135, and continues in the adjoining tile between block 74/75 (addresses 1409-1427) and block 14/15 (Soda Water & Ice Cream Mfg. building visible at far right). Pipe dash-lines and street width (20'/70') are continuous across the cut with no jog, and no building crosses the street.",
+      "worst_crop": "seam_30_36_a_100.jpg",
+      "offset_ft": 0,
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a16bc837c9b98f97c",
+      "diagnoses": []
+    },
+    "30_37": {
+      "seam": "30_37",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Small corner join at 15th St near block 74/75 and block 14/15 (Soda Water & Ice Cream Mfg. building). Block numbering, address sequence, and the pipe/street lines continue without interruption across this narrow overlap; no duplicated or clipped features visible.",
+      "worst_crop": "seam_30_37_100.jpg",
+      "offset_ft": 0,
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a16bc837c9b98f97c",
+      "diagnoses": []
+    },
+    "34_35": {
+      "seam": "34_35",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Ave F (Church) band seam between blocks 435/375, 436/376, 437/377; street width 80' consistent both sides; all block-face buildings, addresses and lot lines continue cleanly across the cut with no offset, duplication, or gap.",
+      "worst_crop": "seam_34_35_a_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a1ba171eb78310fa7",
+      "diagnoses": []
+    },
+    "35_36": {
+      "seam": "35_36",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Ave I (Sealy) band seam between blocks 255/195, 256/196, 257/197; street width 80' matches on both sides; buildings and addressing continue without duplication or step.",
+      "worst_crop": "seam_35_36_a_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a1ba171eb78310fa7",
+      "diagnoses": []
+    },
+    "35_39": {
+      "seam": "35_39",
+      "score": 4,
+      "defects": [
+        "tone"
+      ],
+      "reason": "18th St. horizontal band seam between blocks 377/317/257 (north) and 378/318/258 (south); address sequences and building footprints meet the street cleanly with no offset or duplication. A faint paper-tone band sits along the cut in crop _b (scan shading only, no feature discontinuity), which by policy keeps the score at 4 rather than lower.",
+      "worst_crop": "seam_35_39_b_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a1ba171eb78310fa7",
+      "diagnoses": []
+    },
+    "35_40": {
+      "seam": "35_40",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "18th St. corner tile at the intersection with the cross street, joining blocks 257/197 (north) and 258/198 (south); pink brick buildings on each side are distinct structures in their own blocks, not duplicated; no step or gap at the horizontal cut.",
+      "worst_crop": "seam_35_40_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a1ba171eb78310fa7",
+      "diagnoses": []
+    },
+    "36_37": {
+      "seam": "36_37",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Ave L band seam between blocks 75/15, 76/16, 77/17; street width 70' consistent both sides; orange-tan building fills near the seam appear independently on both sides (source construction-material coloring), not a stitching artifact; no duplication or offset.",
+      "worst_crop": "seam_36_37_a_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a1ba171eb78310fa7",
+      "diagnoses": []
+    },
+    "36_40": {
+      "seam": "36_40",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "18th St. band seam between blocks 137/138 and 77/78; address sequences (1002-1024/1001-1023, 1102-1124/1101-1123) are sequential and non-duplicated; buildings meet the street cleanly with no gap or split footprint.",
+      "worst_crop": "seam_36_40_a_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a1ba171eb78310fa7",
+      "diagnoses": []
+    },
+    "31_32": {
+      "seam": "31_32",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Clean 4-way intersection of Avenue N (70 ft) and 13th St (80 ft) joining plates SW23/NW48 (north) with SE22/NE47 (south). Street widths, cross-street addressing, and water-pipe dashes match continuously across both crops; only a faint paper-tone gradient marks the join.",
+      "worst_crop": "seam_31_32_a_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "ae859faeffd66b6c4",
+      "diagnoses": []
+    },
+    "31_36": {
+      "seam": "31_36",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Corner point where plates 74/14 (north) meet 75/15 (south) along a numbered-street/avenue crossing with 6-8in water-pipe dashes and hydrant (T.H.) markers. Pipe lines and lot numbering continue across the cut with no step, gap, or duplication.",
+      "worst_crop": "seam_31_36_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "ae859faeffd66b6c4",
+      "diagnoses": []
+    },
+    "31_37": {
+      "seam": "31_37",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "15th St band joining plates 14/NW22 to 15/NE21, continuing east to SW22/NW47 and SE21/NE46. Street width (80 ft) and 6in water-pipe dashes run continuously across both tiled crops; no split buildings or doubled street-name lettering.",
+      "worst_crop": "seam_31_37_a_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "ae859faeffd66b6c4",
+      "diagnoses": []
+    },
+    "31_38": {
+      "seam": "31_38",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "furniture": "A decorative compass rose sits in open, unplatted ground beside Seawall Blvd/Avenue O, not over any drawn block or building.",
+      "reason": "Sparsely built corner near Avenue O and Seawall Blvd joining plates NW47/SW47 (north) to NE46/SE46 (south). The compass rose is plate furniture in blank ground, not a defect. No buildings, streets, or labels are duplicated or stepped.",
+      "worst_crop": "seam_31_38_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "ae859faeffd66b6c4",
+      "diagnoses": []
+    },
+    "32_38": {
+      "seam": "32_38",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "15th St band joining plates 615/555 (north) to 616/556 (south), with 617/557 visible as context further south. The N. Bohn Carriage Works industrial complex and Fire Dept Co. 2 building sit entirely on the south side of the cut without being split; pipe dashes and lot numbers carry through cleanly.",
+      "worst_crop": "seam_32_38_b_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "ae859faeffd66b6c4",
+      "diagnoses": []
+    },
+    "33_34": {
+      "seam": "33_34",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Ave. C (Mechanic) band, 80 ft wide, joining plate 33 (west, including N. Bohn Carriage Works and Fire Dept Co. 2) to plate 34/555-557 (east, including a bakery/oven and a coppersmith shop). The plate-33 numeral printed in the roadway is normal single-sheet convention (no matching numeral from the east plate beside it). No buildings, pipe runs, or labels are duplicated or clipped.",
+      "worst_crop": "seam_33_34_a_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "ae859faeffd66b6c4",
+      "diagnoses": []
+    },
+    "37_38": {
+      "seam": "37_38",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Band along Avenue N (label 'AVENUE N' printed once on the west tile). House numbers 1414-1424 (west, ref SE21/SW21) meet 1502-1512/1514 (east, ref NE46/NW46) with no offset; water-pipe dashes and building footprints continue cleanly across the cut in both tiles (a/b).",
+      "worst_crop": "seam_37_38_a_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a417fc208f1e3beec",
+      "diagnoses": []
+    },
+    "37_40": {
+      "seam": "37_40",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Corner seam near 18th St: four quadrants (printed adjoining-sheet refs 77/17 top, 78/18 bottom) meet at a point. Block faces 1100s and 1200s line up, 8\"W PIPE dashes run straight through the corner, T.H. survey dots align; adjoining-sheet numerals are the normal margin call-outs described in the brief, not a defect.",
+      "worst_crop": "seam_37_40_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a417fc208f1e3beec",
+      "diagnoses": []
+    },
+    "37_41": {
+      "seam": "37_41",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Band along 18th St (label '18TH ST.' printed once, centered). Quadrants NE20/SE20/NE45/SE45/NE70 read as one continuous block series (1213-1324, 1401-1524, 1601-1624, ending in a WOOD YARD parcel) across both tiles (a/b); no duplicated labels or split buildings.",
+      "worst_crop": "seam_37_41_a_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a417fc208f1e3beec",
+      "diagnoses": []
+    },
+    "37_42": {
+      "seam": "37_42",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Corner crop is entirely blank paper/open water between Pier 33 (upper right) and Pier 35 (lower right) labels; no drawn map content sits on the cut, only paper foxing/staining, which is not scored as a defect.",
+      "worst_crop": "seam_37_42_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a417fc208f1e3beec",
+      "diagnoses": []
+    },
+    "38_42": {
+      "seam": "38_42",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "18th St corridor at its wharf terminus. Tile a: Fowler & McVitie coal-pocket wharf building and rail tracks cross the horizontal cut with unbroken 6\"W PIPE dashes near Pier 35. Tile b: the 'GALVESTON COTTON COMPRESS & W. HO. CO.' relocation note, tramway, and 6\"/10\" water pipes cross intact, T.H. points align, '33RD'/'34TH ST' labels appear once each.",
+      "worst_crop": "seam_38_42_a_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a417fc208f1e3beec",
+      "diagnoses": []
+    },
+    "3_4": {
+      "seam": "3_4",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Largest-overlap control band in the batch, covering the same Pier 33/35 wharf and cotton-compress area as 38_42. Tile a is blank open water/paper. Tiles b and c show the coal-pocket wharf building, rail tracks, tramway, and water-pipe lines crossing the horizontal cut with no jogs, doubling, or gaps; the relocation note text and T.H. survey points are intact on each tile.",
+      "worst_crop": "seam_3_4_b_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a417fc208f1e3beec",
+      "diagnoses": []
+    },
+    "40_41": {
+      "seam": "40_41",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Ave L band (control): block faces 78/79/80 (west, 1100s) meet 18/19/20 (east, 1200s) across the cut with curb lines, T.H. hydrant dots and 6\" W. pipe crossings matching exactly; street width (80') labeled once per side as normal; no duplicated buildings, labels, or offset.",
+      "worst_crop": "seam_40_41_a_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "ae4cafab9bf2e0da2",
+      "diagnoses": []
+    },
+    "41_42": {
+      "seam": "41_42",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Ave N band (control): blocks S.E.19/S.W.20 (west) meet N.E.44/N.W.45 (east); curb lines and 80' street-width labels align across the seam, house numbering (14xx/15xx) is continuous with no jog, and no label or building is duplicated.",
+      "worst_crop": "seam_41_42_a_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "ae4cafab9bf2e0da2",
+      "diagnoses": []
+    },
+    "41_44": {
+      "seam": "41_44",
+      "score": 4,
+      "defects": [
+        "furniture"
+      ],
+      "reason": "Corner of Ave M1/2 x 21st (Center) St (blocks 80/20 to the north, 21 and the Galveston Orphan Home block N.E.18 to the south): a 'Scale of Feet' legend plus a small pen-flourish direction arrow from a source plate's corner sit inside the blank street bed right at the seam crossing. They sit clear of the 8\" W. pipe centerline and T.H. hydrant beside them, and all block/curb lines otherwise align with no offset.",
+      "worst_crop": "seam_41_44_100.jpg",
+      "furniture": "scale-bar legend text and a small compass-arrow flourish printed in the roadway at the plate corner",
+      "fix_hint": "Cosmetic only \u2014 the mark sits on blank pavement and doesn't hide any drawn feature, so no reseam needed; could be masked if a cleaner street bed is wanted.",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "ae4cafab9bf2e0da2",
+      "diagnoses": []
+    },
+    "41_45": {
+      "seam": "41_45",
+      "score": 4,
+      "defects": [
+        "furniture"
+      ],
+      "reason": "21st (Center) St band east of Ave M1/2 (block 44 to the north, blocks 18/43 to the south): a fully drawn compass/north-arrow rose from a source plate's corner sits inside the street bed between the 1400-block house fronts (visible in the _b tile). The 'AVENUE M 1/2' and '21ST OR CENTER ST.' labels each appear once, and block lines/house numbers align cleanly with no step.",
+      "worst_crop": "seam_41_45_b_100.jpg",
+      "furniture": "hand-drawn compass rose (north arrow) sitting in the roadway",
+      "fix_hint": "Cosmetic only \u2014 rose sits on blank street, not over any building; no correction required.",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "ae4cafab9bf2e0da2",
+      "diagnoses": []
+    },
+    "41_46": {
+      "seam": "41_46",
+      "score": 4,
+      "defects": [
+        "furniture"
+      ],
+      "reason": "Corner of Ave M1/2 x 21st (Center) St at blocks S.W.19/N.W.44 (north) and S.E.18/N.E.43 (south): the same compass rose seen in the 41_45 band sits in the street bed at this corner. No building overlap; block outlines and the pipe centerline continue straight through the corner.",
+      "worst_crop": "seam_41_46_100.jpg",
+      "furniture": "hand-drawn compass rose (north arrow) sitting in the roadway",
+      "fix_hint": "Cosmetic only \u2014 no drawn content is obscured; no correction required.",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "ae4cafab9bf2e0da2",
+      "diagnoses": []
+    },
+    "42_46": {
+      "seam": "42_46",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "21st (Center) St band continuing east through blocks S.W./N.W.44, N.E./S.E.43 to N.W.69/N.E.68: house numbers (1602-1624, 1702-1724 north; 1601-1623, 1701-1723 south) and the 6\" W. pipe centerline match across the cut; the red 'FA' fire-alarm circle and 'Servants' labels each appear once; no duplicated buildings, labels, or step.",
+      "worst_crop": "seam_42_46_a_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "ae4cafab9bf2e0da2",
+      "diagnoses": []
+    },
+    "42_47": {
+      "seam": "42_47",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Corner crop at the 21st St (Center) intersection where blocks N.W.69/S.W.69 (north) meet N.E.68/S.E.68 (south). Building footprints, lot lines, and street width continue smoothly across the cut; no offset, no duplicated street/labels, no split buildings, no gap.",
+      "worst_crop": "seam_42_47_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a4b2f9664da0b896b",
+      "diagnoses": []
+    },
+    "44_45": {
+      "seam": "44_45",
+      "score": 4,
+      "defects": [
+        "tone"
+      ],
+      "reason": "Band along Ave L between block 81/82 (west, plate 44, addresses 1105-1123) and block 21/22 (east, plate 45, addresses 2001-2213). Street width (80 ft), T.H. hydrant markers, and the 8\"/12\" water-pipe runs line up with no spatial offset, and no streets/labels are duplicated or buildings split. The only visible defect is a paper/ink tone step: west-block buildings render in a saturated orange-tan fill while the matching east-block buildings render pale yellow, right at the Ave L cut.",
+      "fix_hint": "Tone only, per policy not corrected; no fix needed beyond noting the ink-shade difference at the Ave L plate boundary.",
+      "worst_crop": "seam_44_45_a_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a4b2f9664da0b896b",
+      "diagnoses": []
+    },
+    "45_46": {
+      "seam": "45_46",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Band along Ave N between block S.E./S.W.18 (west) and N.E./N.W.43 (east). Street width (80 ft) and T.H. points align, building rows continue without a jog, and fill colors match on both sides \u2014 no tone step, offset, or duplication.",
+      "worst_crop": "seam_45_46_a_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a4b2f9664da0b896b",
+      "diagnoses": []
+    },
+    "45_51": {
+      "seam": "45_51",
+      "score": 4,
+      "defects": [
+        "tone"
+      ],
+      "reason": "Band along 24th St between block 23/24 (north, plate 45) and block N.E./S.E./N.W.17 (south, plate 51). Street width (70 ft), building rows and address sequences (1201-1224 north, 1301-1331/1401-1424 south) continue correctly with no offset or duplicated content. A tone step is visible along the west edge of the crop where block 24 (south of 24th) renders a darker orange-tan fill against block 23 (north) in pale yellow.",
+      "fix_hint": "Tone only, per policy not corrected.",
+      "worst_crop": "seam_45_51_a_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a4b2f9664da0b896b",
+      "diagnoses": []
+    },
+    "45_52": {
+      "seam": "45_52",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Corner crop at Ave N \u00d7 24th St, where block S.E./N.E.17 (west) meets N.E.42 (east). Street widths (70/80 ft), T.H. marker, and building rows continue cleanly with no offset, gap, or duplication.",
+      "worst_crop": "seam_45_52_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a4b2f9664da0b896b",
+      "diagnoses": []
+    },
+    "46_47": {
+      "seam": "46_47",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Band along Ave O 1/2 between block N.E./N.W.68 (west, plate 46) and S.E./S.W.68 then N.E./S.E.67 (east, plate 47). Street width (70/80 ft) and T.H. markers align with no offset or duplicated streets/labels. Building fill colors match consistently across the cut (N.E.68 orange matches S.E.68 orange; N.W.68 yellow matches S.W.68 yellow), confirming no tone discontinuity at this seam.",
+      "worst_crop": "seam_46_47_a_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a4b2f9664da0b896b",
+      "diagnoses": []
+    },
+    "48_60": {
+      "seam": "48_60",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "30th St corner crop: block faces NE/NW/SE/SW 139 line up across the cut, street width holds 80'-80' both sides, address runs (2301-2311/2313-2323, 2401-2411/2413-2419, 2302-2312/2314-2324, 2402-2412/2414-2418) continue with no step, doubling, or gap. Reads as one map.",
+      "worst_crop": "seam_48_60_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "af48b5fc2b024880a",
+      "diagnoses": []
+    },
+    "48_66": {
+      "seam": "48_66",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "30th/31st St and Ave R1/2 seam across blocks NE/NW 138-139 and SE/SW 138-139: lot lines, address numbers (2301-2323 / 2401-2419, 2303-2323 / 2401-2411) and the Surf Hotel footprint at bottom right all continue cleanly across the cut with matching 80' street widths; no duplicated or stepped features in either tile.",
+      "worst_crop": "seam_48_66_b_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "af48b5fc2b024880a",
+      "diagnoses": []
+    },
+    "48_74": {
+      "seam": "48_74",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "33rd St seam between SW/NW 138/163 (Tented City) and SE/NE 137/162: street stays 80'-80' with matching tick marks, block/lot numbering continues without offset. A brown foxing stain covers part of the NE 162 lot in the lower-right tile, but per policy paper foxing/staining is not a mosaic defect.",
+      "worst_crop": "seam_48_74_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "af48b5fc2b024880a",
+      "diagnoses": []
+    },
+    "48_99a": {
+      "seam": "48_99a",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Midpoint crop at the Gulf shoreline: plate 48 side shows the Tented City/NW163 block and Restaurant & Office/Sal buildings, plate 99a side shows the Surf Bath House pier over water plus its own scale bar and compass rose. These are genuinely different plate coverage (city block vs. pier over the Gulf), not duplicated ground or misplaced furniture; no overlapping streets, labels, or buildings.",
+      "worst_crop": "seam_48_99a_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "af48b5fc2b024880a",
+      "diagnoses": []
+    },
+    "48b_60": {
+      "seam": "48b_60",
+      "kind_note": null,
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "29th/30th St corner at Seawall Blvd and Ave R1/2, joining triangular blocks SW/NW 140 and SE/NE 139: both street labels (29TH ST, 30TH ST) appear once each with matching widths and tick marks, and the diagonal seawall-side lot numbering (2402-2408...2826, 2402-2412/2414-2418) runs continuously with no duplication.",
+      "worst_crop": "seam_48b_60_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "af48b5fc2b024880a",
+      "diagnoses": []
+    },
+    "49_55": {
+      "seam": "49_55",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "27th St seam across blocks 386/326 and 387/327 (crop a) and 266/267 (crop b): the 6\" W. PIPE dashed line runs straight through the street centerline on both sides with no jog, address numbering (609-627/601-627, 701-721/701-719, 609-624/613-624, 701-723/801-823) continues without duplication, and the Model Laundry Stable and Orthodox Synagogue footprints are intact and unsplit.",
+      "worst_crop": "seam_49_55_b_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "af48b5fc2b024880a",
+      "diagnoses": []
+    },
+    "46_52": {
+      "seam": "46_52",
+      "score": 4,
+      "defects": [
+        "tone"
+      ],
+      "reason": "Band seam between plates 46/52 through block 42 (Avenue N 1/2 / 24th St corridor). Avenue N 1/2 and 24th St keep consistent widths and address sequences (1501-1525, 2301-2335, 2401-2422) across the cut with no offset, duplicated label, or split building; a faint diagonal paper-tone/scan-crease shadow crosses the vacant block interior around the seam (visible in the _a tile), which is a tone artifact only.",
+      "worst_crop": "seam_46_52_a_100.jpg",
+      "offset_ft": 0,
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a545c1276bb0f7361",
+      "diagnoses": []
+    },
+    "46_53": {
+      "seam": "46_53",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Corner seam at the block 67/92 junction. 24th St (80') and the 6\" W. pipe dashed line pass through the corner without a step, jog, or duplicated numeral; address ranges 1701-1924 continue in sequence with no split or doubled buildings.",
+      "worst_crop": "seam_46_53_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a545c1276bb0f7361",
+      "diagnoses": []
+    },
+    "47_53": {
+      "seam": "47_53",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Control band seam along the named 24th St corridor between blocks 67/92 and 92/117. Street width (80') and the building lots on both sides of the cut line up across both tiles with no offset, gap, or duplicated lettering.",
+      "worst_crop": "seam_47_53_a_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a545c1276bb0f7361",
+      "diagnoses": []
+    },
+    "47_54": {
+      "seam": "47_54",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Corner seam near the hotel row and Casino Pavilion (23rd/Tremont St, Avenue O). The triangular seawall-front pavilion building and adjoining hotel lots are drawn once and read continuously across the cut, with no gap, duplication, or step.",
+      "worst_crop": "seam_47_54_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a545c1276bb0f7361",
+      "diagnoses": []
+    },
+    "47_54b": {
+      "seam": "47_54b",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Band seam along the Avenue/Boulevard corridor near the seawall and 30th St. The two '30TH ST' labels belong to separate block faces (north and south sides), not a duplicated label; the Gulf shoreline and compass rose area is continuous with no offset or split feature.",
+      "worst_crop": "seam_47_54b_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a545c1276bb0f7361",
+      "diagnoses": []
+    },
+    "48_48b": {
+      "seam": "48_48b",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Band seam through blocks NE/SE/SW/NW 139 along 30th St and the Boulevard. Address numbering (2301-2328, 2401-2418, 3001-3020) is sequential and consistent across the cut with no duplicated street, label, or building footprint.",
+      "worst_crop": "seam_48_48b_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a545c1276bb0f7361",
+      "diagnoses": []
+    },
+    "49_56": {
+      "seam": "49_56",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Corner where blocks 266/267 (802-824, 801-823) meet blocks 206/207 (902-924, 901-923) across 27th St. Fire hydrant (T.H.) dots, the dashed 6\" W. pipe line, and the 20'/80' street-width labels all line up continuously across the seam; no duplicated or stepped street, no split buildings.",
+      "worst_crop": "seam_49_56_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a597f319b29c3ab13",
+      "diagnoses": []
+    },
+    "4_13": {
+      "seam": "4_13",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Wharf-frontage control seam along the bay-side neatline of sheet 13, next to sheet 4's Elevator 'B' / Galveston Wharf Co. terminal tracks & yard. The jagged deckle-edge gap with foxing between the plates is the normal unmapped/neatline boundary (per brief, foxing/edge darkening is not a defect), and the 29TH St. label and 8\" W. pipe dashed line continue across it without duplication or offset; multiple rail sidings cross the gap without doubling.",
+      "worst_crop": "seam_4_13_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a597f319b29c3ab13",
+      "diagnoses": []
+    },
+    "4_15": {
+      "seam": "4_15",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Wharf-frontage control seam along sheet 15's bay-side neatline (Ave. A / Water St. and 30th-31st blocks) meeting sheet 4's Galveston Wharf Co. terminal tracks & yard (blocks 750-752). The torn/deckled neatline gap is the expected unmapped strip; rail lines cross it without duplication, and 'AVE. A OR WATER' appears once, not doubled.",
+      "worst_crop": "seam_4_15_a_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a597f319b29c3ab13",
+      "diagnoses": []
+    },
+    "4_5b": {
+      "seam": "4_5b",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Corner at Pier 28 / Galveston Wharf Co. (Sykes Bros. lessee) where sheet 5's Elevator (Iron Clad) area (cross-referenced '(For Report See Sheet 13)') meets a small inset of sheet 4 showing the adjoining slip. The slip/pier outline and rail lines read as one continuous wharf layout across the two plates; no duplicated labels or split structures.",
+      "worst_crop": "seam_4_5b_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a597f319b29c3ab13",
+      "diagnoses": []
+    },
+    "50_51": {
+      "seam": "50_51",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Band along Ave L between blocks 84/85 (addresses 1105-1123, 2402-2426) and blocks 24/25 (1201-1219, 2401-2427). The 12\" W. pipe dashed line and fire-alarm/hydrant marks run level and unbroken across the seam, and house numbers continue in sequence on both sides. Buildings on sheet 51's side are colored differently (tan/orange vs. yellow) from sheet 50's, but this is a plate-coloring difference in the source, not a seam defect.",
+      "worst_crop": "seam_50_51_a_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a597f319b29c3ab13",
+      "diagnoses": []
+    },
+    "50_56": {
+      "seam": "50_56",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Band along 27th St. between blocks 206/207 (901-924) and blocks 146/147 (1001-1024). The plate number '56' sits in the roadway at the seam, which the brief notes is a normal, non-defect adjoining-sheet numeral. Hydrant dots, the 6\" W. pipe dashed line, and the 20' street-width labels align continuously across the cut with no doubled labels or offset block faces.",
+      "worst_crop": "seam_50_56_a_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a597f319b29c3ab13",
+      "diagnoses": []
+    },
+    "50_57": {
+      "seam": "50_57",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Corner seam at 27th St/26 quadrant boundary. The 8\"W and 6\"W pipe dashed lines cross the cut cleanly, house numbers run continuously (1101-1123 to 1113-1123; 1201-1224 to 1201-1223) with no duplication, and no buildings are split. Reads as one map.",
+      "worst_crop": "seam_50_57_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "aed6e1a80064a4a09",
+      "diagnoses": []
+    },
+    "51_52": {
+      "seam": "51_52",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Midpoint band seam near the Ave N/24th St corner and continuing through the Ursuline Academy & Convent block. The convent/chapel/laundry complex crosses the seam as one intact footprint (not split or duplicated), the 12\"W and 10\"W pipe lines meet cleanly at the intersection, and block numbering is consistent in both crops.",
+      "worst_crop": "seam_51_52_a_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "aed6e1a80064a4a09",
+      "diagnoses": []
+    },
+    "51_57": {
+      "seam": "51_57",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Band seam along 27th St through blocks 26/27 and 16/66, continuing past the Base Ball Park (grandstand, bleachers). The 6\"W pipe dashed line and street label \"27TH 57 ST.\" appear once and align across the cut; addresses (2600s/1200s to 2700s/1300s) run continuously with no split buildings.",
+      "worst_crop": "seam_51_57_a_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "aed6e1a80064a4a09",
+      "diagnoses": []
+    },
+    "51_58": {
+      "seam": "51_58",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Corner seam at 27th St/58, covering the Ursuline Academy grounds and the Garden Verein Dancing Pavilion. Both complex footprints are intact and undivided, the street label appears once, and the sparsely built S.W. 41 quadrant is genuine underdevelopment rather than a gap defect.",
+      "worst_crop": "seam_51_58_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "aed6e1a80064a4a09",
+      "diagnoses": []
+    },
+    "52_53": {
+      "seam": "52_53",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Band seam along Ave O 1/2 running from the Academy/Dancing Pavilion area down to 26th St. The 8\"W pipe line and 120' spacing labels continue unbroken across the cut, blocks 66/67 addresses run consistently, and no building or label is duplicated.",
+      "worst_crop": "seam_52_53_a_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "aed6e1a80064a4a09",
+      "diagnoses": []
+    },
+    "52_58": {
+      "seam": "52_58",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Midpoint band seam continuing through the Academy grounds, Dancing Pavilion, and into block 65/66 residential rows (Raised 8' dwellings). No duplicated streets, labels, or split buildings; only minor paper foxing is visible, which is not a scored defect.",
+      "worst_crop": "seam_52_58_a_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "aed6e1a80064a4a09",
+      "diagnoses": []
+    },
+    "53_54": {
+      "seam": "53_54",
+      "score": 4,
+      "defects": [
+        "tone"
+      ],
+      "reason": "Corner/band seam at 25th St & Ave Q where plates 53 (SW92/SE91, addr 2003-2024) and 54 (NW117/NE116, addr 2101-2123) meet. Street run of 25th St and the 8\" W. pipe dashes cross the cut continuously with no jog; block/plate numerals ('53','Q') sit in the roadway gap, which is normal per brief. Plate 54's paper reads visibly brighter/whiter than plate 53's warmer cream tone across the seam \u2014 a paper-tone step only, no offset, duplication, or clipped feature found.",
+      "worst_crop": "seam_53_54_a_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "acfdc559f9d54177c",
+      "diagnoses": []
+    },
+    "53_58": {
+      "seam": "53_58",
+      "score": 4,
+      "defects": [
+        "tone"
+      ],
+      "reason": "Small corner crop (77k px2, midpoint placement) near the Hotel/Elizabeth Villa block and the angled beach pier/Carousel structure at 24th St. The diagonal pier ('OPEN 2ND', addr 2312-2322) and Carousel octagon are drawn at an angle consistent with a real seawall-front pier, not a mosaic artifact. There is a ragged, irregular boundary and a tone shift between the two plates through this area, findable only on close inspection; no duplicated street, label, or building could be confirmed.",
+      "worst_crop": "seam_53_58_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "acfdc559f9d54177c",
+      "diagnoses": []
+    },
+    "53_59": {
+      "seam": "53_59",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "27th St control corridor between plates 53 and 59. Street width (70') and the dashed 6\"/8\" W. pipe run stay continuous across the cut in both crops; house numbers on the N.W.66/S.W.66 and N.E.65/S.E.65 frontages step consistently with no duplication. A compass-rose ornament sits at the seam but falls in the unbuilt street gap between blocks, not over drawn content, so it does not obscure any feature.",
+      "worst_crop": "seam_53_59_b_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "acfdc559f9d54177c",
+      "diagnoses": []
+    },
+    "54_54b": {
+      "seam": "54_54b",
+      "score": 4,
+      "defects": [
+        "tone"
+      ],
+      "reason": "Midpoint vertical seam running through the Cotton Exhibit/Cotton Exposition Buildings block and the diagonal Avenue R / N.W.141 block near the seawall. The Cotton Exhibit Building, Fish Tank, and Band Stand each appear once, fully bounded, with no split or doubled footprint; the diagonal Avenue R alignment matches on both sides. A mild paper-tone difference is visible across the cut.",
+      "worst_crop": "seam_54_54b_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "acfdc559f9d54177c",
+      "diagnoses": []
+    },
+    "54_59": {
+      "seam": "54_59",
+      "score": 4,
+      "defects": [
+        "tone"
+      ],
+      "reason": "Corner seam at 27th St / Avenue R near Seawall Blvd (addr 2201-2223, blocks SE115/NE140/NW141). The diagonal seawall line and 6\" W. pipe dashes continue across the cut without a step, and lot numbering runs consistently from plate to plate. A slight tone step between the two plates is visible on close inspection; no duplicated or clipped feature identified.",
+      "worst_crop": "seam_54_59_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "acfdc559f9d54177c",
+      "diagnoses": []
+    },
+    "54_60": {
+      "seam": "54_60",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "27th St control corridor between plates 54 and 60, covering the N.W./S.W.91 and N.W./S.W.116 frontages plus the Cotton Exhibit Building block. Street widths (70'/80'), the water-pipe dashes, and house-number sequences all carry through the seam without offset, doubling, or gap in both tiled crops.",
+      "worst_crop": "seam_54_60_b_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "acfdc559f9d54177c",
+      "diagnoses": []
+    },
+    "55_56": {
+      "seam": "55_56",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Ave I (Sealy) crossing between plates 267/207 and 268/208. Street width 80' matches both sides, house numbers run 805-823 on the west block and restart 901-911 on the east block as expected, and the Wesley Tabernacle M.E. Church footprint appears once, cleanly on the east side. No duplicated street, label, or building.",
+      "worst_crop": "seam_55_56_a_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "ac7623efd4e887841",
+      "diagnoses": []
+    },
+    "55_61": {
+      "seam": "55_61",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "30th St band between blocks 389/390 (Lumber Yard & Planing Mill, Galveston Water & Electric Light Station side) and 329/330/259/270 (Gulf City Cotton Press side). Street width 80' consistent on both sides, addresses and named facilities each appear once, no jog in the roadway or pipe lines crossing the cut.",
+      "worst_crop": "seam_55_61_a_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "ac7623efd4e887841",
+      "diagnoses": []
+    },
+    "55_62": {
+      "seam": "55_62",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Small corner overlap at the 30th St crossing among blocks 209/149/89 and 210/150/90. Red seam ticks land exactly on the street; block layout and house numbers continue without offset or duplication.",
+      "worst_crop": "seam_55_62_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "ac7623efd4e887841",
+      "diagnoses": []
+    },
+    "56_57": {
+      "seam": "56_57",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Ave L band between blocks 87/88 (west) and 27/28/29 (east). Street width 80' matches, house numbers continue in sequence (1104-1124 west, 1201-1220 east), and no building or label is duplicated across the cut.",
+      "worst_crop": "seam_56_57_a_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "ac7623efd4e887841",
+      "diagnoses": []
+    },
+    "56_62": {
+      "seam": "56_62",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "30th St corridor band through the Base Ball Park / N.E. Garden 40 (Fountain, Bowling Alley) block complex. Avenue N label and quarter-block designators (S.E. 15, S.W. 15, N.E. 40, N.W. 40) are consistent across the tiles, 30th St appears clearly in the b crop with matching width, and no feature is duplicated or clipped.",
+      "worst_crop": "seam_56_62_a_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "ac7623efd4e887841",
+      "diagnoses": []
+    },
+    "57_58": {
+      "seam": "57_58",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Midpoint band continuing the Base Ball Park/bleachers (west) and Garden/Bowling Alley/Fountain (east) blocks down to 30th St. House numbers (1405-1423, 1501-1521) and block labels (S.E. 14/15, S.W. 15, N.E. 39/40, N.W. 40) line up across the seam with no step, gap, or doubled lettering.",
+      "worst_crop": "seam_57_58_a_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "ac7623efd4e887841",
+      "diagnoses": []
+    },
+    "57_62": {
+      "seam": "57_62",
+      "score": 4,
+      "defects": [
+        "tone",
+        "gap"
+      ],
+      "reason": "Corner tile at the midpoint where plates 57/62 meet (no named street corridor; block 89/90 on the left carries addresses 1101-1124, block 29/30 on the right carries 1201-1224, which are simply two different city blocks, not a duplicated one). A visible wavy, shadowed vertical band with a strip of unpainted/blank paper runs the full height of the crop between the two blocks. No building, street, or label is cut or duplicated across it, and it sits over an area with no mapped content on either side, but the gap is plainly visible (not just on close inspection).",
+      "worst_crop": "seam_57_62_100.jpg",
+      "fix_hint": "If feasible, narrow or feather the blank vertical strip between the two corner sheets so the paper-join is less conspicuous; no content re-registration needed.",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a1e6c0bb42cd17d9f",
+      "diagnoses": []
+    },
+    "57_63": {
+      "seam": "57_63",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "30th St band seam between plates 57/63. Street width tags (70', 40', 80') match on both sides, the 8\" W. Pipe dashed line running down 30th St is continuous with no jump, and the '30TH ST.' label appears once, centered on the cut. No duplicated buildings or labels; blocks 29/14 (north) and 63 (south, West Point Baptist Church / Macedonian Baptist Church) read as one continuous map.",
+      "worst_crop": "seam_57_63_a_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a1e6c0bb42cd17d9f",
+      "diagnoses": []
+    },
+    "57_64": {
+      "seam": "57_64",
+      "score": 4,
+      "defects": [
+        "tone"
+      ],
+      "reason": "Corner tile at the midpoint where plates 57/64 meet (28th St / Avenue N1/2 block 65 quadrants on the left, Ballinger's Lane / block 39 on the right). '30TH ST.' and street-width labels are not duplicated, and no building or lettering is split. A jagged, shadowed vertical paper-join band is visible running through the crop, consistent with a tone/paper-edge artifact rather than a content defect.",
+      "worst_crop": "seam_57_64_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a1e6c0bb42cd17d9f",
+      "diagnoses": []
+    },
+    "58_59": {
+      "seam": "58_59",
+      "score": 4,
+      "defects": [
+        "tone"
+      ],
+      "reason": "Ave O 1/2 band seam between plates 58/59. Block quadrant labels transition correctly (N.E./S.E. 39 to N.E./N.W. 64 etc.), street-width tags (80', 70', 40', 20') agree on both sides, and the 6\" W. Pipe / 8\" W. Pipe lines are continuous across the cut with no offset. The tan/orange building fill seen near the seam matches the 'RAISED' construction notation used elsewhere on both plates, so it is a genuine map feature, not a mismatched tint. A visible wavy vertical paper-tone band runs along the seam, most pronounced near the top of crop 'a', but no streets, buildings, or labels are duplicated, offset, or missing.",
+      "worst_crop": "seam_58_59_a_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a1e6c0bb42cd17d9f",
+      "diagnoses": []
+    },
+    "58_64": {
+      "seam": "58_64",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "30th St band seam between plates 58/64. Street width labels (40', 70', 80') and the 6\" W. Pipe line are continuous across the cut, block labels move correctly from 39 (north) to 64 (south), and Ballinger's Lane/compass rose sit entirely within plate 58 without duplication. No split buildings or doubled lettering.",
+      "worst_crop": "seam_58_64_a_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a1e6c0bb42cd17d9f",
+      "diagnoses": []
+    },
+    "58_65": {
+      "seam": "58_65",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "30th St corner seam between plates 58/65 (control). '30TH ST.' label, street-width tags (80', 70', 20'), and the 6\"/9\" W. Pipe lines line up cleanly across the cut, and block quadrant labels (N.E./S.E. 64 to N.W./S.W. 64) transition without duplication. Reads as one continuous map.",
+      "worst_crop": "seam_58_65_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a1e6c0bb42cd17d9f",
+      "diagnoses": []
+    },
+    "5a_7": {
+      "seam": "5a_7",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Wharf-frontage control seam along the Galveston Wharf Co's Terminal Tracks and Yard (west side of the peninsula, blocks 738/739/740). Terminal RR tracks, the 10\" and 6\" W. Pipe dashed lines, block numbering (1,3,5,7,9,11 / 13,15,17,19,21) and building footprints (Broom Straw Ware Ho., Galveston Hide Co., T.B. Allen & Co. Stave Mill, Texas Star Flour Mills) all cross the cut with no offset, no duplicated track or pipe run, and no doubled labels. A round brown paper stain sits mid-crop on plate 5a's side but is paper foxing, not a mosaic defect, per policy.",
+      "worst_crop": "seam_5a_7_a_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "ab3b59c75fb4c0e8e",
+      "diagnoses": []
+    },
+    "5a_9": {
+      "seam": "5a_9",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Corner seam at the wharf-frontage neatline near Pier 21/22 (Galveston Wharf Co.'s Shed, J. Merrow & Co. Lessee; Galveston Gulf Fisheries iron-clad shed). Pier/slip outlines, the iron-clad shed label, and the terminal-track numbering on the mainland side (1,3,5,7,9,11 / 13,15,17,19,21) read continuously across the cut with no duplicated pier wall, no split shed footprint, and no doubled text.",
+      "worst_crop": "seam_5a_9_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "ab3b59c75fb4c0e8e",
+      "diagnoses": []
+    },
+    "5b_11": {
+      "seam": "5b_11",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Wharf-frontage control seam along Pier 25/26 (Galveston Wharf Company's Shed - Mallory Steamship Co. Lessee & Owner of Building; Southern Pacific S.S. Co. Lessee shed further south). The row of hydrants (HYD. 50' 2 1/2\" HOSE) along the pier dashed centerline lines up with consistent spacing across the cut, the shed name is not duplicated, and 26th St's T.H./pipe annotations and terminal-track numbering match on both sides with no step or gap.",
+      "worst_crop": "seam_5b_11_a_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "ab3b59c75fb4c0e8e",
+      "diagnoses": []
+    },
+    "5b_13": {
+      "seam": "5b_13",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Corner seam at Piers 22-24 (wharf-frontage neatline). Pier and slip outlines continue without duplication, block numbers 742/743 and the terminal-track numbering (7,9,11 / 13,15,17,19,21) match across the cut, and the grey wash marking wharf decking on the pier side versus plain paper on the mainland side is an intentional map convention, not a tone defect.",
+      "worst_crop": "seam_5b_13_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "ab3b59c75fb4c0e8e",
+      "diagnoses": []
+    },
+    "5b_9": {
+      "seam": "5b_9",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Wharf-frontage control seam at block 747 (Galveston Wharf Company's Terminal Tracks and Yard, Sykes Bros. Lessee shed, Elevator 'B' 600,000-bushel iron-clad elevator). Terminal-track numbering (1-22 across both flanks), the 10\" W. Pipe dashed line, and the elevator/shed footprints all continue across the cut with no offset, duplication, or gap.",
+      "worst_crop": "seam_5b_9_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "ab3b59c75fb4c0e8e",
+      "diagnoses": []
+    },
+    "60_66": {
+      "seam": "60_66",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "30th St control band at the Beach Base Ball Park / East Beach quarter-section grid (sections 114/139). The 30th St label, its 80' width call-outs, and the 6\" W. Pipe centerline dashed run continue at consistent height across the seam with no jog; the grandstand/ball-park outline and the surrounding lot numbering (2900s block) are not duplicated or split. Mostly open ground either side of the street.",
+      "worst_crop": "seam_60_66_a_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "ab3b59c75fb4c0e8e",
+      "diagnoses": []
+    },
+    "59_60": {
+      "seam": "59_60",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Band seam along Ave Q between plate 59 (west, SE90/SW90 blocks, addresses 2003-2024/2802-2828) and plate 60 (east, NE115/NW115 blocks incl. Cotton Exposition Building/Auditorium complex, addresses 2101-2131, and dwellings 2801-2825). Avenue Q width and building-line rhythm are continuous across the cut in both crops; the 8\" W. Pipe dashed line crosses without any jog; 28th St. and 30th... wait 28TH ST label and block numbering read correctly on both sides. The '60' plate numeral sits in the Ave Q roadway, not over drawn content \u2014 normal per brief. No duplicated/stepped street, no split or duplicated building, no gap.",
+      "furniture": "Plate numeral '60' printed in Ave Q roadway near 28th St \u2014 normal adjoining-sheet numeral, not a defect.",
+      "worst_crop": "seam_59_60_a_100.jpg",
+      "fix_hint": "none",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "aec8ab26488bb9943",
+      "diagnoses": []
+    },
+    "59_65": {
+      "seam": "59_65",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Band seam along 30th St between plate 59 (west, blocks SE64/SW64/SE89/SW89, addresses 1801-1824 and 2001-2024/3001-3024) and plate 65 (east, blocks NE89/NW89/NE114/NW114/NE64, addresses 1901-1924, 2101-2124, and a Grand Stand feature at top right). 30th St. label prints once, cleanly straddling the cut; block/lot lines and address sequences continue logically across the avenue on both crops; the compass rose (crop a) and a small scale bar plus the 'Grand Stand'/'BEA...' fragment (crop b) sit in the margin/plate edge without overlapping drawn ground. No duplicated street, label, or building; no offset or gap visible.",
+      "furniture": "Compass rose (north arrow) and a scale-bar fragment appear near the plate edge in the margin \u2014 normal cartographic furniture, not over mapped ground.",
+      "worst_crop": "seam_59_65_b_100.jpg",
+      "fix_hint": "none",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "aec8ab26488bb9943",
+      "diagnoses": []
+    },
+    "59_66": {
+      "seam": "59_66",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Corner crop at the wharf front (Pier 21/Pier 22 area) where plates 59 and 66 meet. The 'Galveston Gulf Fisheries' iron-clad shed on Pier 22 sits wholly on one side of the jagged cut with no duplicate or split half; 'Slip' labels appear twice but for two distinct water slips (Pier21/22 vs. the adjoining slip to the east), not a duplicated label. A rectangular pale-white area at the far west edge of the crop is open bay water on the original sheet (consistent with the same blank convention seen in the 5a_33/5a_6 corner at this same wharf corner), not a stitching gap \u2014 it sits within one plate's own footprint, west of the actual cut line, not at the seam itself. No offset streets, no duplicated buildings, no white gap at the true seam boundary.",
+      "furniture": "None over drawn content.",
+      "worst_crop": "seam_59_66_100.jpg",
+      "fix_hint": "none",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "aec8ab26488bb9943",
+      "diagnoses": []
+    },
+    "5a_33": {
+      "seam": "5a_33",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Corner crop at the wharf/rail yard corner near 16th St. and Pier 17 (Marine Ways, Wm. Parr & Co., Flood & Co. coal yard, U.S. Bonded Warehouse) where plates 5a and 33 meet. Rail tracks, the coal-bin/coal-yard footprint, and the '33' plate numeral (sitting on open block interior, not over drawn structures) read continuously across the cut; '16TH ST.' label is whole and unduplicated. The pale rectangular area at the far west edge (partial numeral '5') is blank bay-side margin on the original sheet, matching the same convention seen at the adjacent 59_66/5a_5b corner, not a mosaic gap. No duplicated or offset streets/buildings, no clipped features over drawn ground.",
+      "furniture": "Plate numeral '33' printed inside an otherwise blank block interior \u2014 normal, not over drawn structures.",
+      "worst_crop": "seam_5a_33_100.jpg",
+      "fix_hint": "none",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "aec8ab26488bb9943",
+      "diagnoses": []
+    },
+    "5a_5b": {
+      "seam": "5a_5b",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Corner crop identical in coverage to seam 59_66 (Pier 21/Pier 22, 'Galveston Gulf Fisheries' iron-clad shed) \u2014 this is the shared corner point where plates 5a, 5b, 59 and 66 all meet. Same read: the pier shed and slip labels are whole and unduplicated across the jagged cut, and the pale rectangle at the west edge is open bay-side margin rather than a stitching gap. No duplicated/offset streets or buildings, no split features.",
+      "furniture": "None over drawn content.",
+      "worst_crop": "seam_5a_5b_100.jpg",
+      "fix_hint": "none",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "aec8ab26488bb9943",
+      "diagnoses": []
+    },
+    "5a_6": {
+      "seam": "5a_6",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Corner crop identical in coverage to seam 5a_33 (Marine Ways/16th St./Pier 17/coal yard) \u2014 the shared corner point where plates 5a and 6 meet alongside 5a_33's corner. Rail tracks, coal-yard footprint and the '16TH ST.' label read continuously across the cut; the pale rectangle at the west edge is the same open bay-side margin noted at the adjacent corners, not a gap. No duplicated or offset streets/buildings.",
+      "furniture": "None over drawn content.",
+      "worst_crop": "seam_5a_6_100.jpg",
+      "fix_hint": "none",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "aec8ab26488bb9943",
+      "diagnoses": []
+    },
+    "61_62": {
+      "seam": "61_62",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Ave I / Sealy vertical seam between the Gulf City Cotton Press plate (61) and the residential blocks 210/211/212 plate (62). Street label 'AVE. I 60' OR SEALY' reads continuously across the cut, the 6\" W. Pipe dashed line lines up with no jog, and block/lot numbering (210, 211, 212; addresses 902-922) matches across both crops with no duplicated or offset streets, labels, or buildings.",
+      "worst_crop": "seam_61_62_a_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a41da5425d92c312b",
+      "diagnoses": []
+    },
+    "61_68": {
+      "seam": "61_68",
+      "score": 5,
+      "defects": [
+        "tone"
+      ],
+      "reason": "33rd St horizontal seam between blocks 392/393 (plate 61) and 332/333 (plate 68). Street width and label '33RD ST.' are consistent on both sides, house numbers run correctly (602-624 / 601-623 on the left, 702-724 / 701-723 on the right) with no duplication, and the 6\"/8\"/12\" W. Pipe dashed lines cross without jogging. A faint diagonal gray wash sits along the cut (paper-tone/scan artifact per policy item 8) but no drawn content is duplicated, stepped, or missing.",
+      "worst_crop": "seam_61_68_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a41da5425d92c312b",
+      "diagnoses": []
+    },
+    "61_69": {
+      "seam": "61_69",
+      "score": 5,
+      "defects": [
+        "tone"
+      ],
+      "reason": "Four-plate corner at the 33rd St intersection (blocks 332/212 above, 333/273/213 below). Both '33RD ST.' labels, the curb-return arcs at the intersection, and the pipe dashed lines continue matched across the corner; house numbering (710-724, 902-920 above; 701-723, 801-823, 901-921 below) is consistent with no doubling or gaps. A light gray tone band is visible right at the intersection crop edges but no map content is duplicated, split, or missing.",
+      "worst_crop": "seam_61_69_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a41da5425d92c312b",
+      "diagnoses": []
+    },
+    "62_63": {
+      "seam": "62_63",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Avenue L vertical seam between blocks 90/91/92 (plate 62) and 30/31/32 (plate 63). The 'AVENUE L 63' label is continuous and un-duplicated, the 3rd District Goliad Public Free School footprint sits cleanly on the west side only, and odd/even address ranges (1105-1123 west / 1201-1219 east) read as one continuous street with no offset or doubled lettering.",
+      "worst_crop": "seam_62_63_a_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a41da5425d92c312b",
+      "diagnoses": []
+    },
+    "62_69": {
+      "seam": "62_69",
+      "score": 5,
+      "defects": [
+        "tone"
+      ],
+      "reason": "Corner/band seam along 33rd St between blocks 212/213 (plate 62) and 152/153 (plate 69), including the West Mt. Pilgrim Baptist Church footprint on the plate-69 side. Street label, curb returns, and 6\"/12\" W. Pipe dashed lines cross the cut with no jog or duplication; house numbers (902-924, 901-923 left; 1002-1024, 1001-1023 right) are continuous. A faint gray tone band runs along the seam near the intersection but no content is duplicated or missing.",
+      "worst_crop": "seam_62_69_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a41da5425d92c312b",
+      "diagnoses": []
+    },
+    "62_70": {
+      "seam": "62_70",
+      "score": 5,
+      "defects": [
+        "tone"
+      ],
+      "reason": "Corner seam at 33rd St between blocks 92/93 (plate 62, left) and 32/33 (plate 70, right), with the 12\"/10\" W. Pipe dashed lines (one along 33rd St, one along the cross street) crossing the cut correctly at the intersection. Addresses (1102-1124/1101-1123 left, 1202-1220/1201-1219 right) are continuous with no duplication or offset; a faint gray tone band sits along the crop boundary but no drawn feature is duplicated or missing.",
+      "worst_crop": "seam_62_70_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a41da5425d92c312b",
+      "diagnoses": []
+    },
+    "63_64": {
+      "seam": "63_64",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Ave N control band, block 3001-3028/1701-1724 (NW64/SE63) against 3001-3027/1801-1824 (SW64). House numbering, lot lines, and the 6\" W. Pipe dashed run all continue cleanly across the cut with no offset; the '63' sheet numeral sits in the street gap as expected and is not over drawn content. No duplicated buildings or streets. Reads as one continuous plate.",
+      "worst_crop": "seam_63_64_a_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "ae055a3959d9e4fd4",
+      "diagnoses": []
+    },
+    "63_70": {
+      "seam": "63_70",
+      "score": 3,
+      "defects": [
+        "furniture"
+      ],
+      "reason": "33rd St control band at the NW13/SW13/NW38/SW38 four-corner. Blocks 3201-3229/1401-1424/1502-1512 line up across the street with no step, and the '13'/'32'/'33'/'38' quadrant/plate numerals in the gap are normal. However a printed graphic scale ('Scale ... 0 10 ...' with tick marks) sits inside the 33rd St roadway right at the seam, partly obscured by a grey patch, i.e. plate furniture inside mapped ground.",
+      "furniture": "graphic scale bar/legend text printed in the 33rd St right-of-way at the seam",
+      "worst_crop": "seam_63_70_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "ae055a3959d9e4fd4",
+      "diagnoses": [
+        {
+          "seam": "63_70",
+          "agree": false,
+          "category": "furniture",
+          "revised_score": 2,
+          "reason": "The furniture is real and worse than described, and the grader's supporting claim (\"blocks line up across the street with no step\") is measurably false.\n\n(1) FURNITURE \u2014 confirmed and worse than \"a scale bar\". In the 33rd St roadway between the 20 ft alley and 34th St (crop x\u22482010-2450, y\u2248770-885, in front of 1313-1323 / 3301-3305) there are TWO hard-edged, axis-aligned grey rectangles pasted into the street. Between and around them sits plate-margin legend matter: the sans-serif caption \"Scale o[f Feet]\", the bar-scale numerals \"0 . 10  0\", and a solid black scale-bar tick at x\u22482337. Inside the left rectangle is a clipped annotation fragment \"...IPE  =  80'\" with its own dashed pipe run at y\u2248807, while the authentic \"80' --=== 10\" W.PIPE\" of the through pipe sits 60-70 ft to the east at y\u2248832 \u2014 so the width tick and the pipe caption read as printed twice in the same block of street. Clipped lettering plus a graphic scale plus two rectangular tone blocks in mapped roadway is a \"clipped feature\", i.e. a 2, not a 3.\n\n(2) REGISTRATION STEP the grader missed. Every north-south feature jogs west by a constant amount crossing 33rd St. Measured centre-of-line positions, plate 63 (above) vs plate 70 (below): block 32/33 west face 382 -> 366 px; block east face at the 70 ft street 1178 -> 1165; opposite face 1389 -> 1376; 20 ft alley west edge 1758 -> 1743, east edge 1819 -> 1803. Mean delta 14.6 px = 5.1 ft, same sign and magnitude across the full 875 ft of seam. Street widths are identical either side (70 ft street = 211 px both; alley = 61/60 px), so it is a pure translation, not a scale or source difference. 33rd St also measures 242 px (85 ft) face-to-face against its labelled 80 ft, i.e. ~4 ft of extra north-south separation. The jog is visible at the block corners of 1224/3228 vs 1223/3302 and at the alley by 1312/1311.\n\nNo split or doubled buildings, no white gap, house numbers (1202-1224 / 1201-1223, 1302-1324 / 1301-1323) run continuously, and \"33RD ST.\" is not doubled \u2014 so it does not fall to 1. Worst crop (the only crop): seam_63_70_100.jpg.",
+          "fix": "Two separate fixes. (a) Furniture \u2014 re-cut, not re-register: over roughly x 1900-2500 of this crop the 63|70 cut currently wanders to y\u2248835-880, deep inside the 80 ft roadway and into plate 63's marginal legend. Pull the cut north to plate 63's neat line at the north curb of 33rd St (the block-32 south face, y\u2248679-690) for that span so plate 70 owns the whole roadway there. That deletes the \"Scale of Feet\" caption, the \"0 . 10  0\" numerals, the black bar tick, the clipped \"...W.PIPE = 80'\" fragment and both grey rectangles in one move, and costs nothing because plate 63 contributes only blank street south of the curb. Optionally hold the cut at the north curb for the whole seam width, since plate 63 draws no content in 33rd St anywhere in this crop. (b) Registration \u2014 the ~5 ft step cannot be re-cut away; plate 70 needs to be shifted about +14.6 px east (\u22485.1 ft) and ~4 px north relative to plate 63, using the five collinear north-south control features listed above (block faces at x 382/1178/1389 and the 20 ft alley edges at 1758/1819) as the tie points.",
+          "agentId": "a19052161ff210a96"
+        }
+      ]
+    },
+    "63_71": {
+      "seam": "63_71",
+      "score": 3,
+      "defects": [
+        "furniture"
+      ],
+      "reason": "33rd St / Avenue N corner (NW13/SW13 vs NE12/SE12 area). House numbers 1402-1424 and 3201-3229 continue with no offset, and the '33RD ST.' label recurring on both flanking plates is normal long-street relabeling, not a duplicate. But an ornate compass/wind-rose ornament is drawn directly on the 33rd St pavement straddling the seam, and the same grey-patched graphic-scale legend seen in 63_70 recurs here too - both are plate furniture sitting inside mapped ground.",
+      "furniture": "compass/wind-rose ornament and a graphic-scale legend printed on 33rd St pavement at the corner",
+      "worst_crop": "seam_63_71_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "ae055a3959d9e4fd4",
+      "diagnoses": [
+        {
+          "seam": "63_71",
+          "agree": false,
+          "category": "furniture",
+          "reason": "The defect is real but the original grader described half of it wrongly and scored it too leniently. Only one crop exists (seam_63_71_100.jpg, 2500x1600); the cut runs east-west down 33rd St (red ticks at y~790 left, ~806 right).\n\nWHAT IS ACTUALLY THERE. A flat, hard-edged grey ruler/legend strip sits in the 33rd St roadway from about x=585 to x=1900, y=765-880 - roughly 450 ft of street at 1 px = 0.35 ft. It contains a modern sans-serif \"Scale o[f]\", the scale numerals \"0 . 10   0\", a black-and-white scale-bar segment at x~1175, and two flat grey rectangles with machine-straight vertical/horizontal edges (nothing else in the crop has a straight-ruled tone boundary like that; the real plate edges here are ragged torn paper, e.g. the jagged edge at y~837-880 across x=0-1200 and the vertical tear at x~1780). This is plate/scan furniture sitting squarely inside mapped ground - brief checklist item 5, which names \"a scale bar\" explicitly. It also swallows the 10\" W. PIPE main along 33rd St: the dashed run is present near the alley (x~600-800), absent through x~712-1400, and resumes exactly at the \"10\" W. PIPE\" label - i.e. a clipped feature, which the rubric puts at 2, not 3.\n\nTHE \"COMPASS/WIND-ROSE\" IS NOT REAL. At 6x magnification the thing the grader called an ornate compass rose is the ornate script street-width numeral 80' (looped double-oval 8 with a foot tick), which occurs twice: once at x~680, y~805 following \"...IPE = 80'\", and again at x~1245, y~830 next to the 10\" W. PIPE dashes. There is no north arrow or wind rose anywhere in the crop. That element of the finding should be struck.\n\nWHAT IS FINE. House numbers run continuously: 1402-1424 (north) against 1401-1423 (south) both start at x~945 and end at x~1695, no offset. The two \"33RD ST.\" labels (centres x~690 and x~2300, ~560 ft apart, different blocks) are normal per-block relabelling, not a duplicate - the grader was right there. The cross street between the 1300 and 1400 blocks is drawn 70' north of the cut and 35' south (labels \"70'\" at x~835 and \"35\" at x~771) with the big undivided SE 12 block replacing the south half - that is a 1912 source disagreement, not a mosaic fault, and must not be scored.\n\nMINOR REGISTRATION, worth noting but not the driver. Column-darkness scan of long vertical lines gives, above the cut, x = 318/379 (20' alley), 747, 1974, 2336/2397; below, x = 302/362, 724, 1935, 2303/2363. Inside the 63/71 contact (x < ~1780) that is a 16 px / ~5.6 ft leftward jog of the 1300-block alley and ~8 ft at x=747 - a 3-level offset at worst. The larger 33-39 px (~12-14 ft) jogs of the 20' alley and block face at x=1935-2363 lie east of the vertical torn plate edge at x~1780, so they belong to the neighbouring plate pair, not to 63_71.\n\nNet: not a 3. The dominant fault is unmistakable non-map furniture across ~450 ft of roadway that also interrupts a drawn utility main - score 2.",
+          "revised_score": 2,
+          "fix": "Re-cut the 63/71 boundary through the 33rd St corridor between crop x~560 and x~1920 so that strip is taken from plate 71 (or plate 70, which abuts the same corridor and shows the identical legend on seam 63_70) instead of from plate 63's bottom margin, which is what carries the \"Scale of feet\" legend, the scale bar and the grey scanning-ruler rectangles. Push the cut north of y~760 there - the roadway is empty on both plates in that band, so nothing is lost by taking it from the southern plate, and doing so also restores the 10\" W. PIPE dashes that currently vanish under the grey strip. If plate 71's paper does not reach north of ~y 850 across that whole span (its torn edge sits around there on the left half), fall back to sourcing the strip from plate 70 rather than leaving the ruler in the street; do not inpaint. The ~5 ft alley jog at x~318/302 is below the threshold worth re-registering and should be left alone; the 70' vs 35' street-width difference must be left alone as a source disagreement.",
+          "agentId": "a0ef40c42fdf570b2"
+        }
+      ]
+    },
+    "64_65": {
+      "seam": "64_65",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Avenue N 1/2 control band, NW64/NE63 (1701-1724) against the 3001-3027/1802-1824 block. Addresses, lot lines and the 6\"/8\" W. Pipe dashes align with no offset or duplication. The brown-tinted 'D.' footprints in the 3001-3027 block versus yellow footprints in the neighboring 3101+ block are both on the same source plate (65) rather than split by the seam, so this is original block-level coloring, not a mosaic tone artifact.",
+      "worst_crop": "seam_64_65_a_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "ae055a3959d9e4fd4",
+      "diagnoses": []
+    },
+    "64_71": {
+      "seam": "64_71",
+      "score": 3,
+      "defects": [
+        "furniture"
+      ],
+      "reason": "Corner seam near 33rd St / Avenue N 1/2 (NW38/SW38/NW63 quadrants). Building footprints and house numbers (3201-3229, 1601-1624) align across the cut with no step or duplication, but the same compass/wind-rose ornament seen at the 63_71 corner recurs here sitting on the 33rd St roadway right at the plate join - furniture inside mapped ground.",
+      "furniture": "compass/wind-rose ornament on 33rd St pavement at the Avenue N 1/2 corner",
+      "worst_crop": "seam_64_71_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "ae055a3959d9e4fd4",
+      "diagnoses": [
+        {
+          "seam": "64_71",
+          "agree": false,
+          "category": "registration",
+          "revised_score": 2,
+          "reason": "The grader missed the actual defect and mis-read the one it found. Across the whole width of seam_64_71_100.jpg every north-south feature jogs WEST by a constant ~33 px (about 11-12 ft) as you cross 33rd St. Measured (source px, upper plate 64 vs lower plate 71): east right-of-way line of the 70 ft street at the left (the \"3227\"/1502 block corner) 438 vs 400; the same street's line at the right edge (\"3227\"/1702 vs \"3301\"/1701) 2443 vs 2408; 20 ft alley between 1512|1514 north and 1511|1513 south 799/861 vs 767/827; 20 ft alley between 1612|1614 and 1611|1613 1805/1865 vs 1773/1833; and the water pipe running north-south down the 70 ft street (6\" W. Pipe above, 8\" W. Pipe below) 333 vs 297, which is plainly visible as a broken cross at the seam. A street's own right-of-way line and a water main cannot jog 12 ft at a cross street, so this is not a source disagreement. Scale is identical (span between the two 70 ft streets: 2005 px above vs 2008 px below), so it is a pure translation - i.e. one plate sits ~12 ft off, not a drawing difference. seam_63_71_100.jpg identifies the culprit: on its left half (plate 63 over 71) the 8\" pipe and the 20 ft alley line up to within ~3 px, while on its right half (plate 64 over 71) the same 6\" pipe in the 70 ft street shows the identical 33 px westward jog (1868 vs 1835). Plate 64 is the misplaced sheet. Per the rubric a clear 6-20 ft step is a 2, not a 3. On the grader's stated defect: the compass rose / north arrow does sit on the 33rd St roadway just south of the cut (source x ~1500-1900, y ~750-870), so it is real furniture, but it is plate 71's own north arrow on blank pavement, it hides no drawn content, and it is NOT \"the same ornament seen at 63_71\" - the furniture in seam_63_71 is a \"Scale of feet\" bar, a different object, so nothing is duplicated. Also noted and explicitly not a defect: Avenue N 1/2 is drawn/labelled 55 ft north of 33rd St (1227-1363) and 25 ft south (1225-1300); the width difference survives any translation, so it is a genuine 1912 source disagreement between plates 64 and 71, per the brief scored as a note not a defect.",
+          "fix": "Re-register plate 64: shift it ~34 px (~12 ft) west relative to plate 71 (plate 63 already agrees with 71, so 64 is the outlier - fix 64's control-point fit rather than moving 71), then re-cut the seam. Verify against four targets in this crop, which must become collinear across the cut: the 70 ft street's east right-of-way line at x 438/400 and at x 2443/2408, the two 20 ft alley edge pairs (799/861 vs 767/827 and 1805/1865 vs 1773/1833), and the vertical water main in the 70 ft street (333 vs 297) whose crossing with the 10\" W. Pipe along 33rd St should form one clean cross. Secondary, cosmetic only: after re-registration, move the cut south from y~750 to y~880 (still inside blank 33rd St pavement, above the south block face at y~906 and inside the 1.6M px2 overlap) so plate 71's compass rose/north arrow at y 750-870 is covered by plate 64's empty roadway. Do not \"fix\" the Avenue N 1/2 55'/25' width difference - that is source, leave it.",
+          "agentId": "ac843ceccd0aef5ed"
+        }
+      ]
+    },
+    "64_72": {
+      "seam": "64_72",
+      "score": 3,
+      "defects": [
+        "furniture"
+      ],
+      "reason": "Corner seam near 33rd St east of Avenue N 1/2 (SW38/NW63/SW63 quadrants above; largely vacant NE62/SE62 block below). Built lots and addresses (3201-3229, 1601-1624) match across the cut with no offset. The same compass/wind-rose ornament from the 63_71 and 64_71 corners is visible again, here only partially in frame at the crop's left edge, still sitting on mapped street ground.",
+      "furniture": "compass/wind-rose ornament, partially visible at crop edge, on 33rd St pavement",
+      "worst_crop": "seam_64_72_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "ae055a3959d9e4fd4",
+      "diagnoses": [
+        {
+          "seam": "64_72",
+          "agree": false,
+          "category": "registration",
+          "reason": "The furniture call is wrong and the score is too generous. The compass/wind-rose sits at crop x 0-175, y 730-875, roughly 700 px WEST of where the 64|72 cut even starts (the cut is straight at y=800 and spans only x 715-1850), and it lies wholly inside plate 71's paper (tone step at y~730 there). It is plate 71's own north arrow drawn complete on blank 33rd St pavement - source content, not clipped, not doubled, and not this seam's business. The actual defect is a plate displacement: Ave O's east block line runs at x=861 above the cut (NW63 corner, 1702/3227) but x=825 below it (NE62 corner, 1701/3301) - a 36 px = 12 ft westward step across 33rd St. Plate 71's west curb (618) and plate 72's east curb (825) are 207 px = 69 ft apart, so both lower plates agree with each other and plate 64 alone is off. 33rd St also closes at only 222 px (73.6 ft) between plate 64's north curb (y=691) and plate 72's south curb (y=913), against 235 px on the 64/71 side and an '80'' width label in the street, adding ~6 ft of y error; net 64-to-72 displacement ~13 ft. As a direct consequence the 8\" water main in 33rd St is clipped out for ~275 ft: dashes run at y~805 in plate 71 (x 400-680), reappear as a 25 ft stub at y~803 (x 1700-1780) and at y~769 east of x=1810, but between x~870 and x~1695 there is no line at all while plate 64's two labels '8\" W. P.' (x 765-850, with valve circle) and '8\" W. PIPE' (x 1450-1620) sit orphaned on the cut with nothing to label. Each plate draws the main on the far side of the straight y=800 cut, so both renditions were sliced away. No building crosses the cut (it is all street pavement) and the step is under 20 ft, so this is a 2, not a 1 and not a 3.",
+          "revised_score": 2,
+          "fix": "Re-register plate 64 against plates 71/72: shift it ~36 px (12 ft) west and ~19 px (6 ft) north in mosaic space so Ave O's east curb (x=861 above) lands on the NE62 corner at x=825 below and 33rd St closes at its labelled 80 ft. Use the two Ave O curb lines and the 33rd St curbs as the control pair - no cut placement can fix a 12 ft grid offset. Secondarily, once registered, replace the straight y=800 cut with a min-ink path (or drop the cut to the 33rd St centreline south of both plates' pipe renditions) so the 8\" main is taken whole from one plate instead of being sliced away between x~870 and x~1695, which currently leaves both '8\" W. PIPE' labels with no line. The compass/wind-rose needs no action on this seam; if it is to be suppressed at all, that is a cut-placement question on 64_71, where plate 64 also covers that stretch of 33rd St.",
+          "agentId": "a62ed677110820a18"
+        }
+      ]
+    },
+    "65_66": {
+      "seam": "65_66",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Avenue Q corridor between SW.89/SE.88 (west) and NW.114/NE.113 (east). House numbers run continuously (3001-3028 to 3101-3127), the 'AVENUE'/'Q.' label splits correctly across the street gap, and block/street-width markers (20', 80', 70') line up on both tiles. Reads as one continuous map.",
+      "worst_crop": "seam_65_66_a_100.jpg / seam_65_66_b_100.jpg (both clean)",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "aa630c5b6dc684588",
+      "diagnoses": []
+    },
+    "65_72": {
+      "seam": "65_72",
+      "score": 4,
+      "defects": [
+        "tone"
+      ],
+      "reason": "33rd St corridor: plate 65 side (SW 63 / SE 62, west of 33rd) is printed in the standard pale-yellow frame-building tint, while plate 72 side (NW 88 / NE 87, east of 33rd) is a visibly warmer tan/orange paper tone, stepping right at the seam. The 70'/20' width labels, the 6\" W. pipe dashed line down 33rd St, and the '33RD ST.' label all align continuously across the cut; no buildings, addresses, or rail/pipe lines are duplicated, offset, or clipped. Per policy a tone step alone is not corrected and does not drop below 4.",
+      "fix_hint": "No correction required per grading policy (tone differences are not corrected); flagged for the record only.",
+      "worst_crop": "seam_65_72_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "aa630c5b6dc684588",
+      "diagnoses": []
+    },
+    "65_73": {
+      "seam": "65_73",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Four-quadrant corner join at the 33rd St / cross-street intersection (NW 113, SW 113/138, NE 112, SE 112), with the compass-rose flag mark centered on the intersection. Addresses (2101-2127, 2201-2223, 2301-2311) and block labels run continuously across all four quadrants with no duplication or gap.",
+      "worst_crop": "seam_65_73_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "aa630c5b6dc684588",
+      "diagnoses": []
+    },
+    "66_73": {
+      "seam": "66_73",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Band along 33rd St covering the blocks-112/113 corner (NW 113 blank lot, SW 113 buildings at 3211-3228, SW 138 blank far side, NE 112/SE 112 below). Tone is consistent on both sides, address sequences are unbroken, and no building or label appears twice.",
+      "worst_crop": "seam_66_73_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "aa630c5b6dc684588",
+      "diagnoses": []
+    },
+    "66_74": {
+      "seam": "66_74",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Corner crop extending the same corridor toward blocks 137/138 (NW 138 with Auto Ho., SW 138 blank, NE 137/SE 137 with sequential 2401-2411 addressing). Consistent tone, continuous lot lines and addresses, no defects.",
+      "worst_crop": "seam_66_74_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "aa630c5b6dc684588",
+      "diagnoses": []
+    },
+    "67_68": {
+      "seam": "67_68",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Ave. E (Post Office) corridor through the industrial district: G.H.&H.R.R. Freight Depot (block 513) and Anchor Milling Co. (block 514) on the west (plate 67) against Galveston Brewing Co.'s brick plant, block 454, and the Bottle Shop (block 455) on the east (plate 68). Each building/block label (513, 514, 453, 454, 455) appears exactly once; the curving R.R. siding tracks stay entirely on the west side and do not need to cross the seam; no gap, duplicate, or plate furniture sits over mapped ground.",
+      "worst_crop": "seam_67_68_a_100.jpg / seam_67_68_b_100.jpg (both clean)",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "aa630c5b6dc684588",
+      "diagnoses": []
+    },
+    "69_77": {
+      "seam": "69_77",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "36th St crosses cleanly between blocks 215/155 (north side) and 216/156 (south side, incl. Broadway Baptist Church). House numbers run 902-912/1002-1024 on the north row and 901-923/1001-1023 on the south row with no gap or repeat, curb lines and building footprints line up, and the compass-rose furniture sits inside the street right-of-way, not over drawn content.",
+      "worst_crop": "seam_69_77_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "afe643bf16cf4dbf2",
+      "diagnoses": []
+    },
+    "6_21": {
+      "seam": "6_21",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Wharf-frontage seam beside 11th St / the Galveston Wharf Co's Terminal Tracks & Yard: sheet 6's side is correctly blank trackage while sheet 21 carries numbered track bays 1-22 into blocks 730/731; the jagged boundary matches the plates' printed bay-side neatline (foxed paper edge), not a mosaic gap, and no building is duplicated or clipped.",
+      "worst_crop": "seam_6_21_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "afe643bf16cf4dbf2",
+      "diagnoses": []
+    },
+    "6_27": {
+      "seam": "6_27",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Wharf-side seam through block 27 near 13th-15th St: the crosshatched warehouse and dwelling ('D') footprints run up to the neatline intact (no half-building on either side), and track blocks 732/733 on sheet 6's side continue without a step or duplicate label.",
+      "worst_crop": "seam_6_27_a_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "afe643bf16cf4dbf2",
+      "diagnoses": []
+    },
+    "6_33": {
+      "seam": "6_33",
+      "score": 4,
+      "defects": [
+        "step"
+      ],
+      "offset_ft": 2,
+      "reason": "Small corner overlap on Ave M 1/2 (70 1/2) at blocks NE12/NW12/S.E.12/S.W.12 (cotton yard): a faint (~2 ft, close-inspection-only) kink in the avenue's double curb line is visible partway down the cut; house numbers (1303-1324 west side, 3301-3335/1401-1419 east side) otherwise match with no duplication.",
+      "fix_hint": "Check the small vertical offset in the Ave M 1/2 curb/property line partway down the corner crop for sub-pixel realignment.",
+      "worst_crop": "seam_6_33_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "afe643bf16cf4dbf2",
+      "diagnoses": []
+    },
+    "70_71": {
+      "seam": "70_71",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Band seam along Ave M 1/2 (70 1/2) covering blocks NE/SE 12 (Free School for Negroes, cotton yard) down through blocks fronting 14th/15th St; curbs, house numbers (1303-1421 west, 3301-3529 east), and the Free School footprint read continuously across the cut with no offset, gap, or duplicate label.",
+      "worst_crop": "seam_70_71_a_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "afe643bf16cf4dbf2",
+      "diagnoses": []
+    },
+    "70_77": {
+      "seam": "70_77",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Four-plate corner at 36th St, joining blocks 155/95/35 (north) to 156/96/36 (south, incl. Grace Episcopal Church + Sunday School and Broadway Baptist Church). The '36TH ST.' label recurring once per plate segment is the expected per-sheet relabeling, not a duplicate; house numbers (1101-1124, 1201-1219) and church footprints match with no split buildings or gaps.",
+      "worst_crop": "seam_70_77_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "afe643bf16cf4dbf2",
+      "diagnoses": []
+    },
+    "67_75": {
+      "seam": "67_75",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "36th St corridor between plate 67 (blocks 575/576, Ave C or Mechanic) and plate 75 (blocks 515/516). Street width and building rows line up continuously across the cut; each plate carries its own '36TH ST' label within its own half, which is normal Sanborn practice, not a duplicate. Address schemes differ (3500s vs 400s) because they are different plates' house-number series, not a mosaic defect. No offset, split building, or gap found.",
+      "worst_crop": "seam_67_75_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a201ae56cbda99302",
+      "diagnoses": []
+    },
+    "68_69": {
+      "seam": "68_69",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Ave H (Ball) corridor between plate 68 (blocks 333/334) and plate 69 (blocks 273/274). Avenue width (70') and block-face addressing (712/714 to 802 etc.) are continuous across the seam, and the 'AVE. H OR BALL' label sits once at the boundary without duplication. No duplicated street, doubled label, split building, or gap.",
+      "worst_crop": "seam_68_69_b_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a201ae56cbda99302",
+      "diagnoses": []
+    },
+    "68_75": {
+      "seam": "68_75",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Corner seam near Avenue K, blocks 153/154 (plate 68, incl. St. Patrick's Church) meeting blocks 93/94 (plate 75). House numbers step cleanly from 1024/3429 to 1101/3401 across the cut with no jog, and the church footprint is complete on its own plate, not duplicated or clipped.",
+      "worst_crop": "seam_68_75_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a201ae56cbda99302",
+      "diagnoses": []
+    },
+    "68_76": {
+      "seam": "68_76",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "36th St corridor between plate 68 (blocks 515/516) and plate 76 (blocks 395/396, American Ware Ho. Co.). Street width (80') and building rows match across the cut, the warehouse footprint (396) is intact and not split, and no doubled label or gap is present.",
+      "worst_crop": "seam_68_76_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a201ae56cbda99302",
+      "diagnoses": []
+    },
+    "69_70": {
+      "seam": "69_70",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Avenue K corridor between plate 69 (blocks 153/154/155, incl. St. Patrick's Church and School) and plate 70 (blocks 93/94/95). Avenue width (70') and cross-street numbering are continuous across both crops; the church and school footprints sit wholly on one plate with no duplication, and colors match on both sides of the cut.",
+      "worst_crop": "seam_69_70_a_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a201ae56cbda99302",
+      "diagnoses": []
+    },
+    "69_76": {
+      "seam": "69_76",
+      "score": 4,
+      "defects": [
+        "tone"
+      ],
+      "reason": "Corner seam along 36th St where plate 69 (block 215, north side) meets plate 76 (block 216, south side, addresses 901-921). Geometry, street width, and addressing are continuous with no offset or duplicated feature, but there is a visible paper-tone/color step right at the cut: block 216's building fills read distinctly warmer/orange-tan than the matching yellow fill on block 215 and the adjoining block 276 to its west. Per policy this is tone-only and does not indicate a geometric defect, capping the score at 4.",
+      "fix_hint": "Tone-only difference between the source plate covering block 216 and its northern/western neighbors; no realignment needed, just a known paper-tone mismatch to note.",
+      "worst_crop": "seam_69_76_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a201ae56cbda99302",
+      "diagnoses": []
+    },
+    "70_78": {
+      "seam": "70_78",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "36th St corridor between blocks 35/36 (west, addresses 1201-1224, incl. Grace Episcopal Church) and blocks 11/36 (east, addresses 3509-3621). Street width and building rows line up across the cut; the two 'S 36TH ST.' labels seen belong to different block faces along the corridor, not a duplicate at one spot. No stepped street, no split/duplicated buildings, no gap.",
+      "worst_crop": "seam_70_78_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a696c9512cd16431a",
+      "diagnoses": []
+    },
+    "71_72": {
+      "seam": "71_72",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Avenue O corridor between block 37 (west, 3402-3428, S.W.37) and block 62 (east, 3301-3429, N.E./N.W.62). Both tiles (a,b) show the avenue running straight with consistent width; lot lines and 8\"/6\" W. Pipe dashes continue unbroken across the cut. No duplicated frontage or offset found.",
+      "worst_crop": "seam_71_72_a_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a696c9512cd16431a",
+      "diagnoses": []
+    },
+    "71_78": {
+      "seam": "71_78",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Corner at 34th St / Ave O, joining blocks S.E./S.W.37 (west) with N.E./N.W.62 (east). 34th St and Ave O both cross the seam without a step; house numbering (3306-3332 / 3402-3428 on 34th, 3301-3429 on Ave O) is continuous and no footprint is split.",
+      "worst_crop": "seam_71_78_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a696c9512cd16431a",
+      "diagnoses": []
+    },
+    "71_79": {
+      "seam": "71_79",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "36th St corridor joining block 36 (west, incl. Seawall Macaroni Factory at 3601-3613 and dwellings 3509-3529) with block 61-area content to the east. The '36TH' / 'ST.' text is simply split by the cut (each half drawn by its own plate), not duplicated. Building rows and the 6\"/8\" W. Pipe lines track straight across; the wavy tan seam line itself is the untouched scan edge, not a mosaic defect.",
+      "worst_crop": "seam_71_79_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a696c9512cd16431a",
+      "diagnoses": []
+    },
+    "72_73": {
+      "seam": "72_73",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Ave P 1/2 corridor joining block 87 (west, 3402-3428/3401-3427) with block 86 further south in tile b. Both tiles show the avenue straight and unduplicated, lot numbering sequential, no split buildings or gaps.",
+      "worst_crop": "seam_72_73_a_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a696c9512cd16431a",
+      "diagnoses": []
+    },
+    "72_79": {
+      "seam": "72_79",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Corner where 36th St meets the N-S street between blocks 36/61 (S.E.36, S.W.36 west; N.E./S.E./N.W./S.W.61 east), including greenhouses on Ave-facing lots. Street widths (70'/40'/20') and the 6\" W. Pipe dashed line pass through the corner without jog; no duplicated labels or footprints.",
+      "worst_crop": "seam_72_79_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a696c9512cd16431a",
+      "diagnoses": []
+    },
+    "72_80": {
+      "seam": "72_80",
+      "score": 4,
+      "defects": [
+        "tone"
+      ],
+      "reason": "Corridor seam near 36th St / an unopened street with the 8\" W. pipe dashed line. Address sequences run continuously across the cut (S.E. 61: 3510-3528 into S.W. 61: 3533-3622; N.E. 86 into N.W. 86 with the 'NOT OPENED' street and compass rose intact, no duplication). The dashed water-pipe line crosses the seam without a jog. No duplicated streets, labels, or buildings. A visible grayish-tan paper-tone band runs along the seam per policy that alone floors the score at 4.",
+      "fix_hint": "Tone-only; not corrected per policy (item 8).",
+      "worst_crop": "seam_72_80_100.jpg",
+      "offset_ft": 0,
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "ac04780ab387667ea",
+      "diagnoses": []
+    },
+    "73_74": {
+      "seam": "73_74",
+      "score": 4,
+      "defects": [
+        "tone"
+      ],
+      "reason": "Vertical seam along Avenue R between S.E./S.W. 112 (west, addresses 3302-3426) and N.E./N.W. 137 (east, addresses 2301-2427), and lower tile continuing into 36th St / S.E. 111 & N.E. 136. Avenue R label, block numbering, and building footprints are all consistent on each side with no duplication or step. A deckle-edged, mildly grayer paper band runs the length of the vertical cut.",
+      "fix_hint": "Tone-only; not corrected per policy (item 8).",
+      "worst_crop": "seam_73_74_a_100.jpg",
+      "offset_ft": 0,
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "ac04780ab387667ea",
+      "diagnoses": []
+    },
+    "73_80": {
+      "seam": "73_80",
+      "score": 4,
+      "defects": [
+        "tone"
+      ],
+      "reason": "Corner seam at 36th St / Avenue R1/2 area joining S.E./S.W. 112, N.E./N.W. 137, S.E./S.W. 111 and N.E./N.W. 136. Block addresses and building footprints are continuous and unduplicated across the cut. A distinct gray-tan tone patch sits over 36th St at the seam (over street, not over drawn ground), consistent with a paper-tone difference between the adjoining plates.",
+      "fix_hint": "Tone-only; not corrected per policy (item 8).",
+      "worst_crop": "seam_73_80_100.jpg",
+      "offset_ft": 0,
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "ac04780ab387667ea",
+      "diagnoses": []
+    },
+    "73_81": {
+      "seam": "73_81",
+      "score": 4,
+      "defects": [
+        "tone"
+      ],
+      "reason": "36th St band seam at the Avenue Q1/2 corner (N.E./S.E. 111, S.E./N.E. 136, N.E. 161). Two '36TH ST.' labels appear side by side, one per block frontage flanking Avenue Q1/2 -- normal Sanborn practice, not a duplicate. The 6\" W. pipe dashed line crosses the seam without a jog. Address ranges and building footprints continue cleanly with no split/duplicated buildings. A visible tan-gray tone band follows the seam over the street.",
+      "fix_hint": "Tone-only; not corrected per policy (item 8).",
+      "worst_crop": "seam_73_81_100.jpg",
+      "offset_ft": 0,
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "ac04780ab387667ea",
+      "diagnoses": []
+    },
+    "74_81": {
+      "seam": "74_81",
+      "score": 4,
+      "defects": [
+        "tone"
+      ],
+      "reason": "Corner seam at 36th St / Avenue R1/2 joining S.E./S.W. 111, N.E./N.W. 136, and S.E./N.E. 136 blocks. Avenue R1/2 label appears once on each flanking block (normal), addresses and building footprints continue without duplication. A grayish tone patch/diagonal shadow sits along the seam over the street.",
+      "fix_hint": "Tone-only; not corrected per policy (item 8).",
+      "worst_crop": "seam_74_81_100.jpg",
+      "offset_ft": 0,
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "ac04780ab387667ea",
+      "diagnoses": []
+    },
+    "74_82": {
+      "seam": "74_82",
+      "score": 4,
+      "defects": [
+        "tone"
+      ],
+      "reason": "Control seam along 36th St / Avenue R1/2, joining S.E./N.E. 136, N.E./N.W. 161, and S.W./S.E. 136 blocks. Building footprints (e.g. the D-shapes at 2521-2524, 2522) and address runs (2401-2524, 3501-3528) are continuous and unduplicated. A clear grayish-tan tone band runs the length of 36th St at the seam.",
+      "fix_hint": "Tone-only; not corrected per policy (item 8).",
+      "worst_crop": "seam_74_82_100.jpg",
+      "offset_ft": 0,
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "ac04780ab387667ea",
+      "diagnoses": []
+    },
+    "74_99a": {
+      "seam": "74_99a",
+      "score": 4,
+      "defects": [
+        "tone"
+      ],
+      "reason": "Vertical band along Avenue S 1/2 (35th St corner, blocks 162/161). Street lines, lot numbers (2504-2524, 3402-3428) and block labels (N.E./N.W./S.E./S.W. 162) line up cleanly across the cut with no offset, duplication, or split buildings. The east plate (99a, right side) carries heavy brown foxing/staining across the S.E./S.W. 162 quadrant that the west plate (74) does not share, producing a visible paper-tone step at the seam. Per policy this does not drop below 4.",
+      "worst_crop": "seam_74_99a_a_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "add9821379a833fa5",
+      "diagnoses": []
+    },
+    "75_76": {
+      "seam": "75_76",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Band along Ave F (Church) between blocks 456/457/458 (Southern Compress & Ware Ho. Co.) and 396/397/398 (American Ware Ho. Co., Galveston Bagging Co.). The 6\" W. Pipe dashed line crosses the avenue at consistent height on both sides, address numbering is the normal odd/even split for opposite sides of the street, and the plate's scale bar sits in blank margin space on the west plate only \u2014 no duplication or step. Reads as one continuous map.",
+      "worst_crop": "seam_75_76_b_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "add9821379a833fa5",
+      "diagnoses": []
+    },
+    "75_83": {
+      "seam": "75_83",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "39th St corridor seam through the rail/wharf grid (block 518/519 vs block 458/459). The 39TH ST. label and its curb lines sit level across the cut, the curving rail lines shown left of the seam do not reach the join (so no apparent break is expected), and no duplicated labels or buildings are visible. Clean join.",
+      "worst_crop": "seam_75_83_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "add9821379a833fa5",
+      "diagnoses": []
+    },
+    "76_77": {
+      "seam": "76_77",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Band along Ave I (Sealy) between blocks 276/277/278 (incl. West Mt. Olive Baptist Church) and 216/217/218 (incl. Terminal warehouse, Fire Engine house). Water-pipe dashed lines and the vertical AVE. I OR SEALY label are continuous and unbroken across the seam; letter-spaced 'TERMINAL' label is a single building legend, not a duplicate. No offsets or split footprints found.",
+      "worst_crop": "seam_76_77_b_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "add9821379a833fa5",
+      "diagnoses": []
+    },
+    "76_83": {
+      "seam": "76_83",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Corner join of blocks 338/278 (north) and 339/279 (south) around 39th St. The 39TH ST. label appears once per source block as expected for a street spanning two plates, water-pipe dashes cross level at both crossings, and the vacant-lot (pink, block 338) and warehouse footprints are complete on their own side with no duplication or step.",
+      "worst_crop": "seam_76_83_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "add9821379a833fa5",
+      "diagnoses": []
+    },
+    "76_84": {
+      "seam": "76_84",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Continuation of the 39th St corridor join (blocks 338/278 above, 339/279 below). The 8\" W. Pipe dashed line and the street curb lines run level and unbroken across the seam; house numbering sequences on each side are the expected distinct block-face numbers, not duplicates. No split or doubled features found.",
+      "worst_crop": "seam_76_84_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "add9821379a833fa5",
+      "diagnoses": []
+    },
+    "77_78": {
+      "seam": "77_78",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Avenue L band between plates 77 and 78: street width (80 ft) and house-number sequence (3701-3727 west side, 3702-3728 east side; 1101-1123 / 1201-1219 cross streets) run continuously across the cut with no offset, no duplicated labels, and no split buildings.",
+      "worst_crop": "seam_77_78_b_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a952ba59849668e76",
+      "diagnoses": []
+    },
+    "77_84": {
+      "seam": "77_84",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Corner seam at 39th St / Broadway (plates 77, 84, 78, 85 area): 39th St and Broadway (10\" W. Pipe corridor) continue cleanly through the intersection, house numbers (902-924, 3801-3827, 1002-1024) sequence correctly on both sides. Some brown foxing/staining visible on the block-219 tile (bottom left) but per policy paper foxing/staining is not a defect.",
+      "worst_crop": "seam_77_84_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a952ba59849668e76",
+      "diagnoses": []
+    },
+    "77_85": {
+      "seam": "77_85",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Corner seam at 39th St further east (blocks 158/98/159/85-K): street and pipe lines continue across the cut, address sequences (901-923, 1007-1023, 3801-3921) are unbroken, no duplicated or split buildings. Brown foxing/staining present in the block-85 (39xx) tile but is paper condition, not a mosaic defect.",
+      "worst_crop": "seam_77_85_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a952ba59849668e76",
+      "diagnoses": []
+    },
+    "77_85b": {
+      "seam": "77_85b",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Wider view of the same 39th St corner cluster (blocks 218/158/98, 219/159/85): confirms streets, the 10\" W. Pipe line, and house numbers all read as one continuous map across the seam. Same foxing/staining noted in 77_84/77_85 is visible here too, per policy not scored as a defect.",
+      "worst_crop": "seam_77_85b_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a952ba59849668e76",
+      "diagnoses": []
+    },
+    "78_79": {
+      "seam": "78_79",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Avenue N band between plates 78 and 79 (quadrant labels SW11/SE10 west, NW36/NE35 east): the 80 ft avenue is drawn consistently on both sides, block interiors (Seawall Macaroni Factory tile, Texas Consumers Co coffee roasting building) are intact and not duplicated or split, address ranges (1405-1427, 1501-1521) are distinct and correct for the crossing streets.",
+      "worst_crop": "seam_78_79_a_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a952ba59849668e76",
+      "diagnoses": []
+    },
+    "78_85": {
+      "seam": "78_85",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "39th St band between plates 78 and 85 (blocks 38/NW10 north, 39/NE9 south): street width and the 6\" W. Pipe dashed line continue across the cut, house numbers (1202-1224, 1302-1324, 3901-3921) sequence correctly, West End German Luth'n Mission Church footprint reads intact with no duplication or splitting.",
+      "worst_crop": "seam_78_85_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a952ba59849668e76",
+      "diagnoses": []
+    },
+    "78_86": {
+      "seam": "78_86",
+      "score": 4,
+      "defects": [
+        "tone"
+      ],
+      "reason": "Corner seam on 39th St (NW10/SW10/NE9 blocks vs NW35/NE34 blocks). Streets, 6\"/8\" W. pipe dashed lines, and house-number sequences (1401-1424 / 1501-1524, 3901-3920 / 3901-3919) all cross the cut continuously with no offset, duplicated buildings, or duplicated labels. The left-hand plate (NW10/SW10/NE9) carries a visible grey/beige paper-tone cast against the crisp white right-hand plate (NW35/NE34) extending well beyond the seam highlight itself \u2014 a plate-tone step, per policy floored at 4 and not otherwise corrected.",
+      "worst_crop": "seam_78_86_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a82c324d962a784e1",
+      "diagnoses": []
+    },
+    "79_80": {
+      "seam": "79_80",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Avenue O\u00bd (80 ft) reads as one continuous street across both tiles. Block faces NW/SW 61, NE/SE 60, and NW/SW 60 line up with matching house numbers (3533-3628 / 3601-3628, 1701-1724 / 1801-1812, 3701-3736 / 1802-1812) and the 8\" W. pipe dashed line crosses the seam without a jog. No duplicated buildings, labels, or white gaps in either crop.",
+      "worst_crop": "seam_79_80_a_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a82c324d962a784e1",
+      "diagnoses": []
+    },
+    "79_86": {
+      "seam": "79_86",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "39th St and the flanking blocks (NW/SW 35, NE/SE 34) continue unbroken across the vertical cut; the pipe dashed lines and the pipe-fitting/valve symbol at the street crossing each appear once, and house numbers match on both sides. The two '39TH ST.' labels sit well apart on separate plate segments of the same long street rather than doubled at one spot, which is normal Sanborn practice, not a duplicate-label defect. Heavy brown foxing over the NE34/SE34 corner is paper staining on the source scan, exempt by policy.",
+      "worst_crop": "seam_79_86_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a82c324d962a784e1",
+      "diagnoses": []
+    },
+    "79_87": {
+      "seam": "79_87",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Corner where 39th St meets the N-S alley reads as one continuous plate: NW/SW 60 and NE/SE 59 blocks and their house numbers (1702-1724/1802-1812, 1701-1723/1801-1811) line up with no offset, and the pipe junction symbol at the intersection appears only once. Heavy foxing/staining across SE34, NE59 and SE59 is paper discoloration on the source scan (explicitly exempt), not a seam artifact, and no drawn content is missing beneath it.",
+      "worst_crop": "seam_79_87_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a82c324d962a784e1",
+      "diagnoses": []
+    },
+    "7_33": {
+      "seam": "7_33",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "18th St and the N-S alley/pipe line behind blocks 677/617 (Industrial Cotton Oil Co./Texas Oil Co. vs Fire Dept. Co.2) and 738/678/618/558 (Galveston Hide Co./Broom Straw Ware Ho. vs Teaming Mule Co./Island City Wood Working Co.) read continuously across both tiles a and b. House numbers (1701-1728, 101-123, 202-224, 302-324) run in unbroken sequence, the 6\"/10\" W. pipe dashed lines connect without a jog, and street/firm names including 'NICHOLLS' each appear once, not duplicated or split.",
+      "worst_crop": "seam_7_33_a_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a82c324d962a784e1",
+      "diagnoses": []
+    },
+    "7_34": {
+      "seam": "7_34",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Same corner as 7_33 (Industrial Cotton Oil Co./617 block across 18th St from Galveston Hide Co./Old & Vacant lots on block 678); house numbers and the 6\" W. pipe dashed line line up with no offset, duplicate labels, or split buildings.",
+      "worst_crop": "seam_7_34_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a82c324d962a784e1",
+      "diagnoses": []
+    },
+    "80_81": {
+      "seam": "80_81",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Avenue Q reads as one continuous street across the cut: block labels S.W.86/S.E.85 (west) and N.W.111/N.E.110 (east) line up, the 6\"/8\" water-pipe dashes cross the seam without a jog, house numbers (3602-3628 west, 3701-3727 east) and the 20'/80' width callouts are consistent, and no building or label is duplicated or split.",
+      "worst_crop": "seam_80_81_b_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "aab50fe9b7ac89ccf",
+      "diagnoses": []
+    },
+    "80_87": {
+      "seam": "80_87",
+      "score": 4,
+      "defects": [
+        "tone"
+      ],
+      "reason": "39th St. label, curb lines, and the 8\" water-pipe dashes cross the seam cleanly with no offset or duplication and buildings on both sides (SW60/SE59 west, NW85/NE84 east) line up correctly. The vacant NW85/NE84 block east of the cut carries a visibly flatter gray paper tone than the white SW60/SE59 block to the west; this is a tone-only difference (not corrected per policy) rather than a drawing defect.",
+      "worst_crop": "seam_80_87_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "aab50fe9b7ac89ccf",
+      "diagnoses": []
+    },
+    "80_88": {
+      "seam": "80_88",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Corner seam at 39th St/Ave Q: NW110/SW110 (north) and the NE84/SE84 (south, foxed but legible) quadrants meet with matching lot lines, address runs, and the printed scale bar undisturbed; no duplicated content or gap at the crossing.",
+      "worst_crop": "seam_80_88_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "aab50fe9b7ac89ccf",
+      "diagnoses": []
+    },
+    "81_82": {
+      "seam": "81_82",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Avenue R 1/2 is continuous across the cut: NW136/SW136 above and NE135/SE135 below (including the Negro Recreation Park pavilion) match in scale and tone, house numbers roll over normally (2325 to 2327/2401) at the cross street, and no street, label, or building is duplicated or offset.",
+      "worst_crop": "seam_81_82_a_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "aab50fe9b7ac89ccf",
+      "diagnoses": []
+    },
+    "81_88": {
+      "seam": "81_88",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Corner seam at 39th St/Ave R 1/2: NW110/SW110 above and NW135/SW135 below are blank, unbuilt blocks that align at consistent lot-line spacing and paper tone on both sides of the cut, with the 39th St. label and printed scale bar intact.",
+      "worst_crop": "seam_81_88_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "aab50fe9b7ac89ccf",
+      "diagnoses": []
+    },
+    "81_89": {
+      "seam": "81_89",
+      "score": 4,
+      "defects": [
+        "tone"
+      ],
+      "reason": "Lot lines, the 39th St./Avenue labels, and addresses continue correctly across this corner cut with no duplicated or split features. The NW135 quadrant immediately east of the seam carries a flat gray paper tone distinctly different from the white SW110 and SW135 panels beside it - a tone-only step (heavy foxing on NE134/SE134 is unrelated paper staining, not a mosaic defect).",
+      "worst_crop": "seam_81_89_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "aab50fe9b7ac89ccf",
+      "diagnoses": []
+    },
+    "82_89": {
+      "seam": "82_89",
+      "score": 4,
+      "defects": [
+        "tone"
+      ],
+      "reason": "39th St band seam (plate 82 north, 89 south). House numbers run continuous across the street (2402-2424/2401-2428 west of the alley, 2502-2524 north / 2501-2523 south), no duplicated or stepped roadway, no split buildings, and the '39TH ST.' label appears once, centered in the street. The only visible defect is a soft gray tone/shadow band running along the seam where the two scans meet; map content (parcel lines, house numbers) reads through it unbroken.",
+      "worst_crop": "seam_82_89_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a1feda81590edec76",
+      "diagnoses": []
+    },
+    "82_90": {
+      "seam": "82_90",
+      "score": 4,
+      "defects": [
+        "tone"
+      ],
+      "reason": "Corner crop where four plates meet near 39th St/Avenue T. Block labels (SW160, NW160/185, SE159, NE184/185) and house-number runs align continuously across the cut with no duplicated street, label, or building. Same diagonal paper-tone/shadow band from the scan seam is visible cutting through the intersection, consistent with the tone-only category (not corrected by policy).",
+      "worst_crop": "seam_82_90_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a1feda81590edec76",
+      "diagnoses": []
+    },
+    "82_99": {
+      "seam": "82_99",
+      "score": 4,
+      "defects": [
+        "tone"
+      ],
+      "reason": "Avenue T (83 or Winnie) band seam: Galveston Bagging Co./Seaboard Rice Milling Co. industrial complex on the west (plate 82) meets numbered residential lots, a Wood Yard (339), Park (340) and Cotton Yard (341) on the east (plate 99). The differing land use either side of the avenue is a genuine source difference, not a mosaic defect, and pipe runs/street numbering are continuous. A vertical paper-tone/foxing band sits along the cut (heavier staining/tone shift on the _a crop) but no duplicated or stepped content.",
+      "worst_crop": "seam_82_99_a_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a1feda81590edec76",
+      "diagnoses": []
+    },
+    "82_99a": {
+      "seam": "82_99a",
+      "score": 4,
+      "defects": [
+        "tone"
+      ],
+      "reason": "Single midpoint crop along the same Avenue T corridor; shows the tan/brown seam band and a compass-rose north arrow sitting within the block interior near the '82/9/T' plate-key numerals \u2014 this north arrow appears to be genuine plate content in a blank block area rather than furniture displacing drawn ground, so not flagged as a defect. Tone step along the seam is the only issue.",
+      "worst_crop": "seam_82_99a_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a1feda81590edec76",
+      "diagnoses": []
+    },
+    "83_84": {
+      "seam": "83_84",
+      "score": 4,
+      "defects": [
+        "tone"
+      ],
+      "reason": "Avenue G (Winnie) band seam continuing the same Wood Yard/Park/Cotton Yard corridor seen at 82_99. Content (parcel lines, 'PARK 340', 'COTTON YARD 341', house numbers 701-727/702-728) is continuous across the cut with no duplication or step; a tone/staining band along the seam (heavier on the _a crop) is the only visible issue.",
+      "worst_crop": "seam_83_84_a_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a1feda81590edec76",
+      "diagnoses": []
+    },
+    "83_91": {
+      "seam": "83_91",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "42nd St band seam: house numbers run continuously across the street on both faces (502-512/514-524 north side blocks 461/462, 501-511/513-523 south side blocks 401/402), buildings and parcel divisions in blocks 401/402 line up cleanly with no offset, duplication, or split footprints, and the seam itself is barely visible with only faint paper tone.",
+      "worst_crop": "seam_83_91_a_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a1feda81590edec76",
+      "diagnoses": []
+    },
+    "83_92": {
+      "seam": "83_92",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Corner overlap around a wharf/cotton-yard block (labeled '34|'/341 and '342' Temporary Cotton Yard) and a Kindergarten School lot. Building lot lines and address numbers (4109-4128, 702-724, 701-723) line up exactly across the cut with no step. Each source plate carries its own north-arrow/compass rose near the seam, which places two compass roses close together in the street furniture, but neither sits over drawn map content and this is normal per-plate cartouche placement, not a defect.",
+      "worst_crop": "seam_83_92_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "ab831b1b4686b6300",
+      "diagnoses": []
+    },
+    "84_85b": {
+      "seam": "84_85b",
+      "score": 4,
+      "defects": [
+        "tone"
+      ],
+      "reason": "Band seam along Ave J/Broadway near 39th-40th St. Building footprints and house numbers (907-923, 3902-3928, 913-924, 4002-4026) continue across the cut with no offset or duplication, and the '39TH ST.'/'AVE. J OR BROADWAY' labels appear once each. The left plate (84) carries a strong brown foxing stain that the right plate (85b) lacks, producing a visible paper-tone step at the seam; per policy this is reported but does not lower the score below 4.",
+      "worst_crop": "seam_84_85b_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "ab831b1b4686b6300",
+      "diagnoses": []
+    },
+    "84_92": {
+      "seam": "84_92",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Band seam on 42nd St (control) covering blocks 341/342/281/282/221. '42ND ST.' label appears once, addresses (4109-4128, 702-824, 701-823) and building footprints on both frontages match across the cut with no jog or duplication in either the _a or _b tile.",
+      "worst_crop": "seam_84_92_a_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "ab831b1b4686b6300",
+      "diagnoses": []
+    },
+    "85_85b": {
+      "seam": "85_85b",
+      "score": 4,
+      "defects": [
+        "tone"
+      ],
+      "reason": "Panel-break seam along Ave K near 39th/40th St, blocks 159/99. Lot numbers (1002-1024, 3901-3927, 1401-1421) and building footprints continue across the cut with no offset, and the '39TH ST.'/'40TH ST.' labels are not duplicated. The right-hand panel (block 99 side) carries heavy brown foxing/staining absent from the left panel, giving a strong paper-tone step at the seam; scored per policy as tone-only, floor of 4.",
+      "worst_crop": "seam_85_85b_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "ab831b1b4686b6300",
+      "diagnoses": []
+    },
+    "85_86": {
+      "seam": "85_86",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Band seam on Ave M 1/2 (control), quadrant blocks NW/NE/SW/SE 8 and 9. Address ranges (1302-1324, 4001-4028, 1401-1421, 1402-1412) and building footprints line up across the seam with no step or duplicate labeling in either the _a or _b tile; the bottom tile also confirms alignment down to the map's scale bar at the sheet edge.",
+      "worst_crop": "seam_85_86_a_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "ab831b1b4686b6300",
+      "diagnoses": []
+    },
+    "85_93": {
+      "seam": "85_93",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Corner overlap on 42nd St near the Russian Orthodox Greek Church/Parsonage (block 41) and block 42, adjoining a cemetery. '42ND ST.' appears once and is not duplicated; addresses 4109-4128 and 1201-1224 continue consistently across the cut. The adjacent NE 8/NW 8 quadrant cells are blank (no lots drawn) which is a normal Sanborn cross-reference index area next to the cemetery, not a gap defect; a small blank margin in the crop's upper-left is outside the plates' printed neatlines.",
+      "worst_crop": "seam_85_93_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "ab831b1b4686b6300",
+      "diagnoses": []
+    },
+    "85_94": {
+      "seam": "85_94",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "worst_crop": "seam_85_94_100.jpg",
+      "reason": "Corner seam on the 42nd St corridor between blocks 8/41/42 groupings. House-number sequences run continuously across the cut (1213,1215,...1223 on the north side into 1301...1323 on the south side; 4202...4229 into 4201...4227), the street band and its width call-outs (70', 80') are drawn once, and the 'Scale of Feet' legend sits once, inside the open street gap, not over any drawn building or duplicated. No stepped street, no split building, no doubled label.",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a29212c7da66034a3",
+      "diagnoses": []
+    },
+    "86_87": {
+      "seam": "86_87",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "worst_crop": "seam_86_87_a_100.jpg",
+      "reason": "Band seam along Avenue O (0 1/2) between blocks 34/59 and 33/58. Lot numbering and block-line spacing match cleanly across the seam on both crops (3902...3926 opposite 3901...3927, 1601...1611/1613...1623 continuing). The right-hand plate (blocks 59/58) carries pronounced brown foxing/staining that the left-hand plate (34/33) lacks, but this is paper foxing/staining internal to the source scan rather than a seam-created tone step or drawn defect, so per policy it is noted only and not flagged; no duplicated street, label, or building is present.",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a29212c7da66034a3",
+      "diagnoses": []
+    },
+    "86_94": {
+      "seam": "86_94",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "worst_crop": "seam_86_94_100.jpg",
+      "reason": "Band/corner seam crossing 42nd St between blocks 8/33. Addressing continues correctly on both sides of the vertical cut (1502...1512 into 1514...1524; 1602...1612 into 1614...1624), and the 'Scale of Feet' ruler graphic is a single, unduplicated piece of plate furniture sitting in the open (undeveloped) street gap between the two north-south blocks, not overlapping any drawn building or roadway. No step, gap, or doubled feature found.",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a29212c7da66034a3",
+      "diagnoses": []
+    },
+    "86_95": {
+      "seam": "86_95",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "worst_crop": "seam_86_95_100.jpg",
+      "reason": "Large corner tile spanning 40th St and Avenue P 1/2 between blocks 84/83. The '40TH ST' label appears once, house numbers run continuously across both cuts (3902...3926 opposite 3901...3927; 2002...2012 opposite 2013...2019), and building footprints along the west side of the block (e.g. the D-marked houses near 1913-1925) sit fully clear of the seam with no split or duplicate. Only light, scattered foxing spots are visible, well below a defect threshold.",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a29212c7da66034a3",
+      "diagnoses": []
+    },
+    "87_88": {
+      "seam": "87_88",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "worst_crop": "seam_87_88_b_100.jpg",
+      "reason": "Band seam on Avenue P 1/2 between blocks 84/83 (north half) and 58 (south half, both sides of 42nd St). Addresses continue correctly across all cuts, the 8\" W. Pipe dashed line runs unbroken across the corridor on both crops, and the ornate compass-rose graphic in crop b sits once, centered in the open street gap between the two block groups, not overlapping any building or duplicated. No stepped street or split building found.",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a29212c7da66034a3",
+      "diagnoses": []
+    },
+    "87_95": {
+      "seam": "87_95",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "worst_crop": "seam_87_95_100.jpg",
+      "reason": "Corner seam on 42nd St corridor between blocks 58/33 groupings (NE/SE 58, NW/SW 58 areas). Building footprints (e.g. the D-marked houses along 1702-1712 and 4109-4135) sit cleanly on one side of the cut each, house numbering is continuous and non-duplicated, and no street offset, gap, or plate furniture intrusion is present.",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a29212c7da66034a3",
+      "diagnoses": []
+    },
+    "87_96": {
+      "seam": "87_96",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Corner seam at 42nd St / Ave P1/2 (blocks 58/83). House numbers run continuously across the cut (...1814/1816/1818/1820/1822/1824 top-left into 1901/1903/1905/1907/1909/1911 and 1913...1923 on the far side of 42nd St), the 8\" water pipe dashed line crosses with no jog, and 42nd St width and the compass rose sit cleanly on one plate without duplication. No offset, duplicated labels, or split buildings.",
+      "worst_crop": "seam_87_96_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a9c33657bb818f92c",
+      "diagnoses": []
+    },
+    "88_89": {
+      "seam": "88_89",
+      "score": 4,
+      "defects": [
+        "tone"
+      ],
+      "reason": "Band seam along Ave R/Ave R.O.W. between blocks 109/134 (top) and 108/133 (bottom). Streets, lot lines and house numbering (even 3902-3936 vs odd 3901-3927, then 4001-4027) line up continuously across the cut with no offset or duplication, and the Mary Orphan Asylum footprint sits wholly on one plate without splitting. However both crops show a large, visible paper-tone/foxing step (heavy tan staining on the right-hand plate versus cleaner paper on the left) that is plainly visible at the seam. Per policy this is reported but capped at no worse than a tone-only 4.",
+      "worst_crop": "seam_88_89_b_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a9c33657bb818f92c",
+      "diagnoses": []
+    },
+    "88_96": {
+      "seam": "88_96",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Band seam at 42nd St between blocks 83/108/58. House numbers continue cleanly across the street (2002-2024 to 2102-2130 above; 2001-2023 to 2101-2123 below) and the 8\" water pipe dashed line runs straight across the cut with matching dash pitch and no jog. NE/NW/SE/SW block-number labels sit in open (undeveloped) ground on their own plates, not over drawn content. No duplicated streets, labels, or buildings.",
+      "worst_crop": "seam_88_96_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a9c33657bb818f92c",
+      "diagnoses": []
+    },
+    "88_97": {
+      "seam": "88_97",
+      "score": 4,
+      "defects": [
+        "tone"
+      ],
+      "reason": "Corner seam at 42nd St between blocks 108/133/158/159. House numbers and lot lines continue correctly across 42nd St and Ave Q1/2 (2106-2130/2202-2224 into 2302-2320; 2105-2123/2201-2223 into 2301-2323) with no offset or duplicated buildings. A visible tan foxing/staining patch (consistent with the same source plate seen in 88_89) crosses the lower-left quadrant of the crop, a tone step only, capping the score at 4 per policy.",
+      "worst_crop": "seam_88_97_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a9c33657bb818f92c",
+      "diagnoses": []
+    },
+    "89_90": {
+      "seam": "89_90",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Band seam along an unnamed cross-avenue between blocks 159 (left) and 159/109 (right), with 40th St crossing at the band's midpoint. House numbers run continuously (2503-2524 through 2602-2620 and 2601-2619), the avenue width markers (80') and 40th St label align across the cut, and the isolated building near 4009-4011 sits entirely on one plate. No duplicated streets, labels, or split buildings; tone is even across both plates.",
+      "worst_crop": "seam_89_90_a_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a9c33657bb818f92c",
+      "diagnoses": []
+    },
+    "89_97": {
+      "seam": "89_97",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Band seam at 42nd St between blocks 133/108. Numbering continues cleanly on both sides of the street (2302-2330/2402-2412 above into 2301-2323/2401-2429 below), scattered buildings sit fully within one plate or the other with no split footprints, and the printed scale bar/legend sits inside an empty, undeveloped lot in block SW133 rather than over drawn content, which is normal plate furniture, not a defect.",
+      "worst_crop": "seam_89_97_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a9c33657bb818f92c",
+      "diagnoses": []
+    },
+    "89_98": {
+      "seam": "89_98",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Corner of plates 89/98 at 42nd St: quadrant blocks SE133/NE158/SE158 (top) and SW133/NW158/SW158 (bottom) are undeveloped, unbuilt lots on both sides of the red-ticked cut. Lot lines and address numbering (2406-2428 / 2502-2528 / 2602-2620) run continuous across the seam with no offset, no duplicated labels, no buildings to split.",
+      "worst_crop": "seam_89_98_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "abf1aaabc65b34879",
+      "diagnoses": []
+    },
+    "8_34": {
+      "seam": "8_34",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Lattice band seam through blocks 557/497/437/377 (top row, ~1700-block addresses) over 558/498/438/378 (bottom row, ~1800-block addresses) straddling 18th St. Building footprints (Swedish Luthn Church, the Tin Shop/Oysters/Wall Paper & Paints parcel at 401-411, Island City Wood Working Co, A.T. Leith Planing Mill) sit fully on one side each with no split or duplicated footprints, water-pipe dashes (6\"/12\" W. Pipe) run unbroken through the seam, and address numbering is continuous in both tiles (a and b).",
+      "worst_crop": "seam_8_34_b_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "abf1aaabc65b34879",
+      "diagnoses": []
+    },
+    "8_35": {
+      "seam": "8_35",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Corner seam at 18th St between plates 437/377 (top, 502-524 / 602-624) and 438/378 (bottom, 501-523 / 601-623). Lot lines and pipe dashes cross the red-ticked cut cleanly with no step; the diagonal gray patch in the middle of the crop is paper foxing/edge darkening, not a stitching defect, and is not scored down per policy.",
+      "worst_crop": "seam_8_35_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "abf1aaabc65b34879",
+      "diagnoses": []
+    },
+    "90_98": {
+      "seam": "90_98",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Corner of plates 90/98 at 42nd St: quadrants SE158/NE183 (top) and SW158/NW183 (bottom) are entirely blank, unbuilt lots with only address grid numbers (2602-2624, 2702-2712...) and plate-quadrant labels. No buildings, labels, or roadway to duplicate or misalign across the red-ticked cut.",
+      "worst_crop": "seam_90_98_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "abf1aaabc65b34879",
+      "diagnoses": []
+    },
+    "90_99": {
+      "seam": "90_99",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Band seam along 39th St between NW185/SW185 (top) and SE159/NE184/SE184 (bottom). Two small building footprints near 2706-2714 sit cleanly on the north side only, the street label '39TH ST.' appears once, and address numbering (2702-2724 north side vs 2701-2729 south side) is continuous with normal odd/even offset for opposite sides of a street. The compass-rose/scale symbol sits within the open street right-of-way, not over drawn ground, so it is normal plate furniture rather than a defect.",
+      "worst_crop": "seam_90_99_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "abf1aaabc65b34879",
+      "diagnoses": []
+    },
+    "91_92": {
+      "seam": "91_92",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Band seam along Ave. G (Winnie) between plates 402/403 (west, ~4200-block) and 342/343/344 (east, with the 'Temporary Railway Yard' cotton-bale storage and Kindergarten School). The avenue width and the 6\"/30\" water-pipe dashes running down its centerline stay constant across both tiles, the rail-spur curve into the yard sweeps smoothly through the crossing with no jog, and the avenue name text appears once, centered on the cut.",
+      "worst_crop": "seam_91_92_a_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "abf1aaabc65b34879",
+      "diagnoses": []
+    },
+    "92_93": {
+      "seam": "92_93",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Control seam along Ave J between Broadway blocks 223/163 (north) and 224/164 (south). House numbers run continuously on both sides (905-924 Broadway west side, 4301-4327/4401-4427 east side; 1001-1024 on the cross street), the dashed 6\" W. Pipe line and the 'Ave J / 92' block label sit exactly on the cut with no jog, and no street, label, or building is duplicated or offset.",
+      "worst_crop": "seam_92_93_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a799977dc4a8f9303",
+      "diagnoses": []
+    },
+    "92_93b": {
+      "seam": "92_93b",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Tiny corner overlap (~7.9k px^2) where four plate quadrants meet near 44th St./45th St. The scale bar, 'ST.' label, T.H. dot, and 6\" W. Pipe dashed line all continue across the corner without duplication, offset, or a step; the blank band below is plate margin, not a canvas gap.",
+      "worst_crop": "seam_92_93b_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a799977dc4a8f9303",
+      "diagnoses": []
+    },
+    "93_93b": {
+      "seam": "93_93b",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Vertical band carrying block 224/164 (Broadway west side, addresses 902-924, and cross-street 1002-1024) down into block 104 (1102-1120) and block 12 (Broadway 4501-4524, Ave J-K) on the next plate. The 6\" W. Pipe dashed line and address sequences are continuous with no doubled block, label, or building; the wide pale band between rows is the two plates' own printed margins/scale-bar area, not an unpainted canvas gap.",
+      "worst_crop": "seam_93_93b_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a799977dc4a8f9303",
+      "diagnoses": []
+    },
+    "93_94": {
+      "seam": "93_94",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Control seam along Ave M. Blocks 42/43 (west, 1203-1228) and 43/44 (continuing south) read as one continuous run of addresses across the street, and the blank platted quadrants N.W.8/N.E.7/N.W.7 on the east side align edge-to-edge with no offset, duplicate label, or gap; block/plate labels '93' and 'M' sit centered on the cut.",
+      "worst_crop": "seam_93_94_b_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a799977dc4a8f9303",
+      "diagnoses": []
+    },
+    "94_95": {
+      "seam": "94_95",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Control seam along Ave N 1/2. Addresses 1503-1524 (NW33/SE32) and 1601-1620 (SW33/NE... wait SE32) on the platted quadrants continue across the cut with matching block lines and no step or duplication. Both sides carry heavy symmetric brown foxing/staining typical of the original scans; per brief this is excluded as a defect and does not affect the score.",
+      "worst_crop": "seam_94_95_a_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a799977dc4a8f9303",
+      "diagnoses": []
+    },
+    "95_96": {
+      "seam": "95_96",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Control seam along Ave P. Blocks SW58/NW83 (1803-1824/1901-1920) and SE57/NE82 continue seamlessly across the street with matching platted-block lines, the '96'/'Avenue P' label centered on the cut, and no duplicated street, label, or building.",
+      "worst_crop": "seam_95_96_a_100.jpg",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a799977dc4a8f9303",
+      "diagnoses": []
+    },
+    "96_97": {
+      "seam": "96_97",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Vertical cut runs down the centerline of Avenue Q 1/2 between blocks NW108/SW108 (crop a) and NE107/SE107 (crop b). House numbers on both faces of the avenue (2113-2127 / 2201-2211) read correctly with no duplication, the 8\" W. Pipe dashed line crosses the cut without a jog, and no building footprint is split or doubled. Heavy foxing and a ragged/deckled paper edge run along the cut in both crops but are excluded by policy (paper staining/edge darkening, not a mosaic defect). Scale bars at the bottom of crop b belong one to each plate's own margin, outside mapped ground, and are not duplicated furniture inside the map.",
+      "worst_crop": "seam_96_97_a_100.jpg",
+      "offset_ft": 0,
+      "fix_hint": "none needed",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a001ced1eac36dd39",
+      "diagnoses": []
+    },
+    "97_98": {
+      "seam": "97_98",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Vertical cut along Avenue S between SW133/NW158 (crop a, north half) and SE132/NE157/NW157 (crop b, south half). Block numbering (2404-2424 / 2501-2524, and house numbers 4301-4327 / 4401-4427 on the avenue) is continuous and not duplicated; the 8\" W. Pipe dashed lines meet cleanly at the avenue centerline with no jog; buildings on both blocks sit clear of the seam. The plate title \"97 S.\" sits inside Avenue S itself at the cut, which the brief notes is normal adjoining-sheet furniture in the roadway, not a defect.",
+      "worst_crop": "seam_97_98_a_100.jpg",
+      "offset_ft": 0,
+      "fix_hint": "none needed",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a001ced1eac36dd39",
+      "diagnoses": []
+    },
+    "99_99a": {
+      "seam": "99_99a",
+      "score": 5,
+      "defects": [
+        "none"
+      ],
+      "reason": "Corner join at 36th St / Avenue T where triangular block 186 is split into N.E.186 (plate 99a) and N.W.186 (plate 99) by the shoreline geometry. Avenue T numbering runs 2702/2704 (99a) opposite 2701/2703/2705 (99, odd side) with no duplication, and the shoreline-facing lot numbers progress correctly across the cut (...3577, 3579 in 99a, then 3601...3623 in 99) without a repeat or gap. The large blank rectangle right of the N.E.186 triangle is legitimate plate-99 canvas (the '99' plate-number label sits inside it) representing undeveloped ground near the Gulf coastline, not an unpainted gap between plates. No split/duplicated building, no doubled label, no offset street.",
+      "worst_crop": "seam_99_99a_100.jpg",
+      "offset_ft": 0,
+      "fix_hint": "none needed",
+      "workflow": "wf_dfa33c97-301",
+      "agentId": "a001ced1eac36dd39",
+      "diagnoses": []
+    }
+  },
+  "summary": {
+    "workflow": "wf_dfa33c97-301",
+    "total_results": 50,
+    "total_seams": 249,
+    "score_histogram": {
+      "5": 203,
+      "4": 38,
+      "3": 5,
+      "2": 3
+    },
+    "seams_with_diagnoses": 8
+  }
+}
