@@ -243,11 +243,11 @@ roses.
 
 | file | pixels | at 300 ppi | notes |
 |---|---|---|---|
-| `outputs/1912/mosaic/1912_fullcity_150ppi.tif` | 35,416 x 46,497 | — | COG, deflate/predictor 2, 512 px tiles, 1.2 GB |
+| `outputs/1912/mosaic/1912_fullcity_150ppi.tif` | 35,491 x 46,479 | — | COG, deflate/predictor 2, 512 px tiles, 1.2 GB |
 | `outputs/1912/tiles/1912.dzi` | same | — | DeepZoom, 278 MB |
-| `outputs/1912/print/1912_wallmaster_59x77in_300ppi.tif` | 17,708 x 23,248 | 59.0 x 77.5 in | 1/4 of the mosaic frame, BigTIFF |
-| `outputs/1912/print/1912_sheet_30x39in_300ppi.tif` / `.pdf` | 8,854 x 11,624 | 29.5 x 38.7 in | whole city on one sheet |
-| `outputs/1912/preview/1912_fullcity_preview.jpg` | 7,083 x 9,299 | — | screen review |
+| `outputs/1912/print/1912_wallmaster_59x77in_300ppi.tif` | 17,745 x 23,239 | 59.2 x 77.5 in | 1/4 of the mosaic frame, BigTIFF |
+| `outputs/1912/print/1912_sheet_30x39in_300ppi.tif` / `.pdf` | 8,872 x 11,619 | 29.6 x 38.7 in | whole city on one sheet |
+| `outputs/1912/preview/1912_fullcity_preview.jpg` | 7,098 x 9,295 | — | screen review |
 
 Each is rendered from the recipe at its own reduction, so no output inherits
 another's resampling. The mosaic frame is ~300 ppi-equivalent at the plates'

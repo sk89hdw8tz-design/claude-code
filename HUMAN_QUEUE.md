@@ -2127,3 +2127,105 @@ the honest options are a junction/along-line term that enters candidate
 
 Not run this wave, by instruction: `publish.py`, `printmaster.py`,
 `perirender.py`, `interiorwins.py` - the render wave is separate.
+
+## HQ-55 · Wave 3' render — APPLIED
+
+All Wave 3' deliverables rebuilt from the Gate A'/B recipe (HEAD 6cee421;
+no file under `outputs/1912/recipe/` touched). Sequence, serial, each step
+verified before the next:
+
+0. Archived the Wave 4 sweep's interior windows before anything overwrote
+   them: `cp outputs/1912/qc/interior/win_*.jpg outputs/1912/qc/interior/windows.json
+   outputs/1912/qc/interior/round2/` (136 win_*.jpg + windows.json = 137
+   files; `round1/` untouched). Both `win_*.jpg` and `windows.json` are
+   git-tracked at the top level, so `round2/` was `git add`-ed too.
+1. `rm -f work/city/*.tif` -> `python3 tools/publish.py --year 1912`. First
+   attempt corrupted `work/city/1912_150ppi.tif` (`gdal_translate` failed
+   with "Using code not yet in table" / `TIFFReadEncodedTile() failed`)
+   because a stray duplicate `publish.py` process from an earlier malformed
+   shell invocation was writing the same file concurrently; killed both,
+   `rm -f work/city/*.tif` again, single clean re-run succeeded.
+2. `python3 tools/printmaster.py --year 1912` then `python3 tools/printmaster.py
+   --year 1912 --tiles 2x2`.
+3. `python3 tools/seamcrops.py --year 1912 --only <pairs> --kinds band,corner`.
+   Ran against the **124-pair `regrade_set`** in `outputs/1912/qc/gatec/
+   regrade_set.json` (supersedes the 94-pair `changed_seams.json`, per the
+   orchestrator's mid-task instruction) — 116 seams rendered. The other 8
+   requested pairs (`18_21 23_30 25_30 25_32 30_35 30_37 32_37 56_63`) are
+   all `kind: corner` entries in `ownership_city.json` whose regions no
+   longer touch after the Wave 2' re-cut (checked directly: `regs[u].buffer(2)
+   .intersection(regs[v].buffer(2)).is_empty == True` and `.area == 0` for
+   all eight) — stale seam-census entries, not a render failure. First full
+   run used the tool's default `--kinds band` and silently dropped every
+   `corner`-kind pair (25 of them); re-run with `--kinds band,corner`
+   explicitly, matching HQ-46's practice.
+4. `python3 tools/perirender.py --year 1912`.
+5. `python3 tools/interiorwins.py --year 1912 --cols 12 --rows 16`.
+6. `outputs/1912/qc/tiling_audit.json` not touched — none of the five tools
+   above write it (only `tools/tiling.py`, out of scope this wave).
+
+**Verification**
+
+- COG: `gdalinfo -norat -noct` opens; `LAYOUT=COG`, `COMPRESSION=DEFLATE`,
+  `PREDICTOR=2`, 512x512 blocks, 7-level overview pyramid. `vipsheader`
+  opens the same file.
+- DZI: `1912.dzi` parses (Height 46479 / Width 35491, matches the COG);
+  `1912_files/` has levels 0-16 (19 dirs total), 278 MB.
+- Wall master / sheet: `vipsheader` opens both TIFFs. Sheet PDF via
+  `pdfinfo`: page 2129.04 x 2788.56 pt = 29.57 x 38.73 in (target
+  29.6x38.7). Preview JPG opens, 7098x9295.
+- 2x2 tiles: all four TIFFs open under `vipsheader`; all four PDFs via
+  `pdfinfo`: c0r0/c0r1 2273.04x2932.56 pt = 31.57x40.73in, c1r0/c1r1
+  2273.76x2932.56 pt = 31.58x40.73in — matches `manifest.json`'s
+  `panel_size_in` for each panel (target 31.6x40.7 per HQ-46 precedent).
+- Seam crops: file-by-file mtime diff of every `outputs/1912/qc/seams/
+  seam_*.jpg` before vs. after — exactly the 116 rendered pairs' files
+  changed (332 files: 100/50 x 1-3 crops per pair), zero files outside
+  that set touched, zero unrequested pairs touched.
+- Periphery: 63 `edge_*.jpg`, all 1500x1500, all with fresh mtimes.
+  `windows.json` here is a fixed input manifest (walked once, not
+  rewritten by `perirender.py` — confirmed by reading the tool source);
+  `edge_08.jpg` (window x -16717..-10717, y -18345..-12345) and
+  `edge_15.jpg` (window x -12091..-6091, y 11340..17340) both sit in the
+  wharf corridor and were re-rendered from the post-move mosaic, so their
+  pixel content reflects sheets 3/4's new placement even though the window
+  rectangle itself is unchanged.
+- Interior: **138 windows** written (`windows.json` rewritten, fresh
+  mtime; 138 `win_*.jpg`, all 1500x1500) — up from round 2's 136 because
+  the 12x16 grid intersects two additional units after the re-cut moved
+  unit boundaries. This is the count for the Gate C sweep to size against.
+
+**Deliverables** (pixel sizes; paths under `outputs/1912/` unless noted)
+
+| file | pixels | on disk |
+|---|---|---|
+| `mosaic/1912_fullcity_150ppi.tif` (COG) | 35491 x 46479 | 1.2 GB |
+| `tiles/1912.dzi` + `tiles/1912_files/` (DeepZoom) | same | 278 MB |
+| `preview/1912_fullcity_preview.jpg` | 7098 x 9295 | 12 MB |
+| `print/1912_wallmaster_59x77in_300ppi.tif` (gitignored, regenerates) | 17745 x 23239 | 257 MB |
+| `print/1912_sheet_30x39in_300ppi.tif` (gitignored, regenerates) | 8872 x 11619 | 79 MB |
+| `print/1912_sheet_30x39in_300ppi.pdf` | 29.57 x 38.73 in page (300 ppi) | 23 MB |
+| `print/tiles/1912_tile_2x2_c0r0_32x41in_300ppi.tif` (gitignored) | 9472 x 12220 | 95 MB |
+| `print/tiles/1912_tile_2x2_c0r1_32x41in_300ppi.tif` (gitignored) | 9472 x 12219 | 76 MB |
+| `print/tiles/1912_tile_2x2_c1r0_32x41in_300ppi.tif` (gitignored) | 9473 x 12220 | 42 MB |
+| `print/tiles/1912_tile_2x2_c1r1_32x41in_300ppi.tif` (gitignored) | 9473 x 12219 | 74 MB |
+| `print/tiles/1912_tile_2x2_c*_32x41in_300ppi.pdf` (4 panels) | — | 24/20/13/20 MB |
+| `qc/seams/seam_*.jpg` | 116 pairs regenerated (332 files) | — |
+| `qc/periphery/edge_*.jpg` | 63 windows | — |
+| `qc/interior/win_*.jpg` | 138 windows | — |
+
+Mosaic frame is 35491 x 46479, vs 35416 x 46497 at the last render (HQ-46) —
+width +75 px, height -18 px, from the wharf sheets 3/4 move (HQ-47) and the
+Wave 2' re-cut (HQ-54) shrinking the city's bay-side extent. `REPORT.md`'s
+"1912 — completion pass" deliverables table updated to match (mosaic, DZI,
+wall master, sheet, preview rows only — narrative untouched, left for
+Wave 5).
+
+**Nothing failed.** The two non-fatal issues above (a corrupted first
+`publish.py` pass from a duplicate-process race, and the `--kinds` default
+silently dropping corner seams) were both caught by verification before
+being reported here, not shipped.
+
+Not run this wave, by instruction: any tool under `outputs/1912/recipe/`
+(`localsolve.py`, `streetcut.py`, `fillgaps.py`, `furncover.py`,
+`wharfplace.py`); no grading.
