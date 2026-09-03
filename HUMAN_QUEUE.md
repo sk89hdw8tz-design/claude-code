@@ -2023,3 +2023,107 @@ was rejected, keep theirs.
 against neighbours' *footprints*, not against their *regions after streetcut*, so
 cutting a box only removes it where a neighbour's region actually covers it.
 Verified with 1:1 crops after the re-cut in HQ-54.
+
+## HQ-54 · Gate A' 3 · Wave 2' re-cut — APPLIED (Gate B: 1 piece and overlap pass; unclaimed explained)
+
+`streetcut.py --year 1912 --band-furniture-free --min-band-span 2000 --apply`
+-> `fillgaps.py --apply` -> `tiling.py`, on the Gate A' recipe (four control
+files plus one new control, six transform solves, the furniture cycle).
+
+**Flags.** The two `proposal_cuts.md` §5 recommends shipping, and only those.
+`--panel-centre` was left off (it moves 3 panel seams and provably removes
+neither duplicate label); `--pick-best` is diagnostic and forbidden;
+`--blank-band` stays off (HQ-43; its dump fires on 0 of 203 min-ink seams).
+`--line-avoid` was **tested and rejected on evidence**: at W=1.0 and W=3.0 the
+63|71 path is byte-identical to W=0, because the side candidate is chosen on
+`visible` alone and the flag only shapes the path inside the chosen candidate.
+
+**Gate B**
+
+| | before | after | gate |
+|---|---|---|---|
+| regions | 106 | 106 | — |
+| disjoint pieces | 1 | **1** | == 1 |
+| overlap | 1,031.2 px2 | **989.3 px2** | <= ~1,100 |
+| union | 4,542,695,866 px2 | 4,518,131,205 px2 | — |
+| unclaimed | 20,649,212 px2 (0.4552%) | **20,960,380 px2 (0.4639%)** | <= 0.455% — **over, explained below** |
+| gaps reported | 25 | 28 | — |
+| min-ink cuts | 172 | 203 | +31 (`--min-band-span`) |
+
+**Why unclaimed rises, by cause.** Two effects, both named:
+
+1. **The denominator.** The union shrinks by **24,564,661 px2** because sheets 3
+   and 4 moved ~350 ft east (HQ-47) onto ground plates 13/15/67/75 already map -
+   the bay edge retreated by that much. With the unclaimed area held at its old
+   value the percentage would already be **0.4570%**, over the gate, on the
+   wharf move alone.
+2. **The numerator**, +311,168 px2 net, item by item:
+   * **+290,879 px2, one new hole at [18220, 45270]** - the only new hole over
+     50k. It is the south-margin strip of **plate 94** carrying its "Scale of
+     Feet" legend: `--band-furniture-free` reopens the band there, the min-ink
+     path detaches the strip from 94's main region, and `streetcut` keeps each
+     region a single polygon so the strip is dropped. `fillgaps` reports it as
+     100% fillable by unit 94 but cannot merge a disjoint piece. **No pixel
+     changes** - it is an interior hole, so the renderer's fallback paints it
+     from 94 (verified by a 1:1 crop) - and it is the same bookkeeping class as
+     the five ~290k bay-edge slivers already on the disclosed list. The proposal
+     predicted this exact sliver ("a second 94 (291k)").
+   * +19,273 px2 at [37063, 38436], +9,275 at [19437, 24547], +7,263 at
+     [31216, 24544] - all under 50k. The last two are the furniture cycles of
+     HQ-53: a 44 px (7.6 ft) wide strip between plate 70's kept title and plate
+     71's cut one, and the same at 73|72; ground only furniture paper covers.
+   * **-22,714 px2**: the 9th St / Ave L inset notch (`proposal_wedges.md` (b))
+     **closed**, because plate 25's title exclusion is now released over the
+     ground plate 24's cut title needs.
+   * +1,575 px2 on the [11167, -17320] sliver, +6,805 on the [3266, -38223]
+     inlet, -1,303 on a cut-line hairline.
+
+   No other hole grew, none closed that should not have, and every hole over
+   50k is either already disclosed or the one named above.
+
+**Changed-seam set**: `outputs/1912/qc/wave4/changed_seams.json` (the flags used,
+the flags rejected and why, and the other recipe changes in the same wave).
+**63 shared seams moved more than 50 px** (largest: 4|15 471.9 px / 81.4 ft,
+25|25b 456.1, 20|24 441.7, 25|31 432.2, 11|13 392.0, 16|67 384.0, 49|55 364.0,
+56|62 360.0, 64|71 329.7, 31|37 329.0) and **31 pairs are newly cut on a min-ink
+path** instead of a straight corner half-plane (15|67 16|68 5a|9 5b|13 6|33 61|69
+62|70 63|71 64|72 65|73 66|74 68|75 69|76 70|77 71|78 73|80 74|81 76|83 77|84
+77|85 78|86 79|87 80|88 81|89 82|90 85|93 85|94 86|95 87|96 88|97 89|98) -
+**94 seams** for the next wave to re-crop and re-grade. Transforms, controls and
+furniture flags all changed in the same wave, so a moved path is not
+attributable to the flags alone.
+
+**Verification, 1:1 crops in `outputs/1912/qc/wave4/verify/`** (before = the
+pre-Gate-A' build rendered from a scratch copy of the old recipe; after = this
+build; same mosaic rect in both):
+
+| defect | files | outcome |
+|---|---|---|
+| plate 4 elevator single | `elevator_4_vs_13.jpg` | **as predicted** - plate 4's "ELEVATOR (IRON CLAD) (For Report See Sheet 13)" now lands on plate 13's Elevator "B" to ~20 px (3.5 ft) |
+| 91\|92 doubled 30" main | `91_92_main_{before,after}.jpg` | **as predicted** - two dashed runs and two captions before, one "30' SUPPLY PIPE" after |
+| win_123 "2117" | `win_123_2117_{before,after}.jpg` | **as predicted** - the numeral was eaten by a blank notch, now whole; 2113-2123 all clean |
+| 64\|72 8" main | `64_72_main_{before,after}.jpg` | **as predicted** - blank roadway and an orphaned label stub before; `80' 8" W. PIPE ===` restored after |
+| 64\|71 alley jog | `64_71_alley_{before,after}.jpg` | **as predicted** - the N-S main jogged ~75 px (13 ft) at the seam, now ~5 px (1 ft) |
+| 17\|18 8th St step | `17_18_8th_st_{before,after}.jpg` | **as predicted** - the block-face rows stepped ~35 px (6 ft), now ~7 px (1.2 ft) |
+| 63\|70 legend in the roadway | `63_70_legend_{before,after}.jpg` | **partly**: plate 63's "Scale of Feet" legend and graduated bar are gone, and plate 70's title (96,690 px2, the smallest box of the cycle) prints in their place instead - 2.7x less furniture over mapped ground, which is what the rule buys. A 44 px strip of the legend ("of", "50") survives in the 9,275 px2 unowned sliver, painted back by the renderer's interior fallback |
+| 63\|71 10" main | `63_71_main_{before,after}.jpg` | **NOT fixed** - see below |
+
+**The one prediction that did not hold: 63\|71.** `--min-band-span 2000` does
+reclassify the pair (straight corner half-plane -> min-ink path) as the proposal
+says, but on *this* recipe `dp_cut` picks the **north** side candidate (off -120,
+`visible` 7,759,971 against the south candidate's 8,025,776) and the path runs
+y 24289.8-24461.8 - 70+ px north of plate 63's 10" main at y ~24540, which
+therefore still falls on plate 71's side, and 71 does not draw it. Two reasons
+the proposal's result does not reproduce: the plates moved (HQ-50 re-solved 63
+and 71) and, more fundamentally, **plate 63's own scale-bar box overlaps its own
+10" main** (box mosaic [18794, 24447, 20079, 24649]; the main runs y 24532-24552
+from x 19739), so once the legend is cut - which HQ-53 does - the western 340 px
+of that main leaves the mosaic with it. The two fixes are in direct conflict over
+that ground. `--line-avoid` cannot help (it does not enter the side choice) and
+`--pick-best` picks the same north candidate. **No regression**: the main was
+missing over the same run before this wave. Recorded for the next evidence pass;
+the honest options are a junction/along-line term that enters candidate
+*selection*, or trimming plate 63's scale-bar box off its own drawn main.
+
+Not run this wave, by instruction: `publish.py`, `printmaster.py`,
+`perirender.py`, `interiorwins.py` - the render wave is separate.

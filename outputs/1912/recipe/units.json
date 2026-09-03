@@ -1452,7 +1452,7 @@
      "match_score": 0.687
     }
    ],
-   "exclude_dropped_note": "the exclude_native twin of furniture box 0 was dropped by tools/furncover.py's cycle pass (cycle 24[0] 25[0]): the same rectangle was declared both as furniture and as an exclusion, which blanked the ground the cycle's other plates need"
+   "exclude_dropped_note": "the exclude_native twin of furniture box 0 was dropped by tools/furncover.py's cycle pass (cycle 24[0] 25[0]) over the ground the cycle's cut boxes need, and only there: the same rectangle was declared both as furniture and as an exclusion, which blanked that ground whatever the cut flag said"
   },
   "25": {
    "file": 25,
@@ -1498,6 +1498,36 @@
      [
       2548,
       1168
+     ]
+    ],
+    [
+     [
+      80.0,
+      111.3
+     ],
+     [
+      148.0,
+      111.5
+     ],
+     [
+      147.6,
+      226.0
+     ],
+     [
+      217.0,
+      226.0
+     ],
+     [
+      217.0,
+      83.0
+     ],
+     [
+      80.0,
+      83.0
+     ],
+     [
+      80.0,
+      111.3
      ]
     ]
    ],
@@ -1551,7 +1581,7 @@
     }
    },
    "exclude_native_note": "inset cut-out east side moved 3244 -> 3271 with the parent's extent; the other three sides are unchanged and stand clear of the inset's measured heavy frame (native x 2560-2580 and y 1140-1165).",
-   "exclude_dropped_note": "the exclude_native twin of furniture box 0 was dropped by tools/furncover.py's cycle pass (cycle 24[0] 25[0]): the same rectangle was declared both as furniture and as an exclusion, which blanked the ground the cycle's other plates need"
+   "exclude_dropped_note": "the exclude_native twin of furniture box 0 was dropped by tools/furncover.py's cycle pass (cycle 24[0] 25[0]) over the ground the cycle's cut boxes need, and only there: the same rectangle was declared both as furniture and as an exclusion, which blanked that ground whatever the cut flag said"
   },
   "26": {
    "file": 26,
@@ -5162,7 +5192,30 @@
     "right",
     "bottom"
    ],
-   "exclude_native": [],
+   "exclude_native": [
+    [
+     [
+      3045.0,
+      189.0
+     ],
+     [
+      3076.6,
+      189.0
+     ],
+     [
+      3076.7,
+      118.0
+     ],
+     [
+      3045.0,
+      118.0
+     ],
+     [
+      3045.0,
+      189.0
+     ]
+    ]
+   ],
    "furniture_native": [
     {
      "kind": "plate number and title",
@@ -5190,7 +5243,7 @@
      "match_score": 0.734
     }
    ],
-   "exclude_dropped_note": "the exclude_native twin of furniture box 0 was dropped by tools/furncover.py's cycle pass (cycle 63[1] 70[0] 71[0]): the same rectangle was declared both as furniture and as an exclusion, which blanked the ground the cycle's other plates need"
+   "exclude_dropped_note": "the exclude_native twin of furniture box 0 was dropped by tools/furncover.py's cycle pass (cycle 63[1] 70[0] 71[0]) over the ground the cycle's cut boxes need, and only there: the same rectangle was declared both as furniture and as an exclusion, which blanked that ground whatever the cut flag said"
   },
   "71": {
    "file": 71,
@@ -5247,7 +5300,7 @@
      "match_score": 0.71
     }
    ],
-   "exclude_dropped_note": "the exclude_native twin of furniture box 0 was dropped by tools/furncover.py's cycle pass (cycle 63[1] 70[0] 71[0]): the same rectangle was declared both as furniture and as an exclusion, which blanked the ground the cycle's other plates need"
+   "exclude_dropped_note": "the exclude_native twin of furniture box 0 was dropped by tools/furncover.py's cycle pass (cycle 63[1] 70[0] 71[0]) over the ground the cycle's cut boxes need, and only there: the same rectangle was declared both as furniture and as an exclusion, which blanked that ground whatever the cut flag said"
   },
   "73": {
    "file": 73,
@@ -5276,7 +5329,30 @@
     "right",
     "bottom"
    ],
-   "exclude_native": [],
+   "exclude_native": [
+    [
+     [
+      291.0,
+      89.0
+     ],
+     [
+      263.5,
+      89.0
+     ],
+     [
+      263.7,
+      167.5
+     ],
+     [
+      291.0,
+      167.6
+     ],
+     [
+      291.0,
+      89.0
+     ]
+    ]
+   ],
    "furniture_native": [
     {
      "kind": "plate number and title",
@@ -5304,7 +5380,7 @@
      "match_score": 0.729
     }
    ],
-   "exclude_dropped_note": "the exclude_native twin of furniture box 0 was dropped by tools/furncover.py's cycle pass (cycle 65[1] 72[0] 73[0]): the same rectangle was declared both as furniture and as an exclusion, which blanked the ground the cycle's other plates need"
+   "exclude_dropped_note": "the exclude_native twin of furniture box 0 was dropped by tools/furncover.py's cycle pass (cycle 65[1] 72[0] 73[0]) over the ground the cycle's cut boxes need, and only there: the same rectangle was declared both as furniture and as an exclusion, which blanked that ground whatever the cut flag said"
   },
   "74": {
    "file": 74,
@@ -6179,6 +6255,36 @@
       85,
       3817
      ]
+    ],
+    [
+     [
+      90.0,
+      256.0
+     ],
+     [
+      216.6,
+      256.0
+     ],
+     [
+      216.8,
+      193.2
+     ],
+     [
+      325.0,
+      193.5
+     ],
+     [
+      325.0,
+      123.0
+     ],
+     [
+      90.0,
+      123.0
+     ],
+     [
+      90.0,
+      256.0
+     ]
     ]
    ],
    "panels": [
@@ -6211,7 +6317,7 @@
      "match_score": 0.667
     }
    ],
-   "exclude_dropped_note": "the exclude_native twin of furniture box 0 was dropped by tools/furncover.py's cycle pass (cycle 77[1] 85[0]): the same rectangle was declared both as furniture and as an exclusion, which blanked the ground the cycle's other plates need"
+   "exclude_dropped_note": "the exclude_native twin of furniture box 0 was dropped by tools/furncover.py's cycle pass (cycle 77[1] 85[0]) over the ground the cycle's cut boxes need, and only there: the same rectangle was declared both as furniture and as an exclusion, which blanked that ground whatever the cut flag said"
   },
   "86": {
    "file": 86,
@@ -6424,7 +6530,7 @@
      "match_score": 0.588
     }
    ],
-   "exclude_dropped_note": "the exclude_native twin of furniture box 0 was dropped by tools/furncover.py's cycle pass (cycle 81[1] 88[0] 89[0]): the same rectangle was declared both as furniture and as an exclusion, which blanked the ground the cycle's other plates need"
+   "exclude_dropped_note": "the exclude_native twin of furniture box 0 was dropped by tools/furncover.py's cycle pass (cycle 81[1] 88[0] 89[0]) over the ground the cycle's cut boxes need, and only there: the same rectangle was declared both as furniture and as an exclusion, which blanked that ground whatever the cut flag said"
   },
   "89": {
    "file": 89,
@@ -6452,7 +6558,30 @@
     "left",
     "right"
    ],
-   "exclude_native": [],
+   "exclude_native": [
+    [
+     [
+      350.0,
+      108.0
+     ],
+     [
+      225.3,
+      108.0
+     ],
+     [
+      225.4,
+      175.0
+     ],
+     [
+      350.0,
+      175.4
+     ],
+     [
+      350.0,
+      108.0
+     ]
+    ]
+   ],
    "furniture_native": [
     {
      "kind": "plate number and title",
@@ -6479,7 +6608,7 @@
      "covered_fraction": 1.0
     }
    ],
-   "exclude_dropped_note": "the exclude_native twin of furniture box 0 was dropped by tools/furncover.py's cycle pass (cycle 81[1] 88[0] 89[0]): the same rectangle was declared both as furniture and as an exclusion, which blanked the ground the cycle's other plates need"
+   "exclude_dropped_note": "the exclude_native twin of furniture box 0 was dropped by tools/furncover.py's cycle pass (cycle 81[1] 88[0] 89[0]) over the ground the cycle's cut boxes need, and only there: the same rectangle was declared both as furniture and as an exclusion, which blanked that ground whatever the cut flag said"
   },
   "90": {
    "file": 90,
@@ -7341,7 +7470,7 @@
      "match_score": 0.639
     }
    ],
-   "exclude_dropped_note": "the exclude_native twin of furniture box 0 was dropped by tools/furncover.py's cycle pass (cycle 65[1] 72[0] 73[0]): the same rectangle was declared both as furniture and as an exclusion, which blanked the ground the cycle's other plates need"
+   "exclude_dropped_note": "the exclude_native twin of furniture box 0 was dropped by tools/furncover.py's cycle pass (cycle 65[1] 72[0] 73[0]) over the ground the cycle's cut boxes need, and only there: the same rectangle was declared both as furniture and as an exclusion, which blanked that ground whatever the cut flag said"
   },
   "26b": {
    "file": 26,

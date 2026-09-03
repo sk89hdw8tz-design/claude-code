@@ -152,31 +152,56 @@ def main():
             comps.remove(c)
         comps.append(sorted(merged))
 
-    def exclusion_twins(v, box, grow=6.0):
-        """(kept, dropped) exclude_native polygons of unit v against one of its
-        own furniture boxes. A plate that declares the same rectangle twice --
-        once as furniture, once as an exclusion -- blanks that ground for its
-        neighbours whatever the `cut` flag says, which is the mechanism behind
-        every cycle here. Inside a resolved cycle the twin is redundant: if the
-        box is cut, `footprint_native` removes the same rectangle (grown 6 px)
-        anyway; if it is the kept box, the plate is supposed to supply that
-        paper to the others."""
+    def to_native(v, geom):
+        """A mosaic polygon in unit v's native pixels."""
+        M, t = r.sheet_matrix(v)
+        Mi = np.linalg.inv(M)
+        return affine_transform(geom, [Mi[0, 0], Mi[0, 1], Mi[1, 0], Mi[1, 1],
+                                       -(Mi @ t)[0], -(Mi @ t)[1]])
+
+    def exclusion_twins(v, box, need, grow=6.0):
+        """Rewrite unit v's `exclude_native` for a cycle: the twin of its own
+        furniture box is released, but ONLY over `need` -- the ground the
+        cycle's cut boxes actually have to be supplied on. A plate that
+        declares the same rectangle twice (once as furniture, once as an
+        exclusion) blanks that ground for its neighbours whatever the `cut`
+        flag says, which is the mechanism behind every cycle here; releasing
+        the whole rectangle instead would hand the plate roadway it does not
+        need and print its title there. Returns (new exclude list, released
+        mosaic polygon)."""
         from shapely.geometry import Polygon
         kb = mosaic_box(v, box, grow)
         M, t = r.sheet_matrix(v)
         A = [M[0, 0], M[0, 1], M[1, 0], M[1, 1], t[0], t[1]]
-        keep_ex, dropped = [], []
+        out, released = [], []
         for ex in r.units[v].get("exclude_native") or []:
             gm = affine_transform(Polygon(ex).buffer(0), A)
-            (dropped if gm.intersection(kb).area > 0.9 * gm.area else keep_ex).append((ex, gm))
-        return keep_ex, dropped
+            if gm.intersection(kb).area <= 0.9 * gm.area:
+                out.append(ex)                       # not this box's twin
+                continue
+            rel = gm.intersection(need)
+            if rel.is_empty:
+                out.append(ex)
+                continue
+            released.append(rel)
+            rest = gm.difference(need).buffer(0)
+            for g in ([rest] if rest.geom_type == "Polygon" else list(rest.geoms)):
+                if g.area > 1000.0:
+                    out.append([[round(x, 1), round(y, 1)]
+                                for x, y in to_native(v, g).exterior.coords])
+        return out, (unary_union(released) if released else None)
 
     def apply_cycle(S):
         keep = min(S, key=lambda k: sc[k]["area"])
-        out = {}
         for v, j in S:
             doc["units"][v]["furniture_native"][j]["cut"] = ((v, j) != keep)
-            out[(v, j)] = exclusion_twins(v, doc["units"][v]["furniture_native"][j]["box"])
+        need = unary_union([mosaic_box(v, doc["units"][v]["furniture_native"][j]["box"], 6.0)
+                            for v, j in S if (v, j) != keep])
+        out = {}
+        for v, j in S:
+            b = doc["units"][v]["furniture_native"][j]["box"]
+            out[(v, j)] = exclusion_twins(v, b, need if (v, j) == keep else
+                                          mosaic_box(v, b, 6.0))
         return keep, out
 
     # A cycle is only resolved if the resolution WORKS: every box it cuts must
@@ -189,10 +214,9 @@ def main():
         for S in live:
             keep, tw = apply_cycle(S)
             plan[tuple(S)] = (keep, tw)
-            for (v, j), (_, dropped) in tw.items():
-                if dropped:
-                    drop[v] = unary_union([gm for _, gm in dropped] +
-                                          ([drop[v]] if v in drop else []))
+            for (v, j), (_, released) in tw.items():
+                if released is not None:
+                    drop[v] = unary_union([released] + ([drop[v]] if v in drop else []))
         sc2 = score(exclude_dropped=drop) if drop else score()
         bad = [S for S in live
                if any(sc2[k]["cov"] < a.cover for k in S if k != plan[tuple(S)][0])]
@@ -213,14 +237,15 @@ def main():
                           ("cut: %s[%d] is the smallest box of the %d-box furniture cycle %s and "
                            "keeps its paper" % (keep[0], keep[1], len(S),
                                                 " ".join("%s[%d]" % k for k in S))))
-            keep_ex, dropped = tw[(v, j)]
-            if dropped:
-                doc["units"][v]["exclude_native"] = [e for e, _ in keep_ex]
+            keep_ex, released = tw[(v, j)]
+            if released is not None:
+                doc["units"][v]["exclude_native"] = keep_ex
                 doc["units"][v]["exclude_dropped_note"] = (
                     "the exclude_native twin of furniture box %d was dropped by "
-                    "tools/furncover.py's cycle pass (cycle %s): the same rectangle was declared "
-                    "both as furniture and as an exclusion, which blanked the ground the cycle's "
-                    "other plates need" % (j, " ".join("%s[%d]" % k for k in S)))
+                    "tools/furncover.py's cycle pass (cycle %s) over the ground the cycle's cut "
+                    "boxes need, and only there: the same rectangle was declared both as furniture "
+                    "and as an exclusion, which blanked that ground whatever the cut flag said" %
+                    (j, " ".join("%s[%d]" % k for k in S)))
         resolved.append((S, keep))
     if drop:
         for (u, i), d in score(exclude_dropped=drop).items():

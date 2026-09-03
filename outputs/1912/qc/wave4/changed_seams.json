@@ -1,0 +1,1222 @@
+{
+ "generated_by": "tools/cutdiff.py (Gate A' wave 2', session 018fqghgw6)",
+ "note": "changed-seam set for the Wave 2' re-cut: every seam whose cut path moved more than 50 px between the pre-Gate-A' build (172 cuts) and the re-cut (203), plus the 31 pairs that were straight corner cuts before and are min-ink paths now. Transforms, controls and furniture flags all changed in the same wave, so a moved path is not attributable to the flags alone.",
+ "streetcut_flags": [
+  "--band-furniture-free",
+  "--min-band-span 2000"
+ ],
+ "flags_considered_not_used": {
+  "--panel-centre": "moves 3 panel seams (20|20b, 25|25b, 48|48b) and provably removes neither duplicate label (proposal_cuts.md \u00a71)",
+  "--line-avoid 1.0 / 3.0": "tested on this build: the 63|71 path is byte-identical at W=0, 1.0 and 3.0, and the flag cannot flip a candidate (the side sort is on visible ink), so it buys nothing here",
+  "--pick-best": "diagnostic only; reverts the side choice at 57|58 and 76|84 (proposal_cuts.md \u00a74)",
+  "--blank-band": "stayed off, as HQ-43 concluded; its dump fires on 0 of 203 min-ink seams"
+ },
+ "recipe_changes_in_the_same_wave": [
+  "wharf sheets 3 and 4 re-placed (HQ-47)",
+  "units 91 / 17+18 / 63+64+71+72 / 20+24+30+25+31+32+37+38 re-solved (HQ-48..51)",
+  "furniture cycle rule: 10 cut flags and 9 partial exclusion releases (HQ-53)"
+ ],
+ "before_cuts": "/tmp/claude-0/-home-user-claude-code/667180c2-8c6a-5c7c-8f63-764f5714e1d7/scratchpad/cuts_base.json",
+ "after_cuts": "/tmp/claude-0/-home-user-claude-code/667180c2-8c6a-5c7c-8f63-764f5714e1d7/scratchpad/cuts_after.json",
+ "min_move_px": 50.0,
+ "moved": [
+  {
+   "pair": [
+    "4",
+    "15"
+   ],
+   "axis": "x",
+   "median_px": 172.0,
+   "p90_px": 384.0,
+   "max_px": 471.9,
+   "max_ft": 81.4,
+   "coord_before": -8892.27,
+   "coord_after": -8892.38,
+   "off_before": 120.0,
+   "off_after": 0.0,
+   "blank_band_before": null,
+   "blank_band_after": null
+  },
+  {
+   "pair": [
+    "25",
+    "25b"
+   ],
+   "axis": "x",
+   "median_px": 271.5,
+   "p90_px": 370.1,
+   "max_px": 456.1,
+   "max_ft": 78.7,
+   "coord_before": 21381.48,
+   "coord_after": 21349.75,
+   "off_before": 120.0,
+   "off_after": -120.0,
+   "blank_band_before": null,
+   "blank_band_after": null
+  },
+  {
+   "pair": [
+    "20",
+    "24"
+   ],
+   "axis": "y",
+   "median_px": 233.7,
+   "p90_px": 284.7,
+   "max_px": 441.7,
+   "max_ft": 76.2,
+   "coord_before": -31044.05,
+   "coord_after": -31048.67,
+   "off_before": 120.0,
+   "off_after": -120.0,
+   "blank_band_before": null,
+   "blank_band_after": null
+  },
+  {
+   "pair": [
+    "25",
+    "31"
+   ],
+   "axis": "y",
+   "median_px": 128.2,
+   "p90_px": 208.8,
+   "max_px": 432.2,
+   "max_ft": 74.6,
+   "coord_before": -24179.6,
+   "coord_after": -24180.91,
+   "off_before": 120.0,
+   "off_after": 0.0,
+   "blank_band_before": null,
+   "blank_band_after": null
+  },
+  {
+   "pair": [
+    "11",
+    "13"
+   ],
+   "axis": "y",
+   "median_px": 96.0,
+   "p90_px": 300.0,
+   "max_px": 392.0,
+   "max_ft": 67.6,
+   "coord_before": 10583.9,
+   "coord_after": 10583.9,
+   "off_before": 0.0,
+   "off_after": 120.0,
+   "blank_band_before": null,
+   "blank_band_after": null
+  },
+  {
+   "pair": [
+    "16",
+    "67"
+   ],
+   "axis": "y",
+   "median_px": 188.0,
+   "p90_px": 260.0,
+   "max_px": 384.0,
+   "max_ft": 66.2,
+   "coord_before": 24419.35,
+   "coord_after": 24419.35,
+   "off_before": -120.0,
+   "off_after": 120.0,
+   "blank_band_before": null,
+   "blank_band_after": null
+  },
+  {
+   "pair": [
+    "49",
+    "55"
+   ],
+   "axis": "y",
+   "median_px": 124.0,
+   "p90_px": 228.0,
+   "max_px": 364.0,
+   "max_ft": 62.8,
+   "coord_before": 10579.75,
+   "coord_after": 10579.75,
+   "off_before": 0.0,
+   "off_after": 120.0,
+   "blank_band_before": null,
+   "blank_band_after": null
+  },
+  {
+   "pair": [
+    "56",
+    "62"
+   ],
+   "axis": "y",
+   "median_px": 228.0,
+   "p90_px": 312.0,
+   "max_px": 360.0,
+   "max_ft": 62.1,
+   "coord_before": 17529.49,
+   "coord_after": 17529.49,
+   "off_before": -120.0,
+   "off_after": 120.0,
+   "blank_band_before": null,
+   "blank_band_after": null
+  },
+  {
+   "pair": [
+    "64",
+    "71"
+   ],
+   "axis": "y",
+   "median_px": 49.7,
+   "p90_px": 276.8,
+   "max_px": 329.7,
+   "max_ft": 56.9,
+   "coord_before": 24535.44,
+   "coord_after": 24553.22,
+   "off_before": -120.0,
+   "off_after": 0.0,
+   "blank_band_before": null,
+   "blank_band_after": null
+  },
+  {
+   "pair": [
+    "31",
+    "37"
+   ],
+   "axis": "y",
+   "median_px": 128.1,
+   "p90_px": 241.0,
+   "max_px": 329.0,
+   "max_ft": 56.8,
+   "coord_before": -17213.21,
+   "coord_after": -17222.31,
+   "off_before": 0.0,
+   "off_after": 120.0,
+   "blank_band_before": null,
+   "blank_band_after": null
+  },
+  {
+   "pair": [
+    "65",
+    "72"
+   ],
+   "axis": "y",
+   "median_px": 238.6,
+   "p90_px": 270.6,
+   "max_px": 298.6,
+   "max_ft": 51.5,
+   "coord_before": 24511.4,
+   "coord_after": 24512.03,
+   "off_before": 120.0,
+   "off_after": -120.0,
+   "blank_band_before": null,
+   "blank_band_after": null
+  },
+  {
+   "pair": [
+    "28",
+    "34"
+   ],
+   "axis": "y",
+   "median_px": 58.0,
+   "p90_px": 124.0,
+   "max_px": 292.0,
+   "max_ft": 50.4,
+   "coord_before": -17280.24,
+   "coord_after": -17280.24,
+   "off_before": 0.0,
+   "off_after": 120.0,
+   "blank_band_before": null,
+   "blank_band_after": null
+  },
+  {
+   "pair": [
+    "74",
+    "99a"
+   ],
+   "axis": "x",
+   "median_px": 0.0,
+   "p90_px": 0.0,
+   "max_px": 292.0,
+   "max_ft": 50.4,
+   "coord_before": 43278.71,
+   "coord_after": 43278.71,
+   "off_before": 0.0,
+   "off_after": 0.0,
+   "blank_band_before": null,
+   "blank_band_after": null
+  },
+  {
+   "pair": [
+    "29",
+    "30"
+   ],
+   "axis": "x",
+   "median_px": 171.9,
+   "p90_px": 211.9,
+   "max_px": 245.7,
+   "max_ft": 42.4,
+   "coord_before": 9236.61,
+   "coord_after": 9236.18,
+   "off_before": -116.9,
+   "off_after": 120.0,
+   "blank_band_before": null,
+   "blank_band_after": null
+  },
+  {
+   "pair": [
+    "64",
+    "65"
+   ],
+   "axis": "x",
+   "median_px": 100.0,
+   "p90_px": 168.8,
+   "max_px": 244.0,
+   "max_ft": 42.1,
+   "coord_before": 27409.91,
+   "coord_after": 27407.13,
+   "off_before": 120.0,
+   "off_after": 0.0,
+   "blank_band_before": null,
+   "blank_band_after": null
+  },
+  {
+   "pair": [
+    "4",
+    "13"
+   ],
+   "axis": "x",
+   "median_px": 105.5,
+   "p90_px": 186.4,
+   "max_px": 242.5,
+   "max_ft": 41.8,
+   "coord_before": -8851.75,
+   "coord_after": -8851.84,
+   "off_before": -120.0,
+   "off_after": 0.0,
+   "blank_band_before": null,
+   "blank_band_after": null
+  },
+  {
+   "pair": [
+    "58",
+    "64"
+   ],
+   "axis": "y",
+   "median_px": 29.4,
+   "p90_px": 189.4,
+   "max_px": 241.4,
+   "max_ft": 41.6,
+   "coord_before": 17589.37,
+   "coord_after": 17589.28,
+   "off_before": 120.0,
+   "off_after": 0.0,
+   "blank_band_before": null,
+   "blank_band_after": null
+  },
+  {
+   "pair": [
+    "20b",
+    "25"
+   ],
+   "axis": "y",
+   "median_px": 175.4,
+   "p90_px": 217.6,
+   "max_px": 237.6,
+   "max_ft": 41.0,
+   "coord_before": -31048.59,
+   "coord_after": -31049.76,
+   "off_before": 0.0,
+   "off_after": -120.0,
+   "blank_band_before": null,
+   "blank_band_after": null
+  },
+  {
+   "pair": [
+    "17",
+    "18"
+   ],
+   "axis": "x",
+   "median_px": 183.7,
+   "p90_px": 203.7,
+   "max_px": 223.7,
+   "max_ft": 38.6,
+   "coord_before": -2778.27,
+   "coord_after": -2780.97,
+   "off_before": 120.0,
+   "off_after": -118.1,
+   "blank_band_before": null,
+   "blank_band_after": null
+  },
+  {
+   "pair": [
+    "17",
+    "21"
+   ],
+   "axis": "y",
+   "median_px": 8.0,
+   "p90_px": 27.8,
+   "max_px": 216.0,
+   "max_ft": 37.3,
+   "coord_before": -31164.66,
+   "coord_after": -31172.1,
+   "off_before": 0.0,
+   "off_after": 0.0,
+   "blank_band_before": null,
+   "blank_band_after": null
+  },
+  {
+   "pair": [
+    "91",
+    "92"
+   ],
+   "axis": "x",
+   "median_px": 180.0,
+   "p90_px": 200.0,
+   "max_px": 208.0,
+   "max_ft": 35.9,
+   "coord_before": 5001.14,
+   "coord_after": 5012.92,
+   "off_before": -95.4,
+   "off_after": 104.6,
+   "blank_band_before": null,
+   "blank_band_after": null
+  },
+  {
+   "pair": [
+    "48",
+    "99a"
+   ],
+   "axis": "y",
+   "median_px": 170.9,
+   "p90_px": 203.1,
+   "max_px": 207.1,
+   "max_ft": 35.7,
+   "coord_before": 24837.2,
+   "coord_after": 24837.2,
+   "off_before": -95.3,
+   "off_after": 97.8,
+   "blank_band_before": null,
+   "blank_band_after": null
+  },
+  {
+   "pair": [
+    "19",
+    "23"
+   ],
+   "axis": "y",
+   "median_px": 0.0,
+   "p90_px": 0.0,
+   "max_px": 200.0,
+   "max_ft": 34.5,
+   "coord_before": -31119.54,
+   "coord_after": -31119.54,
+   "off_before": 0.0,
+   "off_after": 0.0,
+   "blank_band_before": null,
+   "blank_band_after": null
+  },
+  {
+   "pair": [
+    "71",
+    "72"
+   ],
+   "axis": "x",
+   "median_px": 146.9,
+   "p90_px": 170.3,
+   "max_px": 182.3,
+   "max_ft": 31.4,
+   "coord_before": 25306.15,
+   "coord_after": 25309.48,
+   "off_before": -93.1,
+   "off_after": 96.6,
+   "blank_band_before": null,
+   "blank_band_after": null
+  },
+  {
+   "pair": [
+    "88",
+    "96"
+   ],
+   "axis": "y",
+   "median_px": 0.0,
+   "p90_px": 48.0,
+   "max_px": 180.0,
+   "max_ft": 31.1,
+   "coord_before": 45353.96,
+   "coord_after": 45353.96,
+   "off_before": 120.0,
+   "off_after": 120.0,
+   "blank_band_before": null,
+   "blank_band_after": null
+  },
+  {
+   "pair": [
+    "82",
+    "99"
+   ],
+   "axis": "x",
+   "median_px": 121.8,
+   "p90_px": 141.8,
+   "max_px": 165.8,
+   "max_ft": 28.6,
+   "coord_before": 45334.15,
+   "coord_after": 45334.15,
+   "off_before": 89.5,
+   "off_after": -90.5,
+   "blank_band_before": null,
+   "blank_band_after": null
+  },
+  {
+   "pair": [
+    "26b",
+    "38"
+   ],
+   "axis": "x",
+   "median_px": 4.0,
+   "p90_px": 40.0,
+   "max_px": 148.0,
+   "max_ft": 25.5,
+   "coord_before": 27284.46,
+   "coord_after": 27281.01,
+   "off_before": 120.0,
+   "off_after": 120.0,
+   "blank_band_before": null,
+   "blank_band_after": null
+  },
+  {
+   "pair": [
+    "25b",
+    "32"
+   ],
+   "axis": "y",
+   "median_px": 57.8,
+   "p90_px": 121.8,
+   "max_px": 133.8,
+   "max_ft": 23.1,
+   "coord_before": -24157.7,
+   "coord_after": -24159.46,
+   "off_before": 120.0,
+   "off_after": 0.0,
+   "blank_band_before": null,
+   "blank_band_after": null
+  },
+  {
+   "pair": [
+    "19",
+    "20"
+   ],
+   "axis": "x",
+   "median_px": 12.1,
+   "p90_px": 43.6,
+   "max_px": 127.6,
+   "max_ft": 22.0,
+   "coord_before": 9193.44,
+   "coord_after": 9201.22,
+   "off_before": -120.0,
+   "off_after": -120.0,
+   "blank_band_before": null,
+   "blank_band_after": null
+  },
+  {
+   "pair": [
+    "63",
+    "70"
+   ],
+   "axis": "y",
+   "median_px": 3.9,
+   "p90_px": 28.3,
+   "max_px": 120.6,
+   "max_ft": 20.8,
+   "coord_before": 24490.66,
+   "coord_after": 24490.65,
+   "off_before": 120.0,
+   "off_after": 120.0,
+   "blank_band_before": null,
+   "blank_band_after": null
+  },
+  {
+   "pair": [
+    "24",
+    "30"
+   ],
+   "axis": "y",
+   "median_px": 9.0,
+   "p90_px": 25.8,
+   "max_px": 111.0,
+   "max_ft": 19.1,
+   "coord_before": -24213.28,
+   "coord_after": -24209.42,
+   "off_before": 120.0,
+   "off_after": 120.0,
+   "blank_band_before": null,
+   "blank_band_after": null
+  },
+  {
+   "pair": [
+    "83",
+    "91"
+   ],
+   "axis": "y",
+   "median_px": 5.3,
+   "p90_px": 17.7,
+   "max_px": 109.9,
+   "max_ft": 19.0,
+   "coord_before": 45204.88,
+   "coord_after": 45206.22,
+   "off_before": 120.0,
+   "off_after": 120.0,
+   "blank_band_before": null,
+   "blank_band_after": null
+  },
+  {
+   "pair": [
+    "32",
+    "38"
+   ],
+   "axis": "y",
+   "median_px": 27.3,
+   "p90_px": 41.0,
+   "max_px": 109.6,
+   "max_ft": 18.9,
+   "coord_before": -17124.14,
+   "coord_after": -17153.31,
+   "off_before": 120.0,
+   "off_after": 120.0,
+   "blank_band_before": null,
+   "blank_band_after": null
+  },
+  {
+   "pair": [
+    "37",
+    "41"
+   ],
+   "axis": "y",
+   "median_px": 8.0,
+   "p90_px": 41.0,
+   "max_px": 107.0,
+   "max_ft": 18.5,
+   "coord_before": -10337.73,
+   "coord_after": -10344.11,
+   "off_before": 120.0,
+   "off_after": 120.0,
+   "blank_band_before": null,
+   "blank_band_after": null
+  },
+  {
+   "pair": [
+    "53",
+    "59"
+   ],
+   "axis": "y",
+   "median_px": 0.1,
+   "p90_px": 4.1,
+   "max_px": 104.1,
+   "max_ft": 18.0,
+   "coord_before": 10729.52,
+   "coord_after": 10729.52,
+   "off_before": 0.0,
+   "off_after": 0.0,
+   "blank_band_before": null,
+   "blank_band_after": null
+  },
+  {
+   "pair": [
+    "30",
+    "31"
+   ],
+   "axis": "x",
+   "median_px": 27.7,
+   "p90_px": 62.4,
+   "max_px": 102.4,
+   "max_ft": 17.7,
+   "coord_before": 15452.44,
+   "coord_after": 15446.99,
+   "off_before": -63.8,
+   "off_after": -87.9,
+   "blank_band_before": null,
+   "blank_band_after": null
+  },
+  {
+   "pair": [
+    "24",
+    "25"
+   ],
+   "axis": "x",
+   "median_px": 61.0,
+   "p90_px": 81.0,
+   "max_px": 101.0,
+   "max_ft": 17.4,
+   "coord_before": 15478.42,
+   "coord_after": 15470.01,
+   "off_before": 0.0,
+   "off_after": -53.0,
+   "blank_band_before": null,
+   "blank_band_after": null
+  },
+  {
+   "pair": [
+    "50",
+    "56"
+   ],
+   "axis": "y",
+   "median_px": 0.0,
+   "p90_px": 0.0,
+   "max_px": 96.0,
+   "max_ft": 16.6,
+   "coord_before": 10587.53,
+   "coord_after": 10587.53,
+   "off_before": 120.0,
+   "off_after": 120.0,
+   "blank_band_before": null,
+   "blank_band_after": null
+  },
+  {
+   "pair": [
+    "57",
+    "63"
+   ],
+   "axis": "y",
+   "median_px": 4.7,
+   "p90_px": 29.4,
+   "max_px": 92.7,
+   "max_ft": 16.0,
+   "coord_before": 17554.04,
+   "coord_after": 17555.44,
+   "off_before": 120.0,
+   "off_after": 120.0,
+   "blank_band_before": null,
+   "blank_band_after": null
+  },
+  {
+   "pair": [
+    "37",
+    "38"
+   ],
+   "axis": "x",
+   "median_px": 11.8,
+   "p90_px": 30.6,
+   "max_px": 91.8,
+   "max_ft": 15.8,
+   "coord_before": 21490.52,
+   "coord_after": 21479.79,
+   "off_before": -120.0,
+   "off_after": -120.0,
+   "blank_band_before": null,
+   "blank_band_after": null
+  },
+  {
+   "pair": [
+    "36",
+    "37"
+   ],
+   "axis": "x",
+   "median_px": 5.0,
+   "p90_px": 21.0,
+   "max_px": 85.0,
+   "max_ft": 14.7,
+   "coord_before": 15447.04,
+   "coord_after": 15442.15,
+   "off_before": -79.9,
+   "off_after": -82.5,
+   "blank_band_before": null,
+   "blank_band_after": null
+  },
+  {
+   "pair": [
+    "18",
+    "19"
+   ],
+   "axis": "x",
+   "median_px": 4.0,
+   "p90_px": 23.3,
+   "max_px": 84.0,
+   "max_ft": 14.5,
+   "coord_before": 3276.69,
+   "coord_after": 3273.78,
+   "off_before": 120.0,
+   "off_after": 120.0,
+   "blank_band_before": null,
+   "blank_band_after": null
+  },
+  {
+   "pair": [
+    "80",
+    "87"
+   ],
+   "axis": "y",
+   "median_px": 0.0,
+   "p90_px": 0.0,
+   "max_px": 84.0,
+   "max_ft": 14.5,
+   "coord_before": 38432.42,
+   "coord_after": 38432.42,
+   "off_before": -120.0,
+   "off_after": -120.0,
+   "blank_band_before": null,
+   "blank_band_after": null
+  },
+  {
+   "pair": [
+    "31",
+    "32"
+   ],
+   "axis": "x",
+   "median_px": 26.6,
+   "p90_px": 35.9,
+   "max_px": 83.9,
+   "max_ft": 14.5,
+   "coord_before": 21511.94,
+   "coord_after": 21487.97,
+   "off_before": -120.0,
+   "off_after": -120.0,
+   "blank_band_before": null,
+   "blank_band_after": null
+  },
+  {
+   "pair": [
+    "63",
+    "64"
+   ],
+   "axis": "x",
+   "median_px": 23.1,
+   "p90_px": 40.2,
+   "max_px": 80.9,
+   "max_ft": 14.0,
+   "coord_before": 21380.51,
+   "coord_after": 21358.99,
+   "off_before": -120.0,
+   "off_after": -120.0,
+   "blank_band_before": null,
+   "blank_band_after": null
+  },
+  {
+   "pair": [
+    "62",
+    "63"
+   ],
+   "axis": "x",
+   "median_px": 8.2,
+   "p90_px": 24.8,
+   "max_px": 80.5,
+   "max_ft": 13.9,
+   "coord_before": 15322.69,
+   "coord_after": 15316.36,
+   "off_before": 120.0,
+   "off_after": 120.0,
+   "blank_band_before": null,
+   "blank_band_after": null
+  },
+  {
+   "pair": [
+    "75",
+    "83"
+   ],
+   "axis": "y",
+   "median_px": 0.1,
+   "p90_px": 4.1,
+   "max_px": 80.1,
+   "max_ft": 13.8,
+   "coord_before": 38262.52,
+   "coord_after": 38262.52,
+   "off_before": 120.0,
+   "off_after": 120.0,
+   "blank_band_before": null,
+   "blank_band_after": null
+  },
+  {
+   "pair": [
+    "56",
+    "57"
+   ],
+   "axis": "x",
+   "median_px": 0.1,
+   "p90_px": 4.0,
+   "max_px": 80.0,
+   "max_ft": 13.8,
+   "coord_before": 15351.64,
+   "coord_after": 15351.64,
+   "off_before": -120.0,
+   "off_after": -120.0,
+   "blank_band_before": null,
+   "blank_band_after": null
+  },
+  {
+   "pair": [
+    "34",
+    "35"
+   ],
+   "axis": "x",
+   "median_px": 0.1,
+   "p90_px": 4.0,
+   "max_px": 76.0,
+   "max_ft": 13.1,
+   "coord_before": 3184.41,
+   "coord_after": 3184.41,
+   "off_before": -111.4,
+   "off_after": -111.4,
+   "blank_band_before": null,
+   "blank_band_after": null
+  },
+  {
+   "pair": [
+    "72",
+    "73"
+   ],
+   "axis": "x",
+   "median_px": 4.0,
+   "p90_px": 20.0,
+   "max_px": 76.0,
+   "max_ft": 13.1,
+   "coord_before": 31373.86,
+   "coord_after": 31374.39,
+   "off_before": -120.0,
+   "off_after": -120.0,
+   "blank_band_before": null,
+   "blank_band_after": null
+  },
+  {
+   "pair": [
+    "88",
+    "89"
+   ],
+   "axis": "x",
+   "median_px": 0.1,
+   "p90_px": 0.1,
+   "max_px": 76.0,
+   "max_ft": 13.1,
+   "coord_before": 37291.7,
+   "coord_after": 37291.7,
+   "off_before": 120.0,
+   "off_after": 120.0,
+   "blank_band_before": null,
+   "blank_band_after": null
+  },
+  {
+   "pair": [
+    "23",
+    "24"
+   ],
+   "axis": "x",
+   "median_px": 6.9,
+   "p90_px": 22.8,
+   "max_px": 70.8,
+   "max_ft": 12.2,
+   "coord_before": 9258.68,
+   "coord_after": 9263.09,
+   "off_before": 83.0,
+   "off_after": 78.4,
+   "blank_band_before": null,
+   "blank_band_after": null
+  },
+  {
+   "pair": [
+    "38",
+    "42"
+   ],
+   "axis": "y",
+   "median_px": 15.8,
+   "p90_px": 32.0,
+   "max_px": 68.2,
+   "max_ft": 11.8,
+   "coord_before": -10314.89,
+   "coord_after": -10328.5,
+   "off_before": 120.0,
+   "off_after": 120.0,
+   "blank_band_before": null,
+   "blank_band_after": null
+  },
+  {
+   "pair": [
+    "72",
+    "80"
+   ],
+   "axis": "y",
+   "median_px": 0.0,
+   "p90_px": 12.0,
+   "max_px": 68.0,
+   "max_ft": 11.7,
+   "coord_before": 31496.14,
+   "coord_after": 31496.45,
+   "off_before": -120.0,
+   "off_after": -120.0,
+   "blank_band_before": null,
+   "blank_band_after": null
+  },
+  {
+   "pair": [
+    "8",
+    "34"
+   ],
+   "axis": "y",
+   "median_px": 0.0,
+   "p90_px": 0.0,
+   "max_px": 68.0,
+   "max_ft": 11.7,
+   "coord_before": -10332.51,
+   "coord_after": -10332.51,
+   "off_before": 120.0,
+   "off_after": 120.0,
+   "blank_band_before": null,
+   "blank_band_after": null
+  },
+  {
+   "pair": [
+    "40",
+    "41"
+   ],
+   "axis": "x",
+   "median_px": 0.0,
+   "p90_px": 4.0,
+   "max_px": 60.0,
+   "max_ft": 10.4,
+   "coord_before": 15438.69,
+   "coord_after": 15438.69,
+   "off_before": -86.5,
+   "off_after": -86.5,
+   "blank_band_before": null,
+   "blank_band_after": null
+  },
+  {
+   "pair": [
+    "70",
+    "71"
+   ],
+   "axis": "x",
+   "median_px": 10.4,
+   "p90_px": 30.4,
+   "max_px": 58.4,
+   "max_ft": 10.1,
+   "coord_before": 19184.48,
+   "coord_after": 19191.79,
+   "off_before": -120.0,
+   "off_after": -120.0,
+   "blank_band_before": null,
+   "blank_band_after": null
+  },
+  {
+   "pair": [
+    "30",
+    "36"
+   ],
+   "axis": "y",
+   "median_px": 8.0,
+   "p90_px": 28.0,
+   "max_px": 56.0,
+   "max_ft": 9.7,
+   "coord_before": -17272.02,
+   "coord_after": -17262.33,
+   "off_before": 120.0,
+   "off_after": 120.0,
+   "blank_band_before": null,
+   "blank_band_after": null
+  },
+  {
+   "pair": [
+    "85",
+    "85b"
+   ],
+   "axis": "x",
+   "median_px": 2.6,
+   "p90_px": 8.0,
+   "max_px": 56.0,
+   "max_ft": 9.7,
+   "coord_before": 13149.59,
+   "coord_after": 13150.27,
+   "off_before": 120.0,
+   "off_after": 120.0,
+   "blank_band_before": null,
+   "blank_band_after": null
+  },
+  {
+   "pair": [
+    "90",
+    "99"
+   ],
+   "axis": "y",
+   "median_px": 0.0,
+   "p90_px": 0.0,
+   "max_px": 56.0,
+   "max_ft": 9.7,
+   "coord_before": 38483.19,
+   "coord_after": 38483.19,
+   "off_before": -120.0,
+   "off_after": -120.0,
+   "blank_band_before": null,
+   "blank_band_after": null
+  },
+  {
+   "pair": [
+    "18",
+    "22"
+   ],
+   "axis": "y",
+   "median_px": 8.2,
+   "p90_px": 24.2,
+   "max_px": 52.0,
+   "max_ft": 9.0,
+   "coord_before": -31186.57,
+   "coord_after": -31175.71,
+   "off_before": 120.0,
+   "off_after": 120.0,
+   "blank_band_before": null,
+   "blank_band_after": null
+  },
+  {
+   "pair": [
+    "21",
+    "27"
+   ],
+   "axis": "y",
+   "median_px": 0.0,
+   "p90_px": 4.0,
+   "max_px": 52.0,
+   "max_ft": 9.0,
+   "coord_before": -24239.06,
+   "coord_after": -24239.06,
+   "off_before": 0.0,
+   "off_after": 0.0,
+   "blank_band_before": null,
+   "blank_band_after": null
+  },
+  {
+   "pair": [
+    "74",
+    "82"
+   ],
+   "axis": "y",
+   "median_px": 0.0,
+   "p90_px": 0.0,
+   "max_px": 52.0,
+   "max_ft": 9.0,
+   "coord_before": 31562.56,
+   "coord_after": 31562.56,
+   "off_before": -120.0,
+   "off_after": -120.0,
+   "blank_band_before": null,
+   "blank_band_after": null
+  }
+ ],
+ "only_before": [],
+ "only_after": [
+  [
+   "15",
+   "67"
+  ],
+  [
+   "16",
+   "68"
+  ],
+  [
+   "5a",
+   "9"
+  ],
+  [
+   "5b",
+   "13"
+  ],
+  [
+   "6",
+   "33"
+  ],
+  [
+   "61",
+   "69"
+  ],
+  [
+   "62",
+   "70"
+  ],
+  [
+   "63",
+   "71"
+  ],
+  [
+   "64",
+   "72"
+  ],
+  [
+   "65",
+   "73"
+  ],
+  [
+   "66",
+   "74"
+  ],
+  [
+   "68",
+   "75"
+  ],
+  [
+   "69",
+   "76"
+  ],
+  [
+   "70",
+   "77"
+  ],
+  [
+   "71",
+   "78"
+  ],
+  [
+   "73",
+   "80"
+  ],
+  [
+   "74",
+   "81"
+  ],
+  [
+   "76",
+   "83"
+  ],
+  [
+   "77",
+   "84"
+  ],
+  [
+   "77",
+   "85"
+  ],
+  [
+   "78",
+   "86"
+  ],
+  [
+   "79",
+   "87"
+  ],
+  [
+   "80",
+   "88"
+  ],
+  [
+   "81",
+   "89"
+  ],
+  [
+   "82",
+   "90"
+  ],
+  [
+   "85",
+   "93"
+  ],
+  [
+   "85",
+   "94"
+  ],
+  [
+   "86",
+   "95"
+  ],
+  [
+   "87",
+   "96"
+  ],
+  [
+   "88",
+   "97"
+  ],
+  [
+   "89",
+   "98"
+  ]
+ ]
+}
