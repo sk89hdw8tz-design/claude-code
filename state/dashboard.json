@@ -2,11 +2,11 @@
  "project": {
   "map": "Galveston Sanborn 1912 full-city mosaic",
   "year": 1912,
-  "stage": "correction round",
+  "stage": "improvement run \u2014 Wave 4 evidence",
   "status": "WORKING",
   "start_time": "2026-09-01T22:05Z",
-  "last_update": "2026-09-02T17:05Z",
-  "git_commit": "1e46039",
+  "last_update": "2026-09-03T20:59Z",
+  "git_commit": "ef453d2",
   "objective": "Finish the 1912 full-city mosaic to print-ready quality: session 018 carrying on from session 019 head; panels split, wharf in, 48/74 fixed; complete seam census, corrections, final deliverables."
  },
  "progress": {
@@ -14,14 +14,14 @@
   "stage_pct": 100,
   "tasks_done": 10,
   "tasks_total": 11,
-  "current_task": "final verification and report",
-  "next_task": "none \u2014 1912 complete; 1899 not started by instruction",
+  "current_task": "Wave 4: regrade workflow (10/15 seams) + 7 Opus evidence/diagnosis agents",
+  "next_task": "Gate A' \u2014 apply evidence-backed proposals (91|92 control re-read first), re-cut, re-render, Gate C, Wave 5 record",
   "blockers": []
  },
  "eta": {
-  "range": "under 30 minutes",
-  "confidence": "HIGH",
-  "reason": "all deliverables rendered and verified; only the closing report remains"
+  "range": "3\u20135 hours",
+  "confidence": "MEDIUM",
+  "reason": "evidence agents finishing; then serial re-cut/re-render (~1.5 h) and targeted re-verify"
  },
  "tasks": [
   {
