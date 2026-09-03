@@ -7,8 +7,25 @@
  "observer": "agent-batch10",
  "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
  "corridor": "18th St",
- "a_native": 3682,
- "b_native": 210,
+ "a_native": 3678.0,
+ "b_native": 210.8,
  "why_not_one_block_off": "Sheet 38 covers 15th-18th, sheet 42 covers 18th-21st, so the shared corridor is 18th St; both sheets print '18TH ST.' on it (sheet 42 also prints the adjoining sheet number '38' just north of the line). Not one block off: sheet 38's cand#1 (y=2967) is a mid-block lot line and was rejected - the street it sits nearest, 17th St, is drawn at y=2402-2646 with the 16xx runs (1602 1604 1606 1608 1610 1612 / 1614 1616 1618 1620 1622 1624) north of it and the 17xx runs (1701 1703 1705 1707 1709 1711, avenue-side 1701 1703 ... 1728) south of it. The true 18th St carries the 17xx->18xx change: sheet 38's last block reads 1702 1704 1706 1708 1710 1712 and 1717 1719 1721 1723 1725 1727 against the line, sheet 42's first block reads 1801 1803 1805 ... 1822 and 1802 1804 1806 ... 1822. Positions: sheet 38 north face y=3559 plus half of the 241 px (70 ft) drafted width = 3682, confirmed by the '18TH ST.' label at y=3683; sheet 42 faces y=90.3 and y=330.3, center 210, confirmed by its label at y=210.",
- "status": "ACCEPTED"
+ "status": "ACCEPTED",
+ "a_native_previous": 3682,
+ "b_native_previous": 210,
+ "faces": {
+  "38": [
+   3557,
+   3799
+  ],
+  "42": [
+   89,
+   331
+  ]
+ },
+ "roadway_px": [
+  242,
+  241
+ ],
+ "revision": "centre re-read from the plates' own drawn block faces at 18 x-samples across the shared band (P2-2 audit, applied at Gate A): plate 38 faces 3554-3560 / 3797-3802, fitted centre 3677.9 at band mid-x (3678.5 west to 3675.0 east); plate 42 faces 88-97 / 329-336, fitted centre 210.8 at band mid-x (209.0 west to 216.5 east). The previous 3682 came from 3559 + half of an assumed 241 px roadway and sits 3-4 px south of the drawn centre at every x. Identity unchanged: both plates print '18TH ST.' and each prints the other's adjoining numeral; the faces pair even/odd of one hundred-block (38: 1602-1612 / 1702-1712; 42: 1601-1611 / 1701-1711) and the cross-avenue addresses change 17xx -> 18xx across the line. The remaining band residual is net tension: the two transforms differ by 0.297 deg in rotation and the corridor as drawn is not parallel between the plates (-0.069 deg on 38, +0.118 deg on 42), which a single-y control cannot encode; the drawn centrelines themselves disagree by only 2.0-3.4 ft across the band. Do not move a plate on account of this control."
 }

@@ -7,21 +7,21 @@
  "observer": "agent-batch8",
  "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
  "corridor": "Ave L",
- "a_native": 3230.0,
- "b_native": 126.0,
+ "a_native": 3214.0,
+ "b_native": 141.2,
  "why_not_one_block_off": "Sheet 30 keymap covers Sealy/Broadway/K/L, sheet 31 covers L/M/M1-2/N, so the only shared corridor is Avenue L. On sheet 30 the crop prints 'AVENUE K' and 'AVENUE L' flanking block 73; the cross-street runs inside that block are the 1100 block ('1102 1104 1106 1108 1110 1112 | 1114 1116 1118 1120 1122 1124' and odd '1101 1103 ... 1123'). On sheet 31 the corresponding block 13 lies between 'AVENUE L' and 'AVENUE M' and its cross-street runs are the 1200 block ('1202 1204 1206 1208 1210 1212 | 1214 1216 1218 1220 1222 1224', odd '1201 1203 ... 1223') - the 1100/1200 hundred-block change happens exactly across Avenue L. The avenue frontages also face each other even-to-odd: sheet 30's east column reads 1302,1304,...,1326 while sheet 31's west column reads 1301,1303,...,1327. Detection's candidates (2811 / 768) sat a block short of the seam; centres read off the green native ruler, using the flanking avenue spacing (~990 native px) and the printed 80 ft corridor width as a check.",
  "status": "ACCEPTED",
- "a_native_previous": 3192,
- "b_native_previous": 141,
+ "a_native_previous": 3230.0,
+ "b_native_previous": 126.0,
  "faces": {
   "30": [
-   3107,
+   3107.2,
    null
   ],
   "31": [
    null,
-   246
+   248.0
   ]
  },
- "revision": "centre re-read from the plates' own block faces (review B): Same corridor as the existing control (both plates letter AVENUE L; 1100/1200 hundred-block change; 30's east column 1302-1326 even faces 31's 1301-1327 odd). Only the position changes: each plate draws just its own side of the 80 ft gutter (30: west block face at native x 3107-3109 then the neatlin"
+ "revision": "centre re-read from the plates' own block faces (review B): Same corridor as the existing control (both plates letter AVENUE L; 1100/1200 hundred-block change; 30's east column 1302-1326 even faces 31's 1301-1327 odd). Only the position changes: each plate draws just its own side of the 80 ft gutter (30: west block face at native x 3107-3109 then the neatlin || review P2-2 (Gate A): corridor identity unchanged and re-confirmed (both plates letter AVENUE L; 30's even Ave-L column 1302-1320 faces 31's odd 1301-1317; the 1100/1200 hundred-block change falls across the corridor; each plate prints the other's adjoining numeral in the roadway). Only the half-width changes. Review B took the gutter as 80 ft (half-widths 123/120 px), but the printed 80' in these crops lies in the NUMBERED-STREET corridor (240-245 px on both plates' y lattice = 80 ft at 3.06 px/ft), while Avenue L measures 213 px: plate 30 Ave K 213.0, plate 31 Ave M 212.1 / Ave M-1/2 212.0 / Ave N 217.5, and plate 57 draws Avenue L complete at 79.0-295.5 = 216.5 px. Half-width 106.8 px, the same figure pair_56_57 uses for this avenue and consistent with pair_29_30 (Ave I on 30), pair_25_31_x (Ave M on 31) and pair_31_32 (Ave N on 31). Column-ink profiles over three block rows give plate 30's west face 3107.2 and plate 31's east face 248.0, so a_native 3230.0 -> 3214.0 and b_native 126.0 -> 141.2. Values 3192/141 predate review B. No plate moved: the residual varies +3.4 -> +6.7 ft along the band because plate 31's Ave-L face drifts -8.5 px over 2265 px of y against plate 30's +2 px (~0.2 deg relative skew), and localsolve leaves both plates within 2.5 ft of their optimum."
 }

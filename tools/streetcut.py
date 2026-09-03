@@ -105,8 +105,57 @@ DP_PULL = 0.2          # cost per cell of distance from the control line (ink is
 DP_DILATE = 13         # cells (~52 mosaic px, 9 ft): merges lettering and both plates' copies of it
 DP_SIDE = 120.0        # px: side candidates run between the lot-number column at the block face and the street name at the centre
 
+# --- blank-band ownership (HQ P1-2) --------------------------------------
+# The visible-ink sort below asks which candidate leaves less ink showing. It
+# is the right question only when both plates DRAW the band. Where one plate
+# has run past its own rule and prints blank paper while the other draws the
+# street in detail, "least visible ink" hands the band to the blank plate and
+# the detail is buried under paper. So: measure each plate's own ink inside
+# the band first; if one plate has essentially none, the band belongs to the
+# other plate outright and the cut is pinned at the blank plate's own band
+# edge, bypassing the sort.
+# DEFAULT OFF. The rule is implemented and tested (see band_ink and the fourth
+# candidate below), but on this recipe it fires on exactly one of 172 min-ink
+# seams -- 5b|11 -- and that firing is wrong: plate 11 draws the Wharf Co's
+# terminal yard (blocks 744-746, Ave A or Water St) in full detail there. The
+# 0.13 ratio comes from the +-DP_HALF strip the control happens to sit in, at
+# the extreme west edge of 11, where 11 has only open yard and track while 5b
+# has the shed outline and its hatching; the pinned candidate then reassigns
+# the WHOLE 2,714 px (468 ft) overlap, moving 16.5M px2 from 11 to 5b and
+# opening 764k px2 of new unclaimed ground. And the two pairs the rule was
+# written for do not need it: at 94|95 and 13|14 BOTH plates draw the corridor
+# (both print "AVENUE N1/2"; both draw the 6" W. PIPE run), ratios 0.55 and
+# 0.93. Enable with --blank-band only for a seam where the blank strip has
+# been confirmed on the native scan to lie beyond that plate's own rule.
+BLANK_BAND = False     # --blank-band turns the rule on; --no-blank-band is explicit off
+BLANK_RATIO = 0.20     # blank if one plate's band ink < this * the other's
+BLANK_FLOOR = 25.0     # grey levels below the plate's own paper tone that count as ink
+BLANK_PAPER_PCT = 80   # percentile of the band's greys taken as that plate's paper tone
+DP_HALF_BLANK = 4000.0 # the pinned candidate may need the whole overlap, not DP_HALF
+DP_BLANK_PULL = 25.0   # per cell: holds the pinned path on the band edge, but still
+                       # lets it step round a building rather than slice it
 
-def dp_cut(r, u, v, axis, coord, O, lower=None):
+def band_ink(g, mask):
+    """That plate's own ink inside the band, in grey-levels x cells.
+
+    Not `255 - g`: a Sanborn scan's paper is grey (155-175 here, and darker
+    still where the sheet is shadowed), so `255 - g` summed over a band is
+    dominated by paper tone and two plates' sums come out within 20% of each
+    other whatever is drawn on them. Ink is measured against the plate's own
+    paper tone in this band -- the BLANK_PAPER_PCT percentile of its greys,
+    which survives a band that is half covered in ink -- so a blank strip
+    scores ~0 on any scan and a drawn street scores high on any scan.
+    """
+    import numpy as np
+    m = mask == 1
+    if not m.any():
+        return 0.0
+    vals = g[m].astype(np.float32)
+    paper = float(np.percentile(vals, BLANK_PAPER_PCT))
+    return float(np.clip(paper - BLANK_FLOOR - vals, 0.0, None).sum())
+
+
+def dp_cut(r, u, v, axis, coord, O, lower=None, info=None):
     """Min-ink path through the shared roadway, as the master's cuts were made.
 
     A straight centreline cut slices through whatever both plates print at
@@ -117,6 +166,9 @@ def dp_cut(r, u, v, axis, coord, O, lower=None):
     as little ink as possible on BOTH plates, so it runs between the label
     and the block face and one plate's label survives whole.
 
+    `info`, if given, is filled with what the cut did: the two plates' band
+    ink, and a "blank_band" record when the blank-band rule fired.
+
     Returns a shapely LineString in mosaic px along the seam axis, or None.
     """
     import cv2
@@ -124,34 +176,59 @@ def dp_cut(r, u, v, axis, coord, O, lower=None):
     if O.geom_type != "Polygon":
         O = max(O.geoms, key=lambda g: g.area)        # a band pinched into parts: cut the main one
     b = O.bounds
-    if axis == "y":
-        x0, x1 = b[0], b[2]
-        y0, y1 = max(b[1], coord - DP_HALF), min(b[3], coord + DP_HALF)
-    else:
-        y0, y1 = b[1], b[3]
-        x0, x1 = max(b[0], coord - DP_HALF), min(b[2], coord + DP_HALF)
-    W, H = int((x1 - x0) / DP_SCALE) + 1, int((y1 - y0) / DP_SCALE) + 1
-    if W < 8 or H < 8:
+
+    def grid(half):
+        """Warp both plates into the band about `coord`, `half` px either side."""
+        if axis == "y":
+            gx0, gx1 = b[0], b[2]
+            gy0, gy1 = max(b[1], coord - half), min(b[3], coord + half)
+        else:
+            gy0, gy1 = b[1], b[3]
+            gx0, gx1 = max(b[0], coord - half), min(b[2], coord + half)
+        W, H = int((gx1 - gx0) / DP_SCALE) + 1, int((gy1 - gy0) / DP_SCALE) + 1
+        if W < 8 or H < 8:
+            return None
+        cost = np.zeros((H, W), np.float32)
+        raw, grey = {}, {}
+        for w_ in (u, v):
+            M, t = r.sheet_matrix(w_)
+            A = np.hstack([M / DP_SCALE, ((t - np.array([gx0, gy0])) / DP_SCALE).reshape(2, 1)])
+            g = cv2.warpAffine(gray(r, w_), A, (W, H), flags=cv2.INTER_AREA, borderValue=255)
+            grey[w_] = g
+            ink = (255 - g).astype(np.float32)
+            raw[w_] = ink.copy()
+            # thicken the ink: a street name is letters with gaps, and two plates'
+            # copies of it sit a registration error apart; without this the path
+            # threads the gap between the copies and both survive (57|58 test).
+            # Dilated, the copies merge into one blob the path must go round.
+            ink = cv2.dilate(ink, np.ones((DP_DILATE, DP_DILATE), np.uint8))
+            cost += cv2.GaussianBlur(ink, (0, 0), 1.5)
+        mask = np.zeros((H, W), np.uint8)
+        ring = np.array([((px - gx0) / DP_SCALE, (py - gy0) / DP_SCALE)
+                         for px, py in np.array(O.exterior.coords)], np.int32)
+        cv2.fillPoly(mask, [ring], 1)
+        cost = np.where(mask == 1, cost, BIG)
+        return dict(x0=gx0, y0=gy0, x1=gx1, y1=gy1, W=W, H=H,
+                    cost=cost, raw=raw, grey=grey, mask=mask)
+
+    G = grid(DP_HALF)
+    if G is None:
         return None
-    cost = np.zeros((H, W), np.float32)
-    raw = {}
-    for w_ in (u, v):
-        M, t = r.sheet_matrix(w_)
-        A = np.hstack([M / DP_SCALE, ((t - np.array([x0, y0])) / DP_SCALE).reshape(2, 1)])
-        g = cv2.warpAffine(gray(r, w_), A, (W, H), flags=cv2.INTER_AREA, borderValue=255)
-        ink = (255 - g).astype(np.float32)
-        raw[w_] = ink.copy()
-        # thicken the ink: a street name is letters with gaps, and two plates'
-        # copies of it sit a registration error apart; without this the path
-        # threads the gap between the copies and both survive (57|58 test).
-        # Dilated, the copies merge into one blob the path must go round.
-        ink = cv2.dilate(ink, np.ones((DP_DILATE, DP_DILATE), np.uint8))
-        cost += cv2.GaussianBlur(ink, (0, 0), 1.5)
-    mask = np.zeros((H, W), np.uint8)
-    ring = np.array([((px - x0) / DP_SCALE, (py - y0) / DP_SCALE)
-                     for px, py in np.array(O.exterior.coords)], np.int32)
-    cv2.fillPoly(mask, [ring], 1)
-    cost = np.where(mask == 1, cost, BIG)
+    # --- is one plate blank paper across this band? -----------------------
+    ink_band = {w_: band_ink(G["grey"][w_], G["mask"]) for w_ in (u, v)}
+    blank = min(ink_band, key=ink_band.get)
+    drawn = v if blank == u else u
+    ratio = ink_band[blank] / ink_band[drawn] if ink_band[drawn] > 0 else 1.0
+    is_blank_band = BLANK_BAND and ink_band[blank] < BLANK_RATIO * ink_band[drawn]
+    if os.environ.get("DP_DEBUG"):
+        print(f"    dp {u}|{v}: band ink {u}={ink_band[u]:,.0f} {v}={ink_band[v]:,.0f} "
+              f"ratio {ratio:.3f}{'  BLANK BAND -> ' + drawn if is_blank_band else ''}")
+    if is_blank_band:
+        # the pinned candidate runs on the blank plate's own edge of the
+        # overlap, which is routinely further than DP_HALF from the control
+        G = grid(DP_HALF_BLANK) or G
+    x0, y0, x1, y1 = G["x0"], G["y0"], G["x1"], G["y1"]
+    W, H, cost, raw, mask = G["W"], G["H"], G["cost"], G["raw"], G["mask"]
     # Three candidate paths: pulled to the control line, and pulled to a line
     # DP_SIDE px either side of it (just inside the block faces). Both plates
     # letter the street name in the roadway; a path that zigzags round each
@@ -182,18 +259,17 @@ def dp_cut(r, u, v, axis, coord, O, lower=None):
     across = (y1 - y0) if axis == "y" else (x1 - x0)
     side = min(DP_SIDE, max(0.0, across / 2.0 - 3 * DP_SCALE))
     margin = min(40.0, 0.5 * side)     # px: a side path never comes nearer the centreline than this
-    for off in (0.0, -side, side):
-        target = coord + off
+
+    def candidate(target, pull_k, forbid):
+        """DP path pulled towards `target`; `forbid` bans one side of the
+        centreline outright ('low' = everything below coord - margin)."""
         c = ink_only.copy()
         across_px = (y0 + np.arange(H) * DP_SCALE) if axis == "y" else (x0 + np.arange(W) * DP_SCALE)
-        pull = DP_PULL * np.abs((across_px - target) / DP_SCALE)
-        if off != 0.0:
-            # a side path is only worth having if it really keeps to its side:
-            # with the pull alone it drifted back through the lettering strip
-            # wherever the ink was thinner there (76|84). Forbid the far side
-            # of the centreline and its margin outright.
-            wrong = (across_px > coord - margin) if off < 0 else (across_px < coord + margin)
-            pull = pull + np.where(wrong, BIG, 0.0)
+        pull = pull_k * np.abs((across_px - target) / DP_SCALE)
+        if forbid == "low":
+            pull = pull + np.where(across_px < coord + margin, BIG, 0.0)
+        elif forbid == "high":
+            pull = pull + np.where(across_px > coord - margin, BIG, 0.0)
         if axis == "y":
             c += pull[:, None]
         else:
@@ -219,6 +295,15 @@ def dp_cut(r, u, v, axis, coord, O, lower=None):
         ink_sum = float(sum(io[y, x] for x, y in enumerate(path)))
         cols = np.arange(len(path)); rows = np.array(path)
         visible = float(cumL[rows, cols].sum() + (totH[cols] - cumH[rows, cols]).sum())
+        return ink_sum, visible, path
+
+    for off in (0.0, -side, side):
+        # a side path is only worth having if it really keeps to its side:
+        # with the pull alone it drifted back through the lettering strip
+        # wherever the ink was thinner there (76|84). Forbid the far side
+        # of the centreline and its margin outright.
+        forbid = None if off == 0.0 else ("high" if off < 0 else "low")
+        ink_sum, visible, path = candidate(coord + off, DP_PULL, forbid)
         if os.environ.get("DP_DEBUG"):
             print(f"    dp {u}|{v} off {off:+6.1f}: visible {visible:12.0f} crossed {ink_sum:9.0f}")
         cands.append((off, ink_sum, visible, path))
@@ -239,8 +324,28 @@ def dp_cut(r, u, v, axis, coord, O, lower=None):
         best = sides[0]
     else:
         best = centre
+    if is_blank_band:
+        # fourth candidate: pinned at the blank plate's own edge of the band,
+        # so the blank plate keeps none of it and the plate that draws the
+        # street owns the whole band. Selected outright -- the visible-ink
+        # sort has nothing to say about a band only one plate draws.
+        k = 0 if axis == "x" else 1
+        edge = (x0 if axis == "x" else y0) if blank == low_u else (x1 if axis == "x" else y1)
+        ink_sum, visible, path = candidate(edge, DP_BLANK_PULL, None)
+        cands.append((edge - coord, ink_sum, visible, path))
+        best = cands[-1]
+        if info is not None:
+            info["blank_band"] = {"winner": drawn, "ink_ratio": round(ratio, 4)}
+        if os.environ.get("DP_DEBUG"):
+            print(f"    dp {u}|{v} blank {blank} -> pinned at {'x' if axis=='x' else 'y'}="
+                  f"{edge:.0f} (off {edge-coord:+.0f}): visible {visible:12.0f} crossed {ink_sum:9.0f}")
+    if info is not None:
+        info["band_ink"] = {u: round(ink_band[u]), v: round(ink_band[v])}
+        info["ink_ratio"] = round(ratio, 4)
+        info["off"] = round(float(best[0]), 1)
     if os.environ.get("DP_DEBUG"):
-        print(f"    dp {u}|{v}: chose off {best[0]:+.0f} (side {side:.0f})")
+        print(f"    dp {u}|{v}: chose off {best[0]:+.0f} (side {side:.0f})"
+              f"{' [blank-band]' if is_blank_band else ''}")
     path = best[3]
     pts = []
     for x, y in enumerate(path):
@@ -309,7 +414,17 @@ def main():
                     help="straight centreline cuts instead of min-ink paths")
     ap.add_argument("--pull", type=float, default=None,
                     help="override DP_PULL (cost per cell of distance from the control line)")
+    ap.add_argument("--blank-band", dest="blank_band", action="store_true", default=None,
+                    help="enable the blank-band ownership rule (default off; see BLANK_BAND)")
+    ap.add_argument("--no-blank-band", dest="blank_band", action="store_false",
+                    help="explicitly disable the blank-band ownership rule")
+    ap.add_argument("--dump-cuts", default=None, metavar="PATH",
+                    help="write every pair's cut line to PATH as JSON, so two runs "
+                         "can be diffed with tools/cutdiff.py")
     a = ap.parse_args()
+    if a.blank_band is not None:
+        global BLANK_BAND
+        BLANK_BAND = a.blank_band
     if a.pull is not None:
         global DP_PULL
         DP_PULL = a.pull
@@ -354,7 +469,7 @@ def main():
     print(f"core base from masks.json: {sorted(core, key=int)}", flush=True)
 
     units = sorted(feet, key=lambda k: int("".join(c for c in k if c.isdigit())))
-    seams, loss = [], {u: [] for u in units}
+    seams, loss, cutlines = [], {u: [] for u in units}, []
     stats = {"control": 0, "lattice": 0, "midpoint": 0, "core-core": 0, "dp": 0}
     for i, u in enumerate(units):
         for v in units[i + 1:]:
@@ -403,10 +518,10 @@ def main():
             stats[how] += 1
             lower = u if cen[u][k] < cen[v][k] else v
             upper = v if lower == u else u
-            path = None
+            path, info = None, {}
             if band and not a.straight:
                 try:
-                    path = dp_cut(r, u, v, axis, coord, O, lower)
+                    path = dp_cut(r, u, v, axis, coord, O, lower, info=info)
                 except Exception as ex:          # fall back to the straight line
                     print(f"  dp cut failed on {u}|{v}: {ex}", flush=True)
             if path is not None:
@@ -423,6 +538,21 @@ def main():
                           "overlap_px2": round(O.area), "span_px": round(span),
                           "lattice_disagreement_px": None if resid is None else round(resid, 1),
                           "lattice_disagreement_ft": None if resid is None else round(resid / ppf, 1)})
+            if "blank_band" in info:
+                seams[-1]["blank_band"] = info["blank_band"]
+                print(f"  blank band {u}|{v}: ink ratio "
+                      f"{info['blank_band']['ink_ratio']:.3f}, whole band to "
+                      f"{info['blank_band']['winner']}", flush=True)
+            if path is not None:
+                cutlines.append({"pair": [u, v], "axis": axis,
+                                 "coord": round(coord, 2),
+                                 "blank_band": info.get("blank_band"),
+                                 "ink_ratio": info.get("ink_ratio"),
+                                 "off": info.get("off"),
+                                 "line": [[round(x, 1), round(y, 1)] for x, y in
+                                          (np.array(path.coords)[1:-1]
+                                           if len(path.coords) >= 4
+                                           else np.array(path.coords))]})
 
     regions, dropped = {}, []
     for u in units:
@@ -463,6 +593,20 @@ def main():
                       f"{s['lattice_disagreement_ft']:.0f} ft")
     if dropped:
         print(f"detached slivers dropped (become gaps for fillgaps): {dropped}")
+    nb = [s_ for s_ in seams if s_.get("blank_band")]
+    print(f"blank-band rule: {'off' if not BLANK_BAND else 'on'}, fired on "
+          f"{len(nb)} of {stats['dp']} min-ink seams"
+          + ("" if not nb else ": " + ", ".join(
+              f"{s_['pair'][0]}|{s_['pair'][1]}->{s_['blank_band']['winner']}"
+              f" ({s_['blank_band']['ink_ratio']:.2f})" for s_ in nb)))
+    if a.dump_cuts:
+        json.dump({"generated_by": "tools/streetcut.py --dump-cuts",
+                   "blank_band_rule": BLANK_BAND,
+                   "note": ("one entry per pair cut on a min-ink path; `line` is the "
+                            "path in mosaic px BEFORE the straight extension at both "
+                            "ends; diff two dumps with tools/cutdiff.py"),
+                   "cuts": cutlines}, open(a.dump_cuts, "w"), indent=1)
+        print(f"wrote {a.dump_cuts} ({len(cutlines)} cut lines)")
 
     un = unary_union(list(regions.values()))
     s = sum(g.area for g in regions.values())

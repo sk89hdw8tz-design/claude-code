@@ -144,6 +144,18 @@
      "cut": true,
      "covered_fraction": 1.0,
      "match_score": 0.613
+    },
+    {
+     "kind": "edge numeral/glyph",
+     "box": [
+      1628,
+      65,
+      1793,
+      183
+     ],
+     "how": "adjoining numeral 34, standing in the break of the top neatline rule (extent y0=103), centred on the street continuation above 18TH ST., with the series' dot+T.H. symbol beside it; ink bbox [1658,95,1763,153] + 30 px; detector score 0.678, darkest row 0.77, neatline distance 11 px. Digits touch the rule, so they were hand-measured off a gridded crop. tools/edgeglyph.py candidate. The detector's own name is unreliable (it carries no 1/3/6/7/9 templates) and its box swallows the neatline rule vertically while clipping digits horizontally, so both were re-read. Named by a P2-1 opus adjudicator on a 1:1 native crop before being written.",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -393,6 +405,18 @@
      "cut": true,
      "covered_fraction": 1.0,
      "match_score": 0.679
+    },
+    {
+     "kind": "edge numeral/glyph",
+     "box": [
+      57,
+      1958,
+      111,
+      2046
+     ],
+     "how": "adjoining numeral 5, left margin, single digit isolated on blank paper 35 px inside the neatline rule at x=20-30; ink bbox [65,1966,103,2038] + 8 px; h=88 px, darkest row 0.59. Identity: the box centre mapped through transforms_city.json and probed 1500 px west lands inside sheet 5b's footprint and no other. tools/edgeglyph.py candidate. The detector's own name is unreliable (it carries no 1/3/6/7/9 templates) and its box swallows the neatline rule vertically while clipping digits horizontally, so both were re-read. Named by a P2-1 opus adjudicator on a 1:1 native crop before being written.",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -570,6 +594,18 @@
      "cut": true,
      "covered_fraction": 1.0,
      "match_score": 0.686
+    },
+    {
+     "kind": "edge numeral/glyph",
+     "box": [
+      3153,
+      1943,
+      3226,
+      2023
+     ],
+     "how": "adjoining numeral 14, printed upright in the AVE. C OR MECHANIC roadway at the east neatline; ink core [3159,1949,3219,2017]; detector score 0.622. Identity: the glyph's city position falls inside placed unit 14's footprint and no other's. tools/edgeglyph.py candidate. The detector's own name is unreliable (it carries no 1/3/6/7/9 templates) and its box swallows the neatline rule vertically while clipping digits horizontally, so both were re-read. Named by a P2-1 opus adjudicator on a 1:1 native crop before being written.",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -864,6 +900,18 @@
      "cut": true,
      "covered_fraction": 1.0,
      "match_score": 0.716
+    },
+    {
+     "kind": "edge numeral/glyph",
+     "box": [
+      1603,
+      3737,
+      1717,
+      3866
+     ],
+     "how": "adjoining numeral 21, in the bottom margin below the map body (extent y1=3823), on blank paper under the 9TH ST. label; digits isolated as components at x 1633-1670 and 1674-1687 on one baseline; ink bbox [1633,3767,1687,3836] + 30 px; score 0.678. tools/edgeglyph.py candidate. The detector's own name is unreliable (it carries no 1/3/6/7/9 templates) and its box swallows the neatline rule vertically while clipping digits horizontally, so both were re-read. Named by a P2-1 opus adjudicator on a 1:1 native crop before being written.",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -1019,7 +1067,7 @@
    "extent": [
     86,
     91,
-    3239,
+    3271,
     3804
    ],
    "streets": [
@@ -1047,11 +1095,11 @@
       86
      ],
      [
-      3244,
+      3287,
       86
      ],
      [
-      3244,
+      3287,
       1556
      ],
      [
@@ -1110,7 +1158,15 @@
      "covered_fraction": 1.0,
      "match_score": 0.582
     }
-   ]
+   ],
+   "extent_relaxed_sides": {
+    "right": {
+     "from": 3239,
+     "to": 3271,
+     "why": "P1-3 notch coverage (Gate A): no border rule on this side (tools/neatline.py lists 'right' as FALLBACK, i.e. 3239 = paper edge - 50); by 25 px connected components at ink < paper-45 the outermost map-ink column is 3271 in the parent band and 3264 in the inset band (the vertical 'AVENUE' name in the Ave L roadway, two wharf/rail lines, the 810/812/820 runs and the 70' width calls), 3272..3283 is blank, and the minimum paper-edge column over all rows is 3282."
+    }
+   },
+   "exclude_native_note": "inset cut-out moved out to the scan edge (3244 -> 3287) with the parent's extent, so the parent cannot claim inset ground the relaxed extent now reaches."
   },
   "21": {
    "file": 21,
@@ -1327,6 +1383,18 @@
      "cut": true,
      "covered_fraction": 1.0,
      "match_score": 0.549
+    },
+    {
+     "kind": "edge numeral/glyph",
+     "box": [
+      106,
+      1887,
+      209,
+      1974
+     ],
+     "how": "adjoining numeral 22, rotated in the Ave. F or Church left margin; digit ink [114,1896,152,1966] and [164,1895,201,1965] + 8 px, excluding the OR and F of the street label above and below (the detector box had taken in label ink); h=87 px. Probe west lands in sheet 22's footprint, the next nearest being 28 at 3211 px further. tools/edgeglyph.py candidate. The detector's own name is unreliable (it carries no 1/3/6/7/9 templates) and its box swallows the neatline rule vertically while clipping digits horizontally, so both were re-read. Named by a P2-1 opus adjudicator on a 1:1 native crop before being written.",
+     "cut": false,
+     "covered_fraction": 0.899
     }
    ]
   },
@@ -1386,7 +1454,7 @@
       248
      ],
      "cut": false,
-     "covered_fraction": 0.694
+     "covered_fraction": 0.849
     },
     {
      "kind": "scale bar",
@@ -1409,7 +1477,7 @@
    "extent": [
     80,
     83,
-    3239,
+    3266,
     3783
    ],
    "streets": [
@@ -1437,11 +1505,11 @@
       78
      ],
      [
-      3244,
+      3271,
       78
      ],
      [
-      3244,
+      3271,
       1168
      ],
      [
@@ -1481,7 +1549,7 @@
       226
      ],
      "cut": false,
-     "covered_fraction": 0.835
+     "covered_fraction": 0.865
     },
     {
      "kind": "scale bar",
@@ -1495,8 +1563,28 @@
      "cut": false,
      "covered_fraction": 0.0,
      "match_score": 0.517
+    },
+    {
+     "kind": "edge numeral/glyph",
+     "box": [
+      581,
+      62,
+      672,
+      170
+     ],
+     "how": "adjoining numeral 20, straddling the north neatline at the 9th St alley mouth; digit ink 2 at x 587-625 and 0 at x 633-666, rows 68-161, +6 px; the T.H. hydrant dot touching the 0's foot is clipped, not boxed. Not a width numeral: those are small italic with a prime (80' for 9th St, 20' for the alley). Plate 25's top margin prints 20, then 0, then 0 eastward - this atlas prints 0 where no sheet adjoins. tools/edgeglyph.py candidate. The detector's own name is unreliable (it carries no 1/3/6/7/9 templates) and its box swallows the neatline rule vertically while clipping digits horizontally, so both were re-read. Named by a P2-1 opus adjudicator on a 1:1 native crop before being written.",
+     "cut": true,
+     "covered_fraction": 1.0
     }
-   ]
+   ],
+   "extent_relaxed_sides": {
+    "right": {
+     "from": 3239,
+     "to": 3266,
+     "why": "P1-3 (Gate A): 'right' is a neatline FALLBACK side (3239 = paper edge 3289 - 50) and no rule exists there; plate-wide (rows 330..3560) ink runs 0.006-0.015 from 3239 to 3266 and is 0.000 from 3267, while the inset rows 83..1138 carry 0.020-0.045 out to 3277 (SEAWALL BLVD, block NE 48, 12TH ST., the Gulf shoreline wash). Right paper edge is native 3282 with deckle shadow 3285-3290, so 3266 is the last drawn column with 16 px of clear paper."
+    }
+   },
+   "exclude_native_note": "inset cut-out east side moved 3244 -> 3271 with the parent's extent; the other three sides are unchanged and stand clear of the inset's measured heavy frame (native x 2560-2580 and y 1140-1165)."
   },
   "26": {
    "file": 26,
@@ -1666,6 +1754,18 @@
      "cut": true,
      "covered_fraction": 1.0,
      "match_score": 0.754
+    },
+    {
+     "kind": "edge numeral/glyph",
+     "box": [
+      1590,
+      59,
+      1708,
+      191
+     ],
+     "how": "adjoining numeral 21, in the break of the top neatline rule (extent y0=109) above 12TH ST.; ink bbox [1620,89,1678,161] + 30 px, stopping short of the dot+T.H. symbol at x>=1711; the glyph is 72 px tall, not the detector's 135 px (it had taken in the rule). tools/edgeglyph.py candidate. The detector's own name is unreliable (it carries no 1/3/6/7/9 templates) and its box swallows the neatline rule vertically while clipping digits horizontally, so both were re-read. Named by a P2-1 opus adjudicator on a 1:1 native crop before being written.",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -1738,6 +1838,30 @@
      "cut": true,
      "covered_fraction": 1.0,
      "match_score": 0.708
+    },
+    {
+     "kind": "edge numeral/glyph",
+     "box": [
+      1620,
+      90,
+      1712,
+      170
+     ],
+     "how": "adjoining numeral 22, hanging on the 12th St neatline; digit ink [1628,98,1664,162] and [1670,98,1709,162]; right edge held at 1712 to exclude the T.H. hydrant disc [1710,113,1733,148]; h=80 px, darkest row 0.83. Probe north lands in sheet 22. tools/edgeglyph.py candidate. The detector's own name is unreliable (it carries no 1/3/6/7/9 templates) and its box swallows the neatline rule vertically while clipping digits horizontally, so both were re-read. Named by a P2-1 opus adjudicator on a 1:1 native crop before being written.",
+     "cut": true,
+     "covered_fraction": 1.0
+    },
+    {
+     "kind": "edge numeral/glyph",
+     "box": [
+      1610,
+      3741,
+      1718,
+      3823
+     ],
+     "how": "adjoining numeral 34, straddling the south neatline in 15th St; full run ink x 1616-1712, y 3747-3817 + 6 px, excluding the border rule and the dashed alley ticks the detector box had swallowed. The glyph's city position lands inside placed unit 34's footprint (34 is directly south of 28). tools/edgeglyph.py candidate. The detector's own name is unreliable (it carries no 1/3/6/7/9 templates) and its box swallows the neatline rule vertically while clipping digits horizontally, so both were re-read. Named by a P2-1 opus adjudicator on a 1:1 native crop before being written.",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -1812,6 +1936,30 @@
      "cut": true,
      "covered_fraction": 1.0,
      "match_score": 0.596
+    },
+    {
+     "kind": "edge numeral/glyph",
+     "box": [
+      87,
+      1870,
+      228,
+      2001
+     ],
+     "how": "adjoining numeral 28, in the left margin (extent x0=80), upright beside the rotated street label AVE. F OR CHURCH; the 2 and 8 isolated as 71 px components at x 117-152 and 163-198 on one baseline; ink bbox [117,1900,198,1971] + 30 px; score 0.777. tools/edgeglyph.py candidate. The detector's own name is unreliable (it carries no 1/3/6/7/9 templates) and its box swallows the neatline rule vertically while clipping digits horizontally, so both were re-read. Named by a P2-1 opus adjudicator on a 1:1 native crop before being written.",
+     "cut": false,
+     "covered_fraction": 0.72
+    },
+    {
+     "kind": "edge numeral/glyph",
+     "box": [
+      1565,
+      73,
+      1654,
+      156
+     ],
+     "how": "adjoining numeral 23, on the 12th St neatline; digit ink [1573,92,1606,148] and [1618,81,1650,148]; right edge 1654 excludes the T.H. disc [1656,107,1680,144]; h=83 px. Probe north lands in sheet 23 (22 and 24 are 2877 / 3046 px away). tools/edgeglyph.py candidate. The detector's own name is unreliable (it carries no 1/3/6/7/9 templates) and its box swallows the neatline rule vertically while clipping digits horizontally, so both were re-read. Named by a P2-1 opus adjudicator on a 1:1 native crop before being written.",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -1885,6 +2033,18 @@
      "cut": true,
      "covered_fraction": 1.0,
      "match_score": 0.646
+    },
+    {
+     "kind": "edge numeral/glyph",
+     "box": [
+      1646,
+      76,
+      1740,
+      170
+     ],
+     "how": "adjoining numeral 24, straddling the north neatline in 12th St; ink x 1652-1734, y 80-164 + 6 px, excluding the T.H. hydrant dot at x 1735-1760. City position lands inside placed unit 24's footprint (24 is directly north). tools/edgeglyph.py candidate. The detector's own name is unreliable (it carries no 1/3/6/7/9 templates) and its box swallows the neatline rule vertically while clipping digits horizontally, so both were re-read. Named by a P2-1 opus adjudicator on a 1:1 native crop before being written.",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -1966,6 +2126,13 @@
     {
      "kind": "edge numeral/glyph",
      "box": [
+      1567,
+      40,
+      1717,
+      178
+     ],
+     "how": "adjoining numeral 25 in the break of the top neatline rule (extent y0=102) above 12TH ST. P2-1 found the previously confirmed box [1632,40,1717,177] clips the numeral: the 2 measures x 1597-1630 by column ink profile, entirely outside it. This box is the UNION of that box with the measured full-numeral ink bbox [1597,78,1678,148] + 30 px, so nothing previously kept is lost. Digits read at x 1597-1630 and 1645-1678, y 78-148, with the dot at 1682-1706 and T.H. at 1690-1730; detector score 1.000.",
+     "box_previous": [
       1632,
       40,
       1717,
@@ -1994,7 +2161,7 @@
    "region": null,
    "extent": [
     84,
-    92,
+    50,
     3235,
     3818
    ],
@@ -2021,11 +2188,11 @@
     [
      [
       1160,
-      87
+      45
      ],
      [
       3240,
-      87
+      45
      ],
      [
       3240,
@@ -2081,7 +2248,15 @@
      "covered_fraction": 1.0,
      "match_score": 0.747
     }
-   ]
+   ],
+   "extent_relaxed_sides": {
+    "top": {
+     "from": 92,
+     "to": 50,
+     "why": "P1-3 (Gate A): 'top' is a neatline FALLBACK side; the strip rows 46..92 over the wedge span x 620..1180 carries the seawall double line at ink 0.009-0.015 with no value above 0.013, i.e. map ink and no border rule, and the paper edge over x 400..3000 is min 41 / median 42 / p99 46 / max 46, so 50 sits 4 px inside the deepest paper edge (neatline's own INSET=4)."
+    }
+   },
+   "exclude_native_note": "Gate A companion to the top relaxation: the unplaced plate-32 inset cut-out was moved up with the extent (87 -> 45) so the parent cannot claim inset ground at its own position."
   },
   "33": {
    "file": 33,
@@ -2225,6 +2400,18 @@
      "cut": true,
      "covered_fraction": 1.0,
      "match_score": 0.676
+    },
+    {
+     "kind": "edge numeral/glyph",
+     "box": [
+      1614,
+      70,
+      1701,
+      155
+     ],
+     "how": "adjoining numeral 28, on the 15th St neatline; digit ink [1622,91,1654,145] and [1664,76,1700,147]; box stops at 1701 short of the block-corner rule fragment [1702,60,1740,93]; h=85 px. Probe north lands in sheet 28. tools/edgeglyph.py candidate. The detector's own name is unreliable (it carries no 1/3/6/7/9 templates) and its box swallows the neatline rule vertically while clipping digits horizontally, so both were re-read. Named by a P2-1 opus adjudicator on a 1:1 native crop before being written.",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -2298,6 +2485,18 @@
      "cut": true,
      "covered_fraction": 1.0,
      "match_score": 0.585
+    },
+    {
+     "kind": "edge numeral/glyph",
+     "box": [
+      1616,
+      64,
+      1715,
+      168
+     ],
+     "how": "adjoining numeral 29, straddling the north neatline in 15th St; ink x 1622-1709, y 70-162 + 6 px. City position lands inside placed unit 29's footprint (29 is directly north). tools/edgeglyph.py candidate. The detector's own name is unreliable (it carries no 1/3/6/7/9 templates) and its box swallows the neatline rule vertically while clipping digits horizontally, so both were re-read. Named by a P2-1 opus adjudicator on a 1:1 native crop before being written.",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -2517,6 +2716,18 @@
      "cut": true,
      "covered_fraction": 1.0,
      "match_score": 0.686
+    },
+    {
+     "kind": "edge numeral/glyph",
+     "box": [
+      1624,
+      3717,
+      1767,
+      3870
+     ],
+     "how": "adjoining numeral 42, in the bottom margin below 18TH ST. (extent y1=3791), in the sheet-edge bracket like the confirmed plate 40 numeral; column ink profile over y 3735-3840 with the rule rows 3796-3808 excluded gives exactly two runs, [1654,1684) and [1698,1737); ink bbox [1654,3747,1737,3840] + 30 px. tools/edgeglyph.py candidate. The detector's own name is unreliable (it carries no 1/3/6/7/9 templates) and its box swallows the neatline rule vertically while clipping digits horizontally, so both were re-read. Named by a P2-1 opus adjudicator on a 1:1 native crop before being written.",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -2910,6 +3121,18 @@
      "cut": true,
      "covered_fraction": 1.0,
      "match_score": 0.737
+    },
+    {
+     "kind": "edge numeral/glyph",
+     "box": [
+      3105,
+      1894,
+      3210,
+      1972
+     ],
+     "how": "adjoining numeral 44, rotated in the right margin; digit ink [3113,1896,3150,1964] and [3163,1894,3202,1961]; top edge held at 1894 to exclude the OR of the Ave. I street label [3127,1873,3153,1893]; h=78 px. Probe east lands in sheet 44. tools/edgeglyph.py candidate. The detector's own name is unreliable (it carries no 1/3/6/7/9 templates) and its box swallows the neatline rule vertically while clipping digits horizontally, so both were re-read. Named by a P2-1 opus adjudicator on a 1:1 native crop before being written.",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -2983,6 +3206,18 @@
      "cut": true,
      "covered_fraction": 1.0,
      "match_score": 0.689
+    },
+    {
+     "kind": "edge numeral/glyph",
+     "box": [
+      1651,
+      79,
+      1748,
+      170
+     ],
+     "how": "adjoining numeral 40, straddling the north neatline in Center St; ink x 1657-1742, y 85-164 + 6 px, excluding the T.H. hydrant dot at x 1771-1793. City position lands inside placed unit 40's footprint. tools/edgeglyph.py candidate. The detector's own name is unreliable (it carries no 1/3/6/7/9 templates) and its box swallows the neatline rule vertically while clipping digits horizontally, so both were re-read. Named by a P2-1 opus adjudicator on a 1:1 native crop before being written.",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -3055,6 +3290,30 @@
      "cut": true,
      "covered_fraction": 1.0,
      "match_score": 0.724
+    },
+    {
+     "kind": "edge numeral/glyph",
+     "box": [
+      45,
+      2046,
+      148,
+      2127
+     ],
+     "how": "adjoining numeral 44, rotated in the left margin; digit ink [53,2049,95,2118] and [96,2050,140,2119] + 8 px; top edge 2046 keeps clear of the AVEN[UE] label stroke [115,2030,144,2051]; h=81 px, darkest row 0.83. Two adjudicators fitted this same glyph (candidates 18 and 19); the tighter box, which excludes the street label, is the one written. tools/edgeglyph.py candidate. The detector's own name is unreliable (it carries no 1/3/6/7/9 templates) and its box swallows the neatline rule vertically while clipping digits horizontally, so both were re-read. Named by a P2-1 opus adjudicator on a 1:1 native crop before being written.",
+     "cut": false,
+     "covered_fraction": 0.944
+    },
+    {
+     "kind": "edge numeral/glyph",
+     "box": [
+      1589,
+      83,
+      1656,
+      162
+     ],
+     "how": "adjoining numeral 41, straddling the north neatline of the street labelled 21ST OR CENTER; ink x 1595-1650, y 89-156 + 6 px. City position lands inside placed unit 41's footprint; the digit pair reads 41 at 2.4x on the native scan. tools/edgeglyph.py candidate. The detector's own name is unreliable (it carries no 1/3/6/7/9 templates) and its box swallows the neatline rule vertically while clipping digits horizontally, so both were re-read. Named by a P2-1 opus adjudicator on a 1:1 native crop before being written.",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -3129,6 +3388,18 @@
      "cut": false,
      "covered_fraction": 0.0,
      "match_score": 0.72
+    },
+    {
+     "kind": "edge numeral/glyph",
+     "box": [
+      1587,
+      68,
+      1729,
+      199
+     ],
+     "how": "adjoining numeral 42, in the break of the top neatline rule (extent y0=118) above the 21ST OR CENTER ST. label; digits isolated as 68 px components at x 1617-1658 and 1663-1699; ink bbox [1617,98,1699,169] + 30 px. tools/edgeglyph.py candidate. The detector's own name is unreliable (it carries no 1/3/6/7/9 templates) and its box swallows the neatline rule vertically while clipping digits horizontally, so both were re-read. Named by a P2-1 opus adjudicator on a 1:1 native crop before being written.",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -3301,6 +3572,18 @@
      "cut": false,
      "covered_fraction": 0.0,
      "match_score": 0.739
+    },
+    {
+     "kind": "edge numeral/glyph",
+     "box": [
+      614,
+      76,
+      719,
+      176
+     ],
+     "how": "adjoining numeral 48, in 30th St under the top neatline; digit ink [620,80,684,170] and [688,96,717,170]; right edge 719 stops short of the block rule at x=718-730; h=100 px. Nothing is mapped north of sheet 48: the plate prints 48 here and again at the internal step where its own coverage resumes, the same convention as the 0 numerals it prints where there is no source. Distinct from the title block at [3044,93,3232,256]. tools/edgeglyph.py candidate. The detector's own name is unreliable (it carries no 1/3/6/7/9 templates) and its box swallows the neatline rule vertically while clipping digits horizontally, so both were re-read. Named by a P2-1 opus adjudicator on a 1:1 native crop before being written.",
+     "cut": false,
+     "covered_fraction": 0.0
     }
    ]
   },
@@ -3682,8 +3965,8 @@
    "region": null,
    "extent": [
     89,
-    95,
-    3233,
+    52,
+    3258,
     3812
    ],
    "streets": [
@@ -3709,14 +3992,14 @@
     [
      [
       2098,
-      90
+      47
      ],
      [
-      3238,
-      90
+      3263,
+      47
      ],
      [
-      3238,
+      3263,
       2275
      ],
      [
@@ -3775,7 +4058,20 @@
      "covered_fraction": 1.0,
      "match_score": 0.58
     }
-   ]
+   ],
+   "extent_relaxed_sides": {
+    "top": {
+     "from": 95,
+     "to": 52,
+     "why": "P1-3 (Gate A): FALLBACK side, no rule; ink 0.028-0.035 continuously in rows 48..95 over x 1150..2140, identical to rows 96-152 (the seawall, the dashed 6\" W PIPE, the Gulf wash and the Casino Pavilion's north apex with the 2205/2206 frontage, which the old boundary clipped). Paper edge over the main body x 330..2090 is min 43 / median 44 / p99 48 / max 56."
+    },
+    "right": {
+     "from": 3233,
+     "to": 3258,
+     "why": "P1-3 (Gate A): FALLBACK side, no rule; ink 0.064 at 3233 tapering to 0.008 at 3256 and 0.000 from 3264 (pier structure, water wash, dashed pipe, the adjoining numeral 32). Right paper edge max 55 = native 3271."
+    }
+   },
+   "exclude_native_note": "inset cut-out top and right moved out with the parent's extent (90 -> 47, 3238 -> 3263); the left edge stays at 2098 because the inset's heavy double frame measures native x 2088-2107."
   },
   "55": {
    "file": 55,
@@ -5673,6 +5969,18 @@
      "cut": false,
      "covered_fraction": 0.799,
      "match_score": 0.685
+    },
+    {
+     "kind": "edge numeral/glyph",
+     "box": [
+      2612,
+      79,
+      2702,
+      162
+     ],
+     "how": "adjoining numeral 74, straddling the north neatline; ink x 2618-2696, y 85-155 + 6 px, excluding the two alley ticks above it. The numeral sits east of centre on 81's top edge and its city position lands inside placed unit 74's footprint (74 at dx=+4050, dy=-6894), not 73's (dx=-1962), which covers the west half of the same edge. tools/edgeglyph.py candidate. The detector's own name is unreliable (it carries no 1/3/6/7/9 templates) and its box swallows the neatline rule vertically while clipping digits horizontally, so both were re-read. Named by a P2-1 opus adjudicator on a 1:1 native crop before being written.",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -5819,6 +6127,18 @@
      "cut": true,
      "covered_fraction": 1.0,
      "match_score": 0.687
+    },
+    {
+     "kind": "edge numeral/glyph",
+     "box": [
+      3117,
+      1876,
+      3258,
+      2009
+     ],
+     "how": "adjoining numeral 84, at the right edge (extent x1=3228), printed in the Ave. G roadway beside the rotated label AVE. G OR WINNIE where the street runs along the sheet edge; digits isolated as 72 px components at x 3147-3192 and 3189-3228; ink bbox [3147,1906,3228,1979] + 30 px. Overprinted on roadway ink: the 4012-4018 address run beside it is ~30 px italic, less than half the glyph height, and lies outside the box. tools/edgeglyph.py candidate. The detector's own name is unreliable (it carries no 1/3/6/7/9 templates) and its box swallows the neatline rule vertically while clipping digits horizontally, so both were re-read. Named by a P2-1 opus adjudicator on a 1:1 native crop before being written.",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -6059,6 +6379,18 @@
      "cut": true,
      "covered_fraction": 1.0,
      "match_score": 0.556
+    },
+    {
+     "kind": "edge numeral/glyph",
+     "box": [
+      2592,
+      3714,
+      2748,
+      3824
+     ],
+     "how": "adjoining numeral 95, straddling the bottom rule; the 9 is split by the rule into [2600,3722,2656,3763] and [2622,3765,2657,3816], the 5 is [2665,3722,2740,3816]; union + 8 px; h=110 px. Probe south lands in sheet 95. tools/edgeglyph.py candidate. The detector's own name is unreliable (it carries no 1/3/6/7/9 templates) and its box swallows the neatline rule vertically while clipping digits horizontally, so both were re-read. Named by a P2-1 opus adjudicator on a 1:1 native crop before being written.",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -6262,6 +6594,18 @@
       350,
       242
      ],
+     "cut": true,
+     "covered_fraction": 1.0
+    },
+    {
+     "kind": "scale bar",
+     "box": [
+      290,
+      3642,
+      925,
+      3739
+     ],
+     "how": "P3-2: the 'Scale of Feet.' legend with ticks 50 40 30 20 10 0 / 50 / 100 / 150, bottom-left, INSIDE the trimmed extent [80,108,3224,3773] (34 px above the neatline) and printing across Avenue R1/2 in the shipped build, between the even run 2302-2324 and the odd run 2301-2323. tools/scalebar.py missed it: the plate's true template peak is 0.451 at (282,3640), under THRESH=0.52, and is outranked by a spurious 0.500 on the scan's bottom paper/mat edge at (1783,3785) - so the threshold was NOT lowered (at 0.50 it would write that wrong box here and a second wrong box on 5a/5b). Box fitted to the legend's ink (298,3650)-(917,3731) + 8 px = 635x97, against plate 14's 646x98 and the template's 655x95; darkest row 0.769; the 3 px ring inside every edge is clean paper (min grey 0.60, no pixel < 0.5).",
      "cut": true,
      "covered_fraction": 1.0
     }
@@ -6576,6 +6920,18 @@
      "cut": false,
      "covered_fraction": 0.0,
      "match_score": 0.553
+    },
+    {
+     "kind": "edge numeral/glyph",
+     "box": [
+      55,
+      727,
+      101,
+      809
+     ],
+     "how": "adjoining numeral 0, isolated in the AVE. J. OR BROADWAY roadway at the trimmed west edge; ink x 61-95, y 733-803 measured at grey<90 to reject the brown edge stain the detector box had swallowed; 82 px tall in the bold edge face. Same stadium-form 0 as the 0 in plate 44's 40. CAVEAT: the box straddles extent x0=90 and lies mostly west of it, and the physical sheet is trimmed ~15 px west of the glyph, so a leading digit may have been lost in trimming; the box covers only ink the plate actually carries. tools/edgeglyph.py candidate. The detector's own name is unreliable (it carries no 1/3/6/7/9 templates) and its box swallows the neatline rule vertically while clipping digits horizontally, so both were re-read. Named by a P2-1 opus adjudicator on a 1:1 native crop before being written.",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -6721,6 +7077,18 @@
      "cut": false,
      "covered_fraction": 0.0,
      "match_score": 0.581
+    },
+    {
+     "kind": "edge numeral/glyph",
+     "box": [
+      48,
+      1833,
+      187,
+      1965
+     ],
+     "how": "adjoining numeral 94, in the left margin on blank paper below the last mapped block (extent x0=92); the 9 and 4 isolated as 71 px components at x 78-112 and 114-157; ink bbox [78,1863,157,1935] + 30 px. The SE 32 archival stamp ~300 px east is deliberately excluded. tools/edgeglyph.py candidate. The detector's own name is unreliable (it carries no 1/3/6/7/9 templates) and its box swallows the neatline rule vertically while clipping digits horizontally, so both were re-read. Named by a P2-1 opus adjudicator on a 1:1 native crop before being written.",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -6793,6 +7161,18 @@
      "cut": false,
      "covered_fraction": 0.0,
      "match_score": 0.702
+    },
+    {
+     "kind": "compass rose",
+     "box": [
+      2314,
+      112,
+      2886,
+      322
+     ],
+     "how": "compass rose, disc + starburst + both NW/SE arrow tails in the street strip above the 2101-2123 block; the whole ornament is one ink component [2346,117,2880,351]; the box top sits below the street rule at y~108 and the bottom above the address-numeral row at y~335, so it holds the rose and no map ink. Widened from the detector box, which cut both tails. tools/edgeglyph.py candidate. The detector's own name is unreliable (it carries no 1/3/6/7/9 templates) and its box swallows the neatline rule vertically while clipping digits horizontally, so both were re-read. Named by a P2-1 opus adjudicator on a 1:1 native crop before being written.",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -7379,6 +7759,18 @@
      "how": "sheet 5's 'Scale 100 Ft. to One Inch.' bar, 2x template match, score 0.61",
      "cut": false,
      "covered_fraction": 0.442
+    },
+    {
+     "kind": "plate number and title",
+     "box": [
+      180,
+      150,
+      520,
+      520
+     ],
+     "how": "P3-2: sheet 5's single title block 'GALVESTON, TEXAS.' over the numeral 5, ink (268,190)-(500,440). The box is set equal to the unit's existing exclude_native rectangle - the convention on 93 of the 95 plates that carry a title box - so the footprint is unchanged and only the missing record is added. Unit 5b correctly has none: the title lies at x268-500, west of 5b's region boundary at x~3803, and crops of 5b's own corners (x3800-4700 y100-620, x5900-6653 y90-700 and y7100-7720) carry no title.",
+     "cut": false,
+     "covered_fraction": 0.743
     }
    ]
   },
@@ -7456,6 +7848,50 @@
      91
     ],
     [
+     3271,
+     91
+    ],
+    [
+     3271,
+     1526
+    ],
+    [
+     2508,
+     1526
+    ],
+    [
+     2410,
+     1382
+    ],
+    [
+     2229,
+     1155
+    ],
+    [
+     2224,
+     1112
+    ],
+    [
+     2190,
+     1062
+    ]
+   ],
+   "extent": [
+    2190,
+    91,
+    3271,
+    1526
+   ],
+   "streets": null,
+   "avenue_slots": null,
+   "source_image": "work/sheets/1912w/u20.jpg",
+   "note": "detached inset (8th-9th St, Ave L-Seawall) top-right of plate 20 inside a heavy frame; shift from Ave L west block face (main 3185 / inset 2219) and 9th St north face (main 3569 / inset 1264)",
+   "region_native_previous": [
+    [
+     2190,
+     91
+    ],
+    [
      3239,
      91
     ],
@@ -7472,16 +7908,7 @@
      1062
     ]
    ],
-   "extent": [
-    2190,
-    91,
-    3239,
-    1526
-   ],
-   "streets": null,
-   "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u20.jpg",
-   "note": "detached inset (8th-9th St, Ave L-Seawall) top-right of plate 20 inside a heavy frame; shift from Ave L west block face (main 3185 / inset 2219) and 9th St north face (main 3569 / inset 1264)"
+   "region_native_note": "P1-3 (Gate A): the single diagonal ran up to 41 px inside the inset's printed frame band, whose inner edge traces per-row to x = 0.7679*y + 1339.1; replaced by a 4-segment polyline on that inner edge with a 5 px guard, clipped so no pixel is ever given up (clearance test: 176 dark samples against the old line's 181, all of them outside the notch band y1183-1395). Right edge follows the parent to 3271 - the inset carries no frame on its top or right (columns x2600/x3000 for y60-130 and rows y400/y1400 for x3215-3284 are flat paper 134-151 to the scan border at 3285)."
   },
   "25b": {
    "file": 25,
@@ -7492,6 +7919,34 @@
     2735
    ],
    "region_native": [
+    [
+     2580,
+     83
+    ],
+    [
+     3266,
+     83
+    ],
+    [
+     3266,
+     1138
+    ],
+    [
+     2580,
+     1138
+    ]
+   ],
+   "extent": [
+    2580,
+    83,
+    3266,
+    1138
+   ],
+   "streets": null,
+   "avenue_slots": null,
+   "source_image": "work/sheets/1912w/u25.jpg",
+   "note": "detached inset (11th-12th St, Ave N-Seawall, block NE 18) top-right of plate 25; shift from Ave N faces (main 3010/3222, inset 2752/2963) and 12th St faces (main 3555/3791, inset 816/1060)",
+   "region_native_previous": [
     [
      2580,
      83
@@ -7509,16 +7964,7 @@
      1138
     ]
    ],
-   "extent": [
-    2580,
-    83,
-    3239,
-    1138
-   ],
-   "streets": null,
-   "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u25.jpg",
-   "note": "detached inset (11th-12th St, Ave N-Seawall, block NE 18) top-right of plate 25; shift from Ave N faces (main 3010/3222, inset 2752/2963) and 12th St faces (main 3555/3791, inset 816/1060)"
+   "region_native_note": "P1-3 (Gate A): the inset runs off the sheet's right trim with no frame rule; ink in rows 83..1138 continues to 3277 and the east side is held at 3266 to match the parent's relaxed extent. Every other vertex and shift_native unchanged."
   },
   "54b": {
    "file": 54,
@@ -7529,6 +7975,38 @@
     -1954
    ],
    "region_native": [
+    [
+     2122,
+     52
+    ],
+    [
+     3258,
+     52
+    ],
+    [
+     3258,
+     2250
+    ],
+    [
+     2318,
+     2250
+    ],
+    [
+     2122,
+     1500
+    ]
+   ],
+   "extent": [
+    2122,
+    52,
+    3258,
+    2250
+   ],
+   "streets": null,
+   "avenue_slots": null,
+   "source_image": "work/sheets/1912w/u54.jpg",
+   "note": "detached inset (23rd-24th St, Ave Q-Seawall: Casino Pavilion, Gulf View Hotel, Carousel) top-right of plate 54 inside a heavy frame; shift from Ave Q east block face (main 222 / inset 2349) and 24th St south face (main 293 / inset 2246)",
+   "region_native_previous": [
     [
      2122,
      95
@@ -7550,16 +8028,7 @@
      1500
     ]
    ],
-   "extent": [
-    2122,
-    95,
-    3233,
-    2250
-   ],
-   "streets": null,
-   "avenue_slots": null,
-   "source_image": "work/sheets/1912w/u54.jpg",
-   "note": "detached inset (23rd-24th St, Ave Q-Seawall: Casino Pavilion, Gulf View Hotel, Carousel) top-right of plate 54 inside a heavy frame; shift from Ave Q east block face (main 222 / inset 2349) and 24th St south face (main 293 / inset 2246)"
+   "region_native_note": "P1-3 (Gate A): top and east sides follow the parent's relaxed extent, recovering the Casino Pavilion's north apex and the 2205/2206 frontage that rows 52-95 carry. shift_native and the two interior vertices are untouched, so the panel's registration against Ave Q east face and 24th St south face is unchanged."
   },
   "4": {
    "file": 4,
@@ -7732,15 +8201,22 @@
    ],
    "furniture_native": [
     {
-     "kind": "edge numeral/glyph",
+     "kind": "plate number and title",
      "box": [
+      56,
+      63,
+      222,
+      220
+     ],
+     "cut": false,
+     "covered_fraction": 0.541,
+     "box_previous": [
       56,
       68,
       171,
       220
      ],
-     "cut": false,
-     "covered_fraction": 0.337
+     "how": "P3-2: the plate's own title block 'GALVESTON, TEXAS.' over the numeral 3, in the blank top-left margin above the wharf water - the wharf-plate pattern of units 4 and 6. Box fitted to the ink (67,73)-(212,208) with ~10 px pad. The entry was mis-kinded as an adjoining numeral and its box clipped 'TEXAS.' at x=171 (ink runs to 212). Plate 3's genuine adjoining numerals ('4' top, '15' right, '2' bottom) are elsewhere in the map body and remain undetected, so the edge numeral/glyph unit count drops from 6 to 5."
     },
     {
      "kind": "scale bar",

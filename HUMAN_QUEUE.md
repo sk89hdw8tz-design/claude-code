@@ -1090,3 +1090,443 @@ per-seam / per-window JSON.
 33 windows, 21 clean, 23 checks, 16 confirmed. `outputs/1912/qc/interior/win_*.jpg`
 and `windows.json` were copied to `qc/interior/round1/` before this ran, per
 plan rule 9.
+
+## HQ-31 · P2-2 `pair_26_42` (Ave O 1/2, plates 26|42) — NO CHANGE, values sound, net tension
+
+Identity re-confirmed on the native scans to the existing standard: both plates
+letter "AVENUE O 1/2" in the shared roadway and each prints the other's sheet
+numeral there ("42" on 26, "26" on 42); the frontages interlock 42-evens
+1902–1928 against 26-odds 1901–1927; the cross-street run changes 1723|1801
+exactly at the corridor; Ave P is 1,004 px east on sheet 26, so a one-block
+error is excluded.
+
+Values re-measured by column-ink profile over three block rows: plate 26 draws
+only the east face (267.6) and plate 42 only the west face (3075.2) — both
+"faces" at the sheet edges in `lattice.json` are paper-edge shoulders, so the
+half-width reconstruction the control used is the only method available. A
+re-read using the measured faces and h = 105.8 px (from plate 47, which draws
+both faces of this avenue) shifts the tie by 2.8 ft — inside the ±3 ft spread
+of the printed 70' roadway across these plates — and makes the band residual
+**worse** (−10.3 / +1.6 against −7.2 / +4.7). The recorded value sits 1.3 ft
+from zero at band centre. Left ACCEPTED unchanged.
+
+The residual is relative rotation: plate 26 is skewed −0.904° against 42's
+−0.101°, and 0.7 × 1214 ft of band × the tilt difference predicts an
+0.15→0.85 swing of +11.91 ft against +11.91 ft observed. Plate 26 is the skew
+outlier in its neighbourhood (47 −0.236, 41 −0.219, 46 −0.062, 45 +0.056) and
+all four of its controls show the same sign flip. `localsolve --units 26` sits
+in a balanced deadlock (26_42 +4.1 against 26_47_x −4.1 in x; 26_47 +4.0
+against 26_42_y −4.0 in y), so no translation helps, and `--similarity` would
+mean re-solving a corner plate held by four controls. Same outcome as 52|53 and
+40|41.
+
+## HQ-32 · P2-2 `pair_30_36` (15th St, plates 30|36) — NO CHANGE, values sound, net tension
+
+Both plates print "15TH ST." in the corridor, plate 30 prints the adjoining
+numeral "36" south of it and plate 36 prints "30" north of it; the frontage
+runs are 902–924 / 1002–1024 (even, plate 30 north) against 901–925 / 1001–1023
+(odd, plate 36 south), and the flanking avenue labels change 1425–1428 to
+1501–1504 across this line only. The same 8" W. PIPE, T.H. hydrant, 20' alley
+and 150' block dimension are drawn on both sheets.
+
+Values verified, not re-read: block faces by row-ink profile give plate 30
+3546.0 / 3787.1 and plate 36 102.4 / 343.0 — both 241 px, identical drafted
+width, so no source disagreement. The corridor centre sampled in ten x-windows
+means 3664.7 and 218.5, so the stored 3664.0 / 219.0 are correct to within one
+native px (0.35 ft). The 1.4 ft difference between the 0.15 and 0.85 band
+samples is opposite-phase scan bow (±5 px per sheet), irreducible under a
+similarity transform.
+
+Cause: plates 31 and 36 agree on the 15th St centreline to 0.4–1.2 ft while
+plate 30 sits 5.8–7.2 ft north of both, pinned there by pair_24_30,
+pair_29_30_y, pair_25_30 and pair_24_30_x. `localsolve --units 30` moves it
+only (−1, +2) ft; `--similarity` buys 3 ft only by changing plate 30's scale
++0.18% and rotation +0.12° while driving pair_30_31 to 5.8 ft; `--units 36`
+makes this control worse (−7.5 ft) because pair_31_36 ties the same corridor
+from plate 31.
+
+**For a later wave:** the 30-vs-(24/29/25) y tension is the real defect, and
+pair_29_30_y and pair_36_37_y are bare "lattice (tools/faces.py)" ties with
+corridor "?" and no identity argument — candidates for a named re-read.
+
+## HQ-33 · P2-2 `pair_54_60` (27th St, plates 54|60) — NO CHANGE, values sound, net tension
+
+Plate 54 prints "27TH" with the adjoining numeral 60 and 80' in the roadway,
+north-side runs 2102–2124 / 2202–2214 on the 2600 avenue block; plate 60 prints
+"27TH" with the adjoining numeral 54, a compass rose and 80', south-side runs
+2101–2123 / 2201–2211 on the 2700 block — odds facing evens across one corridor.
+
+Face reads hold: 54's north face at native y 3614–3615 (columns x = 300/900/1500),
+60's south face at 347–353, roadway 240–243 px = 80 ft, so a_native 3735 and
+b_native 226 are correct (54's south face is trimmed at extent y = 3812, centre
+= face + 121.5). The 53/54/60 tie loop closes in value to 1.25 native px (0.41 ft).
+
+The −4.7 / −6.9 ft residual is the per-plate scale spread (53 2.0413, 54 2.0216,
+60 1.9994 px per native px) plus a 0.169° rotation difference: over the 822 ft
+between 25th and 27th St that leaves 54 5.8 ft too far south of 53 and 5.8 ft
+too far north of 60 at once. The mosaic renders 27th St 85.6 ft wide at the east
+end against the 80 ft both plates print. Moving 60 zeroes this control but newly
+breaks pair_59_60 (+5.8) and pair_60_66 (−4.1); moving 54 splits the tension into
+two −7.9 ft residuals; `--similarity` on 54 reaches 3.5 ft only by changing that
+plate's scale +0.49% off three controls with no plate evidence. Registration
+frozen.
+
+## HQ-34 · P2-2 `pair_30_31` (Ave L, plates 30|31) — APPLIED (control value only; no plate moved)
+
+Corridor identity unchanged and re-confirmed: both plates letter AVENUE L,
+plate 30's even Ave-L column 1302–1320 faces plate 31's odd 1301–1317, the
+cross-street runs change 1100→1200 exactly across the corridor, and each plate
+prints the other's adjoining numeral in the roadway.
+
+The **value** was wrong. Review B read the gutter as 80 ft (half-widths 123 /
+120 px), but the printed 80' in those crops sits in the numbered-street
+corridor (240–245 px = 80 ft on both plates' y lattice), while Avenue L
+measures 213 px — plate 30 Ave K 213.0, plate 31 Ave M 212.1, Ave M-1/2 212.0,
+Ave N 217.5, and plate 57, which draws Avenue L complete, 216.5. The correct
+half-width is 106.8 px, the figure pair_56_57, pair_29_30, pair_25_31_x and
+pair_31_32 already use. `a_native` 3230.0 → 3214.0 (west face 3107.2 + 106.8),
+`b_native` 126.0 → 141.2 (east face 248.0 − 106.8); previous values and the
+reason are recorded in the control file.
+
+This does not cure the residual, which now reads −7.4 / −4.1 ft: plate 31's
+Ave-L face drifts −8.5 px over 2,265 px of y against plate 30's +2 px (~0.2°
+relative skew), and `localsolve` already leaves both plates at their optimum
+(31 moves (−0.2, −0.4) ft, 30 (−0.6, +2.3) ft). The remaining ~5 ft is held by
+pair_31_32_y (−9.6 ft) and pair_31_36 (+6.4 ft). No `localsolve --apply` was run.
+
+**For a later wave:** pair_24_25 (h = 121/121) and pair_36_37 (h = 123/117)
+carry the same 80 ft assumption on the same Avenue L column; measured centres
+would be 3210.0 / 111.5 and 3200.2 / 150.7, and pair_20_25_x independently
+places Ave L on plate 25 at 111.8.
+
+## HQ-35 · P2-2 `pair_31_32` (Ave N, plates 31|32) — NO CHANGE, values sound, net tension
+
+Both plates letter AVENUE N inside the same roadway (31 at native x~3150, 32 at
+x~240); 31's face carries the even runs 1206–1216 and 1304–1314, 32's the odd
+1205–1215 and 1303–1313. `lattice.json` plus the independently lettered AVENUE M
+(pair_31_37_x) on 31 and AVENUE N 1/2 (pair_32_38_x) on 32 fix the chain
+indices, and the one-block alternatives are a full 344 ft away with the wrong
+parity.
+
+Sub-pixel face fits in 11 y-windows put the mid-plate corridor centres at 3152
+(31) and 251.4 (32) against the recorded 3149 / 251 — 1.0 ft and 0.1 ft.
+
+The 7.2 ft swing (−0.9 → +6.3) is the 0.459° relative rotation of the two
+transforms over the 7,417 px band (7.18 ft predicted), which no scalar can
+flatten. Measured through the transforms, the drawn corridors agree +6.6 ft at
+the north end to −2.6 ft at the south and cross at ~0.75 of the band;
+`bandresid`'s straight-native-line model exaggerates because the drawn corridor
+is skewed 0.79° differently on the two scans. `--units 31` moves it (0,0) ft;
+`--units 32` moves it (−5,−6) ft and worsens pair_32_38 to −8.4 ft.
+
+**Tool finding for a later wave:** `tools/localsolve.py:controls()` matches
+`pair_<a>_<b>(_[xy])?.json`, so three ACCEPTED controls with a `_y2` suffix —
+`pair_31_32_y2` (14th St), `pair_24_25_y2`, `pair_35_36_y2` — are silently
+dropped by `localsolve`, `bandresid` and `streetcut.load_cuts`. On 31|32 that
+leaves y constrained by 13th St alone. Not fixed here: repairing the regex
+changes the city solve for three pairs.
+
+## HQ-36 · P2-2 `pair_38_42` (18th St, plates 38|42) — APPLIED (small value re-read; no plate moved)
+
+Both plates print "18TH ST." and each prints the other's adjoining numeral (42
+on sheet 38, 38 on sheet 42); the faces pair even/odd of one hundred-block (38:
+1602–1612 / 1702–1712; 42: 1601–1611 / 1701–1711) and the cross-avenue
+addresses change 17xx → 18xx across the line. Both draw the roadway 241 px (80',
+printed).
+
+Centres re-read from the drawn faces at 18 x-samples: `a_native` 3682 → 3678.0
+(38 measures 3678.5 west to 3675.0 east), `b_native` 210 → 210.8 (42 measures
+209.0 west to 216.5 east). Previous values and the reason are recorded in the
+control file. The 6.2 ft band figure was mostly net tension: the transforms
+differ by 0.297° in rotation and the corridor as drawn is not parallel between
+plates, which a single-y control cannot encode — the measured centrelines
+disagree by only 2.0–3.4 ft in the mosaic. Freeing 38 (+3, −1 ft) or 42
+(+0, −1 ft), or solving either with `--similarity`, leaves 5–7 ft on this pair
+because pair_38_41 and pair_32_38_x pull the other way. After the re-read the
+pair drops off the >6 ft list (+0.7 / +4.6 ft predicted).
+
+## HQ-37 · P2-2 `pair_38_41` (18th St, plates 38|41) — APPLIED (value re-read only; no plate moved)
+
+Plates 38 and 41 share only the 18th St × Ave N corner (120 × 244 native px).
+Both print "18TH ST." in that roadway, 38 with the adjoining numeral "42" below
+it and 41 with "37" above it; the 18th St hundreds break 1400|1500 falls on the
+shared Ave N (41 prints 1401–1423 west of it, 38 prints 1502–1524 east of it);
+a single F.A. disc is drawn at the corner on each plate. One chain off is 396 ft
+away.
+
+The recorded tie was misread, not misidentified: `a_native` 3659 sat 19.7 native
+px north of plate 38's measured corridor centre (faces 3557.0 / 3800.3 → 3678.7)
+and `b_native` 233 sat 23.9 px south of plate 41's (faces 88.0 / 330.1 → 209.1)
+— 14.9 ft of compounded tie error, while the sibling controls on the same
+corridor read it correctly. Values re-read to 3678.7 / 209.1 with the previous
+values, observer and reason recorded in the file; the clause calling the
+1702–1728 run "the 17th–18th block" is corrected (it is the 1700 block of 18th
+St, Ave O to Ave O 1/2).
+
+**No registration change.** Corrected, the corner shows a constant +8.8 ft (y)
+and +18.3 ft (x) offset on both faces of both corridors — translation only — and
+both plates draw the street 82.6 / 83.2 ft and the avenue 73.7 / 72.5 ft, so it
+is not a source disagreement. `localsolve` puts 38 and 41 already at their
+optimum, and forcing 38 to satisfy the corrected tie breaks pair_32_38,
+pair_37_38_y and pair_38_42_x by the same amount. The control now reads
++8.7 / +8.9 ft, which is the honest measured disagreement; `streetcut` takes the
+mean of the two positions, so the 38|41 cut line moves 4.5 mosaic px (0.8 ft),
+below the 50 px diff threshold, and 37/42 own nearly all pixels at that corner.
+
+## HQ-38 · P2-3 the 17|18|19 seawall steps — `pair_17_18_y` REJECTED; no plate moved, no re-solve
+
+Two independent Opus reviewers worked edge_00 (18|19) and edge_01 (17|18) and
+**converged on the same finding, the same corridor and the same face pair.**
+
+First, the scale: the periphery windows are 6,000 mosaic px rendered to 1,500 at
+5.7966 px/ft, so 1 window px = 0.69 ft, not the 1.4 ft `PERIPHERY_BRIEF.md`
+states. The reported 20–28 ft steps are really 11.6 ft (17|18) and 12.3 ft
+(18|19) on the SEAWALL double line, over blank beach paper 2,200–3,400 native px
+north of the nearest shared corridor.
+
+**18|19: no change.** The corridor is Ave F (606–628 even against 605–627 odd,
+with the 513–523 → 601–611 hundred-block break on Seawall Blvd). The two plates
+put the seawall 2,233.8 and 2,234.6 native px from 8th St's north face — 0.03%
+apart — so they agree on the ground; the mosaic step is the 1.13% scale gap
+absorbing a real 0.76% drafting-scale difference between the sheets, and
+`--similarity` leaves the scales within 0.07% of optimum.
+
+**17|18: the tie is invalid and is removed from the solve.** `pair_17_18_y` is a
+`observer: "lattice (tools/faces.py)"` cross-axis tie with `corridor: "?"` whose
+plate-17 face pair [2351, 2685] joins two pieces of different ground: y = 2350.5
+exists only for x < ~700 and is the north face of 52ND ST inside plate 17's
+**detached "Union Slaughtering Co. — Located 3 Miles W of P.O." inset** (printed
+52ND ST, 80', address run 1002–1016), while y = 2685 is the 8TH ST south face of
+the downtown map — plate 17 is a composite sheet split near native x~1280. The
+implied 334 px roadway is no Galveston roadway (80' street = 242 px, 70' avenue
+= 212 px, 20' alley = 61 px) and plate 17's other two chains are 244 and 245 px.
+Both reviewers named the replacement corridor as 8TH ST and read the same face
+pair to within 1.5 px — plate 17 north 2437.2–2438.9 / south 2679.7–2681.0 (runs
+214–224 even, 213–223 odd, blocks 607/608), plate 18 north 2446.8–2447.7 / south
+2687.5–2688.4 (runs 302–312 / 301–311, blocks 547/548) — with the 200|300 break
+on Ave C (Mechanic), exactly as the accepted `pair_17_18` x-tie argues.
+Status set to REJECTED with the full reason in the control file.
+
+**No replacement value was written and no `localsolve --apply` was run.** The two
+reviewers disagree on the value itself by 5.6 ft at the point `localsolve`
+evaluates: plate 17 draws 8th St 70 ft wide west of Strand ("70'" printed) and
+80 ft east of it ("80'" printed), so its north line jogs 12.5 ft at Strand and
+reviewer 1 declines to choose (2581.1 at the extent centre, 2558.5 in the shared
+band) while reviewer 2 fits the continuous south face and derives 2564.0 /
+2563.7. Under the Gate A standard a contested value may not be written, and a
+`--similarity` re-solve of three plates — which changes their scale and rotation
+— may not be bought with it. The candidates are recorded in the file for a
+future named re-read.
+
+Both reviewers agree this would not close the seawall steps in any case: the
+best case leaves 6–10 ft at 17|18 and 7–9 ft at 18|19. `bandresid` after: 332
+accepted controls, median 1.6 ft, 11 over 6 ft, none newly over.
+
+**Also flagged, not changed:** `pair_18_22` carries round-number values (3700 /
+198) where the 9th St centres measure 3715.1 / 223.5 — a ~3.5 ft error in the
+same direction — and `pair_19_20` is another lattice tie with corridor "?"
+carrying the largest local residual.
+
+## HQ-39 · P1-3 inset-frame notch, family 20b/24/25 — APPLIED (coverage only)
+
+The 51,239 px² hole at mosaic [15426, −31174] (9th St / Ave L) was the meeting
+of four trimmed margins.
+
+**Plate 20 right: relaxed 3239 → 3271.** `tools/neatline.py` lists this side as
+FALLBACK (3239 = paper edge − 50); a 16-segment chain test finds no rule anywhere
+in 3239..3283, and by 25 px connected components at ink < paper−45 the map ink
+runs to x = 3271 in the parent band and 3264 in the inset band — the vertical
+"AVENUE" name in the Ave L roadway, two wharf/rail lines, the 810/812/820 runs
+and the 70' width calls — with 3272..3283 blank and the minimum paper-edge column
+at 3282. Unit 20's `exclude_native` right edge moved 3244 → 3287 so the parent
+cannot claim inset ground the extent now reaches.
+
+**Panel 20b: diagonal re-cut and right edge followed.** The region's single
+diagonal ran up to 41 px inside the inset's printed frame band, whose inner edge
+traces per row to x = 0.7679y + 1339.1; it is replaced by a 4-segment polyline on
+that inner edge with a 5 px guard, clipped so no pixel is ever given up (176 dark
+clearance samples against the old line's 181, none in the notch band). The inset
+carries no frame on its top or right, so the panel follows the parent to 3271.
+
+**Plates 24 and 25: no change.** Plate 24's right margin never exceeds 0.0016 ink
+in 3239..3282 and is exactly 0.000 from 3261; plate 25's left margin is exactly
+blank from 38..70 and its top margin holds the title, the adjoining numerals "20"
+and "0" and "GULF OF MEXICO" — furniture, which relaxing would import. Their share
+of the notch is their `cut:false` title boxes, not an extent question.
+
+Effect: notch 51,239 → 22,714 px² (−56%) with zero pixels lost by any unit. The
+residual is bounded by the inset frame band, by plate 20's paper edge (the ground
+continues past the 3,327 px scan) and by the two title boxes — an honest source
+limit.
+
+## HQ-40 · P1-3 inset-frame notch, family 25b/54b/32/47 — APPLIED (coverage only)
+
+Strips between `extent` and `extent_scan` were sampled on the native scans of
+plates 25, 32, 54, 48 and 74 with `neatline`'s own paper-relative ink threshold.
+Four fallback sides (no rule was ever measured on any of them) carry continuous
+map ink and were relaxed:
+
+- **32 top 92 → 50** — rows 46..92 over x 620..1180 hold the seawall double line
+  at ink 0.009–0.015, no value above 0.013; paper edge min 41 / median 42 / max 46.
+- **25 right 3239 → 3266** — plate-wide ink 0.006–0.015 to 3266, 0.000 from 3267;
+  the inset rows carry SEAWALL BLVD, block NE 48, 12TH ST. and the Gulf wash to 3277.
+- **54 top 95 → 52** — ink 0.028–0.035 continuously in rows 48..95, identical to
+  rows 96–152, including the Casino Pavilion's north apex and the 2205/2206
+  frontage the old boundary clipped (the edge_49 "north end missing" finding).
+- **54 right 3233 → 3258** — ink 0.064 at 3233 tapering to 0.000 from 3264 (pier
+  structure, water wash, dashed pipe, the adjoining numeral 32).
+
+The 25 and 54 inset `exclude_native` polygons and the 25b / 54b `region_native`
+polygons were moved out to match. **Added at Gate A, beyond the worker's
+proposal:** unit 32's inset `exclude_native` top was moved 87 → 45 with the
+extent, so relaxing the top could not hand plate 32 thirty-seven rows of the
+deliberately unplaced plate-32 inset at the parent's own position.
+
+Effect: footprint union +1.46 M px², one piece, all footprints valid, no unit
+loses a pixel; `bandresid` unchanged (no transform or control touched).
+
+**Not filled — source gaps.** Back-projection shows the bulk of both wedges is on
+neither sheet's paper (25/25b reach native x 3278–3705 against a 3288 paper edge;
+54 reaches y −1776 against paper from y 43): roughly 196 × 249 ft and 340 × 800 ft
+of ground the atlas does not carry. Disclosed, not filled.
+
+**The 47k px² hole at [43809, 24982] stays open, cause identified.** Plate 48's
+bottom strip and plate 74's right strip measure ink exactly 0.000 at every row and
+column facing it — blank margin, so the ink test fails and neither extent may
+move. The hole is unit 99's "plate number and title" box: `reciplib.footprint_native`
+cuts a parent's furniture out of each **panel** in the panel's frame, while
+`furncover.py` scores the box in the **owner's** frame, and for 99/99a those frames
+are 6,500 px apart (cov 1.000 stored against 0.821 real). The worker proposed
+patching `furncover.py` to score each box in every frame it is cut from and take
+the minimum. **Declined at Gate A:** that changes the cut decision for every
+panel-parent box in the city, which is outside this gate's apply order and would
+need its own evidence pass. Logged for a later wave; until then the 46,827 px²
+hole stands, disclosed, over blank paper carrying only "GALVESTON TEXAS. / 99 /
+AUG 17 1912".
+
+## HQ-41 · P2-1 adjoining-sheet numerals and compass roses as furniture — APPLIED (28 boxes)
+
+New `tools/edgeglyph.py` proposed 29 candidates; three Opus adjudicators named
+every one on 1:1 native crops against the two already-confirmed references
+(u10 "8", u40 "44"). **Zero rejects** — all are genuine plate furniture: 27
+adjoining-sheet numerals (u8 34, u11 5, u13 14, u17 21, u23 22, u25 20, u27 21,
+u28 22 and 34, u29 28 and 23, u30 24, u31 25, u34 28, u35 29, u38 42, u43 44,
+u44 40, u45 44 and 41, u46 42, u48 48, u81 74, u83 84, u86 95, u93 0, u95 94)
+and one compass rose (u96). None is a lot number, width numeral, label or
+building: this series' lot/address numerals measure ~30 px italic and width
+numerals carry a prime, while every glyph here is 70–210 native px in a rule
+break, a roadway or a blank margin.
+
+Identity is argued from the ground, not the template: each box centre mapped
+through `transforms_city.json` and probed outward names the sheet that actually
+adjoins that edge, and the same probe reproduces the two confirmed boxes. u48 and
+u93 have no sheet across their edge — plate 48 prints "48" at its top edge and
+again at the internal step where its own coverage resumes, and plate 25's top
+margin prints "20", then "0", then "0", which is this atlas's convention of "0"
+where no sheet adjoins.
+
+The detector's own output was not usable and was overridden in every case: with
+no 1/3/6/7/9 templates it mis-read most names (u81's 7 as a 2, "24" for 34,
+"4" for 84), and its boxes swallow the neatline rule vertically while clipping
+digits horizontally. Every box was re-measured as the glyph's ink bbox (long
+rules removed; T.H. hydrant discs, alley ticks, street-label letters and one
+brown edge stain excluded) and padded.
+
+Two conflicts resolved at Gate A: candidates 18 and 19 are the **same** u45 "44",
+and the tighter of the two boxes was written (the wider one would have taken in
+the AVENUE L label stroke) — one box, not two. And the **existing** confirmed u31
+box [1632, 40, 1717, 177] clips its own numeral (the "2" measures x 1597–1630,
+wholly outside it), so it was replaced by the union box [1567, 40, 1717, 178]
+rather than joined by a second entry; nothing previously kept is lost.
+
+One `furncover.py --apply` then ran once for the whole gate: 182 boxes cut, 45
+kept. Of the new ones, 24 come back `cut:true` (a neighbour supplies the ground
+in full) and 4 `cut:false` (u23 0.899, u29 0.72, u45 0.944, u48 0.0) — correct,
+the master keeps those, as `Do not do` rule 4 requires.
+
+**Recorded caveat:** u93's box lies mostly west of that plate's extent x0 = 90 and
+the sheet is trimmed ~15 px west of the glyph, so any leading digit was lost in
+trimming; the box covers only ink the plate carries.
+
+**Tool bug, reported not fixed:** `tools/edgeglyph.py` serialises numpy int64 box
+values, so `json.dump` raises and leaves a truncated 68-byte candidates file —
+all three adjudicators had to recover the list from the detector's stdout and
+crops. A one-line `int()` cast fixes it; the candidate order is deterministic and
+reproduces exactly.
+
+## HQ-42 · P3-2 plate 89's scale bar; plates 3 / 5a / 5b titles — APPLIED
+
+**Plate 89.** The "Scale of Feet." legend is inside the trimmed extent (34 px
+above the neatline) and prints across Avenue R1/2 in the shipped build, between
+the even run 2302–2324 and the odd run 2301–2323. `tools/scalebar.py` missed it
+because the plate's true template peak is 0.451, under THRESH = 0.52, and is
+outranked by a spurious 0.500 on the scan's bottom paper/cutting-mat edge. **The
+threshold was not lowered** — at 0.50 it would write that wrong box here and a
+second wrong box on 5a/5b. The box was hand-fitted to the ink (298,3650)–(917,3731)
++ 8 px = 635 × 97, against plate 14's 646 × 98; darkest row 0.769, clean 3 px ring,
+local template peak 8 px away. `furncover` returns coverage 1.000, so the legend is
+now supplied by authentic neighbour paper.
+
+**Plate 3.** The title block ("GALVESTON, TEXAS." over "3", ink (67,73)–(212,208))
+was recorded as kind `edge numeral/glyph` with a box that cut "TEXAS." off
+mid-word. Re-kinded to `plate number and title` and refitted to [56, 63, 222, 220];
+coverage 0.541, `cut:false`, footprint unchanged. Plate 3's real adjoining numerals
+("4", "15", "2") are in the map body and remain undetected, so the edge
+numeral/glyph unit count drops 6 → 5.
+
+**Plate 5a.** The title (ink (268,190)–(500,440)) already had an `exclude_native`
+rectangle but no furniture record; the box was added equal to that rectangle — the
+convention on 93 of the 95 plates with a title box — so nothing moves (coverage
+0.743, `cut:false`).
+
+**Plate 5b: none needed, recorded.** Sheet 5 carries one title impression and it
+lies at x 268–500, west of 5b's region boundary at x~3803; 5b's own corners carry
+no title.
+
+## HQ-43 · P1-2 blank-band ownership rule — APPLIED to tools only, NO CHANGE to the recipe
+
+`tools/streetcut.py:dp_cut` now measures each plate's ink inside the band against
+that plate's own paper tone (new `band_ink()`) and, when one plate's band ink is
+below `BLANK_RATIO = 0.20` of the other's, builds a fourth DP candidate pinned at
+the blank plate's own band edge (grid rebuilt at `DP_HALF_BLANK = 4000`) and
+force-selects it, writing `blank_band {winner, ink_ratio}` on the exported seam
+row. New `--dump-cuts`, and new `tools/cutdiff.py` to diff two dumps into the
+changed-seam set. The raw `255 − g` measure the plan specified can never fire:
+grey Sanborn paper puts every pair's raw ratio above 0.80.
+
+**The rule ships default OFF** (`--blank-band` enables it), because its premise did
+not survive the plates. At 94|95 both sheets print "AVENUE N1/2" and the 70' width
+in the shared corridor (ratio 0.555) and at 13|14 both draw the 6" W. PIPE run down
+Ave C (0.926); the blank paper on 94 east of its rule is matched by blank paper on
+95, each carrying only the other's adjoining numeral. City-wide the rule fires on
+1 of 172 min-ink seams, 5b|11 (0.129), and that firing is a false positive: plate 11
+draws the Wharf Co. terminal yard there (blocks 744–746, Ave A or Water St, the
+"WOOD FIRE WALL BUILT OF 2"x12" DRESSER TIMBER" note on its own scan), and it would
+move 16.5 M px² from 11 to 5b and open 764k px² of unclaimed ground — a Gate B
+failure. With the rule off the tool reproduces the previous
+`ownership_streetcut.json` byte for byte and `cutdiff` reports 0 moved seams.
+
+## HQ-44 · GATE A summary
+
+Applied, in the plan's order: four control files, then `units.json` extents and
+regions, then furniture boxes, then one `furncover.py --apply`. **No
+`localsolve --apply` was run and no plate moved anywhere in this gate.**
+
+| | before | after |
+|---|---|---|
+| accepted controls | 333 | 332 (`pair_17_18_y` rejected) |
+| band residual, median of max-abs | 1.6 ft | 1.6 ft |
+| controls over 6 ft | 12 | 11, none newly over |
+| footprint union | 4,543.0 M px² | 4,544.5 M px² |
+| furniture boxes | 199 | 227 (182 cut, 45 kept) |
+
+Changes applied: `pair_30_31`, `pair_38_42`, `pair_38_41` re-read (values only,
+previous values recorded); `pair_17_18_y` rejected; plate 20/25/32/54 extents and
+the 20b/25b/54b regions relaxed on measured ink profiles; 28 furniture boxes added
+and 2 corrected. Declined at Gate A: the seawall re-value and its `--similarity`
+re-solve (reviewers agree on the corridor and faces but differ 5.6 ft on the value);
+the `furncover.py` panel-frame patch (city-wide effect, needs its own evidence
+pass); the `edgeglyph.py` and `localsolve.py` regex fixes (tool changes, logged in
+HQ-35 and HQ-41). No change and no plate move for `pair_26_42`, `pair_30_36`,
+`pair_54_60`, `pair_31_32`, the 18|19 seawall seam, plates 24/25 in the 20b notch,
+plates 48/74 at the 47k hole, and plate 5b.

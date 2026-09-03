@@ -4,11 +4,28 @@
   41
  ],
  "axis": "street",
- "observer": "agent-batch9",
+ "observer": "P2-2 audit (re-read of agent-batch9)",
  "method": "candidate lines proposed by corridor detection; identity decided from printed address runs and street-name labels",
  "corridor": "18th St",
- "a_native": 3659,
- "b_native": 233,
- "why_not_one_block_off": "'18TH ST.' is printed in the corridor on both plates (sheet 38 lower margin, sheet 41 upper margin beside the '37' sheet reference); both print '70'. The avenue address columns change hundred across it: sheet 38's blocks run 1702,1704,...,1728 (17th-18th) and terminate at its south face; sheet 41's blocks begin 1802,1804,1806,... / 1801,1803,1805,... (18th-19th) at its north face. The line one block north on sheet 38 is 17th St, labelled '17TH ST.' with the 1601-1628 run beyond it, so 1728|1802 pins this corridor. Detection's sheet-38 candidate (native y=2967) falls on a mid-block lot line inside the 1700 block and was rejected.",
- "status": "ACCEPTED"
+ "a_native": 3678.7,
+ "b_native": 209.1,
+ "why_not_one_block_off": "'18TH ST.' is printed in the corridor on both plates (sheet 38 lower margin, sheet 41 upper margin beside the '37' sheet reference); both print '70'. The avenue address columns change hundred across it: sheet 38's blocks run 1702,1704,...,1728 (the 1700 block OF 18th St, Ave O to Ave O 1/2 - the original text's '17th-18th' was a mis-description and is corrected here; the conclusion is unaffected) and terminate at its south face; sheet 41's blocks begin 1802,1804,1806,... / 1801,1803,1805,... (18th-19th) at its north face. The line one block north on sheet 38 is 17th St, labelled '17TH ST.' with the 1601-1628 run beyond it, so 1728|1802 pins this corridor. Detection's sheet-38 candidate (native y=2967) falls on a mid-block lot line inside the 1700 block and was rejected.",
+ "status": "ACCEPTED",
+ "previous": {
+  "a_native": 3659,
+  "b_native": 233,
+  "observer": "agent-batch9",
+  "reason": "P2-2 re-read: neither value was the corridor mid-line - a_native sat 19.65 native px north of plate 38's 18th St centre and b_native 23.95 px south of plate 41's; compounded, a 14.9 ft error in the tie. Faces re-measured by ink-weighted row profiles on the native scans in and beside the shared column; drawn street width 82.6 ft (38) / 83.2 ft (41), so this is not a source disagreement."
+ },
+ "faces": {
+  "38": [
+   3557.0,
+   3800.3
+  ],
+  "41": [
+   88.0,
+   330.1
+  ]
+ },
+ "revision": "P2-2 audit, applied at Gate A. Plates 38 and 41 share only the 18th St x Ave N corner (120 x 244 native px). Both plates print '18TH ST.' in that roadway, 38 with the adjoining numeral '42' below it and 41 with '37' above it; the 18th St hundreds break 1400|1500 falls on the shared Ave N (41 prints 1401-1423 west of it, 38 prints 1502-1524 east of it), and a single F.A. disc is drawn at the corner on each plate (38 at 320.0,3764.2; 41 at 3233.3,316.6). Corridor centres re-measured: plate 38 faces 3557.0 / 3800.3 -> 3678.7, plate 41 faces 88.0 / 330.1 -> 209.1. NO registration change: corrected, the corner shows a constant +8.8 ft (y) and +18.3 ft (x) offset on both faces of both corridors - translation only - and localsolve dry runs put 38 and 41 already at their least-squares optimum, with any move to satisfy this corner breaking pair_32_38, pair_37_38_y and pair_38_42_x by the same amount. Net tension, placements frozen."
 }
