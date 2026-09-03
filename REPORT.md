@@ -225,6 +225,20 @@ to one side of the lettering strip — a side path may not come nearer the
 centreline than 40 px or half the band — choosing the side that leaves less
 ink visible; the centreline path is used only where the band is too narrow.
 
+**Review.** The finished recipe was reviewed three ways (HQ-29): a census
+of all 249 seams (203 score 5, 38 score 4 — all but one paper tone only —
+5 score 3, 3 score 2, none score 1), 63 windows along the outer boundary,
+and 33 interior windows at 1:1. Every seam scoring 3 or less and every
+serious boundary or interior finding went to a second reviewer who tried to
+refute it. That found four real defects, all fixed: the wharf 3|4 step, the
+"Scale of Feet" legends printing in streets, and two silent bugs that were
+refilling the furniture holes — the ownership export dropped every interior
+ring, and the core plates bypassed `footprint()` entirely because they used
+the 27x40 master's masks as their base. A box is now cut only where a
+neighbour maps all of it (158 of 198); the other 40 stay on their own
+plate's paper, as the accepted master keeps its scale bars and compass
+roses.
+
 **Deliverables** (`tools/publish.py`, `tools/printmaster.py`):
 
 | file | pixels | at 300 ppi | notes |
@@ -237,7 +251,21 @@ ink visible; the centreline path is used only where the band is too narrow.
 
 Each is rendered from the recipe at its own reduction, so no output inherits
 another's resampling. The mosaic frame is ~300 ppi-equivalent at the plates'
-own scale (5.7966 px per foot), and the city spans 2.31 x 3.04 miles.
+own scale (5.7966 px per foot), and the city spans 2.32 x 3.04 miles.
+
+**Final gate.** 106 ownership regions, one connected piece, 1,026 px2 of
+double ownership (0.00002% of the union), 0.455% unclaimed ground (10
+holes, 5 inlets, 9 cut-line hairlines, all painted from a covering plate's
+own scan by the disclosed fallback except the source gaps below). 333
+accepted controls with a band-residual median of 1.6 ft.
+
+**Source gaps, disclosed not filled.** The cemetery block under plate 85's
+inset frame (40th-42nd, K-L, 18.1M px2 = 0.4% of the union) and about 660
+ft of wharf ground from 34th to 39th St between sheet 3's "AVE. A OR WATER"
+and sheets 67/75's "AVE. B OR STRAND" - both plates print the
+adjoining-sheet numeral "0" there, the series' mark for no adjoining sheet.
+Wharf sheet 2 (a thin oblique strip) and plate 32's detached inset remain
+unplaced.
 
 ## 1912 — consolidated from the accepted prior build
 
