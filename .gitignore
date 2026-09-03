@@ -34,3 +34,5 @@ outputs/1912/qc/seams/seam_*.tif
 # versioned instead. The 24 MB print PDF and the 12 MB preview are kept.
 outputs/*/print/*wallmaster*.tif
 outputs/*/print/*sheet*.tif
+outputs/*/print/tiles/*.tif
+outputs/*/print/tiles/*_tile_*.tif

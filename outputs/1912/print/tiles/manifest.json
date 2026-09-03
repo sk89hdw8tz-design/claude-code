@@ -1,0 +1,161 @@
+{
+  "year": 1912,
+  "grid": "2x2",
+  "source": "work/city/1912_wall_4.tif",
+  "mosaic_px": [
+    17745,
+    23248
+  ],
+  "overlap_px": 300,
+  "bleed_px": 150,
+  "panels": [
+    {
+      "id": "c0r0",
+      "col": 0,
+      "row": 0,
+      "core_rect_px": [
+        0,
+        0,
+        8872,
+        11624
+      ],
+      "crop_rect_px": [
+        0,
+        0,
+        9172,
+        11924
+      ],
+      "crop_size_px": [
+        9172,
+        11924
+      ],
+      "panel_size_px": [
+        9472,
+        12224
+      ],
+      "panel_size_in": [
+        31.57,
+        40.75
+      ],
+      "overlap_px": {
+        "left": 0,
+        "right": 300,
+        "top": 0,
+        "bottom": 300
+      },
+      "tif": "outputs/1912/print/tiles/1912_tile_2x2_c0r0_32x41in_300ppi.tif",
+      "pdf": "outputs/1912/print/tiles/1912_tile_2x2_c0r0_32x41in_300ppi.pdf"
+    },
+    {
+      "id": "c1r0",
+      "col": 1,
+      "row": 0,
+      "core_rect_px": [
+        8872,
+        0,
+        17745,
+        11624
+      ],
+      "crop_rect_px": [
+        8572,
+        0,
+        17745,
+        11924
+      ],
+      "crop_size_px": [
+        9173,
+        11924
+      ],
+      "panel_size_px": [
+        9473,
+        12224
+      ],
+      "panel_size_in": [
+        31.58,
+        40.75
+      ],
+      "overlap_px": {
+        "left": 300,
+        "right": 0,
+        "top": 0,
+        "bottom": 300
+      },
+      "tif": "outputs/1912/print/tiles/1912_tile_2x2_c1r0_32x41in_300ppi.tif",
+      "pdf": "outputs/1912/print/tiles/1912_tile_2x2_c1r0_32x41in_300ppi.pdf"
+    },
+    {
+      "id": "c0r1",
+      "col": 0,
+      "row": 1,
+      "core_rect_px": [
+        0,
+        11624,
+        8872,
+        23248
+      ],
+      "crop_rect_px": [
+        0,
+        11324,
+        9172,
+        23248
+      ],
+      "crop_size_px": [
+        9172,
+        11924
+      ],
+      "panel_size_px": [
+        9472,
+        12224
+      ],
+      "panel_size_in": [
+        31.57,
+        40.75
+      ],
+      "overlap_px": {
+        "left": 0,
+        "right": 300,
+        "top": 300,
+        "bottom": 0
+      },
+      "tif": "outputs/1912/print/tiles/1912_tile_2x2_c0r1_32x41in_300ppi.tif",
+      "pdf": "outputs/1912/print/tiles/1912_tile_2x2_c0r1_32x41in_300ppi.pdf"
+    },
+    {
+      "id": "c1r1",
+      "col": 1,
+      "row": 1,
+      "core_rect_px": [
+        8872,
+        11624,
+        17745,
+        23248
+      ],
+      "crop_rect_px": [
+        8572,
+        11324,
+        17745,
+        23248
+      ],
+      "crop_size_px": [
+        9173,
+        11924
+      ],
+      "panel_size_px": [
+        9473,
+        12224
+      ],
+      "panel_size_in": [
+        31.58,
+        40.75
+      ],
+      "overlap_px": {
+        "left": 300,
+        "right": 0,
+        "top": 300,
+        "bottom": 0
+      },
+      "tif": "outputs/1912/print/tiles/1912_tile_2x2_c1r1_32x41in_300ppi.tif",
+      "pdf": "outputs/1912/print/tiles/1912_tile_2x2_c1r1_32x41in_300ppi.pdf"
+    }
+  ]
+}

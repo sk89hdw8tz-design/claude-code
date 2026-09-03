@@ -1571,3 +1571,82 @@ Seven of the eight are the inset-frame families whose extents and regions moved
 three slivers from detaching); `38_42` is the re-read 18th St centre control.
 The remaining 164 shared cuts moved ≤ 50 px. This is the set Wave 3 re-crops
 (`seamcrops.py --only`) and Wave 4 re-grades against round 5.
+
+## HQ-46 · Wave 3 render — APPLIED
+
+All Wave 3 deliverables rebuilt from the Gate-B recipe (no recipe file
+touched this wave; `outputs/1912/recipe/*.json` stayed frozen). Sequence:
+`rm -f work/city/*.tif` → `publish.py --year 1912` → `printmaster.py --year
+1912` → `printmaster.py --year 1912 --tiles 2x2 --skip-render` →
+`seamcrops.py --only 17_21 88_96 54_54b 20_20b 25b_32 20b_25 25_25b 38_42
+14_49 15_67 20_23 63_70 63_71 64_71 64_72 --kinds band,corner` →
+`perirender.py --year 1912` → `interiorwins.py --cols 12 --rows 16 --size
+1500` (round 1 was already archived to `qc/interior/round1/` before this
+wave; `interiorwins.py` overwrote `win_*.jpg`/`windows.json` in place with
+the denser 12x16 = 136-window grid per P2-4).
+
+**New tool code**: `tools/printmaster.py --tiles COLSxROWS` (P2-5). Reuses
+`work/city/1912_wall_4.tif` pixel-for-pixel (renders it only if missing);
+crops with pyvips into a COLSxROWS panel grid, each panel a 300 px (1 in)
+overlap into its neighbours plus a 150 px blank bleed margin carrying four
+corner registration marks (crosshair + ring) and a panel label — both drawn
+entirely inside the bleed, never over map pixels or the overlap band. Ships
+TIFF (deflate, predictor horizontal, tiled, BigTIFF) and PDF (jpegsave +
+`img2pdf --pagesize`) per panel plus `print/tiles/manifest.json` (source,
+mosaic/overlap/bleed px, and per panel: core rect, crop rect, overlap width
+on each side, file paths). Caught and fixed a real bug while building this:
+pyvips 3.2.0's `draw_line`/`draw_circle` return a *new* image rather than
+mutating in place, so every draw call needed its return value reassigned —
+the first cut silently produced blank bleed margins (verified by pixel
+sampling before it shipped). `.gitignore` gained
+`outputs/*/print/tiles/*.tif` and `outputs/*/print/tiles/*_tile_*.tif`,
+matching the existing wallmaster/sheet TIFF-not-tracked convention; the four
+panel PDFs and `manifest.json` are tracked.
+
+**Verification**
+
+- `gdalinfo -norat -noct` opens the COG; `vipsheader` opens every shipped
+  TIFF (wall master, sheet, all 4 tile panels).
+- `pyvips.Image.new_from_file(pdf, dpi=20)` confirms PDF page size against
+  `--pagesize`: sheet 29.55x38.75in (target 29.6x38.7), all four tile PDFs
+  31.55-31.60 x 40.75in (target from the tif dims, exact to the pagesize
+  arg's 2-decimal rounding).
+- Tile overlap checked pixel-for-pixel, not by eye: for each shared boundary
+  the 600 px band that both neighbouring panels carry (300 px into each side
+  of the core line) was cropped from both panels' TIFFs at the matching
+  mosaic coordinates and compared as numpy arrays. All four boundaries
+  (c0r0|c1r0, c0r1|c1r1, c0r0|c0r1, c1r0|c1r1) came back byte-identical
+  (max abs diff 0), each band 70-95% non-white (real map content, not
+  blank bleed bleeding into the compare).
+- Registration marks and label sampled directly: corner mark centred at
+  (75,75) px in c0r0, well inside the 150 px bleed and outside the 600 px
+  compared overlap band; label sits in the bottom bleed strip only.
+
+**Output list** (pixel sizes; full paths under `outputs/1912/` unless noted)
+
+| file | pixels | on disk |
+|---|---|---|
+| `mosaic/1912_fullcity_150ppi.tif` (COG) | 35491 x 46497 | 1.2 GB |
+| `tiles/1912.dzi` + `tiles/1912_files/` (DeepZoom) | — | 279 MB |
+| `preview/1912_fullcity_preview.jpg` | 7098 x 9299 | 12 MB |
+| `print/1912_wallmaster_59x77in_300ppi.tif` (gitignored, regenerates) | 17745 x 23248 | 259 MB |
+| `print/1912_sheet_30x39in_300ppi.tif` (gitignored, regenerates) | 8872 x 11624 | 79 MB |
+| `print/1912_sheet_30x39in_300ppi.pdf` | 29.6 x 38.7 in page (300 ppi) | 23 MB |
+| `print/tiles/1912_tile_2x2_c0r0_32x41in_300ppi.tif` (gitignored) | 9472 x 12224 | 95 MB |
+| `print/tiles/1912_tile_2x2_c1r0_32x41in_300ppi.tif` (gitignored) | 9473 x 12224 | 42 MB |
+| `print/tiles/1912_tile_2x2_c0r1_32x41in_300ppi.tif` (gitignored) | 9472 x 12224 | 78 MB |
+| `print/tiles/1912_tile_2x2_c1r1_32x41in_300ppi.tif` (gitignored) | 9473 x 12224 | 74 MB |
+| `print/tiles/1912_tile_2x2_c0r0_32x41in_300ppi.pdf` | 31.55 x 40.75 in page | 24 MB |
+| `print/tiles/1912_tile_2x2_c1r0_32x41in_300ppi.pdf` | 31.60 x 40.75 in page | 13 MB |
+| `print/tiles/1912_tile_2x2_c0r1_32x41in_300ppi.pdf` | 31.55 x 40.75 in page | 21 MB |
+| `print/tiles/1912_tile_2x2_c1r1_32x41in_300ppi.pdf` | 31.60 x 40.75 in page | 20 MB |
+| `print/tiles/manifest.json` | 4 panels | 4 KB |
+| `qc/seams/seam_*.jpg` (15 pairs, band+corner, gitignored except index) | 1500x1500-class crops | 778 files |
+| `qc/seams/index.json` | — | tracked |
+| `qc/periphery/edge_*.jpg` (63 windows, gitignored) | 1500x1500 | 63 files |
+| `qc/interior/win_*.jpg` (12x16 = 136 windows, overwrote round-1 set) | 1500x1500 | 136 files |
+| `qc/interior/windows.json` | — | tracked |
+| `qc/interior/round1/` (33-window round-1 archive, untouched, pre-existing) | 1500x1500 | 34 files |
+
+No `--apply` was run on any recipe tool this wave. `outputs/1912/recipe/*.json`
+byte-identical to before. Nothing under `inputs/` touched.
