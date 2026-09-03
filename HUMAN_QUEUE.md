@@ -1714,3 +1714,36 @@ copy was a whole 348 ft west, off this crop entirely.
 (`pair_4_13` +11.9/+5.9, was +11.9/+6.0; it is a frontage seam-position pair,
 not a feature tie).
 
+
+## HQ-48 · Gate A' 1b · `pair_91_92` (Ave G / Winnie) re-read + unit 91 similarity — APPLIED
+
+`outputs/1912/qc/wave4/proposal_91_92.md` (from interior window win_58): the 30"
+supply main down Ave G and its caption print twice, ~10.5 ft apart at the south
+end, one copy per plate, and plate 91's copy lies west of the 91|92 overlap band,
+so no cut can suppress it. Cause: the control's centreline was built as
+curb + half-width using **80'**, but that "80'" is lettered in the E-W cross
+street beside the 6" W. PIPE; both plates letter **70** inside the Ave G roadway.
+
+**Control** `controls/pair_91_92.json`: `a_native` 3177.8 -> **3162.7**,
+`b_native` 121.4 -> **136.5**, previous values kept as `a_native_previous` /
+`b_native_previous` and the width proof, the width-free hydrant/main tie and the
+70' half-width (105.2 px) recorded in a new `re_read` field. Corridor identity
+and `why_not_one_block_off` unchanged (600/700 address break at 44th St).
+
+**Solve** `localsolve.py --year 1912 --units 91 --similarity --apply` (91
+disagreed with both x-neighbours equally and oppositely; 92 is well tied by
+`pair_84_92_x` / `pair_92_93`). 10 line samples, residual median **0.6** / max
+**1.3 ft**; unit 91 scale 2.0119 -> 2.0130 (+0.05%), rotation +0.256 -> +0.178
+deg, centre moves (+4, +1) ft. No fallback needed.
+
+| control | before | after |
+|---|---|---|
+| `pair_91_92` | +6.2 / +6.2 ft (against the corrected value) | **-1.3 / -1.0** |
+| `pair_83_91_x` | +6.2 | **-1.1 / -1.2** |
+| `pair_83_91` | | +0.2 / +0.9 |
+| `pair_84_91` | | -0.2 / -0.3 |
+| `pair_91_92_y` | | +0.2 / +0.2 |
+
+**Gate**: 332 controls, median max-abs **1.6 ft**, **11** over 6 ft, none newly
+over 6 ft (the over-6 list is unchanged from baseline). The doubled main is
+verified after the re-cut (HQ-51).
