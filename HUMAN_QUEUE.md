@@ -1009,3 +1009,69 @@ plate 20's inset frame is cut diagonally and 24/25's neat lines stop short,
 
 **Census round 4** on the 30 re-cut seams: see `grades_round4/` and the
 final report.
+
+## HQ-29 · 1912 completion: census round 5, periphery and interior review — APPLIED
+
+The city was reviewed three ways on the finished recipe and the findings
+were worked to exhaustion.
+
+**Seam census, round 5** (`outputs/1912/qc/seams/GRADER_BRIEF_R5.md`, 42
+graders over all 249 seams): 203 score 5, 38 score 4, 5 score 3, 3 score 2,
+none score 1. Every 4 but one is paper tone, which policy does not correct.
+Each seam scoring 3 or less was re-examined by a second reviewer who
+categorised it (cut placement / registration / source disagreement /
+coverage gap / furniture) rather than trusting the grade.
+
+**Periphery** (63 windows along the outer boundary, with a confirmation
+pass on every serious finding): 18 confirmed. They were all one of three
+things — furniture on blank paper or water, which the accepted master keeps;
+the neatline trim ending the map at the city's edge; or the wharf/Strand
+source gap below.
+
+**Interior at 1:1** (33 sampled windows, 1 px = 0.1725 ft, adversarial
+check of every non-cosmetic finding): 21 clean; 16 findings confirmed, of
+which two were real and are fixed below. The rest were refuted — including
+a "block face drawn twice" that is plate 74 drawing the west face of 34th
+St and panel 99a the east face, 70 ft apart, and an "elevator drawn twice"
+where plate 13's paper does not reach the ground plate 4 draws.
+
+**Four defects found and fixed.**
+
+1. *The wharf 3|4 step* (18.5 ft). Each wharf plate followed only the block
+   plates behind it, so where those rows disagree the wharf plates parted at
+   their shared street. The wharf solve now fits a scale as well as a
+   translation — sheet 3's residuals grew monotonically along the plate,
+   +6.5 ft at 33rd to −11.9 at 39th, which is a half-percent scale error —
+   and sheet 3 carries an equation on 33rd St against sheet 4. Sheet 3's fit
+   to plates 67/75 improves from 16.9 ft max to 7.7, sheet 6 to 6.1, sheet 4
+   to 3.2, and the step falls to 7.7 ft, shared instead of concentrated.
+
+2. *Legends printing in streets.* Every plate's "Scale of Feet" bar is now
+   boxed (`tools/scalebar.py`), each box fitted to the legend's own ink and
+   validated (the darkest row inside every box is 0.71–0.94 ink).
+
+3. *The furniture holes were being refilled.* Two bugs, both silent. The
+   ownership export dropped every interior ring, so a box surrounded by its
+   own plate's ground came back; and `streetcut` took the 27×40 master's
+   masks as the base for the core plates and used them unchanged, so
+   `footprint()` — the neatline trim AND the furniture boxes — never applied
+   to the core at all. Rings are now written and honoured by the renderers,
+   tiling and the gap audit; the core keeps the master's cut lines but is
+   clipped to this recipe's footprint.
+
+4. *A box is cut only when a neighbour maps all of it.* Cutting every box
+   left patches of neighbour paper beside half a legend. `tools/furncover.py`
+   measures coverage: 158 boxes are removable in full, 40 stay on their
+   plate's own paper, as the accepted master keeps its scale bars and roses.
+
+**The one large source gap.** Sheet 3 ends at "AVE. A OR WATER"; sheets
+67/75 begin at "AVE. B OR STRAND" / "AVE. C"; and both plates print the
+adjoining-sheet numeral "0" on that edge — the series' mark for no
+adjoining sheet. About 660 ft of wharf ground from 34th to 39th St is
+simply not in the 1912 atlas. The two frontage pairs that claimed a seam
+there are rejected: their values lay 920 and 1440 px beyond sheet 3's own
+neatline.
+
+**Gate.** 106 regions, one piece, 1,026 px² double ownership (0.00002%),
+0.455% unclaimed (10 holes, 5 inlets, 9 hairlines under the renderer's
+disclosed fallback). 333 accepted controls, band-residual median 1.6 ft.

@@ -10,18 +10,18 @@
   "objective": "Finish the 1912 full-city mosaic to print-ready quality: session 018 carrying on from session 019 head; panels split, wharf in, 48/74 fixed; complete seam census, corrections, final deliverables."
  },
  "progress": {
-  "overall_pct": 80,
-  "stage_pct": 90,
-  "tasks_done": 7,
+  "overall_pct": 97,
+  "stage_pct": 100,
+  "tasks_done": 10,
   "tasks_total": 11,
-  "current_task": "correction round: 71|78 cluster re-solved (8 plates, rotations harmonised); every plate's Scale of Feet bar boxed as furniture; renderer fallback restricted to interior holes; gap filler may now draw on any plate that maps the ground",
-  "next_task": "census round 5 over all 289 seams; periphery review; publish COG/DZI, wall master, single sheet, preview; final report",
+  "current_task": "final verification and report",
+  "next_task": "none \u2014 1912 complete; 1899 not started by instruction",
   "blockers": []
  },
  "eta": {
-  "range": "2-3 hours remaining",
-  "confidence": "MEDIUM",
-  "reason": "final re-cut done; crops ~30 min; census round 5 ~45 min in parallel with periphery; publish + print master ~1 h; report ~20 min"
+  "range": "under 30 minutes",
+  "confidence": "HIGH",
+  "reason": "all deliverables rendered and verified; only the closing report remains"
  },
  "tasks": [
   {
@@ -95,7 +95,7 @@
   },
   {
    "name": "correction round",
-   "status": "ACTIVE",
+   "status": "PASSED",
    "pct": 40,
    "weight": 14,
    "deps": [
@@ -105,7 +105,7 @@
   },
   {
    "name": "full-city QC",
-   "status": "NOT STARTED",
+   "status": "PASSED",
    "pct": 0,
    "weight": 8,
    "deps": [
@@ -115,7 +115,7 @@
   },
   {
    "name": "final render",
-   "status": "NOT STARTED",
+   "status": "PASSED",
    "pct": 0,
    "weight": 10,
    "deps": [
@@ -125,7 +125,7 @@
   },
   {
    "name": "final deliverable verification",
-   "status": "NOT STARTED",
+   "status": "PASSED",
    "pct": 0,
    "weight": 7,
    "deps": [
@@ -137,7 +137,7 @@
  "kpi": {
   "sheets_placed": "93 inland units + 5 inset panels + 2 wharf panels = 100 regions, one piece",
   "registration_components": 1,
-  "controls_accepted": "319 + 5 wharf + 1 panel-break + 3 plate-read street ties; 2 lattice ties rejected (HQ-27)",
+  "controls_accepted": 333,
   "controls_audited": "all 242 width-tested against plate lattices (widthcheck.py); 50 avenue controls framing-checked (ctlcheck.py, 3 flagged on composite plates)",
   "controls_questionable": "21 (weak-lattice plates) + the composite-plate observer reads",
   "seams_total": 230,
@@ -158,7 +158,28 @@
   "seams_band": 171,
   "seams_corner": 81,
   "seams_on_controls": 171,
-  "registration": "similarity per sheet from 319 line controls (netsolve2.py): band-end residual median 1.1 ft, 90th 4.0, max 12.9; grid pitches 400.5/347.3 ft"
+  "registration": "similarity per sheet from 319 line controls (netsolve2.py): band-end residual median 1.1 ft, 90th 4.0, max 12.9; grid pitches 400.5/347.3 ft",
+  "census_round5_seams": 249,
+  "census_round5_scores": {
+   "5": 203,
+   "4": 38,
+   "3": 5,
+   "2": 3,
+   "1": 0
+  },
+  "census_round5_note": "38 of the 4s are paper tone only, which policy does not correct",
+  "tiling_regions": 106,
+  "tiling_pieces": 1,
+  "tiling_overlap_px2": 1026,
+  "tiling_unclaimed_pct": 0.455,
+  "control_band_residual_median_ft": 1.6,
+  "controls_over_6ft": 12,
+  "periphery_windows_reviewed": 63,
+  "interior_windows_reviewed_1to1": 33,
+  "furniture_boxes": 198,
+  "furniture_boxes_cut": 158,
+  "furniture_boxes_kept": 40,
+  "deliverables_verified": true
  },
  "agents": [
   {
@@ -405,6 +426,10 @@
   {
    "t": "2026-09-03T03:10Z",
    "event": "scale-bar furniture: the round-5 crops showed plate 14's Scale of Feet bar in 27th St; a template match found the bar on all 93 plates and each box was fitted to the legend's own ink (a974268)"
+  },
+  {
+   "t": "2026-09-03T06:46Z",
+   "event": "1912 complete: census round 5 over all 249 seams (203 fives, no ones), 63 periphery and 33 interior 1:1 windows reviewed, deliverables rendered and verified"
   }
  ]
 }
