@@ -1747,3 +1747,49 @@ deg, centre moves (+4, +1) ft. No fallback needed.
 **Gate**: 332 controls, median max-abs **1.6 ft**, **11** over 6 ft, none newly
 over 6 ft (the over-6 list is unchanged from baseline). The doubled main is
 verified after the re-cut (HQ-51).
+
+## HQ-49 · Gate A' 1c · `pair_17_18_y` settled and ACCEPTED; units 17+18 re-solved — APPLIED
+
+`outputs/1912/qc/wave4/proposal_17_18.md`, which settles the value the two P2-3
+reviewers could not agree on (HQ-38 rejected the control rather than write a
+contested value). The disagreement was 5.6 ft = plate 17's own 70'/80' half-width
+difference (17.05 px); it disappears by taking the **south block face** instead
+of the centre, which is continuous on both plates (17: 2685.36 -> 2679.87 with no
+break at Strand, the widening taken off the north side; 18: 2685.60 -> 2688.00).
+
+**Control** `controls/pair_17_18_y.json`: `status` REJECTED -> **ACCEPTED**,
+`corridor` "?" -> **"8th St - SOUTH block face"**, `a_native` 2518.0 ->
+**2685.4**, `b_native` 2566.0 -> **2685.6**, `roadway_px` dropped (a face, not a
+corridor pair). Previous values kept as `a_native_previous` /
+`b_native_previous`; the P2-3 rejection text is kept verbatim as
+`previously_rejected` and the reviewers' candidate values as
+`prior_reviewers_note`; the re-read, its width-free check (8th St south face ->
+seawall centreline along the Ave C meridian, 576.8 ft on 17 vs 575.4 on 18,
+0.24% apart) and the identity argument are in `re_read`.
+
+**Solve** `localsolve.py --year 1912 --units 17 18 --similarity --apply`:
+18 line samples, residual median **1.5** / max **3.4 ft**. Unit 17 scale
+1.9850 -> 1.9894 (+0.22%), rotation +0.425 -> +0.329 deg, centre (-2, -4) ft;
+unit 18 scale 2.0152 -> 2.0143 (-0.04%), rotation +0.507 -> +0.332 deg, centre
+(-1, +4) ft. (Translation-only was tested by the proposal and is not the fix.)
+
+| control | after |
+|---|---|
+| `pair_17_18_y` | +3.4 / +3.4 ft (was 13.1 in the band model) |
+| `pair_17_18` | +0.0 / +0.1 |
+| `pair_17_21` | **-1.6 / -0.8** (was +0.3 / +2.4) |
+| `pair_17_21_x` | -0.1 / -0.1 |
+| `pair_17_22` | -2.2 / -2.2 |
+| `pair_18_19` | -2.0 / +0.8 |
+| `pair_18_19_y` | +1.5 / +1.4 |
+| `pair_18_22` | +1.5 / +2.4 |
+
+Predicted remaining steps at the Ave C meridian: 8th St south face 0.34 ft,
+north -0.13, 7th St 3.98, seawall 3.18 - the residual is the two sheets'
+drafting-scale difference and cannot be absorbed without breaking 17|21, 17|22,
+18|19, 18|22. Side effect confirmed by `proposal_20b_25_17_21.md`: seam 17|21's
+along-seam gradient falls from 10.6 ft (0.98%) to 7.3 ft (0.68%) and its worst
+step from 6.0 to 4.4 ft.
+
+**Gate**: 333 accepted controls (the re-accepted one is new to the count),
+median max-abs **1.6 ft**, **11** over 6 ft, none newly over 6 ft.
