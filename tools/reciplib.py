@@ -187,6 +187,8 @@ class Recipe:
             if u.get("panel_of"):
                 src = self.units[str(u["panel_of"])]
             for f in src.get("furniture_native") or []:
+                if f.get("cut") is False:     # no neighbour maps the whole box
+                    continue
                 b = f["box"]
                 g = g.difference(box(b[0] - 6, b[1] - 6, b[2] + 6, b[3] + 6))
         if g.geom_type != "Polygon":

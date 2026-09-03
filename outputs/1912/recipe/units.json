@@ -55,7 +55,9 @@
       84,
       236,
       259
-     ]
+     ],
+     "cut": true,
+     "covered_fraction": 1.0
     },
     {
      "kind": "scale bar",
@@ -65,7 +67,9 @@
       2989,
       3808
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -123,7 +127,9 @@
       103,
       222,
       273
-     ]
+     ],
+     "cut": true,
+     "covered_fraction": 1.0
     },
     {
      "kind": "scale bar",
@@ -133,7 +139,9 @@
       2614,
       3843
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -191,7 +199,9 @@
       99,
       238,
       274
-     ]
+     ],
+     "cut": true,
+     "covered_fraction": 1.0
     },
     {
      "kind": "scale bar",
@@ -201,7 +211,9 @@
       3048,
       3777
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -276,7 +288,9 @@
       109,
       306,
       235
-     ]
+     ],
+     "cut": true,
+     "covered_fraction": 1.0
     },
     {
      "kind": "edge numeral/glyph",
@@ -285,7 +299,9 @@
       43,
       1813,
       162
-     ]
+     ],
+     "cut": true,
+     "covered_fraction": 1.0
     },
     {
      "kind": "scale bar",
@@ -295,7 +311,9 @@
       2534,
       3845
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -355,7 +373,9 @@
       89,
       254,
       256
-     ]
+     ],
+     "cut": true,
+     "covered_fraction": 1.0
     },
     {
      "kind": "scale bar",
@@ -365,7 +385,9 @@
       2581,
       3826
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -442,7 +464,9 @@
       85,
       268,
       232
-     ]
+     ],
+     "cut": true,
+     "covered_fraction": 1.0
     },
     {
      "kind": "edge numeral/glyph",
@@ -451,7 +475,9 @@
       54,
       1759,
       183
-     ]
+     ],
+     "cut": true,
+     "covered_fraction": 1.0
     },
     {
      "kind": "scale bar",
@@ -461,7 +487,9 @@
       2659,
       3834
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -520,7 +548,9 @@
       91,
       240,
       266
-     ]
+     ],
+     "cut": true,
+     "covered_fraction": 1.0
     },
     {
      "kind": "scale bar",
@@ -530,7 +560,9 @@
       2993,
       3730
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -588,7 +620,9 @@
       86,
       3241,
       228
-     ]
+     ],
+     "cut": true,
+     "covered_fraction": 1.0
     },
     {
      "kind": "scale bar",
@@ -598,7 +632,9 @@
       990,
       3836
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -656,7 +692,9 @@
       90,
       239,
       265
-     ]
+     ],
+     "cut": true,
+     "covered_fraction": 1.0
     },
     {
      "kind": "scale bar",
@@ -666,7 +704,9 @@
       2480,
       3764
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": false,
+     "covered_fraction": 0.354
     }
    ]
   },
@@ -724,7 +764,9 @@
       110,
       3240,
       285
-     ]
+     ],
+     "cut": true,
+     "covered_fraction": 1.0
     },
     {
      "kind": "scale bar",
@@ -734,7 +776,9 @@
       1032,
       3823
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -794,7 +838,9 @@
       89,
       244,
       241
-     ]
+     ],
+     "cut": false,
+     "covered_fraction": 0.0
     },
     {
      "kind": "scale bar",
@@ -804,7 +850,9 @@
       2839,
       3788
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -862,7 +910,9 @@
       90,
       3224,
       265
-     ]
+     ],
+     "cut": false,
+     "covered_fraction": 0.146
     },
     {
      "kind": "scale bar",
@@ -872,7 +922,9 @@
       2527,
       3822
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -930,7 +982,9 @@
       90,
       257,
       265
-     ]
+     ],
+     "cut": false,
+     "covered_fraction": 0.276
     },
     {
      "kind": "scale bar",
@@ -940,7 +994,9 @@
       2564,
       3864
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -1024,7 +1080,9 @@
       91,
       3239,
       249
-     ]
+     ],
+     "cut": false,
+     "covered_fraction": 0.0
     },
     {
      "kind": "scale bar",
@@ -1034,7 +1092,9 @@
       1368,
       3853
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -1092,7 +1152,9 @@
       107,
       199,
       242
-     ]
+     ],
+     "cut": false,
+     "covered_fraction": 0.748
     },
     {
      "kind": "scale bar",
@@ -1102,7 +1164,9 @@
       1115,
       3737
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -1159,7 +1223,9 @@
       112,
       3167,
       228
-     ]
+     ],
+     "cut": true,
+     "covered_fraction": 1.0
     },
     {
      "kind": "scale bar",
@@ -1169,7 +1235,9 @@
       1379,
       3745
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -1227,7 +1295,9 @@
       99,
       287,
       232
-     ]
+     ],
+     "cut": true,
+     "covered_fraction": 1.0
     },
     {
      "kind": "scale bar",
@@ -1237,7 +1307,9 @@
       1438,
       3686
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": false,
+     "covered_fraction": 0.862
     }
    ]
   },
@@ -1295,7 +1367,9 @@
       108,
       3238,
       248
-     ]
+     ],
+     "cut": false,
+     "covered_fraction": 0.694
     },
     {
      "kind": "scale bar",
@@ -1305,7 +1379,9 @@
       1373,
       3791
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -1385,7 +1461,9 @@
       83,
       217,
       226
-     ]
+     ],
+     "cut": false,
+     "covered_fraction": 0.835
     },
     {
      "kind": "scale bar",
@@ -1395,7 +1473,9 @@
       1402,
       3845
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -1479,7 +1559,9 @@
       92,
       3238,
       237
-     ]
+     ],
+     "cut": false,
+     "covered_fraction": 0.0
     },
     {
      "kind": "scale bar",
@@ -1489,7 +1571,9 @@
       2478,
       3718
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -1546,7 +1630,9 @@
       109,
       281,
       284
-     ]
+     ],
+     "cut": true,
+     "covered_fraction": 1.0
     },
     {
      "kind": "scale bar",
@@ -1556,7 +1642,9 @@
       2559,
       3861
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -1613,7 +1701,9 @@
       104,
       3237,
       216
-     ]
+     ],
+     "cut": true,
+     "covered_fraction": 1.0
     },
     {
      "kind": "scale bar",
@@ -1623,7 +1713,9 @@
       2620,
       3846
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -1682,7 +1774,9 @@
       99,
       240,
       274
-     ]
+     ],
+     "cut": true,
+     "covered_fraction": 1.0
     },
     {
      "kind": "scale bar",
@@ -1692,7 +1786,9 @@
       1439,
       3709
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": false,
+     "covered_fraction": 0.872
     }
    ]
   },
@@ -1750,7 +1846,9 @@
       107,
       3236,
       282
-     ]
+     ],
+     "cut": true,
+     "covered_fraction": 1.0
     },
     {
      "kind": "scale bar",
@@ -1760,7 +1858,9 @@
       1464,
       3680
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": false,
+     "covered_fraction": 0.631
     }
    ]
   },
@@ -1835,7 +1935,9 @@
       102,
       242,
       277
-     ]
+     ],
+     "cut": true,
+     "covered_fraction": 1.0
     },
     {
      "kind": "edge numeral/glyph",
@@ -1844,7 +1946,9 @@
       40,
       1717,
       177
-     ]
+     ],
+     "cut": true,
+     "covered_fraction": 1.0
     },
     {
      "kind": "scale bar",
@@ -1854,7 +1958,9 @@
       1407,
       3765
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -1933,7 +2039,9 @@
       92,
       3224,
       225
-     ]
+     ],
+     "cut": false,
+     "covered_fraction": 0.0
     },
     {
      "kind": "scale bar",
@@ -1943,7 +2051,9 @@
       2852,
       3836
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -2000,7 +2110,9 @@
       100,
       269,
       275
-     ]
+     ],
+     "cut": true,
+     "covered_fraction": 1.0
     },
     {
      "kind": "scale bar",
@@ -2010,7 +2122,9 @@
       1042,
       3816
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -2068,7 +2182,9 @@
       100,
       3236,
       275
-     ]
+     ],
+     "cut": true,
+     "covered_fraction": 1.0
     },
     {
      "kind": "scale bar",
@@ -2078,7 +2194,9 @@
       3007,
       3751
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -2136,7 +2254,9 @@
       107,
       203,
       240
-     ]
+     ],
+     "cut": true,
+     "covered_fraction": 1.0
     },
     {
      "kind": "scale bar",
@@ -2146,7 +2266,9 @@
       2888,
       3787
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -2204,7 +2326,9 @@
       107,
       3234,
       256
-     ]
+     ],
+     "cut": true,
+     "covered_fraction": 1.0
     },
     {
      "kind": "scale bar",
@@ -2214,7 +2338,9 @@
       1070,
       3814
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -2272,7 +2398,9 @@
       106,
       305,
       236
-     ]
+     ],
+     "cut": true,
+     "covered_fraction": 1.0
     },
     {
      "kind": "scale bar",
@@ -2282,7 +2410,9 @@
       1441,
       3794
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -2340,7 +2470,9 @@
       94,
       3234,
       251
-     ]
+     ],
+     "cut": true,
+     "covered_fraction": 1.0
     },
     {
      "kind": "scale bar",
@@ -2350,7 +2482,9 @@
       2933,
       3750
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -2408,7 +2542,9 @@
       119,
       293,
       241
-     ]
+     ],
+     "cut": true,
+     "covered_fraction": 1.0
     },
     {
      "kind": "scale bar",
@@ -2418,7 +2554,9 @@
       2966,
       3777
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -2494,7 +2632,9 @@
       106,
       3164,
       232
-     ]
+     ],
+     "cut": true,
+     "covered_fraction": 1.0
     },
     {
      "kind": "edge numeral/glyph",
@@ -2503,7 +2643,9 @@
       3696,
       1725,
       3834
-     ]
+     ],
+     "cut": true,
+     "covered_fraction": 1.0
     },
     {
      "kind": "scale bar",
@@ -2513,7 +2655,9 @@
       3017,
       3753
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -2571,7 +2715,9 @@
       105,
       243,
       280
-     ]
+     ],
+     "cut": true,
+     "covered_fraction": 1.0
     },
     {
      "kind": "scale bar",
@@ -2581,7 +2727,9 @@
       3025,
       3855
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -2639,7 +2787,9 @@
       100,
       3234,
       243
-     ]
+     ],
+     "cut": true,
+     "covered_fraction": 1.0
     },
     {
      "kind": "scale bar",
@@ -2649,7 +2799,9 @@
       3019,
       3812
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -2706,7 +2858,9 @@
       103,
       258,
       242
-     ]
+     ],
+     "cut": true,
+     "covered_fraction": 1.0
     },
     {
      "kind": "scale bar",
@@ -2716,7 +2870,9 @@
       2985,
       3808
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -2774,7 +2930,9 @@
       118,
       3233,
       264
-     ]
+     ],
+     "cut": true,
+     "covered_fraction": 1.0
     },
     {
      "kind": "scale bar",
@@ -2784,7 +2942,9 @@
       2597,
       3840
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -2841,7 +3001,9 @@
       110,
       213,
       248
-     ]
+     ],
+     "cut": true,
+     "covered_fraction": 1.0
     },
     {
      "kind": "scale bar",
@@ -2851,7 +3013,9 @@
       2689,
       3769
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -2910,7 +3074,9 @@
       118,
       3233,
       245
-     ]
+     ],
+     "cut": true,
+     "covered_fraction": 1.0
     },
     {
      "kind": "scale bar",
@@ -2920,7 +3086,9 @@
       1061,
       2574
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": false,
+     "covered_fraction": 0.0
     }
    ]
   },
@@ -2977,7 +3145,9 @@
       108,
       289,
       236
-     ]
+     ],
+     "cut": true,
+     "covered_fraction": 1.0
     },
     {
      "kind": "scale bar",
@@ -2987,7 +3157,9 @@
       2570,
       3737
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -3072,7 +3244,9 @@
       93,
       3232,
       256
-     ]
+     ],
+     "cut": false,
+     "covered_fraction": 0.0
     },
     {
      "kind": "scale bar",
@@ -3082,7 +3256,9 @@
       3192,
       3721
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": false,
+     "covered_fraction": 0.059
     }
    ]
   },
@@ -3141,7 +3317,9 @@
       94,
       327,
       241
-     ]
+     ],
+     "cut": true,
+     "covered_fraction": 1.0
     },
     {
      "kind": "scale bar",
@@ -3151,7 +3329,9 @@
       1053,
       3870
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -3211,7 +3391,9 @@
       94,
       3232,
       245
-     ]
+     ],
+     "cut": true,
+     "covered_fraction": 1.0
     },
     {
      "kind": "scale bar",
@@ -3221,7 +3403,9 @@
       2987,
       3764
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": false,
+     "covered_fraction": 0.794
     }
    ]
   },
@@ -3281,7 +3465,9 @@
       96,
       304,
       243
-     ]
+     ],
+     "cut": true,
+     "covered_fraction": 1.0
     },
     {
      "kind": "scale bar",
@@ -3291,7 +3477,9 @@
       2918,
       3794
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": false,
+     "covered_fraction": 0.935
     }
    ]
   },
@@ -3350,7 +3538,9 @@
       95,
       3233,
       257
-     ]
+     ],
+     "cut": true,
+     "covered_fraction": 1.0
     },
     {
      "kind": "scale bar",
@@ -3360,7 +3550,9 @@
       2989,
       3836
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -3420,7 +3612,9 @@
       84,
       323,
       233
-     ]
+     ],
+     "cut": true,
+     "covered_fraction": 1.0
     },
     {
      "kind": "scale bar",
@@ -3430,7 +3624,9 @@
       1017,
       3778
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -3515,7 +3711,9 @@
       95,
       3233,
       238
-     ]
+     ],
+     "cut": false,
+     "covered_fraction": 0.0
     },
     {
      "kind": "scale bar",
@@ -3525,7 +3723,9 @@
       1027,
       3775
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": false,
+     "covered_fraction": 0.819
     }
    ]
   },
@@ -3582,7 +3782,9 @@
       108,
       271,
       247
-     ]
+     ],
+     "cut": true,
+     "covered_fraction": 1.0
     },
     {
      "kind": "scale bar",
@@ -3592,7 +3794,9 @@
       998,
       3836
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -3650,7 +3854,9 @@
       118,
       3232,
       253
-     ]
+     ],
+     "cut": true,
+     "covered_fraction": 1.0
     },
     {
      "kind": "scale bar",
@@ -3660,7 +3866,9 @@
       3049,
       3839
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": false,
+     "covered_fraction": 0.976
     }
    ]
   },
@@ -3718,7 +3926,9 @@
       109,
       296,
       245
-     ]
+     ],
+     "cut": true,
+     "covered_fraction": 1.0
     },
     {
      "kind": "scale bar",
@@ -3728,7 +3938,9 @@
       1050,
       3856
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -3786,7 +3998,9 @@
       117,
       3203,
       243
-     ]
+     ],
+     "cut": true,
+     "covered_fraction": 1.0
     },
     {
      "kind": "scale bar",
@@ -3796,7 +4010,9 @@
       2393,
       3837
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -3853,7 +4069,9 @@
       111,
       300,
       253
-     ]
+     ],
+     "cut": true,
+     "covered_fraction": 1.0
     },
     {
      "kind": "scale bar",
@@ -3863,7 +4081,9 @@
       1033,
       3744
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -3922,7 +4142,9 @@
       115,
       3231,
       249
-     ]
+     ],
+     "cut": true,
+     "covered_fraction": 1.0
     },
     {
      "kind": "scale bar",
@@ -3932,7 +4154,9 @@
       1960,
       3691
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -3990,7 +4214,9 @@
       105,
       234,
       233
-     ]
+     ],
+     "cut": true,
+     "covered_fraction": 1.0
     },
     {
      "kind": "scale bar",
@@ -4000,7 +4226,9 @@
       987,
       3813
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -4058,7 +4286,9 @@
       105,
       3201,
       323
-     ]
+     ],
+     "cut": true,
+     "covered_fraction": 1.0
     },
     {
      "kind": "scale bar",
@@ -4068,7 +4298,9 @@
       2527,
       3810
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -4126,7 +4358,9 @@
       91,
       310,
       233
-     ]
+     ],
+     "cut": true,
+     "covered_fraction": 1.0
     },
     {
      "kind": "scale bar",
@@ -4136,7 +4370,9 @@
       2557,
       3749
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": false,
+     "covered_fraction": 0.872
     }
    ]
   },
@@ -4194,7 +4430,9 @@
       95,
       3227,
       245
-     ]
+     ],
+     "cut": true,
+     "covered_fraction": 1.0
     },
     {
      "kind": "scale bar",
@@ -4204,7 +4442,9 @@
       1143,
       3832
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -4262,7 +4502,9 @@
       106,
       311,
       239
-     ]
+     ],
+     "cut": true,
+     "covered_fraction": 1.0
     },
     {
      "kind": "scale bar",
@@ -4272,7 +4514,9 @@
       2493,
       3839
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": false,
+     "covered_fraction": 0.933
     }
    ]
   },
@@ -4330,7 +4574,9 @@
       95,
       3228,
       270
-     ]
+     ],
+     "cut": true,
+     "covered_fraction": 1.0
     },
     {
      "kind": "scale bar",
@@ -4340,7 +4586,9 @@
       1016,
       3735
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -4397,7 +4645,9 @@
       108,
       247,
       283
-     ]
+     ],
+     "cut": true,
+     "covered_fraction": 1.0
     },
     {
      "kind": "scale bar",
@@ -4407,7 +4657,9 @@
       2995,
       3762
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -4466,7 +4718,9 @@
       108,
       3218,
       257
-     ]
+     ],
+     "cut": true,
+     "covered_fraction": 1.0
     },
     {
      "kind": "scale bar",
@@ -4476,7 +4730,9 @@
       3026,
       3825
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -4534,7 +4790,9 @@
       114,
       246,
       289
-     ]
+     ],
+     "cut": true,
+     "covered_fraction": 1.0
     },
     {
      "kind": "scale bar",
@@ -4544,7 +4802,9 @@
       3001,
       3715
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -4602,7 +4862,9 @@
       118,
       3227,
       248
-     ]
+     ],
+     "cut": true,
+     "covered_fraction": 1.0
     },
     {
      "kind": "scale bar",
@@ -4612,7 +4874,9 @@
       2045,
       3837
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -4671,7 +4935,9 @@
       97,
       249,
       272
-     ]
+     ],
+     "cut": true,
+     "covered_fraction": 1.0
     },
     {
      "kind": "scale bar",
@@ -4681,7 +4947,9 @@
       2922,
       2661
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": false,
+     "covered_fraction": 0.0
     }
    ]
   },
@@ -4740,7 +5008,9 @@
       89,
       291,
       220
-     ]
+     ],
+     "cut": true,
+     "covered_fraction": 1.0
     },
     {
      "kind": "scale bar",
@@ -4750,7 +5020,9 @@
       2945,
       3726
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -4807,7 +5079,9 @@
       117,
       3226,
       246
-     ]
+     ],
+     "cut": true,
+     "covered_fraction": 1.0
     },
     {
      "kind": "scale bar",
@@ -4817,7 +5091,9 @@
       1404,
       3737
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -4876,7 +5152,9 @@
       114,
       338,
       271
-     ]
+     ],
+     "cut": true,
+     "covered_fraction": 1.0
     },
     {
      "kind": "scale bar",
@@ -4886,7 +5164,9 @@
       2958,
       3472
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": false,
+     "covered_fraction": 0.0
     }
    ]
   },
@@ -4944,7 +5224,9 @@
       107,
       3227,
       254
-     ]
+     ],
+     "cut": true,
+     "covered_fraction": 1.0
     },
     {
      "kind": "scale bar",
@@ -4954,7 +5236,9 @@
       2996,
       3810
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -5012,7 +5296,9 @@
       111,
       264,
       260
-     ]
+     ],
+     "cut": true,
+     "covered_fraction": 1.0
     },
     {
      "kind": "scale bar",
@@ -5022,7 +5308,9 @@
       2963,
       3783
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": false,
+     "covered_fraction": 0.936
     }
    ]
   },
@@ -5080,7 +5368,9 @@
       98,
       3234,
       273
-     ]
+     ],
+     "cut": true,
+     "covered_fraction": 1.0
     },
     {
      "kind": "scale bar",
@@ -5090,7 +5380,9 @@
       2840,
       3791
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -5148,7 +5440,9 @@
       94,
       197,
       239
-     ]
+     ],
+     "cut": true,
+     "covered_fraction": 1.0
     },
     {
      "kind": "scale bar",
@@ -5158,7 +5452,9 @@
       996,
       3826
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -5216,7 +5512,9 @@
       98,
       3226,
       273
-     ]
+     ],
+     "cut": true,
+     "covered_fraction": 1.0
     },
     {
      "kind": "scale bar",
@@ -5226,7 +5524,9 @@
       2500,
       3738
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -5284,7 +5584,9 @@
       101,
       292,
       277
-     ]
+     ],
+     "cut": true,
+     "covered_fraction": 1.0
     },
     {
      "kind": "scale bar",
@@ -5294,7 +5596,9 @@
       2485,
       3722
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": false,
+     "covered_fraction": 0.744
     }
    ]
   },
@@ -5352,7 +5656,9 @@
       117,
       3224,
       240
-     ]
+     ],
+     "cut": true,
+     "covered_fraction": 1.0
     },
     {
      "kind": "scale bar",
@@ -5362,7 +5668,9 @@
       3026,
       3807
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -5420,7 +5728,9 @@
       95,
       265,
       270
-     ]
+     ],
+     "cut": true,
+     "covered_fraction": 1.0
     },
     {
      "kind": "scale bar",
@@ -5430,7 +5740,9 @@
       3011,
       3821
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -5487,7 +5799,9 @@
       104,
       3225,
       279
-     ]
+     ],
+     "cut": true,
+     "covered_fraction": 1.0
     },
     {
      "kind": "scale bar",
@@ -5497,7 +5811,9 @@
       1031,
       3744
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -5577,7 +5893,9 @@
       123,
       325,
       256
-     ]
+     ],
+     "cut": true,
+     "covered_fraction": 1.0
     },
     {
      "kind": "scale bar",
@@ -5587,7 +5905,9 @@
       3055,
       3761
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -5645,7 +5965,9 @@
       102,
       3224,
       245
-     ]
+     ],
+     "cut": true,
+     "covered_fraction": 1.0
     },
     {
      "kind": "scale bar",
@@ -5655,7 +5977,9 @@
       1043,
       3817
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -5712,7 +6036,9 @@
       113,
       250,
       288
-     ]
+     ],
+     "cut": true,
+     "covered_fraction": 1.0
     },
     {
      "kind": "scale bar",
@@ -5722,7 +6048,9 @@
       986,
       3712
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": false,
+     "covered_fraction": 0.891
     }
    ]
   },
@@ -5780,7 +6108,9 @@
       119,
       3208,
       263
-     ]
+     ],
+     "cut": true,
+     "covered_fraction": 1.0
     },
     {
      "kind": "scale bar",
@@ -5790,7 +6120,9 @@
       1029,
       3741
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -5848,7 +6180,9 @@
       108,
       350,
       242
-     ]
+     ],
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -5905,7 +6239,9 @@
       102,
       3224,
       430
-     ]
+     ],
+     "cut": false,
+     "covered_fraction": 0.0
     },
     {
      "kind": "scale bar",
@@ -5915,7 +6251,9 @@
       3023,
       3746
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": false,
+     "covered_fraction": 0.0
     }
    ]
   },
@@ -5972,7 +6310,9 @@
       115,
       282,
       290
-     ]
+     ],
+     "cut": true,
+     "covered_fraction": 1.0
     },
     {
      "kind": "scale bar",
@@ -5982,7 +6322,9 @@
       2987,
       3842
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": false,
+     "covered_fraction": 0.0
     }
    ]
   },
@@ -6040,7 +6382,9 @@
       116,
       3225,
       258
-     ]
+     ],
+     "cut": false,
+     "covered_fraction": 0.721
     },
     {
      "kind": "scale bar",
@@ -6050,7 +6394,9 @@
       1122,
       3712
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": false,
+     "covered_fraction": 0.0
     }
    ]
   },
@@ -6130,7 +6476,9 @@
       100,
       285,
       270
-     ]
+     ],
+     "cut": false,
+     "covered_fraction": 0.285
     },
     {
      "kind": "scale bar",
@@ -6140,7 +6488,9 @@
       1404,
       3725
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": false,
+     "covered_fraction": 0.0
     }
    ]
   },
@@ -6197,7 +6547,9 @@
       107,
       3225,
       243
-     ]
+     ],
+     "cut": true,
+     "covered_fraction": 1.0
     },
     {
      "kind": "scale bar",
@@ -6207,7 +6559,9 @@
       2993,
       3732
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": false,
+     "covered_fraction": 0.0
     }
    ]
   },
@@ -6265,7 +6619,9 @@
       91,
       255,
       235
-     ]
+     ],
+     "cut": true,
+     "covered_fraction": 1.0
     },
     {
      "kind": "scale bar",
@@ -6275,7 +6631,9 @@
       1017,
       3820
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": false,
+     "covered_fraction": 0.0
     }
    ]
   },
@@ -6332,7 +6690,9 @@
       118,
       3224,
       268
-     ]
+     ],
+     "cut": true,
+     "covered_fraction": 1.0
     },
     {
      "kind": "scale bar",
@@ -6342,7 +6702,9 @@
       3069,
       3733
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": false,
+     "covered_fraction": 0.0
     }
    ]
   },
@@ -6399,7 +6761,9 @@
       93,
       340,
       231
-     ]
+     ],
+     "cut": true,
+     "covered_fraction": 1.0
     },
     {
      "kind": "scale bar",
@@ -6409,7 +6773,9 @@
       961,
       3710
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": false,
+     "covered_fraction": 0.0
     }
    ]
   },
@@ -6466,7 +6832,9 @@
       102,
       3223,
       252
-     ]
+     ],
+     "cut": true,
+     "covered_fraction": 1.0
     },
     {
      "kind": "scale bar",
@@ -6476,7 +6844,9 @@
       2986,
       3819
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": false,
+     "covered_fraction": 0.0
     }
    ]
   },
@@ -6558,7 +6928,9 @@
       103,
       600,
       244
-     ]
+     ],
+     "cut": true,
+     "covered_fraction": 1.0
     },
     {
      "kind": "scale bar",
@@ -6568,7 +6940,9 @@
       2076,
       3734
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -6626,7 +7000,9 @@
       115,
       3224,
       252
-     ]
+     ],
+     "cut": true,
+     "covered_fraction": 1.0
     },
     {
      "kind": "scale bar",
@@ -6636,7 +7012,9 @@
       1944,
       3858
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -6906,7 +7284,9 @@
       1708,
       7318
      ],
-     "how": "sheet 5's 'Scale 100 Ft. to One Inch.' bar, 2x template match, score 0.61"
+     "how": "sheet 5's 'Scale 100 Ft. to One Inch.' bar, 2x template match, score 0.61",
+     "cut": false,
+     "covered_fraction": 0.442
     }
    ]
   },
@@ -6964,7 +7344,9 @@
       1708,
       7318
      ],
-     "how": "sheet 5's 'Scale 100 Ft. to One Inch.' bar, 2x template match, score 0.61"
+     "how": "sheet 5's 'Scale 100 Ft. to One Inch.' bar, 2x template match, score 0.61",
+     "cut": false,
+     "covered_fraction": 0.353
     }
    ]
   },
@@ -7130,7 +7512,9 @@
       75,
       3260,
       225
-     ]
+     ],
+     "cut": true,
+     "covered_fraction": 1.0
     },
     {
      "kind": "scale bar",
@@ -7140,7 +7524,9 @@
       2831,
       3737
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": true,
+     "covered_fraction": 1.0
     }
    ]
   },
@@ -7186,7 +7572,9 @@
       80,
       3235,
       230
-     ]
+     ],
+     "cut": false,
+     "covered_fraction": 0.475
     },
     {
      "kind": "edge numeral/glyph",
@@ -7195,7 +7583,9 @@
       95,
       1695,
       175
-     ]
+     ],
+     "cut": false,
+     "covered_fraction": 0.0
     },
     {
      "kind": "scale bar",
@@ -7205,7 +7595,9 @@
       1103,
       3809
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": false,
+     "covered_fraction": 0.0
     }
    ]
   },
@@ -7252,7 +7644,9 @@
       68,
       171,
       220
-     ]
+     ],
+     "cut": false,
+     "covered_fraction": 0.337
     },
     {
      "kind": "scale bar",
@@ -7262,7 +7656,9 @@
       1085,
       3762
      ],
-     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px"
+     "how": "template match of the series' bar, box fitted to the legend's ink (bar and 'Scale of Feet' lettering) within the template footprint (tools/scalebar.py); clipped to the template footprint +30/+40 px",
+     "cut": false,
+     "covered_fraction": 0.0
     }
    ]
   }
