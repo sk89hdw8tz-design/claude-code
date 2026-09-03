@@ -52,11 +52,10 @@ def render(r, x0, y0, x1, y1, d, labels=False, outline=False):
         canvas[wy0:wy1, wx0:wx1][m] = warped[m]
         sub_cov |= mask
     # unowned-sliver fallback, as tools/render.py does it
-    interior = _interior_mask(r, x0, y0, x1, y1, d, W, H)
     for sheet, poly in own:
         if sheet not in polys:
             continue
-        fp = r.footprint(sheet, furniture=False)
+        fp = r.footprint(sheet)
         fpts = ((np.array(fp.exterior.coords) - np.array([x0, y0])) / d).astype(np.int32)
         wx0 = max(0, int(fpts[:, 0].min()) - 2); wy0 = max(0, int(fpts[:, 1].min()) - 2)
         wx1 = min(W, int(fpts[:, 0].max()) + 3); wy1 = min(H, int(fpts[:, 1].max()) + 3)
@@ -66,7 +65,6 @@ def render(r, x0, y0, x1, y1, d, labels=False, outline=False):
         mask = np.zeros((wy1 - wy0, wx1 - wx0), np.uint8)
         cv2.fillPoly(mask, [fpts - np.array([wx0, wy0], np.int32)], 255)
         mask &= cv2.inRange(sub_cov, 0, 0)
-        mask &= interior[wy0:wy1, wx0:wx1]
         if cv2.countNonZero(mask) == 0:
             continue
         img = cv2.imread(r.fetch(r.sheet_file(sheet)), cv2.IMREAD_COLOR)

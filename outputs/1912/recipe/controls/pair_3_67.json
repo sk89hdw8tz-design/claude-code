@@ -9,5 +9,7 @@
  "a_native": 4173.3,
  "b_native": 200,
  "why_not_one_block_off": "Not a street. Sheet 67 draws the wharf yard at 50 ft/in up to its bay-side neatline and keeps it; the 100 ft/in wharf plate supplies the piers and bay beyond. Same rule as the sheet-5 panels.",
- "status": "ACCEPTED"
+ "status": "REJECTED",
+ "rejected_by": "session 018fqghgw6, periphery review",
+ "reason": "the two plates do not meet: sheet 3 ends at 'AVE. A OR WATER' and sheet 67/75 begin at 'AVE. B OR STRAND'/'AVE. C', and BOTH print the adjoining-sheet numeral '0' on that edge, which is the series' mark for no adjoining sheet. The a_native this file carried (4173 / 4693) lies 920 / 1440 px beyond sheet 3's own neatline. The strip between them is a source gap in the 1912 atlas, not a seam."
 }

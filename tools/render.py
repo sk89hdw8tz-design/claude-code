@@ -166,14 +166,17 @@ def main():
         del warped, mask, sub, m, sub_cov
         print(f"  sheet {sheet} composited", flush=True)
     # Second pass: ground no region claims (cut-line slivers at plate corners,
-    # notches between a min-ink path and a neighbouring cut) is painted from
-    # any plate whose trimmed footprint covers it. Nothing is invented: the
-    # pixels are that plate's own scan of that ground; the area is reported.
+    # notches between a min-ink path and a neighbouring cut, the strip a
+    # neighbour's neat line stops short of) is painted from any plate whose
+    # trimmed footprint covers it. Nothing is invented: the pixels are that
+    # plate's own scan of that ground, and the area is reported. The footprint
+    # used here is the furniture-aware one, so a marking a neighbour can
+    # replace in full is never painted back, while one no neighbour maps stays
+    # on the plate's own paper rather than leaving a hole.
     fallback = 0
-    interior = _interior_mask(r, x0, y0, x1, y1, d, W, H)
     for sheet, poly in involved:
         try:
-            fp = r.footprint(sheet, furniture=False)
+            fp = r.footprint(sheet)
         except Exception:
             continue
         fpts = ((np.array(fp.exterior.coords) - np.array([x0, y0])) / d).astype(np.int32)
@@ -185,7 +188,6 @@ def main():
         mask = np.zeros((wy1 - wy0, wx1 - wx0), np.uint8)
         cv2.fillPoly(mask, [fpts - np.array([wx0, wy0], np.int32)], 255)
         mask &= cv2.inRange(sub_cov, 0, 0)
-        mask &= interior[wy0:wy1, wx0:wx1]
         n = int(cv2.countNonZero(mask))
         if n == 0:
             continue
