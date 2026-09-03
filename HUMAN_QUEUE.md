@@ -1746,7 +1746,7 @@ deg, centre moves (+4, +1) ft. No fallback needed.
 
 **Gate**: 332 controls, median max-abs **1.6 ft**, **11** over 6 ft, none newly
 over 6 ft (the over-6 list is unchanged from baseline). The doubled main is
-verified after the re-cut (HQ-51).
+verified after the re-cut (HQ-54).
 
 ## HQ-49 · Gate A' 1c · `pair_17_18_y` settled and ACCEPTED; units 17+18 re-solved — APPLIED
 
