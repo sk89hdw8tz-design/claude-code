@@ -1793,3 +1793,72 @@ step from 6.0 to 4.4 ft.
 
 **Gate**: 333 accepted controls (the re-accepted one is new to the count),
 median max-abs **1.6 ft**, **11** over 6 ft, none newly over 6 ft.
+
+## HQ-50 · Gate A' 1d · `pair_63_70_x` re-read, new `pair_64_71_x`, units 63+64+71+72 re-solved — APPLIED
+
+`outputs/1912/qc/wave4/proposal_64_71.md`. Two findings, both invisible to every
+gate before this: `pair_63_70_x` asserted a value ~14 native px (4.7 ft) off yet
+reported a band residual of -0.1 ft, and seams 64|71 / 64|72 carried **no control
+at all** while stepping a constant 13 ft.
+
+**`controls/pair_63_70_x.json`** (re-read): `a_native` 1178.5 -> **1178.0**,
+`b_native` 2186.5 -> **2172.3**, `corridor` "?" -> **"Ave M"**, `roadway_px`
+[207,207] -> [208.0, 209.5], previous values kept as `*_previous`, the band
+measurement and the plate-70 grid corroboration in `re_read`, and a
+`why_not_one_block_off` (four corridors on a ~1000 px pitch on both plates; the
+correction is 14 px). `lattice.json`'s faces for plate 70's third x chain,
+[2083, 2290], are simply not where plate 70 draws Ave M (2067.5 / 2277.0).
+
+**`controls/pair_64_71_x.json`** (new): Ave N, `a_native` **178.3** (64) /
+`b_native` **1177.6** (71), faces 73.0/283.6 and 1071.5/1283.6, both roadways
+70 ft and both plates lettering `70'`, `disagreement_before_ft` 13.0. The
+`why_not_one_block_off` carries the printed evidence (33rd St 1500-block runs,
+the 3200/3300 avenue frontage change at 33rd St, the shared **T.H. hydrant** as a
+width-free tie, Ave N 1/2 one corridor east taking the 1500/1600 change) and the
+three independent offsets (faces 999.3, centreline main 1002.3, hydrant 999.1)
+plus the NCC of the whole overlap band at four positions (1000/988/990/999 -
+constant, a translation). The `method` field records the convention caveat: this
+is the **band** reading that `bandresid` and `--similarity` sample, not the
+mid-height reading (a 171.0 / b 1188.7), which differs by ~18 px because the two
+plates' drawn tilts differ by more than their transforms' rotations.
+
+With the two files in place and no transform change, `bandresid` reproduced the
+proposal exactly: `pair_64_71_x` **+13.0 / +13.0**, `pair_63_70_x` **+4.6 / +4.7**.
+
+**Solve.** The proposal's `--units 64 71 72 --similarity` was run first and
+**failed the gate by 0.03 ft**: it pushed `pair_71_72` to **6.03 ft**, newly over
+6. It also left `pair_63_70_x` at 4.66 ft, i.e. above the 4 ft the proposal set as
+the trigger to "check 63 too". Freeing 63 as well does both jobs, so the applied
+solve is **`localsolve.py --year 1912 --units 63 64 71 72 --similarity --apply`**:
+46 line samples, residual median **1.1** / max **5.7 ft**.
+
+| unit | scale | rotation | centre |
+|---|---|---|---|
+| 63 | 2.0150 -> 2.0142 (-0.04%) | +0.291 -> +0.416 deg | (-2, +0) ft |
+| 64 | 2.0149 -> 2.0224 (+0.37%) | +0.381 -> +0.540 deg | (-3, +2) ft |
+| 71 | 2.0114 -> 2.0083 (-0.15%) | +0.328 -> +0.395 deg | (+2, +0) ft |
+| 72 | 2.0251 -> 2.0249 (-0.01%) | +0.281 -> +0.271 deg | (+0, +0) ft |
+
+| control | before | after |
+|---|---|---|
+| `pair_64_71_x` | +13.0 / +13.0 | **+3.9 / +3.8** |
+| `pair_63_70_x` | +4.6 / +4.7 | **+1.0 / +1.0** |
+| `pair_71_72` | +4.4 / +3.7 | +5.6 / +3.7 (under 6) |
+| `pair_63_64` | -1.1 / +0.3 | +0.9 / +2.8 |
+| `pair_63_70` | +0.9 / +0.4 | -0.0 / +0.6 |
+| `pair_63_71` | -0.9 / -1.6 | -0.9 / -0.8 |
+| `pair_70_71` | +3.3 / +3.2 | +0.4 / +1.2 |
+| `pair_58_64_x` | -0.3 / -0.2 | -0.3 / -0.2 |
+
+Alternatives measured before choosing: `64 71 72` (fails, above), `64 71 72 79`
+(passes, but leaves `pair_63_70_x` at 4.66), `64 71 72 65` (same), `70 71 72 64`
+(two controls newly over 6 ft). The remaining ~3.9 ft on `pair_64_71_x` is the
+drawing tilt the proposal documents in its §5(a) - plate 63's N-S lines tilt
+-0.0018 px/px against plate 70's +0.0044 - and is **not** chased.
+
+Not applied, as the proposal advises: `pair_70_71` (method fault recorded, the
+half-width error cancels in the difference - "fixing" one side would introduce
+~50 px) and the optional 2 ft `pair_63_64.a_native` re-read.
+
+**Gate**: 334 accepted controls, median max-abs **1.6 ft**, **11** over 6 ft -
+the same eleven as the baseline, none newly over 6 ft.

@@ -1,0 +1,30 @@
+{
+ "pair": [
+  64,
+  71
+ ],
+ "axis": "avenue",
+ "observer": "wave4-64-71",
+ "method": "corridor centre = midpoint of the two block faces, both drawn on both plates, read in the shared 33rd St band (64 y 3480-3620 / 71 y 24-164). NB the band reading, not the plate mid-height reading: bandresid and localsolve --similarity sample a control in the shared band, and plates 64 and 71 draw their N-S lines with different tilts (64 ~0.000 px/px, 71 ~+0.005) that the transforms' rotations do not carry, so the mid-height reading of the same corridor (a 171.0 / b 1188.7) differs by ~18 native px.",
+ "corridor": "Ave N",
+ "a_native": 178.3,
+ "b_native": 1177.6,
+ "faces": {
+  "64": [
+   73.0,
+   283.6
+  ],
+  "71": [
+   1071.5,
+   1283.6
+  ]
+ },
+ "roadway_px": [
+  210.6,
+  212.1
+ ],
+ "disagreement_before_ft": 13.0,
+ "why_not_one_block_off": "Chosen line is the corridor both plates draw complete (both block faces) and both letter 70' inside its own roadway - plate 64 at native ~(170, 3535), plate 71 at native ~(1183, 352); native scale 3.01 px/ft, so both roadways measure 70 ft (210.6 / 212.1 px). A block here is ~1000 px and the disagreement being corrected is 37 px. ADDRESS RUNS. 33rd St's 1500 block begins east of this corridor on both sheets: plate 64 carries 1502 1504 1506 1508 1510 1512 on the north side, plate 71 carries 1501 1503 1505 1507 1509 on the south side. The avenue frontage changes hundred exactly at 33rd St: plate 64's east face reads 3223 3225 3227 (3200 block, north), plate 71's reads 3301 3303 3305 with the even run 3304 3306 3308 3310 3312 on the west face (3300 block, south). SHARED SYMBOLS. The same T.H. hydrant sits at the corner on both plates (64 at (257.2, 3554.4), 71 at (1256.2, 98.0), implied offset 999.1 - a width-free tie) and the same water main runs on the centreline, 6\" north of 33rd St and 8\" south, on both. ONE AVENUE WEST on plate 64 is off-sheet; ONE AVENUE EAST is Ave N 1/2 (centre ~1091) which takes the 1500/1600 change. CROSS-CHECK: face midpoints give a 64->71 offset of 999.3, the centreline main 1002.3, the hydrant 999.1, and a normalised cross-correlation of the whole overlap band at four positions along the seam (64 x = 200, 700, 1200, 1700) gives 1000, 988, 990, 999 - constant, i.e. a translation. Repeated one street south (64 y 3730-3870 / 71 y 274-414) the faces give 998.0 / 1000.4 and the pipe 1003.2. The current placement asserts 1036.6-1041.8, i.e. 12.4-13.0 ft too far east.",
+ "added_by": "wave 4 (outputs/1912/qc/wave4/proposal_64_71.md): seams 64|71 and 64|72 carried NO control at all, so a real, constant 13 ft step was invisible to every gate. Both plates draw Ave N 210.4 px wide and both print 70', so it is not a source disagreement.",
+ "status": "ACCEPTED"
+}

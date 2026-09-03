@@ -4,16 +4,20 @@
   70
  ],
  "axis": "avenue",
- "observer": "lattice (tools/faces.py)",
+ "observer": "wave4-64-71 (was: lattice (tools/faces.py))",
  "method": "corridor centre = midpoint of the two block faces read off the plate's own street chain; identity from the current placement (the two readings are within 4 ft, a block is 345 ft); a cross-axis tie: the corridor both plates draw across their shared band",
- "a_native": 1178.5,
- "b_native": 2186.5,
- "corridor": "?",
+ "a_native": 1178.0,
+ "b_native": 2172.3,
+ "corridor": "Ave M",
  "roadway_px": [
-  207,
-  207
+  208.0,
+  209.5
  ],
  "disagreement_before_ft": 4.2,
  "cross_axis": true,
- "status": "ACCEPTED"
+ "status": "ACCEPTED",
+ "a_native_previous": 1178.5,
+ "b_native_previous": 2186.5,
+ "re_read": "wave 4 (outputs/1912/qc/wave4/proposal_64_71.md). This is the only x tie between the 63/64 row and the 70/71/72 row, and its band residual was -0.1 ft, so the gate could not see the 4.7 ft it was out by (census round 5 graded seam 63|70 a 14.6 px = 5.1 ft translation step). lattice.json's faces for plate 70's third x chain, [2083, 2290], are not where the lines are. Measured on the drawn faces in the shared band (63 y 3450-3590 / 70 y 20-160), both 70 ft wide: plate 63 1074.0 / 1282.0 -> centre 1178.0; plate 70 2067.5 / 2277.0 -> centre 2172.3 (offset 994.3). At mid-sheet (y 1849) the same corridor reads 1180.5 / 2180.9. Corroboration on plate 70's own grid: Ave L 1068.4/1276.0 and Ave M 2067.5/2277.0 give a pitch of 996 px, matching plate 63's. Verified in a scratch recipe: with these values bandresid reports pair_63_70_x +4.6/+4.7 ft, the same constant step and direction the grader measured, where the shipped values reported -0.1/-0.1.",
+ "why_not_one_block_off": "Both plates draw four x corridors on a ~1000 px pitch - plate 63: Ave L 178 / Ave M 1178 / Ave M 1/2 2182 / Ave N 3177; plate 70: Ave K 176 / Ave L 1172 / Ave M 2172 / Ave M 1/2 ~3176 - and the correction here is 14 px against a 1000 px block, so a one-corridor error is excluded by three orders of magnitude. Plate 63's Ave M is independently fixed by pair_57_63_x, and pair_70_71 reads plate 70's chain as K 175 / L 1176 / M 2181.5."
 }
