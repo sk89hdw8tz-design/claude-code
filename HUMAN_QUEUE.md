@@ -1954,3 +1954,72 @@ introduce ~50 px), the optional ~2 ft `pair_63_64.a_native` re-read
 (3183.0 -> 3176.5; the "east face" at 3290 is the trimmed paper edge), and
 `14|49`, whose clipping edge is the frozen 27x40 master's own 12|49 core mask at
 (3127, 10628) and is out of `streetcut.py`'s reach entirely.
+
+## HQ-53 · Gate A' 2 · furniture cycle rule in `tools/furncover.py` — APPLIED (5 cycles resolved)
+
+`outputs/1912/qc/wave4/proposal_cuts.md` §2. Plate 63's 257,000 px2 "Scale of
+Feet" legend prints in the 33rd St roadway at `covered_fraction 0.830` **only
+because plates 70 and 71 declare their own title rectangles twice** - once as
+`furniture_native`, once as `exclude_native` - so `footprint_native` subtracts
+them whatever the `cut` flag says, and 70's and 71's titles are in turn cut
+*because 63 supplies them*. `furncover` evaluated each box independently and
+could not see the three-plate cycle, which therefore resolved in favour of the
+**largest** box.
+
+**Rule added** (COVER stays **0.98**; the threshold was never at fault). After
+the independent pass, for each kept box the ground its neighbours fail to supply
+is intersected with those neighbours' **untrimmed** footprints; where the
+shortfall is exactly a neighbour's own furniture box declared as an exclusion,
+and that box is itself cut because this plate supplies it, the boxes form one
+cycle. Cycles sharing a box are merged. In a cycle exactly **one** box is kept -
+the **smallest by mosaic area**, i.e. the least furniture printed over mapped
+ground - the rest are cut, and every member's `exclude_native` twin is dropped
+(redundant: for a cut box `footprint_native` removes the same rectangle grown
+6 px; for the kept box, its paper is what supplies the others).
+
+**A resolution is only accepted if it works.** After the drops, every box the
+cycle cuts must reach COVER; otherwise the cycle is reverted and the independent
+verdict stands. That test rejected three of the eight candidate cycles, all at
+the edge of the map where no plate supplies the ground: `15[1]/67[0]` (15's
+scale bar would reach only 0.612), `18[0]/19[0]` (0.776) and `92[0]/93[0]`
+(93's title 0.546).
+
+**Five cycles resolved** (`furncover.py --year 1912 --apply`, run once, after
+every Part-1 transform was final):
+
+| cycle | keep (smallest) | cut |
+|---|---|---|
+| 24[0] 25[0] | **25[0]** 78,272 px2 | 24[0] |
+| **63[1] 70[0] 71[0]** | **70[0]** 95,690 px2 | 63[1] (the legend), 71[0] |
+| 65[1] 72[0] 73[0] | **73[0]** 108,851 px2 | 65[1], 72[0] |
+| 77[1] 85[0] | **85[0]** 125,614 px2 | 77[1] |
+| 81[1] 88[0] 89[0] | **89[0]** 89,050 px2 | 81[1], 88[0] |
+
+**Every box whose `cut` flag changed** (10; the totals are unchanged at 182 cut /
+45 kept):
+
+| box | kind | cut | covered_fraction |
+|---|---|---|---|
+| 24[0] | plate number and title | false -> **true** | 0.849 -> 1.000 |
+| 63[1] | scale bar | false -> **true** | 0.830 -> 1.000 |
+| 65[1] | scale bar | false -> **true** | 0.850 -> 1.000 |
+| 77[1] | scale bar | false -> **true** | 0.926 -> 1.000 |
+| 81[1] | scale bar | false -> **true** | 0.799 -> 1.000 |
+| 70[0] | plate number and title | true -> **false** | 1.000 (kept box of its cycle) |
+| 73[0] | plate number and title | true -> **false** | 1.000 (kept box) |
+| 85[0] | plate number and title | true -> **false** | 1.000 (kept box) |
+| 89[0] | plate number and title | true -> **false** | 1.000 (kept box) |
+| 38[0] | plate number and title | true -> **false** | 1.000 -> 0.953 |
+
+`38[0]` is **not** a cycle: unit 38 moved (-2, -5) ft in HQ-51's column solve and
+its title box no longer clears the 0.98 bar against its neighbours, so the
+independent rule keeps it on plate 38's own paper. Nine units dropped an
+`exclude_native` title twin (24, 25, 70, 71, 72, 73, 85, 88, 89), each with an
+`exclude_dropped_note` naming its cycle; the non-title exclusions (25's inset
+frame, 85's cemetery-inset region) are untouched, and units 92/93, whose cycle
+was rejected, keep theirs.
+
+**Caveat carried forward, as the proposal proves**: `furncover` measures coverage
+against neighbours' *footprints*, not against their *regions after streetcut*, so
+cutting a box only removes it where a neighbour's region actually covers it.
+Verified with 1:1 crops after the re-cut in HQ-54.

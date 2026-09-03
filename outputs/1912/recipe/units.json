@@ -971,7 +971,7 @@
       265
      ],
      "cut": false,
-     "covered_fraction": 0.146
+     "covered_fraction": 0.12
     },
     {
      "kind": "scale bar",
@@ -1044,7 +1044,7 @@
       265
      ],
      "cut": false,
-     "covered_fraction": 0.276
+     "covered_fraction": 0.204
     },
     {
      "kind": "scale bar",
@@ -1224,7 +1224,7 @@
       242
      ],
      "cut": false,
-     "covered_fraction": 0.748
+     "covered_fraction": 0.791
     },
     {
      "kind": "scale bar",
@@ -1424,26 +1424,7 @@
     "left",
     "right"
    ],
-   "exclude_native": [
-    [
-     [
-      3004,
-      108
-     ],
-     [
-      3238,
-      108
-     ],
-     [
-      3238,
-      248
-     ],
-     [
-      3004,
-      248
-     ]
-    ]
-   ],
+   "exclude_native": [],
    "furniture_native": [
     {
      "kind": "plate number and title",
@@ -1453,8 +1434,9 @@
       3238,
       248
      ],
-     "cut": false,
-     "covered_fraction": 0.849
+     "cut": true,
+     "covered_fraction": 1.0,
+     "cycle": "cut: 25[0] is the smallest box of the 2-box furniture cycle 24[0] 25[0] and keeps its paper"
     },
     {
      "kind": "scale bar",
@@ -1469,7 +1451,8 @@
      "covered_fraction": 1.0,
      "match_score": 0.687
     }
-   ]
+   ],
+   "exclude_dropped_note": "the exclude_native twin of furniture box 0 was dropped by tools/furncover.py's cycle pass (cycle 24[0] 25[0]): the same rectangle was declared both as furniture and as an exclusion, which blanked the ground the cycle's other plates need"
   },
   "25": {
    "file": 25,
@@ -1516,24 +1499,6 @@
       2548,
       1168
      ]
-    ],
-    [
-     [
-      80,
-      83
-     ],
-     [
-      217,
-      83
-     ],
-     [
-      217,
-      226
-     ],
-     [
-      80,
-      226
-     ]
     ]
    ],
    "panels": [
@@ -1549,7 +1514,8 @@
       226
      ],
      "cut": false,
-     "covered_fraction": 0.865
+     "covered_fraction": 0.954,
+     "cycle": "kept: the smallest box of the 2-box furniture cycle 24[0] 25[0]; its paper supplies the others"
     },
     {
      "kind": "scale bar",
@@ -1584,7 +1550,8 @@
      "why": "P1-3 (Gate A): 'right' is a neatline FALLBACK side (3239 = paper edge 3289 - 50) and no rule exists there; plate-wide (rows 330..3560) ink runs 0.006-0.015 from 3239 to 3266 and is 0.000 from 3267, while the inset rows 83..1138 carry 0.020-0.045 out to 3277 (SEAWALL BLVD, block NE 48, 12TH ST., the Gulf shoreline wash). Right paper edge is native 3282 with deckle shadow 3285-3290, so 3266 is the last drawn column with 16 px of clear paper."
     }
    },
-   "exclude_native_note": "inset cut-out east side moved 3244 -> 3271 with the parent's extent; the other three sides are unchanged and stand clear of the inset's measured heavy frame (native x 2560-2580 and y 1140-1165)."
+   "exclude_native_note": "inset cut-out east side moved 3244 -> 3271 with the parent's extent; the other three sides are unchanged and stand clear of the inset's measured heavy frame (native x 2560-2580 and y 1140-1165).",
+   "exclude_dropped_note": "the exclude_native twin of furniture box 0 was dropped by tools/furncover.py's cycle pass (cycle 24[0] 25[0]): the same rectangle was declared both as furniture and as an exclusion, which blanked the ground the cycle's other plates need"
   },
   "26": {
    "file": 26,
@@ -2701,8 +2668,8 @@
       3234,
       251
      ],
-     "cut": true,
-     "covered_fraction": 1.0
+     "cut": false,
+     "covered_fraction": 0.953
     },
     {
      "kind": "scale bar",
@@ -4723,9 +4690,10 @@
       3718
      ],
      "how": "template match of the series' bar at (1914,3621), score 0.72; box fitted to the legend's ink and clipped to the template footprint +30 px (tools/scalebar.py)",
-     "cut": false,
-     "covered_fraction": 0.83,
-     "match_score": 0.717
+     "cut": true,
+     "covered_fraction": 1.0,
+     "match_score": 0.717,
+     "cycle": "cut: 70[0] is the smallest box of the 3-box furniture cycle 63[1] 70[0] 71[0] and keeps its paper"
     }
    ]
   },
@@ -4869,9 +4837,10 @@
       3757
      ],
      "how": "template match of the series' bar at (1813,3659), score 0.63; box fitted to the legend's ink and clipped to the template footprint +30 px (tools/scalebar.py)",
-     "cut": false,
-     "covered_fraction": 0.85,
-     "match_score": 0.627
+     "cut": true,
+     "covered_fraction": 1.0,
+     "match_score": 0.627,
+     "cycle": "cut: 73[0] is the smallest box of the 3-box furniture cycle 65[1] 72[0] 73[0] and keeps its paper"
     }
    ]
   },
@@ -5193,26 +5162,7 @@
     "right",
     "bottom"
    ],
-   "exclude_native": [
-    [
-     [
-      3045,
-      118
-     ],
-     [
-      3227,
-      118
-     ],
-     [
-      3227,
-      248
-     ],
-     [
-      3045,
-      248
-     ]
-    ]
-   ],
+   "exclude_native": [],
    "furniture_native": [
     {
      "kind": "plate number and title",
@@ -5222,8 +5172,9 @@
       3227,
       248
      ],
-     "cut": true,
-     "covered_fraction": 1.0
+     "cut": false,
+     "covered_fraction": 1.0,
+     "cycle": "kept: the smallest box of the 3-box furniture cycle 63[1] 70[0] 71[0]; its paper supplies the others"
     },
     {
      "kind": "scale bar",
@@ -5238,7 +5189,8 @@
      "covered_fraction": 1.0,
      "match_score": 0.734
     }
-   ]
+   ],
+   "exclude_dropped_note": "the exclude_native twin of furniture box 0 was dropped by tools/furncover.py's cycle pass (cycle 63[1] 70[0] 71[0]): the same rectangle was declared both as furniture and as an exclusion, which blanked the ground the cycle's other plates need"
   },
   "71": {
    "file": 71,
@@ -5267,26 +5219,7 @@
     "right",
     "bottom"
    ],
-   "exclude_native": [
-    [
-     [
-      89,
-      97
-     ],
-     [
-      249,
-      97
-     ],
-     [
-      249,
-      272
-     ],
-     [
-      89,
-      272
-     ]
-    ]
-   ],
+   "exclude_native": [],
    "furniture_native": [
     {
      "kind": "plate number and title",
@@ -5297,7 +5230,8 @@
       272
      ],
      "cut": true,
-     "covered_fraction": 1.0
+     "covered_fraction": 1.0,
+     "cycle": "cut: 70[0] is the smallest box of the 3-box furniture cycle 63[1] 70[0] 71[0] and keeps its paper"
     },
     {
      "kind": "scale bar",
@@ -5312,7 +5246,8 @@
      "covered_fraction": 0.0,
      "match_score": 0.71
     }
-   ]
+   ],
+   "exclude_dropped_note": "the exclude_native twin of furniture box 0 was dropped by tools/furncover.py's cycle pass (cycle 63[1] 70[0] 71[0]): the same rectangle was declared both as furniture and as an exclusion, which blanked the ground the cycle's other plates need"
   },
   "73": {
    "file": 73,
@@ -5341,26 +5276,7 @@
     "right",
     "bottom"
    ],
-   "exclude_native": [
-    [
-     [
-      85,
-      89
-     ],
-     [
-      291,
-      89
-     ],
-     [
-      291,
-      220
-     ],
-     [
-      85,
-      220
-     ]
-    ]
-   ],
+   "exclude_native": [],
    "furniture_native": [
     {
      "kind": "plate number and title",
@@ -5370,8 +5286,9 @@
       291,
       220
      ],
-     "cut": true,
-     "covered_fraction": 1.0
+     "cut": false,
+     "covered_fraction": 1.0,
+     "cycle": "kept: the smallest box of the 3-box furniture cycle 65[1] 72[0] 73[0]; its paper supplies the others"
     },
     {
      "kind": "scale bar",
@@ -5386,7 +5303,8 @@
      "covered_fraction": 1.0,
      "match_score": 0.729
     }
-   ]
+   ],
+   "exclude_dropped_note": "the exclude_native twin of furniture box 0 was dropped by tools/furncover.py's cycle pass (cycle 65[1] 72[0] 73[0]): the same rectangle was declared both as furniture and as an exclusion, which blanked the ground the cycle's other plates need"
   },
   "74": {
    "file": 74,
@@ -5674,9 +5592,10 @@
       3755
      ],
      "how": "template match of the series' bar at (2224,3658), score 0.71; box fitted to the legend's ink and clipped to the template footprint +30 px (tools/scalebar.py)",
-     "cut": false,
-     "covered_fraction": 0.926,
-     "match_score": 0.714
+     "cut": true,
+     "covered_fraction": 1.0,
+     "match_score": 0.714,
+     "cycle": "cut: 85[0] is the smallest box of the 2-box furniture cycle 77[1] 85[0] and keeps its paper"
     }
    ]
   },
@@ -5966,9 +5885,10 @@
       3722
      ],
      "how": "template match of the series' bar at (1840,3625), score 0.68; box fitted to the legend's ink and clipped to the template footprint +30 px (tools/scalebar.py)",
-     "cut": false,
-     "covered_fraction": 0.799,
-     "match_score": 0.685
+     "cut": true,
+     "covered_fraction": 1.0,
+     "match_score": 0.685,
+     "cycle": "cut: 89[0] is the smallest box of the 3-box furniture cycle 81[1] 88[0] 89[0] and keeps its paper"
     },
     {
      "kind": "edge numeral/glyph",
@@ -6259,24 +6179,6 @@
       85,
       3817
      ]
-    ],
-    [
-     [
-      90,
-      123
-     ],
-     [
-      325,
-      123
-     ],
-     [
-      325,
-      256
-     ],
-     [
-      90,
-      256
-     ]
     ]
    ],
    "panels": [
@@ -6291,8 +6193,9 @@
       325,
       256
      ],
-     "cut": true,
-     "covered_fraction": 1.0
+     "cut": false,
+     "covered_fraction": 1.0,
+     "cycle": "kept: the smallest box of the 2-box furniture cycle 77[1] 85[0]; its paper supplies the others"
     },
     {
      "kind": "scale bar",
@@ -6307,7 +6210,8 @@
      "covered_fraction": 1.0,
      "match_score": 0.667
     }
-   ]
+   ],
+   "exclude_dropped_note": "the exclude_native twin of furniture box 0 was dropped by tools/furncover.py's cycle pass (cycle 77[1] 85[0]): the same rectangle was declared both as furniture and as an exclusion, which blanked the ground the cycle's other plates need"
   },
   "86": {
    "file": 86,
@@ -6492,26 +6396,7 @@
     "left",
     "right"
    ],
-   "exclude_native": [
-    [
-     [
-      3003,
-      119
-     ],
-     [
-      3208,
-      119
-     ],
-     [
-      3208,
-      263
-     ],
-     [
-      3003,
-      263
-     ]
-    ]
-   ],
+   "exclude_native": [],
    "furniture_native": [
     {
      "kind": "plate number and title",
@@ -6522,7 +6407,8 @@
       263
      ],
      "cut": true,
-     "covered_fraction": 1.0
+     "covered_fraction": 1.0,
+     "cycle": "cut: 89[0] is the smallest box of the 3-box furniture cycle 81[1] 88[0] 89[0] and keeps its paper"
     },
     {
      "kind": "scale bar",
@@ -6537,7 +6423,8 @@
      "covered_fraction": 1.0,
      "match_score": 0.588
     }
-   ]
+   ],
+   "exclude_dropped_note": "the exclude_native twin of furniture box 0 was dropped by tools/furncover.py's cycle pass (cycle 81[1] 88[0] 89[0]): the same rectangle was declared both as furniture and as an exclusion, which blanked the ground the cycle's other plates need"
   },
   "89": {
    "file": 89,
@@ -6565,26 +6452,7 @@
     "left",
     "right"
    ],
-   "exclude_native": [
-    [
-     [
-      185,
-      108
-     ],
-     [
-      350,
-      108
-     ],
-     [
-      350,
-      242
-     ],
-     [
-      185,
-      242
-     ]
-    ]
-   ],
+   "exclude_native": [],
    "furniture_native": [
     {
      "kind": "plate number and title",
@@ -6594,8 +6462,9 @@
       350,
       242
      ],
-     "cut": true,
-     "covered_fraction": 1.0
+     "cut": false,
+     "covered_fraction": 1.0,
+     "cycle": "kept: the smallest box of the 3-box furniture cycle 81[1] 88[0] 89[0]; its paper supplies the others"
     },
     {
      "kind": "scale bar",
@@ -6609,7 +6478,8 @@
      "cut": true,
      "covered_fraction": 1.0
     }
-   ]
+   ],
+   "exclude_dropped_note": "the exclude_native twin of furniture box 0 was dropped by tools/furncover.py's cycle pass (cycle 81[1] 88[0] 89[0]): the same rectangle was declared both as furniture and as an exclusion, which blanked the ground the cycle's other plates need"
   },
   "90": {
    "file": 90,
@@ -7443,26 +7313,7 @@
     "left",
     "bottom"
    ],
-   "exclude_native": [
-    [
-     [
-      3024,
-      115
-     ],
-     [
-      3224,
-      115
-     ],
-     [
-      3224,
-      252
-     ],
-     [
-      3024,
-      252
-     ]
-    ]
-   ],
+   "exclude_native": [],
    "furniture_native": [
     {
      "kind": "plate number and title",
@@ -7473,7 +7324,8 @@
       252
      ],
      "cut": true,
-     "covered_fraction": 1.0
+     "covered_fraction": 1.0,
+     "cycle": "cut: 73[0] is the smallest box of the 3-box furniture cycle 65[1] 72[0] 73[0] and keeps its paper"
     },
     {
      "kind": "scale bar",
@@ -7488,7 +7340,8 @@
      "covered_fraction": 1.0,
      "match_score": 0.639
     }
-   ]
+   ],
+   "exclude_dropped_note": "the exclude_native twin of furniture box 0 was dropped by tools/furncover.py's cycle pass (cycle 65[1] 72[0] 73[0]): the same rectangle was declared both as furniture and as an exclusion, which blanked the ground the cycle's other plates need"
   },
   "26b": {
    "file": 26,
@@ -7830,7 +7683,7 @@
      ],
      "how": "sheet 5's 'Scale 100 Ft. to One Inch.' bar, 2x template match, score 0.61",
      "cut": false,
-     "covered_fraction": 0.353
+     "covered_fraction": 0.405
     }
    ]
   },
@@ -8209,7 +8062,7 @@
       220
      ],
      "cut": false,
-     "covered_fraction": 0.541,
+     "covered_fraction": 0.567,
      "box_previous": [
       56,
       68,
