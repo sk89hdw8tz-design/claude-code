@@ -170,6 +170,75 @@ joint transforms) is not in the city ownership, and the mosaic frame has no
 EPSG:3857 solve (the geocoders and OSM are unreachable from this VM), so
 `lookup.py` reports mosaic coordinates rather than lat/lng.
 
+## 1912 — completion pass (2026-09-02/03)
+
+The city was finished under the rule that registration is frozen unless the
+plates themselves prove a placement wrong. Everything below is either a
+compositing decision (which plate owns which ground) or a placement change
+carried by an argument read off the original sheets.
+
+**Registration.** Four independent reviewers re-examined the seams the
+round-3 census had graded as stepped, reading each pair's block faces,
+printed widths and address runs. The steps were in the CONTROL VALUES, not
+in the solve: a lattice tie on 53|54 had taken a 275-px feature that is not
+a street for Rosenberg Avenue (48 ft out); five Ave L / Ave N / Ave Q ties
+had been read at the centre of a HALF-drawn roadway strip, where the plate
+draws only its own side up to the neat line (12-20 ft out); `pair_71_79`
+had used plate 71's neat line as its south block face (124 px); `pair_92_93`
+assumed a 70-ft Broadway where the series draws 105; and two ties joined
+plates that share no ground. 28 controls were re-read, added or rejected,
+each recording its previous value and the reason, and eleven local
+similarity re-solves followed (52/53/54, 56/57, 84/92/93, 15, 25/31/37/32/38,
+24, 35/36, 48/74, 62, 70-73, and the eight-plate cluster around 71). No
+city-wide re-solve was run and no plate moved more than 33 ft.
+
+Residuals are now reported where they matter — sampled inside each pair's
+shared band rather than at each plate's centre (`tools/bandresid.py`), so a
+rotation difference is not counted as a plate-height of error. Of 328
+feature controls the median is 1.6 ft and nine exceed 6 ft; the two audited
+in depth (52|53 26th St, 40|41 Ave L) were both found sound to a third of a
+foot, with the residual being the network's compromise over a row, not a
+misplacement. The twelve wharf frontage pairs are seam POSITIONS, not
+feature ties, and are excluded from solves.
+
+**Plate furniture.** A plate's own margin marks must not print inside the
+city. Every unit's neatline-trimmed extent already excluded the border rule;
+this pass added the printed legends. The "Scale of Feet" bar is engraved
+identically across the series, so one crop of it template-matches all 93
+plates (`tools/scalebar.py`), and each box was then fitted to the legend's
+own ink. Plate titles and stray edge numerals are boxed the same way.
+`reciplib.footprint()` cuts these boxes out of a unit's footprint — a panel
+inherits its parent's — so the seam hands that ground to a neighbour that
+maps it. Where no neighbour maps it the plate keeps its own paper, legend
+included: that is what the accepted 27x40 master does, and the alternative
+is a hole.
+
+**The renderer's fallback.** Ground no region claims is painted from a
+covering plate's own scan. That fallback is now restricted to holes of the
+ownership union: at the mosaic's outer boundary the map simply ends, so a
+wharf plate's "GALVESTON TEXAS" and its plate numeral no longer reappear
+above the pier line.
+
+**One label per shared street.** The min-ink seam used to weave around each
+plate's street name on its cheaper side and leave both showing. It now keeps
+to one side of the lettering strip — a side path may not come nearer the
+centreline than 40 px or half the band — choosing the side that leaves less
+ink visible; the centreline path is used only where the band is too narrow.
+
+**Deliverables** (`tools/publish.py`, `tools/printmaster.py`):
+
+| file | pixels | at 300 ppi | notes |
+|---|---|---|---|
+| `outputs/1912/mosaic/1912_fullcity_150ppi.tif` | 35,416 x 46,497 | — | COG, deflate/predictor 2, 512 px tiles, 1.2 GB |
+| `outputs/1912/tiles/1912.dzi` | same | — | DeepZoom, 278 MB |
+| `outputs/1912/print/1912_wallmaster_59x77in_300ppi.tif` | 17,708 x 23,248 | 59.0 x 77.5 in | 1/4 of the mosaic frame, BigTIFF |
+| `outputs/1912/print/1912_sheet_30x39in_300ppi.tif` / `.pdf` | 8,854 x 11,624 | 29.5 x 38.7 in | whole city on one sheet |
+| `outputs/1912/preview/1912_fullcity_preview.jpg` | 7,083 x 9,299 | — | screen review |
+
+Each is rendered from the recipe at its own reduction, so no output inherits
+another's resampling. The mosaic frame is ~300 ppi-equivalent at the plates'
+own scale (5.7966 px per foot), and the city spans 2.31 x 3.04 miles.
+
 ## 1912 — consolidated from the accepted prior build
 
 Source: LOC `sanborn08539_004` (public domain), 13 target sheets + sheet 13
