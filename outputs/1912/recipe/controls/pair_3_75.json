@@ -9,5 +9,7 @@
  "a_native": 4719.6,
  "b_native": 200,
  "why_not_one_block_off": "Not a street. Sheet 75 draws the wharf yard at 50 ft/in up to its bay-side neatline and keeps it; the 100 ft/in wharf plate supplies the piers and bay beyond. Same rule as the sheet-5 panels.",
- "status": "ACCEPTED"
+ "status": "ACCEPTED",
+ "solve": false,
+ "solve_note": "seam position, not a feature tie: a_native/b_native are 'this many px inside the block plate's neatline' and the wharf plate's matching x, so the pair is where to CUT, not two readings of one feature. Excluded from least-squares solves (tools/localsolve.py, tools/bandresid.py); still read by tools/streetcut.py."
 }

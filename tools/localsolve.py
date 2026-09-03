@@ -35,6 +35,8 @@ def controls(r):
         d = json.load(open(os.path.join(cdir, f)))
         if "a_native" not in d or str(d.get("status", "")).upper() != "ACCEPTED":
             continue
+        if d.get("solve") is False:      # seam-position pair, not a feature tie
+            continue
         ua, ub = m.group(1).lstrip("0"), m.group(2).lstrip("0")
         if ua not in r.units or ub not in r.units:
             continue
