@@ -1932,3 +1932,25 @@ solve and to `bandresid`. Two of them tie units in this free set. Re-measured
 with the same band sampling: `pair_24_25_y2` (12th St) **-3.99 / -3.94 ft**,
 `pair_31_32_y2` (14th St) 6.12 -> **-4.64 / -5.16 ft**, `pair_35_36_y2`
 -3.44 / -3.57 ft. All improved or unchanged; none over 6.
+
+## HQ-52 · Gate A' 1f · seven wave-4 findings recorded with NO CHANGE
+
+Evidence read in full and deliberately not acted on. Nothing in this entry
+touched a recipe file.
+
+| finding | file | why no change |
+|---|---|---|
+| **93\|94** (edge_29) | `qc/wave4/audit_93_94_32_38.md` | Net tension. One control (`pair_93_94`, Ave M), identity confirmed (45th St 1214-1224 on 93 resumes 1302-1312 on 94), values sound (reconstructed centres 3159 / 174-175). The step grows monotonically 0.2 -> 14.5 ft because plate 93 is ~1.1% under-scaled against its whole row; a similarity solve wants 93 *smaller*, and a 45th St y tie needs 93+94 freed and disturbs 84/85/86/92/95. |
+| **32\|38** (edge_54) | same | Net tension. Both controls' values sound; the step reverses sign across the band (+5.8 at Ave N, -12.4 at Ave O) because unit 32's scale is the 2nd highest and 38's the lowest (3.57% apart) in the opposite sense to the drawing. Dry runs move scale the wrong way. Note: units 32 and 38 did move in HQ-51's column solve, which took `pair_32_38` from -5.4 to -3.7 ft as a by-product; no control of theirs was edited. |
+| **`pair_37_38`** (side finding A) | same | Side finding: the control assumed an 80-ft Ave N where 37/38/32 print and draw 70'. Correcting it pulls 38 further west (the wrong direction for edge_54) and needs 37+38 re-solved with `pair_31_37_x` and `pair_37_41_x`. Deferred, as the audit asks. |
+| **17\|21** | `qc/wave4/proposal_20b_25_17_21.md` CLAIM 2 | Scale tension, not placement: a 1.11% transform-scale ratio between the 17/18 row and the 21/22/27 row. All five controls touching 21 are satisfied. `--units 21 --similarity` recovers 0.30% of it while adding a +3 ft uniform bias and degrading `pair_17_21_x`, `pair_21_27_x`, `pair_21_27`; the worst step barely moves (6.0 -> 5.6 ft). The 17\|18 solve in HQ-49 was the right action and takes the seam's gradient to 7.3 ft / worst step 4.4 ft as a side effect. |
+| **84\|85b** | `qc/wave4/proposal_84_85b.md` | The two 10" mains on Broadway are **source-real** (one per plate, 18-23 ft either side of the centreline); neither may be suppressed, and neither lies in the 8.4 ft shared band, so no cut can reach them anyway. The y step is net tension and turns on plate 93's rotation and the `pair_84_93` / `pair_85_93` b_native pair - its own proposal, not this pass. The round-5 census entry for 84_85b ("faces continue with no offset") is wrong in y by 14.4 ft; round 3's entry is the better record, with its "two separate 10in W. pipe runs" re-marked source-real. |
+| **the two inset wedges** | `qc/wave4/proposal_wedges.md` | Both source-side. (a) 25b\|32: a 115 x 95 ft triangle of Seawall Blvd and 149 ft of sea wall at 12th St that neither sheet prints (25b's last ink at native x 3258, blank to the paper edge 3287; 32's first wall ink at row 54, paper from row 45). (b) 20\|20b\|24\|25 at Ave L / 9th St: 676 sq ft where sheets 24 and 25 print their title blocks, plate 20's paper ends and the 20b inset draws its frame rule. Every candidate extent/region relaxation was rejected on ink evidence (zero ink, deckle shadow, or printing plate titles over Avenue L). Disclose, as worded in the proposal. |
+| **unit 96 rose box** | `qc/wave4/proposal_win123.md` vs `proposal_cuts.md` §3 | Superseded. The `units.json` unit-96 compass-rose `box[1] 112 -> 125` edit is unnecessary: `streetcut.py --band-furniture-free` fixes win_123's clipped "2117" **and** the other 21 pinched bands (50\|56, 4\|13, 83\|84, 13\|14 and 17 minor) without any hand edit. Applied as code in HQ-54, not as a recipe edit. |
+
+Also recorded, not acted on: `pair_70_71`'s method fault (a half-width laid off a
+trim line; the error cancels in the difference and "fixing" one side would
+introduce ~50 px), the optional ~2 ft `pair_63_64.a_native` re-read
+(3183.0 -> 3176.5; the "east face" at 3290 is the trimmed paper edge), and
+`14|49`, whose clipping edge is the frozen 27x40 master's own 12|49 core mask at
+(3127, 10628) and is out of `streetcut.py`'s reach entirely.
