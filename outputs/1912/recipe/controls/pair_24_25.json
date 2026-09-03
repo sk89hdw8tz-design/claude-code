@@ -6,8 +6,8 @@
  "axis": "avenue",
  "observer": "lattice (tools/faces.py)",
  "method": "corridor centre = midpoint of the two block faces read off the plate's own street chain; identity from the current placement (the two readings are within 2 ft, a block is 355 ft) and the key maps' coverage",
- "a_native": 3223.0,
- "b_native": 96.0,
+ "a_native": 3207.7,
+ "b_native": 112.3,
  "corridor": "Ave L",
  "roadway_px": [
   206,
@@ -27,5 +27,8 @@
    217
   ]
  },
- "revision": "centre re-read from the plates' own block faces (review B): The lattice tie took the midpoints of the half-drawn strips (24: 3102-3308 -> 3205; 25: 14-217 -> 114). 24's west block face is at 3102 (block 71, 1123 frontage), 25's east block face at 217 (block 11, 1201 frontage; 24_25 grader: 1123|1201 match), both plates print 80' in the gutter; centres = 3102"
+ "revision": "centre re-read from the plates' own block faces (review B): The lattice tie took the midpoints of the half-drawn strips (24: 3102-3308 -> 3205; 25: 14-217 -> 114). 24's west block face is at 3102 (block 71, 1123 frontage), 25's east block face at 217 (block 11, 1201 frontage; 24_25 grader: 1123|1201 match), both plates print 80' in the gutter; centres = 3102",
+ "a_native_previous_reviewB": 3223.0,
+ "b_native_previous_reviewB": 96.0,
+ "re_read": "wave 4 (outputs/1912/qc/wave4/proposal_20b_25_17_21.md). Review B's half-width was laid off with 80', reasoning 'both plates print 80' in the gutter' - but that 80' is the NUMBERED-STREET width, not Ave L's. On plate 24 the 80' glyphs sit beside the horizontal 10th St and 11th St roadway lines (native x ~3070, y ~1358 and ~2522) while AVENUE L is lettered separately at y ~1900; plate 25 and the 20b inset both print 70' inside the Ave L roadway (25 native ~158; inset native ~2330), and pair_20_25_x's identity note records the same 70' on sheets 20 and 25. Both plates' own face chains give roadway_px [206, 206] (70.6 / 71.0 ft), and plate 24's own lattice pitch Ave K->Ave L is 1003 px with an 800 px block, leaving 203 px = 69.6 ft for Ave L; review B's 121 px half-width made Ave L 83 ft. This is the same error the P2-2 Gate-A review already corrected in the sibling control pair_30_31 (HQ-34); pair_24_25 was missed by that pass. Rebuilt with the half-width 106.8 px that pair_30_31, pair_56_57 and pair_25_31_x already use for Avenue L: plate 24 Ave L WEST block face 3100.9 (ink profile x 3070-3135, 11 latitude bands y 345-3345, fit x = 0.005096*y + 3091.01, at 24's extent y-centre 1941; review B's own read was 3102) + 106.8 = 3207.7; plate 25 Ave L EAST block face 219.1 (ink profile x 195-255, 11 bands y 445-3445, fit x = -0.001605*y + 222.24, at 25's extent y-centre 1933; lattice 217, pair_20_25_x 218.4) - 106.8 = 112.3. Corridor identity unchanged: review B's 1123|1201 frontage match still stands, only the half-width changes. The pre-review-B lattice values are kept as a_native_previous / b_native_previous (3205.0 / 114.0) and review B's as a_native_previous_reviewB / b_native_previous_reviewB."
 }

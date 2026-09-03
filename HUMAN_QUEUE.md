@@ -1862,3 +1862,73 @@ half-width error cancels in the difference - "fixing" one side would introduce
 
 **Gate**: 334 accepted controls, median max-abs **1.6 ft**, **11** over 6 ft -
 the same eleven as the baseline, none newly over 6 ft.
+
+## HQ-51 · Gate A' 1e · `pair_24_25` (Ave L) corrected and the Ave L column re-solved — APPLIED
+
+`outputs/1912/qc/wave4/proposal_20b_25_17_21.md`, CLAIM 1. Seam 20b|25 steps a
+uniform 13.0 +/- 0.5 ft, but **20b is not wrong**: it has no control and no
+transform of its own (`shift_native [966, 2305]` off plate 20, verified to <= 1 ft
+by the width test - moving the inset 13 ft east would make plate 20's own Ave L
+87.2 ft wide). The error is one control value upstream.
+
+**`controls/pair_24_25.json`**: `a_native` 3223.0 -> **3207.7**, `b_native` 96.0
+-> **112.3**. Review B had rebuilt this control with an 80' half-width because
+"both plates print 80' in the gutter" - but that 80' is the **numbered-street**
+width (plate 24's glyphs sit beside the 10th and 11th St roadway lines at native
+y ~1358 / ~2522, while AVENUE L is lettered at y ~1900); plate 25 and the 20b
+inset both print **70'** inside the Ave L roadway, both face chains give
+`roadway_px [206, 206]`, and plate 24's own Ave K->Ave L pitch leaves 203 px =
+69.6 ft. Rebuilt with the 106.8 px half-width that `pair_30_31`, `pair_56_57` and
+`pair_25_31_x` already use for Avenue L. This is the same misreading the P2-2
+Gate-A review corrected in `pair_30_31` (HQ-34); this sibling was missed. Both
+earlier value pairs are kept in the file (`a_native_previous` 3205.0 / 114.0 =
+lattice, `a_native_previous_reviewB` 3223.0 / 96.0) with the full construction in
+`re_read`. With the correction in place and no transform change the control's own
+band residual was **-11.7 / -13.0 ft** - the recipe was honouring the wrong value,
+and that is the whole 13 ft.
+
+**Solve.** The proposal found every *small* scope fails (`25`, `24 25`, `25 31`,
+`25 31 32`, `20 24 30` all leave the break or push it east), and recommended
+deferring to a column-scale net solve. That solve was run dry first and it
+passes, so it was applied:
+**`localsolve.py --year 1912 --units 20 24 30 25 31 32 37 38 --similarity --apply`**
+- 76 line samples, residual median **1.4** / max **4.7 ft**.
+
+| unit | scale | rotation | centre |
+|---|---|---|---|
+| 20 | 2.0100 -> 2.0107 | +0.346 -> +0.333 | (+3, -1) ft |
+| 24 | 1.9871 -> 1.9907 | +0.231 -> +0.224 | (+3, +0) |
+| 30 | 2.0079 -> 2.0133 | +0.066 -> +0.236 | (+1, +2) |
+| 25 | 1.9979 -> 1.9988 | +0.146 -> +0.048 | (-6, -0) |
+| 31 | 2.0116 -> 2.0106 | +0.289 -> +0.221 | (-5, -1) |
+| 32 | 2.0380 -> 2.0316 | +0.749 -> +0.634 | (-5, -3) |
+| 37 | 1.9859 -> 1.9854 | +0.243 -> +0.169 | (-2, -2) |
+| 38 | 1.9677 -> 1.9686 | +0.196 -> +0.281 | (-2, -5) |
+
+**The Ave L step closes.** Face-to-face across the corridor, evaluated at the
+plates' shared latitude (printed 70', drawn ~70.6-71.0 ft):
+
+| | before | after |
+|---|---|---|
+| plate 20 W face -> plate 25 E face | 85.59 ft | **74.78 ft** |
+| plate 24 W face -> plate 25 E face | 85.74 ft | **75.60 ft** |
+| the two control centres | 12.32 ft apart | **2.10 ft** |
+
+i.e. the 13-15 ft break falls to **4.0-4.8 ft** of residual excess over the drawn
+roadway - inside the <= 5 ft bar. `pair_20_25_x`, which had **no overlap** at all
+(plates 20 and 25 placed so their neatlines touched instead of sharing the 14 ft
+of Ave L both draw - itself the symptom), now overlaps and reads **-1.0 / -1.2 ft**.
+
+**Gate**: 334 accepted controls, median max-abs **1.6 ft** (1.644 -> 1.579
+computed exactly), and the over-6-ft count falls **13 -> 7**: `pair_24_25`
+(12.99), `pair_38_41` (8.94), `pair_30_31` (7.41), `pair_30_36` (7.17),
+`pair_31_32` (6.29) and `pair_31_32_y2` (6.12) all drop below 6 and **nothing is
+newly over 6 ft**. The only control that worsens by more than 2 ft is
+`pair_37_38_y` (0.15 -> 2.77 ft).
+
+**Caveat checked by hand.** `localsolve.controls()` matches
+`pair_A_B(_[xy])?.json`, so the three `_y2` controls are invisible to both the
+solve and to `bandresid`. Two of them tie units in this free set. Re-measured
+with the same band sampling: `pair_24_25_y2` (12th St) **-3.99 / -3.94 ft**,
+`pair_31_32_y2` (14th St) 6.12 -> **-4.64 / -5.16 ft**, `pair_35_36_y2`
+-3.44 / -3.57 ft. All improved or unchanged; none over 6.
