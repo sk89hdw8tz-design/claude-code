@@ -2,11 +2,11 @@
  "project": {
   "map": "Galveston Sanborn 1912 full-city mosaic",
   "year": 1912,
-  "stage": "improvement run \u2014 Wave 4 evidence",
+  "stage": "improvement run \u2014 Gate A' apply + re-cut",
   "status": "WORKING",
   "start_time": "2026-09-01T22:05Z",
-  "last_update": "2026-09-03T20:59Z",
-  "git_commit": "ef453d2",
+  "last_update": "2026-09-03T21:51Z",
+  "git_commit": "4fefff2",
   "objective": "Finish the 1912 full-city mosaic to print-ready quality: session 018 carrying on from session 019 head; panels split, wharf in, 48/74 fixed; complete seam census, corrections, final deliverables."
  },
  "progress": {
@@ -14,14 +14,14 @@
   "stage_pct": 100,
   "tasks_done": 10,
   "tasks_total": 11,
-  "current_task": "Wave 4: regrade workflow (10/15 seams) + 7 Opus evidence/diagnosis agents",
-  "next_task": "Gate A' \u2014 apply evidence-backed proposals (91|92 control re-read first), re-cut, re-render, Gate C, Wave 5 record",
+  "current_task": "Gate A' orchestrator: wharf sheet 4 re-place, 5 control re-reads, similarity solves (91; 17+18; 64/71/72), furncover cycle rule, re-cut with furniture-free band + min band span, Gate B",
+  "next_task": "Wave 3': publish/printmaster/tiles, seamcrops for changed seams, perirender, interiorwins; Gate C re-verify; Wave 5 record; send map",
   "blockers": []
  },
  "eta": {
-  "range": "3\u20135 hours",
+  "range": "3\u20134 hours",
   "confidence": "MEDIUM",
-  "reason": "evidence agents finishing; then serial re-cut/re-render (~1.5 h) and targeted re-verify"
+  "reason": "all Wave 4 evidence in (10 reports); orchestrator applying serially, then ~1.5 h render and targeted re-grade"
  },
  "tasks": [
   {
