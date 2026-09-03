@@ -1530,3 +1530,44 @@ pass); the `edgeglyph.py` and `localsolve.py` regex fixes (tool changes, logged 
 HQ-35 and HQ-41). No change and no plate move for `pair_26_42`, `pair_30_36`,
 `pair_54_60`, `pair_31_32`, the 18|19 seawall seam, plates 24/25 in the 20b notch,
 plates 48/74 at the 47k hole, and plate 5b.
+
+## HQ-45 · Wave 2 re-cut after Wave 1 — APPLIED (Gate B passes)
+
+`streetcut.py --apply` → `fillgaps.py --apply` → `tiling.py` re-run on the
+Gate A recipe (four control files, the 20/25/32/54 extents and 20b/25b/54b
+regions, 28 new furniture boxes). No tool behaviour changed in this wave: the
+blank-band rule stayed off, as HQ-43 concluded, and its dump on this build again
+fires on 0 of 172 min-ink seams.
+
+**Gate B**
+
+| | before | after | gate |
+|---|---|---|---|
+| regions | 106 | 106 | — |
+| disjoint pieces | 1 | **1** | == 1 |
+| overlap | 1,025.8 px² | **1,031.2 px²** | ≤ 1,100 px² |
+| union | 4,541.2 M px² | 4,542.7 M px² | — |
+| unclaimed | 20,671,614 px² (0.4552%) | **20,649,212 px² (0.4546%)** | ≤ 0.455% |
+| gaps reported | 24 | 25 | — |
+
+No new hole over 50,000 px². The one gap that is new is a 5,569 px² cut-line
+hairline at [11159.7, 53312.1]; every hole above 50k is one already on the
+disclosed list (the cemetery under 85's inset 18.07 M, the bay water at 6/5a
+308k / the five ~290k bay-edge slivers, the 128k at [-13226.6,-14580.3], the
+48/74/99a notch 46.8k), and the 9th St/Ave L inset notch **shrank from 51,239
+px² to 22,714 px²** — the P1-3 coverage relaxations doing what they were
+accepted for. Nothing closed and no hole grew.
+
+**Changed-seam set** (cut line moved > 50 px anywhere; `tools/cutdiff.py`,
+172 cuts in both runs, no seam changed kind):
+
+`17_21` (max 252 px / 43.5 ft, median 128) · `88_96` (180 px / 31.1 ft) ·
+`54_54b` (125.5 px / 21.7 ft) · `20_20b` (108 px / 18.6 ft) ·
+`25b_32` (89.3 px / 15.4 ft) · `20b_25` (84.4 px / 14.6 ft) ·
+`25_25b` (83 px / 14.3 ft) · `38_42` (52 px / 9.0 ft)
+
+Seven of the eight are the inset-frame families whose extents and regions moved
+(20/25/32/54 and the 20b/25b/54b panels, plus plate 17, whose relaxed side stops
+three slivers from detaching); `38_42` is the re-read 18th St centre control.
+The remaining 164 shared cuts moved ≤ 50 px. This is the set Wave 3 re-crops
+(`seamcrops.py --only`) and Wave 4 re-grades against round 5.
