@@ -135,6 +135,98 @@ DP_HALF_BLANK = 4000.0 # the pinned candidate may need the whole overlap, not DP
 DP_BLANK_PULL = 25.0   # per cell: holds the pinned path on the band edge, but still
                        # lets it step round a building rather than slice it
 
+# --- wave-4 cut-placement options (ALL DEFAULT OFF) ----------------------
+# Four recurring cut-placement defects were traced to four distinct causes in
+# the wave-4 regrade (outputs/1912/qc/wave4/proposal_cuts.md). Each cause gets
+# one switch, so the orchestrator can run --dump-cuts with and without and
+# diff with tools/cutdiff.py. Nothing below changes the cut unless its flag is
+# passed; with no flags this file reproduces the accepted build byte for byte.
+
+# 1. LINE AVOIDANCE. A water main is drawn ALONG the street centreline, which
+#    is exactly where a control or midpoint puts the seam. Two failure modes
+#    follow. (a) The cut runs along the main and shears it (63|71: plate 63's
+#    10" W. PIPE erased over 165 ft). (b) The two plates draw the same main a
+#    registration error apart and the cut threads BETWEEN the two copies, so
+#    each copy lands on the side owned by the plate that does not draw it and
+#    the main disappears from both (64|72: copies 25 px = 4.3 ft apart, the
+#    cut at their midpoint). DP_DILATE spreads ink isotropically, which cannot
+#    tell these apart: it is symmetric in "along" and "across". This term is
+#    deliberately ANISOTROPIC -- each plate's ink is dilated only ACROSS the
+#    seam, by LINE_AVOID_K px -- so a path that runs parallel to a drawn line
+#    pays at every cell of the run, while a path that crosses it pays only the
+#    few cells of the crossing. Riding a line, and threading between two
+#    copies of one, both become expensive; crossing one stays cheap.
+LINE_AVOID = 0.0       # --line-avoid W: weight (0 = off). 1.0 is one grey level
+                       # of either plate's ink per cell of parallel running
+LINE_AVOID_K = 36.0    # px across the seam; 6.2 ft, wider than the largest
+                       # same-feature registration split measured (64|72, 4.3 ft)
+
+# 2. CANDIDATE CHOICE. `sides` is preferred over `centre` whenever ONE side
+#    candidate is feasible, whatever it scores. Where the band is narrow the
+#    forbidden half-plane makes one side infeasible, so the surviving side
+#    wins by default -- at 20|20b and 25|25b it is worse than the centre on
+#    BOTH visible ink and crossed ink and still wins, which is what keeps a
+#    plate-20 "AVENUE" fragment beside the inset's complete label and the
+#    parent's duplicate 80' tick beside 25b's. With this on, every feasible
+#    candidate (centre included) is scored and the best is taken.
+PICK_BEST = False      # --pick-best: score every candidate on visible ink.
+                       # DIAGNOSTIC ONLY -- it moves 115 of 171 shared seams and
+                       # reverts the side preference at 57|58 (+8.7% visible) and
+                       # 76|84 (+1.3%), the two pairs the rule was written for, so
+                       # `visible` is evidently not the quantity the side rule
+                       # optimises. Use --panel-centre for the real defect.
+# 2b. PANEL SEAMS. The side rule exists to hide one of TWO PLATES' copies of a
+#     street name. A parent and its own detached inset are not two plates: they
+#     are one scan, and the strip of parent beside the panel is duplicated
+#     content by construction, not a second observation. At 20|20b and 25|25b
+#     the band is narrow enough (243 px, 860 px) that one side is infeasible,
+#     so the surviving side wins unopposed and hands the parent a 110-120 px
+#     strip -- exactly the strip carrying plate 20's "AVENUE" and the parent's
+#     second 80' tick. With this on, a parent|panel pair takes the centre
+#     candidate unless a side beats it on visible ink.
+PANEL_CENTRE = False   # --panel-centre
+# 2c. PANEL CLAMP. Even the centre candidate jags across the corridor to get
+#     round the panel's own lettering: at 20|20b it reaches x 15425, 118 px
+#     east of the control, and the parent's "AVENUE" at x 15340-15400 stays
+#     visible beside the inset's complete "AVENUE L.". The two copies are only
+#     136 px apart in a 243 px band, so no free path separates them -- but a
+#     path CLAMPED to the parent's side of the centreline does. This adds a
+#     fourth candidate for a parent|panel pair: the centre line with the
+#     panel's side forbidden outright and no margin, i.e. the regrade's
+#     "force the path back to mosaic x <= 15311".
+PANEL_CLAMP = False    # --panel-clamp
+
+# 3. BAND MASK. dp_cut fills its cost mask from O.exterior only, so an
+#    interior ring is harmless but a NOTCH is a wall. A `cut: true` furniture
+#    box whose 6 px grow reaches past its plate's own extent cuts a notch
+#    through the footprint boundary instead of a hole, and the notch survives
+#    into the overlap: 22 of the min-ink seams have columns pinched under
+#    100 px that way (88|96 1,172 px of them -- the win_123 "2117" clip).
+#    With this on, the band mask is built from FURNITURE-FREE footprints, so
+#    the path may route across a furniture box; ownership is unchanged,
+#    because each unit's own region already has its furniture removed.
+BAND_FURNITURE_FREE = False    # --band-furniture-free
+
+# 4. BAND TEST. `band` requires the overlap to span BAND_FRACTION of the
+#    SHORTER SHEET, so a diagonal neighbour pair sharing a full roadway is
+#    classed "corner" and gets an axis-aligned half-plane on the corridor
+#    coordinate -- straight down the water main. 63|71 (1.15M px2, 406 ft of
+#    33rd St) and 64|72 (1.13M px2, 391 ft) are both cut that way. With this
+#    set, an overlap that spans at least this many px along the seam is a band
+#    seam whatever fraction of the sheet it is, and gets a min-ink path.
+MIN_BAND_SPAN = None   # --min-band-span PX (None = off)
+
+# 5. FURNITURE IN THE VISIBLE-INK SCORE. `visible` counts every grey level the
+#    same, so a plate's bottom-margin "Scale of Feet" legend scores like the
+#    roadway it sits on and the candidate that leaves it showing can still win
+#    by a fraction of a percent (63|70: the +120 side wins 13.221M to 13.417M
+#    and keeps plate 63's legend and both scan-ruler rectangles in 33rd St).
+#    A furniture box is not map content: leaving one visible inside ground the
+#    neighbour maps is the defect the whole furniture machinery exists to
+#    prevent. With W > 1 those pixels are weighted W times in the score, so a
+#    candidate that hands the box to the neighbour wins.
+FURN_VISIBLE = 1.0     # --furniture-visible W (1.0 = current behaviour)
+
 def band_ink(g, mask):
     """That plate's own ink inside the band, in grey-levels x cells.
 
@@ -155,7 +247,7 @@ def band_ink(g, mask):
     return float(np.clip(paper - BLANK_FLOOR - vals, 0.0, None).sum())
 
 
-def dp_cut(r, u, v, axis, coord, O, lower=None, info=None):
+def dp_cut(r, u, v, axis, coord, O, lower=None, info=None, panel=False):
     """Min-ink path through the shared roadway, as the master's cuts were made.
 
     A straight centreline cut slices through whatever both plates print at
@@ -208,8 +300,22 @@ def dp_cut(r, u, v, axis, coord, O, lower=None, info=None):
                          for px, py in np.array(O.exterior.coords)], np.int32)
         cv2.fillPoly(mask, [ring], 1)
         cost = np.where(mask == 1, cost, BIG)
+        # line-avoidance field: each plate's ink measured against its OWN paper
+        # tone (band_ink's per-pixel quantity, so a grey scan does not read as
+        # ink), dilated ONLY across the seam. Built always -- it costs one
+        # dilate per plate -- but only charged when LINE_AVOID > 0.
+        k = max(1, int(round(LINE_AVOID_K / DP_SCALE)))
+        ker = np.ones((2 * k + 1, 1), np.uint8) if axis == "y" else np.ones((1, 2 * k + 1), np.uint8)
+        avoid = np.zeros((H, W), np.float32)
+        for w_ in (u, v):
+            g = grey[w_]
+            vals = g[mask == 1]
+            paper = float(np.percentile(vals, BLANK_PAPER_PCT)) if vals.size else 255.0
+            sig = np.clip(paper - BLANK_FLOOR - g.astype(np.float32), 0.0, None)
+            avoid += cv2.dilate(sig, ker)
+        avoid = np.where(mask == 1, avoid, 0.0)
         return dict(x0=gx0, y0=gy0, x1=gx1, y1=gy1, W=W, H=H,
-                    cost=cost, raw=raw, grey=grey, mask=mask)
+                    cost=cost, raw=raw, grey=grey, mask=mask, avoid=avoid)
 
     G = grid(DP_HALF)
     if G is None:
@@ -229,6 +335,7 @@ def dp_cut(r, u, v, axis, coord, O, lower=None, info=None):
         G = grid(DP_HALF_BLANK) or G
     x0, y0, x1, y1 = G["x0"], G["y0"], G["x1"], G["y1"]
     W, H, cost, raw, mask = G["W"], G["H"], G["cost"], G["raw"], G["mask"]
+    avoid = G["avoid"]
     # Three candidate paths: pulled to the control line, and pulled to a line
     # DP_SIDE px either side of it (just inside the block faces). Both plates
     # letter the street name in the roadway; a path that zigzags round each
@@ -247,6 +354,25 @@ def dp_cut(r, u, v, axis, coord, O, lower=None, info=None):
     high_u = v if low_u == u else u
     inkL = np.where(mask == 1, raw[low_u], 0.0)
     inkH = np.where(mask == 1, raw[high_u], 0.0)
+    if FURN_VISIBLE != 1.0:
+        # weight each plate's OWN furniture boxes in the visible-ink score
+        from shapely.affinity import affine_transform
+        from shapely.geometry import box as _sbox
+        for w_, arr in ((low_u, inkL), (high_u, inkH)):
+            src = r.units[w_]
+            if src.get("panel_of"):
+                src = r.units[str(src["panel_of"])]
+            M, t = r.sheet_matrix(w_ if not r.units[w_].get("panel_of")
+                                  else str(r.units[w_]["panel_of"]))
+            for f in src.get("furniture_native") or []:
+                bx = f["box"]
+                gbox = affine_transform(_sbox(bx[0], bx[1], bx[2], bx[3]),
+                                        [M[0, 0], M[0, 1], M[1, 0], M[1, 1], t[0], t[1]])
+                pts = np.array([((px - x0) / DP_SCALE, (py - y0) / DP_SCALE)
+                                for px, py in np.array(gbox.exterior.coords)], np.int32)
+                fm = np.zeros_like(mask)
+                cv2.fillPoly(fm, [pts], 1)
+                arr *= np.where(fm == 1, FURN_VISIBLE, 1.0).astype(arr.dtype)
     if axis != "y":
         inkL, inkH = inkL.T, inkH.T          # rows = across the seam, cols = along it
     cumL = np.cumsum(inkL, axis=0)           # low-side ink up to and including row y
@@ -260,16 +386,19 @@ def dp_cut(r, u, v, axis, coord, O, lower=None, info=None):
     side = min(DP_SIDE, max(0.0, across / 2.0 - 3 * DP_SCALE))
     margin = min(40.0, 0.5 * side)     # px: a side path never comes nearer the centreline than this
 
-    def candidate(target, pull_k, forbid):
+    def candidate(target, pull_k, forbid, margin_px=None):
         """DP path pulled towards `target`; `forbid` bans one side of the
         centreline outright ('low' = everything below coord - margin)."""
         c = ink_only.copy()
+        if LINE_AVOID:
+            c = c + LINE_AVOID * avoid
         across_px = (y0 + np.arange(H) * DP_SCALE) if axis == "y" else (x0 + np.arange(W) * DP_SCALE)
         pull = pull_k * np.abs((across_px - target) / DP_SCALE)
+        m_ = margin if margin_px is None else margin_px
         if forbid == "low":
-            pull = pull + np.where(across_px < coord + margin, BIG, 0.0)
+            pull = pull + np.where(across_px < coord + m_, BIG, 0.0)
         elif forbid == "high":
-            pull = pull + np.where(across_px > coord - margin, BIG, 0.0)
+            pull = pull + np.where(across_px > coord - m_, BIG, 0.0)
         if axis == "y":
             c += pull[:, None]
         else:
@@ -292,10 +421,12 @@ def dp_cut(r, u, v, axis, coord, O, lower=None, info=None):
             path.append(min(Hc - 1, max(0, int(path[-1]) + int(back[path[-1], x]))))
         path = path[::-1]
         io = ink_only if axis == "y" else ink_only.T
+        av = avoid if axis == "y" else avoid.T
         ink_sum = float(sum(io[y, x] for x, y in enumerate(path)))
+        avoid_sum = float(sum(av[y, x] for x, y in enumerate(path)))
         cols = np.arange(len(path)); rows = np.array(path)
         visible = float(cumL[rows, cols].sum() + (totH[cols] - cumH[rows, cols]).sum())
-        return ink_sum, visible, path
+        return ink_sum, visible, path, avoid_sum
 
     for off in (0.0, -side, side):
         # a side path is only worth having if it really keeps to its side:
@@ -303,10 +434,11 @@ def dp_cut(r, u, v, axis, coord, O, lower=None, info=None):
         # wherever the ink was thinner there (76|84). Forbid the far side
         # of the centreline and its margin outright.
         forbid = None if off == 0.0 else ("high" if off < 0 else "low")
-        ink_sum, visible, path = candidate(coord + off, DP_PULL, forbid)
+        ink_sum, visible, path, avoid_sum = candidate(coord + off, DP_PULL, forbid)
         if os.environ.get("DP_DEBUG"):
-            print(f"    dp {u}|{v} off {off:+6.1f}: visible {visible:12.0f} crossed {ink_sum:9.0f}")
-        cands.append((off, ink_sum, visible, path))
+            print(f"    dp {u}|{v} off {off:+6.1f}: visible {visible:12.0f} "
+                  f"crossed {ink_sum:9.0f} along-line {avoid_sum:11.0f}")
+        cands.append((off, ink_sum, visible, path, avoid_sum))
     # The centreline candidate weaves round each plate's label on its cheaper
     # side and so crosses the least ink while leaving BOTH labels showing
     # (76|84: the two '39TH ST' are 800 px apart along the street). A side
@@ -320,7 +452,31 @@ def dp_cut(r, u, v, axis, coord, O, lower=None, info=None):
     # is the one whose hidden copy of the lettering was the larger
     sides = [c for c in cands[1:] if c[1] < BIG / 4 and c[1] <= 2.0 * centre[1] + 1.0]
     sides.sort(key=lambda c: c[2])
-    if side >= 40.0 and sides:
+    if PANEL_CLAMP and panel:
+        # the parent keeps the low side when it is the lower unit
+        parent = u if r.units[v].get("panel_of") == u else v
+        forbid = "high" if parent == low_u else "low"
+        ink_sum, visible, path, avoid_sum = candidate(coord, DP_PULL, forbid, margin_px=0.0)
+        if ink_sum < BIG / 4:
+            cands.append((0.0, ink_sum, visible, path, avoid_sum))
+            sides = sides + [cands[-1]]
+            sides.sort(key=lambda c: c[2])
+        if os.environ.get("DP_DEBUG"):
+            print(f"    dp {u}|{v} panel clamp ({forbid} forbidden at margin 0): "
+                  f"visible {visible:12.0f} crossed {ink_sum:9.0f}")
+    if PANEL_CENTRE and panel and not PICK_BEST:
+        # a panel and its parent are one scan: prefer a side only if it really
+        # leaves less ink showing than the centre does
+        sides = [c for c in sides if c[2] <= centre[2]]
+    if PICK_BEST:
+        # score every feasible candidate, the centre included, on the same
+        # ruler: ink left visible in the band, plus what the path pays for
+        # running along a drawn line when that term is on. The old rule took
+        # a side whenever one was feasible, so where the band's width made
+        # the other side infeasible the survivor won unopposed.
+        feas = [c for c in cands if c[1] < BIG / 4]
+        best = min(feas, key=lambda c: c[2] + LINE_AVOID * c[4]) if feas else centre
+    elif side >= 40.0 and sides:
         best = sides[0]
     else:
         best = centre
@@ -331,8 +487,8 @@ def dp_cut(r, u, v, axis, coord, O, lower=None, info=None):
         # sort has nothing to say about a band only one plate draws.
         k = 0 if axis == "x" else 1
         edge = (x0 if axis == "x" else y0) if blank == low_u else (x1 if axis == "x" else y1)
-        ink_sum, visible, path = candidate(edge, DP_BLANK_PULL, None)
-        cands.append((edge - coord, ink_sum, visible, path))
+        ink_sum, visible, path, avoid_sum = candidate(edge, DP_BLANK_PULL, None)
+        cands.append((edge - coord, ink_sum, visible, path, avoid_sum))
         best = cands[-1]
         if info is not None:
             info["blank_band"] = {"winner": drawn, "ink_ratio": round(ratio, 4)}
@@ -343,6 +499,12 @@ def dp_cut(r, u, v, axis, coord, O, lower=None, info=None):
         info["band_ink"] = {u: round(ink_band[u]), v: round(ink_band[v])}
         info["ink_ratio"] = round(ratio, 4)
         info["off"] = round(float(best[0]), 1)
+        info["candidates"] = [{"off": round(float(c[0]), 1),
+                               "crossed": round(c[1], 1),
+                               "visible": round(c[2], 1),
+                               "along_line": round(c[4], 1),
+                               "feasible": bool(c[1] < BIG / 4),
+                               "chosen": c is best} for c in cands]
     if os.environ.get("DP_DEBUG"):
         print(f"    dp {u}|{v}: chose off {best[0]:+.0f} (side {side:.0f})"
               f"{' [blank-band]' if is_blank_band else ''}")
@@ -406,6 +568,8 @@ def lattice_coord(r, lat, u, axis, mid_xy):
 
 
 def main():
+    global LINE_AVOID, LINE_AVOID_K, PICK_BEST, PANEL_CENTRE
+    global BAND_FURNITURE_FREE, MIN_BAND_SPAN, FURN_VISIBLE, PANEL_CLAMP
     ap = argparse.ArgumentParser()
     ap.add_argument("--year", required=True, choices=["1912"])
     ap.add_argument("--apply", action="store_true")
@@ -421,7 +585,53 @@ def main():
     ap.add_argument("--dump-cuts", default=None, metavar="PATH",
                     help="write every pair's cut line to PATH as JSON, so two runs "
                          "can be diffed with tools/cutdiff.py")
+    ap.add_argument("--out", default=None, metavar="PATH",
+                    help="where to write the ownership document (default "
+                         "recipe/seams/ownership_streetcut.json); --apply still "
+                         "writes ownership_city.json")
+    ap.add_argument("--line-avoid", dest="line_avoid", type=float, default=None,
+                    metavar="W", help="penalise a path for running ALONG either "
+                    "plate's ink (weight W; default 0 = off). See LINE_AVOID")
+    ap.add_argument("--line-avoid-k", dest="line_avoid_k", type=float, default=None,
+                    metavar="PX", help=f"half-width across the seam of the "
+                    f"line-avoidance field (default {LINE_AVOID_K:.0f} px)")
+    ap.add_argument("--furniture-visible", dest="furn_visible", type=float,
+                    default=None, metavar="W",
+                    help="weight a plate's own furniture-box pixels W times in "
+                         "the visible-ink score (default 1.0 = off)")
+    ap.add_argument("--panel-clamp", dest="panel_clamp", action="store_true",
+                    help="at a parent|panel seam, add a candidate clamped to "
+                         "the parent's side of the centreline")
+    ap.add_argument("--panel-centre", dest="panel_centre", action="store_true",
+                    help="at a parent|panel seam, prefer a side candidate only "
+                         "when it beats the centre on visible ink")
+    ap.add_argument("--pick-best", dest="pick_best", action="store_true",
+                    help="choose the best of centre and the feasible side "
+                         "candidates on the visible-ink score, instead of "
+                         "preferring a side whenever one is feasible")
+    ap.add_argument("--band-furniture-free", dest="band_ff", action="store_true",
+                    help="build the DP band mask from furniture-free footprints, "
+                         "so a furniture notch cannot pinch the corridor")
+    ap.add_argument("--min-band-span", dest="min_band_span", type=float,
+                    default=None, metavar="PX",
+                    help="an overlap spanning at least this many px along the "
+                         "seam is a band seam (min-ink path) whatever fraction "
+                         "of the sheet it is; default off")
+    ap.add_argument("--cand-dump", default=None, metavar="PATH",
+                    help="write every min-ink seam's candidate costs (off, "
+                         "crossed, visible, along-line, chosen) to PATH as JSON")
     a = ap.parse_args()
+    if a.line_avoid is not None:
+        LINE_AVOID = a.line_avoid
+    if a.line_avoid_k is not None:
+        LINE_AVOID_K = a.line_avoid_k
+    PICK_BEST = bool(a.pick_best)
+    PANEL_CENTRE = bool(a.panel_centre)
+    PANEL_CLAMP = bool(a.panel_clamp)
+    if a.furn_visible is not None:
+        FURN_VISIBLE = a.furn_visible
+    BAND_FURNITURE_FREE = bool(a.band_ff)
+    MIN_BAND_SPAN = a.min_band_span
     if a.blank_band is not None:
         global BLANK_BAND
         BLANK_BAND = a.blank_band
@@ -447,6 +657,15 @@ def main():
 
     feet = {u: foot(u) for u in r.units}
     cen = {u: np.array([feet[u].centroid.x, feet[u].centroid.y]) for u in feet}
+    # the same footprints with the furniture boxes left in: the ground each
+    # scan actually holds. Only the DP band mask uses these (--band-furniture-
+    # free); ownership is still differenced against `base`, whose furniture is
+    # already gone, so the boxes stay out of the mosaic either way.
+    feet_nf = {u: r.footprint(u, furniture=False).buffer(0) for u in r.units} \
+        if BAND_FURNITURE_FREE else {}
+    for u, g in list(feet_nf.items()):
+        if g.geom_type != "Polygon":
+            feet_nf[u] = max(g.geoms, key=lambda p: p.area)
 
     # the accepted core: its own DP cuts are the base, not the paper quad
     core = {}
@@ -467,9 +686,14 @@ def main():
         if g.geom_type != "Polygon":
             base[u] = max(g.geoms, key=lambda p: p.area)
     print(f"core base from masks.json: {sorted(core, key=int)}", flush=True)
+    base_nf = {u: (core[u].intersection(feet_nf[u]).buffer(0) if u in core else feet_nf[u])
+               for u in feet_nf}
+    for u, g in list(base_nf.items()):
+        if g.geom_type != "Polygon":
+            base_nf[u] = max(g.geoms, key=lambda p: p.area)
 
     units = sorted(feet, key=lambda k: int("".join(c for c in k if c.isdigit())))
-    seams, loss, cutlines = [], {u: [] for u in units}, []
+    seams, loss, cutlines, cand_rows = [], {u: [] for u in units}, [], []
     stats = {"control": 0, "lattice": 0, "midpoint": 0, "core-core": 0, "dp": 0}
     for i, u in enumerate(units):
         for v in units[i + 1:]:
@@ -497,7 +721,8 @@ def main():
                          feet[v].bounds[3] - feet[v].bounds[1]) if axis == "x" else \
                      min(feet[u].bounds[2] - feet[u].bounds[0],
                          feet[v].bounds[2] - feet[v].bounds[0])
-            band = span >= BAND_FRACTION * across
+            band = span >= BAND_FRACTION * across or (
+                MIN_BAND_SPAN is not None and span >= MIN_BAND_SPAN)
             mid = np.array([(b[0] + b[2]) / 2, (b[1] + b[3]) / 2])
             key = (u, v) if (u, v) in cuts else ((v, u) if (v, u) in cuts else None)
             got = cuts[key].get(axis) if key else None
@@ -520,8 +745,16 @@ def main():
             upper = v if lower == u else u
             path, info = None, {}
             if band and not a.straight:
+                O_band = O
+                if BAND_FURNITURE_FREE:
+                    q = base_nf[u].intersection(base_nf[v])
+                    if not q.is_empty and q.area >= O.area:
+                        O_band = q
                 try:
-                    path = dp_cut(r, u, v, axis, coord, O, lower, info=info)
+                    panel = (r.units[u].get("panel_of") == v
+                             or r.units[v].get("panel_of") == u)
+                    path = dp_cut(r, u, v, axis, coord, O_band, lower,
+                                  info=info, panel=panel)
                 except Exception as ex:          # fall back to the straight line
                     print(f"  dp cut failed on {u}|{v}: {ex}", flush=True)
             if path is not None:
@@ -543,6 +776,11 @@ def main():
                 print(f"  blank band {u}|{v}: ink ratio "
                       f"{info['blank_band']['ink_ratio']:.3f}, whole band to "
                       f"{info['blank_band']['winner']}", flush=True)
+            if path is not None and info.get("candidates"):
+                cand_rows.append({"pair": [u, v], "axis": axis,
+                                  "coord": round(coord, 2), "how": how,
+                                  "band_ink": info.get("band_ink"),
+                                  "candidates": info["candidates"]})
             if path is not None:
                 cutlines.append({"pair": [u, v], "axis": axis,
                                  "coord": round(coord, 2),
@@ -607,6 +845,19 @@ def main():
                             "ends; diff two dumps with tools/cutdiff.py"),
                    "cuts": cutlines}, open(a.dump_cuts, "w"), indent=1)
         print(f"wrote {a.dump_cuts} ({len(cutlines)} cut lines)")
+    if a.cand_dump:
+        json.dump({"generated_by": "tools/streetcut.py --cand-dump",
+                   "options": {"line_avoid": LINE_AVOID, "line_avoid_k": LINE_AVOID_K,
+                               "pick_best": PICK_BEST,
+                               "band_furniture_free": BAND_FURNITURE_FREE,
+                               "min_band_span": MIN_BAND_SPAN,
+                               "blank_band": BLANK_BAND},
+                   "note": ("one row per min-ink seam: the three (or four) DP "
+                            "candidates with the ink each leaves VISIBLE in the "
+                            "band, the ink the path CROSSES, and what it pays for "
+                            "running ALONG either plate's ink"),
+                   "seams": cand_rows}, open(a.cand_dump, "w"), indent=1)
+        print(f"wrote {a.cand_dump} ({len(cand_rows)} candidate rows)")
 
     un = unary_union(list(regions.values()))
     s = sum(g.area for g in regions.values())
@@ -630,7 +881,7 @@ def main():
                                           for r_ in g.interiors]}}
                        for u, g in sorted(regions.items(),
                                           key=lambda kv: (int("".join(c for c in kv[0] if c.isdigit())), kv[0]))]}
-    p = os.path.join(r.dir, "seams", "ownership_streetcut.json")
+    p = a.out or os.path.join(r.dir, "seams", "ownership_streetcut.json")
     json.dump(doc, open(p, "w"), indent=1)
     print(f"wrote {p}")
     if a.apply:
