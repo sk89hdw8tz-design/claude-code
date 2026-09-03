@@ -6,10 +6,10 @@
  "axis": "avenue",
  "corridor": "wharf frontage: 200 native px inside sheet 67's bay-side neatline",
  "observer": "session 018fqghgw6 (tools/wharfplace.py)",
- "a_native": 4173.3,
+ "a_native": 3668.4,
  "b_native": 200,
  "why_not_one_block_off": "Not a street. Sheet 67 draws the wharf yard at 50 ft/in up to its bay-side neatline and keeps it; the 100 ft/in wharf plate supplies the piers and bay beyond. Same rule as the sheet-5 panels.",
  "status": "REJECTED",
- "rejected_by": "session 018fqghgw6, periphery review",
- "reason": "the two plates do not meet: sheet 3 ends at 'AVE. A OR WATER' and sheet 67/75 begin at 'AVE. B OR STRAND'/'AVE. C', and BOTH print the adjoining-sheet numeral '0' on that edge, which is the series' mark for no adjoining sheet. The a_native this file carried (4173 / 4693) lies 920 / 1440 px beyond sheet 3's own neatline. The strip between them is a source gap in the 1912 atlas, not a seam."
+ "rejected_by": "session 018fqghgw6, periphery review; re-affirmed after the sheet-4/3 wharf re-placement",
+ "reason": "the two plates do not meet: sheet 3 ends at 'AVE. A OR WATER' and sheet 67/75 begin at 'AVE. B OR STRAND'/'AVE. C', and BOTH print the adjoining-sheet numeral '0' on that edge, which is the series' mark for no adjoining sheet. The a_native this file carries (3668.4; 4173.3 before the wharf re-placement) lies beyond sheet 3's own neatline (extent x1 = 3287). The strip between them is a source gap in the 1912 atlas, not a seam. Re-measured after the re-placement of sheets 4 and 3 (HQ-47): the sheets moved ~350 ft east, so the gap narrowed but did not close \u2014 nearest-point 3|67 587.8 -> 238.3 ft, 3|75 961.0 -> 611.5 ft; mean row-wise gap 3|67 695 -> 345 ft, 3|75 1063 -> 714 ft. wharfplace.py rewrites this file on every --apply; the rejection is restored by hand each time."
 }

@@ -1650,3 +1650,67 @@ panel PDFs and `manifest.json` are tracked.
 
 No `--apply` was run on any recipe tool this wave. `outputs/1912/recipe/*.json`
 byte-identical to before. Nothing under `inputs/` touched.
+
+## HQ-47 · Gate A' 1a · wharf sheet 4 (and dependent sheet 3) re-placed — APPLIED
+
+`outputs/1912/qc/wave4/proposal_4_wharf.md`. Plate 4's "ELEVATOR (IRON CLAD)
+(For Report See Sheet 13)" is plate 13's Elevator "B" (same block 748, same
+annexes, addresses 2802-2828 / 2801-2827); it stood 347.9 ft west of plate 13's
+copy at 29th St because `tools/wharfplace.py` pinned sheet 4's Ave A to plate
+15's x-chain 0 ([29,235]), which is the scan/neatline border, not a corridor.
+Plate 15's Ave A is chain 1 ([1044,1254], 210 px = 72 ft, "AVE. A OR WATER"
+lettered, 3100-block addresses).
+
+**Change** — `tools/wharfplace.py`: `WHARF["4"]["ave_a_chain"] = {"13": None,
+"15": 1}` with the evidence in a comment; then `--sheet 4 --apply`, `--sheet 3
+--apply` (3 reads 4's transform).
+
+Also fixed a real bug in the same tool: the `--apply` path reused the loop
+variable `k` for the "carry `extent_scan` / `extent_fallback_sides` /
+`furniture_native` forward" loop, clobbering the solved scale, so `--apply`
+crashed with `could not convert string to float: 'furniture_native'` before
+writing anything. Renamed to `key`. (No wharf sheet had been re-applied since
+furniture boxes were added, which is why it had never fired.)
+
+| | before | after |
+|---|---|---|
+| sheet 4 t | [-21273.5, 12286.0] | **[-19260.5, 12285.0]** (+347 ft east) |
+| sheet 4 scale | 3.9724 | 3.9766 |
+| sheet 4 solve | 10 eqns, residual median 1.1 / max 3.2 ft | median **1.0** / max **3.3** ft |
+| sheet 3 t | [-21608.5, 23324.0] | **[-19577.8, 23328.0]** (+350.4 ft east) |
+| sheet 3 solve | median 1.6 / max 7.8 ft | median **1.5** / max **6.4** ft |
+
+`units.json` is byte-identical after both applies (extents, `extent_scan`,
+`extent_fallback_sides` and every furniture box preserved); only
+`transforms_city.json` `m`/`t`/`scale` for units 3 and 4 changed, plus the four
+frontage controls the tool rewrites.
+
+**Frontage controls.** `pair_4_13.a_native` 3147.4 -> 2637.8 and
+`pair_4_15.a_native` 3137.2 -> 2627.6 (b_native 200 unchanged), both just west
+of the elevator body, so plates 13/15 keep the elevator and the yard.
+`wharfplace.py` also rewrote `pair_3_67` / `pair_3_75` from REJECTED back to
+ACCEPTED; **their rejection has been restored by hand** (the wharf-Strand strip
+is a disclosed source gap; both plates print the adjoining numeral "0") with the
+new `a_native` (3668.4 / 4188.2, still beyond sheet 3's neatline at 3287) and
+the re-measurement below recorded in the file. No control's `solve` flag was
+touched; the five `solve:false` panel pairs are unchanged.
+
+**Wharf-Strand source gap, re-measured after the move** (footprints,
+furniture-free): nearest-point 3|67 587.8 -> **238.3 ft**, 3|75 961.0 ->
+**611.5 ft**; mean gap along shared latitudes 3|67 695 -> **345 ft**, 3|75
+1063 -> **714 ft**. The strip narrowed by ~350 ft everywhere and did not close;
+it stays disclosed.
+
+**Verification.** `outputs/1912/qc/wave4/verify/elevator_4_vs_13.jpg` — the same
+mosaic rect (-8700,13800)-(-7800,15100) at 1:1, left as rendered from plate 13
+("ELEVATOR \"B\", CAPCY 600,000 BUSHELS (IRON CLAD)"), right sampled through
+sheet 4's new transform ("ELEVATOR (IRON CLAD) (For Report See Sheet 13)"). The
+two bodies now occupy the same rect to ~20 px (3.5 ft) with corners 4-12 ft
+apart (the two sheets are drawn at 50 and 100 ft/in). Before the move the plate-4
+copy was a whole 348 ft west, off this crop entirely.
+
+**Gate**: `bandresid --year 1912` 332 controls, median max-abs **1.6 ft**,
+**11** over 6 ft - identical to the baseline, nothing newly over 6 ft
+(`pair_4_13` +11.9/+5.9, was +11.9/+6.0; it is a frontage seam-position pair,
+not a feature tie).
+

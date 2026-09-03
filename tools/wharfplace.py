@@ -37,7 +37,13 @@ from reciplib import Recipe, px_per_ft   # noqa: E402
 WHARF = {
     "4": {"file": "pct50/sheet_0004.jpg", "ave_a": 3105, "rows": (800, 2300),
           "streets": {"13": {"29": 694, "30": 1270}, "15": {"30": 1270, "31": 1850, "32": 2428, "33": 3005}},
-          "ave_a_chain": {"13": None, "15": 0},   # 13's first x-chain is Ave B (its yard strip has no rule); 15's is Ave A
+          # 15 chain 0 ([29,235]) is the scan/neatline border, not a corridor (15's extent x0=79);
+          # 15's Ave A is chain 1 ([1044,1254], 210 px = 72 ft, "AVE. A OR WATER" + G.C.&S.F.R.R.
+          # printed, 3100-block addresses 3102-3126 / 3101-3127). Pinning to chain 0 put sheet 4
+          # 348 ft west: its "ELEVATOR (IRON CLAD)" is plate 13's Elevator "B" (same block 748,
+          # same annexes), measured 347.9 ft west at 29th St. 13 stays None: all three of its
+          # x-chains are paired one face too far west (lattice.json defect, note only).
+          "ave_a_chain": {"13": None, "15": 1},
           "note": "piers 29-36, 28th-33rd St; abuts 13 (27th-30th) and 15 (30th-33rd) along Ave A; prints '5' at its top (sheet 5 above) and '3' at its bottom"},
     "6": {"file": "pct50/sheet_0006.jpg", "ave_a": 3219, "rows": (400, 3600),
           "streets": {"21": {"10": 291, "11": 866, "12": 1440}, "27": {"12": 1440, "13": 2013, "14": 2591, "15": 3166},
@@ -151,9 +157,10 @@ def main():
                      "scale_note": "wharf plate drawn at 100 ft/in; pct:50 working copy",
                      "seam_axis": {"default": "x", "5a": "y", "5b": "y", "2": "y", "3": "y", "4": "y", "6": "y"},
                      "note": spec["note"]}
-    for k in ("extent_scan", "extent_fallback_sides", "furniture_native"):
-        if k in prev:
-            U["units"][u][k] = prev[k]
+    for key in ("extent_scan", "extent_fallback_sides", "furniture_native"):
+        # NB: not "k" - that is the solved scale, used below for transforms_city
+        if key in prev:
+            U["units"][u][key] = prev[key]
     W["units"][u] = {"file": spec["file"], "op": "copy", "bytes": r.items_by_file[spec["file"]]["bytes"]}
     T["sheets"][u] = {"m": M.tolist(), "t": [float(t[0]), float(t[1])],
                       "how": "tools/wharfplace.py: rotation from the sheet-5 joint solve; scale and translation from Ave A and the shared cross streets against the block plates (and, for sheet 3, its 33rd St against sheet 4)",
