@@ -341,7 +341,16 @@ def main():
             u = str(reg.get("unit", reg.get("sheet")))
             if u in feet:
                 core[u] = Polygon(reg["polygon_mosaic"]["exterior"]).buffer(0)
-    base = {u: core.get(u, feet[u]) for u in feet}
+    # the core keeps the master's own cut lines, but still inside this
+    # recipe's footprint: the neatline trim and the furniture boxes apply to
+    # a core plate as much as to a ring plate (plates 12, 14 and 49 printed
+    # their Scale of Feet legends in the street because the core base bypassed
+    # footprint() entirely).
+    base = {u: (core[u].intersection(feet[u]).buffer(0) if u in core else feet[u])
+            for u in feet}
+    for u, g in list(base.items()):
+        if g.geom_type != "Polygon":
+            base[u] = max(g.geoms, key=lambda p: p.area)
     print(f"core base from masks.json: {sorted(core, key=int)}", flush=True)
 
     units = sorted(feet, key=lambda k: int("".join(c for c in k if c.isdigit())))
