@@ -428,17 +428,14 @@ def main():
         if g.is_empty:
             continue
         # a difference can leave a notch attached to the ring at a single
-        # point, which GEOS represents as a hole touching the exterior; the
-        # export keeps only exteriors, so that notch would silently come
-        # back as double ownership (77|84, 1.9M px2, on the first run). A
-        # 1 px opening turns every such contact into a proper notch.
+        # point, which GEOS represents as a hole touching the exterior; a
+        # 1 px opening turns every such contact into a proper notch, so it
+        # cannot come back as double ownership (77|84, 1.9M px2, first run).
         g = g.buffer(-1.0).buffer(1.0)
         if g.geom_type != "Polygon":
             parts = sorted(g.geoms, key=lambda p: -p.area)
             g = parts[0]
             dropped += [(u, round(p.area)) for p in parts[1:] if p.area > MIN_OVERLAP]
-        if g.interiors:
-            g = Polygon(g.exterior)
         assert g.is_valid, u
         regions[u] = g
 
@@ -465,7 +462,7 @@ def main():
           f"overlap {s-un.area:,.0f} px2 ({(s-un.area)/un.area*100:.4f}%), "
           f"pieces {len(getattr(un,'geoms',[un]))}, interior rings {holes}")
 
-    doc = {"convention": "polygon_mosaic.exterior in mosaic pixels",
+    doc = {"convention": "polygon_mosaic.exterior (and .interiors, the ground the unit does not own inside its own ring -- a furniture box a neighbour supplies) in mosaic pixels",
            "generated_by": "tools/streetcut.py",
            "note": ("core = the master's DP masks; ring seams on the control's "
                     "corridor, else on the plates' lattice corridor, else the "
@@ -474,8 +471,10 @@ def main():
            "seams": seams,
            "regions": [{"unit": u,
                         "source": "master DP mask" if u in core else "street-centreline cut",
-                        "polygon_mosaic": {"exterior":
-                            [[round(x, 3), round(y, 3)] for x, y in g.exterior.coords]}}
+                        "polygon_mosaic": {
+                            "exterior": [[round(x, 3), round(y, 3)] for x, y in g.exterior.coords],
+                            "interiors": [[[round(x, 3), round(y, 3)] for x, y in r_.coords]
+                                          for r_ in g.interiors]}}
                        for u, g in sorted(regions.items(),
                                           key=lambda kv: (int("".join(c for c in kv[0] if c.isdigit())), kv[0]))]}
     p = os.path.join(r.dir, "seams", "ownership_streetcut.json")

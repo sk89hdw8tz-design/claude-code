@@ -43,7 +43,7 @@ def main():
     from shapely.ops import unary_union
 
     r = Recipe(int(a.year))
-    regions = [(u, Polygon(p).buffer(0)) for u, p in r.ownership()]
+    regions = [(u, P.buffer(0)) for u, P in r.ownership_shapes()]
     print(f"{len(regions)} ownership regions", flush=True)
 
     union = unary_union([p for _, p in regions])

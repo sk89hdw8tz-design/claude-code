@@ -23,6 +23,8 @@ def render(r, x0, y0, x1, y1, d, labels=False, outline=False):
     import cv2
     from shapely.geometry import Polygon, box
     own = r.ownership()
+    holes = {u: [np.array(ring.coords, float) for ring in P.interiors]
+             for u, P in r.ownership_shapes() if P.interiors}
     W, H = int((x1 - x0) / d), int((y1 - y0) / d)
     canvas = np.full((H, W, 3), 255, np.uint8)
     covered = np.zeros((H, W), np.uint8)
@@ -46,6 +48,9 @@ def render(r, x0, y0, x1, y1, d, labels=False, outline=False):
                                 flags=cv2.INTER_AREA, borderValue=(255, 255, 255))
         mask = np.zeros((wy1 - wy0, wx1 - wx0), np.uint8)
         cv2.fillPoly(mask, [shifted - np.array([wx0, wy0], np.int32)], 255)
+        for ring in holes.get(sheet, []):
+            h = ((ring - np.array([x0, y0])) / d).astype(np.int32) - np.array([wx0, wy0], np.int32)
+            cv2.fillPoly(mask, [h], 0)
         sub_cov = covered[wy0:wy1, wx0:wx1]
         mask &= cv2.inRange(sub_cov, 0, 0)
         m = mask.astype(bool)

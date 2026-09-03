@@ -97,6 +97,8 @@ def main():
     if r.transforms is None or r.masks is None:
         sys.exit(f"the {a.year} recipe has no transforms/masks yet")
     own = r.ownership()
+    holes = {u: [np.array(ring.coords, float) for ring in P.interiors]
+             for u, P in r.ownership_shapes() if P.interiors}
 
     if a.rect:
         x0, y0, x1, y1 = a.rect
@@ -153,6 +155,9 @@ def main():
                                 borderValue=(255, 255, 255))
         mask = np.zeros((wh, ww), np.uint8)
         cv2.fillPoly(mask, [shifted - np.array([wx0, wy0], np.int32)], 255)
+        for ring in holes.get(sheet, []):
+            h = ((ring - np.array([x0, y0])) / d).astype(np.int32) - np.array([wx0, wy0], np.int32)
+            cv2.fillPoly(mask, [h], 0)
         sub_cov = covered[wy0:wy1, wx0:wx1]
         mask &= cv2.inRange(sub_cov, 0, 0)
         # write through the canvas view. cv2.copyTo will not take a

@@ -210,6 +210,18 @@ class Recipe:
             out.append((uid, np.array(r["polygon_mosaic"]["exterior"], float)))
         return out
 
+    def ownership_shapes(self):
+        """[(unit, shapely Polygon)] with the interior rings kept: the ground
+        a unit does not own inside its own ring (a furniture box a neighbour
+        supplies). Filling only the exterior paints those markings back."""
+        from shapely.geometry import Polygon
+        out = []
+        for r in self.masks["regions"]:
+            uid = str(r.get("unit", r.get("sheet")))
+            pm = r["polygon_mosaic"]
+            out.append((uid, Polygon(pm["exterior"], pm.get("interiors") or [])))
+        return out
+
     def interior_unowned(self):
         """Polygons of ground no region claims that lies INSIDE the mosaic:
         the holes of the union of all ownership regions.
@@ -223,7 +235,7 @@ class Recipe:
         from shapely.geometry import Polygon
         from shapely.ops import unary_union
         if getattr(self, "_interior_unowned", None) is None:
-            u = unary_union([Polygon(p).buffer(0) for _, p in self.ownership()])
+            u = unary_union([P.buffer(0) for _, P in self.ownership_shapes()])
             geoms = [u] if u.geom_type == "Polygon" else list(u.geoms)
             self._interior_unowned = [Polygon(r) for g in geoms for r in g.interiors]
         return self._interior_unowned

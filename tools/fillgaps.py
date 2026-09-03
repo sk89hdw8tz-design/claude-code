@@ -48,7 +48,7 @@ def main():
     from shapely.ops import unary_union
 
     r = Recipe(int(a.year))
-    regions = {u: Polygon(p).buffer(0) for u, p in r.ownership()}
+    regions = {u: P.buffer(0) for u, P in r.ownership_shapes()}
 
     supply = {}
     for u, info in r.units.items():
@@ -158,6 +158,8 @@ def main():
             merged = max(merged.geoms, key=lambda g: g.area)
         by_unit[u]["polygon_mosaic"]["exterior"] = [
             [round(x, 3), round(y, 3)] for x, y in merged.exterior.coords]
+        by_unit[u]["polygon_mosaic"]["interiors"] = [
+            [[round(x, 3), round(y, 3)] for x, y in r_.coords] for r_ in merged.interiors]
         by_unit[u]["gap_filled"] = [f["area_px2"] for f in filled
                                     if any(t[0] == u for t in f["to"])]
     doc["gap_fill"] = {
