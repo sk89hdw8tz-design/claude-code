@@ -81,15 +81,19 @@ def main():
     for kind, hp in gaps:
         cands = []
         for u, poly in regions.items():
-            if not poly.buffer(1.0).intersects(hp):
-                continue
             sup = supply.get(u)
             if sup is None:
                 continue
             cov = sup.intersection(hp)
             if cov.area > PART_MIN * hp.area:
-                cands.append((cov.area, u, cov))
-        cands.sort(key=lambda c: -c[0])
+                # a unit that already touches the hole is preferred: its paper
+                # continues across the join. A unit that merely maps the ground
+                # is still allowed -- the furniture boxes (a plate's own scale
+                # bar) cut holes that only a non-adjacent neighbour covers, and
+                # a hole is worse than that neighbour's own scan of the ground.
+                cands.append((poly.buffer(1.0).intersects(hp), cov.area, u, cov))
+        cands.sort(key=lambda c: (not c[0], -c[1]))
+        cands = [(a, u, cov) for _, a, u, cov in cands]
         c = hp.centroid
         rec = {"kind": kind, "area_px2": round(hp.area, 1),
                "centroid": [round(c.x, 1), round(c.y, 1)]}

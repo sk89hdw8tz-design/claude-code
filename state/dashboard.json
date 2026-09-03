@@ -10,18 +10,18 @@
   "objective": "Finish the 1912 full-city mosaic to print-ready quality: session 018 carrying on from session 019 head; panels split, wharf in, 48/74 fixed; complete seam census, corrections, final deliverables."
  },
  "progress": {
-  "overall_pct": 76,
-  "stage_pct": 80,
+  "overall_pct": 80,
+  "stage_pct": 90,
   "tasks_done": 7,
   "tasks_total": 11,
-  "current_task": "correction round: all four registration reviews applied (28 controls re-read/added/rejected, 11 local re-solves; band residual median 1.7 ft over 340 controls); pipeline 7 re-cut running with the side-constrained DP seam",
-  "next_task": "census round 4 on ~30 affected seams; periphery re-check; HQ-28; final render + print master; full-city QC",
+  "current_task": "correction round: 71|78 cluster re-solved (8 plates, rotations harmonised); every plate's Scale of Feet bar boxed as furniture; renderer fallback restricted to interior holes; gap filler may now draw on any plate that maps the ground",
+  "next_task": "census round 5 over all 289 seams; periphery review; publish COG/DZI, wall master, single sheet, preview; final report",
   "blockers": []
  },
  "eta": {
-  "range": "2-4 hours remaining",
+  "range": "2-3 hours remaining",
   "confidence": "MEDIUM",
-  "reason": "pipeline ~15 min; census round 4 ~40 min; fixes; publish + print master ~1 h; full-city QC ~30 min"
+  "reason": "final re-cut done; crops ~30 min; census round 5 ~45 min in parallel with periphery; publish + print master ~1 h; report ~20 min"
  },
  "tasks": [
   {
@@ -401,6 +401,10 @@
   {
    "t": "2026-09-02T19:12Z",
    "event": "review C applied (71|79 36th St tie was plate 71's neat line; 62|71 rejected); 70/71/72/73/62 re-solved; DP seam now keeps to one side of the lettering strip (40645e8)"
+  },
+  {
+   "t": "2026-09-03T03:10Z",
+   "event": "scale-bar furniture: the round-5 crops showed plate 14's Scale of Feet bar in 27th St; a template match found the bar on all 93 plates and each box was fitted to the legend's own ink (a974268)"
   }
  ]
 }
