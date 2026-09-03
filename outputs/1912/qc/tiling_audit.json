@@ -1,9 +1,9 @@
 {
  "year": 1912,
  "regions": 106,
- "union_area_px2": 4543007189.4,
- "sum_of_regions_px2": 4543008990.3,
- "overlap_area_px2": 1800.9,
+ "union_area_px2": 4541257177.5,
+ "sum_of_regions_px2": 4541259040.2,
+ "overlap_area_px2": 1862.7,
  "overlap_fraction": 0.0,
  "disjoint_pieces": 1,
  "interior_gaps": [
@@ -14,6 +14,60 @@
    "centroid": [
     13029.1,
     44170.3
+   ]
+  },
+  {
+   "area_px2": 308426.7,
+   "width_px": 199.6,
+   "kind": "hole",
+   "centroid": [
+    -1123.7,
+    -24255.2
+   ]
+  },
+  {
+   "area_px2": 298637.2,
+   "width_px": 190.5,
+   "kind": "hole",
+   "centroid": [
+    36377.3,
+    17494.2
+   ]
+  },
+  {
+   "area_px2": 291820.7,
+   "width_px": 189.2,
+   "kind": "hole",
+   "centroid": [
+    11172.7,
+    -17336.4
+   ]
+  },
+  {
+   "area_px2": 291050.8,
+   "width_px": 189.0,
+   "kind": "hole",
+   "centroid": [
+    20325.2,
+    45396.6
+   ]
+  },
+  {
+   "area_px2": 288202.8,
+   "width_px": 189.5,
+   "kind": "hole",
+   "centroid": [
+    20228.8,
+    10589.8
+   ]
+  },
+  {
+   "area_px2": 285417.8,
+   "width_px": 185.9,
+   "kind": "hole",
+   "centroid": [
+    5102.3,
+    -17338.3
    ]
   },
   {
@@ -80,7 +134,7 @@
    ]
   },
   {
-   "area_px2": 51239.5,
+   "area_px2": 51239.4,
    "width_px": 86.3,
    "kind": "hole",
    "centroid": [
@@ -143,24 +197,6 @@
    ]
   },
   {
-   "area_px2": 12689.1,
-   "width_px": 8.3,
-   "kind": "hairline",
-   "centroid": [
-    36413.1,
-    17388.2
-   ]
-  },
-  {
-   "area_px2": 10260.9,
-   "width_px": 5.6,
-   "kind": "hairline",
-   "centroid": [
-    -7661.3,
-    -24484.8
-   ]
-  },
-  {
    "area_px2": 5609.4,
    "width_px": 14.1,
    "kind": "hairline",
@@ -170,16 +206,16 @@
    ]
   },
   {
-   "area_px2": 3914.9,
-   "width_px": 2.0,
+   "area_px2": 5134.5,
+   "width_px": 18.9,
    "kind": "hairline",
    "centroid": [
-    -1253.3,
-    -24465.8
+    15002.0,
+    17650.6
    ]
   }
  ],
- "unclaimed_area_px2": 18924569.4,
+ "unclaimed_area_px2": 20666394.9,
  "pairwise_overlaps": [],
  "min_reported_area_px2": 2500.0,
  "inlet_close_px": 700.0

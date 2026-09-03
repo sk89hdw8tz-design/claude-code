@@ -129,9 +129,9 @@
      "crop_100": "outputs/1912/qc/seams/seam_20_23_100.jpg",
      "crop_50": "outputs/1912/qc/seams/seam_20_23_50.jpg",
      "window": [
-      6743,
+      6747,
       -32687,
-      11743,
+      11747,
       -29487
      ]
     }
@@ -139,9 +139,9 @@
    "crop_100": "outputs/1912/qc/seams/seam_20_23_100.jpg",
    "crop_50": "outputs/1912/qc/seams/seam_20_23_50.jpg",
    "window": [
-    6743,
+    6747,
     -32687,
-    11743,
+    11747,
     -29487
    ]
   },
@@ -228,7 +228,7 @@
    "how": "midpoint",
    "corridor": null,
    "kind": "band",
-   "overlap_px2": 1553056,
+   "overlap_px2": 1607773,
    "span_px": 4258,
    "lattice_disagreement_px": null,
    "lattice_disagreement_ft": null,
