@@ -33,15 +33,74 @@ from reciplib import Recipe                      # noqa: E402
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MIN_AREA = 50.0 * 50.0
+INK_FLOOR = 25.0        # grey levels below a plate's own paper tone that count
+                        # as ink (band_ink's rule, so a grey scan is not ink)
+INK_PAPER_PCT = 80      # percentile of the sampled greys taken as paper tone
+INK_STEP = 10.0         # mosaic px between samples inside a gap
+INK_SPLIT_AREA = 250000.0   # px^2: with --prefer-ink a gap this large is never
+                        # handed to one plate whole. A 900k px^2 hole spans
+                        # several plates' ground and averaging ink over it hides
+                        # the very difference the rule is there to see (the
+                        # 15|4 tongue: 1.6 against 1.4 over the whole hole,
+                        # 4.4/1.6/1.4 inside the tongue itself)
 CLOSE_PX = 700.0        # same inlet closing as tiling.py
 FULL = 0.98             # one sheet covering this much takes the whole gap
 PART_MIN = 0.02         # a split part smaller than this share is ignored
+
+
+_gray = {}
+
+
+def gap_ink(r, unit, poly):
+    """How much that plate actually DRAWS inside a gap, in grey-levels.
+
+    Which sheet's paper covers a gap is not the same question as which sheet
+    MAPS it. At the 15|4 seam the wharf sheet's blank margin covers the ground
+    and the city plate draws it in full -- address figures 2..14, the alley
+    line, the 20\' and 80\' notes, the adjoining numeral "3" -- and handing the
+    gap to the sheet with the larger paper coverage silently deletes all of it.
+    Sampled against the plate's own paper tone, as tools/streetcut.py does, so
+    a grey scan does not read as ink.
+    """
+    import cv2
+    import numpy as np
+    from shapely.geometry import Point
+    if unit not in _gray:
+        if len(_gray) > 24:
+            _gray.pop(next(iter(_gray)))
+        _gray[unit] = cv2.imread(r.fetch(r.sheet_file(unit)), 0)
+    g = _gray[unit]
+    if g is None:
+        return 0.0
+    M, t = r.sheet_matrix(unit)
+    Mi = np.linalg.inv(M)
+    b = poly.bounds
+    xs = np.arange(b[0], b[2] + INK_STEP, INK_STEP)
+    ys = np.arange(b[1], b[3] + INK_STEP, INK_STEP)
+    vals = []
+    for y in ys:
+        for x in xs:
+            if not poly.contains(Point(x, y)):
+                continue
+            n = Mi @ (np.array([x, y]) - t)
+            i, j = int(round(n[1])), int(round(n[0]))
+            if 0 <= i < g.shape[0] and 0 <= j < g.shape[1]:
+                vals.append(g[i, j])
+    if len(vals) < 8:
+        return 0.0
+    v = np.array(vals, np.float32)
+    paper = float(np.percentile(v, INK_PAPER_PCT))
+    return float(np.clip(paper - INK_FLOOR - v, 0.0, None).sum() / len(v))
 
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--year", required=True, choices=["1899", "1912"])
     ap.add_argument("--apply", action="store_true")
+    ap.add_argument("--prefer-ink", dest="prefer_ink", action="store_true",
+                    help="where several plates' paper covers a gap, give it to "
+                         "the plate that actually DRAWS the ground, not to the "
+                         "one whose paper covers most of it (default off)")
     a = ap.parse_args()
 
     from shapely.geometry import Polygon
@@ -92,15 +151,30 @@ def main():
                 # bar) cut holes that only a non-adjacent neighbour covers, and
                 # a hole is worse than that neighbour's own scan of the ground.
                 cands.append((poly.buffer(1.0).intersects(hp), cov.area, u, cov))
-        cands.sort(key=lambda c: (not c[0], -c[1]))
-        cands = [(a, u, cov) for _, a, u, cov in cands]
+        if a.prefer_ink and len(cands) > 1:
+            ink = {u: gap_ink(r, u, cov if not cov.is_empty else hp)
+                   for _, _, u, cov in cands}
+            # a plate must still cover enough of the gap to be preferred on ink
+            cands.sort(key=lambda c: (not c[0], -round(ink[c[2]], 1), -c[1]))
+            top = cands[0][2]
+            if ink[top] > 0.0:
+                rec_ink = {u: round(v, 1) for u, v in ink.items()}
+            else:
+                rec_ink = None
+        else:
+            rec_ink = None
+            cands.sort(key=lambda c: (not c[0], -c[1]))
+        cands = [(a_, u, cov) for _, a_, u, cov in cands]
         c = hp.centroid
         rec = {"kind": kind, "area_px2": round(hp.area, 1),
                "centroid": [round(c.x, 1), round(c.y, 1)]}
+        if rec_ink:
+            rec["ink_per_sample"] = rec_ink
         if not cands:
             unfixable.append(dict(rec, covered_fraction=0.0))
             continue
-        if cands[0][0] >= FULL * hp.area:
+        if cands[0][0] >= FULL * hp.area and not (
+                a.prefer_ink and hp.area > INK_SPLIT_AREA and len(cands) > 1):
             u = cands[0][1]
             assign.setdefault(u, []).append(hp)
             filled.append(dict(rec, to=[[u, 1.0]]))
