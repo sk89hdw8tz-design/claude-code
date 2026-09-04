@@ -227,6 +227,69 @@ MIN_BAND_SPAN = None   # --min-band-span PX (None = off)
 #    candidate that hands the box to the neighbour wins.
 FURN_VISIBLE = 1.0     # --furniture-visible W (1.0 = current behaviour)
 
+# 6. DUPLICATE-COPY THREADING. LINE_AVOID (1) charges a path for running along
+#    ink; it cannot see a path running along BLANK ground that is blank only
+#    because the two plates' copies of one feature sit just off it on either
+#    side. This term is expensive exactly there: within DUP_AVOID_K px ACROSS
+#    the seam, one plate draws ink on one side of the cell and the OTHER plate
+#    draws ink on the other. It is deliberately cross-plate and short-range --
+#    a genuine roadway has each plate's own block faces on both sides, 400 px
+#    away, and scores zero, while a 25 px lane between one plate's copy of a
+#    water main and the other's scores at every cell of the run. Both plates'
+#    ink is measured against their own paper tone, as band_ink does.
+DUP_AVOID = 0.0        # --dup-avoid W: weight (0 = off)
+DUP_AVOID_K = 44.0     # px across the seam (7.6 ft): wider than the largest
+                       # same-feature registration split measured, far narrower
+                       # than a 70 ft roadway
+# 7. AVOIDANCE IN THE CANDIDATE CHOICE. The avoid terms shape the path INSIDE a
+#    candidate; the choice BETWEEN candidates is made on `visible` alone, which
+#    is why --line-avoid moved 97 paths and flipped no candidate (HQ-54 rejected
+#    it on exactly that evidence). With this on, the same augmented cost the DP
+#    minimises also ranks the candidates.
+AVOID_IN_CHOICE = False    # --avoid-in-choice
+
+# 8. UNIQUE INK ERASED. `visible` is the ink the band still SHOWS after the cut,
+#    and the sort MINIMISES it. That is right only for content BOTH plates draw:
+#    the least-visible candidate is the one that hides one of two copies of a
+#    street name. Where a feature is drawn by ONE plate -- the east 850 px of
+#    the 8" main at 64|72, which plate 72 does not draw at all, or plate 63's
+#    10" main at 63|71 -- the same sort erases the only copy there is and the
+#    feature leaves the mosaic. So each candidate also reports the UNIQUE ink it
+#    erases: ink one plate draws that the other does not draw within LOST_INK_K
+#    px, summed over the side the other plate owns; and the longest CONTINUOUS
+#    run of the seam over which it does that, which distinguishes a water main
+#    deleted for 165 ft from a diffuse tone or margin difference.
+LOST_INK = 0.0         # --lost-ink W: weight of that quantity in the ranking
+LOST_INK_K = 44.0      # px: a copy this far away still counts as the same
+                       # feature (the largest same-feature split measured is
+                       # 9.5 ft, at 64|72 after the HQ-50 re-solve)
+LOST_RUN_INK = 250.0   # grey-levels of unique ink erased in one 4 px column for
+                       # that column to count as part of an erasure run (a drawn
+                       # line crossing a column scores 300-800)
+LOST_RUN_SLACK = 100.0 # px: used by --min-lost-ink only
+LOST_TOL = None        # --min-lost-ink TOL: rank every candidate on erasure
+                       # alone (moves ~90 seams; diagnostic, not for production)
+# 9. THE ERASURE GUARD -- the production form of 8. It leaves the existing
+#    choice alone unless that choice erases materially more of the map than
+#    another candidate would, so the duplicate-lettering behaviour the side rule
+#    was written for is untouched and only the seams where a drawn feature
+#    actually leaves the mosaic move.
+ERASURE_GUARD = False  # --erasure-guard
+GUARD_RUN_PX = 290.0   # px (50 ft) of extra continuous erasure that triggers it
+GUARD_LOST_FRAC = 0.30 # or this fraction more unique ink erased in total,
+GUARD_LOST_MIN = 20000.0   # provided the absolute difference is at least this
+# 10. SIDE-CANDIDATE TIP PINCH. A path is charged BIG for every cell it spends
+#    off the band. At the two tips of the overlap lens the band tapers to
+#    nothing and the DP, which may step only one cell across per cell along,
+#    cannot follow it in: a few tip cells then read as a whole infeasible
+#    candidate. That is why the south side at 64|72 -- the side that keeps the
+#    8" main -- scored 1.01e7 and never competed. Every candidate now reports
+#    how many cells it spends off the band; the guard admits a candidate that
+#    spends no more than SIDE_PINCH_CELLS there, and --side-pinch-relief makes
+#    the ordinary rule do the same.
+SIDE_PINCH_RELIEF = False   # --side-pinch-relief
+SIDE_PINCH_CELLS = 24       # cells (~96 px along the seam)
+
 def band_ink(g, mask):
     """That plate's own ink inside the band, in grey-levels x cells.
 
@@ -314,8 +377,33 @@ def dp_cut(r, u, v, axis, coord, O, lower=None, info=None, panel=False):
             sig = np.clip(paper - BLANK_FLOOR - g.astype(np.float32), 0.0, None)
             avoid += cv2.dilate(sig, ker)
         avoid = np.where(mask == 1, avoid, 0.0)
+        # duplicate-copy field: for each plate, its ink within DUP_AVOID_K px on
+        # each side ACROSS the seam (never at the cell itself), paired across
+        # plates -- u's ink above against v's below, and the mirror
+        kd = max(1, int(round(DUP_AVOID_K / DP_SCALE)))
+        near = {}
+        for w_ in (u, v):
+            g = grey[w_]
+            vals = g[mask == 1]
+            paper = float(np.percentile(vals, BLANK_PAPER_PCT)) if vals.size else 255.0
+            sig = np.clip(paper - BLANK_FLOOR - g.astype(np.float32), 0.0, None)
+            sd = []
+            for above in (True, False):
+                col = np.zeros((2 * kd + 1, 1), np.uint8)
+                if above:
+                    col[:kd] = 1
+                else:
+                    col[kd + 1:] = 1
+                ker = col if axis == "y" else col.reshape(1, -1)
+                # a one-sided kernel excludes the cell itself, so the border
+                # must be 0 and not cv2's -DBL_MAX default
+                sd.append(cv2.dilate(sig, ker, borderType=cv2.BORDER_CONSTANT,
+                                     borderValue=0.0))
+            near[w_] = sd
+        dup = np.minimum(near[u][0], near[v][1]) + np.minimum(near[v][0], near[u][1])
+        dup = np.where(mask == 1, dup, 0.0)
         return dict(x0=gx0, y0=gy0, x1=gx1, y1=gy1, W=W, H=H,
-                    cost=cost, raw=raw, grey=grey, mask=mask, avoid=avoid)
+                    cost=cost, raw=raw, grey=grey, mask=mask, avoid=avoid, dup=dup)
 
     G = grid(DP_HALF)
     if G is None:
@@ -335,7 +423,7 @@ def dp_cut(r, u, v, axis, coord, O, lower=None, info=None, panel=False):
         G = grid(DP_HALF_BLANK) or G
     x0, y0, x1, y1 = G["x0"], G["y0"], G["x1"], G["y1"]
     W, H, cost, raw, mask = G["W"], G["H"], G["cost"], G["raw"], G["mask"]
-    avoid = G["avoid"]
+    avoid, dup = G["avoid"], G["dup"]
     # Three candidate paths: pulled to the control line, and pulled to a line
     # DP_SIDE px either side of it (just inside the block faces). Both plates
     # letter the street name in the roadway; a path that zigzags round each
@@ -373,11 +461,32 @@ def dp_cut(r, u, v, axis, coord, O, lower=None, info=None, panel=False):
                 fm = np.zeros_like(mask)
                 cv2.fillPoly(fm, [pts], 1)
                 arr *= np.where(fm == 1, FURN_VISIBLE, 1.0).astype(arr.dtype)
+    # unique ink: what each plate draws that the other does not draw within
+    # LOST_INK_K px, measured against each plate's own paper tone
+    kq = max(1, int(round(LOST_INK_K / DP_SCALE)))
+    kerq = np.ones((2 * kq + 1, 2 * kq + 1), np.uint8)
+    sigs = {}
+    for w_ in (low_u, high_u):
+        g_ = G["grey"][w_]
+        vals_ = g_[mask == 1]
+        paper = float(np.percentile(vals_, BLANK_PAPER_PCT)) if vals_.size else 255.0
+        sigs[w_] = np.where(mask == 1,
+                            np.clip(paper - BLANK_FLOOR - g_.astype(np.float32),
+                                    0.0, None), 0.0)
+    uniqL = np.clip(sigs[low_u] - cv2.dilate(sigs[high_u], kerq), 0.0, None)
+    uniqH = np.clip(sigs[high_u] - cv2.dilate(sigs[low_u], kerq), 0.0, None)
     if axis != "y":
         inkL, inkH = inkL.T, inkH.T          # rows = across the seam, cols = along it
+        uniqL, uniqH = uniqL.T, uniqH.T
     cumL = np.cumsum(inkL, axis=0)           # low-side ink up to and including row y
     totH = inkH.sum(axis=0)
     cumH = np.cumsum(inkH, axis=0)
+    # the mirror of `visible`: the HIGH plate's unique ink that falls on the LOW
+    # side (which the low plate owns, so it is erased), plus the low plate's
+    # unique ink on the high side
+    cumUH = np.cumsum(uniqH, axis=0)
+    totUL = uniqL.sum(axis=0)
+    cumUL = np.cumsum(uniqL, axis=0)
     CROSS_W = 8.0                            # a crossed cell counts like an 8-cell column of visible ink
     # the band is the plates' overlap, often narrower than the roadway once
     # footprints stop at the neatline (57|58 overlap by 21 ft): keep the side
@@ -392,6 +501,8 @@ def dp_cut(r, u, v, axis, coord, O, lower=None, info=None, panel=False):
         c = ink_only.copy()
         if LINE_AVOID:
             c = c + LINE_AVOID * avoid
+        if DUP_AVOID:
+            c = c + DUP_AVOID * dup
         across_px = (y0 + np.arange(H) * DP_SCALE) if axis == "y" else (x0 + np.arange(W) * DP_SCALE)
         pull = pull_k * np.abs((across_px - target) / DP_SCALE)
         m_ = margin if margin_px is None else margin_px
@@ -422,11 +533,24 @@ def dp_cut(r, u, v, axis, coord, O, lower=None, info=None, panel=False):
         path = path[::-1]
         io = ink_only if axis == "y" else ink_only.T
         av = avoid if axis == "y" else avoid.T
+        du = dup if axis == "y" else dup.T
         ink_sum = float(sum(io[y, x] for x, y in enumerate(path)))
-        avoid_sum = float(sum(av[y, x] for x, y in enumerate(path)))
         cols = np.arange(len(path)); rows = np.array(path)
+        outside = int((io[rows, cols] >= BIG / 2).sum())   # cells off the band
+        if SIDE_PINCH_RELIEF and outside <= SIDE_PINCH_CELLS:
+            vals_ = io[rows, cols]
+            ink_sum = float(vals_[vals_ < BIG / 2].sum())
+        avoid_sum = float(sum(av[y, x] for x, y in enumerate(path)))
+        dup_sum = float(sum(du[y, x] for x, y in enumerate(path)))
         visible = float(cumL[rows, cols].sum() + (totH[cols] - cumH[rows, cols]).sum())
-        return ink_sum, visible, path, avoid_sum
+        per_col = cumUH[rows, cols] + (totUL[cols] - cumUL[rows, cols])
+        lost = float(per_col.sum())
+        run = best_run = 0
+        for h in (per_col > LOST_RUN_INK):
+            run = run + 1 if h else 0
+            best_run = max(best_run, run)
+        lost_run = best_run * DP_SCALE
+        return ink_sum, visible, path, avoid_sum, dup_sum, lost, lost_run, outside
 
     for off in (0.0, -side, side):
         # a side path is only worth having if it really keeps to its side:
@@ -434,11 +558,15 @@ def dp_cut(r, u, v, axis, coord, O, lower=None, info=None, panel=False):
         # wherever the ink was thinner there (76|84). Forbid the far side
         # of the centreline and its margin outright.
         forbid = None if off == 0.0 else ("high" if off < 0 else "low")
-        ink_sum, visible, path, avoid_sum = candidate(coord + off, DP_PULL, forbid)
+        (ink_sum, visible, path, avoid_sum, dup_sum, lost,
+         lost_run, outside) = candidate(coord + off, DP_PULL, forbid)
         if os.environ.get("DP_DEBUG"):
             print(f"    dp {u}|{v} off {off:+6.1f}: visible {visible:12.0f} "
-                  f"crossed {ink_sum:9.0f} along-line {avoid_sum:11.0f}")
-        cands.append((off, ink_sum, visible, path, avoid_sum))
+                  f"crossed {ink_sum:9.0f} along-line {avoid_sum:9.0f} "
+                  f"threaded {dup_sum:8.0f} erased {lost:9.0f} over {lost_run:5.0f}px"
+                  f" (off-band {outside})")
+        cands.append((off, ink_sum, visible, path, avoid_sum, dup_sum, lost,
+                      lost_run, outside))
     # The centreline candidate weaves round each plate's label on its cheaper
     # side and so crosses the least ink while leaving BOTH labels showing
     # (76|84: the two '39TH ST' are 800 px apart along the street). A side
@@ -456,9 +584,11 @@ def dp_cut(r, u, v, axis, coord, O, lower=None, info=None, panel=False):
         # the parent keeps the low side when it is the lower unit
         parent = u if r.units[v].get("panel_of") == u else v
         forbid = "high" if parent == low_u else "low"
-        ink_sum, visible, path, avoid_sum = candidate(coord, DP_PULL, forbid, margin_px=0.0)
+        (ink_sum, visible, path, avoid_sum, dup_sum, lost,
+         lost_run, outside) = candidate(coord, DP_PULL, forbid, margin_px=0.0)
         if ink_sum < BIG / 4:
-            cands.append((0.0, ink_sum, visible, path, avoid_sum))
+            cands.append((0.0, ink_sum, visible, path, avoid_sum, dup_sum, lost,
+                          lost_run, outside))
             sides = sides + [cands[-1]]
             sides.sort(key=lambda c: c[2])
         if os.environ.get("DP_DEBUG"):
@@ -468,7 +598,15 @@ def dp_cut(r, u, v, axis, coord, O, lower=None, info=None, panel=False):
         # a panel and its parent are one scan: prefer a side only if it really
         # leaves less ink showing than the centre does
         sides = [c for c in sides if c[2] <= centre[2]]
-    if PICK_BEST:
+    def augmented(c):
+        """The ruler the DP itself minimises: ink left visible in the band, plus
+        what the path pays for running along a drawn line, for threading between
+        two plates' copies of one, and for erasing ink only one plate draws."""
+        return c[2] + LINE_AVOID * c[4] + DUP_AVOID * c[5] + LOST_INK * c[6]
+    if AVOID_IN_CHOICE or LOST_INK:
+        feas = [c for c in cands if c[1] < BIG / 4]
+        best = min(feas, key=augmented) if feas else centre
+    elif PICK_BEST:
         # score every feasible candidate, the centre included, on the same
         # ruler: ink left visible in the band, plus what the path pays for
         # running along a drawn line when that term is on. The old rule took
@@ -480,6 +618,50 @@ def dp_cut(r, u, v, axis, coord, O, lower=None, info=None, panel=False):
         best = sides[0]
     else:
         best = centre
+    if LOST_TOL is not None:
+        # diagnostic variant: rank every candidate the tip relief admits on
+        # erasure alone -- longest run first, then total, then the old rule
+        feas = [c for c in cands if c[8] <= SIDE_PINCH_CELLS]
+        rmin = min((c[7] for c in feas), default=0.0)
+        pool = [c for c in feas if c[7] <= rmin + LOST_RUN_SLACK]
+        lmin = min((c[6] for c in pool), default=0.0)
+        pool = [c for c in pool if c[6] <= lmin * (1.0 + LOST_TOL) + 1.0]
+        sp = [c for c in sides if c in pool]
+        best = (sp[0] if (side >= 40.0 and sp) else
+                (centre if centre in pool else
+                 (min(pool, key=lambda c: c[2]) if pool else centre)))
+    if ERASURE_GUARD:
+        # Two triggers, both on unique ink -- content that leaves the mosaic
+        # rather than a duplicate that is merely hidden:
+        #   * the choice deletes a feature for GUARD_RUN_PX more of the seam
+        #     than an alternative does (63|71: 468 px against 96);
+        #   * or it erases GUARD_LOST_FRAC more unique ink in total, at least
+        #     GUARD_LOST_MIN of it (64|72: 68,773 against 47,311).
+        # Alternatives include candidates that only look infeasible because the
+        # DP cannot follow the band into the tips of the overlap lens.
+        alts = [c for c in cands if c[8] <= SIDE_PINCH_CELLS and c is not best]
+        better = [c for c in alts
+                  if ((best[7] - c[7] >= GUARD_RUN_PX)
+                      or (best[6] - c[6] >= GUARD_LOST_MIN
+                          and c[6] <= (1.0 - GUARD_LOST_FRAC) * best[6]))
+                  # and never worse than the choice it replaces on the other
+                  # measure: a candidate that erases less in total but deletes
+                  # a feature over a longer run is not an improvement
+                  and c[7] <= best[7] + GUARD_RUN_PX
+                  and c[6] <= best[6] * (1.0 + GUARD_LOST_FRAC)]
+        if better:
+            pick = min(better, key=lambda c: (round(c[7] / 100.0), c[6]))
+            if os.environ.get("DP_DEBUG"):
+                print(f"    dp {u}|{v} erasure guard: off {best[0]:+.0f} erases "
+                      f"{best[6]:,.0f} over {best[7]:.0f} px -> off {pick[0]:+.0f} "
+                      f"erases {pick[6]:,.0f} over {pick[7]:.0f} px")
+            if info is not None:
+                info["erasure_guard"] = {
+                    "from_off": round(float(best[0]), 1),
+                    "to_off": round(float(pick[0]), 1),
+                    "lost_before": round(best[6]), "lost_after": round(pick[6]),
+                    "run_before_px": round(best[7]), "run_after_px": round(pick[7])}
+            best = pick
     if is_blank_band:
         # fourth candidate: pinned at the blank plate's own edge of the band,
         # so the blank plate keeps none of it and the plate that draws the
@@ -487,8 +669,10 @@ def dp_cut(r, u, v, axis, coord, O, lower=None, info=None, panel=False):
         # sort has nothing to say about a band only one plate draws.
         k = 0 if axis == "x" else 1
         edge = (x0 if axis == "x" else y0) if blank == low_u else (x1 if axis == "x" else y1)
-        ink_sum, visible, path, avoid_sum = candidate(edge, DP_BLANK_PULL, None)
-        cands.append((edge - coord, ink_sum, visible, path, avoid_sum))
+        (ink_sum, visible, path, avoid_sum, dup_sum, lost,
+         lost_run, outside) = candidate(edge, DP_BLANK_PULL, None)
+        cands.append((edge - coord, ink_sum, visible, path, avoid_sum, dup_sum,
+                      lost, lost_run, outside))
         best = cands[-1]
         if info is not None:
             info["blank_band"] = {"winner": drawn, "ink_ratio": round(ratio, 4)}
@@ -503,6 +687,10 @@ def dp_cut(r, u, v, axis, coord, O, lower=None, info=None, panel=False):
                                "crossed": round(c[1], 1),
                                "visible": round(c[2], 1),
                                "along_line": round(c[4], 1),
+                               "threaded": round(c[5], 1),
+                               "lost_unique": round(c[6], 1),
+                               "lost_run_px": round(c[7], 1),
+                               "off_band_cells": c[8],
                                "feasible": bool(c[1] < BIG / 4),
                                "chosen": c is best} for c in cands]
     if os.environ.get("DP_DEBUG"):
@@ -570,6 +758,8 @@ def lattice_coord(r, lat, u, axis, mid_xy):
 def main():
     global LINE_AVOID, LINE_AVOID_K, PICK_BEST, PANEL_CENTRE
     global BAND_FURNITURE_FREE, MIN_BAND_SPAN, FURN_VISIBLE, PANEL_CLAMP
+    global DUP_AVOID, DUP_AVOID_K, AVOID_IN_CHOICE, LOST_INK, LOST_INK_K
+    global LOST_TOL, ERASURE_GUARD, SIDE_PINCH_RELIEF
     ap = argparse.ArgumentParser()
     ap.add_argument("--year", required=True, choices=["1912"])
     ap.add_argument("--apply", action="store_true")
@@ -595,6 +785,32 @@ def main():
     ap.add_argument("--line-avoid-k", dest="line_avoid_k", type=float, default=None,
                     metavar="PX", help=f"half-width across the seam of the "
                     f"line-avoidance field (default {LINE_AVOID_K:.0f} px)")
+    ap.add_argument("--dup-avoid", dest="dup_avoid", type=float, default=None,
+                    metavar="W", help="penalise a path for THREADING between the "
+                    "two plates' copies of one drawn feature (default 0 = off)")
+    ap.add_argument("--dup-avoid-k", dest="dup_avoid_k", type=float, default=None,
+                    metavar="PX", help="half-width across the seam of the "
+                                       "duplicate-copy field")
+    ap.add_argument("--avoid-in-choice", dest="avoid_in_choice", action="store_true",
+                    help="rank the candidates on visible ink PLUS the avoidance "
+                         "terms, instead of visible ink alone")
+    ap.add_argument("--lost-ink", dest="lost_ink", type=float, default=None,
+                    metavar="W", help="weight in the candidate ranking of the "
+                    "UNIQUE ink a cut erases (default 0 = off)")
+    ap.add_argument("--lost-ink-k", dest="lost_ink_k", type=float, default=None,
+                    metavar="PX", help="how far away a copy still counts as the "
+                                       "same feature")
+    ap.add_argument("--min-lost-ink", dest="min_lost_ink", type=float, default=None,
+                    nargs="?", const=0.05, metavar="TOL",
+                    help="diagnostic: rank every candidate on erasure alone")
+    ap.add_argument("--erasure-guard", dest="erasure_guard", action="store_true",
+                    help="override the candidate choice where it would erase a "
+                         "feature only one plate draws, either for 50 ft more of "
+                         "the seam than an alternative or by 30%% more unique ink")
+    ap.add_argument("--side-pinch-relief", dest="side_pinch_relief",
+                    action="store_true",
+                    help="a candidate that leaves the band for a few cells at "
+                         "the tips of the overlap lens is not infeasible")
     ap.add_argument("--furniture-visible", dest="furn_visible", type=float,
                     default=None, metavar="W",
                     help="weight a plate's own furniture-box pixels W times in "
@@ -625,6 +841,19 @@ def main():
         LINE_AVOID = a.line_avoid
     if a.line_avoid_k is not None:
         LINE_AVOID_K = a.line_avoid_k
+    if a.dup_avoid is not None:
+        DUP_AVOID = a.dup_avoid
+    if a.dup_avoid_k is not None:
+        DUP_AVOID_K = a.dup_avoid_k
+    if a.lost_ink is not None:
+        LOST_INK = a.lost_ink
+    if a.lost_ink_k is not None:
+        LOST_INK_K = a.lost_ink_k
+    if a.min_lost_ink is not None:
+        LOST_TOL = a.min_lost_ink
+    AVOID_IN_CHOICE = bool(a.avoid_in_choice)
+    ERASURE_GUARD = bool(a.erasure_guard)
+    SIDE_PINCH_RELIEF = bool(a.side_pinch_relief)
     PICK_BEST = bool(a.pick_best)
     PANEL_CENTRE = bool(a.panel_centre)
     PANEL_CLAMP = bool(a.panel_clamp)
@@ -771,6 +1000,8 @@ def main():
                           "overlap_px2": round(O.area), "span_px": round(span),
                           "lattice_disagreement_px": None if resid is None else round(resid, 1),
                           "lattice_disagreement_ft": None if resid is None else round(resid / ppf, 1)})
+            if "erasure_guard" in info:
+                seams[-1]["erasure_guard"] = info["erasure_guard"]
             if "blank_band" in info:
                 seams[-1]["blank_band"] = info["blank_band"]
                 print(f"  blank band {u}|{v}: ink ratio "
@@ -848,6 +1079,12 @@ def main():
     if a.cand_dump:
         json.dump({"generated_by": "tools/streetcut.py --cand-dump",
                    "options": {"line_avoid": LINE_AVOID, "line_avoid_k": LINE_AVOID_K,
+                               "dup_avoid": DUP_AVOID, "dup_avoid_k": DUP_AVOID_K,
+                               "avoid_in_choice": AVOID_IN_CHOICE,
+                               "lost_ink": LOST_INK, "lost_ink_k": LOST_INK_K,
+                               "min_lost_ink": LOST_TOL,
+                               "erasure_guard": ERASURE_GUARD,
+                               "side_pinch_relief": SIDE_PINCH_RELIEF,
                                "pick_best": PICK_BEST,
                                "band_furniture_free": BAND_FURNITURE_FREE,
                                "min_band_span": MIN_BAND_SPAN,
