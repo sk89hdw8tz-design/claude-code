@@ -9,7 +9,11 @@ elongated across the seam, from the recipe: outputs/{year}/qc/seams/
 seam_{a}-{b}_100.jpg at full working resolution (1/2 of the plates' 300 ppi
 scan, i.e. the 150 ppi web resolution) and seam_{a}-{b}_50.jpg at half that.
 A thin tick at each end of the crop marks where the cut line crosses, so a
-grader can find it; the map pixels are untouched.
+grader can find it; the map pixels are untouched. The tick is placed on the
+ACTUAL ownership boundary there (a min-ink path wanders up to DP_HALF = 320
+mosaic px from the seam's nominal coordinate, and a tick at the coordinate
+then hides the cut instead of finding it); where the two differ by more than
+8 px the nominal coordinate is kept as a thin blue tick beside it.
 
 Also writes seams/index.json: one row per seam with the crop paths, the
 cut's source (control / lattice / midpoint), and the lattice disagreement
@@ -29,6 +33,27 @@ from reciplib import Recipe                      # noqa: E402
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ACROSS = 1600        # mosaic px each side of the cut (~275 ft)
 ALONG = 5000         # mosaic px along the seam (~860 ft)
+
+
+def boundary_at(shared, axis, along, across_range):
+    """Where the two regions actually meet at position `along` on the seam.
+
+    `shared` is the (buffered) intersection of the two ownership polygons --
+    a thin strip lying on the cut itself, wherever the cut runs. Sampling it
+    with a line across the seam gives the cut's real position there, path
+    wander included. Returns None where the strip does not reach that end of
+    the crop (a corner seam that stops short), and the caller falls back to
+    the seam's nominal coordinate.
+    """
+    from shapely.geometry import LineString
+    lo, hi = across_range
+    ln = LineString([(along, lo), (along, hi)] if axis == "y"
+                    else [(lo, along), (hi, along)])
+    g = shared.intersection(ln)
+    if g.is_empty:
+        return None
+    c = g.centroid
+    return float(c.y if axis == "y" else c.x)
 
 
 def main():
@@ -85,14 +110,37 @@ def main():
                 y0, y1 = a0, a0 + ALONG
             img = qc_render(r, x0, y0, x1, y1, 2)
             H, W = img.shape[:2]
-            if s["axis"] == "y":
-                yy = int((s["coord"] - y0) / 2)
-                cv2.line(img, (0, yy), (40, yy), (0, 0, 255), 3)
-                cv2.line(img, (W - 40, yy), (W, yy), (0, 0, 255), 3)
-            else:
-                xx = int((s["coord"] - x0) / 2)
-                cv2.line(img, (xx, 0), (xx, 40), (0, 0, 255), 3)
-                cv2.line(img, (xx, H - 40), (xx, H), (0, 0, 255), 3)
+            # The tick must mark the OWNERSHIP BOUNDARY, not the seam's
+            # nominal coordinate: a min-ink path may wander up to DP_HALF
+            # (320 mosaic px, 55 ft) from it, and a tick drawn at the
+            # coordinate then points at open ground while the cut -- and any
+            # defect on it -- is elsewhere in the crop. That is how a straight
+            # cut 320 px off its coord passed two graders on 3|4. So the red
+            # tick follows the real boundary between the two regions at each
+            # end of the crop, and a thin blue tick keeps the nominal
+            # coordinate visible wherever the two differ by more than 8 px.
+            for end in (0, 1):
+                along = (x0 + 20, x1 - 20)[end] if s["axis"] == "y" else (y0 + 20, y1 - 20)[end]
+                across = (y0, y1) if s["axis"] == "y" else (x0, x1)
+                real = boundary_at(shared, s["axis"], along, across)
+                marks = [(s["coord"], (255, 0, 0), 2)]        # nominal, thin blue
+                if real is not None:
+                    marks = [(real, (0, 0, 255), 3)] + (
+                        [] if abs(real - s["coord"]) <= 8 else marks)
+                else:
+                    marks = [(s["coord"], (0, 0, 255), 3)]    # nothing better to draw
+                for val, colour, thick in marks:
+                    if s["axis"] == "y":
+                        yy = int((val - y0) / 2)
+                        if not 0 <= yy < H:
+                            continue
+                        pt = ((0, yy), (40, yy)) if end == 0 else ((W - 40, yy), (W, yy))
+                    else:
+                        xx = int((val - x0) / 2)
+                        if not 0 <= xx < W:
+                            continue
+                        pt = ((xx, 0), (xx, 40)) if end == 0 else ((xx, H - 40), (xx, H))
+                    cv2.line(img, pt[0], pt[1], colour, thick)
             suf = "" if n == 1 else f"_{chr(97 + j)}"
             p100 = os.path.join(out, f"seam_{tag}{suf}_100.jpg")
             p50 = os.path.join(out, f"seam_{tag}{suf}_50.jpg")
