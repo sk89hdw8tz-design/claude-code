@@ -34,10 +34,20 @@ the SMALLEST by mosaic area, i.e. the least furniture printed over mapped
 ground -- and the rest are cut; the kept box's unit also drops the
 `exclude_native` twin of that box, so its own paper supplies the others.
 COVER is not touched: the threshold was never the thing at fault.
+
+That resolution is NOT re-derivable on a later run, because it consumes its
+own evidence: releasing the kept box's `exclude_native` twin is exactly what
+makes its neighbours' paper look sufficient, so a second `--apply` sees the
+kept box at coverage 1.0, finds no cycle at all, and cuts it -- leaving every
+box of the cycle cut and the contested ground owned by nobody. Each box
+therefore records its cycle in `cycle`, and a run that finds no live cycle
+for a recorded group restores that group's recorded verdict and says so.
+Where the cycle IS still live in the file, the live pass wins.
 """
 import argparse
 import json
 import os
+import re
 import sys
 
 COVER = 0.98
@@ -115,6 +125,20 @@ def main():
         f = doc["units"][u]["furniture_native"][i]
         f["cut"] = bool(d["cov"] >= a.cover)
         f["covered_fraction"] = round(d["cov"], 3)
+
+    # --- recorded cycles ---------------------------------------------------
+    # A resolved cycle consumes its own evidence (see the module docstring), so
+    # remember what a previous run decided and which boxes were in it.
+    rec = {}
+    for u, ud in doc["units"].items():
+        for i, f in enumerate(ud.get("furniture_native") or []):
+            note = str(f.get("cycle") or "")
+            if not note:
+                continue
+            mem = tuple(sorted({(v, int(j)) for v, j in
+                               re.findall(r"([0-9]+[a-z]?)\[([0-9]+)\]", note)}))
+            if len(mem) >= 2:
+                rec.setdefault(mem, {})[(u, i)] = note.startswith("kept:")
 
     # --- cycle pass -------------------------------------------------------
     cycles = []
@@ -251,12 +275,28 @@ def main():
         for (u, i), d in score(exclude_dropped=drop).items():
             doc["units"][u]["furniture_native"][i]["covered_fraction"] = round(d["cov"], 3)
 
+    live_groups = {tuple(sorted(S)) for S in live}
+    restored = []
+    for mem, verdict in sorted(rec.items()):
+        if mem in live_groups:
+            continue                      # the live pass re-derived it; it wins
+        if not all(k in sc for k in mem):
+            continue
+        for k, kept in verdict.items():
+            doc["units"][k[0]]["furniture_native"][k[1]]["cut"] = not kept
+        restored.append((mem, [k for k, kept in verdict.items() if kept]))
+
     stats = {"cut": 0, "kept": 0}
     for u, ud in doc["units"].items():
         for f in ud.get("furniture_native") or []:
             stats["cut" if f["cut"] else "kept"] += 1
     print(f"{stats['cut']} boxes a neighbour can supply in full (cut), "
           f"{stats['kept']} kept on the plate's own paper")
+    for mem, keeps in restored:
+        print("  recorded cycle %s -> restored (no live cycle: its exclude_native twin was "
+              "released by an earlier run), keep %s" % (
+                  " ".join("%s[%d]" % k for k in mem),
+                  " ".join("%s[%d]" % k for k in keeps) or "(none)"))
     for S, keep in resolved:
         print("  cycle %s -> keep %s[%d] (%.0f px2), cut %s" % (
             " ".join("%s[%d]" % k for k in S), keep[0], keep[1], sc[keep]["area"],

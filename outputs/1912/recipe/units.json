@@ -1166,7 +1166,42 @@
      "why": "P1-3 notch coverage (Gate A): no border rule on this side (tools/neatline.py lists 'right' as FALLBACK, i.e. 3239 = paper edge - 50); by 25 px connected components at ink < paper-45 the outermost map-ink column is 3271 in the parent band and 3264 in the inset band (the vertical 'AVENUE' name in the Ave L roadway, two wharf/rail lines, the 810/812/820 runs and the 70' width calls), 3272..3283 is blank, and the minimum paper-edge column over all rows is 3282."
     }
    },
-   "exclude_native_note": "inset cut-out moved out to the scan edge (3244 -> 3287) with the parent's extent, so the parent cannot claim inset ground the relaxed extent now reaches."
+   "exclude_native_note": "inset cut-out moved out to the scan edge (3244 -> 3287) with the parent's extent, so the parent cannot claim inset ground the relaxed extent now reaches.",
+   "region_native": [
+    [
+     86,
+     91
+    ],
+    [
+     3271,
+     91
+    ],
+    [
+     3271,
+     3060
+    ],
+    [
+     3232,
+     3060
+    ],
+    [
+     3232,
+     3400
+    ],
+    [
+     3271,
+     3400
+    ],
+    [
+     3271,
+     3804
+    ],
+    [
+     86,
+     3804
+    ]
+   ],
+   "region_source": "east edge retracted 3271 -> 3232 over native rows 3060-3400 ONLY, the rows carrying plate 20's own vertical 'AVENUE L.' and its adjoining numeral beside the inset's complete copy (ink in columns 3232-3271 runs y 3099-3327, then nothing until y 3547). A straight retraction over the whole plate height, as outputs/1912/qc/gatec/fixplan_cuts.md proposed, also removes the ground at native y 3561-3700 that supplies 13.3% of plate 24's title box (measured: coverage 1.000 -> 0.867, deficit 17,227 px2), which would force plate 24's 129,828 px2 title back over ground plates 20/25/20b map. The notch removes the duplicate label and leaves that supply intact."
   },
   "21": {
    "file": 21,
@@ -3479,7 +3514,7 @@
     90,
     93,
     3232,
-    3813
+    3840
    ],
    "streets": [
     28,
@@ -4205,7 +4240,7 @@
      "box": [
       2374,
       3669,
-      3021,
+      3012,
       3778
      ],
      "how": "template match of the series' bar at (2376,3675), score 0.74; box fitted to the legend's ink and clipped to the template footprint +30 px (tools/scalebar.py)",
@@ -7740,7 +7775,7 @@
      ],
      "how": "sheet 5's 'Scale 100 Ft. to One Inch.' bar, 2x template match, score 0.61",
      "cut": false,
-     "covered_fraction": 0.442
+     "covered_fraction": 0.454
     },
     {
      "kind": "plate number and title",
@@ -7812,7 +7847,7 @@
      ],
      "how": "sheet 5's 'Scale 100 Ft. to One Inch.' bar, 2x template match, score 0.61",
      "cut": false,
-     "covered_fraction": 0.405
+     "covered_fraction": 0.574
     }
    ]
   },
@@ -7906,11 +7941,11 @@
      83
     ],
     [
-     3266,
+     3170,
      83
     ],
     [
-     3266,
+     3170,
      1138
     ],
     [
@@ -7921,7 +7956,7 @@
    "extent": [
     2580,
     83,
-    3266,
+    3170,
     1138
    ],
    "streets": null,

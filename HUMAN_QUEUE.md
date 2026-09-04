@@ -2344,3 +2344,139 @@ as the five lowercase wharf frontage pairs are, and `tools/streetcut.py` — whi
 ignores the flag — still reads the corridor, which is the file's whole purpose.
 `bandresid` returns to 8 entries / median 1.6 ft. Its effect on the cut is
 measured in HQ-58.
+
+## HQ-57 · Gate A'' 2 · units.json coverage/furniture edits + `furncover.py` cycle persistence — APPLIED
+
+`outputs/1912/qc/gatec/fixplan_cuts.md` section 3.1, four edits, each applied
+only after its ink evidence was re-measured on the working scan here (not taken
+on the report's word). Then `furncover.py --apply` once. Registration untouched.
+
+**Ink evidence, re-measured** (dark fraction = pixels < 128 on
+`work/sheets/1912w/u<unit>.jpg`; each plate's blank-paper baseline is ~0.014)
+
+| unit | edit | measured here | verdict |
+|---|---|---|---|
+| 56 | `furniture_native[1].box` east edge **3021 -> 3012** | scale-bar rows 3669-3778: dark 0.213 at x 2995, 0.163 at 3000, 0.068 at 3005, **0.026 at 3010, 0.000 at 3015 and every column east** | confirmed exactly (report said 0.022 / 0.000). The box was 9 px of blank margin too wide; that 9 px is the whole 56\|57 sliver. **applied** |
+| 48 | `extent[3]` **3813 -> 3840** | row dark fraction across the sheet: 0.026 / 0.028 / 0.027 at y 3810-3820, 0.015 / 0.016 / 0.014 at 3825-3835, **0.012 at 3840**, 0.012 at 3845, then 0.036 / **0.151 at 3855 / 0.424 at 3860 / 0.955 at 3865 / 1.000 at 3870** | confirmed. Rows 3810-3850 carry map ink at the same level as the rows above; the archival ruler strip begins sharply at 3855, so 3840 is inside the paper with 15 rows to spare. **applied** |
+| 25b | `region_native` + `extent` east edge **3266 -> 3170** | parent scan columns 3170-3266, rows 83-1138: dark 0.051-0.100 in 16 px bins (report: 0.043-0.080 - same content, finer bins) | confirmed; consistent with the report's identification (clipped SEA WALL BLVD / GULF OF MEXICO band, the "ST." + "80'" tick and the adjoining numerals, all duplicated by plate 32 or edge furniture). **applied** |
+| 20 | `extent[2]` 3271 -> 3232 | see below | **applied as a NOTCH, not a straight edge** |
+
+### The unit 20 edit was applied as a notch, on measurement
+
+The straight retraction the plan proposes removes native columns 3232-3271 over
+plate 20's **whole height**. Two measurements:
+
+1. **What it is meant to remove** is at the bottom of the sheet. Ink in columns
+   3232-3271 runs at y **3099-3327** (nine runs at 18-37 % dark: the vertical
+   `AVENUE L.` and the adjoining numeral, glyph band native x 3224-3259), and
+   then **nothing until y 3547**. A 1:1 native crop confirms the label and the
+   numeral; the border rule is at x >= 3280, outside the extent entirely, and
+   the block-face address run 814-822 sits at x 3194-3214, west of the cut and
+   kept.
+2. **What it also removes** is at the bottom-right corner, 200 rows further
+   south. Plate 24's title box lands on plate 20's native **x 3092-3324,
+   y 3561-3700**, and plate 20 supplies **60.2 %** of it (plate 25 26.5 %, panel
+   20b 4.6 %). Trimming plate 20 to 3232 over the whole height drops that box's
+   coverage from **1.0000 to 0.8673** (deficit **17,227 px2**), i.e. below
+   `furncover`'s COVER = 0.98, which would force plate 24's **129,828 px2** title
+   block back over ground three plates map. Isolated by re-running the coverage
+   with only that one number changed.
+
+So `units.json` unit 20 keeps `extent` as its bounding box and gains a
+`region_native` retracted to 3232 **only over native rows 3060-3400** - the
+label rows plus a ~40 px guard each side of the measured ink - with the
+measurement recorded in a new `region_source` field. Result: plate 24's title
+box is back at coverage **1.0000, deficit 0 px2**, and the columns the duplicate
+`AVENUE L.` occupies are still released. This is the same instrument P1-3 uses
+for panels (`region_native` rather than a straight `extent` edge) and the same
+rule read the other way: relax only where there is ink, retract only where
+there is none.
+
+### `tools/furncover.py` — the cycle resolution is now durable
+
+Running `furncover.py --apply` on the shipped recipe **reverses HQ-53.**
+Measured, on the untouched `units.json` at HEAD and with no other change:
+`186 boxes cut, 41 kept` and **zero cycles printed**, against the shipped
+`182 / 45`. It flips **70[0], 73[0], 85[0], 89[0]** - the four kept boxes of the
+63\|70\|71, 65\|72\|73, 77\|85 and 81\|88\|89 cycles - from `cut:false` to
+`cut:true`, while leaving their own `"cycle": "kept: the smallest box of the
+N-box furniture cycle ..."` notes in place: a self-contradictory recipe in which
+every box of a cycle is cut and the contested ground is owned by nobody.
+
+**Cause.** The cycle pass consumes its own evidence. It resolves a cycle by
+releasing the kept box's `exclude_native` twin over the ground the cut boxes
+need; that release is exactly what makes the kept box look fully supplied, so on
+the next run its coverage is 1.0, no cycle is detected at all, and the
+independent test cuts it. The tool was written to be run once and had only ever
+been run once.
+
+**Fix** (`tools/furncover.py`): each box already records its cycle in `cycle`.
+The tool now parses that note for the group's membership and its keep, and where
+the live cycle pass finds no cycle for a recorded group it **restores the
+recorded verdict** and prints one line per group saying so. Where a cycle is
+still live in the file, the live pass wins - the recorded verdict never
+overrides a re-derived one. COVER stays 0.98 (do-not-do #4).
+
+**Idempotence check.** With the patch, `--apply` on the untouched HEAD
+`units.json` reproduces it exactly except for two `covered_fraction` values
+(`5a[0]` 0.442 -> 0.454, `5b[0]` 0.405 -> 0.574) that moved because unit 5b moved
+in HQ-56; both boxes stay `cut:false`. No `cut` flag anywhere changes.
+
+### `furncover.py --apply`, once, on this recipe
+
+```
+182 boxes a neighbour can supply in full (cut), 45 kept on the plate's own paper
+  recorded cycle 24[0] 25[0]      -> restored, keep 25[0]
+  recorded cycle 63[1] 70[0] 71[0] -> restored, keep 70[0]
+  recorded cycle 65[1] 72[0] 73[0] -> restored, keep 73[0]
+  recorded cycle 77[1] 85[0]       -> restored, keep 85[0]
+  recorded cycle 81[1] 88[0] 89[0] -> restored, keep 89[0]
+```
+
+**Changed cut flags: none.** The only field changes are `5a[0]` and `5b[0]`
+`covered_fraction` (0.442 -> 0.454, 0.405 -> 0.574), both from unit 5b's move,
+both still `cut:false`. Had unit 20 been trimmed with a straight edge, `24[0]`
+would have flipped `cut:true -> false` here; with the notch it does not.
+
+### edge_18 (15\|4): plate 4 DRAWS the tongue — extent left alone
+
+The wrong-owner tongue is mosaic x -9147..-7844, y 23737..24584 (the
+913,775 px2 three-way unclaimed lens `fillgaps` hands to plate 4). Through plate
+4's transform that is plate 4 native **x 2573-2903, y 2853-3063**.
+
+**Ink profile along plate 4's inland (east) edge at that latitude**
+(20 px column bins, rows 2853-3064; baseline 0.0142):
+
+```
+x 2400 .0237 | 2420 .2036 | 2440 .0137 | 2480 .0746 | 2520 .0609 | 2580 .1102
+x 2600 .0149 | 2660 .0164 | 2700 .0588 | 2740-2990 .0140-.0178 (baseline)
+x 3000 .0320 | 3020 .0588 | 3040 .0739 | 3060 .2308 | 3080 .4329 | 3100 .1386
+x 3120 .1095 | 3140 .1192 | 3160 .0147 | 3180 .0142 | 3200 .0180 | 3240 .0066
+```
+
+**Outcome: plate 4 draws content there; the extent is NOT retracted.** Two
+findings, both against the hypothesis:
+
+* The tongue is **interior to plate 4's sheet, not margin.** A 1:1 native crop
+  (x 2400-3260, y 2700-3200) shows plate 4 drawing, inside the tongue, both
+  block-face rules of the 80 ft street with its `80'` width annotation, the
+  `70'` annotation and the track curves east of it, the block outlines north of
+  the street, and the `GALVESTON COTTON COMPRESS & W. HO. CO. / TO BE REMOVED TO
+  48TH -- 50TH ST'S, CHURCH TO ALLEY BETWEEN AVES. "I" & "J"` legend on its
+  south face. The baseline dark fraction over x 2740-2990 is **block interior
+  and roadway** bounded by rules plate 4 itself draws - authentic blank map, not
+  blank paper.
+* **The retraction would not touch it anyway.** Plate 4's last real ink column
+  at this latitude is ~3150 (0.11-0.43 at x 3060-3150, baseline from 3160), and
+  its extent east edge is 3242 - so "last ink + guard" would move the edge ~85
+  native px. The tongue's own east edge is at native **2903**, a further **247
+  native px (982 mosaic px = 169 ft) west**. The retraction removes **0 px2** of
+  the tongue.
+
+The tongue is therefore what `fixplan_cuts.md` says it is - a three-way loss
+(15 -> 3 on a straight half-plane at x -7844.6, 3 -> 4 on the midpoint cut) that
+`fillgaps` hands to plate 4 on paper coverage - and not an extent fault.
+`--prefer-ink` does not move it either (measured ink per sample 3 = 3.69,
+4 = 1.36, 15 = 1.35, and plate 3's region does not touch the hole). It is
+re-measured after the re-cut in HQ-58, since the new `pair_3_4_y` corridor moves
+the 3\|4 coordinate 225 ft across this ground.
