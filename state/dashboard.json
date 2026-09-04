@@ -2,11 +2,11 @@
  "project": {
   "map": "Galveston Sanborn 1912 full-city mosaic",
   "year": 1912,
-  "stage": "improvement run \u2014 Gate C re-verify",
+  "stage": "improvement run \u2014 Gate A'' apply + re-cut",
   "status": "WORKING",
   "start_time": "2026-09-01T22:05Z",
-  "last_update": "2026-09-03T23:01Z",
-  "git_commit": "33abbec",
+  "last_update": "2026-09-04T01:09Z",
+  "git_commit": "b0168a5",
   "objective": "Finish the 1912 full-city mosaic to print-ready quality: session 018 carrying on from session 019 head; panels split, wharf in, 48/74 fixed; complete seam census, corrections, final deliverables."
  },
  "progress": {
@@ -14,14 +14,14 @@
   "stage_pct": 100,
   "tasks_done": 10,
   "tasks_total": 11,
-  "current_task": "Gate C: 7 workflows \u2014 116 seams re-graded (Sonnet, Opus adjudication below 4), 21 periphery windows (Opus), 138 interior windows (Sonnet + Opus refute)",
-  "next_task": "Wave 5: provenance, REPORT/DASHBOARD/HQ reconcile, final report and map to owner",
+  "current_task": "Gate A'': 5b similarity (3 new ties), 3|4 corridor control, 4 units.json edits, re-cut with erasure guard + panel centre, Gate B",
+  "next_task": "Wave 3'': render; targeted re-grade of moved seams; Wave 5 record; final report and map to owner",
   "blockers": []
  },
  "eta": {
-  "range": "1.5\u20133 hours",
+  "range": "2\u20133 hours",
   "confidence": "MEDIUM",
-  "reason": "render complete (HQ-55); ~200 grader agents at 14 concurrent"
+  "reason": "Gate C found 16 sub-4 seams; fixes developed and verified in scratch; apply + render + targeted re-grade remain"
  },
  "tasks": [
   {
