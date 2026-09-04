@@ -2229,3 +2229,118 @@ being reported here, not shipped.
 Not run this wave, by instruction: any tool under `outputs/1912/recipe/`
 (`localsolve.py`, `streetcut.py`, `fillgaps.py`, `furncover.py`,
 `wharfplace.py`); no grading.
+
+## HQ-56 · Gate A'' 1 · panel 5B given its first cross-frontage controls; 3|4 cut corridor — APPLIED
+
+`outputs/1912/qc/wave4/proposal_4_5b.md` (change lines 1-5) and
+`outputs/1912/qc/gatec/fixplan_cuts.md` section 3.2. Registration only; no cut
+was re-run in this commit.
+
+**The finding.** Panel 5B carried **no cross-frontage (x) control at all**. Its
+three master controls (`pair_05B_09/11/13`) are street face lines at constant
+page-y and pin along-frontage only; the six lowercase `pair_5a_*`/`pair_5b_*`
+files are `solve:false` seam-position records. `localsolve --units 5b` saw one
+control (`pair_5a_5b`, y) and the x axis was rank-deficient. The unobserved
+error is a rotation, not an offset: 5B's Ave A east block-front line swings
+11.9 ft bayward between 26th and 28th St while plates 11 and 13 hold the same
+line to 5.2 ft, and 5b's theta (+0.5935 deg) exceeds plate 13's (+0.0365) and
+11's (+0.0098) by the same 0.557 deg. At the 4|5b seam that showed as a 17.3 ft
+step in every drawn line.
+
+**Changes**
+
+| file | change |
+|---|---|
+| `controls/pair_5b_9_x.json` | NEW. Ave. A or Water east (landward) block-front line at 23rd (Tremont) St; `a_native` 6361.5 / `b_native` 1280.4, read at mosaic y 1475 (5b's stub block front = 9's "101 103 105" block west face at the 2301 Armour & Co corner). ACCEPTED. |
+| `controls/pair_5b_11_x.json` | NEW. Same line at 26th St; 6392.6 / 1250.1, read at mosaic y 8670 (11's "MERCHANDISE" block west face, italic Ave A 2601/2603). ACCEPTED. |
+| `controls/pair_5b_13_x.json` | NEW. Same line at 28th St; 6381.8 / 1257.6, read at mosaic y 13250 (13's 101/2801 block west face, block 748). ACCEPTED. |
+| `controls/pair_05B_13.json` | both anchors (27th St, 28th St) `CONTEXT_ONLY` -> `ACCEPTED`, each carrying `status_previous: CONTEXT_ONLY` and the reason. **Values unchanged.** Bookkeeping only: they are y-ties and do not fix the x error; they stop 5B's west end being unanchored in any axis. |
+| `transforms_city.json` | `localsolve.py --year 1912 --units 5b --similarity --apply`. **Unit 5b only.** |
+| `controls/pair_3_4_y.json` | NEW, `solve:false`. 33rd St cut corridor for the 3|4 pair. |
+
+**Identity, for all three new ties.** One drawn line, read twice: the east
+(landward) block-front line of Ave. A or Water, which panel 5B draws as its
+landward stub block fronts and the block plate draws as the bay-side face of the
+Ave A block. One corridor bayward is the quay/slip wall, which the block plate
+does not draw as a block face at all; one corridor landward is the far face of
+the same Ave A block, ~70 ft away with the block interior between. In the 28th
+St window both plates letter block 748: 5b prints "28TH ST." over the stubs, 13
+prints "AVE. A OR WATER", the odd run 2801/2803/2805/2807/2809 and 101/103/105,
+with 2727/102/104/106 north of 28th; the two plates' 28th St south block faces
+land 0.8 px apart. Plate 4's top margin prints its adjoining numeral 5 and 5b's
+bottom margin prints 13.
+
+**Solve result** (reproduces the proposal's dry run exactly)
+
+```
+8 line samples touch ['5b']; residuals after (ft): median 3.6, max 7.2
+   pair_5b_11_x  x@0.15 +7.2 | pair_5b_13_x x@0.85 -5.8 | x@0.15 -4.9
+   pair_5b_11_x  x@0.85 +4.8 | pair_5a_5b y +/-2.5 | pair_5b_9_x x -1.2 / -0.1
+unit 5b: scale 1.9876 -> 1.9874 (-0.01%), rotation +0.593 -> +0.163 deg,
+         centre moves (-1, +11) ft
+```
+
+`--units 5a 5b` was **not** used and `wharfplace.py` was **not** run (disclosure
+(d) below).
+
+**Gate — `bandresid.py --year 1912 --min-ft 6`**
+
+| | before | after |
+|---|---|---|
+| accepted controls | 334 | 337 |
+| over 6 ft | 7 | **8** |
+| median of max-abs | 1.6 ft | **1.6 ft** (bar: <= 1.7) |
+
+The one new entry is **`pair_5b_11_x +7.2 / +4.8 ft`** — the new control itself.
+**WAIVER GRANTED by the coordinator**: it is a brand-new tie where none existed,
+not a degradation of anything existing, and its 7.2 ft is a real disagreement
+between plate 11's and plate 13's own Ave A east faces (no rigid 5B can satisfy
+both; the three block plates it abuts do not agree with each other to better
+than ~7 ft). The other seven entries are unchanged to 0.1 ft. Nothing else
+landed newly over 6 ft. The 9+13-only variant would have passed the bar cleanly
+and closed 4|5b harder (1.6 ft) but pushes the 5b|11 seam to 9.2 ft where
+bandresid cannot see it; the waivered 9+11+13 variant is the only option under
+which no 5b seam is worse than 6.1 ft.
+
+**Disclosures carried by this change** (proposal (a)-(d), all four)
+
+(a) It **breaks the master's shared-orientation model**: 5a stays at theta
+    +0.593 deg while 5b goes to +0.163 deg, against `relative_rotation_deg` 0.0
+    in `transforms_sheet5.json`.
+(b) It changes two `tier: "core"` units, admissible only under the freeze
+    statement's "unless QA demonstrates the geometry itself is wrong (D-010)".
+(c) It does **not** propagate to sheets 3/4/6: `wharfplace.py` reads rotation
+    from `transforms_sheet5.json`, which is untouched. If that file is ever
+    corrected at source, sheets 3, 4 and 6 must all be re-run.
+(d) `localsolve.py --units 5a 5b --similarity` must **not** be used: 5a has no
+    x tie of its own and flies off +2401 ft.
+
+**Verification** — 1:1 crops, mosaic rect [-10767.34, 12300, -9167.34, 13900]
+(the `seam_4_5b` window, 1600 px across; axis x coord -9167.34), same rect and
+same ownership document in both, only the transform differing:
+`qc/gatec/verify2/4_5b_quay_{before,after}_reg.jpg`. Across the 4|5b boundary the
+slip's paired quay lines and the blue slip band **stepped 85 px = 14.7 ft before
+and step 12 px = 2.1 ft after** (1-D correlation of the ink profile 45 px above
+against 45 px below the boundary). Visually the quay pair and the slip band now
+run through the boundary unbroken. The doubled "Slip" label is unchanged and is
+a cut matter, handled in the re-cut (HQ-58).
+
+**`pair_3_4_y.json` is `solve:false`, on evidence.** Written with the exact
+values of `fixplan_cuts.md` section 3.2 (33rd St; `a_native` 235.0 sheet 3,
+`b_native` 3005.0 sheet 4), then tested both ways:
+
+* left solvable it reports **+6.6 / +6.6 ft** in `bandresid` — a second new entry
+  over the 6 ft bar, outside the granted waiver;
+* that 6.6 ft **is** the disclosed core-vs-outer scale shear at 3|4 (sheet 3
+  scale 4.00958 vs sheet 4 3.97640, ratio 1.00834, inherited from block plates
+  67/75 at ~2.008 against 13/15 at ~1.991), adjudicated NET-TENSION in
+  `proposal_4_5b.md` Part B with "no transform change to sheet 3";
+* and it is **circular**: `wharfplace.py` places sheet 3 from this exact
+  correspondence (`street_from: ("4", 235.0, 3005.0)`), so a least-squares solve
+  would fit sheet 3 to its own input.
+
+With `solve:false` it is excluded from `localsolve.py` and `bandresid.py` exactly
+as the five lowercase wharf frontage pairs are, and `tools/streetcut.py` — which
+ignores the flag — still reads the corridor, which is the file's whole purpose.
+`bandresid` returns to 8 entries / median 1.6 ft. Its effect on the cut is
+measured in HQ-58.

@@ -1790,22 +1790,22 @@
   "5b": {
    "m": [
     [
-     1.987505761890113,
-     -0.02058793898396516
+     1.987404740138451,
+     -0.005661493063270129
     ],
     [
-     0.02058793898396516,
-     1.987505761890113
+     0.005661493063270129,
+     1.987404740138451
     ]
    ],
    "t": [
-    -19385.78997367915,
-    -1775.3821590013622
+    -19420.862567759912,
+    -1687.3761111029396
    ],
-   "how": "frozen master: sheet-5 joint two-panel similarity (transforms_sheet5.json), applied to archival px",
+   "how": "frozen master: sheet-5 joint two-panel similarity (transforms_sheet5.json), applied to archival px; similarity re-solved locally from line controls (tools/localsolve.py)",
    "tier": "core",
-   "theta_deg": 0.5934874990851567,
-   "scale": 1.9876123909801946
+   "theta_deg": 0.16321727239166628,
+   "scale": 1.987412804031535
   },
   "4": {
    "m": [

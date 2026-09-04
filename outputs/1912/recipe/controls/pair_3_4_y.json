@@ -1,0 +1,14 @@
+{
+ "pair": [3, 4],
+ "axis": "street",
+ "observer": "gate-C cut fix-plan",
+ "method": "the tie tools/wharfplace.py places sheet 3 from, read as a seam corridor: 33rd St, the one street both wharf sheets draw",
+ "corridor": "33rd St",
+ "a_native": 235.0,
+ "b_native": 3005.0,
+ "why_not_one_block_off": "33rd St is the only street both wharf sheets draw across their shared ground: sheet 3's mapped ground begins at its top (north) edge with 33rd St running out to the piers, and sheet 4 draws the same street with the Fowler & McVitie coal-pocket track group on its north side and the compress property line on its south. It is the identical correspondence tools/wharfplace.py already uses to place sheet 3 (WHARF['3'] street_from: ('4', 235.0, 3005.0)), so the two natives are two readings of one drawn street, not two streets. One street north is off sheet 3 entirely; one street south (34th) is drawn by sheet 4 only, so neither alternative exists on both plates and neither can be confused with this line.",
+ "status": "ACCEPTED",
+ "solve": false,
+ "solve_note": "cut coordinate, not a solve equation, for two reasons measured here. (1) CIRCULAR: tools/wharfplace.py places sheet 3 from this exact correspondence, so a least-squares solve would fit sheet 3 to its own input. (2) It scores +6.6 / +6.6 ft in tools/bandresid.py, a NEW entry over the 6 ft bar, and that residual is the disclosed core-vs-outer scale shear at the 3|4 seam (sheet 3 scale 4.00958 vs sheet 4 3.97640, ratio 1.00834, inherited from the block plates 67/75 at ~2.008 against 13/15 at ~1.991), adjudicated NET-TENSION in outputs/1912/qc/wave4/proposal_4_5b.md Part B with 'no transform change to sheet 3'. Scoring it would invite the ~1 % re-scale of sheet 3 that the same evidence refutes. Excluded from tools/localsolve.py and tools/bandresid.py, exactly as the five lowercase wharf frontage pairs are; tools/streetcut.py ignores the flag and still reads the corridor, which is the whole purpose of the file.",
+ "added_by": "outputs/1912/qc/gatec/fixplan_cuts.md section 3.2: the 3|4 pair was how:'midpoint', corridor:null, and its min-ink path ran to the DP_HALF band edge and stuck there as a straight line at mosaic y = 25305, slicing the Pier 33/35 slip edge, the coal-pocket track group and the compress property line. The corridor moves the seam 1,304 px (225 ft) north to 24320.95 and moves no other seam."
+}

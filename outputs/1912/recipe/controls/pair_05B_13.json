@@ -1,9 +1,12 @@
 {
-  "pair": ["5B", "13"],
+  "pair": [
+    "5B",
+    "13"
+  ],
   "axis": "wharf-frontage seam; Ave A runs along page-y on both plates (sheet 13 drafted in the same rotated orientation; '70'' Ave A width annotation repeated in its corridor).",
   "boundary": "Ave. A or Water (sheet 5 panel B landward margin / sheet 13 bay-side edge), 27th-28th St stretch",
   "observer": "ctrl-S5",
-  "attachment_class": "CONTEXT_ONLY (per tasking: sheet 13 is context-only for the Piers 19-25 / 19th-25th St target footprint)",
+  "attachment_class": "ACCEPTED for the 1912 city mosaic (was CONTEXT_ONLY per the master tasking: sheet 13 is context-only for the Piers 19-25 / 19th-25th St target footprint). See status_change_reason on each anchor.",
   "plate_scales": {
     "5B": "100 ft to one inch (~309 px/100 ft)",
     "13": "50 ft to one inch (~618 px/100 ft)"
@@ -16,14 +19,32 @@
   "controls": [
     {
       "anchor": "27th St",
-      "status": "CONTEXT_ONLY",
+      "status": "ACCEPTED",
       "class": "observed",
       "why_not_one_block_off": "Sheet 13's top edge IS the 27th St seam (only street at its top edge, '11' printed above it as the adjoining sheet); it carries the south-side run 101-111 with italic Ave A 2701 and the 'Wm J. Lemp Brewing Co' premises. Panel B prints '27TH ST.' beside the measured stubs, between the labelled 26th and 28th.",
       "anchor_evidence": "Sheet 5 panel B: printed '27TH ST.', paper flaw (hole) at (6520, 6270) near but not on the south stub. Sheet 13: '27TH ... ST.' split label, run 101-111, italic 2701, 'Wm J. Lemp Brewing Co' with 'OFFICE'/'STORAGE', '70'' Ave A annotation at (2430, 700), bay-side outline lots 21/23.",
       "A": {
         "sheet": "5B",
-        "face1_seg": [[6438, 6022], [6600, 6022]],
-        "face2_seg": [[6445, 6262], [6560, 6262]],
+        "face1_seg": [
+          [
+            6438,
+            6022
+          ],
+          [
+            6600,
+            6022
+          ]
+        ],
+        "face2_seg": [
+          [
+            6445,
+            6262
+          ],
+          [
+            6560,
+            6262
+          ]
+        ],
         "measured_at": "landward stub block fronts, x 6438-6600",
         "sigma_along_px": 5.0,
         "sigma_basis": "face1 clean; face2 short with paper flaw ~40 px east of the read span",
@@ -31,32 +52,74 @@
       },
       "B": {
         "sheet": 13,
-        "face1_seg": [[2655, 190], [3190, 185]],
-        "face2_seg": [[2600, 665], [3290, 656]],
+        "face1_seg": [
+          [
+            2655,
+            190
+          ],
+          [
+            3190,
+            185
+          ]
+        ],
+        "face2_seg": [
+          [
+            2600,
+            665
+          ],
+          [
+            3290,
+            656
+          ]
+        ],
         "measured_at": "face2 (south, solid) at the Ave A corner x 2600; face1 (north) is only a reference outline ghost inside the neatline (north side of 27th belongs to sheet 11)",
         "sigma_along_px": 6.0,
         "sigma_basis": "face2 solid single rule, slight text contact; face1 ghost outline near plate edge, sigma 12 for that face",
         "source_sha256": "ff3077ac643d8ed4fe98e36e74ceddf2a80d3a44e6134e0eee29d6249a9fea73"
       },
-      "drafted_width_px": {"A": 240, "B": 477, "annotation": "B/A ratio 1.99 using the ghost face1 (~78 vs ~77 ft) - agreement, but B's width rests on an outline line"},
+      "drafted_width_px": {
+        "A": 240,
+        "B": 477,
+        "annotation": "B/A ratio 1.99 using the ghost face1 (~78 vs ~77 ft) - agreement, but B's width rests on an outline line"
+      },
       "evidence_crops": [
         "70_qa/control_evidence/sheet5B_27th_sheet5.jpg",
         "70_qa/control_evidence/sheet5B_27th_sheet13.jpg"
       ],
       "remeasured_by": "ctrl-S5 (second-pass re-read)",
       "remeasure_delta_px": 5,
-      "notes": "CONTEXT_ONLY by attachment class: both readings are sound but lie wholly outside the target footprint; retain for panel B's rigid-body check, do not let them dominate the 5B fit."
+      "notes": "CONTEXT_ONLY by attachment class: both readings are sound but lie wholly outside the target footprint; retain for panel B's rigid-body check, do not let them dominate the 5B fit.",
+      "status_previous": "CONTEXT_ONLY",
+      "status_change_reason": "The CONTEXT_ONLY tag was scoped to the master's Piers 19-25 / 19th-25th St target footprint; the 1912 city mosaic uses panel 5B west to 28th St, so its west end now needs its own anchors. Values unchanged - this is bookkeeping only: both anchors are street face lines at constant page-y and pin along-frontage only, so they do not by themselves fix the cross-frontage error; they stop panel 5B's west end being unanchored in any axis. See outputs/1912/qc/wave4/proposal_4_5b.md change line 4."
     },
     {
       "anchor": "28th St",
-      "status": "CONTEXT_ONLY",
+      "status": "ACCEPTED",
       "class": "observed",
       "why_not_one_block_off": "Sheet 13 carries the 28th St shed row 'S./SHED/sal./Boarding' with even run 102-110 and italic Ave A runs 2727 (north) and 2801 (south); panel B prints '28TH ST.' beside the measured stubs with the bottom-edge '13' adjoining-sheet numeral just south-west - one block off would show 2701 or 2901-series italics.",
       "anchor_evidence": "Sheet 5 panel B: printed '28TH ST.', track fan converging at the GWC yard, '13' bottom-edge numeral partially in crop, pencil survey note 'RH 6-26-12' on the paper (not drafted content). Sheet 13: runs 102-110 / 101-111, italics 2727/272x and 2801, dashed stall boxes projecting into the street (excluded), bay-side outline lots 21/23 with 'R' track labels.",
       "A": {
         "sheet": "5B",
-        "face1_seg": [[6432, 7162], [6570, 7162]],
-        "face2_seg": [[6428, 7402], [6555, 7402]],
+        "face1_seg": [
+          [
+            6432,
+            7162
+          ],
+          [
+            6570,
+            7162
+          ]
+        ],
+        "face2_seg": [
+          [
+            6428,
+            7402
+          ],
+          [
+            6555,
+            7402
+          ]
+        ],
         "measured_at": "landward stub block fronts, x 6428-6570",
         "sigma_along_px": 4.0,
         "sigma_basis": "clean single stub rules",
@@ -64,21 +127,46 @@
       },
       "B": {
         "sheet": 13,
-        "face1_seg": [[2655, 2492], [3345, 2485]],
-        "face2_seg": [[2660, 2963], [3320, 2958]],
+        "face1_seg": [
+          [
+            2655,
+            2492
+          ],
+          [
+            3345,
+            2485
+          ]
+        ],
+        "face2_seg": [
+          [
+            2660,
+            2963
+          ],
+          [
+            3320,
+            2958
+          ]
+        ],
         "measured_at": "solid block faces at the Ave A corner, x 2655-3345; dashed stalls (102/106, to y2575) excluded",
         "sigma_along_px": 5.0,
         "sigma_basis": "face1 solid but with dashed stall boxes crossing below; face2 clean single rule",
         "source_sha256": "ff3077ac643d8ed4fe98e36e74ceddf2a80d3a44e6134e0eee29d6249a9fea73"
       },
-      "drafted_width_px": {"A": 240, "B": 470, "annotation": "B/A ratio 1.96 (~78 vs ~76 ft) - ~2 ft drafted disagreement, recorded"},
+      "drafted_width_px": {
+        "A": 240,
+        "B": 470,
+        "annotation": "B/A ratio 1.96 (~78 vs ~76 ft) - ~2 ft drafted disagreement, recorded"
+      },
       "evidence_crops": [
         "70_qa/control_evidence/sheet5B_28th_sheet5.jpg",
         "70_qa/control_evidence/sheet5B_28th_sheet13.jpg"
       ],
       "remeasured_by": "ctrl-S5 (second-pass re-read)",
       "remeasure_delta_px": 4,
-      "notes": "CONTEXT_ONLY by attachment class. 28th is panel B's last full crossing before the page corner; sheet 4 continues the frontage west."
+      "notes": "CONTEXT_ONLY by attachment class. 28th is panel B's last full crossing before the page corner; sheet 4 continues the frontage west.",
+      "status_previous": "CONTEXT_ONLY",
+      "status_change_reason": "The CONTEXT_ONLY tag was scoped to the master's Piers 19-25 / 19th-25th St target footprint; the 1912 city mosaic uses panel 5B west to 28th St, so its west end now needs its own anchors. Values unchanged - this is bookkeeping only: both anchors are street face lines at constant page-y and pin along-frontage only, so they do not by themselves fix the cross-frontage error; they stop panel 5B's west end being unanchored in any axis. See outputs/1912/qc/wave4/proposal_4_5b.md change line 4."
     }
-  ]
+  ],
+  "attachment_class_previous": "CONTEXT_ONLY (per tasking: sheet 13 is context-only for the Piers 19-25 / 19th-25th St target footprint)"
 }

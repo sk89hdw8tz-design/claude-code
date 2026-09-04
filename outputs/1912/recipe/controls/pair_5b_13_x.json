@@ -1,0 +1,17 @@
+{
+ "axis": "avenue",
+ "observer": "gate-A'' wharf registration (outputs/1912/qc/wave4/proposal_4_5b.md)",
+ "method": "cross-frontage (mosaic x) tie on the east (landward) block-front line of Ave. A or Water, read on both plates in the same mosaic row band; established because panel 5B had NO cross-frontage control in any axis - the three master pair_05B_* controls are street face lines at constant page-y and pin along-frontage only (outputs/1912/qc/wave4/proposal_4_5b.md).",
+ "why_not_one_block_off": "Same ground, same names, no one-block-off risk. In one mosaic window (x -7300..-6350, y 12500..13750) plate 5b prints \"28TH ST.\" over the landward stub block fronts, and plate 13 prints \"AVE. A OR WATER\", the odd Ave A run 2801 / 2803 / 2805 / 2807 / 2809 and the 28th St run 101 / 103 / 105 on the same block corner, with 2727 / 102 / 104 / 106 on the block north of 28th - i.e. block 748 in both. The two plates' 28th St south block faces land 0.8 px apart. North across the seam plate 13 letters \"747\", \"GALVESTON WHARF COMPANY'S TERMINAL TRACKS & YARD\", the 10\" W. PIPE and Elevator \"B\", all of which 5b draws too. Plate 4's top margin prints its adjoining numeral 5 and 5b's bottom margin prints its adjoining numeral 13 - the plates' own statement of the attachment. The line tied here is the SAME DRAWN LINE on both plates: the east (landward) block-front line of Ave. A or Water, which panel 5B draws as its landward stub block fronts and the block plate draws as the bay-side face of the Ave A block. ONE CORRIDOR BAYWARD is the quay/slip wall, which the block plate does not draw as a block face at all; ONE CORRIDOR LANDWARD is the far (east) face of the same Ave A block, ~70 ft away and carrying the block interior between them, so neither alternative can be confused with this line. Panel 5B is a 100 ft/in sheet and the block plates are 50 ft/in, so the drafted spacing of the two faces differs by the scale ratio (~1.99) and not otherwise.",
+ "status": "ACCEPTED",
+ "added_by": "wave 4 / Gate A'' (outputs/1912/qc/wave4/proposal_4_5b.md): panel 5B's cross-frontage placement was never observed. Its Ave A east face swings 69 mosaic px (11.9 ft) bayward between 26th and 28th St while plates 11 and 13 hold the same line to 30 px (5.2 ft); the resulting step at the 4|5b seam was 17.3 ft. These three ties are the first x-axis observations panel 5B has ever carried.",
+ "pair": [
+  "5b",
+  "13"
+ ],
+ "corridor": "Ave. A or Water - east (landward) block-front line at 28th St",
+ "a_native": 6381.8,
+ "b_native": 1257.6,
+ "measurement_note": "Native x = raster x of each unit's own working scan. Read at mosaic y 13250 (28th St south face; plate 13's 101 / 2801 block west face, block 748). Same method as pair_5b_9_x. This is the west end of panel 5B, where the unobserved cross-frontage error is largest: the two plates' readings of this line differ by -19.0 ft before this change, and the 4|5b seam beside it steps 17.3 ft.",
+ "disagreement_before_ft": -19.0
+}
