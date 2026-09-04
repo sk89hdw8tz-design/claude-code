@@ -2480,3 +2480,123 @@ The tongue is therefore what `fixplan_cuts.md` says it is - a three-way loss
 4 = 1.36, 15 = 1.35, and plate 3's region does not touch the hole). It is
 re-measured after the re-cut in HQ-58, since the new `pair_3_4_y` corridor moves
 the 3\|4 coordinate 225 ft across this ground.
+
+## HQ-58 · Gate A'' 3 · Wave 2'' re-cut — APPLIED (Gate B: 1 piece, overlap pass; unclaimed explained)
+
+```
+streetcut.py --year 1912 --apply --band-furniture-free --min-band-span 2000 \
+             --erasure-guard --panel-centre
+fillgaps.py --year 1912 --apply          # plain form: fixplan_cuts.md section 5
+tiling.py   --year 1912                  # measured only; --prefer-ink NOT used
+```
+
+`--prefer-ink` was left off on the plan's own measurement: it does not move
+edge_18 (ink per sample over that hole is plate 3 = 3.69, 4 = 1.36, 15 = 1.35 and
+plate 3's region does not touch it), and it is not needed by any other item here.
+
+**Gate B**
+
+| | before (HQ-54 build) | after | gate |
+|---|---|---|---|
+| regions | 106 | 106 | — |
+| disjoint pieces | 1 | **1** | == 1 |
+| overlap | 989.3 px2 | **1,059.9 px2** | <= ~1,100 |
+| union | 4,518,131,205 px2 | 4,517,289,920 px2 | — |
+| unclaimed | 20,960,380 px2 (0.4639%) | **21,213,155 px2 (0.4696%)** | explained below |
+| gaps reported | 28 | 28 | — |
+| min-ink cuts | 203 | 204 | +1 (25b\|31) |
+| gaps assigned by `fillgaps` | 141 | 141 | — |
+| true source gaps | 9 | **8** | — |
+
+**Unclaimed, item by item** (+252,775 px2 net; the four movements below account for
++252,134 of it, the rest is cut-line hairline noise):
+
+* **+146,571 px2, new hole at [19120, 24545]** (was 9,275 px2 at [19437, 24547]) —
+  **over 50k, named cause: the erasure guard moved the 63\|71 cut 240 px south
+  (off -120 -> +120) into the band occupied by plate 63's own `cut:true` scale-bar
+  box** (mosaic [18794, 24447, 20079, 24649]). The box is subtracted from 63's
+  footprint, so the ground it sits on has no owner. `fillgaps` assigns 94.4 % of it
+  (unit 70 83.1 %, unit 71 11.3 %); the 9,278 px2 remainder is the same true source
+  gap as before. **See the 63\|70 finding below — this one has a visible cost.**
+* **+134,864 px2, new inlet at [-6534.7, 25907.9]** — over 50k, named cause: the new
+  `pair_3_4_y` corridor moved the 3\|4 coordinate 1,304 px (225 ft) north, and the
+  min-ink path leaves a wedge along the old boundary at the seam's east tip.
+  `fillgaps` assigns **100 % to unit 4**, whose paper covers it.
+* +33,598 px2 hole at [43632, 25008] replaces the 46,828 px2 hole at [43809, 24982]
+  — the 48\|99a gash, **shrunk 28 %** by unit 48's `extent[3]` 3813 -> 3840 (HQ-57).
+* +13,856 px2 hairline at [-11854, 96] replaces 15,518 px2 at [-11831, 198] — the
+  same 5a\|9 hairline, moved and slightly smaller.
+* **-9,275 px2**: the old furniture-cycle sliver at [19437, 24547], absorbed into the
+  new hole above.
+* **-5,134 px2**: the 56\|57 sliver at [15002, 17651] **closed** by unit 56's
+  furniture-box edit (HQ-57).
+
+The percentage also rises because the **denominator shrinks**: the union is
+841,285 px2 smaller than the HQ-54 build, from unit 5b's rotation correction and
+the unit 20/25b geometry edits.
+
+**Changed-seam set: `outputs/1912/qc/gatec/changed_seams_2.json`** — **46 of 203
+shared seams moved more than 50 px**, **1 pair newly cut on a min-ink path**
+(25b\|31), **40 erasure-guard firings** recorded on their own seam rows, and **37
+seams touching a unit changed this wave** (5b, 3, 4, 20, 25b, 48, 56, 57):
+**72 seams for the next grade wave.** Largest moves: 5b\|13 2,637 px (454.9 ft),
+5b\|9 2,315, 5b\|11 2,027 (all three from unit 5b's re-solve), **3\|4 1,304 px
+(225.0 ft) exactly as the fix plan predicted**, 5a\|9 552, 5a\|5b 539, 5a\|6 476,
+82\|90 424, 48\|74 420, 63\|71 408. Transforms, controls, unit geometry, furniture
+flags and two streetcut flags all changed in this wave, so a moved path is **not**
+attributable to the flags alone.
+
+**Verification — 1:1 crops in `outputs/1912/qc/gatec/verify2/`.** "before" is the
+shipped Gate-C build (HEAD b0f8579) rendered from a scratch copy of that recipe
+(its `transforms_city.json`, `units.json` and `ownership_city.json`); "after" is
+this build; identical mosaic rect in both.
+
+| item | files | outcome |
+|---|---|---|
+| **64\|72 8" main** | `64_72_main_*` | **as predicted.** Measured on the pipe band (mosaic y 24440-24720, threshold <150, 80 px smoothing): the longest blank run collapses from **254 ft** (x 25928-27403) to **39 ft**, and total blank over x 25300-28400 from 363 ft to 161 ft. Plate 64's east `8" W. PIPE` + `80'` and its dash run are restored across ground plate 72 draws nothing on. **Cost, as the plan disclosed:** the west label is now clipped to `8" W. P.` where it was whole. Net content gained. |
+| **63\|71 10" main** | `63_71_main_*` | **as predicted for the main.** Longest blank run **217 ft** (x 19792-21050) -> **50 ft**; total blank 284 -> 132 ft. **But see the 63\|70 regression below.** |
+| **3\|4 cut on 33rd St** | `3_4_coalpocket_*`, `3_4_tracks_*` | **as predicted.** Before: a dead-straight boundary at mosaic y 25305 cuts the Pier 33/35 slip wall, the Fowler & McVitie coal-pocket track group and the property lines at 45 degrees, and the plate beyond is blank. After: **no break anywhere in the window** - slip wall, both pocket tracks and the property lines run through, and the two sheds, the `40'` pocket and the track curve that were buried under the far plate's paper are back. |
+| **3\|4 east end** | `3_4_compress_*` | **a real cost, recorded.** Over mosaic x -9800..-8300, y 24300..25400 the seam's 225 ft move hands ground to plate 3, and plate 3 letters only `...RACKS & YARD` + `ST.` where plate 4 drew the whole **`GALVESTON COTTON COMPRESS & W. HO. CO. / TO BE REMOVED TO 48TH - 50TH ST'S, CHURCH TO ALLEY BETWEEN AVES. "I" & "J" / CONSTANT WATCHMAN REPORTS ... / 12 STATIONS - HOURLY ROUNDS / FUEL: OIL - HEAT: NONE`** legend. Both plates map the ground; plate 4 draws it in far more detail. The cut is a min-ink path within DP_HALF = 320 px of 24320.95, so it cannot reach back to 25305 to save the legend. **Judged a net gain** - the whole 12,570 px seam runs unbroken against one legend block lost over its last ~1,500 px - but it is the grader's call and it is on the re-grade list. |
+| **25\|25b `80'`** | `25_25b_80ft_*` | **mostly as predicted.** Before: two `80'` ticks. After: **one** `80'` and plate 32's complete `12TH ST.` - with a residual: 25b's own clipped `12` and a small fragment of its `80'` still print immediately west of plate 32's copy. Improvement with a 2-glyph residue, not a clean single copy. |
+| **20\|20b `AVENUE L.`** | `20_20b_avenueL_*` | **as predicted.** Before: `AVENUE` twice side by side and a mangled adjoining numeral. After: **one** `AVENUE`, a clean `20`, and the address runs 813-827 / 1120-1124 and both `70'` notes intact. Achieved with the unit-20 **notch** of HQ-57, so plate 24's title box stays supplied. |
+| **5a\|9 `Slip`** | `5a_9_slip_*` | **as predicted.** Before: three clipped fragments (`ip` / `sli`+`p` split by the jagged cut / `Sli`). After: **two whole `Slip` labels, no clipped glyph**, the cut clear of the lettering cluster. |
+| **56\|57 sliver** | `56_57_sliver_*` | **as predicted.** The ~14 px white sliver becomes a 1-2 px hairline; the 5,134 px2 gap is off the tiling audit entirely. |
+| **48\|99a gash** | `48_99a_gash_*` | **partly, with a cost.** The white gash narrows from ~90 px to ~30 px (46,828 -> 33,598 px2). But the guard also moved the cut 204 px (off +97.8 -> -120), so plate 99a's large adjoining numeral now prints in Ave A and part of plate 48's address run 2521/2523 and 3302-3308 is covered. Net unclear; on the re-grade list. |
+| **4\|5b quay lines** | `4_5b_quay_{before,after}_reg`, `4_5b_quay_cut_*` | **as predicted for registration** (HQ-56: step 14.7 -> 2.1 ft, lines continuous). The **doubled `Slip` at 4\|5b is unchanged**: 4\|5b is a `corner`/`straight` seam, so `streetcut` never runs a DP on it and the fix plan's suggested cut move (to mosaic y ~13500-13600) is not available from any flag. Deferred, recorded. |
+| **edge_18 tongue** | `edge_18_tongue_*` | **improved as ownership, changed in appearance.** The three-way unclaimed lens drops from **913,775 px2 to 269,627 px2** (-70 %), still assigned 100 % to plate 4. The pixels there now come from plate 3 rather than plate 4 - the same trade as the 3\|4 east end above. Plate 4's extent was **not** retracted; the ink profile in HQ-57 shows plate 4 draws that ground and its last ink is 247 native px east of the tongue. |
+| **Gate A' win_123 "2117"** | `win_123_2117_*` | **still holds** - before and after are **byte-identical** (mean abs diff 0.000). |
+| **Gate A' 91\|92 single main** | `91_92_main_*` | **still holds** - byte-identical. |
+| **Gate A' 17\|18 8th St** | `17_18_8th_st_*` | **still holds** - byte-identical. |
+| **Gate A' plate 4 elevator single** | `elevator_4_13_*` | **still holds.** `ELEVATOR "B" / CAP'Y 600,000 BUSHELS / (IRON CLAD)` prints once, whole, in block 748 with the grain dryer, `ENG. 550 H.P.`, the 2809-2823 run and the raised 40' conveyer. The window changed (mean abs diff 6.8) because the 4\|13 cut moved 240 px, not because anything doubled. |
+
+### The one new defect this wave: 63\|70 / 63\|71 in 33rd St
+
+The 63\|71 move that restores 167 ft of plate 63's 10" main also **undoes HQ-53's
+63\|70 outcome.** Mechanism, measured here:
+
+1. the guard moves the 63\|71 cut 240 px south, so plate 63's region now covers the
+   band that holds **plate 63's own scale-bar box**;
+2. that box is `cut:true` (HQ-53's cycle keeps 70[0]), so it is subtracted from 63's
+   footprint and the ground under it is owned by **nobody** - the +137k px2 hole;
+3. the renderer's unowned-sliver fallback (`tools/render.py`, mirrored in
+   `qcrender.py`) fills from each unit's footprint **exterior ring**, which ignores
+   furniture holes, so **plate 63's "Scale of Feet" legend and graduated bar print
+   there** - confirmed by pixel comparison against each plate's own warped paper
+   (mean abs diff over the patch: 63 = **8.4**, 71 = 23.7, 70 = 69.4).
+
+Before this wave plate 70's title (96,690 px2) printed there; now plate 63's legend
+(257,000 px2) does - **2.7x more furniture over mapped ground, exactly the ratio
+HQ-53 bought.** `fillgaps` assigns the hole to units 70 (83 %) and 71 (11 %), but
+neither `render.py` nor `qcrender.py` consults `gap_fill`, so the assignment does
+not reach the pixels.
+
+**Left in, with the trade stated**, because the alternatives are worse or out of
+scope: turning the guard off costs 40 seams including the verified 64\|72, 63\|71
+and 5a\|9 fixes; suppressing it on one seam is per-seam tuning; and the honest fixes
+named by HQ-54 and `fixplan_cuts.md` section 4 - trimming plate 63's scale-bar box off
+its own drawn main, or making the fallback honour `gap_fill` - are both new work.
+**This is the item the coordinator must sign off before the render wave**, and it is
+on the re-grade list.
+
+Not run this wave, by instruction: `publish.py`, `printmaster.py`, `perirender.py`,
+`interiorwins.py`, `seamcrops.py` - the render wave is separate.

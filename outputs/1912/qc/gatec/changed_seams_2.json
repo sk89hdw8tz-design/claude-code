@@ -1,0 +1,2085 @@
+{
+ "generated_by": "tools/cutdiff.py --min-move 50 plus the seams touching every unit changed in HQ-56/57, assembled by the Gate A'' orchestrator",
+ "wave": "Gate A'' re-cut (HQ-58)",
+ "before": "shipped Gate-C build: streetcut --band-furniture-free --min-band-span 2000 -> fillgaps (HQ-54)",
+ "after": "streetcut --band-furniture-free --min-band-span 2000 --erasure-guard --panel-centre -> fillgaps (plain), on the HQ-56/57 recipe",
+ "recipe_changes_in_the_same_wave": [
+  "transforms_city.json unit 5b re-solved as a similarity from three new x controls (HQ-56)",
+  "controls/pair_5b_9_x.json, pair_5b_11_x.json, pair_5b_13_x.json new; pair_05B_13 anchors CONTEXT_ONLY -> ACCEPTED (HQ-56)",
+  "controls/pair_3_4_y.json new, solve:false, 33rd St corridor for the 3|4 cut (HQ-56)",
+  "units.json: unit 20 region_native notch (east 3271 -> 3232 over rows 3060-3400), unit 25b region/extent east 3266 -> 3170, unit 48 extent bottom 3813 -> 3840, unit 56 furniture box east 3021 -> 3012 (HQ-57)",
+  "tools/furncover.py cycle persistence; furncover --apply changed no cut flag (HQ-57)"
+ ],
+ "warning": "transforms, controls, unit geometry, furniture flags and two streetcut flags all changed in this wave, so a moved path is not attributable to any one of them alone.",
+ "counts": {
+  "shared_seams": 203,
+  "moved_over_50px": 46,
+  "newly_cut_on_min_ink": 1,
+  "no_longer_cut": 0,
+  "erasure_guard_firings": 40,
+  "seams_touching_changed_units": 37,
+  "total_in_this_set": 72
+ },
+ "erasure_guard_firings": [
+  {
+   "pair": [
+    "4",
+    "13"
+   ],
+   "from_off": 0.0,
+   "to_off": 120.0,
+   "lost_before": 195027,
+   "lost_after": 48755,
+   "run_before_px": 432,
+   "run_after_px": 52
+  },
+  {
+   "pair": [
+    "5a",
+    "5b"
+   ],
+   "from_off": -120.0,
+   "to_off": 120.0,
+   "lost_before": 753151,
+   "lost_after": 266292,
+   "run_before_px": 1040,
+   "run_after_px": 132
+  },
+  {
+   "pair": [
+    "5a",
+    "6"
+   ],
+   "from_off": 0.0,
+   "to_off": -120.0,
+   "lost_before": 900131,
+   "lost_after": 471211,
+   "run_before_px": 1484,
+   "run_after_px": 748
+  },
+  {
+   "pair": [
+    "5a",
+    "9"
+   ],
+   "from_off": 0.0,
+   "to_off": 120.0,
+   "lost_before": 199356,
+   "lost_after": 103208,
+   "run_before_px": 208,
+   "run_after_px": 188
+  },
+  {
+   "pair": [
+    "5b",
+    "9"
+   ],
+   "from_off": 0.0,
+   "to_off": -120.0,
+   "lost_before": 616943,
+   "lost_after": 224668,
+   "run_before_px": 676,
+   "run_after_px": 216
+  },
+  {
+   "pair": [
+    "6",
+    "21"
+   ],
+   "from_off": -120.0,
+   "to_off": 0.0,
+   "lost_before": 232292,
+   "lost_after": 107939,
+   "run_before_px": 360,
+   "run_after_px": 92
+  },
+  {
+   "pair": [
+    "14",
+    "55"
+   ],
+   "from_off": 120.0,
+   "to_off": -120.0,
+   "lost_before": 80883,
+   "lost_after": 53363,
+   "run_before_px": 104,
+   "run_after_px": 92
+  },
+  {
+   "pair": [
+    "16",
+    "67"
+   ],
+   "from_off": 120.0,
+   "to_off": -120.0,
+   "lost_before": 295478,
+   "lost_after": 181475,
+   "run_before_px": 256,
+   "run_after_px": 88
+  },
+  {
+   "pair": [
+    "17",
+    "21"
+   ],
+   "from_off": 0.0,
+   "to_off": 120.0,
+   "lost_before": 448965,
+   "lost_after": 256702,
+   "run_before_px": 872,
+   "run_after_px": 296
+  },
+  {
+   "pair": [
+    "31",
+    "32"
+   ],
+   "from_off": -120.0,
+   "to_off": 120.0,
+   "lost_before": 72495,
+   "lost_after": 50431,
+   "run_before_px": 136,
+   "run_after_px": 68
+  },
+  {
+   "pair": [
+    "47",
+    "54b"
+   ],
+   "from_off": 120.0,
+   "to_off": 0.0,
+   "lost_before": 104720,
+   "lost_after": 72302,
+   "run_before_px": 140,
+   "run_after_px": 92
+  },
+  {
+   "pair": [
+    "48",
+    "74"
+   ],
+   "from_off": 120.0,
+   "to_off": 0.0,
+   "lost_before": 295462,
+   "lost_after": 159875,
+   "run_before_px": 256,
+   "run_after_px": 196
+  },
+  {
+   "pair": [
+    "48",
+    "99a"
+   ],
+   "from_off": 120.0,
+   "to_off": -120.0,
+   "lost_before": 241618,
+   "lost_after": 15984,
+   "run_before_px": 204,
+   "run_after_px": 24
+  },
+  {
+   "pair": [
+    "53",
+    "59"
+   ],
+   "from_off": 0.0,
+   "to_off": 120.0,
+   "lost_before": 144639,
+   "lost_after": 78681,
+   "run_before_px": 152,
+   "run_after_px": 152
+  },
+  {
+   "pair": [
+    "59",
+    "65"
+   ],
+   "from_off": 0.0,
+   "to_off": 120.0,
+   "lost_before": 222970,
+   "lost_after": 105899,
+   "run_before_px": 456,
+   "run_after_px": 252
+  },
+  {
+   "pair": [
+    "62",
+    "70"
+   ],
+   "from_off": -120.0,
+   "to_off": 0.0,
+   "lost_before": 208368,
+   "lost_after": 98525,
+   "run_before_px": 720,
+   "run_after_px": 152
+  },
+  {
+   "pair": [
+    "63",
+    "71"
+   ],
+   "from_off": -120.0,
+   "to_off": 120.0,
+   "lost_before": 129481,
+   "lost_after": 128883,
+   "run_before_px": 468,
+   "run_after_px": 96
+  },
+  {
+   "pair": [
+    "64",
+    "72"
+   ],
+   "from_off": -120.0,
+   "to_off": 120.0,
+   "lost_before": 68773,
+   "lost_after": 47311,
+   "run_before_px": 48,
+   "run_after_px": 48
+  },
+  {
+   "pair": [
+    "65",
+    "73"
+   ],
+   "from_off": -120.0,
+   "to_off": 120.0,
+   "lost_before": 255575,
+   "lost_after": 282161,
+   "run_before_px": 692,
+   "run_after_px": 292
+  },
+  {
+   "pair": [
+    "66",
+    "73"
+   ],
+   "from_off": -120.0,
+   "to_off": 120.0,
+   "lost_before": 259051,
+   "lost_after": 183079,
+   "run_before_px": 1076,
+   "run_after_px": 204
+  },
+  {
+   "pair": [
+    "68",
+    "76"
+   ],
+   "from_off": -120.0,
+   "to_off": 120.0,
+   "lost_before": 360863,
+   "lost_after": 232554,
+   "run_before_px": 1232,
+   "run_after_px": 292
+  },
+  {
+   "pair": [
+    "70",
+    "77"
+   ],
+   "from_off": -120.0,
+   "to_off": 120.0,
+   "lost_before": 58695,
+   "lost_after": 21905,
+   "run_before_px": 60,
+   "run_after_px": 40
+  },
+  {
+   "pair": [
+    "70",
+    "78"
+   ],
+   "from_off": -120.0,
+   "to_off": 120.0,
+   "lost_before": 343219,
+   "lost_after": 127106,
+   "run_before_px": 1224,
+   "run_after_px": 140
+  },
+  {
+   "pair": [
+    "71",
+    "72"
+   ],
+   "from_off": 96.6,
+   "to_off": -96.6,
+   "lost_before": 63744,
+   "lost_after": 29486,
+   "run_before_px": 100,
+   "run_after_px": 72
+  },
+  {
+   "pair": [
+    "73",
+    "80"
+   ],
+   "from_off": 120.0,
+   "to_off": 0.0,
+   "lost_before": 103145,
+   "lost_after": 50306,
+   "run_before_px": 172,
+   "run_after_px": 172
+  },
+  {
+   "pair": [
+    "74",
+    "82"
+   ],
+   "from_off": -120.0,
+   "to_off": 0.0,
+   "lost_before": 252400,
+   "lost_after": 90786,
+   "run_before_px": 388,
+   "run_after_px": 100
+  },
+  {
+   "pair": [
+    "74",
+    "99a"
+   ],
+   "from_off": 0.0,
+   "to_off": -120.0,
+   "lost_before": 589222,
+   "lost_after": 547841,
+   "run_before_px": 1660,
+   "run_after_px": 864
+  },
+  {
+   "pair": [
+    "76",
+    "77"
+   ],
+   "from_off": 96.3,
+   "to_off": 0.0,
+   "lost_before": 70679,
+   "lost_after": 37381,
+   "run_before_px": 92,
+   "run_after_px": 40
+  },
+  {
+   "pair": [
+    "76",
+    "83"
+   ],
+   "from_off": 120.0,
+   "to_off": 0.0,
+   "lost_before": 49385,
+   "lost_after": 22759,
+   "run_before_px": 72,
+   "run_after_px": 40
+  },
+  {
+   "pair": [
+    "78",
+    "86"
+   ],
+   "from_off": -120.0,
+   "to_off": 120.0,
+   "lost_before": 255542,
+   "lost_after": 144266,
+   "run_before_px": 1224,
+   "run_after_px": 612
+  },
+  {
+   "pair": [
+    "80",
+    "88"
+   ],
+   "from_off": -120.0,
+   "to_off": 120.0,
+   "lost_before": 152614,
+   "lost_after": 31133,
+   "run_before_px": 824,
+   "run_after_px": 36
+  },
+  {
+   "pair": [
+    "81",
+    "89"
+   ],
+   "from_off": -120.0,
+   "to_off": 120.0,
+   "lost_before": 190936,
+   "lost_after": 203796,
+   "run_before_px": 688,
+   "run_after_px": 256
+  },
+  {
+   "pair": [
+    "82",
+    "89"
+   ],
+   "from_off": 120.0,
+   "to_off": -120.0,
+   "lost_before": 219986,
+   "lost_after": 127618,
+   "run_before_px": 212,
+   "run_after_px": 156
+  },
+  {
+   "pair": [
+    "82",
+    "90"
+   ],
+   "from_off": -120.0,
+   "to_off": 120.0,
+   "lost_before": 326383,
+   "lost_after": 219061,
+   "run_before_px": 1200,
+   "run_after_px": 268
+  },
+  {
+   "pair": [
+    "83",
+    "84"
+   ],
+   "from_off": -120.0,
+   "to_off": 120.0,
+   "lost_before": 67663,
+   "lost_after": 39563,
+   "run_before_px": 140,
+   "run_after_px": 16
+  },
+  {
+   "pair": [
+    "85",
+    "86"
+   ],
+   "from_off": -120.0,
+   "to_off": 120.0,
+   "lost_before": 54212,
+   "lost_after": 10800,
+   "run_before_px": 80,
+   "run_after_px": 28
+  },
+  {
+   "pair": [
+    "92",
+    "93"
+   ],
+   "from_off": -112.4,
+   "to_off": 0.0,
+   "lost_before": 58812,
+   "lost_after": 50,
+   "run_before_px": 52,
+   "run_after_px": 0
+  },
+  {
+   "pair": [
+    "93",
+    "93b"
+   ],
+   "from_off": 120.0,
+   "to_off": 0.0,
+   "lost_before": 226853,
+   "lost_after": 51431,
+   "run_before_px": 120,
+   "run_after_px": 80
+  },
+  {
+   "pair": [
+    "94",
+    "95"
+   ],
+   "from_off": 118.6,
+   "to_off": -118.6,
+   "lost_before": 109244,
+   "lost_after": 46629,
+   "run_before_px": 144,
+   "run_after_px": 104
+  },
+  {
+   "pair": [
+    "96",
+    "97"
+   ],
+   "from_off": 119.7,
+   "to_off": -119.7,
+   "lost_before": 132194,
+   "lost_after": 64968,
+   "run_before_px": 156,
+   "run_after_px": 128
+  }
+ ],
+ "seams": [
+  {
+   "pair": [
+    "5b",
+    "13"
+   ],
+   "reason": "cut moved > 50 px",
+   "axis": "x",
+   "kind": "band",
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "Ave. A or Water - east (landward) block-front line at 28th St",
+   "coord_now": -6753.16,
+   "max_move_px": 2637.1,
+   "max_move_ft": 454.9,
+   "median_move_px": 2377.1,
+   "off_before": 0.0,
+   "off_after": 120.0,
+   "coord_before": -8851.73,
+   "coord_after": -6753.16
+  },
+  {
+   "pair": [
+    "5b",
+    "9"
+   ],
+   "reason": "cut moved > 50 px",
+   "axis": "x",
+   "kind": "band",
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "Ave. A or Water - east (landward) block-front line at 23rd (Tremont) St",
+   "coord_now": -6790.37,
+   "max_move_px": 2315.1,
+   "max_move_ft": 399.4,
+   "median_move_px": 2131.1,
+   "off_before": -120.0,
+   "off_after": -120.0,
+   "coord_before": -8927.05,
+   "coord_after": -6790.37,
+   "erasure_guard": {
+    "from_off": 0.0,
+    "to_off": -120.0,
+    "lost_before": 616943,
+    "lost_after": 224668,
+    "run_before_px": 676,
+    "run_after_px": 216
+   }
+  },
+  {
+   "pair": [
+    "5b",
+    "11"
+   ],
+   "reason": "cut moved > 50 px",
+   "axis": "x",
+   "kind": "band",
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "Ave. A or Water - east (landward) block-front line at 26th St",
+   "coord_now": -6756.99,
+   "max_move_px": 2027.3,
+   "max_move_ft": 349.7,
+   "median_move_px": 1899.3,
+   "off_before": 120.0,
+   "off_after": -120.0,
+   "coord_before": -8872.13,
+   "coord_after": -6756.99
+  },
+  {
+   "pair": [
+    "3",
+    "4"
+   ],
+   "reason": "cut moved > 50 px",
+   "axis": "y",
+   "kind": "band",
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "33rd St",
+   "coord_now": 24320.95,
+   "max_move_px": 1304.0,
+   "max_move_ft": 225.0,
+   "median_move_px": 1304.0,
+   "off_before": 0.0,
+   "off_after": 0.0,
+   "coord_before": 25624.93,
+   "coord_after": 24320.95
+  },
+  {
+   "pair": [
+    "5a",
+    "9"
+   ],
+   "reason": "cut moved > 50 px",
+   "axis": "x",
+   "kind": "band",
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "wharf frontage: 200 native px inside sheet 9's bay-side neatline",
+   "coord_now": -8927.1,
+   "max_move_px": 552.0,
+   "max_move_ft": 95.2,
+   "median_move_px": 124.0,
+   "off_before": 0.0,
+   "off_after": 120.0,
+   "coord_before": -8927.1,
+   "coord_after": -8927.1,
+   "erasure_guard": {
+    "from_off": 0.0,
+    "to_off": 120.0,
+    "lost_before": 199356,
+    "lost_after": 103208,
+    "run_before_px": 208,
+    "run_after_px": 188
+   }
+  },
+  {
+   "pair": [
+    "5a",
+    "5b"
+   ],
+   "reason": "cut moved > 50 px",
+   "axis": "y",
+   "kind": "band",
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "22nd St (panel break)",
+   "coord_now": -1159.38,
+   "max_move_px": 539.4,
+   "max_move_ft": 93.1,
+   "median_move_px": 329.3,
+   "off_before": -120.0,
+   "off_after": 120.0,
+   "coord_before": -1164.7,
+   "coord_after": -1159.38,
+   "erasure_guard": {
+    "from_off": -120.0,
+    "to_off": 120.0,
+    "lost_before": 753151,
+    "lost_after": 266292,
+    "run_before_px": 1040,
+    "run_after_px": 132
+   }
+  },
+  {
+   "pair": [
+    "5a",
+    "6"
+   ],
+   "reason": "cut moved > 50 px",
+   "axis": "y",
+   "kind": "band",
+   "cut": "min-ink path",
+   "how": "midpoint",
+   "corridor": null,
+   "coord_now": -14987.76,
+   "max_move_px": 476.0,
+   "max_move_ft": 82.1,
+   "median_move_px": 164.0,
+   "off_before": 0.0,
+   "off_after": -120.0,
+   "coord_before": -14987.76,
+   "coord_after": -14987.76,
+   "erasure_guard": {
+    "from_off": 0.0,
+    "to_off": -120.0,
+    "lost_before": 900131,
+    "lost_after": 471211,
+    "run_before_px": 1484,
+    "run_after_px": 748
+   }
+  },
+  {
+   "pair": [
+    "82",
+    "90"
+   ],
+   "reason": "cut moved > 50 px",
+   "axis": "y",
+   "kind": "band",
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "39th St",
+   "coord_now": 38475.67,
+   "max_move_px": 424.0,
+   "max_move_ft": 73.1,
+   "median_move_px": 268.0,
+   "off_before": -120.0,
+   "off_after": 120.0,
+   "coord_before": 38475.67,
+   "coord_after": 38475.67,
+   "erasure_guard": {
+    "from_off": -120.0,
+    "to_off": 120.0,
+    "lost_before": 326383,
+    "lost_after": 219061,
+    "run_before_px": 1200,
+    "run_after_px": 268
+   }
+  },
+  {
+   "pair": [
+    "48",
+    "74"
+   ],
+   "reason": "cut moved > 50 px",
+   "axis": "y",
+   "kind": "band",
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "33rd St",
+   "coord_now": 24661.55,
+   "max_move_px": 419.6,
+   "max_move_ft": 72.4,
+   "median_move_px": 120.0,
+   "off_before": 120.0,
+   "off_after": 0.0,
+   "coord_before": 24661.55,
+   "coord_after": 24661.55,
+   "erasure_guard": {
+    "from_off": 120.0,
+    "to_off": 0.0,
+    "lost_before": 295462,
+    "lost_after": 159875,
+    "run_before_px": 256,
+    "run_after_px": 196
+   }
+  },
+  {
+   "pair": [
+    "63",
+    "71"
+   ],
+   "reason": "cut moved > 50 px",
+   "axis": "y",
+   "kind": "band",
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "33rd St",
+   "coord_now": 24505.75,
+   "max_move_px": 408.0,
+   "max_move_ft": 70.4,
+   "median_move_px": 260.0,
+   "off_before": -120.0,
+   "off_after": 120.0,
+   "coord_before": 24505.75,
+   "coord_after": 24505.75,
+   "erasure_guard": {
+    "from_off": -120.0,
+    "to_off": 120.0,
+    "lost_before": 129481,
+    "lost_after": 128883,
+    "run_before_px": 468,
+    "run_after_px": 96
+   }
+  },
+  {
+   "pair": [
+    "78",
+    "86"
+   ],
+   "reason": "cut moved > 50 px",
+   "axis": "y",
+   "kind": "band",
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "39th St",
+   "coord_now": 38350.02,
+   "max_move_px": 408.0,
+   "max_move_ft": 70.4,
+   "median_move_px": 216.0,
+   "off_before": -120.0,
+   "off_after": 120.0,
+   "coord_before": 38350.02,
+   "coord_after": 38350.02,
+   "erasure_guard": {
+    "from_off": -120.0,
+    "to_off": 120.0,
+    "lost_before": 255542,
+    "lost_after": 144266,
+    "run_before_px": 1224,
+    "run_after_px": 612
+   }
+  },
+  {
+   "pair": [
+    "66",
+    "73"
+   ],
+   "reason": "cut moved > 50 px",
+   "axis": "y",
+   "kind": "band",
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "33rd St",
+   "coord_now": 24586.54,
+   "max_move_px": 400.0,
+   "max_move_ft": 69.0,
+   "median_move_px": 228.0,
+   "off_before": -120.0,
+   "off_after": 120.0,
+   "coord_before": 24586.54,
+   "coord_after": 24586.54,
+   "erasure_guard": {
+    "from_off": -120.0,
+    "to_off": 120.0,
+    "lost_before": 259051,
+    "lost_after": 183079,
+    "run_before_px": 1076,
+    "run_after_px": 204
+   }
+  },
+  {
+   "pair": [
+    "65",
+    "73"
+   ],
+   "reason": "cut moved > 50 px",
+   "axis": "y",
+   "kind": "band",
+   "cut": "min-ink path",
+   "how": "lattice",
+   "corridor": null,
+   "coord_now": 24542.42,
+   "max_move_px": 392.0,
+   "max_move_ft": 67.6,
+   "median_move_px": 280.0,
+   "off_before": -120.0,
+   "off_after": 120.0,
+   "coord_before": 24542.42,
+   "coord_after": 24542.42,
+   "erasure_guard": {
+    "from_off": -120.0,
+    "to_off": 120.0,
+    "lost_before": 255575,
+    "lost_after": 282161,
+    "run_before_px": 692,
+    "run_after_px": 292
+   }
+  },
+  {
+   "pair": [
+    "81",
+    "89"
+   ],
+   "reason": "cut moved > 50 px",
+   "axis": "y",
+   "kind": "band",
+   "cut": "min-ink path",
+   "how": "lattice",
+   "corridor": null,
+   "coord_now": 38448.12,
+   "max_move_px": 392.0,
+   "max_move_ft": 67.6,
+   "median_move_px": 240.0,
+   "off_before": -120.0,
+   "off_after": 120.0,
+   "coord_before": 38448.12,
+   "coord_after": 38448.12,
+   "erasure_guard": {
+    "from_off": -120.0,
+    "to_off": 120.0,
+    "lost_before": 190936,
+    "lost_after": 203796,
+    "run_before_px": 688,
+    "run_after_px": 256
+   }
+  },
+  {
+   "pair": [
+    "68",
+    "76"
+   ],
+   "reason": "cut moved > 50 px",
+   "axis": "y",
+   "kind": "band",
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "36th St",
+   "coord_now": 31371.69,
+   "max_move_px": 388.0,
+   "max_move_ft": 66.9,
+   "median_move_px": 276.0,
+   "off_before": -120.0,
+   "off_after": 120.0,
+   "coord_before": 31371.69,
+   "coord_after": 31371.69,
+   "erasure_guard": {
+    "from_off": -120.0,
+    "to_off": 120.0,
+    "lost_before": 360863,
+    "lost_after": 232554,
+    "run_before_px": 1232,
+    "run_after_px": 292
+   }
+  },
+  {
+   "pair": [
+    "16",
+    "67"
+   ],
+   "reason": "cut moved > 50 px",
+   "axis": "y",
+   "kind": "band",
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "33rd St",
+   "coord_now": 24419.35,
+   "max_move_px": 384.0,
+   "max_move_ft": 66.2,
+   "median_move_px": 188.0,
+   "off_before": 120.0,
+   "off_after": -120.0,
+   "coord_before": 24419.35,
+   "coord_after": 24419.35,
+   "erasure_guard": {
+    "from_off": 120.0,
+    "to_off": -120.0,
+    "lost_before": 295478,
+    "lost_after": 181475,
+    "run_before_px": 256,
+    "run_after_px": 88
+   }
+  },
+  {
+   "pair": [
+    "70",
+    "78"
+   ],
+   "reason": "cut moved > 50 px",
+   "axis": "y",
+   "kind": "band",
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "36th St",
+   "coord_now": 31432.35,
+   "max_move_px": 380.0,
+   "max_move_ft": 65.6,
+   "median_move_px": 256.0,
+   "off_before": -120.0,
+   "off_after": 120.0,
+   "coord_before": 31432.35,
+   "coord_after": 31432.35,
+   "erasure_guard": {
+    "from_off": -120.0,
+    "to_off": 120.0,
+    "lost_before": 343219,
+    "lost_after": 127106,
+    "run_before_px": 1224,
+    "run_after_px": 140
+   }
+  },
+  {
+   "pair": [
+    "74",
+    "99a"
+   ],
+   "reason": "cut moved > 50 px",
+   "axis": "x",
+   "kind": "band",
+   "cut": "min-ink path",
+   "how": "midpoint",
+   "corridor": null,
+   "coord_now": 43278.71,
+   "max_move_px": 376.0,
+   "max_move_ft": 64.9,
+   "median_move_px": 204.0,
+   "off_before": 0.0,
+   "off_after": -120.0,
+   "coord_before": 43278.71,
+   "coord_after": 43278.71,
+   "erasure_guard": {
+    "from_off": 0.0,
+    "to_off": -120.0,
+    "lost_before": 589222,
+    "lost_after": 547841,
+    "run_before_px": 1660,
+    "run_after_px": 864
+   }
+  },
+  {
+   "pair": [
+    "82",
+    "89"
+   ],
+   "reason": "cut moved > 50 px",
+   "axis": "y",
+   "kind": "band",
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "39th St",
+   "coord_now": 38460.05,
+   "max_move_px": 364.0,
+   "max_move_ft": 62.8,
+   "median_move_px": 236.0,
+   "off_before": 120.0,
+   "off_after": -120.0,
+   "coord_before": 38460.05,
+   "coord_after": 38460.05,
+   "erasure_guard": {
+    "from_off": 120.0,
+    "to_off": -120.0,
+    "lost_before": 219986,
+    "lost_after": 127618,
+    "run_before_px": 212,
+    "run_after_px": 156
+   }
+  },
+  {
+   "pair": [
+    "93",
+    "93b"
+   ],
+   "reason": "cut moved > 50 px",
+   "axis": "y",
+   "kind": "band",
+   "cut": "min-ink path",
+   "how": "midpoint",
+   "corridor": null,
+   "coord_now": 52166.94,
+   "max_move_px": 340.0,
+   "max_move_ft": 58.7,
+   "median_move_px": 52.0,
+   "off_before": 120.0,
+   "off_after": 0.0,
+   "coord_before": 52166.94,
+   "coord_after": 52166.94,
+   "erasure_guard": {
+    "from_off": 120.0,
+    "to_off": 0.0,
+    "lost_before": 226853,
+    "lost_after": 51431,
+    "run_before_px": 120,
+    "run_after_px": 80
+   }
+  },
+  {
+   "pair": [
+    "62",
+    "70"
+   ],
+   "reason": "cut moved > 50 px",
+   "axis": "y",
+   "kind": "band",
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "33rd St",
+   "coord_now": 24473.4,
+   "max_move_px": 332.0,
+   "max_move_ft": 57.3,
+   "median_move_px": 180.0,
+   "off_before": -120.0,
+   "off_after": 0.0,
+   "coord_before": 24473.4,
+   "coord_after": 24473.4,
+   "erasure_guard": {
+    "from_off": -120.0,
+    "to_off": 0.0,
+    "lost_before": 208368,
+    "lost_after": 98525,
+    "run_before_px": 720,
+    "run_after_px": 152
+   }
+  },
+  {
+   "pair": [
+    "76",
+    "83"
+   ],
+   "reason": "cut moved > 50 px",
+   "axis": "y",
+   "kind": "band",
+   "cut": "min-ink path",
+   "how": "lattice",
+   "corridor": null,
+   "coord_now": 38278.71,
+   "max_move_px": 324.0,
+   "max_move_ft": 55.9,
+   "median_move_px": 180.0,
+   "off_before": 120.0,
+   "off_after": 0.0,
+   "coord_before": 38278.71,
+   "coord_after": 38278.71,
+   "erasure_guard": {
+    "from_off": 120.0,
+    "to_off": 0.0,
+    "lost_before": 49385,
+    "lost_after": 22759,
+    "run_before_px": 72,
+    "run_after_px": 40
+   }
+  },
+  {
+   "pair": [
+    "83",
+    "84"
+   ],
+   "reason": "cut moved > 50 px",
+   "axis": "x",
+   "kind": "band",
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "Ave G (Winnie)",
+   "coord_now": 5046.59,
+   "max_move_px": 320.0,
+   "max_move_ft": 55.2,
+   "median_move_px": 214.0,
+   "off_before": -120.0,
+   "off_after": 120.0,
+   "coord_before": 5046.59,
+   "coord_after": 5046.59,
+   "erasure_guard": {
+    "from_off": -120.0,
+    "to_off": 120.0,
+    "lost_before": 67663,
+    "lost_after": 39563,
+    "run_before_px": 140,
+    "run_after_px": 16
+   }
+  },
+  {
+   "pair": [
+    "17",
+    "21"
+   ],
+   "reason": "cut moved > 50 px",
+   "axis": "y",
+   "kind": "band",
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "9th St",
+   "coord_now": -31172.1,
+   "max_move_px": 312.0,
+   "max_move_ft": 53.8,
+   "median_move_px": 128.0,
+   "off_before": 0.0,
+   "off_after": 120.0,
+   "coord_before": -31172.1,
+   "coord_after": -31172.1,
+   "erasure_guard": {
+    "from_off": 0.0,
+    "to_off": 120.0,
+    "lost_before": 448965,
+    "lost_after": 256702,
+    "run_before_px": 872,
+    "run_after_px": 296
+   }
+  },
+  {
+   "pair": [
+    "31",
+    "32"
+   ],
+   "reason": "cut moved > 50 px",
+   "axis": "x",
+   "kind": "band",
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "Ave N",
+   "coord_now": 21487.97,
+   "max_move_px": 292.0,
+   "max_move_ft": 50.4,
+   "median_move_px": 224.0,
+   "off_before": -120.0,
+   "off_after": 120.0,
+   "coord_before": 21487.97,
+   "coord_after": 21487.97,
+   "erasure_guard": {
+    "from_off": -120.0,
+    "to_off": 120.0,
+    "lost_before": 72495,
+    "lost_after": 50431,
+    "run_before_px": 136,
+    "run_after_px": 68
+   }
+  },
+  {
+   "pair": [
+    "80",
+    "88"
+   ],
+   "reason": "cut moved > 50 px",
+   "axis": "y",
+   "kind": "band",
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "39th St",
+   "coord_now": 38425.86,
+   "max_move_px": 288.0,
+   "max_move_ft": 49.7,
+   "median_move_px": 248.0,
+   "off_before": -120.0,
+   "off_after": 120.0,
+   "coord_before": 38425.86,
+   "coord_after": 38425.86,
+   "erasure_guard": {
+    "from_off": -120.0,
+    "to_off": 120.0,
+    "lost_before": 152614,
+    "lost_after": 31133,
+    "run_before_px": 824,
+    "run_after_px": 36
+   }
+  },
+  {
+   "pair": [
+    "53",
+    "59"
+   ],
+   "reason": "cut moved > 50 px",
+   "axis": "y",
+   "kind": "band",
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "27th St",
+   "coord_now": 10729.52,
+   "max_move_px": 284.0,
+   "max_move_ft": 49.0,
+   "median_move_px": 92.0,
+   "off_before": 0.0,
+   "off_after": 120.0,
+   "coord_before": 10729.52,
+   "coord_after": 10729.52,
+   "erasure_guard": {
+    "from_off": 0.0,
+    "to_off": 120.0,
+    "lost_before": 144639,
+    "lost_after": 78681,
+    "run_before_px": 152,
+    "run_after_px": 152
+   }
+  },
+  {
+   "pair": [
+    "70",
+    "77"
+   ],
+   "reason": "cut moved > 50 px",
+   "axis": "y",
+   "kind": "band",
+   "cut": "min-ink path",
+   "how": "lattice",
+   "corridor": null,
+   "coord_now": 31427.27,
+   "max_move_px": 276.0,
+   "max_move_ft": 47.6,
+   "median_move_px": 216.0,
+   "off_before": -120.0,
+   "off_after": 120.0,
+   "coord_before": 31427.27,
+   "coord_after": 31427.27,
+   "erasure_guard": {
+    "from_off": -120.0,
+    "to_off": 120.0,
+    "lost_before": 58695,
+    "lost_after": 21905,
+    "run_before_px": 60,
+    "run_after_px": 40
+   }
+  },
+  {
+   "pair": [
+    "47",
+    "54b"
+   ],
+   "reason": "cut moved > 50 px",
+   "axis": "x",
+   "kind": "band",
+   "cut": "min-ink path",
+   "how": "midpoint",
+   "corridor": null,
+   "coord_now": 33456.8,
+   "max_move_px": 268.0,
+   "max_move_ft": 46.2,
+   "median_move_px": 68.0,
+   "off_before": 120.0,
+   "off_after": 0.0,
+   "coord_before": 33456.8,
+   "coord_after": 33456.8,
+   "erasure_guard": {
+    "from_off": 120.0,
+    "to_off": 0.0,
+    "lost_before": 104720,
+    "lost_after": 72302,
+    "run_before_px": 140,
+    "run_after_px": 92
+   }
+  },
+  {
+   "pair": [
+    "14",
+    "55"
+   ],
+   "reason": "cut moved > 50 px",
+   "axis": "x",
+   "kind": "band",
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "Ave F (Church)",
+   "coord_now": 3106.41,
+   "max_move_px": 260.0,
+   "max_move_ft": 44.9,
+   "median_move_px": 196.0,
+   "off_before": 120.0,
+   "off_after": -120.0,
+   "coord_before": 3106.41,
+   "coord_after": 3106.41,
+   "erasure_guard": {
+    "from_off": 120.0,
+    "to_off": -120.0,
+    "lost_before": 80883,
+    "lost_after": 53363,
+    "run_before_px": 104,
+    "run_after_px": 92
+   }
+  },
+  {
+   "pair": [
+    "48",
+    "48b"
+   ],
+   "reason": "cut moved > 50 px",
+   "axis": "y",
+   "kind": "band",
+   "cut": "min-ink path",
+   "how": "midpoint",
+   "corridor": null,
+   "coord_now": 17695.37,
+   "max_move_px": 248.0,
+   "max_move_ft": 42.8,
+   "median_move_px": 124.0,
+   "off_before": -120.0,
+   "off_after": 0.0,
+   "coord_before": 17695.37,
+   "coord_after": 17695.37
+  },
+  {
+   "pair": [
+    "64",
+    "72"
+   ],
+   "reason": "cut moved > 50 px",
+   "axis": "y",
+   "kind": "band",
+   "cut": "min-ink path",
+   "how": "midpoint",
+   "corridor": null,
+   "coord_now": 24549.9,
+   "max_move_px": 248.0,
+   "max_move_ft": 42.8,
+   "median_move_px": 220.0,
+   "off_before": -120.0,
+   "off_after": 120.0,
+   "coord_before": 24549.9,
+   "coord_after": 24549.9,
+   "erasure_guard": {
+    "from_off": -120.0,
+    "to_off": 120.0,
+    "lost_before": 68773,
+    "lost_after": 47311,
+    "run_before_px": 48,
+    "run_after_px": 48
+   }
+  },
+  {
+   "pair": [
+    "74",
+    "82"
+   ],
+   "reason": "cut moved > 50 px",
+   "axis": "y",
+   "kind": "band",
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "36th St",
+   "coord_now": 31562.56,
+   "max_move_px": 248.0,
+   "max_move_ft": 42.8,
+   "median_move_px": 124.0,
+   "off_before": -120.0,
+   "off_after": 0.0,
+   "coord_before": 31562.56,
+   "coord_after": 31562.56,
+   "erasure_guard": {
+    "from_off": -120.0,
+    "to_off": 0.0,
+    "lost_before": 252400,
+    "lost_after": 90786,
+    "run_before_px": 388,
+    "run_after_px": 100
+   }
+  },
+  {
+   "pair": [
+    "59",
+    "65"
+   ],
+   "reason": "cut moved > 50 px",
+   "axis": "y",
+   "kind": "band",
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "30th St",
+   "coord_now": 17628.28,
+   "max_move_px": 244.0,
+   "max_move_ft": 42.1,
+   "median_move_px": 104.0,
+   "off_before": 0.0,
+   "off_after": 120.0,
+   "coord_before": 17628.28,
+   "coord_after": 17628.28,
+   "erasure_guard": {
+    "from_off": 0.0,
+    "to_off": 120.0,
+    "lost_before": 222970,
+    "lost_after": 105899,
+    "run_before_px": 456,
+    "run_after_px": 252
+   }
+  },
+  {
+   "pair": [
+    "4",
+    "13"
+   ],
+   "reason": "cut moved > 50 px",
+   "axis": "x",
+   "kind": "band",
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "wharf frontage: 200 native px inside sheet 13's bay-side neatline",
+   "coord_now": -8851.84,
+   "max_move_px": 240.0,
+   "max_move_ft": 41.4,
+   "median_move_px": 120.0,
+   "off_before": 0.0,
+   "off_after": 120.0,
+   "coord_before": -8851.84,
+   "coord_after": -8851.84,
+   "erasure_guard": {
+    "from_off": 0.0,
+    "to_off": 120.0,
+    "lost_before": 195027,
+    "lost_after": 48755,
+    "run_before_px": 432,
+    "run_after_px": 52
+   }
+  },
+  {
+   "pair": [
+    "96",
+    "97"
+   ],
+   "reason": "cut moved > 50 px",
+   "axis": "x",
+   "kind": "band",
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "Ave Q 1/2",
+   "coord_now": 35266.65,
+   "max_move_px": 228.0,
+   "max_move_ft": 39.3,
+   "median_move_px": 194.0,
+   "off_before": 119.7,
+   "off_after": -119.7,
+   "coord_before": 35266.65,
+   "coord_after": 35266.65,
+   "erasure_guard": {
+    "from_off": 119.7,
+    "to_off": -119.7,
+    "lost_before": 132194,
+    "lost_after": 64968,
+    "run_before_px": 156,
+    "run_after_px": 128
+   }
+  },
+  {
+   "pair": [
+    "6",
+    "21"
+   ],
+   "reason": "cut moved > 50 px",
+   "axis": "x",
+   "kind": "band",
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "wharf frontage: 200 native px inside sheet 21's bay-side neatline",
+   "coord_now": -8772.31,
+   "max_move_px": 224.0,
+   "max_move_ft": 38.6,
+   "median_move_px": 0.0,
+   "off_before": -120.0,
+   "off_after": 0.0,
+   "coord_before": -8772.31,
+   "coord_after": -8772.31,
+   "erasure_guard": {
+    "from_off": -120.0,
+    "to_off": 0.0,
+    "lost_before": 232292,
+    "lost_after": 107939,
+    "run_before_px": 360,
+    "run_after_px": 92
+   }
+  },
+  {
+   "pair": [
+    "85",
+    "86"
+   ],
+   "reason": "cut moved > 50 px",
+   "axis": "x",
+   "kind": "band",
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "Ave M 1/2",
+   "coord_now": 19221.1,
+   "max_move_px": 224.0,
+   "max_move_ft": 38.6,
+   "median_move_px": 176.0,
+   "off_before": -120.0,
+   "off_after": 120.0,
+   "coord_before": 19221.1,
+   "coord_after": 19221.1,
+   "erasure_guard": {
+    "from_off": -120.0,
+    "to_off": 120.0,
+    "lost_before": 54212,
+    "lost_after": 10800,
+    "run_before_px": 80,
+    "run_after_px": 28
+   }
+  },
+  {
+   "pair": [
+    "25b",
+    "32"
+   ],
+   "reason": "cut moved > 50 px",
+   "axis": "y",
+   "kind": "band",
+   "cut": "min-ink path",
+   "how": "midpoint",
+   "corridor": null,
+   "coord_now": -24159.54,
+   "max_move_px": 212.0,
+   "max_move_ft": 36.6,
+   "median_move_px": 52.0,
+   "off_before": 0.0,
+   "off_after": 0.0,
+   "coord_before": -24159.46,
+   "coord_after": -24159.54
+  },
+  {
+   "pair": [
+    "94",
+    "95"
+   ],
+   "reason": "cut moved > 50 px",
+   "axis": "x",
+   "kind": "band",
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "Ave N 1/2",
+   "coord_now": 23220.49,
+   "max_move_px": 208.0,
+   "max_move_ft": 35.9,
+   "median_move_px": 192.0,
+   "off_before": 118.6,
+   "off_after": -118.6,
+   "coord_before": 23220.49,
+   "coord_after": 23220.49,
+   "erasure_guard": {
+    "from_off": 118.6,
+    "to_off": -118.6,
+    "lost_before": 109244,
+    "lost_after": 46629,
+    "run_before_px": 144,
+    "run_after_px": 104
+   }
+  },
+  {
+   "pair": [
+    "48",
+    "99a"
+   ],
+   "reason": "cut moved > 50 px",
+   "axis": "y",
+   "kind": "band",
+   "cut": "min-ink path",
+   "how": "midpoint",
+   "corridor": null,
+   "coord_now": 24864.38,
+   "max_move_px": 204.0,
+   "max_move_ft": 35.2,
+   "median_move_px": 162.0,
+   "off_before": 97.8,
+   "off_after": -120.0,
+   "coord_before": 24837.2,
+   "coord_after": 24864.38,
+   "erasure_guard": {
+    "from_off": 120.0,
+    "to_off": -120.0,
+    "lost_before": 241618,
+    "lost_after": 15984,
+    "run_before_px": 204,
+    "run_after_px": 24
+   }
+  },
+  {
+   "pair": [
+    "73",
+    "80"
+   ],
+   "reason": "cut moved > 50 px",
+   "axis": "y",
+   "kind": "band",
+   "cut": "min-ink path",
+   "how": "lattice",
+   "corridor": null,
+   "coord_now": 31499.81,
+   "max_move_px": 196.0,
+   "max_move_ft": 33.8,
+   "median_move_px": 118.0,
+   "off_before": 120.0,
+   "off_after": 0.0,
+   "coord_before": 31499.81,
+   "coord_after": 31499.81,
+   "erasure_guard": {
+    "from_off": 120.0,
+    "to_off": 0.0,
+    "lost_before": 103145,
+    "lost_after": 50306,
+    "run_before_px": 172,
+    "run_after_px": 172
+   }
+  },
+  {
+   "pair": [
+    "71",
+    "72"
+   ],
+   "reason": "cut moved > 50 px",
+   "axis": "x",
+   "kind": "band",
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "Ave O",
+   "coord_now": 25309.48,
+   "max_move_px": 184.0,
+   "max_move_ft": 31.7,
+   "median_move_px": 144.0,
+   "off_before": 96.6,
+   "off_after": -96.6,
+   "coord_before": 25309.48,
+   "coord_after": 25309.48,
+   "erasure_guard": {
+    "from_off": 96.6,
+    "to_off": -96.6,
+    "lost_before": 63744,
+    "lost_after": 29486,
+    "run_before_px": 100,
+    "run_after_px": 72
+   }
+  },
+  {
+   "pair": [
+    "76",
+    "77"
+   ],
+   "reason": "cut moved > 50 px",
+   "axis": "x",
+   "kind": "band",
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "Ave I",
+   "coord_now": 9039.05,
+   "max_move_px": 168.0,
+   "max_move_ft": 29.0,
+   "median_move_px": 68.0,
+   "off_before": 96.3,
+   "off_after": 0.0,
+   "coord_before": 9039.05,
+   "coord_after": 9039.05,
+   "erasure_guard": {
+    "from_off": 96.3,
+    "to_off": 0.0,
+    "lost_before": 70679,
+    "lost_after": 37381,
+    "run_before_px": 92,
+    "run_after_px": 40
+   }
+  },
+  {
+   "pair": [
+    "20",
+    "20b"
+   ],
+   "reason": "cut moved > 50 px",
+   "axis": "x",
+   "kind": "band",
+   "cut": "min-ink path",
+   "how": "midpoint",
+   "corridor": null,
+   "coord_now": 15324.24,
+   "max_move_px": 140.0,
+   "max_move_ft": 24.2,
+   "median_move_px": 76.0,
+   "off_before": 109.3,
+   "off_after": 0.0,
+   "coord_before": 15324.24,
+   "coord_after": 15324.24
+  },
+  {
+   "pair": [
+    "92",
+    "93"
+   ],
+   "reason": "cut moved > 50 px",
+   "axis": "x",
+   "kind": "band",
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "Ave J",
+   "coord_now": 11128.57,
+   "max_move_px": 116.0,
+   "max_move_ft": 20.0,
+   "median_move_px": 56.0,
+   "off_before": -112.4,
+   "off_after": 0.0,
+   "coord_before": 11128.57,
+   "coord_after": 11128.57,
+   "erasure_guard": {
+    "from_off": -112.4,
+    "to_off": 0.0,
+    "lost_before": 58812,
+    "lost_after": 50,
+    "run_before_px": 52,
+    "run_after_px": 0
+   }
+  },
+  {
+   "pair": [
+    "25b",
+    "31"
+   ],
+   "reason": "newly cut on a min-ink path (not cut in the before build)",
+   "axis": "y",
+   "kind": "band",
+   "cut": "min-ink path",
+   "how": "midpoint",
+   "corridor": null,
+   "coord_now": -24092.7
+  },
+  {
+   "pair": [
+    "19",
+    "20"
+   ],
+   "reason": "touches a unit changed this wave (5b, 3, 4, 20, 25b, 48, 56, 57)",
+   "axis": "x",
+   "kind": "band",
+   "cut": "min-ink path",
+   "how": "midpoint",
+   "corridor": null,
+   "coord_now": 9201.22
+  },
+  {
+   "pair": [
+    "20",
+    "23"
+   ],
+   "reason": "touches a unit changed this wave (5b, 3, 4, 20, 25b, 48, 56, 57)",
+   "axis": "y",
+   "kind": "corner",
+   "cut": "straight",
+   "how": "midpoint",
+   "corridor": null,
+   "coord_now": -31088.62
+  },
+  {
+   "pair": [
+    "20",
+    "24"
+   ],
+   "reason": "touches a unit changed this wave (5b, 3, 4, 20, 25b, 48, 56, 57)",
+   "axis": "y",
+   "kind": "band",
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "9th St",
+   "coord_now": -31048.67
+  },
+  {
+   "pair": [
+    "20",
+    "25"
+   ],
+   "reason": "touches a unit changed this wave (5b, 3, 4, 20, 25b, 48, 56, 57)",
+   "axis": "y",
+   "kind": "corner",
+   "cut": "straight",
+   "how": "midpoint",
+   "corridor": null,
+   "coord_now": -31054.26
+  },
+  {
+   "pair": [
+    "25",
+    "25b"
+   ],
+   "reason": "touches a unit changed this wave (5b, 3, 4, 20, 25b, 48, 56, 57)",
+   "axis": "x",
+   "kind": "band",
+   "cut": "min-ink path",
+   "how": "midpoint",
+   "corridor": null,
+   "coord_now": 21349.75
+  },
+  {
+   "pair": [
+    "3",
+    "15"
+   ],
+   "reason": "touches a unit changed this wave (5b, 3, 4, 20, 25b, 48, 56, 57)",
+   "axis": "x",
+   "kind": "corner",
+   "cut": "straight",
+   "how": "midpoint",
+   "corridor": null,
+   "coord_now": -7844.6
+  },
+  {
+   "pair": [
+    "4",
+    "15"
+   ],
+   "reason": "touches a unit changed this wave (5b, 3, 4, 20, 25b, 48, 56, 57)",
+   "axis": "x",
+   "kind": "band",
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "wharf frontage: 200 native px inside sheet 15's bay-side neatline",
+   "coord_now": -8892.38
+  },
+  {
+   "pair": [
+    "4",
+    "5b"
+   ],
+   "reason": "touches a unit changed this wave (5b, 3, 4, 20, 25b, 48, 56, 57)",
+   "axis": "x",
+   "kind": "corner",
+   "cut": "straight",
+   "how": "midpoint",
+   "corridor": null,
+   "coord_now": -9090.53
+  },
+  {
+   "pair": [
+    "48",
+    "60"
+   ],
+   "reason": "touches a unit changed this wave (5b, 3, 4, 20, 25b, 48, 56, 57)",
+   "axis": "y",
+   "kind": "corner",
+   "cut": "straight",
+   "how": "midpoint",
+   "corridor": null,
+   "coord_now": 17689.43
+  },
+  {
+   "pair": [
+    "48",
+    "66"
+   ],
+   "reason": "touches a unit changed this wave (5b, 3, 4, 20, 25b, 48, 56, 57)",
+   "axis": "x",
+   "kind": "band",
+   "cut": "min-ink path",
+   "how": "midpoint",
+   "corridor": null,
+   "coord_now": 39418.61
+  },
+  {
+   "pair": [
+    "49",
+    "56"
+   ],
+   "reason": "touches a unit changed this wave (5b, 3, 4, 20, 25b, 48, 56, 57)",
+   "axis": "y",
+   "kind": "corner",
+   "cut": "straight",
+   "how": "control",
+   "corridor": "27th St",
+   "coord_now": 10588.03
+  },
+  {
+   "pair": [
+    "50",
+    "56"
+   ],
+   "reason": "touches a unit changed this wave (5b, 3, 4, 20, 25b, 48, 56, 57)",
+   "axis": "y",
+   "kind": "band",
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "27th St",
+   "coord_now": 10587.53
+  },
+  {
+   "pair": [
+    "50",
+    "57"
+   ],
+   "reason": "touches a unit changed this wave (5b, 3, 4, 20, 25b, 48, 56, 57)",
+   "axis": "y",
+   "kind": "corner",
+   "cut": "straight",
+   "how": "control",
+   "corridor": "27th St",
+   "coord_now": 10595.7
+  },
+  {
+   "pair": [
+    "51",
+    "56"
+   ],
+   "reason": "touches a unit changed this wave (5b, 3, 4, 20, 25b, 48, 56, 57)",
+   "axis": "y",
+   "kind": "corner",
+   "cut": "straight",
+   "how": "midpoint",
+   "corridor": null,
+   "coord_now": 10705.11
+  },
+  {
+   "pair": [
+    "51",
+    "57"
+   ],
+   "reason": "touches a unit changed this wave (5b, 3, 4, 20, 25b, 48, 56, 57)",
+   "axis": "y",
+   "kind": "band",
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "27th St",
+   "coord_now": 10604.97
+  },
+  {
+   "pair": [
+    "52",
+    "57"
+   ],
+   "reason": "touches a unit changed this wave (5b, 3, 4, 20, 25b, 48, 56, 57)",
+   "axis": "y",
+   "kind": "corner",
+   "cut": "straight",
+   "how": "control",
+   "corridor": "27th St",
+   "coord_now": 10627.14
+  },
+  {
+   "pair": [
+    "55",
+    "56"
+   ],
+   "reason": "touches a unit changed this wave (5b, 3, 4, 20, 25b, 48, 56, 57)",
+   "axis": "x",
+   "kind": "band",
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "Ave I (Sealy)",
+   "coord_now": 9155.6
+  },
+  {
+   "pair": [
+    "56",
+    "57"
+   ],
+   "reason": "touches a unit changed this wave (5b, 3, 4, 20, 25b, 48, 56, 57)",
+   "axis": "x",
+   "kind": "band",
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "Ave L",
+   "coord_now": 15351.64
+  },
+  {
+   "pair": [
+    "56",
+    "61"
+   ],
+   "reason": "touches a unit changed this wave (5b, 3, 4, 20, 25b, 48, 56, 57)",
+   "axis": "y",
+   "kind": "corner",
+   "cut": "straight",
+   "how": "midpoint",
+   "corridor": null,
+   "coord_now": 17528.39
+  },
+  {
+   "pair": [
+    "56",
+    "62"
+   ],
+   "reason": "touches a unit changed this wave (5b, 3, 4, 20, 25b, 48, 56, 57)",
+   "axis": "y",
+   "kind": "band",
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "30th St",
+   "coord_now": 17529.49
+  },
+  {
+   "pair": [
+    "56",
+    "63"
+   ],
+   "reason": "touches a unit changed this wave (5b, 3, 4, 20, 25b, 48, 56, 57)",
+   "axis": "y",
+   "kind": "corner",
+   "cut": "straight",
+   "how": "midpoint",
+   "corridor": null,
+   "coord_now": 17688.77
+  },
+  {
+   "pair": [
+    "57",
+    "58"
+   ],
+   "reason": "touches a unit changed this wave (5b, 3, 4, 20, 25b, 48, 56, 57)",
+   "axis": "x",
+   "kind": "band",
+   "cut": "min-ink path",
+   "how": "midpoint",
+   "corridor": null,
+   "coord_now": 21415.52
+  },
+  {
+   "pair": [
+    "57",
+    "62"
+   ],
+   "reason": "touches a unit changed this wave (5b, 3, 4, 20, 25b, 48, 56, 57)",
+   "axis": "y",
+   "kind": "corner",
+   "cut": "straight",
+   "how": "midpoint",
+   "corridor": null,
+   "coord_now": 17579.07
+  },
+  {
+   "pair": [
+    "57",
+    "63"
+   ],
+   "reason": "touches a unit changed this wave (5b, 3, 4, 20, 25b, 48, 56, 57)",
+   "axis": "y",
+   "kind": "band",
+   "cut": "min-ink path",
+   "how": "control",
+   "corridor": "30th St",
+   "coord_now": 17555.44
+  },
+  {
+   "pair": [
+    "57",
+    "64"
+   ],
+   "reason": "touches a unit changed this wave (5b, 3, 4, 20, 25b, 48, 56, 57)",
+   "axis": "y",
+   "kind": "corner",
+   "cut": "straight",
+   "how": "midpoint",
+   "corridor": null,
+   "coord_now": 17587.2
+  }
+ ]
+}
