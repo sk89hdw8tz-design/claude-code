@@ -1,0 +1,814 @@
+{
+ "3_4": {
+  "score": 2,
+  "grader": 4,
+  "vs": "regressed",
+  "cls": "real-defect",
+  "fix": "Two things, in this order. (1) QC evidence first \u2014 tools/seamcrops.py must tick the ACTUAL dp path, not s[\"coord\"]: the tick is currently drawn at yy = int((s[\"coord\"] - y0)/2), so on any seam whose path wanders it can miss the cut by up to DP_HALF=320 mosaic px (55 ft), which is exactly what hid this defect from two graders. Re-render 3_4 (and any other seam whose path is far from its coord) before re-grading. (2) The defect itself is cut placement plus registration, in that order of what is actually available: (a) CUT PLACEMENT \u2014 seam 3|4 is how:\"midpoint\", corridor:null, and its min-ink path has run to the DP_HALF band edge and stuck there, so the cut is a straight line at mosaic y=25305, 128 ft south of the 33rd St tie, slicing the pier-33/35 slip edge and the Fowler & McVitie coal-pocket track group at 45 deg (seam_3_4_b_100.jpg, x 840-1250 and x 1330-1430, rows 630-650) and the compress property line (seam_3_4_c_100.jpg, x 2340-2370, rows 630-650). Give the pair a corridor on 33rd St \u2014 the one street both wharf sheets draw and the very tie wharfplace.py places sheet 3 from (sheet 3 native y 235 = sheet 4 native y 3005; in these crops mosaic y ~= 24560, crop row ~268 of tile c) \u2014 or let the path reach the open-water band west of Pier 35 (tile a, mosaic x -19087..-14087, entirely blank on both plates) by allowing the extra wander. Either puts the residual shear in a street or in blank water, where it reads as drafting difference, instead of doglegging the pier edge and the track group. (b) REGISTRATION \u2014 the deeper cause is that sheet 3 gets translation only from one tie with rotation/scale inherited from sheet 5, so plate 3 runs 14.2 ft south of plate 4 at the seam's west end and 6.9 ft north at its east end. A translation-only re-solve cannot fix that (it would only trade 14.2 ft for ~10.5 ft); it needs a similarity fit of sheet 3 against sheet 4 along the shared 33rd St / Ave A frontage, which is a Gate-A localsolve --similarity decision, not a grader's. If that is refused under the frozen-registration rule, record the seam as a documented sheet-3/sheet-4 drawing-and-placement shear with the cut moved to 33rd St, and re-measure the 660 ft wharf gap at the same time as proposal_4_wharf.md asked. No furniture involvement: no border rule, numeral, rose or scale bar sits in mapped ground in any of the three crops."
+ },
+ "4_15": {
+  "score": 5,
+  "grader": 5,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "5a_7": {
+  "score": 5,
+  "grader": 5,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "5b_11": {
+  "score": 5,
+  "grader": 5,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "6_33": {
+  "score": 4,
+  "grader": 4,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "15_67": {
+  "score": 4,
+  "grader": 4,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "17_18": {
+  "score": 4,
+  "grader": 3,
+  "vs": "regressed",
+  "cls": "source-drawing-difference",
+  "fix": "No change - registration is already at its optimum and the recipe stays frozen. The registration fix for this seam has been made (pair_17_18_y ACCEPTED, --units 17 18 --similarity applied, HQ-49): it drove the 8th St control corridor to 0-2 px (measured above at seam_17_18_b_100.jpg y=1415 both plates, x=500-690 vs x=920-1150) and left a rotation/scale residual of +12 px at the north end (seam_17_18_a_100.jpg: plate-17 face y=1429.5 x=500-685 vs plate-18 face y=1418 x=920-1220, cut at x~770 in the Mechanic/Ave C roadway) and -8 px at the south end (seam_17_18_b_100.jpg y~2321 vs y~2329). That residual is the 1.0% drafting-scale disagreement between sheets 17 and 18 (908 px vs 917 px for the same seven-lot span), which proposal_17_18.md shows cannot be absorbed further without breaking 17|21, 17|22, 18|19 and 18|22. Cut placement needs nothing either: the path already runs the full length of the 70 ft roadway and crosses no drawn feature, so there is no line for it to hide. Recommended action is documentary only - add this seam and its measured 0 ft / 4 ft gradient to the accepted-cause list for Gate C, and correct the round-5 census row for 17_18, which recorded a 5 on the pre-fix build without measuring the block faces."
+ },
+ "18_19": {
+  "score": 5,
+  "grader": 5,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "19_20": {
+  "score": 5,
+  "grader": 5,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "20_23": {
+  "score": 4,
+  "grader": 4,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "21_27": {
+  "score": 5,
+  "grader": 5,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "24_29": {
+  "score": 5,
+  "grader": 5,
+  "vs": "not-graded-before",
+  "cls": null,
+  "fix": ""
+ },
+ "25_25b": {
+  "score": 3,
+  "grader": 3,
+  "vs": "same",
+  "cls": "real-defect",
+  "fix": "Ownership/region boundary, not cut placement and not registration \u2014 and not on the graded seam. The strip carrying 25b's redundant \"80'\" (mosaic x 22155-22327 = 25b native columns 3170-3266) should be released to plate 32, which already covers that ground (32 spans mosaic x 21114-27558) and carries the surviving tick at mosaic 22465. Recipe edit, unit 25b in outputs/1912/recipe/units.json: region_native [[2580,83],[3266,83],[3266,1138],[2580,1138]] -> [[2580,83],[3170,83],[3170,1138],[2580,1138]] (native 3170 = mosaic 22155, immediately west of 25b's own tick; 25b's scale is 2.006 mosaic px/native px over native x 2580-3266 = mosaic 20951-22327). Do NOT apply on this evidence alone: the ink profile of 25b native columns 3170-3266 is still owed \u2014 proposal_cuts.md states it was never run \u2014 to confirm the released strip holds nothing 32 lacks (it is the clipped seawall band / GULF OF MEXICO caption edge, so a net gain is likely but unproven). Explicitly do not use --panel-centre or any dp_cut change for this, and do not revert the P1-3 extent relaxation: both are proven not to remove the duplicate. Verify with a 1:1 crop at mosaic (21750,-24400)-(22600,-24050) showing exactly one \"80'\"."
+ },
+ "26b_38": {
+  "score": 5,
+  "grader": 5,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "29_30": {
+  "score": 5,
+  "grader": 5,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "31_32": {
+  "score": 5,
+  "grader": 5,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "31_38": {
+  "score": 4,
+  "grader": 4,
+  "vs": "regressed",
+  "cls": "paper-tone",
+  "fix": "None - no recipe change. The visible artifact is a paper-tone step made conspicuous by a small fillgaps rectangle of west-plate paper at the four-plate corner (x 1200-1310, y 805-880 in seam_31_38_100.jpg); tone correction and blending are forbidden by \"Do not do\" 1, and the patch is legitimately owned, drawn ground, so there is nothing to fill. Cut placement could in principle absorb the rectangle into the east plate, but that would only move which plate's tone shows in an empty roadway and risks disturbing the 4-corner overlap budget - not worth a re-cut. Registration is explicitly NOT indicated: the residual 3-5 ft face step and the 11.6 ft pipe jog match the wave-4 32|38 finding (outputs/1912/qc/wave4/audit_93_94_32_38.md) that plates 32/38 controls are sound, the step is scale/net tension, and localsolve dry runs move the wrong way; that audit also logs pair_37_38's 11 ft east discrepancy as needing 37+38+31 re-solved together, explicitly \"not proposed for this pass\". Log as accepted cause (tone + net tension), no HQ-actionable defect."
+ },
+ "36_37": {
+  "score": 5,
+  "grader": 5,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "37_41": {
+  "score": 4,
+  "grader": 4,
+  "vs": "regressed",
+  "cls": "paper-tone",
+  "fix": "None. Tone-only, on blank roadway, explicitly excluded from correction by the frozen policy (no blending/inpainting/tone correction; 'any tone work on the 38 tone-only score-4 seams' is in the plan's Deliberately-not-done list). Not a registration error: the block faces and both water pipes are continuous across the cut, and the round-3 12 ft step is resolved in this build. Not furniture and not a gap. The only conceivable mechanical change would be flattening the cut plateau at seam_37_41_a_100.jpg x~680-1330 (tone boundary y~763-766, surrounding path y~780-860; same feature at x~210-775 in _b) to remove the two vertical tone risers, but the plateau exists to keep the '18TH ST.' label whole on plate 41 from x~1340 onward, so straightening it would trade a tone edge in blank pavement for a risk to drawn lettering. Leave the cut as is."
+ },
+ "40_41": {
+  "score": 5,
+  "grader": 5,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "50_56": {
+  "score": 5,
+  "grader": 5,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "56_62": {
+  "score": 5,
+  "grader": 5,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "58_64": {
+  "score": 5,
+  "grader": 5,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "62_70": {
+  "score": 5,
+  "grader": 5,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "63_71": {
+  "score": 2,
+  "grader": 2,
+  "vs": "same",
+  "cls": "real-defect",
+  "fix": "Cut placement (primary), furniture (secondary) \u2014 no registration change. seam_63_71_100.jpg: erased main at x 1060-1740, y 790-820 (worst x 1100-1700); legend/sheet-number patch at x 560-885, y 760-865. Mosaic coords per wave4: the straight half-plane at y=24502.23 over roughly x 18750-21500 must be routed south of plate 63's main (drawn y 24532-24552) and south of the \"Scale of Feet\" caption, i.e. reclassify the pair off \"corner\" so dp_cut runs (proposal_cuts.md verified this with --min-band-span 2000; crop_63_71_pipe_after shows the dash run continuous and the label whole). Caveat carried from that same evidence: routing south hands plate 63 more of the band, so the scale-bar/sheet-number box (units.json unit 63 furniture_native[1], native [1920,3622,2557,3718], covered_fraction 0.83, currently cut:false) prints more fully inside plate 71's mapped roadway. 63|71 must therefore ship together with the furniture resolution (cut that box, since plate 71 genuinely maps this ground \u2014 this is not master-kept furniture), or it trades one level-2 item for another. Recipe is frozen; nothing applied here."
+ },
+ "64_72": {
+  "score": 2,
+  "grader": 2,
+  "vs": "same",
+  "cls": "real-defect",
+  "fix": "Two real defects, both must land. PRIMARY - cut placement: in seam_64_72_100.jpg the band cut runs at crop y~737-748 across x 1100-1700, threading the blank lane between plate 72's copy of the 8\" main (native y 24514-24524) and plate 64's (native y 24540-24548), so ~750 crop px (x 1024-1774, ~260 ft) of the main is dropped and the \"8\\\" W. PIPE\" label at x 400-1023 is orphaned. Fix in tools/streetcut.py dp_cut, not per-seam: cost the cut against the UNION of both plates' ink rather than only the ink it crosses on the winning side, or add a corridor-width clearance term, so a lane that is blank on both sides only because each plate's copy of one linear feature sits just off it is no longer the cheapest path. Equivalent hand-check for verification: force the band cut north of native y 24514 (crop y < ~750) across x 1024-1774 and plate 72's whole main survives; south of 24548 and plate 64's does. SECONDARY - registration: a ~20-26 px (6.6-8.7 ft) westward step of plate 64 relative to 72 remains on the N-S street between the 1600 and 1700 blocks, measured at the 6\" W. Pipe centreline (crop x 752.3 above the cut at y 430-560 vs 732.5 below at y 900-1030) and at the block face (crop x 858 vs 831.5). No cut placement can absorb this; it needs the wave4 pair_64_71_x control (Ave N, a_native 178.3 / b_native 1177.6, 13.0 ft, ACCEPTED) applied through localsolve by the Gate A orchestrator, with 64_72 following the corridor family. Nothing here is paper tone, source drawing difference, disclosed gap, or master-kept furniture."
+ },
+ "66_74": {
+  "score": 5,
+  "grader": 5,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "70_71": {
+  "score": 5,
+  "grader": 5,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "71_78": {
+  "score": 3,
+  "grader": 4,
+  "vs": "regressed",
+  "cls": "real-defect",
+  "fix": "Cut placement (not registration - lateral and vertical residuals are 1.4-1.5 ft and no control is implicated; do not touch pair_71_79 or any transform). In dp_cut for 71|78 the street-name lettering is being treated as cheap-to-cross blank pavement, so the path runs through the gap between plate 71's and plate 78's \"36TH ST.\" glyphs. Fix by charging the lettering as ink in the avoidance field (the LINE_AVOID / band_ink anisotropic cost already proposed in qc/wave4/proposal_cuts.md, plus a bounding-box penalty on detected label blobs) so the path is forced to keep the whole label band on one plate. Concretely, over crop x ~1050-1350 of seam_71_78_100.jpg the path must run either entirely north of the label baseline (crop y < 820, i.e. hugging the 1402-1424 block face) or entirely south of it (crop y > 900, hugging the 1401-1423 face) instead of crossing y ~830-890 at x ~1235-1300 as it does now; whichever side is chosen, exactly one \"36TH ST.\" survives and the orphan glyph at x 1245-1280, y 828-892 disappears. Re-render only; no recipe registration change, and the tone band stays as-is per the plan's \"no tone work\" rule."
+ },
+ "72_79": {
+  "score": 5,
+  "grader": 5,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "74_81": {
+  "score": 4,
+  "grader": 4,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "75_83": {
+  "score": 5,
+  "grader": 5,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "77_85": {
+  "score": 5,
+  "grader": 5,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "80_87": {
+  "score": 4,
+  "grader": 4,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "82_90": {
+  "score": 4,
+  "grader": 4,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "85_85b": {
+  "score": 4,
+  "grader": 4,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "86_95": {
+  "score": 5,
+  "grader": 5,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "88_96": {
+  "score": 5,
+  "grader": 5,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "90_99": {
+  "score": 5,
+  "grader": 5,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "4_5b": {
+  "score": 2,
+  "grader": 4,
+  "vs": "regressed",
+  "cls": "real-defect",
+  "fix": "Registration first, cut placement second. Registration: plate 4 (with 3) was re-placed ~348 ft east in wave 4 (qc/wave4/proposal_4_wharf.md, HQ-47) and that proposal explicitly left \"5a/5b|4 frontage pairs\" to be re-derived afterwards; that was not done, so 4 now agrees with 13/15 (elevator residual 1.6 ft) while 5b is left ~16.6 ft off it perpendicular to the slip walls (plate 4's content sits ~48 crop px / ~96 mosaic px east of plate 5b's rendering of the same quay). Re-derive the 4<->5b (and 5a<->5b) frontage control from features both plates draw in the overlap band - the slip's outer quay wall, the paired light quay lines, the \"CONVEYER RAISED 40'\" run and the T.H./bollard dot at crop x~790 - rather than moving either plate on a lattice chain; no cut change can hide a 17 ft step. Evidence to gather before any --apply: measure 5b against 13 on the same features to confirm 5b, not 4, is the one out of place. Cut placement (secondary, after registration): the straight corner cut currently runs east-west across the open slip at mosaic y~12698 / crop y~1020, keeping both plates' \"Slip\" labels; route it along the slip's quay wall or through the 80 ft street so one plate owns the whole slip mouth and only one \"Slip\" annotation survives. Crop coordinates for both: outputs/1912/qc/seams/seam_4_5b_100.jpg - step measurable at (200-800, 990-1060), clipped label 5b (490-562, 948-1017), plate 4 label (300-505, 1200-1413), vertical cut segment x=800, y 1010-1490. Mosaic: cut coord x=-9167.34, overlap band y 12678-13639, visible horizontal junction at y~12698."
+ },
+ "5a_5b": {
+  "score": 5,
+  "grader": 5,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "5a_9": {
+  "score": 2,
+  "grader": 2,
+  "vs": "regressed",
+  "cls": "real-defect",
+  "fix": "Cut placement (not registration, not furniture). The path must be kept out of the lettering cluster in the slip, roughly the crop box x 680-920, y 1520-2260 of seam_5a_9_100.jpg (the whole run of \"Sli\"/\"slip\"/\"ip\" along the dock inlet). Two candidate routes, in order of evidence strength: (1) exclude 5a|9 from the min-band-span promotion so the pair keeps the straight corner cut that round 5 graded 5 \u2014 this is the only option with a graded-clean precedent, and it is a rule change on the promotion criterion, not per-seam tuning; (2) ship a non-zero LINE_AVOID (the anisotropic avoid field already exists in grid()/candidate(), W=1.0 moved 97 of 172 seams with no candidate flips) so the DP pays for running along/through drawn glyphs instead of treating blank water as free \u2014 then re-check that the path leaves both labels wholly on one side. Either way the verification is the same DIFF discipline: dump the 5a|9 path before/after, confirm no other seam's path moves >50 px, and re-crop this window to show one intact \"Slip\" per plate side with no truncated glyph. Do not attempt to fix this by moving plate 5a or 9; all structural features register correctly here."
+ },
+ "5b_13": {
+  "score": 5,
+  "grader": 5,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "8_34": {
+  "score": 5,
+  "grader": 5,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "16_67": {
+  "score": 5,
+  "grader": 5,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "17_21": {
+  "score": 4,
+  "grader": 3,
+  "vs": "regressed",
+  "cls": "real-defect",
+  "fix": "Registration, but no change - already adjudicated and closed as NET-TENSION in outputs/1912/qc/wave4/proposal_20b_25_17_21.md CLAIM 2, and the one recommended action there has already been applied. The residual is a 1.11% transform-scale-family difference between the 17/18 row and the 21/22/27 row (plate-internal spans on the scans agree to 0.12-0.56%, so it is in the transforms, not the paper), showing as a monotonic W->E sign flip: ~2.0 ft west at Ave. A/Water (crop seam_17_21_a_100.jpg, x1017-1074, cut y715-766), ~1.4 ft west at the 728/729 alley mouths (crop _a, x486/530, y~780), ~1.2 ft east at the 608/609 alley (crop seam_17_21_b_100.jpg, x2054/2115, cut y~755; = crop _a x2554/2615). All five controls touching plate 21 are satisfied (pair_17_21 -1.6/-0.8 ft, pair_17_21_x -0.1/-0.1 after the applied 17|18 re-solve), so the plates do not prove plate 21's placement wrong. The only remaining lever, localsolve.py --units 21 --similarity, recovers 0.30% of the 1.11% ratio while adding a uniform +3 ft eastward bias (converting a balanced +/-5 ft seam into a 0..+5.6 ft one) and degrading pair_17_21_x, pair_21_27 and pair_21_27_x from satisfied to 2.0-2.7 ft - it moves the defect rather than fixing it. Not a cut-placement item either: the DP path stays in the 9th St roadway the whole way, splits no building and doubles no label; moving it cannot remove a lateral scale residual. Recommended action: none - record the residual, and if anything is wanted for the shipped QC record, note in HQ that the 8\" W. PIPE jog in crop _b at x~2082-2093 is ~60% a plate-17-vs-21 drafting difference in where the main sits inside the 20 ft alley, so future graders do not re-report it as a 4 ft registration step."
+ },
+ "18_22": {
+  "score": 5,
+  "grader": 5,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "19_23": {
+  "score": 5,
+  "grader": 5,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "20_24": {
+  "score": 5,
+  "grader": 5,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "23_24": {
+  "score": 5,
+  "grader": 5,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "24_30": {
+  "score": 5,
+  "grader": 5,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "25_31": {
+  "score": 5,
+  "grader": 5,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "26_38": {
+  "score": 3,
+  "grader": 4,
+  "vs": "regressed",
+  "cls": "real-defect",
+  "fix": "Cut placement (fillgaps/streetcut), not registration - registration is provably fine here: house-number runs and lot lines tie across both limbs of the cut with no measurable step, so nothing in the plates argues the placement is wrong and the frozen transforms should stay. The defect is that plate 26's cut boundary steps ~12 px inside plate 38's ragged paper edge for ~26 px of run, leaving canvas between them. Fix: at crop seam_26_38_100.jpg x 1321-1333, y 656-682 (the notch immediately west of \"1802\" and left of the black diagonal plate-edge shadow), let the owning side extend to cover the wedge - either push plate 26's ownership east to plate 38's deckle line, or hand the wedge to plate 38, whose paper covers it; both plates draw only blank roadway there, so either choice is authentic and no pixel is shared. Practically this is a fillgaps sliver-close rather than a re-cut: it is smaller than tiling_audit's 2500 px2 reporting floor, so also consider lowering min_reported_area_px2 (or adding a seam-adjacent white-pixel scan to the QC step) so sub-threshold canvas slivers on cut paths are caught before render rather than by a grader's eye. Do not touch the tone band or the deckle shadow."
+ },
+ "30_31": {
+  "score": 5,
+  "grader": 5,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "31_36": {
+  "score": 5,
+  "grader": 5,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "32_38": {
+  "score": 5,
+  "grader": 5,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "37_38": {
+  "score": 5,
+  "grader": 5,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "37_42": {
+  "score": 4,
+  "grader": 2,
+  "vs": "regressed",
+  "cls": "paper-tone",
+  "fix": "No recipe change warranted; the recipe stays frozen. The dominant effect is the west/east paper-tone step (~18 levels) along the vertical cut plus the ~100 px cut-path jog at y=800 where 37|42 hands over - both tone/cut-path only, no content displaced, and tone is not corrected by policy. If a cosmetic pass is ever authorised, the only actionable item is cut placement (not registration, not furniture): nudge the vertical handover a few tens of px east or west so it does not bisect the mid-street point symbol at seam_37_42_100.jpg x1265-1305, y780-810 (patch/tone island x1180-1330, y795-875). Given the seam is a 325 px corner touch with 135,750 px2 of overlap, there is little room to move the path, and the payoff (half of one 10 ft dot) does not justify re-cutting."
+ },
+ "48_99a": {
+  "score": 2,
+  "grader": 2,
+  "vs": "regressed",
+  "cls": "real-defect",
+  "fix": "Cut placement (not registration - the plates register correctly; block faces, the 70' setbacks and the tram lines all run through the seam without a step, and no plate evidence justifies moving either unit). The dp_cut path for pair 48|99a, axis y at coord 24837.2, wanders off plate 99a's footprint: for one staircase segment it retreats plate 48's claim to a line ~49 px above 99a's top footprint edge, into a band 99a can never paint. Fix in tools/streetcut.py dp_cut: clamp every candidate path - including the new P1-2 blank-band band-edge candidate, which is the likely cause here since 99a's scan is blank above its neatline - to the intersection of the two units' footprint_native, so the cut may never leave the far plate's footprint; where the DP wants to go beyond it, pin the path to that footprint edge. Plate 48 then keeps the strip (it has real, if blank, roadway paper there) and the notch closes with no blending or fill. Do this as a general clamp, not a per-seam tweak (Do-not-do #10). Verify at seam_48_99a_100.jpg x=629-878, y=848-895: no pixel with min(RGB) >= 250 should remain in that box, and the 48/99a boundary should be a single continuous line at y~896-897 across the full crop width. Also tighten Gate B: any interior unclaimed component that touches a seam line should fail regardless of area, since 50k px2 let an 11.7k px2 on-seam hole through."
+ },
+ "53_59": {
+  "score": 5,
+  "grader": 5,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "57_63": {
+  "score": 5,
+  "grader": 5,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "61_69": {
+  "score": 5,
+  "grader": 5,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "63_64": {
+  "score": 5,
+  "grader": 5,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "64_65": {
+  "score": 5,
+  "grader": 5,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "65_72": {
+  "score": 4,
+  "grader": 4,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "68_75": {
+  "score": 5,
+  "grader": 5,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "70_77": {
+  "score": 5,
+  "grader": 5,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "71_79": {
+  "score": 5,
+  "grader": 5,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "72_80": {
+  "score": 4,
+  "grader": 4,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "74_82": {
+  "score": 4,
+  "grader": 4,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "76_83": {
+  "score": 5,
+  "grader": 5,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "78_86": {
+  "score": 4,
+  "grader": 4,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "80_88": {
+  "score": 5,
+  "grader": 5,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "82_99": {
+  "score": 4,
+  "grader": 4,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "85_93": {
+  "score": 5,
+  "grader": 5,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "87_96": {
+  "score": 5,
+  "grader": 5,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "88_97": {
+  "score": 4,
+  "grader": 4,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "91_92": {
+  "score": 5,
+  "grader": 5,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "4_13": {
+  "score": 5,
+  "grader": 5,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "5a_6": {
+  "score": 5,
+  "grader": 5,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "5b_9": {
+  "score": 4,
+  "grader": 4,
+  "vs": "regressed",
+  "cls": "paper-tone",
+  "fix": "None \u2014 no recipe change, and cut placement specifically cannot help. The 5b/9 exclusive-ownership regions share mosaic x -9171.5 to -8702.3, i.e. crop px 678-912: an 80 ft corridor, and the Pier 23/24 shed roof fills all of it. The cut sits at mosaic x -8927.05 (crop px 800), mid-band. The only place the step could hide is the shed's east wall at crop x~1035 (mosaic -8457), which is ~110 ft outside 5b's coverage, so 5b has no pixels there. Moving the cut anywhere legal keeps it inside the same yellow field. Registration is likewise not indicated: pair_5b_9.json is a coverage cut with \"solve\": false and is excluded from localsolve/bandresid, and the 2.4 ft shed-wall agreement shows the placement is sound. Recommend recording 5b_9 as an accepted tone-only 4 with the 6.7 ft bulkhead noted as a wharf-sheet drawing difference (same class as proposal_4_wharf.md's 4-12 ft elevator corners), and treating the round-5 5 as the outlier."
+ },
+ "5a_33": {
+  "score": 5,
+  "grader": 5,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "11_13": {
+  "score": 5,
+  "grader": 5,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "16_68": {
+  "score": 5,
+  "grader": 5,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "17_22": {
+  "score": 5,
+  "grader": 2,
+  "vs": "regressed",
+  "cls": "paper-tone",
+  "fix": "No fix. The tone step at approx x:1185-1320, y:797-852 in seam_17_22_100.jpg (mosaic approx x:-2870 to -2600, y:-31160 to -31050) is plate 17's edge darkening against plates 18/22 at the 9th St./Ave B four-plate corner, and policy forbids tone correction. No streetcut, fillgaps, registration or furniture action \u2014 nothing is unclaimed here (crop max pixel 208, no 255 canvas; nearest gaps.geojson feature 6,169 px away). If anything is worth doing it is a note-only entry recording 17_22 as a tone-visible corner, alongside the existing 38 tone-only score-4 seams the plan already declines to touch."
+ },
+ "18_23": {
+  "score": 4,
+  "grader": 4,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "20_20b": {
+  "score": 2,
+  "grader": 2,
+  "vs": "same",
+  "cls": "real-defect",
+  "fix": "Cut placement (not registration, not furniture). In seam_20_20b_100.jpg (1599x2500) the cut runs vertically at x ~852-860 through the Avenue L roadway, leaving plate 20's complete \"AVENUE\" + \"L.\" at x 800-850, y 1195-1600 immediately west of the inset's own complete \"AVENUE\" + \"L.\" at x 860-915, same y band. Force the dp_cut path west of plate 20's lettering \u2014 to x <= 795 (about 60 px of slack) for the band y 1180-1620 \u2014 so the 20b inset owns the whole Ave L corridor there and only one label survives. The inset has ample authentic cover for that strip: units.json 20b region_native starts at native x 2190, which with shift_native [966,2305] maps to parent-native x ~3156, well west of plate 20's glyphs at parent-native x ~3245-3265. Root cause worth noting: P1-3's right-extent relaxation of plate 20 (3239 -> 3271, whose own note cites \"the vertical 'AVENUE' name in the Ave L roadway\" as the ink justifying it) handed the min-ink path that lettering; the cut rule needs to be pushed off it rather than the extent rolled back. Do NOT touch registration \u2014 block 68's 802-828/1113-1124 run meets the inset's 805-827/1202-1212 correctly, the Ave L corridor measures ~200 px = one 70 ft avenue (not doubled), and 9TH ST. continues with matching 70'/80' calls."
+ },
+ "20b_25": {
+  "score": 2,
+  "grader": 2,
+  "vs": "same",
+  "cls": "disclosed-source-gap",
+  "fix": "No cut, registration or furniture change. (a) Registration: nothing to fix \u2014 measured \u22640.6 ft on all three lines; the pair_24_25 Ave L half-width correction proposed in wave4/proposal_20b_25_17_21.md has evidently landed and the 13 ft step is gone. Do NOT re-open 20b's shift_native (wave4's width proof still stands: moving 20b east would open Ave L between plate 20 and its own inset to 87 ft). (b) The ~9x12 ft wedge at seam_20b_25_100.jpg x823-849, y752-786 (pure-white bbox, 485 crop px2 = ~1,940 mosaic px2): unfixable \u2014 20b is a panel of sheet 20, plate 20's east neatline and the inset's chamfered SW corner are both at their last drawn column, and no third plate covers that roadway sliver. Leave in gap_fill.left_as_source_gaps and disclose; note in HQ that P1-3 shrank it from 54,204 px2 to below tiling_audit's 2,500 px2 reporting threshold. (c) The large block at x1736-2499, y0-645: no action \u2014 it lies outside the mosaic footprint (absent from tiling_audit interior_gaps, disjoint_pieces=1); left edge = sheet 20's east paper edge (units.json 20b region_native_note: no frame on top/right, flat paper past 3271 to the scan border at 3285), bottom edge = plate 25's top extent, both plates print adjoining numeral \"0\". Optional low-value P1-3 follow-up only: plate 25's 'top' is a neatline FALLBACK side (extent 83 vs extent_scan 40); if rows 40-83 hold map ink and no rule, relaxing it recovers ~15 ft off the bottom of that block. It cannot close it and does not change the score."
+ },
+ "24_25": {
+  "score": 5,
+  "grader": 5,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "24_31": {
+  "score": 3,
+  "grader": 4,
+  "vs": "regressed",
+  "cls": "real-defect",
+  "fix": "Cut placement only \u2014 no registration change, no tone work. In the 12th St pavement band around crop y 540-590 the DP cut currently runs at x~1238-1240, straight through plate 24's \"70'\" width numeral (ink at crop x 1232-1239, y 554-571). Route the path west of that glyph \u2014 anywhere in x <= 1226 across roughly y 530-600 \u2014 which is still open pavement on both plates (no block face; plate 24's block-71 corner rule ends near x~1175, plate 31's block-11 corner near x~1290), so the move is clear of drawn content on either side. Nothing is lost: plate 31 draws its own complete \"70'\" for the same street at x~1330. Do NOT route east to keep plate 24's whole numeral \u2014 that would place two \"70'\" labels ~90 px apart on the same street segment, trading a clipped label for a duplicated one. Ideally make this general: give dp_cut a penalty for paths that intersect detected glyph/label ink so width numerals and address runs are never bisected. The ~6 ft north-kerb / 8\" W. PIPE step is a source drawing difference (plate 24 draws the street ~88 ft, plate 31 ~82 ft, both labelled 80') and must be left alone and recorded, not solved by moving units."
+ },
+ "25b_32": {
+  "score": 2,
+  "grader": 2,
+  "vs": "same",
+  "cls": "disclosed-source-gap",
+  "fix": "Notch (score driver): no fix - disclose. Do not touch registration or extents; the P1-3 relaxations for this family were already tested and rejected on ink evidence (wave4/proposal_wedges.md (a)). Action is documentation only: carry that file's disclosure sentence (\"a 115 x 95 ft triangle of Seawall Blvd and 149 ft of sea wall at 12th St between the right paper edge of plate 25's inset and the top paper edge of plate 32\") into REPORT.md / provenance alongside the wharf-Strand and cemetery gaps, and record it as an accepted cause at Gate C rather than a defect.\n\nDoubled \"80'\" tick (secondary, real, optional): cut placement, not registration or furniture. In the shared band below crop y~615 the 25b|32 boundary sits at crop x~1487 (25b's blank margin) with 25b's tick at (1400,785) and plate 32's at (1552,785). Moving that vertical ~90 px (~15 ft) west of crop x=1400 in the y=615-900 band gives the strip to plate 32, which draws the same ground fully, and drops 25b's duplicate while keeping 32's. This is a one-seam trade worth roughly one grade point (2 -> 3/4 for that item) and is only defensible if a before/after diff shows no other feature lost on the 25b side of the moved segment; if it does not survive that check, leave the cut alone and note the doubled tick as accepted. Either way it is a Wave 1 cut-placement item, never a post-render patch."
+ },
+ "28_34": {
+  "score": 5,
+  "grader": 5,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "30_36": {
+  "score": 5,
+  "grader": 5,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "31_37": {
+  "score": 5,
+  "grader": 5,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "34_35": {
+  "score": 5,
+  "grader": 5,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "37_40": {
+  "score": 5,
+  "grader": 5,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "38_42": {
+  "score": 5,
+  "grader": 5,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "49_55": {
+  "score": 5,
+  "grader": 5,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "56_57": {
+  "score": 2,
+  "grader": 2,
+  "vs": "regressed",
+  "cls": "real-defect",
+  "fix": "Furniture \u2014 not cut placement and not registration. The sliver is the exact intersection of two furniture boxes on adjoining plates, both flagged cut:true: unit 56 furniture_native[1] \"scale bar\" (mosaic bbox [13683,17526]-[15013,17775], east edge x=15013.2) and unit 62 furniture_native[0] \"plate number and title\" (mosaic bbox [14991,17308]-[15411,17772], west edge x=14990.7). Unit 62 also carries exclude_native[0] over [15003,17320]-[15398,17760] on the same ground. furncover.py's rule (cut a box only when a neighbour maps the whole of it, COVER=0.98) was satisfied for each box against the other plate's raw paper, so both were cut \u2014 a mutual hand-off: 56 gives the ground to 62, 62 gives it back to 56, and over the 22-px overlap neither paints. Units 57 and 63 mop up the rest of the parent hole but their footprints start at x=15135 and x=15093, east of this residue, which is why fillgaps left precisely 5,134 px2 unfixable. Fix: extend furncover.py's cycle pass (commit 252cd08, which only handles the same rectangle declared twice) to test each candidate box against the neighbour's POST-furniture footprint, and where two cut:true boxes on adjoining plates intersect, force one to cut:false over the intersection so a single authentic plate owns it \u2014 per the master's keep rule. Cheapest equivalent hand edit: set unit 62's furniture box 0 to cut:false, or trim unit 56's scale-bar box east edge from mosaic x=15013.2 back to x<=14990.7 (native: 56 furniture_native[1] box, right edge), then re-run furncover.py --apply and fillgaps. Verify at seam_56_57_b_100.jpg x=615-635, y=2370-2500 (mosaic x 14985-15020, y 17525-17775) and confirm the hairline at tiling_audit centroid [15002.0, 17650.6] disappears. Worth checking the same mutual-cut pattern at every other hairline in tiling_audit.json (widths 3.7-14.0 px at [43312.9,21456.4], [-11890.1,12460.9], [38025.9,7674.9], [31744.4,-6739.8], [26255.3,-18648.7], [13788.0,-35577.0], [-11830.9,197.6]) \u2014 they have the same signature."
+ },
+ "57_64": {
+  "score": 4,
+  "grader": 4,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "62_63": {
+  "score": 5,
+  "grader": 5,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "63_70": {
+  "score": 2,
+  "grader": 2,
+  "vs": "same",
+  "cls": "real-defect",
+  "fix": "Furniture coverage, not cut placement and not registration. Crop coords (seam_63_70_100.jpg): grey legend rectangle x 1940-2260, y 768-880, with the clipped \"...PIPE . 80'\" fragment at x~1950-2100 and the duplicate complete \"80' 10\" W.PIPE\" at x~2280-2450, y~800-850; the ragged grey shelf along x 0-1150, y 820-900 is scan/paper-edge tone at the jagged cut and is report-only. Cut placement is ruled out by wave4/proposal_cuts.md 63|70: the pair is off +120 with the path at y 24550-24714, the north side candidate (off -120) is geometrically infeasible (crossed 5.85e9 - plate 70's footprint does not reach north of the legend across the run), and --furniture-visible was a tested negative result (the visible gap stays 0.196 M at W = 1, 2, 5, 20). Registration is also ruled out: block faces meet within ~3 ft and the round-5 constant ~5 ft translation is not what puts the legend in the street. The defect is that units.json unit 63 furniture_native[1] (\"scale bar\", native [1920,3622,2557,3718] = mosaic [18816,24445,20101,24645]) is cut:false at covered_fraction 0.830, and simply flipping it to cut:true is NOT sufficient - the simulated edit (crop_63_70_legend_furn.jpg) removes only the caption's east half and leaves the graduated bar and the 50 40 30 20 10 0 numerals, because furncover measures coverage against neighbour footprints while the 63|70 region boundary sits south of the box (y ~24610-24714) and Recipe.interior_unowned() then refills the hole from the covering plate, which is 63 itself. Durable fix, for Wave 1 not for a post-render patch: make furncover a second pass that measures coverage against ownership_city.json regions after streetcut rather than against footprints, keeping COVER=0.98, and extend unit 63's furniture box eastward/southward to the full grey scan-ruler extent (the present native box stops short of the eastern rectangle and the \"of\"/\"50\" fragments). Plate 70 draws that roadway completely, so the master keep-rule for boundary furniture does not apply here and no source gap is involved."
+ },
+ "64_71": {
+  "score": 3,
+  "grader": 2,
+  "vs": "same",
+  "cls": "real-defect",
+  "fix": "Registration, not cut placement (no cut path can absorb a grid offset) - but this is the residual HQ-50 already documented and deliberately did not chase, so no recipe change is warranted now. HQ-50 added `recipe/controls/pair_64_71_x.json` (Ave N, a_native 178.3 / b_native 1177.6) and ran `localsolve.py --units 63 64 71 72 --similarity --apply`, taking the control from +13.0 to +3.9/+3.8 ft; my 4-5 ft measurement is exactly that surviving residual, and the wave4 proposal \u00a75(a) attributes it to a real drawn-tilt difference between the rows (plate 63's N-S lines -0.0018 px/px against plate 70's +0.0044, 0.36 deg apart) that a similarity transform cannot absorb. Crop coordinates for anyone re-checking: representative step at x 370-390, y 600-1000 (the 3227/1502 vs 3301/1501 corner, 386.2 -> 374.0); worst at x 2360-2405, y 500-1000 (1600/1700 block corners, 5.2 ft after removing the 3 ft street-width disagreement). Any further gain would need a second-order/per-plate warp or more Ave-corridor ties between the 63/64 and 70/71/72 rows, which is outside the frozen recipe and outside the no-blend/no-redraw rules."
+ },
+ "65_73": {
+  "score": 5,
+  "grader": 5,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "69_76": {
+  "score": 4,
+  "grader": 4,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "71_72": {
+  "score": 5,
+  "grader": 5,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "72_73": {
+  "score": 4,
+  "grader": 4,
+  "vs": "regressed",
+  "cls": "paper-tone",
+  "fix": "No fix. Tone is not corrected by policy (IMPROVEMENT_PLAN \"Do not do\" #1; \"no tone work on the 38 tone-only score-4 seams\"), and this seam belongs in that existing class. No cut-placement, registration or furniture change is warranted: the cut sits in the blank 70 ft Avenue P1/2 roadway for its whole length, block faces agree to ~1 ft, and moving it cannot remove a scan-base tone difference. The only bookkeeping action is to add 72_73 to the tone-only 4 list in census_round6 and note that its round-5 5 was an omission, not a build change."
+ },
+ "73_80": {
+  "score": 4,
+  "grader": 4,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "74_99a": {
+  "score": 4,
+  "grader": 4,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "77_84": {
+  "score": 5,
+  "grader": 5,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "79_87": {
+  "score": 5,
+  "grader": 5,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "81_89": {
+  "score": 4,
+  "grader": 4,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "83_91": {
+  "score": 5,
+  "grader": 5,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "85_94": {
+  "score": 4,
+  "grader": 4,
+  "vs": "not-graded-before",
+  "cls": null,
+  "fix": ""
+ },
+ "88_89": {
+  "score": 4,
+  "grader": 4,
+  "vs": "same",
+  "cls": null,
+  "fix": ""
+ },
+ "89_98": {
+  "score": 4,
+  "grader": 4,
+  "vs": "regressed",
+  "cls": "paper-tone",
+  "fix": "None available and none warranted. Not a cut-placement, registration or furniture fix: 98's coverage stops at mosaic y=45171.5 (crop py 700) and the min-ink cut already runs at py 724-768 across px 723-1844, so no reachable cut gives the dark strip to 98 - moving the cut south only enlarges 89's dark margin. Registration is sound (block faces and the 25xx/26xx address runs align across the cut; regreview_D's dry run for 98 moves it (+1,-2) ft and would push 89_98 to -4.2 ft residual, i.e. worse). Tone correction is forbidden by IMPROVEMENT_PLAN.md \"Do not do\" #1. Record as an accepted tone-only 4 in census_round6 with the corrected geometry (cut is horizontal on 42nd St at native y=800, active only over px 723-1844; the bottom-left grey at px 0-723 belongs to the 89_97 seam, plate 97's east margin, and should be noted there rather than here)."
+ }
+}
