@@ -2,7 +2,7 @@
  "project": {
   "map": "Galveston Sanborn 1912 full-city mosaic",
   "year": 1912,
-  "stage": "improvement run \u2014 Gate A'' apply + re-cut",
+  "stage": "improvement run — Gate A'' apply + re-cut",
   "status": "WORKING",
   "start_time": "2026-09-01T22:05Z",
   "last_update": "2026-09-04T01:09Z",
@@ -19,9 +19,43 @@
   "blockers": []
  },
  "eta": {
-  "range": "2\u20133 hours",
+  "range": "2–3 hours",
   "confidence": "MEDIUM",
-  "reason": "Gate C found 16 sub-4 seams; fixes developed and verified in scratch; apply + render + targeted re-grade remain"
+  "reason": "R0 waits on the owner's reference upload",
+  "per_wave": [
+   {
+    "id": "R0",
+    "estimate_min": 40,
+    "basis": "one review"
+   },
+   {
+    "id": "R1",
+    "estimate_min": 25,
+    "basis": "audit+commit"
+   },
+   {
+    "id": "R2",
+    "estimate_min": 35,
+    "basis": "measured Wave 3' render 32 min"
+   },
+   {
+    "id": "R3",
+    "estimate_min": 75,
+    "basis": "measured Gate C: 116 seams 60 min at 14 concurrent; periphery 63 min"
+   },
+   {
+    "id": "R4",
+    "estimate_min": 30,
+    "basis": ""
+   },
+   {
+    "id": "R5",
+    "estimate_min": 30,
+    "basis": ""
+   }
+  ],
+  "chain_remaining_min": 235,
+  "finish_utc": "2026-09-15T03:28Z"
  },
  "tasks": [
   {
@@ -431,5 +465,163 @@
    "t": "2026-09-03T06:46Z",
    "event": "1912 complete: census round 5 over all 249 seams (203 fives, no ones), 63 periphery and 33 interior 1:1 windows reviewed, deliverables rendered and verified"
   }
- ]
+ ],
+ "team": {
+  "director": "Fable 5.1 — direction and gate decisions only",
+  "waves": [
+   {
+    "id": "R0",
+    "name": "Reference comparison",
+    "lead_model": "opus",
+    "workers": {
+     "opus": 1
+    },
+    "auditor_model": "opus",
+    "status": "planned",
+    "running": 0,
+    "done": 0,
+    "rejected": 0,
+    "gate": "any gap becomes a wave before R1",
+    "started": "",
+    "finished": ""
+   },
+   {
+    "id": "R1",
+    "name": "Fallback fix landing",
+    "lead_model": "opus",
+    "workers": {
+     "opus": 1
+    },
+    "auditor_model": "opus",
+    "status": "running",
+    "running": 1,
+    "done": 0,
+    "rejected": 0,
+    "gate": "",
+    "started": "2026-09-14T23:33Z",
+    "finished": ""
+   },
+   {
+    "id": "R2",
+    "name": "Render",
+    "lead_model": "opus",
+    "workers": {
+     "sonnet": 2
+    },
+    "auditor_model": "opus",
+    "status": "planned",
+    "running": 0,
+    "done": 0,
+    "rejected": 0,
+    "gate": "",
+    "started": "",
+    "finished": ""
+   },
+   {
+    "id": "R3",
+    "name": "Re-grade 72 seams + 21 periphery",
+    "lead_model": "opus",
+    "workers": {
+     "sonnet": 24,
+     "opus": 29
+    },
+    "auditor_model": "opus (x2)",
+    "status": "planned",
+    "running": 0,
+    "done": 0,
+    "rejected": 0,
+    "gate": "",
+    "started": "",
+    "finished": ""
+   },
+   {
+    "id": "R4",
+    "name": "Gate C final + records",
+    "lead_model": "opus",
+    "workers": {
+     "sonnet": 2
+    },
+    "auditor_model": "opus",
+    "status": "planned",
+    "running": 0,
+    "done": 0,
+    "rejected": 0,
+    "gate": "",
+    "started": "",
+    "finished": ""
+   },
+   {
+    "id": "R5",
+    "name": "Report + delivery",
+    "lead_model": "fable",
+    "workers": {
+     "sonnet": 1
+    },
+    "auditor_model": "opus",
+    "status": "planned",
+    "running": 0,
+    "done": 0,
+    "rejected": 0,
+    "gate": "",
+    "started": "",
+    "finished": ""
+   }
+  ]
+ },
+ "tokens": {
+  "units": "tokens",
+  "by_wave": [
+   {
+    "id": "W0-3",
+    "model_mix": "sonnet+opus",
+    "subagent_tokens": 6100000
+   },
+   {
+    "id": "W4-evidence-regrade",
+    "model_mix": "opus+sonnet",
+    "subagent_tokens": 3300000
+   },
+   {
+    "id": "W4-evidence-agents",
+    "model_mix": "opus",
+    "subagent_tokens": 2400000
+   },
+   {
+    "id": "gateA-prime",
+    "model_mix": "opus",
+    "subagent_tokens": 300000
+   },
+   {
+    "id": "W3-prime-render",
+    "model_mix": "sonnet",
+    "subagent_tokens": 120000
+   },
+   {
+    "id": "gateC",
+    "model_mix": "sonnet+opus",
+    "subagent_tokens": 19300000
+   },
+   {
+    "id": "wharf-cut-evidence-fixdev",
+    "model_mix": "opus",
+    "subagent_tokens": 1600000
+   },
+   {
+    "id": "gateA-doubleprime",
+    "model_mix": "opus",
+    "subagent_tokens": 310000
+   }
+  ],
+  "director_context_tokens": 1200000,
+  "total": 34630000,
+  "limits": {
+   "five_hour": null,
+   "weekly": null,
+   "note": "Owner to supply the 5-hour and weekly ceilings (tokens or % from the claude.ai usage page); not readable from inside the session."
+  },
+  "used_pct": {
+   "five_hour": null,
+   "weekly": null
+  }
+ }
 }
