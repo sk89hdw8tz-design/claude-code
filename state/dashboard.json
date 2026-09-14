@@ -493,13 +493,13 @@
      "opus": 1
     },
     "auditor_model": "opus",
-    "status": "running",
+    "status": "done",
     "running": 1,
-    "done": 0,
+    "done": 1,
     "rejected": 0,
-    "gate": "",
+    "gate": "audit PASS; 2.24M px2 fallback re-sourced, 0 px2 outside footprints; HQ-59 @ 3e36038",
     "started": "2026-09-14T23:33Z",
-    "finished": ""
+    "finished": "2026-09-14T23:51Z"
    },
    {
     "id": "R2",
