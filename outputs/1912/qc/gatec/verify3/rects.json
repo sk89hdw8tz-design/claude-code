@@ -1,0 +1,17 @@
+{
+  "note": "1:1 (downsample 1) qcrender crops verifying the HQ-59 unowned-ground fallback fix. 'before' = HEAD c5ceddd renderer, 'after' = fixed renderer; identical recipe in both (nothing under outputs/1912/recipe/ changed). All crops written at JPEG quality 95, the setting outputs/1912/qc/gatec/verify2/ used.",
+  "crops": [
+    {"file": "63_70_legend_{before,after}.jpg", "rect": [18700, 24280, 20180, 24760],
+     "outcome": "plate 63's cut:true 'Scale of Feet' legend and graduated bar are gone; the roadway of 33rd St with the 10\" W. PIPE run is drawn from plates 70/71. Residue: the few glyphs of the legend that fall outside the declared furniture box (63[1] mosaic [18794,24447,20079,24649]) and plate 70's own kept title numeral (70[0], cut:false)."},
+    {"file": "63_71_main_{before,after}.jpg", "rect": [19100, 23900, 20600, 25200],
+     "outcome": "same band from the 63|71 side; the 10\" main runs through, no legend."},
+    {"file": "91_92_main_after.jpg", "rect": [4350, 47800, 5750, 49000],
+     "outcome": "byte-identical to verify2/91_92_main_after.jpg"},
+    {"file": "17_18_8th_st_after.jpg", "rect": [-3480, -35400, -2080, -34200],
+     "outcome": "byte-identical to verify2/17_18_8th_st_after.jpg"},
+    {"file": "win_123_2117_after.jpg", "rect": [33879, 33415, 35379, 34915],
+     "outcome": "byte-identical to verify2/win_123_2117_after.jpg (this is the rect verify2's win_123 crop was cut at: the current windows.json win_123 window)"},
+    {"file": "win_123_round2_after.jpg", "rect": [33879, 45032, 35379, 46532],
+     "outcome": "round2's win_123 window, the rect named in the wave brief: byte-identical before vs after the fix"}
+  ]
+}

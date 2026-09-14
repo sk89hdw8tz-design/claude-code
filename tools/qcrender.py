@@ -16,7 +16,7 @@ import sys
 import numpy as np
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from reciplib import Recipe  # noqa: E402
+from reciplib import Recipe, fill_geom  # noqa: E402
 
 
 def render(r, x0, y0, x1, y1, d, labels=False, outline=False):
@@ -56,19 +56,18 @@ def render(r, x0, y0, x1, y1, d, labels=False, outline=False):
         m = mask.astype(bool)
         canvas[wy0:wy1, wx0:wx1][m] = warped[m]
         sub_cov |= mask
-    # unowned-sliver fallback, as tools/render.py does it
-    for sheet, poly in own:
-        if sheet not in polys:
-            continue
-        fp = r.footprint(sheet)
-        fpts = ((np.array(fp.exterior.coords) - np.array([x0, y0])) / d).astype(np.int32)
-        wx0 = max(0, int(fpts[:, 0].min()) - 2); wy0 = max(0, int(fpts[:, 1].min()) - 2)
-        wx1 = min(W, int(fpts[:, 0].max()) + 3); wy1 = min(H, int(fpts[:, 1].max()) + 3)
+    # unowned-sliver fallback, from the same plan tools/render.py paints:
+    # furniture-aware footprints first (nearest ownership region wins), the
+    # untrimmed footprint only where no plate maps the ground.
+    for sheet, geom in r.fallback_plan(rect):
+        gx0, gy0, gx1, gy1 = geom.bounds
+        wx0 = max(0, int((gx0 - x0) / d) - 2); wy0 = max(0, int((gy0 - y0) / d) - 2)
+        wx1 = min(W, int((gx1 - x0) / d) + 3); wy1 = min(H, int((gy1 - y0) / d) + 3)
         if wx1 <= wx0 or wy1 <= wy0:
             continue
         sub_cov = covered[wy0:wy1, wx0:wx1]
         mask = np.zeros((wy1 - wy0, wx1 - wx0), np.uint8)
-        cv2.fillPoly(mask, [fpts - np.array([wx0, wy0], np.int32)], 255)
+        fill_geom(mask, geom, x0, y0, d, wx0, wy0)
         mask &= cv2.inRange(sub_cov, 0, 0)
         if cv2.countNonZero(mask) == 0:
             continue

@@ -2600,3 +2600,102 @@ on the re-grade list.
 
 Not run this wave, by instruction: `publish.py`, `printmaster.py`, `perirender.py`,
 `interiorwins.py`, `seamcrops.py` - the render wave is separate.
+
+## HQ-59 · R1 · unowned-ground fallback made furniture-aware — APPLIED
+
+**The defect** (raised as the one new item of HQ-58, and the reason HQ-53's
+outcome was undone). Ground no ownership region claims is painted by a second
+pass in `tools/render.py`, mirrored in `tools/qcrender.py`. That pass filled each
+candidate plate's footprint **exterior ring**, which throws away the furniture
+holes `footprint()` cuts — so a `cut:true` box a neighbour supplies was painted
+straight back. After the Wave 2'' re-cut moved the 63|71 cut 240 px south, plate
+63's "Scale of Feet" legend and graduated bar printed over the 33rd St roadway
+plates 70/71 draw, with their 10" W. PIPE run underneath it (146,571 px² of
+newly unowned ground).
+
+**The rule now implemented.** `Recipe.fallback_plan(rect)` builds one plan that
+both renderers rasterise through the shared `reciplib.fill_geom` (exteriors
+filled, interior rings cleared), so they paint identical pixels:
+
+1. unowned ground is offered first to the plates whose **furniture-aware**
+   footprint covers it — holes and all, so a box a neighbour maps is never
+   painted back; among those the nearest ownership region wins, ties to the
+   earlier region in the recipe, so nothing already painted from a plate's own
+   margin moves;
+2. only ground **no** furniture-aware footprint maps falls back to the untrimmed
+   footprint — the master-kept case, where the plate's own paper (title, scale
+   bar, rose) beats a white hole, as the accepted 27×40 master keeps them.
+
+No blending, inpainting or redrawing; one authentic plate still owns each pixel;
+the covered-mask gate still prevents any fallback pixel from overpainting owned
+ground; nothing under `outputs/1912/recipe/` changed, so ownership, transforms
+and the gap audit are untouched. Only *which* plate's own scan fills unowned
+ground changes.
+
+**Scale of the change** (plan diffed old vs new over the full extent
+(-21566,-38459)..(49417,54500)). The fallback is eligible on **2,494,490 px²**
+of unowned ground that lies inside some plate's paper. Of that, **2,239,237 px²
+(89.8 %) now comes from a different plate** than the exterior-ring pass gave it.
+Painted total goes 2,467,671 → 2,494,491 px²: no new white holes, and +26,820 px²
+the old ring could not reach (a box that notches a footprint edge rather than
+holing it was reachable by neither pass).
+
+**78 units affected; 37 by more than 1,000 px².** The large ones are all the
+same defect as 63|70 — a plate's own cut scale bar or title, painted over a
+street the neighbour below maps:
+
+| ground handed from | to | px² |
+|---|---|---|
+| 22 | 28 | 308,427 |
+| 30 | 36 | 293,397 |
+| 86 | 94 | 291,051 |
+| 85 | 94 | 290,879 |
+| 51 | 57 | 288,202 |
+| 60 | 66 | 285,980 |
+| 29 | 35 | 285,418 |
+| 63 | 70 (137,295) + 71 (2,435) | 139,730 |
+
+and in the other direction, ground **restored** to the plate whose paper is the
+only one mapping it: 99a's title 19,644 px², 93b's edge numeral 6,394 px², 81's
+scale bar band +4,815, 65 +1,836. Smaller movements (< 1,000 px²) on the
+remaining 41 units are cut-line hairlines. Full list of affected units: 94, 28,
+22, 36, 30, 86, 85, 51, 57, 66, 35, 60, 29, 70, 63, 99a, 93b, 81, 73, 82, 90,
+52, 80, 58, 65, 40, 77, 59, 24, 71, 62, 78, 39, 91, 83, 88, 48, 69, 56, 87, 79,
+76, 89, 97, 68, 74, 44, 43, 45, 41, 53, 61, 16, 21, 84, 17, 92, 96, 50, 13, 4,
+7, 5a, 54, 46, 47, 23, 34, 14, 26, 42, 72, 38, 15, 37, 31, 55, 64.
+
+**Verification.** 1:1 crops at JPEG q95 in `outputs/1912/qc/gatec/verify3/`
+(`rects.json` names every rect); the reviewer re-rendered all six from the same
+rects and got **byte-identical files**.
+
+| item | outcome |
+|---|---|
+| 63\|70 legend in 33rd St | plate 63's legend and graduated bar **gone**; plates 70/71 draw the roadway and the 10" W. PIPE run. Inside 63's declared box the plan now reads 70 = 137,295, 71 = 2,435, 63 = 9,278 px² (the true source gap nobody maps), against 63 = 146,571 before. Disclosed residue: the few legend glyphs outside the declared box, and plate 70's own `cut:false` title numeral, which covers 36 % of what 70 now paints there. |
+| 63\|71 main | the 10" main runs through the band, no legend. |
+| Gate A' 91\|92, 17\|18, win_123 (both rects) | **byte-identical** to `verify2/` — the fix moves nothing that was already right. |
+| master-kept, unit 81 scale bar | before/after differ by at most 2 levels, 0 px over 8: the kept legend still prints where no neighbour maps it. |
+| master-kept, unit 93b edge numeral | still printed, and 6,394 px² **restored** that the exterior-ring pass could not reach. |
+
+**Audit checks over the whole city.** Containment: 0 units paint outside their
+own untrimmed footprint. Disjointness: 54.2 px² of overlap between units in the
+plan, entirely from the 2 px raster grow, resolved identically in both renderers
+by the covered-mask gate. Furniture: 81,450 px² of a plate's own `cut:true`
+furniture is still kept on its own paper, and **0 px² of it is ground another
+plate maps**. Both renderers agree: on the defect rect `render.py` and
+`qcrender.py` differ on 1 pixel in 710,400 above level 40 and none above 80 (the
+pre-existing LANCZOS4-vs-AREA and JPEG difference). Cost: `fallback_plan` over
+the full extent runs in ~98 s once per render, against a city render measured in
+hours.
+
+**One consequence to note, not a defect.** Where the ground handed back is a
+street the neighbour maps, the neighbour's own paper is what prints — and on a
+few of those plates that paper carries **undeclared** furniture. At 22|28 plate
+22's scale bar is replaced by plate 28's compass rose, which is not a declared
+`furniture_native` box (0 px² of the 308,427 falls inside 28's declared boxes).
+That is the master's own convention (roses and adjoining numerals are kept, HQ-41)
+and it is plate 28's authentic scan of ground plate 28 maps, but if the grader
+wants the roadway there instead, the fix is another furniture box on plate 28,
+not a renderer change.
+
+**Reviewer's verdict: pass**, landed unchanged — no edit was needed to the three
+files during the audit.

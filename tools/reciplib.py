@@ -240,6 +240,121 @@ class Recipe:
             self._interior_unowned = [Polygon(r) for g in geoms for r in g.interiors]
         return self._interior_unowned
 
+    def fallback_plan(self, rect, units=None):
+        """Assign the ground no ownership region claims to plates that map it.
+
+        Returns [(unit, shapely geometry)] -- the ground each unit's warped
+        paper should fill, once per unit, disjoint between units. Both
+        renderers build their second pass from this, so they paint the same
+        pixels.
+
+        Ground is offered first to the plates whose FURNITURE-AWARE footprint
+        covers it: `footprint(u)` with the `cut:true` furniture boxes removed
+        as holes, not merely its exterior ring. Filling from the exterior ring
+        was the HQ-58 defect -- a box a neighbour supplies (plate 63's "Scale
+        of Feet", cut in HQ-53's cycle) was painted straight back over the
+        roadway the neighbour draws. Among the plates that do cover a piece,
+        the one whose ownership region is nearest wins (0 = adjacent), ties
+        going to the earlier region in the recipe so nothing that used to be
+        painted from a plate's own margin moves.
+
+        Only ground no furniture-aware footprint maps falls back to the
+        untrimmed footprint (`furniture=False`): that is the master-kept-
+        furniture case where nobody else maps the ground, and the plate's own
+        paper -- title and all -- beats a white hole.
+        """
+        from shapely.ops import unary_union
+        if getattr(self, "_own_shapes", None) is None:
+            self._own_shapes = [(u, P.buffer(0)) for u, P in self.ownership_shapes()]
+            self._fp_cache = {}
+        shapes = self._own_shapes
+        if units is not None:
+            keep = {str(u) for u in units}
+            shapes = [(u, P) for u, P in shapes if u in keep]
+        order = {u: i for i, (u, _) in enumerate(shapes)}
+        regions = dict(shapes)
+
+        def fp_of(u, furn):
+            key = (u, furn)
+            if key not in self._fp_cache:
+                try:
+                    g = self.footprint(u, furniture=furn).buffer(0)
+                except Exception:
+                    g = None
+                self._fp_cache[key] = g
+            return self._fp_cache[key]
+
+        # everything is clipped to the rect first: a region or a footprint that
+        # does not reach the window cannot own or paint anything in it.
+        near = [(u, P) for u, P in shapes if P.intersects(rect)]
+        fps = ({}, {})                       # furniture-aware, then untrimmed
+        for u, _ in shapes:
+            full = fp_of(u, False)
+            if full is None or full.is_empty or not full.intersects(rect):
+                continue
+            fps[1][u] = full
+            furn = fp_of(u, True)
+            if furn is not None and not furn.is_empty and furn.intersects(rect):
+                fps[0][u] = furn
+        if not fps[1]:
+            return []
+        unowned = rect
+        if near:
+            unowned = rect.difference(unary_union([P for _, P in near]))
+        # only ground some plate's paper reaches can be painted at all, and
+        # clipping to that keeps a city-wide call tractable: it cuts the one
+        # enormous outside-the-union piece down to the plates' own margins.
+        unowned = unowned.intersection(unary_union(list(fps[1].values())))
+        if unowned.is_empty:
+            return []
+        # spatial index per stage: a city-wide call has thousands of slivers
+        # and a hundred footprints, and testing every footprint against every
+        # sliver is what made the whole-city second pass take minutes.
+        from shapely import STRtree
+        keys = [list(fps[0]), list(fps[1])]
+        trees = [STRtree([fps[i][u] for u in keys[i]]) if keys[i] else None
+                 for i in (0, 1)]
+        plan = {}
+        pieces = ([unowned] if unowned.geom_type == "Polygon"
+                  else [g for g in unowned.geoms if g.geom_type == "Polygon"])
+        for piece in pieces:
+            # grow the piece slightly: the raster gate is the covered mask, so
+            # a hairline the polygon arithmetic closes but the rasteriser
+            # leaves open still gets painted, as it did before this pass.
+            rem = piece.buffer(2.0)
+            for stage in (0, 1):
+                if trees[stage] is None:
+                    continue
+                ranked = []
+                for k in trees[stage].query(rem):
+                    u = keys[stage][k]
+                    inter = rem.intersection(fps[stage][u])
+                    if inter.is_empty or inter.area <= 0:
+                        continue
+                    ranked.append((u, inter))
+                if not ranked:
+                    continue
+                if len(ranked) > 1:
+                    # only worth measuring when more than one plate maps the
+                    # ground: the distance is against whole ownership regions,
+                    # and most slivers have a single candidate.
+                    ranked.sort(key=lambda c: (regions[c[0]].distance(c[1]),
+                                               order[c[0]]))
+                for i, (u, inter) in enumerate(ranked):
+                    take = inter if i == 0 else rem.intersection(fps[stage][u])
+                    if take.is_empty or take.area <= 0:
+                        continue
+                    plan.setdefault(u, []).append(take)
+                    rem = rem.difference(fps[stage][u])
+                    if rem.is_empty or rem.area <= 1e-9:
+                        break
+                if rem.is_empty or rem.area <= 1e-9:
+                    break
+        # unioned once per unit at the end: merging each sliver into a
+        # growing geometry as it was assigned made a whole-city call
+        # quadratic in the number of slivers.
+        return [(u, unary_union(plan[u])) for u in sorted(plan, key=lambda u: order[u])]
+
     def sheet_file(self, sheet):
         """Inventory file name for a unit's source scan."""
         u = self.units.get(str(sheet))
@@ -314,6 +429,27 @@ class Recipe:
         if street_no is not None:
             y = g["streets"][str(int(street_no))]["y"]
         return x, y
+
+
+def fill_geom(mask, geom, x0, y0, d, ox=0, oy=0, value=255):
+    """Rasterise a shapely geometry into `mask` in window pixel coordinates.
+
+    Exteriors are filled, interior rings are cleared, so a footprint's
+    furniture holes stay holes. Shared by render.py and qcrender.py so the
+    two paint identical pixels.
+    """
+    import cv2
+    off = np.array([ox, oy], np.int32)
+    polys = ([geom] if geom.geom_type == "Polygon"
+             else [g for g in getattr(geom, "geoms", []) if g.geom_type == "Polygon"])
+    for P in polys:
+        pts = ((np.array(P.exterior.coords) - np.array([x0, y0])) / d).astype(np.int32) - off
+        cv2.fillPoly(mask, [pts], value)
+        for ring in P.interiors:
+            pts = ((np.array(ring.coords) - np.array([x0, y0])) / d).astype(np.int32) - off
+            cv2.fillPoly(mask, [pts], 0)
+    return mask
+
 
 def px_per_ft(recipe):
     """Mosaic pixels per ground foot.

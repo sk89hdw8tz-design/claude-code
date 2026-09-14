@@ -23,7 +23,7 @@ import sys
 import numpy as np
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from reciplib import Recipe  # noqa: E402
+from reciplib import Recipe, fill_geom  # noqa: E402
 
 NATIVE_PPI = 300.0    # what the plates scan and the masters print at
 
@@ -174,24 +174,22 @@ def main():
     # notches between a min-ink path and a neighbouring cut, the strip a
     # neighbour's neat line stops short of) is painted from any plate whose
     # trimmed footprint covers it. Nothing is invented: the pixels are that
-    # plate's own scan of that ground, and the area is reported. The footprint
-    # used here is the furniture-aware one, so a marking a neighbour can
-    # replace in full is never painted back, while one no neighbour maps stays
-    # on the plate's own paper rather than leaving a hole.
+    # plate's own scan of that ground, and the area is reported. The plan
+    # comes from Recipe.fallback_plan: the furniture-AWARE footprint (holes
+    # and all) decides who may paint, nearest ownership region first, so a
+    # marking a neighbour supplies is never painted back; only ground no
+    # furniture-aware footprint maps falls back to the untrimmed footprint,
+    # where the plate's own paper beats a white hole.
     fallback = 0
-    for sheet, poly in involved:
-        try:
-            fp = r.footprint(sheet)
-        except Exception:
-            continue
-        fpts = ((np.array(fp.exterior.coords) - np.array([x0, y0])) / d).astype(np.int32)
-        wx0 = max(0, int(fpts[:, 0].min()) - 2); wy0 = max(0, int(fpts[:, 1].min()) - 2)
-        wx1 = min(W, int(fpts[:, 0].max()) + 3); wy1 = min(H, int(fpts[:, 1].max()) + 3)
+    for sheet, geom in r.fallback_plan(rect):
+        gx0, gy0, gx1, gy1 = geom.bounds
+        wx0 = max(0, int((gx0 - x0) / d) - 2); wy0 = max(0, int((gy0 - y0) / d) - 2)
+        wx1 = min(W, int((gx1 - x0) / d) + 3); wy1 = min(H, int((gy1 - y0) / d) + 3)
         if wx1 <= wx0 or wy1 <= wy0:
             continue
         sub_cov = covered[wy0:wy1, wx0:wx1]
         mask = np.zeros((wy1 - wy0, wx1 - wx0), np.uint8)
-        cv2.fillPoly(mask, [fpts - np.array([wx0, wy0], np.int32)], 255)
+        fill_geom(mask, geom, x0, y0, d, wx0, wy0)
         mask &= cv2.inRange(sub_cov, 0, 0)
         n = int(cv2.countNonZero(mask))
         if n == 0:
