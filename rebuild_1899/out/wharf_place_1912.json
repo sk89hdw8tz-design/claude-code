@@ -454,5 +454,9 @@
    ],
    "note": "remote 5b differs from transforms_sheet5.json raw (t=(-19385.8,-1775.4), theta 0.593) because it was re-solved locally on the remote branch; the remote values are used"
   }
+ },
+ "cross_validation": {
+  "1-2": "second blind child 'Blind ties 1-2 run C' (10 ties, 8 high-confidence) found the 1->2 offset ~(-2765,+400) px vs run A's (-2743,+419) used here: agreement within ~25 px, rigid residuals ~10 px in both (independent drafting of the shared strip)",
+  "2-3": "second blind child 'Blind ties 2-3 run A' (9 ties, 7 high-confidence, residuals <=11 px) confirms the same Pier 38/39 and slip-root features used from run B"
  }
 }
