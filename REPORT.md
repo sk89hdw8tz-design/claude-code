@@ -308,9 +308,12 @@ inset panels the completion pass split (17's outlying panel additionally).
   89|99, 67|75, 34|39, 74|81, 40|41, 82|90, 50|56 (proof panels in `qc/independent/proof_city/`).
 
 **What this pass changes in the product:** nothing in registration. It
-adds the tools above, the blind-reading evidence, the independent seam
-matrix, and (pending) wharf sheets 1-2 from a lead agent using
-blind tie adjudication against the delivered frame.
+adds the tools above, the blind-reading evidence and the independent seam
+matrix. It also found one defect in the delivered product — wharf sheet 6
+placed ~320 ft bay-ward of its own Ave A (HQ-61, with anaglyph) — and
+produced blind-tie placements for the two unplaced wharf sheets 1-2; both
+are parked as a patch pending a decision, since applying them re-cuts the
+wharf seams and stales the published masters.
 
 ## 1912 — consolidated from the accepted prior build
 

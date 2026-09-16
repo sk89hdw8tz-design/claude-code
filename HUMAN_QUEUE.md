@@ -2700,7 +2700,7 @@ not a renderer change.
 **Reviewer's verdict: pass**, landed unchanged — no edit was needed to the three
 files during the audit.
 
-## HQ-30 · 1912 independent check: flagged seams and the 17 outlying panel — INFO
+## HQ-60 · 1912 independent check: flagged seams and the 17 outlying panel — INFO
 
 The corridor-identity and seam-NCC checks (REPORT, "independent verification
 pass") pass the delivered recipe. Items for the next census round only:
@@ -2709,3 +2709,24 @@ seams with a confident NCC peak above 60 px (listed in REPORT); and sheet
 which the independent rebuild placed on an extrapolated grid
 (`rebuild_1899/out/grid_place_1912.json`, unit 17b) but which is outside
 the delivered city footprint — include only if the print should reach it.
+
+## HQ-61 · 1912 wharf sheet 6 misplaced ~320 ft bay-ward; sheets 1-2 placed but not applied — DECISION NEEDED
+
+Found by the independent pass (wharf lead agent, confirmed by anaglyph
+`outputs/1912/recipe/qc/independent/sheet6_before_after.jpg`): the delivered
+transform for wharf sheet 6 puts its printed "AVE. A OR WATER" and blocks
+730-735 about 1,845 frame px (≈320 ft) bay-ward of the same ground on
+plates 21/27/33, so that strip is drawn twice. The frontage seam let plate
+27 own the whole strip, which is why the seam census never saw it; the
+piers on sheet 6 are therefore ~320 ft too far out. Sheets 3 and 4 were
+spot-checked and are fine. Proposed fix: t_x +1845 (same m). Wharf sheets
+1 and 2 — the only unplaced 1912 sheets — were placed by blind ties (5 and
+6 ties, 6/15 px median) chained to sheet 3.
+
+Both edits are parked, NOT applied, in
+`rebuild_1899/out/wharf_recipe_pending.patch` (transforms_city, units,
+working_sources) with placements in `rebuild_1899/out/wharf_place_1912.json`.
+Applying them also needs the wharf-cluster seams re-cut (a full
+`streetcut.py` rerun perturbs 101 tuned regions; a surgical merge of the
+nine cluster units was prepared but not written) and an off-cloud republish
+of the COG/DZI/print masters. Say "apply" to proceed, or leave as disclosed.

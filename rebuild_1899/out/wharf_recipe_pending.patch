@@ -1,0 +1,170 @@
+diff --git a/outputs/1912/recipe/transforms_city.json b/outputs/1912/recipe/transforms_city.json
+index 354fbdf..daf2a23 100644
+--- a/outputs/1912/recipe/transforms_city.json
++++ b/outputs/1912/recipe/transforms_city.json
+@@ -1839,13 +1839,17 @@
+     ]
+    ],
+    "t": [
+-    -21696.24633591273,
++    -19851.24633591273,
+     -30181.416177192918
+    ],
+-   "how": "tools/wharfplace.py: rotation from the sheet-5 joint solve; scale and translation from Ave A and the shared cross streets against the block plates (and, for sheet 3, its 33rd St against sheet 4)",
++   "how": "tools/wharfplace.py: rotation from the sheet-5 joint solve; scale and translation from Ave A and the shared cross streets against the block plates (and, for sheet 3, its 33rd St against sheet 4) | 2026-09-16 correction: t_x +1845 px. The delivered placement put the plate's printed 'AVE. A OR WATER' (native x 3169-3220) 1845 frame px bay-ward of the block plates' Ave A, so blocks 730-735 and Ave A were drawn twice ~320 ft apart (anaglyph outputs/1912/recipe/qc/independent/sheet6_before_after.jpg); the frontage seam hid it because plate 27 owned the whole strip. Shift chosen so the plate's Ave A midline lands on the grid's Ave A; NCC against 21/27/33 prefers +1904 (peak 0.10, not confident), so +-80 px remains.",
+    "tier": "wharf-frontage",
+    "theta_deg": 0.5934874990851567,
+-   "scale": 4.022413829053207
++   "scale": 4.022413829053207,
++   "t_before_correction": [
++    -21696.24633591273,
++    -30181.416177192918
++   ]
+   },
+   "3": {
+    "m": [
+@@ -1866,6 +1870,46 @@
+    "tier": "wharf-frontage",
+    "theta_deg": 0.5934874990851567,
+    "scale": 4.009793117105231
++  },
++  "2": {
++   "m": [
++    [
++     2.106559034118084,
++     3.4258659800446125
++    ],
++    [
++     -3.4258659800446125,
++     2.1065590341180838
++    ]
++   ],
++   "t": [
++    -24840.36842715783,
++    43062.00767884706
++   ],
++   "how": "blind-tie similarity (rebuild_1899/out/wharf_place_1912.json): ties-sim(n=5,med=6px,max=20px) to remote sheet 3 (tier wharf-frontage); blind ties from child session 'Blind ties 2-3 run B', 4 corners verified by lead",
++   "tier": "wharf-ties",
++   "theta_deg": -58.413,
++   "scale": 4.02171
++  },
++  "1": {
++   "m": [
++    [
++     2.0841271902935814,
++     3.400141062835232
++    ],
++    [
++     -3.400141062835232,
++     2.084127190293581
++    ]
++   ],
++   "t": [
++    -29182.260518679308,
++    53343.02125696025
++   ],
++   "how": "blind-tie similarity (rebuild_1899/out/wharf_place_1912.json): ties-sim(n=6,med=15px,max=31px) to sheet 2 (this file); blind ties from child session 'Blind ties 1-2 run A', 2 corners verified by lead; chained: 1 -> 2 -> remote 3",
++   "tier": "wharf-ties",
++   "theta_deg": -58.494,
++   "scale": 3.98805
+   }
+  }
+ }
+\ No newline at end of file
+diff --git a/outputs/1912/recipe/units.json b/outputs/1912/recipe/units.json
+index 0bd337f..9f08fa7 100644
+--- a/outputs/1912/recipe/units.json
++++ b/outputs/1912/recipe/units.json
+@@ -8249,6 +8249,54 @@
+      "match_score": 0.756
+     }
+    ]
++  },
++  "2": {
++   "file": 2,
++   "region": null,
++   "extent": [
++    40,
++    45,
++    3285,
++    3855
++   ],
++   "streets": null,
++   "avenue_slots": null,
++   "source_image": "work/sheets/1912w/u2.jpg",
++   "scale_note": "wharf plate drawn at 100 ft/in; pct:50 working copy",
++   "seam_axis": {
++    "default": "y"
++   },
++   "extent_scan": [
++    40,
++    40,
++    3287,
++    3858
++   ],
++   "note": "Printed rotated: frame +x lies at page angle 59.0 deg. Piers 39-41 + Piers A/B (SP terminal), Water/40th/41st St at lower right. Sheet 3 itself tilts only ~+0.15 deg on its own street lines while the remote gives it 0.59 deg (borrowed from sheet 5); about (-80,-90) px of the tie-vs-grid gap at Pier "
++  },
++  "1": {
++   "file": 1,
++   "region": null,
++   "extent": [
++    40,
++    45,
++    3285,
++    3855
++   ],
++   "streets": null,
++   "avenue_slots": null,
++   "source_image": "work/sheets/1912w/u1.jpg",
++   "scale_note": "wharf plate drawn at 100 ft/in; pct:50 working copy",
++   "seam_axis": {
++    "default": "y"
++   },
++   "extent_scan": [
++    40,
++    40,
++    3287,
++    3858
++   ],
++   "note": "SP Terminal Piers A/B/C, no streets; same page orientation as sheet 2 (1->2 similarity: scale 0.9916, rotation -0.08 deg, shift ~(-2743,+419) working px). Shared strip is drafted independently on the two sheets (slip 375 vs 366 px wide), so ~10 px native scatter is intrinsic."
+   }
+  }
+ }
+\ No newline at end of file
+diff --git a/outputs/1912/recipe/working_sources.json b/outputs/1912/recipe/working_sources.json
+index cc90e47..3b9b981 100644
+--- a/outputs/1912/recipe/working_sources.json
++++ b/outputs/1912/recipe/working_sources.json
+@@ -1231,6 +1231,32 @@
+    "file": "pct50/sheet_0003.jpg",
+    "op": "copy",
+    "bytes": 1238152
++  },
++  "2": {
++   "file": "pct50/sheet_0002.jpg",
++   "op": "copy",
++   "bytes": 1108267,
++   "sha256": "ad00a7deaebbf76e0b51e58b2d189f17358f81ef483bce53362d71b7f0f65ddf",
++   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0002/full/pct:50/0/default.jpg",
++   "mirror": {
++    "branch": "claude/galveston-1912-source-data",
++    "kind": "git",
++    "path": "galveston_1912_sources/pct50/sheet_0002.jpg",
++    "repo": "sk89hdw8tz-design/claude-code"
++   }
++  },
++  "1": {
++   "file": "pct50/sheet_0001.jpg",
++   "op": "copy",
++   "bytes": 796952,
++   "sha256": "e9b7aa0c737579856b043170abfe36c87c41c374ffa7edc248c78df61e99b9b1",
++   "source_url": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391912:08539_1912-0001/full/pct:50/0/default.jpg",
++   "mirror": {
++    "branch": "claude/galveston-1912-source-data",
++    "kind": "git",
++    "path": "galveston_1912_sources/pct50/sheet_0001.jpg",
++    "repo": "sk89hdw8tz-design/claude-code"
++   }
+   }
+  },
+  "year": 1912
