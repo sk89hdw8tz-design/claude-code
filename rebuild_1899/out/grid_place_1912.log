@@ -1,0 +1,95 @@
+pass 0: grid update max |dy| 1 px (159 street obs, rms 20), max |dx| 2 px (137 avenue obs, rms 21)
+pass 1: grid update max |dy| 0 px (159 street obs, rms 20), max |dx| 0 px (137 avenue obs, rms 21)
+pass 2: grid update max |dy| 0 px (159 street obs, rms 20), max |dx| 0 px (137 avenue obs, rms 21)
+streets {6: -37872, 7: -35580, 8: -33264, 9: -30996, 10: -28701, 11: -26380, 12: -24100, 13: -21804, 14: -19485, 15: -17199, 16: -14903, 17: -12582, 18: -10331, 19: -8034, 20: -5704, 21: -3435, 22: -1150, 23: 1161, 24: 3443, 25: 5843, 26: 8274, 27: 10474, 28: 12765, 29: 15075, 30: 17344, 31: 19646, 32: 21950, 33: 24238, 34: 26528, 35: 28838, 36: 31096, 37: 33386, 38: 35688, 39: 37945, 40: 40228, 41: 42533, 42: 44794, 43: 47087, 44: 49378, 45: 51637, 46: 53929, 47: 56221, 48: 58513, 49: 60806, 50: 63098, 51: 65390, 52: 67682, 53: 69974}
+avenues {0: -6983, 1: -4952, 2: -2881, 3: -887, 4: 1126, 5: 3172, 6: 5179, 7: 7194, 8: 9219, 9: 11298, 10: 13400, 11: 15383, 12: 17386, 13: 19394, 14: 21400, 15: 23391, 16: 25399, 17: 27397, 18: 29399, 19: 31405, 20: 33400, 21: 35412, 22: 37428, 23: 39427, 24: 41436, 25: 43428, 26: 45417, 27: 47425}
+Counter({'grid-anchored': 86, 'frozen-core': 12, 'span-prior': 3})
+  13 grid-anchored y:grid(n=2) x:grid(n=1) y_res [3, 0] x_res [0] out y0 x0
+  14 grid-anchored y:grid(n=4) x:grid(n=1) y_res [11, 6, 0, 6] x_res [0] out y0 x0
+  15 grid-anchored y:grid(n=3) x:grid(n=1) y_res [0, 6, 16] x_res [0] out y0 x0
+  16 grid-anchored y:grid(n=4) x:grid(n=1) y_res [1, 0, 8, 22] x_res [0] out y0 x0
+  18 grid-anchored y:grid(n=3) x:grid(n=3) y_res [22, 22, 0] x_res [0, 3, 25] out y0 x0
+  19 grid-anchored y:grid(n=3) x:grid(n=4) y_res [0, 3, 6] x_res [24, 24, 24, 0] out y0 x0
+  21 grid-anchored y:grid(n=4) x:grid(n=2) y_res [2, 0, 3, 28] x_res [16, 0] out y0 x0
+  22 grid-anchored y:grid(n=3) x:grid(n=4) y_res [0, 1, 0] x_res [31, 36, 35, 0] out y0 x0
+  23 grid-anchored y:grid(n=4) x:grid(n=3) y_res [10, 9, 12, 0] x_res [0, 4, 9] out y0 x0
+  24 grid-anchored y:grid(n=3) x:grid(n=3) y_res [6, 9, 0] x_res [0, 4, 4] out y0 x0
+  27 grid-anchored y:grid(n=3) x:grid(n=2) y_res [0, 0, 15] x_res [32, 0] out y0 x0
+  28 grid-anchored y:grid(n=3) x:grid(n=4) y_res [3, 2, 0] x_res [19, 26, 23, 0] out y0 x0
+  29 grid-anchored y:grid(n=3) x:grid(n=3) y_res [6, 6, 0] x_res [2, 1, 0] out y0 x0
+  30 grid-anchored y:grid(n=4) x:grid(n=3) y_res [0, 2, 10, 5] x_res [6, 0, 11] out y0 x0
+  31 grid-anchored y:grid(n=4) x:grid(n=3) y_res [1, 0, 1, 22] x_res [4, 0, 9] out y0 x0
+  32 span-prior(no corridors detected; centre of key-map span) y_res [] x_res [] out yNone xNone
+  33 grid-anchored y:grid(n=4) x:grid(n=2) y_res [25, 26, 25, 0] x_res [30, 0] out y0 x0
+  34 grid-anchored y:grid(n=4) x:grid(n=4) y_res [0, 3, 11, 20] x_res [21, 25, 24, 0] out y0 x0
+  35 grid-anchored y:grid(n=4) x:grid(n=3) y_res [5, 9, 0, 18] x_res [6, 0, 13] out y0 x0
+  36 grid-anchored y:grid(n=4) x:grid(n=4) y_res [23, 24, 25, 0] x_res [0, 17, 18, 19] out y0 x0
+  37 grid-anchored y:grid(n=4) x:grid(n=3) y_res [10, 3, 0, 15] x_res [6, 0, 8] out y0 x0
+  38 grid-anchored y:grid(n=4) x:grid(n=3) y_res [0, 0, 3, 11] x_res [11, 5, 0] out y0 x1
+  41 grid-anchored y:grid(n=4) x:grid(n=3) y_res [7, 2, 0, 8] x_res [2, 0, 4] out y0 x0
+  42 grid-anchored y:grid(n=4) x:grid(n=3) y_res [0, 2, 12, 21] x_res [4, 4, 0] out y0 x1
+  45 grid-anchored y:grid(n=2) x:grid(n=3) y_res [2, 0] x_res [0, 0, 1] out y0 x0
+  46 grid-anchored y:grid(n=3) x:grid(n=3) y_res [4, 3, 0] x_res [0, 13, 14] out y0 x0
+  47 grid-anchored y:grid(n=4) x:grid(n=4) y_res [8, 1, 0, 9] x_res [0, 6, 18, 9] out y0 x0
+  51 grid-anchored y:grid(n=2) x:grid(n=2) y_res [15, 0] x_res [17, 0] out y0 x0
+  52 grid-anchored y:prior x:grid(n=3)  y_res [] x_res [0, 5, 0] out yNone x0
+  53 grid-anchored y:grid(n=3) x:grid(n=3) y_res [1, 0, 0] x_res [1, 0, 10] out y0 x0
+  55 grid-anchored y:grid(n=4) x:grid(n=3) y_res [15, 14, 14, 0] x_res [0, 4, 14] out y0 x0
+  56 grid-anchored y:grid(n=4) x:grid(n=4) y_res [0, 1, 7, 10] x_res [0, 14, 19, 19] out y0 x0
+  57 grid-anchored y:grid(n=2) x:grid(n=2) y_res [2, 0] x_res [0, 3] out y0 x0
+  58 grid-anchored y:grid(n=2) x:grid(n=3) y_res [0, 0] x_res [0, 13, 13] out y0 x0
+  59 grid-anchored y:grid(n=4) x:grid(n=3) y_res [0, 1, 1, 18] x_res [7, 4, 0] out y0 x0
+  60 grid-anchored y:grid(n=3) x:grid(n=3) y_res [8, 12, 0] x_res [4, 23, 0] out y0 x0
+  61 grid-anchored y:grid(n=3) x:grid(n=3) y_res [0, 4, 0] x_res [0, 2, 14] out y0 x0
+  62 grid-anchored y:grid(n=2) x:grid(n=3) y_res [3, 0] x_res [0, 0, 2] out y0 x0
+  63 grid-anchored y:grid(n=2) x:grid(n=4) y_res [5, 0] x_res [8, 10, 6, 0] out y0 x0
+  64 grid-anchored y:grid(n=2) x:grid(n=3) y_res [9, 0] x_res [1, 0, 1] out y0 x0
+  65 grid-anchored y:grid(n=4) x:grid(n=3) y_res [0, 6, 4, 27] x_res [0, 0, 8] out y0 x0
+  66 grid-anchored y:grid(n=3) x:grid(n=4) y_res [0, 0, 30] x_res [5, 2, 0, 4] out y0 x0
+  67 grid-anchored y:grid(n=3) x:grid(n=1) y_res [0, 6, 23] x_res [0] out y0 x0
+  68 grid-anchored y:grid(n=4) x:grid(n=3) y_res [3, 0, 0, 14] x_res [4, 0, 4] out y0 x0
+  69 grid-anchored y:grid(n=3) x:grid(n=4) y_res [0, 2, 0] x_res [21, 8, 0, 22] out y0 x0
+  70 grid-anchored y:grid(n=2) x:grid(n=3) y_res [0, 0] x_res [0, 7, 13] out y0 x0
+  71 grid-anchored y:grid(n=1) x:grid(n=2) y_res [0] x_res [3, 0] out y0 x0
+  73 grid-anchored y:grid(n=3) x:grid(n=2) y_res [21, 17, 0] x_res [0, 1] out y0 x0
+  74 grid-anchored y:grid(n=1) x:grid(n=4) y_res [0] x_res [6, 2, 0, 6] out y0 x0
+  75 grid-anchored y:grid(n=2) x:prior  y_res [0, 0] x_res [] out y0 xNone
+  76 grid-anchored y:grid(n=4) x:grid(n=3) y_res [2, 0, 4, 7] x_res [14, 9, 0] out y0 x0
+  77 grid-anchored y:grid(n=4) x:grid(n=4) y_res [3, 1, 0, 9] x_res [0, 15, 18, 19] out y0 x0
+  78 grid-anchored y:grid(n=3) x:grid(n=4) y_res [0, 3, 20] x_res [0, 8, 7, 32] out y0 x0
+  79 grid-anchored y:grid(n=3) x:grid(n=4) y_res [19, 16, 0] x_res [0, 10, 12, 11] out y0 x0
+  80 grid-anchored y:grid(n=1) x:grid(n=2) y_res [0] x_res [5, 0] out y0 x0
+  81 grid-anchored y:grid(n=3) x:grid(n=2) y_res [20, 21, 0] x_res [0, 1] out y0 x0
+  82 grid-anchored y:grid(n=3) x:grid(n=2) y_res [0, 3, 21] x_res [0, 7] out y0 x0
+  83 grid-anchored y:grid(n=3) x:grid(n=1) y_res [0, 7, 25] x_res [0] out y0 x0
+  84 grid-anchored y:grid(n=3) x:grid(n=3) y_res [12, 8, 0] x_res [15, 8, 0] out y0 x0
+  86 grid-anchored y:grid(n=4) x:grid(n=3) y_res [11, 11, 14, 0] x_res [3, 0, 3] out y0 x0
+  87 grid-anchored y:grid(n=3) x:grid(n=4) y_res [9, 6, 0] x_res [6, 1, 0, 7] out y0 x0
+  88 grid-anchored y:grid(n=3) x:grid(n=2) y_res [0, 5, 23] x_res [0, 11] out y0 x0
+  89 grid-anchored y:grid(n=4) x:grid(n=4) y_res [23, 24, 22, 0] x_res [13, 1, 0, 11] out y0 x0
+  90 grid-anchored y:grid(n=3) x:grid(n=2) y_res [2, 0, 1] x_res [0, 0] out y0 x0
+  91 grid-anchored y:grid(n=4) x:grid(n=1) y_res [3, 5, 0, 9] x_res [0] out y0 x0
+  92 grid-anchored y:grid(n=3) x:grid(n=3) y_res [9, 15, 0] x_res [0, 18, 34] out y0 x0
+  94 grid-anchored y:grid(n=3) x:grid(n=2) y_res [0, 5, 20] x_res [8, 0] out y0 x0
+  95 grid-anchored y:grid(n=3) x:grid(n=3) y_res [22, 24, 0] x_res [0, 8, 10] out y0 x0
+  96 grid-anchored y:grid(n=3) x:grid(n=3) y_res [0, 6, 24] x_res [13, 4, 0] out y0 x0
+  97 grid-anchored y:grid(n=4) x:grid(n=4) y_res [21, 24, 17, 0] x_res [0, 17, 20, 28] out y0 x0
+  98 grid-anchored y:grid(n=4) x:grid(n=3) y_res [27, 4, 0, 13] x_res [1, 0, 5] out y0 x0
+  48 grid-anchored y:grid(n=3) x:grid(n=2) y_res [3, 0, 10] x_res [12, 0] out y0 x0
+ 48b grid-anchored y:prior x:grid(n=1)  y_res [] x_res [0] out yNone x0
+  85 grid-anchored y:grid(n=3) x:grid(n=2) y_res [3, 0, 0] x_res [] out y0 x0
+ 85b grid-anchored y:grid(n=1) x:grid(n=1) y_res [0] x_res [0] out y0 x0
+  93 grid-anchored y:grid(n=1) x:grid(n=3) y_res [0] x_res [7, 0, 3] out y0 x0
+ 93b span-prior(no corridors detected; centre of key-map span) y_res [] x_res [] out yNone xNone
+  99 grid-anchored y:grid(n=2) x:grid(n=2) y_res [13, 0] x_res [0, 5] out y0 x0
+ 99b grid-anchored y:grid(n=2) x:grid(n=1) y_res [10, 0] x_res [0] out y0 x0
+  26 grid-anchored y:grid(n=1) x:grid(n=1) y_res [] x_res [] out y0 x0
+  17 grid-anchored y:prior x:grid(n=2)  y_res [] x_res [0, 12] out yNone x0
+  20 grid-anchored y:grid(n=3) x:grid(n=1) y_res [2, 0, 18] x_res [0] out y0 x0
+  25 grid-anchored y:grid(n=3) x:grid(n=3) y_res [10, 13, 0] x_res [22, 24, 0] out y0 x0
+  54 grid-anchored y:grid(n=1) x:grid(n=2) y_res [] x_res [0, 18] out y0 x0
+ 26b grid-anchored y:grid(n=1) x:prior  y_res [0] x_res [] out y0 xNone
+ 17b grid-anchored y:grid(n=1) x:grid(n=1) y_res [0] x_res [0] out y0 x0
+ 20b grid-anchored y:grid(n=1) x:grid(n=1) y_res [0] x_res [0] out y0 x0
+ 25b span-prior(no corridors detected; centre of key-map span) y_res [] x_res [] out yNone xNone
+ 54b grid-anchored y:prior x:grid(n=1)  y_res [] x_res [0] out yNone x0

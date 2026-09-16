@@ -1,0 +1,2912 @@
+{
+ "14": [
+  {
+   "strip": 1,
+   "kind": "street",
+   "index": 27,
+   "expected": "27th St"
+  },
+  {
+   "strip": 2,
+   "kind": "street",
+   "index": 28,
+   "expected": "28th St"
+  },
+  {
+   "strip": 3,
+   "kind": "street",
+   "index": 29,
+   "expected": "29th St"
+  },
+  {
+   "strip": 4,
+   "kind": "street",
+   "index": 30,
+   "expected": "30th St"
+  },
+  {
+   "strip": 5,
+   "kind": "avenue",
+   "index": 3,
+   "expected": "Market/Ave D"
+  }
+ ],
+ "15": [
+  {
+   "strip": 1,
+   "kind": "street",
+   "index": 30,
+   "expected": "30th St"
+  },
+  {
+   "strip": 2,
+   "kind": "street",
+   "index": 32,
+   "expected": "32nd St"
+  },
+  {
+   "strip": 3,
+   "kind": "street",
+   "index": 33,
+   "expected": "33rd St"
+  },
+  {
+   "strip": 4,
+   "kind": "avenue",
+   "index": 0,
+   "expected": "Water/Ave A"
+  }
+ ],
+ "16": [
+  {
+   "strip": 1,
+   "kind": "street",
+   "index": 30,
+   "expected": "30th St"
+  },
+  {
+   "strip": 2,
+   "kind": "street",
+   "index": 31,
+   "expected": "31st St"
+  },
+  {
+   "strip": 3,
+   "kind": "street",
+   "index": 32,
+   "expected": "32nd St"
+  },
+  {
+   "strip": 4,
+   "kind": "street",
+   "index": 33,
+   "expected": "33rd St"
+  },
+  {
+   "strip": 5,
+   "kind": "avenue",
+   "index": 3,
+   "expected": "Market/Ave D"
+  }
+ ],
+ "17": [
+  {
+   "strip": 1,
+   "kind": "street",
+   "index": 8,
+   "expected": "8th St"
+  },
+  {
+   "strip": 2,
+   "kind": "avenue",
+   "index": 0,
+   "expected": "Water/Ave A"
+  },
+  {
+   "strip": 3,
+   "kind": "avenue",
+   "index": 1,
+   "expected": "Strand/Ave B"
+  },
+  {
+   "strip": 4,
+   "kind": "avenue",
+   "index": 2,
+   "expected": "Mechanic/Ave C"
+  }
+ ],
+ "18": [
+  {
+   "strip": 1,
+   "kind": "street",
+   "index": 7,
+   "expected": "7th St"
+  },
+  {
+   "strip": 2,
+   "kind": "street",
+   "index": 8,
+   "expected": "8th St"
+  },
+  {
+   "strip": 3,
+   "kind": "street",
+   "index": 9,
+   "expected": "9th St"
+  },
+  {
+   "strip": 4,
+   "kind": "avenue",
+   "index": 3,
+   "expected": "Market/Ave D"
+  },
+  {
+   "strip": 5,
+   "kind": "avenue",
+   "index": 4,
+   "expected": "Postoffice/Ave E"
+  },
+  {
+   "strip": 6,
+   "kind": "avenue",
+   "index": 5,
+   "expected": "Church/Ave F"
+  }
+ ],
+ "19": [
+  {
+   "strip": 1,
+   "kind": "street",
+   "index": 7,
+   "expected": "7th St"
+  },
+  {
+   "strip": 2,
+   "kind": "street",
+   "index": 8,
+   "expected": "8th St"
+  },
+  {
+   "strip": 3,
+   "kind": "street",
+   "index": 9,
+   "expected": "9th St"
+  },
+  {
+   "strip": 4,
+   "kind": "avenue",
+   "index": 5,
+   "expected": "Church/Ave F"
+  },
+  {
+   "strip": 5,
+   "kind": "avenue",
+   "index": 6,
+   "expected": "Winnie/Ave G"
+  },
+  {
+   "strip": 6,
+   "kind": "avenue",
+   "index": 7,
+   "expected": "Ball/Ave H"
+  },
+  {
+   "strip": 7,
+   "kind": "avenue",
+   "index": 8,
+   "expected": "Sealy/Ave I"
+  }
+ ],
+ "20": [
+  {
+   "strip": 1,
+   "kind": "street",
+   "index": 7,
+   "expected": "7th St"
+  },
+  {
+   "strip": 2,
+   "kind": "street",
+   "index": 8,
+   "expected": "8th St"
+  },
+  {
+   "strip": 3,
+   "kind": "street",
+   "index": 9,
+   "expected": "9th St"
+  },
+  {
+   "strip": 4,
+   "kind": "avenue",
+   "index": 10,
+   "expected": "Ave K"
+  }
+ ],
+ "21": [
+  {
+   "strip": 1,
+   "kind": "street",
+   "index": 9,
+   "expected": "9th St"
+  },
+  {
+   "strip": 2,
+   "kind": "street",
+   "index": 10,
+   "expected": "10th St"
+  },
+  {
+   "strip": 3,
+   "kind": "street",
+   "index": 11,
+   "expected": "11th St"
+  },
+  {
+   "strip": 4,
+   "kind": "street",
+   "index": 12,
+   "expected": "12th St"
+  },
+  {
+   "strip": 5,
+   "kind": "avenue",
+   "index": 1,
+   "expected": "Strand/Ave B"
+  },
+  {
+   "strip": 6,
+   "kind": "avenue",
+   "index": 2,
+   "expected": "Mechanic/Ave C"
+  }
+ ],
+ "22": [
+  {
+   "strip": 1,
+   "kind": "street",
+   "index": 9,
+   "expected": "9th St"
+  },
+  {
+   "strip": 2,
+   "kind": "street",
+   "index": 10,
+   "expected": "10th St"
+  },
+  {
+   "strip": 3,
+   "kind": "street",
+   "index": 11,
+   "expected": "11th St"
+  },
+  {
+   "strip": 4,
+   "kind": "avenue",
+   "index": 2,
+   "expected": "Mechanic/Ave C"
+  },
+  {
+   "strip": 5,
+   "kind": "avenue",
+   "index": 3,
+   "expected": "Market/Ave D"
+  },
+  {
+   "strip": 6,
+   "kind": "avenue",
+   "index": 4,
+   "expected": "Postoffice/Ave E"
+  },
+  {
+   "strip": 7,
+   "kind": "avenue",
+   "index": 5,
+   "expected": "Church/Ave F"
+  }
+ ],
+ "23": [
+  {
+   "strip": 1,
+   "kind": "street",
+   "index": 9,
+   "expected": "9th St"
+  },
+  {
+   "strip": 2,
+   "kind": "street",
+   "index": 10,
+   "expected": "10th St"
+  },
+  {
+   "strip": 3,
+   "kind": "street",
+   "index": 11,
+   "expected": "11th St"
+  },
+  {
+   "strip": 4,
+   "kind": "street",
+   "index": 12,
+   "expected": "12th St"
+  },
+  {
+   "strip": 5,
+   "kind": "avenue",
+   "index": 6,
+   "expected": "Winnie/Ave G"
+  },
+  {
+   "strip": 6,
+   "kind": "avenue",
+   "index": 7,
+   "expected": "Ball/Ave H"
+  },
+  {
+   "strip": 7,
+   "kind": "avenue",
+   "index": 8,
+   "expected": "Sealy/Ave I"
+  }
+ ],
+ "24": [
+  {
+   "strip": 1,
+   "kind": "street",
+   "index": 9,
+   "expected": "9th St"
+  },
+  {
+   "strip": 2,
+   "kind": "street",
+   "index": 10,
+   "expected": "10th St"
+  },
+  {
+   "strip": 3,
+   "kind": "street",
+   "index": 11,
+   "expected": "11th St"
+  },
+  {
+   "strip": 4,
+   "kind": "avenue",
+   "index": 9,
+   "expected": "Broadway/Ave J"
+  },
+  {
+   "strip": 5,
+   "kind": "avenue",
+   "index": 10,
+   "expected": "Ave K"
+  },
+  {
+   "strip": 6,
+   "kind": "avenue",
+   "index": 11,
+   "expected": "Ave L"
+  }
+ ],
+ "25": [
+  {
+   "strip": 1,
+   "kind": "street",
+   "index": 10,
+   "expected": "10th St"
+  },
+  {
+   "strip": 2,
+   "kind": "street",
+   "index": 11,
+   "expected": "11th St"
+  },
+  {
+   "strip": 3,
+   "kind": "street",
+   "index": 12,
+   "expected": "12th St"
+  },
+  {
+   "strip": 4,
+   "kind": "avenue",
+   "index": 12,
+   "expected": "Ave M"
+  },
+  {
+   "strip": 5,
+   "kind": "avenue",
+   "index": 13,
+   "expected": "Ave M1/2"
+  },
+  {
+   "strip": 6,
+   "kind": "avenue",
+   "index": 14,
+   "expected": "Ave N"
+  }
+ ],
+ "26": [
+  {
+   "strip": 1,
+   "kind": "street",
+   "index": 20,
+   "expected": "20th St"
+  },
+  {
+   "strip": 2,
+   "kind": "avenue",
+   "index": 17,
+   "expected": "Ave O1/2"
+  },
+  {
+   "strip": 3,
+   "kind": "avenue",
+   "index": 18,
+   "expected": "Ave P"
+  }
+ ],
+ "27": [
+  {
+   "strip": 1,
+   "kind": "street",
+   "index": 13,
+   "expected": "13th St"
+  },
+  {
+   "strip": 2,
+   "kind": "street",
+   "index": 14,
+   "expected": "14th St"
+  },
+  {
+   "strip": 3,
+   "kind": "street",
+   "index": 15,
+   "expected": "15th St"
+  },
+  {
+   "strip": 4,
+   "kind": "avenue",
+   "index": 1,
+   "expected": "Strand/Ave B"
+  },
+  {
+   "strip": 5,
+   "kind": "avenue",
+   "index": 2,
+   "expected": "Mechanic/Ave C"
+  }
+ ],
+ "28": [
+  {
+   "strip": 1,
+   "kind": "street",
+   "index": 12,
+   "expected": "12th St"
+  },
+  {
+   "strip": 2,
+   "kind": "street",
+   "index": 13,
+   "expected": "13th St"
+  },
+  {
+   "strip": 3,
+   "kind": "street",
+   "index": 14,
+   "expected": "14th St"
+  },
+  {
+   "strip": 4,
+   "kind": "avenue",
+   "index": 2,
+   "expected": "Mechanic/Ave C"
+  },
+  {
+   "strip": 5,
+   "kind": "avenue",
+   "index": 3,
+   "expected": "Market/Ave D"
+  },
+  {
+   "strip": 6,
+   "kind": "avenue",
+   "index": 4,
+   "expected": "Postoffice/Ave E"
+  },
+  {
+   "strip": 7,
+   "kind": "avenue",
+   "index": 5,
+   "expected": "Church/Ave F"
+  }
+ ],
+ "29": [
+  {
+   "strip": 1,
+   "kind": "street",
+   "index": 12,
+   "expected": "12th St"
+  },
+  {
+   "strip": 2,
+   "kind": "street",
+   "index": 13,
+   "expected": "13th St"
+  },
+  {
+   "strip": 3,
+   "kind": "street",
+   "index": 14,
+   "expected": "14th St"
+  },
+  {
+   "strip": 4,
+   "kind": "avenue",
+   "index": 6,
+   "expected": "Winnie/Ave G"
+  },
+  {
+   "strip": 5,
+   "kind": "avenue",
+   "index": 7,
+   "expected": "Ball/Ave H"
+  },
+  {
+   "strip": 6,
+   "kind": "avenue",
+   "index": 8,
+   "expected": "Sealy/Ave I"
+  }
+ ],
+ "30": [
+  {
+   "strip": 1,
+   "kind": "street",
+   "index": 12,
+   "expected": "12th St"
+  },
+  {
+   "strip": 2,
+   "kind": "street",
+   "index": 13,
+   "expected": "13th St"
+  },
+  {
+   "strip": 3,
+   "kind": "street",
+   "index": 14,
+   "expected": "14th St"
+  },
+  {
+   "strip": 4,
+   "kind": "street",
+   "index": 15,
+   "expected": "15th St"
+  },
+  {
+   "strip": 5,
+   "kind": "avenue",
+   "index": 9,
+   "expected": "Broadway/Ave J"
+  },
+  {
+   "strip": 6,
+   "kind": "avenue",
+   "index": 10,
+   "expected": "Ave K"
+  },
+  {
+   "strip": 7,
+   "kind": "avenue",
+   "index": 11,
+   "expected": "Ave L"
+  }
+ ],
+ "31": [
+  {
+   "strip": 1,
+   "kind": "street",
+   "index": 12,
+   "expected": "12th St"
+  },
+  {
+   "strip": 2,
+   "kind": "street",
+   "index": 13,
+   "expected": "13th St"
+  },
+  {
+   "strip": 3,
+   "kind": "street",
+   "index": 14,
+   "expected": "14th St"
+  },
+  {
+   "strip": 4,
+   "kind": "street",
+   "index": 15,
+   "expected": "15th St"
+  },
+  {
+   "strip": 5,
+   "kind": "avenue",
+   "index": 12,
+   "expected": "Ave M"
+  },
+  {
+   "strip": 6,
+   "kind": "avenue",
+   "index": 13,
+   "expected": "Ave M1/2"
+  },
+  {
+   "strip": 7,
+   "kind": "avenue",
+   "index": 14,
+   "expected": "Ave N"
+  }
+ ],
+ "33": [
+  {
+   "strip": 1,
+   "kind": "street",
+   "index": 15,
+   "expected": "15th St"
+  },
+  {
+   "strip": 2,
+   "kind": "street",
+   "index": 16,
+   "expected": "16th St"
+  },
+  {
+   "strip": 3,
+   "kind": "street",
+   "index": 17,
+   "expected": "17th St"
+  },
+  {
+   "strip": 4,
+   "kind": "street",
+   "index": 18,
+   "expected": "18th St"
+  },
+  {
+   "strip": 5,
+   "kind": "avenue",
+   "index": 1,
+   "expected": "Strand/Ave B"
+  },
+  {
+   "strip": 6,
+   "kind": "avenue",
+   "index": 2,
+   "expected": "Mechanic/Ave C"
+  }
+ ],
+ "34": [
+  {
+   "strip": 1,
+   "kind": "street",
+   "index": 15,
+   "expected": "15th St"
+  },
+  {
+   "strip": 2,
+   "kind": "street",
+   "index": 16,
+   "expected": "16th St"
+  },
+  {
+   "strip": 3,
+   "kind": "street",
+   "index": 17,
+   "expected": "17th St"
+  },
+  {
+   "strip": 4,
+   "kind": "street",
+   "index": 18,
+   "expected": "18th St"
+  },
+  {
+   "strip": 5,
+   "kind": "avenue",
+   "index": 2,
+   "expected": "Mechanic/Ave C"
+  },
+  {
+   "strip": 6,
+   "kind": "avenue",
+   "index": 3,
+   "expected": "Market/Ave D"
+  },
+  {
+   "strip": 7,
+   "kind": "avenue",
+   "index": 4,
+   "expected": "Postoffice/Ave E"
+  },
+  {
+   "strip": 8,
+   "kind": "avenue",
+   "index": 5,
+   "expected": "Church/Ave F"
+  }
+ ],
+ "35": [
+  {
+   "strip": 1,
+   "kind": "street",
+   "index": 15,
+   "expected": "15th St"
+  },
+  {
+   "strip": 2,
+   "kind": "street",
+   "index": 16,
+   "expected": "16th St"
+  },
+  {
+   "strip": 3,
+   "kind": "street",
+   "index": 17,
+   "expected": "17th St"
+  },
+  {
+   "strip": 4,
+   "kind": "street",
+   "index": 18,
+   "expected": "18th St"
+  },
+  {
+   "strip": 5,
+   "kind": "avenue",
+   "index": 6,
+   "expected": "Winnie/Ave G"
+  },
+  {
+   "strip": 6,
+   "kind": "avenue",
+   "index": 7,
+   "expected": "Ball/Ave H"
+  },
+  {
+   "strip": 7,
+   "kind": "avenue",
+   "index": 8,
+   "expected": "Sealy/Ave I"
+  }
+ ],
+ "36": [
+  {
+   "strip": 1,
+   "kind": "street",
+   "index": 15,
+   "expected": "15th St"
+  },
+  {
+   "strip": 2,
+   "kind": "street",
+   "index": 16,
+   "expected": "16th St"
+  },
+  {
+   "strip": 3,
+   "kind": "street",
+   "index": 17,
+   "expected": "17th St"
+  },
+  {
+   "strip": 4,
+   "kind": "street",
+   "index": 18,
+   "expected": "18th St"
+  },
+  {
+   "strip": 5,
+   "kind": "avenue",
+   "index": 8,
+   "expected": "Sealy/Ave I"
+  },
+  {
+   "strip": 6,
+   "kind": "avenue",
+   "index": 9,
+   "expected": "Broadway/Ave J"
+  },
+  {
+   "strip": 7,
+   "kind": "avenue",
+   "index": 10,
+   "expected": "Ave K"
+  },
+  {
+   "strip": 8,
+   "kind": "avenue",
+   "index": 11,
+   "expected": "Ave L"
+  }
+ ],
+ "37": [
+  {
+   "strip": 1,
+   "kind": "street",
+   "index": 15,
+   "expected": "15th St"
+  },
+  {
+   "strip": 2,
+   "kind": "street",
+   "index": 16,
+   "expected": "16th St"
+  },
+  {
+   "strip": 3,
+   "kind": "street",
+   "index": 17,
+   "expected": "17th St"
+  },
+  {
+   "strip": 4,
+   "kind": "street",
+   "index": 18,
+   "expected": "18th St"
+  },
+  {
+   "strip": 5,
+   "kind": "avenue",
+   "index": 12,
+   "expected": "Ave M"
+  },
+  {
+   "strip": 6,
+   "kind": "avenue",
+   "index": 13,
+   "expected": "Ave M1/2"
+  },
+  {
+   "strip": 7,
+   "kind": "avenue",
+   "index": 14,
+   "expected": "Ave N"
+  }
+ ],
+ "38": [
+  {
+   "strip": 1,
+   "kind": "street",
+   "index": 15,
+   "expected": "15th St"
+  },
+  {
+   "strip": 2,
+   "kind": "street",
+   "index": 16,
+   "expected": "16th St"
+  },
+  {
+   "strip": 3,
+   "kind": "street",
+   "index": 17,
+   "expected": "17th St"
+  },
+  {
+   "strip": 4,
+   "kind": "street",
+   "index": 18,
+   "expected": "18th St"
+  },
+  {
+   "strip": 5,
+   "kind": "avenue",
+   "index": 14,
+   "expected": "Ave N"
+  },
+  {
+   "strip": 6,
+   "kind": "avenue",
+   "index": 15,
+   "expected": "Ave N1/2"
+  },
+  {
+   "strip": 7,
+   "kind": "avenue",
+   "index": 16,
+   "expected": "Ave O"
+  }
+ ],
+ "41": [
+  {
+   "strip": 1,
+   "kind": "street",
+   "index": 18,
+   "expected": "18th St"
+  },
+  {
+   "strip": 2,
+   "kind": "street",
+   "index": 19,
+   "expected": "19th St"
+  },
+  {
+   "strip": 3,
+   "kind": "street",
+   "index": 20,
+   "expected": "20th St"
+  },
+  {
+   "strip": 4,
+   "kind": "street",
+   "index": 21,
+   "expected": "21st St"
+  },
+  {
+   "strip": 5,
+   "kind": "avenue",
+   "index": 12,
+   "expected": "Ave M"
+  },
+  {
+   "strip": 6,
+   "kind": "avenue",
+   "index": 13,
+   "expected": "Ave M1/2"
+  },
+  {
+   "strip": 7,
+   "kind": "avenue",
+   "index": 14,
+   "expected": "Ave N"
+  }
+ ],
+ "42": [
+  {
+   "strip": 1,
+   "kind": "street",
+   "index": 18,
+   "expected": "18th St"
+  },
+  {
+   "strip": 2,
+   "kind": "street",
+   "index": 19,
+   "expected": "19th St"
+  },
+  {
+   "strip": 3,
+   "kind": "street",
+   "index": 20,
+   "expected": "20th St"
+  },
+  {
+   "strip": 4,
+   "kind": "street",
+   "index": 21,
+   "expected": "21st St"
+  },
+  {
+   "strip": 5,
+   "kind": "avenue",
+   "index": 14,
+   "expected": "Ave N"
+  },
+  {
+   "strip": 6,
+   "kind": "avenue",
+   "index": 15,
+   "expected": "Ave N1/2"
+  },
+  {
+   "strip": 7,
+   "kind": "avenue",
+   "index": 16,
+   "expected": "Ave O"
+  }
+ ],
+ "45": [
+  {
+   "strip": 1,
+   "kind": "street",
+   "index": 21,
+   "expected": "21st St"
+  },
+  {
+   "strip": 2,
+   "kind": "street",
+   "index": 23,
+   "expected": "23rd St"
+  },
+  {
+   "strip": 3,
+   "kind": "avenue",
+   "index": 12,
+   "expected": "Ave M"
+  },
+  {
+   "strip": 4,
+   "kind": "avenue",
+   "index": 13,
+   "expected": "Ave M1/2"
+  },
+  {
+   "strip": 5,
+   "kind": "avenue",
+   "index": 14,
+   "expected": "Ave N"
+  }
+ ],
+ "46": [
+  {
+   "strip": 1,
+   "kind": "street",
+   "index": 21,
+   "expected": "21st St"
+  },
+  {
+   "strip": 2,
+   "kind": "street",
+   "index": 22,
+   "expected": "22nd St"
+  },
+  {
+   "strip": 3,
+   "kind": "street",
+   "index": 23,
+   "expected": "23rd St"
+  },
+  {
+   "strip": 4,
+   "kind": "avenue",
+   "index": 14,
+   "expected": "Ave N"
+  },
+  {
+   "strip": 5,
+   "kind": "avenue",
+   "index": 16,
+   "expected": "Ave O"
+  },
+  {
+   "strip": 6,
+   "kind": "avenue",
+   "index": 17,
+   "expected": "Ave O1/2"
+  }
+ ],
+ "47": [
+  {
+   "strip": 1,
+   "kind": "street",
+   "index": 21,
+   "expected": "21st St"
+  },
+  {
+   "strip": 2,
+   "kind": "street",
+   "index": 22,
+   "expected": "22nd St"
+  },
+  {
+   "strip": 3,
+   "kind": "street",
+   "index": 23,
+   "expected": "23rd St"
+  },
+  {
+   "strip": 4,
+   "kind": "street",
+   "index": 24,
+   "expected": "24th St"
+  },
+  {
+   "strip": 5,
+   "kind": "avenue",
+   "index": 17,
+   "expected": "Ave O1/2"
+  },
+  {
+   "strip": 6,
+   "kind": "avenue",
+   "index": 18,
+   "expected": "Ave P"
+  },
+  {
+   "strip": 7,
+   "kind": "avenue",
+   "index": 19,
+   "expected": "Ave P1/2"
+  },
+  {
+   "strip": 8,
+   "kind": "avenue",
+   "index": 20,
+   "expected": "Ave Q"
+  }
+ ],
+ "51": [
+  {
+   "strip": 1,
+   "kind": "street",
+   "index": 24,
+   "expected": "24th St"
+  },
+  {
+   "strip": 2,
+   "kind": "street",
+   "index": 26,
+   "expected": "26th St"
+  },
+  {
+   "strip": 3,
+   "kind": "avenue",
+   "index": 12,
+   "expected": "Ave M"
+  },
+  {
+   "strip": 4,
+   "kind": "avenue",
+   "index": 14,
+   "expected": "Ave N"
+  }
+ ],
+ "52": [
+  {
+   "strip": 1,
+   "kind": "avenue",
+   "index": 14,
+   "expected": "Ave N"
+  },
+  {
+   "strip": 2,
+   "kind": "avenue",
+   "index": 16,
+   "expected": "Ave O"
+  },
+  {
+   "strip": 3,
+   "kind": "avenue",
+   "index": 17,
+   "expected": "Ave O1/2"
+  }
+ ],
+ "53": [
+  {
+   "strip": 1,
+   "kind": "street",
+   "index": 24,
+   "expected": "24th St"
+  },
+  {
+   "strip": 2,
+   "kind": "street",
+   "index": 26,
+   "expected": "26th St"
+  },
+  {
+   "strip": 3,
+   "kind": "street",
+   "index": 27,
+   "expected": "27th St"
+  },
+  {
+   "strip": 4,
+   "kind": "avenue",
+   "index": 18,
+   "expected": "Ave P"
+  },
+  {
+   "strip": 5,
+   "kind": "avenue",
+   "index": 19,
+   "expected": "Ave P1/2"
+  },
+  {
+   "strip": 6,
+   "kind": "avenue",
+   "index": 20,
+   "expected": "Ave Q"
+  }
+ ],
+ "54": [
+  {
+   "strip": 1,
+   "kind": "street",
+   "index": 25,
+   "expected": "25th St"
+  },
+  {
+   "strip": 2,
+   "kind": "avenue",
+   "index": 20,
+   "expected": "Ave Q"
+  },
+  {
+   "strip": 3,
+   "kind": "avenue",
+   "index": 21,
+   "expected": "Ave Q1/2"
+  }
+ ],
+ "55": [
+  {
+   "strip": 1,
+   "kind": "street",
+   "index": 27,
+   "expected": "27th St"
+  },
+  {
+   "strip": 2,
+   "kind": "street",
+   "index": 28,
+   "expected": "28th St"
+  },
+  {
+   "strip": 3,
+   "kind": "street",
+   "index": 29,
+   "expected": "29th St"
+  },
+  {
+   "strip": 4,
+   "kind": "street",
+   "index": 30,
+   "expected": "30th St"
+  },
+  {
+   "strip": 5,
+   "kind": "avenue",
+   "index": 6,
+   "expected": "Winnie/Ave G"
+  },
+  {
+   "strip": 6,
+   "kind": "avenue",
+   "index": 7,
+   "expected": "Ball/Ave H"
+  },
+  {
+   "strip": 7,
+   "kind": "avenue",
+   "index": 8,
+   "expected": "Sealy/Ave I"
+  }
+ ],
+ "56": [
+  {
+   "strip": 1,
+   "kind": "street",
+   "index": 27,
+   "expected": "27th St"
+  },
+  {
+   "strip": 2,
+   "kind": "street",
+   "index": 28,
+   "expected": "28th St"
+  },
+  {
+   "strip": 3,
+   "kind": "street",
+   "index": 29,
+   "expected": "29th St"
+  },
+  {
+   "strip": 4,
+   "kind": "street",
+   "index": 30,
+   "expected": "30th St"
+  },
+  {
+   "strip": 5,
+   "kind": "avenue",
+   "index": 8,
+   "expected": "Sealy/Ave I"
+  },
+  {
+   "strip": 6,
+   "kind": "avenue",
+   "index": 9,
+   "expected": "Broadway/Ave J"
+  },
+  {
+   "strip": 7,
+   "kind": "avenue",
+   "index": 10,
+   "expected": "Ave K"
+  },
+  {
+   "strip": 8,
+   "kind": "avenue",
+   "index": 11,
+   "expected": "Ave L"
+  }
+ ],
+ "57": [
+  {
+   "strip": 1,
+   "kind": "street",
+   "index": 27,
+   "expected": "27th St"
+  },
+  {
+   "strip": 2,
+   "kind": "street",
+   "index": 29,
+   "expected": "29th St"
+  },
+  {
+   "strip": 3,
+   "kind": "avenue",
+   "index": 11,
+   "expected": "Ave L"
+  },
+  {
+   "strip": 4,
+   "kind": "avenue",
+   "index": 12,
+   "expected": "Ave M"
+  }
+ ],
+ "58": [
+  {
+   "strip": 1,
+   "kind": "street",
+   "index": 27,
+   "expected": "27th St"
+  },
+  {
+   "strip": 2,
+   "kind": "street",
+   "index": 29,
+   "expected": "29th St"
+  },
+  {
+   "strip": 3,
+   "kind": "avenue",
+   "index": 14,
+   "expected": "Ave N"
+  },
+  {
+   "strip": 4,
+   "kind": "avenue",
+   "index": 16,
+   "expected": "Ave O"
+  },
+  {
+   "strip": 5,
+   "kind": "avenue",
+   "index": 17,
+   "expected": "Ave O1/2"
+  }
+ ],
+ "59": [
+  {
+   "strip": 1,
+   "kind": "street",
+   "index": 27,
+   "expected": "27th St"
+  },
+  {
+   "strip": 2,
+   "kind": "street",
+   "index": 28,
+   "expected": "28th St"
+  },
+  {
+   "strip": 3,
+   "kind": "street",
+   "index": 29,
+   "expected": "29th St"
+  },
+  {
+   "strip": 4,
+   "kind": "street",
+   "index": 30,
+   "expected": "30th St"
+  },
+  {
+   "strip": 5,
+   "kind": "avenue",
+   "index": 18,
+   "expected": "Ave P"
+  },
+  {
+   "strip": 6,
+   "kind": "avenue",
+   "index": 19,
+   "expected": "Ave P1/2"
+  },
+  {
+   "strip": 7,
+   "kind": "avenue",
+   "index": 20,
+   "expected": "Ave Q"
+  }
+ ],
+ "60": [
+  {
+   "strip": 1,
+   "kind": "street",
+   "index": 27,
+   "expected": "27th St"
+  },
+  {
+   "strip": 2,
+   "kind": "street",
+   "index": 29,
+   "expected": "29th St"
+  },
+  {
+   "strip": 3,
+   "kind": "street",
+   "index": 30,
+   "expected": "30th St"
+  },
+  {
+   "strip": 4,
+   "kind": "avenue",
+   "index": 20,
+   "expected": "Ave Q"
+  },
+  {
+   "strip": 5,
+   "kind": "avenue",
+   "index": 22,
+   "expected": "Ave R"
+  },
+  {
+   "strip": 6,
+   "kind": "avenue",
+   "index": 23,
+   "expected": "Ave R1/2"
+  }
+ ],
+ "61": [
+  {
+   "strip": 1,
+   "kind": "street",
+   "index": 30,
+   "expected": "30th St"
+  },
+  {
+   "strip": 2,
+   "kind": "street",
+   "index": 32,
+   "expected": "32nd St"
+  },
+  {
+   "strip": 3,
+   "kind": "street",
+   "index": 33,
+   "expected": "33rd St"
+  },
+  {
+   "strip": 4,
+   "kind": "avenue",
+   "index": 6,
+   "expected": "Winnie/Ave G"
+  },
+  {
+   "strip": 5,
+   "kind": "avenue",
+   "index": 7,
+   "expected": "Ball/Ave H"
+  },
+  {
+   "strip": 6,
+   "kind": "avenue",
+   "index": 8,
+   "expected": "Sealy/Ave I"
+  }
+ ],
+ "62": [
+  {
+   "strip": 1,
+   "kind": "street",
+   "index": 30,
+   "expected": "30th St"
+  },
+  {
+   "strip": 2,
+   "kind": "street",
+   "index": 31,
+   "expected": "31st St"
+  },
+  {
+   "strip": 3,
+   "kind": "avenue",
+   "index": 9,
+   "expected": "Broadway/Ave J"
+  },
+  {
+   "strip": 4,
+   "kind": "avenue",
+   "index": 10,
+   "expected": "Ave K"
+  },
+  {
+   "strip": 5,
+   "kind": "avenue",
+   "index": 11,
+   "expected": "Ave L"
+  }
+ ],
+ "63": [
+  {
+   "strip": 1,
+   "kind": "street",
+   "index": 31,
+   "expected": "31st St"
+  },
+  {
+   "strip": 2,
+   "kind": "street",
+   "index": 33,
+   "expected": "33rd St"
+  },
+  {
+   "strip": 3,
+   "kind": "avenue",
+   "index": 11,
+   "expected": "Ave L"
+  },
+  {
+   "strip": 4,
+   "kind": "avenue",
+   "index": 12,
+   "expected": "Ave M"
+  },
+  {
+   "strip": 5,
+   "kind": "avenue",
+   "index": 13,
+   "expected": "Ave M1/2"
+  },
+  {
+   "strip": 6,
+   "kind": "avenue",
+   "index": 14,
+   "expected": "Ave N"
+  }
+ ],
+ "64": [
+  {
+   "strip": 1,
+   "kind": "street",
+   "index": 31,
+   "expected": "31st St"
+  },
+  {
+   "strip": 2,
+   "kind": "street",
+   "index": 33,
+   "expected": "33rd St"
+  },
+  {
+   "strip": 3,
+   "kind": "avenue",
+   "index": 14,
+   "expected": "Ave N"
+  },
+  {
+   "strip": 4,
+   "kind": "avenue",
+   "index": 16,
+   "expected": "Ave O"
+  },
+  {
+   "strip": 5,
+   "kind": "avenue",
+   "index": 17,
+   "expected": "Ave O1/2"
+  }
+ ],
+ "65": [
+  {
+   "strip": 1,
+   "kind": "street",
+   "index": 30,
+   "expected": "30th St"
+  },
+  {
+   "strip": 2,
+   "kind": "street",
+   "index": 31,
+   "expected": "31st St"
+  },
+  {
+   "strip": 3,
+   "kind": "street",
+   "index": 32,
+   "expected": "32nd St"
+  },
+  {
+   "strip": 4,
+   "kind": "street",
+   "index": 33,
+   "expected": "33rd St"
+  },
+  {
+   "strip": 5,
+   "kind": "avenue",
+   "index": 18,
+   "expected": "Ave P"
+  },
+  {
+   "strip": 6,
+   "kind": "avenue",
+   "index": 19,
+   "expected": "Ave P1/2"
+  },
+  {
+   "strip": 7,
+   "kind": "avenue",
+   "index": 20,
+   "expected": "Ave Q"
+  }
+ ],
+ "66": [
+  {
+   "strip": 1,
+   "kind": "street",
+   "index": 30,
+   "expected": "30th St"
+  },
+  {
+   "strip": 2,
+   "kind": "street",
+   "index": 31,
+   "expected": "31st St"
+  },
+  {
+   "strip": 3,
+   "kind": "street",
+   "index": 33,
+   "expected": "33rd St"
+  },
+  {
+   "strip": 4,
+   "kind": "avenue",
+   "index": 20,
+   "expected": "Ave Q"
+  },
+  {
+   "strip": 5,
+   "kind": "avenue",
+   "index": 21,
+   "expected": "Ave Q1/2"
+  },
+  {
+   "strip": 6,
+   "kind": "avenue",
+   "index": 22,
+   "expected": "Ave R"
+  },
+  {
+   "strip": 7,
+   "kind": "avenue",
+   "index": 23,
+   "expected": "Ave R1/2"
+  }
+ ],
+ "67": [
+  {
+   "strip": 1,
+   "kind": "street",
+   "index": 33,
+   "expected": "33rd St"
+  },
+  {
+   "strip": 2,
+   "kind": "street",
+   "index": 35,
+   "expected": "35th St"
+  },
+  {
+   "strip": 3,
+   "kind": "street",
+   "index": 36,
+   "expected": "36th St"
+  },
+  {
+   "strip": 4,
+   "kind": "avenue",
+   "index": 12,
+   "expected": "Ave M"
+  }
+ ],
+ "68": [
+  {
+   "strip": 1,
+   "kind": "street",
+   "index": 33,
+   "expected": "33rd St"
+  },
+  {
+   "strip": 2,
+   "kind": "street",
+   "index": 34,
+   "expected": "34th St"
+  },
+  {
+   "strip": 3,
+   "kind": "street",
+   "index": 35,
+   "expected": "35th St"
+  },
+  {
+   "strip": 4,
+   "kind": "street",
+   "index": 36,
+   "expected": "36th St"
+  },
+  {
+   "strip": 5,
+   "kind": "avenue",
+   "index": 5,
+   "expected": "Church/Ave F"
+  },
+  {
+   "strip": 6,
+   "kind": "avenue",
+   "index": 6,
+   "expected": "Winnie/Ave G"
+  },
+  {
+   "strip": 7,
+   "kind": "avenue",
+   "index": 7,
+   "expected": "Ball/Ave H"
+  }
+ ],
+ "69": [
+  {
+   "strip": 1,
+   "kind": "street",
+   "index": 33,
+   "expected": "33rd St"
+  },
+  {
+   "strip": 2,
+   "kind": "street",
+   "index": 34,
+   "expected": "34th St"
+  },
+  {
+   "strip": 3,
+   "kind": "street",
+   "index": 35,
+   "expected": "35th St"
+  },
+  {
+   "strip": 4,
+   "kind": "avenue",
+   "index": 7,
+   "expected": "Ball/Ave H"
+  },
+  {
+   "strip": 5,
+   "kind": "avenue",
+   "index": 8,
+   "expected": "Sealy/Ave I"
+  },
+  {
+   "strip": 6,
+   "kind": "avenue",
+   "index": 9,
+   "expected": "Broadway/Ave J"
+  },
+  {
+   "strip": 7,
+   "kind": "avenue",
+   "index": 10,
+   "expected": "Ave K"
+  }
+ ],
+ "70": [
+  {
+   "strip": 1,
+   "kind": "street",
+   "index": 33,
+   "expected": "33rd St"
+  },
+  {
+   "strip": 2,
+   "kind": "street",
+   "index": 34,
+   "expected": "34th St"
+  },
+  {
+   "strip": 3,
+   "kind": "avenue",
+   "index": 10,
+   "expected": "Ave K"
+  },
+  {
+   "strip": 4,
+   "kind": "avenue",
+   "index": 11,
+   "expected": "Ave L"
+  },
+  {
+   "strip": 5,
+   "kind": "avenue",
+   "index": 12,
+   "expected": "Ave M"
+  }
+ ],
+ "71": [
+  {
+   "strip": 1,
+   "kind": "street",
+   "index": 33,
+   "expected": "33rd St"
+  },
+  {
+   "strip": 2,
+   "kind": "avenue",
+   "index": 14,
+   "expected": "Ave N"
+  },
+  {
+   "strip": 3,
+   "kind": "avenue",
+   "index": 16,
+   "expected": "Ave O"
+  }
+ ],
+ "73": [
+  {
+   "strip": 1,
+   "kind": "street",
+   "index": 33,
+   "expected": "33rd St"
+  },
+  {
+   "strip": 2,
+   "kind": "street",
+   "index": 35,
+   "expected": "35th St"
+  },
+  {
+   "strip": 3,
+   "kind": "street",
+   "index": 36,
+   "expected": "36th St"
+  },
+  {
+   "strip": 4,
+   "kind": "avenue",
+   "index": 20,
+   "expected": "Ave Q"
+  },
+  {
+   "strip": 5,
+   "kind": "avenue",
+   "index": 22,
+   "expected": "Ave R"
+  }
+ ],
+ "74": [
+  {
+   "strip": 1,
+   "kind": "street",
+   "index": 33,
+   "expected": "33rd St"
+  },
+  {
+   "strip": 2,
+   "kind": "avenue",
+   "index": 22,
+   "expected": "Ave R"
+  },
+  {
+   "strip": 3,
+   "kind": "avenue",
+   "index": 23,
+   "expected": "Ave R1/2"
+  },
+  {
+   "strip": 4,
+   "kind": "avenue",
+   "index": 24,
+   "expected": "Ave S"
+  },
+  {
+   "strip": 5,
+   "kind": "avenue",
+   "index": 25,
+   "expected": "Ave S1/2"
+  }
+ ],
+ "75": [
+  {
+   "strip": 1,
+   "kind": "street",
+   "index": 36,
+   "expected": "36th St"
+  },
+  {
+   "strip": 2,
+   "kind": "street",
+   "index": 37,
+   "expected": "37th St"
+  },
+  {
+   "strip": 3,
+   "kind": "avenue",
+   "index": 2,
+   "expected": "Mechanic/Ave C"
+  },
+  {
+   "strip": 4,
+   "kind": "avenue",
+   "index": 4,
+   "expected": "Postoffice/Ave E"
+  }
+ ],
+ "76": [
+  {
+   "strip": 1,
+   "kind": "street",
+   "index": 36,
+   "expected": "36th St"
+  },
+  {
+   "strip": 2,
+   "kind": "street",
+   "index": 37,
+   "expected": "37th St"
+  },
+  {
+   "strip": 3,
+   "kind": "street",
+   "index": 38,
+   "expected": "38th St"
+  },
+  {
+   "strip": 4,
+   "kind": "street",
+   "index": 39,
+   "expected": "39th St"
+  },
+  {
+   "strip": 5,
+   "kind": "avenue",
+   "index": 6,
+   "expected": "Winnie/Ave G"
+  },
+  {
+   "strip": 6,
+   "kind": "avenue",
+   "index": 7,
+   "expected": "Ball/Ave H"
+  },
+  {
+   "strip": 7,
+   "kind": "avenue",
+   "index": 8,
+   "expected": "Sealy/Ave I"
+  }
+ ],
+ "77": [
+  {
+   "strip": 1,
+   "kind": "street",
+   "index": 36,
+   "expected": "36th St"
+  },
+  {
+   "strip": 2,
+   "kind": "street",
+   "index": 37,
+   "expected": "37th St"
+  },
+  {
+   "strip": 3,
+   "kind": "street",
+   "index": 38,
+   "expected": "38th St"
+  },
+  {
+   "strip": 4,
+   "kind": "street",
+   "index": 39,
+   "expected": "39th St"
+  },
+  {
+   "strip": 5,
+   "kind": "avenue",
+   "index": 8,
+   "expected": "Sealy/Ave I"
+  },
+  {
+   "strip": 6,
+   "kind": "avenue",
+   "index": 9,
+   "expected": "Broadway/Ave J"
+  },
+  {
+   "strip": 7,
+   "kind": "avenue",
+   "index": 10,
+   "expected": "Ave K"
+  },
+  {
+   "strip": 8,
+   "kind": "avenue",
+   "index": 11,
+   "expected": "Ave L"
+  }
+ ],
+ "78": [
+  {
+   "strip": 1,
+   "kind": "street",
+   "index": 37,
+   "expected": "37th St"
+  },
+  {
+   "strip": 2,
+   "kind": "street",
+   "index": 38,
+   "expected": "38th St"
+  },
+  {
+   "strip": 3,
+   "kind": "street",
+   "index": 39,
+   "expected": "39th St"
+  },
+  {
+   "strip": 4,
+   "kind": "avenue",
+   "index": 11,
+   "expected": "Ave L"
+  },
+  {
+   "strip": 5,
+   "kind": "avenue",
+   "index": 12,
+   "expected": "Ave M"
+  },
+  {
+   "strip": 6,
+   "kind": "avenue",
+   "index": 13,
+   "expected": "Ave M1/2"
+  },
+  {
+   "strip": 7,
+   "kind": "avenue",
+   "index": 14,
+   "expected": "Ave N"
+  }
+ ],
+ "79": [
+  {
+   "strip": 1,
+   "kind": "street",
+   "index": 37,
+   "expected": "37th St"
+  },
+  {
+   "strip": 2,
+   "kind": "street",
+   "index": 38,
+   "expected": "38th St"
+  },
+  {
+   "strip": 3,
+   "kind": "street",
+   "index": 39,
+   "expected": "39th St"
+  },
+  {
+   "strip": 4,
+   "kind": "avenue",
+   "index": 14,
+   "expected": "Ave N"
+  },
+  {
+   "strip": 5,
+   "kind": "avenue",
+   "index": 15,
+   "expected": "Ave N1/2"
+  },
+  {
+   "strip": 6,
+   "kind": "avenue",
+   "index": 16,
+   "expected": "Ave O"
+  },
+  {
+   "strip": 7,
+   "kind": "avenue",
+   "index": 17,
+   "expected": "Ave O1/2"
+  }
+ ],
+ "80": [
+  {
+   "strip": 1,
+   "kind": "street",
+   "index": 37,
+   "expected": "37th St"
+  },
+  {
+   "strip": 2,
+   "kind": "avenue",
+   "index": 17,
+   "expected": "Ave O1/2"
+  },
+  {
+   "strip": 3,
+   "kind": "avenue",
+   "index": 18,
+   "expected": "Ave P"
+  }
+ ],
+ "81": [
+  {
+   "strip": 1,
+   "kind": "street",
+   "index": 36,
+   "expected": "36th St"
+  },
+  {
+   "strip": 2,
+   "kind": "street",
+   "index": 37,
+   "expected": "37th St"
+  },
+  {
+   "strip": 3,
+   "kind": "street",
+   "index": 39,
+   "expected": "39th St"
+  },
+  {
+   "strip": 4,
+   "kind": "avenue",
+   "index": 21,
+   "expected": "Ave Q1/2"
+  },
+  {
+   "strip": 5,
+   "kind": "avenue",
+   "index": 22,
+   "expected": "Ave R"
+  }
+ ],
+ "82": [
+  {
+   "strip": 1,
+   "kind": "street",
+   "index": 36,
+   "expected": "36th St"
+  },
+  {
+   "strip": 2,
+   "kind": "street",
+   "index": 37,
+   "expected": "37th St"
+  },
+  {
+   "strip": 3,
+   "kind": "street",
+   "index": 39,
+   "expected": "39th St"
+  },
+  {
+   "strip": 4,
+   "kind": "avenue",
+   "index": 24,
+   "expected": "Ave S"
+  },
+  {
+   "strip": 5,
+   "kind": "avenue",
+   "index": 25,
+   "expected": "Ave S1/2"
+  }
+ ],
+ "83": [
+  {
+   "strip": 1,
+   "kind": "street",
+   "index": 39,
+   "expected": "39th St"
+  },
+  {
+   "strip": 2,
+   "kind": "street",
+   "index": 41,
+   "expected": "41st St"
+  },
+  {
+   "strip": 3,
+   "kind": "street",
+   "index": 42,
+   "expected": "42nd St"
+  },
+  {
+   "strip": 4,
+   "kind": "avenue",
+   "index": 6,
+   "expected": "Winnie/Ave G"
+  }
+ ],
+ "84": [
+  {
+   "strip": 1,
+   "kind": "street",
+   "index": 39,
+   "expected": "39th St"
+  },
+  {
+   "strip": 2,
+   "kind": "street",
+   "index": 40,
+   "expected": "40th St"
+  },
+  {
+   "strip": 3,
+   "kind": "street",
+   "index": 41,
+   "expected": "41st St"
+  },
+  {
+   "strip": 4,
+   "kind": "avenue",
+   "index": 6,
+   "expected": "Winnie/Ave G"
+  },
+  {
+   "strip": 5,
+   "kind": "avenue",
+   "index": 7,
+   "expected": "Ball/Ave H"
+  },
+  {
+   "strip": 6,
+   "kind": "avenue",
+   "index": 8,
+   "expected": "Sealy/Ave I"
+  }
+ ],
+ "86": [
+  {
+   "strip": 1,
+   "kind": "street",
+   "index": 39,
+   "expected": "39th St"
+  },
+  {
+   "strip": 2,
+   "kind": "street",
+   "index": 40,
+   "expected": "40th St"
+  },
+  {
+   "strip": 3,
+   "kind": "street",
+   "index": 41,
+   "expected": "41st St"
+  },
+  {
+   "strip": 4,
+   "kind": "street",
+   "index": 42,
+   "expected": "42nd St"
+  },
+  {
+   "strip": 5,
+   "kind": "avenue",
+   "index": 13,
+   "expected": "Ave M1/2"
+  },
+  {
+   "strip": 6,
+   "kind": "avenue",
+   "index": 14,
+   "expected": "Ave N"
+  },
+  {
+   "strip": 7,
+   "kind": "avenue",
+   "index": 15,
+   "expected": "Ave N1/2"
+  }
+ ],
+ "87": [
+  {
+   "strip": 1,
+   "kind": "street",
+   "index": 39,
+   "expected": "39th St"
+  },
+  {
+   "strip": 2,
+   "kind": "street",
+   "index": 40,
+   "expected": "40th St"
+  },
+  {
+   "strip": 3,
+   "kind": "street",
+   "index": 41,
+   "expected": "41st St"
+  },
+  {
+   "strip": 4,
+   "kind": "avenue",
+   "index": 16,
+   "expected": "Ave O"
+  },
+  {
+   "strip": 5,
+   "kind": "avenue",
+   "index": 17,
+   "expected": "Ave O1/2"
+  },
+  {
+   "strip": 6,
+   "kind": "avenue",
+   "index": 18,
+   "expected": "Ave P"
+  },
+  {
+   "strip": 7,
+   "kind": "avenue",
+   "index": 19,
+   "expected": "Ave P1/2"
+  }
+ ],
+ "88": [
+  {
+   "strip": 1,
+   "kind": "street",
+   "index": 39,
+   "expected": "39th St"
+  },
+  {
+   "strip": 2,
+   "kind": "street",
+   "index": 41,
+   "expected": "41st St"
+  },
+  {
+   "strip": 3,
+   "kind": "street",
+   "index": 42,
+   "expected": "42nd St"
+  },
+  {
+   "strip": 4,
+   "kind": "avenue",
+   "index": 19,
+   "expected": "Ave P1/2"
+  },
+  {
+   "strip": 5,
+   "kind": "avenue",
+   "index": 20,
+   "expected": "Ave Q"
+  }
+ ],
+ "89": [
+  {
+   "strip": 1,
+   "kind": "street",
+   "index": 39,
+   "expected": "39th St"
+  },
+  {
+   "strip": 2,
+   "kind": "street",
+   "index": 40,
+   "expected": "40th St"
+  },
+  {
+   "strip": 3,
+   "kind": "street",
+   "index": 41,
+   "expected": "41st St"
+  },
+  {
+   "strip": 4,
+   "kind": "street",
+   "index": 42,
+   "expected": "42nd St"
+  },
+  {
+   "strip": 5,
+   "kind": "avenue",
+   "index": 22,
+   "expected": "Ave R"
+  },
+  {
+   "strip": 6,
+   "kind": "avenue",
+   "index": 23,
+   "expected": "Ave R1/2"
+  },
+  {
+   "strip": 7,
+   "kind": "avenue",
+   "index": 24,
+   "expected": "Ave S"
+  },
+  {
+   "strip": 8,
+   "kind": "avenue",
+   "index": 25,
+   "expected": "Ave S1/2"
+  }
+ ],
+ "90": [
+  {
+   "strip": 1,
+   "kind": "street",
+   "index": 39,
+   "expected": "39th St"
+  },
+  {
+   "strip": 2,
+   "kind": "street",
+   "index": 40,
+   "expected": "40th St"
+  },
+  {
+   "strip": 3,
+   "kind": "street",
+   "index": 41,
+   "expected": "41st St"
+  },
+  {
+   "strip": 4,
+   "kind": "avenue",
+   "index": 25,
+   "expected": "Ave S1/2"
+  },
+  {
+   "strip": 5,
+   "kind": "avenue",
+   "index": 26,
+   "expected": "Ave T"
+  }
+ ],
+ "91": [
+  {
+   "strip": 1,
+   "kind": "street",
+   "index": 42,
+   "expected": "42nd St"
+  },
+  {
+   "strip": 2,
+   "kind": "street",
+   "index": 43,
+   "expected": "43rd St"
+  },
+  {
+   "strip": 3,
+   "kind": "street",
+   "index": 44,
+   "expected": "44th St"
+  },
+  {
+   "strip": 4,
+   "kind": "street",
+   "index": 45,
+   "expected": "45th St"
+  },
+  {
+   "strip": 5,
+   "kind": "avenue",
+   "index": 6,
+   "expected": "Winnie/Ave G"
+  }
+ ],
+ "92": [
+  {
+   "strip": 1,
+   "kind": "street",
+   "index": 42,
+   "expected": "42nd St"
+  },
+  {
+   "strip": 2,
+   "kind": "street",
+   "index": 44,
+   "expected": "44th St"
+  },
+  {
+   "strip": 3,
+   "kind": "street",
+   "index": 45,
+   "expected": "45th St"
+  },
+  {
+   "strip": 4,
+   "kind": "avenue",
+   "index": 6,
+   "expected": "Winnie/Ave G"
+  },
+  {
+   "strip": 5,
+   "kind": "avenue",
+   "index": 7,
+   "expected": "Ball/Ave H"
+  },
+  {
+   "strip": 6,
+   "kind": "avenue",
+   "index": 8,
+   "expected": "Sealy/Ave I"
+  }
+ ],
+ "94": [
+  {
+   "strip": 1,
+   "kind": "street",
+   "index": 42,
+   "expected": "42nd St"
+  },
+  {
+   "strip": 2,
+   "kind": "street",
+   "index": 43,
+   "expected": "43rd St"
+  },
+  {
+   "strip": 3,
+   "kind": "street",
+   "index": 45,
+   "expected": "45th St"
+  },
+  {
+   "strip": 4,
+   "kind": "avenue",
+   "index": 12,
+   "expected": "Ave M"
+  },
+  {
+   "strip": 5,
+   "kind": "avenue",
+   "index": 14,
+   "expected": "Ave N"
+  }
+ ],
+ "95": [
+  {
+   "strip": 1,
+   "kind": "street",
+   "index": 42,
+   "expected": "42nd St"
+  },
+  {
+   "strip": 2,
+   "kind": "street",
+   "index": 43,
+   "expected": "43rd St"
+  },
+  {
+   "strip": 3,
+   "kind": "street",
+   "index": 45,
+   "expected": "45th St"
+  },
+  {
+   "strip": 4,
+   "kind": "avenue",
+   "index": 15,
+   "expected": "Ave N1/2"
+  },
+  {
+   "strip": 5,
+   "kind": "avenue",
+   "index": 16,
+   "expected": "Ave O"
+  },
+  {
+   "strip": 6,
+   "kind": "avenue",
+   "index": 18,
+   "expected": "Ave P"
+  }
+ ],
+ "96": [
+  {
+   "strip": 1,
+   "kind": "street",
+   "index": 42,
+   "expected": "42nd St"
+  },
+  {
+   "strip": 2,
+   "kind": "street",
+   "index": 43,
+   "expected": "43rd St"
+  },
+  {
+   "strip": 3,
+   "kind": "street",
+   "index": 45,
+   "expected": "45th St"
+  },
+  {
+   "strip": 4,
+   "kind": "avenue",
+   "index": 18,
+   "expected": "Ave P"
+  },
+  {
+   "strip": 5,
+   "kind": "avenue",
+   "index": 19,
+   "expected": "Ave P1/2"
+  },
+  {
+   "strip": 6,
+   "kind": "avenue",
+   "index": 20,
+   "expected": "Ave Q"
+  }
+ ],
+ "97": [
+  {
+   "strip": 1,
+   "kind": "street",
+   "index": 42,
+   "expected": "42nd St"
+  },
+  {
+   "strip": 2,
+   "kind": "street",
+   "index": 43,
+   "expected": "43rd St"
+  },
+  {
+   "strip": 3,
+   "kind": "street",
+   "index": 44,
+   "expected": "44th St"
+  },
+  {
+   "strip": 4,
+   "kind": "street",
+   "index": 45,
+   "expected": "45th St"
+  },
+  {
+   "strip": 5,
+   "kind": "avenue",
+   "index": 21,
+   "expected": "Ave Q1/2"
+  },
+  {
+   "strip": 6,
+   "kind": "avenue",
+   "index": 22,
+   "expected": "Ave R"
+  },
+  {
+   "strip": 7,
+   "kind": "avenue",
+   "index": 23,
+   "expected": "Ave R1/2"
+  },
+  {
+   "strip": 8,
+   "kind": "avenue",
+   "index": 24,
+   "expected": "Ave S"
+  }
+ ],
+ "98": [
+  {
+   "strip": 1,
+   "kind": "street",
+   "index": 42,
+   "expected": "42nd St"
+  },
+  {
+   "strip": 2,
+   "kind": "street",
+   "index": 43,
+   "expected": "43rd St"
+  },
+  {
+   "strip": 3,
+   "kind": "street",
+   "index": 44,
+   "expected": "44th St"
+  },
+  {
+   "strip": 4,
+   "kind": "street",
+   "index": 45,
+   "expected": "45th St"
+  },
+  {
+   "strip": 5,
+   "kind": "avenue",
+   "index": 24,
+   "expected": "Ave S"
+  },
+  {
+   "strip": 6,
+   "kind": "avenue",
+   "index": 25,
+   "expected": "Ave S1/2"
+  },
+  {
+   "strip": 7,
+   "kind": "avenue",
+   "index": 26,
+   "expected": "Ave T"
+  }
+ ],
+ "48": [
+  {
+   "strip": 1,
+   "kind": "street",
+   "index": 31,
+   "expected": "31st St"
+  },
+  {
+   "strip": 2,
+   "kind": "street",
+   "index": 32,
+   "expected": "32nd St"
+  },
+  {
+   "strip": 3,
+   "kind": "street",
+   "index": 33,
+   "expected": "33rd St"
+  },
+  {
+   "strip": 4,
+   "kind": "avenue",
+   "index": 23,
+   "expected": "Ave R1/2"
+  },
+  {
+   "strip": 5,
+   "kind": "avenue",
+   "index": 24,
+   "expected": "Ave S"
+  }
+ ],
+ "48b": [
+  {
+   "strip": 1,
+   "kind": "avenue",
+   "index": 23,
+   "expected": "Ave R1/2"
+  }
+ ],
+ "85": [
+  {
+   "strip": 1,
+   "kind": "street",
+   "index": 39,
+   "expected": "39th St"
+  },
+  {
+   "strip": 2,
+   "kind": "street",
+   "index": 40,
+   "expected": "40th St"
+  },
+  {
+   "strip": 3,
+   "kind": "street",
+   "index": 41,
+   "expected": "41st St"
+  },
+  {
+   "strip": 4,
+   "kind": "avenue",
+   "index": 11,
+   "expected": "Ave L"
+  },
+  {
+   "strip": 5,
+   "kind": "avenue",
+   "index": 12,
+   "expected": "Ave M"
+  }
+ ],
+ "85b": [
+  {
+   "strip": 1,
+   "kind": "street",
+   "index": 40,
+   "expected": "40th St"
+  },
+  {
+   "strip": 2,
+   "kind": "avenue",
+   "index": 10,
+   "expected": "Ave K"
+  }
+ ],
+ "93": [
+  {
+   "strip": 1,
+   "kind": "street",
+   "index": 44,
+   "expected": "44th St"
+  },
+  {
+   "strip": 2,
+   "kind": "avenue",
+   "index": 10,
+   "expected": "Ave K"
+  },
+  {
+   "strip": 3,
+   "kind": "avenue",
+   "index": 11,
+   "expected": "Ave L"
+  },
+  {
+   "strip": 4,
+   "kind": "avenue",
+   "index": 12,
+   "expected": "Ave M"
+  }
+ ],
+ "99": [
+  {
+   "strip": 1,
+   "kind": "street",
+   "index": 35,
+   "expected": "35th St"
+  },
+  {
+   "strip": 2,
+   "kind": "street",
+   "index": 36,
+   "expected": "36th St"
+  },
+  {
+   "strip": 3,
+   "kind": "avenue",
+   "index": 25,
+   "expected": "Ave S1/2"
+  },
+  {
+   "strip": 4,
+   "kind": "avenue",
+   "index": 26,
+   "expected": "Ave T"
+  }
+ ],
+ "99b": [
+  {
+   "strip": 1,
+   "kind": "street",
+   "index": 38,
+   "expected": "38th St"
+  },
+  {
+   "strip": 2,
+   "kind": "street",
+   "index": 39,
+   "expected": "39th St"
+  },
+  {
+   "strip": 3,
+   "kind": "avenue",
+   "index": 27,
+   "expected": "Ave T1/2"
+  }
+ ]
+}

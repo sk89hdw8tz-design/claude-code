@@ -267,6 +267,51 @@ adjoining-sheet numeral "0" there, the series' mark for no adjoining sheet.
 Wharf sheet 2 (a thin oblique strip) and plate 32's detached inset remain
 unplaced.
 
+## 1912 — independent verification pass (2026-09-16)
+
+This pass started from a stale clone that predated the finishing and
+completion passes above, rebuilt the outer-city placement from scratch by a
+different method, and only then discovered the branch had moved on. The
+rebuild is therefore kept **as an independent check of the delivered
+Stage-8 placement**, not as a replacement; its own transforms live in
+`rebuild_1899/out/grid_place_1912.json` and are not in the recipe.
+
+**Method that does not share failure modes with the solve.** Each sheet's
+street/avenue corridors were detected from its own long block-outline
+strokes (`rebuild_1899/corridors.py`), fitted to a lattice and identified
+by the key-map span (`grid_place_1912.py`). Every identified corridor —
+458 strips on 81 sheets — was cut out and read blind by four agents told
+nothing about the sheet (`qc/corridor_check/`, readings in
+`rebuild_1899/out/corridor_reads/`); 447 readings agreed with the
+identification, the exceptions were diagnosed (one key-map typo, one
+detector locking onto an inset, rail tracks read as avenues) and 3 strips
+were unreadable. Two archivist agents independently found the same ten
+inset panels the completion pass split (17's outlying panel additionally).
+
+**Results against the Stage-8 recipe** (`qc/independent/`):
+
+- *Corridor identity* — the 441 blind-verified corridors mapped
+  through the recipe's transforms land on the recipe's own grid corridors
+  with median 58 px, 90th pct 158 px, max 264 px.
+  **No one-avenue alias (≈2000 px) anywhere.** The two 500 px+ outliers are
+  on strips the readers could not confirm and are the check's own
+  identification errors (13, 67), noted in the file.
+- *Span-centre check* (`qc/grid_city_check.json`) — every placed unit sits
+  where its key-map span predicts: median 0.04 slots / 0.01 streets.
+- *Seam NCC sweep* (`rebuild_1899/qc_seams_1912.py`) — ink cross-correlation
+  in every overlap band, blind to the controls: 200 non-blank seams,
+  median residual 56 frame px, 61 % within 80 px; on the 20 seams with an
+  unambiguous peak the median is 34 px. The same tool scores the
+  independent grid-anchored rebuild at 101 px on its confident seams — the
+  delivered solve is the tighter one, as its 1.6-ft control residuals say.
+  Seams flagged with a confident peak > 60 px, for the next census round:
+  89|99, 67|75, 34|39, 74|81, 40|41, 82|90, 50|56 (proof panels in `qc/independent/proof_city/`).
+
+**What this pass changes in the product:** nothing in registration. It
+adds the tools above, the blind-reading evidence, the independent seam
+matrix, and (pending) wharf sheets 1-2 from a lead agent using
+blind tie adjudication against the delivered frame.
+
 ## 1912 — consolidated from the accepted prior build
 
 Source: LOC `sanborn08539_004` (public domain), 13 target sheets + sheet 13

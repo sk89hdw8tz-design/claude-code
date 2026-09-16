@@ -2699,3 +2699,13 @@ not a renderer change.
 
 **Reviewer's verdict: pass**, landed unchanged — no edit was needed to the three
 files during the audit.
+
+## HQ-30 · 1912 independent check: flagged seams and the 17 outlying panel — INFO
+
+The corridor-identity and seam-NCC checks (REPORT, "independent verification
+pass") pass the delivered recipe. Items for the next census round only:
+seams with a confident NCC peak above 60 px (listed in REPORT); and sheet
+17's framed outlying panel (50th–52nd at Broadway–K, "3 mi W of P.O."),
+which the independent rebuild placed on an extrapolated grid
+(`rebuild_1899/out/grid_place_1912.json`, unit 17b) but which is outside
+the delivered city footprint — include only if the print should reach it.
