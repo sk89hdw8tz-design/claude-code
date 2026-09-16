@@ -1,0 +1,458 @@
+{
+ "frame": "1912 mosaic frame (sheet 10 raw px minus [3326,3898]); p_frame = m @ p_native + t, p_native in pct:50 working-copy px (work/sheets/1912w/uN.jpg)",
+ "reference": "neighbour placements from the remote branch's outputs/1912/recipe/transforms_city.json + units.json + grid.json (copied to scratchpad/remote/); NOT rebuild_1899/out/grid_place_1912.json",
+ "sheets": {
+  "2": {
+   "m": [
+    [
+     2.106559034118084,
+     3.4258659800446125
+    ],
+    [
+     -3.4258659800446125,
+     2.1065590341180838
+    ]
+   ],
+   "t": [
+    -24840.36842715783,
+    43062.00767884706
+   ],
+   "scale": 4.02171,
+   "theta_deg": -58.413,
+   "how": "ties-sim(n=5,med=6px,max=20px) to remote sheet 3 (tier wharf-frontage); blind ties from child session 'Blind ties 2-3 run B', 4 corners verified by lead",
+   "ties": [
+    {
+     "feature": "Pier 39 outer head corner, NE vertex (head face meets slip face)",
+     "native_xy": [
+      2716.0,
+      266.0
+     ],
+     "nbr": "3",
+     "nbr_native_xy": [
+      371.0,
+      2737.0
+     ],
+     "nbr_frame_xy": [
+      -18203.9,
+      34317.6
+     ],
+     "frame_xy": [
+      -18207.7,
+      34317.7
+     ],
+     "resid_px": 3.8,
+     "conf": "high"
+    },
+    {
+     "feature": "Pier 38 head SW corner (head face meets slip face)",
+     "native_xy": [
+      3032.0,
+      208.0
+     ],
+     "nbr": "3",
+     "nbr_native_xy": [
+      482.0,
+      2435.0
+     ],
+     "nbr_frame_xy": [
+      -17746.3,
+      33111.3
+     ],
+     "frame_xy": [
+      -17740.7,
+      33112.9
+     ],
+     "resid_px": 5.8,
+     "conf": "high"
+    },
+    {
+     "feature": "Slip 38/39 closed (root) end, NE corner",
+     "native_xy": [
+      2744.0,
+      2038.0
+     ],
+     "nbr": "3",
+     "nbr_native_xy": [
+      1907.0,
+      3633.0
+     ],
+     "nbr_frame_xy": [
+      -12082.4,
+      37974.0
+     ],
+     "frame_xy": [
+      -12078.1,
+      37954.6
+     ],
+     "resid_px": 19.9,
+     "conf": "high"
+    },
+    {
+     "feature": "Slip 38/39 closed (root) end, SW corner",
+     "native_xy": [
+      2483.0,
+      2072.0
+     ],
+     "nbr": "3",
+     "nbr_native_xy": [
+      1803.0,
+      3866.0
+     ],
+     "nbr_frame_xy": [
+      -12509.1,
+      38903.9
+     ],
+     "frame_xy": [
+      -12511.4,
+      38920.4
+     ],
+     "resid_px": 16.6,
+     "conf": "med"
+    },
+    {
+     "feature": "Small yellow frame building S of slip end (E one of two on sheet 2), centre",
+     "native_xy": [
+      2695.0,
+      2100.0
+     ],
+     "nbr": "3",
+     "nbr_native_xy": [
+      1937.0,
+      3702.0
+     ],
+     "nbr_frame_xy": [
+      -11965.0,
+      38251.9
+     ],
+     "frame_xy": [
+      -11968.9,
+      38253.1
+     ],
+     "resid_px": 4.1,
+     "conf": "high"
+    }
+   ],
+   "extent": [
+    40,
+    45,
+    3285,
+    3855
+   ],
+   "grid_line_check": {
+    "Water_midline_x": {
+     "frame": -7258.3,
+     "grid": -6983.1,
+     "resid": -275.2
+    },
+    "40th_midline_y": {
+     "frame": 40618.8,
+     "grid": 40719.0,
+     "resid": -100.2
+    },
+    "41st_midline_y": {
+     "frame": 42930.4,
+     "grid": 43040.3,
+     "resid": -109.9
+    }
+   },
+   "alt_grid_lines": {
+    "m": [
+     [
+      2.0601522996402166,
+      3.4286692028084493
+     ],
+     [
+      -3.4286692028084493,
+      2.0601522996402166
+     ]
+    ],
+    "t": [
+     -24442.300000000003,
+     43308.2
+    ],
+    "how": "grid-lines: sheet 2's printed Water St (70') midline -> remote grid Ave A x, 40th St (80') midline -> grid 40th y, rotation from those printed corridors (theta=-59.0 deg), scale 4.00 assumed from the other 100 ft/in wharf plates; differs from the tie-fit by ~(+275,+150) frame px at the Pier 39 head"
+   },
+   "note": "Printed rotated: frame +x lies at page angle 59.0 deg. Piers 39-41 + Piers A/B (SP terminal), Water/40th/41st St at lower right. Sheet 3 itself tilts only ~+0.15 deg on its own street lines while the remote gives it 0.59 deg (borrowed from sheet 5); about (-80,-90) px of the tie-vs-grid gap at Pier 39 is that rotation. Nothing is placed east of Ave A at 40th-41st, so the grid gap is not a visible seam; the 38/39 slip seam with sheet 3 is."
+  },
+  "1": {
+   "m": [
+    [
+     2.0841271902935814,
+     3.400141062835232
+    ],
+    [
+     -3.400141062835232,
+     2.084127190293581
+    ]
+   ],
+   "t": [
+    -29182.260518679308,
+    53343.02125696025
+   ],
+   "scale": 3.98805,
+   "theta_deg": -58.494,
+   "how": "ties-sim(n=6,med=15px,max=31px) to sheet 2 (this file); blind ties from child session 'Blind ties 1-2 run A', 2 corners verified by lead; chained: 1 -> 2 -> remote 3",
+   "ties": [
+    {
+     "feature": "Pier B head, outer NE corner",
+     "native_xy": [
+      2872.0,
+      238.0
+     ],
+     "nbr": "2",
+     "nbr_native_xy": [
+      102.0,
+      650.0
+     ],
+     "nbr_frame_xy": [
+      -22398.7,
+      44081.8
+     ],
+     "frame_xy": [
+      -22387.4,
+      44073.8
+     ],
+     "resid_px": 13.8,
+     "conf": "high"
+    },
+    {
+     "feature": "Pier A head, outer NW corner",
+     "native_xy": [
+      3240.0,
+      239.0
+     ],
+     "nbr": "2",
+     "nbr_native_xy": [
+      469.0,
+      653.0
+     ],
+     "nbr_frame_xy": [
+      -21615.3,
+      42830.9
+     ],
+     "frame_xy": [
+      -21617.1,
+      42824.7
+     ],
+     "resid_px": 6.4,
+     "conf": "high"
+    },
+    {
+     "feature": "Slip B/A foot, SW inner corner",
+     "native_xy": [
+      2864.0,
+      2376.0
+     ],
+     "nbr": "2",
+     "nbr_native_xy": [
+      104.0,
+      2770.0
+     ],
+     "nbr_frame_xy": [
+      -15131.6,
+      48540.9
+     ],
+     "frame_xy": [
+      -15134.6,
+      48556.9
+     ],
+     "resid_px": 16.3,
+     "conf": "high"
+    },
+    {
+     "feature": "Slip B/A foot, SE inner corner",
+     "native_xy": [
+      3241.0,
+      2377.0
+     ],
+     "nbr": "2",
+     "nbr_native_xy": [
+      469.0,
+      2770.0
+     ],
+     "nbr_frame_xy": [
+      -14362.7,
+      47290.4
+     ],
+     "frame_xy": [
+      -14345.5,
+      47277.1
+     ],
+     "resid_px": 21.8,
+     "conf": "high"
+    },
+    {
+     "feature": "Pier A shed, S end SW outer corner",
+     "native_xy": [
+      3258.0,
+      2480.0
+     ],
+     "nbr": "2",
+     "nbr_native_xy": [
+      489.0,
+      2877.0
+     ],
+     "nbr_frame_xy": [
+      -13954.0,
+      47447.3
+     ],
+     "frame_xy": [
+      -13959.8,
+      47434.0
+     ],
+     "resid_px": 14.5,
+     "conf": "med"
+    },
+    {
+     "feature": "Pier A shed, N end NE outer corner",
+     "native_xy": [
+      3271.0,
+      1359.0
+     ],
+     "nbr": "2",
+     "nbr_native_xy": [
+      510.0,
+      1763.0
+     ],
+     "nbr_frame_xy": [
+      -17726.2,
+      45028.7
+     ],
+     "frame_xy": [
+      -17744.3,
+      45053.5
+     ],
+     "resid_px": 30.7,
+     "conf": "med"
+    }
+   ],
+   "extent": [
+    40,
+    45,
+    3285,
+    3855
+   ],
+   "note": "SP Terminal Piers A/B/C, no streets; same page orientation as sheet 2 (1->2 similarity: scale 0.9916, rotation -0.08 deg, shift ~(-2743,+419) working px). Shared strip is drafted independently on the two sheets (slip 375 vs 366 px wide), so ~10 px native scatter is intrinsic."
+  },
+  "3": {
+   "m": [
+    [
+     4.0095780044437115,
+     -0.041533941128518825
+    ],
+    [
+     0.041533941128518825,
+     4.0095780044437115
+    ]
+   ],
+   "t": [
+    -19577.78274791273,
+    23327.97994939569
+   ],
+   "how": "NOT re-placed (remote transforms_city.json, tier wharf-frontage); spot-check only",
+   "extent": [
+    78,
+    75,
+    3253,
+    3823
+   ],
+   "check": "OK: Ave A from the remote transform lands at native x=3141 vs the measured 70-ft corridor midline 3136 (3085-3187); 33rd-39th continue across to 15/67/75 in the composite; Pier 33 label on 3 vs on 4 agree within ~130 frame px. Own street tilt ~+0.15 deg vs the 0.59 deg used (see sheet 2 note)."
+  },
+  "4": {
+   "m": [
+    [
+     3.976399962321825,
+     -0.04119026036043732
+    ],
+    [
+     0.04119026036043732,
+     3.976399962321825
+    ]
+   ],
+   "t": [
+    -19260.509220795444,
+    12285.035951073532
+   ],
+   "how": "NOT re-placed (remote, tier wharf-frontage); spot-check only",
+   "extent": [
+    78,
+    80,
+    3242,
+    3822
+   ],
+   "check": "OK: Ave A lands at native x=3087 vs measured corridor midline 3105 (3052-3159); 29th-33rd continue straight across into 13/15; piers 29-33 on the bay side; 5b|4 quay/conveyor continuous in the 1/8 composite."
+  },
+  "6": {
+   "m": [
+    [
+     4.022198039330588,
+     -0.04166466804926971
+    ],
+    [
+     0.04166466804926971,
+     4.022198039330588
+    ]
+   ],
+   "t": [
+    -21696.24633591273,
+    -30181.416177192918
+   ],
+   "how": "NOT re-placed (remote, tier wharf-frontage); spot-check FAILED in x",
+   "extent": [
+    72,
+    88,
+    3225,
+    3833
+   ],
+   "check": "PROBLEM: remote transform puts the grid's Ave A (x=-6983) at native x~3658, off the 3327-px sheet. On the sheet, Water St's west frontage is at x=3169 (70 ft corridor, midline ~3220, label 'AVE. A OR WATER' at 3215) and the 730-735 block column (labelled 21/27/33) lies at x 2800-3170, matching what sheet 21 draws west of its Water St (u21 x 340-1070 -> frame -8474..-7030). In the composite sheet 6 draws Water St and those blocks ~1700-1850 frame px bay-ward (-x) of where 21/27/33 draw them; 10th-16th St y-alignment is fine. Suggested fix: t_x ~ -19960 (i.e. +~1740) with the same m; not applied here per scope."
+  },
+  "5A": {
+   "m": [
+    [
+     3.975011523780226,
+     -0.04117587796793032
+    ],
+    [
+     0.04117587796793032,
+     3.975011523780226
+    ]
+   ],
+   "t": [
+    -13912.481013559081,
+    -15526.283635612665
+   ],
+   "how": "remote 5a (frozen master, archival px) converted to pct:50 working-copy px: m_w = 2*M, t unchanged; not re-solved",
+   "extent": [
+    45.0,
+    45.0,
+    1926.0,
+    3850.0
+   ],
+   "note": "archival sheet 5 is 6653x7795, pct:50 copy 3327x3898 = exact half (IIIF rounds up)"
+  },
+  "5B": {
+   "m": [
+    [
+     3.974809480276902,
+     -0.011322986126540258
+    ],
+    [
+     0.011322986126540258,
+     3.974809480276902
+    ]
+   ],
+   "t": [
+    -19420.862567759912,
+    -1687.3761111029396
+   ],
+   "how": "remote 5b (frozen master + local re-solve, archival px) converted to pct:50 working-copy px: m_w = 2*M, t unchanged; not re-solved",
+   "extent": [
+    1901.5,
+    45.0,
+    3280.0,
+    3850.0
+   ],
+   "note": "remote 5b differs from transforms_sheet5.json raw (t=(-19385.8,-1775.4), theta 0.593) because it was re-solved locally on the remote branch; the remote values are used"
+  }
+ }
+}

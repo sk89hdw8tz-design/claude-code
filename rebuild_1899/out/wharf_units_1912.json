@@ -1,0 +1,134 @@
+{
+ "units": {
+  "1": {
+   "file": 1,
+   "working": "work/sheets/1912w/u1.jpg",
+   "extent": [
+    40,
+    45,
+    3285,
+    3855
+   ],
+   "note": "SP Terminal Co. docks: Piers C, B, A and slips; power house; no streets. pct:50 IIIF copy of LOC image 08539_1912-0001 (= printed sheet 1), 3327x3898."
+  },
+  "2": {
+   "file": 2,
+   "working": "work/sheets/1912w/u2.jpg",
+   "extent": [
+    40,
+    45,
+    3285,
+    3855
+   ],
+   "note": "Piers 39, 40, 41 W/E, A, B; SP roundhouse/elevator; Water/40th/41st St and blocks 739/740 at lower right; printed rotated (frame +x at page 59 deg)."
+  },
+  "3": {
+   "file": 3,
+   "working": "work/sheets/1912w/u3.jpg",
+   "extent": [
+    78,
+    75,
+    3253,
+    3823
+   ],
+   "note": "piers 33-39, 33rd-39th St (remote unit; working copy created here)"
+  },
+  "4": {
+   "file": 4,
+   "working": "work/sheets/1912w/u4.jpg",
+   "extent": [
+    78,
+    80,
+    3242,
+    3822
+   ],
+   "note": "wharf flats, piers 29-35, 28th-33rd St (remote unit; working copy created here)"
+  },
+  "5A": {
+   "file": 5,
+   "working": "work/sheets/1912w/u5.jpg",
+   "extent": [
+    45.0,
+    45.0,
+    1926.0,
+    3850.0
+   ],
+   "region_native": [
+    [
+     45.0,
+     45.0
+    ],
+    [
+     1887.9,
+     45.0
+    ],
+    [
+     1905.8,
+     1250.0
+    ],
+    [
+     1918.8,
+     2500.0
+    ],
+    [
+     1926.2,
+     3850.0
+    ],
+    [
+     45.0,
+     3850.0
+    ]
+   ],
+   "note": "left panel, piers 17-22 / 16th-22nd St; pct:50 copy (the remote units.json expects u5.jpg at archival size - do not mix)"
+  },
+  "5B": {
+   "file": 5,
+   "working": "work/sheets/1912w/u5.jpg",
+   "extent": [
+    1901.5,
+    45.0,
+    3280.0,
+    3850.0
+   ],
+   "region_native": [
+    [
+     1901.9,
+     45.0
+    ],
+    [
+     3280.0,
+     45.0
+    ],
+    [
+     3280.0,
+     3850.0
+    ],
+    [
+     1940.2,
+     3850.0
+    ],
+    [
+     1932.8,
+     2500.0
+    ],
+    [
+     1919.8,
+     1250.0
+    ]
+   ],
+   "note": "right panel, piers 22-28 / 22nd-28th St; pct:50 copy"
+  },
+  "6": {
+   "file": 6,
+   "working": "work/sheets/1912w/u6.jpg",
+   "extent": [
+    72,
+    88,
+    3225,
+    3833
+   ],
+   "note": "piers 10-15, 10th-16th St (remote unit; working copy created here)"
+  }
+ },
+ "index_mapping": "pct50/sheet_000N.jpg (LOC IIIF id 08539_1912-000N) = printed sheet N for N=1..6; verified from the printed corner numerals and from network_1912.py ARCHIVAL (sheet 5 archival = IIIF -0005)."
+}
