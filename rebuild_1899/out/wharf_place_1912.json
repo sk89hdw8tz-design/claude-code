@@ -380,7 +380,7 @@
     3242,
     3822
    ],
-   "check": "OK: Ave A lands at native x=3087 vs measured corridor midline 3105 (3052-3159); 29th-33rd continue straight across into 13/15; piers 29-33 on the bay side; 5b|4 quay/conveyor continuous in the 1/8 composite."
+   "check": "OK: Ave A lands at native x=3087 vs measured corridor midline 3105 (3052-3159); 29th-33rd continue straight across into 13/15; piers 29-33 on the bay side; 5b|4 quay/conveyor continuous in the 1/8 composite. Blind 4-5 ties (child 'Blind ties 4-5 run A', 6 pts: tank symbol, 28th St block corners, elevator corners, conveyor pier end) mapped through remote 4 and remote 5b differ by mean (37,-24) frame px (4 minus 5b), rms 68 px, i.e. the 5b|4 seam is registered to ~6 ft."
   },
   "6": {
    "m": [
