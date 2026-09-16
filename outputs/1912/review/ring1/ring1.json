@@ -1,0 +1,53 @@
+{
+ "core": [
+  "7",
+  "8",
+  "9",
+  "10",
+  "11",
+  "12",
+  "39",
+  "40",
+  "43",
+  "44",
+  "49",
+  "50"
+ ],
+ "ring1": [
+  "13",
+  "14",
+  "33",
+  "34",
+  "35",
+  "36",
+  "37",
+  "41",
+  "45",
+  "51",
+  "55",
+  "56",
+  "57",
+  "5a",
+  "5b"
+ ],
+ "ring1_tiers": {
+  "13": "control",
+  "14": "control",
+  "33": "control",
+  "34": "control",
+  "35": "control",
+  "36": "control",
+  "37": "control",
+  "41": "control",
+  "45": "control",
+  "51": "control",
+  "55": "control",
+  "56": "control",
+  "57": "control",
+  "5a": "core",
+  "5b": "core"
+ },
+ "render": "core_plus_ring1_div8.jpg (1/8 scale; green outline = core, red = ring 1)",
+ "n_ring1_seams": 50,
+ "note": "Delivered Stage-8 recipe, nothing re-solved. Wharf sheets 4/6 and the HQ-61 sheet-6 correction are outside this ring."
+}

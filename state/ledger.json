@@ -2,7 +2,7 @@
  "project": "Galveston Sanborn wharf/downtown mosaics, 1899 + 1912",
  "branch": "claude/galveston-setup-part-a-mk5z1l",
  "governing_spec": "Cloud addendum (Part B brief unavailable in this cloud session; stage structure reconstructed from the addendum and prior-work branches). Ambiguities go to HUMAN_QUEUE.md, not guessed.",
- "updated_utc": "2026-09-16T01:46:08Z",
+ "updated_utc": "2026-09-16T02:14:43Z",
  "environment": {
   "network": "restricted proxy: pypi/apt/github reachable; loc.gov, tile.loc.gov, maps.lib.utexas.edu, texashistory.unt.edu blocked (CONNECT 403)",
   "source_fetch_path": "GitHub Actions CI runners (full egress) commit sources to data branches; sessions read them via git",
@@ -140,6 +140,14 @@
     "outputs/1912/recipe/qc/corridor_check/ (montages, key, verdict)",
     "outputs/1912/recipe/qc/grid_city_check.json"
    ]
+  },
+  "10_ring_review": {
+   "status": "ring 1 delivered for review",
+   "state": "owner's direction 2026-09-16: grow outward from the frozen core one ring per session, review, then continue. Ring 1 = 15 units (33-37, 13/14/55-57, 41/45/51, 5a/5b); rendered from the delivered recipe with no re-solve; seam table attached",
+   "outputs": [
+    "outputs/1912/review/ring1/{README.md,ring1.json,seams.md,core_plus_ring1_div8.jpg,core_plus_ring1_div8_annotated.jpg}"
+   ],
+   "next": "owner review of ring 1 -> fixes if any -> ring 2 (sheets touching ring 1, incl. wharf 4/6 and HQ-61)"
   }
  },
  "disk": {
