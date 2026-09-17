@@ -3781,14 +3781,20 @@
      "kind": "scale bar",
      "box": [
       2264,
-      3630,
+      3662,
       2906,
       3771
      ],
-     "how": "template match of the series' bar at (2260,3660), score 0.72; box fitted to the legend's ink and clipped to the template footprint +30 px (tools/scalebar.py)",
+     "how": "template match of the series' bar at (2260,3660), score 0.72; box fitted to the legend's ink and clipped to the template footprint +30 px (tools/scalebar.py) | 2026-09-17 ring-1 AAA: top lowered 3630->3662; the fitted box had swallowed the 1102-1112 house-number row, the 2627 lot annex and the T.H. hydrant printed just above 'Scale of Feet' (blind census 50|56 = 2).",
      "cut": true,
      "covered_fraction": 1.0,
-     "match_score": 0.719
+     "match_score": 0.719,
+     "box_before_2026_09_17": [
+      2264,
+      3630,
+      2906,
+      3771
+     ]
     }
    ]
   },

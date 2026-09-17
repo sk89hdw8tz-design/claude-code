@@ -22,9 +22,9 @@
      "crop_50": "outputs/1912/qc/seams/seam_36_37_a_50.jpg",
      "window": [
       13842,
-      -17133,
+      -17141,
       17042,
-      -12133
+      -12141
      ]
     },
     {
@@ -42,9 +42,9 @@
    "crop_50": "outputs/1912/qc/seams/seam_36_37_a_50.jpg",
    "window": [
     13842,
-    -17133,
+    -17141,
     17042,
-    -12133
+    -12141
    ]
   },
   {
@@ -58,7 +58,7 @@
    "how": "control",
    "corridor": "27th St",
    "kind": "band",
-   "overlap_px2": 1854452,
+   "overlap_px2": 1933489,
    "span_px": 6242,
    "lattice_disagreement_px": null,
    "lattice_disagreement_ft": null,
