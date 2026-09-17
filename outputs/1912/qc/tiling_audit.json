@@ -1,9 +1,9 @@
 {
  "year": 1912,
  "regions": 106,
- "union_area_px2": 4515179750.7,
- "sum_of_regions_px2": 4515182532.1,
- "overlap_area_px2": 2781.5,
+ "union_area_px2": 4515699737.5,
+ "sum_of_regions_px2": 4515702736.7,
+ "overlap_area_px2": 2999.1,
  "overlap_fraction": 1e-06,
  "disjoint_pieces": 1,
  "interior_gaps": [
@@ -17,7 +17,7 @@
    ]
   },
   {
-   "area_px2": 751735.7,
+   "area_px2": 751720.6,
    "width_px": 430.0,
    "kind": "hole",
    "centroid": [
@@ -233,42 +233,6 @@
    ]
   },
   {
-   "area_px2": 18160.2,
-   "width_px": 66.7,
-   "kind": "hole",
-   "centroid": [
-    -7020.6,
-    3156.1
-   ]
-  },
-  {
-   "area_px2": 17119.3,
-   "width_px": 64.1,
-   "kind": "hole",
-   "centroid": [
-    5426.3,
-    3635.2
-   ]
-  },
-  {
-   "area_px2": 16949.2,
-   "width_px": 3.4,
-   "kind": "hairline",
-   "centroid": [
-    9264.4,
-    -3411.6
-   ]
-  },
-  {
-   "area_px2": 15979.6,
-   "width_px": 61.7,
-   "kind": "hole",
-   "centroid": [
-    -2883.2,
-    17185.0
-   ]
-  },
-  {
    "area_px2": 14020.3,
    "width_px": 2.7,
    "kind": "hairline",
@@ -287,33 +251,6 @@
    ]
   },
   {
-   "area_px2": 13761.4,
-   "width_px": 58.1,
-   "kind": "hole",
-   "centroid": [
-    3349.2,
-    17462.7
-   ]
-  },
-  {
-   "area_px2": 12462.3,
-   "width_px": 55.8,
-   "kind": "hole",
-   "centroid": [
-    9169.5,
-    17236.5
-   ]
-  },
-  {
-   "area_px2": 12447.4,
-   "width_px": 55.6,
-   "kind": "hole",
-   "centroid": [
-    21156.5,
-    3445.7
-   ]
-  },
-  {
    "area_px2": 12103.4,
    "width_px": 55.0,
    "kind": "hole",
@@ -323,147 +260,12 @@
    ]
   },
   {
-   "area_px2": 11051.1,
-   "width_px": 52.4,
-   "kind": "hole",
-   "centroid": [
-    3116.2,
-    17261.1
-   ]
-  },
-  {
-   "area_px2": 10836.8,
-   "width_px": 51.4,
-   "kind": "hole",
-   "centroid": [
-    8898.7,
-    10507.2
-   ]
-  },
-  {
-   "area_px2": 10713.0,
-   "width_px": 51.7,
-   "kind": "hole",
-   "centroid": [
-    9377.9,
-    17516.9
-   ]
-  },
-  {
-   "area_px2": 10656.4,
-   "width_px": 51.6,
-   "kind": "hole",
-   "centroid": [
-    8884.0,
-    17477.5
-   ]
-  },
-  {
-   "area_px2": 10630.4,
-   "width_px": 51.2,
-   "kind": "hole",
-   "centroid": [
-    -3163.2,
-    10539.7
-   ]
-  },
-  {
-   "area_px2": 10587.3,
-   "width_px": 51.2,
-   "kind": "hole",
-   "centroid": [
-    -3220.0,
-    17456.1
-   ]
-  },
-  {
-   "area_px2": 10564.2,
-   "width_px": 51.0,
-   "kind": "hole",
-   "centroid": [
-    15636.0,
-    17525.7
-   ]
-  },
-  {
-   "area_px2": 10560.8,
-   "width_px": 51.1,
-   "kind": "hole",
-   "centroid": [
-    8934.7,
-    -10339.2
-   ]
-  },
-  {
-   "area_px2": 10523.8,
-   "width_px": 51.1,
-   "kind": "hole",
-   "centroid": [
-    15376.8,
-    10296.5
-   ]
-  },
-  {
-   "area_px2": 10324.5,
-   "width_px": 50.6,
-   "kind": "hole",
-   "centroid": [
-    9512.6,
-    -10340.3
-   ]
-  },
-  {
    "area_px2": 10082.5,
    "width_px": 50.1,
    "kind": "hole",
    "centroid": [
     21126.4,
     17545.1
-   ]
-  },
-  {
-   "area_px2": 9825.2,
-   "width_px": 49.5,
-   "kind": "hole",
-   "centroid": [
-    15727.0,
-    -10380.4
-   ]
-  },
-  {
-   "area_px2": 9727.8,
-   "width_px": 49.2,
-   "kind": "hole",
-   "centroid": [
-    2842.3,
-    10549.4
-   ]
-  },
-  {
-   "area_px2": 9727.7,
-   "width_px": 49.2,
-   "kind": "hole",
-   "centroid": [
-    -2678.9,
-    10552.7
-   ]
-  },
-  {
-   "area_px2": 9721.5,
-   "width_px": 49.3,
-   "kind": "hole",
-   "centroid": [
-    -3167.1,
-    -10337.1
-   ]
-  },
-  {
-   "area_px2": 9709.1,
-   "width_px": 49.2,
-   "kind": "hole",
-   "centroid": [
-    -2677.5,
-    17499.9
    ]
   },
   {
@@ -485,75 +287,12 @@
    ]
   },
   {
-   "area_px2": 9651.9,
-   "width_px": 49.0,
-   "kind": "hole",
-   "centroid": [
-    9210.0,
-    10869.4
-   ]
-  },
-  {
-   "area_px2": 9651.5,
-   "width_px": 48.9,
-   "kind": "hole",
-   "centroid": [
-    -2656.9,
-    -10334.6
-   ]
-  },
-  {
-   "area_px2": 9634.5,
-   "width_px": 49.0,
-   "kind": "hole",
-   "centroid": [
-    3154.2,
-    -10648.8
-   ]
-  },
-  {
-   "area_px2": 9606.2,
-   "width_px": 48.8,
-   "kind": "hole",
-   "centroid": [
-    3203.8,
-    -17011.8
-   ]
-  },
-  {
    "area_px2": 9604.6,
    "width_px": 48.7,
    "kind": "hole",
    "centroid": [
     21188.8,
     -3444.5
-   ]
-  },
-  {
-   "area_px2": 9571.9,
-   "width_px": 48.7,
-   "kind": "hole",
-   "centroid": [
-    15097.7,
-    10547.3
-   ]
-  },
-  {
-   "area_px2": 9459.2,
-   "width_px": 48.5,
-   "kind": "hole",
-   "centroid": [
-    2784.3,
-    17452.1
-   ]
-  },
-  {
-   "area_px2": 9294.1,
-   "width_px": 48.0,
-   "kind": "hole",
-   "centroid": [
-    2942.1,
-    -10326.6
    ]
   },
   {
@@ -566,48 +305,12 @@
    ]
   },
   {
-   "area_px2": 9155.0,
-   "width_px": 47.5,
-   "kind": "hole",
-   "centroid": [
-    21118.9,
-    -10341.4
-   ]
-  },
-  {
-   "area_px2": 9080.7,
-   "width_px": 47.5,
-   "kind": "hole",
-   "centroid": [
-    15696.3,
-    -3427.2
-   ]
-  },
-  {
    "area_px2": 8948.8,
    "width_px": 46.9,
    "kind": "hole",
    "centroid": [
     -4938.1,
     -3184.8
-   ]
-  },
-  {
-   "area_px2": 8821.8,
-   "width_px": 46.8,
-   "kind": "hole",
-   "centroid": [
-    -2954.9,
-    3161.8
-   ]
-  },
-  {
-   "area_px2": 8817.5,
-   "width_px": 46.9,
-   "kind": "hole",
-   "centroid": [
-    3137.2,
-    -10001.2
    ]
   },
   {
@@ -620,156 +323,12 @@
    ]
   },
   {
-   "area_px2": 8528.3,
-   "width_px": 46.1,
-   "kind": "hole",
-   "centroid": [
-    15321.2,
-    17281.9
-   ]
-  },
-  {
-   "area_px2": 8508.4,
-   "width_px": 46.1,
-   "kind": "hole",
-   "centroid": [
-    9276.7,
-    -3712.9
-   ]
-  },
-  {
-   "area_px2": 8439.0,
-   "width_px": 45.9,
-   "kind": "hole",
-   "centroid": [
-    3098.8,
-    3696.2
-   ]
-  },
-  {
-   "area_px2": 8189.3,
-   "width_px": 45.1,
-   "kind": "hole",
-   "centroid": [
-    -2876.4,
-    -10598.8
-   ]
-  },
-  {
-   "area_px2": 8151.4,
-   "width_px": 45.1,
-   "kind": "hole",
-   "centroid": [
-    3131.5,
-    10850.3
-   ]
-  },
-  {
-   "area_px2": 7947.9,
-   "width_px": 43.1,
-   "kind": "hole",
-   "centroid": [
-    -2854.7,
-    -10013.8
-   ]
-  },
-  {
-   "area_px2": 7916.9,
-   "width_px": 44.5,
-   "kind": "hole",
-   "centroid": [
-    15413.6,
-    3724.9
-   ]
-  },
-  {
-   "area_px2": 7909.5,
-   "width_px": 1.8,
-   "kind": "hairline",
-   "centroid": [
-    -2930.7,
-    10297.1
-   ]
-  },
-  {
-   "area_px2": 7885.0,
-   "width_px": 44.4,
-   "kind": "hole",
-   "centroid": [
-    -2994.3,
-    3689.4
-   ]
-  },
-  {
-   "area_px2": 7767.0,
-   "width_px": 43.9,
-   "kind": "hole",
-   "centroid": [
-    -2935.6,
-    -3183.5
-   ]
-  },
-  {
-   "area_px2": 7743.8,
-   "width_px": 39.8,
-   "kind": "hole",
-   "centroid": [
-    9412.1,
-    10585.4
-   ]
-  },
-  {
-   "area_px2": 7661.2,
-   "width_px": 43.7,
-   "kind": "hole",
-   "centroid": [
-    -2875.8,
-    -17009.0
-   ]
-  },
-  {
-   "area_px2": 7456.0,
-   "width_px": 43.1,
-   "kind": "hole",
-   "centroid": [
-    15428.0,
-    -10648.5
-   ]
-  },
-  {
    "area_px2": 7262.7,
    "width_px": 24.0,
    "kind": "hairline",
    "centroid": [
     31215.8,
     24543.5
-   ]
-  },
-  {
-   "area_px2": 7095.8,
-   "width_px": 41.5,
-   "kind": "hole",
-   "centroid": [
-    -3197.7,
-    3438.6
-   ]
-  },
-  {
-   "area_px2": 6789.2,
-   "width_px": 34.0,
-   "kind": "hole",
-   "centroid": [
-    8917.5,
-    3477.2
-   ]
-  },
-  {
-   "area_px2": 6286.8,
-   "width_px": 38.6,
-   "kind": "hole",
-   "centroid": [
-    -2898.8,
-    -3695.0
    ]
   },
   {
@@ -782,24 +341,6 @@
    ]
   },
   {
-   "area_px2": 5181.9,
-   "width_px": 1.5,
-   "kind": "hairline",
-   "centroid": [
-    9450.0,
-    3426.6
-   ]
-  },
-  {
-   "area_px2": 4993.1,
-   "width_px": 35.3,
-   "kind": "hole",
-   "centroid": [
-    3146.6,
-    -3694.0
-   ]
-  },
-  {
    "area_px2": 4305.9,
    "width_px": 15.1,
    "kind": "hairline",
@@ -807,54 +348,9 @@
     -8962.4,
     -31195.8
    ]
-  },
-  {
-   "area_px2": 3863.5,
-   "width_px": 30.2,
-   "kind": "hole",
-   "centroid": [
-    9228.0,
-    -10060.8
-   ]
-  },
-  {
-   "area_px2": 3240.9,
-   "width_px": 24.4,
-   "kind": "hairline",
-   "centroid": [
-    -2670.7,
-    3457.5
-   ]
-  },
-  {
-   "area_px2": 2917.2,
-   "width_px": 26.4,
-   "kind": "hairline",
-   "centroid": [
-    2853.6,
-    -3427.7
-   ]
-  },
-  {
-   "area_px2": 2614.9,
-   "width_px": 18.7,
-   "kind": "hairline",
-   "centroid": [
-    -3175.1,
-    -3411.5
-   ]
-  },
-  {
-   "area_px2": 2556.0,
-   "width_px": 18.1,
-   "kind": "hairline",
-   "centroid": [
-    2838.6,
-    -10329.3
-   ]
   }
  ],
- "unclaimed_area_px2": 23311678.9,
+ "unclaimed_area_px2": 22797237.3,
  "pairwise_overlaps": [],
  "min_reported_area_px2": 2500.0,
  "inlet_close_px": 700.0
