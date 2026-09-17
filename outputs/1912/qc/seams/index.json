@@ -4,42 +4,6 @@
   {
    "pair": [
     "5a",
-    "5b"
-   ],
-   "axis": "y",
-   "coord": -563.15,
-   "cut": "straight",
-   "how": "control",
-   "corridor": "22nd St (panel break)",
-   "kind": "band",
-   "overlap_px2": 7118722,
-   "span_px": 5454,
-   "lattice_disagreement_px": null,
-   "lattice_disagreement_ft": null,
-   "crops": [
-    {
-     "crop_100": "outputs/1912/qc/seams/seam_5a_5b_100.jpg",
-     "crop_50": "outputs/1912/qc/seams/seam_5a_5b_50.jpg",
-     "window": [
-      -13010,
-      -2163,
-      -8010,
-      1037
-     ]
-    }
-   ],
-   "crop_100": "outputs/1912/qc/seams/seam_5a_5b_100.jpg",
-   "crop_50": "outputs/1912/qc/seams/seam_5a_5b_50.jpg",
-   "window": [
-    -13010,
-    -2163,
-    -8010,
-    1037
-   ]
-  },
-  {
-   "pair": [
-    "5a",
     "9"
    ],
    "axis": "x",
@@ -71,42 +35,6 @@
     -4507,
     -7565,
     493
-   ]
-  },
-  {
-   "pair": [
-    "5a",
-    "33"
-   ],
-   "axis": "x",
-   "coord": -8909.99,
-   "cut": "straight",
-   "how": "control",
-   "corridor": "wharf frontage: 100 native px inside sheet 33's bay-side neatline (straight cut)",
-   "kind": "band",
-   "overlap_px2": 13489668,
-   "span_px": 5177,
-   "lattice_disagreement_px": null,
-   "lattice_disagreement_ft": null,
-   "crops": [
-    {
-     "crop_100": "outputs/1912/qc/seams/seam_5a_33_100.jpg",
-     "crop_50": "outputs/1912/qc/seams/seam_5a_33_50.jpg",
-     "window": [
-      -10510,
-      -15152,
-      -7310,
-      -10152
-     ]
-    }
-   ],
-   "crop_100": "outputs/1912/qc/seams/seam_5a_33_100.jpg",
-   "crop_50": "outputs/1912/qc/seams/seam_5a_33_50.jpg",
-   "window": [
-    -10510,
-    -15152,
-    -7310,
-    -10152
    ]
   },
   {

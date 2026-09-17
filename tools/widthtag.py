@@ -79,10 +79,20 @@ TEMPLATES = [
     # tolerant of a neighbouring rule (33i is itself crossed by a dashed pipe)
     ("80r_33h", "33", (314, 3660, 334, 3689), "rotated", "80'"),      # left, yard
     ("80r_33i", "33", (313, 2509, 334, 2544), "rotated", "80'"),      # left, yard, dashes
+    # plate 13 (wharf yard) cuts its horizontal tags in a lighter, smaller
+    # hand (digits ~22x24 px) drawn straight over the rail lines; the other
+    # plates' crops score 0.40-0.56 on them. Digits only; a rail crosses
+    # the "0" of each and is part of the template.
+    ("70h_13", "13", (1141, 349, 1163, 373), "horizontal", "70'"),    # top, 27th St yard
+    ("80h_13", "13", (2155, 3525, 2184, 3547), "horizontal", "80'"),  # bottom, yard
+    # the 150-ft street (plate 56): the 70'/80' crops match its "0'" at
+    # 0.54-0.58 only, so one three-digit tag is templated outright
+    ("150h_56", "56", (1152, 357, 1197, 378), "horizontal", "150'"),  # top
 ]
 TPL_PAD = 4
 SCALES = (0.9, 1.0, 1.1)
-THRESH = 0.58
+THRESH = 0.55        # true tags crossed by a dashed pipe score 0.52-0.58; the
+                     # tinted/ring/neatline gates carry the false-positive load
 NMS_IOU = 0.3
 BAND = 300           # px inside the neatline the band (and the centre gate) reach
 OUTSIDE_TOL = 5      # px a centre may sit outside `extent` (neatline fit slack);
@@ -387,6 +397,14 @@ def main():
         # order along the plate edge for stable numbering
         kept_here.sort(key=lambda c: ({"top": 0, "right": 1, "bottom": 2, "left": 3}[c["edge"]],
                                       c["box"][0] if c["edge"] in ("top", "bottom") else c["box"][1]))
+        # a rerun renumbers a plate's candidates: drop its stale crops/montages
+        for f in os.listdir(crops_dir):
+            if f.startswith(f"u{u}_") and f.endswith(".jpg"):
+                os.remove(os.path.join(crops_dir, f))
+        for f in os.listdir(out):
+            if f.startswith(f"montage_u{u}") and f.endswith(".jpg") and \
+                    f[len(f"montage_u{u}")] in "._":
+                os.remove(os.path.join(out, f))
         tiles = []
         for k, c in enumerate(kept_here, 1):
             x0, y0, x1, y1 = c["box"]
