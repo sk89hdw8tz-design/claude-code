@@ -19,6 +19,7 @@
   "paper_sat": 25.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    2157,
    318,
@@ -48,6 +49,7 @@
   "paper_sat": 29.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    3013,
    164,
@@ -77,6 +79,7 @@
   "paper_sat": 28.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    3176,
    327,
@@ -106,6 +109,7 @@
   "paper_sat": 29.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": "off-lattice: alley tag or lot number",
   "hit_box": [
    3168,
    485,
@@ -135,6 +139,7 @@
   "paper_sat": 23.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    3022,
    1318,
@@ -164,6 +169,7 @@
   "paper_sat": 21.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    3060,
    2433,
@@ -193,6 +199,7 @@
   "paper_sat": 21.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": "off-lattice: alley tag or lot number",
   "hit_box": [
    3046,
    2661,
@@ -222,6 +229,7 @@
   "paper_sat": 30.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    3184,
    3482,
@@ -251,6 +259,7 @@
   "paper_sat": 25.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    255,
    3641,
@@ -280,6 +289,7 @@
   "paper_sat": 30.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    1150,
    3795,
@@ -309,6 +319,7 @@
   "paper_sat": 25.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    3031,
    3641,
@@ -338,6 +349,7 @@
   "paper_sat": 22.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    314,
    1340,
@@ -367,6 +379,7 @@
   "paper_sat": 20.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    300,
    2491,
@@ -396,6 +409,7 @@
   "paper_sat": 25.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    309,
    199,
@@ -425,6 +439,7 @@
   "paper_sat": 20.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    2181,
    337,
@@ -454,6 +469,7 @@
   "paper_sat": 20.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": "off-lattice: alley tag or lot number",
   "hit_box": [
    2687,
    333,
@@ -483,6 +499,7 @@
   "paper_sat": 28.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    3038,
    189,
@@ -512,6 +529,7 @@
   "paper_sat": 27.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    3163,
    346,
@@ -541,6 +559,7 @@
   "paper_sat": 40.0,
   "in_street_x": false,
   "in_street_y": false,
+  "warn": "off-lattice: alley tag or lot number",
   "hit_box": [
    3037,
    1011,
@@ -570,6 +589,7 @@
   "paper_sat": 20.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    3052,
    1343,
@@ -599,6 +619,7 @@
   "paper_sat": 20.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    3064,
    2499,
@@ -628,6 +649,7 @@
   "paper_sat": 27.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    3168,
    3500,
@@ -657,6 +679,7 @@
   "paper_sat": 26.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    312,
    3681,
@@ -686,6 +709,7 @@
   "paper_sat": 21.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    1177,
    3503,
@@ -715,6 +739,7 @@
   "paper_sat": 19.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    2169,
    3536,
@@ -744,6 +769,7 @@
   "paper_sat": 25.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    3033,
    3655,
@@ -773,6 +799,7 @@
   "paper_sat": 25.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    169,
    354,
@@ -802,6 +829,7 @@
   "paper_sat": 21.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    305,
    1357,
@@ -831,6 +859,7 @@
   "paper_sat": 25.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    150,
    3512,
@@ -839,35 +868,6 @@
   ],
   "k": 16,
   "crop": "outputs/1912/review/ring1/widthtags/crops/u8_16.jpg"
- },
- {
-  "unit": "9",
-  "box": [
-   473,
-   316,
-   497,
-   343
-  ],
-  "score": 0.563,
-  "edge": "top",
-  "orientation": "horizontal",
-  "template": "70h_33m",
-  "text_guess": "70'",
-  "scale": 0.9,
-  "neatline_dist": 230.5,
-  "darkest_line_frac": 0.5,
-  "ring_ink": 0.0,
-  "paper_sat": 19.0,
-  "in_street_x": false,
-  "in_street_y": true,
-  "hit_box": [
-   473,
-   307,
-   512,
-   342
-  ],
-  "k": 1,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u9_1.jpg"
  },
  {
   "unit": "9",
@@ -889,14 +889,15 @@
   "paper_sat": 24.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    714,
    203,
    740,
    242
   ],
-  "k": 2,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u9_2.jpg"
+  "k": 1,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u9_1.jpg"
  },
  {
   "unit": "9",
@@ -918,14 +919,15 @@
   "paper_sat": 19.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": "off-lattice: alley tag or lot number",
   "hit_box": [
    1667,
    320,
    1710,
    358
   ],
-  "k": 3,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u9_3.jpg"
+  "k": 2,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u9_2.jpg"
  },
  {
   "unit": "9",
@@ -947,14 +949,15 @@
   "paper_sat": 23.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    2186,
    323,
    2234,
    365
   ],
-  "k": 4,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u9_4.jpg"
+  "k": 3,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u9_3.jpg"
  },
  {
   "unit": "9",
@@ -976,43 +979,15 @@
   "paper_sat": 21.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": "off-lattice: alley tag or lot number",
   "hit_box": [
    2699,
    322,
    2742,
    360
   ],
-  "k": 5,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u9_5.jpg"
- },
- {
-  "unit": "9",
-  "box": [
-   2739,
-   118,
-   2799,
-   154
-  ],
-  "score": 0.554,
-  "edge": "top",
-  "orientation": "horizontal",
-  "template": "70h_7e",
-  "text_guess": "70'",
-  "scale": 0.9,
-  "neatline_dist": 37.0,
-  "darkest_line_frac": 0.639,
-  "ring_ink": 0.0,
-  "paper_sat": 29.0,
-  "in_street_x": false,
-  "in_street_y": true,
-  "hit_box": [
-   2741,
-   116,
-   2783,
-   153
-  ],
-  "k": 6,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u9_6.jpg"
+  "k": 4,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u9_4.jpg"
  },
  {
   "unit": "9",
@@ -1034,14 +1009,15 @@
   "paper_sat": 26.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    3086,
    200,
    3114,
    237
   ],
-  "k": 7,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u9_7.jpg"
+  "k": 5,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u9_5.jpg"
  },
  {
   "unit": "9",
@@ -1063,14 +1039,15 @@
   "paper_sat": 30.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    3194,
    323,
    3237,
    362
   ],
-  "k": 8,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u9_8.jpg"
+  "k": 6,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u9_6.jpg"
  },
  {
   "unit": "9",
@@ -1092,14 +1069,15 @@
   "paper_sat": 24.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    3081,
    1346,
    3115,
    1388
   ],
-  "k": 9,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u9_9.jpg"
+  "k": 7,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u9_7.jpg"
  },
  {
   "unit": "9",
@@ -1121,14 +1099,15 @@
   "paper_sat": 23.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    3092,
    2536,
    3123,
    2577
   ],
-  "k": 10,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u9_10.jpg"
+  "k": 8,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u9_8.jpg"
  },
  {
   "unit": "9",
@@ -1150,43 +1129,45 @@
   "paper_sat": 29.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    3187,
    3514,
    3234,
    3557
   ],
-  "k": 11,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u9_11.jpg"
+  "k": 9,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u9_9.jpg"
  },
  {
   "unit": "9",
   "box": [
-   489,
-   3766,
-   512,
-   3832
+   1138,
+   3509,
+   1185,
+   3575
   ],
-  "score": 0.561,
+  "score": 0.65,
   "edge": "bottom",
   "orientation": "horizontal",
-  "template": "70h_13",
+  "template": "70h_45a",
   "text_guess": "70'",
-  "scale": 1.1,
-  "neatline_dist": -4.0,
-  "darkest_line_frac": 0.894,
-  "ring_ink": 0.134,
-  "paper_sat": 30.0,
-  "in_street_x": false,
+  "scale": 1.0,
+  "neatline_dist": 253.0,
+  "darkest_line_frac": 1.0,
+  "ring_ink": 0.092,
+  "paper_sat": 22.0,
+  "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
-   484,
-   3782,
-   517,
-   3817
+   1140,
+   3525,
+   1182,
+   3559
   ],
-  "k": 12,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u9_12.jpg"
+  "k": 10,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u9_10.jpg"
  },
  {
   "unit": "9",
@@ -1208,14 +1189,15 @@
   "paper_sat": 19.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    2184,
    3516,
    2237,
    3562
   ],
-  "k": 13,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u9_13.jpg"
+  "k": 11,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u9_11.jpg"
  },
  {
   "unit": "9",
@@ -1237,14 +1219,15 @@
   "paper_sat": 28.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    3059,
    3651,
    3116,
    3708
   ],
-  "k": 14,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u9_14.jpg"
+  "k": 12,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u9_12.jpg"
  },
  {
   "unit": "10",
@@ -1266,6 +1249,7 @@
   "paper_sat": 25.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    343,
    194,
@@ -1295,6 +1279,7 @@
   "paper_sat": 23.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    1206,
    321,
@@ -1324,6 +1309,7 @@
   "paper_sat": 18.0,
   "in_street_x": false,
   "in_street_y": false,
+  "warn": "off-lattice: alley tag or lot number",
   "hit_box": [
    1714,
    351,
@@ -1353,6 +1339,7 @@
   "paper_sat": 24.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    2200,
    333,
@@ -1382,6 +1369,7 @@
   "paper_sat": 28.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    3084,
    196,
@@ -1411,6 +1399,7 @@
   "paper_sat": 29.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    3202,
    359,
@@ -1440,6 +1429,7 @@
   "paper_sat": 22.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": "off-lattice: alley tag or lot number",
   "hit_box": [
    2963,
    1269,
@@ -1469,6 +1459,7 @@
   "paper_sat": 22.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    3079,
    1359,
@@ -1498,6 +1489,7 @@
   "paper_sat": 25.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    3080,
    2513,
@@ -1527,6 +1519,7 @@
   "paper_sat": 28.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    3168,
    3498,
@@ -1556,6 +1549,7 @@
   "paper_sat": 25.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    319,
    3675,
@@ -1585,6 +1579,7 @@
   "paper_sat": 21.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": "off-lattice: alley tag or lot number",
   "hit_box": [
    689,
    3528,
@@ -1593,35 +1588,6 @@
   ],
   "k": 12,
   "crop": "outputs/1912/review/ring1/widthtags/crops/u10_12.jpg"
- },
- {
-  "unit": "10",
-  "box": [
-   723,
-   3587,
-   773,
-   3621
-  ],
-  "score": 0.551,
-  "edge": "bottom",
-  "orientation": "rotated",
-  "template": "80r_45a",
-  "text_guess": "80'",
-  "scale": 0.9,
-  "neatline_dist": 194.0,
-  "darkest_line_frac": 0.647,
-  "ring_ink": 0.062,
-  "paper_sat": 24.0,
-  "in_street_x": false,
-  "in_street_y": true,
-  "hit_box": [
-   710,
-   3582,
-   757,
-   3629
-  ],
-  "k": 13,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u10_13.jpg"
  },
  {
   "unit": "10",
@@ -1643,14 +1609,15 @@
   "paper_sat": 21.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    1192,
    3535,
    1230,
    3566
   ],
-  "k": 14,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u10_14.jpg"
+  "k": 13,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u10_13.jpg"
  },
  {
   "unit": "10",
@@ -1672,14 +1639,15 @@
   "paper_sat": 23.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    2185,
    3518,
    2232,
    3561
   ],
-  "k": 15,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u10_15.jpg"
+  "k": 14,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u10_14.jpg"
  },
  {
   "unit": "10",
@@ -1701,14 +1669,15 @@
   "paper_sat": 20.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    2722,
    3592,
    2769,
    3639
   ],
-  "k": 16,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u10_16.jpg"
+  "k": 15,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u10_15.jpg"
  },
  {
   "unit": "10",
@@ -1730,14 +1699,15 @@
   "paper_sat": 28.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    3062,
    3677,
    3091,
    3720
   ],
-  "k": 17,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u10_17.jpg"
+  "k": 16,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u10_16.jpg"
  },
  {
   "unit": "10",
@@ -1759,14 +1729,15 @@
   "paper_sat": 24.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    205,
    321,
    248,
    360
   ],
-  "k": 18,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u10_18.jpg"
+  "k": 17,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u10_17.jpg"
  },
  {
   "unit": "10",
@@ -1788,14 +1759,15 @@
   "paper_sat": 23.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    312,
    1347,
    338,
    1386
   ],
-  "k": 19,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u10_19.jpg"
+  "k": 18,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u10_18.jpg"
  },
  {
   "unit": "10",
@@ -1817,14 +1789,15 @@
   "paper_sat": 21.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    327,
    2503,
    359,
    2550
   ],
-  "k": 20,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u10_20.jpg"
+  "k": 19,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u10_19.jpg"
  },
  {
   "unit": "10",
@@ -1846,14 +1819,15 @@
   "paper_sat": 24.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    177,
    3511,
    219,
    3545
   ],
-  "k": 21,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u10_21.jpg"
+  "k": 20,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u10_20.jpg"
  },
  {
   "unit": "11",
@@ -1875,6 +1849,7 @@
   "paper_sat": 27.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    817,
    157,
@@ -1904,6 +1879,7 @@
   "paper_sat": 26.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    2132,
    272,
@@ -1933,6 +1909,7 @@
   "paper_sat": 30.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    2999,
    154,
@@ -1962,6 +1939,7 @@
   "paper_sat": 28.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    3128,
    286,
@@ -1991,6 +1969,7 @@
   "paper_sat": 29.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    3154,
    3594,
@@ -2020,6 +1999,7 @@
   "paper_sat": 21.0,
   "in_street_x": false,
   "in_street_y": false,
+  "warn": "off-lattice: alley tag or lot number",
   "hit_box": [
    2596,
    3595,
@@ -2049,6 +2029,7 @@
   "paper_sat": 29.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    3046,
    3714,
@@ -2078,6 +2059,7 @@
   "paper_sat": 27.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    274,
    139,
@@ -2107,6 +2089,7 @@
   "paper_sat": 24.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    1176,
    273,
@@ -2136,6 +2119,7 @@
   "paper_sat": 26.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    2192,
    271,
@@ -2165,6 +2149,7 @@
   "paper_sat": 30.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    3056,
    141,
@@ -2194,6 +2179,7 @@
   "paper_sat": 30.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    3184,
    280,
@@ -2223,6 +2209,7 @@
   "paper_sat": 22.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    3075,
    1349,
@@ -2252,6 +2239,7 @@
   "paper_sat": 23.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    3045,
    2568,
@@ -2281,6 +2269,7 @@
   "paper_sat": 30.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    280,
    3709,
@@ -2310,6 +2299,7 @@
   "paper_sat": 25.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    1177,
    3592,
@@ -2318,6 +2308,36 @@
   ],
   "k": 9,
   "crop": "outputs/1912/review/ring1/widthtags/crops/u12_9.jpg"
+ },
+ {
+  "unit": "12",
+  "box": [
+   1512,
+   3596,
+   1610,
+   3654
+  ],
+  "score": 0.556,
+  "edge": "bottom",
+  "orientation": "horizontal",
+  "template": "70h_7e",
+  "text_guess": "70'",
+  "scale": 1.0,
+  "neatline_dist": 197.0,
+  "darkest_line_frac": 1.0,
+  "ring_ink": 0.045,
+  "paper_sat": 25.0,
+  "in_street_x": false,
+  "in_street_y": true,
+  "warn": "off-lattice: alley tag or lot number",
+  "hit_box": [
+   1573,
+   3612,
+   1620,
+   3653
+  ],
+  "k": 10,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u12_10.jpg"
  },
  {
   "unit": "12",
@@ -2339,14 +2359,15 @@
   "paper_sat": 23.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    2185,
    3582,
    2231,
    3619
   ],
-  "k": 10,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u12_10.jpg"
+  "k": 11,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u12_11.jpg"
  },
  {
   "unit": "12",
@@ -2368,14 +2389,15 @@
   "paper_sat": 29.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    3041,
    3703,
    3098,
    3760
   ],
-  "k": 11,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u12_11.jpg"
+  "k": 12,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u12_12.jpg"
  },
  {
   "unit": "12",
@@ -2397,14 +2419,15 @@
   "paper_sat": 27.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    168,
    282,
    214,
    319
   ],
-  "k": 12,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u12_12.jpg"
+  "k": 13,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u12_13.jpg"
  },
  {
   "unit": "12",
@@ -2426,14 +2449,15 @@
   "paper_sat": 26.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    165,
    3591,
    212,
    3631
   ],
-  "k": 13,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u12_13.jpg"
+  "k": 14,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u12_14.jpg"
  },
  {
   "unit": "39",
@@ -2455,6 +2479,7 @@
   "paper_sat": 23.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": "off-lattice: alley tag or lot number",
   "hit_box": [
    650,
    364,
@@ -2484,6 +2509,7 @@
   "paper_sat": 22.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    1149,
    346,
@@ -2513,6 +2539,7 @@
   "paper_sat": 22.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    1272,
    321,
@@ -2542,6 +2569,7 @@
   "paper_sat": 26.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    2148,
    343,
@@ -2571,6 +2599,7 @@
   "paper_sat": 25.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": "off-lattice: alley tag or lot number",
   "hit_box": [
    2660,
    351,
@@ -2600,6 +2629,7 @@
   "paper_sat": 29.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    3025,
    214,
@@ -2629,6 +2659,7 @@
   "paper_sat": 27.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    3144,
    355,
@@ -2658,6 +2689,7 @@
   "paper_sat": 22.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    3021,
    1360,
@@ -2687,6 +2719,7 @@
   "paper_sat": 21.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    3023,
    2508,
@@ -2716,6 +2749,7 @@
   "paper_sat": 28.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    3132,
    3504,
@@ -2745,6 +2779,7 @@
   "paper_sat": 29.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    268,
    3674,
@@ -2774,6 +2809,7 @@
   "paper_sat": 23.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    1145,
    3523,
@@ -2803,6 +2839,7 @@
   "paper_sat": 18.0,
   "in_street_x": false,
   "in_street_y": false,
+  "warn": "off-lattice: alley tag or lot number",
   "hit_box": [
    2657,
    3514,
@@ -2832,6 +2869,7 @@
   "paper_sat": 28.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    3001,
    3662,
@@ -2861,6 +2899,7 @@
   "paper_sat": 28.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    161,
    355,
@@ -2890,6 +2929,7 @@
   "paper_sat": 23.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    260,
    1366,
@@ -2919,6 +2959,7 @@
   "paper_sat": 21.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    277,
    1467,
@@ -2948,6 +2989,7 @@
   "paper_sat": 22.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    279,
    2526,
@@ -2977,6 +3019,7 @@
   "paper_sat": 27.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    134,
    3527,
@@ -3006,6 +3049,7 @@
   "paper_sat": 27.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    220,
    202,
@@ -3035,6 +3079,7 @@
   "paper_sat": 24.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    1139,
    346,
@@ -3064,6 +3109,7 @@
   "paper_sat": 20.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": "off-lattice: alley tag or lot number",
   "hit_box": [
    1696,
    336,
@@ -3093,6 +3139,7 @@
   "paper_sat": 24.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    2188,
    332,
@@ -3122,6 +3169,7 @@
   "paper_sat": 22.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": "off-lattice: alley tag or lot number",
   "hit_box": [
    2695,
    338,
@@ -3151,6 +3199,7 @@
   "paper_sat": 31.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    3156,
    347,
@@ -3180,6 +3229,7 @@
   "paper_sat": 24.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    3075,
    1346,
@@ -3209,6 +3259,7 @@
   "paper_sat": 21.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    3059,
    2495,
@@ -3238,6 +3289,7 @@
   "paper_sat": 30.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    3168,
    3490,
@@ -3267,6 +3319,7 @@
   "paper_sat": 27.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    230,
    3655,
@@ -3296,6 +3349,7 @@
   "paper_sat": 22.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    1142,
    3492,
@@ -3325,6 +3379,7 @@
   "paper_sat": 21.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    2189,
    3499,
@@ -3354,6 +3409,7 @@
   "paper_sat": 29.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    3057,
    3641,
@@ -3383,6 +3439,7 @@
   "paper_sat": 28.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    113,
    338,
@@ -3412,6 +3469,7 @@
   "paper_sat": 21.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    230,
    1353,
@@ -3441,6 +3499,7 @@
   "paper_sat": 21.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    224,
    2500,
@@ -3470,6 +3529,7 @@
   "paper_sat": 27.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    129,
    3502,
@@ -3499,6 +3559,7 @@
   "paper_sat": 22.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": "off-lattice: alley tag or lot number",
   "hit_box": [
    605,
    328,
@@ -3528,6 +3589,7 @@
   "paper_sat": 19.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    1116,
    335,
@@ -3557,6 +3619,7 @@
   "paper_sat": 20.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    2122,
    310,
@@ -3586,6 +3649,7 @@
   "paper_sat": 21.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": "off-lattice: alley tag or lot number",
   "hit_box": [
    2614,
    339,
@@ -3615,6 +3679,7 @@
   "paper_sat": 27.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    2985,
    201,
@@ -3644,6 +3709,7 @@
   "paper_sat": 25.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    3093,
    330,
@@ -3673,6 +3739,7 @@
   "paper_sat": 20.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    2993,
    1347,
@@ -3702,6 +3769,7 @@
   "paper_sat": 20.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    2992,
    2497,
@@ -3731,6 +3799,7 @@
   "paper_sat": 26.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    3109,
    3487,
@@ -3760,6 +3829,7 @@
   "paper_sat": 26.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    220,
    3656,
@@ -3789,6 +3859,7 @@
   "paper_sat": 21.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    1107,
    3499,
@@ -3818,6 +3889,7 @@
   "paper_sat": 19.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    2108,
    3504,
@@ -3847,6 +3919,7 @@
   "paper_sat": 28.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    2974,
    3651,
@@ -3876,6 +3949,7 @@
   "paper_sat": 27.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    120,
    322,
@@ -3905,6 +3979,7 @@
   "paper_sat": 21.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    235,
    1349,
@@ -3934,6 +4009,7 @@
   "paper_sat": 21.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    208,
    2496,
@@ -3963,6 +4039,7 @@
   "paper_sat": 30.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    90,
    3528,
@@ -3992,6 +4069,7 @@
   "paper_sat": 26.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    249,
    230,
@@ -4021,6 +4099,7 @@
   "paper_sat": 22.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": "off-lattice: alley tag or lot number",
   "hit_box": [
    516,
    313,
@@ -4050,6 +4129,7 @@
   "paper_sat": 19.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    1155,
    359,
@@ -4079,6 +4159,7 @@
   "paper_sat": 20.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": "off-lattice: alley tag or lot number",
   "hit_box": [
    1699,
    337,
@@ -4108,6 +4189,7 @@
   "paper_sat": 20.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    2205,
    347,
@@ -4137,6 +4219,7 @@
   "paper_sat": 31.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    3172,
    344,
@@ -4166,6 +4249,7 @@
   "paper_sat": 21.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    3047,
    1363,
@@ -4195,6 +4279,7 @@
   "paper_sat": 19.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    3054,
    2517,
@@ -4224,6 +4309,7 @@
   "paper_sat": 27.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    3162,
    3493,
@@ -4253,6 +4339,7 @@
   "paper_sat": 25.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    209,
    3641,
@@ -4282,6 +4369,7 @@
   "paper_sat": 19.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    1132,
    3506,
@@ -4311,6 +4399,7 @@
   "paper_sat": 18.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    2181,
    3502,
@@ -4340,6 +4429,7 @@
   "paper_sat": 16.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": "off-lattice: alley tag or lot number",
   "hit_box": [
    2569,
    3556,
@@ -4369,6 +4459,7 @@
   "paper_sat": 25.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    3036,
    3651,
@@ -4398,6 +4489,7 @@
   "paper_sat": 27.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    121,
    349,
@@ -4427,6 +4519,7 @@
   "paper_sat": 19.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    228,
    1360,
@@ -4456,6 +4549,7 @@
   "paper_sat": 21.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    212,
    2489,
@@ -4485,6 +4579,7 @@
   "paper_sat": 22.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    218,
    2610,
@@ -4514,6 +4609,7 @@
   "paper_sat": 25.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": "off-lattice: alley tag or lot number",
   "hit_box": [
    643,
    297,
@@ -4522,35 +4618,6 @@
   ],
   "k": 1,
   "crop": "outputs/1912/review/ring1/widthtags/crops/u49_1.jpg"
- },
- {
-  "unit": "49",
-  "box": [
-   676,
-   83,
-   709,
-   117
-  ],
-  "score": 0.561,
-  "edge": "top",
-  "orientation": "rotated",
-  "template": "80r_45a",
-  "text_guess": "80'",
-  "scale": 0.9,
-  "neatline_dist": 6.0,
-  "darkest_line_frac": 0.636,
-  "ring_ink": 0.031,
-  "paper_sat": 32.0,
-  "in_street_x": false,
-  "in_street_y": true,
-  "hit_box": [
-   662,
-   77,
-   709,
-   124
-  ],
-  "k": 2,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u49_2.jpg"
  },
  {
   "unit": "49",
@@ -4572,14 +4639,15 @@
   "paper_sat": 24.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    1140,
    294,
    1182,
    328
   ],
-  "k": 3,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u49_3.jpg"
+  "k": 2,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u49_2.jpg"
  },
  {
   "unit": "49",
@@ -4601,43 +4669,15 @@
   "paper_sat": 22.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    1266,
    255,
    1305,
    287
   ],
-  "k": 4,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u49_4.jpg"
- },
- {
-  "unit": "49",
-  "box": [
-   1739,
-   76,
-   1784,
-   108
-  ],
-  "score": 0.562,
-  "edge": "top",
-  "orientation": "rotated",
-  "template": "80r_45a",
-  "text_guess": "80'",
-  "scale": 0.9,
-  "neatline_dist": -2.0,
-  "darkest_line_frac": 0.689,
-  "ring_ink": 0.028,
-  "paper_sat": 34.0,
-  "in_street_x": false,
-  "in_street_y": true,
-  "hit_box": [
-   1725,
-   69,
-   1772,
-   116
-  ],
-  "k": 5,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u49_5.jpg"
+  "k": 3,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u49_3.jpg"
  },
  {
   "unit": "49",
@@ -4659,14 +4699,15 @@
   "paper_sat": 26.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    2141,
    293,
    2183,
    327
   ],
-  "k": 6,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u49_6.jpg"
+  "k": 4,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u49_4.jpg"
  },
  {
   "unit": "49",
@@ -4688,14 +4729,15 @@
   "paper_sat": 21.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": "off-lattice: alley tag or lot number",
   "hit_box": [
    2639,
    288,
    2681,
    322
   ],
-  "k": 7,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u49_7.jpg"
+  "k": 5,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u49_5.jpg"
  },
  {
   "unit": "49",
@@ -4717,14 +4759,15 @@
   "paper_sat": 27.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    3013,
    174,
    3039,
    213
   ],
-  "k": 8,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u49_8.jpg"
+  "k": 6,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u49_6.jpg"
  },
  {
   "unit": "49",
@@ -4746,14 +4789,15 @@
   "paper_sat": 26.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    3126,
    295,
    3169,
    334
   ],
-  "k": 9,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u49_9.jpg"
+  "k": 7,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u49_7.jpg"
  },
  {
   "unit": "49",
@@ -4775,14 +4819,15 @@
   "paper_sat": 21.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    3005,
    2569,
    3043,
    2616
   ],
-  "k": 10,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u49_10.jpg"
+  "k": 8,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u49_8.jpg"
  },
  {
   "unit": "49",
@@ -4804,14 +4849,15 @@
   "paper_sat": 26.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    3118,
    3571,
    3160,
    3605
   ],
-  "k": 11,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u49_11.jpg"
+  "k": 9,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u49_9.jpg"
  },
  {
   "unit": "49",
@@ -4833,14 +4879,15 @@
   "paper_sat": 31.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    264,
    3715,
    290,
    3754
   ],
-  "k": 12,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u49_12.jpg"
+  "k": 10,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u49_10.jpg"
  },
  {
   "unit": "49",
@@ -4862,43 +4909,15 @@
   "paper_sat": 22.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": "off-lattice: alley tag or lot number",
   "hit_box": [
    632,
    3578,
    670,
    3609
   ],
-  "k": 13,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u49_13.jpg"
- },
- {
-  "unit": "49",
-  "box": [
-   665,
-   3647,
-   714,
-   3681
-  ],
-  "score": 0.556,
-  "edge": "bottom",
-  "orientation": "rotated",
-  "template": "80r_45a",
-  "text_guess": "80'",
-  "scale": 0.9,
-  "neatline_dist": 153.0,
-  "darkest_line_frac": 0.714,
-  "ring_ink": 0.048,
-  "paper_sat": 23.0,
-  "in_street_x": false,
-  "in_street_y": true,
-  "hit_box": [
-   651,
-   3641,
-   698,
-   3688
-  ],
-  "k": 14,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u49_14.jpg"
+  "k": 11,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u49_11.jpg"
  },
  {
   "unit": "49",
@@ -4920,14 +4939,15 @@
   "paper_sat": 21.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    1123,
    3573,
    1161,
    3604
   ],
-  "k": 15,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u49_15.jpg"
+  "k": 12,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u49_12.jpg"
  },
  {
   "unit": "49",
@@ -4949,14 +4969,15 @@
   "paper_sat": 19.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": "off-lattice: alley tag or lot number",
   "hit_box": [
    1629,
    3578,
    1671,
    3612
   ],
-  "k": 16,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u49_16.jpg"
+  "k": 13,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u49_13.jpg"
  },
  {
   "unit": "49",
@@ -4978,14 +4999,15 @@
   "paper_sat": 23.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    2136,
    3573,
    2174,
    3604
   ],
-  "k": 17,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u49_17.jpg"
+  "k": 14,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u49_14.jpg"
  },
  {
   "unit": "49",
@@ -5007,14 +5029,15 @@
   "paper_sat": 20.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": "off-lattice: alley tag or lot number",
   "hit_box": [
    2631,
    3577,
    2674,
    3609
   ],
-  "k": 18,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u49_18.jpg"
+  "k": 15,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u49_15.jpg"
  },
  {
   "unit": "49",
@@ -5036,14 +5059,15 @@
   "paper_sat": 27.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    3007,
    3684,
    3033,
    3723
   ],
-  "k": 19,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u49_19.jpg"
+  "k": 16,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u49_16.jpg"
  },
  {
   "unit": "49",
@@ -5065,14 +5089,15 @@
   "paper_sat": 28.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    152,
    299,
    198,
    336
   ],
-  "k": 20,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u49_20.jpg"
+  "k": 17,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u49_17.jpg"
  },
  {
   "unit": "49",
@@ -5094,14 +5119,15 @@
   "paper_sat": 21.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    272,
    2575,
    298,
    2614
   ],
-  "k": 21,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u49_21.jpg"
+  "k": 18,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u49_18.jpg"
  },
  {
   "unit": "49",
@@ -5123,14 +5149,15 @@
   "paper_sat": 27.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    141,
    3574,
    183,
    3608
   ],
-  "k": 22,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u49_22.jpg"
+  "k": 19,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u49_19.jpg"
  },
  {
   "unit": "50",
@@ -5152,6 +5179,7 @@
   "paper_sat": 32.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    213,
    135,
@@ -5181,6 +5209,7 @@
   "paper_sat": 23.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    1133,
    281,
@@ -5210,6 +5239,7 @@
   "paper_sat": 26.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    2184,
    279,
@@ -5239,6 +5269,7 @@
   "paper_sat": 25.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": "off-lattice: alley tag or lot number",
   "hit_box": [
    2684,
    266,
@@ -5268,6 +5299,7 @@
   "paper_sat": 29.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    3154,
    288,
@@ -5297,6 +5329,7 @@
   "paper_sat": 21.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    3039,
    2557,
@@ -5326,6 +5359,7 @@
   "paper_sat": 29.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    3147,
    3553,
@@ -5355,6 +5389,7 @@
   "paper_sat": 31.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    213,
    3716,
@@ -5384,6 +5419,7 @@
   "paper_sat": 25.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": "off-lattice: alley tag or lot number",
   "hit_box": [
    618,
    3571,
@@ -5413,6 +5449,7 @@
   "paper_sat": 23.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    1137,
    3575,
@@ -5442,6 +5479,7 @@
   "paper_sat": 21.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": "off-lattice: alley tag or lot number",
   "hit_box": [
    1686,
    3571,
@@ -5471,6 +5509,7 @@
   "paper_sat": 20.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    2183,
    3569,
@@ -5500,6 +5539,7 @@
   "paper_sat": 21.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": "off-lattice: alley tag or lot number",
   "hit_box": [
    2686,
    3573,
@@ -5529,6 +5569,7 @@
   "paper_sat": 29.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    3058,
    3689,
@@ -5558,6 +5599,7 @@
   "paper_sat": 29.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    116,
    284,
@@ -5587,6 +5629,7 @@
   "paper_sat": 22.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    231,
    2576,
@@ -5616,6 +5659,7 @@
   "paper_sat": 27.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    118,
    3558,
@@ -5645,6 +5689,7 @@
   "paper_sat": 27.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    420,
    204,
@@ -5653,6 +5698,36 @@
   ],
   "k": 1,
   "crop": "outputs/1912/review/ring1/widthtags/crops/u13_1.jpg"
+ },
+ {
+  "unit": "13",
+  "box": [
+   1237,
+   309,
+   1300,
+   351
+  ],
+  "score": 0.575,
+  "edge": "top",
+  "orientation": "horizontal",
+  "template": "70h_45b",
+  "text_guess": "70'",
+  "scale": 0.9,
+  "neatline_dist": 239.0,
+  "darkest_line_frac": 1.0,
+  "ring_ink": 0.163,
+  "paper_sat": 23.0,
+  "in_street_x": false,
+  "in_street_y": true,
+  "warn": "off-lattice: alley tag or lot number",
+  "hit_box": [
+   1245,
+   303,
+   1284,
+   335
+  ],
+  "k": 2,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u13_2.jpg"
  },
  {
   "unit": "13",
@@ -5674,14 +5749,15 @@
   "paper_sat": 20.0,
   "in_street_x": false,
   "in_street_y": false,
+  "warn": "off-lattice: alley tag or lot number",
   "hit_box": [
    1634,
    327,
    1677,
    366
   ],
-  "k": 2,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u13_2.jpg"
+  "k": 3,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u13_3.jpg"
  },
  {
   "unit": "13",
@@ -5703,14 +5779,15 @@
   "paper_sat": 21.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": "off-lattice: alley tag or lot number",
   "hit_box": [
    2599,
    330,
    2647,
    365
   ],
-  "k": 3,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u13_3.jpg"
+  "k": 4,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u13_4.jpg"
  },
  {
   "unit": "13",
@@ -5732,14 +5809,15 @@
   "paper_sat": 26.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    2702,
    196,
    2733,
    237
   ],
-  "k": 4,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u13_4.jpg"
+  "k": 5,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u13_5.jpg"
  },
  {
   "unit": "13",
@@ -5761,14 +5839,15 @@
   "paper_sat": 28.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    3037,
    184,
    3071,
    226
   ],
-  "k": 5,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u13_5.jpg"
+  "k": 6,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u13_6.jpg"
  },
  {
   "unit": "13",
@@ -5790,14 +5869,15 @@
   "paper_sat": 28.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": "off-lattice: alley tag or lot number",
   "hit_box": [
    3139,
    323,
    3178,
    358
   ],
-  "k": 6,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u13_6.jpg"
+  "k": 7,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u13_7.jpg"
  },
  {
   "unit": "13",
@@ -5819,14 +5899,15 @@
   "paper_sat": 24.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    3033,
    1342,
    3064,
    1383
   ],
-  "k": 7,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u13_7.jpg"
+  "k": 8,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u13_8.jpg"
  },
  {
   "unit": "13",
@@ -5848,14 +5929,15 @@
   "paper_sat": 21.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    3045,
    2503,
    3071,
    2542
   ],
-  "k": 8,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u13_8.jpg"
+  "k": 9,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u13_9.jpg"
  },
  {
   "unit": "13",
@@ -5877,14 +5959,15 @@
   "paper_sat": 27.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    277,
    3650,
    303,
    3689
   ],
-  "k": 9,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u13_9.jpg"
+  "k": 10,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u13_10.jpg"
  },
  {
   "unit": "13",
@@ -5906,14 +5989,15 @@
   "paper_sat": 25.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    3019,
    3651,
    3048,
    3694
   ],
-  "k": 10,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u13_10.jpg"
+  "k": 11,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u13_11.jpg"
  },
  {
   "unit": "13",
@@ -5935,101 +6019,15 @@
   "paper_sat": 23.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    303,
    1341,
    331,
    1378
   ],
-  "k": 11,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u13_11.jpg"
- },
- {
-  "unit": "13",
-  "box": [
-   223,
-   1961,
-   248,
-   2023
-  ],
-  "score": 0.564,
-  "edge": "left",
-  "orientation": "horizontal",
-  "template": "80h_13",
-  "text_guess": "80'",
-  "scale": 1.0,
-  "neatline_dist": 155.5,
-  "darkest_line_frac": 0.903,
-  "ring_ink": 0.152,
-  "paper_sat": 21.0,
-  "in_street_x": false,
-  "in_street_y": false,
-  "hit_box": [
-   217,
-   1977,
-   254,
-   2007
-  ],
   "k": 12,
   "crop": "outputs/1912/review/ring1/widthtags/crops/u13_12.jpg"
- },
- {
-  "unit": "13",
-  "box": [
-   322,
-   1989,
-   346,
-   2049
-  ],
-  "score": 0.573,
-  "edge": "left",
-  "orientation": "horizontal",
-  "template": "80h_13",
-  "text_guess": "80'",
-  "scale": 1.0,
-  "neatline_dist": 254.0,
-  "darkest_line_frac": 0.9,
-  "ring_ink": 0.138,
-  "paper_sat": 21.0,
-  "in_street_x": false,
-  "in_street_y": false,
-  "hit_box": [
-   316,
-   2005,
-   353,
-   2035
-  ],
-  "k": 13,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u13_13.jpg"
- },
- {
-  "unit": "13",
-  "box": [
-   274,
-   2055,
-   295,
-   2117
-  ],
-  "score": 0.578,
-  "edge": "left",
-  "orientation": "horizontal",
-  "template": "80h_13",
-  "text_guess": "80'",
-  "scale": 1.0,
-  "neatline_dist": 204.5,
-  "darkest_line_frac": 0.903,
-  "ring_ink": 0.101,
-  "paper_sat": 21.0,
-  "in_street_x": false,
-  "in_street_y": false,
-  "hit_box": [
-   265,
-   2071,
-   302,
-   2101
-  ],
-  "k": 14,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u13_14.jpg"
  },
  {
   "unit": "14",
@@ -6051,6 +6049,7 @@
   "paper_sat": 28.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    245,
    175,
@@ -6080,6 +6079,7 @@
   "paper_sat": 22.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": "off-lattice: alley tag or lot number",
   "hit_box": [
    617,
    314,
@@ -6109,6 +6109,7 @@
   "paper_sat": 18.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    1122,
    314,
@@ -6138,6 +6139,7 @@
   "paper_sat": 17.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    2142,
    316,
@@ -6167,6 +6169,7 @@
   "paper_sat": 25.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    2958,
    171,
@@ -6196,6 +6199,7 @@
   "paper_sat": 26.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    3140,
    316,
@@ -6225,6 +6229,7 @@
   "paper_sat": 23.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    2998,
    1321,
@@ -6254,6 +6259,7 @@
   "paper_sat": 17.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    3014,
    2488,
@@ -6283,6 +6289,7 @@
   "paper_sat": 25.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    3142,
    3479,
@@ -6312,6 +6319,7 @@
   "paper_sat": 23.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    232,
    3652,
@@ -6320,35 +6328,6 @@
   ],
   "k": 10,
   "crop": "outputs/1912/review/ring1/widthtags/crops/u14_10.jpg"
- },
- {
-  "unit": "14",
-  "box": [
-   2614,
-   3761,
-   2641,
-   3817
-  ],
-  "score": 0.577,
-  "edge": "bottom",
-  "orientation": "horizontal",
-  "template": "70h_13",
-  "text_guess": "70'",
-  "scale": 1.0,
-  "neatline_dist": 33.0,
-  "darkest_line_frac": 0.893,
-  "ring_ink": 0.117,
-  "paper_sat": 25.0,
-  "in_street_x": false,
-  "in_street_y": true,
-  "hit_box": [
-   2610,
-   3771,
-   2640,
-   3803
-  ],
-  "k": 11,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u14_11.jpg"
  },
  {
   "unit": "14",
@@ -6370,14 +6349,15 @@
   "paper_sat": 18.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    2980,
    3633,
    3011,
    3674
   ],
-  "k": 12,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u14_12.jpg"
+  "k": 11,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u14_11.jpg"
  },
  {
   "unit": "14",
@@ -6399,72 +6379,15 @@
   "paper_sat": 23.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    139,
    318,
    182,
    357
   ],
-  "k": 13,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u14_13.jpg"
- },
- {
-  "unit": "14",
-  "box": [
-   109,
-   318,
-   132,
-   366
-  ],
-  "score": 0.553,
-  "edge": "left",
-  "orientation": "horizontal",
-  "template": "80h_13",
-  "text_guess": "80'",
-  "scale": 1.1,
-  "neatline_dist": 39.5,
-  "darkest_line_frac": 0.875,
-  "ring_ink": 0.072,
-  "paper_sat": 25.0,
-  "in_street_x": true,
-  "in_street_y": true,
-  "hit_box": [
-   99,
-   328,
-   140,
-   361
-  ],
-  "k": 14,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u14_14.jpg"
- },
- {
-  "unit": "14",
-  "box": [
-   74,
-   1317,
-   102,
-   1352
-  ],
-  "score": 0.553,
-  "edge": "left",
-  "orientation": "rotated",
-  "template": "80r_45a",
-  "text_guess": "80'",
-  "scale": 0.9,
-  "neatline_dist": 7.0,
-  "darkest_line_frac": 0.714,
-  "ring_ink": 0.0,
-  "paper_sat": 30.0,
-  "in_street_x": true,
-  "in_street_y": true,
-  "hit_box": [
-   58,
-   1309,
-   105,
-   1356
-  ],
-  "k": 15,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u14_15.jpg"
+  "k": 12,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u14_12.jpg"
  },
  {
   "unit": "14",
@@ -6486,14 +6409,15 @@
   "paper_sat": 21.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    240,
    1326,
    266,
    1365
   ],
-  "k": 16,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u14_16.jpg"
+  "k": 13,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u14_13.jpg"
  },
  {
   "unit": "14",
@@ -6515,14 +6439,15 @@
   "paper_sat": 20.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    221,
    2496,
    252,
    2537
   ],
-  "k": 17,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u14_17.jpg"
+  "k": 14,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u14_14.jpg"
  },
  {
   "unit": "14",
@@ -6544,14 +6469,15 @@
   "paper_sat": 22.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    132,
    3504,
    165,
    3539
   ],
-  "k": 18,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u14_18.jpg"
+  "k": 15,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u14_15.jpg"
  },
  {
   "unit": "33",
@@ -6573,6 +6499,7 @@
   "paper_sat": 17.0,
   "in_street_x": false,
   "in_street_y": false,
+  "warn": "off-lattice: alley tag or lot number",
   "hit_box": [
    637,
    324,
@@ -6602,6 +6529,7 @@
   "paper_sat": 17.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": "off-lattice: alley tag or lot number",
   "hit_box": [
    1643,
    325,
@@ -6631,6 +6559,7 @@
   "paper_sat": 17.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    2160,
    316,
@@ -6660,6 +6589,7 @@
   "paper_sat": 17.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": "off-lattice: alley tag or lot number",
   "hit_box": [
    2676,
    319,
@@ -6689,6 +6619,7 @@
   "paper_sat": 25.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    3062,
    192,
@@ -6718,6 +6649,7 @@
   "paper_sat": 25.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    3165,
    314,
@@ -6747,6 +6679,7 @@
   "paper_sat": 16.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    3070,
    1347,
@@ -6776,6 +6709,7 @@
   "paper_sat": 16.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    3069,
    2501,
@@ -6805,6 +6739,7 @@
   "paper_sat": 25.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    3175,
    3487,
@@ -6834,6 +6769,7 @@
   "paper_sat": 15.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    2166,
    3511,
@@ -6842,6 +6778,36 @@
   ],
   "k": 10,
   "crop": "outputs/1912/review/ring1/widthtags/crops/u33_10.jpg"
+ },
+ {
+  "unit": "33",
+  "box": [
+   2742,
+   3514,
+   2837,
+   3583
+  ],
+  "score": 0.555,
+  "edge": "bottom",
+  "orientation": "horizontal",
+  "template": "70h_7e",
+  "text_guess": "70'",
+  "scale": 0.9,
+  "neatline_dist": 232.5,
+  "darkest_line_frac": 1.0,
+  "ring_ink": 0.122,
+  "paper_sat": 18.0,
+  "in_street_x": false,
+  "in_street_y": true,
+  "warn": "off-lattice: alley tag or lot number",
+  "hit_box": [
+   2803,
+   3530,
+   2845,
+   3567
+  ],
+  "k": 11,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u33_11.jpg"
  },
  {
   "unit": "33",
@@ -6863,14 +6829,15 @@
   "paper_sat": 22.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    3048,
    3643,
    3082,
    3685
   ],
-  "k": 11,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u33_11.jpg"
+  "k": 12,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u33_12.jpg"
  },
  {
   "unit": "34",
@@ -6892,6 +6859,7 @@
   "paper_sat": 25.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    272,
    199,
@@ -6921,6 +6889,7 @@
   "paper_sat": 21.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": "off-lattice: alley tag or lot number",
   "hit_box": [
    652,
    325,
@@ -6950,6 +6919,7 @@
   "paper_sat": 22.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    1171,
    325,
@@ -6979,6 +6949,7 @@
   "paper_sat": 18.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": "off-lattice: alley tag or lot number",
   "hit_box": [
    1660,
    321,
@@ -7008,6 +6979,7 @@
   "paper_sat": 21.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    2167,
    316,
@@ -7037,6 +7009,7 @@
   "paper_sat": 27.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    3153,
    317,
@@ -7066,6 +7039,7 @@
   "paper_sat": 24.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    3045,
    1341,
@@ -7095,6 +7069,7 @@
   "paper_sat": 18.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    3048,
    2515,
@@ -7124,6 +7099,7 @@
   "paper_sat": 27.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    3157,
    3499,
@@ -7153,6 +7129,7 @@
   "paper_sat": 25.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    267,
    3642,
@@ -7182,6 +7159,7 @@
   "paper_sat": 20.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    1154,
    3508,
@@ -7211,6 +7189,7 @@
   "paper_sat": 17.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    2160,
    3511,
@@ -7240,6 +7219,7 @@
   "paper_sat": 21.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    3045,
    3644,
@@ -7269,6 +7249,7 @@
   "paper_sat": 24.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    153,
    325,
@@ -7298,6 +7279,7 @@
   "paper_sat": 20.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    272,
    1352,
@@ -7327,6 +7309,7 @@
   "paper_sat": 20.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    272,
    2496,
@@ -7356,6 +7339,7 @@
   "paper_sat": 23.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    151,
    3508,
@@ -7385,6 +7369,7 @@
   "paper_sat": 23.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    284,
    201,
@@ -7414,6 +7399,7 @@
   "paper_sat": 22.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    1142,
    323,
@@ -7443,6 +7429,7 @@
   "paper_sat": 22.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": "off-lattice: alley tag or lot number",
   "hit_box": [
    1268,
    301,
@@ -7472,6 +7459,7 @@
   "paper_sat": 22.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": "off-lattice: alley tag or lot number",
   "hit_box": [
    1602,
    303,
@@ -7501,6 +7489,7 @@
   "paper_sat": 26.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    3024,
    206,
@@ -7530,6 +7519,7 @@
   "paper_sat": 26.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    3144,
    340,
@@ -7559,6 +7549,7 @@
   "paper_sat": 18.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    3029,
    1367,
@@ -7588,6 +7579,7 @@
   "paper_sat": 25.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    3105,
    3518,
@@ -7617,6 +7609,7 @@
   "paper_sat": 25.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    244,
    3661,
@@ -7646,6 +7639,7 @@
   "paper_sat": 19.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    1103,
    3493,
@@ -7675,6 +7669,7 @@
   "paper_sat": 22.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    2120,
    3518,
@@ -7704,6 +7699,7 @@
   "paper_sat": 25.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    2988,
    3663,
@@ -7733,6 +7729,7 @@
   "paper_sat": 23.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": "off-lattice: alley tag or lot number",
   "hit_box": [
    264,
    299,
@@ -7762,6 +7759,7 @@
   "paper_sat": 25.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    134,
    333,
@@ -7791,6 +7789,7 @@
   "paper_sat": 21.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    267,
    1364,
@@ -7820,6 +7819,7 @@
   "paper_sat": 20.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    258,
    2499,
@@ -7849,6 +7849,7 @@
   "paper_sat": 28.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    102,
    3496,
@@ -7878,6 +7879,7 @@
   "paper_sat": 22.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": "off-lattice: alley tag or lot number",
   "hit_box": [
    586,
    345,
@@ -7907,6 +7909,7 @@
   "paper_sat": 22.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    1133,
    362,
@@ -7936,6 +7939,7 @@
   "paper_sat": 23.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    2178,
    339,
@@ -7965,6 +7969,7 @@
   "paper_sat": 29.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    3146,
    351,
@@ -7994,6 +7999,7 @@
   "paper_sat": 24.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    3062,
    1360,
@@ -8002,35 +8008,6 @@
   ],
   "k": 5,
   "crop": "outputs/1912/review/ring1/widthtags/crops/u36_5.jpg"
- },
- {
-  "unit": "36",
-  "box": [
-   3137,
-   1427,
-   3164,
-   1454
-  ],
-  "score": 0.566,
-  "edge": "right",
-  "orientation": "rotated",
-  "template": "80r_45a",
-  "text_guess": "80'",
-  "scale": 0.9,
-  "neatline_dist": 83.5,
-  "darkest_line_frac": 0.556,
-  "ring_ink": 0.0,
-  "paper_sat": 42.0,
-  "in_street_x": true,
-  "in_street_y": true,
-  "hit_box": [
-   3121,
-   1416,
-   3168,
-   1463
-  ],
-  "k": 6,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u36_6.jpg"
  },
  {
   "unit": "36",
@@ -8052,14 +8029,15 @@
   "paper_sat": 21.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    3036,
    2501,
    3067,
    2542
   ],
-  "k": 7,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u36_7.jpg"
+  "k": 6,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u36_6.jpg"
  },
  {
   "unit": "36",
@@ -8081,14 +8059,15 @@
   "paper_sat": 28.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    3153,
    3497,
    3196,
    3533
   ],
-  "k": 8,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u36_8.jpg"
+  "k": 7,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u36_7.jpg"
  },
  {
   "unit": "36",
@@ -8110,14 +8089,15 @@
   "paper_sat": 29.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    234,
    3658,
    260,
    3697
   ],
-  "k": 9,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u36_9.jpg"
+  "k": 8,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u36_8.jpg"
  },
  {
   "unit": "36",
@@ -8139,14 +8119,15 @@
   "paper_sat": 23.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    1122,
    3513,
    1170,
    3539
   ],
-  "k": 10,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u36_10.jpg"
+  "k": 9,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u36_9.jpg"
  },
  {
   "unit": "36",
@@ -8168,14 +8149,15 @@
   "paper_sat": 26.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    3039,
    3653,
    3065,
    3692
   ],
-  "k": 11,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u36_11.jpg"
+  "k": 10,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u36_10.jpg"
  },
  {
   "unit": "36",
@@ -8197,14 +8179,15 @@
   "paper_sat": 25.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    122,
    347,
    168,
    384
   ],
-  "k": 12,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u36_12.jpg"
+  "k": 11,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u36_11.jpg"
  },
  {
   "unit": "36",
@@ -8226,14 +8209,15 @@
   "paper_sat": 22.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    232,
    2508,
    263,
    2549
   ],
-  "k": 13,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u36_13.jpg"
+  "k": 12,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u36_12.jpg"
  },
  {
   "unit": "36",
@@ -8255,14 +8239,15 @@
   "paper_sat": 30.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    121,
    3502,
    167,
    3539
   ],
-  "k": 14,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u36_14.jpg"
+  "k": 13,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u36_13.jpg"
  },
  {
   "unit": "37",
@@ -8284,6 +8269,7 @@
   "paper_sat": 22.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    1155,
    347,
@@ -8313,6 +8299,7 @@
   "paper_sat": 20.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    2163,
    362,
@@ -8342,6 +8329,7 @@
   "paper_sat": 28.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    3037,
    211,
@@ -8371,6 +8359,7 @@
   "paper_sat": 27.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    3165,
    353,
@@ -8400,6 +8389,7 @@
   "paper_sat": 24.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    3005,
    1340,
@@ -8429,6 +8419,7 @@
   "paper_sat": 18.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    2992,
    2506,
@@ -8437,35 +8428,6 @@
   ],
   "k": 6,
   "crop": "outputs/1912/review/ring1/widthtags/crops/u37_6.jpg"
- },
- {
-  "unit": "37",
-  "box": [
-   3224,
-   3495,
-   3248,
-   3520
-  ],
-  "score": 0.585,
-  "edge": "right",
-  "orientation": "rotated",
-  "template": "80r_45a",
-  "text_guess": "80'",
-  "scale": 0.9,
-  "neatline_dist": -1.0,
-  "darkest_line_frac": 0.44,
-  "ring_ink": 0.0,
-  "paper_sat": 40.0,
-  "in_street_x": true,
-  "in_street_y": false,
-  "hit_box": [
-   3208,
-   3483,
-   3255,
-   3530
-  ],
-  "k": 7,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u37_7.jpg"
  },
  {
   "unit": "37",
@@ -8487,14 +8449,15 @@
   "paper_sat": 25.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    3127,
    3524,
    3166,
    3559
   ],
-  "k": 8,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u37_8.jpg"
+  "k": 7,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u37_7.jpg"
  },
  {
   "unit": "37",
@@ -8516,14 +8479,15 @@
   "paper_sat": 28.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    258,
    3631,
    315,
    3688
   ],
-  "k": 9,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u37_9.jpg"
+  "k": 8,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u37_8.jpg"
  },
  {
   "unit": "37",
@@ -8545,14 +8509,15 @@
   "paper_sat": 21.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    1129,
    3514,
    1168,
    3549
   ],
-  "k": 10,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u37_10.jpg"
+  "k": 9,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u37_9.jpg"
  },
  {
   "unit": "37",
@@ -8574,14 +8539,15 @@
   "paper_sat": 22.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    2129,
    3533,
    2167,
    3564
   ],
-  "k": 11,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u37_11.jpg"
+  "k": 10,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u37_10.jpg"
  },
  {
   "unit": "37",
@@ -8603,14 +8569,15 @@
   "paper_sat": 18.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": "off-lattice: alley tag or lot number",
   "hit_box": [
    2628,
    3535,
    2666,
    3566
   ],
-  "k": 12,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u37_12.jpg"
+  "k": 11,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u37_11.jpg"
  },
  {
   "unit": "37",
@@ -8632,14 +8599,15 @@
   "paper_sat": 27.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    2997,
    3654,
    3025,
    3691
   ],
-  "k": 13,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u37_13.jpg"
+  "k": 12,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u37_12.jpg"
  },
  {
   "unit": "37",
@@ -8661,14 +8629,15 @@
   "paper_sat": 25.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    160,
    343,
    198,
    374
   ],
-  "k": 14,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u37_14.jpg"
+  "k": 13,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u37_13.jpg"
  },
  {
   "unit": "37",
@@ -8690,14 +8659,15 @@
   "paper_sat": 23.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    254,
    1321,
    311,
    1378
   ],
-  "k": 15,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u37_15.jpg"
+  "k": 14,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u37_14.jpg"
  },
  {
   "unit": "37",
@@ -8719,14 +8689,15 @@
   "paper_sat": 20.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    272,
    2495,
    300,
    2532
   ],
-  "k": 16,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u37_16.jpg"
+  "k": 15,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u37_15.jpg"
  },
  {
   "unit": "37",
@@ -8748,14 +8719,15 @@
   "paper_sat": 28.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    127,
    3503,
    166,
    3538
   ],
-  "k": 17,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u37_17.jpg"
+  "k": 16,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u37_16.jpg"
  },
  {
   "unit": "41",
@@ -8777,6 +8749,7 @@
   "paper_sat": 25.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    268,
    209,
@@ -8806,6 +8779,7 @@
   "paper_sat": 23.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    1133,
    320,
@@ -8835,6 +8809,7 @@
   "paper_sat": 23.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    2151,
    334,
@@ -8843,35 +8818,6 @@
   ],
   "k": 3,
   "crop": "outputs/1912/review/ring1/widthtags/crops/u41_3.jpg"
- },
- {
-  "unit": "41",
-  "box": [
-   2651,
-   309,
-   2679,
-   372
-  ],
-  "score": 0.583,
-  "edge": "top",
-  "orientation": "horizontal",
-  "template": "70h_45a",
-  "text_guess": "70'",
-  "scale": 0.9,
-  "neatline_dist": 235.5,
-  "darkest_line_frac": 0.841,
-  "ring_ink": 0.093,
-  "paper_sat": 21.0,
-  "in_street_x": false,
-  "in_street_y": true,
-  "hit_box": [
-   2646,
-   325,
-   2684,
-   356
-  ],
-  "k": 4,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u41_4.jpg"
  },
  {
   "unit": "41",
@@ -8893,14 +8839,15 @@
   "paper_sat": 27.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    3012,
    191,
    3043,
    232
   ],
-  "k": 5,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u41_5.jpg"
+  "k": 4,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u41_4.jpg"
  },
  {
   "unit": "41",
@@ -8922,14 +8869,15 @@
   "paper_sat": 28.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    3146,
    319,
    3189,
    358
   ],
-  "k": 6,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u41_6.jpg"
+  "k": 5,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u41_5.jpg"
  },
  {
   "unit": "41",
@@ -8951,14 +8899,15 @@
   "paper_sat": 20.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    3029,
    1339,
    3055,
    1378
   ],
-  "k": 7,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u41_7.jpg"
+  "k": 6,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u41_6.jpg"
  },
  {
   "unit": "41",
@@ -8980,14 +8929,15 @@
   "paper_sat": 17.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    3028,
    2486,
    3059,
    2527
   ],
-  "k": 8,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u41_8.jpg"
+  "k": 7,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u41_7.jpg"
  },
  {
   "unit": "41",
@@ -9009,14 +8959,15 @@
   "paper_sat": 26.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    252,
    3653,
    304,
    3705
   ],
-  "k": 9,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u41_9.jpg"
+  "k": 8,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u41_8.jpg"
  },
  {
   "unit": "41",
@@ -9038,14 +8989,15 @@
   "paper_sat": 21.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    1145,
    3517,
    1192,
    3560
   ],
-  "k": 10,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u41_10.jpg"
+  "k": 9,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u41_9.jpg"
  },
  {
   "unit": "41",
@@ -9067,14 +9019,15 @@
   "paper_sat": 16.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": "off-lattice: alley tag or lot number",
   "hit_box": [
    1646,
    3528,
    1689,
    3560
   ],
-  "k": 11,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u41_11.jpg"
+  "k": 10,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u41_10.jpg"
  },
  {
   "unit": "41",
@@ -9096,14 +9049,15 @@
   "paper_sat": 16.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    2156,
    3521,
    2198,
    3555
   ],
-  "k": 12,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u41_12.jpg"
+  "k": 11,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u41_11.jpg"
  },
  {
   "unit": "41",
@@ -9125,14 +9079,15 @@
   "paper_sat": 16.0,
   "in_street_x": false,
   "in_street_y": false,
+  "warn": "off-lattice: alley tag or lot number",
   "hit_box": [
    2654,
    3513,
    2697,
    3551
   ],
-  "k": 13,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u41_13.jpg"
+  "k": 12,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u41_12.jpg"
  },
  {
   "unit": "41",
@@ -9154,14 +9109,15 @@
   "paper_sat": 25.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    3031,
    3654,
    3057,
    3693
   ],
-  "k": 14,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u41_14.jpg"
+  "k": 13,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u41_13.jpg"
  },
  {
   "unit": "41",
@@ -9183,14 +9139,15 @@
   "paper_sat": 26.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    144,
    332,
    187,
    371
   ],
-  "k": 15,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u41_15.jpg"
+  "k": 14,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u41_14.jpg"
  },
  {
   "unit": "41",
@@ -9212,14 +9169,15 @@
   "paper_sat": 23.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    247,
    1356,
    299,
    1408
   ],
-  "k": 16,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u41_16.jpg"
+  "k": 15,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u41_15.jpg"
  },
  {
   "unit": "41",
@@ -9241,14 +9199,15 @@
   "paper_sat": 20.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    272,
    2511,
    303,
    2552
   ],
-  "k": 17,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u41_17.jpg"
+  "k": 16,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u41_16.jpg"
  },
  {
   "unit": "41",
@@ -9270,43 +9229,15 @@
   "paper_sat": 26.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    147,
    3529,
    189,
    3563
   ],
-  "k": 18,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u41_18.jpg"
- },
- {
-  "unit": "45",
-  "box": [
-   230,
-   199,
-   277,
-   254
-  ],
-  "score": 0.57,
-  "edge": "top",
-  "orientation": "rotated",
-  "template": "80r_33h",
-  "text_guess": "80'",
-  "scale": 1.0,
-  "neatline_dist": 116.5,
-  "darkest_line_frac": 0.455,
-  "ring_ink": 0.134,
-  "paper_sat": 27.0,
-  "in_street_x": true,
-  "in_street_y": true,
-  "hit_box": [
-   246,
-   215,
-   274,
-   252
-  ],
-  "k": 1,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u45_1.jpg"
+  "k": 17,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u41_17.jpg"
  },
  {
   "unit": "45",
@@ -9328,14 +9259,15 @@
   "paper_sat": 17.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": "off-lattice: alley tag or lot number",
   "hit_box": [
    617,
    337,
    660,
    373
   ],
-  "k": 2,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u45_2.jpg"
+  "k": 1,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u45_1.jpg"
  },
  {
   "unit": "45",
@@ -9357,14 +9289,15 @@
   "paper_sat": 16.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    1114,
    333,
    1156,
    367
   ],
-  "k": 3,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u45_3.jpg"
+  "k": 2,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u45_2.jpg"
  },
  {
   "unit": "45",
@@ -9386,14 +9319,15 @@
   "paper_sat": 17.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    2112,
    336,
    2154,
    370
   ],
-  "k": 4,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u45_4.jpg"
+  "k": 3,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u45_3.jpg"
  },
  {
   "unit": "45",
@@ -9415,14 +9349,15 @@
   "paper_sat": 17.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": "off-lattice: alley tag or lot number",
   "hit_box": [
    2619,
    334,
    2662,
    366
   ],
-  "k": 5,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u45_5.jpg"
+  "k": 4,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u45_4.jpg"
  },
  {
   "unit": "45",
@@ -9444,14 +9379,15 @@
   "paper_sat": 26.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    2975,
    189,
    3027,
    241
   ],
-  "k": 6,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u45_6.jpg"
+  "k": 5,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u45_5.jpg"
  },
  {
   "unit": "45",
@@ -9473,14 +9409,15 @@
   "paper_sat": 26.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    3113,
    334,
    3155,
    368
   ],
-  "k": 7,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u45_7.jpg"
+  "k": 6,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u45_6.jpg"
  },
  {
   "unit": "45",
@@ -9502,14 +9439,15 @@
   "paper_sat": 17.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    3115,
    1208,
    3157,
    1242
   ],
-  "k": 8,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u45_8.jpg"
+  "k": 7,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u45_7.jpg"
  },
  {
   "unit": "45",
@@ -9531,14 +9469,15 @@
   "paper_sat": 18.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    2999,
    1287,
    3032,
    1327
   ],
-  "k": 9,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u45_9.jpg"
+  "k": 8,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u45_8.jpg"
  },
  {
   "unit": "45",
@@ -9560,14 +9499,15 @@
   "paper_sat": 18.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    2977,
    2504,
    3029,
    2556
   ],
-  "k": 10,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u45_10.jpg"
+  "k": 9,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u45_9.jpg"
  },
  {
   "unit": "45",
@@ -9589,14 +9529,15 @@
   "paper_sat": 15.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": "off-lattice: alley tag or lot number",
   "hit_box": [
    2992,
    3069,
    3026,
    3111
   ],
-  "k": 11,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u45_11.jpg"
+  "k": 10,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u45_10.jpg"
  },
  {
   "unit": "45",
@@ -9618,14 +9559,15 @@
   "paper_sat": 19.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    3106,
    3512,
    3148,
    3546
   ],
-  "k": 12,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u45_12.jpg"
+  "k": 11,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u45_11.jpg"
  },
  {
   "unit": "45",
@@ -9647,14 +9589,15 @@
   "paper_sat": 23.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    228,
    3641,
    265,
    3686
   ],
-  "k": 13,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u45_13.jpg"
+  "k": 12,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u45_12.jpg"
  },
  {
   "unit": "45",
@@ -9676,14 +9619,15 @@
   "paper_sat": 16.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    1115,
    3517,
    1158,
    3553
   ],
-  "k": 14,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u45_14.jpg"
+  "k": 13,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u45_13.jpg"
  },
  {
   "unit": "45",
@@ -9705,14 +9649,15 @@
   "paper_sat": 22.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    2965,
    3637,
    3022,
    3694
   ],
-  "k": 15,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u45_15.jpg"
+  "k": 14,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u45_14.jpg"
  },
  {
   "unit": "45",
@@ -9734,14 +9679,15 @@
   "paper_sat": 22.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    229,
    1344,
    266,
    1389
   ],
-  "k": 16,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u45_16.jpg"
+  "k": 15,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u45_15.jpg"
  },
  {
   "unit": "45",
@@ -9763,14 +9709,15 @@
   "paper_sat": 20.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    211,
    2491,
    268,
    2548
   ],
-  "k": 17,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u45_17.jpg"
+  "k": 16,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u45_16.jpg"
  },
  {
   "unit": "45",
@@ -9792,14 +9739,15 @@
   "paper_sat": 23.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    130,
    3511,
    173,
    3547
   ],
-  "k": 18,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u45_18.jpg"
+  "k": 17,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u45_17.jpg"
  },
  {
   "unit": "51",
@@ -9821,6 +9769,7 @@
   "paper_sat": 22.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    1140,
    278,
@@ -9850,6 +9799,7 @@
   "paper_sat": 26.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    3144,
    302,
@@ -9879,6 +9829,7 @@
   "paper_sat": 22.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    3123,
    3582,
@@ -9908,6 +9859,7 @@
   "paper_sat": 24.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    232,
    3669,
@@ -9937,6 +9889,7 @@
   "paper_sat": 21.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    1116,
    3572,
@@ -9966,6 +9919,7 @@
   "paper_sat": 18.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": "off-lattice: alley tag or lot number",
   "hit_box": [
    1621,
    3591,
@@ -9995,6 +9949,7 @@
   "paper_sat": 17.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    2131,
    3581,
@@ -10024,6 +9979,7 @@
   "paper_sat": 26.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    2985,
    3681,
@@ -10053,6 +10009,7 @@
   "paper_sat": 28.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    127,
    281,
@@ -10082,6 +10039,7 @@
   "paper_sat": 24.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    117,
    3566,
@@ -10111,6 +10069,7 @@
   "paper_sat": 22.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    1137,
    341,
@@ -10140,6 +10099,7 @@
   "paper_sat": 19.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": "off-lattice: alley tag or lot number",
   "hit_box": [
    1634,
    334,
@@ -10169,6 +10129,7 @@
   "paper_sat": 18.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    2127,
    345,
@@ -10198,6 +10159,7 @@
   "paper_sat": 40.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    3197,
    117,
@@ -10227,6 +10189,7 @@
   "paper_sat": 29.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    3119,
    332,
@@ -10256,6 +10219,7 @@
   "paper_sat": 17.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    2999,
    1324,
@@ -10285,6 +10249,7 @@
   "paper_sat": 16.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    3006,
    2474,
@@ -10314,6 +10279,7 @@
   "paper_sat": 18.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": "off-lattice: alley tag or lot number",
   "hit_box": [
    2997,
    3058,
@@ -10343,6 +10309,7 @@
   "paper_sat": 25.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    3130,
    3496,
@@ -10372,6 +10339,7 @@
   "paper_sat": 24.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    247,
    3633,
@@ -10401,6 +10369,7 @@
   "paper_sat": 21.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    1126,
    3505,
@@ -10430,6 +10399,7 @@
   "paper_sat": 17.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    2136,
    3503,
@@ -10459,6 +10429,7 @@
   "paper_sat": 19.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    2990,
    3626,
@@ -10488,6 +10459,7 @@
   "paper_sat": 25.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    123,
    350,
@@ -10517,6 +10489,7 @@
   "paper_sat": 29.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    268,
    1351,
@@ -10546,6 +10519,7 @@
   "paper_sat": 19.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    258,
    2491,
@@ -10575,6 +10549,7 @@
   "paper_sat": 18.0,
   "in_street_x": false,
   "in_street_y": false,
+  "warn": "off-lattice: alley tag or lot number",
   "hit_box": [
    333,
    2798,
@@ -10583,35 +10558,6 @@
   ],
   "k": 17,
   "crop": "outputs/1912/review/ring1/widthtags/crops/u55_17.jpg"
- },
- {
-  "unit": "55",
-  "box": [
-   366,
-   2804,
-   393,
-   2834
-  ],
-  "score": 0.594,
-  "edge": "left",
-  "orientation": "horizontal",
-  "template": "70h_45b",
-  "text_guess": "70'",
-  "scale": 0.9,
-  "neatline_dist": 295.5,
-  "darkest_line_frac": 0.4,
-  "ring_ink": 0.048,
-  "paper_sat": 14.0,
-  "in_street_x": false,
-  "in_street_y": false,
-  "hit_box": [
-   359,
-   2799,
-   398,
-   2831
-  ],
-  "k": 18,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u55_18.jpg"
  },
  {
   "unit": "55",
@@ -10633,14 +10579,15 @@
   "paper_sat": 24.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    130,
    3535,
    177,
    3576
   ],
-  "k": 19,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u55_19.jpg"
+  "k": 18,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u55_18.jpg"
  },
  {
   "unit": "56",
@@ -10662,6 +10609,7 @@
   "paper_sat": 28.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    229,
    209,
@@ -10691,6 +10639,7 @@
   "paper_sat": 23.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": "off-lattice: alley tag or lot number",
   "hit_box": [
    599,
    352,
@@ -10720,6 +10669,7 @@
   "paper_sat": 20.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    1148,
    353,
@@ -10749,6 +10699,7 @@
   "paper_sat": 17.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    2186,
    345,
@@ -10778,6 +10729,7 @@
   "paper_sat": 27.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    3034,
    192,
@@ -10807,6 +10759,7 @@
   "paper_sat": 29.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    3176,
    358,
@@ -10836,6 +10789,7 @@
   "paper_sat": 24.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    3058,
    1347,
@@ -10865,6 +10819,7 @@
   "paper_sat": 18.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": "off-lattice: alley tag or lot number",
   "hit_box": [
    3058,
    3067,
@@ -10894,6 +10849,7 @@
   "paper_sat": 30.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    3183,
    3507,
@@ -10923,6 +10879,7 @@
   "paper_sat": 24.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    210,
    3643,
@@ -10952,6 +10909,7 @@
   "paper_sat": 17.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": "off-lattice: alley tag or lot number",
   "hit_box": [
    594,
    3513,
@@ -10981,6 +10939,7 @@
   "paper_sat": 18.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    1137,
    3517,
@@ -11010,6 +10969,7 @@
   "paper_sat": 18.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": "off-lattice: alley tag or lot number",
   "hit_box": [
    1680,
    3518,
@@ -11039,6 +10999,7 @@
   "paper_sat": 16.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    2181,
    3508,
@@ -11068,6 +11029,7 @@
   "paper_sat": 26.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    3041,
    3649,
@@ -11097,6 +11059,7 @@
   "paper_sat": 30.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    116,
    348,
@@ -11126,6 +11089,7 @@
   "paper_sat": 21.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    195,
    1345,
@@ -11155,6 +11119,7 @@
   "paper_sat": 23.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    104,
    3509,
@@ -11184,6 +11149,7 @@
   "paper_sat": 29.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    292,
    203,
@@ -11213,6 +11179,7 @@
   "paper_sat": 23.0,
   "in_street_x": false,
   "in_street_y": false,
+  "warn": "off-lattice: alley tag or lot number",
   "hit_box": [
    680,
    358,
@@ -11242,6 +11209,7 @@
   "paper_sat": 22.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    1188,
    361,
@@ -11271,6 +11239,7 @@
   "paper_sat": 25.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    3187,
    1487,
@@ -11300,6 +11269,7 @@
   "paper_sat": 23.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    322,
    3640,
@@ -11329,6 +11299,7 @@
   "paper_sat": 22.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    1038,
    3646,
@@ -11358,6 +11329,7 @@
   "paper_sat": 18.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    1185,
    3518,
@@ -11387,6 +11359,7 @@
   "paper_sat": 16.0,
   "in_street_x": true,
   "in_street_y": false,
+  "warn": null,
   "hit_box": [
    2192,
    3513,
@@ -11416,6 +11389,7 @@
   "paper_sat": 18.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    2634,
    3587,
@@ -11445,6 +11419,7 @@
   "paper_sat": 16.0,
   "in_street_x": false,
   "in_street_y": false,
+  "warn": "off-lattice: alley tag or lot number",
   "hit_box": [
    2676,
    3504,
@@ -11474,6 +11449,7 @@
   "paper_sat": 23.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    3032,
    3629,
@@ -11503,6 +11479,7 @@
   "paper_sat": 21.0,
   "in_street_x": false,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    306,
    1348,
@@ -11532,6 +11509,7 @@
   "paper_sat": 23.0,
   "in_street_x": true,
   "in_street_y": true,
+  "warn": null,
   "hit_box": [
    170,
    3522,
@@ -11540,34 +11518,5 @@
   ],
   "k": 13,
   "crop": "outputs/1912/review/ring1/widthtags/crops/u57_13.jpg"
- },
- {
-  "unit": "57",
-  "box": [
-   249,
-   3609,
-   297,
-   3641
-  ],
-  "score": 0.558,
-  "edge": "left",
-  "orientation": "rotated",
-  "template": "80r_45a",
-  "text_guess": "80'",
-  "scale": 0.9,
-  "neatline_dist": 183.0,
-  "darkest_line_frac": 0.688,
-  "ring_ink": 0.02,
-  "paper_sat": 23.0,
-  "in_street_x": true,
-  "in_street_y": true,
-  "hit_box": [
-   234,
-   3601,
-   281,
-   3648
-  ],
-  "k": 14,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u57_14.jpg"
  }
 ]

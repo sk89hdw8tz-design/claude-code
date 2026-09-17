@@ -10,7 +10,8 @@
    },
    "raw_hits": 156,
    "gate_fail": {
-    "width": 45,
+    "width": 55,
+    "aspect": 54,
     "darkest": 65,
     "tinted": 8,
     "furniture": 1,
@@ -29,35 +30,41 @@
    "gate_fail": {
     "tinted": 18,
     "darkest": 5,
-    "width": 5
+    "width": 8,
+    "aspect": 5
    }
   },
   "9": {
-   "kept": 14,
+   "kept": 12,
    "by_edge": {
-    "top": 7,
+    "top": 5,
     "right": 4,
     "bottom": 3,
     "left": 0
    },
    "raw_hits": 163,
    "gate_fail": {
-    "darkest": 69,
-    "width": 48
+    "darkest": 68,
+    "width": 66,
+    "aspect": 65,
+    "dup": 1,
+    "blob": 1
    }
   },
   "10": {
-   "kept": 21,
+   "kept": 20,
    "by_edge": {
     "top": 5,
     "right": 5,
-    "bottom": 7,
+    "bottom": 6,
     "left": 4
    },
    "raw_hits": 66,
    "gate_fail": {
     "tinted": 2,
-    "darkest": 2
+    "width": 1,
+    "darkest": 2,
+    "blob": 1
    }
   },
   "11": {
@@ -70,7 +77,8 @@
    },
    "raw_hits": 134,
    "gate_fail": {
-    "width": 46,
+    "width": 78,
+    "aspect": 76,
     "darkest": 79,
     "height": 3,
     "neatline": 2,
@@ -79,18 +87,19 @@
    }
   },
   "12": {
-   "kept": 13,
+   "kept": 14,
    "by_edge": {
     "top": 4,
     "right": 3,
-    "bottom": 4,
+    "bottom": 5,
     "left": 2
    },
    "raw_hits": 130,
    "gate_fail": {
     "tinted": 11,
-    "darkest": 8,
+    "darkest": 7,
     "dup": 1,
+    "width": 2,
     "height": 1
    }
   },
@@ -106,7 +115,9 @@
    "gate_fail": {
     "furniture": 1,
     "darkest": 4,
-    "tinted": 4
+    "tinted": 4,
+    "aspect": 1,
+    "width": 1
    }
   },
   "40": {
@@ -123,7 +134,8 @@
     "furniture": 1,
     "ring": 1,
     "tinted": 29,
-    "width": 1
+    "width": 10,
+    "aspect": 1
    }
   },
   "43": {
@@ -138,9 +150,10 @@
    "gate_fail": {
     "furniture": 1,
     "tinted": 23,
+    "width": 12,
     "darkest": 12,
     "height": 2,
-    "width": 1
+    "aspect": 1
    }
   },
   "44": {
@@ -154,25 +167,29 @@
    "raw_hits": 150,
    "gate_fail": {
     "furniture": 1,
-    "darkest": 11,
-    "tinted": 31
+    "darkest": 10,
+    "tinted": 31,
+    "width": 12,
+    "aspect": 3
    }
   },
   "49": {
-   "kept": 22,
+   "kept": 19,
    "by_edge": {
-    "top": 8,
+    "top": 6,
     "right": 3,
-    "bottom": 8,
+    "bottom": 7,
     "left": 3
    },
    "raw_hits": 215,
    "gate_fail": {
-    "darkest": 24,
+    "darkest": 21,
     "furniture": 1,
     "tinted": 49,
-    "ring": 2,
-    "width": 3
+    "width": 28,
+    "aspect": 11,
+    "blob": 5,
+    "ring": 2
    }
   },
   "50": {
@@ -187,62 +204,66 @@
    "gate_fail": {
     "tinted": 54,
     "darkest": 18,
+    "width": 31,
     "furniture": 1,
-    "width": 3,
+    "aspect": 2,
     "height": 1,
     "dup": 1
    }
   },
   "13": {
-   "kept": 14,
+   "kept": 12,
    "by_edge": {
-    "top": 5,
+    "top": 6,
     "right": 3,
     "bottom": 2,
-    "left": 4
+    "left": 1
    },
    "raw_hits": 626,
    "gate_fail": {
-    "darkest": 404,
+    "darkest": 403,
+    "width": 399,
+    "aspect": 360,
     "height": 20,
-    "width": 363,
     "tinted": 2,
     "neatline": 2,
-    "furniture": 1,
-    "dup": 1
+    "furniture": 1
    }
   },
   "14": {
-   "kept": 18,
+   "kept": 15,
    "by_edge": {
     "top": 5,
     "right": 4,
-    "bottom": 3,
-    "left": 6
+    "bottom": 2,
+    "left": 4
    },
    "raw_hits": 156,
    "gate_fail": {
     "tinted": 16,
+    "width": 51,
     "darkest": 48,
     "neatline": 1,
-    "width": 36,
-    "height": 3
+    "aspect": 37,
+    "height": 3,
+    "blob": 1
    }
   },
   "33": {
-   "kept": 11,
+   "kept": 12,
    "by_edge": {
     "top": 5,
     "right": 4,
-    "bottom": 2,
+    "bottom": 3,
     "left": 0
    },
    "raw_hits": 107,
    "gate_fail": {
-    "darkest": 20,
+    "darkest": 19,
     "furniture": 1,
     "tinted": 12,
-    "width": 4,
+    "width": 9,
+    "aspect": 8,
     "height": 3,
     "neatline": 1
    }
@@ -259,7 +280,9 @@
    "gate_fail": {
     "tinted": 18,
     "furniture": 1,
-    "darkest": 5
+    "darkest": 5,
+    "width": 3,
+    "aspect": 1
    }
   },
   "35": {
@@ -273,14 +296,16 @@
    "raw_hits": 63,
    "gate_fail": {
     "tinted": 15,
-    "darkest": 6
+    "darkest": 6,
+    "width": 1,
+    "aspect": 1
    }
   },
   "36": {
-   "kept": 14,
+   "kept": 13,
    "by_edge": {
     "top": 3,
-    "right": 5,
+    "right": 4,
     "bottom": 3,
     "left": 3
    },
@@ -288,29 +313,32 @@
    "gate_fail": {
     "tinted": 20,
     "furniture": 1,
+    "width": 2,
     "darkest": 3,
-    "neatline": 1
+    "neatline": 1,
+    "blob": 1
    }
   },
   "37": {
-   "kept": 17,
+   "kept": 16,
    "by_edge": {
     "top": 3,
-    "right": 5,
+    "right": 4,
     "bottom": 5,
     "left": 4
    },
    "raw_hits": 104,
    "gate_fail": {
     "tinted": 23,
+    "width": 17,
     "darkest": 7,
     "height": 1
    }
   },
   "41": {
-   "kept": 18,
+   "kept": 17,
    "by_edge": {
-    "top": 5,
+    "top": 4,
     "right": 3,
     "bottom": 6,
     "left": 4
@@ -318,14 +346,15 @@
    "raw_hits": 203,
    "gate_fail": {
     "tinted": 51,
+    "width": 17,
     "darkest": 17,
-    "width": 1
+    "aspect": 4
    }
   },
   "45": {
-   "kept": 18,
+   "kept": 17,
    "by_edge": {
-    "top": 6,
+    "top": 5,
     "right": 6,
     "bottom": 3,
     "left": 3
@@ -333,9 +362,11 @@
    "raw_hits": 158,
    "gate_fail": {
     "tinted": 23,
-    "darkest": 7,
+    "darkest": 6,
+    "width": 4,
     "neatline": 1,
-    "width": 2,
+    "aspect": 2,
+    "blob": 1,
     "height": 1
    }
   },
@@ -350,25 +381,29 @@
    "raw_hits": 90,
    "gate_fail": {
     "tinted": 18,
+    "width": 5,
     "darkest": 5,
+    "blob": 1,
     "ring": 1,
+    "aspect": 2,
     "height": 1
    }
   },
   "55": {
-   "kept": 19,
+   "kept": 18,
    "by_edge": {
     "top": 3,
     "right": 6,
     "bottom": 4,
-    "left": 6
+    "left": 5
    },
    "raw_hits": 98,
    "gate_fail": {
     "furniture": 1,
     "tinted": 17,
+    "width": 5,
     "darkest": 5,
-    "width": 1,
+    "aspect": 1,
     "neatline": 1
    }
   },
@@ -385,34 +420,39 @@
     "tinted": 11,
     "darkest": 8,
     "ring": 1,
-    "width": 3
+    "width": 8,
+    "aspect": 3
    }
   },
   "57": {
-   "kept": 14,
+   "kept": 13,
    "by_edge": {
     "top": 3,
     "right": 1,
     "bottom": 7,
-    "left": 3
+    "left": 2
    },
    "raw_hits": 87,
    "gate_fail": {
     "tinted": 17,
     "darkest": 8,
     "ring": 2,
-    "width": 1
+    "width": 8,
+    "blob": 1,
+    "aspect": 1
    }
   }
  },
  "gate_fail": {
-  "width": 563,
-  "darkest": 849,
+  "width": 833,
+  "aspect": 639,
+  "darkest": 840,
   "tinted": 474,
   "furniture": 14,
   "height": 38,
-  "neatline": 9,
   "dup": 3,
+  "blob": 12,
+  "neatline": 9,
   "ring": 7
  },
  "thresh": 0.55,
@@ -432,5 +472,71 @@
   "80h_13",
   "150h_56"
  ],
- "total": 399
+ "total": 384,
+ "spot_check": {
+  "method": "half-resolution strips of each plate's four 450 px edge bands read by eye and compared with the montage",
+  "13": {
+   "street_tags_by_eye": 14,
+   "found": 9,
+   "missed": [
+    [
+     1150,
+     350,
+     "70' horizontal, top, rail yard"
+    ],
+    [
+     1150,
+     3538,
+     "70' horizontal, bottom, rail yard"
+    ],
+    [
+     2170,
+     3538,
+     "80' horizontal, bottom, rail yard (the 80h_13 template's own site)"
+    ],
+    [
+     3200,
+     3538,
+     "70' horizontal, bottom, rail yard"
+    ],
+    [
+     320,
+     2538,
+     "80' rotated, left, rail yard"
+    ]
+   ],
+   "why": "plate 13 draws its horizontal tags over the rail lines in a lighter, smaller hand; a rail within 10 px of the glyph edge trips the border darkest-line cap, and the other plates' crops score 0.40-0.56 on them",
+   "false_positives": [
+    "#2 lot number 101 on the block front (flagged off-lattice)"
+   ],
+   "also": "#4 is a genuine 60' tag (EXTD. street)"
+  },
+  "41": {
+   "street_tags_by_eye": 16,
+   "found": 15,
+   "missed": [
+    [
+     3160,
+     3538,
+     "70' horizontal, bottom-right corner; a dashed water-pipe line runs vertically through the 7; best score 0.549 (70h_45a at scale 1.1), just under THRESH 0.55; passes every gate if admitted"
+    ]
+   ],
+   "alley_tags_kept": 3,
+   "false_positives": []
+  },
+  "56": {
+   "street_tags_by_eye": 14,
+   "found": 14,
+   "missed": [],
+   "notes": "both 150' tags of the 150-ft street found by the 150h_56 template; the y~2518 side tags (dashed pipe through the glyph, PIPE label abutting) came in only at thresh 0.55",
+   "alley_tags_kept": 3,
+   "false_positives": []
+  }
+ },
+ "known_false_positive_families": {
+  "lot numbers on a block front": "italic 3-digit lot numbers (701, 711, 601 on u35; 520 on u10; 101 on u13) matched by the 70'/80' crops; every one carries warn=off-lattice because it does not stand in a lattice street interval on the tag's axis",
+  "T.H. disc": "one survives on u10 (#15) where the filled disc merges with its label; the blob gate removes the rest",
+  "20' alley tags": "not templated but real edge tags; fire incidentally (about 60 of the 384) and are off-lattice, so they carry the same warn flag as lot numbers; the reviewer decides whether alleys need furniture boxes"
+ },
+ "text_guess_caveat": "template text (70'/80'/150') is a guess: the crops share the 0' and a 70' crop matches an 80' or 60' tag at 0.55-0.65; read the crop"
 }
