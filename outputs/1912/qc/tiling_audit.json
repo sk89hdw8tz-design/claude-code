@@ -1,9 +1,9 @@
 {
  "year": 1912,
  "regions": 106,
- "union_area_px2": 4515723961.5,
- "sum_of_regions_px2": 4515725024.8,
- "overlap_area_px2": 1063.4,
+ "union_area_px2": 4515723124.0,
+ "sum_of_regions_px2": 4515725262.5,
+ "overlap_area_px2": 2138.5,
  "overlap_fraction": 0.0,
  "disjoint_pieces": 1,
  "interior_gaps": [
@@ -260,12 +260,12 @@
    ]
   },
   {
-   "area_px2": 5219.0,
-   "width_px": 3.2,
+   "area_px2": 5217.4,
+   "width_px": 3.8,
    "kind": "hairline",
    "centroid": [
-    14067.9,
-    10374.1
+    14067.8,
+    10374.0
    ]
   },
   {
@@ -278,7 +278,7 @@
    ]
   }
  ],
- "unclaimed_area_px2": 22777922.3,
+ "unclaimed_area_px2": 22777920.7,
  "pairwise_overlaps": [],
  "min_reported_area_px2": 2500.0,
  "inlet_close_px": 700.0
