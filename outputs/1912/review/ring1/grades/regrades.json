@@ -1,0 +1,72 @@
+{
+ "36_37": [
+  {
+   "round": "after nudge + scale-bar fix",
+   "score": 4,
+   "defects": [
+    "tone"
+   ],
+   "reason": "geometry within ~1 ft, pipe continuous, one AVENUE L label; tone step and the adjoining numeral 36 clipped on its left tips (furniture)"
+  }
+ ],
+ "50_56": [
+  {
+   "round": "after nudge + scale-bar fix",
+   "score": 3,
+   "defects": [
+    "rail-utility",
+    "duplicate-label"
+   ],
+   "reason": "house numbers now whole; 8\" pipe at 1114 jogs ~4 ft east and 6\" pipe at 914 ~4.5 ft west (opposite signs -> relative rotation ~0.6 deg); north and south plates' T.H. labels both show at 1114, 8 ft apart"
+  }
+ ],
+ "5a_5b": [
+  {
+   "round": "after wharf frontage re-cut",
+   "score": 2,
+   "note": "white exterior corner + 5a scale bar on water (policy)"
+  }
+ ],
+ "5a_7": [
+  {
+   "round": "after wharf frontage re-cut",
+   "score": 4,
+   "note": "tone + source pipe/track disagreement"
+  }
+ ],
+ "5a_9": [
+  {
+   "round": "after wharf frontage re-cut",
+   "score": 1,
+   "note": "third-plate sliver at Pier 21 shed east end (rose box), IRON CLAD clipped, lone S, 35 ft pier-face step"
+  }
+ ],
+ "5a_33": [
+  {
+   "round": "after wharf frontage re-cut",
+   "score": 3,
+   "note": "blank 5a strip between yard and block 736"
+  }
+ ],
+ "5b_9": [
+  {
+   "round": "after wharf frontage re-cut",
+   "score": 4,
+   "note": "tone"
+  }
+ ],
+ "5b_11": [
+  {
+   "round": "after wharf frontage re-cut",
+   "score": 2,
+   "note": "Mallory shed lettering sliced lengthwise"
+  }
+ ],
+ "5b_13": [
+  {
+   "round": "after wharf frontage re-cut",
+   "score": 4,
+   "note": "tone; source track differences"
+  }
+ ]
+}

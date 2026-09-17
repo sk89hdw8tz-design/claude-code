@@ -37,5 +37,44 @@
   ],
   "coord": 15282,
   "why": "Avenue L at its north end (15th St): plate 36's clipped '70' width tag showed beside plate 37's complete one; the cut is held west of both so only plate 37's tag shows (blind re-grade 36|37)."
+ },
+ {
+  "pair": [
+   "5b",
+   "11"
+  ],
+  "axis": "x",
+  "along": [
+   3600,
+   9300
+  ],
+  "coord": -8880,
+  "why": "Pier 24-26 Mallory shed: plate 11 draws it only as a dashed outline while 5b draws it filled with its lettering; the straight frontage cut sliced the lettering lengthwise (re-grade 5b|11 = 2). 5b keeps the whole shed here."
+ },
+ {
+  "pair": [
+   "5a",
+   "9"
+  ],
+  "axis": "x",
+  "along": [
+   -1750,
+   -1250
+  ],
+  "coord": -9280,
+  "why": "Slip between Piers 22 and 23: 5a's 'Slip' label survived only as a lone 'S' beside plate 9's complete label (re-grade 5a|9); the cut is held west of 5a's S so only plate 9's label shows."
+ },
+ {
+  "pair": [
+   "5a",
+   "9"
+  ],
+  "axis": "x",
+  "along": [
+   -5300,
+   -1900
+  ],
+  "coord": -8880,
+  "why": "Pier 21 shed: both plates draw it, 5a in yellow with its lettering, plate 9 in tan out to x -8890 with its compass arrow beside it; the straight frontage cut left 9's tan end showing next to 5a's yellow shed (re-grade 5a|9 = 1). 5a keeps the whole shed and its IRON CLAD strip."
  }
 ]
