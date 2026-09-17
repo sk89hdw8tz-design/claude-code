@@ -1,0 +1,937 @@
+{
+ "audit": "class-3 control audit, 1912 ring 1 (east of Ave L and the 18th St row)",
+ "date": "2026-09-17",
+ "method": {
+  "crops": "per plate: 900 px across the corridor (jittered +-180 px) x 1500 px along it, centred on the plate's extent centre on the along axis, native 1:1, ruler ticks every 50 px labelled in crop-local px; plus a half-scale full-length identity strip (avenues rotated so the lettering reads horizontally)",
+  "readers": [
+   "A: automated ink-profile rule detector (native px, sub-px centroid; extent-centre window +-750 px along the corridor)",
+   "B: visual read of the blind crop (ruler in jittered crop-local px, converted to native after reading; +-5 px)"
+  ],
+  "honesty": "No sub-agent spawning tool was available in this session, so the two readers are (A) an automated ink-profile detector that knows nothing about the filed values and (B) the lead reading the blind crops. Reader B's crops were labelled in crop-local px with a hidden random origin (offsets.json in the scratchpad, not opened until all 30 crops had been read), so the filed values could not be matched while reading. Reader B is therefore blind to the numbers but not to the fact that the controls were under suspicion.",
+  "half_widths": "where a plate draws only one face, midpoint = face +- half the drafted roadway of that corridor class: 121.5 px for 80 ft streets (drafted 241-244 px on plates 26, 40, 41, 44, 45, 50, 51; sheet 26 draws 18th St in full at 242.6 px) and 106 px for 70 ft avenues (206-214 px fully drawn on 34, 35, 40, 41, 45, 85, 93). Ave L is 70 ft: '70'' is printed with its name on sheets 20 and 85 (class3_crops/check_u20_AveL_strip.jpg, check_u85_AveL_strip.jpg) and it measures ~206-211 px on sheet 93.",
+  "decision_rule": "a control is corrected when both readers agree and either a filed value differs from face+-half-width by more than 12 px, or the pair's implied roadway width differs from the drafted class width by more than 12 px (the pair-level error is what the seam sees)."
+ },
+ "controls": [
+  {
+   "file": "pair_40_41.json",
+   "corridor": "Ave L",
+   "axis": "avenue",
+   "current": {
+    "a_native": 3232,
+    "b_native": 143
+   },
+   "readings": [
+    {
+     "plate": "40",
+     "reader": "A: automated ink-profile rule detector (native px, sub-px centroid; extent-centre window +-750 px along the corridor)",
+     "face1": 3110.5,
+     "face2": null,
+     "midpoint": 3216.5,
+     "name_read": "AVENUE L (adjoining numeral 41)",
+     "half_width_applied_px": 106.0
+    },
+    {
+     "plate": "40",
+     "reader": "B: visual read of the blind crop (ruler in jittered crop-local px, converted to native after reading; +-5 px)",
+     "face1": 3104,
+     "face2": null,
+     "midpoint": 3210.0,
+     "name_read": "AVENUE L / 41",
+     "half_width_applied_px": 106.0
+    },
+    {
+     "plate": "41",
+     "reader": "A: automated ink-profile rule detector (native px, sub-px centroid; extent-centre window +-750 px along the corridor)",
+     "face1": null,
+     "face2": 264.9,
+     "midpoint": 158.9,
+     "name_read": "AVENUE L. (adjoining numeral 40)",
+     "half_width_applied_px": 106.0
+    },
+    {
+     "plate": "41",
+     "reader": "B: visual read of the blind crop (ruler in jittered crop-local px, converted to native after reading; +-5 px)",
+     "face1": null,
+     "face2": 268,
+     "midpoint": 162.0,
+     "name_read": "AVENUE L. / 40",
+     "half_width_applied_px": 106.0
+    }
+   ],
+   "verdict": "correct a_native to 3216.5; correct b_native to 159",
+   "evidence": "Both readers reproduce the file's own faces (40 west face 3110.5/3104 vs file 3111; 41 east face 264.9/268 vs file 264). The error is the half-width: the file adds 121 px (80 ft) but Avenue L is a 70 ft avenue - sheet 20 prints 'AVENUE L.' with 70' at both ends of the name (class3_crops/check_u20_AveL_strip.jpg), sheet 85 prints 'AVENUE L' with 70' (check_u85_AveL_strip.jpg), sheet 93 draws it ~206-211 px wide, and every other accepted Ave L control (24|25 roadway 206/206, 30|31 face+-106.8, 44|45 face+-106/107, 56|57 face-106.5, 20|25, 85|93) uses the 70 ft width. The rotated '80'' figures beside Ave L belong to the 80 ft cross streets (the same rotated '80'' appears beside the fully drawn 212 px Ave F on sheet 34). As filed the pair drafts Ave L 243 px wide instead of ~212: a 31 px (10 ft) seam error, matching the +12/+8 ft band residual. Local re-solve (units 41 45 51) with the corrected values: pair_40_41 residual +7.0 ft -> -0.9 ft.",
+   "pair_width_px": {
+    "file": 243.0,
+    "corrected": 212.0
+   },
+   "crops": [
+    "outputs/1912/review/ring1/class3_crops/pair_40_41_u40_measure.jpg",
+    "outputs/1912/review/ring1/class3_crops/pair_40_41_u40_identity.jpg",
+    "outputs/1912/review/ring1/class3_crops/pair_40_41_u41_measure.jpg",
+    "outputs/1912/review/ring1/class3_crops/pair_40_41_u41_identity.jpg"
+   ]
+  },
+  {
+   "file": "pair_40_45.json",
+   "corridor": "21st St (Center)",
+   "axis": "street",
+   "current": {
+    "a_native": 3669,
+    "b_native": 217
+   },
+   "readings": [
+    {
+     "plate": "40",
+     "reader": "A: automated ink-profile rule detector (native px, sub-px centroid; extent-centre window +-750 px along the corridor)",
+     "face1": 3548.5,
+     "face2": null,
+     "midpoint": 3670.0,
+     "name_read": "21ST OR CENTER ST. (numeral 44)",
+     "half_width_applied_px": 121.5
+    },
+    {
+     "plate": "40",
+     "reader": "B: visual read of the blind crop (ruler in jittered crop-local px, converted to native after reading; +-5 px)",
+     "face1": 3546,
+     "face2": null,
+     "midpoint": 3667.5,
+     "name_read": "21ST OR CENTER ST. / 44",
+     "half_width_applied_px": 121.5
+    },
+    {
+     "plate": "45",
+     "reader": "A: automated ink-profile rule detector (native px, sub-px centroid; extent-centre window +-750 px along the corridor)",
+     "face1": null,
+     "face2": 339.4,
+     "midpoint": 217.9,
+     "name_read": "21ST OR CENTER ST. (numeral 41)",
+     "half_width_applied_px": 121.5
+    },
+    {
+     "plate": "45",
+     "reader": "B: visual read of the blind crop (ruler in jittered crop-local px, converted to native after reading; +-5 px)",
+     "face1": null,
+     "face2": 338,
+     "midpoint": 216.5,
+     "name_read": "21ST OR CENTER ST. / 41",
+     "half_width_applied_px": 121.5
+    }
+   ],
+   "verdict": "confirmed",
+   "evidence": "Faces agree within 3 px of the file's implied faces; midpoints 3670/3667.5 vs 3669 and 217.9/216.5 vs 217. 80 ft street half-width 121.5 px (drafted 80 ft streets measure 241-244 px on 26/40/41/44/45/50/51; sheet 26 draws 18th in full at 242.6). Diagonal (corner-contact) pair: 40 and 45 share no length of 21st St; both centre-lines are read at each plate's own extent centre, which is how load_cuts/localsolve evaluate it, so the control is valid as a y tie only.",
+   "pair_width_px": {
+    "file": 242.5,
+    "corrected": 243.0
+   },
+   "crops": [
+    "outputs/1912/review/ring1/class3_crops/pair_40_45_u40_measure.jpg",
+    "outputs/1912/review/ring1/class3_crops/pair_40_45_u40_identity.jpg",
+    "outputs/1912/review/ring1/class3_crops/pair_40_45_u45_measure.jpg",
+    "outputs/1912/review/ring1/class3_crops/pair_40_45_u45_identity.jpg"
+   ]
+  },
+  {
+   "file": "pair_45_50.json",
+   "corridor": "24th St",
+   "axis": "street",
+   "current": {
+    "a_native": 3670,
+    "b_native": 158
+   },
+   "readings": [
+    {
+     "plate": "45",
+     "reader": "A: automated ink-profile rule detector (native px, sub-px centroid; extent-centre window +-750 px along the corridor)",
+     "face1": 3549.9,
+     "face2": null,
+     "midpoint": 3671.4,
+     "name_read": "24TH ST. (numeral 51)",
+     "half_width_applied_px": 121.5
+    },
+    {
+     "plate": "45",
+     "reader": "B: visual read of the blind crop (ruler in jittered crop-local px, converted to native after reading; +-5 px)",
+     "face1": 3546,
+     "face2": null,
+     "midpoint": 3667.5,
+     "name_read": "24TH ST. / 51",
+     "half_width_applied_px": 121.5
+    },
+    {
+     "plate": "50",
+     "reader": "A: automated ink-profile rule detector (native px, sub-px centroid; extent-centre window +-750 px along the corridor)",
+     "face1": null,
+     "face2": 278.1,
+     "midpoint": 156.6,
+     "name_read": "24TH ST. (numeral 44)",
+     "half_width_applied_px": 121.5
+    },
+    {
+     "plate": "50",
+     "reader": "B: visual read of the blind crop (ruler in jittered crop-local px, converted to native after reading; +-5 px)",
+     "face1": null,
+     "face2": 283,
+     "midpoint": 161.5,
+     "name_read": "24TH ST. / 44",
+     "half_width_applied_px": 121.5
+    }
+   ],
+   "verdict": "confirmed",
+   "evidence": "Midpoints 3671.4/3667.5 vs 3670 and 156.6/161.5 vs 158; identity 24TH ST. on both (23rd/Tremont above on 45, 25th/Rosenberg below on 50). The +5 ft band residual is not a reading error: with 40/44/50 at transform scale 2.0065-2.0074 and 41/45/51 at 1.99-2.00, a translation-only solve cannot close the y loops (localsolve --similarity on 40 41 44 45 50 51 brings the max residual to 3.2 ft, median 1.0).",
+   "pair_width_px": {
+    "file": 240.2,
+    "corrected": 243.0
+   },
+   "crops": [
+    "outputs/1912/review/ring1/class3_crops/pair_45_50_u45_measure.jpg",
+    "outputs/1912/review/ring1/class3_crops/pair_45_50_u45_identity.jpg",
+    "outputs/1912/review/ring1/class3_crops/pair_45_50_u50_measure.jpg",
+    "outputs/1912/review/ring1/class3_crops/pair_45_50_u50_identity.jpg"
+   ]
+  },
+  {
+   "file": "pair_44_51.json",
+   "corridor": "24th St",
+   "axis": "street",
+   "current": {
+    "a_native": 3675,
+    "b_native": 168
+   },
+   "readings": [
+    {
+     "plate": "44",
+     "reader": "A: automated ink-profile rule detector (native px, sub-px centroid; extent-centre window +-750 px along the corridor)",
+     "face1": 3556.5,
+     "face2": null,
+     "midpoint": 3678.0,
+     "name_read": "24TH ST. (numeral 50)",
+     "half_width_applied_px": 121.5
+    },
+    {
+     "plate": "44",
+     "reader": "B: visual read of the blind crop (ruler in jittered crop-local px, converted to native after reading; +-5 px)",
+     "face1": 3550,
+     "face2": null,
+     "midpoint": 3671.5,
+     "name_read": "24TH ST. / 50",
+     "half_width_applied_px": 121.5
+    },
+    {
+     "plate": "51",
+     "reader": "A: automated ink-profile rule detector (native px, sub-px centroid; extent-centre window +-750 px along the corridor)",
+     "face1": null,
+     "face2": 288.6,
+     "midpoint": 167.1,
+     "name_read": "24TH ST. (numeral 45)",
+     "half_width_applied_px": 121.5
+    },
+    {
+     "plate": "51",
+     "reader": "B: visual read of the blind crop (ruler in jittered crop-local px, converted to native after reading; +-5 px)",
+     "face1": null,
+     "face2": 290,
+     "midpoint": 168.5,
+     "name_read": "24TH ST. / 45",
+     "half_width_applied_px": 121.5
+    }
+   ],
+   "verdict": "confirmed",
+   "evidence": "Midpoints 3678/3671.5 vs 3675 and 167.1/168.5 vs 168. Diagonal pair (44 and 51 do not overlap along 24th); valid as an extent-centre y tie. Loop 44-45-50-51 (44_45_y, 45_50, 50_51_y, 44_51) closes to 0.5 px in translation, so these four controls are mutually consistent.",
+   "pair_width_px": {
+    "file": 239.1,
+    "corrected": 243.0
+   },
+   "crops": [
+    "outputs/1912/review/ring1/class3_crops/pair_44_51_u44_measure.jpg",
+    "outputs/1912/review/ring1/class3_crops/pair_44_51_u44_identity.jpg",
+    "outputs/1912/review/ring1/class3_crops/pair_44_51_u51_measure.jpg",
+    "outputs/1912/review/ring1/class3_crops/pair_44_51_u51_identity.jpg"
+   ]
+  },
+  {
+   "file": "pair_50_51_y.json",
+   "corridor": "25th St (Rosenberg Ave)",
+   "axis": "street",
+   "current": {
+    "a_native": 1365.0,
+    "b_native": 1379.5
+   },
+   "readings": [
+    {
+     "plate": "50",
+     "reader": "A: automated ink-profile rule detector (native px, sub-px centroid; extent-centre window +-750 px along the corridor)",
+     "face1": 1183.8,
+     "face2": 1548.0,
+     "midpoint": 1365.9,
+     "name_read": "25TH ST. OR ROSENBERG AV."
+    },
+    {
+     "plate": "50",
+     "reader": "B: visual read of the blind crop (ruler in jittered crop-local px, converted to native after reading; +-5 px)",
+     "face1": 1181,
+     "face2": 1546,
+     "midpoint": 1363.5,
+     "name_read": "25TH ST. OR ROSENBERG AV."
+    },
+    {
+     "plate": "51",
+     "reader": "A: automated ink-profile rule detector (native px, sub-px centroid; extent-centre window +-750 px along the corridor)",
+     "face1": 1194.0,
+     "face2": 1558.9,
+     "midpoint": 1376.5,
+     "name_read": "25TH ST. OR ROSENBERG AV."
+    },
+    {
+     "plate": "51",
+     "reader": "B: visual read of the blind crop (ruler in jittered crop-local px, converted to native after reading; +-5 px)",
+     "face1": 1197,
+     "face2": 1556,
+     "midpoint": 1376.5,
+     "name_read": "25TH ST. OR ROSENBERG AV."
+    }
+   ],
+   "verdict": "confirmed",
+   "evidence": "Fully drawn 120 ft boulevard (364/359-365 px). Midpoints 1365.9/1363.5 vs 1365.0 and 1376.5/1376.5 vs 1379.5 (3 px). Corridor field should read '25th St (Rosenberg Ave)' instead of '?'.",
+   "pair_width_px": {
+    "file": null,
+    "corrected": null
+   },
+   "crops": [
+    "outputs/1912/review/ring1/class3_crops/pair_50_51_y_u50_measure.jpg",
+    "outputs/1912/review/ring1/class3_crops/pair_50_51_y_u50_identity.jpg",
+    "outputs/1912/review/ring1/class3_crops/pair_50_51_y_u51_measure.jpg",
+    "outputs/1912/review/ring1/class3_crops/pair_50_51_y_u51_identity.jpg"
+   ]
+  },
+  {
+   "file": "pair_37_41.json",
+   "corridor": "18th St",
+   "axis": "street",
+   "current": {
+    "a_native": 3669,
+    "b_native": 218
+   },
+   "readings": [
+    {
+     "plate": "37",
+     "reader": "A: automated ink-profile rule detector (native px, sub-px centroid; extent-centre window +-750 px along the corridor)",
+     "face1": 3558.5,
+     "face2": null,
+     "midpoint": 3680.0,
+     "name_read": "18TH ST. (numeral 41)",
+     "half_width_applied_px": 121.5
+    },
+    {
+     "plate": "37",
+     "reader": "B: visual read of the blind crop (ruler in jittered crop-local px, converted to native after reading; +-5 px)",
+     "face1": 3554,
+     "face2": null,
+     "midpoint": 3675.5,
+     "name_read": "18TH ST. / 41",
+     "half_width_applied_px": 121.5
+    },
+    {
+     "plate": "41",
+     "reader": "A: automated ink-profile rule detector (native px, sub-px centroid; extent-centre window +-750 px along the corridor)",
+     "face1": null,
+     "face2": 335.1,
+     "midpoint": 213.6,
+     "name_read": "18TH ST. (numeral 37)",
+     "half_width_applied_px": 121.5,
+     "note": "rule strength 0.29, just under the detector's 0.30 gate; position taken from the profile maximum"
+    },
+    {
+     "plate": "41",
+     "reader": "B: visual read of the blind crop (ruler in jittered crop-local px, converted to native after reading; +-5 px)",
+     "face1": null,
+     "face2": 336,
+     "midpoint": 214.5,
+     "name_read": "18TH ST. / 37",
+     "half_width_applied_px": 121.5
+    }
+   ],
+   "verdict": "correct a_native to 3680 (b_native 213.5 within tolerance)",
+   "evidence": "Sheet 37's 18th St north face is at 3558.5/3554 at the extent centre, so face+121.5 gives 3680/3675.5; the filed 3669 was not read from the face but extrapolated from the block pitch (per pair_37_40's note), and sits 11 px north of the face-based centre. Sheet 41's south face 335.1/336 gives 213.6/214.5 vs 218. As filed the pair drafts 18th St 227.5 px wide instead of 243 (15.5 px = 5 ft). Sister controls on the same row use face+~120 (35_40: 3562.4+119 = 3681; 36_40: 3554+119 = 3673). Local re-solve: residual -3.4 ft -> +1.1 ft.",
+   "pair_width_px": {
+    "file": 227.5,
+    "corrected": 243.0
+   },
+   "crops": [
+    "outputs/1912/review/ring1/class3_crops/pair_37_41_u37_measure.jpg",
+    "outputs/1912/review/ring1/class3_crops/pair_37_41_u37_identity.jpg",
+    "outputs/1912/review/ring1/class3_crops/pair_37_41_u41_measure.jpg",
+    "outputs/1912/review/ring1/class3_crops/pair_37_41_u41_identity.jpg"
+   ]
+  },
+  {
+   "file": "pair_41_45_x.json",
+   "corridor": "Ave M 1/2",
+   "axis": "avenue",
+   "current": {
+    "a_native": 2169.0,
+    "b_native": 2135.5
+   },
+   "readings": [
+    {
+     "plate": "41",
+     "reader": "A: automated ink-profile rule detector (native px, sub-px centroid; extent-centre window +-750 px along the corridor)",
+     "face1": 2056.9,
+     "face2": 2270.3,
+     "midpoint": 2163.6,
+     "name_read": "AVENUE M1/2"
+    },
+    {
+     "plate": "41",
+     "reader": "B: visual read of the blind crop (ruler in jittered crop-local px, converted to native after reading; +-5 px)",
+     "face1": 2062,
+     "face2": 2272,
+     "midpoint": 2167.0,
+     "name_read": "AVENUE M1/2"
+    },
+    {
+     "plate": "45",
+     "reader": "A: automated ink-profile rule detector (native px, sub-px centroid; extent-centre window +-750 px along the corridor)",
+     "face1": 2029.1,
+     "face2": 2240.2,
+     "midpoint": 2134.6,
+     "name_read": "AVENUE M1/2 (north block, y 340-1250)",
+     "note": "at the extent centre (S.W. 18 block) the avenue is not opened: the only line is the lot line at 2241.5 where the 1332|1402 hundred changes; roadway faces read from the 21st-22nd block where it is drawn"
+    },
+    {
+     "plate": "45",
+     "reader": "B: visual read of the blind crop (ruler in jittered crop-local px, converted to native after reading; +-5 px)",
+     "face1": null,
+     "face2": null,
+     "midpoint": null,
+     "name_read": "AVENUE M1/2 (read on the identity strip, north block only)",
+     "note": "no roadway in the measurement crop; 1332|1402 change on a plain lot line at native 2241"
+    }
+   ],
+   "verdict": "confirmed",
+   "evidence": "Identity Ave M 1/2 on both plates (corridor field '?' should say so). Sheet 41 midpoint 2163.6/2167 vs 2169 (5 px). Sheet 45: 2134.7 from the north-block faces vs 2135.5; the avenue's east face continues as the S.W. 18 lot line at 2241.5, so the extent-centre reading is on the drafted grid. Caveat: on 45 this is a whole-plate/north-block reading, not a local face pair at the extent centre.",
+   "pair_width_px": {
+    "file": null,
+    "corrected": null
+   },
+   "crops": [
+    "outputs/1912/review/ring1/class3_crops/pair_41_45_x_u41_measure.jpg",
+    "outputs/1912/review/ring1/class3_crops/pair_41_45_x_u41_identity.jpg",
+    "outputs/1912/review/ring1/class3_crops/pair_41_45_x_u45_measure.jpg",
+    "outputs/1912/review/ring1/class3_crops/pair_41_45_x_u45_identity.jpg"
+   ]
+  },
+  {
+   "file": "pair_44_45.json",
+   "corridor": "Ave L",
+   "axis": "avenue",
+   "current": {
+    "a_native": 3210,
+    "b_native": 130
+   },
+   "readings": [
+    {
+     "plate": "44",
+     "reader": "A: automated ink-profile rule detector (native px, sub-px centroid; extent-centre window +-750 px along the corridor)",
+     "face1": 3103.0,
+     "face2": null,
+     "midpoint": 3209.0,
+     "name_read": "AVENUE L (numeral 45)",
+     "half_width_applied_px": 106.0
+    },
+    {
+     "plate": "44",
+     "reader": "B: visual read of the blind crop (ruler in jittered crop-local px, converted to native after reading; +-5 px)",
+     "face1": 3094,
+     "face2": null,
+     "midpoint": 3200.0,
+     "name_read": "AVENUE L / 45",
+     "half_width_applied_px": 106.0
+    },
+    {
+     "plate": "45",
+     "reader": "A: automated ink-profile rule detector (native px, sub-px centroid; extent-centre window +-750 px along the corridor)",
+     "face1": null,
+     "face2": 235.9,
+     "midpoint": 129.9,
+     "name_read": "AVENUE L (numeral 44)",
+     "half_width_applied_px": 106.0
+    },
+    {
+     "plate": "45",
+     "reader": "B: visual read of the blind crop (ruler in jittered crop-local px, converted to native after reading; +-5 px)",
+     "face1": null,
+     "face2": 237,
+     "midpoint": 131.0,
+     "name_read": "AVENUE L / 44",
+     "half_width_applied_px": 106.0
+    }
+   ],
+   "verdict": "confirmed",
+   "evidence": "Midpoints 3209/3200 vs 3210 and 129.9/131 vs 130 with the 70 ft half-width, which this file already uses. Its -4 ft band residual is the neighbour 40|41 (80 ft half-width) pulling the column; after correcting 40_41/36_37 the local residual is -2.9 ft, and 0.0 ft when 44 is freed.",
+   "pair_width_px": {
+    "file": 213.0,
+    "corrected": 212.0
+   },
+   "crops": [
+    "outputs/1912/review/ring1/class3_crops/pair_44_45_u44_measure.jpg",
+    "outputs/1912/review/ring1/class3_crops/pair_44_45_u44_identity.jpg",
+    "outputs/1912/review/ring1/class3_crops/pair_44_45_u45_measure.jpg",
+    "outputs/1912/review/ring1/class3_crops/pair_44_45_u45_identity.jpg"
+   ]
+  },
+  {
+   "file": "pair_56_57.json",
+   "corridor": "Ave L",
+   "axis": "avenue",
+   "current": {
+    "a_native": 3194.5,
+    "b_native": 188.5
+   },
+   "readings": [
+    {
+     "plate": "56",
+     "reader": "A: automated ink-profile rule detector (native px, sub-px centroid; extent-centre window +-750 px along the corridor)",
+     "face1": 3095.6,
+     "face2": null,
+     "midpoint": 3201.6,
+     "name_read": "AVENUE L (numeral 57)",
+     "half_width_applied_px": 106.0,
+     "note": "face drifts along the plate: 3094 (y 300-1200), 3096.5 (1200-2100), 3092 (2100-3000), 3087 (3000-3700); extent centre y=1950"
+    },
+    {
+     "plate": "56",
+     "reader": "B: visual read of the blind crop (ruler in jittered crop-local px, converted to native after reading; +-5 px)",
+     "face1": 3095,
+     "face2": null,
+     "midpoint": 3201.0,
+     "name_read": "AVENUE L / 57",
+     "half_width_applied_px": 106.0
+    },
+    {
+     "plate": "57",
+     "reader": "A: automated ink-profile rule detector (native px, sub-px centroid; extent-centre window +-750 px along the corridor)",
+     "face1": null,
+     "face2": 295.5,
+     "midpoint": 189.5,
+     "name_read": "AVENUE L (numeral 56)",
+     "half_width_applied_px": 106.0
+    },
+    {
+     "plate": "57",
+     "reader": "B: visual read of the blind crop (ruler in jittered crop-local px, converted to native after reading; +-5 px)",
+     "face1": null,
+     "face2": 300,
+     "midpoint": 194.0,
+     "name_read": "AVENUE L / 56",
+     "half_width_applied_px": 106.0
+    }
+   ],
+   "verdict": "confirmed",
+   "evidence": "b_native 188.5 = 295.5-107 confirmed (the file's '82' face is the margin bracket, not a block face, but the centre it produced equals face-106.5). a_native: extent-centre face 3095.6/3095 gives 3201.6/3201 vs 3194.5 (7 px); the file's face 3088 was read where the plate's skew puts it at the south end. Under the 12 px threshold; if the file is touched, 3201.5 is the extent-centre value.",
+   "pair_width_px": {
+    "file": 206.0,
+    "corrected": 212.0
+   },
+   "crops": [
+    "outputs/1912/review/ring1/class3_crops/pair_56_57_u56_measure.jpg",
+    "outputs/1912/review/ring1/class3_crops/pair_56_57_u56_identity.jpg",
+    "outputs/1912/review/ring1/class3_crops/pair_56_57_u57_measure.jpg",
+    "outputs/1912/review/ring1/class3_crops/pair_56_57_u57_identity.jpg",
+    "outputs/1912/review/ring1/class3_crops/check_u56_westface_zoom.jpg"
+   ]
+  },
+  {
+   "file": "pair_55_56.json",
+   "corridor": "Ave I (Sealy)",
+   "axis": "avenue",
+   "current": {
+    "a_native": 3159,
+    "b_native": 114
+   },
+   "readings": [
+    {
+     "plate": "55",
+     "reader": "A: automated ink-profile rule detector (native px, sub-px centroid; extent-centre window +-750 px along the corridor)",
+     "face1": 3043.9,
+     "face2": null,
+     "midpoint": 3149.9,
+     "name_read": "AVE. I OR SEALY (numeral 56)",
+     "half_width_applied_px": 106.0
+    },
+    {
+     "plate": "55",
+     "reader": "B: visual read of the blind crop (ruler in jittered crop-local px, converted to native after reading; +-5 px)",
+     "face1": 3039,
+     "face2": null,
+     "midpoint": 3145.0,
+     "name_read": "AVE. I OR SEALY / 56",
+     "half_width_applied_px": 106.0
+    },
+    {
+     "plate": "56",
+     "reader": "A: automated ink-profile rule detector (native px, sub-px centroid; extent-centre window +-750 px along the corridor)",
+     "face1": null,
+     "face2": 209.9,
+     "midpoint": 103.9,
+     "name_read": "AVE. I. OR SEALY (numeral 55)",
+     "half_width_applied_px": 106.0
+    },
+    {
+     "plate": "56",
+     "reader": "B: visual read of the blind crop (ruler in jittered crop-local px, converted to native after reading; +-5 px)",
+     "face1": null,
+     "face2": 212,
+     "midpoint": 106.0,
+     "name_read": "AVE. I. OR SEALY / 55",
+     "half_width_applied_px": 106.0
+    }
+   ],
+   "verdict": "confirmed",
+   "evidence": "Faces confirmed; the file applied asymmetric half-widths (55: +115, 56: -96) whose sum 211 px is the right 70 ft roadway (Sealy measures 206 px on 29|30 and 76|77), so the relative placement is correct and the band residual (+3.4) is not from this reading. Both midpoints are ~10 px east of the symmetric centre (3149.9/104), i.e. the seam cut sits 10 px off the roadway centre - cosmetic only; symmetric values 3150/104 if the file is revised.",
+   "pair_width_px": {
+    "file": 211.0,
+    "corrected": 212.0
+   },
+   "crops": [
+    "outputs/1912/review/ring1/class3_crops/pair_55_56_u55_measure.jpg",
+    "outputs/1912/review/ring1/class3_crops/pair_55_56_u55_identity.jpg",
+    "outputs/1912/review/ring1/class3_crops/pair_55_56_u56_measure.jpg",
+    "outputs/1912/review/ring1/class3_crops/pair_55_56_u56_identity.jpg"
+   ]
+  },
+  {
+   "file": "pair_36_37.json",
+   "corridor": "Ave L",
+   "axis": "avenue",
+   "current": {
+    "a_native": 3214.0,
+    "b_native": 136.0
+   },
+   "readings": [
+    {
+     "plate": "36",
+     "reader": "A: automated ink-profile rule detector (native px, sub-px centroid; extent-centre window +-750 px along the corridor)",
+     "face1": 3093.3,
+     "face2": null,
+     "midpoint": 3199.3,
+     "name_read": "AVENUE L (numeral 37)",
+     "half_width_applied_px": 106.0
+    },
+    {
+     "plate": "36",
+     "reader": "B: visual read of the blind crop (ruler in jittered crop-local px, converted to native after reading; +-5 px)",
+     "face1": 3095,
+     "face2": null,
+     "midpoint": 3201.0,
+     "name_read": "AVENUE L / 37",
+     "half_width_applied_px": 106.0
+    },
+    {
+     "plate": "37",
+     "reader": "A: automated ink-profile rule detector (native px, sub-px centroid; extent-centre window +-750 px along the corridor)",
+     "face1": null,
+     "face2": 257.2,
+     "midpoint": 151.2,
+     "name_read": "AVENUE L (numeral 36)",
+     "half_width_applied_px": 106.0
+    },
+    {
+     "plate": "37",
+     "reader": "B: visual read of the blind crop (ruler in jittered crop-local px, converted to native after reading; +-5 px)",
+     "face1": null,
+     "face2": 258,
+     "midpoint": 152.0,
+     "name_read": "AVENUE L / 36",
+     "half_width_applied_px": 106.0
+    }
+   ],
+   "verdict": "correct a_native to 3199; correct b_native to 151",
+   "evidence": "Faces confirmed (file's own faces 3091/253 within 4 px of 3093.3/257.2). Same defect as pair_40_41: 'review B' re-centred with face+-121 (80 ft) on a 70 ft avenue, so the pair drafts Ave L 242 px wide. Corrected: 3093.3+106 = 3199.3 and 257.2-106 = 151.2 (both readers within 2 px of these). Local re-solve of the 9-unit block moves pair_36_37 from +1.2 to -3.4 ft while 36_37_y improves -5.5 -> -4.3 and 30_36_x +3.7 -> +0.1; the 36|37 column needs the same similarity re-solve as 40-51 (scales 2.000 vs 1.985).",
+   "pair_width_px": {
+    "file": 242.0,
+    "corrected": 212.0
+   },
+   "crops": [
+    "outputs/1912/review/ring1/class3_crops/pair_36_37_u36_measure.jpg",
+    "outputs/1912/review/ring1/class3_crops/pair_36_37_u36_identity.jpg",
+    "outputs/1912/review/ring1/class3_crops/pair_36_37_u37_measure.jpg",
+    "outputs/1912/review/ring1/class3_crops/pair_36_37_u37_identity.jpg"
+   ]
+  },
+  {
+   "file": "pair_34_35.json",
+   "corridor": "Ave F (Church)",
+   "axis": "avenue",
+   "current": {
+    "a_native": 3180,
+    "b_native": 138
+   },
+   "readings": [
+    {
+     "plate": "34",
+     "reader": "A: automated ink-profile rule detector (native px, sub-px centroid; extent-centre window +-750 px along the corridor)",
+     "face1": 3072.6,
+     "face2": null,
+     "midpoint": 3178.6,
+     "name_read": "AVE. F OR CHURCH (numeral 35)",
+     "half_width_applied_px": 106.0
+    },
+    {
+     "plate": "34",
+     "reader": "B: visual read of the blind crop (ruler in jittered crop-local px, converted to native after reading; +-5 px)",
+     "face1": 3067,
+     "face2": null,
+     "midpoint": 3173.0,
+     "name_read": "AVE. F OR CHURCH / 35",
+     "half_width_applied_px": 106.0
+    },
+    {
+     "plate": "35",
+     "reader": "A: automated ink-profile rule detector (native px, sub-px centroid; extent-centre window +-750 px along the corridor)",
+     "face1": null,
+     "face2": 243.5,
+     "midpoint": 137.5,
+     "name_read": "AVE. F OR CHURCH (numeral 34)",
+     "half_width_applied_px": 106.0,
+     "note": "rule strength 0.29 (241-247), under the 0.30 gate; centroid of the profile peak"
+    },
+    {
+     "plate": "35",
+     "reader": "B: visual read of the blind crop (ruler in jittered crop-local px, converted to native after reading; +-5 px)",
+     "face1": null,
+     "face2": 243,
+     "midpoint": 137.0,
+     "name_read": "AVE. F OR CHURCH / 34",
+     "half_width_applied_px": 106.0
+    }
+   ],
+   "verdict": "confirmed",
+   "evidence": "Midpoints 3178.6/3173 vs 3180 and 137.5/137 vs 138. 70 ft avenue (Ave E 213 px and Ave G 212 px fully drawn on the same plates).",
+   "pair_width_px": {
+    "file": 212.0,
+    "corrected": 212.0
+   },
+   "crops": [
+    "outputs/1912/review/ring1/class3_crops/pair_34_35_u34_measure.jpg",
+    "outputs/1912/review/ring1/class3_crops/pair_34_35_u34_identity.jpg",
+    "outputs/1912/review/ring1/class3_crops/pair_34_35_u35_measure.jpg",
+    "outputs/1912/review/ring1/class3_crops/pair_34_35_u35_identity.jpg"
+   ]
+  },
+  {
+   "file": "pair_33_34.json",
+   "corridor": "Ave C (Mechanic)",
+   "axis": "avenue",
+   "current": {
+    "a_native": 3203.0,
+    "b_native": 174.5
+   },
+   "readings": [
+    {
+     "plate": "33",
+     "reader": "A: automated ink-profile rule detector (native px, sub-px centroid; extent-centre window +-750 px along the corridor)",
+     "face1": 3096.0,
+     "face2": null,
+     "midpoint": 3202.0,
+     "name_read": "AVE. C OR MECHANIC (numeral 34)",
+     "half_width_applied_px": 106.0
+    },
+    {
+     "plate": "33",
+     "reader": "B: visual read of the blind crop (ruler in jittered crop-local px, converted to native after reading; +-5 px)",
+     "face1": 3090,
+     "face2": null,
+     "midpoint": 3196.0,
+     "name_read": "AVE. C OR MECHANIC / 34",
+     "half_width_applied_px": 106.0
+    },
+    {
+     "plate": "34",
+     "reader": "A: automated ink-profile rule detector (native px, sub-px centroid; extent-centre window +-750 px along the corridor)",
+     "face1": null,
+     "face2": 279.0,
+     "midpoint": 173.0,
+     "name_read": "AVE. C OR MECHANIC (numeral 33)",
+     "half_width_applied_px": 106.0
+    },
+    {
+     "plate": "34",
+     "reader": "B: visual read of the blind crop (ruler in jittered crop-local px, converted to native after reading; +-5 px)",
+     "face1": null,
+     "face2": 280,
+     "midpoint": 174.0,
+     "name_read": "AVE. C OR MECHANIC / 33",
+     "half_width_applied_px": 106.0
+    }
+   ],
+   "verdict": "confirmed",
+   "evidence": "Midpoints 3203/3197 vs 3203 and 173/174 vs 174.5.",
+   "pair_width_px": {
+    "file": 214.0,
+    "corrected": 212.0
+   },
+   "crops": [
+    "outputs/1912/review/ring1/class3_crops/pair_33_34_u33_measure.jpg",
+    "outputs/1912/review/ring1/class3_crops/pair_33_34_u33_identity.jpg",
+    "outputs/1912/review/ring1/class3_crops/pair_33_34_u34_measure.jpg",
+    "outputs/1912/review/ring1/class3_crops/pair_33_34_u34_identity.jpg"
+   ]
+  },
+  {
+   "file": "pair_33_8.json",
+   "corridor": "18th St",
+   "axis": "street",
+   "current": {
+    "a_native": 3661.2,
+    "b_native": 218.4
+   },
+   "readings": [
+    {
+     "plate": "33",
+     "reader": "A: automated ink-profile rule detector (native px, sub-px centroid; extent-centre window +-750 px along the corridor)",
+     "face1": 3550.0,
+     "face2": null,
+     "midpoint": 3671.5,
+     "name_read": "18TH ST. (numeral 7)",
+     "half_width_applied_px": 121.5
+    },
+    {
+     "plate": "33",
+     "reader": "B: visual read of the blind crop (ruler in jittered crop-local px, converted to native after reading; +-5 px)",
+     "face1": 3553,
+     "face2": null,
+     "midpoint": 3674.5,
+     "name_read": "18TH ST. / 7",
+     "half_width_applied_px": 121.5
+    },
+    {
+     "plate": "8",
+     "reader": "A: automated ink-profile rule detector (native px, sub-px centroid; extent-centre window +-750 px along the corridor)",
+     "face1": null,
+     "face2": 333.4,
+     "midpoint": 211.9,
+     "name_read": "18TH ST. (numeral 34)",
+     "half_width_applied_px": 121.5
+    },
+    {
+     "plate": "8",
+     "reader": "B: visual read of the blind crop (ruler in jittered crop-local px, converted to native after reading; +-5 px)",
+     "face1": null,
+     "face2": 336,
+     "midpoint": 214.5,
+     "name_read": "18TH ST. / 34",
+     "half_width_applied_px": 121.5
+    }
+   ],
+   "verdict": "correct a_native to 3671.5; correct b_native to 212",
+   "evidence": "The file's values were read at the plates' Ave C edge (33: 3539, with the neatline rule at 3783 taken as the 'south face'; 8: 339.4), not at the extent centre where load_cuts evaluates them; both plates are skewed ~6-11 px across their width. At the extent centre the faces are 3550/3553 (33) and 333.4/336 (8), giving 3671.5/3674.5 and 211.9/214.5. Individually 10 and 6 px, but the pair as filed drafts 18th St 226 px wide instead of 243 (17 px = 5.6 ft). Local re-solve: residual -4.9 ft -> -0.6 ft.",
+   "pair_width_px": {
+    "file": 226.2,
+    "corrected": 243.0
+   },
+   "crops": [
+    "outputs/1912/review/ring1/class3_crops/pair_33_8_u33_measure.jpg",
+    "outputs/1912/review/ring1/class3_crops/pair_33_8_u33_identity.jpg",
+    "outputs/1912/review/ring1/class3_crops/pair_33_8_u8_measure.jpg",
+    "outputs/1912/review/ring1/class3_crops/pair_33_8_u8_identity.jpg"
+   ]
+  },
+  {
+   "file": "pair_37_40.json",
+   "corridor": "18th St",
+   "axis": "street",
+   "current": {
+    "a_native": 3669,
+    "b_native": 217
+   },
+   "readings": [
+    {
+     "plate": "37",
+     "reader": "A: automated ink-profile rule detector (native px, sub-px centroid; extent-centre window +-750 px along the corridor)",
+     "face1": 3558.5,
+     "face2": null,
+     "midpoint": 3680.0,
+     "name_read": "18TH ST. (numeral 41)",
+     "half_width_applied_px": 121.5
+    },
+    {
+     "plate": "37",
+     "reader": "B: visual read of the blind crop (ruler in jittered crop-local px, converted to native after reading; +-5 px)",
+     "face1": 3554,
+     "face2": null,
+     "midpoint": 3675.5,
+     "name_read": "18TH ST. / 41",
+     "half_width_applied_px": 121.5
+    },
+    {
+     "plate": "40",
+     "reader": "A: automated ink-profile rule detector (native px, sub-px centroid; extent-centre window +-750 px along the corridor)",
+     "face1": null,
+     "face2": 336.6,
+     "midpoint": 215.1,
+     "name_read": "18TH ST. (numeral 36)",
+     "half_width_applied_px": 121.5
+    },
+    {
+     "plate": "40",
+     "reader": "B: visual read of the blind crop (ruler in jittered crop-local px, converted to native after reading; +-5 px)",
+     "face1": null,
+     "face2": 337,
+     "midpoint": 215.5,
+     "name_read": "18TH ST. / 36",
+     "half_width_applied_px": 121.5
+    }
+   ],
+   "verdict": "correct a_native to 3680",
+   "evidence": "Same sheet-37 value as pair_37_41 (adopted from it): face 3558.5/3554 + 121.5 = 3680/3675.5 vs 3669. Sheet 40's south face 336.6/337 gives 215.1/215.5 vs 217 (confirmed). Pair as filed drafts 18th 230 px wide (13 px narrow). Diagonal pair (37 and 40 meet only at the Ave L / 18th corner); valid as an extent-centre y tie.",
+   "pair_width_px": {
+    "file": 230.4,
+    "corrected": 243.0
+   },
+   "crops": [
+    "outputs/1912/review/ring1/class3_crops/pair_37_40_u37_measure.jpg",
+    "outputs/1912/review/ring1/class3_crops/pair_37_40_u37_identity.jpg",
+    "outputs/1912/review/ring1/class3_crops/pair_37_40_u40_measure.jpg",
+    "outputs/1912/review/ring1/class3_crops/pair_37_40_u40_identity.jpg"
+   ]
+  }
+ ],
+ "localsolve_check": {
+  "how": "tools/localsolve.py run against a scratch copy of the recipe (controls dir copied, everything else symlinked; nothing under outputs/1912/recipe was modified) with the five corrections applied (40_41 -> 3216.5/159, 36_37 -> 3199/151, 37_41 -> 3680/213.5, 37_40 -> 3680/215, 33_8 -> 3671.5/212)",
+  "units_41_45_51_translation": {
+   "before": {
+    "median_ft": 2.4,
+    "max_ft": 11.7,
+    "pair_40_41": 7.0,
+    "pair_37_41": -3.4,
+    "pair_41_45_x": 5.2,
+    "pair_44_45": -3.7
+   },
+   "after": {
+    "median_ft": 2.3,
+    "max_ft": 11.8,
+    "pair_40_41": -0.9,
+    "pair_37_41": 1.1,
+    "pair_41_45_x": 3.1,
+    "pair_44_45": -2.9
+   }
+  },
+  "units_33_36_37_40_41_44_45_50_51_translation": {
+   "before": {
+    "median_ft": 2.4,
+    "pair_33_8": -4.9,
+    "pair_40_41": 4.0,
+    "pair_36_40_x": 4.0,
+    "pair_30_36_x": 3.7
+   },
+   "after": {
+    "median_ft": 2.0,
+    "pair_33_8": -0.6,
+    "pair_40_41": 1.3,
+    "pair_36_40_x": 1.3,
+    "pair_30_36_x": 0.1
+   }
+  },
+  "remaining": "pair_47_51 (-11.8 ft, no band overlap), pair_51_52 (-8.6), pair_32_37 (+8.5/+9.9), pair_50_55 (+5.3), and the 21st/24th/25th y set around 45 (+5 ft) are untouched by these readings; the y set is a plate-scale effect (40/44/50 at transform scale 2.0065-2.0074 vs 41/45/51 at 1.99-2.00): localsolve --similarity on 40 41 44 45 50 51 with the corrected controls reaches median 1.0 ft, max 3.2 ft (baseline 1.1 / 3.7)."
+ }
+}
