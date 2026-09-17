@@ -1,0 +1,541 @@
+{
+ "5a_5b": {
+  "seam": "5a_5b",
+  "score": 2,
+  "defects": [
+   "duplicate-label",
+   "furniture",
+   "rail-utility",
+   "tone"
+  ],
+  "reason": "Cut runs E-W through the Galveston Wharf Co's / Gulf Fishery Co. building on Pier 22: footprint matches but lettering ('GULF FISHERY CO. LESSEE', 'NIGHT WATCHMAN REPORTS...') stops at the cut with no continuation on 5b; strong tone step; plate 5a's scale bar sits on the cut left of the PIER 22 label; 6\" W. PIPE dashed run beside 22ND ST jogs ~8-12 ft (uncertain).",
+  "worst_crop": "seam_5a_5b_100.jpg",
+  "fix_hint": "Drop the cut 60-80 ft south so the whole Gulf Fishery building comes from 5a (or raise it above); steer the west end north of 5a's scale bar."
+ },
+ "5b_9": {
+  "seam": "5b_9",
+  "score": 3,
+  "defects": [
+   "duplicate-label",
+   "rail-utility",
+   "tone"
+  ],
+  "reason": "Cut along the west face of blocks 682/683 (23rd St): block edges and pipes continuous; two '22ND ST.' labels in the same roadway ~175 ft apart (5a strip and plate 9); two yard tracks from 5b end abruptly against block-682 sidewalk where plate 9's roadway is blank; where the cut jogs west plate 9's blank roadway sits inside the track field.",
+  "worst_crop": "seam_5b_9_100.jpg",
+  "fix_hint": "Keep the cut on plate 9's curb line of 682-683 (no jogs into the roadway); near 22nd St give plate 9's roadway ownership under 5a's second label or move the cut west of it."
+ },
+ "7_34": {
+  "seam": "7_34",
+  "score": 4,
+  "defects": [
+   "rail-utility",
+   "tone"
+  ],
+  "reason": "80 ft street between 617/557 and 618/558: faces align within 2-4 ft; the 10\" W. PIPE elbow at the 617/557 corner is missing for ~50 ft across the cut; a grey sliver ~20x25 ft at the four-plate junction.",
+  "worst_crop": "seam_7_34_100.jpg",
+  "fix_hint": "Move the cut ~30 ft off the pipe elbow so one plate draws the turn; clear the junction sliver."
+ },
+ "11_14": {
+  "seam": "11_14",
+  "score": 4,
+  "defects": [
+   "tone"
+  ],
+  "reason": "27TH ST between 626/566 and 627/567: faces align, alley pipes continuous, label intact; small darker sliver (~15x10 ft) at the four-plate junction.",
+  "worst_crop": "seam_11_14_100.jpg",
+  "fix_hint": "Optionally give the junction sliver to one plate."
+ },
+ "14_55": {
+  "seam": "14_55",
+  "score": 5,
+  "defects": [
+   "none"
+  ],
+  "reason": "Ave F (Church) between 447-449 and 387-389: block ends align within ~2 ft; pipe labelled 10\"/16\" is a source disagreement.",
+  "worst_crop": "seam_14_55_a_100.jpg",
+  "fix_hint": "None"
+ },
+ "35_39": {
+  "seam": "35_39",
+  "score": 4,
+  "defects": [
+   "tone"
+  ],
+  "reason": "18TH ST between 377/317/257 and 378/318/258: all edges and alley pipes continuous; faint lighter tone band in the roadway.",
+  "worst_crop": "seam_35_39_b_100.jpg",
+  "fix_hint": "None"
+ },
+ "37_40": {
+  "seam": "37_40",
+  "score": 4,
+  "defects": [
+   "tone"
+  ],
+  "reason": "80 ft street between 77/17 and 78/18: edges and pipes continuous; grey sliver ~20x26 ft at the four-plate junction.",
+  "worst_crop": "seam_37_40_100.jpg",
+  "fix_hint": "Give the junction sliver to one plate."
+ },
+ "41_45": {
+  "seam": "41_45",
+  "score": 4,
+  "defects": [
+   "tone",
+   "furniture"
+  ],
+  "reason": "21ST OR CENTER ST between 20/NW19/SW19 and 21/NE18/SE18: faces align, pipe continuous; a compass rose sits in the roadway at Avenue M 1/2 (crop b).",
+  "worst_crop": "seam_41_45_b_100.jpg",
+  "fix_hint": "Optional: shift the cut ~40 ft east of block 19 so the rose is outside the mosaic."
+ },
+ "49_56": {
+  "seam": "49_56",
+  "score": 3,
+  "defects": [
+   "duplicate-label",
+   "tone"
+  ],
+  "reason": "80 ft street between 266/206 and 267/207: edges and pipes continuous; at the four-plate junction a small roadway label is clipped ('E. ..', 'GI..') by a darker sliver.",
+  "worst_crop": "seam_49_56_100.jpg",
+  "fix_hint": "Move the junction so the small label is wholly on the plate that carries it; clear the sliver."
+ },
+ "51_57": {
+  "seam": "51_57",
+  "score": 4,
+  "defects": [
+   "tone"
+  ],
+  "reason": "27TH ST between 26/NW16/SW16 and 27/NE15/SE15: faces align, pipe continuous; faint tone band; small torn sliver at far right.",
+  "worst_crop": "seam_51_57_a_100.jpg",
+  "fix_hint": "None"
+ },
+ "5a_7": {
+  "seam": "5a_7",
+  "score": 1,
+  "defects": [
+   "split-building",
+   "rail-utility",
+   "step"
+  ],
+  "reason": "Cut runs diagonally through the Galveston Wharf Co. terminal yard west of blocks 738-740: the round COTTON (SEED) OIL tank north of the IR.CL. PUMP HO. is drawn on both plates (plate 7 full circle, plate 5a a second arc ~9 ft west) so it reads doubled; plate 7's five diagonal yard tracks start abruptly at the ragged cut ~10 ft from 5a's curved tracks; plate 7's 6\" W. PIPE run ends at the cut ~24 ft north of 5a's.",
+  "worst_crop": "seam_5a_7_b_100.jpg",
+  "fix_hint": "Move the cut so the tank, pump house and diagonal yard tracks come wholly from plate 7 (or wholly from 5a); re-register 7 to 5a on the 6\" pipe / 80 ft street crossing."
+ },
+ "5b_11": {
+  "seam": "5b_11",
+  "score": 4,
+  "defects": [
+   "tone",
+   "rail-utility"
+  ],
+  "reason": "Vertical cut between the wharf tracks (5b) and the Ave A block faces 2401-2627 (11): tracks and lettering single and continuous; 5b's 12\" W. PIPE in the 25th St extension dead-ends at the seam (plate 11 draws no pipe there: likely source omission); clear tone step.",
+  "worst_crop": "seam_5b_11_a_100.jpg",
+  "fix_hint": "Check plate 11 for a 12\" main; else accept as source."
+ },
+ "8_34": {
+  "seam": "8_34",
+  "score": 4,
+  "defects": [
+   "step"
+  ],
+  "reason": "18th St between 557/497/437 and 558/498/438: pipes cross without jog, labels single; block side lines match at the west end but drift to ~2.5-3 ft at the east end (slight relative rotation).",
+  "worst_crop": "seam_8_34_b_100.jpg",
+  "fix_hint": "Optional: rotate plate 34 ~0.2 deg."
+ },
+ "12_14": {
+  "seam": "12_14",
+  "score": 4,
+  "defects": [
+   "step"
+  ],
+  "reason": "27th St between 566/506/446 and 567/507/447: block side lines offset a consistent ~2-3 ft E-W and the west pipe shows the same kink; 12\" pipe passes cleanly; '14' numeral clipped over blank street (allowed).",
+  "worst_crop": "seam_12_14_a_100.jpg",
+  "fix_hint": "Shift plate 14 ~2-3 ft east."
+ },
+ "33_34": {
+  "seam": "33_34",
+  "score": 4,
+  "defects": [
+   "tone"
+  ],
+  "reason": "Ave C (Mechanic) between 615-617 and 555-557: frontages align within ~2 ft; pipes continue with <=2 ft kinks; tone step (33 grey, 34 white).",
+  "worst_crop": "seam_33_34_a_100.jpg",
+  "fix_hint": "None beyond tone policy."
+ },
+ "35_40": {
+  "seam": "35_40",
+  "score": 4,
+  "defects": [
+   "step"
+  ],
+  "reason": "18th St between 257/197 and 258/198: pipes continue with ~1.5 ft kinks; block 257/258 side lines offset ~3 ft E-W. A doubled 70' at the vertical join belongs to the 40/41 or 35/37 corner.",
+  "worst_crop": "seam_35_40_100.jpg",
+  "fix_hint": "Nudge plate 40 ~3 ft east."
+ },
+ "37_41": {
+  "seam": "37_41",
+  "score": 3,
+  "defects": [
+   "furniture",
+   "step"
+  ],
+  "reason": "18th St between 17/NE20/SE20 and 18/NW20/SW20: pipes cross cleanly; west end offset ~2.5-3 ft (slight rotation); in the roadway above 1405-1409 a fragment of a north-arrow flourish (~20 ft) sits on mapped street.",
+  "worst_crop": "seam_37_41_b_100.jpg",
+  "fix_hint": "Move the cut a few px at 1401-1411 so the compass fragment falls off the retained plate."
+ },
+ "44_45": {
+  "seam": "44_45",
+  "score": 4,
+  "defects": [
+   "step",
+   "tone"
+  ],
+  "reason": "Avenue L between 81-83 and 21-23: frontages consistently ~2.5 ft higher on the right plate and the 10\" pipe in 22nd St jogs ~4 ft; lettering single; mild tone step.",
+  "worst_crop": "seam_44_45_a_100.jpg",
+  "fix_hint": "Nudge plate 45 ~2.5 ft south."
+ },
+ "50_51": {
+  "seam": "50_51",
+  "score": 4,
+  "defects": [
+   "tone"
+  ],
+  "reason": "Avenue L between 84-86 and 24-26: frontages align within 1-3 px; block 84/24 south line differs ~3.5 ft but the 12\" pipe jogs only 2.5 ft (probably source); tone step.",
+  "worst_crop": "seam_50_51_a_100.jpg",
+  "fix_hint": "None."
+ },
+ "55_56": {
+  "seam": "55_56",
+  "score": 3,
+  "defects": [
+   "step",
+   "rail-utility",
+   "tone"
+  ],
+  "reason": "Ave I (Sealy) between 267-269 and 207-209: plates relatively rotated, frontages differ 3 ft at 267/207 and 4.5 ft at 268/208, 269/209; the 16\" pipe arrives at the cut ~5 ft higher on 55 than on 56.",
+  "worst_crop": "seam_55_56_b_100.jpg",
+  "fix_hint": "Re-register plate 56 with a small rotation."
+ },
+ "5a_9": {
+  "seam": "5a_9",
+  "score": 2,
+  "defects": [
+   "duplicate-label",
+   "rail-utility",
+   "furniture",
+   "step"
+  ],
+  "reason": "At the head of Pier 22 the wharf plate's '6\" W. PIPE' label is cut to '6\"W.PIP' at the seam; the city plate's 6\" pipe dash run reaches the cut ~110 px (~40 ft) north of the wharf plate's run; ~six rail tracks on the block-740/741 plate run SW into the cut and terminate against the slip water/quay edge drawn on the wharf plate (20-28 ft overlap); a compass rose sits inside the rail yard just east of the cut; where the lower plate takes over above '22ND' the N-S 6\" W. PIPE dash line steps ~44 px (~15 ft) east.",
+  "worst_crop": "seam_5a_9_100.jpg",
+  "fix_hint": "Route the cut along the quay line (keep slip and full pipe label on the wharf plate), give the track bundle and its pipe to one plate through the 22nd St approach, take the compass-rose area from the wharf plate."
+ },
+ "5b_13": {
+  "seam": "5b_13",
+  "score": 1,
+  "defects": [
+   "furniture",
+   "duplicate-label",
+   "ownership",
+   "gap"
+  ],
+  "reason": "Plate 13's west margin is inside the mosaic: bracket with plate number '13' over the west half of block 687 (lots 101-105) and a second over block 688 below 28th St; sheet numeral shows four times; '28TH ST.' lettered twice ~70 ft apart; rail-yard plate covers block 687's west face with blank paper and its lower edge clips 'AVE. A OR WATER' to 'AVE. A OR WA' and the top of block 748/Elevator B.",
+  "worst_crop": "seam_5b_13_100.jpg",
+  "fix_hint": "Move the vertical cut east to plate 13's inner margin so 5b supplies the west half of 28th St and lots 101-105; route east of plate 13's 28TH ST label; lower the horizontal cut so 5b no longer covers the AVE. A label and block 748."
+ },
+ "8_35": {
+  "seam": "8_35",
+  "score": 5,
+  "defects": [
+   "none"
+  ],
+  "reason": "80' avenue between blocks 437/377 and 438/378; alley pipes run straight through, faces parallel (<1 ft).",
+  "worst_crop": "seam_8_35_100.jpg",
+  "fix_hint": "None"
+ },
+ "12_55": {
+  "seam": "12_55",
+  "score": 5,
+  "defects": [
+   "none"
+  ],
+  "reason": "80' avenue between 446/386 (Seaboard Lumber) and 447/387; alley pipes unbroken, faces align (<1 ft).",
+  "worst_crop": "seam_12_55_100.jpg",
+  "fix_hint": "None"
+ },
+ "34_35": {
+  "seam": "34_35",
+  "score": 4,
+  "defects": [
+   "tone"
+  ],
+  "reason": "Ave F (Church) between 435-437 and 375-377; cross avenues meet within 1-2 px; west plate greyer.",
+  "worst_crop": "seam_34_35_a_100.jpg",
+  "fix_hint": "None; tone only"
+ },
+ "36_37": {
+  "seam": "36_37",
+  "score": 3,
+  "defects": [
+   "duplicate-label",
+   "tone"
+  ],
+  "reason": "Avenue L between 75-77 and 15-17: geometry <1 ft; west plate's own 'AVENUE L' lettering partly visible as a 'VEN' fragment at the cut beside the east plate's complete label; two '70'' width labels side by side at the top cross street.",
+  "worst_crop": "seam_36_37_a_100.jpg",
+  "fix_hint": "Shift the cut ~25-30 px east over the 1440-1520 band to cover the VEN fragment; jog at the top cross street to hide one 70'."
+ },
+ "40_41": {
+  "seam": "40_41",
+  "score": 4,
+  "defects": [
+   "duplicate-label",
+   "tone"
+  ],
+  "reason": "Avenue L between 78-80 and 18-20: geometry <1 ft; at top of crop a a '70' label from the west plate sits beside the east plate's '70'' (~17 ft apart).",
+  "worst_crop": "seam_40_41_a_100.jpg",
+  "fix_hint": "Jog the cut ~30 px east across the top cross street."
+ },
+ "45_51": {
+  "seam": "45_51",
+  "score": 4,
+  "defects": [
+   "tone"
+  ],
+  "reason": "24th St between 23/NE17/SE17 and 24/NW17/SW17: alley pipes cross unbroken, faces parallel; a lighter paper patch (~185x30 ft) in the roadway reads as tone.",
+  "worst_crop": "seam_45_51_b_100.jpg",
+  "fix_hint": "None; optionally move the cut 40 px so the patch is on one plate."
+ },
+ "50_56": {
+  "seam": "50_56",
+  "score": 2,
+  "defects": [
+   "duplicate-label",
+   "tone"
+  ],
+  "reason": "27th St between 206/146/86 and 207/147/87: pipes and faces align (<1 ft); east of the 1012/1014 alley the cut rises to the block-86 face line and clips the house numbers 1102-1112 (Baptist Church block south frontage) to half height.",
+  "worst_crop": "seam_50_56_b_100.jpg",
+  "fix_hint": "East of the 1012/1014 alley drop the cut 40-50 px (14-17 ft) into mid-27th so the 1102-1112 numerals stay whole on the north plate."
+ },
+ "56_57": {
+  "seam": "56_57",
+  "score": 5,
+  "defects": [
+   "none"
+  ],
+  "reason": "Avenue L between 87-89 and 27-29; faces meet within 1 px; 16\"/12\" pipe label difference is a source difference.",
+  "worst_crop": "seam_56_57_a_100.jpg",
+  "fix_hint": "None"
+ },
+ "5a_33": {
+  "seam": "5a_33",
+  "score": 4,
+  "defects": [
+   "tone",
+   "rail-utility",
+   "furniture"
+  ],
+  "reason": "N-S cut between the rail yard (5a) and blocks 736 (County Jail)/737 (Texas Oil): a ~115 ft blank strip of distinct tone; a heavy ruled line at its top stops dead at the cut (spur or 5a neat-line fragment); buildings continuous; Ave A blocks align within 2 ft.",
+  "worst_crop": "seam_5a_33_100.jpg",
+  "fix_hint": "Verify whether the strip lies outside 5a's neat line; if so pull 5a's mask back."
+ },
+ "7_33": {
+  "seam": "7_33",
+  "score": 2,
+  "defects": [
+   "step",
+   "rail-utility"
+  ],
+  "reason": "18th St: N-S block faces jog eastward on the lower plate, 677/678 west faces ~9 ft, 617/618 ~5 ft (partly the plates drawing the 70 ft street at different widths); twin-line spur along 737/738 west faces jogs ~10 ft at the cut; westernmost yard track terminates at the cut.",
+  "worst_crop": "seam_7_33_a_100.jpg",
+  "fix_hint": "Re-check plate 33 registration against 7 at 18th St (~5 ft east)."
+ },
+ "11_13": {
+  "seam": "11_13",
+  "score": 2,
+  "defects": [
+   "furniture",
+   "duplicate-label",
+   "split-building",
+   "ownership",
+   "tone"
+  ],
+  "reason": "27th St between 686/626 and 687/627: geometry fine (within 3 ft) but plate 13's margin is inside the map: dark-grey margin strip with border rule and a ~65 ft '13' numeral over the rail yard west of block 687; jagged mask edge covers the NW corner of block 687 (the K of KEMP BREWING CO. missing, west end of the 107-111 building cut); a second '13' in the roadway half hidden; a lone 'ST.' duplicates the full 27TH ST label.",
+  "worst_crop": "seam_11_13_100.jpg",
+  "fix_hint": "Pull the lower plate's mask inside its neat line; give the yard strip and NW corner of 687 to plate 11 or the yard plate; keep the cut on the 27th St centreline."
+ },
+ "13_14": {
+  "seam": "13_14",
+  "score": 5,
+  "defects": [
+   "none"
+  ],
+  "reason": "Ave C (Mechanic) between 627-629 and 567-569: faces align within ~1 ft; pipes continuous; one label; slight tone only.",
+  "worst_crop": "seam_13_14_a_100.jpg",
+  "fix_hint": "None"
+ },
+ "35_36": {
+  "seam": "35_36",
+  "score": 4,
+  "defects": [
+   "tone"
+  ],
+  "reason": "Ave I (Sealy) between 255-257 and 195-197: ragged torn-paper tone edge along the seam; faces within 2-4 ft; pipe continuous (12\"/10\" label difference is source).",
+  "worst_crop": "seam_35_36_a_100.jpg",
+  "fix_hint": "Tone only; optionally move the cut a few feet west onto the centreline."
+ },
+ "36_40": {
+  "seam": "36_40",
+  "score": 3,
+  "defects": [
+   "step",
+   "duplicate-label",
+   "tone"
+  ],
+  "reason": "18th St between 197/137/77 and 198/138/78: lower plate reads ~3.5-4.5 ft east at 137/138 and 77/78 faces; pipes carry across with <=1 ft kink; '70 70'' doubled at the east edge belongs to the adjoining vertical seam.",
+  "worst_crop": "seam_36_40_b_100.jpg",
+  "fix_hint": "Check plate 40 registration at 77/78 (~4 ft west); fix the doubled 70' on the vertical seam."
+ },
+ "41_44": {
+  "seam": "41_44",
+  "score": 2,
+  "defects": [
+   "duplicate-label",
+   "furniture",
+   "step",
+   "tone"
+  ],
+  "reason": "E-W street between 80/20 and 81/21: at the west end a street label sits on the cut with the top halves hidden; the head of a north arrow with S flourish visible beside it; lower plate reads 3-4.5 ft west at the 80/81 and 20/21 faces; two 80' width tags at the four-corner ~100 ft apart.",
+  "worst_crop": "seam_41_44_100.jpg",
+  "fix_hint": "Move the cut a few feet at the west end so the label and arrow are wholly on one plate; recheck plate 44 registration."
+ },
+ "49_55": {
+  "seam": "49_55",
+  "score": 4,
+  "defects": [
+   "furniture"
+  ],
+  "reason": "27th St between 386/326/266 and 387/327/267: faces within 3 ft, pipes carry across, single label; a small clipped arrow tip with S flourish under '27TH', upper part hidden by the cut.",
+  "worst_crop": "seam_49_55_a_100.jpg",
+  "fix_hint": "Optional nudge so the glyph is whole or gone."
+ },
+ "50_57": {
+  "seam": "50_57",
+  "score": 4,
+  "defects": [
+   "tone",
+   "furniture"
+  ],
+  "reason": "E-W street between 86/26 and 87/27: faces within 3 ft; pipes continuous; at the four-corner a clipped text fragment and two 80' tags ~85 ft apart.",
+  "worst_crop": "seam_50_57_100.jpg",
+  "fix_hint": "Tidy the four-corner vertical seam."
+ },
+ "8_33": {
+  "seam": "8_33",
+  "score": 3,
+  "defects": [
+   "rail-utility",
+   "duplicate-label",
+   "step",
+   "tone"
+  ],
+  "reason": "Four-plate corner between 617/557 and 618/558: 10\" W. PIPE along the avenue centreline jogs ~4.5 ft at the cut; bottom-left plate's 70' label clipped to a lone '0'' beside the bottom-right plate's 70'; west face of the 70' street steps ~4 ft between 617 and 618; avenue faces ~2.5 ft.",
+  "worst_crop": "seam_8_33_100.jpg",
+  "fix_hint": "Take the avenue centreline strip from the plate with block 617; push the vertical cut ~30 px east; ~10 px northward nudge of the 618-side plate."
+ },
+ "12_13": {
+  "seam": "12_13",
+  "score": 2,
+  "defects": [
+   "gap",
+   "furniture",
+   "tone"
+  ],
+  "reason": "Corner of 27TH ST and the 70' street between 626/566 and 627/567: dead centre of the intersection a rectangular mid-grey patch ~30x20 ft of off-paper scan background with a white sliver and a lettering fragment; block faces consistent (within ~5 px).",
+  "worst_crop": "seam_12_13_100.jpg",
+  "fix_hint": "Re-route the cut so the intersection pixels come from a plate whose paper extends across 27th St."
+ },
+ "14_49": {
+  "seam": "14_49",
+  "score": 2,
+  "defects": [
+   "duplicate-label",
+   "furniture",
+   "tone"
+  ],
+  "reason": "Corner between 446/386 and 447/387: two pink F.A. fire-alarm symbols in the same intersection ~35 ft apart, one on the cut with a clipped 'F.' fragment; faces step <=2.5 ft.",
+  "worst_crop": "seam_14_49_100.jpg",
+  "fix_hint": "Give the whole intersection to the plate carrying block 446 and move the cut ~60 px south/east."
+ },
+ "34_39": {
+  "seam": "34_39",
+  "score": 3,
+  "defects": [
+   "duplicate-label",
+   "step",
+   "tone"
+  ],
+  "reason": "Corner between 437/377 and 438/378: two complete 70' width labels side by side ~16 ft apart at the south of the intersection; east face of the 70' street steps ~3.5 ft between 377 and 378.",
+  "worst_crop": "seam_34_39_100.jpg",
+  "fix_hint": "Shift the vertical cut ~50 px east south of the avenue; ~8 px lateral nudge."
+ },
+ "36_39": {
+  "seam": "36_39",
+  "score": 3,
+  "defects": [
+   "duplicate-label",
+   "tone"
+  ],
+  "reason": "Corner between 257/197 and 258/198: left plate's 70 and right plate's 70' overlap on the cut into a garbled '70 0''; ragged tone step; faces within 1.5 ft.",
+  "worst_crop": "seam_36_39_100.jpg",
+  "fix_hint": "Move the vertical cut ~40 px in the block south of the avenue so the label is whole from one plate."
+ },
+ "36_41": {
+  "seam": "36_41",
+  "score": 2,
+  "defects": [
+   "furniture",
+   "gap",
+   "duplicate-label",
+   "step",
+   "tone"
+  ],
+  "reason": "Corner between 77/17 and 78/18: mid-grey off-paper rectangle ~19x26 ft in the intersection; 70' label doubled north and south (clipped '7(' beside a complete 70'); south face of the avenue steps ~5 ft across the vertical cut; west face of the 70' street steps ~5 ft between 77 and 78.",
+  "worst_crop": "seam_36_41_100.jpg",
+  "fix_hint": "Re-route the cut so the intersection is owned by a plate whose paper covers it; check the block-18/78 plate placement for a ~14 px N-S offset."
+ },
+ "45_50": {
+  "seam": "45_50",
+  "score": 3,
+  "defects": [
+   "duplicate-label",
+   "step",
+   "tone"
+  ],
+  "reason": "Corner between 83/23 and 84/24: clipped '70' beside a full 70' north of the avenue centreline; south face of the avenue steps ~3.5 ft across the cut; small white slivers and a stray mark fragment at the cut.",
+  "worst_crop": "seam_45_50_100.jpg",
+  "fix_hint": "Shift the vertical cut ~40 px east north of the avenue; nudge block-24 plate ~10 px north."
+ },
+ "50_55": {
+  "seam": "50_55",
+  "score": 2,
+  "defects": [
+   "gap",
+   "furniture",
+   "duplicate-label",
+   "tone"
+  ],
+  "reason": "Corner between 266/206 and 267/207: grey off-paper rectangle ~42x21 ft in the intersection centre with a white sliver and clipped label fragments; width labels double as 70'70'; west face steps ~3.5 ft between 266 and 267.",
+  "worst_crop": "seam_50_55_100.jpg",
+  "fix_hint": "Route the cut so the intersection is taken from a single plate whose paper covers it."
+ },
+ "51_56": {
+  "seam": "51_56",
+  "score": 2,
+  "defects": [
+   "gap",
+   "duplicate-label",
+   "furniture",
+   "tone"
+  ],
+  "reason": "Corner between 86/26 and 87/27: horizontal cut runs through the lot-number row 1104-1112 (upper halves only) along block 86's south face; white triangular gap ~9 ft of canvas at the intersection centre beside a grey off-paper patch with a '.G' fragment; faces step 2-3 ft.",
+  "worst_crop": "seam_51_56_100.jpg",
+  "fix_hint": "Drop the horizontal cut ~20 px south along block 86; extend one plate's ownership across the junction."
+ }
+}
