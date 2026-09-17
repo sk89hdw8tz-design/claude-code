@@ -63,7 +63,7 @@ def main():
         return
     regs = [reg for reg in own["regions"] if str(reg.get("unit", reg.get("sheet"))) not in touched]
     for u in sorted(touched):
-        g = U[u]
+        g = U[u].buffer(0)
         for piece in (g.geoms if g.geom_type != "Polygon" else [g]):
             if piece.is_empty or piece.area < 300:
                 continue
