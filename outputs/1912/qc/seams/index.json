@@ -36,52 +36,6 @@
     -7565,
     493
    ]
-  },
-  {
-   "pair": [
-    "5b",
-    "11"
-   ],
-   "axis": "x",
-   "coord": -9150.26,
-   "cut": "straight",
-   "how": "control",
-   "corridor": "wharf frontage: 60 native px inside sheet 11's bay-side neatline (straight cut)",
-   "kind": "band",
-   "overlap_px2": 19626912,
-   "span_px": 7290,
-   "lattice_disagreement_px": null,
-   "lattice_disagreement_ft": null,
-   "crops": [
-    {
-     "crop_100": "outputs/1912/qc/seams/seam_5b_11_a_100.jpg",
-     "crop_50": "outputs/1912/qc/seams/seam_5b_11_a_50.jpg",
-     "window": [
-      -10750,
-      3429,
-      -7550,
-      8429
-     ]
-    },
-    {
-     "crop_100": "outputs/1912/qc/seams/seam_5b_11_b_100.jpg",
-     "crop_50": "outputs/1912/qc/seams/seam_5b_11_b_50.jpg",
-     "window": [
-      -10750,
-      5722,
-      -7550,
-      10722
-     ]
-    }
-   ],
-   "crop_100": "outputs/1912/qc/seams/seam_5b_11_a_100.jpg",
-   "crop_50": "outputs/1912/qc/seams/seam_5b_11_a_50.jpg",
-   "window": [
-    -10750,
-    3429,
-    -7550,
-    8429
-   ]
   }
  ]
 }

@@ -26,11 +26,13 @@ Per plate:
     template matched only on its "0'" are picked up because the allowance
     extends LEAD_EXTRA px in the reading direction; box padded PAD px
   - gates: box centre within BAND px of the neatline and not more than
-    OUTSIDE_TOL px outside it; padded height 25-80 px; darkest row/column
-    ink fraction in [DARK_LO, DARK_HI] (true tags measure 0.36-0.7: the
-    glyphs are small, so the floor is low and the cap is what matters,
-    rejecting a rule swept into the box); no overlap with an existing
-    `furniture_native` box; ring-ink (ink fraction in a RING px ring
+    OUTSIDE_TOL px outside it; padded height 25-80 px, width >= W_MIN,
+    aspect <= ASPECT_MAX (a rail segment is narrow and tall); darkest
+    row/column ink fraction >= DARK_LO anywhere (true tags measure
+    0.36-0.7, the glyphs are small) and <= DARK_HI within BORDER px of
+    the box edge (a rule the fit swept in, but not a rail drawn through
+    the glyph); no filled blob (a "T.H." disc); no overlap with an
+    existing `furniture_native` box; ring-ink (ink fraction in a RING px ring
     around the padded box) <= RING_MAX so a lot number packed against
     its neighbours and block front does not survive as a "tag"; median
     saturation of the box's paper <= SAT_MAX (an italic "D." dwelling
@@ -108,7 +110,10 @@ ALLOW = 10           # px the fit may grow past the hit box on every side
 LEAD_EXTRA = 45      # extra allowance in the reading direction (leading digits)
 PAD = 6
 H_MIN, H_MAX = 25, 80
-W_MIN, W_MAX = 20, 120
+W_MIN, W_MAX = 28, 120   # padded; the narrowest true tag (digits-only "80") is 32
+ASPECT_MAX = 2.2         # padded box; true tags run 1.0-1.7, a rail segment 2.1-3.0
+BORDER = PAD + 4         # px from the padded box edge where a swept-in rule lands
+BLOB_AREA, BLOB_SIDE, BLOB_FILL = 150, 12, 0.6   # a filled "T.H." disc, not a glyph
 DARK_LO, DARK_HI = 0.30, 0.95
 RING = 12
 RING_MAX = 0.30
@@ -244,14 +249,38 @@ def ink_fit(gray, hit_box, orientation):
 
 
 def darkest_line_frac(gray, box, thr):
+    """(darkest row/column ink fraction anywhere in box, the same over the
+    rows/columns within BORDER px of the box edge). The floor gate reads
+    the first; the cap gate reads the second, so a rule the fit swept in
+    at the edge fails the box but a rail drawn through the glyph itself
+    (plate 13's yard tags) does not."""
     x0, y0, x1, y1 = box
     sub = gray[max(0, y0):y1, max(0, x0):x1]
     if sub.size == 0:
-        return 0.0
+        return 0.0, 0.0
     dark = sub < thr
     r = dark.sum(axis=1) / sub.shape[1]
     c = dark.sum(axis=0) / sub.shape[0]
-    return float(max(r.max(), c.max()))
+    b = max(r[:BORDER].max(), r[-BORDER:].max(), c[:BORDER].max(), c[-BORDER:].max())
+    return float(max(r.max(), c.max())), float(b)
+
+
+def solid_blob(gray, box, thr):
+    """True if box holds a filled component (a "T.H." disc, a black corner
+    mark): area >= BLOB_AREA, both bbox sides >= BLOB_SIDE, bbox fill >=
+    BLOB_FILL. A glyph ring or stroke fills < 0.5 of its bbox; a 3 px rail
+    is long but fails the side test."""
+    import cv2
+    x0, y0, x1, y1 = box
+    sub = gray[max(0, y0):y1, max(0, x0):x1]
+    if sub.size == 0:
+        return False
+    n, _, stats, _ = cv2.connectedComponentsWithStats((sub < thr).astype(np.uint8), 8)
+    for i in range(1, n):
+        _, _, bw, bh, area = stats[i]
+        if area >= BLOB_AREA and min(bw, bh) >= BLOB_SIDE and area / (bw * bh) >= BLOB_FILL:
+            return True
+    return False
 
 
 def ring_ink(gray, box, thr):
@@ -360,7 +389,7 @@ def main():
             w, h = box[2] - box[0], box[3] - box[1]
             cx, cy = (box[0] + box[2]) / 2, (box[1] + box[3]) / 2
             edge, nd = neatline_info(cx, cy, extent)
-            dl = darkest_line_frac(gray, box, thr)
+            dl, dlb = darkest_line_frac(gray, box, thr)
             ri = ring_ink(gray, box, thr)
             sx, sy = street_flags(box, lattice.get(u))
             sat = paper_saturation(color, box, thr)
@@ -371,10 +400,20 @@ def main():
                 reasons.append("height")
             if not (W_MIN <= w <= W_MAX):
                 reasons.append("width")
+            if max(w / h, h / w) > ASPECT_MAX:
+                reasons.append("aspect")
             if nd > BAND or nd < -OUTSIDE_TOL:
                 reasons.append("neatline")
-            if not (DARK_LO <= dl <= DARK_HI):
+            if dl < DARK_LO or dlb > DARK_HI:
                 reasons.append("darkest")
+            if solid_blob(gray, box, thr):
+                reasons.append("blob")
+            # recorded, not gated: a horizontal tag stands in a north-south
+            # roadway (x street interval), a rotated one in an east-west
+            # roadway (y). Off-lattice survivors are 20' alley tags (alleys
+            # are not in the lattice) or a lot number on a block front.
+            on_axis = sx if orient == "horizontal" else sy
+            warn = None if on_axis in (True, None) else "off-lattice: alley tag or lot number"
             if any(overlaps(box, f) for f in furn):
                 reasons.append("furniture")
             if ri > RING_MAX:
@@ -391,7 +430,7 @@ def main():
                 "text_guess": text, "scale": s,
                 "neatline_dist": round(nd, 1), "darkest_line_frac": round(dl, 3),
                 "ring_ink": round(ri, 3), "paper_sat": round(sat, 1),
-                "in_street_x": sx, "in_street_y": sy,
+                "in_street_x": sx, "in_street_y": sy, "warn": warn,
                 "hit_box": [int(v) for v in hbox],
             })
         # order along the plate edge for stable numbering
@@ -422,7 +461,7 @@ def main():
             small = cv2.resize(crop, (int(tw * f), int(th * f)), interpolation=cv2.INTER_AREA)
             tile[22:22 + small.shape[0], :small.shape[1]] = small
             label = (f"u{u}#{k} {c['edge']} {c['orientation'][0]} {c['template']} "
-                     f"s={c['score']:.2f} r={c['ring_ink']:.2f}")
+                     f"s={c['score']:.2f} r={c['ring_ink']:.2f}{' !lat' if c['warn'] else ''}")
             cv2.putText(tile, label, (3, 15), cv2.FONT_HERSHEY_SIMPLEX, 0.42, (0, 0, 0), 1)
             tiles.append(tile)
             print(f"KEEP u{u:3s} #{k:2d} {c['edge']:6s} {c['orientation']:10s} {c['template']:8s} "

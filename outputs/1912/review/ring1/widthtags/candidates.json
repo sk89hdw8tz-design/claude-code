@@ -89,6 +89,35 @@
  {
   "unit": "7",
   "box": [
+   3165,
+   469,
+   3205,
+   514
+  ],
+  "score": 0.555,
+  "edge": "right",
+  "orientation": "rotated",
+  "template": "80r_33h",
+  "text_guess": "80'",
+  "scale": 0.9,
+  "neatline_dist": 60.0,
+  "darkest_line_frac": 0.644,
+  "ring_ink": 0.042,
+  "paper_sat": 29.0,
+  "in_street_x": true,
+  "in_street_y": false,
+  "hit_box": [
+   3168,
+   485,
+   3193,
+   518
+  ],
+  "k": 4,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u7_4.jpg"
+ },
+ {
+  "unit": "7",
+  "box": [
    3025,
    1325,
    3061,
@@ -112,8 +141,37 @@
    3060,
    1365
   ],
-  "k": 4,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u7_4.jpg"
+  "k": 5,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u7_5.jpg"
+ },
+ {
+  "unit": "7",
+  "box": [
+   3045,
+   2431,
+   3099,
+   2474
+  ],
+  "score": 0.569,
+  "edge": "right",
+  "orientation": "rotated",
+  "template": "80r_33i",
+  "text_guess": "80'",
+  "scale": 0.9,
+  "neatline_dist": 173.0,
+  "darkest_line_frac": 0.741,
+  "ring_ink": 0.06,
+  "paper_sat": 21.0,
+  "in_street_x": true,
+  "in_street_y": true,
+  "hit_box": [
+   3060,
+   2433,
+   3086,
+   2472
+  ],
+  "k": 6,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u7_6.jpg"
  },
  {
   "unit": "7",
@@ -141,8 +199,8 @@
    3080,
    2703
   ],
-  "k": 5,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u7_5.jpg"
+  "k": 7,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u7_7.jpg"
  },
  {
   "unit": "7",
@@ -170,8 +228,8 @@
    3231,
    3523
   ],
-  "k": 6,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u7_6.jpg"
+  "k": 8,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u7_8.jpg"
  },
  {
   "unit": "7",
@@ -199,8 +257,37 @@
    293,
    3688
   ],
-  "k": 7,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u7_7.jpg"
+  "k": 9,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u7_9.jpg"
+ },
+ {
+  "unit": "7",
+  "box": [
+   1146,
+   3779,
+   1178,
+   3832
+  ],
+  "score": 0.568,
+  "edge": "bottom",
+  "orientation": "horizontal",
+  "template": "70h_13",
+  "text_guess": "70'",
+  "scale": 0.9,
+  "neatline_dist": 16.5,
+  "darkest_line_frac": 0.906,
+  "ring_ink": 0.117,
+  "paper_sat": 30.0,
+  "in_street_x": true,
+  "in_street_y": true,
+  "hit_box": [
+   1150,
+   3795,
+   1177,
+   3824
+  ],
+  "k": 10,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u7_10.jpg"
  },
  {
   "unit": "7",
@@ -228,8 +315,8 @@
    3069,
    3688
   ],
-  "k": 8,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u7_8.jpg"
+  "k": 11,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u7_11.jpg"
  },
  {
   "unit": "7",
@@ -257,8 +344,8 @@
    345,
    1381
   ],
-  "k": 9,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u7_9.jpg"
+  "k": 12,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u7_12.jpg"
  },
  {
   "unit": "7",
@@ -286,8 +373,37 @@
    331,
    2532
   ],
-  "k": 10,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u7_10.jpg"
+  "k": 13,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u7_13.jpg"
+ },
+ {
+  "unit": "8",
+  "box": [
+   306,
+   198,
+   339,
+   243
+  ],
+  "score": 0.568,
+  "edge": "top",
+  "orientation": "rotated",
+  "template": "80r_33i",
+  "text_guess": "80'",
+  "scale": 1.0,
+  "neatline_dist": 117.5,
+  "darkest_line_frac": 0.515,
+  "ring_ink": 0.01,
+  "paper_sat": 25.0,
+  "in_street_x": false,
+  "in_street_y": true,
+  "hit_box": [
+   309,
+   199,
+   338,
+   242
+  ],
+  "k": 1,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u8_1.jpg"
  },
  {
   "unit": "8",
@@ -315,8 +431,8 @@
    2227,
    374
   ],
-  "k": 1,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u8_1.jpg"
+  "k": 2,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u8_2.jpg"
  },
  {
   "unit": "8",
@@ -344,8 +460,95 @@
    2725,
    364
   ],
-  "k": 2,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u8_2.jpg"
+  "k": 3,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u8_3.jpg"
+ },
+ {
+  "unit": "8",
+  "box": [
+   3035,
+   187,
+   3069,
+   234
+  ],
+  "score": 0.576,
+  "edge": "top",
+  "orientation": "rotated",
+  "template": "80r_33i",
+  "text_guess": "80'",
+  "scale": 1.0,
+  "neatline_dist": 107.5,
+  "darkest_line_frac": 0.441,
+  "ring_ink": 0.005,
+  "paper_sat": 28.0,
+  "in_street_x": false,
+  "in_street_y": true,
+  "hit_box": [
+   3038,
+   189,
+   3067,
+   232
+  ],
+  "k": 4,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u8_4.jpg"
+ },
+ {
+  "unit": "8",
+  "box": [
+   3165,
+   358,
+   3203,
+   390
+  ],
+  "score": 0.575,
+  "edge": "right",
+  "orientation": "horizontal",
+  "template": "70h_33m",
+  "text_guess": "70'",
+  "scale": 1.1,
+  "neatline_dist": 60.0,
+  "darkest_line_frac": 0.526,
+  "ring_ink": 0.008,
+  "paper_sat": 27.0,
+  "in_street_x": true,
+  "in_street_y": false,
+  "hit_box": [
+   3163,
+   346,
+   3210,
+   389
+  ],
+  "k": 5,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u8_5.jpg"
+ },
+ {
+  "unit": "8",
+  "box": [
+   3036,
+   1001,
+   3067,
+   1039
+  ],
+  "score": 0.587,
+  "edge": "right",
+  "orientation": "horizontal",
+  "template": "70h_13",
+  "text_guess": "70'",
+  "scale": 0.9,
+  "neatline_dist": 192.5,
+  "darkest_line_frac": 0.816,
+  "ring_ink": 0.06,
+  "paper_sat": 40.0,
+  "in_street_x": false,
+  "in_street_y": false,
+  "hit_box": [
+   3037,
+   1011,
+   3064,
+   1040
+  ],
+  "k": 6,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u8_6.jpg"
  },
  {
   "unit": "8",
@@ -373,8 +576,8 @@
    3081,
    1386
   ],
-  "k": 3,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u8_3.jpg"
+  "k": 7,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u8_7.jpg"
  },
  {
   "unit": "8",
@@ -402,8 +605,8 @@
    3092,
    2536
   ],
-  "k": 4,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u8_4.jpg"
+  "k": 8,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u8_8.jpg"
  },
  {
   "unit": "8",
@@ -431,8 +634,8 @@
    3214,
    3537
   ],
-  "k": 5,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u8_5.jpg"
+  "k": 9,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u8_9.jpg"
  },
  {
   "unit": "8",
@@ -460,8 +663,8 @@
    338,
    3720
   ],
-  "k": 6,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u8_6.jpg"
+  "k": 10,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u8_10.jpg"
  },
  {
   "unit": "8",
@@ -489,8 +692,8 @@
    1219,
    3540
   ],
-  "k": 7,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u8_7.jpg"
+  "k": 11,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u8_11.jpg"
  },
  {
   "unit": "8",
@@ -518,8 +721,8 @@
    2215,
    3573
   ],
-  "k": 8,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u8_8.jpg"
+  "k": 12,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u8_12.jpg"
  },
  {
   "unit": "8",
@@ -547,8 +750,8 @@
    3059,
    3694
   ],
-  "k": 9,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u8_9.jpg"
+  "k": 13,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u8_13.jpg"
  },
  {
   "unit": "8",
@@ -576,8 +779,8 @@
    221,
    399
   ],
-  "k": 10,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u8_10.jpg"
+  "k": 14,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u8_14.jpg"
  },
  {
   "unit": "8",
@@ -605,8 +808,8 @@
    336,
    1398
   ],
-  "k": 11,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u8_11.jpg"
+  "k": 15,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u8_15.jpg"
  },
  {
   "unit": "8",
@@ -634,8 +837,37 @@
    196,
    3549
   ],
-  "k": 12,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u8_12.jpg"
+  "k": 16,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u8_16.jpg"
+ },
+ {
+  "unit": "9",
+  "box": [
+   473,
+   316,
+   497,
+   343
+  ],
+  "score": 0.563,
+  "edge": "top",
+  "orientation": "horizontal",
+  "template": "70h_33m",
+  "text_guess": "70'",
+  "scale": 0.9,
+  "neatline_dist": 230.5,
+  "darkest_line_frac": 0.5,
+  "ring_ink": 0.0,
+  "paper_sat": 19.0,
+  "in_street_x": false,
+  "in_street_y": true,
+  "hit_box": [
+   473,
+   307,
+   512,
+   342
+  ],
+  "k": 1,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u9_1.jpg"
  },
  {
   "unit": "9",
@@ -663,8 +895,37 @@
    740,
    242
   ],
-  "k": 1,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u9_1.jpg"
+  "k": 2,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u9_2.jpg"
+ },
+ {
+  "unit": "9",
+  "box": [
+   1668,
+   307,
+   1710,
+   374
+  ],
+  "score": 0.564,
+  "edge": "top",
+  "orientation": "horizontal",
+  "template": "80h_33k",
+  "text_guess": "80'",
+  "scale": 0.9,
+  "neatline_dist": 241.5,
+  "darkest_line_frac": 0.687,
+  "ring_ink": 0.141,
+  "paper_sat": 19.0,
+  "in_street_x": false,
+  "in_street_y": true,
+  "hit_box": [
+   1667,
+   320,
+   1710,
+   358
+  ],
+  "k": 3,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u9_3.jpg"
  },
  {
   "unit": "9",
@@ -692,8 +953,8 @@
    2234,
    365
   ],
-  "k": 2,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u9_2.jpg"
+  "k": 4,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u9_4.jpg"
  },
  {
   "unit": "9",
@@ -721,8 +982,37 @@
    2742,
    360
   ],
-  "k": 3,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u9_3.jpg"
+  "k": 5,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u9_5.jpg"
+ },
+ {
+  "unit": "9",
+  "box": [
+   2739,
+   118,
+   2799,
+   154
+  ],
+  "score": 0.554,
+  "edge": "top",
+  "orientation": "horizontal",
+  "template": "70h_7e",
+  "text_guess": "70'",
+  "scale": 0.9,
+  "neatline_dist": 37.0,
+  "darkest_line_frac": 0.639,
+  "ring_ink": 0.0,
+  "paper_sat": 29.0,
+  "in_street_x": false,
+  "in_street_y": true,
+  "hit_box": [
+   2741,
+   116,
+   2783,
+   153
+  ],
+  "k": 6,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u9_6.jpg"
  },
  {
   "unit": "9",
@@ -750,8 +1040,8 @@
    3114,
    237
   ],
-  "k": 4,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u9_4.jpg"
+  "k": 7,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u9_7.jpg"
  },
  {
   "unit": "9",
@@ -779,8 +1069,8 @@
    3237,
    362
   ],
-  "k": 5,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u9_5.jpg"
+  "k": 8,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u9_8.jpg"
  },
  {
   "unit": "9",
@@ -808,8 +1098,8 @@
    3115,
    1388
   ],
-  "k": 6,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u9_6.jpg"
+  "k": 9,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u9_9.jpg"
  },
  {
   "unit": "9",
@@ -837,8 +1127,8 @@
    3123,
    2577
   ],
-  "k": 7,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u9_7.jpg"
+  "k": 10,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u9_10.jpg"
  },
  {
   "unit": "9",
@@ -866,8 +1156,37 @@
    3234,
    3557
   ],
-  "k": 8,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u9_8.jpg"
+  "k": 11,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u9_11.jpg"
+ },
+ {
+  "unit": "9",
+  "box": [
+   489,
+   3766,
+   512,
+   3832
+  ],
+  "score": 0.561,
+  "edge": "bottom",
+  "orientation": "horizontal",
+  "template": "70h_13",
+  "text_guess": "70'",
+  "scale": 1.1,
+  "neatline_dist": -4.0,
+  "darkest_line_frac": 0.894,
+  "ring_ink": 0.134,
+  "paper_sat": 30.0,
+  "in_street_x": false,
+  "in_street_y": true,
+  "hit_box": [
+   484,
+   3782,
+   517,
+   3817
+  ],
+  "k": 12,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u9_12.jpg"
  },
  {
   "unit": "9",
@@ -895,8 +1214,8 @@
    2237,
    3562
   ],
-  "k": 9,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u9_9.jpg"
+  "k": 13,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u9_13.jpg"
  },
  {
   "unit": "9",
@@ -924,8 +1243,8 @@
    3116,
    3708
   ],
-  "k": 10,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u9_10.jpg"
+  "k": 14,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u9_14.jpg"
  },
  {
   "unit": "10",
@@ -988,6 +1307,35 @@
  {
   "unit": "10",
   "box": [
+   1714,
+   343,
+   1747,
+   385
+  ],
+  "score": 0.574,
+  "edge": "top",
+  "orientation": "horizontal",
+  "template": "70h_45a",
+  "text_guess": "70'",
+  "scale": 0.9,
+  "neatline_dist": 255.0,
+  "darkest_line_frac": 0.667,
+  "ring_ink": 0.051,
+  "paper_sat": 18.0,
+  "in_street_x": false,
+  "in_street_y": false,
+  "hit_box": [
+   1714,
+   351,
+   1752,
+   382
+  ],
+  "k": 3,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u10_3.jpg"
+ },
+ {
+  "unit": "10",
+  "box": [
    2200,
    337,
    2237,
@@ -1011,8 +1359,8 @@
    2242,
    367
   ],
-  "k": 3,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u10_3.jpg"
+  "k": 4,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u10_4.jpg"
  },
  {
   "unit": "10",
@@ -1040,8 +1388,8 @@
    3110,
    235
   ],
-  "k": 4,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u10_4.jpg"
+  "k": 5,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u10_5.jpg"
  },
  {
   "unit": "10",
@@ -1069,8 +1417,37 @@
    3240,
    390
   ],
-  "k": 5,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u10_5.jpg"
+  "k": 6,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u10_6.jpg"
+ },
+ {
+  "unit": "10",
+  "box": [
+   2946,
+   1268,
+   3014,
+   1301
+  ],
+  "score": 0.551,
+  "edge": "right",
+  "orientation": "horizontal",
+  "template": "70h_45a",
+  "text_guess": "70'",
+  "scale": 0.9,
+  "neatline_dist": 263.0,
+  "darkest_line_frac": 0.676,
+  "ring_ink": 0.116,
+  "paper_sat": 22.0,
+  "in_street_x": false,
+  "in_street_y": true,
+  "hit_box": [
+   2963,
+   1269,
+   3001,
+   1300
+  ],
+  "k": 7,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u10_7.jpg"
  },
  {
   "unit": "10",
@@ -1098,8 +1475,8 @@
    3108,
    1402
   ],
-  "k": 6,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u10_6.jpg"
+  "k": 8,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u10_8.jpg"
  },
  {
   "unit": "10",
@@ -1127,8 +1504,8 @@
    3106,
    2552
   ],
-  "k": 7,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u10_7.jpg"
+  "k": 9,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u10_9.jpg"
  },
  {
   "unit": "10",
@@ -1156,8 +1533,37 @@
    3210,
    3535
   ],
-  "k": 8,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u10_8.jpg"
+  "k": 10,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u10_10.jpg"
+ },
+ {
+  "unit": "10",
+  "box": [
+   315,
+   3673,
+   345,
+   3717
+  ],
+  "score": 0.557,
+  "edge": "bottom",
+  "orientation": "rotated",
+  "template": "80r_33i",
+  "text_guess": "80'",
+  "scale": 0.9,
+  "neatline_dist": 103.0,
+  "darkest_line_frac": 0.4,
+  "ring_ink": 0.011,
+  "paper_sat": 25.0,
+  "in_street_x": false,
+  "in_street_y": true,
+  "hit_box": [
+   319,
+   3675,
+   345,
+   3714
+  ],
+  "k": 11,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u10_11.jpg"
  },
  {
   "unit": "10",
@@ -1185,8 +1591,124 @@
    732,
    3566
   ],
-  "k": 9,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u10_9.jpg"
+  "k": 12,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u10_12.jpg"
+ },
+ {
+  "unit": "10",
+  "box": [
+   723,
+   3587,
+   773,
+   3621
+  ],
+  "score": 0.551,
+  "edge": "bottom",
+  "orientation": "rotated",
+  "template": "80r_45a",
+  "text_guess": "80'",
+  "scale": 0.9,
+  "neatline_dist": 194.0,
+  "darkest_line_frac": 0.647,
+  "ring_ink": 0.062,
+  "paper_sat": 24.0,
+  "in_street_x": false,
+  "in_street_y": true,
+  "hit_box": [
+   710,
+   3582,
+   757,
+   3629
+  ],
+  "k": 13,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u10_13.jpg"
+ },
+ {
+  "unit": "10",
+  "box": [
+   1190,
+   3537,
+   1228,
+   3567
+  ],
+  "score": 0.57,
+  "edge": "bottom",
+  "orientation": "horizontal",
+  "template": "70h_45a",
+  "text_guess": "70'",
+  "scale": 0.9,
+  "neatline_dist": 246.0,
+  "darkest_line_frac": 0.632,
+  "ring_ink": 0.013,
+  "paper_sat": 21.0,
+  "in_street_x": true,
+  "in_street_y": true,
+  "hit_box": [
+   1192,
+   3535,
+   1230,
+   3566
+  ],
+  "k": 14,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u10_14.jpg"
+ },
+ {
+  "unit": "10",
+  "box": [
+   2188,
+   3530,
+   2225,
+   3562
+  ],
+  "score": 0.575,
+  "edge": "bottom",
+  "orientation": "horizontal",
+  "template": "70h_33m",
+  "text_guess": "70'",
+  "scale": 1.1,
+  "neatline_dist": 252.0,
+  "darkest_line_frac": 0.568,
+  "ring_ink": 0.006,
+  "paper_sat": 23.0,
+  "in_street_x": true,
+  "in_street_y": false,
+  "hit_box": [
+   2185,
+   3518,
+   2232,
+   3561
+  ],
+  "k": 15,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u10_15.jpg"
+ },
+ {
+  "unit": "10",
+  "box": [
+   2735,
+   3597,
+   2785,
+   3638
+  ],
+  "score": 0.551,
+  "edge": "bottom",
+  "orientation": "rotated",
+  "template": "80r_45a",
+  "text_guess": "80'",
+  "scale": 0.9,
+  "neatline_dist": 180.5,
+  "darkest_line_frac": 0.72,
+  "ring_ink": 0.037,
+  "paper_sat": 20.0,
+  "in_street_x": false,
+  "in_street_y": true,
+  "hit_box": [
+   2722,
+   3592,
+   2769,
+   3639
+  ],
+  "k": 16,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u10_16.jpg"
  },
  {
   "unit": "10",
@@ -1214,8 +1736,8 @@
    3091,
    3720
   ],
-  "k": 10,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u10_10.jpg"
+  "k": 17,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u10_17.jpg"
  },
  {
   "unit": "10",
@@ -1243,8 +1765,37 @@
    248,
    360
   ],
-  "k": 11,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u10_11.jpg"
+  "k": 18,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u10_18.jpg"
+ },
+ {
+  "unit": "10",
+  "box": [
+   302,
+   1342,
+   354,
+   1388
+  ],
+  "score": 0.576,
+  "edge": "left",
+  "orientation": "rotated",
+  "template": "80r_33i",
+  "text_guess": "80'",
+  "scale": 0.9,
+  "neatline_dist": 213.0,
+  "darkest_line_frac": 0.788,
+  "ring_ink": 0.041,
+  "paper_sat": 23.0,
+  "in_street_x": true,
+  "in_street_y": true,
+  "hit_box": [
+   312,
+   1347,
+   338,
+   1386
+  ],
+  "k": 19,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u10_19.jpg"
  },
  {
   "unit": "10",
@@ -1272,8 +1823,8 @@
    359,
    2550
   ],
-  "k": 12,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u10_12.jpg"
+  "k": 20,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u10_20.jpg"
  },
  {
   "unit": "10",
@@ -1301,8 +1852,37 @@
    219,
    3545
   ],
-  "k": 13,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u10_13.jpg"
+  "k": 21,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u10_21.jpg"
+ },
+ {
+  "unit": "11",
+  "box": [
+   824,
+   167,
+   857,
+   201
+  ],
+  "score": 0.564,
+  "edge": "top",
+  "orientation": "rotated",
+  "template": "80r_7f",
+  "text_guess": "80'",
+  "scale": 1.1,
+  "neatline_dist": 95.0,
+  "darkest_line_frac": 0.364,
+  "ring_ink": 0.026,
+  "paper_sat": 27.0,
+  "in_street_x": false,
+  "in_street_y": true,
+  "hit_box": [
+   817,
+   157,
+   859,
+   209
+  ],
+  "k": 1,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u11_1.jpg"
  },
  {
   "unit": "11",
@@ -1330,8 +1910,8 @@
    2185,
    318
   ],
-  "k": 1,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u11_1.jpg"
+  "k": 2,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u11_2.jpg"
  },
  {
   "unit": "11",
@@ -1359,8 +1939,8 @@
    3056,
    211
   ],
-  "k": 2,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u11_2.jpg"
+  "k": 3,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u11_3.jpg"
  },
  {
   "unit": "11",
@@ -1388,8 +1968,8 @@
    3166,
    317
   ],
-  "k": 3,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u11_3.jpg"
+  "k": 4,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u11_4.jpg"
  },
  {
   "unit": "11",
@@ -1417,8 +1997,8 @@
    3207,
    3640
   ],
-  "k": 4,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u11_4.jpg"
+  "k": 5,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u11_5.jpg"
  },
  {
   "unit": "11",
@@ -1446,8 +2026,37 @@
    2649,
    3641
   ],
-  "k": 5,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u11_5.jpg"
+  "k": 6,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u11_6.jpg"
+ },
+ {
+  "unit": "11",
+  "box": [
+   3043,
+   3713,
+   3077,
+   3759
+  ],
+  "score": 0.559,
+  "edge": "bottom",
+  "orientation": "rotated",
+  "template": "80r_33i",
+  "text_guess": "80'",
+  "scale": 1.0,
+  "neatline_dist": 91.0,
+  "darkest_line_frac": 0.353,
+  "ring_ink": 0.016,
+  "paper_sat": 29.0,
+  "in_street_x": false,
+  "in_street_y": true,
+  "hit_box": [
+   3046,
+   3714,
+   3075,
+   3757
+  ],
+  "k": 7,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u11_7.jpg"
  },
  {
   "unit": "12",
@@ -1597,6 +2206,35 @@
  {
   "unit": "12",
   "box": [
+   3077,
+   1355,
+   3110,
+   1394
+  ],
+  "score": 0.566,
+  "edge": "right",
+  "orientation": "rotated",
+  "template": "80r_7f",
+  "text_guess": "80'",
+  "scale": 0.9,
+  "neatline_dist": 148.5,
+  "darkest_line_frac": 0.697,
+  "ring_ink": 0.039,
+  "paper_sat": 22.0,
+  "in_street_x": true,
+  "in_street_y": true,
+  "hit_box": [
+   3075,
+   1349,
+   3109,
+   1391
+  ],
+  "k": 6,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u12_6.jpg"
+ },
+ {
+  "unit": "12",
+  "box": [
    3066,
    2576,
    3100,
@@ -1620,8 +2258,8 @@
    3102,
    2625
   ],
-  "k": 6,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u12_6.jpg"
+  "k": 7,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u12_7.jpg"
  },
  {
   "unit": "12",
@@ -1649,8 +2287,8 @@
    332,
    3761
   ],
-  "k": 7,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u12_7.jpg"
+  "k": 8,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u12_8.jpg"
  },
  {
   "unit": "12",
@@ -1678,8 +2316,8 @@
    1223,
    3629
   ],
-  "k": 8,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u12_8.jpg"
+  "k": 9,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u12_9.jpg"
  },
  {
   "unit": "12",
@@ -1707,8 +2345,8 @@
    2231,
    3619
   ],
-  "k": 9,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u12_9.jpg"
+  "k": 10,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u12_10.jpg"
  },
  {
   "unit": "12",
@@ -1736,8 +2374,8 @@
    3098,
    3760
   ],
-  "k": 10,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u12_10.jpg"
+  "k": 11,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u12_11.jpg"
  },
  {
   "unit": "12",
@@ -1765,8 +2403,8 @@
    214,
    319
   ],
-  "k": 11,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u12_11.jpg"
+  "k": 12,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u12_12.jpg"
  },
  {
   "unit": "12",
@@ -1794,8 +2432,37 @@
    212,
    3631
   ],
-  "k": 12,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u12_12.jpg"
+  "k": 13,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u12_13.jpg"
+ },
+ {
+  "unit": "39",
+  "box": [
+   646,
+   349,
+   688,
+   417
+  ],
+  "score": 0.566,
+  "edge": "top",
+  "orientation": "horizontal",
+  "template": "70h_45a",
+  "text_guess": "70'",
+  "scale": 1.1,
+  "neatline_dist": 264.0,
+  "darkest_line_frac": 0.662,
+  "ring_ink": 0.161,
+  "paper_sat": 23.0,
+  "in_street_x": false,
+  "in_street_y": true,
+  "hit_box": [
+   650,
+   364,
+   696,
+   401
+  ],
+  "k": 1,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u39_1.jpg"
  },
  {
   "unit": "39",
@@ -1823,8 +2490,37 @@
    1188,
    381
   ],
-  "k": 1,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u39_1.jpg"
+  "k": 2,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u39_2.jpg"
+ },
+ {
+  "unit": "39",
+  "box": [
+   1267,
+   327,
+   1313,
+   362
+  ],
+  "score": 0.578,
+  "edge": "top",
+  "orientation": "horizontal",
+  "template": "70h_45b",
+  "text_guess": "70'",
+  "scale": 0.9,
+  "neatline_dist": 225.5,
+  "darkest_line_frac": 0.87,
+  "ring_ink": 0.032,
+  "paper_sat": 22.0,
+  "in_street_x": true,
+  "in_street_y": true,
+  "hit_box": [
+   1272,
+   321,
+   1311,
+   353
+  ],
+  "k": 3,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u39_3.jpg"
  },
  {
   "unit": "39",
@@ -1852,8 +2548,8 @@
    2195,
    386
   ],
-  "k": 2,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u39_2.jpg"
+  "k": 4,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u39_4.jpg"
  },
  {
   "unit": "39",
@@ -1881,8 +2577,8 @@
    2706,
    388
   ],
-  "k": 3,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u39_3.jpg"
+  "k": 5,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u39_5.jpg"
  },
  {
   "unit": "39",
@@ -1910,8 +2606,8 @@
    3063,
    261
   ],
-  "k": 4,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u39_4.jpg"
+  "k": 6,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u39_6.jpg"
  },
  {
   "unit": "39",
@@ -1939,8 +2635,8 @@
    3190,
    392
   ],
-  "k": 5,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u39_5.jpg"
+  "k": 7,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u39_7.jpg"
  },
  {
   "unit": "39",
@@ -1968,8 +2664,8 @@
    3059,
    1407
   ],
-  "k": 6,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u39_6.jpg"
+  "k": 8,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u39_8.jpg"
  },
  {
   "unit": "39",
@@ -1997,8 +2693,8 @@
    3054,
    2549
   ],
-  "k": 7,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u39_7.jpg"
+  "k": 9,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u39_9.jpg"
  },
  {
   "unit": "39",
@@ -2026,8 +2722,8 @@
    3174,
    3538
   ],
-  "k": 8,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u39_8.jpg"
+  "k": 10,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u39_10.jpg"
  },
  {
   "unit": "39",
@@ -2055,8 +2751,8 @@
    315,
    3721
   ],
-  "k": 9,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u39_9.jpg"
+  "k": 11,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u39_11.jpg"
  },
  {
   "unit": "39",
@@ -2084,8 +2780,8 @@
    1191,
    3560
   ],
-  "k": 10,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u39_10.jpg"
+  "k": 12,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u39_12.jpg"
  },
  {
   "unit": "39",
@@ -2113,8 +2809,8 @@
    2699,
    3551
   ],
-  "k": 11,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u39_11.jpg"
+  "k": 13,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u39_13.jpg"
  },
  {
   "unit": "39",
@@ -2142,8 +2838,8 @@
    3039,
    3709
   ],
-  "k": 12,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u39_12.jpg"
+  "k": 14,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u39_14.jpg"
  },
  {
   "unit": "39",
@@ -2171,8 +2867,8 @@
    207,
    392
   ],
-  "k": 13,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u39_13.jpg"
+  "k": 15,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u39_15.jpg"
  },
  {
   "unit": "39",
@@ -2200,8 +2896,8 @@
    312,
    1418
   ],
-  "k": 14,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u39_14.jpg"
+  "k": 16,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u39_16.jpg"
  },
  {
   "unit": "39",
@@ -2229,8 +2925,8 @@
    316,
    1502
   ],
-  "k": 15,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u39_15.jpg"
+  "k": 17,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u39_17.jpg"
  },
  {
   "unit": "39",
@@ -2258,8 +2954,8 @@
    307,
    2563
   ],
-  "k": 16,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u39_16.jpg"
+  "k": 18,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u39_18.jpg"
  },
  {
   "unit": "39",
@@ -2287,8 +2983,8 @@
    181,
    3568
   ],
-  "k": 17,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u39_17.jpg"
+  "k": 19,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u39_19.jpg"
  },
  {
   "unit": "40",
@@ -2322,6 +3018,64 @@
  {
   "unit": "40",
   "box": [
+   1136,
+   344,
+   1181,
+   376
+  ],
+  "score": 0.573,
+  "edge": "top",
+  "orientation": "horizontal",
+  "template": "150h_56",
+  "text_guess": "150'",
+  "scale": 0.9,
+  "neatline_dist": 254.0,
+  "darkest_line_frac": 0.489,
+  "ring_ink": 0.01,
+  "paper_sat": 24.0,
+  "in_street_x": true,
+  "in_street_y": false,
+  "hit_box": [
+   1139,
+   346,
+   1187,
+   372
+  ],
+  "k": 2,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u40_2.jpg"
+ },
+ {
+  "unit": "40",
+  "box": [
+   1684,
+   324,
+   1730,
+   389
+  ],
+  "score": 0.577,
+  "edge": "top",
+  "orientation": "horizontal",
+  "template": "70h_7e",
+  "text_guess": "70'",
+  "scale": 0.9,
+  "neatline_dist": 250.5,
+  "darkest_line_frac": 0.708,
+  "ring_ink": 0.175,
+  "paper_sat": 20.0,
+  "in_street_x": false,
+  "in_street_y": true,
+  "hit_box": [
+   1696,
+   336,
+   1738,
+   373
+  ],
+  "k": 3,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u40_3.jpg"
+ },
+ {
+  "unit": "40",
+  "box": [
    2191,
    337,
    2227,
@@ -2345,8 +3099,37 @@
    2234,
    369
   ],
-  "k": 2,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u40_2.jpg"
+  "k": 4,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u40_4.jpg"
+ },
+ {
+  "unit": "40",
+  "box": [
+   2695,
+   322,
+   2734,
+   391
+  ],
+  "score": 0.556,
+  "edge": "top",
+  "orientation": "horizontal",
+  "template": "70h_45a",
+  "text_guess": "70'",
+  "scale": 1.1,
+  "neatline_dist": 250.5,
+  "darkest_line_frac": 0.783,
+  "ring_ink": 0.148,
+  "paper_sat": 22.0,
+  "in_street_x": false,
+  "in_street_y": true,
+  "hit_box": [
+   2695,
+   338,
+   2741,
+   375
+  ],
+  "k": 5,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u40_5.jpg"
  },
  {
   "unit": "40",
@@ -2374,8 +3157,8 @@
    3198,
    381
   ],
-  "k": 3,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u40_3.jpg"
+  "k": 6,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u40_6.jpg"
  },
  {
   "unit": "40",
@@ -2403,8 +3186,8 @@
    3106,
    1387
   ],
-  "k": 4,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u40_4.jpg"
+  "k": 7,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u40_7.jpg"
  },
  {
   "unit": "40",
@@ -2432,8 +3215,8 @@
    3090,
    2536
   ],
-  "k": 5,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u40_5.jpg"
+  "k": 8,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u40_8.jpg"
  },
  {
   "unit": "40",
@@ -2461,8 +3244,8 @@
    3215,
    3531
   ],
-  "k": 6,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u40_6.jpg"
+  "k": 9,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u40_9.jpg"
  },
  {
   "unit": "40",
@@ -2490,8 +3273,8 @@
    261,
    3696
   ],
-  "k": 7,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u40_7.jpg"
+  "k": 10,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u40_10.jpg"
  },
  {
   "unit": "40",
@@ -2519,8 +3302,8 @@
    1190,
    3534
   ],
-  "k": 8,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u40_8.jpg"
+  "k": 11,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u40_11.jpg"
  },
  {
   "unit": "40",
@@ -2548,8 +3331,8 @@
    2231,
    3533
   ],
-  "k": 9,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u40_9.jpg"
+  "k": 12,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u40_12.jpg"
  },
  {
   "unit": "40",
@@ -2577,8 +3360,8 @@
    3091,
    3683
   ],
-  "k": 10,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u40_10.jpg"
+  "k": 13,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u40_13.jpg"
  },
  {
   "unit": "40",
@@ -2606,8 +3389,8 @@
    159,
    375
   ],
-  "k": 11,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u40_11.jpg"
+  "k": 14,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u40_14.jpg"
  },
  {
   "unit": "40",
@@ -2635,8 +3418,8 @@
    261,
    1394
   ],
-  "k": 12,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u40_12.jpg"
+  "k": 15,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u40_15.jpg"
  },
  {
   "unit": "40",
@@ -2664,8 +3447,8 @@
    255,
    2541
   ],
-  "k": 13,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u40_13.jpg"
+  "k": 16,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u40_16.jpg"
  },
  {
   "unit": "40",
@@ -2693,8 +3476,37 @@
    175,
    3539
   ],
-  "k": 14,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u40_14.jpg"
+  "k": 17,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u40_17.jpg"
+ },
+ {
+  "unit": "43",
+  "box": [
+   605,
+   313,
+   644,
+   387
+  ],
+  "score": 0.56,
+  "edge": "top",
+  "orientation": "horizontal",
+  "template": "70h_33m",
+  "text_guess": "70'",
+  "scale": 1.1,
+  "neatline_dist": 247.0,
+  "darkest_line_frac": 0.635,
+  "ring_ink": 0.084,
+  "paper_sat": 22.0,
+  "in_street_x": false,
+  "in_street_y": true,
+  "hit_box": [
+   605,
+   328,
+   652,
+   371
+  ],
+  "k": 1,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u43_1.jpg"
  },
  {
   "unit": "43",
@@ -2722,8 +3534,8 @@
    1158,
    369
   ],
-  "k": 1,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u43_1.jpg"
+  "k": 2,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u43_2.jpg"
  },
  {
   "unit": "43",
@@ -2751,8 +3563,8 @@
    2169,
    353
   ],
-  "k": 2,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u43_2.jpg"
+  "k": 3,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u43_3.jpg"
  },
  {
   "unit": "43",
@@ -2780,8 +3592,8 @@
    2662,
    374
   ],
-  "k": 3,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u43_3.jpg"
+  "k": 4,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u43_4.jpg"
  },
  {
   "unit": "43",
@@ -2809,8 +3621,8 @@
    3011,
    240
   ],
-  "k": 4,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u43_4.jpg"
+  "k": 5,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u43_5.jpg"
  },
  {
   "unit": "43",
@@ -2838,8 +3650,8 @@
    3139,
    367
   ],
-  "k": 5,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u43_5.jpg"
+  "k": 6,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u43_6.jpg"
  },
  {
   "unit": "43",
@@ -2867,8 +3679,8 @@
    3019,
    1386
   ],
-  "k": 6,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u43_6.jpg"
+  "k": 7,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u43_7.jpg"
  },
  {
   "unit": "43",
@@ -2896,8 +3708,8 @@
    3018,
    2536
   ],
-  "k": 7,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u43_7.jpg"
+  "k": 8,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u43_8.jpg"
  },
  {
   "unit": "43",
@@ -2925,8 +3737,8 @@
    3156,
    3530
   ],
-  "k": 8,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u43_8.jpg"
+  "k": 9,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u43_9.jpg"
  },
  {
   "unit": "43",
@@ -2954,8 +3766,8 @@
    246,
    3695
   ],
-  "k": 9,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u43_9.jpg"
+  "k": 10,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u43_10.jpg"
  },
  {
   "unit": "43",
@@ -2983,8 +3795,8 @@
    1150,
    3538
   ],
-  "k": 10,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u43_10.jpg"
+  "k": 11,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u43_11.jpg"
  },
  {
   "unit": "43",
@@ -3012,8 +3824,8 @@
    2155,
    3547
   ],
-  "k": 11,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u43_11.jpg"
+  "k": 12,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u43_12.jpg"
  },
  {
   "unit": "43",
@@ -3041,8 +3853,8 @@
    3008,
    3693
   ],
-  "k": 12,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u43_12.jpg"
+  "k": 13,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u43_13.jpg"
  },
  {
   "unit": "43",
@@ -3070,8 +3882,8 @@
    163,
    361
   ],
-  "k": 13,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u43_13.jpg"
+  "k": 14,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u43_14.jpg"
  },
  {
   "unit": "43",
@@ -3099,8 +3911,37 @@
    261,
    1388
   ],
-  "k": 14,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u43_14.jpg"
+  "k": 15,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u43_15.jpg"
+ },
+ {
+  "unit": "43",
+  "box": [
+   212,
+   2502,
+   248,
+   2544
+  ],
+  "score": 0.57,
+  "edge": "left",
+  "orientation": "rotated",
+  "template": "80r_7f",
+  "text_guess": "80'",
+  "scale": 1.0,
+  "neatline_dist": 144.0,
+  "darkest_line_frac": 0.444,
+  "ring_ink": 0.013,
+  "paper_sat": 21.0,
+  "in_street_x": true,
+  "in_street_y": true,
+  "hit_box": [
+   208,
+   2496,
+   246,
+   2543
+  ],
+  "k": 16,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u43_16.jpg"
  },
  {
   "unit": "43",
@@ -3128,8 +3969,8 @@
    132,
    3562
   ],
-  "k": 15,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u43_15.jpg"
+  "k": 17,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u43_17.jpg"
  },
  {
   "unit": "44",
@@ -3193,30 +4034,59 @@
   "unit": "44",
   "box": [
    1150,
-   357,
+   358,
    1197,
    388
   ],
-  "score": 0.633,
+  "score": 0.738,
+  "edge": "top",
+  "orientation": "horizontal",
+  "template": "150h_56",
+  "text_guess": "150'",
+  "scale": 0.9,
+  "neatline_dist": 255.0,
+  "darkest_line_frac": 0.426,
+  "ring_ink": 0.012,
+  "paper_sat": 19.0,
+  "in_street_x": true,
+  "in_street_y": false,
+  "hit_box": [
+   1155,
+   359,
+   1203,
+   385
+  ],
+  "k": 3,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u44_3.jpg"
+ },
+ {
+  "unit": "44",
+  "box": [
+   1695,
+   323,
+   1747,
+   395
+  ],
+  "score": 0.551,
   "edge": "top",
   "orientation": "horizontal",
   "template": "80h_33k",
   "text_guess": "80'",
   "scale": 1.0,
-  "neatline_dist": 254.5,
-  "darkest_line_frac": 0.426,
-  "ring_ink": 0.011,
-  "paper_sat": 19.0,
-  "in_street_x": true,
-  "in_street_y": false,
+  "neatline_dist": 241.0,
+  "darkest_line_frac": 0.819,
+  "ring_ink": 0.149,
+  "paper_sat": 20.0,
+  "in_street_x": false,
+  "in_street_y": true,
   "hit_box": [
-   1157,
-   346,
-   1205,
-   388
+   1699,
+   337,
+   1747,
+   379
   ],
-  "k": 3,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u44_3.jpg"
+  "k": 4,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u44_4.jpg"
  },
  {
   "unit": "44",
@@ -3244,8 +4114,8 @@
    2248,
    386
   ],
-  "k": 4,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u44_4.jpg"
+  "k": 5,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u44_5.jpg"
  },
  {
   "unit": "44",
@@ -3273,8 +4143,8 @@
    3214,
    378
   ],
-  "k": 5,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u44_5.jpg"
+  "k": 6,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u44_6.jpg"
  },
  {
   "unit": "44",
@@ -3302,8 +4172,8 @@
    3073,
    1402
   ],
-  "k": 6,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u44_6.jpg"
+  "k": 7,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u44_7.jpg"
  },
  {
   "unit": "44",
@@ -3331,8 +4201,8 @@
    3080,
    2556
   ],
-  "k": 7,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u44_7.jpg"
+  "k": 8,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u44_8.jpg"
  },
  {
   "unit": "44",
@@ -3360,8 +4230,8 @@
    3209,
    3536
   ],
-  "k": 8,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u44_8.jpg"
+  "k": 9,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u44_9.jpg"
  },
  {
   "unit": "44",
@@ -3389,8 +4259,8 @@
    247,
    3688
   ],
-  "k": 9,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u44_9.jpg"
+  "k": 10,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u44_10.jpg"
  },
  {
   "unit": "44",
@@ -3418,8 +4288,8 @@
    1170,
    3537
   ],
-  "k": 10,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u44_10.jpg"
+  "k": 11,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u44_11.jpg"
  },
  {
   "unit": "44",
@@ -3447,8 +4317,37 @@
    2228,
    3545
   ],
-  "k": 11,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u44_11.jpg"
+  "k": 12,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u44_12.jpg"
+ },
+ {
+  "unit": "44",
+  "box": [
+   2561,
+   3556,
+   2612,
+   3584
+  ],
+  "score": 0.65,
+  "edge": "bottom",
+  "orientation": "horizontal",
+  "template": "150h_56",
+  "text_guess": "150'",
+  "scale": 0.9,
+  "neatline_dist": 218.0,
+  "darkest_line_frac": 0.353,
+  "ring_ink": 0.106,
+  "paper_sat": 16.0,
+  "in_street_x": false,
+  "in_street_y": true,
+  "hit_box": [
+   2569,
+   3556,
+   2617,
+   3582
+  ],
+  "k": 13,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u44_13.jpg"
  },
  {
   "unit": "44",
@@ -3476,8 +4375,8 @@
    3062,
    3690
   ],
-  "k": 12,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u44_12.jpg"
+  "k": 14,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u44_14.jpg"
  },
  {
   "unit": "44",
@@ -3505,8 +4404,8 @@
    160,
    381
   ],
-  "k": 13,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u44_13.jpg"
+  "k": 15,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u44_15.jpg"
  },
  {
   "unit": "44",
@@ -3534,8 +4433,8 @@
    254,
    1399
   ],
-  "k": 14,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u44_14.jpg"
+  "k": 16,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u44_16.jpg"
  },
  {
   "unit": "44",
@@ -3563,8 +4462,37 @@
    250,
    2536
   ],
-  "k": 15,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u44_15.jpg"
+  "k": 17,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u44_17.jpg"
+ },
+ {
+  "unit": "44",
+  "box": [
+   208,
+   2619,
+   258,
+   2661
+  ],
+  "score": 0.56,
+  "edge": "left",
+  "orientation": "horizontal",
+  "template": "70h_33m",
+  "text_guess": "70'",
+  "scale": 0.9,
+  "neatline_dist": 145.0,
+  "darkest_line_frac": 0.88,
+  "ring_ink": 0.069,
+  "paper_sat": 22.0,
+  "in_street_x": true,
+  "in_street_y": true,
+  "hit_box": [
+   218,
+   2610,
+   257,
+   2645
+  ],
+  "k": 18,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u44_18.jpg"
  },
  {
   "unit": "49",
@@ -3598,6 +4526,35 @@
  {
   "unit": "49",
   "box": [
+   676,
+   83,
+   709,
+   117
+  ],
+  "score": 0.561,
+  "edge": "top",
+  "orientation": "rotated",
+  "template": "80r_45a",
+  "text_guess": "80'",
+  "scale": 0.9,
+  "neatline_dist": 6.0,
+  "darkest_line_frac": 0.636,
+  "ring_ink": 0.031,
+  "paper_sat": 32.0,
+  "in_street_x": false,
+  "in_street_y": true,
+  "hit_box": [
+   662,
+   77,
+   709,
+   124
+  ],
+  "k": 2,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u49_2.jpg"
+ },
+ {
+  "unit": "49",
+  "box": [
    1140,
    299,
    1176,
@@ -3621,8 +4578,66 @@
    1182,
    328
   ],
-  "k": 2,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u49_2.jpg"
+  "k": 3,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u49_3.jpg"
+ },
+ {
+  "unit": "49",
+  "box": [
+   1253,
+   262,
+   1321,
+   303
+  ],
+  "score": 0.56,
+  "edge": "top",
+  "orientation": "horizontal",
+  "template": "70h_45b",
+  "text_guess": "70'",
+  "scale": 0.9,
+  "neatline_dist": 188.5,
+  "darkest_line_frac": 0.912,
+  "ring_ink": 0.084,
+  "paper_sat": 22.0,
+  "in_street_x": true,
+  "in_street_y": true,
+  "hit_box": [
+   1266,
+   255,
+   1305,
+   287
+  ],
+  "k": 4,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u49_4.jpg"
+ },
+ {
+  "unit": "49",
+  "box": [
+   1739,
+   76,
+   1784,
+   108
+  ],
+  "score": 0.562,
+  "edge": "top",
+  "orientation": "rotated",
+  "template": "80r_45a",
+  "text_guess": "80'",
+  "scale": 0.9,
+  "neatline_dist": -2.0,
+  "darkest_line_frac": 0.689,
+  "ring_ink": 0.028,
+  "paper_sat": 34.0,
+  "in_street_x": false,
+  "in_street_y": true,
+  "hit_box": [
+   1725,
+   69,
+   1772,
+   116
+  ],
+  "k": 5,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u49_5.jpg"
  },
  {
   "unit": "49",
@@ -3650,8 +4665,8 @@
    2183,
    327
   ],
-  "k": 3,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u49_3.jpg"
+  "k": 6,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u49_6.jpg"
  },
  {
   "unit": "49",
@@ -3679,8 +4694,8 @@
    2681,
    322
   ],
-  "k": 4,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u49_4.jpg"
+  "k": 7,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u49_7.jpg"
  },
  {
   "unit": "49",
@@ -3708,8 +4723,8 @@
    3039,
    213
   ],
-  "k": 5,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u49_5.jpg"
+  "k": 8,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u49_8.jpg"
  },
  {
   "unit": "49",
@@ -3737,8 +4752,8 @@
    3169,
    334
   ],
-  "k": 6,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u49_6.jpg"
+  "k": 9,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u49_9.jpg"
  },
  {
   "unit": "49",
@@ -3766,8 +4781,8 @@
    3043,
    2616
   ],
-  "k": 7,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u49_7.jpg"
+  "k": 10,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u49_10.jpg"
  },
  {
   "unit": "49",
@@ -3795,8 +4810,8 @@
    3160,
    3605
   ],
-  "k": 8,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u49_8.jpg"
+  "k": 11,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u49_11.jpg"
  },
  {
   "unit": "49",
@@ -3824,8 +4839,8 @@
    290,
    3754
   ],
-  "k": 9,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u49_9.jpg"
+  "k": 12,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u49_12.jpg"
  },
  {
   "unit": "49",
@@ -3853,8 +4868,37 @@
    670,
    3609
   ],
-  "k": 10,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u49_10.jpg"
+  "k": 13,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u49_13.jpg"
+ },
+ {
+  "unit": "49",
+  "box": [
+   665,
+   3647,
+   714,
+   3681
+  ],
+  "score": 0.556,
+  "edge": "bottom",
+  "orientation": "rotated",
+  "template": "80r_45a",
+  "text_guess": "80'",
+  "scale": 0.9,
+  "neatline_dist": 153.0,
+  "darkest_line_frac": 0.714,
+  "ring_ink": 0.048,
+  "paper_sat": 23.0,
+  "in_street_x": false,
+  "in_street_y": true,
+  "hit_box": [
+   651,
+   3641,
+   698,
+   3688
+  ],
+  "k": 14,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u49_14.jpg"
  },
  {
   "unit": "49",
@@ -3882,8 +4926,37 @@
    1161,
    3604
   ],
-  "k": 11,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u49_11.jpg"
+  "k": 15,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u49_15.jpg"
+ },
+ {
+  "unit": "49",
+  "box": [
+   1627,
+   3562,
+   1672,
+   3627
+  ],
+  "score": 0.573,
+  "edge": "bottom",
+  "orientation": "horizontal",
+  "template": "70h_45a",
+  "text_guess": "70'",
+  "scale": 1.0,
+  "neatline_dist": 222.5,
+  "darkest_line_frac": 0.631,
+  "ring_ink": 0.163,
+  "paper_sat": 19.0,
+  "in_street_x": false,
+  "in_street_y": true,
+  "hit_box": [
+   1629,
+   3578,
+   1671,
+   3612
+  ],
+  "k": 16,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u49_16.jpg"
  },
  {
   "unit": "49",
@@ -3911,8 +4984,8 @@
    2174,
    3604
   ],
-  "k": 12,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u49_12.jpg"
+  "k": 17,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u49_17.jpg"
  },
  {
   "unit": "49",
@@ -3940,8 +5013,8 @@
    2674,
    3609
   ],
-  "k": 13,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u49_13.jpg"
+  "k": 18,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u49_18.jpg"
  },
  {
   "unit": "49",
@@ -3969,8 +5042,8 @@
    3033,
    3723
   ],
-  "k": 14,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u49_14.jpg"
+  "k": 19,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u49_19.jpg"
  },
  {
   "unit": "49",
@@ -3998,8 +5071,8 @@
    198,
    336
   ],
-  "k": 15,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u49_15.jpg"
+  "k": 20,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u49_20.jpg"
  },
  {
   "unit": "49",
@@ -4027,8 +5100,8 @@
    298,
    2614
   ],
-  "k": 16,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u49_16.jpg"
+  "k": 21,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u49_21.jpg"
  },
  {
   "unit": "49",
@@ -4056,8 +5129,8 @@
    183,
    3608
   ],
-  "k": 17,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u49_17.jpg"
+  "k": 22,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u49_22.jpg"
  },
  {
   "unit": "50",
@@ -4294,6 +5367,93 @@
  {
   "unit": "50",
   "box": [
+   587,
+   3555,
+   633,
+   3614
+  ],
+  "score": 0.601,
+  "edge": "bottom",
+  "orientation": "horizontal",
+  "template": "70h_13",
+  "text_guess": "70'",
+  "scale": 0.9,
+  "neatline_dist": 227.5,
+  "darkest_line_frac": 0.814,
+  "ring_ink": 0.159,
+  "paper_sat": 25.0,
+  "in_street_x": false,
+  "in_street_y": true,
+  "hit_box": [
+   618,
+   3571,
+   645,
+   3600
+  ],
+  "k": 9,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u50_9.jpg"
+ },
+ {
+  "unit": "50",
+  "box": [
+   1134,
+   3571,
+   1180,
+   3603
+  ],
+  "score": 0.567,
+  "edge": "bottom",
+  "orientation": "horizontal",
+  "template": "150h_56",
+  "text_guess": "150'",
+  "scale": 0.9,
+  "neatline_dist": 225.0,
+  "darkest_line_frac": 0.438,
+  "ring_ink": 0.005,
+  "paper_sat": 23.0,
+  "in_street_x": true,
+  "in_street_y": false,
+  "hit_box": [
+   1137,
+   3575,
+   1185,
+   3601
+  ],
+  "k": 10,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u50_10.jpg"
+ },
+ {
+  "unit": "50",
+  "box": [
+   1682,
+   3555,
+   1722,
+   3622
+  ],
+  "score": 0.566,
+  "edge": "bottom",
+  "orientation": "horizontal",
+  "template": "70h_33m",
+  "text_guess": "70'",
+  "scale": 1.0,
+  "neatline_dist": 223.5,
+  "darkest_line_frac": 0.612,
+  "ring_ink": 0.132,
+  "paper_sat": 21.0,
+  "in_street_x": false,
+  "in_street_y": true,
+  "hit_box": [
+   1686,
+   3571,
+   1729,
+   3610
+  ],
+  "k": 11,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u50_11.jpg"
+ },
+ {
+  "unit": "50",
+  "box": [
    2184,
    3573,
    2219,
@@ -4317,8 +5477,37 @@
    2225,
    3603
   ],
-  "k": 9,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u50_9.jpg"
+  "k": 12,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u50_12.jpg"
+ },
+ {
+  "unit": "50",
+  "box": [
+   2683,
+   3557,
+   2728,
+   3620
+  ],
+  "score": 0.58,
+  "edge": "bottom",
+  "orientation": "horizontal",
+  "template": "80h_7a",
+  "text_guess": "80'",
+  "scale": 0.9,
+  "neatline_dist": 223.5,
+  "darkest_line_frac": 0.667,
+  "ring_ink": 0.147,
+  "paper_sat": 21.0,
+  "in_street_x": false,
+  "in_street_y": true,
+  "hit_box": [
+   2686,
+   3573,
+   2729,
+   3605
+  ],
+  "k": 13,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u50_13.jpg"
  },
  {
   "unit": "50",
@@ -4346,8 +5535,8 @@
    3084,
    3728
   ],
-  "k": 10,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u50_10.jpg"
+  "k": 14,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u50_14.jpg"
  },
  {
   "unit": "50",
@@ -4375,8 +5564,8 @@
    158,
    318
   ],
-  "k": 11,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u50_11.jpg"
+  "k": 15,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u50_15.jpg"
  },
  {
   "unit": "50",
@@ -4404,8 +5593,8 @@
    257,
    2615
   ],
-  "k": 12,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u50_12.jpg"
+  "k": 16,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u50_16.jpg"
  },
  {
   "unit": "50",
@@ -4433,8 +5622,8 @@
    165,
    3599
   ],
-  "k": 13,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u50_13.jpg"
+  "k": 17,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u50_17.jpg"
  },
  {
   "unit": "13",
@@ -4497,6 +5686,35 @@
  {
   "unit": "13",
   "box": [
+   2598,
+   333,
+   2640,
+   379
+  ],
+  "score": 0.566,
+  "edge": "top",
+  "orientation": "horizontal",
+  "template": "80h_7a",
+  "text_guess": "80'",
+  "scale": 1.0,
+  "neatline_dist": 265.0,
+  "darkest_line_frac": 0.739,
+  "ring_ink": 0.102,
+  "paper_sat": 21.0,
+  "in_street_x": false,
+  "in_street_y": true,
+  "hit_box": [
+   2599,
+   330,
+   2647,
+   365
+  ],
+  "k": 3,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u13_3.jpg"
+ },
+ {
+  "unit": "13",
+  "box": [
    2701,
    195,
    2732,
@@ -4520,8 +5738,8 @@
    2733,
    237
   ],
-  "k": 3,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u13_3.jpg"
+  "k": 4,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u13_4.jpg"
  },
  {
   "unit": "13",
@@ -4549,8 +5767,37 @@
    3071,
    226
   ],
-  "k": 4,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u13_4.jpg"
+  "k": 5,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u13_5.jpg"
+ },
+ {
+  "unit": "13",
+  "box": [
+   3138,
+   330,
+   3189,
+   374
+  ],
+  "score": 0.564,
+  "edge": "right",
+  "orientation": "horizontal",
+  "template": "70h_33m",
+  "text_guess": "70'",
+  "scale": 0.9,
+  "neatline_dist": 60.5,
+  "darkest_line_frac": 0.864,
+  "ring_ink": 0.02,
+  "paper_sat": 28.0,
+  "in_street_x": false,
+  "in_street_y": true,
+  "hit_box": [
+   3139,
+   323,
+   3178,
+   358
+  ],
+  "k": 6,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u13_6.jpg"
  },
  {
   "unit": "13",
@@ -4578,8 +5825,8 @@
    3064,
    1383
   ],
-  "k": 5,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u13_5.jpg"
+  "k": 7,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u13_7.jpg"
  },
  {
   "unit": "13",
@@ -4607,8 +5854,8 @@
    3071,
    2542
   ],
-  "k": 6,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u13_6.jpg"
+  "k": 8,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u13_8.jpg"
  },
  {
   "unit": "13",
@@ -4636,8 +5883,8 @@
    303,
    3689
   ],
-  "k": 7,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u13_7.jpg"
+  "k": 9,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u13_9.jpg"
  },
  {
   "unit": "13",
@@ -4665,8 +5912,8 @@
    3048,
    3694
   ],
-  "k": 8,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u13_8.jpg"
+  "k": 10,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u13_10.jpg"
  },
  {
   "unit": "13",
@@ -4694,8 +5941,95 @@
    331,
    1378
   ],
-  "k": 9,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u13_9.jpg"
+  "k": 11,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u13_11.jpg"
+ },
+ {
+  "unit": "13",
+  "box": [
+   223,
+   1961,
+   248,
+   2023
+  ],
+  "score": 0.564,
+  "edge": "left",
+  "orientation": "horizontal",
+  "template": "80h_13",
+  "text_guess": "80'",
+  "scale": 1.0,
+  "neatline_dist": 155.5,
+  "darkest_line_frac": 0.903,
+  "ring_ink": 0.152,
+  "paper_sat": 21.0,
+  "in_street_x": false,
+  "in_street_y": false,
+  "hit_box": [
+   217,
+   1977,
+   254,
+   2007
+  ],
+  "k": 12,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u13_12.jpg"
+ },
+ {
+  "unit": "13",
+  "box": [
+   322,
+   1989,
+   346,
+   2049
+  ],
+  "score": 0.573,
+  "edge": "left",
+  "orientation": "horizontal",
+  "template": "80h_13",
+  "text_guess": "80'",
+  "scale": 1.0,
+  "neatline_dist": 254.0,
+  "darkest_line_frac": 0.9,
+  "ring_ink": 0.138,
+  "paper_sat": 21.0,
+  "in_street_x": false,
+  "in_street_y": false,
+  "hit_box": [
+   316,
+   2005,
+   353,
+   2035
+  ],
+  "k": 13,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u13_13.jpg"
+ },
+ {
+  "unit": "13",
+  "box": [
+   274,
+   2055,
+   295,
+   2117
+  ],
+  "score": 0.578,
+  "edge": "left",
+  "orientation": "horizontal",
+  "template": "80h_13",
+  "text_guess": "80'",
+  "scale": 1.0,
+  "neatline_dist": 204.5,
+  "darkest_line_frac": 0.903,
+  "ring_ink": 0.101,
+  "paper_sat": 21.0,
+  "in_street_x": false,
+  "in_street_y": false,
+  "hit_box": [
+   265,
+   2071,
+   302,
+   2101
+  ],
+  "k": 14,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u13_14.jpg"
  },
  {
   "unit": "14",
@@ -4729,6 +6063,35 @@
  {
   "unit": "14",
   "box": [
+   616,
+   298,
+   656,
+   370
+  ],
+  "score": 0.555,
+  "edge": "top",
+  "orientation": "horizontal",
+  "template": "70h_45b",
+  "text_guess": "70'",
+  "scale": 1.1,
+  "neatline_dist": 248.0,
+  "darkest_line_frac": 0.764,
+  "ring_ink": 0.145,
+  "paper_sat": 22.0,
+  "in_street_x": false,
+  "in_street_y": true,
+  "hit_box": [
+   617,
+   314,
+   664,
+   354
+  ],
+  "k": 2,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u14_2.jpg"
+ },
+ {
+  "unit": "14",
+  "box": [
    1123,
    324,
    1162,
@@ -4752,8 +6115,8 @@
    1169,
    357
   ],
-  "k": 2,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u14_2.jpg"
+  "k": 3,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u14_3.jpg"
  },
  {
   "unit": "14",
@@ -4781,8 +6144,8 @@
    2185,
    355
   ],
-  "k": 3,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u14_3.jpg"
+  "k": 4,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u14_4.jpg"
  },
  {
   "unit": "14",
@@ -4810,8 +6173,8 @@
    2992,
    213
   ],
-  "k": 4,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u14_4.jpg"
+  "k": 5,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u14_5.jpg"
  },
  {
   "unit": "14",
@@ -4839,8 +6202,8 @@
    3183,
    355
   ],
-  "k": 5,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u14_5.jpg"
+  "k": 6,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u14_6.jpg"
  },
  {
   "unit": "14",
@@ -4868,8 +6231,8 @@
    3024,
    1360
   ],
-  "k": 6,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u14_6.jpg"
+  "k": 7,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u14_7.jpg"
  },
  {
   "unit": "14",
@@ -4897,8 +6260,8 @@
    3040,
    2527
   ],
-  "k": 7,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u14_7.jpg"
+  "k": 8,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u14_8.jpg"
  },
  {
   "unit": "14",
@@ -4926,8 +6289,8 @@
    3185,
    3518
   ],
-  "k": 8,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u14_8.jpg"
+  "k": 9,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u14_9.jpg"
  },
  {
   "unit": "14",
@@ -4955,8 +6318,37 @@
    270,
    3699
   ],
-  "k": 9,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u14_9.jpg"
+  "k": 10,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u14_10.jpg"
+ },
+ {
+  "unit": "14",
+  "box": [
+   2614,
+   3761,
+   2641,
+   3817
+  ],
+  "score": 0.577,
+  "edge": "bottom",
+  "orientation": "horizontal",
+  "template": "70h_13",
+  "text_guess": "70'",
+  "scale": 1.0,
+  "neatline_dist": 33.0,
+  "darkest_line_frac": 0.893,
+  "ring_ink": 0.117,
+  "paper_sat": 25.0,
+  "in_street_x": false,
+  "in_street_y": true,
+  "hit_box": [
+   2610,
+   3771,
+   2640,
+   3803
+  ],
+  "k": 11,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u14_11.jpg"
  },
  {
   "unit": "14",
@@ -4984,8 +6376,8 @@
    3011,
    3674
   ],
-  "k": 10,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u14_10.jpg"
+  "k": 12,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u14_12.jpg"
  },
  {
   "unit": "14",
@@ -5013,8 +6405,66 @@
    182,
    357
   ],
-  "k": 11,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u14_11.jpg"
+  "k": 13,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u14_13.jpg"
+ },
+ {
+  "unit": "14",
+  "box": [
+   109,
+   318,
+   132,
+   366
+  ],
+  "score": 0.553,
+  "edge": "left",
+  "orientation": "horizontal",
+  "template": "80h_13",
+  "text_guess": "80'",
+  "scale": 1.1,
+  "neatline_dist": 39.5,
+  "darkest_line_frac": 0.875,
+  "ring_ink": 0.072,
+  "paper_sat": 25.0,
+  "in_street_x": true,
+  "in_street_y": true,
+  "hit_box": [
+   99,
+   328,
+   140,
+   361
+  ],
+  "k": 14,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u14_14.jpg"
+ },
+ {
+  "unit": "14",
+  "box": [
+   74,
+   1317,
+   102,
+   1352
+  ],
+  "score": 0.553,
+  "edge": "left",
+  "orientation": "rotated",
+  "template": "80r_45a",
+  "text_guess": "80'",
+  "scale": 0.9,
+  "neatline_dist": 7.0,
+  "darkest_line_frac": 0.714,
+  "ring_ink": 0.0,
+  "paper_sat": 30.0,
+  "in_street_x": true,
+  "in_street_y": true,
+  "hit_box": [
+   58,
+   1309,
+   105,
+   1356
+  ],
+  "k": 15,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u14_15.jpg"
  },
  {
   "unit": "14",
@@ -5042,8 +6492,66 @@
    266,
    1365
   ],
-  "k": 12,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u14_12.jpg"
+  "k": 16,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u14_16.jpg"
+ },
+ {
+  "unit": "14",
+  "box": [
+   219,
+   2495,
+   253,
+   2535
+  ],
+  "score": 0.568,
+  "edge": "left",
+  "orientation": "rotated",
+  "template": "80r_33h",
+  "text_guess": "80'",
+  "scale": 1.1,
+  "neatline_dist": 155.0,
+  "darkest_line_frac": 0.824,
+  "ring_ink": 0.063,
+  "paper_sat": 20.0,
+  "in_street_x": true,
+  "in_street_y": true,
+  "hit_box": [
+   221,
+   2496,
+   252,
+   2537
+  ],
+  "k": 17,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u14_17.jpg"
+ },
+ {
+  "unit": "14",
+  "box": [
+   130,
+   3488,
+   169,
+   3555
+  ],
+  "score": 0.569,
+  "edge": "left",
+  "orientation": "horizontal",
+  "template": "70h_13",
+  "text_guess": "70'",
+  "scale": 1.1,
+  "neatline_dist": 68.5,
+  "darkest_line_frac": 0.925,
+  "ring_ink": 0.154,
+  "paper_sat": 22.0,
+  "in_street_x": true,
+  "in_street_y": true,
+  "hit_box": [
+   132,
+   3504,
+   165,
+   3539
+  ],
+  "k": 18,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u14_18.jpg"
  },
  {
   "unit": "33",
@@ -5077,6 +6585,35 @@
  {
   "unit": "33",
   "box": [
+   1642,
+   315,
+   1685,
+   373
+  ],
+  "score": 0.571,
+  "edge": "top",
+  "orientation": "horizontal",
+  "template": "70h_33m",
+  "text_guess": "70'",
+  "scale": 1.0,
+  "neatline_dist": 244.0,
+  "darkest_line_frac": 0.586,
+  "ring_ink": 0.119,
+  "paper_sat": 17.0,
+  "in_street_x": false,
+  "in_street_y": true,
+  "hit_box": [
+   1643,
+   325,
+   1686,
+   364
+  ],
+  "k": 2,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u33_2.jpg"
+ },
+ {
+  "unit": "33",
+  "box": [
    2158,
    327,
    2200,
@@ -5100,8 +6637,37 @@
    2208,
    358
   ],
-  "k": 2,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u33_2.jpg"
+  "k": 3,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u33_3.jpg"
+ },
+ {
+  "unit": "33",
+  "box": [
+   2673,
+   308,
+   2712,
+   373
+  ],
+  "score": 0.568,
+  "edge": "top",
+  "orientation": "horizontal",
+  "template": "80h_33k",
+  "text_guess": "80'",
+  "scale": 0.9,
+  "neatline_dist": 240.5,
+  "darkest_line_frac": 0.692,
+  "ring_ink": 0.078,
+  "paper_sat": 17.0,
+  "in_street_x": false,
+  "in_street_y": true,
+  "hit_box": [
+   2676,
+   319,
+   2719,
+   357
+  ],
+  "k": 4,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u33_4.jpg"
  },
  {
   "unit": "33",
@@ -5129,8 +6695,8 @@
    3093,
    233
   ],
-  "k": 3,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u33_3.jpg"
+  "k": 5,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u33_5.jpg"
  },
  {
   "unit": "33",
@@ -5158,8 +6724,8 @@
    3208,
    353
   ],
-  "k": 4,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u33_4.jpg"
+  "k": 6,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u33_6.jpg"
  },
  {
   "unit": "33",
@@ -5187,8 +6753,37 @@
    3101,
    1388
   ],
-  "k": 5,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u33_5.jpg"
+  "k": 7,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u33_7.jpg"
+ },
+ {
+  "unit": "33",
+  "box": [
+   3059,
+   2500,
+   3098,
+   2542
+  ],
+  "score": 0.568,
+  "edge": "right",
+  "orientation": "rotated",
+  "template": "80r_33i",
+  "text_guess": "80'",
+  "scale": 0.9,
+  "neatline_dist": 157.5,
+  "darkest_line_frac": 0.872,
+  "ring_ink": 0.053,
+  "paper_sat": 16.0,
+  "in_street_x": true,
+  "in_street_y": true,
+  "hit_box": [
+   3069,
+   2501,
+   3095,
+   2540
+  ],
+  "k": 8,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u33_8.jpg"
  },
  {
   "unit": "33",
@@ -5216,8 +6811,37 @@
    3218,
    3526
   ],
-  "k": 6,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u33_6.jpg"
+  "k": 9,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u33_9.jpg"
+ },
+ {
+  "unit": "33",
+  "box": [
+   2159,
+   3495,
+   2203,
+   3553
+  ],
+  "score": 0.554,
+  "edge": "bottom",
+  "orientation": "horizontal",
+  "template": "80h_33k",
+  "text_guess": "80'",
+  "scale": 0.9,
+  "neatline_dist": 257.0,
+  "darkest_line_frac": 0.776,
+  "ring_ink": 0.065,
+  "paper_sat": 15.0,
+  "in_street_x": true,
+  "in_street_y": true,
+  "hit_box": [
+   2166,
+   3511,
+   2209,
+   3549
+  ],
+  "k": 10,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u33_10.jpg"
  },
  {
   "unit": "33",
@@ -5245,8 +6869,8 @@
    3082,
    3685
   ],
-  "k": 7,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u33_7.jpg"
+  "k": 11,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u33_11.jpg"
  },
  {
   "unit": "34",
@@ -5338,6 +6962,35 @@
  {
   "unit": "34",
   "box": [
+   1653,
+   308,
+   1700,
+   372
+  ],
+  "score": 0.561,
+  "edge": "top",
+  "orientation": "horizontal",
+  "template": "70h_33m",
+  "text_guess": "70'",
+  "scale": 0.9,
+  "neatline_dist": 240.0,
+  "darkest_line_frac": 0.719,
+  "ring_ink": 0.137,
+  "paper_sat": 18.0,
+  "in_street_x": false,
+  "in_street_y": true,
+  "hit_box": [
+   1660,
+   321,
+   1699,
+   356
+  ],
+  "k": 4,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u34_4.jpg"
+ },
+ {
+  "unit": "34",
+  "box": [
    2166,
    327,
    2204,
@@ -5361,8 +7014,8 @@
    2210,
    355
   ],
-  "k": 4,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u34_4.jpg"
+  "k": 5,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u34_5.jpg"
  },
  {
   "unit": "34",
@@ -5390,8 +7043,8 @@
    3196,
    356
   ],
-  "k": 5,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u34_5.jpg"
+  "k": 6,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u34_6.jpg"
  },
  {
   "unit": "34",
@@ -5419,8 +7072,8 @@
    3076,
    1382
   ],
-  "k": 6,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u34_6.jpg"
+  "k": 7,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u34_7.jpg"
  },
  {
   "unit": "34",
@@ -5448,8 +7101,8 @@
    3076,
    2552
   ],
-  "k": 7,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u34_7.jpg"
+  "k": 8,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u34_8.jpg"
  },
  {
   "unit": "34",
@@ -5477,8 +7130,8 @@
    3199,
    3533
   ],
-  "k": 8,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u34_8.jpg"
+  "k": 9,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u34_9.jpg"
  },
  {
   "unit": "34",
@@ -5506,8 +7159,8 @@
    295,
    3679
   ],
-  "k": 9,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u34_9.jpg"
+  "k": 10,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u34_10.jpg"
  },
  {
   "unit": "34",
@@ -5535,8 +7188,8 @@
    1197,
    3547
   ],
-  "k": 10,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u34_10.jpg"
+  "k": 11,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u34_11.jpg"
  },
  {
   "unit": "34",
@@ -5564,8 +7217,8 @@
    2198,
    3542
   ],
-  "k": 11,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u34_11.jpg"
+  "k": 12,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u34_12.jpg"
  },
  {
   "unit": "34",
@@ -5593,8 +7246,8 @@
    3073,
    3681
   ],
-  "k": 12,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u34_12.jpg"
+  "k": 13,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u34_13.jpg"
  },
  {
   "unit": "34",
@@ -5622,8 +7275,8 @@
    192,
    360
   ],
-  "k": 13,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u34_13.jpg"
+  "k": 14,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u34_14.jpg"
  },
  {
   "unit": "34",
@@ -5651,8 +7304,8 @@
    298,
    1391
   ],
-  "k": 14,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u34_14.jpg"
+  "k": 15,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u34_15.jpg"
  },
  {
   "unit": "34",
@@ -5680,8 +7333,8 @@
    300,
    2533
   ],
-  "k": 15,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u34_15.jpg"
+  "k": 16,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u34_16.jpg"
  },
  {
   "unit": "34",
@@ -5709,8 +7362,8 @@
    197,
    3545
   ],
-  "k": 16,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u34_16.jpg"
+  "k": 17,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u34_17.jpg"
  },
  {
   "unit": "35",
@@ -5744,6 +7397,93 @@
  {
   "unit": "35",
   "box": [
+   1139,
+   335,
+   1182,
+   369
+  ],
+  "score": 0.557,
+  "edge": "top",
+  "orientation": "horizontal",
+  "template": "70h_33m",
+  "text_guess": "70'",
+  "scale": 1.1,
+  "neatline_dist": 245.0,
+  "darkest_line_frac": 0.442,
+  "ring_ink": 0.019,
+  "paper_sat": 22.0,
+  "in_street_x": true,
+  "in_street_y": true,
+  "hit_box": [
+   1142,
+   323,
+   1189,
+   366
+  ],
+  "k": 2,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u35_2.jpg"
+ },
+ {
+  "unit": "35",
+  "box": [
+   1256,
+   310,
+   1323,
+   352
+  ],
+  "score": 0.569,
+  "edge": "top",
+  "orientation": "horizontal",
+  "template": "70h_33m",
+  "text_guess": "70'",
+  "scale": 0.9,
+  "neatline_dist": 224.0,
+  "darkest_line_frac": 0.91,
+  "ring_ink": 0.103,
+  "paper_sat": 22.0,
+  "in_street_x": false,
+  "in_street_y": true,
+  "hit_box": [
+   1268,
+   301,
+   1307,
+   336
+  ],
+  "k": 3,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u35_3.jpg"
+ },
+ {
+  "unit": "35",
+  "box": [
+   1598,
+   314,
+   1640,
+   354
+  ],
+  "score": 0.562,
+  "edge": "top",
+  "orientation": "horizontal",
+  "template": "70h_33m",
+  "text_guess": "70'",
+  "scale": 0.9,
+  "neatline_dist": 227.0,
+  "darkest_line_frac": 0.857,
+  "ring_ink": 0.04,
+  "paper_sat": 22.0,
+  "in_street_x": false,
+  "in_street_y": true,
+  "hit_box": [
+   1602,
+   303,
+   1641,
+   338
+  ],
+  "k": 4,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u35_4.jpg"
+ },
+ {
+  "unit": "35",
+  "box": [
    3020,
    203,
    3051,
@@ -5767,8 +7507,66 @@
    3050,
    245
   ],
-  "k": 2,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u35_2.jpg"
+  "k": 5,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u35_5.jpg"
+ },
+ {
+  "unit": "35",
+  "box": [
+   3142,
+   349,
+   3178,
+   381
+  ],
+  "score": 0.564,
+  "edge": "right",
+  "orientation": "horizontal",
+  "template": "70h_33m",
+  "text_guess": "70'",
+  "scale": 0.9,
+  "neatline_dist": 76.0,
+  "darkest_line_frac": 0.611,
+  "ring_ink": 0.004,
+  "paper_sat": 26.0,
+  "in_street_x": true,
+  "in_street_y": false,
+  "hit_box": [
+   3144,
+   340,
+   3183,
+   375
+  ],
+  "k": 6,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u35_6.jpg"
+ },
+ {
+  "unit": "35",
+  "box": [
+   3025,
+   1365,
+   3058,
+   1407
+  ],
+  "score": 0.578,
+  "edge": "right",
+  "orientation": "rotated",
+  "template": "80r_33i",
+  "text_guess": "80'",
+  "scale": 0.9,
+  "neatline_dist": 194.5,
+  "darkest_line_frac": 0.424,
+  "ring_ink": 0.008,
+  "paper_sat": 18.0,
+  "in_street_x": true,
+  "in_street_y": true,
+  "hit_box": [
+   3029,
+   1367,
+   3055,
+   1406
+  ],
+  "k": 7,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u35_7.jpg"
  },
  {
   "unit": "35",
@@ -5796,8 +7594,8 @@
    3152,
    3561
   ],
-  "k": 3,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u35_3.jpg"
+  "k": 8,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u35_8.jpg"
  },
  {
   "unit": "35",
@@ -5825,8 +7623,8 @@
    275,
    3702
   ],
-  "k": 4,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u35_4.jpg"
+  "k": 9,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u35_9.jpg"
  },
  {
   "unit": "35",
@@ -5854,8 +7652,8 @@
    1150,
    3536
   ],
-  "k": 5,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u35_5.jpg"
+  "k": 10,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u35_10.jpg"
  },
  {
   "unit": "35",
@@ -5883,8 +7681,8 @@
    2166,
    3555
   ],
-  "k": 6,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u35_6.jpg"
+  "k": 11,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u35_11.jpg"
  },
  {
   "unit": "35",
@@ -5912,8 +7710,37 @@
    3017,
    3706
   ],
-  "k": 7,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u35_7.jpg"
+  "k": 12,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u35_12.jpg"
+ },
+ {
+  "unit": "35",
+  "box": [
+   251,
+   310,
+   323,
+   353
+  ],
+  "score": 0.568,
+  "edge": "left",
+  "orientation": "horizontal",
+  "template": "80h_33k",
+  "text_guess": "80'",
+  "scale": 0.9,
+  "neatline_dist": 205.0,
+  "darkest_line_frac": 0.917,
+  "ring_ink": 0.085,
+  "paper_sat": 23.0,
+  "in_street_x": false,
+  "in_street_y": true,
+  "hit_box": [
+   264,
+   299,
+   307,
+   337
+  ],
+  "k": 13,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u35_13.jpg"
  },
  {
   "unit": "35",
@@ -5941,8 +7768,8 @@
    180,
    370
   ],
-  "k": 8,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u35_8.jpg"
+  "k": 14,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u35_14.jpg"
  },
  {
   "unit": "35",
@@ -5970,8 +7797,37 @@
    293,
    1403
   ],
-  "k": 9,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u35_9.jpg"
+  "k": 15,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u35_15.jpg"
+ },
+ {
+  "unit": "35",
+  "box": [
+   250,
+   2494,
+   305,
+   2541
+  ],
+  "score": 0.571,
+  "edge": "left",
+  "orientation": "rotated",
+  "template": "80r_33h",
+  "text_guess": "80'",
+  "scale": 1.1,
+  "neatline_dist": 195.5,
+  "darkest_line_frac": 0.636,
+  "ring_ink": 0.028,
+  "paper_sat": 20.0,
+  "in_street_x": false,
+  "in_street_y": true,
+  "hit_box": [
+   258,
+   2499,
+   289,
+   2540
+  ],
+  "k": 16,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u35_16.jpg"
  },
  {
   "unit": "35",
@@ -5999,8 +7855,8 @@
    149,
    3539
   ],
-  "k": 10,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u35_10.jpg"
+  "k": 17,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u35_17.jpg"
  },
  {
   "unit": "36",
@@ -6034,6 +7890,35 @@
  {
   "unit": "36",
   "box": [
+   1131,
+   361,
+   1180,
+   392
+  ],
+  "score": 0.551,
+  "edge": "top",
+  "orientation": "horizontal",
+  "template": "150h_56",
+  "text_guess": "150'",
+  "scale": 1.0,
+  "neatline_dist": 269.5,
+  "darkest_line_frac": 0.551,
+  "ring_ink": 0.011,
+  "paper_sat": 22.0,
+  "in_street_x": true,
+  "in_street_y": false,
+  "hit_box": [
+   1133,
+   362,
+   1186,
+   391
+  ],
+  "k": 2,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u36_2.jpg"
+ },
+ {
+  "unit": "36",
+  "box": [
    2180,
    344,
    2217,
@@ -6057,8 +7942,95 @@
    2224,
    376
   ],
-  "k": 2,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u36_2.jpg"
+  "k": 3,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u36_3.jpg"
+ },
+ {
+  "unit": "36",
+  "box": [
+   3151,
+   364,
+   3186,
+   395
+  ],
+  "score": 0.568,
+  "edge": "right",
+  "orientation": "horizontal",
+  "template": "70h_33m",
+  "text_guess": "70'",
+  "scale": 1.1,
+  "neatline_dist": 65.5,
+  "darkest_line_frac": 0.486,
+  "ring_ink": 0.01,
+  "paper_sat": 29.0,
+  "in_street_x": true,
+  "in_street_y": false,
+  "hit_box": [
+   3146,
+   351,
+   3193,
+   394
+  ],
+  "k": 4,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u36_4.jpg"
+ },
+ {
+  "unit": "36",
+  "box": [
+   3060,
+   1360,
+   3095,
+   1400
+  ],
+  "score": 0.553,
+  "edge": "right",
+  "orientation": "rotated",
+  "template": "80r_33i",
+  "text_guess": "80'",
+  "scale": 1.1,
+  "neatline_dist": 156.5,
+  "darkest_line_frac": 0.486,
+  "ring_ink": 0.011,
+  "paper_sat": 24.0,
+  "in_street_x": true,
+  "in_street_y": true,
+  "hit_box": [
+   3062,
+   1360,
+   3094,
+   1407
+  ],
+  "k": 5,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u36_5.jpg"
+ },
+ {
+  "unit": "36",
+  "box": [
+   3137,
+   1427,
+   3164,
+   1454
+  ],
+  "score": 0.566,
+  "edge": "right",
+  "orientation": "rotated",
+  "template": "80r_45a",
+  "text_guess": "80'",
+  "scale": 0.9,
+  "neatline_dist": 83.5,
+  "darkest_line_frac": 0.556,
+  "ring_ink": 0.0,
+  "paper_sat": 42.0,
+  "in_street_x": true,
+  "in_street_y": true,
+  "hit_box": [
+   3121,
+   1416,
+   3168,
+   1463
+  ],
+  "k": 6,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u36_6.jpg"
  },
  {
   "unit": "36",
@@ -6086,8 +8058,8 @@
    3067,
    2542
   ],
-  "k": 3,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u36_3.jpg"
+  "k": 7,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u36_7.jpg"
  },
  {
   "unit": "36",
@@ -6115,8 +8087,8 @@
    3196,
    3533
   ],
-  "k": 4,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u36_4.jpg"
+  "k": 8,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u36_8.jpg"
  },
  {
   "unit": "36",
@@ -6144,8 +8116,37 @@
    260,
    3697
   ],
-  "k": 5,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u36_5.jpg"
+  "k": 9,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u36_9.jpg"
+ },
+ {
+  "unit": "36",
+  "box": [
+   1118,
+   3509,
+   1168,
+   3542
+  ],
+  "score": 0.58,
+  "edge": "bottom",
+  "orientation": "horizontal",
+  "template": "150h_56",
+  "text_guess": "150'",
+  "scale": 0.9,
+  "neatline_dist": 259.5,
+  "darkest_line_frac": 0.38,
+  "ring_ink": 0.007,
+  "paper_sat": 23.0,
+  "in_street_x": true,
+  "in_street_y": false,
+  "hit_box": [
+   1122,
+   3513,
+   1170,
+   3539
+  ],
+  "k": 10,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u36_10.jpg"
  },
  {
   "unit": "36",
@@ -6173,8 +8174,8 @@
    3065,
    3692
   ],
-  "k": 6,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u36_6.jpg"
+  "k": 11,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u36_11.jpg"
  },
  {
   "unit": "36",
@@ -6202,8 +8203,8 @@
    168,
    384
   ],
-  "k": 7,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u36_7.jpg"
+  "k": 12,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u36_12.jpg"
  },
  {
   "unit": "36",
@@ -6231,8 +8232,8 @@
    263,
    2549
   ],
-  "k": 8,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u36_8.jpg"
+  "k": 13,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u36_13.jpg"
  },
  {
   "unit": "36",
@@ -6260,8 +8261,8 @@
    167,
    3539
   ],
-  "k": 9,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u36_9.jpg"
+  "k": 14,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u36_14.jpg"
  },
  {
   "unit": "37",
@@ -6585,6 +8586,35 @@
  {
   "unit": "37",
   "box": [
+   2621,
+   3519,
+   2661,
+   3582
+  ],
+  "score": 0.55,
+  "edge": "bottom",
+  "orientation": "horizontal",
+  "template": "70h_45a",
+  "text_guess": "70'",
+  "scale": 0.9,
+  "neatline_dist": 230.5,
+  "darkest_line_frac": 0.762,
+  "ring_ink": 0.188,
+  "paper_sat": 18.0,
+  "in_street_x": false,
+  "in_street_y": true,
+  "hit_box": [
+   2628,
+   3535,
+   2666,
+   3566
+  ],
+  "k": 12,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u37_12.jpg"
+ },
+ {
+  "unit": "37",
+  "box": [
    2995,
    3651,
    3026,
@@ -6608,8 +8638,8 @@
    3025,
    3691
   ],
-  "k": 12,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u37_12.jpg"
+  "k": 13,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u37_13.jpg"
  },
  {
   "unit": "37",
@@ -6637,8 +8667,8 @@
    198,
    374
   ],
-  "k": 13,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u37_13.jpg"
+  "k": 14,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u37_14.jpg"
  },
  {
   "unit": "37",
@@ -6666,8 +8696,8 @@
    311,
    1378
   ],
-  "k": 14,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u37_14.jpg"
+  "k": 15,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u37_15.jpg"
  },
  {
   "unit": "37",
@@ -6695,8 +8725,37 @@
    300,
    2532
   ],
-  "k": 15,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u37_15.jpg"
+  "k": 16,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u37_16.jpg"
+ },
+ {
+  "unit": "37",
+  "box": [
+   128,
+   3512,
+   161,
+   3542
+  ],
+  "score": 0.567,
+  "edge": "left",
+  "orientation": "horizontal",
+  "template": "70h_33m",
+  "text_guess": "70'",
+  "scale": 0.9,
+  "neatline_dist": 63.5,
+  "darkest_line_frac": 0.515,
+  "ring_ink": 0.004,
+  "paper_sat": 28.0,
+  "in_street_x": true,
+  "in_street_y": false,
+  "hit_box": [
+   127,
+   3503,
+   166,
+   3538
+  ],
+  "k": 17,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u37_17.jpg"
  },
  {
   "unit": "41",
@@ -7223,6 +9282,35 @@
  {
   "unit": "45",
   "box": [
+   230,
+   199,
+   277,
+   254
+  ],
+  "score": 0.57,
+  "edge": "top",
+  "orientation": "rotated",
+  "template": "80r_33h",
+  "text_guess": "80'",
+  "scale": 1.0,
+  "neatline_dist": 116.5,
+  "darkest_line_frac": 0.455,
+  "ring_ink": 0.134,
+  "paper_sat": 27.0,
+  "in_street_x": true,
+  "in_street_y": true,
+  "hit_box": [
+   246,
+   215,
+   274,
+   252
+  ],
+  "k": 1,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u45_1.jpg"
+ },
+ {
+  "unit": "45",
+  "box": [
    614,
    321,
    659,
@@ -7246,8 +9334,8 @@
    660,
    373
   ],
-  "k": 1,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u45_1.jpg"
+  "k": 2,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u45_2.jpg"
  },
  {
   "unit": "45",
@@ -7275,8 +9363,8 @@
    1156,
    367
   ],
-  "k": 2,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u45_2.jpg"
+  "k": 3,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u45_3.jpg"
  },
  {
   "unit": "45",
@@ -7304,8 +9392,8 @@
    2154,
    370
   ],
-  "k": 3,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u45_3.jpg"
+  "k": 4,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u45_4.jpg"
  },
  {
   "unit": "45",
@@ -7333,8 +9421,8 @@
    2662,
    366
   ],
-  "k": 4,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u45_4.jpg"
+  "k": 5,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u45_5.jpg"
  },
  {
   "unit": "45",
@@ -7362,8 +9450,8 @@
    3027,
    241
   ],
-  "k": 5,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u45_5.jpg"
+  "k": 6,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u45_6.jpg"
  },
  {
   "unit": "45",
@@ -7391,8 +9479,8 @@
    3155,
    368
   ],
-  "k": 6,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u45_6.jpg"
+  "k": 7,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u45_7.jpg"
  },
  {
   "unit": "45",
@@ -7420,8 +9508,8 @@
    3157,
    1242
   ],
-  "k": 7,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u45_7.jpg"
+  "k": 8,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u45_8.jpg"
  },
  {
   "unit": "45",
@@ -7449,8 +9537,8 @@
    3032,
    1327
   ],
-  "k": 8,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u45_8.jpg"
+  "k": 9,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u45_9.jpg"
  },
  {
   "unit": "45",
@@ -7478,8 +9566,8 @@
    3029,
    2556
   ],
-  "k": 9,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u45_9.jpg"
+  "k": 10,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u45_10.jpg"
  },
  {
   "unit": "45",
@@ -7507,8 +9595,8 @@
    3026,
    3111
   ],
-  "k": 10,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u45_10.jpg"
+  "k": 11,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u45_11.jpg"
  },
  {
   "unit": "45",
@@ -7536,8 +9624,8 @@
    3148,
    3546
   ],
-  "k": 11,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u45_11.jpg"
+  "k": 12,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u45_12.jpg"
  },
  {
   "unit": "45",
@@ -7565,8 +9653,8 @@
    265,
    3686
   ],
-  "k": 12,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u45_12.jpg"
+  "k": 13,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u45_13.jpg"
  },
  {
   "unit": "45",
@@ -7594,8 +9682,8 @@
    1158,
    3553
   ],
-  "k": 13,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u45_13.jpg"
+  "k": 14,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u45_14.jpg"
  },
  {
   "unit": "45",
@@ -7623,8 +9711,8 @@
    3022,
    3694
   ],
-  "k": 14,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u45_14.jpg"
+  "k": 15,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u45_15.jpg"
  },
  {
   "unit": "45",
@@ -7652,8 +9740,8 @@
    266,
    1389
   ],
-  "k": 15,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u45_15.jpg"
+  "k": 16,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u45_16.jpg"
  },
  {
   "unit": "45",
@@ -7681,8 +9769,8 @@
    268,
    2548
   ],
-  "k": 16,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u45_16.jpg"
+  "k": 17,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u45_17.jpg"
  },
  {
   "unit": "45",
@@ -7710,8 +9798,8 @@
    173,
    3547
   ],
-  "k": 17,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u45_17.jpg"
+  "k": 18,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u45_18.jpg"
  },
  {
   "unit": "51",
@@ -7745,6 +9833,35 @@
  {
   "unit": "51",
   "box": [
+   3147,
+   306,
+   3183,
+   344
+  ],
+  "score": 0.571,
+  "edge": "right",
+  "orientation": "horizontal",
+  "template": "70h_45b",
+  "text_guess": "70'",
+  "scale": 1.1,
+  "neatline_dist": 68.0,
+  "darkest_line_frac": 0.789,
+  "ring_ink": 0.033,
+  "paper_sat": 26.0,
+  "in_street_x": true,
+  "in_street_y": false,
+  "hit_box": [
+   3144,
+   302,
+   3191,
+   342
+  ],
+  "k": 2,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u51_2.jpg"
+ },
+ {
+  "unit": "51",
+  "box": [
    3124,
    3579,
    3173,
@@ -7768,8 +9885,8 @@
    3169,
    3619
   ],
-  "k": 2,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u51_2.jpg"
+  "k": 3,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u51_3.jpg"
  },
  {
   "unit": "51",
@@ -7797,8 +9914,8 @@
    270,
    3716
   ],
-  "k": 3,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u51_3.jpg"
+  "k": 4,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u51_4.jpg"
  },
  {
   "unit": "51",
@@ -7826,8 +9943,37 @@
    1163,
    3612
   ],
-  "k": 4,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u51_4.jpg"
+  "k": 5,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u51_5.jpg"
+ },
+ {
+  "unit": "51",
+  "box": [
+   1620,
+   3575,
+   1680,
+   3639
+  ],
+  "score": 0.552,
+  "edge": "bottom",
+  "orientation": "horizontal",
+  "template": "80h_7a",
+  "text_guess": "80'",
+  "scale": 0.9,
+  "neatline_dist": 212.0,
+  "darkest_line_frac": 0.75,
+  "ring_ink": 0.076,
+  "paper_sat": 18.0,
+  "in_street_x": false,
+  "in_street_y": true,
+  "hit_box": [
+   1621,
+   3591,
+   1664,
+   3623
+  ],
+  "k": 6,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u51_6.jpg"
  },
  {
   "unit": "51",
@@ -7855,8 +10001,8 @@
    2178,
    3622
   ],
-  "k": 5,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u51_5.jpg"
+  "k": 7,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u51_7.jpg"
  },
  {
   "unit": "51",
@@ -7884,8 +10030,8 @@
    3027,
    3733
   ],
-  "k": 6,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u51_6.jpg"
+  "k": 8,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u51_8.jpg"
  },
  {
   "unit": "51",
@@ -7913,8 +10059,8 @@
    174,
    322
   ],
-  "k": 7,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u51_7.jpg"
+  "k": 9,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u51_9.jpg"
  },
  {
   "unit": "51",
@@ -7942,8 +10088,8 @@
    164,
    3607
   ],
-  "k": 8,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u51_8.jpg"
+  "k": 10,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u51_10.jpg"
  },
  {
   "unit": "55",
@@ -7977,6 +10123,35 @@
  {
   "unit": "55",
   "box": [
+   1631,
+   318,
+   1672,
+   387
+  ],
+  "score": 0.57,
+  "edge": "top",
+  "orientation": "horizontal",
+  "template": "70h_7e",
+  "text_guess": "70'",
+  "scale": 0.9,
+  "neatline_dist": 244.5,
+  "darkest_line_frac": 0.841,
+  "ring_ink": 0.113,
+  "paper_sat": 19.0,
+  "in_street_x": false,
+  "in_street_y": true,
+  "hit_box": [
+   1634,
+   334,
+   1676,
+   371
+  ],
+  "k": 2,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u55_2.jpg"
+ },
+ {
+  "unit": "55",
+  "box": [
    2130,
    347,
    2164,
@@ -8000,8 +10175,8 @@
    2169,
    379
   ],
-  "k": 2,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u55_2.jpg"
+  "k": 3,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u55_3.jpg"
  },
  {
   "unit": "55",
@@ -8029,8 +10204,8 @@
    3244,
    164
   ],
-  "k": 3,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u55_3.jpg"
+  "k": 4,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u55_4.jpg"
  },
  {
   "unit": "55",
@@ -8058,8 +10233,37 @@
    3165,
    369
   ],
-  "k": 4,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u55_4.jpg"
+  "k": 5,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u55_5.jpg"
+ },
+ {
+  "unit": "55",
+  "box": [
+   3002,
+   1322,
+   3042,
+   1378
+  ],
+  "score": 0.557,
+  "edge": "right",
+  "orientation": "rotated",
+  "template": "80r_7f",
+  "text_guess": "80'",
+  "scale": 1.1,
+  "neatline_dist": 228.0,
+  "darkest_line_frac": 0.5,
+  "ring_ink": 0.001,
+  "paper_sat": 17.0,
+  "in_street_x": false,
+  "in_street_y": true,
+  "hit_box": [
+   2999,
+   1324,
+   3041,
+   1376
+  ],
+  "k": 6,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u55_6.jpg"
  },
  {
   "unit": "55",
@@ -8087,8 +10291,8 @@
    3048,
    2526
   ],
-  "k": 5,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u55_5.jpg"
+  "k": 7,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u55_7.jpg"
  },
  {
   "unit": "55",
@@ -8116,8 +10320,8 @@
    3044,
    3105
   ],
-  "k": 6,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u55_6.jpg"
+  "k": 8,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u55_8.jpg"
  },
  {
   "unit": "55",
@@ -8145,8 +10349,8 @@
    3176,
    3533
   ],
-  "k": 7,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u55_7.jpg"
+  "k": 9,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u55_9.jpg"
  },
  {
   "unit": "55",
@@ -8174,8 +10378,8 @@
    289,
    3685
   ],
-  "k": 8,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u55_8.jpg"
+  "k": 10,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u55_10.jpg"
  },
  {
   "unit": "55",
@@ -8203,8 +10407,8 @@
    1173,
    3546
   ],
-  "k": 9,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u55_9.jpg"
+  "k": 11,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u55_11.jpg"
  },
  {
   "unit": "55",
@@ -8232,8 +10436,8 @@
    2183,
    3544
   ],
-  "k": 10,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u55_10.jpg"
+  "k": 12,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u55_12.jpg"
  },
  {
   "unit": "55",
@@ -8261,8 +10465,8 @@
    3047,
    3683
   ],
-  "k": 11,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u55_11.jpg"
+  "k": 13,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u55_13.jpg"
  },
  {
   "unit": "55",
@@ -8272,12 +10476,12 @@
    165,
    380
   ],
-  "score": 0.586,
+  "score": 0.588,
   "edge": "left",
   "orientation": "horizontal",
-  "template": "70h_33m",
-  "text_guess": "70'",
-  "scale": 1.0,
+  "template": "150h_56",
+  "text_guess": "150'",
+  "scale": 0.9,
   "neatline_dist": 64.0,
   "darkest_line_frac": 0.438,
   "ring_ink": 0.013,
@@ -8285,13 +10489,13 @@
   "in_street_x": true,
   "in_street_y": false,
   "hit_box": [
-   128,
-   339,
+   123,
+   350,
    171,
-   378
+   376
   ],
-  "k": 12,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u55_12.jpg"
+  "k": 14,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u55_14.jpg"
  },
  {
   "unit": "55",
@@ -8319,8 +10523,66 @@
    299,
    1392
   ],
-  "k": 13,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u55_13.jpg"
+  "k": 15,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u55_15.jpg"
+ },
+ {
+  "unit": "55",
+  "box": [
+   246,
+   2490,
+   289,
+   2536
+  ],
+  "score": 0.556,
+  "edge": "left",
+  "orientation": "rotated",
+  "template": "80r_33i",
+  "text_guess": "80'",
+  "scale": 1.0,
+  "neatline_dist": 183.5,
+  "darkest_line_frac": 0.791,
+  "ring_ink": 0.031,
+  "paper_sat": 19.0,
+  "in_street_x": true,
+  "in_street_y": true,
+  "hit_box": [
+   258,
+   2491,
+   287,
+   2534
+  ],
+  "k": 16,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u55_16.jpg"
+ },
+ {
+  "unit": "55",
+  "box": [
+   303,
+   2798,
+   366,
+   2833
+  ],
+  "score": 0.578,
+  "edge": "left",
+  "orientation": "horizontal",
+  "template": "70h_45b",
+  "text_guess": "70'",
+  "scale": 0.9,
+  "neatline_dist": 250.5,
+  "darkest_line_frac": 0.6,
+  "ring_ink": 0.205,
+  "paper_sat": 18.0,
+  "in_street_x": false,
+  "in_street_y": false,
+  "hit_box": [
+   333,
+   2798,
+   372,
+   2830
+  ],
+  "k": 17,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u55_17.jpg"
  },
  {
   "unit": "55",
@@ -8348,8 +10610,8 @@
    398,
    2831
   ],
-  "k": 14,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u55_14.jpg"
+  "k": 18,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u55_18.jpg"
  },
  {
   "unit": "55",
@@ -8377,8 +10639,8 @@
    177,
    3576
   ],
-  "k": 15,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u55_15.jpg"
+  "k": 19,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u55_19.jpg"
  },
  {
   "unit": "56",
@@ -8412,6 +10674,64 @@
  {
   "unit": "56",
   "box": [
+   595,
+   336,
+   638,
+   405
+  ],
+  "score": 0.559,
+  "edge": "top",
+  "orientation": "horizontal",
+  "template": "70h_7e",
+  "text_guess": "70'",
+  "scale": 0.9,
+  "neatline_dist": 252.5,
+  "darkest_line_frac": 0.754,
+  "ring_ink": 0.093,
+  "paper_sat": 23.0,
+  "in_street_x": false,
+  "in_street_y": true,
+  "hit_box": [
+   599,
+   352,
+   641,
+   389
+  ],
+  "k": 2,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u56_2.jpg"
+ },
+ {
+  "unit": "56",
+  "box": [
+   1146,
+   351,
+   1203,
+   384
+  ],
+  "score": 1.0,
+  "edge": "top",
+  "orientation": "horizontal",
+  "template": "150h_56",
+  "text_guess": "150'",
+  "scale": 1.0,
+  "neatline_dist": 249.5,
+  "darkest_line_frac": 0.404,
+  "ring_ink": 0.003,
+  "paper_sat": 20.0,
+  "in_street_x": true,
+  "in_street_y": false,
+  "hit_box": [
+   1148,
+   353,
+   1201,
+   382
+  ],
+  "k": 3,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u56_3.jpg"
+ },
+ {
+  "unit": "56",
+  "box": [
    2189,
    354,
    2233,
@@ -8435,8 +10755,8 @@
    2238,
    390
   ],
-  "k": 2,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u56_2.jpg"
+  "k": 4,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u56_4.jpg"
  },
  {
   "unit": "56",
@@ -8464,8 +10784,8 @@
    3076,
    244
   ],
-  "k": 3,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u56_3.jpg"
+  "k": 5,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u56_5.jpg"
  },
  {
   "unit": "56",
@@ -8493,8 +10813,8 @@
    3228,
    403
   ],
-  "k": 4,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u56_4.jpg"
+  "k": 6,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u56_6.jpg"
  },
  {
   "unit": "56",
@@ -8522,8 +10842,37 @@
    3089,
    1388
   ],
-  "k": 5,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u56_5.jpg"
+  "k": 7,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u56_7.jpg"
+ },
+ {
+  "unit": "56",
+  "box": [
+   3062,
+   3072,
+   3095,
+   3108
+  ],
+  "score": 0.565,
+  "edge": "right",
+  "orientation": "rotated",
+  "template": "80r_45b",
+  "text_guess": "80'",
+  "scale": 0.9,
+  "neatline_dist": 153.5,
+  "darkest_line_frac": 0.424,
+  "ring_ink": 0.046,
+  "paper_sat": 18.0,
+  "in_street_x": true,
+  "in_street_y": false,
+  "hit_box": [
+   3058,
+   3067,
+   3091,
+   3107
+  ],
+  "k": 8,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u56_8.jpg"
  },
  {
   "unit": "56",
@@ -8551,8 +10900,8 @@
    3230,
    3548
   ],
-  "k": 6,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u56_6.jpg"
+  "k": 9,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u56_9.jpg"
  },
  {
   "unit": "56",
@@ -8580,8 +10929,8 @@
    248,
    3690
   ],
-  "k": 7,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u56_7.jpg"
+  "k": 10,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u56_10.jpg"
  },
  {
   "unit": "56",
@@ -8609,8 +10958,66 @@
    636,
    3550
   ],
-  "k": 8,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u56_8.jpg"
+  "k": 11,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u56_11.jpg"
+ },
+ {
+  "unit": "56",
+  "box": [
+   1141,
+   3507,
+   1183,
+   3549
+  ],
+  "score": 0.586,
+  "edge": "bottom",
+  "orientation": "horizontal",
+  "template": "150h_56",
+  "text_guess": "150'",
+  "scale": 1.0,
+  "neatline_dist": 254.0,
+  "darkest_line_frac": 0.833,
+  "ring_ink": 0.041,
+  "paper_sat": 18.0,
+  "in_street_x": true,
+  "in_street_y": false,
+  "hit_box": [
+   1137,
+   3517,
+   1190,
+   3546
+  ],
+  "k": 12,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u56_12.jpg"
+ },
+ {
+  "unit": "56",
+  "box": [
+   1685,
+   3523,
+   1724,
+   3557
+  ],
+  "score": 0.553,
+  "edge": "bottom",
+  "orientation": "horizontal",
+  "template": "80h_33k",
+  "text_guess": "80'",
+  "scale": 0.9,
+  "neatline_dist": 242.0,
+  "darkest_line_frac": 0.385,
+  "ring_ink": 0.09,
+  "paper_sat": 18.0,
+  "in_street_x": false,
+  "in_street_y": true,
+  "hit_box": [
+   1680,
+   3518,
+   1723,
+   3556
+  ],
+  "k": 13,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u56_13.jpg"
  },
  {
   "unit": "56",
@@ -8638,8 +11045,8 @@
    2228,
    3549
   ],
-  "k": 9,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u56_9.jpg"
+  "k": 14,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u56_14.jpg"
  },
  {
   "unit": "56",
@@ -8667,8 +11074,8 @@
    3069,
    3686
   ],
-  "k": 10,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u56_10.jpg"
+  "k": 15,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u56_15.jpg"
  },
  {
   "unit": "56",
@@ -8696,8 +11103,8 @@
    158,
    382
   ],
-  "k": 11,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u56_11.jpg"
+  "k": 16,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u56_16.jpg"
  },
  {
   "unit": "56",
@@ -8725,8 +11132,8 @@
    252,
    1402
   ],
-  "k": 12,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u56_12.jpg"
+  "k": 17,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u56_17.jpg"
  },
  {
   "unit": "56",
@@ -8754,8 +11161,8 @@
    151,
    3550
   ],
-  "k": 13,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u56_13.jpg"
+  "k": 18,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u56_18.jpg"
  },
  {
   "unit": "57",
@@ -8789,6 +11196,35 @@
  {
   "unit": "57",
   "box": [
+   675,
+   342,
+   719,
+   405
+  ],
+  "score": 0.576,
+  "edge": "top",
+  "orientation": "horizontal",
+  "template": "70h_45a",
+  "text_guess": "70'",
+  "scale": 0.9,
+  "neatline_dist": 264.5,
+  "darkest_line_frac": 0.762,
+  "ring_ink": 0.131,
+  "paper_sat": 23.0,
+  "in_street_x": false,
+  "in_street_y": false,
+  "hit_box": [
+   680,
+   358,
+   718,
+   389
+  ],
+  "k": 2,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u57_2.jpg"
+ },
+ {
+  "unit": "57",
+  "box": [
    1188,
    363,
    1225,
@@ -8812,8 +11248,8 @@
    1230,
    395
   ],
-  "k": 2,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u57_2.jpg"
+  "k": 3,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u57_3.jpg"
  },
  {
   "unit": "57",
@@ -8841,8 +11277,8 @@
    3229,
    1521
   ],
-  "k": 3,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u57_3.jpg"
+  "k": 4,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u57_4.jpg"
  },
  {
   "unit": "57",
@@ -8870,8 +11306,8 @@
    355,
    3680
   ],
-  "k": 4,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u57_4.jpg"
+  "k": 5,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u57_5.jpg"
  },
  {
   "unit": "57",
@@ -8899,8 +11335,8 @@
    1090,
    3698
   ],
-  "k": 5,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u57_5.jpg"
+  "k": 6,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u57_6.jpg"
  },
  {
   "unit": "57",
@@ -8928,8 +11364,8 @@
    1223,
    3549
   ],
-  "k": 6,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u57_6.jpg"
+  "k": 7,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u57_7.jpg"
  },
  {
   "unit": "57",
@@ -8957,8 +11393,37 @@
    2230,
    3544
   ],
-  "k": 7,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u57_7.jpg"
+  "k": 8,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u57_8.jpg"
+ },
+ {
+  "unit": "57",
+  "box": [
+   2634,
+   3586,
+   2667,
+   3627
+  ],
+  "score": 0.579,
+  "edge": "bottom",
+  "orientation": "rotated",
+  "template": "80r_33h",
+  "text_guess": "80'",
+  "scale": 1.1,
+  "neatline_dist": 206.5,
+  "darkest_line_frac": 0.561,
+  "ring_ink": 0.005,
+  "paper_sat": 18.0,
+  "in_street_x": false,
+  "in_street_y": true,
+  "hit_box": [
+   2634,
+   3587,
+   2665,
+   3628
+  ],
+  "k": 9,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u57_9.jpg"
  },
  {
   "unit": "57",
@@ -8986,8 +11451,8 @@
    2719,
    3542
   ],
-  "k": 8,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u57_8.jpg"
+  "k": 10,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u57_10.jpg"
  },
  {
   "unit": "57",
@@ -9015,8 +11480,37 @@
    3089,
    3686
   ],
-  "k": 9,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u57_9.jpg"
+  "k": 11,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u57_11.jpg"
+ },
+ {
+  "unit": "57",
+  "box": [
+   319,
+   1351,
+   353,
+   1393
+  ],
+  "score": 0.564,
+  "edge": "left",
+  "orientation": "rotated",
+  "template": "80r_45a",
+  "text_guess": "80'",
+  "scale": 0.9,
+  "neatline_dist": 246.0,
+  "darkest_line_frac": 0.441,
+  "ring_ink": 0.0,
+  "paper_sat": 21.0,
+  "in_street_x": false,
+  "in_street_y": true,
+  "hit_box": [
+   306,
+   1348,
+   353,
+   1395
+  ],
+  "k": 12,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u57_12.jpg"
  },
  {
   "unit": "57",
@@ -9044,7 +11538,36 @@
    208,
    3553
   ],
-  "k": 10,
-  "crop": "outputs/1912/review/ring1/widthtags/crops/u57_10.jpg"
+  "k": 13,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u57_13.jpg"
+ },
+ {
+  "unit": "57",
+  "box": [
+   249,
+   3609,
+   297,
+   3641
+  ],
+  "score": 0.558,
+  "edge": "left",
+  "orientation": "rotated",
+  "template": "80r_45a",
+  "text_guess": "80'",
+  "scale": 0.9,
+  "neatline_dist": 183.0,
+  "darkest_line_frac": 0.688,
+  "ring_ink": 0.02,
+  "paper_sat": 23.0,
+  "in_street_x": true,
+  "in_street_y": true,
+  "hit_box": [
+   234,
+   3601,
+   281,
+   3648
+  ],
+  "k": 14,
+  "crop": "outputs/1912/review/ring1/widthtags/crops/u57_14.jpg"
  }
 ]
