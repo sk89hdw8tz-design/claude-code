@@ -71,6 +71,18 @@
      "cut": true,
      "covered_fraction": 1.0,
      "match_score": 0.73
+    },
+    {
+     "kind": "compass rose",
+     "box": [
+      354,
+      1216,
+      975,
+      1495
+     ],
+     "cut": true,
+     "covered_fraction": 1.0,
+     "how": "2026-09-17 ring-1 AAA pass: north arrow / compass rose plate 7 prints in the wharf yard NW of block 739 (Texas Star Flour Mills); wharf plate 5a maps that ground, so the box is cut. Position from the 5a_7_b census crop; verify on the re-rendered crop."
     }
    ]
   },
@@ -229,6 +241,18 @@
      "cut": true,
      "covered_fraction": 1.0,
      "match_score": 0.726
+    },
+    {
+     "kind": "compass rose",
+     "box": [
+      176,
+      449,
+      710,
+      821
+     ],
+     "cut": true,
+     "covered_fraction": 1.0,
+     "how": "2026-09-17 ring-1 AAA pass: the north arrow / compass rose plate 9 prints inside the wharf yard west of block 741 (blind census 5a|9: furniture in mapped ground); wharf plate 5a maps that ground (tracks), so the box is cut and 5a supplies it. Position from the 5a_9 census crop, box +-150-190 native px; verify on the re-rendered crop. Enlarged after the first render showed the arrow tips outside the box. West edge held at native x 176: further west wharf plate 5a draws its Pier 21 shed where plate 9 draws yard, so cutting there would paint shed into the yard; the arrow's west tip stays on plate 9 (disclosed)."
     }
    ]
   },

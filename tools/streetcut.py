@@ -81,9 +81,20 @@ def load_cuts(r):
             p = M @ (np.array([float(nat), (e[1] + e[3]) / 2]) if vert
                      else np.array([(e[0] + e[2]) / 2, float(nat)])) + t
             pos.append(float(p[0] if vert else p[1]))
-        out.setdefault((ua, ub), {})["x" if vert else "y"] = (
-            float(np.mean(pos)), d.get("corridor", "?"))
+        ax = "x" if vert else "y"
+        if ax in out.get((ua, ub), {}):
+            # a second control on the SAME axis (a _x/_y registration tie next
+            # to the pair's seam-position control) must not move the seam:
+            # the first file (the base name sorts first) is the cut
+            print(f"  load_cuts: {f} duplicates axis {ax} of {ua}|{ub}; seam keeps the first control", flush=True)
+            continue
+        out.setdefault((ua, ub), {})[ax] = (float(np.mean(pos)), d.get("corridor", "?"))
+        if str(d.get("cut", "")).lower() == "straight":
+            STRAIGHT_PAIRS.add((ua, ub))
     return out
+
+
+STRAIGHT_PAIRS = set()   # controls that ask for a straight cut ("cut": "straight")
 
 
 _gray = {}
@@ -973,7 +984,7 @@ def main():
             lower = u if cen[u][k] < cen[v][k] else v
             upper = v if lower == u else u
             path, info = None, {}
-            if band and not a.straight:
+            if band and not a.straight and (u, v) not in STRAIGHT_PAIRS and (v, u) not in STRAIGHT_PAIRS:
                 O_band = O
                 if BAND_FURNITURE_FREE:
                     q = base_nf[u].intersection(base_nf[v])
