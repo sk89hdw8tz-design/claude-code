@@ -4,13 +4,17 @@
   "33"
  ],
  "axis": "avenue",
- "corridor": "wharf frontage: 60 native px inside sheet 33's bay-side neatline (straight cut)",
- "observer": "2026-09-17 ring-1 AAA pass (blind census 5a|33 = 3-4: a blank 5a strip sat between the yard and block 736 where plate 33's own paper begins)",
- "a_native": 2501.0,
- "b_native": 169,
+ "corridor": "wharf frontage: 100 native px inside sheet 33's bay-side neatline (straight cut)",
+ "observer": "2026-09-17 ring-1 AAA pass (blind census 5a|33 = 3-4: a blank 5a strip sat between the yard and block 736 where plate 33's own paper begins) | round 3: moved 40 native px further into plate 33 so its small 'TERMINAL TRACKS AND YARD' caption, printed against its neatline beside 5a's large TRACKS & YARD lettering, is covered (doubled label, re-grade 5a|33 = 3).",
+ "a_native": 2541.4,
+ "b_native": 209,
  "cut": "straight",
  "status": "ACCEPTED",
  "solve": false,
  "why_not_one_block_off": "Not a street. Sheet 33 draws the wharf-front ground at 50 ft/in up to its bay-side neatline; the 100 ft/in wharf panel 5a supplies the yard and piers beyond. Same rule as 5a|7 and 5a|9.",
- "solve_note": "seam position, not a feature tie"
+ "solve_note": "seam position, not a feature tie",
+ "before_round3": {
+  "a_native": 2501.0,
+  "b_native": 169
+ }
 }
