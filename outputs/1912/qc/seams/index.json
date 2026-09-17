@@ -1,41 +1,4 @@
 {
  "tool": "tools/seamcrops.py",
- "seams": [
-  {
-   "pair": [
-    "5a",
-    "9"
-   ],
-   "axis": "x",
-   "coord": -9165.24,
-   "cut": "straight",
-   "how": "control",
-   "corridor": "wharf frontage: 60 native px inside sheet 9's bay-side neatline (straight cut)",
-   "kind": "band",
-   "overlap_px2": 8296450,
-   "span_px": 3307,
-   "lattice_disagreement_px": null,
-   "lattice_disagreement_ft": null,
-   "crops": [
-    {
-     "crop_100": "outputs/1912/qc/seams/seam_5a_9_100.jpg",
-     "crop_50": "outputs/1912/qc/seams/seam_5a_9_50.jpg",
-     "window": [
-      -10765,
-      -4507,
-      -7565,
-      493
-     ]
-    }
-   ],
-   "crop_100": "outputs/1912/qc/seams/seam_5a_9_100.jpg",
-   "crop_50": "outputs/1912/qc/seams/seam_5a_9_50.jpg",
-   "window": [
-    -10765,
-    -4507,
-    -7565,
-    493
-   ]
-  }
- ]
+ "seams": []
 }
