@@ -1,0 +1,379 @@
+{
+ "11_13": {
+  "seam": "11_13",
+  "score": 3,
+  "defects": [
+   "rail-utility",
+   "tone"
+  ]
+ },
+ "13_14": {
+  "seam": "13_14",
+  "score": 4,
+  "defects": [
+   "rail-utility",
+   "tone"
+  ]
+ },
+ "34_39": {
+  "seam": "34_39",
+  "score": 3,
+  "defects": [
+   "duplicate-label",
+   "gap"
+  ]
+ },
+ "36_39": {
+  "seam": "36_39",
+  "score": 3,
+  "defects": [
+   "duplicate-label"
+  ]
+ },
+ "40_41": {
+  "seam": "40_41",
+  "score": 4,
+  "defects": [
+   "rail-utility",
+   "tone"
+  ]
+ },
+ "45_51": {
+  "seam": "45_51",
+  "score": 4,
+  "defects": [
+   "tone"
+  ]
+ },
+ "50_56": {
+  "seam": "50_56",
+  "score": 3,
+  "defects": [
+   "duplicate-label",
+   "rail-utility",
+   "gap"
+  ]
+ },
+ "56_57": {
+  "seam": "56_57",
+  "score": 3,
+  "defects": [
+   "rail-utility",
+   "gap",
+   "tone"
+  ]
+ },
+ "5b_11": {
+  "seam": "5b_11",
+  "score": 5,
+  "defects": [
+   "none"
+  ]
+ },
+ "8_33": {
+  "seam": "8_33",
+  "score": 3,
+  "defects": [
+   "rail-utility",
+   "duplicate-label"
+  ]
+ },
+ "11_14": {
+  "seam": "11_14",
+  "score": 4,
+  "defects": [
+   "tone"
+  ]
+ },
+ "14_49": {
+  "seam": "14_49",
+  "score": 2,
+  "defects": [
+   "duplicate-label"
+  ]
+ },
+ "35_36": {
+  "seam": "35_36",
+  "score": 4,
+  "defects": [
+   "tone"
+  ]
+ },
+ "36_40": {
+  "seam": "36_40",
+  "score": 3,
+  "defects": [
+   "furniture"
+  ]
+ },
+ "41_44": {
+  "seam": "41_44",
+  "score": 2,
+  "defects": [
+   "duplicate-label",
+   "furniture"
+  ]
+ },
+ "49_55": {
+  "seam": "49_55",
+  "score": 3,
+  "defects": [
+   "furniture"
+  ]
+ },
+ "50_57": {
+  "seam": "50_57",
+  "score": 2,
+  "defects": [
+   "duplicate-label",
+   "furniture",
+   "tone"
+  ]
+ },
+ "5a_33": {
+  "seam": "5a_33",
+  "score": 4,
+  "defects": [
+   "tone"
+  ]
+ },
+ "5b_13": {
+  "seam": "5b_13",
+  "score": 3,
+  "defects": [
+   "furniture",
+   "tone"
+  ]
+ },
+ "8_34": {
+  "seam": "8_34",
+  "score": 4,
+  "defects": [
+   "furniture"
+  ]
+ },
+ "12_14": {
+  "seam": "12_14",
+  "score": 5,
+  "defects": [
+   "none"
+  ]
+ },
+ "33_34": {
+  "seam": "33_34",
+  "score": 3,
+  "defects": [
+   "step",
+   "rail-utility",
+   "tone",
+   "furniture"
+  ]
+ },
+ "35_40": {
+  "seam": "35_40",
+  "score": 3,
+  "defects": [
+   "furniture",
+   "step"
+  ]
+ },
+ "37_40": {
+  "seam": "37_40",
+  "score": 4,
+  "defects": [
+   "step",
+   "furniture"
+  ]
+ },
+ "44_45": {
+  "seam": "44_45",
+  "score": 4,
+  "defects": [
+   "step",
+   "rail-utility",
+   "tone"
+  ]
+ },
+ "50_51": {
+  "seam": "50_51",
+  "score": 4,
+  "defects": [
+   "step",
+   "tone",
+   "furniture"
+  ]
+ },
+ "51_57": {
+  "seam": "51_57",
+  "score": 4,
+  "defects": [
+   "rail-utility"
+  ]
+ },
+ "5a_7": {
+  "seam": "5a_7",
+  "score": 5,
+  "defects": [
+   "none"
+  ]
+ },
+ "7_33": {
+  "seam": "7_33",
+  "score": 2,
+  "defects": [
+   "step",
+   "rail-utility"
+  ]
+ },
+ "12_55": {
+  "seam": "12_55",
+  "score": 2,
+  "defects": [
+   "duplicate-label",
+   "gap",
+   "tone"
+  ]
+ },
+ "34_35": {
+  "seam": "34_35",
+  "score": 3,
+  "defects": [
+   "step",
+   "tone"
+  ]
+ },
+ "36_37": {
+  "seam": "36_37",
+  "score": 4,
+  "defects": [
+   "rail-utility",
+   "step",
+   "tone"
+  ]
+ },
+ "37_41": {
+  "seam": "37_41",
+  "score": 3,
+  "defects": [
+   "step",
+   "tone"
+  ]
+ },
+ "45_50": {
+  "seam": "45_50",
+  "score": 3,
+  "defects": [
+   "duplicate-label",
+   "step",
+   "furniture",
+   "tone"
+  ]
+ },
+ "50_55": {
+  "seam": "50_55",
+  "score": 2,
+  "defects": [
+   "duplicate-label",
+   "furniture",
+   "tone"
+  ]
+ },
+ "55_56": {
+  "seam": "55_56",
+  "score": 2,
+  "defects": [
+   "gap",
+   "step",
+   "rail-utility",
+   "tone"
+  ]
+ },
+ "5a_9": {
+  "seam": "5a_9",
+  "score": 4,
+  "defects": [
+   "tone"
+  ]
+ },
+ "7_34": {
+  "seam": "7_34",
+  "score": 2,
+  "defects": [
+   "step",
+   "rail-utility",
+   "gap",
+   "tone"
+  ]
+ },
+ "12_13": {
+  "seam": "12_13",
+  "score": 4,
+  "defects": [
+   "tone"
+  ]
+ },
+ "14_55": {
+  "seam": "14_55",
+  "score": 4,
+  "defects": [
+   "tone"
+  ]
+ },
+ "35_39": {
+  "seam": "35_39",
+  "score": 3,
+  "defects": [
+   "step",
+   "tone"
+  ]
+ },
+ "36_41": {
+  "seam": "36_41",
+  "score": 3,
+  "defects": [
+   "rail-utility",
+   "tone"
+  ]
+ },
+ "41_45": {
+  "seam": "41_45",
+  "score": 3,
+  "defects": [
+   "furniture",
+   "tone"
+  ]
+ },
+ "49_56": {
+  "seam": "49_56",
+  "score": 3,
+  "defects": [
+   "duplicate-label",
+   "step",
+   "tone"
+  ]
+ },
+ "51_56": {
+  "seam": "51_56",
+  "score": 3,
+  "defects": [
+   "duplicate-label",
+   "rail-utility",
+   "tone"
+  ]
+ },
+ "5a_5b": {
+  "seam": "5a_5b",
+  "score": 4,
+  "defects": [
+   "furniture",
+   "tone"
+  ]
+ },
+ "5b_9": {
+  "seam": "5b_9",
+  "score": 4,
+  "defects": [
+   "tone"
+  ]
+ }
+}

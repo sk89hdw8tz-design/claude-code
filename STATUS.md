@@ -23,7 +23,7 @@ Stage 3  QC + human queue          ██████████ done (HQ-4 awa
 Stage 4  indexes + render/crop     ██████████ done (both years; DZI deferred off-cloud)
 Stage 5  1899 city-wide (90 units)  ██████████ 89/90 placed (71a: no shared ground)
 Stage 6  1912 full volume           ██████████ 93/93 placed; city recipe exported
-Stage 10 1912 ring review           ██░░░░░░░░ ring 1 (15 units around the core) rendered for owner review
+Stage 10 1912 ring review           █████░░░░░ ring 1 AAA pass: 4 defect classes worked, census v2 in outputs/1912/review/ring1/BLIND_CENSUS.md
 Stage 9  1912 independent check    █████████░ corridor identity + seam NCC pass Stage-8; wharf 1-2 lead running
 Stage 7  1912 finish                █████████░ scales fixed, 319 controls, min-ink seams; census round 2 + publish
 ```

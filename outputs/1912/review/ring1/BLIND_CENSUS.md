@@ -79,3 +79,87 @@ The defects fall into four systematic classes, none of which is a one-line fix:
 Tone (34 seams) is reported but by policy not corrected.
 
 Nothing in the delivered recipe was changed by this census. Proposed order: class 2 (worst scores, self-contained), then 4, then 3, then 1 -- each with before/after crops and a blind re-grade, ring 1 only.
+
+
+# Ring 1 — blind seam census v2 (2026-09-17, after the AAA pass)
+
+Same rubric, same crop method, five fresh blind graders. 47 seams (8|35 no longer shares ground after the re-cut).
+
+| score | v1 (before) | v2 (after) |
+|---|---|---|
+| 5 | 5 | 3 |
+| 4 | 20 | 17 |
+| 3 | 10 | 19 |
+| 2 | 11 | 8 |
+| 1 | 2 | 0 |
+
+Improved: 13 seams (11_13, 12_13, 12_14, 36_37, 36_41, 50_56, 51_56, 5a_5b, 5a_7, 5a_9, 5b_11, 5b_13, 5b_9). Worse: 13 (12_55, 13_14, 14_55, 33_34, 34_35, 35_39, 35_40, 41_45, 49_55, 50_57, 55_56, 56_57, 7_34). Defect classes now: tone 31, rail-utility 15, furniture 14, step 14, duplicate-label 12, gap 6, none 3
+
+## What was done between v1 and v2
+
+- **Class 2, wharf plate 5** — frontage seams made straight and pinned 60 px inside the block plates' neatlines (5a|7, 5a|9, 5b|9, 5b|11, 5b|13, new 5a|33); the panel break 5a|5b moved south of the Gulf Fishery building; six declared local nudges (`seams/nudges.json`) so 5a keeps the whole Pier 21 shed and its pipe note and 5b the whole Mallory shed; plates 7 and 9 compass roses boxed. A latent bug fixed in `tools/streetcut.py`: a `_x` registration tie next to a seam-position control was silently moving the 5b seams to Ave A (plate 13's margin bracket inside the map was that). Scores: 5a|7 1→5, 5b|13 1→3, 5b|11 2→5, 5a|5b 2→4, 5a|9 2→4, 5b|9 3→4, 5a|33 4→4.
+- **Class 4, label clipping** — root cause on 50|56 was plate 50's scale-bar furniture box swallowing the house-number row; box lowered. `tools/seamnudge.py` + `seams/nudges.json` added for declared local seam moves. 36|37 3→4, 50|56 2→3 (a doubled T.H. hydrant label remains).
+- **Class 3, registration** — 15 contradictory controls re-read blind: no plate misread; five controls had applied an 80 ft half-width to the 70 ft Avenue L or read an edge instead of the extent centre. Corrected and the 13 ring plates re-solved (similarity) against the frozen core: band residual median 1.2 ft. Graders still see 2–4 ft steps on 33|34, 34|35, 35|39, 7|33, 7|34, 55|56: these sit against core plates 7/8 and among 33–35, where the remaining disagreement is between the plates' own drawings (block depths differ 8 px) and the frozen core cannot move.
+- **Class 1, junction width tags** — `tools/widthtag.py` detected 384 edge width tags; 322 unflagged ones recorded as furniture. Round 1 cut them wherever a neighbour's paper covered, which left grey placeholder squares and tag islands (the neighbour has its own tag there) — that is what the v2 graders saw as 'grey rectangle patches'. Round 2 (`tools/junctiontags.py`, applied AFTER the v2 crops were rendered) keeps one plate's tags per street-end cluster and cuts the others only where the keeper's paper covers: the three test junctions now show one tag per street and no grey (`junctions_after/_montage_widthtag_keeper.jpg`). **v2 scores on junction seams therefore understate the current state; a v3 census of the 20 junction-affected seams is the first task next session.**
+
+## Still open after this pass
+
+1. Registration steps of 2–4 ft against the frozen core (7|33, 7|34, 35|39, 33|34, 34|35, 55|56, 37|41 east end): only a decision to let ring plates carry a small rotation against the core's row, or to re-read the core-side controls, can close these.
+2. Doubled fire-alarm boxes at 12|55 and 14|49 (both plates draw the F.A. at the same corner ~40 ft apart): give the intersection square to one plate.
+3. Doubled T.H. hydrant labels at 50|56 and 51|56, and the north arrow halves at 41|45 / 41|44 / 49|55: per-spot nudges or furniture boxes.
+4. 1–2 px white hairlines at region joins (tiling audit: 11 cut-line hairlines): a 2 px dilation of the winning region at those joins.
+5. Tone steps on 34 seams: by policy not corrected.
+
+Full per-seam findings: `grades/v2/blind_census_v2.json` (scores) and the five grader hand-backs in this session's log; v1 findings remain in `grades/blind_census_v1.json`.
+
+## Scores by seam (v1 → v2)
+
+| seam | v1 | v2 | v2 defects |
+|---|---|---|---|
+| 12|55 | 5 | 2 | duplicate-label, gap, tone |
+| 14|49 | 2 | 2 | duplicate-label |
+| 41|44 | 2 | 2 | duplicate-label, furniture |
+| 50|55 | 2 | 2 | duplicate-label, furniture, tone |
+| 50|57 | 4 | 2 | duplicate-label, furniture, tone |
+| 55|56 | 3 | 2 | gap, step, rail-utility, tone |
+| 7|33 | 2 | 2 | step, rail-utility |
+| 7|34 | 4 | 2 | step, rail-utility, gap, tone |
+| 11|13 | 2 | 3 | rail-utility, tone |
+| 33|34 | 4 | 3 | step, rail-utility, tone, furniture |
+| 34|35 | 4 | 3 | step, tone |
+| 34|39 | 3 | 3 | duplicate-label, gap |
+| 35|39 | 4 | 3 | step, tone |
+| 35|40 | 4 | 3 | furniture, step |
+| 36|39 | 3 | 3 | duplicate-label |
+| 36|40 | 3 | 3 | furniture |
+| 36|41 | 2 | 3 | rail-utility, tone |
+| 37|41 | 3 | 3 | step, tone |
+| 41|45 | 4 | 3 | furniture, tone |
+| 45|50 | 3 | 3 | duplicate-label, step, furniture, tone |
+| 49|55 | 4 | 3 | furniture |
+| 49|56 | 3 | 3 | duplicate-label, step, tone |
+| 50|56 | 2 | 3 | duplicate-label, rail-utility, gap |
+| 51|56 | 2 | 3 | duplicate-label, rail-utility, tone |
+| 56|57 | 5 | 3 | rail-utility, gap, tone |
+| 5b|13 | 1 | 3 | furniture, tone |
+| 8|33 | 3 | 3 | rail-utility, duplicate-label |
+| 11|14 | 4 | 4 | tone |
+| 12|13 | 2 | 4 | tone |
+| 13|14 | 5 | 4 | rail-utility, tone |
+| 14|55 | 5 | 4 | tone |
+| 35|36 | 4 | 4 | tone |
+| 36|37 | 3 | 4 | rail-utility, step, tone |
+| 37|40 | 4 | 4 | step, furniture |
+| 40|41 | 4 | 4 | rail-utility, tone |
+| 44|45 | 4 | 4 | step, rail-utility, tone |
+| 45|51 | 4 | 4 | tone |
+| 50|51 | 4 | 4 | step, tone, furniture |
+| 51|57 | 4 | 4 | rail-utility |
+| 5a|33 | 4 | 4 | tone |
+| 5a|5b | 2 | 4 | furniture, tone |
+| 5a|9 | 2 | 4 | tone |
+| 5b|9 | 3 | 4 | tone |
+| 8|34 | 4 | 4 | furniture |
+| 12|14 | 4 | 5 | none |
+| 5a|7 | 1 | 5 | none |
+| 5b|11 | 4 | 5 | none |
