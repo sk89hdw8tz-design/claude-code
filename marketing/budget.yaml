@@ -1,0 +1,28 @@
+# Budget guardrails. Claude reads this before proposing any spend.
+# Nothing spends until `approved_by_owner: true` is set on a specific brief.
+
+currency: USD
+
+caps:
+  monthly_total: 600          # hard ceiling across all paid channels
+  per_campaign: 250           # single campaign cannot exceed this
+  per_day: 25                 # daily ad spend ceiling
+  test_phase_months: 2        # stay at test scale until 2 months of data exist
+
+approval:
+  required_for_any_spend: true
+  required_for_email_send: true
+  required_for_price_or_discount_change: true
+  emergency_run_allowed: true   # owner can say "run it" in chat and skip the Monday brief
+  approver: owner
+
+allocation_when_approved:       # starting split; brief may propose changes
+  meta_instagram: 0.50
+  google_search: 0.30
+  pinterest: 0.20
+  email: 0.00                   # Shopify Email is free up to 10k sends/mo on Basic
+
+stop_rules:                     # Claude pauses the campaign and reports if any hit
+  spend_with_zero_add_to_cart: 100
+  cpc_above: 3.00
+  monthly_cap_reached: true

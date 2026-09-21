@@ -1,0 +1,25 @@
+# Weekly thresholds. Each rule maps a signal to the play the brief should propose.
+# Baseline (Jun–Sep 2026): ~0 real sessions/week, 0 orders, 0 real subscribers.
+# Nearly all recorded traffic was owner/family QA from Iowa. Treat as zero.
+
+targets:
+  weekly_sessions: 300
+  add_to_cart_rate: 0.03       # 3% of sessions
+  checkout_rate: 0.01
+  conversion_rate: 0.005       # 0.5% is realistic for a $495+ framed print
+  email_capture_rate: 0.02     # of sessions
+  target_cac: 120              # acceptable cost per order at $495–$1,450 AOV
+
+rules:
+  - when: sessions < 100
+    play: acquisition_awareness      # Meta/Pinterest storm-story creative + Google search
+  - when: sessions >= 100 and add_to_cart_rate < 0.02
+    play: pdp_trust                  # fix product page: framing photos, shipping, returns, room mockups
+  - when: add_to_cart_rate >= 0.02 and checkout_rate < 0.005
+    play: cart_recovery              # abandoned-cart email + free-shipping code
+  - when: subscribers >= 50
+    play: story_series               # 3-part 1900 Storm email series
+  - when: month in [10, 11]
+    play: gift_season                # Christmas gifting: The Pair, ship-by dates
+  - when: orders >= 5
+    play: reviews_and_ugc            # ask for install photos, testimonials
