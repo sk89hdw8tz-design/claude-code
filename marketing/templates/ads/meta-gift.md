@@ -1,6 +1,6 @@
 # Meta / Instagram — Gift Season (Nov 1 – Dec 10)
 
-**Audience:** same as storm-story plus "Gift" behaviors; retarget site visitors 30d.
+**Audience:** Galveston 15-mile radius and Houston metro, same as storm-story, plus "Gift" behaviors; retarget site visitors 30d.
 **Budget:** $15/day through Dec 10.
 
 **Primary text:**

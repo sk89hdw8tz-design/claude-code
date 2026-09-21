@@ -1,0 +1,98 @@
+<style>
+  .cm-intro { color: var(--color-ink-soft); max-width: 620px; margin: 0 auto 2rem; text-align: center; }
+  .cm-note { padding: 1rem 1.2rem; margin: 0 0 1.6rem; border: 3px double var(--color-line); font-size: 0.95rem; }
+  .cm-note p { margin: 0; }
+  .cm-note--ok { color: var(--color-ink); }
+  .cm-form { display: grid; gap: 1.15rem; }
+  .cm-row { display: grid; gap: 1.15rem; grid-template-columns: 1fr 1fr; }
+  @media (max-width: 559px) { .cm-row { grid-template-columns: 1fr; } }
+  .cm-field { display: grid; gap: 0.45em; }
+  .cm-field label { font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--color-ink-soft); }
+  .cm-field label .cm-opt { letter-spacing: 0.08em; text-transform: none; font-style: italic; }
+  .cm-field input, .cm-field select, .cm-field textarea {
+    width: 100%; padding: 0.75em 0.9em; border: 1px solid var(--color-line); background: var(--color-bg);
+    font: inherit; color: var(--color-ink); line-height: 1.45; border-radius: 0; }
+  .cm-field textarea { min-height: 140px; resize: vertical; }
+  .cm-field input:focus, .cm-field select:focus, .cm-field textarea:focus { border-color: var(--color-accent); outline: none; box-shadow: inset 0 0 0 1px var(--color-accent); }
+  .cm-hint { font-size: 0.82rem; color: var(--color-ink-soft); margin: 0; }
+  .cm-actions { display: grid; gap: 0.9rem; justify-items: start; margin-top: 0.4rem; }
+  .cm-fine { font-size: 0.82rem; color: var(--color-ink-soft); margin: 0; }
+</style>
+
+<div class="cm-intro">
+  <p>Your house, your shop, the building your family had. I can cut a custom map from the 1899 or 1912 survey with any address on the island at the center, framed to fit your wall.</p>
+  <p><strong>Quotes take a few days.</strong> Each one is drawn by hand from the original plats, so I'll look up your block, check what was standing there in each year, and write back with a proof and a price as soon as possible.</p>
+</div>
+
+<div class="cm-note cm-note--ok" id="cm-success" role="status" hidden>
+  <p>Thanks. Your request is in. Give me a few days to pull your block from the surveys, and I'll email you a proof and a quote as soon as it's ready.</p>
+</div>
+
+<form method="post" action="/contact#cm-form" id="cm-form" class="cm-form" accept-charset="UTF-8">
+  <input type="hidden" name="form_type" value="contact">
+  <input type="hidden" name="utf8" value="✓">
+  <input type="hidden" name="contact[subject]" value="Custom map quote request — Galveston Island">
+
+  <div class="cm-row">
+    <div class="cm-field">
+      <label for="cm-name">Name</label>
+      <input type="text" id="cm-name" name="contact[name]" autocomplete="name" required>
+    </div>
+    <div class="cm-field">
+      <label for="cm-email">Email</label>
+      <input type="email" id="cm-email" name="contact[email]" autocomplete="email" required spellcheck="false" autocapitalize="off">
+    </div>
+  </div>
+
+  <div class="cm-row">
+    <div class="cm-field">
+      <label for="cm-phone">Phone</label>
+      <input type="tel" id="cm-phone" name="contact[phone]" autocomplete="tel" required pattern="[0-9\-\s()+]{7,}">
+    </div>
+    <div class="cm-field">
+      <label for="cm-year">Which survey</label>
+      <select id="cm-year" name="contact[survey_year]">
+        <option value="1899">1899 — before the Storm</option>
+        <option value="1912">1912 — the city raised</option>
+        <option value="Both (The Pair)">Both, as a pair</option>
+        <option value="Not sure yet">Not sure yet</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="cm-field">
+    <label for="cm-address">Galveston address you're interested in</label>
+    <input type="text" id="cm-address" name="contact[address_of_interest]" required placeholder="e.g. 1402 Ball St, or 23rd &amp; Mechanic">
+    <p class="cm-hint">The address or block you want at the center of the map. A cross street is fine if you don't have a number.</p>
+  </div>
+
+  <div class="cm-field">
+    <label for="cm-body">Anything else <span class="cm-opt">(optional)</span></label>
+    <textarea id="cm-body" name="contact[body]" placeholder="Size you have in mind, the wall it's going on, family history on the block, a deadline if it's a gift."></textarea>
+  </div>
+
+  <div class="cm-actions">
+    <button type="submit" class="btn">Request a quote</button>
+    <p class="cm-fine">No payment now. You'll get a proof and a price by email first. Have an old photo or deed? Email it to <a href="mailto:hello@galvestonmaps.co">hello@galvestonmaps.co</a>.</p>
+  </div>
+</form>
+
+<script>
+  (function () {
+    var ok = document.getElementById('cm-success');
+    var form = document.getElementById('cm-form');
+    if (!ok || !form) return;
+    if (/[?&]contact_posted=true/.test(location.search)) {
+      ok.hidden = false; form.hidden = true;
+      ok.scrollIntoView({ block: 'center' });
+    }
+    var body = document.getElementById('cm-body');
+    form.addEventListener('submit', function () {
+      if (body && !body.value.trim()) {
+        body.value = 'Custom map quote request. Survey: ' + document.getElementById('cm-year').value +
+          '. Address: ' + document.getElementById('cm-address').value +
+          '. Phone: ' + document.getElementById('cm-phone').value + '.';
+      }
+    });
+  })();
+</script>

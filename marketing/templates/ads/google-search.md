@@ -1,7 +1,7 @@
 # Google Search — Exact / Phrase intent
 
 **Budget:** $8/day. Max CPC $2.50. Stop rule: CPC > $3.00 or $100 spend with 0 add-to-cart.
-**Location:** United States, bid +30% Texas.
+**Location:** Galveston County, TX (primary, bid +40%) and Houston metro. Rest of Texas at base bid. Exclude everything else during the test phase.
 
 **Keywords (phrase / exact):**
 "galveston map", "old galveston map", "historic galveston map", "galveston

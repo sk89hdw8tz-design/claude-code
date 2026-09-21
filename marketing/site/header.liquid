@@ -1,0 +1,87 @@
+{% style %}
+  .masthead__right { display: flex; align-items: center; gap: clamp(10px, 2vw, 22px); }
+  .header-cta {
+    display: inline-block;
+    background: var(--color-accent);
+    border: 1px solid var(--color-accent);
+    color: var(--color-bg);
+    font-family: var(--font-body);
+    font-size: 0.68rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    padding: 0.7em 1.2em;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: filter 0.15s;
+  }
+  .header-cta:hover { filter: brightness(0.88); color: var(--color-bg); text-decoration: none; }
+  @media (max-width: 719px) {
+    .header-cta { font-size: 0.6rem; padding: 0.6em 0.8em; }
+  }
+  @media (max-width: 419px) {
+    .masthead__right .header-cta { display: none; }
+  }
+  .nav-drawer__nav .header-cta { display: inline-block; margin-top: 0.4rem; }
+{% endstyle %}
+<header class="site-header">
+  <div class="wrap">
+    <div class="masthead">
+      <div class="masthead__left">
+        <details class="nav-drawer">
+          <summary class="menu-label" aria-label="Open menu">Menu</summary>
+          <nav class="nav-drawer__nav" aria-label="Main menu">
+            {%- if section.settings.menu != blank -%}
+              {%- for link in section.settings.menu.links -%}
+                <a href="{{ link.url }}">{{ link.title }}</a>
+              {%- endfor -%}
+            {%- endif -%}
+            <a href="{{ routes.cart_url }}">Cart{% if cart.item_count > 0 %} ({{ cart.item_count }}){% endif %}</a>
+            {%- if section.settings.cta_label != blank and section.settings.cta_link != blank -%}
+              <a class="header-cta" href="{{ section.settings.cta_link }}">{{ section.settings.cta_label }}</a>
+            {%- endif -%}
+          </nav>
+        </details>
+      </div>
+      <a class="site-logo" href="{{ routes.root_url }}">
+        {%- if section.settings.logo -%}
+          <img class="site-logo__img"
+            src="{{ section.settings.logo | image_url: width: 440 }}"
+            srcset="{{ section.settings.logo | image_url: width: 220 }} 220w, {{ section.settings.logo | image_url: width: 440 }} 440w"
+            sizes="220px"
+            width="{{ section.settings.logo.width }}" height="{{ section.settings.logo.height }}"
+            alt="{{ shop.name | escape }}">
+        {%- else -%}
+          <span class="site-logo__word">{{ shop.name }}</span>
+          <span class="site-logo__sub">{{ section.settings.tagline }}</span>
+        {%- endif -%}
+      </a>
+      <div class="masthead__right">
+        {%- if section.settings.cta_label != blank and section.settings.cta_link != blank -%}
+          <a class="header-cta" href="{{ section.settings.cta_link }}">{{ section.settings.cta_label }}</a>
+        {%- endif -%}
+        <a class="cart-link" href="{{ routes.cart_url }}">Cart{% if cart.item_count > 0 %} ({{ cart.item_count }}){% endif %}</a>
+      </div>
+    </div>
+  </div>
+  <div class="rule-double" role="presentation"></div>
+  {%- if section.settings.menu != blank -%}
+    <nav class="site-nav wrap" aria-label="Main menu">
+      {%- for link in section.settings.menu.links -%}
+        <a href="{{ link.url }}"{% if link.current %} aria-current="page"{% endif %}>{{ link.title }}</a>
+      {%- endfor -%}
+    </nav>
+  {%- endif -%}
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    { "type": "text", "id": "cta_label", "label": "Header button label", "default": "Custom map of Galveston Island", "info": "Leave empty to hide the button." },
+    { "type": "text", "id": "cta_link", "label": "Header button link", "default": "/pages/custom-map" },
+    { "type": "image_picker", "id": "logo", "label": "Logo image", "info": "Leave empty to use the shop name as a typeset masthead." },
+    { "type": "text", "id": "tagline", "label": "Tagline under wordmark", "default": "Galveston, Texas" },
+    { "type": "link_list", "id": "menu", "label": "Menu", "default": "main-menu" }
+  ]
+}
+{% endschema %}

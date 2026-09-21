@@ -1,9 +1,11 @@
 # Meta / Instagram — Storm Story (awareness + conversion)
 
 **Objective:** Sales (conversion), optimize for Add to Cart during test phase.
-**Audience:** US, age 30–65. Interests: Galveston TX, Galveston Island,
-Moody Gardens, Pleasure Pier, The Strand, Texas history, UTMB. Plus 25-mile
-radius of Galveston and Houston. Exclude: existing customers.
+**Audience (Galveston first):** People living in or recently in Galveston,
+TX (15-mile radius around 77550/77551/77554), age 30–65. Second ad set:
+Houston metro, interests Galveston Island, Moody Gardens, Pleasure Pier, The
+Strand, UTMB, Texas history. 70% of budget to the Galveston set. Exclude:
+existing customers.
 **Placements:** Instagram Feed, Reels, Facebook Feed.
 **Budget:** $10/day, 14 days ($140). Stop if 0 add-to-carts at $100.
 **Creative:** Carousel, 3 cards: (1) 1899 framed on plaster wall (2) 1912

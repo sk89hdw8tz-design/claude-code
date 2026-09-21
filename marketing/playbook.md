@@ -9,6 +9,19 @@ island"), second-home owners, people who honeymooned or grew up there, and
 gift-givers for those people. Secondary: interior designers, hotels, offices
 on the Strand, Texas history buffs.
 
+## Geography
+
+Galveston, TX first. Every paid campaign starts with a Galveston-only ad set
+and expands to Houston metro only once the island set has data. Local,
+no-spend channels (partnerships, the custom-map page, island events like
+Dickens on the Strand in December) rank ahead of national ads.
+
+## Custom map quote requests
+
+The header button and /pages/custom-map collect name, email, phone, and the
+address of interest. Every request is a warm lead: reply within the promised
+"few days," then add the email to the subscriber list with their consent.
+
 ## Channels, in order of expected payback
 
 1. **Meta / Instagram (paid + organic).** Interest targeting: Galveston,

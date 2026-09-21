@@ -1,0 +1,155 @@
+{% style %}
+  .cm-head { text-align: center; max-width: 640px; margin: 0 auto clamp(1.6rem, 4vw, 2.6rem); }
+  .cm-intro { color: var(--color-ink-soft); margin: 0; }
+  .cm-form { display: grid; gap: 1.15rem; }
+  .cm-row { display: grid; gap: 1.15rem; grid-template-columns: 1fr 1fr; }
+  @media (max-width: 559px) { .cm-row { grid-template-columns: 1fr; } }
+  .field { display: grid; gap: 0.45em; }
+  .field label { font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--color-ink-soft); }
+  .field label .opt-tag { letter-spacing: 0.08em; text-transform: none; font-style: italic; }
+  .field input, .field select, .field textarea {
+    width: 100%; padding: 0.75em 0.9em; border: 1px solid var(--color-line); background: var(--color-bg);
+    font: inherit; color: var(--color-ink); line-height: 1.45; border-radius: 0; }
+  .field select { appearance: none; -webkit-appearance: none; padding-right: 2.4em;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%237d4a3e' stroke-width='1.5'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: right 0.9em center; }
+  .field textarea { min-height: 140px; resize: vertical; }
+  .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--color-accent); outline: none; box-shadow: inset 0 0 0 1px var(--color-accent); }
+  .field__hint { font-size: 0.82rem; color: var(--color-ink-soft); margin: 0; }
+  .cm-actions { display: grid; gap: 0.9rem; justify-items: start; margin-top: 0.4rem; }
+  .cm-fine { font-size: 0.82rem; color: var(--color-ink-soft); margin: 0; }
+  .form-note { padding: 1rem 1.2rem; margin-bottom: 1.6rem; font-size: 0.95rem; }
+  .form-note p { margin: 0; }
+  .form-note--ok { color: var(--color-ink); }
+  .form-note--err { color: var(--color-accent); }
+  .form-note--err ul { margin: 0.4em 0 0 1.1em; padding: 0; }
+  .cm-steps { display: grid; gap: 0.6rem; grid-template-columns: repeat(3, 1fr); margin: 0 0 2rem; padding: 0; list-style: none; text-align: center; }
+  @media (max-width: 559px) { .cm-steps { grid-template-columns: 1fr; } }
+  .cm-steps li { padding: 0.9rem 0.8rem; border: 1px solid var(--color-line); font-size: 0.9rem; color: var(--color-ink-soft); }
+  .cm-steps strong { display: block; color: var(--color-ink); margin-bottom: 0.25em; }
+{% endstyle %}
+
+<section class="section">
+  <div class="wrap wrap--narrow">
+
+    <header class="cm-head">
+      {%- if section.settings.eyebrow != blank -%}<p class="eyebrow">{{ section.settings.eyebrow }}</p>{%- endif -%}
+      <h1>{{ section.settings.heading | default: page.title }}</h1>
+      <hr class="rule-double rule-double--short">
+      {%- if section.settings.intro != blank -%}
+        <div class="rte cm-intro">{{ section.settings.intro }}</div>
+      {%- elsif page.content != blank -%}
+        <div class="rte cm-intro">{{ page.content }}</div>
+      {%- endif -%}
+    </header>
+
+    <ol class="cm-steps">
+      <li><strong>1. Tell me the address</strong>Any house, block, or corner on the island.</li>
+      <li><strong>2. Give me a few days</strong>I pull your block from the 1899 and 1912 surveys.</li>
+      <li><strong>3. Proof and quote by email</strong>Nothing is printed until you say yes.</li>
+    </ol>
+
+    {%- form 'contact', id: 'CustomMapForm', class: 'cm-form' -%}
+
+      {%- if form.posted_successfully? -%}
+        <div class="form-note form-note--ok frame-double" role="status" tabindex="-1" autofocus>
+          <p>{{ section.settings.success_text }}</p>
+        </div>
+      {%- elsif form.errors -%}
+        <div class="form-note form-note--err frame-double" role="alert" tabindex="-1" autofocus>
+          <p>Something needs a second look:</p>
+          <ul>
+            {%- for field in form.errors -%}
+              <li>{{ form.errors.translated_fields[field] | capitalize }} {{ form.errors.messages[field] }}</li>
+            {%- endfor -%}
+          </ul>
+        </div>
+      {%- endif -%}
+
+      <input type="hidden" name="contact[subject]" value="Custom map quote request — Galveston Island">
+
+      <div class="cm-row">
+        <div class="field">
+          <label for="CustomMapForm-name">Name</label>
+          <input type="text" id="CustomMapForm-name" name="contact[name]" autocomplete="name" required
+            value="{% if form.name %}{{ form.name | escape }}{% elsif customer %}{{ customer.name | escape }}{% endif %}">
+        </div>
+        <div class="field">
+          <label for="CustomMapForm-email">Email</label>
+          <input type="email" id="CustomMapForm-email" name="contact[email]" autocomplete="email" required
+            spellcheck="false" autocapitalize="off" aria-required="true"
+            value="{% if form.email %}{{ form.email | escape }}{% elsif customer %}{{ customer.email | escape }}{% endif %}"
+            {% if form.errors contains 'email' %}aria-invalid="true"{% endif %}>
+        </div>
+      </div>
+
+      <div class="cm-row">
+        <div class="field">
+          <label for="CustomMapForm-phone">Phone</label>
+          <input type="tel" id="CustomMapForm-phone" name="contact[phone]" autocomplete="tel" required aria-required="true"
+            pattern="[0-9\-\s()+]{7,}" value="{% if form.phone %}{{ form.phone | escape }}{% elsif customer %}{{ customer.phone | escape }}{% endif %}">
+        </div>
+        <div class="field">
+          <label for="CustomMapForm-year">Which survey</label>
+          <select id="CustomMapForm-year" name="contact[survey_year]">
+            <option value="1899">1899 — before the Storm</option>
+            <option value="1912">1912 — the city raised</option>
+            <option value="Both (The Pair)">Both, as a pair</option>
+            <option value="Not sure yet">Not sure yet</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="CustomMapForm-address">Galveston address you're interested in</label>
+        <input type="text" id="CustomMapForm-address" name="contact[address_of_interest]" required aria-required="true"
+          placeholder="e.g. 1402 Ball St, or 23rd &amp; Mechanic" autocomplete="street-address">
+        <p class="field__hint">The address or block you want at the center of the map. A cross street is fine if you don't have a number.</p>
+      </div>
+
+      <div class="field">
+        <label for="CustomMapForm-body">Anything else <span class="opt-tag">(optional)</span></label>
+        <textarea id="CustomMapForm-body" name="contact[body]" placeholder="Size you have in mind, the wall it's going on, family history on the block, a deadline if it's a gift.">{{ form.body | escape }}</textarea>
+      </div>
+
+      <div class="cm-actions">
+        <button type="submit" class="btn">{{ section.settings.button_label }}</button>
+        <p class="cm-fine">{{ section.settings.fine_print }}
+          {%- if section.settings.contact_email != blank %} Have an old photo or deed? Email it to <a href="mailto:{{ section.settings.contact_email }}">{{ section.settings.contact_email }}</a>.{% endif -%}
+        </p>
+      </div>
+
+    {%- endform -%}
+
+  </div>
+</section>
+
+<script>
+  (function () {
+    var form = document.getElementById('CustomMapForm'); if (!form) return;
+    var body = form.querySelector('[name="contact[body]"]');
+    form.addEventListener('submit', function () {
+      if (body && !body.value.trim()) {
+        body.value = 'Custom map quote request. Survey: ' + form.querySelector('[name="contact[survey_year]"]').value +
+          '. Address: ' + form.querySelector('[name="contact[address_of_interest]"]').value +
+          '. Phone: ' + form.querySelector('[name="contact[phone]"]').value + '.';
+      }
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Custom map quote form",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "By request" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "A custom map of Galveston Island" },
+    { "type": "richtext", "id": "intro", "label": "Intro text", "default": "<p>Your house, your shop, the building your family had. I can cut a custom map from the 1899 or 1912 survey with any address on the island at the center, framed to fit your wall.</p><p><strong>Quotes take a few days.</strong> Each one is drawn by hand from the original plats, so I'll look up your block, check what was standing there in each year, and write back with a proof and a price as soon as possible.</p>" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Request a quote" },
+    { "type": "text", "id": "fine_print", "label": "Line under the button", "default": "No payment now. You'll get a proof and a price by email first." },
+    { "type": "text", "id": "contact_email", "label": "Direct email (for attachments line)", "default": "hello@galvestonmaps.co" },
+    { "type": "text", "id": "success_text", "label": "Success message", "default": "Thanks, your request is in. Give me a few days to pull your block from the surveys, and I'll email you a proof and a quote as soon as it's ready." }
+  ],
+  "presets": [{ "name": "Custom map quote form" }]
+}
+{% endschema %}
