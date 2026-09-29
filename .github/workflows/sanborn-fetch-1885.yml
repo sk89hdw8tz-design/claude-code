@@ -35,35 +35,38 @@ jobs:
           fi
           mkdir -p sources/1885 sources/1885_loc
 
-      - name: Enumerate the Galveston links on the UT PCL index page
+      - name: Enumerate the Galveston links on the UT PCL index page (best effort)
         run: |
-          set -uo pipefail
+          set -u
           cd work
           jar=$(mktemp)
-          curl -sS -L -A "$UA" -c "$jar" -o g.html \
-            "https://maps.lib.utexas.edu/maps/sanborn/g.html" || true
-          echo "index page bytes: $(stat -c%s g.html 2>/dev/null || echo 0)"
-          grep -oiE 'href="[^"]*galveston[^"]*"' g.html | sort -u \
+          code=$(curl -sS -L -A "$UA" -c "$jar" -o g.html -w "%{http_code}" \
+            "https://maps.lib.utexas.edu/maps/sanborn/g.html" || echo 000)
+          echo "index page: HTTP $code, $(stat -c%s g.html 2>/dev/null || echo 0) bytes"
+          # Keep the first lines of whatever came back so a block page is diagnosable later.
+          { echo "HTTP $code"; head -c 1500 g.html; } > sources/1885/INDEX_HEAD.txt 2>/dev/null || true
+          grep -oiE 'href="[^"]*galveston[^"]*"' g.html 2>/dev/null | sort -u \
             > sources/1885/ALL_GALVESTON_LINKS.txt || true
           echo "galveston hrefs: $(wc -l < sources/1885/ALL_GALVESTON_LINKS.txt)"
-          grep -oiE 'galveston-[0-9]{4}' sources/1885/ALL_GALVESTON_LINKS.txt \
-            | sort | uniq -c | tee sources/1885/EDITIONS.txt
-          # Keep the link text too (sheet titles) for the inventory.
-          grep -oiE '<a[^>]*galveston-1885[^>]*>[^<]*' g.html \
+          grep -oiE 'galveston-[0-9]{4}' sources/1885/ALL_GALVESTON_LINKS.txt 2>/dev/null \
+            | sort | uniq -c > sources/1885/EDITIONS.txt || true
+          cat sources/1885/EDITIONS.txt || true
+          grep -oiE '<a[^>]*galveston-1885[^>]*>[^<]*' g.html 2>/dev/null \
             | sed -E 's/<a[^>]*href="([^"]*)"[^>]*>/\1\t/I' \
             > sources/1885/INDEX_LINKS.txt || true
           rm -f g.html
+          exit 0
 
       - name: Fetch the UT PCL 1885 sheets (plain HTTP with referer; no bot-defense circumvention)
         run: |
-          set -uo pipefail
+          set -u
           cd work
           jar=$(mktemp)
           curl -sS -L -A "$UA" -c "$jar" -o /dev/null \
             "https://maps.lib.utexas.edu/maps/sanborn/g.html" || true
           got=0
           pats=$(grep -oE 'txu-sanborn-galveston-1885[^"]*' \
-                   sources/1885/ALL_GALVESTON_LINKS.txt | sort -u)
+                   sources/1885/ALL_GALVESTON_LINKS.txt 2>/dev/null | sort -u || true)
           if [ -z "$pats" ]; then
             echo "index page gave no 1885 links; falling back to the known 19-sheet pattern"
             pats=$(for n in $(seq -w 1 19); do echo "txu-sanborn-galveston-1885-$n.jpg"; done)
@@ -73,7 +76,7 @@ jobs:
             dest="sources/1885/Galveston_1885_${suffix}.jpg"
             [ -s "$dest" ] && continue
             ok=0
-            for attempt in 1 2 3 4 5 6; do
+            for attempt in 1 2 3; do
               code=$(curl -sS -L -A "$UA" -b "$jar" -c "$jar" \
                      -e "$REFERER" -o "$dest" -w "%{http_code}" \
                      "https://maps.lib.utexas.edu/maps/sanborn/g-i/$pat" || echo 000)
@@ -97,10 +100,11 @@ jobs:
           if [ "$got" -eq 0 ] && [ -z "$(ls sources/1885/*.jpg 2>/dev/null)" ]; then
             echo "::warning::No UT 1885 sheets retrieved (bot challenge or 403 to runner IPs). The LoC step below is the fallback."
           fi
+          exit 0
 
       - name: Fetch the Library of Congress 1885 sheets via IIIF (best effort; same public-domain edition, higher resolution)
         run: |
-          set -uo pipefail
+          set -u
           cd work/sources/1885_loc
           : > FETCHED.tsv
           # Item metadata first, so the sheet count is taken from the archive, not guessed.
@@ -135,6 +139,7 @@ jobs:
             sleep 1
           done
           wc -l FETCHED.tsv
+          exit 0
 
       - name: Manifest + push
         run: |
