@@ -1,0 +1,151 @@
+name: fetch-sanborn-1885
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [claude/galveston-1885-fullcity]
+    paths: [".github/sanborn-fetch-1885-request"]
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 150
+    env:
+      UA: "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/120 Safari/537.36"
+      REFERER: "https://maps.lib.utexas.edu/maps/sanborn/g.html"
+      DATA_BRANCH: sanborn-data-1885
+      LOC_SERVICE: "https://tile.loc.gov/image-services/iiif/service:gmd:gmd403m:g4034m:g4034gm:g4034gm_g085391885:08539_1885"
+    steps:
+      - name: Init data branch workspace
+        run: |
+          set -euo pipefail
+          git init work
+          cd work
+          git config user.name "sanborn-fetch-action"
+          git config user.email "actions@github.com"
+          git remote add origin \
+            "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git"
+          if git fetch origin "$DATA_BRANCH" 2>/dev/null; then
+            git checkout -B "$DATA_BRANCH" FETCH_HEAD
+          else
+            git checkout --orphan "$DATA_BRANCH"
+          fi
+          mkdir -p sources/1885 sources/1885_loc
+
+      - name: Enumerate the Galveston links on the UT PCL index page
+        run: |
+          set -uo pipefail
+          cd work
+          jar=$(mktemp)
+          curl -sS -L -A "$UA" -c "$jar" -o g.html \
+            "https://maps.lib.utexas.edu/maps/sanborn/g.html" || true
+          echo "index page bytes: $(stat -c%s g.html 2>/dev/null || echo 0)"
+          grep -oiE 'href="[^"]*galveston[^"]*"' g.html | sort -u \
+            > sources/1885/ALL_GALVESTON_LINKS.txt || true
+          echo "galveston hrefs: $(wc -l < sources/1885/ALL_GALVESTON_LINKS.txt)"
+          grep -oiE 'galveston-[0-9]{4}' sources/1885/ALL_GALVESTON_LINKS.txt \
+            | sort | uniq -c | tee sources/1885/EDITIONS.txt
+          # Keep the link text too (sheet titles) for the inventory.
+          grep -oiE '<a[^>]*galveston-1885[^>]*>[^<]*' g.html \
+            | sed -E 's/<a[^>]*href="([^"]*)"[^>]*>/\1\t/I' \
+            > sources/1885/INDEX_LINKS.txt || true
+          rm -f g.html
+
+      - name: Fetch the UT PCL 1885 sheets (plain HTTP with referer; no bot-defense circumvention)
+        run: |
+          set -uo pipefail
+          cd work
+          jar=$(mktemp)
+          curl -sS -L -A "$UA" -c "$jar" -o /dev/null \
+            "https://maps.lib.utexas.edu/maps/sanborn/g.html" || true
+          got=0
+          pats=$(grep -oE 'txu-sanborn-galveston-1885[^"]*' \
+                   sources/1885/ALL_GALVESTON_LINKS.txt | sort -u)
+          if [ -z "$pats" ]; then
+            echo "index page gave no 1885 links; falling back to the known 19-sheet pattern"
+            pats=$(for n in $(seq -w 1 19); do echo "txu-sanborn-galveston-1885-$n.jpg"; done)
+          fi
+          for pat in $pats; do
+            suffix=$(echo "$pat" | sed -E 's/.*-1885-([0-9a-z]+)\.jpg/\1/')
+            dest="sources/1885/Galveston_1885_${suffix}.jpg"
+            [ -s "$dest" ] && continue
+            ok=0
+            for attempt in 1 2 3 4 5 6; do
+              code=$(curl -sS -L -A "$UA" -b "$jar" -c "$jar" \
+                     -e "$REFERER" -o "$dest" -w "%{http_code}" \
+                     "https://maps.lib.utexas.edu/maps/sanborn/g-i/$pat" || echo 000)
+              if [ "$code" = "200" ] && [ "$(stat -c%s "$dest")" -gt 150000 ] \
+                 && head -c3 "$dest" | grep -q $'\xff\xd8'; then
+                ok=1; break
+              fi
+              echo "  try $attempt: $pat -> HTTP $code"
+              rm -f "$dest"
+              sleep 5
+            done
+            if [ "$ok" = 1 ]; then
+              echo "OK $pat -> $dest ($(stat -c%s "$dest") bytes)"
+              got=$((got+1))
+            else
+              echo "MISS $pat"
+            fi
+            sleep 2
+          done
+          echo "fetched $got UT sheets"
+          if [ "$got" -eq 0 ] && [ -z "$(ls sources/1885/*.jpg 2>/dev/null)" ]; then
+            echo "::warning::No UT 1885 sheets retrieved (bot challenge or 403 to runner IPs). The LoC step below is the fallback."
+          fi
+
+      - name: Fetch the Library of Congress 1885 sheets via IIIF (best effort; same public-domain edition, higher resolution)
+        run: |
+          set -uo pipefail
+          cd work/sources/1885_loc
+          : > FETCHED.tsv
+          # Item metadata first, so the sheet count is taken from the archive, not guessed.
+          curl -sS -L -A "Mozilla/5.0" -o loc_item.json \
+            "https://www.loc.gov/item/sanborn08539_001/?fo=json" || true
+          n_files=$(python3 -c "import json;d=json.load(open('loc_item.json'));print(len(d['resources'][0]['files']))" 2>/dev/null || echo 0)
+          echo "LoC item lists $n_files images"
+          [ "$n_files" -gt 0 ] || n_files=19
+          fetchone () {  # $1 = page id, $2 = size path segment, $3 = out name
+            dest="$3.jpg"
+            [ -s "$dest" ] && return 0
+            url="${LOC_SERVICE}-$1/full/$2/0/default.jpg"
+            code=$(curl -sS -L -A "Mozilla/5.0" -o "$dest" -w "%{http_code}" "$url" || echo 000)
+            if [ "$code" = 200 ] && head -c 3 "$dest" | grep -q $'\xff\xd8'; then
+              printf '%s\t%s\t%s\t%s\n' "$3" "$url" \
+                "$(sha256sum "$dest" | cut -d' ' -f1)" "$(stat -c%s "$dest")" >> FETCHED.tsv
+              echo "ok $3 ($code, $(stat -c%s "$dest") bytes)"; return 0
+            else
+              rm -f "$dest"; echo "miss $3 ($code) $url"; return 1
+            fi
+          }
+          for n in $(seq 1 "$n_files"); do
+            id=$(printf '%04d' "$n")
+            fetchone "$id" "pct:50" "pct50_sheet_${id}"
+            sleep 1
+            # full resolution: try pct:100 then max; skip if the file would exceed GitHub's 100 MB limit
+            fetchone "$id" "pct:100" "full_sheet_${id}" || fetchone "$id" "max" "full_sheet_${id}"
+            f="full_sheet_${id}.jpg"
+            if [ -s "$f" ] && [ "$(stat -c%s "$f")" -gt 95000000 ]; then
+              echo "  $f too large for git; dropping (pct50 kept)"; rm -f "$f"
+            fi
+            sleep 1
+          done
+          wc -l FETCHED.tsv
+
+      - name: Manifest + push
+        run: |
+          set -euo pipefail
+          cd work
+          ( cd sources/1885 && sha256sum *.jpg > SHA256SUMS 2>/dev/null ) || true
+          ( cd sources/1885_loc && sha256sum *.jpg > SHA256SUMS 2>/dev/null ) || true
+          echo "UT sheets: $(ls sources/1885/*.jpg 2>/dev/null | wc -l)"
+          echo "LoC files: $(ls sources/1885_loc/*.jpg 2>/dev/null | wc -l)"
+          du -sh sources/1885 sources/1885_loc
+          git add -A
+          git commit -m "Galveston 1885 Sanborn sheets: UT PCL scans + LoC IIIF copies, SHA256SUMS" \
+            || { echo "nothing to commit"; exit 0; }
+          git push -u origin "$DATA_BRANCH" --force
