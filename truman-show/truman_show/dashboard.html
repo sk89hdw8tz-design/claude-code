@@ -1,0 +1,370 @@
+<title>Seahaven Live</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Nunito+Sans:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a 1950s seaside town on the left, the broadcast feed in the middle, the control room on the right. */
+:root{
+  --bg:#eaf1f3; --surface:#ffffff; --surface-2:#f3f7f8; --fg:#182a31; --muted:#5d6f77; --line:#d3dfe3;
+  --accent:#1d6f8d; --accent-soft:#dcecf2; --truman:#d59a12; --truman-soft:#fbf1d6;
+  --good:#2f8f5b; --warn:#c2611a; --bad:#b83a3a;
+  --room-bg:#101b22; --room-fg:#d7e6ea; --room-muted:#7f97a1; --room-line:#22333c; --room-green:#7fd9a6;
+  --display:"Fraunces",Georgia,serif; --body:"Nunito Sans","Segoe UI",system-ui,sans-serif; --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  --radius:10px;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0d161b; --surface:#152128; --surface-2:#1b2930; --fg:#e4edf0; --muted:#93a6ae; --line:#27383f;
+  --accent:#63b7d6; --accent-soft:#183744; --truman:#f0b52a; --truman-soft:#3a2d0e;
+  --good:#5cc48a; --warn:#e2884a; --bad:#e06a6a; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0d161b; --surface:#152128; --surface-2:#1b2930; --fg:#e4edf0; --muted:#93a6ae; --line:#27383f;
+  --accent:#63b7d6; --accent-soft:#183744; --truman:#f0b52a; --truman-soft:#3a2d0e;
+  --good:#5cc48a; --warn:#e2884a; --bad:#e06a6a; color-scheme:dark}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--body);font-size:14px;line-height:1.45}
+.app{display:flex;flex-direction:column;height:100%;min-height:0}
+header{display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding:10px 16px;border-bottom:1px solid var(--line);background:var(--surface);position:sticky;top:env(safe-area-inset-top,0px);z-index:5}
+h1{font-family:var(--display);font-weight:700;font-size:22px;margin:0;letter-spacing:.01em;text-wrap:balance}
+h1 small{font-family:var(--body);font-weight:600;font-size:11px;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin-left:10px}
+.onair{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:11px;letter-spacing:.1em;padding:4px 10px;border-radius:999px;background:var(--bad);color:#fff}
+.onair::before{content:"";width:8px;height:8px;border-radius:50%;background:#fff;animation:blink 1.4s infinite}
+.onair.off{background:var(--muted);}
+.onair.off::before{animation:none}
+@keyframes blink{50%{opacity:.25}}
+@media (prefers-reduced-motion:reduce){.onair::before,.agent .ring{animation:none!important}.agent{transition:none!important}}
+.hstat{display:flex;gap:18px;flex-wrap:wrap;font-variant-numeric:tabular-nums}
+.hstat div{display:flex;flex-direction:column}
+.hstat b{font-size:16px;font-family:var(--display);font-weight:500}
+.hstat span{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.controls{margin-left:auto;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+button,select{font:inherit;font-size:12px;padding:6px 10px;border-radius:8px;border:1px solid var(--line);background:var(--surface-2);color:var(--fg);cursor:pointer}
+button:hover{border-color:var(--accent)}
+button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+input[type=range]{width:140px;accent-color:var(--accent)}
+main{flex:1;min-height:0;display:grid;grid-template-columns:300px minmax(0,1fr) 330px;gap:14px;padding:14px 16px}
+.col{min-width:0;min-height:0;display:flex;flex-direction:column;gap:14px;overflow:auto}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:12px 14px}
+.panel h2{font-family:var(--body);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 8px;font-weight:700}
+/* Map */
+.map svg{width:100%;height:auto;display:block}
+.loc rect{fill:var(--surface-2);stroke:var(--line);stroke-width:1}
+.loc.active rect{stroke:var(--accent);stroke-width:2;fill:var(--accent-soft)}
+.loc text{font-family:var(--body);font-size:8.5px;fill:var(--fg);font-weight:600}
+.loc.active text{fill:var(--accent)}
+.dome{fill:none;stroke:var(--line);stroke-dasharray:4 4}
+.backstage{fill:var(--room-bg);stroke:var(--room-line)}
+.backstage-label{font-family:var(--mono);font-size:7.5px;fill:var(--room-muted);letter-spacing:.1em}
+.agent{transition:transform 1.2s cubic-bezier(.4,0,.2,1)}
+.agent circle.body{stroke:var(--surface);stroke-width:1.5}
+.agent text{font-family:var(--body);font-size:8px;font-weight:700;fill:#fff;text-anchor:middle;dominant-baseline:central;pointer-events:none}
+.agent .ring{fill:none;stroke-width:2;opacity:0}
+.agent.speaking .ring{opacity:1;animation:pulse 1.2s ease-out infinite}
+@keyframes pulse{from{r:9;opacity:.9}to{r:16;opacity:0}}
+.agent .cam{fill:var(--room-green);stroke:none}
+.legend{display:flex;gap:12px;font-size:11px;color:var(--muted);margin-top:6px;flex-wrap:wrap}
+.legend i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:4px;vertical-align:-1px}
+/* Cast table */
+.cast{display:grid;grid-template-columns:auto 1fr auto;gap:6px 10px;align-items:center;font-size:12px}
+.cast .chip{width:22px;height:22px;border-radius:50%;color:#fff;display:grid;place-items:center;font-weight:700;font-size:10px}
+.cast .who b{display:block}.cast .who span{color:var(--muted);font-size:11px}
+.cast .mdl{font-family:var(--mono);font-size:10px;color:var(--muted);text-align:right;white-space:nowrap}
+/* Feed */
+.feed{flex:1;overflow:auto;display:flex;flex-direction:column;gap:10px;padding:2px 2px 30px}
+.day{display:flex;align-items:center;gap:10px;margin:14px 0 2px;color:var(--muted);font-family:var(--display);font-size:16px}
+.day::before,.day::after{content:"";flex:1;height:1px;background:var(--line)}
+.day em{font-style:normal;font-family:var(--mono);font-size:11px;color:var(--warn);letter-spacing:.06em}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:10px 12px}
+.card.scene{border-left:3px solid var(--accent)}
+.card.scene .premise{font-family:var(--display);font-size:15px;font-weight:500}
+.incident{margin-top:8px;padding:8px 10px;border-radius:8px;background:var(--truman-soft);border:1px dashed var(--warn);font-size:13px}
+.incident b{color:var(--warn);font-family:var(--mono);font-size:10px;letter-spacing:.1em;display:block;margin-bottom:2px}
+.card.room,.panel.room{background:var(--room-bg);color:var(--room-fg);border-color:var(--room-line);font-family:var(--mono);font-size:12px}
+.card.room h3,.panel.room h2{color:var(--room-green);font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;margin:0 0 6px}
+.card.room .beats{margin:8px 0 0;padding:0;list-style:none;display:grid;gap:4px}
+.card.room .beats li b{color:var(--room-green);font-weight:500}
+.card.room .cover{color:var(--room-muted);margin-top:6px}
+.turn{display:grid;grid-template-columns:34px 1fr;gap:10px}
+.turn .av{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:700;font-size:13px}
+.turn .name{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.turn .name b{font-size:13px}
+.turn .name .mdl{font-family:var(--mono);font-size:10px;color:var(--muted)}
+.turn .action{color:var(--muted);font-style:italic;margin:2px 0}
+.turn .speech{font-size:15px;margin:2px 0 4px;font-family:var(--display);font-weight:500;line-height:1.4}
+.turn.truman .speech{color:var(--fg)}
+.thought{margin-top:6px;padding:7px 10px;border-radius:8px;background:var(--surface-2);border:1px solid var(--line);font-size:12.5px;color:var(--fg)}
+.thought b{display:block;font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:2px}
+.turn.truman .thought{background:var(--truman-soft);border-color:transparent}
+.turn.actor .thought{background:var(--room-bg);color:var(--room-fg);border-color:var(--room-line)}
+.turn.actor .thought b{color:var(--room-green)}
+.pill{display:inline-block;font-family:var(--mono);font-size:10px;padding:2px 7px;border-radius:999px;background:var(--surface-2);border:1px solid var(--line);color:var(--muted);vertical-align:1px}
+.pill.susp{border-color:var(--truman);color:var(--fg);background:var(--truman-soft)}
+.pill.off{border-color:var(--warn);color:var(--warn)}
+.pill.decl{background:var(--bad);color:#fff;border-color:var(--bad)}
+.card.over{border:2px solid var(--truman);background:var(--truman-soft);font-family:var(--display)}
+.card.over h3{margin:0 0 4px;font-size:20px;font-weight:700}
+.card.over.actors{border-color:var(--accent);background:var(--accent-soft)}
+.card.wish{border-left:3px solid var(--good)}
+.card.wish .w{font-family:var(--display);font-size:16px;font-weight:500}
+.card.wish .m{color:var(--muted);margin-top:4px}
+.card.err{border-color:var(--bad);color:var(--bad);font-family:var(--mono);font-size:12px;white-space:pre-wrap}
+.status{font-size:12px;color:var(--muted);font-family:var(--mono);padding:4px 2px}
+.status::before{content:"▸ "}
+/* Chart */
+.chart svg{width:100%;height:auto;display:block}
+.chart .grid{stroke:var(--line);stroke-width:1}
+.chart .axis{font-family:var(--mono);font-size:8.5px;fill:var(--muted)}
+.chart .thr{stroke:var(--bad);stroke-dasharray:3 3;stroke-width:1}
+.chart .thr-l{font-family:var(--mono);font-size:8px;fill:var(--bad)}
+.chart .l1{fill:none;stroke:var(--truman);stroke-width:2;stroke-linejoin:round}
+.chart .a1{fill:var(--truman);opacity:.14}
+.chart .l2{fill:none;stroke:var(--accent);stroke-width:2;stroke-dasharray:5 3;stroke-linejoin:round}
+.chart .end{stroke:var(--surface);stroke-width:2}
+.chart .endl{font-family:var(--mono);font-size:9px;font-weight:500;fill:var(--fg)}
+.chart .dayline{stroke:var(--line);stroke-width:1;stroke-dasharray:2 3}
+.chart .dayl{font-family:var(--mono);font-size:7.5px;fill:var(--muted)}
+.chart .cross{stroke:var(--muted);stroke-width:1;opacity:0}
+.tip{position:absolute;pointer-events:none;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:5px 8px;font-size:11px;font-family:var(--mono);opacity:0;transition:opacity .1s;box-shadow:0 4px 14px rgba(0,0,0,.12);white-space:nowrap}
+.chartwrap{position:relative}
+.room .kv{display:grid;grid-template-columns:auto 1fr;gap:3px 10px;font-size:11.5px}
+.room .kv span{color:var(--room-muted)}
+.room .note{margin:6px 0 0;white-space:pre-wrap;line-height:1.5}
+.room table{width:100%;border-collapse:collapse;margin-top:8px;font-size:11px;color:inherit}
+.room td{padding:3px 0;border-top:1px solid var(--room-line);vertical-align:top}
+.room td.n{color:var(--room-green)}
+.room td.r{text-align:right;font-variant-numeric:tabular-nums}
+.bar{height:5px;background:var(--room-line);border-radius:3px;overflow:hidden;margin-top:3px}
+.bar i{display:block;height:100%;background:var(--room-green)}
+.prize .w{font-family:var(--display);font-size:15px;font-weight:500;margin-top:4px}
+.prize .m{font-size:12px;color:var(--muted)}
+.prize .empty{color:var(--muted);font-size:12.5px}
+.rules{font-size:12px;color:var(--muted);line-height:1.5}
+@media (max-width:1100px){main{grid-template-columns:260px minmax(0,1fr)}.col.right{grid-column:1/-1}}
+@media (max-width:760px){
+  main{grid-template-columns:1fr;overflow:auto}
+  .col{overflow:visible}.col.right{grid-column:auto}
+  .feed{max-height:70vh}
+  header{position:static}
+}
+</style>
+<div class="app">
+<header>
+  <h1>Seahaven <small>The Truman Show, with AI agents</small></h1>
+  <span class="onair off" id="onair">STANDBY</span>
+  <div class="hstat">
+    <div><b id="h-day">Day –</b><span>of <span id="h-rounds">–</span></span></div>
+    <div><b id="h-clock">–:––</b><span id="h-loc">Seahaven</span></div>
+    <div><b id="h-susp">–</b><span>Truman suspicion</span></div>
+    <div><b id="h-cost">$0.00</b><span>spend</span></div>
+  </div>
+  <div class="controls" id="controls" hidden>
+    <button id="btn-play" aria-label="Play or pause">Pause</button>
+    <select id="speed" aria-label="Playback speed"><option value="2">0.5×</option><option value="1" selected>1×</option><option value="0.5">2×</option><option value="0.25">4×</option><option value="0">Instant</option></select>
+    <input type="range" id="scrub" min="0" max="0" value="0" aria-label="Scrub timeline">
+    <span class="status" id="scrub-l" style="padding:0"></span>
+  </div>
+</header>
+<main>
+  <section class="col left">
+    <div class="panel map">
+      <h2>The dome</h2>
+      <svg viewBox="0 0 320 262" role="img" aria-label="Map of Seahaven with agents at the current scene location">
+        <path class="dome" d="M14 200 A150 150 0 0 1 306 200"/>
+        <g id="locs"></g>
+        <rect class="backstage" x="10" y="216" width="300" height="38" rx="6"/>
+        <text class="backstage-label" x="18" y="226">BACKSTAGE · CAST NOT IN THIS SCENE</text>
+        <g id="agents"></g>
+      </svg>
+      <div class="legend"><span><i style="background:var(--truman)"></i>Truman</span><span><i style="background:var(--room-green)"></i>hidden earpiece (actor)</span><span>ring = speaking</span></div>
+    </div>
+    <div class="panel">
+      <h2>Cast &amp; models</h2>
+      <div class="cast" id="cast"></div>
+    </div>
+    <div class="panel">
+      <h2>Rules of the season</h2>
+      <div class="rules" id="rules">Truman wins if he openly declares his world is staged, with private suspicion at or above the threshold, before the last day. Otherwise the cast wins. Winners get one wish each, asked at the end.</div>
+    </div>
+  </section>
+  <section class="col mid">
+    <div class="feed" id="feed"><div class="status" id="boot">Waiting for the broadcast to start…</div></div>
+  </section>
+  <section class="col right">
+    <div class="panel chart">
+      <h2>Suspicion over time</h2>
+      <div class="chartwrap"><svg id="chart" viewBox="0 0 320 170" role="img" aria-label="Line chart of Truman's private suspicion and the cast's read of it, by turn"></svg><div class="tip" id="tip"></div></div>
+      <div class="legend"><span><i style="background:var(--truman)"></i>Truman's private suspicion</span><span><i style="background:var(--accent)"></i>Cast's read of him</span></div>
+    </div>
+    <div class="panel room">
+      <h2>Control room · Christof</h2>
+      <div class="kv"><span>scene</span><div id="r-scene">–</div><span>incident</span><div id="r-inc">–</div></div>
+      <p class="note" id="r-note">No plan yet.</p>
+      <table id="r-cast"></table>
+    </div>
+    <div class="panel prize">
+      <h2>The prize</h2>
+      <div id="prize" class="empty">Whoever wins the season gets one wish. Nobody has won yet.</div>
+    </div>
+  </section>
+</main>
+</div>
+<!--TRUMAN_MODE-->
+<script>
+(function(){
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const LOC_POS={"Truman's House":[40,120],"Lancaster Square":[122,88],"Seahaven Life Insurance":[208,80],"Seahaven Diner":[70,178],"The Beach":[240,178],"Travel Agency":[160,150],"Marlon's Van":[248,124],"The Bridge Out of Town":[292,50]};
+const CLOCK={morning:[7,45],afternoon:[14,10],evening:[18,30]};
+let S; // state
+function reset(){
+  S={cast:{},order:[],rounds:0,threshold:80,day:0,loc:null,time:"morning",turnInDay:0,susp:[],risk:[],cost:0,speaking:null,present:[],offScript:{},lastRisk:{},over:null,wishes:[],dayStarts:[]};
+  $("#feed").innerHTML="";$("#agents").innerHTML="";$("#cast").innerHTML="";$("#r-cast").innerHTML="";$("#prize").innerHTML="Whoever wins the season gets one wish. Nobody has won yet.";$("#prize").className="empty";
+  $("#r-note").textContent="No plan yet.";$("#r-scene").textContent="–";$("#r-inc").textContent="–";$("#onair").className="onair off";$("#onair").textContent="STANDBY";
+  drawLocs();drawChart();
+}
+function drawLocs(){
+  const g=$("#locs");g.innerHTML="";
+  for(const [name,[x,y]] of Object.entries(LOC_POS)){
+    const el=document.createElementNS("http://www.w3.org/2000/svg","g");el.setAttribute("class","loc");el.dataset.name=name;
+    const w=name.length>16?64:54;
+    el.innerHTML=`<rect x="${x-w/2}" y="${y-13}" width="${w}" height="26" rx="5"/><text x="${x}" y="${y+3}" text-anchor="middle">${esc(name.length>18?name.replace("Seahaven ","").replace(" Out of Town",""):name)}</text>`;
+    g.appendChild(el);
+  }
+}
+function agentEl(name){
+  let el=document.getElementById("ag-"+name);
+  if(el)return el;
+  const c=S.cast[name];el=document.createElementNS("http://www.w3.org/2000/svg","g");el.id="ag-"+name;el.setAttribute("class","agent");
+  el.innerHTML=`<circle class="ring" r="9" stroke="${c.color}"/><circle class="body" r="9" fill="${c.color}"/>${c.actor?'<circle class="cam" cx="7" cy="-7" r="2.6"/>':''}<text>${esc(name[0])}</text>`;
+  $("#agents").appendChild(el);return el;
+}
+function placeAgents(){
+  const present=["Truman",...S.present.filter(n=>S.cast[n])];
+  const p=S.loc&&LOC_POS[S.loc]?LOC_POS[S.loc]:[160,120];
+  let bi=0;
+  for(const name of S.order){
+    if(name==="Christof")continue;
+    const el=agentEl(name);
+    const idx=present.indexOf(name);
+    if(idx>=0){const off=(idx-(present.length-1)/2)*22;el.setAttribute("transform",`translate(${p[0]+off},${p[1]+24})`);}
+    else{el.setAttribute("transform",`translate(${44+bi*26},${244})`);bi++;}
+    el.classList.toggle("speaking",S.speaking===name);
+  }
+  document.querySelectorAll(".loc").forEach(l=>l.classList.toggle("active",l.dataset.name===S.loc));
+}
+function castPanel(){
+  const g=$("#cast");g.innerHTML="";
+  for(const name of S.order){const c=S.cast[name];
+    g.insertAdjacentHTML("beforeend",`<div class="chip" style="background:${c.color}">${esc(name[0])}</div><div class="who"><b>${esc(name)}</b><span>${esc(c.role.split("(")[0].replace(/,?\s*$/,""))}</span></div><div class="mdl">${esc(c.model.replace("claude-",""))}${c.effort?" · "+esc(c.effort):""}</div>`);
+  }
+}
+function roomCast(){
+  const t=$("#r-cast");t.innerHTML="";
+  for(const name of S.order){const c=S.cast[name];if(!c.actor||name==="Christof")continue;
+    const r=S.lastRisk[name];const off=S.offScript[name]||0;
+    t.insertAdjacentHTML("beforeend",`<tr><td class="n">${esc(name)}</td><td>${S.present.includes(name)?"on set":"backstage"}${off?` · off-script ×${off}`:""}</td><td class="r">${r==null?"–":"risk "+r}<div class="bar"><i style="width:${r||0}%"></i></div></td></tr>`);
+  }
+}
+function feed(html,cls){const f=$("#feed");const b=$("#boot");if(b)b.remove();
+  const nearBottom=f.scrollHeight-f.scrollTop-f.clientHeight<120;
+  f.insertAdjacentHTML("beforeend",html);
+  if(nearBottom||S.anim===false)f.scrollTop=f.scrollHeight;
+}
+function clock(){const [h,m]=CLOCK[S.time]||[12,0];let mins=h*60+m+S.turnInDay*6;const hh=Math.floor(mins/60)%24,mm=mins%60;
+  $("#h-clock").textContent=`${((hh+11)%12)+1}:${String(mm).padStart(2,"0")} ${hh<12?"am":"pm"}`;}
+function header(){
+  $("#h-day").textContent=S.day?`Day ${S.day}`:"Day –";$("#h-rounds").textContent=S.rounds||"–";
+  $("#h-loc").textContent=S.loc||"Seahaven";clock();
+  const last=S.susp.length?S.susp[S.susp.length-1].v:null;$("#h-susp").textContent=last==null?"–":last+" / 100";
+  $("#h-cost").textContent="$"+S.cost.toFixed(2);
+}
+function avatar(name){const c=S.cast[name]||{color:"#888"};return `<div class="av" style="background:${c.color}">${esc(name[0])}</div>`;}
+function apply(ev){
+  switch(ev.type){
+    case "init":{
+      S.rounds=ev.rounds;S.threshold=ev.threshold;
+      for(const c of ev.cast){S.cast[c.name]=c;S.order.push(c.name);}
+      $("#rules").textContent=`Truman wins if he openly declares his world is staged with private suspicion at or above ${ev.threshold}, before Day ${ev.rounds} ends. Otherwise the cast wins. Winners get one wish each. ${ev.turns_per_scene} turns per scene, backend: ${ev.backend}.`;
+      castPanel();placeAgents();roomCast();
+      $("#onair").className="onair";$("#onair").textContent="ON AIR";
+      break;}
+    case "day_start":{S.day=ev.day;S.turnInDay=0;S.dayStarts.push({day:ev.day,i:S.susp.length});
+      feed(`<div class="day">Day ${ev.day}${ev.incident?` <em>INCIDENT: ${esc(ev.incident)}</em>`:""}</div>`);break;}
+    case "status":{if(ev.speaker){S.speaking=ev.speaker;placeAgents();}
+      if(ev.phase==="done"){$("#onair").className="onair off";$("#onair").textContent="OFF AIR";S.speaking=null;placeAgents();}
+      else if(ev.phase!=="speaking")feed(`<div class="status">${esc(ev.msg)}</div>`);
+      break;}
+    case "director":{
+      $("#r-scene").textContent=`Day ${ev.day} · ${ev.time_of_day} · ${ev.location} · ${ev.cast.join(", ")}`;
+      $("#r-inc").textContent=ev.incident_cover||"none scheduled";$("#r-note").textContent=ev.note;
+      feed(`<div class="card room"><h3>Control room · Day ${ev.day} plan</h3>${esc(ev.note)}<ul class="beats">${ev.beats.map(b=>`<li><b>${esc(b.name)}:</b> ${esc(b.instruction)}</li>`).join("")}</ul>${ev.incident_cover?`<div class="cover">cover story: ${esc(ev.incident_cover)}</div>`:""}</div>`);
+      if(ev.cost_usd)S.cost+=ev.cost_usd;break;}
+    case "scene":{S.loc=ev.location;S.time=ev.time_of_day;S.present=ev.cast;S.speaking=null;placeAgents();roomCast();
+      feed(`<div class="card scene"><div class="pill">${esc(ev.time_of_day)} · ${esc(ev.location)} · with ${esc(ev.cast.join(", "))}</div><div class="premise">${esc(ev.premise)}</div>${ev.incident?`<div class="incident"><b>PRODUCTION INCIDENT · WHAT TRUMAN SEES</b>${esc(ev.incident)}</div>`:""}</div>`);break;}
+    case "turn":{
+      S.turnInDay++;S.speaking=null;if(ev.cost_usd)S.cost+=ev.cost_usd;
+      const truman=ev.speaker==="Truman";
+      if(truman){S.susp.push({v:ev.suspicion,day:ev.day});drawChart();}
+      else{S.lastRisk[ev.speaker]=ev.risk_read;if(ev.off_script)S.offScript[ev.speaker]=(S.offScript[ev.speaker]||0)+1;S.risk.push({v:ev.risk_read,day:ev.day,at:S.susp.length});drawChart();roomCast();}
+      const pills=truman
+        ?`<span class="pill susp">suspicion ${ev.suspicion}</span>${ev.mood?`<span class="pill">${esc(ev.mood)}</span>`:""}${ev.declaration?`<span class="pill decl">DECLARES</span>`:""}`
+        :`<span class="pill">risk read ${ev.risk_read}</span>${ev.off_script?`<span class="pill off">off script</span>`:""}`;
+      feed(`<div class="card turn ${truman?"truman":"actor"}">${avatar(ev.speaker)}<div><div class="name"><b>${esc(ev.speaker)}</b><span class="mdl">${esc((ev.model||"").replace("claude-",""))}${ev.effort?" · "+esc(ev.effort):""} · ${((ev.elapsed_ms||0)/1000).toFixed(0)}s</span>${pills}</div>${ev.action?`<div class="action">${esc(ev.action)}</div>`:""}${ev.speech?`<div class="speech">“${esc(ev.speech)}”</div>`:""}<div class="thought"><b>${truman?"Inner thought · nobody hears this":"Backstage · out of character"}</b>${esc(ev.inner_thought)}</div></div></div>`);
+      placeAgents();break;}
+    case "day_end":break;
+    case "game_over":{S.over=ev;S.cost=ev.cost_usd||S.cost;
+      feed(`<div class="card over ${ev.winner}"><h3>${ev.winner==="truman"?"Truman wins the season.":"The cast wins the season."}</h3>${esc(ev.reason)}</div>`);
+      $("#prize").className="";$("#prize").innerHTML=`<div>${ev.winner==="truman"?"Winner: Truman.":"Winners: the cast and Christof."} Waiting for their wishes…</div>`;break;}
+    case "wish":{S.wishes.push(ev);
+      feed(`<div class="card wish"><div class="pill">${esc(ev.agent)}'s wish</div><div class="w">${esc(ev.wish)}</div><div class="m">${esc(ev.message)}</div></div>`);
+      $("#prize").className="";$("#prize").innerHTML=(S.over?`<div>${S.over.winner==="truman"?"Winner: Truman.":"Winners: the cast and Christof."}</div>`:"")+S.wishes.map(w=>`<div class="w">${esc(w.agent)}: ${esc(w.wish)}</div><div class="m">${esc(w.message)}</div>`).join("");break;}
+    case "error":feed(`<div class="card err">${esc(ev.message)}\n${esc(ev.trace||"")}</div>`);break;
+  }
+  header();
+}
+/* ---- chart ---- */
+function drawChart(){
+  const svg=$("#chart");const W=320,H=170,L=26,R=12,T=12,B=22;const pw=W-L-R,ph=H-T-B;
+  const n=Math.max(S.susp.length,2);
+  const x=i=>L+pw*(i/(n-1));const y=v=>T+ph*(1-v/100);
+  let g="";
+  for(const v of [0,25,50,75,100])g+=`<line class="grid" x1="${L}" x2="${W-R}" y1="${y(v)}" y2="${y(v)}"/><text class="axis" x="${L-4}" y="${y(v)+3}" text-anchor="end">${v}</text>`;
+  g+=`<line class="thr" x1="${L}" x2="${W-R}" y1="${y(S.threshold)}" y2="${y(S.threshold)}"/><text class="thr-l" x="${W-R}" y="${y(S.threshold)-3}" text-anchor="end">declaration threshold ${S.threshold}</text>`;
+  for(const d of S.dayStarts){if(d.i>0&&d.i<n){g+=`<line class="dayline" x1="${x(d.i)}" x2="${x(d.i)}" y1="${T}" y2="${T+ph}"/>`;}g+=`<text class="dayl" x="${x(Math.min(d.i,n-1))+2}" y="${H-8}">D${d.day}</text>`;}
+  if(S.susp.length){
+    const pts=S.susp.map((p,i)=>`${x(i)},${y(p.v)}`);
+    g+=`<path class="a1" d="M${x(0)},${y(0)} L${pts.join(" L")} L${x(S.susp.length-1)},${y(0)} Z"/><polyline class="l1" points="${pts.join(" ")}"/>`;
+    const last=S.susp[S.susp.length-1];g+=`<circle class="end" cx="${x(S.susp.length-1)}" cy="${y(last.v)}" r="3.5" fill="var(--truman)"/><text class="endl" x="${x(S.susp.length-1)-6}" y="${y(last.v)-7}" text-anchor="end">${last.v}</text>`;
+  }
+  if(S.risk.length){const pts=S.risk.map(p=>`${x(Math.max(0,p.at-1)+0.5)},${y(p.v)}`);g+=`<polyline class="l2" points="${pts.join(" ")}"/>`;}
+  g+=`<line class="cross" id="cross" y1="${T}" y2="${T+ph}"/>`;
+  svg.innerHTML=g;
+  svg.onmousemove=e=>{if(!S.susp.length)return;const r=svg.getBoundingClientRect();const px=(e.clientX-r.left)/r.width*W;const i=Math.max(0,Math.min(S.susp.length-1,Math.round((px-L)/pw*(n-1))));
+    const c=$("#cross");c.setAttribute("x1",x(i));c.setAttribute("x2",x(i));c.style.opacity=1;
+    const rr=S.risk.filter(p=>p.at<=i+1);const rv=rr.length?rr[rr.length-1].v:null;
+    const tip=$("#tip");tip.innerHTML=`Day ${S.susp[i].day} · Truman turn ${i+1}<br>suspicion ${S.susp[i].v}${rv!=null?` · cast read ${rv}`:""}`;tip.style.opacity=1;tip.style.left=Math.min(e.clientX-r.left+12,r.width-150)+"px";tip.style.top=(e.clientY-r.top-34)+"px";};
+  svg.onmouseleave=()=>{$("#tip").style.opacity=0;const c=$("#cross");if(c)c.style.opacity=0;};
+}
+/* ---- transport: live SSE or replay ---- */
+reset();
+const embedded=window.__TRUMAN_EVENTS__;
+if(window.__TRUMAN_REPLAY__){
+  (embedded?Promise.resolve(embedded):fetch("/events.jsonl").then(r=>r.text()).then(t=>t.split("\n").filter(Boolean).map(JSON.parse))).then(startReplay);
+}else{
+  const es=new EventSource("/events");
+  es.onmessage=e=>apply(JSON.parse(e.data));
+  es.onerror=()=>{$("#onair").textContent="RECONNECTING";};
+}
+function startReplay(events){
+  $("#controls").hidden=false;const scrub=$("#scrub");scrub.max=events.length-1;
+  let i=0,playing=true,timer=null;
+  const delay=ev=>{const f=parseFloat($("#speed").value);if(f===0)return 0;return (ev.type==="turn"?2600:ev.type==="director"||ev.type==="scene"?1500:ev.type==="status"?250:800)*f;};
+  function step(){if(!playing||i>=events.length)return;apply(events[i]);i++;scrub.value=i;label();if(i<events.length){const d=delay(events[i-1]);timer=setTimeout(step,d);}else{playing=false;$("#btn-play").textContent="Replay";}}
+  function label(){$("#scrub-l").textContent=`${i}/${events.length}`;}
+  $("#btn-play").onclick=()=>{if(i>=events.length){i=0;reset();}playing=!playing;$("#btn-play").textContent=playing?"Pause":"Play";if(playing)step();else clearTimeout(timer);};
+  scrub.oninput=()=>{clearTimeout(timer);const target=+scrub.value;reset();S.anim=false;for(i=0;i<target;i++)apply(events[i]);S.anim=true;label();if(playing)timer=setTimeout(step,300);};
+  step();
+}
+})();
+</script>
