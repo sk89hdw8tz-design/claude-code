@@ -52,7 +52,9 @@ def main() -> None:
 
     os.makedirs("runs", exist_ok=True)
     log = args.log or os.path.join("runs", time.strftime("%Y%m%d-%H%M%S") + ".jsonl")
-    bus = EventBus(log)
+    if args.log and os.path.exists(log):
+        ap.error(f"{log} already exists; pick a new --log path (a run always writes a fresh file)")
+    bus = EventBus(log)  # the file is created on the first event, after the server has bound
     if not args.no_server:
         serve(bus, args.host, args.port)
         url = f"http://{args.host}:{args.port}/"

@@ -46,9 +46,18 @@ def make_handler(bus: EventBus, replay: bool):
             self.send_header("Cache-Control", "no-store")
             self.end_headers()
             past, q = bus.subscribe()
+            # Resume after a reconnect: skip what this client already has from this run.
+            last = self.headers.get("Last-Event-ID", "")
+            after = -1
+            if last.startswith(bus.run_id + ":"):
+                try:
+                    after = int(last.split(":", 1)[1])
+                except ValueError:
+                    after = -1
             try:
                 for ev in past:
-                    self._write(ev)
+                    if ev.get("i", -1) > after:
+                        self._write(ev)
                 while True:
                     try:
                         ev = q.get(timeout=15)
@@ -62,7 +71,7 @@ def make_handler(bus: EventBus, replay: bool):
                 bus.unsubscribe(q)
 
         def _write(self, ev):
-            self.wfile.write(f"data: {json.dumps(ev, ensure_ascii=False)}\n\n".encode())
+            self.wfile.write(f"id: {bus.run_id}:{ev.get('i', 0)}\ndata: {json.dumps(ev, ensure_ascii=False)}\n\n".encode())
             self.wfile.flush()
 
     return Handler

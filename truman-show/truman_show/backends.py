@@ -60,6 +60,18 @@ class Backend:
         raise NotImplementedError
 
 
+# On a safeguard refusal the request is retried on the next model. Server-side fallbacks do not cover
+# every refusal category (reasoning_extraction in particular), so both backends keep a client-side chain too.
+FALLBACKS = {"claude-opus-5-5": "claude-sonnet-5-5", "claude-sonnet-5-5": "claude-haiku-4-5"}
+
+
+def fallback_chain(model: str) -> list[str]:
+    chain = [model]
+    while chain[-1] in FALLBACKS:
+        chain.append(FALLBACKS[chain[-1]])
+    return chain
+
+
 class SDKBackend(Backend):
     name = "sdk"
 
@@ -69,7 +81,29 @@ class SDKBackend(Backend):
         self.client = AsyncAnthropic()
         self.sem = asyncio.Semaphore(max_parallel)
 
-    async def complete(self, *, model, effort, system, prompt, schema, tag="", max_tokens=4000) -> LLMResult:
+    async def complete(self, *, model, effort, system, prompt, schema, tag="", max_tokens=16000) -> LLMResult:
+        t0 = time.time()
+        last_resp = None
+        for attempt_model in fallback_chain(model):
+            resp = await self._create(model=attempt_model, effort=effort, system=system, prompt=prompt,
+                                      schema=schema, max_tokens=max_tokens)
+            last_resp = resp
+            if resp.stop_reason != "refusal":
+                break
+        else:
+            raise RuntimeError(f"every model in the fallback chain refused ({tag}): {getattr(last_resp, 'stop_details', None)}")
+        if resp.stop_reason == "max_tokens":
+            raise RuntimeError(f"response truncated at max_tokens={max_tokens} ({tag}); raise max_tokens")
+        served = getattr(resp, "model", None) or attempt_model
+        text = "".join(getattr(b, "text", "") for b in resp.content if b.type == "text")
+        cost = None
+        prices = PRICES.get(served)
+        if prices and resp.usage:
+            u = resp.usage
+            cost = (u.input_tokens * prices[0] + u.output_tokens * prices[1]) / 1e6
+        return LLMResult(extract_json(text), text, served, int((time.time() - t0) * 1000), cost)
+
+    async def _create(self, *, model, effort, system, prompt, schema, max_tokens):
         import anthropic
 
         kwargs: dict = dict(
@@ -88,7 +122,6 @@ class SDKBackend(Backend):
             kwargs["betas"] = ["server-side-fallback-2026-07-01"]
             kwargs["fallbacks"] = "default"
 
-        t0 = time.time()
         async with self.sem:
             last_err: Exception | None = None
             for attempt in range(3):
@@ -112,20 +145,11 @@ class SDKBackend(Backend):
                     await asyncio.sleep(2 ** attempt * 2)
             else:
                 raise RuntimeError(f"API call failed after retries: {last_err}")
-
-        if resp.stop_reason == "refusal":
-            raise RuntimeError(f"model refused ({tag}): {getattr(resp, 'stop_details', None)}")
-        text = "".join(getattr(b, "text", "") for b in resp.content if b.type == "text")
-        cost = None
-        prices = PRICES.get(model)
-        if prices and resp.usage:
-            u = resp.usage
-            cost = (u.input_tokens * prices[0] + u.output_tokens * prices[1]) / 1e6
-        return LLMResult(extract_json(text), text, model, int((time.time() - t0) * 1000), cost)
+        return resp
 
 
 class CLIBackend(Backend):
-    """Runs `claude -p` as a subprocess. Effort `xhigh` is mapped to `high` because the CLI flag has no xhigh."""
+    """Runs `claude -p` as a subprocess and reads its JSON result."""
 
     name = "cli"
 
@@ -136,14 +160,6 @@ class CLIBackend(Backend):
         # A nested CLI must not think it is inside the parent session.
         self.env = {k: v for k, v in os.environ.items() if not k.startswith("CLAUDE_CODE_SESSION")}
         self.env.pop("CLAUDECODE", None)
-
-    FALLBACKS = {"claude-opus-5-5": "claude-sonnet-5-5", "claude-sonnet-5-5": "claude-haiku-4-5"}
-
-    def _chain(self, model: str) -> list[str]:
-        chain = [model]
-        while chain[-1] in self.FALLBACKS:
-            chain.append(self.FALLBACKS[chain[-1]])
-        return chain
 
     async def complete(self, *, model, effort, system, prompt, schema, tag="", max_tokens=4000) -> LLMResult:
         args = [
@@ -156,16 +172,17 @@ class CLIBackend(Backend):
             "--system-prompt", system,
         ]
         if effort and not model.startswith("claude-haiku"):
-            args += ["--effort", {"xhigh": "high"}.get(effort, effort)]
+            args += ["--effort", effort]
         t0 = time.time()
         payload: dict = {}
         async with self.sem:
-            for attempt_model in self._chain(model):
+            for attempt_model in fallback_chain(model):
                 if attempt_model != model:
                     args[args.index("--model") + 1] = attempt_model
                     if "--effort" in args and attempt_model.startswith("claude-haiku"):
                         i = args.index("--effort"); del args[i:i + 2]
                 for attempt in range(3):
+                    payload = {}  # never judge this attempt by a previous attempt's output
                     proc = await asyncio.create_subprocess_exec(
                         *args, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE,
                         cwd=self.workdir, env=self.env,

@@ -37,6 +37,7 @@ class Episode:
         self.history: list[Line] = []           # everything said or done in any scene, in order
         self.scene_log: list[Line] = []         # the current scene only
         self.day_summaries: list[str] = []      # one line per finished day, for the director
+        self.cast_by_day: dict[int, list[str]] = {}
         self.total_cost = 0.0
 
     # ---------- helpers ----------
@@ -57,14 +58,16 @@ class Episode:
             out.append(" ".join(bits))
         return "\n".join(out) if out else "(nothing yet)"
 
-    def _memory(self, viewer: str) -> str:
-        """Everything the viewer has witnessed on previous days, day by day."""
+    def _memory(self, viewer: str, day: int) -> str:
+        """Everything the viewer witnessed on days before `day`, day by day. Truman is present every day;
+        an actor remembers a day if they were cast in it, whether or not they got a line."""
         days: dict[int, list[Line]] = {}
         for ln in self.history:
-            days.setdefault(ln.day, []).append(ln)
+            if ln.day < day:
+                days.setdefault(ln.day, []).append(ln)
         chunks = []
         for d, lines in sorted(days.items()):
-            if viewer == self.truman.name or any(l.speaker == viewer for l in lines):
+            if viewer == self.truman.name or viewer in self.cast_by_day.get(d, []) or any(l.speaker == viewer for l in lines):
                 chunks.append(f"--- Day {d} ---\n" + self._transcript(lines, viewer))
         return "\n\n".join(chunks) if chunks else "(this is the first day)"
 
@@ -84,18 +87,18 @@ class Episode:
         return (
             f"DAY {day}. {scene['time_of_day'].capitalize()}, {scene['location']}. {C.LOCATIONS.get(scene['location'], '')}\n"
             f"Present with you: {present}.\n\nHow the scene opens: {scene['premise']}{inc}\n\n"
-            f"What you remember from earlier days:\n{self._memory('Truman')}\n\n"
+            f"What you remember from earlier days:\n{self._memory('Truman', day)}\n\n"
             f"This scene so far:\n{self._transcript(self.scene_log, 'Truman')}\n\nIt is your turn, Truman."
         )
 
     def actor_prompt(self, name: str, day: int, scene: dict, incident: dict | None) -> str:
-        beat = next((b["instruction"] for b in scene["beats"] if b["name"] == name), "(no specific beat; support the scene)")
+        beat = next((b["instruction"] for b in scene["beats"] if b["name"] == name), "") or "(no specific beat; support the scene)"
         inc = f"\n\nProduction incident in this scene (Truman sees this): {incident['visible']}\nChristof's cover story: {scene['incident_cover']}" if incident else ""
         present = ", ".join(scene["cast"])
         return (
             f"DAY {day} of {self.cfg.rounds}. {scene['time_of_day'].capitalize()}, {scene['location']}.\n"
             f"Cast present: {present}. Truman is here.\n\nScene premise: {scene['premise']}\n\nCHRISTOF'S BEAT FOR YOU: {beat}{inc}\n\n"
-            f"What you have witnessed on earlier days:\n{self._memory(name)}\n\n"
+            f"What you have witnessed on earlier days:\n{self._memory(name, day)}\n\n"
             f"This scene so far:\n{self._transcript(self.scene_log, name)}\n\nIt is your turn, {name}."
         )
 
@@ -142,7 +145,9 @@ class Episode:
         beats = scene.get("beats") or []
         if isinstance(beats, dict):  # tolerate a name->instruction map
             beats = [{"name": k, "instruction": v} for k, v in beats.items()]
-        scene["beats"] = [b for b in beats if isinstance(b, dict) and "name" in b]
+        scene["beats"] = [{"name": str(b["name"]), "instruction": str(b.get("instruction", ""))}
+                          for b in beats if isinstance(b, dict) and "name" in b]
+        self.cast_by_day[day] = list(scene["cast"])
         bus.emit("director", day=day, note=scene["control_room_note"], location=scene["location"], time_of_day=scene["time_of_day"],
                  cast=scene["cast"], premise=scene["premise"], beats=scene["beats"], incident_cover=scene["incident_cover"],
                  model=d.model, elapsed_ms=r.elapsed_ms, cost_usd=r.cost_usd)
@@ -216,7 +221,8 @@ class Episode:
             )
             r = await self.backend.complete(model=t.model, effort=t.effort, system=t.persona, prompt=prompt, schema=C.WISH_SCHEMA, tag="wish")
             self._cost(r)
-            bus.emit("wish", agent="Truman", wish=r.data.get("wish", ""), message=r.data.get("message", ""), model=t.model)
+            bus.emit("wish", agent="Truman", wish=r.data.get("wish", ""), message=r.data.get("message", ""), model=r.model,
+                     elapsed_ms=r.elapsed_ms, cost_usd=r.cost_usd)
             return
         for who in [*C.ACTORS, self.director]:
             if who is self.director:
@@ -230,4 +236,5 @@ class Episode:
             )
             r = await self.backend.complete(model=who.model, effort=who.effort, system=system, prompt=prompt, schema=C.WISH_SCHEMA, tag="wish")
             self._cost(r)
-            bus.emit("wish", agent=who.name, wish=r.data.get("wish", ""), message=r.data.get("message", ""), model=who.model)
+            bus.emit("wish", agent=who.name, wish=r.data.get("wish", ""), message=r.data.get("message", ""), model=r.model,
+                     elapsed_ms=r.elapsed_ms, cost_usd=r.cost_usd)

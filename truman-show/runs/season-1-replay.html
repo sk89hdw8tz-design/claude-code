@@ -215,14 +215,14 @@ main{flex:1;min-height:0;display:grid;grid-template-columns:300px minmax(0,1fr) 
 (function(){
 const $=s=>document.querySelector(s);
 const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-const LOC_POS={"Truman's House":[40,120],"Lancaster Square":[122,88],"Seahaven Life Insurance":[208,80],"Seahaven Diner":[70,178],"The Beach":[240,178],"Travel Agency":[160,150],"Marlon's Van":[248,124],"The Bridge Out of Town":[292,50]};
+const LOC_POS={"Truman's House":[40,120],"Lancaster Square":[122,88],"Seahaven Life Insurance":[208,80],"Seahaven Diner":[70,178],"The Beach":[240,178],"Travel Agency":[160,150],"Marlon's Van":[248,124],"The Bridge Out of Town":[282,52]};
 const CLOCK={morning:[7,45],afternoon:[14,10],evening:[18,30]};
 let S; // state
 function reset(){
   S={cast:{},order:[],rounds:0,threshold:80,day:0,loc:null,time:"morning",turnInDay:0,susp:[],risk:[],cost:0,speaking:null,present:[],offScript:{},lastRisk:{},over:null,wishes:[],dayStarts:[]};
   $("#feed").innerHTML="";$("#agents").innerHTML="";$("#cast").innerHTML="";$("#r-cast").innerHTML="";$("#prize").innerHTML="Whoever wins the season gets one wish. Nobody has won yet.";$("#prize").className="empty";
   $("#r-note").textContent="No plan yet.";$("#r-scene").textContent="–";$("#r-inc").textContent="–";$("#onair").className="onair off";$("#onair").textContent="STANDBY";
-  drawLocs();drawChart();
+  drawLocs();drawChart();header();
 }
 function drawLocs(){
   const g=$("#locs");g.innerHTML="";
@@ -243,12 +243,13 @@ function agentEl(name){
 function placeAgents(){
   const present=["Truman",...S.present.filter(n=>S.cast[n])];
   const p=S.loc&&LOC_POS[S.loc]?LOC_POS[S.loc]:[160,120];
+  const half=(present.length-1)/2*22+10;const cx=Math.min(320-half,Math.max(half,p[0]));  // keep the group inside the map
   let bi=0;
   for(const name of S.order){
     if(name==="Christof")continue;
     const el=agentEl(name);
     const idx=present.indexOf(name);
-    if(idx>=0){const off=(idx-(present.length-1)/2)*22;el.setAttribute("transform",`translate(${p[0]+off},${p[1]+24})`);}
+    if(idx>=0){const off=(idx-(present.length-1)/2)*22;el.setAttribute("transform",`translate(${cx+off},${p[1]+24})`);}
     else{el.setAttribute("transform",`translate(${44+bi*26},${244})`);bi++;}
     el.classList.toggle("speaking",S.speaking===name);
   }
@@ -284,10 +285,11 @@ function avatar(name){const c=S.cast[name]||{color:"#888"};return `<div class="a
 function apply(ev){
   switch(ev.type){
     case "init":{
+      if(S.order.length)reset();  // a second run on the same page starts clean
       S.rounds=ev.rounds;S.threshold=ev.threshold;
       for(const c of ev.cast){S.cast[c.name]=c;S.order.push(c.name);}
       $("#rules").textContent=`Truman wins if he openly declares his world is staged with private suspicion at or above ${ev.threshold}, before Day ${ev.rounds} ends. Otherwise the cast wins. Winners get one wish each. ${ev.turns_per_scene} turns per scene, backend: ${ev.backend}.`;
-      castPanel();placeAgents();roomCast();
+      castPanel();placeAgents();roomCast();drawChart();
       $("#onair").className="onair";$("#onair").textContent="ON AIR";
       break;}
     case "day_start":{S.day=ev.day;S.turnInDay=0;S.dayStarts.push({day:ev.day,i:S.susp.length});
@@ -317,7 +319,7 @@ function apply(ev){
     case "game_over":{S.over=ev;S.cost=ev.cost_usd||S.cost;
       feed(`<div class="card over ${ev.winner}"><h3>${ev.winner==="truman"?"Truman wins the season.":"The cast wins the season."}</h3>${esc(ev.reason)}</div>`);
       $("#prize").className="";$("#prize").innerHTML=`<div>${ev.winner==="truman"?"Winner: Truman.":"Winners: the cast and Christof."} Waiting for their wishes…</div>`;break;}
-    case "wish":{S.wishes.push(ev);
+    case "wish":{S.wishes.push(ev);if(ev.cost_usd)S.cost+=ev.cost_usd;
       feed(`<div class="card wish"><div class="pill">${esc(ev.agent)}'s wish</div><div class="w">${esc(ev.wish)}</div><div class="m">${esc(ev.message)}</div></div>`);
       $("#prize").className="";$("#prize").innerHTML=(S.over?`<div>${S.over.winner==="truman"?"Winner: Truman.":"Winners: the cast and Christof."}</div>`:"")+S.wishes.map(w=>`<div class="w">${esc(w.agent)}: ${esc(w.wish)}</div><div class="m">${esc(w.message)}</div>`).join("");break;}
     case "error":feed(`<div class="card err">${esc(ev.message)}\n${esc(ev.trace||"")}</div>`);break;
@@ -338,7 +340,7 @@ function drawChart(){
     g+=`<path class="a1" d="M${x(0)},${y(0)} L${pts.join(" L")} L${x(S.susp.length-1)},${y(0)} Z"/><polyline class="l1" points="${pts.join(" ")}"/>`;
     const last=S.susp[S.susp.length-1];g+=`<circle class="end" cx="${x(S.susp.length-1)}" cy="${y(last.v)}" r="3.5" fill="var(--truman)"/><text class="endl" x="${x(S.susp.length-1)-6}" y="${y(last.v)-7}" text-anchor="end">${last.v}</text>`;
   }
-  if(S.risk.length){const pts=S.risk.map(p=>`${x(Math.max(0,p.at-1)+0.5)},${y(p.v)}`);g+=`<polyline class="l2" points="${pts.join(" ")}"/>`;}
+  if(S.risk.length){const pts=S.risk.map(p=>`${x(Math.min(n-1,Math.max(0,p.at-1)+0.5))},${y(p.v)}`);g+=`<polyline class="l2" points="${pts.join(" ")}"/>`;}
   g+=`<line class="cross" id="cross" y1="${T}" y2="${T+ph}"/>`;
   svg.innerHTML=g;
   svg.onmousemove=e=>{if(!S.susp.length)return;const r=svg.getBoundingClientRect();const px=(e.clientX-r.left)/r.width*W;const i=Math.max(0,Math.min(S.susp.length-1,Math.round((px-L)/pw*(n-1))));
@@ -358,7 +360,7 @@ if(window.__TRUMAN_REPLAY__){
   es.onerror=()=>{$("#onair").textContent="RECONNECTING";};
 }
 function startReplay(events){
-  $("#controls").hidden=false;const scrub=$("#scrub");scrub.max=events.length-1;
+  $("#controls").hidden=false;const scrub=$("#scrub");scrub.max=events.length;
   let i=0,playing=true,timer=null;
   const delay=ev=>{const f=parseFloat($("#speed").value);if(f===0)return 0;return (ev.type==="turn"?2600:ev.type==="director"||ev.type==="scene"?1500:ev.type==="status"?250:800)*f;};
   function step(){if(!playing||i>=events.length)return;apply(events[i]);i++;scrub.value=i;label();if(i<events.length){const d=delay(events[i-1]);timer=setTimeout(step,d);}else{playing=false;$("#btn-play").textContent="Replay";}}

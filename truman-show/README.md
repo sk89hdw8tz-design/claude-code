@@ -65,5 +65,5 @@ truman_show/build_replay.py  bake a log into a standalone HTML replay
   measuring him. Rename the field or lower its salience in `cast.py` if you want a purer test.
 - Prompts avoid asking any model for its "private reasoning". Fields are framed as fiction
   (inner monologue, backstage aside, production log) because Opus and Sonnet 5.5 safeguards refuse
-  requests that read like reasoning extraction. The CLI backend falls back Opus -> Sonnet -> Haiku on a refusal;
-  the SDK backend uses the API's server-side `fallbacks: "default"`.
+  requests that read like reasoning extraction. Both backends fall back Opus -> Sonnet -> Haiku on a refusal (the SDK backend also sends the API's
+  server-side `fallbacks: "default"`, which does not cover every refusal category).

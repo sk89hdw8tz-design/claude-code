@@ -2,9 +2,11 @@
 from __future__ import annotations
 
 import json
+import os
 import queue
 import threading
 import time
+import uuid
 
 
 class EventBus:
@@ -12,14 +14,19 @@ class EventBus:
         self.events: list[dict] = []
         self.subscribers: list[queue.Queue] = []
         self.lock = threading.Lock()
-        self.log = open(log_path, "a", encoding="utf-8") if log_path else None
+        self.log_path = log_path
+        self.log = None  # opened on the first emit, so a failed start leaves no empty file behind
+        self.run_id = uuid.uuid4().hex[:12]
         self.t0 = time.time()
 
     def emit(self, type_: str, **payload) -> dict:
         ev = {"i": len(self.events), "t": round(time.time() - self.t0, 3), "type": type_, **payload}
         with self.lock:
             self.events.append(ev)
-            if self.log:
+            if self.log_path:
+                if self.log is None:
+                    os.makedirs(os.path.dirname(self.log_path) or ".", exist_ok=True)
+                    self.log = open(self.log_path, "w", encoding="utf-8")  # a new run always starts a fresh log
                 self.log.write(json.dumps(ev, ensure_ascii=False) + "\n")
                 self.log.flush()
             subs = list(self.subscribers)
